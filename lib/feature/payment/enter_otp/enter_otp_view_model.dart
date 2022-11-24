@@ -44,8 +44,7 @@ class EnterOtpViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
 
   ///transfer verify response stream
-  Stream<Resource<bool>> get transferVerifyStream =>
-      _transferVerifyResponse.stream;
+  Stream<Resource<bool>> get transferVerifyStream => _transferVerifyResponse.stream;
 
   void updateTime() {
     // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
@@ -57,21 +56,16 @@ class EnterOtpViewModel extends BasePageViewModel {
   PublishSubject<TransferUseCaseParams> _transferRequest = PublishSubject();
 
   ///transfer response
-  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse =
-      PublishSubject();
+  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse = PublishSubject();
 
   ///transfer response stream
-  Stream<Resource<TransferSuccessResponse>> get transferStream =>
-      _transferResponse.stream;
+  Stream<Resource<TransferSuccessResponse>> get transferStream => _transferResponse.stream;
 
-  PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest =
-      PublishSubject();
+  PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest = PublishSubject();
 
-  EnterOtpViewModel(
-      this._useCase, this._transferUseCase, this._transferVerifyUseCase) {
+  EnterOtpViewModel(this._useCase, this._transferUseCase, this._transferVerifyUseCase) {
     _transferVerifyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _transferVerifyUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _transferVerifyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -87,9 +81,7 @@ class EnterOtpViewModel extends BasePageViewModel {
     });
 
     _enterOtpRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         _enterOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -98,8 +90,7 @@ class EnterOtpViewModel extends BasePageViewModel {
     });
 
     _transferRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _transferUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

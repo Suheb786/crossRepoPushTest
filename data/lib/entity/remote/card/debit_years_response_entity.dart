@@ -7,9 +7,7 @@ part "debit_years_response_entity.g.dart";
 
 @JsonSerializable()
 class DebitYearsResponseEntity
-    implements
-        BaseLayerDataTransformer<DebitYearsResponseEntity,
-            GetDebitYearsResponse> {
+    implements BaseLayerDataTransformer<DebitYearsResponseEntity, GetDebitYearsResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,8 +26,6 @@ class DebitYearsResponseEntity
   @override
   GetDebitYearsResponse transform() {
     return GetDebitYearsResponse(
-        years: (this.response!.content as List<dynamic>)
-            .map((e) => e.toString())
-            .toList());
+        years: (this.response!.content as List<dynamic>).map((e) => e.toString()).toList());
   }
 }

@@ -7,9 +7,7 @@ part "purpose_content_response_entity.g.dart";
 
 @JsonSerializable()
 class PurposeContentResponseEntity
-    implements
-        BaseLayerDataTransformer<PurposeContentResponseEntity,
-            PurposeContentResponse> {
+    implements BaseLayerDataTransformer<PurposeContentResponseEntity, PurposeContentResponse> {
   @JsonKey(name: "content")
   final PurposeContentEntity? purposeContentEntity;
 

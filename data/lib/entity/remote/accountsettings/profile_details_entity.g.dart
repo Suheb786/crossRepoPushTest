@@ -14,8 +14,6 @@ ProfileDetailsEntity _$ProfileDetailsEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProfileDetailsEntityToJson(
-        ProfileDetailsEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProfileDetailsEntityToJson(ProfileDetailsEntity instance) => <String, dynamic>{
       'profileInfo': instance.profileInfo,
     };

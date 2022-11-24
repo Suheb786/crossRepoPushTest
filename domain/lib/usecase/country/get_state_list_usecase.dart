@@ -6,15 +6,13 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetStateListUseCase extends BaseUseCase<NetworkError,
-    GetStateListUseParams, StateListResponse> {
+class GetStateListUseCase extends BaseUseCase<NetworkError, GetStateListUseParams, StateListResponse> {
   final CountryRepository _countryRepository;
 
   GetStateListUseCase(this._countryRepository);
 
   @override
-  Future<Either<NetworkError, StateListResponse>> execute(
-      {required GetStateListUseParams params}) {
+  Future<Either<NetworkError, StateListResponse>> execute({required GetStateListUseParams params}) {
     return _countryRepository.getStateList(isoCode: params.isoCode);
   }
 }

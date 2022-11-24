@@ -8,20 +8,16 @@ part "account_card_statement_response_entity.g.dart";
 
 @JsonSerializable()
 class AccountCardStatementResponseEntity
-    implements
-        BaseLayerDataTransformer<AccountCardStatementResponseEntity,
-            CardStatementResponse> {
+    implements BaseLayerDataTransformer<AccountCardStatementResponseEntity, CardStatementResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   AccountCardStatementResponseEntity({this.response});
 
-  factory AccountCardStatementResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory AccountCardStatementResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$AccountCardStatementResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$AccountCardStatementResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$AccountCardStatementResponseEntityToJson(this);
 
   @override
   AccountCardStatementResponseEntity restore(CardStatementResponse response) {
@@ -31,8 +27,6 @@ class AccountCardStatementResponseEntity
   @override
   CardStatementResponse transform() {
     return CardStatementResponse(
-        cardStatementContent:
-            AccountCardStatementContentEntity.fromJson(this.response!.content)
-                .transform());
+        cardStatementContent: AccountCardStatementContentEntity.fromJson(this.response!.content).transform());
   }
 }

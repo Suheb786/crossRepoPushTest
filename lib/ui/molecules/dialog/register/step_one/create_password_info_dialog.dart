@@ -7,8 +7,6 @@ class CreatePasswordInfoDialog {
 
   static show(BuildContext mContext, {Function? onDismissed}) {
     AppDialog.show(mContext,
-        isDismissible: true,
-        builder: (context) =>
-            CreatePasswordInfoDialogView(onDismissed: onDismissed));
+        isDismissible: true, builder: (context) => CreatePasswordInfoDialogView(onDismissed: onDismissed));
   }
 }

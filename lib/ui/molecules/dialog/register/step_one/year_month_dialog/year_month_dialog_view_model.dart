@@ -28,8 +28,7 @@ class YearMonthDialogViewModel extends BasePageViewModel {
   ];
 
   ///year list
-  List<String> yearList =
-      List.generate(100, (index) => (DateTime.now().year - index).toString());
+  List<String> yearList = List.generate(100, (index) => (DateTime.now().year - index).toString());
 
   ///time list
   List<String> timeList = [];
@@ -45,12 +44,10 @@ class YearMonthDialogViewModel extends BasePageViewModel {
   }
 
   ///list response holder
-  BehaviorSubject<Resource<List<String>>> _searchStringResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<String>>> _searchStringResponse = BehaviorSubject();
 
   ///List response stream
-  Stream<Resource<List<String>>> get getListStream =>
-      _searchStringResponse.stream;
+  Stream<Resource<List<String>>> get getListStream => _searchStringResponse.stream;
 
   List<String> searchResult = [];
 

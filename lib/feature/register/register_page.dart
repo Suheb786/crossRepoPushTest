@@ -18,8 +18,7 @@ class RegisterPage extends BasePage<RegisterViewModel> {
   RegisterPageState createState() => RegisterPageState();
 }
 
-class RegisterPageState
-    extends BaseStatefulPage<RegisterViewModel, RegisterPage> {
+class RegisterPageState extends BaseStatefulPage<RegisterViewModel, RegisterPage> {
   @override
   ProviderBase provideBase() {
     return registerViewModelProvider;
@@ -42,9 +41,7 @@ class RegisterPageState
             model.navigateToPage(0);
           });
           Future.delayed(Duration(microseconds: 100), () {
-            ProviderScope.containerOf(context)
-                .read(registerStepOneViewModelProvider)
-                .moveToPage(2);
+            ProviderScope.containerOf(context).read(registerStepOneViewModelProvider).moveToPage(2);
           });
           break;
 
@@ -54,9 +51,7 @@ class RegisterPageState
             model.navigateToPage(0);
           });
           Future.delayed(Duration(microseconds: 100), () {
-            ProviderScope.containerOf(context)
-                .read(registerStepOneViewModelProvider)
-                .moveToPage(3);
+            ProviderScope.containerOf(context).read(registerStepOneViewModelProvider).moveToPage(3);
           });
           break;
         case "AccountOpeningPurpose":
@@ -110,8 +105,7 @@ class RegisterPageState
 
         case "UploadDocument":
           Future.delayed(Duration(microseconds: 100), () {
-            Navigator.pushReplacementNamed(
-                context, RoutePaths.UploadDocumentLater);
+            Navigator.pushReplacementNamed(context, RoutePaths.UploadDocumentLater);
           });
 
           break;
@@ -126,8 +120,7 @@ class RegisterPageState
         case "AdminPortalReview":
           Future.delayed(Duration(microseconds: 100), () {
             Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
-                arguments: AccountHoldArguments(
-                    applicationId: widget.arguments.applicationId));
+                arguments: AccountHoldArguments(applicationId: widget.arguments.applicationId));
           });
           break;
 

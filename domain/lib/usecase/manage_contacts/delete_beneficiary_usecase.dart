@@ -5,15 +5,13 @@ import 'package:domain/repository/manage_contact/manage_contact_repository.dart'
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DeleteBeneficiaryUseCase
-    extends BaseUseCase<NetworkError, DeleteBeneficiaryUseCaseParams, bool> {
+class DeleteBeneficiaryUseCase extends BaseUseCase<NetworkError, DeleteBeneficiaryUseCaseParams, bool> {
   final ManageContactRepository _repository;
 
   DeleteBeneficiaryUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required DeleteBeneficiaryUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required DeleteBeneficiaryUseCaseParams params}) {
     return _repository.deleteBeneficiary(beneficiaryId: params.beneficiaryId);
   }
 }

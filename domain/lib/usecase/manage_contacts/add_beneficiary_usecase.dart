@@ -5,15 +5,13 @@ import 'package:domain/repository/manage_contact/manage_contact_repository.dart'
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddBeneficiaryUseCase
-    extends BaseUseCase<NetworkError, AddBeneficiaryUseCaseParams, bool> {
+class AddBeneficiaryUseCase extends BaseUseCase<NetworkError, AddBeneficiaryUseCaseParams, bool> {
   final ManageContactRepository _repository;
 
   AddBeneficiaryUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required AddBeneficiaryUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required AddBeneficiaryUseCaseParams params}) {
     return _repository.addBeneficiary(
         iBan: params.iban,
         bankName: params.bankName,

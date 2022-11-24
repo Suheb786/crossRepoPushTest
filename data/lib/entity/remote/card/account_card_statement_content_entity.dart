@@ -9,9 +9,7 @@ part "account_card_statement_content_entity.g.dart";
 
 @JsonSerializable()
 class AccountCardStatementContentEntity
-    implements
-        BaseLayerDataTransformer<AccountCardStatementContentEntity,
-            CardStatementContent> {
+    implements BaseLayerDataTransformer<AccountCardStatementContentEntity, CardStatementContent> {
   @JsonKey(name: "pdfFileName")
   final String? pdfFileName;
   @JsonKey(name: "pdfBase64String")
@@ -19,12 +17,10 @@ class AccountCardStatementContentEntity
 
   AccountCardStatementContentEntity({this.pdfBase64String, this.pdfFileName});
 
-  factory AccountCardStatementContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory AccountCardStatementContentEntity.fromJson(Map<String, dynamic> json) =>
       _$AccountCardStatementContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$AccountCardStatementContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$AccountCardStatementContentEntityToJson(this);
 
   @override
   AccountCardStatementContentEntity restore(CardStatementContent response) {
@@ -39,8 +35,7 @@ class AccountCardStatementContentEntity
                 this.pdfBase64String!, this.pdfFileName ?? 'Account Statement')
             : File(''),
         pdfFileName: this.pdfFileName ?? '',
-        pdfUint8List: this.pdfBase64String != null
-            ? ImageUtils.dataFromBase64String(this.pdfBase64String!)
-            : "");
+        pdfUint8List:
+            this.pdfBase64String != null ? ImageUtils.dataFromBase64String(this.pdfBase64String!) : "");
   }
 }

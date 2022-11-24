@@ -6,8 +6,8 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class FetchAllowedIssuersUseCase extends BaseUseCase<NetworkError,
-    FetchAllowedIssuersUseCaseParams, List<AllowedIssuerCountry>> {
+class FetchAllowedIssuersUseCase
+    extends BaseUseCase<NetworkError, FetchAllowedIssuersUseCaseParams, List<AllowedIssuerCountry>> {
   final CountryRepository _countryRepository;
 
   FetchAllowedIssuersUseCase(this._countryRepository);

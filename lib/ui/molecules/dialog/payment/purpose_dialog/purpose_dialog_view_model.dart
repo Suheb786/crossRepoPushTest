@@ -4,8 +4,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PurposeDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   List<Purpose>? purposeList = [];
 

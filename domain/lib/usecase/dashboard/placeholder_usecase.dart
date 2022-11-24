@@ -4,11 +4,9 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PlaceholderUseCase
-    extends BaseUseCase<NetworkError, PlaceholderUseCaseParams, bool> {
+class PlaceholderUseCase extends BaseUseCase<NetworkError, PlaceholderUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required PlaceholderUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required PlaceholderUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

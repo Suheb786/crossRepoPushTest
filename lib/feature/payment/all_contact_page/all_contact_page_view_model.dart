@@ -11,20 +11,17 @@ class AllContactPageViewModel extends BasePageViewModel {
   final TextEditingController contactSearchController = TextEditingController();
 
   /// beneficiary list response
-  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
 
   AllContactPageViewModel(this.arguments);
 
-  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream =>
-      _searchBeneficiaryListResponse.stream;
+  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream => _searchBeneficiaryListResponse.stream;
 
   List<Beneficiary> allContacts = [];
 
   void setBeneficiaryList(List<Beneficiary> beneficiaryList) {
     allContacts = beneficiaryList;
-    _searchBeneficiaryListResponse
-        .safeAdd(Resource.success(data: beneficiaryList));
+    _searchBeneficiaryListResponse.safeAdd(Resource.success(data: beneficiaryList));
   }
 
   List<Beneficiary>? searchResult = [];
@@ -36,18 +33,14 @@ class AllContactPageViewModel extends BasePageViewModel {
       for (int i = 0; i < beneficiaryList.length; i++) {
         Beneficiary beneficiary = beneficiaryList[i];
         if (beneficiary.nickName != null) {
-          if (beneficiary.nickName!
-              .toLowerCase()
-              .contains(searchText.toLowerCase())) {
+          if (beneficiary.nickName!.toLowerCase().contains(searchText.toLowerCase())) {
             searchResult!.add(beneficiary);
           }
         }
       }
-      _searchBeneficiaryListResponse
-          .safeAdd(Resource.success(data: searchResult));
+      _searchBeneficiaryListResponse.safeAdd(Resource.success(data: searchResult));
     } else {
-      _searchBeneficiaryListResponse
-          .safeAdd(Resource.success(data: allContacts));
+      _searchBeneficiaryListResponse.safeAdd(Resource.success(data: allContacts));
     }
   }
 

@@ -10,8 +10,8 @@ class ScheduleVideoCallPage extends BasePage<ScheduleVideoCallPageViewModel> {
   ScheduleVideoCallPageState createState() => ScheduleVideoCallPageState();
 }
 
-class ScheduleVideoCallPageState extends BaseStatefulPage<
-    ScheduleVideoCallPageViewModel, ScheduleVideoCallPage> {
+class ScheduleVideoCallPageState
+    extends BaseStatefulPage<ScheduleVideoCallPageViewModel, ScheduleVideoCallPage> {
   @override
   ProviderBase provideBase() {
     return scheduleVideoCallPageViewModelProvider;

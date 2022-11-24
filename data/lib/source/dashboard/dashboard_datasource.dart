@@ -1,7 +1,6 @@
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/dashboard/placeholder/placeholder_response_entity.dart';
-import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class DashboardRemoteDs {
@@ -9,6 +8,5 @@ abstract class DashboardRemoteDs {
 
   Future<HttpResponse<AtmsResponseEntity>> getAtms();
 
-  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(
-      {int? placeholderId});
+  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder({int? placeholderId});
 }

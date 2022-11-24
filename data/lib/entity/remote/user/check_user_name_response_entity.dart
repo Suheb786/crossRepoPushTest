@@ -7,8 +7,7 @@ part 'check_user_name_response_entity.g.dart';
 
 @JsonSerializable()
 class CheckUserNameResponseEntity
-    implements
-        BaseLayerDataTransformer<CheckUserNameResponseEntity, CheckUsername> {
+    implements BaseLayerDataTransformer<CheckUserNameResponseEntity, CheckUsername> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

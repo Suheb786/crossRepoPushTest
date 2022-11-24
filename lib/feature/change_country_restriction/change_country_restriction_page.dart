@@ -5,15 +5,13 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
 
-class ChangeCountryRestrictionPage
-    extends BasePage<ChangeCountryRestrictionPageViewModel> {
+class ChangeCountryRestrictionPage extends BasePage<ChangeCountryRestrictionPageViewModel> {
   @override
-  ChangeCountryRestrictionPageState createState() =>
-      ChangeCountryRestrictionPageState();
+  ChangeCountryRestrictionPageState createState() => ChangeCountryRestrictionPageState();
 }
 
-class ChangeCountryRestrictionPageState extends BaseStatefulPage<
-    ChangeCountryRestrictionPageViewModel, ChangeCountryRestrictionPage> {
+class ChangeCountryRestrictionPageState
+    extends BaseStatefulPage<ChangeCountryRestrictionPageViewModel, ChangeCountryRestrictionPage> {
   @override
   ProviderBase provideBase() {
     return changeCountryRestrictionPageViewModelProvider;
@@ -25,8 +23,7 @@ class ChangeCountryRestrictionPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ChangeCountryRestrictionPageViewModel model) {
+  Widget buildView(BuildContext context, ChangeCountryRestrictionPageViewModel model) {
     return ChangeCountryRestrictionPageView(provideBase());
   }
 }

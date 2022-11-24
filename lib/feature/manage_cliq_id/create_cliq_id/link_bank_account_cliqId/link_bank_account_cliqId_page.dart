@@ -5,16 +5,14 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account_cliqId/link_bank_account_cliqId_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account_cliqId/link_bank_account_cliqId_page_view_model.dart';
 
-class LinkBankAccountCliqIdPage
-    extends BasePage<LinkBankAccountCliqIdPageViewModel> {
+class LinkBankAccountCliqIdPage extends BasePage<LinkBankAccountCliqIdPageViewModel> {
   @override
-  LinkBankAccountCliqIdPageState createState() =>
-      LinkBankAccountCliqIdPageState();
+  LinkBankAccountCliqIdPageState createState() => LinkBankAccountCliqIdPageState();
 }
 
-class LinkBankAccountCliqIdPageState extends BaseStatefulPage<
-    LinkBankAccountCliqIdPageViewModel,
-    LinkBankAccountCliqIdPage> with AutomaticKeepAliveClientMixin {
+class LinkBankAccountCliqIdPageState
+    extends BaseStatefulPage<LinkBankAccountCliqIdPageViewModel, LinkBankAccountCliqIdPage>
+    with AutomaticKeepAliveClientMixin {
   LinkBankAccountCliqIdPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -28,8 +26,7 @@ class LinkBankAccountCliqIdPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, LinkBankAccountCliqIdPageViewModel model) {
+  Widget buildView(BuildContext context, LinkBankAccountCliqIdPageViewModel model) {
     return LinkBankAccountCliqIdPageView(provideBase());
   }
 

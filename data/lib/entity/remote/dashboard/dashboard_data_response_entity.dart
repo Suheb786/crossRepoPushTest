@@ -8,9 +8,7 @@ part "dashboard_data_response_entity.g.dart";
 
 @JsonSerializable()
 class DashboardDataResponseEntity
-    implements
-        BaseLayerDataTransformer<DashboardDataResponseEntity,
-            GetDashboardDataResponse> {
+    implements BaseLayerDataTransformer<DashboardDataResponseEntity, GetDashboardDataResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,7 +27,6 @@ class DashboardDataResponseEntity
   @override
   GetDashboardDataResponse transform() {
     return GetDashboardDataResponse(
-        dashboardDataContent:
-            DashboardDataEntity.fromJson(this.response!.content).transform());
+        dashboardDataContent: DashboardDataEntity.fromJson(this.response!.content).transform());
   }
 }

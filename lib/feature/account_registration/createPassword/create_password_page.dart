@@ -10,8 +10,7 @@ class CreatePasswordPage extends BasePage<CreatePasswordViewModel> {
   CreatePasswordPageState createState() => CreatePasswordPageState();
 }
 
-class CreatePasswordPageState
-    extends BaseStatefulPage<CreatePasswordViewModel, CreatePasswordPage>
+class CreatePasswordPageState extends BaseStatefulPage<CreatePasswordViewModel, CreatePasswordPage>
     with AutomaticKeepAliveClientMixin {
   CreatePasswordPageState() : super(subscribeVisibilityEvents: true);
 

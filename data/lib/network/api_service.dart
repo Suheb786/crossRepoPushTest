@@ -142,10 +142,18 @@ import 'package:data/entity/remote/payment/payment_activity_request_entity.dart'
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
+import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -761,4 +769,30 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+  @POST("/transfer/TransferAPINoOtp")
+  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
+      @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
+
+  ///RJ
+  @POST("/RJ/GetDestinations")
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
+      @Body() GetDestinationRequestEntity request);
+
+  @POST("/RJ/GetOneWayLink")
+  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
+      @Body() GetOneWayTripLinkRequestEntity request);
+
+  @POST("/RJ/GetRoundTripLink")
+  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
+      @Body() GetTwoWayTripLinkRequestEntity request);
+
+  @POST("/RJ/MakeTicketPayment")
+  Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
+
+  @POST("/RJ/GetFlightDetails")
+  Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
+
+  @POST("/RJ/MakeTicketPaymentOtp")
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 }

@@ -6,21 +6,17 @@ part of 'payment_activity_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PaymentActivityDataEntity _$PaymentActivityDataEntityFromJson(
-    Map<String, dynamic> json) {
+PaymentActivityDataEntity _$PaymentActivityDataEntityFromJson(Map<String, dynamic> json) {
   return PaymentActivityDataEntity(
     name: json['name'] as String?,
     amount: (json['amount'] as num?)?.toDouble(),
     status: json['status'] as String?,
-    rtpDate: json['rtpDate'] == null
-        ? null
-        : DateTime.parse(json['rtpDate'] as String),
+    rtpDate: json['rtpDate'] == null ? null : DateTime.parse(json['rtpDate'] as String),
     profileImage: json['profileImage'] as String?,
   );
 }
 
-Map<String, dynamic> _$PaymentActivityDataEntityToJson(
-        PaymentActivityDataEntity instance) =>
+Map<String, dynamic> _$PaymentActivityDataEntityToJson(PaymentActivityDataEntity instance) =>
     <String, dynamic>{
       'name': instance.name,
       'amount': instance.amount,

@@ -6,8 +6,7 @@ part of 'android_login_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AndroidLoginRequestEntity _$AndroidLoginRequestEntityFromJson(
-    Map<String, dynamic> json) {
+AndroidLoginRequestEntity _$AndroidLoginRequestEntityFromJson(Map<String, dynamic> json) {
   return AndroidLoginRequestEntity(
     uniqueId: json['uniqueId'] as String?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
@@ -16,8 +15,7 @@ AndroidLoginRequestEntity _$AndroidLoginRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$AndroidLoginRequestEntityToJson(
-        AndroidLoginRequestEntity instance) =>
+Map<String, dynamic> _$AndroidLoginRequestEntityToJson(AndroidLoginRequestEntity instance) =>
     <String, dynamic>{
       'uniqueId': instance.uniqueId,
       'fireBaseToken': instance.fireBaseToken,

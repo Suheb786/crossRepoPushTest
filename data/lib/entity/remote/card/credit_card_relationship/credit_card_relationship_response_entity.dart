@@ -7,25 +7,22 @@ import 'package:json_annotation/json_annotation.dart';
 part "credit_card_relationship_response_entity.g.dart";
 
 @JsonSerializable()
-class CreditCardRelationshipResponseEntity extends BaseLayerDataTransformer<
-    CreditCardRelationshipResponseEntity, CreditCardRelationshipResponse> {
+class CreditCardRelationshipResponseEntity
+    extends BaseLayerDataTransformer<CreditCardRelationshipResponseEntity, CreditCardRelationshipResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   CreditCardRelationshipResponseEntity({this.response});
 
-  factory CreditCardRelationshipResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory CreditCardRelationshipResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$CreditCardRelationshipResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CreditCardRelationshipResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CreditCardRelationshipResponseEntityToJson(this);
 
   @override
   CreditCardRelationshipResponse transform() {
     return CreditCardRelationshipResponse(
-        cardRelationship: GetCreditCardRelationshipContentEntity.fromJson(
-                this.response!.content)
-            .transform());
+        cardRelationship:
+            GetCreditCardRelationshipContentEntity.fromJson(this.response!.content).transform());
   }
 }

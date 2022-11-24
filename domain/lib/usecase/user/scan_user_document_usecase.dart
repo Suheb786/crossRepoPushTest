@@ -6,8 +6,8 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ScanUserDocumentUseCase extends BaseUseCase<LocalError,
-    ScanUserDocumentUseCaseParams, ScannedDocumentInformation> {
+class ScanUserDocumentUseCase
+    extends BaseUseCase<LocalError, ScanUserDocumentUseCaseParams, ScannedDocumentInformation> {
   final UserRepository _userRepository;
 
   ScanUserDocumentUseCase(this._userRepository);

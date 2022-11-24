@@ -30,63 +30,45 @@ class AgentSelectionViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
 
-  PublishSubject<CheckGenderStatusUseCaseParams> _checkGenderStatusRequest =
-      PublishSubject();
-  PublishSubject<Resource<AgentGenderStatus>> _checkGenderStatusResponse =
-      PublishSubject();
+  PublishSubject<CheckGenderStatusUseCaseParams> _checkGenderStatusRequest = PublishSubject();
+  PublishSubject<Resource<AgentGenderStatus>> _checkGenderStatusResponse = PublishSubject();
 
-  Stream<Resource<AgentGenderStatus>> get getAgentAvailabilityStream =>
-      _checkGenderStatusResponse.stream;
+  Stream<Resource<AgentGenderStatus>> get getAgentAvailabilityStream => _checkGenderStatusResponse.stream;
 
-  PublishSubject<RequestCallUseCaseParams> _requestCallRequest =
-      PublishSubject();
-  PublishSubject<Resource<RequestCallStatus>> _requestCallResponse =
-      PublishSubject();
+  PublishSubject<RequestCallUseCaseParams> _requestCallRequest = PublishSubject();
+  PublishSubject<Resource<RequestCallStatus>> _requestCallResponse = PublishSubject();
 
-  Stream<Resource<RequestCallStatus>> get requestCallStream =>
-      _requestCallResponse.stream;
+  Stream<Resource<RequestCallStatus>> get requestCallStream => _requestCallResponse.stream;
 
   ///User Status subject holder
-  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest =
-      PublishSubject();
+  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest = PublishSubject();
 
   ///User Status response holder
-  BehaviorSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse = BehaviorSubject();
 
   ///User Status stream
-  Stream<Resource<CustomerStatus>> get customerStatusStream =>
-      _checkCustomerStatusResponse.stream;
+  Stream<Resource<CustomerStatus>> get customerStatusStream => _checkCustomerStatusResponse.stream;
 
   ///get Account subject holder
   PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
 
   ///get Account response holder
-  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse = PublishSubject();
 
   ///get Account stream
-  Stream<Resource<GetAccountResponse>> get getAccountStream =>
-      _getAccountResponse.stream;
+  Stream<Resource<GetAccountResponse>> get getAccountStream => _getAccountResponse.stream;
 
   ///create Account subject holder
-  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest =
-      PublishSubject();
+  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest = PublishSubject();
 
   ///create Account response holder
-  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse = PublishSubject();
 
   ///create Account stream
-  Stream<Resource<CreateAccountResponse>> get createAccountStream =>
-      _createAccountResponse.stream;
+  Stream<Resource<CreateAccountResponse>> get createAccountStream => _createAccountResponse.stream;
 
-  AgentSelectionViewModel(
-      this._checkGenderStatusUseCase,
-      this._requestCallUseCase,
-      this._checkCustomerStatusUseCase,
-      this._getAccountUseCase,
-      this._createAccountUseCase) {
+  AgentSelectionViewModel(this._checkGenderStatusUseCase, this._requestCallUseCase,
+      this._checkCustomerStatusUseCase, this._getAccountUseCase, this._createAccountUseCase) {
     _checkGenderStatusRequest.listen((value) {
       RequestManager(
         value,
@@ -110,9 +92,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
     });
 
     _checkCustomerStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkCustomerStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkCustomerStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -124,8 +104,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
     });
 
     _getAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -138,8 +117,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
     });
 
     _createAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -173,11 +151,9 @@ class AgentSelectionViewModel extends BasePageViewModel {
     _getAccountRequest.safeAdd(GetAccountUseCaseParams());
   }
 
-  void createAccount(CustomerAccountDetails customerAccountDetails,
-      CustomerInformation customerInformation) {
+  void createAccount(CustomerAccountDetails customerAccountDetails, CustomerInformation customerInformation) {
     _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
-        accountDetails: customerAccountDetails,
-        customerInformation: customerInformation));
+        accountDetails: customerAccountDetails, customerInformation: customerInformation));
   }
 
   @override

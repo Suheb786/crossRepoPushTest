@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'profile_changed_success_entity.g.dart';
 
 @JsonSerializable()
-class ProfileChangedSuccessEntity extends BaseLayerDataTransformer<
-    ProfileChangedSuccessEntity, ProfileChangedSuccess> {
+class ProfileChangedSuccessEntity
+    extends BaseLayerDataTransformer<ProfileChangedSuccessEntity, ProfileChangedSuccess> {
   @JsonKey(name: "data")
   final String? data;
 

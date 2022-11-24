@@ -24,8 +24,7 @@ class RegisterStepThreeRepositoryImpl with RegisterStepThreeRepository {
 
   //get employee status dialog list
   @override
-  Future<Either<LocalError, List<String>>>
-      getEmploymentStatusDialogList() async {
+  Future<Either<LocalError, List<String>>> getEmploymentStatusDialogList() async {
     final result = await _registerRemoteDS.getEmploymentStatusDialogList();
     return Right(result);
   }

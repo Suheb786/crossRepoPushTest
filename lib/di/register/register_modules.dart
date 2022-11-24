@@ -69,65 +69,56 @@ import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
-final registerViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterViewModel>(
+final registerViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterViewModel>(
   (ref) => RegisterViewModel(),
 );
 
-final registerStepOneViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
+final registerStepOneViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
   (ref) => RegisterStepOneViewModel(),
 );
 
 ///[IdVerificationInfoViewModel] provider
 final idVerificationInfoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>(
-        (ref) => IdVerificationInfoViewModel(
-              ref.read(idVerificationInfoUseCaseProvider),
-              ref.read(scanUserDocumentUseCaseProvider),
-              ref.read(getAhwalDetailsUseCaseProvider),
-              ref.read(confirmDetailUseCaseProvider),
-              ref.read(fetchAllowedIssuersUseCaseProvider),
-            ));
+    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) => IdVerificationInfoViewModel(
+          ref.read(idVerificationInfoUseCaseProvider),
+          ref.read(scanUserDocumentUseCaseProvider),
+          ref.read(getAhwalDetailsUseCaseProvider),
+          ref.read(confirmDetailUseCaseProvider),
+          ref.read(fetchAllowedIssuersUseCaseProvider),
+        ));
 
 ///[CaptureViewModel] provider
-final captureViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CaptureViewModel>(
-        (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
+final captureViewModelProvider = ChangeNotifierProvider.autoDispose<CaptureViewModel>(
+    (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
 
 ///[ConfirmDetailViewModel] provider
-final confirmDetailViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
-        ConfirmDetailViewModel(
-            ref.read(confirmDetailUseCaseProvider),
-            ref.read(scanUserDocumentUseCaseProvider),
-            ref.read(getAhwalDetailsUseCaseProvider),
-            ref.read(fetchAllowedIssuersUseCaseProvider),
-            ref.read(getCountriesListUseCaseProvider)));
+final confirmDetailViewModelProvider = ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
+    ConfirmDetailViewModel(
+        ref.read(confirmDetailUseCaseProvider),
+        ref.read(scanUserDocumentUseCaseProvider),
+        ref.read(getAhwalDetailsUseCaseProvider),
+        ref.read(fetchAllowedIssuersUseCaseProvider),
+        ref.read(getCountriesListUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
-final enterAddressViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>
-        EnterAddressViewModel(ref.read(enterAddressUseCaseProvider),
-            ref.read(getCitiesByCountryListUseCaseProvider)));
+final enterAddressViewModelProvider = ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>
+    EnterAddressViewModel(
+        ref.read(enterAddressUseCaseProvider), ref.read(getCitiesByCountryListUseCaseProvider)));
 
 ///step two page view model provider
-final registerStepTwoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterStepTwoViewModel>(
+final registerStepTwoViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepTwoViewModel>(
   (ref) => RegisterStepTwoViewModel(),
 );
 
 ///step three page view model provider
-final registerStepThreeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterStepThreeViewModel>(
+final registerStepThreeViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepThreeViewModel>(
   (ref) => RegisterStepThreeViewModel(),
 );
 
 ///job and income page view model provider
-final jobAndIncomePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
-  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider),
-      ref.read(getComboValuesUseCaseProvider)),
+final jobAndIncomePageViewModelProvider = ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
+  (ref) => JobAndIncomePageViewModel(
+      ref.read(jobAndIncomeUseCaseProvider), ref.read(getComboValuesUseCaseProvider)),
 );
 
 ///employment status dialog view model provider
@@ -136,27 +127,23 @@ final employmentStatusDialogViwModelProvider =
         (ref) => EmploymentStatusDialogViewModel());
 
 ///occupation dialog view model provider
-final occupationDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<OccupationDialogViewModel>((ref) =>
-        OccupationDialogViewModel(ref.read(getOccupationUseCaseProvider)));
+final occupationDialogViwModelProvider = ChangeNotifierProvider.autoDispose<OccupationDialogViewModel>(
+    (ref) => OccupationDialogViewModel(ref.read(getOccupationUseCaseProvider)));
 
 ///get purpose of account opening dialog view model provider
 final purposeOfAccountOpeningDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<PurposeOfAccountOpeningDialogViewModel>(
-        (ref) => PurposeOfAccountOpeningDialogViewModel(
-            ref.read(purposeOfAccountOpeningUseCaseProvider)));
+        (ref) => PurposeOfAccountOpeningDialogViewModel(ref.read(purposeOfAccountOpeningUseCaseProvider)));
 
 ///get employer Country dialog view model provider
-final employerCountryDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<CountryDialogViewModel>((ref) =>
-        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider),
-            ref.read(getCountriesListUseCaseProvider)));
+final employerCountryDialogViwModelProvider = ChangeNotifierProvider.autoDispose<CountryDialogViewModel>(
+    (ref) => CountryDialogViewModel(
+        ref.read(fetchCountriesUseCaseProvider), ref.read(getCountriesListUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<AdditionIncomeSourceDialogViewModel>(
-        (ref) => AdditionIncomeSourceDialogViewModel(
-            ref.read(additionalIncomeSourceUseCaseProvider)));
+        (ref) => AdditionIncomeSourceDialogViewModel(ref.read(additionalIncomeSourceUseCaseProvider)));
 
 /// Provide new instance dependency every time to the TaxationSwitchWidgetViewModel.
 class TaxationSwitchWidgetViewModelProvider {
@@ -181,15 +168,12 @@ class FatcaDropDownFieldViewModelProvider {
 }
 
 ///taxation details page view model provider
-final taxationDetailsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
+final taxationDetailsPageViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
   (ref) => TaxationDetailsPageViewModel(
-      ref.read(setFatcaQuestionsResponseUseCaseProvider),
-      ref.read(getFatcaQuestionsUseCaseProvider)),
+      ref.read(setFatcaQuestionsResponseUseCaseProvider), ref.read(getFatcaQuestionsUseCaseProvider)),
 );
 
-final areYouUSCitizenViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+final areYouUSCitizenViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
@@ -198,13 +182,11 @@ final areYouUSTaxResidentViewModelProvider =
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
-final bornInUSViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+final bornInUSViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
-final taxResidentOtherViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+final taxResidentOtherViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
@@ -216,12 +198,10 @@ final areYouFirstDegreeRelativeViewModelProvider =
 ///tax report information page view model provider
 final taxReportInformationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxReportInformationPageViewModel>(
-  (ref) => TaxReportInformationPageViewModel(
-      ref.read(taxReportInformationUseCaseProvider)),
+  (ref) => TaxReportInformationPageViewModel(ref.read(taxReportInformationUseCaseProvider)),
 );
 
-final tinAvailableViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+final tinAvailableViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
@@ -232,56 +212,46 @@ final reasonOfUnavailabilityDialogViewModelProvider =
 );
 
 ///profile details page view model provider
-final profileDetailsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileDetailsPageViewModel>(
+final profileDetailsPageViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileDetailsPageViewModel>(
   (ref) => ProfileDetailsPageViewModel(ref.read(profileDetailsUseCaseProvider)),
 );
 
-final profileQ1ViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final profileQ1ViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
-final profileQ2ViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final profileQ2ViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
-final areYouBeneficialOwnerAccountProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final areYouBeneficialOwnerAccountProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
-final profileQ3ViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final profileQ3ViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
-final studentIncomeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final studentIncomeViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
-final anyOtherNationalityViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+final anyOtherNationalityViewModelProvider = ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),
 );
 
 ///employment status dialog view model provider
 final natureSpecialNeedsDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<NatureSpecialNeedsDialogViewModel>(
-        (ref) => NatureSpecialNeedsDialogViewModel(
-            ref.read(natureOfSpecialNeedsUseCaseProvider)));
+        (ref) => NatureSpecialNeedsDialogViewModel(ref.read(natureOfSpecialNeedsUseCaseProvider)));
 
 ///relationship with pep dialog view model provider
 final relationshipWithPEPDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<RelationshipWithPEPDialogViewModel>(
-        (ref) => RelationshipWithPEPDialogViewModel(
-            ref.read(relationshipWithPEPUseCaseProvider)));
+        (ref) => RelationshipWithPEPDialogViewModel(ref.read(relationshipWithPEPUseCaseProvider)));
 
 ///step four page view model provider
-final registerStepFourViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterStepFourViewModel>(
+final registerStepFourViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepFourViewModel>(
   (ref) => RegisterStepFourViewModel(),
 );
 
@@ -299,8 +269,7 @@ final reviewApplicationPageViewModelProvider =
 );
 
 ///upload documents page
-final uploadDocumentsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
+final uploadDocumentsPageViewModelProvider = ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
   (ref) => UploadDocumentsPageViewModel(
       ref.read(sendDocumentsUseCaseUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
@@ -313,30 +282,26 @@ final uploadDocumentsPageViewModelProvider =
 );
 
 ///account ready page
-final accountReadyPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<AccountReadyViewModel, AccountReadyArguments>(
+final accountReadyPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<AccountReadyViewModel, AccountReadyArguments>(
   (ref, args) => AccountReadyViewModel(
-      ref.read(getAccountDetailsUseCaseProvider),
-      args,
-      ref.read(logoutUseCaseProvider)),
+      ref.read(getAccountDetailsUseCaseProvider), args, ref.read(logoutUseCaseProvider)),
 );
 
 /// purpose of account opening  view model provider
 final purposeOfAccountOpeningViewModelProvider =
     ChangeNotifierProvider.autoDispose<PurposeOfAccountOpeningPageViewModel>(
-        (ref) => PurposeOfAccountOpeningPageViewModel(
-            ref.read(purposeOfAccountsOpeningUseCaseProvider)));
+        (ref) => PurposeOfAccountOpeningPageViewModel(ref.read(purposeOfAccountsOpeningUseCaseProvider)));
 
 ///fatca us relevant w8 page view model provider
 final fatcaUSRelevantW8PageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSRelevantW8PageViewModel>(
-  (ref) => FatcaUSRelevantW8PageViewModel(
-      ref.read(fatcaUSRelevantW8UseCaseProvider)),
+  (ref) => FatcaUSRelevantW8PageViewModel(ref.read(fatcaUSRelevantW8UseCaseProvider)),
 );
 
 ///fatca us relevant w8 address details page view model provider
-final fatcaUSRelevantW8AddressPageViewModelProvider = ChangeNotifierProvider
-    .autoDispose<FatcaUSRelevantW8AddressDetailsPageViewModel>(
+final fatcaUSRelevantW8AddressPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaUSRelevantW8AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW8AddressDetailsPageViewModel(
       ref.read(fatcaUSRelevantW8AddressDetailsUseCaseProvider),
       ref.read(getStateListUseCaseProvider),
@@ -346,13 +311,12 @@ final fatcaUSRelevantW8AddressPageViewModelProvider = ChangeNotifierProvider
 ///fatca us relevant w9 page view model provider
 final fatcaUSRelevantW9PageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSRelevantW9PageViewModel>(
-  (ref) => FatcaUSRelevantW9PageViewModel(
-      ref.read(fatcaUSRelevantW9UseCaseProvider)),
+  (ref) => FatcaUSRelevantW9PageViewModel(ref.read(fatcaUSRelevantW9UseCaseProvider)),
 );
 
 ///fatca us relevant w9 address details page view model provider
-final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
-    .autoDispose<FatcaUSRelevantW9AddressDetailsPageViewModel>(
+final fatcaUSRelevantW9AddressPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaUSRelevantW9AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW9AddressDetailsPageViewModel(
       ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider),
       ref.read(getStateListUseCaseProvider),
@@ -363,20 +327,17 @@ final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
 final fatcaUSW9TaxPayerDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSW9TaxPayersDetailsPageViewModel>(
   (ref) => FatcaUSW9TaxPayersDetailsPageViewModel(
-      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider), ref.read(uploadDocumentUseCaseProvider)),
 );
 
 ///tax payer dialog view model provider
 final taxPayerDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxPayerDialogViewModel>(
-        (ref) => TaxPayerDialogViewModel());
+    ChangeNotifierProvider.autoDispose<TaxPayerDialogViewModel>((ref) => TaxPayerDialogViewModel());
 
 ///fatca us w8 tax payer details page view model provider
 final fatcaUSW8TaxPayerDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSW8TaxPayersDetailsPageViewModel>(
-  (ref) => FatcaUSW8TaxPayersDetailsPageViewModel(
-      ref.read(fatcaUSW8TaxPayerDetailsUseCaseProvider)),
+  (ref) => FatcaUSW8TaxPayersDetailsPageViewModel(ref.read(fatcaUSW8TaxPayerDetailsUseCaseProvider)),
 );
 
 ///schedule video call page view model provider
@@ -390,19 +351,16 @@ final scheduleVideoCallPageViewModelProvider =
 );
 
 ///get home address dialog view model provider
-final homeAddressDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<HomeAddressDialogViewModel>((ref) =>
-        HomeAddressDialogViewModel(ref.read(homeAddressDialogUseCaseProvider)));
+final homeAddressDialogViwModelProvider = ChangeNotifierProvider.autoDispose<HomeAddressDialogViewModel>(
+    (ref) => HomeAddressDialogViewModel(ref.read(homeAddressDialogUseCaseProvider)));
 
 ///video call info view model provider
-final videoCallInfoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(
+final videoCallInfoViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(
   (ref) => VideoCallInfoViewModel(ref.read(checkExistingCallUseCaseProvider)),
 );
 
 ///agent selection view model provider
-final agentSelectionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AgentSelectionViewModel>(
+final agentSelectionViewModelProvider = ChangeNotifierProvider.autoDispose<AgentSelectionViewModel>(
   (ref) => AgentSelectionViewModel(
       ref.read(checkGenderStatusUsecaseProvider),
       ref.read(requestCallUsecaseProvider),
@@ -412,29 +370,23 @@ final agentSelectionViewModelProvider =
 );
 
 ///student income page
-final studentIncomePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
-  (ref) =>
-      StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider)),
+final studentIncomePageViewModelProvider = ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
+  (ref) => StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider)),
 );
 
 ///state city dialog view model provider
 final stateCityDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<StateCityDialogViewModel>(
-        (ref) => StateCityDialogViewModel());
+    ChangeNotifierProvider.autoDispose<StateCityDialogViewModel>((ref) => StateCityDialogViewModel());
 
-final registerStepFiveViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
+final registerStepFiveViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
   (ref) => RegisterStepFiveViewModel(),
 );
 
-final calendarDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CalendarDialogViewModel>(
+final calendarDialogViewModelProvider = ChangeNotifierProvider.autoDispose<CalendarDialogViewModel>(
   (ref) => CalendarDialogViewModel(),
 );
 
-final yearMonthDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
+final yearMonthDialogViewModelProvider = ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
   (ref) => YearMonthDialogViewModel(),
 );
 
@@ -443,8 +395,7 @@ final filterTransactionDialogViewModelProvier =
         (ref) => FilterTransactionDialogViewModel());
 
 ///fatca signaturepage view model provider
-final fatcaSignaturePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
+final fatcaSignaturePageViewModelProvider = ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
   (ref) => FatcaSignaturePageViewModel(
       ref.read(uploadSignatureUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
@@ -454,24 +405,21 @@ final fatcaSignaturePageViewModelProvider =
 
 ///mobile number dialog view model provider
 final mobileNumberDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>(
-        (ref) => MobileNumberDialogViewModel());
+    ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>((ref) => MobileNumberDialogViewModel());
 
 ///mobile number dialog view model provider
 final fatcaOptionsDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<FatcaOptionDialogViewModel>(
-        (ref) => FatcaOptionDialogViewModel());
+    ChangeNotifierProvider.autoDispose<FatcaOptionDialogViewModel>((ref) => FatcaOptionDialogViewModel());
 
 ///account hold model provider
 final accountHoldViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<AccountHoldViewModel, AccountHoldArguments>((ref, args) =>
-        AccountHoldViewModel(ref.read(logoutUseCaseProvider), args));
+    .family<AccountHoldViewModel, AccountHoldArguments>(
+        (ref, args) => AccountHoldViewModel(ref.read(logoutUseCaseProvider), args));
 
 ///video call scheduled model provider
 final videoCallScheduledViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<VideoCallScheduledViewModel, VideoCallScheduledArguments>(
-        (ref, args) =>
-            VideoCallScheduledViewModel(ref.read(logoutUseCaseProvider), args));
+        (ref, args) => VideoCallScheduledViewModel(ref.read(logoutUseCaseProvider), args));
 
 ///changeMy number dialog view model provider
 final changeMyNumberDialogViewModelProvider =
@@ -501,8 +449,7 @@ final laterDocumentUploadViewModelProvider =
 ///video call information view model provider
 final videoCallInformationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<VideoCallInformationPageViewModel>(
-  (ref) => VideoCallInformationPageViewModel(
-      ref.read(checkExistingCallUseCaseProvider)),
+  (ref) => VideoCallInformationPageViewModel(ref.read(checkExistingCallUseCaseProvider)),
 );
 
 ///video call agent selection view model provider
@@ -528,7 +475,6 @@ final scheduleVideoCallLaterPageViewModelProvider =
 );
 
 ///video call view model
-final videoCallViewModelProvider =
-    ChangeNotifierProvider.autoDispose<VideoCallPageViewModel>(
+final videoCallViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallPageViewModel>(
   (ref) => VideoCallPageViewModel(),
 );

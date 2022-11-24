@@ -7,8 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'register_response_entity.g.dart';
 
 @JsonSerializable()
-class RegisterResponseEntity
-    implements BaseLayerDataTransformer<RegisterResponseEntity, User> {
+class RegisterResponseEntity implements BaseLayerDataTransformer<RegisterResponseEntity, User> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -27,7 +26,6 @@ class RegisterResponseEntity
 
   @override
   User transform() {
-    return UserEntity.fromJson(response!.content as Map<String, dynamic>)
-        .transform();
+    return UserEntity.fromJson(response!.content as Map<String, dynamic>).transform();
   }
 }

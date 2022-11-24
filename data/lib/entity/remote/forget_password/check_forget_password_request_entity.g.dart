@@ -6,8 +6,7 @@ part of 'check_forget_password_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckForgetPasswordRequestEntity _$CheckForgetPasswordRequestEntityFromJson(
-    Map<String, dynamic> json) {
+CheckForgetPasswordRequestEntity _$CheckForgetPasswordRequestEntityFromJson(Map<String, dynamic> json) {
   return CheckForgetPasswordRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
@@ -18,8 +17,7 @@ CheckForgetPasswordRequestEntity _$CheckForgetPasswordRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$CheckForgetPasswordRequestEntityToJson(
-        CheckForgetPasswordRequestEntity instance) =>
+Map<String, dynamic> _$CheckForgetPasswordRequestEntityToJson(CheckForgetPasswordRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'getToken': instance.getToken,

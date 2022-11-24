@@ -14,8 +14,6 @@ CountryContentEntity _$CountryContentEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CountryContentEntityToJson(
-        CountryContentEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CountryContentEntityToJson(CountryContentEntity instance) => <String, dynamic>{
       'data': instance.data,
     };

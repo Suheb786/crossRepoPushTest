@@ -25,10 +25,8 @@ class DcChangeMobileNumberRequestEntity {
       this.mobileNumber,
       this.tokenizedPan});
 
-  factory DcChangeMobileNumberRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory DcChangeMobileNumberRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DcChangeMobileNumberRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$DcChangeMobileNumberRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$DcChangeMobileNumberRequestEntityToJson(this);
 }

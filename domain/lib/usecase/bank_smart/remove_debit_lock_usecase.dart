@@ -5,15 +5,13 @@ import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RemoveDebitLockUseCase
-    extends BaseUseCase<NetworkError, RemoveDebitLockUseCaseParams, bool> {
+class RemoveDebitLockUseCase extends BaseUseCase<NetworkError, RemoveDebitLockUseCaseParams, bool> {
   final BankSmartRepository _bankSmartRepository;
 
   RemoveDebitLockUseCase(this._bankSmartRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required RemoveDebitLockUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required RemoveDebitLockUseCaseParams params}) {
     return _bankSmartRepository.removeDebitLock();
   }
 }

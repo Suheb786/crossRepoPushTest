@@ -6,15 +6,13 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RequestCallUseCase extends BaseUseCase<NetworkError,
-    RequestCallUseCaseParams, RequestCallStatus> {
+class RequestCallUseCase extends BaseUseCase<NetworkError, RequestCallUseCaseParams, RequestCallStatus> {
   final AccountRepository _accountRepository;
 
   RequestCallUseCase(this._accountRepository);
 
   @override
-  Future<Either<NetworkError, RequestCallStatus>> execute(
-      {required RequestCallUseCaseParams params}) {
+  Future<Either<NetworkError, RequestCallStatus>> execute({required RequestCallUseCaseParams params}) {
     return _accountRepository.requestCall(params.type);
   }
 }

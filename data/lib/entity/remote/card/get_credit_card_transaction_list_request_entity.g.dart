@@ -6,9 +6,8 @@ part of 'get_credit_card_transaction_list_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCreditCardTransactionListRequestEntity
-    _$GetCreditCardTransactionListRequestEntityFromJson(
-        Map<String, dynamic> json) {
+GetCreditCardTransactionListRequestEntity _$GetCreditCardTransactionListRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return GetCreditCardTransactionListRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,

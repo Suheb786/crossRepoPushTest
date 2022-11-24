@@ -9,27 +9,22 @@ import 'package:rxdart/rxdart.dart';
 class RelationshipWithPEPDialogViewModel extends BasePageViewModel {
   final RelationshipWithPEPUseCase _relationshipUseCase;
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   int currentIndex = 0;
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
-  PublishSubject<RelationshipWithPEPUseCaseParams> _relationshipWithPEPRequest =
-      PublishSubject();
+  PublishSubject<RelationshipWithPEPUseCaseParams> _relationshipWithPEPRequest = PublishSubject();
 
-  PublishSubject<Resource<List<String>>> _relationshipWithPEPResponse =
-      PublishSubject();
+  PublishSubject<Resource<List<String>>> _relationshipWithPEPResponse = PublishSubject();
 
-  Stream<Resource<List<String>>> get getRelationshipWithPEPStream =>
-      _relationshipWithPEPResponse.stream;
+  Stream<Resource<List<String>>> get getRelationshipWithPEPStream => _relationshipWithPEPResponse.stream;
 
   RelationshipWithPEPDialogViewModel(this._relationshipUseCase) {
     _relationshipWithPEPRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _relationshipUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _relationshipUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _relationshipWithPEPResponse.safeAdd(event);

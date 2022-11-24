@@ -5,15 +5,13 @@ import 'package:domain/repository/change_device/change_device_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SendOtpTokenEmailOtpUseCase
-    extends BaseUseCase<NetworkError, SendOtpTokenEmailOtpUseCaseParams, bool> {
+class SendOtpTokenEmailOtpUseCase extends BaseUseCase<NetworkError, SendOtpTokenEmailOtpUseCaseParams, bool> {
   final ChangeDeviceRepository _repository;
 
   SendOtpTokenEmailOtpUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SendOtpTokenEmailOtpUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SendOtpTokenEmailOtpUseCaseParams params}) {
     return _repository.sendOtpTokenEmail();
   }
 }

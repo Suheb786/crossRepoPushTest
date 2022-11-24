@@ -8,8 +8,7 @@ part 'get_cipher_response_entity.g.dart';
 
 @JsonSerializable()
 class GetCipherResponseEntity
-    implements
-        BaseLayerDataTransformer<GetCipherResponseEntity, GetCipherResponse> {
+    implements BaseLayerDataTransformer<GetCipherResponseEntity, GetCipherResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,8 +27,6 @@ class GetCipherResponseEntity
   @override
   GetCipherResponse transform() {
     return GetCipherResponse(
-        getCipherContent:
-            GetCipherContentEntity.fromJson(this.response!.content)
-                .transform());
+        getCipherContent: GetCipherContentEntity.fromJson(this.response!.content).transform());
   }
 }

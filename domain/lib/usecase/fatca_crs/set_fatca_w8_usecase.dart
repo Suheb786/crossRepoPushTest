@@ -8,21 +8,18 @@ import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SetFatcaW8UseCase
-    extends BaseUseCase<NetworkError, SetFatcaW8UseCaseParams, bool> {
+class SetFatcaW8UseCase extends BaseUseCase<NetworkError, SetFatcaW8UseCaseParams, bool> {
   final FatcaCrsRepository _repository;
 
   SetFatcaW8UseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SetFatcaW8UseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SetFatcaW8UseCaseParams params}) {
     return _repository.saveFatcaW8(
         stateId: params.fatcaW8Data.state!,
         cityId: params.fatcaW8Data.city!,
         taxPayer: params.fatcaW8Data.taxPayer!,
-        permanentResidenceAddress:
-            params.fatcaW8Data.permenantResidenceAddress!,
+        permanentResidenceAddress: params.fatcaW8Data.permenantResidenceAddress!,
         citizenShipCountry: params.fatcaW8Data.citizenShipCountry!,
         postCode: params.fatcaW8Data.postCode!,
         beneficialOwnerResident: params.fatcaW8Data.beneficialOwnerResident!,
@@ -61,9 +58,7 @@ class SetFatcaW8UseCaseParams extends Params {
   Either<AppError, bool> verify() {
     if (!declarationSelected) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_DECLARATION_SELECTION, cause: Exception()));
     } else if (!verifyInfoDeclarationSelected) {
       return Left(AppError(
           error: ErrorInfo(message: ''),

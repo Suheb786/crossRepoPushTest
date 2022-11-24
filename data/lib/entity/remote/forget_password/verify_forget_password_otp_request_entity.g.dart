@@ -6,8 +6,8 @@ part of 'verify_forget_password_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyForgetPasswordOtpRequestEntity
-    _$VerifyForgetPasswordOtpRequestEntityFromJson(Map<String, dynamic> json) {
+VerifyForgetPasswordOtpRequestEntity _$VerifyForgetPasswordOtpRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return VerifyForgetPasswordOtpRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,

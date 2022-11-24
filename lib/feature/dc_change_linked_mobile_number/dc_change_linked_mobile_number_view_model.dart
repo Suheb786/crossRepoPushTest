@@ -19,13 +19,11 @@ class DcChangeLinkedMobileNumberViewModel extends BasePageViewModel {
   Stream<int> get currentPageStream => _currentPageSubject.stream;
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void changeCurrentPage(int index) {

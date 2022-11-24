@@ -5,15 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'logout_content_entity.g.dart';
 
 @JsonSerializable()
-class LogoutContentEntity
-    implements BaseLayerDataTransformer<LogoutContentEntity, LogoutContent> {
+class LogoutContentEntity implements BaseLayerDataTransformer<LogoutContentEntity, LogoutContent> {
   @JsonKey(name: "bioMetricLogin")
   final bool? bioMetricLogin;
 
   LogoutContentEntity({this.bioMetricLogin});
 
-  factory LogoutContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$LogoutContentEntityFromJson(json);
+  factory LogoutContentEntity.fromJson(Map<String, dynamic> json) => _$LogoutContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$LogoutContentEntityToJson(this);
 

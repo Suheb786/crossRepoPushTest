@@ -11,8 +11,7 @@ class KYCStatusRequest {
 
   KYCStatusRequest({required this.baseData, this.getToken: true});
 
-  factory KYCStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$KYCStatusRequestFromJson(json);
+  factory KYCStatusRequest.fromJson(Map<String, dynamic> json) => _$KYCStatusRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$KYCStatusRequestToJson(this);
 }

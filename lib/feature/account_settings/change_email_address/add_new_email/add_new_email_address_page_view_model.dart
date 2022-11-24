@@ -16,19 +16,16 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   /// controller
   final TextEditingController emailController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> changeEmailKey =
-      GlobalKey(debugLabel: "changeEmail");
+  final GlobalKey<AppTextFieldState> changeEmailKey = GlobalKey(debugLabel: "changeEmail");
 
   ///add new email address request subject holder
-  PublishSubject<AddNewEmailAddressUseCaseParams> _addNewEmailAddressRequest =
-      PublishSubject();
+  PublishSubject<AddNewEmailAddressUseCaseParams> _addNewEmailAddressRequest = PublishSubject();
 
   ///add new email address response holder
   PublishSubject<Resource<bool>> _addNewEmailAddressResponse = PublishSubject();
 
   ///add new email address stream
-  Stream<Resource<bool>> get addNewEmailAddressStream =>
-      _addNewEmailAddressResponse.stream;
+  Stream<Resource<bool>> get addNewEmailAddressStream => _addNewEmailAddressResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -37,8 +34,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
 
   AddNewEmailAddressPageViewModel(this._addNewEmailUseCase) {
     _addNewEmailAddressRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _addNewEmailUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _addNewEmailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -52,8 +48,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   }
 
   void changeEmail() {
-    _addNewEmailAddressRequest
-        .safeAdd(AddNewEmailAddressUseCaseParams(email: emailController.text));
+    _addNewEmailAddressRequest.safeAdd(AddNewEmailAddressUseCaseParams(email: emailController.text));
   }
 
   void validate() {

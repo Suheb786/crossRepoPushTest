@@ -17,11 +17,7 @@ class RequestMoneyViewModel extends BasePageViewModel {
 
   RequestMoneyViewModel(this._useCase) {
     _moneyRequest.listen((value) {
-      RequestManager(value,
-          createCall: () =>
-              _useCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _getValueResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

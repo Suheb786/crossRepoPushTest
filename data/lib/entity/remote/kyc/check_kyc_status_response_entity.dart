@@ -8,9 +8,7 @@ part 'check_kyc_status_response_entity.g.dart';
 
 @JsonSerializable()
 class CheckKycStatusResponseEntity
-    implements
-        BaseLayerDataTransformer<CheckKycStatusResponseEntity,
-            CheckKycResponse> {
+    implements BaseLayerDataTransformer<CheckKycStatusResponseEntity, CheckKycResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,8 +26,6 @@ class CheckKycStatusResponseEntity
 
   @override
   CheckKycResponse transform() {
-    return CheckKycResponse(
-        content:
-        CheckKycContentEntity.fromJson(this.response!.content).transform());
+    return CheckKycResponse(content: CheckKycContentEntity.fromJson(this.response!.content).transform());
   }
 }

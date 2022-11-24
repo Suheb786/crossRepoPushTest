@@ -8,10 +8,8 @@ class TransactionTypeEnum {
     return _value.toString();
   }
 
-  static const TransactionTypeEnum TransactionHistory =
-  TransactionTypeEnum._("A");
-  static const TransactionTypeEnum PendingAuthorization =
-  TransactionTypeEnum._("P");
+  static const TransactionTypeEnum TransactionHistory = TransactionTypeEnum._("A");
+  static const TransactionTypeEnum PendingAuthorization = TransactionTypeEnum._("P");
   static const TransactionTypeEnum NONE = TransactionTypeEnum._("None");
 }
 

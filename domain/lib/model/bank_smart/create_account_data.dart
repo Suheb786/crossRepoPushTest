@@ -15,19 +15,20 @@ class CreateAccountData {
   final dynamic swiftCode;
   final dynamic cardNumber;
 
-  CreateAccountData({this.accountDate,
-    this.name,
-    this.accountNumber,
-    this.iban,
-    this.cif,
-    this.promoCode,
-    this.balance,
-    this.currencyCode,
-    this.zPoints,
-    this.dailyLimitLeft,
-    this.dailyTransferLimit,
-    this.bankName,
-    this.countryName,
-    this.swiftCode,
-    this.cardNumber});
+  CreateAccountData(
+      {this.accountDate,
+      this.name,
+      this.accountNumber,
+      this.iban,
+      this.cif,
+      this.promoCode,
+      this.balance,
+      this.currencyCode,
+      this.zPoints,
+      this.dailyLimitLeft,
+      this.dailyTransferLimit,
+      this.bankName,
+      this.countryName,
+      this.swiftCode,
+      this.cardNumber});
 }

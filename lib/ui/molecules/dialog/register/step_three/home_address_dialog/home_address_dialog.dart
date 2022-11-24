@@ -5,8 +5,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_di
 class HomeAddressDialog {
   HomeAddressDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => HomeAddressDialogView(

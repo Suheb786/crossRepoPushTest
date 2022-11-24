@@ -16,19 +16,14 @@ abstract class ContactRemoteDS {
       String imageFilePath});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String beneficiaryId,
-      String nickName,
-      String purpose,
-      String purposeDetails});
+      {String beneficiaryId, String nickName, String purpose, String purposeDetails});
 
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
-      {String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId});
 
   Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({
     String type,
     String otpCode,
   });
 
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
-      {String filePath, String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 }

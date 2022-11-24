@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
@@ -12,6 +14,7 @@ import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
+import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
@@ -26,6 +29,7 @@ import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
+import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -36,8 +40,15 @@ import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
-
+  Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
+
+  final InitDynamicLinkUseCase _initDynamicLinkUseCase;
+  PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
+
+  PublishSubject<Resource<Uri>> _initDynamicLinkRequestResponse = PublishSubject();
+
+  Stream<Resource<Uri>> get initDynamicLinkRequestStream => _initDynamicLinkRequestResponse.stream;
 
   final SwiperController pageController = SwiperController();
   ScrollController scrollController = ScrollController();
@@ -145,7 +156,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase) {
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -178,10 +189,12 @@ class AppHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           triggerRequestMoneyPopup();
           // showErrorState();
+          initDynamicLink();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
         } else if (event.status == Status.SUCCESS) {
           triggerRequestMoneyPopup();
+          initDynamicLink();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
         }
@@ -212,6 +225,16 @@ class AppHomeViewModel extends BasePageViewModel {
 
     _requestMoneyRequest.listen((value) {
       _requestMoneyPopUpResponse.safeAdd(value);
+    });
+
+    _initDynamicLinkRequestRequest.listen((value) {
+      RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.SUCCESS) {
+          _initDynamicLinkRequestResponse.safeAdd(event);
+        }
+      });
     });
 
     getDashboardData();
@@ -435,9 +458,9 @@ class AppHomeViewModel extends BasePageViewModel {
                     isSmallDevice: isSmallDevices,
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard,
-                    isDebitCardRequestPhysicalCardEnabled: dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled??false
-
-                ));
+                    isDebitCardRequestPhysicalCardEnabled:
+                        dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                            false));
 
                 ///time line list arguments set
                 timeLineListArguments.add(TimeLineListArguments(
@@ -467,6 +490,13 @@ class AppHomeViewModel extends BasePageViewModel {
           cardTypeList
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
+      }
+
+      /// adding rj card pages
+      if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+        pages.add(RjCardWidget());
+
+        cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
       }
     }
     addPages(pages);
@@ -631,6 +661,10 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
+  initDynamicLink() {
+    _initDynamicLinkRequestRequest.safeAdd(InitDynamicLinkUseCaseParams());
+  }
+
   @override
   void dispose() {
     _currentStep.close();
@@ -639,6 +673,10 @@ class AppHomeViewModel extends BasePageViewModel {
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
     _showRequestMoneyPopUpSubject.close();
+    if (timer != null) {
+      timer?.cancel();
+    }
+
     super.dispose();
   }
 }

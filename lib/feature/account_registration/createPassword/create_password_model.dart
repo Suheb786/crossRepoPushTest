@@ -14,29 +14,23 @@ import 'package:rxdart/rxdart.dart';
 class CreatePasswordViewModel extends BasePageViewModel {
   final CreatePasswordUseCase _createPasswordUseCase;
   final RegisterProspectUseCase _registerProspectUseCase;
-  final TextEditingController createPasswordController =
-      TextEditingController();
+  final TextEditingController createPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> passwordKey =
-      GlobalKey(debugLabel: "createPassword");
+  final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "createPassword");
 
-  final GlobalKey<AppTextFieldState> confirmPasswordKey =
-      GlobalKey(debugLabel: "confirmPassword");
+  final GlobalKey<AppTextFieldState> confirmPasswordKey = GlobalKey(debugLabel: "confirmPassword");
 
   ///create password request subject holder
-  PublishSubject<CreatePasswordUseCaseParams> _createPasswordRequest =
-      PublishSubject();
+  PublishSubject<CreatePasswordUseCaseParams> _createPasswordRequest = PublishSubject();
 
   /// create password response subject holder
   PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<bool>> get createPasswordStream =>
-      _createPasswordResponse.stream;
+  Stream<Resource<bool>> get createPasswordStream => _createPasswordResponse.stream;
 
   ///Register user request subject holder
-  PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest =
-      PublishSubject();
+  PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest = PublishSubject();
 
   /// Register user response subject holder
   PublishSubject<Resource<User>> _registerUserResponse = PublishSubject();
@@ -48,11 +42,9 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  CreatePasswordViewModel(
-      this._createPasswordUseCase, this._registerProspectUseCase) {
+  CreatePasswordViewModel(this._createPasswordUseCase, this._registerProspectUseCase) {
     _createPasswordRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createPasswordUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);
@@ -64,8 +56,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
     });
 
     _registerUserRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _registerProspectUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

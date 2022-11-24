@@ -11,12 +11,10 @@ class EnableBiometricRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  EnableBiometricRequestEntity(
-      {this.cipher, required this.baseData, this.publicKey});
+  EnableBiometricRequestEntity({this.cipher, required this.baseData, this.publicKey});
 
   factory EnableBiometricRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$EnableBiometricRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$EnableBiometricRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$EnableBiometricRequestEntityToJson(this);
 }

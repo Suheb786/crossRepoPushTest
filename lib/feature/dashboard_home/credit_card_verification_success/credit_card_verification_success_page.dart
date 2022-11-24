@@ -5,15 +5,13 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 
-class CreditCardVerificationSuccessPage
-    extends BasePage<CreditCardVerificationSuccessViewModel> {
+class CreditCardVerificationSuccessPage extends BasePage<CreditCardVerificationSuccessViewModel> {
   @override
-  CreditCardVerificationSuccessPageState createState() =>
-      CreditCardVerificationSuccessPageState();
+  CreditCardVerificationSuccessPageState createState() => CreditCardVerificationSuccessPageState();
 }
 
-class CreditCardVerificationSuccessPageState extends BaseStatefulPage<
-    CreditCardVerificationSuccessViewModel, CreditCardVerificationSuccessPage> {
+class CreditCardVerificationSuccessPageState
+    extends BaseStatefulPage<CreditCardVerificationSuccessViewModel, CreditCardVerificationSuccessPage> {
   @override
   ProviderBase provideBase() {
     return creditCardVerificationSuccessViewModelProvider;
@@ -25,8 +23,7 @@ class CreditCardVerificationSuccessPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CreditCardVerificationSuccessViewModel model) {
+  Widget buildView(BuildContext context, CreditCardVerificationSuccessViewModel model) {
     return CreditCardVerificationSuccessPageView(provideBase());
   }
 }

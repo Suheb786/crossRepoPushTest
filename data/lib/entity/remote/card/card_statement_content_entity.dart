@@ -9,9 +9,7 @@ part "card_statement_content_entity.g.dart";
 
 @JsonSerializable()
 class CardStatementContentEntity
-    implements
-        BaseLayerDataTransformer<CardStatementContentEntity,
-            CardStatementContent> {
+    implements BaseLayerDataTransformer<CardStatementContentEntity, CardStatementContent> {
   @JsonKey(name: "fileName")
   final String? pdfFileName;
   @JsonKey(name: "pdfBase64")
@@ -37,8 +35,7 @@ class CardStatementContentEntity
                 this.pdfBase64String!, this.pdfFileName ?? 'Credit Statement')
             : File(''),
         pdfFileName: this.pdfFileName ?? '',
-        pdfUint8List: this.pdfBase64String != null
-            ? ImageUtils.dataFromBase64String(this.pdfBase64String!)
-            : "");
+        pdfUint8List:
+            this.pdfBase64String != null ? ImageUtils.dataFromBase64String(this.pdfBase64String!) : "");
   }
 }

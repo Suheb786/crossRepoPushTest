@@ -10,8 +10,7 @@ class CountrySelectionPage extends BasePage<CountrySelectionViewModel> {
   CountrySelectionPageState createState() => CountrySelectionPageState();
 }
 
-class CountrySelectionPageState
-    extends BaseStatefulPage<CountrySelectionViewModel, CountrySelectionPage> {
+class CountrySelectionPageState extends BaseStatefulPage<CountrySelectionViewModel, CountrySelectionPage> {
   @override
   ProviderBase provideBase() {
     return countrySelectionViewModelProvider;

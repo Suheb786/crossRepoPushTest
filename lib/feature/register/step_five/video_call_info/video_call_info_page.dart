@@ -10,8 +10,7 @@ class VideoCallInfoPage extends BasePage<VideoCallInfoViewModel> {
   VideoCallInfoPageState createState() => VideoCallInfoPageState();
 }
 
-class VideoCallInfoPageState
-    extends BaseStatefulPage<VideoCallInfoViewModel, VideoCallInfoPage> {
+class VideoCallInfoPageState extends BaseStatefulPage<VideoCallInfoViewModel, VideoCallInfoPage> {
   @override
   ProviderBase provideBase() {
     return videoCallInfoViewModelProvider;

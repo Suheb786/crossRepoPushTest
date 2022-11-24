@@ -2,7 +2,7 @@ import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
-import 'package:domain/usecase/payment/transfer_usecase.dart';
+import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
@@ -15,7 +15,7 @@ import 'package:rxdart/rxdart.dart';
 
 class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
-  final TransferUseCase _transferUseCase;
+  final TransferApiNoOtpUseCase _transferApiNoOtpUseCase;
 
   final SendMoneyQRScanningArguments arguments;
 
@@ -43,15 +43,14 @@ class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
 
   ///----------------Transfer money---------------///
 
-  PublishSubject<TransferUseCaseParams> _transferRequest = PublishSubject();
+  PublishSubject<TransferApiNoOtpUseCaseParams> _transferRequest = PublishSubject();
 
   PublishSubject<Resource<TransferSuccessResponse>> _transferResponse = PublishSubject();
 
   Stream<Resource<TransferSuccessResponse>> get transferStream => _transferResponse.stream;
 
   void transfer(TransferResponse transferResponse) {
-    _transferRequest.safeAdd(TransferUseCaseParams(
-        otpCode: '576824',
+    _transferRequest.safeAdd(TransferApiNoOtpUseCaseParams(
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
         limit: 10000,
@@ -68,7 +67,8 @@ class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
   }
 
   ///----------------Transfer money---------------///
-  SendMoneyQrScanningPageViewModel(this.arguments, this._checkSendMoneyUseCase, this._transferUseCase) {
+  SendMoneyQrScanningPageViewModel(
+      this.arguments, this._checkSendMoneyUseCase, this._transferApiNoOtpUseCase) {
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
           .asFlow()
@@ -83,7 +83,7 @@ class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
     });
 
     _transferRequest.listen((value) {
-      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _transferApiNoOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

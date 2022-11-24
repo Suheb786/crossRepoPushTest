@@ -4,6 +4,7 @@ import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
 import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page_view_model.dart';
@@ -65,8 +66,11 @@ final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<Placehol
 );
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) =>
-      AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider), ref.read(getPlaceHolderUseCaseProvider)),
+  (ref) => AppHomeViewModel(
+    ref.read(getDashboardDataUseCaseProvider),
+    ref.read(getPlaceHolderUseCaseProvider),
+    ref.read(initDynamicLinkUseCaseProvider),
+  ),
 );
 
 final filterTransactionDialogViewModelProvier =

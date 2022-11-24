@@ -10,8 +10,6 @@ class UploadDocumentLaterDialog {
     Function()? onSelected,
   }) {
     AppDialog.show(mContext,
-        isDismissible: true,
-        builder: (context) =>
-            UploadDocumentLaterDialogView(onSelected: onSelected));
+        isDismissible: true, builder: (context) => UploadDocumentLaterDialogView(onSelected: onSelected));
   }
 }

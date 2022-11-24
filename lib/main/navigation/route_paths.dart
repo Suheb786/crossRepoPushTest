@@ -132,4 +132,7 @@ class RoutePaths {
   static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
   static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
   static const String QRScanningScreen = "/QRScanningScreen";
+  static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
+  static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
+  static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
 }

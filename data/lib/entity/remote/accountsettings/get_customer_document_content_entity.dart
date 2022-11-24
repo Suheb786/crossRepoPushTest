@@ -5,23 +5,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_customer_document_content_entity.g.dart';
 
 @JsonSerializable()
-class GetCustomerDocumentContentEntity extends BaseLayerDataTransformer<
-    GetCustomerDocumentContentEntity, GetCustomerDocumentContent> {
+class GetCustomerDocumentContentEntity
+    extends BaseLayerDataTransformer<GetCustomerDocumentContentEntity, GetCustomerDocumentContent> {
   @JsonKey(name: "doc")
   final String? doc;
 
   GetCustomerDocumentContentEntity({this.doc});
 
-  factory GetCustomerDocumentContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCustomerDocumentContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocumentContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCustomerDocumentContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCustomerDocumentContentEntityToJson(this);
 
   @override
-  GetCustomerDocumentContentEntity restore(
-      GetCustomerDocumentContent response) {
+  GetCustomerDocumentContentEntity restore(GetCustomerDocumentContent response) {
     return GetCustomerDocumentContentEntity();
   }
 

@@ -6,9 +6,8 @@ part of 'fatca_questions_response_content_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FatcaQuestionsResponseContentDataEntity
-    _$FatcaQuestionsResponseContentDataEntityFromJson(
-        Map<String, dynamic> json) {
+FatcaQuestionsResponseContentDataEntity _$FatcaQuestionsResponseContentDataEntityFromJson(
+    Map<String, dynamic> json) {
   return FatcaQuestionsResponseContentDataEntity(
     labelEn: json['labelEn'] as String?,
     labelAr: json['labelAr'] as String?,
@@ -19,8 +18,7 @@ FatcaQuestionsResponseContentDataEntity
     showOption: json['showOption'] as bool?,
     isInfo: json['isInfo'] as bool?,
     additionData: (json['datas'] as List<dynamic>?)
-        ?.map((e) =>
-            AdditionalFatcaDataEntity.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => AdditionalFatcaDataEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
     infoTextAr: json['infoTextAr'] as String?,
   );

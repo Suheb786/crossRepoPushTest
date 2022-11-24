@@ -34,8 +34,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
   LatLng currentLocation = LatLng(25.2013361, 55.2721801);
 
   ///markers subject
-  BehaviorSubject<Set<Marker>> _markersResponse =
-      BehaviorSubject.seeded(Set<Marker>());
+  BehaviorSubject<Set<Marker>> _markersResponse = BehaviorSubject.seeded(Set<Marker>());
 
   ///marker stream
   Stream<Set<Marker>> get markerStream => _markersResponse.stream;
@@ -56,8 +55,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
         markers.add(Marker(
           markerId: MarkerId('MarkerId${e.longitude}$i'),
           icon: BitmapDescriptor.fromBytes(pinPointMarker),
-          position:
-              LatLng(double.parse(e.latitude!), double.parse(e.longitude!)),
+          position: LatLng(double.parse(e.latitude!), double.parse(e.longitude!)),
         ));
         i++;
       });
@@ -75,13 +73,11 @@ class LocateATMPageViewModel extends BasePageViewModel {
   final PublishSubject<Position> _currentLocationRequest = PublishSubject();
 
   ///set current location response stream
-  Stream<Position> get currentLocationResponseStream =>
-      _currentLocationRequest.stream;
+  Stream<Position> get currentLocationResponseStream => _currentLocationRequest.stream;
 
   LocateATMPageViewModel(this._getAtmsUseCase) {
     _getAtmsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAtmsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAtmsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAtmsResponse.safeAdd(event);
@@ -105,8 +101,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
   }
 
   void setPinPointMarker() async {
-    final Uint8List markerIcon =
-        await MapMarkerUtils.getCustomMarker(AssetUtils.blinkMarkerPng, 80);
+    final Uint8List markerIcon = await MapMarkerUtils.getCustomMarker(AssetUtils.blinkMarkerPng, 80);
     pinPointMarker = markerIcon;
     //notifyListeners();
   }
@@ -116,19 +111,16 @@ class LocateATMPageViewModel extends BasePageViewModel {
     LocationPermission permission;
     permission = await Geolocator.checkPermission();
     print(permission);
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
+    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
+      if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
         showToastWithError(AppError(
             type: ErrorType.LOCATION_SERVICE_NOT_ENABLED,
             error: ErrorInfo(
               message: '',
             ),
             cause: Exception()));
-      } else if (permission == LocationPermission.always ||
-          permission == LocationPermission.whileInUse) {
+      } else if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
         await setCurrentUserLocation();
       }
     } else {
@@ -137,8 +129,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
   }
 
   Future setCurrentUserLocation() async {
-    var userCurrentPosition = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
+    var userCurrentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
     print('location---->${userCurrentPosition.longitude}');
     _currentLocationRequest.add(userCurrentPosition);
   }

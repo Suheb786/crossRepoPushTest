@@ -27,9 +27,6 @@ class ManageCliqBottomSheetSelectionWidget {
               );
             })
         : ManageCliqBottomSheet.show(context,
-            onCancel: onCancelled,
-            setAsDefault: setAsDefault,
-            unlinkAccount: unlinkAccount,
-            title: title);
+            onCancel: onCancelled, setAsDefault: setAsDefault, unlinkAccount: unlinkAccount, title: title);
   }
 }

@@ -8,13 +8,11 @@ part of 'atms_response_entity.dart';
 
 AtmsResponseEntity _$AtmsResponseEntityFromJson(Map<String, dynamic> json) {
   return AtmsResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    response:
+        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$AtmsResponseEntityToJson(AtmsResponseEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AtmsResponseEntityToJson(AtmsResponseEntity instance) => <String, dynamic>{
       'response': instance.response,
     };

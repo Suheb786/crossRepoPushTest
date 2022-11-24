@@ -10,19 +10,15 @@ class OnBoardingViewModel extends BasePageViewModel {
   final CheckVersionUpdateUseCase _checkVersionUpdateUseCase;
   PageController onBoardingPageController = PageController();
 
-  PublishSubject<CheckVersionUpdateUseCaseParams> _checkVersionUpdateRequest =
-      PublishSubject();
+  PublishSubject<CheckVersionUpdateUseCaseParams> _checkVersionUpdateRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _checkVersionUpdateResponse = PublishSubject();
 
-  Stream<Resource<bool>> get checkVersionUpdateStream =>
-      _checkVersionUpdateResponse.stream;
+  Stream<Resource<bool>> get checkVersionUpdateStream => _checkVersionUpdateResponse.stream;
 
   OnBoardingViewModel(this._checkVersionUpdateUseCase) {
     _checkVersionUpdateRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkVersionUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkVersionUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -33,8 +29,7 @@ class OnBoardingViewModel extends BasePageViewModel {
   }
 
   void checkVersionUpdate({String? clear}) {
-    _checkVersionUpdateRequest
-        .safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
+    _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
   }
 
   @override

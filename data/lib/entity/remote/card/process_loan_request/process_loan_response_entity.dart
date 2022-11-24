@@ -8,9 +8,7 @@ part "process_loan_response_entity.g.dart";
 
 @JsonSerializable()
 class ProcessLoanResponseEntity
-    implements
-        BaseLayerDataTransformer<ProcessLoanResponseEntity,
-            ProcessLoanRequestResponse> {
+    implements BaseLayerDataTransformer<ProcessLoanResponseEntity, ProcessLoanRequestResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class ProcessLoanResponseEntity
   @override
   ProcessLoanRequestResponse transform() {
     return ProcessLoanRequestResponse(
-        processLoanRequestContent:
-            ProcessLoanContentEntity.fromJson(this.response!.content)
-                .transform());
+        processLoanRequestContent: ProcessLoanContentEntity.fromJson(this.response!.content).transform());
   }
 }

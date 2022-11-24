@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class IdVerificationInfoUseCase
-    extends BaseUseCase<LocalError, IdVerificationInfoUseCaseParams, bool> {
+class IdVerificationInfoUseCase extends BaseUseCase<LocalError, IdVerificationInfoUseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required IdVerificationInfoUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required IdVerificationInfoUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -23,10 +21,8 @@ class IdVerificationInfoUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (!isRetrieveConditionChecked!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.CONDITION_NOT_CHECKED,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.CONDITION_NOT_CHECKED, cause: Exception()));
     }
     return Right(true);
   }

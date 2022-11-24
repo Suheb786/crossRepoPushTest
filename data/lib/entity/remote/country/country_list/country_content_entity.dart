@@ -6,15 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'country_content_entity.g.dart';
 
 @JsonSerializable()
-class CountryContentEntity
-    implements BaseLayerDataTransformer<CountryContentEntity, CountryContent> {
+class CountryContentEntity implements BaseLayerDataTransformer<CountryContentEntity, CountryContent> {
   @JsonKey(name: "data")
   final List<CountryDataEntity>? data;
 
   CountryContentEntity({this.data});
 
-  factory CountryContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$CountryContentEntityFromJson(json);
+  factory CountryContentEntity.fromJson(Map<String, dynamic> json) => _$CountryContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CountryContentEntityToJson(this);
 
@@ -25,7 +23,6 @@ class CountryContentEntity
 
   @override
   CountryContent transform() {
-    return CountryContent(
-        countryData: this.data!.map((e) => e.transform()).toList());
+    return CountryContent(countryData: this.data!.map((e) => e.transform()).toList());
   }
 }

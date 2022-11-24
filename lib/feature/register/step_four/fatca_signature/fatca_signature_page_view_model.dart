@@ -30,22 +30,17 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   final TextEditingController signatureController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> signatureKey =
-      GlobalKey(debugLabel: "signatureKey");
+  final GlobalKey<AppTextFieldState> signatureKey = GlobalKey(debugLabel: "signatureKey");
 
   ///upload signature
-  PublishSubject<UploadSignatureUseCaseParams> _uploadSignatureRequest =
-      PublishSubject();
+  PublishSubject<UploadSignatureUseCaseParams> _uploadSignatureRequest = PublishSubject();
 
-  PublishSubject<Resource<UploadSignatureResponse>> _uploadSignatureResponse =
-      PublishSubject();
+  PublishSubject<Resource<UploadSignatureResponse>> _uploadSignatureResponse = PublishSubject();
 
-  Stream<Resource<UploadSignatureResponse>> get uploadSignatureStream =>
-      _uploadSignatureResponse.stream;
+  Stream<Resource<UploadSignatureResponse>> get uploadSignatureStream => _uploadSignatureResponse.stream;
 
   ///get document
-  PublishSubject<UploadDocumentUseCaseParams> _getDocumentRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _getDocumentRequest = PublishSubject();
 
   PublishSubject<String> _getDocumentResponse = PublishSubject();
 
@@ -63,11 +58,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   String fileId = '';
 
   /// animated button visibility subject
-  BehaviorSubject<bool> _showAnimatedButtonSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showAnimatedButtonSubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get showAnimatedButtonStream =>
-      _showAnimatedButtonSubject.stream;
+  Stream<bool> get showAnimatedButtonStream => _showAnimatedButtonSubject.stream;
 
   ///declaration selected  subject
   BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
@@ -81,12 +74,10 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   ///verify info declaration selected  subject
-  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _verifyInfoDeclarationSelected = BehaviorSubject.seeded(false);
 
   ///verify info declaration selected stream
-  Stream<bool> get verifyInfoDeclarationSelectedStream =>
-      _verifyInfoDeclarationSelected.stream;
+  Stream<bool> get verifyInfoDeclarationSelectedStream => _verifyInfoDeclarationSelected.stream;
 
   ///update declaration selection function
   void updateVerifyInfoDeclarationSelection(bool value) {
@@ -111,14 +102,10 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   // ///set fatca w9 response stream
   // Stream<Resource<bool>> get setFatcaW9Stream => _setFatcaW9Response.stream;
 
-  FatcaSignaturePageViewModel(
-      this._uploadSignatureUseCase,
-      this._uploadDocumentUseCase,
-      this._setFatcaW8UseCase,
-      this._setFatcaW9UseCase) {
+  FatcaSignaturePageViewModel(this._uploadSignatureUseCase, this._uploadDocumentUseCase,
+      this._setFatcaW8UseCase, this._setFatcaW9UseCase) {
     _uploadSignatureRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadSignatureUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadSignatureUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -131,8 +118,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     });
 
     _getDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -145,8 +131,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     });
 
     _setFatcaW8Request.listen((value) {
-      RequestManager(value,
-              createCall: () => _setFatcaW8UseCase.execute(params: value))
+      RequestManager(value, createCall: () => _setFatcaW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -158,8 +143,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     });
 
     _setFatcaW9Request.listen((value) {
-      RequestManager(value,
-              createCall: () => _setFatcaW9UseCase.execute(params: value))
+      RequestManager(value, createCall: () => _setFatcaW9UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -172,8 +156,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void getDocument(DocumentTypeEnum type) {
-    _getDocumentRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _getDocumentRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updateSignatureField(String value) {
@@ -188,8 +171,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void signatureUpload() {
-    _uploadSignatureRequest
-        .safeAdd(UploadSignatureUseCaseParams(signature: selectedFile));
+    _uploadSignatureRequest.safeAdd(UploadSignatureUseCaseParams(signature: selectedFile));
   }
 
   bool isValid() {
@@ -205,14 +187,11 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void setFatcaw9Response(BuildContext context) {
-    FatcaW9Data fatcaW9Data = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW9Data;
+    FatcaW9Data fatcaW9Data =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW9Data;
 
     fatcaW9Data.signatureId = fileId;
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW9(fatcaW9Data);
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW9(fatcaW9Data);
     _setFatcaW9Request.safeAdd(SetFatcaW9UseCaseParams(
         fatcaW9Data: fatcaW9Data,
         declarationSelected: _declarationSelected.value,
@@ -220,14 +199,11 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void setFatcaw8Response(BuildContext context) {
-    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW8Data;
+    FatcaW8Data fatcaW8Data =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW8Data;
 
     fatcaW8Data.signatureId = fileId;
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW8(fatcaW8Data);
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW8(fatcaW8Data);
     _setFatcaW8Request.safeAdd(SetFatcaW8UseCaseParams(
         fatcaW8Data: fatcaW8Data,
         declarationSelected: _declarationSelected.value,
@@ -235,9 +211,8 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void setFatcaResponse(BuildContext context) {
-    TaxPayerTypeEnum taxPayerTypeEnum = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .taxPayerType;
+    TaxPayerTypeEnum taxPayerTypeEnum =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).taxPayerType;
 
     if (taxPayerTypeEnum == TaxPayerTypeEnum.W8) {
       setFatcaw8Response(context);

@@ -5,15 +5,13 @@ import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class HangupCallUseCase
-    extends BaseUseCase<BaseError, HangupCallUseCaseParams, bool> {
+class HangupCallUseCase extends BaseUseCase<BaseError, HangupCallUseCaseParams, bool> {
   final HelpCenterRepository _helpCenterRepository;
 
   HangupCallUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required HangupCallUseCaseParams params}) {
+  Future<Either<BaseError, bool>> execute({required HangupCallUseCaseParams params}) {
     return _helpCenterRepository.callHangUp();
   }
 }

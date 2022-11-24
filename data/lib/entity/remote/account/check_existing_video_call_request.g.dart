@@ -6,8 +6,7 @@ part of 'check_existing_video_call_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckExistingVideoCallRequest _$CheckExistingVideoCallRequestFromJson(
-    Map<String, dynamic> json) {
+CheckExistingVideoCallRequest _$CheckExistingVideoCallRequestFromJson(Map<String, dynamic> json) {
   return CheckExistingVideoCallRequest(
     productId: json['productId'] as int?,
     dateToSend: json['dateToSend'] as int?,
@@ -15,8 +14,7 @@ CheckExistingVideoCallRequest _$CheckExistingVideoCallRequestFromJson(
   );
 }
 
-Map<String, dynamic> _$CheckExistingVideoCallRequestToJson(
-        CheckExistingVideoCallRequest instance) =>
+Map<String, dynamic> _$CheckExistingVideoCallRequestToJson(CheckExistingVideoCallRequest instance) =>
     <String, dynamic>{
       'productId': instance.productId,
       'dateToSend': instance.dateToSend,

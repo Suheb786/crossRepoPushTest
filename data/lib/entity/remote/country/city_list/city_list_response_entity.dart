@@ -7,9 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'city_list_response_entity.g.dart';
 
 @JsonSerializable()
-class CityListResponseEntity
-    implements
-        BaseLayerDataTransformer<CityListResponseEntity, CityListResponse> {
+class CityListResponseEntity implements BaseLayerDataTransformer<CityListResponseEntity, CityListResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -27,8 +25,6 @@ class CityListResponseEntity
 
   @override
   CityListResponse transform() {
-    return CityListResponse(
-        cityContent:
-            CityContentEntity.fromJson(this.response!.content).transform());
+    return CityListResponse(cityContent: CityContentEntity.fromJson(this.response!.content).transform());
   }
 }

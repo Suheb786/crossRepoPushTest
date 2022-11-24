@@ -5,8 +5,7 @@ import 'package:domain/repository/card_processing/card_processing_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GenerateBlockPinUseCase
-    extends BaseUseCase<LocalError, GenerateBlockPinUseCaseParams, String> {
+class GenerateBlockPinUseCase extends BaseUseCase<LocalError, GenerateBlockPinUseCaseParams, String> {
   final CardProcessingRepository _repository;
 
   GenerateBlockPinUseCase(this._repository);
@@ -26,8 +25,7 @@ class GenerateBlockPinUseCaseParams extends Params {
   final String cardNumber;
   final String pinCode;
 
-  GenerateBlockPinUseCaseParams(
-      {required this.cardNumber, required this.pinCode});
+  GenerateBlockPinUseCaseParams({required this.cardNumber, required this.pinCode});
 
   @override
   Either<AppError, bool> verify() {

@@ -32,11 +32,8 @@ class DeviceInfoHelper {
       appVersion: info.version,
       //appVersion: info.version + ' ' + info.buildNumber,
       ip: externalIp,
-      deviceID: Platform.isAndroid
-          ? deviceData['androidId']
-          : deviceData['identifierForVendor'],
-      mobileModel:
-          Platform.isAndroid ? deviceData['model'] : deviceData['model'],
+      deviceID: Platform.isAndroid ? deviceData['androidId'] : deviceData['identifierForVendor'],
+      mobileModel: Platform.isAndroid ? deviceData['model'] : deviceData['model'],
     );
   }
 
@@ -50,9 +47,7 @@ class DeviceInfoHelper {
         deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
       }
     } on PlatformException {
-      deviceData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
+      deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
     }
     return deviceData;
   }
@@ -113,8 +108,7 @@ class DeviceInfoHelper {
       // } else if (Platform.isIOS) {
       //   return await FlutterJailbreakDetection.jailbroken;
       // }
-      print(
-          '-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
+      print('-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
       return await FlutterJailbreakDetection.jailbroken;
     } on PlatformException {
       return true;

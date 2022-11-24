@@ -8,20 +8,17 @@ import 'package:rxdart/rxdart.dart';
 class ChangeMyNumberDialogViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
-  final GlobalKey<AppTextFieldState> mobileNumberKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
 
   CountryData countryData = CountryData();
 
   bool initialDataSet = false;
 
   ///selected country response holder
-  BehaviorSubject<CountryData> _selectedCountryResponse =
-      BehaviorSubject.seeded(CountryData());
+  BehaviorSubject<CountryData> _selectedCountryResponse = BehaviorSubject.seeded(CountryData());
 
   ///get allowed code country response stream
-  Stream<CountryData> get getSelectedCountryStream =>
-      _selectedCountryResponse.stream;
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
   void setSelectedCountry(CountryData data) {
     _selectedCountryResponse.safeAdd(data);

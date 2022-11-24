@@ -8,31 +8,25 @@ part "get_credit_card_limit_response_entity.g.dart";
 
 @JsonSerializable()
 class GetCreditCardLimitResponseEntity
-    implements
-        BaseLayerDataTransformer<GetCreditCardLimitResponseEntity,
-            GetCreditCardLimitResponse> {
+    implements BaseLayerDataTransformer<GetCreditCardLimitResponseEntity, GetCreditCardLimitResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetCreditCardLimitResponseEntity({this.response});
 
-  factory GetCreditCardLimitResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCreditCardLimitResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardLimitResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCreditCardLimitResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCreditCardLimitResponseEntityToJson(this);
 
   @override
-  GetCreditCardLimitResponseEntity restore(
-      GetCreditCardLimitResponse response) {
+  GetCreditCardLimitResponseEntity restore(GetCreditCardLimitResponse response) {
     return GetCreditCardLimitResponseEntity();
   }
 
   @override
   GetCreditCardLimitResponse transform() {
     return GetCreditCardLimitResponse(
-        cardLimit:
-            GetCreditCardLimitEntity.fromJson(response!.content).transform());
+        cardLimit: GetCreditCardLimitEntity.fromJson(response!.content).transform());
   }
 }

@@ -6,15 +6,13 @@ import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetAtmsUseCase
-    extends BaseUseCase<NetworkError, GetAtmsUseCaseParams, GetATMResponse> {
+class GetAtmsUseCase extends BaseUseCase<NetworkError, GetAtmsUseCaseParams, GetATMResponse> {
   final DashboardRepository _repository;
 
   GetAtmsUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, GetATMResponse>> execute(
-      {required GetAtmsUseCaseParams params}) {
+  Future<Either<NetworkError, GetATMResponse>> execute({required GetAtmsUseCaseParams params}) {
     return _repository.getAtms();
   }
 }

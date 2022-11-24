@@ -7,9 +7,7 @@ part "payment_activity_data_entity.g.dart";
 
 @JsonSerializable()
 class PaymentActivityDataEntity
-    implements
-        BaseLayerDataTransformer<PaymentActivityDataEntity,
-            PaymentActivityData> {
+    implements BaseLayerDataTransformer<PaymentActivityDataEntity, PaymentActivityData> {
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "amount")
@@ -21,8 +19,7 @@ class PaymentActivityDataEntity
   @JsonKey(name: "rtpDate")
   DateTime? rtpDate;
 
-  PaymentActivityDataEntity(
-      {this.name, this.amount, this.status, this.rtpDate, this.profileImage});
+  PaymentActivityDataEntity({this.name, this.amount, this.status, this.rtpDate, this.profileImage});
 
   factory PaymentActivityDataEntity.fromJson(Map<String, dynamic> json) =>
       _$PaymentActivityDataEntityFromJson(json);

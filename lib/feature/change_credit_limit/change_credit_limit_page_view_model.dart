@@ -10,6 +10,7 @@ class ChangeCreditLimitPageViewModel extends BasePageViewModel {
   void updateValue(double value) {
     _valueSubject.safeAdd(value);
   }
+
   PublishSubject<SliderLimitValues> _sliderValueSubject = PublishSubject();
 
   Stream<SliderLimitValues> get sliderValueStream => _sliderValueSubject.stream;
@@ -24,6 +25,5 @@ class SliderLimitValues {
   final double? maxValue;
   final int? divisions;
 
-  SliderLimitValues(
-      {this.minValue: 0.0, this.maxValue: 0.0, this.divisions: 0});
+  SliderLimitValues({this.minValue: 0.0, this.maxValue: 0.0, this.divisions: 0});
 }

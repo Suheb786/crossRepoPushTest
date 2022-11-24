@@ -5,11 +5,9 @@ import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_vie
 class IbanDialog {
   IbanDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String, String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String, String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) =>
-            IbanDialogView(onDismissed: onDismissed, onSelected: onSelected));
+        builder: (context) => IbanDialogView(onDismissed: onDismissed, onSelected: onSelected));
   }
 }

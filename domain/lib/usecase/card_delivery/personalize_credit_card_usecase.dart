@@ -7,11 +7,10 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class PersonalizeCreditCardUseCase extends BaseUseCase<NetworkError,
-    PersonalizeCreditCardUseCaseParams, bool> {
+class PersonalizeCreditCardUseCase
+    extends BaseUseCase<NetworkError, PersonalizeCreditCardUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required PersonalizeCreditCardUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required PersonalizeCreditCardUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -23,24 +22,17 @@ class PersonalizeCreditCardUseCaseParams extends Params {
   final bool readOnly;
 
   PersonalizeCreditCardUseCaseParams(
-      {this.creditLimitSettings: "",
-      this.minimumSettlement: "",
-      this.nickname: "",
-      this.readOnly: true});
+      {this.creditLimitSettings: "", this.minimumSettlement: "", this.nickname: "", this.readOnly: true});
 
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(creditLimitSettings)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.SELECT_CREDIT_LIMIT_SETTINGS,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.SELECT_CREDIT_LIMIT_SETTINGS, cause: Exception()));
     } else if (!readOnly) {
       if (Validator.isEmpty(minimumSettlement)) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.SELECT_MINIMUM_SETTLEMENT,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.SELECT_MINIMUM_SETTLEMENT, cause: Exception()));
       }
     }
 

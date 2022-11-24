@@ -16,30 +16,23 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
   final FatcaUSRelevantW8UseCase _fatcaUSRelevantW8UseCase;
 
   ///controllers and keys
-  final TextEditingController nameAsPerTaxReturnController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> nameAsPerTaxReturnKey =
-      GlobalKey(debugLabel: "nameAsPerTaxReturn");
+  final TextEditingController nameAsPerTaxReturnController = TextEditingController();
+  final GlobalKey<AppTextFieldState> nameAsPerTaxReturnKey = GlobalKey(debugLabel: "nameAsPerTaxReturn");
 
   final TextEditingController dateOfBirthController = TextEditingController();
-  final GlobalKey<AppTextFieldState> dateOfBirthKey =
-      GlobalKey(debugLabel: "dateOfBirth");
+  final GlobalKey<AppTextFieldState> dateOfBirthKey = GlobalKey(debugLabel: "dateOfBirth");
 
-  final TextEditingController countryOfCitizenshipController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> countryOfCitizenshipKey =
-      GlobalKey(debugLabel: "countryOfCitizenship");
+  final TextEditingController countryOfCitizenshipController = TextEditingController();
+  final GlobalKey<AppTextFieldState> countryOfCitizenshipKey = GlobalKey(debugLabel: "countryOfCitizenship");
 
   ///fatca us relevant request subject holder
-  PublishSubject<FatcaUSRelevantW8UseCaseParams> _fatcaUSRelevantW8Request =
-      PublishSubject();
+  PublishSubject<FatcaUSRelevantW8UseCaseParams> _fatcaUSRelevantW8Request = PublishSubject();
 
   ///fatca us relevant response holder
   PublishSubject<Resource<bool>> _fatcaUSRelevantW8Response = PublishSubject();
 
   ///fatca us relevant stream
-  Stream<Resource<bool>> get fatcaUSRelevantW8Stream =>
-      _fatcaUSRelevantW8Response.stream;
+  Stream<Resource<bool>> get fatcaUSRelevantW8Stream => _fatcaUSRelevantW8Response.stream;
 
   ///all field validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -62,9 +55,7 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
 
   FatcaUSRelevantW8PageViewModel(this._fatcaUSRelevantW8UseCase) {
     _fatcaUSRelevantW8Request.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _fatcaUSRelevantW8UseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -102,15 +93,12 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW8Data;
+    FatcaW8Data fatcaW8Data =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW8Data;
     fatcaW8Data.nameIncomeTaxReturn = nameAsPerTaxReturnController.text;
     fatcaW8Data.dateOfBirth = dateOfBirthController.text;
     fatcaW8Data.citizenShipCountry = countryOfCitizenshipController.text;
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW8(fatcaW8Data);
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW8(fatcaW8Data);
   }
 
   @override

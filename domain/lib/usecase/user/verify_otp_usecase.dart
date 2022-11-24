@@ -7,15 +7,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class VerifyOtpUseCase
-    extends BaseUseCase<NetworkError, VerifyOtpUseCaseParams, bool> {
+class VerifyOtpUseCase extends BaseUseCase<NetworkError, VerifyOtpUseCaseParams, bool> {
   final UserRepository _repository;
 
   VerifyOtpUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required VerifyOtpUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required VerifyOtpUseCaseParams params}) {
     return _repository.verifyMobileOtp(otpCode: params.otp);
   }
 }
@@ -28,10 +26,7 @@ class VerifyOtpUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (otp.isEmpty || otp.length < 6) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OTP,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception()));
     }
     return Right(true);
   }

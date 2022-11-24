@@ -10,8 +10,7 @@ class BaseCardPage extends BasePage<BaseCardPageViewModel> {
   BaseCardPageState createState() => BaseCardPageState();
 }
 
-class BaseCardPageState
-    extends BaseStatefulPage<BaseCardPageViewModel, BaseCardPage>
+class BaseCardPageState extends BaseStatefulPage<BaseCardPageViewModel, BaseCardPage>
     with AutomaticKeepAliveClientMixin {
   BaseCardPageState() : super(subscribeVisibilityEvents: true);
 

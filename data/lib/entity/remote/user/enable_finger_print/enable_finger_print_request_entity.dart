@@ -11,8 +11,7 @@ class EnableFingerPrintRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  EnableFingerPrintRequestEntity(
-      {this.getToken, required this.baseData, this.cipher});
+  EnableFingerPrintRequestEntity({this.getToken, required this.baseData, this.cipher});
 
   factory EnableFingerPrintRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$EnableFingerPrintRequestEntityFromJson(json);

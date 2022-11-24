@@ -6,9 +6,7 @@ part "forget_password_content_entity.g.dart";
 
 @JsonSerializable()
 class ForgetPasswordContentEntity
-    implements
-        BaseLayerDataTransformer<ForgetPasswordContentEntity,
-            ForgetPasswordContent> {
+    implements BaseLayerDataTransformer<ForgetPasswordContentEntity, ForgetPasswordContent> {
   @JsonKey(name: "mobileNumber")
   final String? mobileNumber;
 

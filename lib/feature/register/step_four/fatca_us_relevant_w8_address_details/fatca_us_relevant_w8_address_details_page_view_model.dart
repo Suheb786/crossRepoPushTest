@@ -18,22 +18,18 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
-  final FatcaUSRelevantW8AddressDetailsUseCase
-      _fatcaUSRelevantW8AddressDetailsUseCase;
+  final FatcaUSRelevantW8AddressDetailsUseCase _fatcaUSRelevantW8AddressDetailsUseCase;
 
   final GetStateListUseCase _getStateListUseCase;
 
   final GetCityListUseCase _getCityListUseCase;
 
   ///controllers and keys
-  final TextEditingController permanentAddressController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> permanentAddressKey =
-      GlobalKey(debugLabel: "permanentAddress");
+  final TextEditingController permanentAddressController = TextEditingController();
+  final GlobalKey<AppTextFieldState> permanentAddressKey = GlobalKey(debugLabel: "permanentAddress");
 
   final TextEditingController countryController = TextEditingController();
-  final GlobalKey<AppTextFieldState> countryKey =
-      GlobalKey(debugLabel: "country");
+  final GlobalKey<AppTextFieldState> countryKey = GlobalKey(debugLabel: "country");
 
   final TextEditingController stateController = TextEditingController();
   final GlobalKey<AppTextFieldState> stateKey = GlobalKey(debugLabel: "state");
@@ -42,42 +38,34 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> cityKey = GlobalKey(debugLabel: "city");
 
   final TextEditingController postCodeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> postCodeKey =
-      GlobalKey(debugLabel: "postCode");
+  final GlobalKey<AppTextFieldState> postCodeKey = GlobalKey(debugLabel: "postCode");
 
   ///mailing address different controllers and keys
-  final TextEditingController differentMailingAddressController =
-      TextEditingController();
+  final TextEditingController differentMailingAddressController = TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingAddressKey =
       GlobalKey(debugLabel: "differentMailingAddress");
 
-  final TextEditingController differentMailingCountryController =
-      TextEditingController();
+  final TextEditingController differentMailingCountryController = TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingCountryKey =
       GlobalKey(debugLabel: "differentMailingCountry");
 
-  final TextEditingController differentMailingStateController =
-      TextEditingController();
+  final TextEditingController differentMailingStateController = TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingStateKey =
       GlobalKey(debugLabel: "differentMailingState");
 
-  final TextEditingController differentMailingCityController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> differentMailingCityKey =
-      GlobalKey(debugLabel: "differentMailingCity");
+  final TextEditingController differentMailingCityController = TextEditingController();
+  final GlobalKey<AppTextFieldState> differentMailingCityKey = GlobalKey(debugLabel: "differentMailingCity");
 
-  final TextEditingController differentMailingPostCodeController =
-      TextEditingController();
+  final TextEditingController differentMailingPostCodeController = TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingPostCodeKey =
       GlobalKey(debugLabel: "differentMailingPostCode");
 
   ///fatca us relevant address details request subject holder
-  PublishSubject<FatcaUSRelevantW8AddressDetailsUseCaseParams>
-      _fatcaUSRelevantW8AddressDetailsRequest = PublishSubject();
+  PublishSubject<FatcaUSRelevantW8AddressDetailsUseCaseParams> _fatcaUSRelevantW8AddressDetailsRequest =
+      PublishSubject();
 
   ///fatca us relevant address details response holder
-  PublishSubject<Resource<bool>> _fatcaUSRelevantW8AddressDetailsResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _fatcaUSRelevantW8AddressDetailsResponse = PublishSubject();
 
   ///fatca us relevant address details stream
   Stream<Resource<bool>> get fatcaUSRelevantW8AddressDetailsStream =>
@@ -90,11 +78,9 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
   ///cupertino switch value subject
-  final BehaviorSubject<bool> _mailingAddressDifferentSubject =
-      BehaviorSubject.seeded(false);
+  final BehaviorSubject<bool> _mailingAddressDifferentSubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get mailingAddressDifferentStream =>
-      _mailingAddressDifferentSubject.stream;
+  Stream<bool> get mailingAddressDifferentStream => _mailingAddressDifferentSubject.stream;
 
   StateCityData permanentSelectedStateCity = StateCityData();
 
@@ -104,32 +90,26 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   PublishSubject<GetStateListUseParams> _getStateListRequest = PublishSubject();
 
   /// get state list response subject holder
-  PublishSubject<Resource<StateListResponse>> _getStateListResponse =
-      PublishSubject();
+  PublishSubject<Resource<StateListResponse>> _getStateListResponse = PublishSubject();
 
   /// get state list response stream
-  Stream<Resource<StateListResponse>> get getStateListResponseStream =>
-      _getStateListResponse.stream;
+  Stream<Resource<StateListResponse>> get getStateListResponseStream => _getStateListResponse.stream;
 
   /// get city list request subject holder
   PublishSubject<GetCityListUseParams> _getCityListRequest = PublishSubject();
 
   /// get city list response subject holder
-  PublishSubject<Resource<CityListResponse>> _getCityListResponse =
-      PublishSubject();
+  PublishSubject<Resource<CityListResponse>> _getCityListResponse = PublishSubject();
 
   /// get city list response stream
-  Stream<Resource<CityListResponse>> get getCityListResponseStream =>
-      _getCityListResponse.stream;
+  Stream<Resource<CityListResponse>> get getCityListResponseStream => _getCityListResponse.stream;
 
   FatcaUSRelevantW8AddressDetailsPageViewModel(
-      this._fatcaUSRelevantW8AddressDetailsUseCase,
-      this._getStateListUseCase,
-      this._getCityListUseCase) {
+      this._fatcaUSRelevantW8AddressDetailsUseCase, this._getStateListUseCase, this._getCityListUseCase) {
     _fatcaUSRelevantW8AddressDetailsRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _fatcaUSRelevantW8AddressDetailsUseCase.execute(
-              params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _fatcaUSRelevantW8AddressDetailsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _fatcaUSRelevantW8AddressDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
@@ -140,8 +120,7 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
     });
 
     _getStateListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getStateListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getStateListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -154,8 +133,7 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
     });
 
     _getCityListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCityListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCityListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -177,8 +155,7 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   }
 
   void getCityList(String isoCode, String stateId) {
-    _getCityListRequest
-        .safeAdd(GetCityListUseParams(isoCode: isoCode, stateID: stateId));
+    _getCityListRequest.safeAdd(GetCityListUseParams(isoCode: isoCode, stateID: stateId));
   }
 
   bool isValid() {
@@ -245,26 +222,24 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   }
 
   void validateFatcaUSRelevantW8AddressDetails() {
-    _fatcaUSRelevantW8AddressDetailsRequest.safeAdd(
-        FatcaUSRelevantW8AddressDetailsUseCaseParams(
-            permanentAddress: permanentAddressController.text,
-            state: stateController.text,
-            country: countryController.text,
-            city: cityController.text,
-            postCode: postCodeController.text,
-            isMailingAddressDifferent: _mailingAddressDifferentSubject.value,
-            differentAddress: differentMailingAddressController.text,
-            differentCity: differentMailingCityController.text,
-            differentCountry: differentMailingCountryController.text,
-            differentPostCode: differentMailingPostCodeController.text,
-            differentState: differentMailingStateController.text));
+    _fatcaUSRelevantW8AddressDetailsRequest.safeAdd(FatcaUSRelevantW8AddressDetailsUseCaseParams(
+        permanentAddress: permanentAddressController.text,
+        state: stateController.text,
+        country: countryController.text,
+        city: cityController.text,
+        postCode: postCodeController.text,
+        isMailingAddressDifferent: _mailingAddressDifferentSubject.value,
+        differentAddress: differentMailingAddressController.text,
+        differentCity: differentMailingCityController.text,
+        differentCountry: differentMailingCountryController.text,
+        differentPostCode: differentMailingPostCodeController.text,
+        differentState: differentMailingStateController.text));
   }
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW8Data;
+    FatcaW8Data fatcaW8Data =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW8Data;
     fatcaW8Data.permenantResidenceAddress = permanentAddressController.text;
     fatcaW8Data.country = permanentSelectedStateCity.countryId;
     fatcaW8Data.city = permanentSelectedStateCity.cityId;
@@ -273,17 +248,11 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
     fatcaW8Data.differentMailingAddress = _mailingAddressDifferentSubject.value;
     fatcaW8Data.mailingAddressLine = differentMailingAddressController.text;
-    fatcaW8Data.differentMailingState =
-        mailingAddressDifferentSelectedStateCity.stateId;
-    fatcaW8Data.differentMailingCity =
-        mailingAddressDifferentSelectedStateCity.cityId;
-    fatcaW8Data.differentMailingCountry =
-        mailingAddressDifferentSelectedStateCity.countryId;
-    fatcaW8Data.differentMailingPostCode =
-        differentMailingPostCodeController.text;
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW8(fatcaW8Data);
+    fatcaW8Data.differentMailingState = mailingAddressDifferentSelectedStateCity.stateId;
+    fatcaW8Data.differentMailingCity = mailingAddressDifferentSelectedStateCity.cityId;
+    fatcaW8Data.differentMailingCountry = mailingAddressDifferentSelectedStateCity.countryId;
+    fatcaW8Data.differentMailingPostCode = differentMailingPostCodeController.text;
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW8(fatcaW8Data);
   }
 
   @override

@@ -13,14 +13,9 @@ class CityListRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CityListRequestEntity(
-      {required this.baseData,
-      this.getToken: true,
-      this.isoCode: "",
-      this.stateID: ""});
+  CityListRequestEntity({required this.baseData, this.getToken: true, this.isoCode: "", this.stateID: ""});
 
-  factory CityListRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$CityListRequestEntityFromJson(json);
+  factory CityListRequestEntity.fromJson(Map<String, dynamic> json) => _$CityListRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityListRequestEntityToJson(this);
 }

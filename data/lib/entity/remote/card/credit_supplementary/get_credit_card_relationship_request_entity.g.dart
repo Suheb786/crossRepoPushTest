@@ -6,9 +6,8 @@ part of 'get_credit_card_relationship_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCreditCardRelationshipRequestEntity
-    _$GetCreditCardRelationshipRequestEntityFromJson(
-        Map<String, dynamic> json) {
+GetCreditCardRelationshipRequestEntity _$GetCreditCardRelationshipRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return GetCreditCardRelationshipRequestEntity(
     cardId: json['CardId'] as String?,
     getToken: json['GetToken'] as bool?,

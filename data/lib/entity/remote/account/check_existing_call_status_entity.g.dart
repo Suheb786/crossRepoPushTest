@@ -6,8 +6,7 @@ part of 'check_existing_call_status_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckExistingCallStatusEntity _$CheckExistingCallStatusEntityFromJson(
-    Map<String, dynamic> json) {
+CheckExistingCallStatusEntity _$CheckExistingCallStatusEntityFromJson(Map<String, dynamic> json) {
   return CheckExistingCallStatusEntity(
     isExist: json['isExist'] as bool?,
     isExpire: json['isExpire'] as bool?,
@@ -16,8 +15,7 @@ CheckExistingCallStatusEntity _$CheckExistingCallStatusEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$CheckExistingCallStatusEntityToJson(
-        CheckExistingCallStatusEntity instance) =>
+Map<String, dynamic> _$CheckExistingCallStatusEntityToJson(CheckExistingCallStatusEntity instance) =>
     <String, dynamic>{
       'isExist': instance.isExist,
       'isExpire': instance.isExpire,
