@@ -60,10 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
-        "accountNoCopied":
-            MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
-        "accountNotFound":
-            MessageLookupByLibrary.simpleMessage("الحساب غير موجود"),
+        "accountNoCopied": MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
+        "accountNotFound": MessageLookupByLibrary.simpleMessage("الحساب غير موجود"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
             "قائمة أرقام الحسابات (اختياري)"),
@@ -1625,22 +1623,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد مبلغ مستحق"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
-        "noMatchingYearFound":
-            MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
-        "noPaymentActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
-        "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
-            "لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
+        "noMatchingYearFound": MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
+        "noPaymentActivityToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
+        "noPlaceholderFound":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-086)"),
         "noSignatureFound": MessageLookupByLibrary.simpleMessage(
             "توقيعك على نموذج FACTA غير موجود. تأكد من إنك تزودنا بالتوقيع أو تواصل معنا على 5200100-06"),
-        "noTransactionToDisplay":
-            MessageLookupByLibrary.simpleMessage("لا توجد معاملة لعرضها"),
+        "noTicketsFound": MessageLookupByLibrary.simpleMessage("No tickets found"),
+        "noTransactionToDisplay": MessageLookupByLibrary.simpleMessage("لا توجد معاملة لعرضها"),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
             "مصدر الهوية الشخصية غير متوفر حالياً. حاول مرة ثانية مع مصدر آخر."),
-        "notAllowedToLogin": MessageLookupByLibrary.simpleMessage(
-            "تسجيل الدخول غير مسموح إلك. تواصل معنا."),
+        "notAllowedToLogin": MessageLookupByLibrary.simpleMessage("تسجيل الدخول غير مسموح إلك. تواصل معنا."),
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "ما رح تقدر تكمّل طلبك. تواصل معنا على 5200100-06 لتعرف أكتر."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
@@ -1722,24 +1717,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "Place the QR code within the frame and proceed with payment"),
-        "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "paybackCreditCardError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "paymentActivity": MessageLookupByLibrary.simpleMessage("حركة دائمة"),
-        "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "paymentActivityApiError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-146)"),
+        "paymentNotDone": MessageLookupByLibrary.simpleMessage("payment not done"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("فترة الدفعة"),
         "payments": MessageLookupByLibrary.simpleMessage("دفعات"),
         "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             "\nالاشخاص السياسيون ممثلو المخاطر الأجانب (Foreign Politically Exposed Persons) :هم الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في دولـة أجنبيـة، مثل: رئيس دولة أو حكومة  أو المسؤولين القضائيين أو العسكريين، أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة لدولة أجنبية ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم\n الاشخاص السياسيون ممثلو المخاطر المحليون (Local Politically Exposed Persons) الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في المملكة، مثل: رئيس حكومة أو وزير أو المسؤولين القضائيين أو العسكريين أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة للدولة ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم."),
-        "permanentAddress":
-            MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
-        "permanentCity":
-            MessageLookupByLibrary.simpleMessage("مدينة الإقامة الدائمة"),
-        "permanentCountry":
-            MessageLookupByLibrary.simpleMessage("دولة الإقامة الدائمة"),
+        "permanentAddress": MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
+        "permanentCity": MessageLookupByLibrary.simpleMessage("مدينة الإقامة الدائمة"),
+        "permanentCountry": MessageLookupByLibrary.simpleMessage("دولة الإقامة الدائمة"),
         "permanentHomeAddress":
             MessageLookupByLibrary.simpleMessage("عنوان السكن الدائم"),
         "permanentResidence":
@@ -1881,28 +1874,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-110)"),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
-        "purposeOfAccountOpening":
-            MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
-        "purposeOfOpeningAccount":
-            MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
+        "purposeOfAccountOpening": MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
+        "purposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("السبب"),
-        "qrExpired": MessageLookupByLibrary.simpleMessage(
-            "QR Expired. Try scanning valid QR"),
-        "qrInvalid": MessageLookupByLibrary.simpleMessage(
-            "Invalid QR. Try scanning valid QR"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage("QR Expired. Try scanning valid QR"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage("Invalid QR. Try scanning valid QR"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("دفعات QR"),
-        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
-            "صلاحية رمز QR رح تكون لساعة فقط  "),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "يا ريت تكون بمكان هادي وفيه خصوصية"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
-        "receiveMoneyFromOthers":
-            MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
+        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage("QR code will be valid\nfor 30 mins"),
+        "quietSurrounding": MessageLookupByLibrary.simpleMessage("يا ريت تكون بمكان هادي وفيه خصوصية"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "receiveMoneyFromOthers": MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
             "شارك معلومات حسابك لتقدر تستقبل الأموال"),
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(

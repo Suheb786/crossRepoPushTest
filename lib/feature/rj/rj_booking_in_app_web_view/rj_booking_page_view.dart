@@ -31,8 +31,8 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           initialOptions: InAppWebViewGroupOptions(
             android: AndroidInAppWebViewOptions(
               useHybridComposition: true,
-              // clearSessionCache: true,
-              cacheMode: AndroidCacheMode.LOAD_DEFAULT,
+              clearSessionCache: true,
+              cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
             ),
             ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
             crossPlatform: InAppWebViewOptions(

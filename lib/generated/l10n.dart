@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12079,10 +12078,10 @@ class S {
     );
   }
 
-  /// `QR code will be valid\nfor 1 hour`
+  /// `QR code will be valid\nfor 30 mins`
   String get qrValidForOneHour {
     return Intl.message(
-      'QR code will be valid\nfor 1 hour',
+      'QR code will be valid\nfor 30 mins',
       name: 'qrValidForOneHour',
       desc: '',
       args: [],
@@ -14564,6 +14563,26 @@ class S {
     return Intl.message(
       'Account Card',
       name: 'accountCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `payment not done`
+  String get paymentNotDone {
+    return Intl.message(
+      'payment not done',
+      name: 'paymentNotDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No tickets found`
+  String get noTicketsFound {
+    return Intl.message(
+      'No tickets found',
+      name: 'noTicketsFound',
       desc: '',
       args: [],
     );

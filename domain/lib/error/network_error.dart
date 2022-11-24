@@ -693,6 +693,12 @@ class NetworkError extends BaseError {
           case "err-333":
             return AppError(cause: cause, error: error, type: ErrorType.ID_VERIFICATION_FAILED);
 
+          case "err-337":
+            return AppError(cause: cause, error: error, type: ErrorType.PAYMENT_NOT_DONE);
+
+          case "err-338":
+            return AppError(cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 
