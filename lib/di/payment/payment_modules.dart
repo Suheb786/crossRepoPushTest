@@ -57,6 +57,7 @@ import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generatio
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/denomintion_dialog/denomination_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog_view_model.dart';
@@ -235,6 +236,11 @@ final accountsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountsDialogViewModel>(
         (ref) => AccountsDialogViewModel());
 
+
+final dominationDialogViewModelProvider =
+ChangeNotifierProvider.autoDispose<DenominationsDialogViewModel>(
+        (ref) => DenominationsDialogViewModel());
+
 ///qr screen view model provider
 final qrScreenViewModelProvider =
     ChangeNotifierProvider.autoDispose<QrScreenPageViewModel>(
@@ -305,8 +311,10 @@ final payBillPageViewModelProvider =
 
 final payBillDetailPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
-  (ref) =>
-      PayBillDetailPageViewModel(ref.read(addNewPostpaidBillerUseCaseProvider)),
+  (ref) => PayBillDetailPageViewModel(
+      ref.read(addNewPostpaidBillerUseCaseProvider),
+      ref.read(addNewPrepaidBillerUseCaseProvider),
+      ref.read(getPrePaidCategoriesListUseCaseProvider)),
 );
 
 final confirmBillPaymentAmountPageViewModelProvider =

@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.
 import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -57,8 +58,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           Navigator.pushNamed(context, RoutePaths.RequestMoney);
                         } else if (currentStep == 2) {
                           Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                          AppConstantsUtils.POST_PAID_FLOW = true;
+                          AppConstantsUtils.PRE_PAID_FLOW = false;
+                          AppConstantsUtils.IS_NEW_PAYMENT = true;
                         } else if (currentStep == 3) {
-                          Navigator.pushNamed(context, RoutePaths.NewPrePaidBillsPage);
+                          Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                          AppConstantsUtils.PRE_PAID_FLOW = true;
+                          AppConstantsUtils.POST_PAID_FLOW = false;
+                          AppConstantsUtils.IS_NEW_PAYMENT = true;
                         }
                       } else {
                         Navigator.pop(context);

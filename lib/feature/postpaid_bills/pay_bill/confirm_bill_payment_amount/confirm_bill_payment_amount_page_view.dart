@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -267,7 +268,11 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               GestureDetector(
                                 onHorizontalDragEnd: (details) {
                                   if (details.primaryVelocity!.isNegative) {
-                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPostpaidBiller();
+                                    if(AppConstantsUtils.POST_PAID_FLOW){
+                                      ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPostpaidBiller();
+                                    }else if(AppConstantsUtils.PRE_PAID_FLOW){
+                                      ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPrepaidBiller();
+                                    }
                                   }
                                 },
                                 child: AnimatedButton(

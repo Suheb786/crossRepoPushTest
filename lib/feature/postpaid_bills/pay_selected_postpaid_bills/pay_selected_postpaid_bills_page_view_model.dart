@@ -197,7 +197,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   getValidBillerNickName(String? billingNumber, {String? nickName}) {
     for (var item in arguments.noOfSelectedBills) {
       if (item.billingNo == billingNumber)
-        return nickName != null && nickName!.isNotEmpty
+        return nickName != null && nickName.isNotEmpty
             ? nickName
             : "null";
     }
