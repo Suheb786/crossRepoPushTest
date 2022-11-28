@@ -24,7 +24,6 @@ class DynamicLinksService {
     required String dateTime,
   }) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    print(packageInfo.packageName);
     String uriPrefix = "https://blinkcbt.page.link";
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
