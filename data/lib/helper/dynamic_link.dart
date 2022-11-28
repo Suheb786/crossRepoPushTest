@@ -41,11 +41,11 @@ class DynamicLinksService {
         appStoreId: '1607969058',
       ),
     );
-    /* final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
-    final Uri shortUrl = shortDynamicLink.shortUrl;*/
-    final Uri longUrl = await parameters.buildUrl();
+    final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
+    final Uri shortUrl = shortDynamicLink.shortUrl;
+    //  final Uri longUrl = await parameters.buildUrl();
 
-    return longUrl.toString();
+    return shortUrl.toString();
   }
 
   Future<Uri> initDynamicLinks() async {
