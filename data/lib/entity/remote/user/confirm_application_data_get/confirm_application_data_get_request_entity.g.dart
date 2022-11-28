@@ -6,8 +6,9 @@ part of 'confirm_application_data_get_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmApplicationDataGetRequestEntity _$ConfirmApplicationDataGetRequestEntityFromJson(
-    Map<String, dynamic> json) {
+ConfirmApplicationDataGetRequestEntity
+    _$ConfirmApplicationDataGetRequestEntityFromJson(
+        Map<String, dynamic> json) {
   return ConfirmApplicationDataGetRequestEntity(
     getToken: json['GetToken'] as bool?,
     baseData: json['BaseClass'] as Map<String, dynamic>,

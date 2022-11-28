@@ -37,75 +37,78 @@ class PrePaidBillCardWidget extends StatelessWidget {
         }
       },
       child: Stack(alignment: Alignment.center, children: [
-        Center(
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 2,
-            color: Theme.of(context).primaryColor,
-            margin: EdgeInsets.zero,
-            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-            child: Container(
-              color: Theme.of(context).primaryColorDark,
-              child: Padding(
-                padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 38.0.h),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(S.of(context).myPrePaidBills,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 12.0.t,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.white)),
-                    ),
-                    SizedBox(
-                      height: 72.h,
-                    ),
-                    Container(
-                      height: 112.h,
-                      width: 112.w,
-                      child: AppSvg.asset(AssetUtils.logoeFawateerYellow),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(S.of(context).howWouldLikeToPayPrePaidYourBills,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 14.0.t,
-                            fontWeight: FontWeight.w600,
-                            color: AppColor.white)),
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        //
-                        AppConstantsUtils.IS_NEW_PAYMENT = false;
-                        Navigator.pushNamed(context, RoutePaths.PayMyPrePaidBillsPage);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
-                        decoration: BoxDecoration(
-                            color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
-                        child: Center(
-                          child: Text(
-                            // S.of(context).payAllBills,
-                            "Pay My Bills",
+        Padding(
+          padding: EdgeInsets.only(bottom: 15.0.h),
+          child: Center(
+            child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 2,
+              color: Theme.of(context).primaryColor,
+              margin: EdgeInsets.zero,
+              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+              child: Container(
+                color: Theme.of(context).primaryColorDark,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 38.0.h),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(S.of(context).myPrePaidBills,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 14.0.t,
+                                fontSize: 12.0.t,
                                 fontWeight: FontWeight.w600,
-                                color: AppColor.white),
+                                color: AppColor.white)),
+                      ),
+                      SizedBox(
+                        height: 72.h,
+                      ),
+                      Container(
+                        height: 112.h,
+                        width: 112.w,
+                        child: AppSvg.asset(AssetUtils.logoeFawateerYellow),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Text(S.of(context).howWouldLikeToPayPrePaidYourBills,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14.0.t,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.white)),
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          //
+                          AppConstantsUtils.IS_NEW_PAYMENT = false;
+                          Navigator.pushNamed(context, RoutePaths.PayMyPrePaidBillsPage);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
+                          decoration: BoxDecoration(
+                              color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
+                          child: Center(
+                            child: Text(
+                              // S.of(context).payAllBills,
+                              "Pay My Bills",
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.0.t,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.white),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

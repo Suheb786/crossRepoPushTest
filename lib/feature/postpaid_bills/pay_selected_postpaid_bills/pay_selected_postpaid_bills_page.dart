@@ -8,20 +8,24 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 
-class PaySelectedBillsPostPaidBillsPage extends BasePage<PaySelectedBillsPostPaidBillsPageViewModel> {
+class PaySelectedBillsPostPaidBillsPage
+    extends BasePage<PaySelectedBillsPostPaidBillsPageViewModel> {
   final PaySelectedBillsPostPaidBillsPageArguments arguments;
 
   PaySelectedBillsPostPaidBillsPage(this.arguments);
 
   @override
-  PaySelectedBillsPostPaidBillsPageState createState() => PaySelectedBillsPostPaidBillsPageState();
+  PaySelectedBillsPostPaidBillsPageState createState() =>
+      PaySelectedBillsPostPaidBillsPageState();
 }
 
-class PaySelectedBillsPostPaidBillsPageState
-    extends BaseStatefulPage<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPage> {
+class PaySelectedBillsPostPaidBillsPageState extends BaseStatefulPage<
+    PaySelectedBillsPostPaidBillsPageViewModel,
+    PaySelectedBillsPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return paySelectedBillsPostPaidBillsPageViewModelProvider.call(widget.arguments);
+    return paySelectedBillsPostPaidBillsPageViewModelProvider
+        .call(widget.arguments);
   }
 
   @override
@@ -30,13 +34,16 @@ class PaySelectedBillsPostPaidBillsPageState
   }
 
   @override
-  Widget buildView(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+  Widget buildView(
+      BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return PaySelectedBillsPostPaidBillsPageView(provideBase());
   }
 
   @override
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
     // model.postPaidBillInquiry();
+    model.totalAmount = "0.0";
+    model.validate();
     super.onModelReady(model);
   }
 }
@@ -47,6 +54,11 @@ class PaySelectedBillsPostPaidBillsPageArguments {
   final List<GetPostpaidBillerListModelData> noOfSelectedBills;
   List<PostpaidBillInquiry> postPaidRequestListJson;
   List<PostPaidBillInquiryData>? postPaidBillInquiryData;
+
   PaySelectedBillsPostPaidBillsPageArguments(
-      this.nosOfBills, this.amt, this.noOfSelectedBills, this.postPaidRequestListJson, this.postPaidBillInquiryData);
+      this.nosOfBills,
+      this.amt,
+      this.noOfSelectedBills,
+      this.postPaidRequestListJson,
+      this.postPaidBillInquiryData);
 }

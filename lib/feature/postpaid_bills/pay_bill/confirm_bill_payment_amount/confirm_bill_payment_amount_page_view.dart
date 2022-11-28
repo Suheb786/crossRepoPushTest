@@ -18,12 +18,14 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-
+import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'confirm_bill_payment_amount_page_view_model.dart';
 
-class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPaymentAmountPageViewModel> {
+class ConfirmBillPaymentAmountPageView
+    extends BasePageViewWidget<ConfirmBillPaymentAmountPageViewModel> {
   ConfirmBillPaymentAmountPageView(ProviderBase model) : super(model);
 
   @override
@@ -33,274 +35,364 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           initialData: false,
           stream: model.errorDetectorStream,
           dataBuilder: (context, isError) {
-            return ShakeAnimatedWidget(
-                enabled: isError ?? false,
-                duration: Duration(milliseconds: 100),
-                shakeAngle: Rotation.deg(z: 1),
-                curve: Curves.easeInOutSine,
-                child: GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (ProviderScope.containerOf(context)
-                            .read(payBillPageViewModelProvider)
-                            .appSwiperController
-                            .page ==
-                        1.0) {
-                      FocusScope.of(context).unfocus();
+            return AppStreamBuilder<AddNewDetailsBillPaymentsModel>(
+              stream: model.getPurposeResponseStream,
+              initialData: AddNewDetailsBillPaymentsModel(),
+              dataBuilder: (context, snapshot) {
+                AddNewDetailsBillPaymentsModel data = snapshot!;
+                return ShakeAnimatedWidget(
+                    enabled: isError ?? false,
+                    duration: Duration(milliseconds: 100),
+                    shakeAngle: Rotation.deg(z: 1),
+                    curve: Curves.easeInOutSine,
+                    child: GestureDetector(
+                      onHorizontalDragEnd: (details) {
+                        if (ProviderScope.containerOf(context)
+                                .read(payBillPageViewModelProvider)
+                                .appSwiperController
+                                .page ==
+                            1.0) {
+                          FocusScope.of(context).unfocus();
 
-                      if (StringUtils.isDirectionRTL(context)) {
-                        if (details.primaryVelocity!.isNegative) {
-                          ProviderScope.containerOf(context)
-                              .read(payBillPageViewModelProvider)
-                              .previousPage();
-                        } else {
-                          ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (details.primaryVelocity!.isNegative) {
+                              ProviderScope.containerOf(context)
+                                  .read(payBillPageViewModelProvider)
+                                  .previousPage();
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(payBillPageViewModelProvider)
+                                  .nextPage();
+                            }
+                          } else {
+                            if (details.primaryVelocity!.isNegative) {
+                              ProviderScope.containerOf(context)
+                                  .read(payBillPageViewModelProvider)
+                                  .nextPage();
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(payBillPageViewModelProvider)
+                                  .previousPage();
+                            }
+                          }
                         }
-                      } else {
-                        if (details.primaryVelocity!.isNegative) {
-                          ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(payBillPageViewModelProvider)
-                              .previousPage();
-                        }
-                      }
-                    }
-                  },
-                  child: Card(
-                    margin: EdgeInsets.zero,
-                    child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Container(
-                                  // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: AppColor.white_gray),
-                                      borderRadius: BorderRadius.circular(12.0)),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 24.0.h),
-                                        child: Text(
-                                          S.of(context).amount,
-                                          style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.veryDarkGray2,
-                                            fontSize: 10.0.t,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          AutoSizeTextField(
-                                            wrapWords: false,
-                                            fullwidth: false,
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
-                                            ],
-                                            controller: model.amtController,
-                                            textAlign: TextAlign.center,
-                                            keyboardType: TextInputType.number,
-                                            onChanged: (value) {
-                                              //  this.onChanged?.call(value);
-                                            },
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.black,
-                                                fontWeight: FontWeight.w700,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: 24.0.t),
-                                          ),
-                                          Text(
-                                            S.of(context).JOD,
-                                            style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: AppColor.verLightGray4,
-                                              fontSize: 14.0.t,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        S.of(context).tapAmtToEdit,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.gray1,
-                                          fontSize: 10.0.t,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 16.0.h,
-                                          left: 16.0.w,
-                                          right: 16.0.w,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 15.0.w, horizontal: 15.0.h),
+                        child: Card(
+                          margin: EdgeInsets.zero,
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 24.h, horizontal: 24.w),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SingleChildScrollView(
+                                    child: Container(
+                                        // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: AppColor.white_gray),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0)),
+                                        child: Column(
                                           children: [
-                                            Text(
-                                              S.of(context).dueAmt,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.black,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w400,
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 16.0.w,
+                                                  right: 16.0.w,
+                                                  top: 24.0.h),
+                                              child: Text(
+                                                S.of(context).amount,
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      StringUtils.appFont,
+                                                  color: AppColor.veryDarkGray2,
+                                                  fontSize: 10.0.t,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
                                             ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                AutoSizeTextField(
+                                                  wrapWords: false,
+                                                  fullwidth: false,
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(
+                                                            RegExp(r"[0-9.]")),
+                                                  ],
+                                                  controller:
+                                                      model.amtController,
+                                                  textAlign: TextAlign.center,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  onChanged: (value) {
+                                                    model.validate(value);
+                                                    //  this.onChanged?.call(value);
+                                                  },
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          StringUtils.appFont,
+                                                      color: AppColor.black,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontSize: 24.0.t),
+                                                ),
+                                                Text(
+                                                  S.of(context).JOD,
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        StringUtils.appFont,
+                                                    color:
+                                                        AppColor.verLightGray4,
+                                                    fontSize: 14.0.t,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                             Text(
-                                              '${ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).amountTextControl.text} JOD',
+                                              S.of(context).tapAmtToEdit,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: AppColor.black,
-                                                fontSize: 12.0.t,
+                                                color: AppColor.gray1,
+                                                fontSize: 10.0.t,
                                                 fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: 16.0.h,
+                                                left: 16.0.w,
+                                                right: 16.0.w,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    S.of(context).dueAmt,
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          StringUtils.appFont,
+                                                      color: AppColor.black,
+                                                      fontSize: 12.0.t,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    '${data.amount} JOD',
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          StringUtils.appFont,
+                                                      color: AppColor.black,
+                                                      fontSize: 12.0.t,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            // Padding(
+                                            //   padding: EdgeInsets.only(
+                                            //     top: 8.0.h,
+                                            //     left: 16.0.w,
+                                            //     right: 16.0.w,
+                                            //   ),
+                                            //   child: Row(
+                                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            //     children: [
+                                            //       Text(
+                                            //         S.of(context).fees,
+                                            //         style: TextStyle(
+                                            //           fontFamily: StringUtils.appFont,
+                                            //           color: AppColor.black,
+                                            //           fontSize: 12.0.t,
+                                            //           fontWeight: FontWeight.w400,
+                                            //         ),
+                                            //       ),
+                                            //       Text(
+                                            //         '20.000 JOD',
+                                            //         style: TextStyle(
+                                            //           fontFamily: StringUtils.appFont,
+                                            //           color: AppColor.black,
+                                            //           fontSize: 12.0.t,
+                                            //           fontWeight: FontWeight.w600,
+                                            //         ),
+                                            //       )
+                                            //     ],
+                                            //   ),
+                                            // ),
+                                            SizedBox(
+                                              height: 24.0.h,
+                                            ),
+                                            Container(
+                                              color: AppColor.white_gray,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 16.0.h,
+                                                    horizontal: 16.0.w),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 40.w,
+                                                      height: 40.w,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: AppColor
+                                                            .vividYellow,
+                                                      ),
+                                                      child: AppSvg.asset(
+                                                          AssetUtils
+                                                              .electricityIcon),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 16.w,
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Text(
+                                                          data.nickName ?? "",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                StringUtils
+                                                                    .appFont,
+                                                            color: AppColor
+                                                                .veryDarkGray2,
+                                                            fontSize: 12.0.t,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          data.billerName ?? '',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                StringUtils
+                                                                    .appFont,
+                                                            color: AppColor
+                                                                .very_dark_gray_black,
+                                                            fontSize: 12.0.t,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          data.service ?? "",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                StringUtils
+                                                                    .appFont,
+                                                            color: AppColor
+                                                                .veryDarkGray2,
+                                                            fontSize: 12.0.t,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          data.refNo ?? "",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                StringUtils
+                                                                    .appFont,
+                                                            color: AppColor
+                                                                .veryDarkGray2,
+                                                            fontSize: 12.0.t,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             )
                                           ],
-                                        ),
-                                      ),
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(
-                                      //     top: 8.0.h,
-                                      //     left: 16.0.w,
-                                      //     right: 16.0.w,
-                                      //   ),
-                                      //   child: Row(
-                                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      //     children: [
-                                      //       Text(
-                                      //         S.of(context).fees,
-                                      //         style: TextStyle(
-                                      //           fontFamily: StringUtils.appFont,
-                                      //           color: AppColor.black,
-                                      //           fontSize: 12.0.t,
-                                      //           fontWeight: FontWeight.w400,
-                                      //         ),
-                                      //       ),
-                                      //       Text(
-                                      //         '20.000 JOD',
-                                      //         style: TextStyle(
-                                      //           fontFamily: StringUtils.appFont,
-                                      //           color: AppColor.black,
-                                      //           fontSize: 12.0.t,
-                                      //           fontWeight: FontWeight.w600,
-                                      //         ),
-                                      //       )
-                                      //     ],
-                                      //   ),
-                                      // ),
-                                      SizedBox(
-                                        height: 24.0.h,
-                                      ),
-                                      Container(
-                                        color: AppColor.white_gray,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.w),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                width: 40.w,
-                                                height: 40.w,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: AppColor.vividYellow,
-                                                ),
-                                                child: AppSvg.asset(AssetUtils.electricityIcon),
-                                              ),
-                                              SizedBox(
-                                                width: 16.w,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryDarkGray2,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).billerNameTextController.text,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.very_dark_gray_black,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).serviceTypeTextControl.text,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryDarkGray2,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.veryDarkGray2,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                              SizedBox(
-                                height: 107.h,
-                              ),
-                              GestureDetector(
-                                onHorizontalDragEnd: (details) {
-                                  if (details.primaryVelocity!.isNegative) {
-                                    if(AppConstantsUtils.POST_PAID_FLOW){
-                                      ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPostpaidBiller();
-                                    }else if(AppConstantsUtils.PRE_PAID_FLOW){
-                                      ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPrepaidBiller();
-                                    }
-                                  }
-                                },
-                                child: AnimatedButton(
-                                  buttonText: S.of(context).swipeToProceed,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 23.h,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  S.of(context).cancel,
-                                  style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.brightBlue,
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w600,
+                                        )),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
-                  ),
-                ));
+                                  // SizedBox(
+                                  //   height: 107.h,
+                                  // ),
+                                  Spacer(),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        GestureDetector(
+                                          onHorizontalDragEnd: (details) {
+                                            if (details
+                                                .primaryVelocity!.isNegative) {
+                                              if (AppConstantsUtils
+                                                  .POST_PAID_FLOW) {
+                                                ProviderScope.containerOf(
+                                                        context)
+                                                    .read(
+                                                        payBillDetailPageViewModelProvider)
+                                                    .addNewPostpaidBiller();
+                                              } else if (AppConstantsUtils
+                                                  .PRE_PAID_FLOW) {
+                                                ProviderScope.containerOf(
+                                                        context)
+                                                    .read(
+                                                        payBillDetailPageViewModelProvider)
+                                                    .addNewPrepaidBiller();
+                                              }
+                                            }
+                                          },
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: AnimatedButton(
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          height: 23.h,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            S.of(context).backToPayments,
+                                            style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.brightBlue,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ),
+                      ),
+                    ));
+              },
+            );
           }),
     );
   }

@@ -27,7 +27,8 @@ class PaySelectedBillsPostPaidBillsPageView
   PaySelectedBillsPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+  Widget build(
+      BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return AppStreamBuilder<Resource<PayPostPaidBill>>(
       stream: model.payPostPaidStream,
       initialData: Resource.none(),
@@ -35,13 +36,15 @@ class PaySelectedBillsPostPaidBillsPageView
         if (data.status == Status.SUCCESS) {
           Future.delayed(Duration(milliseconds: 200)).then((value) {
             Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
-                arguments: PostPaidBillsSuccessPageArguments(data.data?.content?.billerList));
+                arguments: PostPaidBillsSuccessPageArguments(
+                    data.data?.content?.billerList));
           });
         }
       },
       dataBuilder: (BuildContext context, data) {
         return Padding(
-          padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
+          padding: EdgeInsetsDirectional.only(
+              top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
           child: GestureDetector(
             onHorizontalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
@@ -64,6 +67,10 @@ class PaySelectedBillsPostPaidBillsPageView
                 AppStreamBuilder<double>(
                   initialData: model.arguments.amt,
                   stream: model.totalBillAmtDueStream,
+                  onData: (amount) {
+                    model.totalAmount = amount.toString();
+                    model.validate();
+                  },
                   dataBuilder: (BuildContext context, data) {
                     return RichText(
                         text: TextSpan(children: [
@@ -103,23 +110,35 @@ class PaySelectedBillsPostPaidBillsPageView
                                 itemBuilder: (context, index) {
                                   return SelectedBillsToPaidWidget(
                                     billName: model.getValidBillerNickName(
-                                        model.arguments.postPaidBillInquiryData?[index].billNo,nickName: model.arguments.noOfSelectedBills[index].nickName),
-                                    billType: model.getValidBillerNameEN(
-                                        model.arguments.postPaidBillInquiryData?[index].billNo),
+                                        model
+                                            .arguments
+                                            .postPaidBillInquiryData?[index]
+                                            .billNo,
+                                        nickName: model.arguments
+                                            .noOfSelectedBills[index].nickName),
+                                    billType: model.getValidBillerNameEN(model
+                                        .arguments
+                                        .postPaidBillInquiryData?[index]
+                                        .billNo),
                                     itemCount: (index + 1).toString(),
                                     onChanged: (value) {
                                       model.newAmtEnter(index, value);
                                     },
                                     billAmtDue: model.getValidBillerDueAmount(
-                                        model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                        model
+                                            .arguments
+                                            .postPaidBillInquiryData?[index]
+                                            .billingNo),
                                   );
                                 },
                                 separatorBuilder: (context, index) {
                                   return AppDivider();
                                 },
-                                itemCount: model.arguments.postPaidBillInquiryData!.length),
+                                itemCount: model
+                                    .arguments.postPaidBillInquiryData!.length),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 24.w, top: 32.h, bottom: 16.h),
                               child: Align(
                                 alignment: AlignmentDirectional.topStart,
                                 child: Text(
@@ -133,20 +152,23 @@ class PaySelectedBillsPostPaidBillsPageView
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w),
+                              padding:
+                                  EdgeInsets.only(left: 24.0.w, right: 24.0.w),
                               child: AppTextField(
                                 labelText: S.of(context).payFrom.toUpperCase(),
                                 hintText: S.of(context).pleaseSelect,
                                 controller: model.savingAccountController,
                                 readOnly: true,
                                 onPressed: () {
-                                  AccountsDialog.show(context, label: S.of(context).selectAccount,
+                                  AccountsDialog.show(context,
+                                      label: S.of(context).selectAccount,
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
                                     model.savingAccountController.text = value;
                                     Navigator.pop(context);
-                                  }, accountsList: [
+                                    model.validate();
+                                      }, accountsList: [
                                     ProviderScope.containerOf(context)
                                             .read(appHomeViewModelProvider)
                                             .dashboardDataContent
@@ -160,7 +182,8 @@ class PaySelectedBillsPostPaidBillsPageView
                                       height: 16.h,
                                       width: 16.w,
                                       padding: EdgeInsets.only(right: 8.w),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: AppColor.dark_gray_1));
                                 },
                               ),
                             ),
@@ -177,9 +200,19 @@ class PaySelectedBillsPostPaidBillsPageView
                                       model.payPostPaidBill();
                                     }
                                   },
-                                  child: AnimatedButton(
-                                    buttonText: S.of(context).swipeToProceed,
-                                  ),
+                                  child:  AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return Visibility(
+                                          visible: isValid!,
+                                          child: AnimatedButton(
+                                            buttonText: S
+                                                .of(context)
+                                                .swipeToProceed,
+                                          ),
+                                        );
+                                      }),
                                 );
                               },
                             ),

@@ -6,6 +6,7 @@ import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_c
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
+import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -50,12 +51,23 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   bool? isPrepaidCategoryListEmpty = false;
   bool isAddThisBillerToSaveList = false;
 
-
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
 
   Stream<bool> get isShowBillerNumberStream => isShowBillerNumber.stream;
 
   void callFromPage() {}
+
+  AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel =
+      AddNewDetailsBillPaymentsModel();
+
+  setData() {
+    addNewDetailsBillPaymentsModel.amount = amountTextControl.text;
+    addNewDetailsBillPaymentsModel.billerName = billerNameTextController.text;
+    addNewDetailsBillPaymentsModel.nickName = nicknameTextControl.text;
+    addNewDetailsBillPaymentsModel.refNo = refNoController.text;
+    addNewDetailsBillPaymentsModel.service = serviceTypeTextControl.text;
+    return addNewDetailsBillPaymentsModel;
+  }
 
 //////////////////
   final BehaviorSubject<bool> isShowAmount =
@@ -76,10 +88,13 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
         showAmountField = true;
       }
     }
-
-    notifyListeners();
+    isShowAmount.safeAdd(showAmountField);
   }
 
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   bool isValidated = false;
 
@@ -124,14 +139,13 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
         isValidated = false;
       }
     }
-    notifyListeners();
+    _showButtonSubject.safeAdd(isValidated);
   }
 
   addThisBillerToSaveList(value) {
     isAddThisBillerToSaveList = value;
     validateData();
   }
-
 
 //////////////////
 
@@ -232,7 +246,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
                     addNewPrepaidBillerUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-              updateLoader();
+          updateLoader();
           _addNewPrepaidBillerResponce.safeAdd(event);
         });
       },

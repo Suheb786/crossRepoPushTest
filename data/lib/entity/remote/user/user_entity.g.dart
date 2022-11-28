@@ -32,7 +32,8 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$UserEntityToJson(UserEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
+    <String, dynamic>{
       'applicationId': instance.applicationId,
       'languageCode': instance.languageCode,
       'fullName': instance.fullName,

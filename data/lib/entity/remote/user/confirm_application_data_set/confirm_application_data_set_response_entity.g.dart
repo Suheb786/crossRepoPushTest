@@ -6,11 +6,13 @@ part of 'confirm_application_data_set_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmApplicationDataSetResponseEntity _$ConfirmApplicationDataSetResponseEntityFromJson(
-    Map<String, dynamic> json) {
+ConfirmApplicationDataSetResponseEntity
+    _$ConfirmApplicationDataSetResponseEntityFromJson(
+        Map<String, dynamic> json) {
   return ConfirmApplicationDataSetResponseEntity(
-    response:
-        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

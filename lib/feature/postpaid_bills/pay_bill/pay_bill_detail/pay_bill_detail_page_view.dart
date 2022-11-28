@@ -142,42 +142,47 @@ class PayBillDetailPageView
                             }
                           }
                         },
-                        child: Card(
-                          //  clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.zero,
-                          child: FadingEdgeScrollView.fromSingleChildScrollView(
-                            gradientFractionOnEnd: 0.2,
-                            gradientFractionOnStart: 0.2,
-                            child: SingleChildScrollView(
-                              controller: model.controller,
-                              child: AppStreamBuilder<bool>(
-                                initialData: false,
-                                stream: model.totalBillAmtDueStream,
-                                dataBuilder:
-                                    (BuildContext context, isSwitchActive) {
-                                  return Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 32.h, horizontal: 24.w),
-                                    child: Column(children: [
-                                      _billDetailsTitle(),
-                                      _billerCategoryTitleWidget(),
-                                      _billerNameAppTextField(),
-                                      _servicesAppTextField(),
-                                      _billingNumberTypeTextField(
-                                          context, model),
-                                      _ShowDenomination(),
-                                      _showAmountForPrepaid(),
-                                      _refNoAppTextField(),
-                                      _payFromAppTextField(),
-                                      _addThisBillerSwitch(
-                                          context, isSwitchActive),
-                                      _nickNameAppTextField(
-                                          context, isSwitchActive),
-                                      _SwipeToProceedButton(),
-                                      _backToPaymentsButton()
-                                    ]),
-                                  );
-                                },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15.0.w, horizontal: 15.0.h),
+                          child: Card(
+                            //  clipBehavior: Clip.antiAlias,
+                            margin: EdgeInsets.zero,
+                            child:
+                                FadingEdgeScrollView.fromSingleChildScrollView(
+                              gradientFractionOnEnd: 0.2,
+                              gradientFractionOnStart: 0.2,
+                              child: SingleChildScrollView(
+                                controller: model.controller,
+                                child: AppStreamBuilder<bool>(
+                                  initialData: false,
+                                  stream: model.totalBillAmtDueStream,
+                                  dataBuilder:
+                                      (BuildContext context, isSwitchActive) {
+                                    return Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 32.h, horizontal: 24.w),
+                                      child: Column(children: [
+                                        _billDetailsTitle(),
+                                        _billerCategoryTitleWidget(),
+                                        _billerNameAppTextField(),
+                                        _servicesAppTextField(),
+                                        _billingNumberTypeTextField(
+                                            context, model),
+                                        _ShowDenomination(),
+                                        _showAmountForPrepaid(),
+                                        _refNoAppTextField(),
+                                        _payFromAppTextField(),
+                                        _addThisBillerSwitch(
+                                            context, isSwitchActive),
+                                        _nickNameAppTextField(
+                                            context, isSwitchActive),
+                                        _SwipeToProceedButton(),
+                                        _backToPaymentsButton()
+                                      ]),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -267,6 +272,7 @@ class PayBillDetailPageView
               billerDetails.billerCode.toString();
           model.billerCodeString = billerDetails.billerCode.toString();
           model.billerService = billerDetails.billerService!;
+          model.validateData();
         });
       },
       suffixIcon: (value, data) {
@@ -304,6 +310,7 @@ class PayBillDetailPageView
               _onSelectServiceDialogSelected(model, billerServices);
             });
           }
+          model.validateData();
         },
         suffixIcon: (value, data) {
           return Container(
@@ -328,6 +335,9 @@ class PayBillDetailPageView
         onPressed: () {
           FocusScope.of(context).unfocus();
         },
+        onChanged: (val){
+          model.validateData();
+        },
       ),
     );
   }
@@ -340,8 +350,12 @@ class PayBillDetailPageView
         hintText: S.of(context).searchBill,
         controller: model.payFromController,
         readOnly: true,
+        onChanged: (val){
+          model.validateData();
+        },
         onPressed: () {
-          AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
+          AccountsDialog.show(context, label: S.of(context).selectAccount,
+              onDismissed: () {
             Navigator.pop(context);
           }, onSelected: (value) {
             model.payFromController.text = value;
@@ -373,12 +387,14 @@ class PayBillDetailPageView
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(S.of(context).addThisBillToSaveList,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14.t,
-                  color: AppColor.gray_black)),
+          Flexible(
+            child: Text(S.of(context).addThisBillToSaveList,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.t,
+                    color: AppColor.gray_black)),
+          ),
           FlutterSwitch(
               height: 40.h,
               width: 70.w,
@@ -415,6 +431,9 @@ class PayBillDetailPageView
           onPressed: () {
             FocusScope.of(context).unfocus();
           },
+          onChanged: (val){
+            model.validateData();
+          },
         ),
       ),
     );
@@ -429,15 +448,25 @@ class PayBillDetailPageView
             ProviderScope.containerOf(context)
                 .read(payBillPageViewModelProvider)
                 .nextPage();
+            ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).setData(model.setData());
           } else {
             ProviderScope.containerOf(context)
                 .read(payBillPageViewModelProvider)
                 .previousPage();
           }
+
         },
-        child: AnimatedButton(
-          buttonText: S.of(context).swipeToProceed,
-        ),
+        child: AppStreamBuilder<bool>(
+            stream: model.showButtonStream,
+            initialData: false,
+            dataBuilder: (context, isValid) {
+              return Visibility(
+                visible: isValid!,
+                child: AnimatedButton(
+                  buttonText: S.of(context).swipeToProceed,
+                ),
+              );
+            }),
       ),
     );
   }

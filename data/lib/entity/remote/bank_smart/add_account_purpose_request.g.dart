@@ -6,7 +6,8 @@ part of 'add_account_purpose_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddAccountPurposeRequest _$AddAccountPurposeRequestFromJson(Map<String, dynamic> json) {
+AddAccountPurposeRequest _$AddAccountPurposeRequestFromJson(
+    Map<String, dynamic> json) {
   return AddAccountPurposeRequest(
     getToken: json['GetToken'] as bool?,
     purpose: json['Purpose'] as String?,
@@ -20,7 +21,9 @@ AddAccountPurposeRequest _$AddAccountPurposeRequestFromJson(Map<String, dynamic>
   );
 }
 
-Map<String, dynamic> _$AddAccountPurposeRequestToJson(AddAccountPurposeRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$AddAccountPurposeRequestToJson(
+        AddAccountPurposeRequest instance) =>
+    <String, dynamic>{
       'GetToken': instance.getToken,
       'Purpose': instance.purpose,
       'IsCashDeposit': instance.isCashDeposit,

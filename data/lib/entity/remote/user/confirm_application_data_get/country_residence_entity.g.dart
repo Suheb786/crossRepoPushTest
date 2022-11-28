@@ -6,7 +6,8 @@ part of 'country_residence_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CountryResidenceEntity _$CountryResidenceEntityFromJson(Map<String, dynamic> json) {
+CountryResidenceEntity _$CountryResidenceEntityFromJson(
+    Map<String, dynamic> json) {
   return CountryResidenceEntity(
     id: json['id'] as int?,
     userId: json['userId'] as String?,
@@ -20,7 +21,9 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(Map<String, dynamic> jso
     area: json['area'] as String?,
     buildingName: json['buildingName'] as String?,
     streetName: json['streetName'] as String?,
-    createdOn: json['createdOn'] == null ? null : DateTime.parse(json['createdOn'] as String),
+    createdOn: json['createdOn'] == null
+        ? null
+        : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
     residentCountryName: json['residantCountryName'] as String?,
     residentCountryNameAr: json['residantCountryNameAr'] as String?,
@@ -31,7 +34,9 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(Map<String, dynamic> jso
   );
 }
 
-Map<String, dynamic> _$CountryResidenceEntityToJson(CountryResidenceEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CountryResidenceEntityToJson(
+        CountryResidenceEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'residantCountry': instance.residantCountry,

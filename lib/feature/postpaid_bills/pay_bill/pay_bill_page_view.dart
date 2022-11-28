@@ -70,7 +70,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 32.h),
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 8.h),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

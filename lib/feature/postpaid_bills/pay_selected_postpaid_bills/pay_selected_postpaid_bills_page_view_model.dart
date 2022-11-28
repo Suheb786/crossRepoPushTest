@@ -228,6 +228,24 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             : "null";
   }
 
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
+  var totalAmount = "0.0";
+  validate() {
+    totalAmount = addAllBillAmt().toString();
+    if (double.parse(totalAmount) > 0.0) {
+      if(savingAccountController.text.isNotEmpty) {
+        _showButtonSubject.safeAdd(true);
+      }
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
+
   @override
   void dispose() {
     _totalBillAmtDueSubject.close();

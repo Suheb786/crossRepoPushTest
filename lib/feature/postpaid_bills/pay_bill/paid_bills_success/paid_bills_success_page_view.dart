@@ -195,8 +195,8 @@ class PaidBillsSuccessPageView
             GestureDetector(
               onHorizontalDragEnd: (details) {
                 if (details.primaryVelocity!.isNegative) {
-                  Navigator.popUntil(context,
-                      ModalRoute.withName(RoutePaths.PayAllPostPaidBillsPage));
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.PayAllPostPaidBillsPage));
                 }
               },
               child: AnimatedButton(

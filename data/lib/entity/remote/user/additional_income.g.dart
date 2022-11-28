@@ -13,7 +13,8 @@ AdditionalIncome _$AdditionalIncomeFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$AdditionalIncomeToJson(AdditionalIncome instance) => <String, dynamic>{
+Map<String, dynamic> _$AdditionalIncomeToJson(AdditionalIncome instance) =>
+    <String, dynamic>{
       'AdditionalIncomeSource': instance.additionalIncomeSource,
       'TotalIncome': instance.totalIncome,
     };

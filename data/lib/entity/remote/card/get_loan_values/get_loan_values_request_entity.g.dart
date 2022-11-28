@@ -6,7 +6,8 @@ part of 'get_loan_values_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetLoanValuesRequestEntity _$GetLoanValuesRequestEntityFromJson(Map<String, dynamic> json) {
+GetLoanValuesRequestEntity _$GetLoanValuesRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return GetLoanValuesRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
@@ -14,7 +15,8 @@ GetLoanValuesRequestEntity _$GetLoanValuesRequestEntityFromJson(Map<String, dyna
   );
 }
 
-Map<String, dynamic> _$GetLoanValuesRequestEntityToJson(GetLoanValuesRequestEntity instance) =>
+Map<String, dynamic> _$GetLoanValuesRequestEntityToJson(
+        GetLoanValuesRequestEntity instance) =>
     <String, dynamic>{
       'AccountId': instance.accountId,
       'GetToken': instance.getToken,
