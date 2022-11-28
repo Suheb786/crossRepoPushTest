@@ -10,12 +10,9 @@ class SubCategoryTypeEnum {
     return _value.toString();
   }
 
-  static const SubCategoryTypeEnum CATEGORY_SPENDING =
-      SubCategoryTypeEnum._("Spending Account");
-  static const SubCategoryTypeEnum CATEGORY_BASIC =
-      SubCategoryTypeEnum._("Basic Saving Account");
-  static const SubCategoryTypeEnum CATEGORY_PREMIUM =
-      SubCategoryTypeEnum._("Premium Saving Account");
+  static const SubCategoryTypeEnum CATEGORY_SPENDING = SubCategoryTypeEnum._("Spending Account");
+  static const SubCategoryTypeEnum CATEGORY_BASIC = SubCategoryTypeEnum._("Basic Saving Account");
+  static const SubCategoryTypeEnum CATEGORY_PREMIUM = SubCategoryTypeEnum._("Premium Saving Account");
 }
 
 extension SubCategoryTypeEnumExt on String {

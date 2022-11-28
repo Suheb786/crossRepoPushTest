@@ -9,19 +9,14 @@ import 'package:rxdart/rxdart.dart';
 class VideoCallInformationPageViewModel extends BasePageViewModel {
   final CheckExistingCallUseCase _checkExistingCallUseCase;
 
-  PublishSubject<CheckExistingCallUseCaseParams> _checkExistingCallRequest =
-      PublishSubject();
-  PublishSubject<Resource<CheckExistingCallStatus>> _checkExistingCallResponse =
-      PublishSubject();
+  PublishSubject<CheckExistingCallUseCaseParams> _checkExistingCallRequest = PublishSubject();
+  PublishSubject<Resource<CheckExistingCallStatus>> _checkExistingCallResponse = PublishSubject();
 
-  Stream<Resource<CheckExistingCallStatus>> get checkExistingCall =>
-      _checkExistingCallResponse.stream;
+  Stream<Resource<CheckExistingCallStatus>> get checkExistingCall => _checkExistingCallResponse.stream;
 
   VideoCallInformationPageViewModel(this._checkExistingCallUseCase) {
     _checkExistingCallRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkExistingCallUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkExistingCallUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

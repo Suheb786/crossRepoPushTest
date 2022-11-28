@@ -26,10 +26,8 @@ class CheckForgetPasswordRequestEntity {
     this.uniqueId: "",
   });
 
-  factory CheckForgetPasswordRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory CheckForgetPasswordRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckForgetPasswordRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckForgetPasswordRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckForgetPasswordRequestEntityToJson(this);
 }

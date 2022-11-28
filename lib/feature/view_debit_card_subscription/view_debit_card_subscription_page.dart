@@ -6,19 +6,17 @@ import 'package:neo_bank/di/view_debit_card_subscription/view_debit_card_subscri
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page_view.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_view_model.dart';
 
-class ViewDebitCardSubscriptionPage
-    extends BasePage<ViewDebitCardSubscriptionViewModel> {
+class ViewDebitCardSubscriptionPage extends BasePage<ViewDebitCardSubscriptionViewModel> {
   final ViewDebitCardSubscriptionArguments _arguments;
 
   ViewDebitCardSubscriptionPage(this._arguments);
 
   @override
-  ViewDebitCardSubscriptionPageState createState() =>
-      ViewDebitCardSubscriptionPageState();
+  ViewDebitCardSubscriptionPageState createState() => ViewDebitCardSubscriptionPageState();
 }
 
-class ViewDebitCardSubscriptionPageState extends BaseStatefulPage<
-    ViewDebitCardSubscriptionViewModel, ViewDebitCardSubscriptionPage> {
+class ViewDebitCardSubscriptionPageState
+    extends BaseStatefulPage<ViewDebitCardSubscriptionViewModel, ViewDebitCardSubscriptionPage> {
   @override
   ProviderBase provideBase() {
     return viewDebitCardSubscriptionViewModelProvider.call(widget._arguments);
@@ -32,8 +30,7 @@ class ViewDebitCardSubscriptionPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ViewDebitCardSubscriptionViewModel model) {
+  Widget buildView(BuildContext context, ViewDebitCardSubscriptionViewModel model) {
     return ViewDebitCardSubscriptionPageView(provideBase());
   }
 }

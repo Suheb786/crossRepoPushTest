@@ -9,16 +9,13 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class NotifyUseCase extends BaseUseCase<NetworkError,
-    NotifyUseCaseParams,
-    RegisterInterestResponse> {
+class NotifyUseCase extends BaseUseCase<NetworkError, NotifyUseCaseParams, RegisterInterestResponse> {
   final UserRepository _repository;
 
   NotifyUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, RegisterInterestResponse>> execute(
-      {required NotifyUseCaseParams params}) {
+  Future<Either<NetworkError, RegisterInterestResponse>> execute({required NotifyUseCaseParams params}) {
     return _repository.registerInterest(email: params.emailAddress);
   }
 }
@@ -31,15 +28,9 @@ class NotifyUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(emailAddress!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EMAIL, cause: Exception()));
     } else if (!Validator.validateEmail(emailAddress!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMAIL, cause: Exception()));
     }
     return Right(true);
   }

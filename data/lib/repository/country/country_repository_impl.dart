@@ -4,8 +4,8 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
-import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/country/allowed_issuers_country.dart';
+import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/country/country.dart';
 import 'package:domain/model/country/country_list/country_list_content_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
@@ -20,10 +20,8 @@ class CountryRepositoryImpl with CountryRepository {
   CountryRepositoryImpl(this._localDs, this._remoteDs);
 
   @override
-  Future<Either<LocalError, List<Country>>> fetchCountries(
-      {required BuildContext context}) async {
-    List<local.Country> countries =
-        await _localDs.fetchCountries(context: context);
+  Future<Either<LocalError, List<Country>>> fetchCountries({required BuildContext context}) async {
+    List<local.Country> countries = await _localDs.fetchCountries(context: context);
 
     if (countries.isNotEmpty) {
       return Right(countries
@@ -40,8 +38,8 @@ class CountryRepositoryImpl with CountryRepository {
   @override
   Future<Either<LocalError, Country>> getCountryByCountryCode(
       {required BuildContext context, String? countryCode}) async {
-    local.Country? country = await _localDs.fetchCountryByCountryCode(
-        context: context, countryCode: countryCode);
+    local.Country? country =
+        await _localDs.fetchCountryByCountryCode(context: context, countryCode: countryCode);
 
     if (country == null) {
       return Right(Country());
@@ -66,8 +64,7 @@ class CountryRepositoryImpl with CountryRepository {
   }
 
   @override
-  Future<Either<NetworkError, AllowedCountryListResponse>>
-      getAllowedCodeCountryList() async {
+  Future<Either<NetworkError, AllowedCountryListResponse>> getAllowedCodeCountryList() async {
     final result = await safeApiCall(
       _remoteDs.getAllowedCodeCountryList(),
     );
@@ -78,8 +75,7 @@ class CountryRepositoryImpl with CountryRepository {
   }
 
   @override
-  Future<Either<NetworkError, StateListResponse>> getStateList(
-      {String? isoCode}) async {
+  Future<Either<NetworkError, StateListResponse>> getStateList({String? isoCode}) async {
     final result = await safeApiCall(
       _remoteDs.getStateList(isoCode: isoCode),
     );
@@ -90,8 +86,7 @@ class CountryRepositoryImpl with CountryRepository {
   }
 
   @override
-  Future<Either<NetworkError, CityListResponse>> getCityList(
-      {String? stateID, String? isoCode}) async {
+  Future<Either<NetworkError, CityListResponse>> getCityList({String? stateID, String? isoCode}) async {
     final result = await safeApiCall(
       _remoteDs.getCityList(stateID: stateID, isoCode: isoCode),
     );
@@ -119,8 +114,8 @@ class CountryRepositoryImpl with CountryRepository {
       _remoteDs.fetchAllowedIssuers(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

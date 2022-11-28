@@ -66,8 +66,7 @@ class _VerticalPagerState extends State<VerticalPager> {
         },
         onTapUp: (details) {
           if ((currentPosition! - currentPosition!.floor()).abs() <= 0.15) {
-            int selectedIndex = onTapUp(
-                context, constraints.maxHeight, constraints.maxWidth, details);
+            int selectedIndex = onTapUp(context, constraints.maxHeight, constraints.maxWidth, details);
 
             if (selectedIndex == 2) {
               if (widget.onSelectedItem != null) {
@@ -76,8 +75,7 @@ class _VerticalPagerState extends State<VerticalPager> {
             } else if (selectedIndex >= 0) {
               int goToPage = currentPosition!.toInt() + selectedIndex - 2;
               controller!.animateToPage(goToPage,
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOutExpo);
+                  duration: Duration(milliseconds: 300), curve: Curves.easeInOutExpo);
             }
           }
         },
@@ -320,14 +318,9 @@ class CardControllerWidget extends StatelessWidget {
     if (diff >= 0.0 && diff < 1.0) {
       return cardMaxHeight - cardMaxHeight * (4 / 5) * ((diff - diff.floor()));
     } else if (diff >= 1.0 && diff < 2.0) {
-      return cardMaxHeight -
-          cardMaxHeight * (4 / 5) -
-          10 * ((diff - diff.floor()));
+      return cardMaxHeight - cardMaxHeight * (4 / 5) - 10 * ((diff - diff.floor()));
     } else {
-      final height = cardMaxHeight -
-          cardMaxHeight * (4 / 5) -
-          10 -
-          5 * ((diff - diff.floor()));
+      final height = cardMaxHeight - cardMaxHeight * (4 / 5) - 10 - 5 * ((diff - diff.floor()));
 
       return height > 0 ? height : 0;
     }

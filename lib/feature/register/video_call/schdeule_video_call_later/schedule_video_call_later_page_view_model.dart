@@ -28,12 +28,10 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController preferredDateController = TextEditingController();
-  final GlobalKey<AppTextFieldState> preferredDateKey =
-      GlobalKey(debugLabel: "preferredDate");
+  final GlobalKey<AppTextFieldState> preferredDateKey = GlobalKey(debugLabel: "preferredDate");
 
   final TextEditingController preferredTimeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> preferredTimeKey =
-      GlobalKey(debugLabel: "preferredTime");
+  final GlobalKey<AppTextFieldState> preferredTimeKey = GlobalKey(debugLabel: "preferredTime");
 
   ///update preferred Date  textfield value
   void updatePreferredDateValue(String value) {
@@ -48,15 +46,13 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
   DateTime initialDate = DateTime.now();
 
   ///schedule Video call request subject holder
-  PublishSubject<ScheduleVideoCallUseCaseParams> _scheduleVideoCallRequest =
-      PublishSubject();
+  PublishSubject<ScheduleVideoCallUseCaseParams> _scheduleVideoCallRequest = PublishSubject();
 
   ///schedule Video call response holder
   PublishSubject<Resource<bool>> _scheduleVideoCallResponse = PublishSubject();
 
   ///schedule Video call stream
-  Stream<Resource<bool>> get scheduleVideoCallStream =>
-      _scheduleVideoCallResponse.stream;
+  Stream<Resource<bool>> get scheduleVideoCallStream => _scheduleVideoCallResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -65,72 +61,54 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
   /// Get available time slots request
-  PublishSubject<GetCallTimeSlotsUseCaseParams> _getAvailableTimeSlotsRequest =
-      PublishSubject();
+  PublishSubject<GetCallTimeSlotsUseCaseParams> _getAvailableTimeSlotsRequest = PublishSubject();
 
   /// Get available time slots request
-  PublishSubject<Resource<List<AvailableTimeSlots>>>
-      _getAvailableTimeSlotsResponse = PublishSubject();
+  PublishSubject<Resource<List<AvailableTimeSlots>>> _getAvailableTimeSlotsResponse = PublishSubject();
 
   /// Timeslots holder
-  Stream<Resource<List<AvailableTimeSlots>>> get availableTimeSlots =>
-      _getAvailableTimeSlotsResponse.stream;
+  Stream<Resource<List<AvailableTimeSlots>>> get availableTimeSlots => _getAvailableTimeSlotsResponse.stream;
 
   ///User Status subject holder
-  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest =
-      PublishSubject();
+  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest = PublishSubject();
 
   ///User Status response holder
-  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
-      PublishSubject();
+  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse = PublishSubject();
 
   ///User Status stream
-  Stream<Resource<CustomerStatus>> get customerStatusStream =>
-      _checkCustomerStatusResponse.stream;
+  Stream<Resource<CustomerStatus>> get customerStatusStream => _checkCustomerStatusResponse.stream;
 
   ///get Account subject holder
   PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
 
   ///get Account response holder
-  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse = PublishSubject();
 
   ///get Account stream
-  Stream<Resource<GetAccountResponse>> get getAccountStream =>
-      _getAccountResponse.stream;
+  Stream<Resource<GetAccountResponse>> get getAccountStream => _getAccountResponse.stream;
 
   ///create Account subject holder
-  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest =
-      PublishSubject();
+  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest = PublishSubject();
 
   ///create Account response holder
-  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse = PublishSubject();
 
   ///create Account stream
-  Stream<Resource<CreateAccountResponse>> get createAccountStream =>
-      _createAccountResponse.stream;
+  Stream<Resource<CreateAccountResponse>> get createAccountStream => _createAccountResponse.stream;
 
   bool isValid() {
     bool valid = false;
-    if (preferredDateController.text.isNotEmpty &&
-        preferredTimeController.text.isNotEmpty) {
+    if (preferredDateController.text.isNotEmpty && preferredTimeController.text.isNotEmpty) {
       valid = true;
     }
     _allFieldValidatorSubject.safeAdd(valid);
     return valid;
   }
 
-  ScheduleVideoCallLaterPageViewModel(
-      this._scheduleVideoCallUseCase,
-      this._getAvailableTimeSlotsUseCase,
-      this._checkCustomerStatusUseCase,
-      this._getAccountUseCase,
-      this._createAccountUseCase) {
+  ScheduleVideoCallLaterPageViewModel(this._scheduleVideoCallUseCase, this._getAvailableTimeSlotsUseCase,
+      this._checkCustomerStatusUseCase, this._getAccountUseCase, this._createAccountUseCase) {
     _scheduleVideoCallRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _scheduleVideoCallUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _scheduleVideoCallUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -143,9 +121,7 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     });
 
     _getAvailableTimeSlotsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getAvailableTimeSlotsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAvailableTimeSlotsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -157,9 +133,7 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     });
 
     _checkCustomerStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkCustomerStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkCustomerStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -171,8 +145,7 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     });
 
     _getAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -185,8 +158,7 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     });
 
     _createAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -223,8 +195,7 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
 
   void fetchAvailableTimeSlots(String date) {
     selectedDate = date;
-    _getAvailableTimeSlotsRequest
-        .safeAdd(GetCallTimeSlotsUseCaseParams(callDate: date));
+    _getAvailableTimeSlotsRequest.safeAdd(GetCallTimeSlotsUseCaseParams(callDate: date));
   }
 
   void checkUserStatus() {
@@ -235,11 +206,9 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     _getAccountRequest.safeAdd(GetAccountUseCaseParams());
   }
 
-  void createAccount(CustomerAccountDetails customerAccountDetails,
-      CustomerInformation customerInformation) {
+  void createAccount(CustomerAccountDetails customerAccountDetails, CustomerInformation customerInformation) {
     _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
-        accountDetails: customerAccountDetails,
-        customerInformation: customerInformation));
+        accountDetails: customerAccountDetails, customerInformation: customerInformation));
   }
 
   @override

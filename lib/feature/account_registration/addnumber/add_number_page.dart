@@ -10,8 +10,7 @@ class AddNumberPage extends BasePage<AddNumberViewModel> {
   AddNumberPageState createState() => AddNumberPageState();
 }
 
-class AddNumberPageState
-    extends BaseStatefulPage<AddNumberViewModel, AddNumberPage>
+class AddNumberPageState extends BaseStatefulPage<AddNumberViewModel, AddNumberPage>
     with AutomaticKeepAliveClientMixin {
   AddNumberPageState() : super(subscribeVisibilityEvents: true);
 

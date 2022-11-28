@@ -6,15 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'city_content_entity.g.dart';
 
 @JsonSerializable()
-class CityContentEntity
-    implements BaseLayerDataTransformer<CityContentEntity, CityContent> {
+class CityContentEntity implements BaseLayerDataTransformer<CityContentEntity, CityContent> {
   @JsonKey(name: "getCities")
   final List<StateCityDataEntity>? getCities;
 
   CityContentEntity({this.getCities});
 
-  factory CityContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$CityContentEntityFromJson(json);
+  factory CityContentEntity.fromJson(Map<String, dynamic> json) => _$CityContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityContentEntityToJson(this);
 
@@ -25,7 +23,6 @@ class CityContentEntity
 
   @override
   CityContent transform() {
-    return CityContent(
-        stateData: this.getCities!.map((e) => e.transform()).toList());
+    return CityContent(stateData: this.getCities!.map((e) => e.transform()).toList());
   }
 }

@@ -28,6 +28,5 @@ class VerifyChangeMobileRequestEntity {
   factory VerifyChangeMobileRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$VerifyChangeMobileRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$VerifyChangeMobileRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$VerifyChangeMobileRequestEntityToJson(this);
 }

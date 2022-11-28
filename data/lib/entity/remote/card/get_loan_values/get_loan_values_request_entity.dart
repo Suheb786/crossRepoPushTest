@@ -11,8 +11,7 @@ class GetLoanValuesRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetLoanValuesRequestEntity(
-      {required this.baseData, this.getToken: true, this.accountId: "1"});
+  GetLoanValuesRequestEntity({required this.baseData, this.getToken: true, this.accountId: "1"});
 
   factory GetLoanValuesRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetLoanValuesRequestEntityFromJson(json);

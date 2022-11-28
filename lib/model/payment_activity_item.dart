@@ -8,11 +8,5 @@ class PaymentActivityItem {
   String? type;
 
   PaymentActivityItem(
-      {this.createdAt,
-      this.image,
-      this.amount,
-      this.status,
-      this.name,
-      this.time,
-      this.type});
+      {this.createdAt, this.image, this.amount, this.status, this.name, this.time, this.type});
 }

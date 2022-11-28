@@ -5,15 +5,13 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ChangeDebitPinVerifyUseCase
-    extends BaseUseCase<NetworkError, ChangeDebitPinVerifyUseCaseParams, bool> {
+class ChangeDebitPinVerifyUseCase extends BaseUseCase<NetworkError, ChangeDebitPinVerifyUseCaseParams, bool> {
   final CardRepository _repository;
 
   ChangeDebitPinVerifyUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ChangeDebitPinVerifyUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ChangeDebitPinVerifyUseCaseParams params}) {
     return _repository.changePinVerify();
   }
 }

@@ -9,29 +9,27 @@ import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart
 
 abstract class BankSmartRepository {
   /// add account of opening purpose
-  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>>
-  addAccountPurpose({required bool getToken,
-    String? purpose,
-    bool? isCashDeposit,
-    bool? isTransfer,
-    bool? isBillPayment,
-    bool? isOther,
-    double? monthlyTransaction,
-    double? annualTransaction});
+  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>> addAccountPurpose(
+      {required bool getToken,
+      String? purpose,
+      bool? isCashDeposit,
+      bool? isTransfer,
+      bool? isBillPayment,
+      bool? isOther,
+      double? monthlyTransaction,
+      double? annualTransaction});
 
   /// get account
-  Future<Either<NetworkError, GetAccountResponse>> getAccount(
-      {required bool getToken});
+  Future<Either<NetworkError, GetAccountResponse>> getAccount({required bool getToken});
 
   /// create account
   Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
-        CustomerInformation? customerInformation,
-        CustomerAccountDetails? accountDetails});
+      CustomerInformation? customerInformation,
+      CustomerAccountDetails? accountDetails});
 
   /// get account details
-  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails(
-      {required bool getToken});
+  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails({required bool getToken});
 
   /// remove debit lock
   Future<Either<NetworkError, bool>> removeDebitLock();

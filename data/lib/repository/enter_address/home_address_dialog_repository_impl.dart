@@ -12,8 +12,8 @@ class HomeAddressDialogRepositoryImpl with HomeAddressDialogRepository {
   @override
   Future<Either<LocalError, HomeAddress>> getHomeAddress(
       {required double latitude, required double longitude}) async {
-    var addressResult = await _homeAddressDialogDataSource.getHomeAddress(
-        latitude: latitude, longitude: longitude);
+    var addressResult =
+        await _homeAddressDialogDataSource.getHomeAddress(latitude: latitude, longitude: longitude);
     return Right(addressResult);
   }
 }

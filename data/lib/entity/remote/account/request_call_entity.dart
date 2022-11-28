@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'request_call_entity.g.dart';
 
 @JsonSerializable()
-class RequestCallEntity
-    implements BaseLayerDataTransformer<RequestCallEntity, RequestCallStatus> {
+class RequestCallEntity implements BaseLayerDataTransformer<RequestCallEntity, RequestCallStatus> {
   @JsonKey(name: "conferenceLink")
   final String? conferenceLink;
   @JsonKey(name: "callId")
@@ -14,8 +13,7 @@ class RequestCallEntity
 
   RequestCallEntity({this.conferenceLink: "", this.callId: ""});
 
-  factory RequestCallEntity.fromJson(Map<String, dynamic> json) =>
-      _$RequestCallEntityFromJson(json);
+  factory RequestCallEntity.fromJson(Map<String, dynamic> json) => _$RequestCallEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestCallEntityToJson(this);
 
@@ -26,7 +24,6 @@ class RequestCallEntity
 
   @override
   RequestCallStatus transform() {
-    return RequestCallStatus(
-        callId: this.callId ?? "", conferenceLink: this.conferenceLink ?? "");
+    return RequestCallStatus(callId: this.callId ?? "", conferenceLink: this.conferenceLink ?? "");
   }
 }

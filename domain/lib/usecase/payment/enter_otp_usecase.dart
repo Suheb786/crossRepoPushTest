@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EnterOtpUseCase
-    extends BaseUseCase<NetworkError, EnterOtpUseCaseParams, bool> {
+class EnterOtpUseCase extends BaseUseCase<NetworkError, EnterOtpUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required EnterOtpUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required EnterOtpUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -23,10 +21,7 @@ class EnterOtpUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (otpCode!.length < 6) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OTP,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception()));
     }
     return Right(true);
   }

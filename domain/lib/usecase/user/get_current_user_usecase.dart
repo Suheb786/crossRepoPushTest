@@ -6,15 +6,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCurrentUserUseCase
-    extends BaseUseCase<DatabaseError, GetCurrentUserUseCaseParams, User> {
+class GetCurrentUserUseCase extends BaseUseCase<DatabaseError, GetCurrentUserUseCaseParams, User> {
   final UserRepository _userRepository;
 
   GetCurrentUserUseCase(this._userRepository);
 
   @override
-  Future<Either<DatabaseError, User>> execute(
-      {required GetCurrentUserUseCaseParams params}) async {
+  Future<Either<DatabaseError, User>> execute({required GetCurrentUserUseCaseParams params}) async {
     return _userRepository.getCurrentUser();
   }
 }

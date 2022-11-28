@@ -6,8 +6,7 @@ part of 'update_beneficiary_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateBeneficiaryRequest _$UpdateBeneficiaryRequestFromJson(
-    Map<String, dynamic> json) {
+UpdateBeneficiaryRequest _$UpdateBeneficiaryRequestFromJson(Map<String, dynamic> json) {
   return UpdateBeneficiaryRequest(
     beneficiaryId: json['BeneficiaryID'] as String,
     nickName: json['NickName'] as String?,
@@ -18,9 +17,7 @@ UpdateBeneficiaryRequest _$UpdateBeneficiaryRequestFromJson(
   );
 }
 
-Map<String, dynamic> _$UpdateBeneficiaryRequestToJson(
-        UpdateBeneficiaryRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UpdateBeneficiaryRequestToJson(UpdateBeneficiaryRequest instance) => <String, dynamic>{
       'BeneficiaryID': instance.beneficiaryId,
       'NickName': instance.nickName,
       'Purpose': instance.purpose,

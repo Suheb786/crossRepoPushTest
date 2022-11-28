@@ -6,8 +6,7 @@ part "get_credit_card_limit_entity.g.dart";
 
 @JsonSerializable()
 class GetCreditCardLimitEntity
-    implements
-        BaseLayerDataTransformer<GetCreditCardLimitEntity, CreditCardLimit> {
+    implements BaseLayerDataTransformer<GetCreditCardLimitEntity, CreditCardLimit> {
   @JsonKey(name: "isATM")
   final bool? isATM;
   @JsonKey(name: "atmCurrentLimit")

@@ -6,8 +6,8 @@ import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetDashboardDataUseCase extends BaseUseCase<NetworkError,
-    GetDashboardDataUseCaseParams, GetDashboardDataResponse> {
+class GetDashboardDataUseCase
+    extends BaseUseCase<NetworkError, GetDashboardDataUseCaseParams, GetDashboardDataResponse> {
   final DashboardRepository _repository;
 
   GetDashboardDataUseCase(this._repository);

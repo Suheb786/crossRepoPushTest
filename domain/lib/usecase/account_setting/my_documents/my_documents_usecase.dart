@@ -7,12 +7,9 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class MyDocumentsUseCase
-    extends BaseUseCase<NetworkError, MyDocumentsUseCaseParams, bool> {
-
+class MyDocumentsUseCase extends BaseUseCase<NetworkError, MyDocumentsUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required MyDocumentsUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required MyDocumentsUseCaseParams params}) {
     return Future.value(Right(true));
     // return _repository.saveUploadDocument(
     //   proofOfAddressId: params.addressProof!,
@@ -28,28 +25,20 @@ class MyDocumentsUseCaseParams extends Params {
   final String? nationalityProof;
   final bool isOtherNationality;
 
-  MyDocumentsUseCaseParams({this.incomeProof,
-    this.addressProof,
-    this.nationalityProof,
-    required this.isOtherNationality});
+  MyDocumentsUseCaseParams(
+      {this.incomeProof, this.addressProof, this.nationalityProof, required this.isOtherNationality});
 
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(incomeProof!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_INCOME_DOCUMENT,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_INCOME_DOCUMENT, cause: Exception()));
     } else if (Validator.isEmpty(addressProof!)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_ADDRESS_DOCUMENT,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_ADDRESS_DOCUMENT, cause: Exception()));
     } else if (isOtherNationality && nationalityProof!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_NATIONALITY_DOCUMENT,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_NATIONALITY_DOCUMENT, cause: Exception()));
     } else {
       return Right(true);
     }

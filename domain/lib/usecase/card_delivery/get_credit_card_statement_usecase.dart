@@ -6,8 +6,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCreditCardStatementUseCase extends BaseUseCase<NetworkError,
-    GetCreditCardStatementUseCaseParams, CardStatementResponse> {
+class GetCreditCardStatementUseCase
+    extends BaseUseCase<NetworkError, GetCreditCardStatementUseCaseParams, CardStatementResponse> {
   final CardRepository _repository;
 
   GetCreditCardStatementUseCase(this._repository);
@@ -23,8 +23,7 @@ class GetCreditCardStatementUseCaseParams extends Params {
   String monthYear;
   String? cardId;
 
-  GetCreditCardStatementUseCaseParams(
-      {required this.monthYear, required this.cardId});
+  GetCreditCardStatementUseCaseParams({required this.monthYear, required this.cardId});
 
   @override
   Either<AppError, bool> verify() {

@@ -13,8 +13,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
-  final ValidateOtpForNewEmailAddressUseCase
-      _validateOtpForNewEmailAddressUseCase;
+  final ValidateOtpForNewEmailAddressUseCase _validateOtpForNewEmailAddressUseCase;
 
   final AddNewEmailAddressUseCase _addNewEmailUseCase;
 
@@ -34,16 +33,13 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   TextEditingController otpController = TextEditingController();
 
   ///verify otp request subject holder
-  PublishSubject<ValidateOtpForNewEmailAddressUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<ValidateOtpForNewEmailAddressUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<ProfileChangedSuccessResponse>> _verifyOtpResponse =
-      PublishSubject();
+  PublishSubject<Resource<ProfileChangedSuccessResponse>> _verifyOtpResponse = PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<ProfileChangedSuccessResponse>> get verifyOtpStream =>
-      _verifyOtpResponse.stream;
+  Stream<Resource<ProfileChangedSuccessResponse>> get verifyOtpStream => _verifyOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -53,8 +49,7 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///resend otp request subject holder
-  PublishSubject<AddNewEmailAddressUseCaseParams> _resendOtpRequest =
-      PublishSubject();
+  PublishSubject<AddNewEmailAddressUseCaseParams> _resendOtpRequest = PublishSubject();
 
   ///resend otp response holder
   PublishSubject<Resource<bool>> _resendOtpResponse = PublishSubject();
@@ -62,19 +57,14 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
-      PublishSubject();
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
   PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   EnterCodeForChangeEmailAddressPageViewModel(
-      this._validateOtpForNewEmailAddressUseCase,
-      this._addNewEmailUseCase,
-      this._saveUserUseCase) {
+      this._validateOtpForNewEmailAddressUseCase, this._addNewEmailUseCase, this._saveUserUseCase) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _validateOtpForNewEmailAddressUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _validateOtpForNewEmailAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -86,8 +76,7 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
     });
 
     _resendOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _addNewEmailUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _addNewEmailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -110,8 +99,8 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   }
 
   void validateOtp({required String email}) {
-    _verifyOtpRequest.safeAdd(ValidateOtpForNewEmailAddressUseCaseParams(
-        otp: _otpSubject.value, email: email));
+    _verifyOtpRequest
+        .safeAdd(ValidateOtpForNewEmailAddressUseCaseParams(otp: _otpSubject.value, email: email));
   }
 
   void validate(String value) {

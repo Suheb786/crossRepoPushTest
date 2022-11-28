@@ -31,58 +31,51 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   AccountRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
-      {bool? getToken}) async {
+  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.checkVideoCallStatus(CheckVideoCallStatusRequestEntity(
-        baseData: baseData.toJson(), getToken: getToken));
+    return _apiService.checkVideoCallStatus(
+        CheckVideoCallStatusRequestEntity(baseData: baseData.toJson(), getToken: getToken));
   }
 
   @override
-  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus({bool? getToken}) async {
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>> checkOtherNationalityStatus(
+      {bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkOtherNationalityStatus(
-        CheckOtherNationalityStatusRequestEntity(
-            baseData: baseData.toJson(), getToken: getToken));
+        CheckOtherNationalityStatusRequestEntity(baseData: baseData.toJson(), getToken: getToken));
   }
 
   @override
   Future<HttpResponse<DocStatusResponseEntity>> docStatus() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.docStatus(
-        DocStatusRequestEntity(baseData: baseData.toJson(), getToken: true));
+    return _apiService.docStatus(DocStatusRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
-  Future<HttpResponse<CheckAgentStatusResponseEntity>>
-      checkAgentStatus() async {
+  Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.checkAgentStatus(CheckAgentStatusRequestEntity(
-        baseData: baseData.toJson(), getToken: true));
+    return _apiService
+        .checkAgentStatus(CheckAgentStatusRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> saveCustomerVideoCallScheduleTime(
       {String? scheduleDate, String? scheduleTime}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.saveCustomerVideoCallScheduleTime(
-        SaveCustomerScheduleTimeRequestEntity(
-            baseData: baseData.toJson(),
-            callDate: scheduleDate,
-            startTime: scheduleTime,
-            gender: "",
-            dateToSend: DateTime.now().timeZoneOffset.inMinutes));
+    return _apiService.saveCustomerVideoCallScheduleTime(SaveCustomerScheduleTimeRequestEntity(
+        baseData: baseData.toJson(),
+        callDate: scheduleDate,
+        startTime: scheduleTime,
+        gender: "",
+        dateToSend: DateTime.now().timeZoneOffset.inMinutes));
   }
 
   @override
-  Future<HttpResponse<CheckExistingCallResponseEntity>>
-      checkExistingCall() async {
+  Future<HttpResponse<CheckExistingCallResponseEntity>> checkExistingCall() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkExistingCall(
       CheckExistingVideoCallRequest(
-          baseData: baseData.toJson(),
-          dateToSend: DateTime.now().timeZoneOffset.inMinutes),
+          baseData: baseData.toJson(), dateToSend: DateTime.now().timeZoneOffset.inMinutes),
     );
   }
 
@@ -95,8 +88,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   }
 
   @override
-  Future<HttpResponse<RequestCallResponseEntity>> requestCall(
-      String? type) async {
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(String? type) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestCall(
       RequestVideoCallRequest(baseData: baseData.toJson(), type: type),
@@ -104,8 +96,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(
-      String callDate) async {
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(String callDate) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getTimeSlots(
       GetTimeSlotsRequest(
@@ -116,8 +107,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   }
 
   @override
-  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
-      String session) async {
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(String session) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCallStatus(
       GetCallStatusRequest(baseData: baseData.toJson(), session: session),

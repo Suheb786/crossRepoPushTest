@@ -5,15 +5,13 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class UnFreezeCreditCardUseCase
-    extends BaseUseCase<NetworkError, UnFreezeCreditCardUseCaseParams, bool> {
+class UnFreezeCreditCardUseCase extends BaseUseCase<NetworkError, UnFreezeCreditCardUseCaseParams, bool> {
   final CardRepository _repository;
 
   UnFreezeCreditCardUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required UnFreezeCreditCardUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required UnFreezeCreditCardUseCaseParams params}) {
     return _repository.unFreezeCreditCard(cardId: params.cardId);
   }
 }

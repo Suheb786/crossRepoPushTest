@@ -14,33 +14,29 @@ final fatcaCertificationViewModelProvider =
 );
 
 ///exempt payee code page view model provider
-final exemptPayeeCodeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
+final exemptPayeeCodeViewModelProvider = ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
   (ref) => ExemptPayeeCodePageViewModel(),
 );
 
 ///exempt from fatca reporting code page view model provider
-final exemptionFromFatcaReportingCodeViewModelProvider = ChangeNotifierProvider
-    .autoDispose<ExemptionFromFatcaReportingCodePageViewModel>(
+final exemptionFromFatcaReportingCodeViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ExemptionFromFatcaReportingCodePageViewModel>(
   (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
 );
 
 ///us taxpayer identification number page view model provider
-final usTaxPayerIdentificationNumberViewModelProvider = ChangeNotifierProvider
-    .autoDispose<UsTaxPayerIdentificationNumberPageViewModel>(
+final usTaxPayerIdentificationNumberViewModelProvider =
+    ChangeNotifierProvider.autoDispose<UsTaxPayerIdentificationNumberPageViewModel>(
   (ref) => UsTaxPayerIdentificationNumberPageViewModel(),
 );
 
 ///reference Number page view model provider
-final referenceNumberViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
+final referenceNumberViewModelProvider = ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
   (ref) => ReferenceNumberPageViewModel(),
 );
 
 ///tax treaty benefits page view model provider
-final claimOfTaxTreatyBenefitsViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        ClaimOfTaxTreatyBenefitsPageViewModel,
-        ClaimOfTaxTreatyBenefitsArguments>(
+final claimOfTaxTreatyBenefitsViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<ClaimOfTaxTreatyBenefitsPageViewModel, ClaimOfTaxTreatyBenefitsArguments>(
   (ref, args) => ClaimOfTaxTreatyBenefitsPageViewModel(args),
 );

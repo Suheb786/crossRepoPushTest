@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "dashboard_account_entity.g.dart";
 
 @JsonSerializable()
-class DashboardAccountEntity
-    implements BaseLayerDataTransformer<DashboardAccountEntity, Account> {
+class DashboardAccountEntity implements BaseLayerDataTransformer<DashboardAccountEntity, Account> {
   @JsonKey(name: "accountTitle")
   final String? accountTitle;
   @JsonKey(name: "availableBalance")

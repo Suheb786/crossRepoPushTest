@@ -190,7 +190,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 35.0.h, bottom: 24.0.h),
+                                          padding: EdgeInsets.only(top: 35.0.h, bottom: 0.0.h),
                                           child: ConvexAppBar(
                                             elevation: 0,
                                             style: TabStyle.fixedCircle,

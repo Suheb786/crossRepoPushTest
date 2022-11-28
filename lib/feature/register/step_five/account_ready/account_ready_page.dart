@@ -14,12 +14,10 @@ class AccountReadyPage extends BasePage<AccountReadyViewModel> {
   AccountReadyPageState createState() => AccountReadyPageState();
 }
 
-class AccountReadyPageState
-    extends BaseStatefulPage<AccountReadyViewModel, AccountReadyPage> {
+class AccountReadyPageState extends BaseStatefulPage<AccountReadyViewModel, AccountReadyPage> {
   @override
   ProviderBase provideBase() {
-    return accountReadyPageViewModelProvider
-        .call(widget._accountReadyArguments);
+    return accountReadyPageViewModelProvider.call(widget._accountReadyArguments);
   }
 
   @override

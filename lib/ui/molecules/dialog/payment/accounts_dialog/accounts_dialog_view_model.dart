@@ -3,10 +3,9 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AccountsDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
-  List<String>? accountsList = ['5669 4900 2111', '5669 4900 2111'];
+  // List<String>? accountsList = ['5669 4900 2111', '5669 4900 2111'];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();

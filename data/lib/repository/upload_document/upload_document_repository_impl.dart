@@ -12,12 +12,10 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
   final UploadDocumentLocalDS _documentLocalDS;
   final UploadDocumentRemoteDS _uploadDocumentRemoteDS;
 
-  UploadDocumentRepositoryImpl(this._documentLocalDS,
-      this._uploadDocumentRemoteDS);
+  UploadDocumentRepositoryImpl(this._documentLocalDS, this._uploadDocumentRemoteDS);
 
   @override
-  Future<Either<BaseError, String>> pickUploadDocument(
-      {DocumentTypeEnum? type}) async {
+  Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum? type}) async {
     if (type == DocumentTypeEnum.CAMERA) {
       var imageList = await _documentLocalDS.clickDocumentImage();
       return Right(imageList);
@@ -32,22 +30,19 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
   }
 
   @override
-  Future<Either<NetworkError, FileUploadResponse>> uploadDocument(
-      {String? path}) async {
+  Future<Either<NetworkError, FileUploadResponse>> uploadDocument({String? path}) async {
     final result = await safeApiCall(
       _uploadDocumentRemoteDS.uploadDocument(path: path!),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, SaveUploadDocumentResponse>> saveUploadDocument(
-      {String? proofOfIncomeId,
-        String? proofOfAddressId,
-        String? proofOfNationalityId}) async {
+      {String? proofOfIncomeId, String? proofOfAddressId, String? proofOfNationalityId}) async {
     final result = await safeApiCall(
       _uploadDocumentRemoteDS.saveUploadDocument(
           proofOfIncomeId: proofOfIncomeId,
@@ -55,8 +50,8 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
           proofOfNationalityId: proofOfNationalityId),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

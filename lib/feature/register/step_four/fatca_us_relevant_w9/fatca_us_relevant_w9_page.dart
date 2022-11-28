@@ -10,9 +10,8 @@ class FatcaUSRelevantW9Page extends BasePage<FatcaUSRelevantW9PageViewModel> {
   FatcaUSRelevantW9PageState createState() => FatcaUSRelevantW9PageState();
 }
 
-class FatcaUSRelevantW9PageState extends BaseStatefulPage<
-    FatcaUSRelevantW9PageViewModel,
-    FatcaUSRelevantW9Page>
+class FatcaUSRelevantW9PageState
+    extends BaseStatefulPage<FatcaUSRelevantW9PageViewModel, FatcaUSRelevantW9Page>
     with AutomaticKeepAliveClientMixin {
   FatcaUSRelevantW9PageState() : super(subscribeVisibilityEvents: true);
 
@@ -23,9 +22,7 @@ class FatcaUSRelevantW9PageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

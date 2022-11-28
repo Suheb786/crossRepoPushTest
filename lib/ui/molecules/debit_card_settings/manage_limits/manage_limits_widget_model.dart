@@ -18,10 +18,8 @@ class ManageLimitsWidgetViewModel extends BasePageViewModel {
   }
 
   void showErrorToast() {
-    showToastWithError(AppError(
-        error: ErrorInfo(message: ''),
-        type: ErrorType.INVALID_LIMIT_VALUE,
-        cause: Exception()));
+    showToastWithError(
+        AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_LIMIT_VALUE, cause: Exception()));
   }
 
   @override

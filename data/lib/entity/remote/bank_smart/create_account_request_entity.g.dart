@@ -6,8 +6,7 @@ part of 'create_account_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(
-    Map<String, dynamic> json) {
+CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(Map<String, dynamic> json) {
   return CreateAccountRequestEntity(
     getToken: json['getToken'] as bool?,
     cif: json['cif'] as String?,
@@ -17,8 +16,7 @@ CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$CreateAccountRequestEntityToJson(
-        CreateAccountRequestEntity instance) =>
+Map<String, dynamic> _$CreateAccountRequestEntityToJson(CreateAccountRequestEntity instance) =>
     <String, dynamic>{
       'getToken': instance.getToken,
       'cif': instance.cif,

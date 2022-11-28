@@ -5,6 +5,5 @@ class ReasonOfUnavailability {
   final String? reasonDescription;
   final ReasonUnavailabilityEnum? reasonUnavailabilityEnum;
 
-  ReasonOfUnavailability(
-      {this.type, this.reasonDescription, this.reasonUnavailabilityEnum});
+  ReasonOfUnavailability({this.type, this.reasonDescription, this.reasonUnavailabilityEnum});
 }

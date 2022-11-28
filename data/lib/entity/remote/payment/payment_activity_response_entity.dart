@@ -8,9 +8,7 @@ part "payment_activity_response_entity.g.dart";
 
 @JsonSerializable()
 class PaymentActivityResponseEntity
-    implements
-        BaseLayerDataTransformer<PaymentActivityResponseEntity,
-            PaymentActivityResponse> {
+    implements BaseLayerDataTransformer<PaymentActivityResponseEntity, PaymentActivityResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

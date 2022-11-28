@@ -5,15 +5,14 @@ import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckDeviceCompatibilityUsecase extends BaseUseCase<BaseError,
-    CheckDeviceCompatibilityUsecaseParams, bool> {
+class CheckDeviceCompatibilityUsecase
+    extends BaseUseCase<BaseError, CheckDeviceCompatibilityUsecaseParams, bool> {
   final UtilityRepository _repository;
 
   CheckDeviceCompatibilityUsecase(this._repository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required CheckDeviceCompatibilityUsecaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required CheckDeviceCompatibilityUsecaseParams params}) async {
     return _repository.checkDeviceCompatibility();
   }
 }

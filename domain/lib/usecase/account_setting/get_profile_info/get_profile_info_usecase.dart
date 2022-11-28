@@ -6,15 +6,14 @@ import 'package:domain/repository/account_settings/account_settings_repository.d
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetProfileInfoUseCase extends BaseUseCase<NetworkError,
-    GetProfileInfoUseCaseParams, ProfileInfoResponse> {
+class GetProfileInfoUseCase
+    extends BaseUseCase<NetworkError, GetProfileInfoUseCaseParams, ProfileInfoResponse> {
   final AccountSettingsRepository _accountSettingsRepository;
 
   GetProfileInfoUseCase(this._accountSettingsRepository);
 
   @override
-  Future<Either<NetworkError, ProfileInfoResponse>> execute(
-      {required GetProfileInfoUseCaseParams params}) {
+  Future<Either<NetworkError, ProfileInfoResponse>> execute({required GetProfileInfoUseCaseParams params}) {
     return _accountSettingsRepository.getAccountDetails();
   }
 }

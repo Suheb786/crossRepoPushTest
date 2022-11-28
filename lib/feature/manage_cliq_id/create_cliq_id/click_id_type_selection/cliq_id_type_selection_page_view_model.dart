@@ -18,22 +18,17 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> aliasKey = GlobalKey(debugLabel: "alias");
 
   final TextEditingController cliqIdTypeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> clickIdTypeKey =
-      GlobalKey(debugLabel: "clickIdType");
+  final GlobalKey<AppTextFieldState> clickIdTypeKey = GlobalKey(debugLabel: "clickIdType");
 
   final TextEditingController mobileNumberController = TextEditingController();
-  final GlobalKey<AppTextFieldState> mobileNumberKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
 
   ///click id type selection
-  PublishSubject<CliqIdTypeSelectionUseCaseParams> _cliqIdTypeSelectionRequest =
-      PublishSubject();
+  PublishSubject<CliqIdTypeSelectionUseCaseParams> _cliqIdTypeSelectionRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _cliqIdTypeSelectionResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _cliqIdTypeSelectionResponse = PublishSubject();
 
-  Stream<Resource<bool>> get cliqIdTypeSelectionResponseStream =>
-      _cliqIdTypeSelectionResponse.stream;
+  Stream<Resource<bool>> get cliqIdTypeSelectionResponseStream => _cliqIdTypeSelectionResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -41,16 +36,13 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///cliq id type
-  BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject =
-      BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
+  BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
 
   Stream<CliqIdTypeEnum> get cliqIdTypeStream => _cliqIdTypeSubject.stream;
 
   CliqIdTypeSelectionPageViewModel(this._cliqIdTypeSelectionnUseCase) {
     _cliqIdTypeSelectionRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _cliqIdTypeSelectionnUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cliqIdTypeSelectionnUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

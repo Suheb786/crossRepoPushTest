@@ -122,6 +122,10 @@ import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
+import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
+import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
+import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
@@ -590,20 +594,23 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
       case RoutePaths.RequestMoneyQrGeneration:
-        return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
+        return CustomRoute.createRoute(
+            RequestMoneyQrGenerationPage(settings.arguments as RequestMoneyQrGenerationPageArguments));
 
       case RoutePaths.QRScreen:
         return CupertinoPageRoute(
-            builder: (context) => QrScreenPage(), settings: RouteSettings(name: RoutePaths.QRScreen));
+            builder: (context) => QrScreenPage(settings.arguments as QrScreenPageArguments),
+            settings: RouteSettings(name: RoutePaths.QRScreen));
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyQrScanningPage(),
+            builder: (context) => SendMoneyQrScanningPage(settings.arguments as SendMoneyQRScanningArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
 
       case RoutePaths.SendMoneyQrScanningSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyViaQrSuccessPage(),
+            builder: (context) =>
+                SendMoneyViaQrSuccessPage(settings.arguments as SendMoneyViaQRSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
 
       case RoutePaths.CliqIdList:
@@ -826,6 +833,31 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ConfirmPrePaidBillPaymentAmountPage(),
             settings: RouteSettings(name: RoutePaths.ConfirmPrePaidBillPaymentAmountPage));
+
+      case RoutePaths.QRScanningScreen:
+        return CupertinoPageRoute(
+            builder: (context) => QrScanningScreenPage(),
+            settings: RouteSettings(name: RoutePaths.QRScanningScreen));
+
+      /// for web view for RJ Flight Booking
+      case RoutePaths.RjBookingInAppWebView:
+        return CupertinoPageRoute(
+            builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
+            settings: RouteSettings(name: RoutePaths.RjBookingInAppWebView));
+
+      /// Rj Flight Booking PurchasePage
+      case RoutePaths.RjFlightBookingPurchasePage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                RjBookingPurchasePage(arguments: settings.arguments as RjBookingPurchasePageArgument),
+            settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
+
+      /// Rj Flight Booking Detail Page
+      case RoutePaths.RjFlightBookingDetailPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
+            settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
       default:
         return CupertinoPageRoute(

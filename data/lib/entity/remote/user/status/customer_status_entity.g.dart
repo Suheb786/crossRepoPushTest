@@ -14,9 +14,7 @@ CustomerStatusEntity _$CustomerStatusEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CustomerStatusEntityToJson(
-        CustomerStatusEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CustomerStatusEntityToJson(CustomerStatusEntity instance) => <String, dynamic>{
       'nextScreen': instance.nextScreen,
       'secondNextScreen': instance.secondNextScreen,
       'applicationId': instance.applicationId,

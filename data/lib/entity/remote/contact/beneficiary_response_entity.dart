@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "beneficiary_response_entity.g.dart";
 
 @JsonSerializable()
-class BeneficiaryResponseEntity extends BaseLayerDataTransformer<
-    BeneficiaryResponseEntity, BeneficiaryList> {
+class BeneficiaryResponseEntity extends BaseLayerDataTransformer<BeneficiaryResponseEntity, BeneficiaryList> {
   @JsonKey(name: "content")
   final List<BeneficiaryEntity>? beneficiaryList;
 
@@ -25,8 +24,6 @@ class BeneficiaryResponseEntity extends BaseLayerDataTransformer<
 
   @override
   BeneficiaryList transform() {
-    return BeneficiaryList(
-        beneficiaryList:
-            this.beneficiaryList!.map((e) => e.transform()).toList());
+    return BeneficiaryList(beneficiaryList: this.beneficiaryList!.map((e) => e.transform()).toList());
   }
 }

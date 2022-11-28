@@ -5,24 +5,20 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/covert_purchase_to_installements/covert_purchase_to_installments_page_view.dart';
 import 'package:neo_bank/feature/covert_purchase_to_installements/covert_purchase_to_installments_page_view_model.dart';
 
-class ConvertPurchaseToInstallmentsPage
-    extends BasePage<ConvertPurchaseToInstallmentsPageViewModel> {
+class ConvertPurchaseToInstallmentsPage extends BasePage<ConvertPurchaseToInstallmentsPageViewModel> {
   @override
-  ConvertPurchaseToInstallmentsPageState createState() =>
-      ConvertPurchaseToInstallmentsPageState();
+  ConvertPurchaseToInstallmentsPageState createState() => ConvertPurchaseToInstallmentsPageState();
 }
 
-class ConvertPurchaseToInstallmentsPageState extends BaseStatefulPage<
-    ConvertPurchaseToInstallmentsPageViewModel,
-    ConvertPurchaseToInstallmentsPage> {
+class ConvertPurchaseToInstallmentsPageState
+    extends BaseStatefulPage<ConvertPurchaseToInstallmentsPageViewModel, ConvertPurchaseToInstallmentsPage> {
   @override
   ProviderBase provideBase() {
     return convertPurchaseToInstallmentsPageViewModelProvider;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ConvertPurchaseToInstallmentsPageViewModel model) {
+  Widget buildView(BuildContext context, ConvertPurchaseToInstallmentsPageViewModel model) {
     return ConvertPurchaseToInstallmentsPageView(provideBase());
   }
 

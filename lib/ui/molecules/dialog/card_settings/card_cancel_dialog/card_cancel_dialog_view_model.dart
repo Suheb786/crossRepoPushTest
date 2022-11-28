@@ -13,10 +13,8 @@ class CardCancelDialogViewModel extends BasePageViewModel {
   bool isSelected = false;
 
   /// reason controller
-  final TextEditingController reasonCancellationController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> reasonKey =
-      GlobalKey(debugLabel: "reason-Key");
+  final TextEditingController reasonCancellationController = TextEditingController();
+  final GlobalKey<AppTextFieldState> reasonKey = GlobalKey(debugLabel: "reason-Key");
 
   /// update terms & condition value
   void updateDeclarationSelection(bool value) {

@@ -23,15 +23,16 @@ class SaveProfileInformationRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveProfileInformationRequest({this.married,
-    this.specialPerson,
-    this.employmentStatus: "",
-    this.spauseName: "",
-    this.natureSP: "",
-    this.additionalNationality,
-    this.isAdditionalNational,
-    this.isEmployed,
-    required this.baseData});
+  SaveProfileInformationRequest(
+      {this.married,
+      this.specialPerson,
+      this.employmentStatus: "",
+      this.spauseName: "",
+      this.natureSP: "",
+      this.additionalNationality,
+      this.isAdditionalNational,
+      this.isEmployed,
+      required this.baseData});
 
   factory SaveProfileInformationRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveProfileInformationRequestFromJson(json);

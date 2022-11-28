@@ -8,14 +8,12 @@ import 'package:rxdart/rxdart.dart';
 class MyDebitCardViewModel extends BasePageViewModel {
   MyDebitCardUseCase _useCase;
 
-  BehaviorSubject<bool> _isFlipCardClickedSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _isFlipCardClickedSubject = BehaviorSubject.seeded(false);
   Size deviceSize = Size(0, 0);
 
   final GlobalKey<FlipCardState> cardKey = GlobalKey(debugLabel: 'flip-card');
 
-  Stream<bool> get isGetCardNowClickedStream =>
-      _isFlipCardClickedSubject.stream;
+  Stream<bool> get isGetCardNowClickedStream => _isFlipCardClickedSubject.stream;
 
   MyDebitCardViewModel(this._useCase);
 

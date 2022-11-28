@@ -5,15 +5,13 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/video_call/schdeule_video_call_later/schedule_video_call_later_page_view.dart';
 import 'package:neo_bank/feature/register/video_call/schdeule_video_call_later/schedule_video_call_later_page_view_model.dart';
 
-class ScheduleVideoCallLaterPage
-    extends BasePage<ScheduleVideoCallLaterPageViewModel> {
+class ScheduleVideoCallLaterPage extends BasePage<ScheduleVideoCallLaterPageViewModel> {
   @override
-  ScheduleVideoCallLaterPageState createState() =>
-      ScheduleVideoCallLaterPageState();
+  ScheduleVideoCallLaterPageState createState() => ScheduleVideoCallLaterPageState();
 }
 
-class ScheduleVideoCallLaterPageState extends BaseStatefulPage<
-    ScheduleVideoCallLaterPageViewModel, ScheduleVideoCallLaterPage> {
+class ScheduleVideoCallLaterPageState
+    extends BaseStatefulPage<ScheduleVideoCallLaterPageViewModel, ScheduleVideoCallLaterPage> {
   @override
   ProviderBase provideBase() {
     return scheduleVideoCallLaterPageViewModelProvider;
@@ -25,8 +23,7 @@ class ScheduleVideoCallLaterPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ScheduleVideoCallLaterPageViewModel model) {
+  Widget buildView(BuildContext context, ScheduleVideoCallLaterPageViewModel model) {
     return ScheduleVideoCallLaterPageView(provideBase());
   }
 }

@@ -8,11 +8,9 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class CliqIdTypeSelectionUseCase
-    extends BaseUseCase<NetworkError, CliqIdTypeSelectionUseCaseParams, bool> {
+class CliqIdTypeSelectionUseCase extends BaseUseCase<NetworkError, CliqIdTypeSelectionUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CliqIdTypeSelectionUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CliqIdTypeSelectionUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -33,23 +31,16 @@ class CliqIdTypeSelectionUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(cliqIdType)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_CLIQ_ID_TYPE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_CLIQ_ID_TYPE, cause: Exception()));
     } else if (cliqIdTypeEnum == CliqIdTypeEnum.ALIAS) {
       if (alias.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_ALIAS,
-            cause: Exception()));
+        return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_ALIAS, cause: Exception()));
       }
     } else if (cliqIdTypeEnum == CliqIdTypeEnum.MOBILE_NO) {
       if (mobileNo.isEmpty || mobileNo.length < 8) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_MOBILE,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
       }
     }
 

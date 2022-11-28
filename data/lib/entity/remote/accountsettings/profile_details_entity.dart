@@ -6,15 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'profile_details_entity.g.dart';
 
 @JsonSerializable()
-class ProfileDetailsEntity extends BaseLayerDataTransformer<
-    ProfileDetailsEntity, ProfileInfoContentData> {
+class ProfileDetailsEntity extends BaseLayerDataTransformer<ProfileDetailsEntity, ProfileInfoContentData> {
   @JsonKey(name: "profileInfo")
   final ProfileEntity? profileInfo;
 
   ProfileDetailsEntity({this.profileInfo});
 
-  factory ProfileDetailsEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProfileDetailsEntityFromJson(json);
+  factory ProfileDetailsEntity.fromJson(Map<String, dynamic> json) => _$ProfileDetailsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileDetailsEntityToJson(this);
 
@@ -25,7 +23,6 @@ class ProfileDetailsEntity extends BaseLayerDataTransformer<
 
   @override
   ProfileInfoContentData transform() {
-    return ProfileInfoContentData(
-        profileInfoContent: this.profileInfo!.transform());
+    return ProfileInfoContentData(profileInfoContent: this.profileInfo!.transform());
   }
 }

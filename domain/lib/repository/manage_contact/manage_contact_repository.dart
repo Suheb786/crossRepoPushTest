@@ -16,10 +16,7 @@ abstract class ManageContactRepository {
       String imageFilePath});
 
   Future<Either<NetworkError, bool>> updateBeneficiary(
-      {String beneficiaryId,
-      String nickName,
-      String purpose,
-      String purposeDetails});
+      {String beneficiaryId, String nickName, String purpose, String purposeDetails});
 
   Future<Either<NetworkError, bool>> deleteBeneficiary({String beneficiaryId});
 
@@ -28,6 +25,5 @@ abstract class ManageContactRepository {
     String otpCode,
   });
 
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage(
-      {String filePath, String beneficiaryId});
+  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 }

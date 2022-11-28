@@ -5,16 +5,13 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
 
-class FatcaUSW8TaxPayersDetailsPage
-    extends BasePage<FatcaUSW8TaxPayersDetailsPageViewModel> {
+class FatcaUSW8TaxPayersDetailsPage extends BasePage<FatcaUSW8TaxPayersDetailsPageViewModel> {
   @override
-  FatcaUSW8TaxPayersDetailsPageState createState() =>
-      FatcaUSW8TaxPayersDetailsPageState();
+  FatcaUSW8TaxPayersDetailsPageState createState() => FatcaUSW8TaxPayersDetailsPageState();
 }
 
-class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
-    FatcaUSW8TaxPayersDetailsPageViewModel,
-    FatcaUSW8TaxPayersDetailsPage>
+class FatcaUSW8TaxPayersDetailsPageState
+    extends BaseStatefulPage<FatcaUSW8TaxPayersDetailsPageViewModel, FatcaUSW8TaxPayersDetailsPage>
     with AutomaticKeepAliveClientMixin {
   FatcaUSW8TaxPayersDetailsPageState() : super(subscribeVisibilityEvents: true);
 
@@ -25,14 +22,11 @@ class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      FatcaUSW8TaxPayersDetailsPageViewModel model) {
+  Widget buildView(BuildContext context, FatcaUSW8TaxPayersDetailsPageViewModel model) {
     return FatcaUSW8TaxPayersDetailsPageView(provideBase());
   }
 

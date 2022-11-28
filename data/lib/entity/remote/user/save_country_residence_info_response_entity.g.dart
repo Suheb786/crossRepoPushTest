@@ -6,14 +6,12 @@ part of 'save_country_residence_info_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveCountryResidenceInfoResponseEntity
-    _$SaveCountryResidenceInfoResponseEntityFromJson(
-        Map<String, dynamic> json) {
+SaveCountryResidenceInfoResponseEntity _$SaveCountryResidenceInfoResponseEntityFromJson(
+    Map<String, dynamic> json) {
   return SaveCountryResidenceInfoResponseEntity(
     saveCountryResidenceInfoResponseDataEntity: json['response'] == null
         ? null
-        : SaveCountryResidenceInfoResponseDataEntity.fromJson(
-            json['response'] as Map<String, dynamic>),
+        : SaveCountryResidenceInfoResponseDataEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

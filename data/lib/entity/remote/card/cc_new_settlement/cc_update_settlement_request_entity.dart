@@ -13,12 +13,10 @@ class CcUpdateSettlementRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  CcUpdateSettlementRequestEntity(
-      {required this.baseData, this.getToken: true, this.cardId, this.rate});
+  CcUpdateSettlementRequestEntity({required this.baseData, this.getToken: true, this.cardId, this.rate});
 
   factory CcUpdateSettlementRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CcUpdateSettlementRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CcUpdateSettlementRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CcUpdateSettlementRequestEntityToJson(this);
 }

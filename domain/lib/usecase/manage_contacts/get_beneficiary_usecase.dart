@@ -6,8 +6,8 @@ import 'package:domain/repository/manage_contact/manage_contact_repository.dart'
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetBeneficiaryUseCase extends BaseUseCase<NetworkError,
-    GetBeneficiaryUseCaseParams, GetBeneficiaryListResponse> {
+class GetBeneficiaryUseCase
+    extends BaseUseCase<NetworkError, GetBeneficiaryUseCaseParams, GetBeneficiaryListResponse> {
   final ManageContactRepository _repository;
 
   GetBeneficiaryUseCase(this._repository);

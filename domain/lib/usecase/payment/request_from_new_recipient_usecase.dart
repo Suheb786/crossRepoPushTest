@@ -8,8 +8,8 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
-    RequestFromNewRecipientUseCaseParams, RequestToPayContentResponse> {
+class RequestFromNewRecipientUseCase
+    extends BaseUseCase<NetworkError, RequestFromNewRecipientUseCaseParams, RequestToPayContentResponse> {
   final PaymentRepository _repository;
 
   RequestFromNewRecipientUseCase(this._repository);
@@ -81,30 +81,21 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (ibanOrMobile!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_IBAN_MOBILE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_IBAN_MOBILE, cause: Exception()));
     } else if (purpose!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PURPOSE,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
     } else if (purposeDetail!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PURPOSE_DETAIL,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE_DETAIL, cause: Exception()));
     } else if (limit! < amount!) {
       return Left(AppError(
           error: ErrorInfo(message: 'Limit should not be more that $limit'),
           type: ErrorType.LIMIT_EXCEEDED,
           cause: Exception()));
     } else if (nickName!.isEmpty && isFriend!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_NICKNAME_VALUE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_NICKNAME_VALUE, cause: Exception()));
     }
     return Right(true);
   }

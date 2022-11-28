@@ -10,8 +10,7 @@ class NotifyPage extends BasePage<NotifyPageViewModel> {
   NotifyPageState createState() => NotifyPageState();
 }
 
-class NotifyPageState
-    extends BaseStatefulPage<NotifyPageViewModel, NotifyPage> {
+class NotifyPageState extends BaseStatefulPage<NotifyPageViewModel, NotifyPage> {
   @override
   ProviderBase provideBase() {
     return notifyViewModelProvider;

@@ -4,11 +4,9 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class MyAccountUseCase
-    extends BaseUseCase<NetworkError, MyAccountUseCaseParams, bool> {
+class MyAccountUseCase extends BaseUseCase<NetworkError, MyAccountUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required MyAccountUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required MyAccountUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

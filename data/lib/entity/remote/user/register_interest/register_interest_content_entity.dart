@@ -6,9 +6,7 @@ part 'register_interest_content_entity.g.dart';
 
 @JsonSerializable()
 class RegisterInterestContentEntity
-    implements
-        BaseLayerDataTransformer<RegisterInterestContentEntity,
-            RegisterInterestContent> {
+    implements BaseLayerDataTransformer<RegisterInterestContentEntity, RegisterInterestContent> {
   @JsonKey(name: "referenceNo")
   final String? referenceNo;
 

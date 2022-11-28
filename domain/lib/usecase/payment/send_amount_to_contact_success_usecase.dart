@@ -4,11 +4,10 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SendAmountToContactSuccessUseCase extends BaseUseCase<NetworkError,
-    SendAmountToContactSuccessUseCaseParams, bool> {
+class SendAmountToContactSuccessUseCase
+    extends BaseUseCase<NetworkError, SendAmountToContactSuccessUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SendAmountToContactSuccessUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SendAmountToContactSuccessUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

@@ -15,9 +15,9 @@ class AddSendMoneyContactPage extends BasePage<AddSendMoneyContactViewModel> {
   AddSendMoneyContactPageState createState() => AddSendMoneyContactPageState();
 }
 
-class AddSendMoneyContactPageState extends BaseStatefulPage<
-    AddSendMoneyContactViewModel,
-    AddSendMoneyContactPage> with AutomaticKeepAliveClientMixin {
+class AddSendMoneyContactPageState
+    extends BaseStatefulPage<AddSendMoneyContactViewModel, AddSendMoneyContactPage>
+    with AutomaticKeepAliveClientMixin {
   AddSendMoneyContactPageState() : super(subscribeVisibilityEvents: true);
 
   @override

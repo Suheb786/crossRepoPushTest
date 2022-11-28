@@ -10,12 +10,12 @@ class MyAccountPage extends BasePage<MyAccountViewModel> {
   final Account account;
 
   MyAccountPage({required this.account});
+
   @override
   MyAccountPageState createState() => MyAccountPageState();
 }
 
-class MyAccountPageState
-    extends BaseStatefulPage<MyAccountViewModel, MyAccountPage>
+class MyAccountPageState extends BaseStatefulPage<MyAccountViewModel, MyAccountPage>
     with AutomaticKeepAliveClientMixin {
   MyAccountPageState() : super(subscribeVisibilityEvents: true);
 

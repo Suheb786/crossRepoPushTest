@@ -10,8 +10,7 @@ class CreatePinPage extends BasePage<CreatePinPageViewModel> {
   CreatePinPageState createState() => CreatePinPageState();
 }
 
-class CreatePinPageState
-    extends BaseStatefulPage<CreatePinPageViewModel, CreatePinPage>
+class CreatePinPageState extends BaseStatefulPage<CreatePinPageViewModel, CreatePinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   CreatePinPageState() : super(subscribeVisibilityEvents: true);
 

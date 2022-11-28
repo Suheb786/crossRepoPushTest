@@ -7,11 +7,9 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EngagementTeamDialogViewModel extends BasePageViewModel {
-  PublishSubject<InfobipMessagePluginUseCaseParams>
-      _initInfobipMessageRequestSubject = PublishSubject();
+  PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
-  PublishSubject<ShowChatUseCaseParams> _showChatRequestSubject =
-      PublishSubject();
+  PublishSubject<ShowChatUseCaseParams> _showChatRequestSubject = PublishSubject();
 
   // PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject =
   //     PublishSubject();
@@ -22,17 +20,14 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
   // Stream<Resource<bool>> get initInfobipMessageResponseStream =>
   //     _initInfobipMessageResponseSubject.stream;
 
-  Stream<bool> get onNotificationTapResponseStream =>
-      _onNotificationTapResponseSubject.stream;
+  Stream<bool> get onNotificationTapResponseStream => _onNotificationTapResponseSubject.stream;
 
-  Stream<Resource<bool>> get showChatRequestStream =>
-      _showChatResponseSubject.stream;
+  Stream<Resource<bool>> get showChatRequestStream => _showChatResponseSubject.stream;
 
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
   final ShowChatUseCase _showChatUseCase;
 
-  EngagementTeamDialogViewModel(
-      this._infobipMessagePluginUseCase, this._showChatUseCase) {
+  EngagementTeamDialogViewModel(this._infobipMessagePluginUseCase, this._showChatUseCase) {
     // _initInfobipMessageRequestSubject.listen((value) {
     //   RequestManager(value, createCall: () {
     //     print("VALUE::: $value}");

@@ -5,15 +5,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckBioMetricSupportUseCase
-    extends BaseUseCase<BaseError, CheckBioMetricSupportUseCaseParams, bool> {
+class CheckBioMetricSupportUseCase extends BaseUseCase<BaseError, CheckBioMetricSupportUseCaseParams, bool> {
   final UserRepository _userRepository;
 
   CheckBioMetricSupportUseCase(this._userRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required CheckBioMetricSupportUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required CheckBioMetricSupportUseCaseParams params}) async {
     return _userRepository.checkBioMetricSupport();
   }
 }

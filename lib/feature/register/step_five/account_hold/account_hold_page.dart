@@ -14,8 +14,7 @@ class AccountHoldPage extends BasePage<AccountHoldViewModel> {
   AccountHoldPageState createState() => AccountHoldPageState();
 }
 
-class AccountHoldPageState
-    extends BaseStatefulPage<AccountHoldViewModel, AccountHoldPage> {
+class AccountHoldPageState extends BaseStatefulPage<AccountHoldViewModel, AccountHoldPage> {
   @override
   ProviderBase provideBase() {
     return accountHoldViewModelProvider.call(widget._arguments);

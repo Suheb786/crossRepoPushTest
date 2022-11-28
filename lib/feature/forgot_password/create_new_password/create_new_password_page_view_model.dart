@@ -15,27 +15,21 @@ import 'package:rxdart/rxdart.dart';
 class CreateNewPasswordPageViewModel extends BasePageViewModel {
   final CreateNewPasswordUseCase _createPasswordUseCase;
 
-  final TextEditingController createPasswordController =
-      TextEditingController();
+  final TextEditingController createPasswordController = TextEditingController();
 
   TextEditingController confirmPasswordController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> passwordKey =
-      GlobalKey(debugLabel: "createPassword");
+  final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "createPassword");
 
-  final GlobalKey<AppTextFieldState> confirmPasswordKey =
-      GlobalKey(debugLabel: "confirmPassword");
+  final GlobalKey<AppTextFieldState> confirmPasswordKey = GlobalKey(debugLabel: "confirmPassword");
 
   ///create password request subject holder
-  PublishSubject<CreateNewPasswordUseCaseParams> _createPasswordRequest =
-      PublishSubject();
+  PublishSubject<CreateNewPasswordUseCaseParams> _createPasswordRequest = PublishSubject();
 
   /// create password response subject holder
-  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse =
-      PublishSubject();
+  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream =>
-      _createPasswordResponse.stream;
+  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream => _createPasswordResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -44,8 +38,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
 
   CreateNewPasswordPageViewModel(this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createPasswordUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,15 +73,9 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
         hasUpperCase: hasUpperCase,
         hasSymbol: hasSymbol,
         containsDigit: containsDigit,
-        email: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .email,
-        idNo: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .nationalId,
-        idExpiry: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .expiryDate));
+        email: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).email,
+        idNo: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nationalId,
+        idExpiry: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).expiryDate));
   }
 
   void validateAllFields() {

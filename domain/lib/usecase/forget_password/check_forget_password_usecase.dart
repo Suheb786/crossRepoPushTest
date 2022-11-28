@@ -8,8 +8,8 @@ import 'package:domain/repository/forget_password/forget_password_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckForgetPasswordUseCase extends BaseUseCase<NetworkError,
-    CheckForgetPasswordUseCaseParams, CheckForgetPasswordResponse> {
+class CheckForgetPasswordUseCase
+    extends BaseUseCase<NetworkError, CheckForgetPasswordUseCaseParams, CheckForgetPasswordResponse> {
   final ForgetPasswordRepository _repository;
 
   CheckForgetPasswordUseCase(this._repository);
@@ -18,9 +18,7 @@ class CheckForgetPasswordUseCase extends BaseUseCase<NetworkError,
   Future<Either<NetworkError, CheckForgetPasswordResponse>> execute(
       {required CheckForgetPasswordUseCaseParams params}) {
     return _repository.checkForgetPassword(
-        email: params.email!,
-        expiryDate: params.expiryDate!,
-        nationalId: params.nationalId!);
+        email: params.email!, expiryDate: params.expiryDate!, nationalId: params.nationalId!);
   }
 }
 
@@ -29,26 +27,19 @@ class CheckForgetPasswordUseCaseParams extends Params {
   String? nationalId;
   String? expiryDate;
 
-  CheckForgetPasswordUseCaseParams(
-      {this.expiryDate, this.email, this.nationalId});
+  CheckForgetPasswordUseCaseParams({this.expiryDate, this.email, this.nationalId});
 
   @override
   Either<AppError, bool> verify() {
     if (email!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_VERIFY_EMAIL,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_VERIFY_EMAIL, cause: Exception()));
     } else if (expiryDate!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_EXPIRY_DATE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EXPIRY_DATE, cause: Exception()));
     } else if (nationalId!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_VERIFY_NATIONAL_ID,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_VERIFY_NATIONAL_ID, cause: Exception()));
     }
     return Right(true);
   }

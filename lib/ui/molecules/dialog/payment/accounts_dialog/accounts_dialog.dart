@@ -9,13 +9,10 @@ class AccountsDialog {
       {Function? onDismissed,
       Function(String)? onSelected,
       required String label,
-      List<String>? accountsList}) {
+      required List<String>? accountsList}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => AccountsDialogView(
-            onDismissed: onDismissed,
-            label: label,
-            onSelected: onSelected,
-            accountsList: accountsList));
+            onDismissed: onDismissed, label: label, onSelected: onSelected, accountsList: accountsList));
   }
 }

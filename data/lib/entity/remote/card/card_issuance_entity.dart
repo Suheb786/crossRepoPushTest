@@ -6,9 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "card_issuance_entity.g.dart";
 
 @JsonSerializable()
-class CardIssuanceEntity
-    implements
-        BaseLayerDataTransformer<CardIssuanceEntity, CardIssuanceDetails> {
+class CardIssuanceEntity implements BaseLayerDataTransformer<CardIssuanceEntity, CardIssuanceDetails> {
   @JsonKey(name: "cardNumber")
   final String? cardNumber;
   @JsonKey(name: "pan")
@@ -18,8 +16,7 @@ class CardIssuanceEntity
 
   CardIssuanceEntity({this.nameOnCard, this.cardNumber, this.pan});
 
-  factory CardIssuanceEntity.fromJson(Map<String, dynamic> json) =>
-      _$CardIssuanceEntityFromJson(json);
+  factory CardIssuanceEntity.fromJson(Map<String, dynamic> json) => _$CardIssuanceEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CardIssuanceEntityToJson(this);
 
@@ -32,8 +29,7 @@ class CardIssuanceEntity
   CardIssuanceDetails transform() {
     return CardIssuanceDetails(
         cardHolderName: nameOnCard ?? "-",
-        cardNumber: this.cardNumber != null
-            ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!)
-            : "");
+        cardNumber:
+            this.cardNumber != null ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!) : "");
   }
 }

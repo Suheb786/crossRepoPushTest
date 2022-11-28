@@ -17,8 +17,7 @@ PurposeEntity _$PurposeEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PurposeEntityToJson(PurposeEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PurposeEntityToJson(PurposeEntity instance) => <String, dynamic>{
       'code': instance.code,
       'labelEN': instance.labelEn,
       'labelAR': instance.labelAr,

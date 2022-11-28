@@ -5,18 +5,16 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SupplementaryCreditCardStepTwoUseCase extends BaseUseCase<NetworkError,
-    SupplementaryCreditCardStepTwoUseCaseParams, bool> {
+class SupplementaryCreditCardStepTwoUseCase
+    extends BaseUseCase<NetworkError, SupplementaryCreditCardStepTwoUseCaseParams, bool> {
   final CardRepository _repository;
 
   SupplementaryCreditCardStepTwoUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SupplementaryCreditCardStepTwoUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SupplementaryCreditCardStepTwoUseCaseParams params}) {
     return _repository.supplementaryCreditCardStepTwo(
-        primaryCardId: params.primaryCardId!,
-        secondaryCardId: params.secondaryCardId!);
+        primaryCardId: params.primaryCardId!, secondaryCardId: params.secondaryCardId!);
   }
 }
 
@@ -24,8 +22,7 @@ class SupplementaryCreditCardStepTwoUseCaseParams extends Params {
   String? primaryCardId;
   String? secondaryCardId;
 
-  SupplementaryCreditCardStepTwoUseCaseParams(
-      {this.primaryCardId, this.secondaryCardId});
+  SupplementaryCreditCardStepTwoUseCaseParams({this.primaryCardId, this.secondaryCardId});
 
   @override
   Either<AppError, bool> verify() {

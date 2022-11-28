@@ -16,20 +16,15 @@ class UploadDocumentRemoteDSImpl extends UploadDocumentRemoteDS {
   UploadDocumentRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
-      {String? path}) async {
+  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument({String? path}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.uploadDocument(UploadDocumentRequestEntity(
-        baseData: baseData.toJson(),
-        getToken: true,
-        documentBase64: ImageUtils.convertToBase64(path!)));
+        baseData: baseData.toJson(), getToken: true, documentBase64: ImageUtils.convertToBase64(path!)));
   }
 
   @override
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
-      {String? proofOfIncomeId,
-        String? proofOfAddressId,
-        String? proofOfNationalityId}) async {
+      {String? proofOfIncomeId, String? proofOfAddressId, String? proofOfNationalityId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveUploadDocument(SaveUploadDocumentRequestEntity(
         baseData: baseData.toJson(),

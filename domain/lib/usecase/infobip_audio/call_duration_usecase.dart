@@ -5,15 +5,13 @@ import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CallDurationUseCase
-    extends BaseUseCase<BaseError, CallDurationUseCaseParams, int> {
+class CallDurationUseCase extends BaseUseCase<BaseError, CallDurationUseCaseParams, int> {
   final HelpCenterRepository _helpCenterRepository;
 
   CallDurationUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, int>> execute(
-      {required CallDurationUseCaseParams params}) {
+  Future<Either<BaseError, int>> execute({required CallDurationUseCaseParams params}) {
     return _helpCenterRepository.getCallDuration();
   }
 }

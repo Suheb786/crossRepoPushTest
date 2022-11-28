@@ -7,12 +7,11 @@ import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_pa
 
 class ResetPasswordSuccessPage extends BasePage<ResetPasswordSuccessViewModel> {
   @override
-  ResetPasswordSuccessPageState createState() =>
-      ResetPasswordSuccessPageState();
+  ResetPasswordSuccessPageState createState() => ResetPasswordSuccessPageState();
 }
 
-class ResetPasswordSuccessPageState extends BaseStatefulPage<
-    ResetPasswordSuccessViewModel, ResetPasswordSuccessPage> {
+class ResetPasswordSuccessPageState
+    extends BaseStatefulPage<ResetPasswordSuccessViewModel, ResetPasswordSuccessPage> {
   @override
   ProviderBase provideBase() {
     return resetPasswordSuccessViewModelProvider;

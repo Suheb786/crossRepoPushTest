@@ -20,16 +20,14 @@ class BlurCard extends StatelessWidget {
           child: Container(
             constraints: BoxConstraints(maxHeight: 142.53, maxWidth: 227.51),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: AppColor.white)),
+                borderRadius: BorderRadius.circular(8), border: Border.all(color: AppColor.white)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               clipBehavior: Clip.antiAlias,
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaY: 4, sigmaX: 4),
                 child: Container(
-                  decoration:
-                      BoxDecoration(color: AppColor.white.withOpacity(0.2)),
+                  decoration: BoxDecoration(color: AppColor.white.withOpacity(0.2)),
                   padding: EdgeInsets.all(12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,

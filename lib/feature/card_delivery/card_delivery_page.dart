@@ -10,8 +10,7 @@ class CardDeliveryPage extends BasePage<CardDeliveryPageViewModel> {
   CardDeliveryPageState createState() => CardDeliveryPageState();
 }
 
-class CardDeliveryPageState
-    extends BaseStatefulPage<CardDeliveryPageViewModel, CardDeliveryPage> {
+class CardDeliveryPageState extends BaseStatefulPage<CardDeliveryPageViewModel, CardDeliveryPage> {
   @override
   ProviderBase provideBase() {
     return cardDeliveryViewModelProvider;

@@ -56,8 +56,9 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                         AddIncomeWidget(
                           label: S.of(context).addIncome,
                           onTap: () {
-                            AccountsDialog.show(context, label: S.of(context).addLinkAccount,
-                                onDismissed: () {
+                            AccountsDialog.show(context,
+                                accountsList: ['5669 4900 2111', '5669 4900 2111'],
+                                label: S.of(context).addLinkAccount, onDismissed: () {
                               Navigator.pop(context);
                             }, onSelected: (value) {
                               Navigator.pop(context);

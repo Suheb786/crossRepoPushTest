@@ -14,15 +14,10 @@ class SendOtpTokenDeviceChangeRequestEntity {
   final Map<String, dynamic> baseData;
 
   SendOtpTokenDeviceChangeRequestEntity(
-      {required this.baseData,
-      this.getToken: true,
-      this.type: "DeviceChange",
-      this.otp: ""});
+      {required this.baseData, this.getToken: true, this.type: "DeviceChange", this.otp: ""});
 
-  factory SendOtpTokenDeviceChangeRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory SendOtpTokenDeviceChangeRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SendOtpTokenDeviceChangeRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SendOtpTokenDeviceChangeRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SendOtpTokenDeviceChangeRequestEntityToJson(this);
 }

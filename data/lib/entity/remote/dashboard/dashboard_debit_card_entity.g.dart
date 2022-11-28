@@ -6,8 +6,7 @@ part of 'dashboard_debit_card_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
-    Map<String, dynamic> json) {
+DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(Map<String, dynamic> json) {
   return DashboardDebitCardEntity(
     accountTitle: json['accountTitle'] as String?,
     cvv: json['cvv'] as String?,
@@ -16,9 +15,8 @@ DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
     linkedAccountNumber: json['linkedAccountNumber'] as String?,
     debitDeliveredDatetime: json['debitDeliveredDatetime'],
     isDebitDelivered: json['isDebitDelivered'] as bool?,
-    debitCardActivated: json['debitCardActivated'] == null
-        ? null
-        : DateTime.parse(json['debitCardActivated'] as String),
+    debitCardActivated:
+        json['debitCardActivated'] == null ? null : DateTime.parse(json['debitCardActivated'] as String),
     cardStatus: json['cardStatus'] as String?,
     code: json['code'] as String?,
     primarySecondaryCard: json['primarySecondaryCard'] as String?,
@@ -27,9 +25,7 @@ DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$DashboardDebitCardEntityToJson(
-        DashboardDebitCardEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DashboardDebitCardEntityToJson(DashboardDebitCardEntity instance) => <String, dynamic>{
       'accountTitle': instance.accountTitle,
       'cardStatus': instance.cardStatus,
       'code': instance.code,

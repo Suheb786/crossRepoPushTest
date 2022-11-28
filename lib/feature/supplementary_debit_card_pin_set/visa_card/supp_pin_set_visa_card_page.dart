@@ -10,9 +10,9 @@ class SuppPinSetVisaCardPage extends BasePage<SuppPinSetVisaCardPageViewModel> {
   SuppPinSetVisaCardPageState createState() => SuppPinSetVisaCardPageState();
 }
 
-class SuppPinSetVisaCardPageState extends BaseStatefulPage<
-    SuppPinSetVisaCardPageViewModel,
-    SuppPinSetVisaCardPage> with AutomaticKeepAliveClientMixin {
+class SuppPinSetVisaCardPageState
+    extends BaseStatefulPage<SuppPinSetVisaCardPageViewModel, SuppPinSetVisaCardPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return suppPinSetVisaCardModelProvider;
@@ -24,8 +24,7 @@ class SuppPinSetVisaCardPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, SuppPinSetVisaCardPageViewModel model) {
+  Widget buildView(BuildContext context, SuppPinSetVisaCardPageViewModel model) {
     return SuppPinSetVisaCardPageView(provideBase());
   }
 

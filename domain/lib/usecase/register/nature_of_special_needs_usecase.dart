@@ -5,15 +5,14 @@ import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class NatureOfSpecialNeedsUseCase extends BaseUseCase<LocalError,
-    NatureOfSpecialNeedsUseCaseParams, List<String>> {
+class NatureOfSpecialNeedsUseCase
+    extends BaseUseCase<LocalError, NatureOfSpecialNeedsUseCaseParams, List<String>> {
   final RegisterStepThreeRepository _registerRepository;
 
   NatureOfSpecialNeedsUseCase(this._registerRepository);
 
   @override
-  Future<Either<LocalError, List<String>>> execute(
-      {required NatureOfSpecialNeedsUseCaseParams params}) {
+  Future<Either<LocalError, List<String>>> execute({required NatureOfSpecialNeedsUseCaseParams params}) {
     return _registerRepository.getNatureOfSpecialNeedsList();
   }
 }

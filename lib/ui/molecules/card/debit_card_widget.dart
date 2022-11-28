@@ -28,7 +28,8 @@ class DebitCardWidget extends StatefulWidget {
       {required this.key,
       required this.debitCard,
       this.isSmallDevice: false,
-      required this.isPrimaryDebitCard,  this.isDebitCardRequestPhysicalCardEnabled:false});
+      required this.isPrimaryDebitCard,
+      this.isDebitCardRequestPhysicalCardEnabled: false});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -213,8 +214,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                           arguments: DebitCardSettingsArguments(
                                               isPrimaryDebitCard: widget.isPrimaryDebitCard,
                                               debitCard: widget.debitCard,
-                                              debitCardRequestPhysicalCardEnabled: widget.isDebitCardRequestPhysicalCardEnabled
-                                          ));
+                                              debitCardRequestPhysicalCardEnabled:
+                                                  widget.isDebitCardRequestPhysicalCardEnabled));
                                       if (result != null) {
                                         bool value = result as bool;
                                         if (value) {

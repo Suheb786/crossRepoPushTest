@@ -6,8 +6,7 @@ part of 'transfer_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransferRequestEntity _$TransferRequestEntityFromJson(
-    Map<String, dynamic> json) {
+TransferRequestEntity _$TransferRequestEntityFromJson(Map<String, dynamic> json) {
   return TransferRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     toAmount: json['ToAmount'] as num,
@@ -26,9 +25,7 @@ TransferRequestEntity _$TransferRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$TransferRequestEntityToJson(
-        TransferRequestEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TransferRequestEntityToJson(TransferRequestEntity instance) => <String, dynamic>{
       'BeneficiaryId': instance.beneficiaryId,
       'OtpCode': instance.otpCode,
       'TransferType': instance.transferType,

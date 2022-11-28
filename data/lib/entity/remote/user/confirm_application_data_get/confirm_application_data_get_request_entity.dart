@@ -9,13 +9,10 @@ class ConfirmApplicationDataGetRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  ConfirmApplicationDataGetRequestEntity(
-      {this.getToken, required this.baseData});
+  ConfirmApplicationDataGetRequestEntity({this.getToken, required this.baseData});
 
-  factory ConfirmApplicationDataGetRequestEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory ConfirmApplicationDataGetRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ConfirmApplicationDataGetRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ConfirmApplicationDataGetRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ConfirmApplicationDataGetRequestEntityToJson(this);
 }

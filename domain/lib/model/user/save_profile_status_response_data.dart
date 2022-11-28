@@ -7,10 +7,5 @@ class SaveProfileStatusResponseData {
   final dynamic? id;
 
   SaveProfileStatusResponseData(
-      {this.code,
-      this.content,
-      this.exceptionMessage,
-      this.message,
-      this.token,
-      this.id});
+      {this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
 }

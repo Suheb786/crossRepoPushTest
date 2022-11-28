@@ -10,8 +10,8 @@ class StudentJobIncomePage extends BasePage<StudentJobIncomePageViewModel> {
   StudentJobIncomePageState createState() => StudentJobIncomePageState();
 }
 
-class StudentJobIncomePageState extends BaseStatefulPage<
-    StudentJobIncomePageViewModel, StudentJobIncomePage> {
+class StudentJobIncomePageState
+    extends BaseStatefulPage<StudentJobIncomePageViewModel, StudentJobIncomePage> {
   @override
   ProviderBase provideBase() {
     return studentIncomePageViewModelProvider;

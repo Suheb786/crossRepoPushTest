@@ -10,8 +10,8 @@ class CreateNewPasswordPage extends BasePage<CreateNewPasswordPageViewModel> {
   CreateNewPasswordPageState createState() => CreateNewPasswordPageState();
 }
 
-class CreateNewPasswordPageState extends BaseStatefulPage<
-    CreateNewPasswordPageViewModel, CreateNewPasswordPage> {
+class CreateNewPasswordPageState
+    extends BaseStatefulPage<CreateNewPasswordPageViewModel, CreateNewPasswordPage> {
   @override
   ProviderBase provideBase() {
     return createNewPasswordViewModelProvider;

@@ -6,9 +6,7 @@ part "get_loan_values_content_entity.g.dart";
 
 @JsonSerializable()
 class GetLoanValuesContentEntity
-    implements
-        BaseLayerDataTransformer<GetLoanValuesContentEntity,
-            GetLoanValuesContent> {
+    implements BaseLayerDataTransformer<GetLoanValuesContentEntity, GetLoanValuesContent> {
   @JsonKey(name: "loanValueId")
   final num? loanValueId;
   @JsonKey(name: "minimumLimit")
@@ -18,8 +16,7 @@ class GetLoanValuesContentEntity
   @JsonKey(name: "maxLimit")
   final num? maxLimit;
 
-  GetLoanValuesContentEntity(
-      {this.maxLimit, this.loanValueId: 0, this.minimumLimit, this.step});
+  GetLoanValuesContentEntity({this.maxLimit, this.loanValueId: 0, this.minimumLimit, this.step});
 
   factory GetLoanValuesContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetLoanValuesContentEntityFromJson(json);

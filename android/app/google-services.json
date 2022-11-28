@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "570110559067",
+    "firebase_url": "https://blink-uat-default-rtdb.firebaseio.com",
     "project_id": "blink-uat",
     "storage_bucket": "blink-uat.appspot.com"
   },

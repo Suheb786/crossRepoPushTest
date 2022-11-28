@@ -17,18 +17,14 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   GetPurposeUseCase _getPurposeUseCase;
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
-  final GlobalKey<AppTextFieldState> purposeKey =
-      GlobalKey(debugLabel: "purpose");
-  final GlobalKey<AppTextFieldState> purposeDetailKey =
-      GlobalKey(debugLabel: "purposeDetail");
+  final GlobalKey<AppTextFieldState> purposeKey = GlobalKey(debugLabel: "purpose");
+  final GlobalKey<AppTextFieldState> purposeDetailKey = GlobalKey(debugLabel: "purposeDetail");
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
-  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-      PublishSubject();
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
 
-  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
-      _getPurposeResponse.stream;
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
   Purpose? purpose;
 
@@ -50,16 +46,14 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
     purposeController.text = values![2];
     purposeDetailController.text = values![3];
     _getPurposeRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPurposeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _getPurposeResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           purposeList!.clear();
-          purposeList!
-              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList!.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
         } else if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

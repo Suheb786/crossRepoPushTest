@@ -1103,6 +1103,16 @@ class ErrorParser {
         return localisedHelper.loginRegisterDisabled;
       case ErrorType.ID_VERIFICATION_FAILED:
         return localisedHelper.idVerificationFailed;
+      case ErrorType.PAYMENT_NOT_DONE:
+        return localisedHelper.paymentNotDone;
+      case ErrorType.NO_TICKETS_FOUND:
+        return localisedHelper.noTicketsFound;
+
+      case ErrorType.QR_INVALID:
+        return localisedHelper.qrInvalid;
+
+      case ErrorType.QR_EXPIRED:
+        return localisedHelper.qrExpired;
 
       default:
         return "";

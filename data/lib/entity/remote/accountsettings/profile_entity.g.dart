@@ -17,8 +17,7 @@ ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) => <String, dynamic>{
       'email': instance.email,
       'mobileNumber': instance.mobileNumber,
       'biometric': instance.biometric,

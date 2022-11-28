@@ -14,10 +14,8 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
   ChangeCardSettlementPercentageArguments? arguments;
 
   ///controllers and keys
-  final TextEditingController settlementPercentageController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> settlementPercentageKey =
-      GlobalKey(debugLabel: "settlementPercentage");
+  final TextEditingController settlementPercentageController = TextEditingController();
+  final GlobalKey<AppTextFieldState> settlementPercentageKey = GlobalKey(debugLabel: "settlementPercentage");
 
   List<String> percentageList = ["25 %", "50 %", "100 %"];
 
@@ -26,19 +24,16 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  PublishSubject<UpdateSettlementUseCaseParams> _updateSettlementRequest =
-      PublishSubject();
+  PublishSubject<UpdateSettlementUseCaseParams> _updateSettlementRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _updateSettlementResponse = PublishSubject();
 
-  Stream<Resource<bool>> get updateSettlementStream =>
-      _updateSettlementResponse.stream;
+  Stream<Resource<bool>> get updateSettlementStream => _updateSettlementResponse.stream;
 
   ChangeCardSettlementPercentagePageViewModel(this._updateSettlementUseCase) {
     settlementPercentageController.text = percentageList.first;
     _updateSettlementRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _updateSettlementUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _updateSettlementUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -53,8 +48,7 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
   void updateSettlement() {
     _updateSettlementRequest.safeAdd(UpdateSettlementUseCaseParams(
         cardId: arguments!.creditCard.cardId,
-        rate: int.parse(
-            settlementPercentageController.text.replaceAll("%", ""))));
+        rate: int.parse(settlementPercentageController.text.replaceAll("%", ""))));
   }
 
   void validate() {

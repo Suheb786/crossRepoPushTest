@@ -9,28 +9,22 @@ import 'package:rxdart/rxdart.dart';
 class NatureSpecialNeedsDialogViewModel extends BasePageViewModel {
   final NatureOfSpecialNeedsUseCase _getNatureSpecialNeedsUseCase;
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   int currentIndex = 0;
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
-  PublishSubject<NatureOfSpecialNeedsUseCaseParams>
-      _getNatureSpecialNeedsRequest = PublishSubject();
+  PublishSubject<NatureOfSpecialNeedsUseCaseParams> _getNatureSpecialNeedsRequest = PublishSubject();
 
-  PublishSubject<Resource<List<String>>> _getNatureSpecialNeedsResponse =
-      PublishSubject();
+  PublishSubject<Resource<List<String>>> _getNatureSpecialNeedsResponse = PublishSubject();
 
-  Stream<Resource<List<String>>> get getNatureSpecialNeedsStream =>
-      _getNatureSpecialNeedsResponse.stream;
+  Stream<Resource<List<String>>> get getNatureSpecialNeedsStream => _getNatureSpecialNeedsResponse.stream;
 
   NatureSpecialNeedsDialogViewModel(this._getNatureSpecialNeedsUseCase) {
     _getNatureSpecialNeedsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getNatureSpecialNeedsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getNatureSpecialNeedsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getNatureSpecialNeedsResponse.safeAdd(event);

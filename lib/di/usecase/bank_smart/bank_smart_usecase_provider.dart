@@ -7,25 +7,21 @@ import 'package:domain/usecase/bank_smart/remove_debit_lock_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[PurposeOfAccountOpeningUseCase] provider
-final purposeOfAccountsOpeningUseCaseProvider =
-    Provider.autoDispose<PurposeOfAccountOpeningUseCase>((ref) =>
-        PurposeOfAccountOpeningUseCase(ref.read(bankSmartRepositoryProvider)));
+final purposeOfAccountsOpeningUseCaseProvider = Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
+    (ref) => PurposeOfAccountOpeningUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[GetAccountUseCase] provider
 final getAccountUseCaseProvider = Provider.autoDispose<GetAccountUseCase>(
     (ref) => GetAccountUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[GetAccountDetailsUseCase] provider
-final getAccountDetailsUseCaseProvider =
-    Provider.autoDispose<GetAccountDetailsUseCase>((ref) =>
-        GetAccountDetailsUseCase(ref.read(bankSmartRepositoryProvider)));
+final getAccountDetailsUseCaseProvider = Provider.autoDispose<GetAccountDetailsUseCase>(
+    (ref) => GetAccountDetailsUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[CreateAccountUseCase] provider
 final createAccountUseCaseProvider = Provider.autoDispose<CreateAccountUseCase>(
-    (ref) => CreateAccountUseCase(
-        ref.read(bankSmartRepositoryProvider), ref.read(userRepoProvider)));
+    (ref) => CreateAccountUseCase(ref.read(bankSmartRepositoryProvider), ref.read(userRepoProvider)));
 
 ///[RemoveDebitLockUseCase] provider
-final removeDebitLockUseCaseProvider =
-    Provider.autoDispose<RemoveDebitLockUseCase>(
-        (ref) => RemoveDebitLockUseCase(ref.read(bankSmartRepositoryProvider)));
+final removeDebitLockUseCaseProvider = Provider.autoDispose<RemoveDebitLockUseCase>(
+    (ref) => RemoveDebitLockUseCase(ref.read(bankSmartRepositoryProvider)));

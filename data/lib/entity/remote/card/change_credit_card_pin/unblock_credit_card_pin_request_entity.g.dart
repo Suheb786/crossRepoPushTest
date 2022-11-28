@@ -6,8 +6,7 @@ part of 'unblock_credit_card_pin_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnblockCreditCardPinRequestEntity _$UnblockCreditCardPinRequestEntityFromJson(
-    Map<String, dynamic> json) {
+UnblockCreditCardPinRequestEntity _$UnblockCreditCardPinRequestEntityFromJson(Map<String, dynamic> json) {
   return UnblockCreditCardPinRequestEntity(
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,
@@ -15,8 +14,7 @@ UnblockCreditCardPinRequestEntity _$UnblockCreditCardPinRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$UnblockCreditCardPinRequestEntityToJson(
-        UnblockCreditCardPinRequestEntity instance) =>
+Map<String, dynamic> _$UnblockCreditCardPinRequestEntityToJson(UnblockCreditCardPinRequestEntity instance) =>
     <String, dynamic>{
       'getToken': instance.getToken,
       'CardCode': instance.cardCode,

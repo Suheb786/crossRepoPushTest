@@ -22,17 +22,13 @@ class RegisterViewModel extends BasePageViewModel {
   }
 
   void goToPreviousPage() {
-    registrationStepsController.animateToPage(
-        registrationStepsController.page!.toInt() - 1,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeIn);
+    registrationStepsController.animateToPage(registrationStepsController.page!.toInt() - 1,
+        duration: Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   void goToNextPage() {
-    registrationStepsController.animateToPage(
-        registrationStepsController.page!.toInt() + 1,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeIn);
+    registrationStepsController.animateToPage(registrationStepsController.page!.toInt() + 1,
+        duration: Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   void navigateToPage(int index) {

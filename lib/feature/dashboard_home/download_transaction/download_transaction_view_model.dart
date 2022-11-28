@@ -17,22 +17,17 @@ class DownloadTransactionViewModel extends BasePageViewModel {
   final DownloadStatementArguments arguments;
 
   ///card statement request
-  PublishSubject<GetCardStatementUseCaseParams> _cardStatementRequest =
-      PublishSubject();
+  PublishSubject<GetCardStatementUseCaseParams> _cardStatementRequest = PublishSubject();
 
   ///card statement response
-  PublishSubject<Resource<CardStatementResponse>> _cardStatementResponse =
-      PublishSubject();
+  PublishSubject<Resource<CardStatementResponse>> _cardStatementResponse = PublishSubject();
 
   ///card statement response stream
-  Stream<Resource<CardStatementResponse>> get cardStatementStream =>
-      _cardStatementResponse.stream;
+  Stream<Resource<CardStatementResponse>> get cardStatementStream => _cardStatementResponse.stream;
 
-  DownloadTransactionViewModel(
-      this._useCase, this._cardStatementUseCase, this.arguments) {
+  DownloadTransactionViewModel(this._useCase, this._cardStatementUseCase, this.arguments) {
     _cardStatementRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardStatementUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardStatementUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

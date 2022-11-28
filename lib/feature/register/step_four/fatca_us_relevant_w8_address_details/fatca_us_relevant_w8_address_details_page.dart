@@ -5,19 +5,15 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 
-class FatcaUSRelevantW8AddressDetailsPage
-    extends BasePage<FatcaUSRelevantW8AddressDetailsPageViewModel> {
+class FatcaUSRelevantW8AddressDetailsPage extends BasePage<FatcaUSRelevantW8AddressDetailsPageViewModel> {
   @override
-  FatcaUSRelevantW8AddressDetailsPageState createState() =>
-      FatcaUSRelevantW8AddressDetailsPageState();
+  FatcaUSRelevantW8AddressDetailsPageState createState() => FatcaUSRelevantW8AddressDetailsPageState();
 }
 
 class FatcaUSRelevantW8AddressDetailsPageState extends BaseStatefulPage<
     FatcaUSRelevantW8AddressDetailsPageViewModel,
-    FatcaUSRelevantW8AddressDetailsPage>
-    with AutomaticKeepAliveClientMixin {
-  FatcaUSRelevantW8AddressDetailsPageState()
-      : super(subscribeVisibilityEvents: true);
+    FatcaUSRelevantW8AddressDetailsPage> with AutomaticKeepAliveClientMixin {
+  FatcaUSRelevantW8AddressDetailsPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -26,14 +22,11 @@ class FatcaUSRelevantW8AddressDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      FatcaUSRelevantW8AddressDetailsPageViewModel model) {
+  Widget buildView(BuildContext context, FatcaUSRelevantW8AddressDetailsPageViewModel model) {
     return FatcaUSRelevantW8AddressDetailsPageView(provideBase());
   }
 

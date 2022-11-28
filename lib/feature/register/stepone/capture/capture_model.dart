@@ -12,17 +12,14 @@ class CaptureViewModel extends BasePageViewModel {
   final UploadSelfieImageUseCase _selfieImageUseCase;
 
   PublishSubject<bool> _cameraControllerInitializer = PublishSubject();
-  PublishSubject<UploadSelfieImageUseCaseParams> _uploadImageRequest =
-      PublishSubject();
+  PublishSubject<UploadSelfieImageUseCaseParams> _uploadImageRequest = PublishSubject();
   PublishSubject<Resource<bool>> _uploadImageResponse = PublishSubject();
 
-  Stream<Resource<bool>> get uploadImageResponseStream =>
-      _uploadImageResponse.stream;
+  Stream<Resource<bool>> get uploadImageResponseStream => _uploadImageResponse.stream;
 
   CaptureViewModel(this._selfieImageUseCase) {
     _uploadImageRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _selfieImageUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _selfieImageUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -31,12 +28,10 @@ class CaptureViewModel extends BasePageViewModel {
     });
   }
 
-  Stream<bool> get cameraControllerInitializerStream =>
-      _cameraControllerInitializer.stream;
+  Stream<bool> get cameraControllerInitializerStream => _cameraControllerInitializer.stream;
 
   void initCamera(List<CameraDescription> cameras) {
-    cameraController = CameraController(cameras[1], ResolutionPreset.medium,
-        enableAudio: false);
+    cameraController = CameraController(cameras[1], ResolutionPreset.medium, enableAudio: false);
     cameraController!.initialize().then((_) {
       _cameraControllerInitializer.safeAdd(true);
     });
@@ -58,8 +53,7 @@ class CaptureViewModel extends BasePageViewModel {
   }
 
   void uploadImage(XFile file) {
-    _uploadImageRequest
-        .safeAdd(UploadSelfieImageUseCaseParams(imagePath: file.path));
+    _uploadImageRequest.safeAdd(UploadSelfieImageUseCaseParams(imagePath: file.path));
   }
 
   @override

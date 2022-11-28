@@ -5,23 +5,20 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view_model.dart';
 
-class CheckScheduledVideoCallPage
-    extends BasePage<CheckScheduledVideoCallPageViewModel> {
+class CheckScheduledVideoCallPage extends BasePage<CheckScheduledVideoCallPageViewModel> {
   final CheckVideoCallScheduledArguments _callScheduledArguments;
 
   CheckScheduledVideoCallPage(this._callScheduledArguments);
 
   @override
-  CheckScheduledVideoCallPageState createState() =>
-      CheckScheduledVideoCallPageState();
+  CheckScheduledVideoCallPageState createState() => CheckScheduledVideoCallPageState();
 }
 
-class CheckScheduledVideoCallPageState extends BaseStatefulPage<
-    CheckScheduledVideoCallPageViewModel, CheckScheduledVideoCallPage> {
+class CheckScheduledVideoCallPageState
+    extends BaseStatefulPage<CheckScheduledVideoCallPageViewModel, CheckScheduledVideoCallPage> {
   @override
   ProviderBase provideBase() {
-    return checkRescheduledVideoCallViewModelProvider
-        .call(widget._callScheduledArguments);
+    return checkRescheduledVideoCallViewModelProvider.call(widget._callScheduledArguments);
   }
 
   @override
@@ -35,8 +32,7 @@ class CheckScheduledVideoCallPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CheckScheduledVideoCallPageViewModel model) {
+  Widget buildView(BuildContext context, CheckScheduledVideoCallPageViewModel model) {
     return CheckScheduledVideoCallPageView(provideBase());
   }
 }

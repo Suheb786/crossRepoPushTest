@@ -41,8 +41,7 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
           case DioErrorType.other:
             return Left(
               NetworkError(
-                  message:
-                      "Connection to API server failed due to internet connection",
+                  message: "Connection to API server failed due to internet connection",
                   httpError: 101,
                   cause: throwable),
             );
@@ -51,12 +50,10 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
         break;
 
       case IOException:
-        return Left(NetworkError(
-            message: throwable.toString(), httpError: 502, cause: throwable));
+        return Left(NetworkError(message: throwable.toString(), httpError: 502, cause: throwable));
 
       default:
-        return Left(NetworkError(
-            message: throwable.toString(), httpError: 502, cause: throwable));
+        return Left(NetworkError(message: throwable.toString(), httpError: 502, cause: throwable));
     }
   }
 }

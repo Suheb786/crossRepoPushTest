@@ -24,8 +24,7 @@ class DashboardRepositoryImpl extends DashboardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetDashboardDataResponse>>
-      getDashboardData() async {
+  Future<Either<NetworkError, GetDashboardDataResponse>> getDashboardData() async {
     final result = await safeApiCall(
       _remoteDs.getDashboardData(),
     );
@@ -36,8 +35,7 @@ class DashboardRepositoryImpl extends DashboardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetPlaceholderResponse>> getPlaceholder(
-      {int? placeholderId}) async {
+  Future<Either<NetworkError, GetPlaceholderResponse>> getPlaceholder({int? placeholderId}) async {
     final result = await safeApiCall(
       _remoteDs.getPlaceholder(placeholderId: placeholderId),
     );

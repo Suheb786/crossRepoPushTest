@@ -5,15 +5,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_customer_doc_id_content_entity.g.dart';
 
 @JsonSerializable()
-class GetCustomerDocIdContentEntity extends BaseLayerDataTransformer<
-    GetCustomerDocIdContentEntity, GetCustomerDocIdContent> {
+class GetCustomerDocIdContentEntity
+    extends BaseLayerDataTransformer<GetCustomerDocIdContentEntity, GetCustomerDocIdContent> {
   @JsonKey(name: "proofOfIncome")
   final String? proofOfIncome;
   @JsonKey(name: "proofOfAddress")
   final String? proofOfAddress;
 
-  GetCustomerDocIdContentEntity(
-      {this.proofOfAddress: "", this.proofOfIncome: ""});
+  GetCustomerDocIdContentEntity({this.proofOfAddress: "", this.proofOfIncome: ""});
 
   factory GetCustomerDocIdContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocIdContentEntityFromJson(json);
@@ -27,7 +26,6 @@ class GetCustomerDocIdContentEntity extends BaseLayerDataTransformer<
 
   @override
   GetCustomerDocIdContent transform() {
-    return GetCustomerDocIdContent(
-        proofOfAddress: this.proofOfAddress, proofOfIncome: this.proofOfIncome);
+    return GetCustomerDocIdContent(proofOfAddress: this.proofOfAddress, proofOfIncome: this.proofOfIncome);
   }
 }

@@ -6,9 +6,7 @@ part "get_card_application_content_entity.g.dart";
 
 @JsonSerializable()
 class GetCardApplicationContentEntity
-    implements
-        BaseLayerDataTransformer<GetCardApplicationContentEntity,
-            GetCardApplicationsContent> {
+    implements BaseLayerDataTransformer<GetCardApplicationContentEntity, GetCardApplicationsContent> {
   @JsonKey(name: "cardId")
   final String? cardId;
   @JsonKey(name: "loanValueId")
@@ -51,8 +49,7 @@ class GetCardApplicationContentEntity
   factory GetCardApplicationContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCardApplicationContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCardApplicationContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCardApplicationContentEntityToJson(this);
 
   @override
   GetCardApplicationContentEntity restore(GetCardApplicationsContent response) {

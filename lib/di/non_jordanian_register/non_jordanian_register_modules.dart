@@ -12,13 +12,12 @@ final nonJordanianRegistrationViewModelProvider =
 );
 
 ///notify view model provider
-final notifyViewModelProvider =
-    ChangeNotifierProvider.autoDispose<NotifyPageViewModel>(
+final notifyViewModelProvider = ChangeNotifierProvider.autoDispose<NotifyPageViewModel>(
   (ref) => NotifyPageViewModel(ref.read(notifyUseCaseProvider)),
 );
 
 ///notify success view model provider
-final notifySuccessViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<NotifySuccessPageViewModel, NotifySuccessArguments>(
+final notifySuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<NotifySuccessPageViewModel, NotifySuccessArguments>(
   (ref, args) => NotifySuccessPageViewModel(args),
 );

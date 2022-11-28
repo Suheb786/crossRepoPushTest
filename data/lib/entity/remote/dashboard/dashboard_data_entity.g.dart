@@ -10,36 +10,27 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) {
   return DashboardDataEntity(
     account: json['account'] == null
         ? null
-        : DashboardAccountEntity.fromJson(
-            json['account'] as Map<String, dynamic>),
+        : DashboardAccountEntity.fromJson(json['account'] as Map<String, dynamic>),
     creditCard: (json['creditCard'] as List<dynamic>?)
         ?.map((e) => DashboardCardEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
     mobileNumber: json['mobileNumber'] as String?,
-    blinkBornDate: json['blinkWasBorn'] == null
-        ? null
-        : DateTime.parse(json['blinkWasBorn'] as String),
-    blinkJoinedDate: json['youJoinedBlink'] == null
-        ? null
-        : DateTime.parse(json['youJoinedBlink'] as String),
+    blinkBornDate: json['blinkWasBorn'] == null ? null : DateTime.parse(json['blinkWasBorn'] as String),
+    blinkJoinedDate: json['youJoinedBlink'] == null ? null : DateTime.parse(json['youJoinedBlink'] as String),
     mobileCode: json['mobileCode'] as String?,
     somethingWrong: json['somethingWrong'] as bool?,
     debitCardSomethingWrong: json['debitCardSomethingWrong'] as bool?,
     isCreditCard: json['isCreditCard'] as bool?,
     dashboardFeatures: json['features'] == null
         ? null
-        : DashboardFeaturesEntity.fromJson(
-            json['features'] as Map<String, dynamic>),
+        : DashboardFeaturesEntity.fromJson(json['features'] as Map<String, dynamic>),
     debitCard: (json['debitCard'] as List<dynamic>?)
-        ?.map(
-            (e) => DashboardDebitCardEntity.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => DashboardDebitCardEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$DashboardDataEntityToJson(
-        DashboardDataEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DashboardDataEntityToJson(DashboardDataEntity instance) => <String, dynamic>{
       'account': instance.account,
       'creditCard': instance.creditCard,
       'debitCard': instance.debitCard,

@@ -6,15 +6,13 @@ import 'package:domain/repository/upload_document/upload_document_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class UploadDocumentUseCase
-    extends BaseUseCase<BaseError, UploadDocumentUseCaseParams, String> {
+class UploadDocumentUseCase extends BaseUseCase<BaseError, UploadDocumentUseCaseParams, String> {
   final UploadDocumentRepository _docRepository;
 
   UploadDocumentUseCase(this._docRepository);
 
   @override
-  Future<Either<BaseError, String>> execute(
-      {UploadDocumentUseCaseParams? params}) {
+  Future<Either<BaseError, String>> execute({UploadDocumentUseCaseParams? params}) {
     return _docRepository.pickUploadDocument(type: params!.documentType);
   }
 }

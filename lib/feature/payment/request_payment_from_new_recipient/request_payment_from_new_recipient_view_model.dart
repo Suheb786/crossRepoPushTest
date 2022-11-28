@@ -22,13 +22,11 @@ class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void updateEditAmount(bool value) {
@@ -36,8 +34,7 @@ class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   RequestPaymentFromNewRecipientViewModel(this.sendValue) {
-    editAmountController.text =
-        double.parse(this.sendValue!).toStringAsFixed(2);
+    editAmountController.text = double.parse(this.sendValue!).toStringAsFixed(2);
   }
 
   void updatePage(int index) {

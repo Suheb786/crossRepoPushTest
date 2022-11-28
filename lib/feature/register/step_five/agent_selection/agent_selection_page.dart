@@ -11,8 +11,7 @@ class AgentSelectionPage extends BasePage<AgentSelectionViewModel> {
   AgentSelectionPageState createState() => AgentSelectionPageState();
 }
 
-class AgentSelectionPageState
-    extends BaseStatefulPage<AgentSelectionViewModel, AgentSelectionPage> {
+class AgentSelectionPageState extends BaseStatefulPage<AgentSelectionViewModel, AgentSelectionPage> {
   @override
   ProviderBase provideBase() {
     return agentSelectionViewModelProvider;
@@ -25,8 +24,7 @@ class AgentSelectionPageState
 
   @override
   void onModelReady(AgentSelectionViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override

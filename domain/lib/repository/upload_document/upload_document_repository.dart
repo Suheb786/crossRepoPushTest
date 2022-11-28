@@ -8,11 +8,8 @@ import 'package:domain/model/upload_document/save_upload_document_response.dart'
 abstract class UploadDocumentRepository {
   Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum type});
 
-  Future<Either<NetworkError, FileUploadResponse>> uploadDocument(
-      {String path});
+  Future<Either<NetworkError, FileUploadResponse>> uploadDocument({String path});
 
   Future<Either<NetworkError, SaveUploadDocumentResponse>> saveUploadDocument(
-      {String proofOfIncomeId,
-        String proofOfAddressId,
-        String proofOfNationalityId});
+      {String proofOfIncomeId, String proofOfAddressId, String proofOfNationalityId});
 }

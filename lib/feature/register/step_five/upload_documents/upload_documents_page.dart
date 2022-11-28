@@ -10,8 +10,7 @@ class UploadDocumentsPage extends BasePage<UploadDocumentsPageViewModel> {
   UploadDocumentsPageState createState() => UploadDocumentsPageState();
 }
 
-class UploadDocumentsPageState extends BaseStatefulPage<
-    UploadDocumentsPageViewModel, UploadDocumentsPage> {
+class UploadDocumentsPageState extends BaseStatefulPage<UploadDocumentsPageViewModel, UploadDocumentsPage> {
   @override
   ProviderBase provideBase() {
     return uploadDocumentsPageViewModelProvider;

@@ -20,13 +20,11 @@ class ForgotPasswordPageViewModel extends BasePageViewModel {
   String expiryDate = "";
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void changeCurrentPage(int index) {

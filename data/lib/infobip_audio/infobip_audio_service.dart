@@ -9,8 +9,7 @@ class InfoBipAudioService {
 
   InfoBipAudioService(this._infobipPlugin);
 
-  Future<bool> initPlugin(
-      {required Function(InfobipCallStatusEnum) callback}) async {
+  Future<bool> initPlugin({required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.init(
         applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
         appKey: KeyHelper.INFOBIP_APP_KEY,
@@ -27,8 +26,7 @@ class InfoBipAudioService {
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
     try {
-      var tokenDetail =
-          await _infobipPlugin.getToken(parameter: parameter.toJson());
+      var tokenDetail = await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {
       rethrow;

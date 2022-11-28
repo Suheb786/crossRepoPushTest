@@ -15,8 +15,7 @@ CheckKycDataEntity _$CheckKycDataEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CheckKycDataEntityToJson(CheckKycDataEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CheckKycDataEntityToJson(CheckKycDataEntity instance) => <String, dynamic>{
       'type': instance.type,
       'status': instance.status,
       'error': instance.error,

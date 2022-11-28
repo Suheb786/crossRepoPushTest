@@ -24,16 +24,13 @@ class SettingsDialogViewModel extends BasePageViewModel {
   Stream<int> get currentStep => _currentStep.stream;
 
   /// get profile info  request
-  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest =
-      PublishSubject();
+  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest = PublishSubject();
 
   /// get profile info response
-  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse =
-      PublishSubject();
+  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse = PublishSubject();
 
   /// get profile info response stream
-  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream =>
-      _getProfileInfoResponse.stream;
+  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream => _getProfileInfoResponse.stream;
 
   /// logout request holder
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
@@ -55,10 +52,7 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
     _logoutRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _logoutResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

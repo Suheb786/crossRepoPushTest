@@ -7,10 +7,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SupplementaryCreditCardRequestUseCase extends BaseUseCase<
-    NetworkError,
-    SupplementaryCreditCardRequestUseCaseParams,
-    SupplementaryCreditCardResponse> {
+class SupplementaryCreditCardRequestUseCase extends BaseUseCase<NetworkError,
+    SupplementaryCreditCardRequestUseCaseParams, SupplementaryCreditCardResponse> {
   final CardRepository _repository;
 
   SupplementaryCreditCardRequestUseCase(this._repository);
@@ -31,12 +29,8 @@ class SupplementaryCreditCardRequestUseCase extends BaseUseCase<
       middleName: params.scannedDocumentInformation.middleName ?? '',
       familyName: params.scannedDocumentInformation.familyName ?? '',
       idNumber: params.scannedDocumentInformation.idNumber ?? '',
-      dob: params.dob != null
-          ? params.dob.toString()
-          : params.scannedDocumentInformation.dob.toString(),
-      doe: params.doe != null
-          ? params.doe.toString()
-          : params.scannedDocumentInformation.doe.toString(),
+      dob: params.dob != null ? params.dob.toString() : params.scannedDocumentInformation.dob.toString(),
+      doe: params.doe != null ? params.doe.toString() : params.scannedDocumentInformation.doe.toString(),
       gender: params.scannedDocumentInformation.gender![0].toUpperCase(),
       documentCode: params.scannedDocumentInformation.documentCode ?? 'I',
       documentNumber: params.scannedDocumentInformation.documentNumber ?? '',

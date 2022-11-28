@@ -5,9 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_cipher_content_entity.g.dart';
 
 @JsonSerializable()
-class GetCipherContentEntity
-    implements
-        BaseLayerDataTransformer<GetCipherContentEntity, GetCipherContent> {
+class GetCipherContentEntity implements BaseLayerDataTransformer<GetCipherContentEntity, GetCipherContent> {
   @JsonKey(name: "cipher")
   final String? cipher;
 

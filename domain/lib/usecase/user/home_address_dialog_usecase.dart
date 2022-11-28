@@ -6,15 +6,13 @@ import 'package:domain/repository/enter_address/home_address_dialog_repository.d
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class HomeAddressDialogUseCase extends BaseUseCase<LocalError,
-    HomeAddressDialogUseCaseParams, HomeAddress> {
+class HomeAddressDialogUseCase extends BaseUseCase<LocalError, HomeAddressDialogUseCaseParams, HomeAddress> {
   final HomeAddressDialogRepository _homeAddressDialogRepository;
 
   HomeAddressDialogUseCase(this._homeAddressDialogRepository);
 
   @override
-  Future<Either<LocalError, HomeAddress>> execute(
-      {required HomeAddressDialogUseCaseParams params}) {
+  Future<Either<LocalError, HomeAddress>> execute({required HomeAddressDialogUseCaseParams params}) {
     return _homeAddressDialogRepository.getHomeAddress(
         latitude: params.latitude, longitude: params.longitude);
   }
@@ -24,8 +22,7 @@ class HomeAddressDialogUseCaseParams extends Params {
   final double latitude;
   final double longitude;
 
-  HomeAddressDialogUseCaseParams(
-      {required this.latitude, required this.longitude});
+  HomeAddressDialogUseCaseParams({required this.latitude, required this.longitude});
 
   @override
   Either<AppError, bool> verify() {

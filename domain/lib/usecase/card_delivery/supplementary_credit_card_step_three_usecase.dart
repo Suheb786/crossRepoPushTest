@@ -5,8 +5,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SupplementaryCreditCardStepThreeUseCase extends BaseUseCase<NetworkError,
-    SupplementaryCreditCardStepThreeUseCaseParams, bool> {
+class SupplementaryCreditCardStepThreeUseCase
+    extends BaseUseCase<NetworkError, SupplementaryCreditCardStepThreeUseCaseParams, bool> {
   final CardRepository _repository;
 
   SupplementaryCreditCardStepThreeUseCase(this._repository);

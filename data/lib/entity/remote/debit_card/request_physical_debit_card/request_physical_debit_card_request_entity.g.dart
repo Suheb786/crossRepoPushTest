@@ -6,8 +6,8 @@ part of 'request_physical_debit_card_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestPhysicalDebitCardRequestEntity
-    _$RequestPhysicalDebitCardRequestEntityFromJson(Map<String, dynamic> json) {
+RequestPhysicalDebitCardRequestEntity _$RequestPhysicalDebitCardRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return RequestPhysicalDebitCardRequestEntity(
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,

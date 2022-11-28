@@ -2,14 +2,17 @@ import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -77,35 +80,81 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          AppSvg.asset(AssetUtils.payments),
-                          Padding(
-                            padding: EdgeInsets.only(top: 9.0.h),
-                            child: Text(
-                              S.of(context).payments,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18.0.t),
-                            ),
-                          ),
+                          if (currentStep == 0)
+                            InkWell(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image:
+                                          AssetUtils.payRequestViaQRBlackIcon,
+                                      title: S.of(context).payViaQR,
+                                      descriptionWidget: Text(
+                                          S.of(context).payAndRequestMoneyViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14.0.t)),
+                                      onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, RoutePaths.QRScanningScreen);
+                                  });
+                                },
+                                child: AppSvg.asset(AssetUtils.payViaQrIcon))
+                          else
+                            InkWell(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image:
+                                          AssetUtils.payRequestViaQRBlackIcon,
+                                      title: S.of(context).requestViaQR,
+                                      descriptionWidget: Text(
+                                          S.of(context).payAndRequestMoneyViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14.0.t)),
+                                      onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: () {
+                                    Navigator.pop(context);
+
+                                    Navigator.pushNamed(context,
+                                        RoutePaths.RequestMoneyQrGeneration,
+                                        arguments:
+                                            RequestMoneyQrGenerationPageArguments(
+                                                ProviderScope.containerOf(
+                                                        context)
+                                                    .read(
+                                                        appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .account!));
+                                  });
+                                },
+                                child:
+                                    AppSvg.asset(AssetUtils.requestViaQrIcon)),
                           Expanded(
                             child: Column(
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
+                                    padding: EdgeInsets.only(
+                                        top: 34.0.h, bottom: 5.0.h),
                                     child: AppSwiper(
-                                      appSwiperController: model.appSwiperController,
+                                      appSwiperController:
+                                          model.appSwiperController,
                                       pages: [
-                                        AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
-                                        AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
-                                        PostPaidBillCardWidget(),
-                                        PrePaidBillCardWidget(),
+                                        AddSendMoneyContactPage(
+                                            beneficiaries:
+                                                model.smBeneficiaries),
+                                        AddRequestMoneyContactPage(
+                                            beneficiaries:
+                                                model.rtpBeneficiaries),
                                         Container()
                                       ],
                                       pageController: model.pageController,
                                       onIndexChanged: (index) {
-                                        print(index.toString());
                                         model.updatePage(index);
                                         model.updatePageControllerStream(index);
                                       },
@@ -115,12 +164,19 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 ),
                                 SmoothPageIndicator(
                                   controller: model.controller,
-                                  count: 4,
+                                  count: 2,
                                   effect: ScrollingDotsEffect(
                                     activeStrokeWidth: 2.6,
                                     activeDotScale: 1.3,
-                                    activeDotColor: Theme.of(context).primaryColorDark,
-                                    dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
+                                    activeDotColor:
+                                        Theme.of(context).primaryColorDark,
+                                    dotColor: Theme.of(context)
+                              currentStep == 0 ? S.of(context).payViaQR : S.of(context).requestViaQR,
+                                        PostPaidBillCardWidget(),
+                                        PrePaidBillCardWidget(),
+                                  count: 4,
+                                        .primaryColorDark
+                                        .withOpacity(0.6),
                                     maxVisibleDots: 5,
                                     radius: 8,
                                     spacing: 10,

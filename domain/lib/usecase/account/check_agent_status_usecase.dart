@@ -6,9 +6,8 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckAgentStatusUseCase extends BaseUseCase<NetworkError,
-    CheckAgentStatusUseCaseParams,
-    CheckAgentStatusResponse> {
+class CheckAgentStatusUseCase
+    extends BaseUseCase<NetworkError, CheckAgentStatusUseCaseParams, CheckAgentStatusResponse> {
   final AccountRepository _accountRepository;
 
   CheckAgentStatusUseCase(this._accountRepository);

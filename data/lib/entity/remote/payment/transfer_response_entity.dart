@@ -5,9 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "transfer_response_entity.g.dart";
 
 @JsonSerializable()
-class TransferResponseEntity
-    implements
-        BaseLayerDataTransformer<TransferResponseEntity, TransferResponse> {
+class TransferResponseEntity implements BaseLayerDataTransformer<TransferResponseEntity, TransferResponse> {
   @JsonKey(name: "beneficiaryId")
   final String? beneficiaryId;
   @JsonKey(name: "transferType")
