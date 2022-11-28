@@ -3,6 +3,7 @@ import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -145,7 +146,14 @@ class PaySelectedBillsPostPaidBillsPageView
                                   }, onSelected: (value) {
                                     model.savingAccountController.text = value;
                                     Navigator.pop(context);
-                                  });
+                                  }, accountsList: [
+                                    ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .account
+                                            ?.accountNo ??
+                                        ''
+                                  ]);
                                 },
                                 suffixIcon: (value, data) {
                                   return Container(

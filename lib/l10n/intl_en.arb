@@ -1446,8 +1446,6 @@
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
   "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?",
-  "addThisBillToSaveList": "Add this bill to your saved list",
-  "doYouReallyDeleteSavedBills": "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
   "payViaQR": "Pay via QR",
   "payAndRequestMoneyViaQR": "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.",
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",

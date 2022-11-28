@@ -13,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view_model.dart';
@@ -340,13 +341,19 @@ class PayBillDetailPageView
         controller: model.payFromController,
         readOnly: true,
         onPressed: () {
-          AccountsDialog.show(context, label: S.of(context).selectAccount,
-              onDismissed: () {
+          AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
             Navigator.pop(context);
           }, onSelected: (value) {
             model.payFromController.text = value;
             Navigator.pop(context);
-          });
+          }, accountsList: [
+            ProviderScope.containerOf(context)
+                    .read(appHomeViewModelProvider)
+                    .dashboardDataContent
+                    .account
+                    ?.accountNo ??
+                ''
+          ]);
         },
         suffixIcon: (value, data) {
           return Container(

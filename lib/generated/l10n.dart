@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12080,10 +12081,10 @@ class S {
     );
   }
 
-  /// `QR code will be valid\nfor 1 hour`
+  /// `QR code will be valid\nfor 30 mins`
   String get qrValidForOneHour {
     return Intl.message(
-      'QR code will be valid\nfor 1 hour',
+      'QR code will be valid\nfor 30 mins',
       name: 'qrValidForOneHour',
       desc: '',
       args: [],
@@ -14235,6 +14236,436 @@ class S {
     return Intl.message(
       'How much would you\nlike to pay?',
       name: 'howMuchWouldYouLikeToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay via QR`
+  String get payViaQR {
+    return Intl.message(
+      'Pay via QR',
+      name: 'payViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.`
+  String get payAndRequestMoneyViaQR {
+    return Intl.message(
+      'Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.',
+      name: 'payAndRequestMoneyViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the QR code within the frame and proceed with payment`
+  String get payViaQRDesc {
+    return Intl.message(
+      'Place the QR code within the frame and proceed with payment',
+      name: 'payViaQRDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to`
+  String get to {
+    return Intl.message(
+      'to',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Expired. Try scanning valid QR`
+  String get qrExpired {
+    return Intl.message(
+      'QR Expired. Try scanning valid QR',
+      name: 'qrExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid QR. Try scanning valid QR`
+  String get qrInvalid {
+    return Intl.message(
+      'Invalid QR. Try scanning valid QR',
+      name: 'qrInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book flight with us!`
+  String get bookFligtWithUs {
+    return Intl.message(
+      'Book flight with us!',
+      name: 'bookFligtWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get bookNow {
+    return Intl.message(
+      'Book Now',
+      name: 'bookNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FROM`
+  String get rjFrom {
+    return Intl.message(
+      'FROM',
+      name: 'rjFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEPART ON`
+  String get departOn {
+    return Intl.message(
+      'DEPART ON',
+      name: 'departOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RETURN ON`
+  String get returnOn {
+    return Intl.message(
+      'RETURN ON',
+      name: 'returnOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passengers`
+  String get passengers {
+    return Intl.message(
+      'Passengers',
+      name: 'passengers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cabin Class`
+  String get cabinClass {
+    return Intl.message(
+      'Cabin Class',
+      name: 'cabinClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase for`
+  String get purchaseFor {
+    return Intl.message(
+      'Purchase for',
+      name: 'purchaseFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM`
+  String get aMM {
+    return Intl.message(
+      'AMM',
+      name: 'aMM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NRT`
+  String get nRT {
+    return Intl.message(
+      'NRT',
+      name: 'nRT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jordan`
+  String get jordan {
+    return Intl.message(
+      'Jordan',
+      name: 'jordan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Japan`
+  String get japan {
+    return Intl.message(
+      'Japan',
+      name: 'japan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart On`
+  String get departOnForPurchasePage {
+    return Intl.message(
+      'Depart On',
+      name: 'departOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return On`
+  String get returnOnForPurchasePage {
+    return Intl.message(
+      'Return On',
+      name: 'returnOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Date`
+  String get purchaseDate {
+    return Intl.message(
+      'Purchase Date',
+      name: 'purchaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `31 Jul 2022 `
+  String get purchaseDummyDate {
+    return Intl.message(
+      '31 Jul 2022 ',
+      name: 'purchaseDummyDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `- 3:30PM`
+  String get purchaseDummyTime {
+    return Intl.message(
+      '- 3:30PM',
+      name: 'purchaseDummyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `984893922`
+  String get refNoDummyData {
+    return Intl.message(
+      '984893922',
+      name: 'refNoDummyData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Booking Summary`
+  String get toBookingSummary {
+    return Intl.message(
+      'to Booking Summary',
+      name: 'toBookingSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Amount`
+  String get totalAmount {
+    return Intl.message(
+      'Total Amount',
+      name: 'totalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `659.570`
+  String get dummyAmount {
+    return Intl.message(
+      '659.570',
+      name: 'dummyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart`
+  String get depart {
+    return Intl.message(
+      'Depart',
+      name: 'depart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get returnTitle {
+    return Intl.message(
+      'Return',
+      name: 'returnTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Amount`
+  String get taxAmount {
+    return Intl.message(
+      'Tax Amount',
+      name: 'taxAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\nflight details`
+  String get pleaseConfirmFlightDetail {
+    return Intl.message(
+      'Please confirm your\nflight details',
+      name: 'pleaseConfirmFlightDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howYouLikeToPayment {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howYouLikeToPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Ref No.`
+  String get bookingRefNo {
+    return Intl.message(
+      'Booking Ref No.',
+      name: 'bookingRefNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BOOK FLIGHT`
+  String get bookFlight {
+    return Intl.message(
+      'BOOK FLIGHT',
+      name: 'bookFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Booking`
+  String get cancelBooking {
+    return Intl.message(
+      'Cancel Booking',
+      name: 'cancelBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.`
+  String get cancelBookingDetail {
+    return Intl.message(
+      'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
+      name: 'cancelBookingDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
+  String get departDescription {
+    return Intl.message(
+      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
+      name: 'departDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of the country. Your destination will appear on the list.`
+  String get rjFlightBookingToDialogBoxDescription {
+    return Intl.message(
+      'Enter the name of the country. Your destination will appear on the list.',
+      name: 'rjFlightBookingToDialogBoxDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM - Amman Queen..`
+  String get fromLabelForRJFlightBooking {
+    return Intl.message(
+      'AMM - Amman Queen..',
+      name: 'fromLabelForRJFlightBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.`
+  String get bookFligtWithUsDescrption {
+    return Intl.message(
+      'Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.',
+      name: 'bookFligtWithUsDescrption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Card`
+  String get accountCard {
+    return Intl.message(
+      'Account Card',
+      name: 'accountCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `payment not done`
+  String get paymentNotDone {
+    return Intl.message(
+      'payment not done',
+      name: 'paymentNotDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No tickets found`
+  String get noTicketsFound {
+    return Intl.message(
+      'No tickets found',
+      name: 'noTicketsFound',
       desc: '',
       args: [],
     );

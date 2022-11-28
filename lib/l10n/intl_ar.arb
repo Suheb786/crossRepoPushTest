@@ -1439,9 +1439,6 @@
   "qrValidForOneHour": "QR code will be valid\nfor 30 mins",
   "paymentNotDone": "payment not done",
   "noTicketsFound": "No tickets found",
-  "addThisBillToSaveList":"Add this bill to your saved list",
-  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
-  "idVerificationFailed": "فشل التحقق من الهوية",
   "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
   "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?"

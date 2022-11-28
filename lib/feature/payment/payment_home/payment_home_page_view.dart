@@ -10,8 +10,6 @@ import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generatio
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
-import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -75,126 +73,143 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                       }
                     },
                     behavior: HitTestBehavior.translucent,
-                    children: [
-                      if (currentStep == 0)
-                        InkWell(
-                            onTap: () {
-                              InformationDialog.show(context,
-                                  image: AssetUtils.payRequestViaQRBlackIcon,
-                                  title: S.of(context).payViaQR,
-                                  descriptionWidget: Text(
-                                      S.of(context).payAndRequestMoneyViaQR,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14.0.t)), onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: () {
-                                Navigator.pop(context);
-                                Navigator.pushNamed(
-                                    context, RoutePaths.QRScanningScreen);
-                              });
-                            },
-                            child: AppSvg.asset(AssetUtils.payViaQrIcon))
-                      else if (currentStep == 1)
-                        InkWell(
-                            onTap: () {
-                              InformationDialog.show(context,
-                                  image: AssetUtils.payRequestViaQRBlackIcon,
-                                  title: S.of(context).requestViaQR,
-                                  descriptionWidget: Text(
-                                      S.of(context).payAndRequestMoneyViaQR,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14.0.t)), onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: () {
-                                Navigator.pop(context);
-
-                                Navigator.pushNamed(context,
-                                    RoutePaths.RequestMoneyQrGeneration,
-                                    arguments:
-                                        RequestMoneyQrGenerationPageArguments(
-                                            ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .account!));
-                              });
-                            },
-                            child: AppSvg.asset(AssetUtils.requestViaQrIcon))
-                      else
-                        AppSvg.asset(AssetUtils.payments),
-                      Padding(
-                        padding: EdgeInsets.only(top: 9.0.h),
-                        child: Text(
-                          S.of(context).payments,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18.0.t),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 9.0.h),
-                        child: Text(
-                          currentStep == 0
-                              ? S.of(context).payViaQR
-                              : S.of(context).requestViaQR,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18.0.t),
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
-                                child: AppSwiper(
-                                  appSwiperController:
-                                      model.appSwiperController,
-                                  pages: [
-                                    AddSendMoneyContactPage(
-                                        beneficiaries: model.smBeneficiaries),
-                                    AddRequestMoneyContactPage(
-                                        beneficiaries: model.rtpBeneficiaries),
-                                    Container()
-                                  ],
-                                  pageController: model.pageController,
-                                  onIndexChanged: (index) {
-                                    model.updatePage(index);
-                                    model.updatePageControllerStream(index);
-                                  },
-                                  currentStep: currentStep,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 75.0.h),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (currentStep == 0)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      InformationDialog.show(context,
+                                          image: AssetUtils.payRequestViaQRBlackIcon,
+                                          title: S.of(context).payViaQR,
+                                          descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14.0.t)), onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: () {
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                      });
+                                    },
+                                    child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 9.0.h),
+                                  child: Text(
+                                    S.of(context).payViaQR,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18.0.t),
+                                  ),
                                 ),
-                              ),
+                              ],
+                            )
+                          else if (currentStep == 1)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      InformationDialog.show(context,
+                                          image: AssetUtils.payRequestViaQRBlackIcon,
+                                          title: S.of(context).requestViaQR,
+                                          descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14.0.t)), onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: () {
+                                        Navigator.pop(context);
+
+                                        Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                            arguments: RequestMoneyQrGenerationPageArguments(
+                                                ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .account!));
+                                      });
+                                    },
+                                    child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 9.0.h),
+                                  child: Text(
+                                    S.of(context).requestViaQR,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18.0.t),
+                                  ),
+                                ),
+                              ],
+                            )
+                          else
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppSvg.asset(AssetUtils.payments),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 9.0.h),
+                                  child: Text(
+                                    S.of(context).payments,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18.0.t),
+                                  ),
+                                )
+                              ],
                             ),
-                            SmoothPageIndicator(
-                              controller: model.controller,
-                              count: 2,
-                              effect: ScrollingDotsEffect(
-                                activeStrokeWidth: 2.6,
-                                activeDotScale: 1.3,
-                                activeDotColor:
-                                    Theme.of(context).primaryColorDark,
-                                dotColor: Theme.of(context)
-                                    .primaryColorDark
-                                    .withOpacity(0.6),
-                                maxVisibleDots: 5,
-                                radius: 8,
-                                spacing: 10,
-                                dotHeight: 10,
-                                dotWidth: 10,
-                              ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
+                                    child: AppSwiper(
+                                      appSwiperController: model.appSwiperController,
+                                      pages: [
+                                        AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
+                                        AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
+                                        Container()
+                                      ],
+                                      pageController: model.pageController,
+                                      onIndexChanged: (index) {
+                                        model.updatePage(index);
+                                        model.updatePageControllerStream(index);
+                                      },
+                                      currentStep: currentStep,
+                                    ),
+                                  ),
+                                ),
+                                SmoothPageIndicator(
+                                  controller: model.controller,
+                                  count: 2,
+                                  effect: ScrollingDotsEffect(
+                                    activeStrokeWidth: 2.6,
+                                    activeDotScale: 1.3,
+                                    activeDotColor: Theme.of(context).primaryColorDark,
+                                    dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
+                                    maxVisibleDots: 5,
+                                    radius: 8,
+                                    spacing: 10,
+                                    dotHeight: 10,
+                                    dotWidth: 10,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )
-                    ],
+                          )
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),
