@@ -16,7 +16,9 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -73,7 +75,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                     ? 0
                                     : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -103,9 +105,9 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               },
                                               suffixIcon: (isValid, value) {
                                                 return Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding: EdgeInsets.symmetric(horizontal: 7),
+                                                    height: 16.h,
+                                                    width: 16.w,
+                                                    padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                     child: AppSvg.asset(AssetUtils.downArrow,
                                                         color: Theme.of(context).primaryColorDark));
                                               },
@@ -119,7 +121,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                       return Column(
                                                         children: [
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                               labelText: S.of(context).alias.toUpperCase(),
@@ -137,7 +139,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                       return Column(
                                                         children: [
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText:
@@ -159,13 +161,13 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                               return InkWell(
                                                                 onTap: () {},
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(top: 8.0),
+                                                                  padding: EdgeInsets.only(top: 8.0.h),
                                                                   child: Row(
                                                                     mainAxisSize: MainAxisSize.min,
                                                                     children: <Widget>[
                                                                       Container(
-                                                                        height: 16,
-                                                                        width: 16,
+                                                                        height: 16.h,
+                                                                        width: 16.w,
                                                                         decoration: BoxDecoration(
                                                                           color: Theme.of(context)
                                                                               .primaryColorDark,
@@ -176,7 +178,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsets.symmetric(
-                                                                            horizontal: 8.0),
+                                                                            horizontal: 8.0.h),
                                                                         child: Text(
                                                                           "+962",
                                                                           style: TextStyle(
@@ -185,16 +187,16 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                                 .textTheme
                                                                                 .bodyText1!
                                                                                 .color,
-                                                                            fontSize: 14,
+                                                                            fontSize: 14.t,
                                                                             fontWeight: FontWeight.w600,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Container(
-                                                                          height: 16,
-                                                                          width: 16,
+                                                                          height: 16.h,
+                                                                          width: 16.w,
                                                                           margin: EdgeInsetsDirectional.only(
-                                                                              end: 8),
+                                                                              end: 8.w),
                                                                           child: AppSvg.asset(
                                                                               AssetUtils.downArrow,
                                                                               color: Theme.of(context)
@@ -220,7 +222,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                     Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
@@ -233,21 +235,22 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                 );
                                               }),
                                         ),
-                                        // Center(
-                                        //   child: InkWell(
-                                        //     onTap: () {
-                                        //       Navigator.pop(context);
-                                        //     },
-                                        //     child: Text(
-                                        //       S.of(context).backToLogin,
-                                        //       style: TextStyle(
-                                        //         color: AppColor.brightBlue,
-                                        //         fontSize: 14,
-                                        //         fontWeight: FontWeight.w500,
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // ),
+                                        Center(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              S.of(context).backToManageCliq,
+                                              style: TextStyle(
+                                                color: AppColor.brightBlue,
+                                                fontSize: 14.t,
+                                                letterSpacing: 1.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],

@@ -273,4 +273,7 @@ class AssetUtils {
   static const String RjCardLogo = svg + "rj_card_logo.svg";
   static const String GoRjLogo = svg + "go_rj_logo.svg";
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+
+  ///Cliq
+  static const String walletIcon = svg + "wallet.svg";
 }
