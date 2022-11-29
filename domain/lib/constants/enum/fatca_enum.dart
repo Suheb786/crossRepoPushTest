@@ -10,8 +10,7 @@ class FatcaEnum {
 
   static const FatcaEnum w9 = FatcaEnum._("w9");
   static const FatcaEnum w8 = FatcaEnum._("w8");
-  static const FatcaEnum CONFIRMATION_SCREEN =
-      FatcaEnum._("confirmationScreeen");
+  static const FatcaEnum CONFIRMATION_SCREEN = FatcaEnum._("confirmationScreeen");
   static const FatcaEnum NONE = FatcaEnum._("None");
 }
 

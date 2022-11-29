@@ -22,10 +22,8 @@ class VerifyDeviceChangeOtpRequestEntity {
       this.otp: "",
       this.fireBaseToken: ""});
 
-  factory VerifyDeviceChangeOtpRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory VerifyDeviceChangeOtpRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$VerifyDeviceChangeOtpRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$VerifyDeviceChangeOtpRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$VerifyDeviceChangeOtpRequestEntityToJson(this);
 }

@@ -14,14 +14,12 @@ final dcChangeLinkedMobileNumberViewModelProvider =
 final dcEnterNewMobileNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<DcEnterNewMobileNumberPageViewModel>(
   (ref) => DcEnterNewMobileNumberPageViewModel(
-      ref.read(getAllowedCodeCountriesListUseCaseProvider),
-      ref.read(dcEnterNewMobileNumberUseCaseProvider)),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider), ref.read(dcEnterNewMobileNumberUseCaseProvider)),
 );
 
-final dcEnterOtpViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DcEnterOtpViewModel>(
-  (ref) => DcEnterOtpViewModel(ref.read(dcEnterOtpUseCaseProvider),
-      ref.read(dcEnterNewMobileNumberUseCaseProvider)),
+final dcEnterOtpViewModelProvider = ChangeNotifierProvider.autoDispose<DcEnterOtpViewModel>(
+  (ref) => DcEnterOtpViewModel(
+      ref.read(dcEnterOtpUseCaseProvider), ref.read(dcEnterNewMobileNumberUseCaseProvider)),
 );
 
 final dcChangeMobileNumberSuccessViewModelProvider =

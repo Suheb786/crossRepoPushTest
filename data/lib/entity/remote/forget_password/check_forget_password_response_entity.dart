@@ -7,30 +7,24 @@ part "check_forget_password_response_entity.g.dart";
 
 @JsonSerializable()
 class CheckForgetPasswordResponseEntity
-    implements
-        BaseLayerDataTransformer<CheckForgetPasswordResponseEntity,
-            CheckForgetPasswordResponse> {
+    implements BaseLayerDataTransformer<CheckForgetPasswordResponseEntity, CheckForgetPasswordResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   CheckForgetPasswordResponseEntity({this.response});
 
-  factory CheckForgetPasswordResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory CheckForgetPasswordResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckForgetPasswordResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckForgetPasswordResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckForgetPasswordResponseEntityToJson(this);
 
   @override
-  CheckForgetPasswordResponseEntity restore(
-      CheckForgetPasswordResponse response) {
+  CheckForgetPasswordResponseEntity restore(CheckForgetPasswordResponse response) {
     return CheckForgetPasswordResponseEntity();
   }
 
   @override
   CheckForgetPasswordResponse transform() {
-    return CheckForgetPasswordResponse(
-        checkForgetPasswordContentResponse: this.response!.content);
+    return CheckForgetPasswordResponse(checkForgetPasswordContentResponse: this.response!.content);
   }
 }

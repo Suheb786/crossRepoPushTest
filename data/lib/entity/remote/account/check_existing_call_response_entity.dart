@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'check_existing_call_response_entity.g.dart';
 
 @JsonSerializable()
-class CheckExistingCallResponseEntity extends BaseLayerDataTransformer<
-    CheckExistingCallResponseEntity, CheckExistingCallStatus> {
+class CheckExistingCallResponseEntity
+    extends BaseLayerDataTransformer<CheckExistingCallResponseEntity, CheckExistingCallStatus> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -17,13 +17,10 @@ class CheckExistingCallResponseEntity extends BaseLayerDataTransformer<
   factory CheckExistingCallResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckExistingCallResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckExistingCallResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckExistingCallResponseEntityToJson(this);
 
   @override
   CheckExistingCallStatus transform() {
-    return CheckExistingCallStatusEntity.fromJson(
-            response!.content as Map<String, dynamic>)
-        .transform();
+    return CheckExistingCallStatusEntity.fromJson(response!.content as Map<String, dynamic>).transform();
   }
 }

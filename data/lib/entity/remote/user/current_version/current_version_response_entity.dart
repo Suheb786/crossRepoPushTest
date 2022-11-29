@@ -7,9 +7,7 @@ part 'current_version_response_entity.g.dart';
 
 @JsonSerializable()
 class CurrentVersionResponseEntity
-    implements
-        BaseLayerDataTransformer<CurrentVersionResponseEntity,
-            CurrentVersionResponse> {
+    implements BaseLayerDataTransformer<CurrentVersionResponseEntity, CurrentVersionResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

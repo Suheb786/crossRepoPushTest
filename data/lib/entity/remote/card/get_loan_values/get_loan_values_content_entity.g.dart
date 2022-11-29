@@ -6,8 +6,7 @@ part of 'get_loan_values_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetLoanValuesContentEntity _$GetLoanValuesContentEntityFromJson(
-    Map<String, dynamic> json) {
+GetLoanValuesContentEntity _$GetLoanValuesContentEntityFromJson(Map<String, dynamic> json) {
   return GetLoanValuesContentEntity(
     maxLimit: json['maxLimit'] as num?,
     loanValueId: json['loanValueId'] as num?,
@@ -16,8 +15,7 @@ GetLoanValuesContentEntity _$GetLoanValuesContentEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$GetLoanValuesContentEntityToJson(
-        GetLoanValuesContentEntity instance) =>
+Map<String, dynamic> _$GetLoanValuesContentEntityToJson(GetLoanValuesContentEntity instance) =>
     <String, dynamic>{
       'loanValueId': instance.loanValueId,
       'minimumLimit': instance.minimumLimit,

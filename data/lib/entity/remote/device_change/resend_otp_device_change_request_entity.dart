@@ -17,10 +17,8 @@ class ResendOtpDeviceChangeRequestEntity {
     this.type: "DeviceChange",
   });
 
-  factory ResendOtpDeviceChangeRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory ResendOtpDeviceChangeRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ResendOtpDeviceChangeRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ResendOtpDeviceChangeRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ResendOtpDeviceChangeRequestEntityToJson(this);
 }

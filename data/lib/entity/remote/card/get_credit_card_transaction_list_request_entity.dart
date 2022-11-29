@@ -20,10 +20,8 @@ class GetCreditCardTransactionListRequestEntity {
     this.cardId: "",
   });
 
-  factory GetCreditCardTransactionListRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCreditCardTransactionListRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardTransactionListRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCreditCardTransactionListRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCreditCardTransactionListRequestEntityToJson(this);
 }

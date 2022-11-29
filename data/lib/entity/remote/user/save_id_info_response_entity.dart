@@ -7,8 +7,7 @@ part 'save_id_info_response_entity.g.dart';
 
 @JsonSerializable()
 class SaveIdInfoResponseEntity
-    implements
-        BaseLayerDataTransformer<SaveIdInfoResponseEntity, SaveIdInfoResponse> {
+    implements BaseLayerDataTransformer<SaveIdInfoResponseEntity, SaveIdInfoResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

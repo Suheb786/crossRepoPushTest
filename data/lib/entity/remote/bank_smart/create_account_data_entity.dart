@@ -6,8 +6,7 @@ part 'create_account_data_entity.g.dart';
 
 @JsonSerializable()
 class CreateAccountDataEntity
-    implements
-        BaseLayerDataTransformer<CreateAccountDataEntity, CreateAccountData> {
+    implements BaseLayerDataTransformer<CreateAccountDataEntity, CreateAccountData> {
   @JsonKey(name: "accountDate")
   final dynamic accountDate;
 
@@ -40,21 +39,22 @@ class CreateAccountDataEntity
   @JsonKey(name: "cardNumber")
   final dynamic cardNumber;
 
-  CreateAccountDataEntity({this.accountDate,
-    this.name,
-    this.accountNumber,
-    this.iban,
-    this.cif,
-    this.promoCode,
-    this.balance,
-    this.currencyCode,
-    this.zPoints,
-    this.dailyLimitLeft,
-    this.dailyTransferLimit,
-    this.bankName,
-    this.countryName,
-    this.swiftCode,
-    this.cardNumber});
+  CreateAccountDataEntity(
+      {this.accountDate,
+      this.name,
+      this.accountNumber,
+      this.iban,
+      this.cif,
+      this.promoCode,
+      this.balance,
+      this.currencyCode,
+      this.zPoints,
+      this.dailyLimitLeft,
+      this.dailyTransferLimit,
+      this.bankName,
+      this.countryName,
+      this.swiftCode,
+      this.cardNumber});
 
   factory CreateAccountDataEntity.fromJson(Map<String, dynamic> json) =>
       _$CreateAccountDataEntityFromJson(json);

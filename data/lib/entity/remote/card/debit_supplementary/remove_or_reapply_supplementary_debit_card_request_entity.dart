@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'remove_or_reapply_supplementary_debit_card_request_entity.g.dart';
 
+part 'remove_or_reapply_supplementary_debit_card_request_entity.g.dart';
 
 @JsonSerializable()
 class RemoveOrReApplySupplementaryDebitCardRequestEnity {
@@ -20,18 +20,10 @@ class RemoveOrReApplySupplementaryDebitCardRequestEnity {
   final Map<String, dynamic> baseData;
 
   RemoveOrReApplySupplementaryDebitCardRequestEnity(
-      {this.getToken,
-      this.status,
-      this.tokenizedPan,
-      this.reApply,
-     required this.baseData});
+      {this.getToken, this.status, this.tokenizedPan, this.reApply, required this.baseData});
 
-
- factory RemoveOrReApplySupplementaryDebitCardRequestEnity.fromJson(
-          Map<String, dynamic> json) =>
+  factory RemoveOrReApplySupplementaryDebitCardRequestEnity.fromJson(Map<String, dynamic> json) =>
       _$RemoveOrReApplySupplementaryDebitCardRequestEnityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$RemoveOrReApplySupplementaryDebitCardRequestEnityToJson(this);
-
+  Map<String, dynamic> toJson() => _$RemoveOrReApplySupplementaryDebitCardRequestEnityToJson(this);
 }

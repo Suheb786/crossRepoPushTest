@@ -6,8 +6,7 @@ part of 'verify_device_change_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyDeviceChangeOtpRequestEntity _$VerifyDeviceChangeOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
+VerifyDeviceChangeOtpRequestEntity _$VerifyDeviceChangeOtpRequestEntityFromJson(Map<String, dynamic> json) {
   return VerifyDeviceChangeOtpRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,

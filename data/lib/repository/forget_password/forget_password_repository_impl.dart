@@ -14,12 +14,9 @@ class ForgetPasswordRepositoryImpl extends ForgetPasswordRepository {
 
   @override
   Future<Either<NetworkError, CheckForgetPasswordResponse>> checkForgetPassword(
-      {required String? email,
-      required String? expiryDate,
-      required String? nationalId}) async {
+      {required String? email, required String? expiryDate, required String? nationalId}) async {
     final result = await safeApiCall(
-      _remoteDs.checkForgetPassword(
-          email: email, expiryDate: expiryDate, nationalId: nationalId),
+      _remoteDs.checkForgetPassword(email: email, expiryDate: expiryDate, nationalId: nationalId),
     );
     return result!.fold(
       (l) => Left(l),
@@ -49,14 +46,13 @@ class ForgetPasswordRepositoryImpl extends ForgetPasswordRepository {
   }
 
   @override
-  Future<Either<NetworkError, VerifyForgetPasswordOtpResponse>>
-      verifyForgetPasswordOtp(
-          {required String? email,
-          required String? expiryDate,
-          required String? nationalId,
-          required String? createPassword,
-          required String? confirmPassword,
-          required String? otp}) async {
+  Future<Either<NetworkError, VerifyForgetPasswordOtpResponse>> verifyForgetPasswordOtp(
+      {required String? email,
+      required String? expiryDate,
+      required String? nationalId,
+      required String? createPassword,
+      required String? confirmPassword,
+      required String? otp}) async {
     final result = await safeApiCall(
       _remoteDs.verifyForgetPasswordOtp(
           email: email,

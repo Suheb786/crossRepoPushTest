@@ -8,14 +8,10 @@ part of 'error_response_entity.dart';
 
 ErrorResponseEntity _$ErrorResponseEntityFromJson(Map<String, dynamic> json) {
   return ErrorResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$ErrorResponseEntityToJson(
-        ErrorResponseEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ErrorResponseEntityToJson(ErrorResponseEntity instance) => <String, dynamic>{
       'response': instance.response,
     };

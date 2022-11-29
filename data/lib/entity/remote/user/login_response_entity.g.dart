@@ -8,14 +8,10 @@ part of 'login_response_entity.dart';
 
 LoginResponseEntity _$LoginResponseEntityFromJson(Map<String, dynamic> json) {
   return LoginResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$LoginResponseEntityToJson(
-        LoginResponseEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginResponseEntityToJson(LoginResponseEntity instance) => <String, dynamic>{
       'response': instance.response,
     };

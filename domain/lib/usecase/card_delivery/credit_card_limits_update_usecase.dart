@@ -5,15 +5,14 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CreditCardLimitsUpdateUseCase extends BaseUseCase<NetworkError,
-    CreditCardLimitsUpdateUseCaseParams, bool> {
+class CreditCardLimitsUpdateUseCase
+    extends BaseUseCase<NetworkError, CreditCardLimitsUpdateUseCaseParams, bool> {
   final CardRepository _repository;
 
   CreditCardLimitsUpdateUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CreditCardLimitsUpdateUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CreditCardLimitsUpdateUseCaseParams params}) {
     return _repository.updateCreditCardLimits(
         atmWithdrawal: params.atmWithdrawal!,
         secureCode: params.secureCode!,

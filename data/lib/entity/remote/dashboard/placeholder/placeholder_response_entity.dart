@@ -8,9 +8,7 @@ part "placeholder_response_entity.g.dart";
 
 @JsonSerializable()
 class PlaceholderResponseEntity
-    implements
-        BaseLayerDataTransformer<PlaceholderResponseEntity,
-            GetPlaceholderResponse> {
+    implements BaseLayerDataTransformer<PlaceholderResponseEntity, GetPlaceholderResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,8 +26,6 @@ class PlaceholderResponseEntity
 
   @override
   GetPlaceholderResponse transform() {
-    return GetPlaceholderResponse(
-        data:
-            PlaceholderDataEntity.fromJson(this.response!.content).transform());
+    return GetPlaceholderResponse(data: PlaceholderDataEntity.fromJson(this.response!.content).transform());
   }
 }

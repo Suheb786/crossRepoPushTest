@@ -10,6 +10,5 @@ class AdditionalDataTypeEnum {
 
   static const AdditionalDataTypeEnum NONE = AdditionalDataTypeEnum._("-");
   static const AdditionalDataTypeEnum DROPDOWN = AdditionalDataTypeEnum._("D");
-  static const AdditionalDataTypeEnum TEXT_FIELD =
-      AdditionalDataTypeEnum._("T");
+  static const AdditionalDataTypeEnum TEXT_FIELD = AdditionalDataTypeEnum._("T");
 }

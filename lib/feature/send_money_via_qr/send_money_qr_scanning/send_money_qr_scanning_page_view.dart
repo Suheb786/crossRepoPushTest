@@ -63,7 +63,6 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ///TODO: send other data from api response
                     Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess,
                         arguments: SendMoneyViaQRSuccessPageArguments(
                             referenceNo: data.data?.transferSuccessContent?.referenceNo ?? '',

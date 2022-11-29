@@ -8,9 +8,7 @@ part "card_statement_response_entity.g.dart";
 
 @JsonSerializable()
 class CardStatementResponseEntity
-    implements
-        BaseLayerDataTransformer<CardStatementResponseEntity,
-            CardStatementResponse> {
+    implements BaseLayerDataTransformer<CardStatementResponseEntity, CardStatementResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class CardStatementResponseEntity
   @override
   CardStatementResponse transform() {
     return CardStatementResponse(
-        cardStatementContent:
-            CardStatementContentEntity.fromJson(this.response!.content)
-                .transform());
+        cardStatementContent: CardStatementContentEntity.fromJson(this.response!.content).transform());
   }
 }

@@ -4,8 +4,7 @@ class GenerateKeyPairContent {
 
   GenerateKeyPairContent({this.privatePEM, this.publicPEM});
 
-  factory GenerateKeyPairContent.fromJson(Map<String, dynamic> json) =>
-      GenerateKeyPairContent(
+  factory GenerateKeyPairContent.fromJson(Map<String, dynamic> json) => GenerateKeyPairContent(
         privatePEM: json["privatePEM"],
         publicPEM: json["publicPEM"],
       );

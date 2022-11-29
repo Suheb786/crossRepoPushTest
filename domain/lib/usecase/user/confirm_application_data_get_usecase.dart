@@ -7,8 +7,7 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class ConfirmApplicationDataGetUseCase extends BaseUseCase<NetworkError,
-    ConfirmApplicationDataGetUseCaseParams,
-    GetConfirmApplicationDataResponse> {
+    ConfirmApplicationDataGetUseCaseParams, GetConfirmApplicationDataResponse> {
   final UserRepository _repository;
 
   ConfirmApplicationDataGetUseCase(this._repository);

@@ -6,8 +6,8 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCallTimeSlotsUseCase extends BaseUseCase<NetworkError,
-    GetCallTimeSlotsUseCaseParams, List<AvailableTimeSlots>> {
+class GetCallTimeSlotsUseCase
+    extends BaseUseCase<NetworkError, GetCallTimeSlotsUseCaseParams, List<AvailableTimeSlots>> {
   final AccountRepository _accountRepository;
 
   GetCallTimeSlotsUseCase(this._accountRepository);
@@ -21,6 +21,7 @@ class GetCallTimeSlotsUseCase extends BaseUseCase<NetworkError,
 
 class GetCallTimeSlotsUseCaseParams extends Params {
   final String callDate;
+
   GetCallTimeSlotsUseCaseParams({required this.callDate});
 
   @override

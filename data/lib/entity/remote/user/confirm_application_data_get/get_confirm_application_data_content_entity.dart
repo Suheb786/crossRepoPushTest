@@ -17,8 +17,7 @@ part 'get_confirm_application_data_content_entity.g.dart';
 @JsonSerializable()
 class GetConfirmApplicationDataContentEntity
     implements
-        BaseLayerDataTransformer<GetConfirmApplicationDataContentEntity,
-            GetConfirmApplicationDataContent> {
+        BaseLayerDataTransformer<GetConfirmApplicationDataContentEntity, GetConfirmApplicationDataContent> {
   @JsonKey(name: "profileStatus")
   final ProfileStatusEntity? profileStatus;
   @JsonKey(name: "countryResidence")
@@ -30,49 +29,34 @@ class GetConfirmApplicationDataContentEntity
   @JsonKey(name: "fatcaCrs")
   final FatcaCrsEntity? fatcaCrs;
 
-  GetConfirmApplicationDataContentEntity({this.profileStatus,
-    this.countryResidence,
-    this.jobDetail,
-    this.accountPurpose,
-    this.fatcaCrs});
+  GetConfirmApplicationDataContentEntity(
+      {this.profileStatus, this.countryResidence, this.jobDetail, this.accountPurpose, this.fatcaCrs});
 
-  factory GetConfirmApplicationDataContentEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory GetConfirmApplicationDataContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetConfirmApplicationDataContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetConfirmApplicationDataContentEntityToJson(this);
 
   @override
-  GetConfirmApplicationDataContentEntity restore(
-      GetConfirmApplicationDataContent response) {
+  GetConfirmApplicationDataContentEntity restore(GetConfirmApplicationDataContent response) {
     return GetConfirmApplicationDataContentEntity(
-        accountPurpose:
-        AccountPurposeEntity().restore(response.accountPurposeInfo!),
-        countryResidence:
-        CountryResidenceEntity().restore(response.countryResidenceInfo!),
+        accountPurpose: AccountPurposeEntity().restore(response.accountPurposeInfo!),
+        countryResidence: CountryResidenceEntity().restore(response.countryResidenceInfo!),
         fatcaCrs: FatcaCrsEntity().restore(response.fatcaCrsInfo!),
         jobDetail: JobDetailEntity().restore(response.jobDetailInfo!),
-        profileStatus:
-        ProfileStatusEntity().restore(response.profileStatusInfo!));
+        profileStatus: ProfileStatusEntity().restore(response.profileStatusInfo!));
   }
 
   @override
   GetConfirmApplicationDataContent transform() {
     return GetConfirmApplicationDataContent(
-        accountPurposeInfo: this.accountPurpose != null
-            ? this.accountPurpose!.transform()
-            : AccountPurposeInfo(),
-        countryResidenceInfo: this.countryResidence != null
-            ? this.countryResidence!.transform()
-            : CountryResidenceInfo(),
-        fatcaCrsInfo:
-        this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
-        jobDetailInfo: this.jobDetail != null
-            ? this.jobDetail!.transform()
-            : JobDetailInfo(),
-        profileStatusInfo: this.profileStatus != null
-            ? this.profileStatus!.transform()
-            : ProfileStatusInfo());
+        accountPurposeInfo:
+            this.accountPurpose != null ? this.accountPurpose!.transform() : AccountPurposeInfo(),
+        countryResidenceInfo:
+            this.countryResidence != null ? this.countryResidence!.transform() : CountryResidenceInfo(),
+        fatcaCrsInfo: this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
+        jobDetailInfo: this.jobDetail != null ? this.jobDetail!.transform() : JobDetailInfo(),
+        profileStatusInfo:
+            this.profileStatus != null ? this.profileStatus!.transform() : ProfileStatusInfo());
   }
 }

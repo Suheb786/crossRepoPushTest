@@ -6,9 +6,8 @@ part of 'remove_or_reapply_supplementary_debit_card_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoveOrReApplySupplementaryDebitCardRequestEnity
-    _$RemoveOrReApplySupplementaryDebitCardRequestEnityFromJson(
-        Map<String, dynamic> json) {
+RemoveOrReApplySupplementaryDebitCardRequestEnity _$RemoveOrReApplySupplementaryDebitCardRequestEnityFromJson(
+    Map<String, dynamic> json) {
   return RemoveOrReApplySupplementaryDebitCardRequestEnity(
     getToken: json['getToken'] as bool?,
     status: json['Status'] as String?,

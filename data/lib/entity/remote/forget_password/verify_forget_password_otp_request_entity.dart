@@ -35,10 +35,8 @@ class VerifyForgetPasswordOtpRequestEntity {
     this.uniqueId: "",
   });
 
-  factory VerifyForgetPasswordOtpRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory VerifyForgetPasswordOtpRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$VerifyForgetPasswordOtpRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$VerifyForgetPasswordOtpRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$VerifyForgetPasswordOtpRequestEntityToJson(this);
 }

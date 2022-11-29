@@ -6,8 +6,7 @@ part of 'save_upload_document_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveUploadDocumentRequestEntity _$SaveUploadDocumentRequestEntityFromJson(
-    Map<String, dynamic> json) {
+SaveUploadDocumentRequestEntity _$SaveUploadDocumentRequestEntityFromJson(Map<String, dynamic> json) {
   return SaveUploadDocumentRequestEntity(
     proofOfAddressId: json['ProofOfAddressId'] as String?,
     proofOfIncomeId: json['ProofOfIncomeId'] as String?,
@@ -17,8 +16,7 @@ SaveUploadDocumentRequestEntity _$SaveUploadDocumentRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$SaveUploadDocumentRequestEntityToJson(
-        SaveUploadDocumentRequestEntity instance) =>
+Map<String, dynamic> _$SaveUploadDocumentRequestEntityToJson(SaveUploadDocumentRequestEntity instance) =>
     <String, dynamic>{
       'ProofOfIncomeId': instance.proofOfIncomeId,
       'ProofOfAddressId': instance.proofOfAddressId,

@@ -8,32 +8,25 @@ part "request_to_pay_content_response_entity.g.dart";
 
 @JsonSerializable()
 class RequestToPayContentResponseEntity
-    implements
-        BaseLayerDataTransformer<RequestToPayContentResponseEntity,
-            RequestToPayContentResponse> {
+    implements BaseLayerDataTransformer<RequestToPayContentResponseEntity, RequestToPayContentResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   RequestToPayContentResponseEntity({this.response});
 
-  factory RequestToPayContentResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory RequestToPayContentResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestToPayContentResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$RequestToPayContentResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$RequestToPayContentResponseEntityToJson(this);
 
   @override
-  RequestToPayContentResponseEntity restore(
-      RequestToPayContentResponse response) {
+  RequestToPayContentResponseEntity restore(RequestToPayContentResponse response) {
     return RequestToPayContentResponseEntity();
   }
 
   @override
   RequestToPayContentResponse transform() {
     return RequestToPayContentResponse(
-        requestToPayContent:
-            RequestToPayContentEntity.fromJson(this.response!.content)
-                .transform());
+        requestToPayContent: RequestToPayContentEntity.fromJson(this.response!.content).transform());
   }
 }

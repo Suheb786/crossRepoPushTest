@@ -25,6 +25,5 @@ class SaveUploadDocumentRequestEntity {
   factory SaveUploadDocumentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveUploadDocumentRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveUploadDocumentRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveUploadDocumentRequestEntityToJson(this);
 }

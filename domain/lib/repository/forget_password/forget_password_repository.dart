@@ -6,9 +6,7 @@ import 'package:domain/model/forget_password/verify_forget_password_otp_response
 
 abstract class ForgetPasswordRepository {
   Future<Either<NetworkError, CheckForgetPasswordResponse>> checkForgetPassword(
-      {required String? email,
-      required String? expiryDate,
-      required String? nationalId});
+      {required String? email, required String? expiryDate, required String? nationalId});
 
   Future<Either<NetworkError, ForgetPasswordResponse>> resetPassword(
       {required String? email,
@@ -17,12 +15,11 @@ abstract class ForgetPasswordRepository {
       required String? createPassword,
       required String? confirmPassword});
 
-  Future<Either<NetworkError, VerifyForgetPasswordOtpResponse>>
-      verifyForgetPasswordOtp(
-          {required String? email,
-          required String? expiryDate,
-          required String? nationalId,
-          required String? createPassword,
-          required String? confirmPassword,
-          required String? otp});
+  Future<Either<NetworkError, VerifyForgetPasswordOtpResponse>> verifyForgetPasswordOtp(
+      {required String? email,
+      required String? expiryDate,
+      required String? nationalId,
+      required String? createPassword,
+      required String? confirmPassword,
+      required String? otp});
 }

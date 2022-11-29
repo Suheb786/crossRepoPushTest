@@ -13,8 +13,7 @@ RequestCallEntity _$RequestCallEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$RequestCallEntityToJson(RequestCallEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RequestCallEntityToJson(RequestCallEntity instance) => <String, dynamic>{
       'conferenceLink': instance.conferenceLink,
       'callId': instance.callId,
     };

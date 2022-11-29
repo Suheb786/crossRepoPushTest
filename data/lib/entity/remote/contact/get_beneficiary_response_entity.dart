@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part "get_beneficiary_response_entity.g.dart";
 
 @JsonSerializable()
-class GetBeneficiaryResponseEntity extends BaseLayerDataTransformer<
-    GetBeneficiaryResponseEntity, GetBeneficiaryListResponse> {
+class GetBeneficiaryResponseEntity
+    extends BaseLayerDataTransformer<GetBeneficiaryResponseEntity, GetBeneficiaryListResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 

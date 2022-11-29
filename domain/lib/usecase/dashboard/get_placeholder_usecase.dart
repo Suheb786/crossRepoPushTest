@@ -6,8 +6,8 @@ import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetPlaceholderUseCase extends BaseUseCase<NetworkError,
-    GetPlaceholderUseCaseParams, GetPlaceholderResponse> {
+class GetPlaceholderUseCase
+    extends BaseUseCase<NetworkError, GetPlaceholderUseCaseParams, GetPlaceholderResponse> {
   final DashboardRepository _repository;
 
   GetPlaceholderUseCase(this._repository);

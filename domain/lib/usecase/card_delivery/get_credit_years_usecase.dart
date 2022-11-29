@@ -6,15 +6,14 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCreditYearsUseCase extends BaseUseCase<NetworkError,
-    GetCreditYearsUseCaseParams, GetDebitYearsResponse> {
+class GetCreditYearsUseCase
+    extends BaseUseCase<NetworkError, GetCreditYearsUseCaseParams, GetDebitYearsResponse> {
   final CardRepository _repository;
 
   GetCreditYearsUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, GetDebitYearsResponse>> execute(
-      {required GetCreditYearsUseCaseParams params}) {
+  Future<Either<NetworkError, GetDebitYearsResponse>> execute({required GetCreditYearsUseCaseParams params}) {
     return _repository.getCreditYears();
   }
 }

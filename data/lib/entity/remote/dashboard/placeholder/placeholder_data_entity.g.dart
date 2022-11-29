@@ -6,8 +6,7 @@ part of 'placeholder_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlaceholderDataEntity _$PlaceholderDataEntityFromJson(
-    Map<String, dynamic> json) {
+PlaceholderDataEntity _$PlaceholderDataEntityFromJson(Map<String, dynamic> json) {
   return PlaceholderDataEntity(
     placeholderId: json['placeholderId'] as int?,
     locationName: json['locationName'] as String?,
@@ -16,9 +15,7 @@ PlaceholderDataEntity _$PlaceholderDataEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$PlaceholderDataEntityToJson(
-        PlaceholderDataEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlaceholderDataEntityToJson(PlaceholderDataEntity instance) => <String, dynamic>{
       'placeholderId': instance.placeholderId,
       'locationName': instance.locationName,
       'status': instance.status,

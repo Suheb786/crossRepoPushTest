@@ -5,25 +5,21 @@ import 'package:domain/usecase/manage_cliq/enter_otp_for_mobile_number_cliq_usec
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CliqIdTypeSelectionUseCase] provider
-final cliqIdTypSelectioneUseCaseProvider =
-    Provider.autoDispose<CliqIdTypeSelectionUseCase>(
+final cliqIdTypSelectioneUseCaseProvider = Provider.autoDispose<CliqIdTypeSelectionUseCase>(
   (ref) => CliqIdTypeSelectionUseCase(),
 );
 
 ///[EnterOtpForCliqIdUseCase] provider
-final enterOtpForCliqIdUseCaseProvider =
-    Provider.autoDispose<EnterOtpForCliqIdUseCase>(
+final enterOtpForCliqIdUseCaseProvider = Provider.autoDispose<EnterOtpForCliqIdUseCase>(
   (ref) => EnterOtpForCliqIdUseCase(),
 );
 
 ///[AddNewMobileNumberCliqUseCase] provider
-final addNewMobileNumberCliqUseCaseProvider =
-    Provider.autoDispose<AddNewMobileNumberCliqUseCase>(
+final addNewMobileNumberCliqUseCaseProvider = Provider.autoDispose<AddNewMobileNumberCliqUseCase>(
   (ref) => AddNewMobileNumberCliqUseCase(),
 );
 
 ///[EnterOtpForMobileNumberCliqUseCaseParams] provider
-final enterOtpForMobileNumberCliqUseCaseProvider =
-    Provider.autoDispose<EnterOtpForMobileNumberCliqUseCase>(
+final enterOtpForMobileNumberCliqUseCaseProvider = Provider.autoDispose<EnterOtpForMobileNumberCliqUseCase>(
   (ref) => EnterOtpForMobileNumberCliqUseCase(),
 );

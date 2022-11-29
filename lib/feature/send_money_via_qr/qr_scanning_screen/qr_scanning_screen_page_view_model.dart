@@ -21,10 +21,10 @@ class QrScanningScreenPageViewModel extends BasePageViewModel {
         DateTime qrDate = DateTime.parse(data[3]);
         debugPrint('QR Date ---->$qrDate');
         final currentDate = DateTime.now();
-        final difference = currentDate.difference(qrDate).inHours;
+        final difference = currentDate.difference(qrDate).inMinutes;
         debugPrint('QR Date difference ---->$difference');
         debugPrint('current date ---->$currentDate');
-        if (difference >= 1) {
+        if (difference >= 30) {
           showToastWithError(
               AppError(type: ErrorType.QR_EXPIRED, error: ErrorInfo(message: ''), cause: Exception()));
           await Future.delayed(const Duration(milliseconds: 300));

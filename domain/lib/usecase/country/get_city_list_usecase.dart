@@ -6,17 +6,14 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCityListUseCase
-    extends BaseUseCase<NetworkError, GetCityListUseParams, CityListResponse> {
+class GetCityListUseCase extends BaseUseCase<NetworkError, GetCityListUseParams, CityListResponse> {
   final CountryRepository _countryRepository;
 
   GetCityListUseCase(this._countryRepository);
 
   @override
-  Future<Either<NetworkError, CityListResponse>> execute(
-      {required GetCityListUseParams params}) {
-    return _countryRepository.getCityList(
-        isoCode: params.isoCode, stateID: params.stateID);
+  Future<Either<NetworkError, CityListResponse>> execute({required GetCityListUseParams params}) {
+    return _countryRepository.getCityList(isoCode: params.isoCode, stateID: params.stateID);
   }
 }
 

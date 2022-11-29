@@ -5,9 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'save_customer_schedule_time_response_data_entity.g.dart';
 
 @JsonSerializable()
-class SaveCustomerScheduleTimeResponseDataEntity
-    extends BaseLayerDataTransformer<SaveCustomerScheduleTimeResponseDataEntity,
-        SaveCustomerScheduleTimeResponseContent> {
+class SaveCustomerScheduleTimeResponseDataEntity extends BaseLayerDataTransformer<
+    SaveCustomerScheduleTimeResponseDataEntity, SaveCustomerScheduleTimeResponseContent> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "customerId")
@@ -23,20 +22,19 @@ class SaveCustomerScheduleTimeResponseDataEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  SaveCustomerScheduleTimeResponseDataEntity({this.id,
-    this.customerId,
-    this.referenceNo,
-    this.scheduleDate,
-    this.scheduleTime,
-    this.createdOn,
-    this.isActive});
+  SaveCustomerScheduleTimeResponseDataEntity(
+      {this.id,
+      this.customerId,
+      this.referenceNo,
+      this.scheduleDate,
+      this.scheduleTime,
+      this.createdOn,
+      this.isActive});
 
-  factory SaveCustomerScheduleTimeResponseDataEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory SaveCustomerScheduleTimeResponseDataEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveCustomerScheduleTimeResponseDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveCustomerScheduleTimeResponseDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveCustomerScheduleTimeResponseDataEntityToJson(this);
 
   @override
   SaveCustomerScheduleTimeResponseContent transform() {

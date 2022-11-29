@@ -6,15 +6,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class IphoneLoginUseCase
-    extends BaseUseCase<BaseError, IphoneLoginUseCaseParams, User> {
+class IphoneLoginUseCase extends BaseUseCase<BaseError, IphoneLoginUseCaseParams, User> {
   final UserRepository userRepository;
 
   IphoneLoginUseCase(this.userRepository);
 
   @override
-  Future<Either<BaseError, User>> execute(
-      {required IphoneLoginUseCaseParams params}) async {
+  Future<Either<BaseError, User>> execute({required IphoneLoginUseCaseParams params}) async {
     return userRepository.iphoneLogin(cipher: params.cipher);
     // return Future.value(
     //   (await userRepository.iphoneLogin(cipher: params.cipher))

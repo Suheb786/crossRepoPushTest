@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/version_update/version_update_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -44,7 +45,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
           children: [
             Expanded(
               child: GestureDetector(
-                onHorizontalDragEnd: (details) {
+                onHorizontalDragEnd: (details) async {
                   // FirebaseCrashlytics.instance.crash();
 
                   FocusScope.of(context).unfocus();

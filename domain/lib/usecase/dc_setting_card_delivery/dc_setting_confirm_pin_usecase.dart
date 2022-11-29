@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DcSettingConfirmPinUseCase
-    extends BaseUseCase<NetworkError, DcSettingConfirmPinUseCaseParams, bool> {
+class DcSettingConfirmPinUseCase extends BaseUseCase<NetworkError, DcSettingConfirmPinUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required DcSettingConfirmPinUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required DcSettingConfirmPinUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -19,26 +17,17 @@ class DcSettingConfirmPinUseCaseParams extends Params {
   final String currentPin;
   final String previousPin;
 
-  DcSettingConfirmPinUseCaseParams(
-      {required this.currentPin, required this.previousPin});
+  DcSettingConfirmPinUseCaseParams({required this.currentPin, required this.previousPin});
 
   @override
   Either<AppError, bool> verify() {
     if (currentPin.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PIN,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PIN, cause: Exception()));
     } else if (currentPin.length < 4) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_PIN_LENGTH,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_PIN_LENGTH, cause: Exception()));
     } else if (!(currentPin == previousPin)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.PIN_NOT_MATCH,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.PIN_NOT_MATCH, cause: Exception()));
     }
     return Right(true);
   }

@@ -7,15 +7,13 @@ import 'package:domain/repository/account_settings/account_settings_repository.d
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddNewMobileNumberUseCase
-    extends BaseUseCase<NetworkError, AddNewMobileNumberUseCaseParams, bool> {
+class AddNewMobileNumberUseCase extends BaseUseCase<NetworkError, AddNewMobileNumberUseCaseParams, bool> {
   final AccountSettingsRepository _accountSettingsRepository;
 
   AddNewMobileNumberUseCase(this._accountSettingsRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required AddNewMobileNumberUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required AddNewMobileNumberUseCaseParams params}) {
     return _accountSettingsRepository.changeMobile(
         mobile: params.mobileNumber, mobileCode: params.mobileCode);
   }
@@ -25,16 +23,13 @@ class AddNewMobileNumberUseCaseParams extends Params {
   final String mobileNumber;
   final String mobileCode;
 
-  AddNewMobileNumberUseCaseParams(
-      {required this.mobileNumber, required this.mobileCode});
+  AddNewMobileNumberUseCaseParams({required this.mobileNumber, required this.mobileCode});
 
   @override
   Either<AppError, bool> verify() {
     if (mobileNumber.isEmpty || mobileNumber.length < 8) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_MOBILE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
     }
 
     return Right(true);

@@ -43,26 +43,21 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
-      {String? beneficiaryId}) async {
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deleteBeneficiary(DeleteBeneficiaryRequest(
-        beneficiaryId: beneficiaryId!, baseData: baseData.toJson()));
+    return _apiService.deleteBeneficiary(
+        DeleteBeneficiaryRequest(beneficiaryId: beneficiaryId!, baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .getBeneficiaries(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getBeneficiaries(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String? beneficiaryId,
-      String? nickName,
-      String? purpose,
-      String? purposeDetails}) async {
+      {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateBeneficiary(UpdateBeneficiaryRequest(
         beneficiaryId: beneficiaryId!,
@@ -83,10 +78,9 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
-      {String? type, String? otpCode}) async {
+  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyBeneficiaryOtp(VerifyBeneficiaryOtpRequest(
-        type: type!, otp: otpCode!, baseData: baseData.toJson()));
+    return _apiService.verifyBeneficiaryOtp(
+        VerifyBeneficiaryOtpRequest(type: type!, otp: otpCode!, baseData: baseData.toJson()));
   }
 }

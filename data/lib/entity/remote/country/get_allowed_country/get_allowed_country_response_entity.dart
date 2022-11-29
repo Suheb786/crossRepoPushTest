@@ -8,9 +8,7 @@ part 'get_allowed_country_response_entity.g.dart';
 
 @JsonSerializable()
 class GetAllowedCountryResponseEntity
-    implements
-        BaseLayerDataTransformer<GetAllowedCountryResponseEntity,
-            AllowedCountryListResponse> {
+    implements BaseLayerDataTransformer<GetAllowedCountryResponseEntity, AllowedCountryListResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -19,8 +17,7 @@ class GetAllowedCountryResponseEntity
   factory GetAllowedCountryResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAllowedCountryResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetAllowedCountryResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetAllowedCountryResponseEntityToJson(this);
 
   @override
   GetAllowedCountryResponseEntity restore(AllowedCountryListResponse response) {
@@ -30,8 +27,6 @@ class GetAllowedCountryResponseEntity
   @override
   AllowedCountryListResponse transform() {
     return AllowedCountryListResponse(
-        contentData:
-        GetAllowedCountryContentEntity.fromJson(this.response!.content)
-            .transform());
+        contentData: GetAllowedCountryContentEntity.fromJson(this.response!.content).transform());
   }
 }

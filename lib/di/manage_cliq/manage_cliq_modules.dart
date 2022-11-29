@@ -16,7 +16,8 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_ot
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
-final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
+final cliqIdListViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
   (ref) => CliqIdListPageViewModel(),
 );
 

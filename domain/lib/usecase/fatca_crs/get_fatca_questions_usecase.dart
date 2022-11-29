@@ -6,8 +6,8 @@ import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetFatcaQuestionsUseCase extends BaseUseCase<NetworkError,
-    GetFatcaQuestionsUseCaseParams, GetFatcaQuestionsResponse> {
+class GetFatcaQuestionsUseCase
+    extends BaseUseCase<NetworkError, GetFatcaQuestionsUseCaseParams, GetFatcaQuestionsResponse> {
   final FatcaCrsRepository _repository;
 
   GetFatcaQuestionsUseCase(this._repository);

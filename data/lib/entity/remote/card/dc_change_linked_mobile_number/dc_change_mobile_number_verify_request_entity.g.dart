@@ -6,9 +6,8 @@ part of 'dc_change_mobile_number_verify_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DcChangeMobileNumberVerifyRequestEntity
-    _$DcChangeMobileNumberVerifyRequestEntityFromJson(
-        Map<String, dynamic> json) {
+DcChangeMobileNumberVerifyRequestEntity _$DcChangeMobileNumberVerifyRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return DcChangeMobileNumberVerifyRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,

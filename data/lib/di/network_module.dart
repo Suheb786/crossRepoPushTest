@@ -35,6 +35,8 @@ import 'package:data/source/register/register_step_three_datasource.dart';
 import 'package:data/source/register/remote/register_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_four_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_three_remote_ds_impl.dart';
+import 'package:data/source/rj/remote/rj_remote_ds_impl.dart';
+import 'package:data/source/rj/rj_datasource.dart';
 import 'package:data/source/upload_document/remote/upload_document_remote_ds_impl.dart';
 import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/remote/user_remote_ds_impl.dart';
@@ -45,23 +47,24 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
 final baseOptions = Provider<BaseOptions>(
-    (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
+        (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
-  (ref) => PrettyDioLogger(
-    request: true,
-    requestBody: true,
-    requestHeader: true,
-    responseBody: true,
-    responseHeader: true,
-    logPrint: (log) {
-      return debugPrint(log as String);
-    },
-  ),
+      (ref) =>
+      PrettyDioLogger(
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+        logPrint: (log) {
+          return debugPrint(log as String);
+        },
+      ),
 );
 
 final dioProvider = Provider<Dio>(
-  (ref) {
+      (ref) {
     Dio dio = Dio(ref.read(baseOptions));
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
@@ -76,22 +79,23 @@ final apiServiceProvider = Provider<ApiService>(
 );
 
 /// User remoteDS provider
-final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
+final userRemoteDSProvider = Provider<UserRemoteDS>((ref) =>
+    UserRemoteDSImpl(
       ref.read(apiServiceProvider),
       ref.read(deviceInfoHelperProvider),
       ref.read(userLocalDSProvider),
     ));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
-  (ref) => RegisterRemoteDataSourceImpl(),
+      (ref) => RegisterRemoteDataSourceImpl(),
 );
 
 final registerStepThreeRemoteDS = Provider<RegisterStepThreeRemoteDataSource>(
-  (ref) => RegisterStepThreeRemoteDataSourceImpl(),
+      (ref) => RegisterStepThreeRemoteDataSourceImpl(),
 );
 
 final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
-  (ref) => RegisterStepFourRemoteDataSourceImpl(),
+      (ref) => RegisterStepFourRemoteDataSourceImpl(),
 );
 
 ///kyc remote data source
@@ -168,4 +172,9 @@ var activityDataSourceProvider = Provider<ActivityRemoteDs>((ref) =>
 
 var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>((ref) =>
     ChangeDeviceRemoteDSImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///RJ remote DS
+var rjDataSourceProvider = Provider<RJRemoteDS>((ref) =>
+    RJRemoteDSImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

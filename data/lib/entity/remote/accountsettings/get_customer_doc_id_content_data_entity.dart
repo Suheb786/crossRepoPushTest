@@ -6,29 +6,25 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_customer_doc_id_content_data_entity.g.dart';
 
 @JsonSerializable()
-class GetCustomerDocIdContentDataEntity extends BaseLayerDataTransformer<
-    GetCustomerDocIdContentDataEntity, GetCustomerDocIdContentData> {
+class GetCustomerDocIdContentDataEntity
+    extends BaseLayerDataTransformer<GetCustomerDocIdContentDataEntity, GetCustomerDocIdContentData> {
   @JsonKey(name: "documents")
   final GetCustomerDocIdContentEntity? documents;
 
   GetCustomerDocIdContentDataEntity({this.documents});
 
-  factory GetCustomerDocIdContentDataEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCustomerDocIdContentDataEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocIdContentDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCustomerDocIdContentDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCustomerDocIdContentDataEntityToJson(this);
 
   @override
-  GetCustomerDocIdContentDataEntity restore(
-      GetCustomerDocIdContentData response) {
+  GetCustomerDocIdContentDataEntity restore(GetCustomerDocIdContentData response) {
     return GetCustomerDocIdContentDataEntity();
   }
 
   @override
   GetCustomerDocIdContentData transform() {
-    return GetCustomerDocIdContentData(
-        getCustomerDocIdContent: this.documents!.transform());
+    return GetCustomerDocIdContentData(getCustomerDocIdContent: this.documents!.transform());
   }
 }

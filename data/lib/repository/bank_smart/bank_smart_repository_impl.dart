@@ -16,15 +16,15 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   BankSmartRepositoryImpl(this._bankSmartRemoteDS);
 
   @override
-  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>>
-  addAccountPurpose({required bool getToken,
-    String? purpose,
-    bool? isCashDeposit,
-    bool? isTransfer,
-    bool? isBillPayment,
-    bool? isOther,
-    double? monthlyTransaction,
-    double? annualTransaction}) async {
+  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>> addAccountPurpose(
+      {required bool getToken,
+      String? purpose,
+      bool? isCashDeposit,
+      bool? isTransfer,
+      bool? isBillPayment,
+      bool? isOther,
+      double? monthlyTransaction,
+      double? annualTransaction}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.addAccountPurpose(
           getToken: getToken,
@@ -37,48 +37,43 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
           monthlyTransaction: monthlyTransaction),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, GetAccountResponse>> getAccount(
-      {required bool getToken}) async {
-    final result =
-    await safeApiCall(_bankSmartRemoteDS.getAccount(getToken: getToken));
+  Future<Either<NetworkError, GetAccountResponse>> getAccount({required bool getToken}) async {
+    final result = await safeApiCall(_bankSmartRemoteDS.getAccount(getToken: getToken));
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
-        CustomerInformation? customerInformation,
-        CustomerAccountDetails? accountDetails}) async {
+      CustomerInformation? customerInformation,
+      CustomerAccountDetails? accountDetails}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.createAccount(
-          getToken: getToken,
-          customerInformation: customerInformation,
-          accountDetails: accountDetails),
+          getToken: getToken, customerInformation: customerInformation, accountDetails: accountDetails),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails(
-      {required bool getToken}) async {
+  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails({required bool getToken}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.getAccountDetails(getToken: getToken),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -88,8 +83,8 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
       _bankSmartRemoteDS.removeDebitLock(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }

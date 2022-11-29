@@ -6,18 +6,14 @@ import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetAccountUseCase extends BaseUseCase<NetworkError,
-    GetAccountUseCaseParams,
-    GetAccountResponse> {
+class GetAccountUseCase extends BaseUseCase<NetworkError, GetAccountUseCaseParams, GetAccountResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   GetAccountUseCase(this._bankSmartRepository);
 
   @override
-  Future<Either<NetworkError, GetAccountResponse>> execute(
-      {required GetAccountUseCaseParams params}) {
-    return _bankSmartRepository.getAccount(
-        getToken: true);
+  Future<Either<NetworkError, GetAccountResponse>> execute({required GetAccountUseCaseParams params}) {
+    return _bankSmartRepository.getAccount(getToken: true);
   }
 }
 

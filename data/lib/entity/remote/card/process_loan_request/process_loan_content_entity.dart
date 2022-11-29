@@ -6,9 +6,7 @@ part "process_loan_content_entity.g.dart";
 
 @JsonSerializable()
 class ProcessLoanContentEntity
-    implements
-        BaseLayerDataTransformer<ProcessLoanContentEntity,
-            ProcessLoanRequestContent> {
+    implements BaseLayerDataTransformer<ProcessLoanContentEntity, ProcessLoanRequestContent> {
   @JsonKey(name: "cardid")
   final String? cardId;
 

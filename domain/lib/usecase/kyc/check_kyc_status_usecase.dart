@@ -6,15 +6,13 @@ import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckKYCStatusUseCase extends BaseUseCase<NetworkError,
-    CheckKYCStatusUseCaseParams, CheckKycResponse> {
+class CheckKYCStatusUseCase extends BaseUseCase<NetworkError, CheckKYCStatusUseCaseParams, CheckKycResponse> {
   final KYCRepository _repository;
 
   CheckKYCStatusUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, CheckKycResponse>> execute(
-      {required CheckKYCStatusUseCaseParams params}) {
+  Future<Either<NetworkError, CheckKycResponse>> execute({required CheckKYCStatusUseCaseParams params}) {
     return _repository.checkKYCStatus();
   }
 }

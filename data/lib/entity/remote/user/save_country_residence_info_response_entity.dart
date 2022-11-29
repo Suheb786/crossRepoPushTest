@@ -8,32 +8,25 @@ part 'save_country_residence_info_response_entity.g.dart';
 @JsonSerializable()
 class SaveCountryResidenceInfoResponseEntity
     implements
-        BaseLayerDataTransformer<SaveCountryResidenceInfoResponseEntity,
-            SaveCountryResidenceInfoResponse> {
+        BaseLayerDataTransformer<SaveCountryResidenceInfoResponseEntity, SaveCountryResidenceInfoResponse> {
   @JsonKey(name: "response")
-  final SaveCountryResidenceInfoResponseDataEntity?
-      saveCountryResidenceInfoResponseDataEntity;
+  final SaveCountryResidenceInfoResponseDataEntity? saveCountryResidenceInfoResponseDataEntity;
 
-  SaveCountryResidenceInfoResponseEntity(
-      {this.saveCountryResidenceInfoResponseDataEntity});
+  SaveCountryResidenceInfoResponseEntity({this.saveCountryResidenceInfoResponseDataEntity});
 
-  factory SaveCountryResidenceInfoResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory SaveCountryResidenceInfoResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveCountryResidenceInfoResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveCountryResidenceInfoResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveCountryResidenceInfoResponseEntityToJson(this);
 
   @override
-  SaveCountryResidenceInfoResponseEntity restore(
-      SaveCountryResidenceInfoResponse response) {
+  SaveCountryResidenceInfoResponseEntity restore(SaveCountryResidenceInfoResponse response) {
     return SaveCountryResidenceInfoResponseEntity();
   }
 
   @override
   SaveCountryResidenceInfoResponse transform() {
     return SaveCountryResidenceInfoResponse(
-        saveCountryResidenceInfoResponseData:
-            this.saveCountryResidenceInfoResponseDataEntity!.transform());
+        saveCountryResidenceInfoResponseData: this.saveCountryResidenceInfoResponseDataEntity!.transform());
   }
 }

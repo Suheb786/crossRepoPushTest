@@ -7,24 +7,20 @@ part 'check_other_nationality_status_response_content_entity.g.dart';
 @JsonSerializable()
 class CheckOtherNationalityStatusResponseContentEntity
     implements
-        BaseLayerDataTransformer<
-            CheckOtherNationalityStatusResponseContentEntity,
+        BaseLayerDataTransformer<CheckOtherNationalityStatusResponseContentEntity,
             CheckOtherNationalityResponseContent> {
   @JsonKey(name: "status")
   final bool? status;
 
   CheckOtherNationalityStatusResponseContentEntity({this.status});
 
-  factory CheckOtherNationalityStatusResponseContentEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory CheckOtherNationalityStatusResponseContentEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckOtherNationalityStatusResponseContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckOtherNationalityStatusResponseContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckOtherNationalityStatusResponseContentEntityToJson(this);
 
   @override
-  CheckOtherNationalityStatusResponseContentEntity restore(
-      CheckOtherNationalityResponseContent response) {
+  CheckOtherNationalityStatusResponseContentEntity restore(CheckOtherNationalityResponseContent response) {
     return CheckOtherNationalityStatusResponseContentEntity();
   }
 

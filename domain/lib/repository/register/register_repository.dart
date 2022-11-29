@@ -7,8 +7,7 @@ abstract class RegisterRepository {
 
   Future<Either<LocalError, List<String>>> getPurposeOfAccountOpeningList();
 
-  Future<Either<LocalError, List<AdditionalIncome>>>
-      getAdditionalIncomeSourceList();
+  Future<Either<LocalError, List<AdditionalIncome>>> getAdditionalIncomeSourceList();
 
   Future<Either<LocalError, List<String>>> getBusinessTypeList();
 }

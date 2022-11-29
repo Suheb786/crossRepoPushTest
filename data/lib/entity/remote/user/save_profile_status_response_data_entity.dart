@@ -6,9 +6,7 @@ part 'save_profile_status_response_data_entity.g.dart';
 
 @JsonSerializable()
 class SaveProfileStatusResponseDataEntity
-    implements
-        BaseLayerDataTransformer<SaveProfileStatusResponseDataEntity,
-            SaveProfileStatusResponseData> {
+    implements BaseLayerDataTransformer<SaveProfileStatusResponseDataEntity, SaveProfileStatusResponseData> {
   @JsonKey(name: "code")
   final int? code;
   @JsonKey(name: "message")
@@ -22,23 +20,16 @@ class SaveProfileStatusResponseDataEntity
   @JsonKey(name: "id")
   final dynamic id;
 
-  SaveProfileStatusResponseDataEntity({this.code,
-    this.content,
-    this.exceptionMessage,
-    this.message,
-    this.token,
-    this.id});
+  SaveProfileStatusResponseDataEntity(
+      {this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
 
-  factory SaveProfileStatusResponseDataEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory SaveProfileStatusResponseDataEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveProfileStatusResponseDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveProfileStatusResponseDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveProfileStatusResponseDataEntityToJson(this);
 
   @override
-  SaveProfileStatusResponseDataEntity restore(
-      SaveProfileStatusResponseData response) {
+  SaveProfileStatusResponseDataEntity restore(SaveProfileStatusResponseData response) {
     return SaveProfileStatusResponseDataEntity();
   }
 

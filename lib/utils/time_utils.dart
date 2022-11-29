@@ -107,6 +107,7 @@ class TimeUtils {
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     return formatter.format(dateTime);
   }
+
   static String convertiEnDateEtHeure(n) {
     String date = DateFormat.yMMMd().format(n);
 
@@ -114,12 +115,9 @@ class TimeUtils {
   }
 
   static String getFormattedDateForCheckPasswordForOnlyEnglish(String date) {
-
     DateTime dateTime = DateTime.parse(date);
-    final DateFormat formatter = DateFormat('yyyy-MM-dd','en');
+    final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en');
     return formatter.format(dateTime);
-
-
   }
 
   static String getFormattedTimeForTransaction(String date) {
@@ -131,6 +129,12 @@ class TimeUtils {
   static String getFormattedDateForCreditCard(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
     final DateFormat formatter = DateFormat('d MMM y');
+    return formatter.format(dateTime);
+  }
+
+  static String getFormattedDateForRJ(DateTime date) {
+    DateTime dateTime = DateTime.parse(date.toString()).toLocal();
+    final DateFormat formatter = DateFormat('yyyyMMdd');
     return formatter.format(dateTime);
   }
 }

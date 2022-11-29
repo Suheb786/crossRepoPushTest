@@ -12,9 +12,7 @@ class SendOtpTokenEmailRequestEntity {
   final Map<String, dynamic> baseData;
 
   SendOtpTokenEmailRequestEntity(
-      {required this.baseData,
-      this.getToken: true,
-      this.type: "ChangeDeviceEmail"});
+      {required this.baseData, this.getToken: true, this.type: "ChangeDeviceEmail"});
 
   factory SendOtpTokenEmailRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SendOtpTokenEmailRequestEntityFromJson(json);

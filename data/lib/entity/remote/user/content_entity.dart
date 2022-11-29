@@ -5,15 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'content_entity.g.dart';
 
 @JsonSerializable()
-class ContentEntity
-    implements BaseLayerDataTransformer<ContentEntity, Content> {
+class ContentEntity implements BaseLayerDataTransformer<ContentEntity, Content> {
   @JsonKey(name: "isExisting")
   final bool? isExisting;
 
   ContentEntity({this.isExisting: false});
 
-  factory ContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$ContentEntityFromJson(json);
+  factory ContentEntity.fromJson(Map<String, dynamic> json) => _$ContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContentEntityToJson(this);
 

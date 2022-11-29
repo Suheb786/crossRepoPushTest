@@ -6,8 +6,7 @@ part of 'set_fatca_w9_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SetFatcaW9RequestEntity _$SetFatcaW9RequestEntityFromJson(
-    Map<String, dynamic> json) {
+SetFatcaW9RequestEntity _$SetFatcaW9RequestEntityFromJson(Map<String, dynamic> json) {
   return SetFatcaW9RequestEntity(
     namePerIncomeTaxReturn: json['NamePerIncomeTaxReturn'] as String?,
     businessName: json['BusinessName'] as String?,
@@ -18,8 +17,7 @@ SetFatcaW9RequestEntity _$SetFatcaW9RequestEntityFromJson(
     postCode: json['PostCode'] as String?,
     accountNumberList: json['AccountNumberList'] as String?,
     exemptPayeeCode: json['ExemptPayeeCode'] as String?,
-    exemptFromFatcaReportingCode:
-        json['ExemptFromFatcaReportingCode'] as String?,
+    exemptFromFatcaReportingCode: json['ExemptFromFatcaReportingCode'] as String?,
     isAdditionalRequester: json['AdditionalRequester'] as bool?,
     requesterName: json['RequesterName'] as String?,
     requesterUSAddress: json['RequesterUSAddress'] as String?,
@@ -36,9 +34,7 @@ SetFatcaW9RequestEntity _$SetFatcaW9RequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$SetFatcaW9RequestEntityToJson(
-        SetFatcaW9RequestEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SetFatcaW9RequestEntityToJson(SetFatcaW9RequestEntity instance) => <String, dynamic>{
       'NamePerIncomeTaxReturn': instance.namePerIncomeTaxReturn,
       'BusinessName': instance.businessName,
       'USAddress': instance.uSAddress,

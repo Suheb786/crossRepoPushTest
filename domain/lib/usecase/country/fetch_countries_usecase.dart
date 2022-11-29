@@ -7,15 +7,13 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:flutter/widgets.dart';
 
-class FetchCountriesUseCase
-    extends BaseUseCase<LocalError, FetchCountriesUseParams, List<Country>> {
+class FetchCountriesUseCase extends BaseUseCase<LocalError, FetchCountriesUseParams, List<Country>> {
   final CountryRepository _countryRepository;
 
   FetchCountriesUseCase(this._countryRepository);
 
   @override
-  Future<Either<LocalError, List<Country>>> execute(
-      {required FetchCountriesUseParams params}) {
+  Future<Either<LocalError, List<Country>>> execute({required FetchCountriesUseParams params}) {
     return _countryRepository.fetchCountries(context: params.context);
   }
 }

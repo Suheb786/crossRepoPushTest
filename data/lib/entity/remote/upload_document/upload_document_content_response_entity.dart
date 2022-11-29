@@ -6,20 +6,16 @@ part 'upload_document_content_response_entity.g.dart';
 
 @JsonSerializable()
 class UploadDocumentContentResponseEntity
-    implements
-        BaseLayerDataTransformer<UploadDocumentContentResponseEntity,
-            FileUploadContent> {
+    implements BaseLayerDataTransformer<UploadDocumentContentResponseEntity, FileUploadContent> {
   @JsonKey(name: "documentId")
   final String? documentId;
 
   UploadDocumentContentResponseEntity({this.documentId});
 
-  factory UploadDocumentContentResponseEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory UploadDocumentContentResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$UploadDocumentContentResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$UploadDocumentContentResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$UploadDocumentContentResponseEntityToJson(this);
 
   @override
   UploadDocumentContentResponseEntity restore(FileUploadContent response) {

@@ -38,8 +38,7 @@ class AddBeneficiaryRequest {
     required this.baseData,
   });
 
-  factory AddBeneficiaryRequest.fromJson(Map<String, dynamic> json) =>
-      _$AddBeneficiaryRequestFromJson(json);
+  factory AddBeneficiaryRequest.fromJson(Map<String, dynamic> json) => _$AddBeneficiaryRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddBeneficiaryRequestToJson(this);
 }

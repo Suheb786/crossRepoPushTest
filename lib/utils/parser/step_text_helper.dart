@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class StepTextHelper {
   StepTextHelper._();
 
-  static String accountRegistrationTextHelper(
-      int index, String step1, String step2, String step3) {
+  static String accountRegistrationTextHelper(int index, String step1, String step2, String step3) {
     switch (index) {
       case 0:
         return step1;
@@ -33,8 +32,7 @@ class StepTextHelper {
     }
   }
 
-  static String registrationTwoStepTextHelper(
-      int index, String step1, String step2) {
+  static String registrationTwoStepTextHelper(int index, String step1, String step2) {
     switch (index) {
       case 0:
         return step1;
@@ -54,16 +52,8 @@ class StepTextHelper {
     }
   }
 
-  static String registrationFourStepTextHelper(
-      int index,
-      String step1,
-      String step2,
-      String step3,
-      String step4,
-      String step5,
-      String step6,
-      String step7,
-      String step8) {
+  static String registrationFourStepTextHelper(int index, String step1, String step2, String step3,
+      String step4, String step5, String step6, String step7, String step8) {
     switch (index) {
       case 0:
         return step1;
@@ -86,8 +76,8 @@ class StepTextHelper {
     }
   }
 
-  static String registrationFiveStepTextHelper(int index, String step1,
-      String step2, String step3, String step4, String step5) {
+  static String registrationFiveStepTextHelper(
+      int index, String step1, String step2, String step3, String step4, String step5) {
     switch (index) {
       case 0:
         return step1;
@@ -120,8 +110,7 @@ class StepTextHelper {
     }
   }
 
-  static String cardDeliveryTextHelper(
-      int index, String step1, String step2, String step3) {
+  static String cardDeliveryTextHelper(int index, String step1, String step2, String step3) {
     switch (index) {
       case 0:
         return step1;
@@ -134,8 +123,7 @@ class StepTextHelper {
     }
   }
 
-  static String changeEmailAddressTextHelper(
-      int index, String step1, String step2) {
+  static String changeEmailAddressTextHelper(int index, String step1, String step2) {
     switch (index) {
       case 0:
         return step1;
@@ -155,8 +143,7 @@ class StepTextHelper {
     }
   }
 
-  static Widget paymentToNewRecipientStepTextHelper(
-      int index, Widget step1, Widget step2) {
+  static Widget paymentToNewRecipientStepTextHelper(int index, Widget step1, Widget step2) {
     switch (index) {
       case 0:
         return step1;

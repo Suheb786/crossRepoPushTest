@@ -6,9 +6,8 @@ part of 'supplementary_credit_card_step_two_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SupplementaryCreditCardStepTwoRequestEntity
-    _$SupplementaryCreditCardStepTwoRequestEntityFromJson(
-        Map<String, dynamic> json) {
+SupplementaryCreditCardStepTwoRequestEntity _$SupplementaryCreditCardStepTwoRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return SupplementaryCreditCardStepTwoRequestEntity(
     primaryCardId: json['PrimaryCardId'] as String?,
     secondaryCardId: json['SecondaryCardId'] as String?,

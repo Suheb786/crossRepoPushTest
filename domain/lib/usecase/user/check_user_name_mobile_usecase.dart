@@ -6,15 +6,14 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckUserNameMobileUseCase extends BaseUseCase<NetworkError,
-    CheckUserNameMobileUseCaseParams, CheckUsername> {
+class CheckUserNameMobileUseCase
+    extends BaseUseCase<NetworkError, CheckUserNameMobileUseCaseParams, CheckUsername> {
   final UserRepository _repository;
 
   CheckUserNameMobileUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, CheckUsername>> execute(
-      {required CheckUserNameMobileUseCaseParams params}) {
+  Future<Either<NetworkError, CheckUsername>> execute({required CheckUserNameMobileUseCaseParams params}) {
     return _repository.checkUserNameMobile(
         mobileNumber: params.mobileNumber, countryCode: params.countryCode);
   }
@@ -24,8 +23,7 @@ class CheckUserNameMobileUseCaseParams extends Params {
   final String mobileNumber;
   final String countryCode;
 
-  CheckUserNameMobileUseCaseParams(
-      {required this.mobileNumber, required this.countryCode});
+  CheckUserNameMobileUseCaseParams({required this.mobileNumber, required this.countryCode});
 
   @override
   Either<AppError, bool> verify() {

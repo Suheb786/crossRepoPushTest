@@ -5,24 +5,19 @@ import 'package:neo_bank/feature/activity/notification/notification_view_model.d
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 
-final notificationViewModelProvider =
-    ChangeNotifierProvider.autoDispose<NotificationViewModel>(
+final notificationViewModelProvider = ChangeNotifierProvider.autoDispose<NotificationViewModel>(
   (ref) => NotificationViewModel(ref.read(notificationUseCaseProvider)),
 );
 
-final activityHomeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>(
-  (ref) => ActivityHomeViewModel(
-            ref.read(paymentActivityTransactionUseCaseProvider),
-            ref.read(notificationUseCaseProvider)));
+final activityHomeViewModelProvider = ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>((ref) =>
+    ActivityHomeViewModel(
+        ref.read(paymentActivityTransactionUseCaseProvider), ref.read(notificationUseCaseProvider)));
 
-final paymentActivityViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PaymentActivityViewModel>(
-            (ref) => PaymentActivityViewModel(),
+final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentActivityViewModel>(
+  (ref) => PaymentActivityViewModel(),
 );
 
 final paymentActivityTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentActivityTransactionViewModel>(
-  (ref) => PaymentActivityTransactionViewModel(
-      ref.read(paymentActivityTransactionUseCaseProvider)),
+  (ref) => PaymentActivityTransactionViewModel(ref.read(paymentActivityTransactionUseCaseProvider)),
 );

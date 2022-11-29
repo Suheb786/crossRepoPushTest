@@ -8,16 +8,12 @@ class ReasonUnavailabilityEnum {
     return _value.toString();
   }
 
-  static const ReasonUnavailabilityEnum REASON_A =
-      ReasonUnavailabilityEnum._("Reason A");
-  static const ReasonUnavailabilityEnum REASON_B =
-      ReasonUnavailabilityEnum._("Reason B");
+  static const ReasonUnavailabilityEnum REASON_A = ReasonUnavailabilityEnum._("Reason A");
+  static const ReasonUnavailabilityEnum REASON_B = ReasonUnavailabilityEnum._("Reason B");
 
-  static const ReasonUnavailabilityEnum REASON_C =
-      ReasonUnavailabilityEnum._("Reason C");
+  static const ReasonUnavailabilityEnum REASON_C = ReasonUnavailabilityEnum._("Reason C");
 
-  static const ReasonUnavailabilityEnum NONE =
-      ReasonUnavailabilityEnum._("None");
+  static const ReasonUnavailabilityEnum NONE = ReasonUnavailabilityEnum._("None");
 }
 
 extension ReasonUnavailabilityEnumExt on String {

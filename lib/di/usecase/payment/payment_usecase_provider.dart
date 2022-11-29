@@ -1,4 +1,6 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/dynamic_link/create_dynamic_link_usecases.dart';
+import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
@@ -17,43 +19,38 @@ import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
+import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
-final addSendMoneyContactUseCaseProvider =
-    Provider.autoDispose<AddSendMoneyContactUseCase>(
+final addSendMoneyContactUseCaseProvider = Provider.autoDispose<AddSendMoneyContactUseCase>(
   (ref) => AddSendMoneyContactUseCase(),
 );
 
 ///[GetBeneficiaryUseCase] provider
-final getBeneficiaryUseCaseProvider =
-    Provider.autoDispose<GetBeneficiaryUseCase>(
+final getBeneficiaryUseCaseProvider = Provider.autoDispose<GetBeneficiaryUseCase>(
   (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[<GetAccountByAliasUseCase>] provider
-final getAccountByAliasUseCaseProvider =
-    Provider.autoDispose<GetAccountByAliasUseCase>(
+final getAccountByAliasUseCaseProvider = Provider.autoDispose<GetAccountByAliasUseCase>(
   (ref) => GetAccountByAliasUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<SendAmountToContactUseCase>] provider
-final sendAmountToContactUseCaseProvider =
-    Provider.autoDispose<SendAmountToContactUseCase>(
+final sendAmountToContactUseCaseProvider = Provider.autoDispose<SendAmountToContactUseCase>(
   (ref) => SendAmountToContactUseCase(),
 );
 
 ///[<SendAmountToContactSuccessUseCase>] provider
-final sendAmountToContactSuccessUseCaseProvider =
-    Provider.autoDispose<SendAmountToContactSuccessUseCase>(
+final sendAmountToContactSuccessUseCaseProvider = Provider.autoDispose<SendAmountToContactSuccessUseCase>(
   (ref) => SendAmountToContactSuccessUseCase(),
 );
 
 ///[<RequestAmountFromContactUseCase>] provider
-final requestAmountFromContactUseCaseProvider =
-    Provider.autoDispose<RequestAmountFromContactUseCase>(
+final requestAmountFromContactUseCaseProvider = Provider.autoDispose<RequestAmountFromContactUseCase>(
   (ref) => RequestAmountFromContactUseCase(ref.read(paymentRepositoryProvider)),
 );
 
@@ -64,14 +61,12 @@ final requestAmountFromContactSuccessUseCaseProvider =
 );
 
 ///[<RequestMoneyFailureUseCase>] provider
-final requestMoneyFailureUseCaseProvider =
-    Provider.autoDispose<RequestMoneyFailureUseCase>(
+final requestMoneyFailureUseCaseProvider = Provider.autoDispose<RequestMoneyFailureUseCase>(
   (ref) => RequestMoneyFailureUseCase(),
 );
 
 ///[<SendMoneyFailureUseCase>] provider
-final sendMoneyFailureUseCaseProvider =
-    Provider.autoDispose<SendMoneyFailureUseCase>(
+final sendMoneyFailureUseCaseProvider = Provider.autoDispose<SendMoneyFailureUseCase>(
   (ref) => SendMoneyFailureUseCase(),
 );
 
@@ -81,14 +76,12 @@ final sendMoneyUseCaseProvider = Provider.autoDispose<SendMoneyUseCase>(
 );
 
 ///[<SendMoneyUseCase>] provider
-final sendToNewRecipientUseCaseProvider =
-    Provider.autoDispose<SendToNewRecipientUseCase>(
+final sendToNewRecipientUseCaseProvider = Provider.autoDispose<SendToNewRecipientUseCase>(
   (ref) => SendToNewRecipientUseCase(),
 );
 
 ///[<RequestFromNewRecipientUseCase>] provider
-final requestFromNewRecipientUseCaseProvider =
-    Provider.autoDispose<RequestFromNewRecipientUseCase>(
+final requestFromNewRecipientUseCaseProvider = Provider.autoDispose<RequestFromNewRecipientUseCase>(
   (ref) => RequestFromNewRecipientUseCase(ref.read(paymentRepositoryProvider)),
 );
 
@@ -98,8 +91,7 @@ final enterOtpUseCaseProvider = Provider.autoDispose<EnterOtpUseCase>(
 );
 
 ///[<EnterRequestOtpUseCase>] provider
-final enterRequestOtpUseCaseProvider =
-    Provider.autoDispose<EnterRequestOtpUseCase>(
+final enterRequestOtpUseCaseProvider = Provider.autoDispose<EnterRequestOtpUseCase>(
   (ref) => EnterRequestOtpUseCase(),
 );
 
@@ -109,8 +101,7 @@ final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
 );
 
 ///[CheckSendMoneyUseCase] provider
-final checkSendMoneyUseCaseProvider =
-    Provider.autoDispose<CheckSendMoneyUseCase>(
+final checkSendMoneyUseCaseProvider = Provider.autoDispose<CheckSendMoneyUseCase>(
   (ref) => CheckSendMoneyUseCase(ref.read(paymentRepositoryProvider)),
 );
 
@@ -119,9 +110,13 @@ final transferUseCaseProvider = Provider.autoDispose<TransferUseCase>(
   (ref) => TransferUseCase(ref.read(paymentRepositoryProvider)),
 );
 
+///[TransferApiNoOtpUseCase] provider
+final transferApiNoOtpUseCaseProvider = Provider.autoDispose<TransferApiNoOtpUseCase>(
+  (ref) => TransferApiNoOtpUseCase(ref.read(paymentRepositoryProvider)),
+);
+
 ///[TransferVerifyUseCase] provider
-final transferVerifyUseCaseProvider =
-    Provider.autoDispose<TransferVerifyUseCase>(
+final transferVerifyUseCaseProvider = Provider.autoDispose<TransferVerifyUseCase>(
   (ref) => TransferVerifyUseCase(ref.read(paymentRepositoryProvider)),
 );
 
@@ -131,7 +126,14 @@ final getPurposeUseCaseProvider = Provider.autoDispose<GetPurposeUseCase>(
 );
 
 ///[PayBackCreditCardUseCase] provider
-final payBackCreditCardUseCaseProvider =
-    Provider.autoDispose<PayBackCreditCardUseCase>(
+final payBackCreditCardUseCaseProvider = Provider.autoDispose<PayBackCreditCardUseCase>(
   (ref) => PayBackCreditCardUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+final createDynamicLinkUseCaseProvider = Provider.autoDispose<CreateDynamicLinkUseCase>(
+  (ref) => CreateDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
+);
+
+final initDynamicLinkUseCaseProvider = Provider.autoDispose<InitDynamicLinkUseCase>(
+  (ref) => InitDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
 );

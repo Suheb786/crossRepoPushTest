@@ -7,10 +7,9 @@ import 'package:domain/error/network_error.dart';
 NetworkError getError({Response? apiResponse}) {
   if (apiResponse?.data != null) {
     try {
-      final errorResponseEntity = ErrorResponseEntity.fromJson(
-          (apiResponse?.data) is String
-              ? jsonDecode(apiResponse?.data)
-              : apiResponse?.data as Map<String, dynamic>);
+      final errorResponseEntity = ErrorResponseEntity.fromJson((apiResponse?.data) is String
+          ? jsonDecode(apiResponse?.data)
+          : apiResponse?.data as Map<String, dynamic>);
       if (errorResponseEntity != null) {
         return NetworkError(
             httpError: apiResponse!.statusCode!,

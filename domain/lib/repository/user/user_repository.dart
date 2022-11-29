@@ -38,8 +38,7 @@ abstract class UserRepository {
   Future<Either<NetworkError, CheckUsername>> checkUserName({String? email});
 
   /// Login user with syste
-  Future<Either<NetworkError, User>> loginUser(
-      {required String email, required String password});
+  Future<Either<NetworkError, User>> loginUser({required String email, required String password});
 
   /// Check for userName mobile availability
   Future<Either<NetworkError, CheckUsername>> checkUserNameMobile(
@@ -95,8 +94,7 @@ abstract class UserRepository {
   Future<Either<NetworkError, String>> fetchCountryList({bool? getToken});
 
   /// save residence information
-  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-      saveResidenceInformation({
+  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>> saveResidenceInformation({
     String? residentCountry,
     String? buildingName,
     String? streetName,
@@ -109,17 +107,16 @@ abstract class UserRepository {
   });
 
   /// save profile information
-  Future<Either<NetworkError, SaveProfileStatusResponse>>
-      saveProfileInformation(
-          {bool? married,
-          bool? specialPerson,
-          bool? anyOtherNationality,
-          bool? beneficialOwnerAccount,
-          String? otherNationality,
-          String? employmentStatus,
-          String? spouseName,
-          bool? isEmployed,
-          String? natureOfSpecialNeeds});
+  Future<Either<NetworkError, SaveProfileStatusResponse>> saveProfileInformation(
+      {bool? married,
+      bool? specialPerson,
+      bool? anyOtherNationality,
+      bool? beneficialOwnerAccount,
+      String? otherNationality,
+      String? employmentStatus,
+      String? spouseName,
+      bool? isEmployed,
+      String? natureOfSpecialNeeds});
 
   /// save job information
   Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
@@ -142,12 +139,10 @@ abstract class UserRepository {
   Future<Either<NetworkError, bool>> getToken();
 
   /// confirm application data get
-  Future<Either<NetworkError, GetConfirmApplicationDataResponse>>
-      confirmApplicationDataGet();
+  Future<Either<NetworkError, GetConfirmApplicationDataResponse>> confirmApplicationDataGet();
 
   ///register interest
-  Future<Either<NetworkError, RegisterInterestResponse>> registerInterest(
-      {String? email});
+  Future<Either<NetworkError, RegisterInterestResponse>> registerInterest({String? email});
 
   ///logout
   Future<Either<NetworkError, LogoutResponse>> logout();
@@ -171,8 +166,7 @@ abstract class UserRepository {
 
   Future<Either<BaseError, bool>> checkBioMetricSupport();
 
-  Future<Either<BaseError, bool>> authenticateBioMetric(
-      String title, String localisedReason);
+  Future<Either<BaseError, bool>> authenticateBioMetric(String title, String localisedReason);
 
   ///enable biometric
   Future<Either<NetworkError, bool>> enableBiometric();
@@ -188,8 +182,7 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, User>> iphoneLogin({required String cipher});
 
-  Future<Either<NetworkError, bool>> changeMyNumber(
-      String mobileNo, String mobileCode);
+  Future<Either<NetworkError, bool>> changeMyNumber(String mobileNo, String mobileCode);
 
   Future<Either<NetworkError, bool>> checkVersionUpdate({String? clear});
 }

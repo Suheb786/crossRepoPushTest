@@ -48,11 +48,9 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetAccountResponseEntity>> getAccount(
-      {bool? getToken}) async {
+  Future<HttpResponse<GetAccountResponseEntity>> getAccount({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAccount(GetAccountRequestEntity(
-        baseData: baseData.toJson(), getToken: getToken));
+    return _apiService.getAccount(GetAccountRequestEntity(baseData: baseData.toJson(), getToken: getToken));
   }
 
   @override
@@ -64,23 +62,20 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
     return _apiService.createAccount(CreateAccountRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
-        customerDetailsEntity:
-            CustomerDetailsEntity().restore(customerInformation!).toJson(),
+        customerDetailsEntity: CustomerDetailsEntity().restore(customerInformation!).toJson(),
         account: AccountDetailsEntity().restore(accountDetails!).toJson()));
   }
 
   @override
-  Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails(
-      {bool? getToken}) async {
+  Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAccountDetails(
-        GetAccountDetailsRequestEntity(baseData: baseData, getToken: true));
+    return _apiService.getAccountDetails(GetAccountDetailsRequestEntity(baseData: baseData, getToken: true));
   }
 
   @override
   Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.removeDebitLock(RemoveDebitLockRequestEntity(
-        baseData: baseData.toJson(), getToken: true));
+    return _apiService
+        .removeDebitLock(RemoveDebitLockRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 }

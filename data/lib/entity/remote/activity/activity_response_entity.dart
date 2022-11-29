@@ -7,9 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "activity_response_entity.g.dart";
 
 @JsonSerializable()
-class ActivityResponseEntity
-    implements
-        BaseLayerDataTransformer<ActivityResponseEntity, ActivityResponse> {
+class ActivityResponseEntity implements BaseLayerDataTransformer<ActivityResponseEntity, ActivityResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,7 +26,6 @@ class ActivityResponseEntity
   @override
   ActivityResponse transform() {
     return ActivityResponse(
-        activityContent:
-            ActivityContentEntity.fromJson(this.response!.content).transform());
+        activityContent: ActivityContentEntity.fromJson(this.response!.content).transform());
   }
 }

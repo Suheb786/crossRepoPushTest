@@ -134,4 +134,7 @@ class RoutePaths {
   static const String EditCliqIDMobileNoPage = "/editCliqIDMobileNoPage";
   static const String OtpForEditAliasAndMobileNoPage = "/otpForEditAliasAndMobileNoPage";
   static const String QRScanningScreen = "/QRScanningScreen";
+  static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
+  static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
+  static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
 }

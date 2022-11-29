@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_customer_doc_id_response_entity.g.dart';
 
 @JsonSerializable()
-class GetCustomerDocIdResponseEntity extends BaseLayerDataTransformer<
-    GetCustomerDocIdResponseEntity, GetCustomerDocIdResponse> {
+class GetCustomerDocIdResponseEntity
+    extends BaseLayerDataTransformer<GetCustomerDocIdResponseEntity, GetCustomerDocIdResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 
@@ -28,7 +28,6 @@ class GetCustomerDocIdResponseEntity extends BaseLayerDataTransformer<
   GetCustomerDocIdResponse transform() {
     return GetCustomerDocIdResponse(
         getCustomerDocIdContentData:
-            GetCustomerDocIdContentDataEntity.fromJson(responseEntity!.content)
-                .transform());
+            GetCustomerDocIdContentDataEntity.fromJson(responseEntity!.content).transform());
   }
 }

@@ -7,10 +7,5 @@ class SaveCountryResidenceInfoResponseData {
   final dynamic? id;
 
   SaveCountryResidenceInfoResponseData(
-      {this.code,
-      this.content,
-      this.exceptionMessage,
-      this.message,
-      this.token,
-      this.id});
+      {this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
 }

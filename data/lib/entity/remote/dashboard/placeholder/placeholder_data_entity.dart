@@ -6,9 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "placeholder_data_entity.g.dart";
 
 @JsonSerializable()
-class PlaceholderDataEntity
-    implements
-        BaseLayerDataTransformer<PlaceholderDataEntity, PlaceholderData> {
+class PlaceholderDataEntity implements BaseLayerDataTransformer<PlaceholderDataEntity, PlaceholderData> {
   @JsonKey(name: "placeholderId")
   final int? placeholderId;
   @JsonKey(name: "locationName")
@@ -18,14 +16,9 @@ class PlaceholderDataEntity
   @JsonKey(name: "image")
   final String? image;
 
-  PlaceholderDataEntity(
-      {this.placeholderId: 0,
-      this.locationName: "",
-      this.status: false,
-      this.image: ""});
+  PlaceholderDataEntity({this.placeholderId: 0, this.locationName: "", this.status: false, this.image: ""});
 
-  factory PlaceholderDataEntity.fromJson(Map<String, dynamic> json) =>
-      _$PlaceholderDataEntityFromJson(json);
+  factory PlaceholderDataEntity.fromJson(Map<String, dynamic> json) => _$PlaceholderDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlaceholderDataEntityToJson(this);
 
@@ -39,9 +32,7 @@ class PlaceholderDataEntity
     return PlaceholderData(
         placeholderId: this.placeholderId ?? 0,
         status: this.status ?? false,
-        image: this.image != null
-            ? ImageUtils.dataFromBase64String(this.image!)
-            : "",
+        image: this.image != null ? ImageUtils.dataFromBase64String(this.image!) : "",
         locationName: this.locationName ?? '');
   }
 }

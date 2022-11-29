@@ -9,8 +9,7 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CreateAccountUseCase extends BaseUseCase<BaseError,
-    CreateAccountUseCaseParams, CreateAccountResponse> {
+class CreateAccountUseCase extends BaseUseCase<BaseError, CreateAccountUseCaseParams, CreateAccountResponse> {
   final BankSmartRepository _bankSmartRepository;
   final UserRepository _userRepository;
 
@@ -25,13 +24,11 @@ class CreateAccountUseCase extends BaseUseCase<BaseError,
               customerInformation: params.customerInformation,
               accountDetails: params.accountDetails))
           .fold((l) => Left(l), (response) async {
-        return (await _userRepository.getCurrentUser()).fold((l) => Left(l),
-            (currentUser) async {
+        return (await _userRepository.getCurrentUser()).fold((l) => Left(l), (currentUser) async {
           currentUser.firstName = params.customerInformation.firstName ?? '';
           currentUser.lastName = params.customerInformation.lastName ?? '';
           currentUser.email = params.customerInformation.email ?? '';
-          return (await _userRepository.saveUser(currentUser))
-              .fold((l) => Left(l), (user) async {
+          return (await _userRepository.saveUser(currentUser)).fold((l) => Left(l), (user) async {
             return Right(response);
           });
         });
@@ -44,8 +41,7 @@ class CreateAccountUseCaseParams extends Params {
   final CustomerInformation customerInformation;
   final CustomerAccountDetails accountDetails;
 
-  CreateAccountUseCaseParams(
-      {required this.customerInformation, required this.accountDetails});
+  CreateAccountUseCaseParams({required this.customerInformation, required this.accountDetails});
 
   @override
   Either<AppError, bool> verify() {

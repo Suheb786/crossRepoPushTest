@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "transaction_entity.g.dart";
 
 @JsonSerializable()
-class TransactionEntity
-    implements BaseLayerDataTransformer<TransactionEntity, Transactions> {
+class TransactionEntity implements BaseLayerDataTransformer<TransactionEntity, Transactions> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "description")
@@ -44,8 +43,7 @@ class TransactionEntity
       this.type: "",
       this.currency: ""});
 
-  factory TransactionEntity.fromJson(Map<String, dynamic> json) =>
-      _$TransactionEntityFromJson(json);
+  factory TransactionEntity.fromJson(Map<String, dynamic> json) => _$TransactionEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionEntityToJson(this);
 
@@ -66,9 +64,7 @@ class TransactionEntity
         balanceCur: this.balanceCur ?? 'JOD',
         trnxType: this.trnxType ?? 'D',
         memo: this.memo ?? '',
-        type: this.type != null
-            ? this.type!.fromTransactionStatusValue()
-            : TransactionTypeEnum.NONE,
+        type: this.type != null ? this.type!.fromTransactionStatusValue() : TransactionTypeEnum.NONE,
         currency: this.currency ?? '');
   }
 }

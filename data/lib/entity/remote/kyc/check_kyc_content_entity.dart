@@ -6,16 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'check_kyc_content_entity.g.dart';
 
 @JsonSerializable()
-class CheckKycContentEntity
-    implements
-        BaseLayerDataTransformer<CheckKycContentEntity, CheckKycDataContent> {
+class CheckKycContentEntity implements BaseLayerDataTransformer<CheckKycContentEntity, CheckKycDataContent> {
   @JsonKey(name: "data")
   final List<CheckKycDataEntity>? data;
 
   CheckKycContentEntity({this.data});
 
-  factory CheckKycContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$CheckKycContentEntityFromJson(json);
+  factory CheckKycContentEntity.fromJson(Map<String, dynamic> json) => _$CheckKycContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CheckKycContentEntityToJson(this);
 
@@ -27,8 +24,6 @@ class CheckKycContentEntity
   @override
   CheckKycDataContent transform() {
     return CheckKycDataContent(
-        kycData: this.data!.isNotEmpty
-            ? this.data!.map((e) => e.transform()).toList()
-            : []);
+        kycData: this.data!.isNotEmpty ? this.data!.map((e) => e.transform()).toList() : []);
   }
 }

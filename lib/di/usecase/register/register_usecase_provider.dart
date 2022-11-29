@@ -23,14 +23,12 @@ final getOccupationUseCaseProvider = Provider.autoDispose<GetOccupationUseCase>(
 );
 
 ///[GetPurposeOfAccountOpeningUseCase] provider
-final purposeOfAccountOpeningUseCaseProvider =
-    Provider.autoDispose<GetPurposeOfAccountOpeningUseCase>(
+final purposeOfAccountOpeningUseCaseProvider = Provider.autoDispose<GetPurposeOfAccountOpeningUseCase>(
   (ref) => GetPurposeOfAccountOpeningUseCase(ref.read(registerRepoProvider)),
 );
 
 ///[GetAdditionalIncomeSourceUseCase] provider
-final additionalIncomeSourceUseCaseProvider =
-    Provider.autoDispose<GetAdditionalIncomeSourceUseCase>(
+final additionalIncomeSourceUseCaseProvider = Provider.autoDispose<GetAdditionalIncomeSourceUseCase>(
   (ref) => GetAdditionalIncomeSourceUseCase(ref.read(registerRepoProvider)),
 );
 
@@ -40,40 +38,33 @@ final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
 );
 
 ///[TaxReportInformationUseCase] provider
-final taxReportInformationUseCaseProvider =
-    Provider.autoDispose<TaxReportInformationUseCase>(
+final taxReportInformationUseCaseProvider = Provider.autoDispose<TaxReportInformationUseCase>(
   (ref) => TaxReportInformationUseCase(),
 );
 
 ///[TaxReportInformationUseCase] provider
-final reviewApplicationUseCaseProvider =
-    Provider.autoDispose<ReviewApplicationUseCase>(
+final reviewApplicationUseCaseProvider = Provider.autoDispose<ReviewApplicationUseCase>(
   (ref) => ReviewApplicationUseCase(ref.read(userRepoProvider)),
 );
 
 ///[NatureOfSpecialNeedsUseCase] provider
-final natureOfSpecialNeedsUseCaseProvider =
-    Provider.autoDispose<NatureOfSpecialNeedsUseCase>(
+final natureOfSpecialNeedsUseCaseProvider = Provider.autoDispose<NatureOfSpecialNeedsUseCase>(
   (ref) => NatureOfSpecialNeedsUseCase(ref.read(registerStepThreeRepoProvider)),
 );
 
 ///[RelationshipWithPEPUseCase] provider
-final relationshipWithPEPUseCaseProvider =
-    Provider.autoDispose<RelationshipWithPEPUseCase>(
+final relationshipWithPEPUseCaseProvider = Provider.autoDispose<RelationshipWithPEPUseCase>(
   (ref) => RelationshipWithPEPUseCase(ref.read(registerStepThreeRepoProvider)),
 );
 
 ///[EmploymentStatusDialogUseCase] provider
-final employmentStatusDialogUseCaseProvider =
-    Provider.autoDispose<EmploymentStatusDialogUseCase>(
-  (ref) =>
-      EmploymentStatusDialogUseCase(ref.read(registerStepThreeRepoProvider)),
+final employmentStatusDialogUseCaseProvider = Provider.autoDispose<EmploymentStatusDialogUseCase>(
+  (ref) => EmploymentStatusDialogUseCase(ref.read(registerStepThreeRepoProvider)),
 );
 
 ///[FatcaUSRelevantW8UseCase] provider
 final fatcaUSRelevantW8UseCaseProvider =
-    Provider.autoDispose<FatcaUSRelevantW8UseCase>(
-        (ref) => FatcaUSRelevantW8UseCase());
+    Provider.autoDispose<FatcaUSRelevantW8UseCase>((ref) => FatcaUSRelevantW8UseCase());
 
 ///[FatcaUSRelevantW8AddressDetailsUseCase] provider
 final fatcaUSRelevantW8AddressDetailsUseCaseProvider =
@@ -82,8 +73,7 @@ final fatcaUSRelevantW8AddressDetailsUseCaseProvider =
 
 ///[FatcaUSRelevantW9UseCase] provider
 final fatcaUSRelevantW9UseCaseProvider =
-    Provider.autoDispose<FatcaUSRelevantW9UseCase>(
-        (ref) => FatcaUSRelevantW9UseCase());
+    Provider.autoDispose<FatcaUSRelevantW9UseCase>((ref) => FatcaUSRelevantW9UseCase());
 
 ///[FatcaUSRelevantW9AddressDetailsUseCase] provider
 final fatcaUSRelevantW9AddressDetailsUseCaseProvider =
@@ -92,16 +82,13 @@ final fatcaUSRelevantW9AddressDetailsUseCaseProvider =
 
 ///[FatcaUSW9TaxPayerDetailsUseCase] provider
 final fatcaUSW9TaxPayerDetailsUseCaseProvider =
-    Provider.autoDispose<FatcaUSW9TaxPayerDetailsUseCase>(
-        (ref) => FatcaUSW9TaxPayerDetailsUseCase());
+    Provider.autoDispose<FatcaUSW9TaxPayerDetailsUseCase>((ref) => FatcaUSW9TaxPayerDetailsUseCase());
 
 ///[FatcaUSW9TaxPayerDetailsUseCase] provider
 final fatcaUSW8TaxPayerDetailsUseCaseProvider =
-    Provider.autoDispose<FatcaUSW8TaxPayerDetailsUseCase>(
-        (ref) => FatcaUSW8TaxPayerDetailsUseCase());
+    Provider.autoDispose<FatcaUSW8TaxPayerDetailsUseCase>((ref) => FatcaUSW8TaxPayerDetailsUseCase());
 
 ///[ScheduleVideoCallUseCase] provider
-final scheduleVideoCallUseCaseProvider =
-    Provider.autoDispose<ScheduleVideoCallUseCase>(
+final scheduleVideoCallUseCaseProvider = Provider.autoDispose<ScheduleVideoCallUseCase>(
   (ref) => ScheduleVideoCallUseCase(ref.read(accountRepositoryProvider)),
 );

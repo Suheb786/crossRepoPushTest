@@ -6,9 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part "get_combo_values_content_data_entity.g.dart";
 
 @JsonSerializable()
-class GetComboValuesContentDataEntity extends BaseLayerDataTransformer<
-    GetComboValuesContentDataEntity,
-    GetComboValuesContentData> {
+class GetComboValuesContentDataEntity
+    extends BaseLayerDataTransformer<GetComboValuesContentDataEntity, GetComboValuesContentData> {
   @JsonKey(name: "EmploymentStatus")
   final List<GetComboValuesDataEntity>? employmentStatus;
   @JsonKey(name: "NatureOfSpecialNeed")
@@ -16,22 +15,18 @@ class GetComboValuesContentDataEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "BusinessType")
   final List<GetComboValuesDataEntity>? businessType;
 
-  GetComboValuesContentDataEntity(
-      {this.employmentStatus, this.businessType, this.natureOfSpecialNeed});
+  GetComboValuesContentDataEntity({this.employmentStatus, this.businessType, this.natureOfSpecialNeed});
 
   factory GetComboValuesContentDataEntity.fromJson(Map<String, dynamic> json) =>
       _$GetComboValuesContentDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetComboValuesContentDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetComboValuesContentDataEntityToJson(this);
 
   @override
   GetComboValuesContentData transform() {
     return GetComboValuesContentData(
-        employmentStatus:
-        this.employmentStatus!.map((e) => e.transform()).toList(),
-        natureOfSpecialNeed:
-        this.natureOfSpecialNeed!.map((e) => e.transform()).toList(),
+        employmentStatus: this.employmentStatus!.map((e) => e.transform()).toList(),
+        natureOfSpecialNeed: this.natureOfSpecialNeed!.map((e) => e.transform()).toList(),
         businessType: this.businessType!.map((e) => e.transform()).toList());
   }
 }
