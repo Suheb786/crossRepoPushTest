@@ -87,6 +87,7 @@ class SecureStorageHelper {
         secureUser.accountNumber = user.accountNumber ?? secureUser.accountNumber;
         secureUser.applicationId = user.applicationId ?? secureUser.applicationId;
         secureUser.selectedLanguage = user.selectedLanguage ?? secureUser.selectedLanguage;
+        secureUser.isRJPopUPClicked = user.isRJPopUPClicked ?? secureUser.isRJPopUPClicked;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {
