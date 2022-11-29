@@ -176,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("إنت مواطن أمريكي؟"),
         "areYouUSTaxResident": MessageLookupByLibrary.simpleMessage("بتدفع ضرائب بأمريكا؟"),
         "areYouUSTaxResidentHint": MessageLookupByLibrary.simpleMessage("عندك إقامة بأمريكا؟"),
+        "areYourToChangeDefaultAccountOfYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request."),
         "area": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "armexApiError": MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
@@ -192,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToCardSettings": MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
         "backToDashboard": MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "backToManageCliq": MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),
         "backToPayments": MessageLookupByLibrary.simpleMessage("العودة للدفعات"),
         "backToRegistration": MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
@@ -301,6 +304,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeCountryRestriction": MessageLookupByLibrary.simpleMessage("تغيير القيود المفروضة من الدولة"),
         "changeCreditLimit": MessageLookupByLibrary.simpleMessage("تغيير سقف البطاقة"),
         "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage("اضبط سقف البطاقة الائتمانية المطلوب "),
+        "changeDefaultAccount": MessageLookupByLibrary.simpleMessage("Change default account"),
         "changeEmailAddress": MessageLookupByLibrary.simpleMessage("تغيير الإيميل"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "changeLinkAccount": MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
@@ -1080,6 +1084,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "limitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز السقف"),
         "linkBankAccountToYourNewId":
             MessageLookupByLibrary.simpleMessage("اربط حسابك البنكي مع  حساب CliQ الجديد"),
+        "linkedAccount": MessageLookupByLibrary.simpleMessage("Linked Account"),
         "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
             "رح يتم القيد من الحساب المرتبط لأي حركة بتنعمل من على هاي البطاقة"),
         "linkedAccountNumber": MessageLookupByLibrary.simpleMessage("رقم الحساب المرتبط"),
@@ -1870,6 +1875,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
         "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
+        "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ."),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
         "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("شو نوع ضريبتك؟"),
         "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("شو نوع الملف الضريبي؟"),

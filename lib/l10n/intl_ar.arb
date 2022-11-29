@@ -1228,7 +1228,6 @@
   "qrPayments": "دفعات QR",
   "showQrForScanning": "اعرض رمز QR لمسحه",
   "shareQr": "شارك رمز QR",
-  "qrValidForOneHour": "صلاحية رمز QR رح تكون لساعة فقط  ",
   "amount": "المبلغ",
   "youAreAcceptingMoneyRequestViaQr": "تم قبول طلب الأموال من خلال QR",
   "payFrom": "الدفع من",
@@ -1438,11 +1437,7 @@
   "qrValidForOneHour": "رمز الاستجابة فعال لمدة 30 دقيقة",
   "paymentNotDone": "لم تتم عملية الدفع",
   "noTicketsFound": "لم يتم العثور على تذكرة",
-  "dateComparison": "Depart on date should not be greater than return date"
-  "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.",
-  "accountCard": "Account Card",
-  "paymentNotDone": "payment not done",
-  "noTicketsFound": "No tickets found",
+  "dateComparison": "Depart on date should not be greater than return date",
   "whenAcceptingCreationOfYourCliqId": "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.",
   "areYourToChangeDefaultAccountOfYourCliqId": "Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request."
 }
