@@ -24,13 +24,12 @@ class DynamicLinksService {
     required String dateTime,
   }) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    print(packageInfo.packageName);
     String uriPrefix = "https://blinkcbt.page.link";
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: uriPrefix,
       link: Uri.parse(
-          '${uriPrefix}?accountTitle=${accountTitle}&accountNo=${accountNo}&requestAmt=${requestAmt}&dateTime=${dateTime}'),
+          '${uriPrefix}/payments?accountTitle=${accountTitle}&accountNo=${accountNo}&requestAmt=${requestAmt}&dateTime=${dateTime}'),
       androidParameters: AndroidParameters(
         packageName: packageInfo.packageName,
         minimumVersion: 21,
@@ -41,11 +40,11 @@ class DynamicLinksService {
         appStoreId: '1607969058',
       ),
     );
-    /* final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
-    final Uri shortUrl = shortDynamicLink.shortUrl;*/
-    final Uri longUrl = await parameters.buildUrl();
+    final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
+    final Uri shortUrl = shortDynamicLink.shortUrl;
+    //  final Uri longUrl = await parameters.buildUrl();
 
-    return longUrl.toString();
+    return shortUrl.toString();
   }
 
   Future<Uri> initDynamicLinks() async {
@@ -53,12 +52,15 @@ class DynamicLinksService {
     FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
       Uri? link = dynamicLink?.link;
 
+      debugPrint('-----Get On Link----${link}');
+
       if (link != null) {
         deepLink = link;
         _initDynamicLinkRequestResponse.add(link);
         debugPrint("----------Account Title${link.queryParameters['accountTitle']}");
       }
     }, onError: (OnLinkErrorException e) async {
+      debugPrint("----------On Link Error Exception");
       throw AppLocalException(
         appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
       );
@@ -66,7 +68,10 @@ class DynamicLinksService {
 
     debugPrint('-----Anything----');
 
+    await Future.delayed(const Duration(seconds: 1));
+
     final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
+    debugPrint('-----Get Initial Url----${data}');
     Uri? deepPendingLink = data?.link;
 
     if (deepPendingLink != null) {

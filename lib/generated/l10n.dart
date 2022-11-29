@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -26,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -14595,6 +14594,16 @@ class S {
     return Intl.message(
       'No tickets found',
       name: 'noTicketsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart on date should not be greater than return date`
+  String get dateComparison {
+    return Intl.message(
+      'Depart on date should not be greater than return date',
+      name: 'dateComparison',
       desc: '',
       args: [],
     );

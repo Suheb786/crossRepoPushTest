@@ -234,7 +234,9 @@ class RjFlightBookingDialogView extends StatelessWidget {
                             key: model.selectedDepartOnDateKey,
                             onPressed: () {
                               /// opening calender dialog
-                              DatePicker.show(context, initialDate: model.departOnDate, onSelected: (date) {
+                              DatePicker.show(context,
+                                  firstDate: DateTime.now(),
+                                  initialDate: model.departOnDate, onSelected: (date) {
                                 model.selectedDepartOnDateController.text =
                                     TimeUtils.getFormattedDOB(date.toString());
                                 model.departOnDate = date;
@@ -271,8 +273,9 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                           key: model.selectedReturnOnDateKey,
                                           onPressed: () {
                                             /// opening date dialog
-                                            DatePicker.show(context, initialDate: model.returnOnDate,
-                                                onSelected: (date) {
+                                            DatePicker.show(context,
+                                                firstDate: DateTime.now(),
+                                                initialDate: model.returnOnDate, onSelected: (date) {
                                               model.selectedReturnOnDateController.text =
                                                   TimeUtils.getFormattedDOB(date.toString());
                                               model.returnOnDate = date;

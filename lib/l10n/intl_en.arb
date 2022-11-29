@@ -1482,6 +1482,7 @@
   "accountCard": "Account Card",
   "paymentNotDone": "payment not done",
   "noTicketsFound": "No tickets found",
+  "dateComparison": "Depart on date should not be greater than return date",
   "linkedAccount": "Linked Account",
   "changeDefaultAccount": "Change default account",
   "whenAcceptingCreationOfYourCliqId": "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.",

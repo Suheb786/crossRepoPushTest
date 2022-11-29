@@ -9,9 +9,10 @@ class DatePickerBottomSheetView extends StatefulWidget {
   final Function()? onCancel;
   final String? title;
   final DateTime initialDate;
+  final DateTime? firstDate;
 
   const DatePickerBottomSheetView(
-      {this.onDateSelected, this.title, this.onCancel, required this.initialDate});
+      {this.onDateSelected, this.title, this.onCancel, required this.initialDate, this.firstDate});
 
   @override
   _DatePickerBottomSheetViewState createState() => _DatePickerBottomSheetViewState();
@@ -42,6 +43,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
           height: MediaQuery.of(context).copyWith().size.height / 3.5,
           child: CupertinoDatePicker(
             initialDateTime: widget.initialDate,
+            minimumDate: widget.firstDate ?? DateTime(1900),
             mode: CupertinoDatePickerMode.date,
             onDateTimeChanged: (DateTime newdate) {
               selectedDateTime = newdate;
