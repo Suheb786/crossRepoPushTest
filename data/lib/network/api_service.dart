@@ -88,6 +88,10 @@ import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_reques
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -795,4 +799,16 @@ abstract class ApiService {
 
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  @POST("/Cliq/EditCliqID")
+  Future<HttpResponse<ResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
+
+  @POST("/Cliq/SuspendCliqId")
+  Future<HttpResponse<ResponseEntity>> suspendCliqId(@Body() SuspendCliqIdRequestEntity request);
+
+  @POST("/Cliq/ReActivateCliqId")
+  Future<HttpResponse<ResponseEntity>> reActivateCliqId(@Body() ReActivateCliqIdRequestEntity request);
+
+  @POST("/Cliq/DeleteCliqId")
+  Future<HttpResponse<ResponseEntity>> deleteCliqId(@Body() DeleteCliqIdRequestEntity request);
 }
