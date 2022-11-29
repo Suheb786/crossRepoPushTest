@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -14128,6 +14130,16 @@ class S {
     );
   }
 
+  /// `Back to Manage CliQ`
+  String get backToManageCliq {
+    return Intl.message(
+      'Back to Manage CliQ',
+      name: 'backToManageCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm your payment\namount below`
   String get confirmYourPaymentAmtBelow {
     return Intl.message(
@@ -14583,6 +14595,46 @@ class S {
     return Intl.message(
       'No tickets found',
       name: 'noTicketsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked Account`
+  String get linkedAccount {
+    return Intl.message(
+      'Linked Account',
+      name: 'linkedAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change default account`
+  String get changeDefaultAccount {
+    return Intl.message(
+      'Change default account',
+      name: 'changeDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.`
+  String get whenAcceptingCreationOfYourCliqId {
+    return Intl.message(
+      'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.',
+      name: 'whenAcceptingCreationOfYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.`
+  String get areYourToChangeDefaultAccountOfYourCliqId {
+    return Intl.message(
+      'Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.',
+      name: 'areYourToChangeDefaultAccountOfYourCliqId',
       desc: '',
       args: [],
     );
