@@ -1444,12 +1444,9 @@
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
   "to": "to",
   "qrExpired": "QR Expired. Try scanning valid QR",
-  "qrInvalid": "Invalid QR. Try scanning valid QR"
-  "addThisBillToSaveList":"Add this bill to your saved list",
-  "linkedAccount":"Linked Account",
-  "changeDefaultAccount":"Change default account",
-  "whenAcceptingCreationOfYourCliqId":"When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.",
-  "areYourToChangeDefaultAccountOfYourCliqId":"Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.",
-  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
-
+  "qrInvalid": "Invalid QR. Try scanning valid QR",
+  "linkedAccount": "Linked Account",
+  "changeDefaultAccount": "Change default account",
+  "whenAcceptingCreationOfYourCliqId": "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.",
+  "areYourToChangeDefaultAccountOfYourCliqId": "Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request."
 }
