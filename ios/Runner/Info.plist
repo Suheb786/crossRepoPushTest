@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>FirebaseDynamicLinksCustomDomains</key>
+    <array>
+        <string>https://blinkcbt.page.link/*</string>
+    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -33,11 +37,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>FirebaseDynamicLinksCustomDomains</key>
-	<array>
-		<string>https://blinkcbt.page.link/promos</string>
-		<string>https://blinkcbt.page.link/links/share</string>
-	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>

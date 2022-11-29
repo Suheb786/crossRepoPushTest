@@ -1114,6 +1114,9 @@ class ErrorParser {
       case ErrorType.QR_EXPIRED:
         return localisedHelper.qrExpired;
 
+      case ErrorType.DATE_COMPARISON:
+        return localisedHelper.dateComparison;
+
       default:
         return "";
     }

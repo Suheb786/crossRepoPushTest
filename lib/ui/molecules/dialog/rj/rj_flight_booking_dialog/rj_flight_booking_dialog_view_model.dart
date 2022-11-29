@@ -71,6 +71,8 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
         des: selectedDestination.code,
         toDate: TimeUtils.getFormattedDateForRJ(departOnDate),
         fromDate: TimeUtils.getFormattedDateForRJ(returnOnDate),
+        departOnDate: departOnDate,
+        returnOnDate: returnOnDate,
         adults: '${passengerList[0].count}',
         youths: '${passengerList[1].count}',
         infants: '${passengerList[3].count}',

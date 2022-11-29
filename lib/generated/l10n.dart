@@ -14589,6 +14589,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Depart on date should not be greater than return date`
+  String get dateComparison {
+    return Intl.message(
+      'Depart on date should not be greater than return date',
+      name: 'dateComparison',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

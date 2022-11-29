@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:data/helper/dynamic_link.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -28,9 +31,11 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       if (Platform.isIOS) {
+        debugPrint('-----Inside here------');
         getViewModel().timer = new Timer(
-          const Duration(milliseconds: 800),
+          const Duration(milliseconds: 1000),
           () {
+            debugPrint('-----Inside here tooo------');
             getViewModel().initDynamicLink();
           },
         );
@@ -67,17 +72,31 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
         var accountNo = event.queryParameters['accountNo'];
         var requestAmt = event.queryParameters['requestAmt'];
         var dateTime = event.queryParameters['dateTime'];
-        if ((accountNo ?? '').isNotEmpty) {
-          Navigator.pushNamed(appLevelKey.currentContext!, RoutePaths.SendMoneyQrScanning,
-              arguments: SendMoneyQRScanningArguments(
-                  amount: requestAmt ?? '',
-                  accountHolderName: accountTitle ?? '',
-                  accountNo: accountNo ?? ''));
+        if ((accountNo ?? '').isNotEmpty && dateTime != null) {
+          DateTime qrDate = DateTime.parse(dateTime);
+          final currentDate = DateTime.now();
+          final difference = currentDate.difference(qrDate).inMinutes;
+          if (difference >= 30) {
+            getViewModel().showToastWithError(
+                AppError(type: ErrorType.QR_EXPIRED, error: ErrorInfo(message: ''), cause: Exception()));
+          } else {
+            Navigator.pushNamed(appLevelKey.currentContext!, RoutePaths.SendMoneyQrScanning,
+                arguments: SendMoneyQRScanningArguments(
+                    amount: requestAmt ?? '',
+                    accountHolderName: accountTitle ?? '',
+                    accountNo: accountNo ?? ''));
+          }
         }
       }
     });
 
     super.onModelReady(model);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
