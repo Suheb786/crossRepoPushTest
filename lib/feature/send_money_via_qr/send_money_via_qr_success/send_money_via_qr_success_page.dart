@@ -6,6 +6,10 @@ import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/sen
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 
 class SendMoneyViaQrSuccessPage extends BasePage<SendMoneyViaQrSuccessPageViewModel> {
+  final SendMoneyViaQRSuccessPageArguments arguments;
+
+  SendMoneyViaQrSuccessPage(this.arguments);
+
   @override
   SendMoneyViaQrSuccessPageState createState() => SendMoneyViaQrSuccessPageState();
 }
@@ -14,7 +18,7 @@ class SendMoneyViaQrSuccessPageState
     extends BaseStatefulPage<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQrSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return sendMoneyQrSuccessViewModelProvider;
+    return sendMoneyQrSuccessViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -26,4 +30,12 @@ class SendMoneyViaQrSuccessPageState
   Widget buildView(BuildContext context, SendMoneyViaQrSuccessPageViewModel model) {
     return SendMoneyViaQrSuccessPageView(provideBase());
   }
+}
+
+class SendMoneyViaQRSuccessPageArguments {
+  final String amount;
+  final String user;
+  final String referenceNo;
+
+  SendMoneyViaQRSuccessPageArguments({required this.amount, required this.user, required this.referenceNo});
 }

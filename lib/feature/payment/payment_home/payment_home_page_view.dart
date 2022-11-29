@@ -2,12 +2,15 @@ import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -64,11 +67,52 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          AppSvg.asset(AssetUtils.payments),
+                          if (currentStep == 0)
+                            InkWell(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.payRequestViaQRBlackIcon,
+                                      title: S.of(context).payViaQR,
+                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14.0.t)), onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                  });
+                                },
+                                child: AppSvg.asset(AssetUtils.payViaQrIcon))
+                          else
+                            InkWell(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.payRequestViaQRBlackIcon,
+                                      title: S.of(context).requestViaQR,
+                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14.0.t)), onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: () {
+                                    Navigator.pop(context);
+
+                                    Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                        arguments: RequestMoneyQrGenerationPageArguments(
+                                            ProviderScope.containerOf(context)
+                                                .read(appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .account!));
+                                  });
+                                },
+                                child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
                           Padding(
                             padding: EdgeInsets.only(top: 9.0.h),
                             child: Text(
-                              S.of(context).payments,
+                              currentStep == 0 ? S.of(context).payViaQR : S.of(context).requestViaQR,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,

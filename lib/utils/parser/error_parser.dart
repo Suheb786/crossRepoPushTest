@@ -1101,6 +1101,14 @@ class ErrorParser {
         return localisedHelper.errorCCUnBlockNI;
       case ErrorType.LOGIN_REGISTER_DISABLED:
         return localisedHelper.loginRegisterDisabled;
+      case ErrorType.ID_VERIFICATION_FAILED:
+        return localisedHelper.idVerificationFailed;
+
+      case ErrorType.QR_INVALID:
+        return localisedHelper.qrInvalid;
+
+      case ErrorType.QR_EXPIRED:
+        return localisedHelper.qrExpired;
 
       default:
         return "";

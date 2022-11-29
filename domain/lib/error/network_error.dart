@@ -690,6 +690,9 @@ class NetworkError extends BaseError {
           case "err-332":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_FOR_PIN_CHANGE_NI);
 
+          case "err-333":
+            return AppError(cause: cause, error: error, type: ErrorType.ID_VERIFICATION_FAILED);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

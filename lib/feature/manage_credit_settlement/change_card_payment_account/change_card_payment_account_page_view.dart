@@ -152,8 +152,9 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                             controller: model.settlementAccountController,
                             key: model.settlementAccountKey,
                             onPressed: () {
-                              AccountsDialog.show(context, label: S.of(context).newSettlementAccount,
-                                  onDismissed: () {
+                              AccountsDialog.show(context,
+                                  label: S.of(context).newSettlementAccount,
+                                  accountsList: ['5669 4900 2111', '5669 4900 2111'], onDismissed: () {
                                 Navigator.pop(context);
                               }, onSelected: (value) {
                                 Navigator.pop(context);

@@ -133,4 +133,5 @@ class RoutePaths {
   static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
   static const String EditCliqIDMobileNoPage = "/editCliqIDMobileNoPage";
   static const String OtpForEditAliasAndMobileNoPage = "/otpForEditAliasAndMobileNoPage";
+  static const String QRScanningScreen = "/QRScanningScreen";
 }

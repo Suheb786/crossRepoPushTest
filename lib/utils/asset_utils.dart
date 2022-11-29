@@ -256,6 +256,9 @@ class AssetUtils {
   static const String flightIcon = svg + "flight_icon.svg";
   static const String deleteBlackIcon = svg + "delete_black_icon.svg";
   static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
+  static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
+  static const String requestViaQrIcon = svg + "request_via_qr.svg";
+  static const String payRequestViaQRBlackIcon = svg + "pay_request_via_qr_black.svg";
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";

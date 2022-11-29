@@ -18,11 +18,10 @@ abstract class BasePage<VM extends BasePageViewModel> extends StatefulWidget {
   BasePage({Key? key}) : super(key: key);
 }
 
-abstract class BasePageState<VM extends BasePageViewModel,
-    T extends BasePage<VM>> extends State<T> {}
+abstract class BasePageState<VM extends BasePageViewModel, T extends BasePage<VM>> extends State<T> {}
 
-abstract class BaseStatefulPage<VM extends BasePageViewModel,
-    B extends BasePage<VM>> extends BasePageState<VM, B> {
+abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>>
+    extends BasePageState<VM, B> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool subscribeVisibilityEvents = false;
@@ -101,8 +100,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
               floatingActionButton: buildFloatingActionButton(),
               extendBodyBehindAppBar: extendBodyBehindAppBar(),
               body: _buildScaffoldBody(context, model!),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
               drawer: buildDrawer(),
               drawerEnableOpenDragGesture: drawerEnableOpenDragGesture(),
               bottomNavigationBar: buildBottomNavigationBar(),
@@ -171,8 +169,8 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
             error: event,
             localisedHelper: S.of(context),
           ));
-          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-              ModalRoute.withName(RoutePaths.Splash));
+          Navigator.pushNamedAndRemoveUntil(
+              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {
           //   ProviderScope.containerOf(context)
           //       .read(appViewModel)
@@ -239,16 +237,13 @@ abstract class BasePageViewWidget<T extends BasePageViewModel> extends Widget {
   Widget build(BuildContext context, T model);
 
   @override
-  DataProviderElement<T> createElement() =>
-      DataProviderElement<T>(this, this.providerBase);
+  DataProviderElement<T> createElement() => DataProviderElement<T>(this, this.providerBase);
 }
 
-class DataProviderElement<T extends BasePageViewModel>
-    extends ComponentElement {
+class DataProviderElement<T extends BasePageViewModel> extends ComponentElement {
   final ProviderBase providerBase;
 
-  DataProviderElement(BasePageViewWidget widget, this.providerBase)
-      : super(widget);
+  DataProviderElement(BasePageViewWidget widget, this.providerBase) : super(widget);
 
   @override
   BasePageViewWidget get widget => super.widget as BasePageViewWidget;

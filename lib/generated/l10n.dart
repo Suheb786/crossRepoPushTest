@@ -13860,6 +13860,16 @@ class S {
     );
   }
 
+  /// `ID Verification Failed`
+  String get idVerificationFailed {
+    return Intl.message(
+      'ID Verification Failed',
+      name: 'idVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Paying {noOfBills} bills`
   String payBills(Object noOfBills) {
     return Intl.message(
@@ -14195,6 +14205,66 @@ class S {
     return Intl.message(
       'Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?',
       name: 'doYouReallyDeleteSavedBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay via QR`
+  String get payViaQR {
+    return Intl.message(
+      'Pay via QR',
+      name: 'payViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.`
+  String get payAndRequestMoneyViaQR {
+    return Intl.message(
+      'Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.',
+      name: 'payAndRequestMoneyViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the QR code within the frame and proceed with payment`
+  String get payViaQRDesc {
+    return Intl.message(
+      'Place the QR code within the frame and proceed with payment',
+      name: 'payViaQRDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to`
+  String get to {
+    return Intl.message(
+      'to',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Expired. Try scanning valid QR`
+  String get qrExpired {
+    return Intl.message(
+      'QR Expired. Try scanning valid QR',
+      name: 'qrExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid QR. Try scanning valid QR`
+  String get qrInvalid {
+    return Intl.message(
+      'Invalid QR. Try scanning valid QR',
+      name: 'qrInvalid',
       desc: '',
       args: [],
     );
