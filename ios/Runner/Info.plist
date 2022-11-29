@@ -4,7 +4,7 @@
 <dict>
     <key>FirebaseDynamicLinksCustomDomains</key>
     <array>
-        <string>https://blinkcbt.page.link/**</string>
+        <string>https://blinkcbt.page.link/*</string>
     </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

@@ -1433,5 +1433,6 @@
   "accountCard": "بطاقة الحساب",
   "qrValidForOneHour": "رمز الاستجابة فعال لمدة 30 دقيقة",
   "paymentNotDone": "لم تتم عملية الدفع",
-  "noTicketsFound": "لم يتم العثور على تذكرة"
+  "noTicketsFound": "لم يتم العثور على تذكرة",
+  "dateComparison": "Depart on date should not be greater than return date"
 }

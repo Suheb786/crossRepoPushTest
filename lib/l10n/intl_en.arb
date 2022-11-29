@@ -1480,5 +1480,6 @@
   "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.",
   "accountCard": "Account Card",
   "paymentNotDone": "payment not done",
-  "noTicketsFound": "No tickets found"
+  "noTicketsFound": "No tickets found",
+  "dateComparison": "Depart on date should not be greater than return date"
 }

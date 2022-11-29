@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
@@ -31,6 +33,8 @@ class GetTwoWayTripLinkUseCaseParams extends Params {
   final String? cabin;
   final String? promoCode;
   final String? customerRef;
+  final DateTime departOnDate;
+  final DateTime returnOnDate;
 
   GetTwoWayTripLinkUseCaseParams(
       {this.language,
@@ -44,10 +48,16 @@ class GetTwoWayTripLinkUseCaseParams extends Params {
       this.customerRef,
       this.childs,
       this.cabin,
-      this.adults});
+      this.adults,
+      required this.departOnDate,
+      required this.returnOnDate});
 
   @override
   Either<AppError, bool> verify() {
+    if (departOnDate.compareTo(returnOnDate) > 0) {
+      return Left(
+          AppError(type: ErrorType.DATE_COMPARISON, cause: Exception(), error: ErrorInfo(message: '')));
+    }
     return Right(true);
   }
 }
