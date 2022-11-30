@@ -90,8 +90,12 @@ import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
+import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -811,4 +815,16 @@ abstract class ApiService {
 
   @POST("/Cliq/DeleteCliqId")
   Future<HttpResponse<ResponseEntity>> deleteCliqId(@Body() DeleteCliqIdRequestEntity request);
+
+  @POST("/Cliq/UpdateRTPRequest")
+  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
+
+  @POST("/Cliq/SendMoneytoCliqIBAN")
+  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(@Body() SendMoneyToCliqIbanRequestEntity request);
+
+  @POST("/Cliq/QRCode")
+  Future<HttpResponse<ResponseEntity>> qRCliqCode(@Body() QrCodeCliqRequestEntity request);
+
+  @POST("/Cliq/SendQRPayment")
+  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
 }
