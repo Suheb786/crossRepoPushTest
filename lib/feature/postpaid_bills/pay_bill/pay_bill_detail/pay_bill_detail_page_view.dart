@@ -261,10 +261,10 @@ class PayBillDetailPageView
         }, onSelected: (billerDetails) {
           // Navigator.pop(context);
           model.billerNameTextController.text =
-              AppConstantsUtils.LANGUAGE_KEY == "EN"
+              !StringUtils.isDirectionRTL(context)
                   ? billerDetails.billerNameEn!
                   : billerDetails.billerNameAr!;
-          AppConstantsUtils.BILLER_NAME = AppConstantsUtils.LANGUAGE_KEY == "EN"
+          AppConstantsUtils.BILLER_NAME = !StringUtils.isDirectionRTL(context)
               ? billerDetails.billerNameEn!
               : billerDetails.billerNameAr!;
           AppConstantsUtils.SELECTED_BILLER_CODE = billerDetails.billerCode!;
@@ -495,7 +495,7 @@ class PayBillDetailPageView
       PayBillDetailPageViewModel model, BillerService billerServices) {
     model.showAmountField = false;
     model.updateStreamForBillingNumber(true);
-    model.serviceTypeTextControl.text = AppConstantsUtils.LANGUAGE_KEY == "EN"
+    model.serviceTypeTextControl.text = !StringUtils.isDirectionRTL(context)
         ? billerServices.serviceDescriptionEn!
         : billerServices.serviceDescriptionAr!;
     model.serviceTypeApiVal = billerServices.serviceType!;
@@ -516,7 +516,7 @@ class PayBillDetailPageView
   void _paymentTypePrePaid(
       PayBillDetailPageViewModel model, BillerService billerServices) {
     model.updateStreamForShowAmount(billerServices.containPrepaidCat!);
-    model.fieldTextLabelEn = AppConstantsUtils.LANGUAGE_KEY == "EN"
+    model.fieldTextLabelEn = !StringUtils.isDirectionRTL(context)
         ? billerServices.fieldLabelEn!
         : billerServices.fieldLabelAr!;
     model.updateStreamForBillingNumber(billerServices.billingNoRequired!);
@@ -530,7 +530,7 @@ class PayBillDetailPageView
 
   void _paymentTypePostPaid(
       PayBillDetailPageViewModel model, BillerService billerServices) {
-    model.fieldTextLabelEn = AppConstantsUtils.LANGUAGE_KEY == "EN"
+    model.fieldTextLabelEn = !StringUtils.isDirectionRTL(context)
         ? billerServices.fieldLabelEn!
         : billerServices.fieldLabelAr!;
     model.updateStreamForBillingNumber(true);
@@ -540,11 +540,11 @@ class PayBillDetailPageView
   ///show pre paid categories dialog
   Widget _ShowDenomination() {
     return AppStreamBuilder<bool>(
-      stream: model.isShowAmountStream,
+      stream: model.isPrepaidCategoryListEmptyStream,
       initialData: false,
-      dataBuilder: (_, isShowAmount) {
+      dataBuilder: (_, isPrepaidCategoryListEmpty) {
         return Visibility(
-          visible: isShowAmount!,
+          visible: !isPrepaidCategoryListEmpty!,
           child: Padding(
             padding: EdgeInsets.only(top: 16.0.h),
             child: AppTextField(
@@ -613,7 +613,6 @@ class PayBillDetailPageView
         serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE, onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (value) {
-      model.payFromController.text = value.description.toString();
       AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
       AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION =
           value.description.toString();

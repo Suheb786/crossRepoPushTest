@@ -183,9 +183,9 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                       GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (details.primaryVelocity!.isNegative) {
-                            Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
-                                arguments: PrePaidBillsSuccessPageArguments('50.000',
-                                    'Orange Mobile and Net Every..', 'Prepaid Tariq', '123142141213'));
+                            // Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
+                            //     arguments: PrePaidBillsSuccessPageArguments('50.000',
+                            //         'Orange Mobile and Net Every..', 'Prepaid Tariq', '123142141213'));
                           }
                         },
                         child: AnimatedButton(

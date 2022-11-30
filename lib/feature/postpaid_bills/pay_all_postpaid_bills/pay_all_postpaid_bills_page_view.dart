@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -160,7 +163,7 @@ class PayAllPostPaidBillsPageView
               Visibility(
                 visible: data!.any((item) => item.isChecked == true),
                 child: AppStreamBuilder<double>(
-                  initialData: model.totalBillAmt,
+                  initialData: 0.1,
                   stream: model.totalBillAmtDueStream,
                   dataBuilder: (BuildContext context, amt) {
                     return Align(
@@ -170,22 +173,23 @@ class PayAllPostPaidBillsPageView
                             bottom: 36.0.h, left: 24.0.w, right: 24.0.w),
                         child: InkWell(
                           onTap: () {
-                            // model.showSuccessToast(success)
-                            // print("sdjasld==>>: ${model.selectedPostPaidBillsList[0].nickName}");
-                            // print("sdjasld==>>: ${model.postPaidBillInquiryData?[0].serviceType??""}");
-                            // print("sdjasld==>>: ${model.postPaidBillInquiryData?[0].billerCode}");
-                            // print("sdjasld==>>: ${model.postPaidBillInquiryData?[0].billNo}");
-                            // print("sdjasld==>>: ${model.postPaidBillInquiryData?[0].feesAmt}");
-                            Navigator.pushNamed(context,
-                                RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                arguments:
-                                    PaySelectedBillsPostPaidBillsPageArguments(
-                                        model.postPaidBillInquiryData!.length
-                                            .toString(),
-                                        amt!,
-                                        model.selectedPostPaidBillsList,
-                                        model.postPaidRequestListJson,
-                                        model.postPaidBillInquiryData));
+                            if (amt! > 0.0) {
+                              Navigator.pushNamed(context,
+                                  RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                  arguments:
+                                      PaySelectedBillsPostPaidBillsPageArguments(
+                                          model.postPaidBillInquiryData!.length
+                                              .toString(),
+                                          amt,
+                                          model.selectedPostPaidBillsList,
+                                          model.postPaidRequestListJson,
+                                          model.postPaidBillInquiryData));
+                            } else {
+                              model.showToastWithError(AppError(
+                                  cause: Exception(),
+                                  error: ErrorInfo(message: ""),
+                                  type: ErrorType.ZERO_AMOUNT));
+                            }
                           },
                           child: Container(
                             width: double.maxFinite,

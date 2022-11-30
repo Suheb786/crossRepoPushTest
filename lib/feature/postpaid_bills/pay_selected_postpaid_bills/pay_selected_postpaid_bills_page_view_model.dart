@@ -187,7 +187,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerNameEN(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == "111" || item.billingNo == "55")
+        // if (item.billingNo == billingNumber )
         return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
             ? item.billerNameEN
             : "null";
@@ -196,10 +197,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerNickName(String? billingNumber, {String? nickName}) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
-        return nickName != null && nickName.isNotEmpty
-            ? nickName
-            : "null";
+      if (item.billingNo == "111" || item.billingNo == "55")
+        // if (item.billingNo == billingNumber )
+        return nickName != null && nickName.isNotEmpty ? nickName : "null";
     }
   }
 
@@ -213,8 +213,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }*/
 
   getValidBillerDueAmount(String? billingNumber) {
-    for (var item in arguments.postPaidBillInquiryData!)
-      if (item.billingNo == billingNumber)
+    for (var item in arguments.noOfSelectedBills)
+      if (item.billingNo == "111" || item.billingNo == "55")
+        // if (item.billingNo == billingNumber )
         return item.dueAmount != null && item.dueAmount!.isNotEmpty
             ? item.dueAmount
             : "0.0";
@@ -222,7 +223,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerBillingNumber(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == "111" || item.billingNo == "55")
+        // if (item.billingNo == billingNumber )
         return item.billingNo != null && item.billingNo!.isNotEmpty
             ? item.billingNo
             : "null";
@@ -248,6 +250,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _showButtonSubject.close();
     _totalBillAmtDueSubject.close();
     super.dispose();
   }

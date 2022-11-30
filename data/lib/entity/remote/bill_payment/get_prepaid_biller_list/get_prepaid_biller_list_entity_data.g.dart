@@ -21,6 +21,7 @@ GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
     serviceType: json['serviceType'] as String?,
     serviceCode: json['serviceCode'] as String?,
     iconCode: json['iconCode'] as String?,
+    rimNo: json['rimNo'] as String?,
   );
 }
 
@@ -39,4 +40,5 @@ Map<String, dynamic> _$GetPrepaidBillerListEntityDataToJson(
       'serviceType': instance.serviceType,
       'serviceCode': instance.serviceCode,
       'iconCode': instance.iconCode,
+      'rimNo': instance.rimNo,
     };

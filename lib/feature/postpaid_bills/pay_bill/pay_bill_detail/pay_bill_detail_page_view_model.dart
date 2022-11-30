@@ -48,7 +48,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   String? billername;
   String? billerCodeString;
   String? billerType;
-  bool? isPrepaidCategoryListEmpty = false;
   bool isAddThisBillerToSaveList = false;
 
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
@@ -256,7 +255,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
   PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-      _gerPrePaidCategoriesRequest = PublishSubject();
+      _getPrePaidCategoriesRequest = PublishSubject();
 
   PublishSubject<Resource<GetPrePaidCategoriesModel>>
       _gerPrePaidCategoriesResponse = PublishSubject();
@@ -265,14 +264,21 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       _gerPrePaidCategoriesResponse.stream;
 
   void getPrePaidCategoresList(String? serviceCode, String? billerCode) {
-    _gerPrePaidCategoriesRequest.safeAdd(
+    _getPrePaidCategoriesRequest.safeAdd(
       GetPrePaidCategoriesListUseCaseParams(
           billerCode: billerCode, serviceCode: serviceCode),
     );
   }
 
+  final BehaviorSubject<bool> isPrepaidCategoryListEmptyResponse =
+      BehaviorSubject<bool>.seeded(false);
+
+  Stream<bool> get isPrepaidCategoryListEmptyStream =>
+      isPrepaidCategoryListEmptyResponse.stream;
+  bool isPrepaidCategoryListEmpty = false;
+
   void _gerPrePaidCategoriesListener() {
-    _gerPrePaidCategoriesRequest.listen(
+    _getPrePaidCategoriesRequest.listen(
       (params) {
         RequestManager(
           params,
@@ -282,10 +288,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
         ).asFlow().listen((event) {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
-          isPrepaidCategoryListEmpty = true;
+          isPrepaidCategoryListEmptyResponse.safeAdd(true);
 
           if (event.status == Status.SUCCESS) {
-            isPrepaidCategoryListEmpty = false;
+            isPrepaidCategoryListEmptyResponse.safeAdd(false);
             getPrepaidCategoriesModelData =
                 event.data!.content!.getPrepaidBillerListModelData!;
           }
@@ -299,6 +305,8 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _getPrePaidCategoriesRequest.close();
+    _gerPrePaidCategoriesResponse.close();
     _addNewPostpaidBillerRequest.close();
     _addNewPostpaidBillerResponce.close();
     serviceTypeTextControl.dispose();

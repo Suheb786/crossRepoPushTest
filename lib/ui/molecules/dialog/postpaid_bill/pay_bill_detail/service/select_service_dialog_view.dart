@@ -10,7 +10,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -164,8 +163,7 @@ class SelectServiceDialogView extends StatelessWidget {
                                                                               16.0.w),
                                                                       child:
                                                                           Text(
-                                                                        AppConstantsUtils.LANGUAGE_KEY ==
-                                                                                "EN"
+                                                                            !StringUtils.isDirectionRTL(context)
                                                                             ? billerService![index].serviceDescriptionEn!
                                                                             : billerService![index].serviceDescriptionAr!,
                                                                         //  data.data![index],

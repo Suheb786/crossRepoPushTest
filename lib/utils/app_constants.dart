@@ -35,7 +35,6 @@ class AppConstantsUtils {
   static String BILLER_CATEGORY = "eCommerce";
   static String BILLER_CATEGORY_API_VALUE = "eCommerce";
   static String BILLER_CATEGORY_ICON_CODE = "101";
-  static String LANGUAGE_KEY = "EN";
   static String SELECTED_AMOUNT = "";
   static String PREPAID_CATEGORY_CODE = "";
   static String PREPAID_CATEGORY_DESCRIPTION = "";

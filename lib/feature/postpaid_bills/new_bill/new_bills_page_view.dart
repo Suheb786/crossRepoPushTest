@@ -131,11 +131,19 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                       tileIcon: model.titleIcon.toString(),
                                       title: model.billerCategory,
                                       onTap: () {
-                                        AppConstantsUtils.BILLER_CATEGORY = snapshot.data![index].categoryName ?? "";
-                                        AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
-                                        AppConstantsUtils.LANGUAGE_KEY.toString() == "EN"
-                                            ?  snapshot.data![index].categoryName ?? ""
-                                            :  snapshot.data![index].categoryNameAr ?? "";
+                                        AppConstantsUtils.BILLER_CATEGORY =
+                                            snapshot.data![index]
+                                                    .categoryName ??
+                                                "";
+                                        AppConstantsUtils
+                                                .BILLER_CATEGORY_API_VALUE =
+                                            !StringUtils.isDirectionRTL(context)
+                                                ? snapshot.data![index]
+                                                        .categoryName ??
+                                                    ""
+                                                : snapshot.data![index]
+                                                        .categoryNameAr ??
+                                                    "";
                                         Navigator.pushNamed(
                                             context, RoutePaths.PayBillPage);
                                       },

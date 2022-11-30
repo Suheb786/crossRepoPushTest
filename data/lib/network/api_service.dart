@@ -885,7 +885,7 @@ abstract class ApiService {
   Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
       getPostpaidBillerListData(@Body() BaseRequest request);
 
-  @POST("/BillPayment/GetPrepaidBillerList")
+  @POST("/BillPayment/GetSavePrePaidBillers")
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>>
       getPrepaidBillerListData(@Body() BaseRequest request);
 
@@ -898,7 +898,7 @@ abstract class ApiService {
     @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
   );
 
-  @POST("/BillPayment/ValidatePrepaidBiller")
+  @POST("/BillPayment/ValidatePRePaidBill")
   Future<HttpResponse<ValidatePrePaidBillResponse>> validatePrePaidBill(
     @Body() ValidatePrePaidBillRequestEntity ecGetRegisterRequest,
   );

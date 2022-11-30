@@ -17,7 +17,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   TextEditingController searchBillController = TextEditingController();
-  List<GetPrepaidBillerListModelData> getPrepaidBillData = [];
+  List<GetPrepaidBillerListModelData>? getPrepaidBillData = [];
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
   int selectedIndex = 0;
 

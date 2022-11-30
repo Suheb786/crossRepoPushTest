@@ -44,21 +44,23 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
   @JsonKey(name: "iconCode")
   final String? iconCode;
 
+  @JsonKey(name: "rimNo")
+  final String? rimNo;
 
-  GetPrepaidBillerListEntityData({
-    this.billingNumber,
-    this.billerCode,
-    this.billerName,
-    this.nickname,
-    this.registrationId,
-    this.prepaidCategoryDescription,
-    this.prepaidCategoryCode,
-    this.customerType,
-    this.joebppsNo,
-    this.serviceType,
-    this.serviceCode,
-    this.iconCode
-  });
+  GetPrepaidBillerListEntityData(
+      {this.billingNumber,
+      this.billerCode,
+      this.billerName,
+      this.nickname,
+      this.registrationId,
+      this.prepaidCategoryDescription,
+      this.prepaidCategoryCode,
+      this.customerType,
+      this.joebppsNo,
+      this.serviceType,
+      this.serviceCode,
+      this.iconCode,
+      this.rimNo});
 
   factory GetPrepaidBillerListEntityData.fromJson(Map<String, dynamic> json) =>
       _$GetPrepaidBillerListEntityDataFromJson(json);
@@ -75,17 +77,17 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
   GetPrepaidBillerListModelData transform() {
     return GetPrepaidBillerListModelData(
         billingNumber:this.billingNumber,
-        billerCode:this.billerCode,
-        billerName:this.billerName,
+        billerCode: this.billerCode,
+        billerName: this.billerName,
         nickname: this.nickname,
-        registrationId :this.registrationId,
-        prepaidCategoryDescription:this.prepaidCategoryDescription,
-        prepaidCategoryCode:this.prepaidCategoryCode,
-        customerType :this.customerType,
-        joebppsNo :this.joebppsNo,
-        serviceType:this.serviceType,
-        serviceCode :this.serviceCode,
-        iconCode :this.iconCode
-    );
+        registrationId: this.registrationId,
+        prepaidCategoryDescription: this.prepaidCategoryDescription,
+        prepaidCategoryCode: this.prepaidCategoryCode,
+        customerType: this.customerType,
+        joebppsNo: this.joebppsNo,
+        serviceType: this.serviceType,
+        serviceCode: this.serviceCode,
+        iconCode: this.iconCode,
+        rimNo: this.rimNo);
   }
 }

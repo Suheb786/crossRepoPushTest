@@ -10,20 +10,24 @@ import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepai
 import 'how_much_like_to_pay_prepaid_bills_page_view.dart';
 import 'how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 
-class HowMuchLikeToPayPrePaidBillsPage extends BasePage<HowMuchLikeToPayPrePaidBillsPageViewModel> {
+class HowMuchLikeToPayPrePaidBillsPage
+    extends BasePage<HowMuchLikeToPayPrePaidBillsPageViewModel> {
   final HowMuchLikeToPayPrePaidBillsPageArgument argument;
 
   HowMuchLikeToPayPrePaidBillsPage(this.argument);
 
   @override
-  HowMuchLikeToPayPrePaidBillsPageState createState() => HowMuchLikeToPayPrePaidBillsPageState();
+  HowMuchLikeToPayPrePaidBillsPageState createState() =>
+      HowMuchLikeToPayPrePaidBillsPageState();
 }
 
-class HowMuchLikeToPayPrePaidBillsPageState
-    extends BaseStatefulPage<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPage> {
+class HowMuchLikeToPayPrePaidBillsPageState extends BaseStatefulPage<
+    HowMuchLikeToPayPrePaidBillsPageViewModel,
+    HowMuchLikeToPayPrePaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return howMuchLikeToPayPrePaidBillsPageViewModelProvider.call(widget.argument);
+    return howMuchLikeToPayPrePaidBillsPageViewModelProvider
+        .call(widget.argument);
   }
 
   @override
@@ -32,9 +36,11 @@ class HowMuchLikeToPayPrePaidBillsPageState
   }
 
   @override
-  Widget buildView(BuildContext context, HowMuchLikeToPayPrePaidBillsPageViewModel model) {
+  Widget buildView(
+      BuildContext context, HowMuchLikeToPayPrePaidBillsPageViewModel model) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light, child: HowMuchLikeToPayPrePaidBillsPageView(provideBase()));
+        value: SystemUiOverlayStyle.light,
+        child: HowMuchLikeToPayPrePaidBillsPageView(provideBase()));
   }
 }
 

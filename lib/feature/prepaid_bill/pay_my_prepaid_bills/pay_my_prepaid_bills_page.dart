@@ -51,8 +51,12 @@ class PayMyPrePaidBillsPageState
                 ),
               ),
               Text(
-                S.of(context).payAllBills,
-                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: AppColor.white),
+                // S.of(context).payAllBills,
+                "Pay My Bills",
+                style: TextStyle(
+                    fontSize: 14.t,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.white),
               ),
               SizedBox.shrink()
             ],

@@ -164,15 +164,14 @@ class PayPrePaidBillDetailPageView
                                         model.showAmountField = false;
                                         model
                                             .updateStreamForBillingNumber(true);
+                                        !StringUtils.isDirectionRTL(context)
+                                            ? billerServices
+                                                .serviceDescriptionEn!
+                                            : billerServices
+                                                .serviceDescriptionAr!;
                                         model.serviceTypeTextControl.text =
-                                            AppConstantsUtils.LANGUAGE_KEY ==
-                                                    "EN"
-                                                ? billerServices
-                                                    .serviceDescriptionEn!
-                                                : billerServices
-                                                    .serviceDescriptionAr!;
-                                        model.serviceTypeApiVal =
-                                            billerServices.serviceType!;
+                                            model.serviceTypeApiVal =
+                                                billerServices.serviceType!;
                                         model.serviceDescriptionEn.text =
                                             billerServices
                                                     .serviceDescriptionEn ??
@@ -197,9 +196,9 @@ class PayPrePaidBillDetailPageView
                                               billerServices
                                                   .containPrepaidCat!);
                                           model.fieldTextLabelEn =
-                                              AppConstantsUtils.LANGUAGE_KEY ==
-                                                      "EN"
-                                                  ? billerServices.fieldLabelEn!
+                                          !StringUtils
+                                                  .isDirectionRTL(context)
+                                              ? billerServices.fieldLabelEn!
                                                   : billerServices
                                                       .fieldLabelAr!;
                                           model.updateStreamForBillingNumber(

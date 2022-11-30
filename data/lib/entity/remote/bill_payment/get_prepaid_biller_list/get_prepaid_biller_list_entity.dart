@@ -8,7 +8,7 @@ part 'get_prepaid_biller_list_entity.g.dart';
 @JsonSerializable()
 class GetPrepaidBillerListEntity extends BaseLayerDataTransformer<
     GetPrepaidBillerListEntity, GetPrepaidBillerListModelContent> {
-  @JsonKey(name: "billList")
+  @JsonKey(name: "result")
   final List<Map<String, dynamic>>? billList;
 
 
@@ -25,8 +25,11 @@ class GetPrepaidBillerListEntity extends BaseLayerDataTransformer<
   GetPrepaidBillerListModelContent transform() {
     return GetPrepaidBillerListModelContent(
        getPrepaidBillerListData:
-        this.billList!.map((messages) => GetPrepaidBillerListEntityData.fromJson(messages).transform())
-           .toList()
+       this
+            .billList
+            ?.map((messages) =>
+                GetPrepaidBillerListEntityData.fromJson(messages).transform())
+            .toList()
     );
   }
 }

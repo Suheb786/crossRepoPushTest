@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -11,7 +12,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccessPageViewModel> {
+class PrePaidBillsSuccessPageView
+    extends BasePageViewWidget<PrePaidBillsSuccessPageViewModel> {
   PrePaidBillsSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -60,7 +62,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                text: model.arguments.amt,
+                text: model.arguments.paidBillContent.paidBill?[0].totalAmount,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,
@@ -88,7 +90,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
               padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.0.w),
               child: Card(
                   child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 24.0.h, bottom: 24.0.h),
+                padding: EdgeInsetsDirectional.only(
+                    start: 24.w, end: 24.w, top: 24.0.h, bottom: 24.0.h),
                 child: Column(
                   children: [
                     Row(
@@ -103,7 +106,9 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                               fontSize: 12.0.t),
                         ),
                         Text(
-                          model.arguments.billName,
+                          model.arguments.paidBillContent.paidBill?[0]
+                                  .billName ??
+                              "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.black,
@@ -119,7 +124,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          S.of(context).nickName,
+                          S.of(context).date,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.black,
@@ -127,7 +132,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                               fontSize: 12.0.t),
                         ),
                         Text(
-                          model.arguments.nickName,
+                          model.arguments.paidBillContent.paidBill?[0].date ??
+                              "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.black,
@@ -151,7 +157,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                               fontSize: 12.0.t),
                         ),
                         Text(
-                          model.arguments.refNo,
+                          model.arguments.paidBillContent.paidBill?[0].refNo ??
+                              "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.black,
@@ -169,7 +176,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+                  AppSvg.asset(AssetUtils.share,
+                      color: AppColor.light_acccent_blue),
                   SizedBox(
                     width: 8.w,
                   ),
@@ -188,10 +196,20 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
             SizedBox(
               height: 166.h,
             ),
-            AnimatedButton(
-              buttonText: S.of(context).swipeToProceed,
-              textColor: Theme.of(context).accentColor,
-              borderColor: Theme.of(context).accentColor,
+            GestureDetector(
+              onHorizontalDragEnd: (details) {
+                if (details.primaryVelocity!.isNegative) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      RoutePaths.OnBoarding,
+                      ModalRoute.withName(RoutePaths.PayAllPostPaidBillsPage));
+                }
+              },
+              child: AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+                textColor: Theme.of(context).accentColor,
+                borderColor: Theme.of(context).accentColor,
+              ),
             ),
             SizedBox(
               height: 8.h,

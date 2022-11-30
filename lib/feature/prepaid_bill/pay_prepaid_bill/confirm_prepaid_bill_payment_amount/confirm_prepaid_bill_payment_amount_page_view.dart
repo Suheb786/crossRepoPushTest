@@ -193,12 +193,14 @@ class ConfirmPrePaidBillPaymentAmountPageView
                             GestureDetector(
                               onHorizontalDragEnd: (details) {
                                 if (details.primaryVelocity!.isNegative) {
+/*
                                   Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
                                       arguments: PrePaidBillsSuccessPageArguments(
                                           '21000',
                                           'Orange Mobile and Net Every..',
                                           'New Home Internet',
                                           '123142141213'));
+*/
                                 }
                               },
                               child: AnimatedButton(

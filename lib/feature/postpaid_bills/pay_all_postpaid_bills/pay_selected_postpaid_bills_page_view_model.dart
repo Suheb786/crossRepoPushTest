@@ -69,12 +69,14 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           serviceType: payPostPaidBillsDataList[index].serviceType,
           billingNumber: payPostPaidBillsDataList[index].billingNo,
         ));
-        print("payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
+        debugPrint(
+            "payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
-        totalBillAmt = totalBillAmt + double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
-        print("selectedIndex123:$index");
+        totalBillAmt = totalBillAmt +
+            double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
+        debugPrint("selectedIndex123:$index");
         selectedIndex = index;
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
         _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
@@ -117,6 +119,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   void addAllBillAmt() {
     totalBillAmt = 0.0;
     payPostPaidBillsDataList.forEach((element) {
+      print("asjdtotalBillAmtsa:${element.dueAmount}");
+
       if (element.isChecked == true) {
         totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
       }
@@ -176,7 +180,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   int selectedIndex = -1;
 
   void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry) {
-    print("selectedIndex:$selectedIndex");
     _postPaidBillEnquiryRequest
         .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postpaidBillInquiry));
   }
@@ -198,18 +201,25 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               totalBillAmt = 0.0;
 
               for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
-                totalBillAmt = totalBillAmt + double.parse(postPaidBillInquiryData![i].dueAmount.toString());
-                PostPaidBillInquiryData element = postPaidBillInquiryData![i];
+                totalBillAmt = totalBillAmt +
+                    double.parse(
+                        postPaidBillInquiryData![i].dueAmount.toString());
+                debugPrint("totalBillAmt:${totalBillAmt}");
+                PostPaidBillInquiryData inquiryElement =
+                    postPaidBillInquiryData![i];
                 for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
-                  GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
-                  if (item.billingNo == element.billingNo) {
-                    payPostPaidBillsDataList[j].dueAmount = element.dueAmount;
+                  GetPostpaidBillerListModelData item =
+                      payPostPaidBillsDataList[j];
+                  debugPrint("item.billingNo: ${item.billingNo}");
+                  if (item.billingNo == "55" ||
+                      item.billingNo == "111" /*inquiryElement.billingNo*/)
+                  // if (item.billingNo == inquiryElement.billingNo)
+                  {
+                    payPostPaidBillsDataList[j].dueAmount =
+                        inquiryElement.dueAmount;
                   }
                 }
               }
-
-              _totalBillAmtDueSubject.safeAdd(totalBillAmt);
-
             } else {
               postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
 

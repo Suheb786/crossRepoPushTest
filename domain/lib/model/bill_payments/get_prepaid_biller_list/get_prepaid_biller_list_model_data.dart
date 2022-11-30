@@ -11,6 +11,7 @@ class GetPrepaidBillerListModelData {
   String? serviceType;
   String? serviceCode;
   String? iconCode;
+  String? rimNo;
   String? serviceDescriptionEn; //this is not coming from api
   bool? isChecked; //this is not coming from api
 
@@ -20,6 +21,7 @@ class GetPrepaidBillerListModelData {
       this.billerName,
       this.nickname,
       this.registrationId,
+      this.rimNo,
       this.prepaidCategoryDescription,
       this.prepaidCategoryCode,
       this.customerType,

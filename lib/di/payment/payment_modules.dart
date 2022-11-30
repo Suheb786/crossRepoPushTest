@@ -230,8 +230,10 @@ final paymentActivityFilterDialogViewModelProvider =
         PaymentActivityFilterDialogViewModel());
 
 ///request money QR code generation view model
-final requestMoneyQrGenerationViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPageArguments>(
+final requestMoneyQrGenerationViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<
+            RequestMoneyQrGenerationPageViewModel,
+            RequestMoneyQrGenerationPageArguments>(
         (ref, args) => RequestMoneyQrGenerationPageViewModel(args));
 
 ///accounts dialog view model provider
@@ -239,15 +241,15 @@ final accountsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountsDialogViewModel>(
         (ref) => AccountsDialogViewModel());
 
-
 final dominationDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<DenominationsDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<DenominationsDialogViewModel>(
         (ref) => DenominationsDialogViewModel());
 
 ///qr screen view model provider
 final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<QrScreenPageViewModel, QrScreenPageArguments>(
-        (ref, args) => QrScreenPageViewModel(args, ref.read(createDynamicLinkUseCaseProvider)));
+    .family<QrScreenPageViewModel, QrScreenPageArguments>((ref, args) =>
+        QrScreenPageViewModel(
+            args, ref.read(createDynamicLinkUseCaseProvider)));
 
 ///send money qr scanning view model provider
 final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -260,7 +262,8 @@ final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose
 
 ///send money qr success view model provider
 final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQRSuccessPageArguments>(
+    .family<SendMoneyViaQrSuccessPageViewModel,
+            SendMoneyViaQRSuccessPageArguments>(
         (ref, args) => SendMoneyViaQrSuccessPageViewModel(args));
 
 class SelectedBillsToPaidWidgetViewModelProvider {
@@ -366,10 +369,14 @@ final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider
 
 final howMuchLikeToPayPrePaidBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<
-        HowMuchLikeToPayPrePaidBillsPageViewModel,
-        HowMuchLikeToPayPrePaidBillsPageArgument>(
-  (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(args),
-);
+            HowMuchLikeToPayPrePaidBillsPageViewModel,
+            HowMuchLikeToPayPrePaidBillsPageArgument>(
+        (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
+              args,
+              ref.read(getPrePaidCategoriesListUseCaseProvider),
+              ref.read(validatePrePaidBillUseCaseProvider),
+              ref.read(getPayPrePaidBillUseCaseProvider),
+            ));
 final newPrePaidBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<NewPrePaidBillsPageViewModel>(
   (ref) => NewPrePaidBillsPageViewModel(),
@@ -392,5 +399,6 @@ final payPrePaidBillPageViewModelProvider =
 );
 
 ///qr scanning screen view model provider
-final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
-    (ref) => QrScanningScreenPageViewModel());
+final qrScanningScreenViewModelProvider =
+    ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
+        (ref) => QrScanningScreenPageViewModel());

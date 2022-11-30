@@ -131,7 +131,7 @@ class PayBillDialogView extends StatelessWidget {
                                         },
                                       ),
                                     ),
-                                    billList!.isNotEmpty
+                                    billList != null && billList.isNotEmpty
                                         ? Expanded(
                                             child: Stack(
                                             alignment: Alignment.center,
@@ -239,7 +239,8 @@ class PayBillDialogView extends StatelessWidget {
                                         : Expanded(
                                             child: Center(
                                               child: Container(
-                                                child: Text('No Data Found'),
+                                                child: Text(
+                                                    S.of(context).noDataFound),
                                               ),
                                             ),
                                           ),

@@ -1,3 +1,4 @@
+import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -14,8 +15,7 @@ class PrePaidBillsSuccessPage extends BasePage<PrePaidBillsSuccessPageViewModel>
   PrePaidBillsSuccessPageState createState() => PrePaidBillsSuccessPageState();
 }
 
-class PrePaidBillsSuccessPageState
-    extends BaseStatefulPage<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPage> {
+class PrePaidBillsSuccessPageState extends BaseStatefulPage<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPage> {
   @override
   ProviderBase provideBase() {
     return prePaidBillsSuccessPageViewModelProvider.call(widget.arguments);
@@ -33,10 +33,12 @@ class PrePaidBillsSuccessPageState
 }
 
 class PrePaidBillsSuccessPageArguments {
-  final String amt;
-  final String billName;
-  final String nickName;
-  final String refNo;
+  PaidBillContent paidBillContent;
 
-  PrePaidBillsSuccessPageArguments(this.amt, this.billName, this.nickName, this.refNo);
+  // final String amt;
+  // final String billName;
+  // final String nickName;
+  // final String refNo;
+
+  PrePaidBillsSuccessPageArguments(this.paidBillContent);
 }
