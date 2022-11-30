@@ -14,7 +14,9 @@ DashboardDataRequest _$DashboardDataRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DashboardDataRequestToJson(DashboardDataRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$DashboardDataRequestToJson(
+        DashboardDataRequest instance) =>
+    <String, dynamic>{
       'AccountId': instance.accountId,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

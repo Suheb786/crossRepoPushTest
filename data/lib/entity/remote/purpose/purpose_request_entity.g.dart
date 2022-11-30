@@ -17,7 +17,9 @@ PurposeRequestEntity _$PurposeRequestEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PurposeRequestEntityToJson(PurposeRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$PurposeRequestEntityToJson(
+        PurposeRequestEntity instance) =>
+    <String, dynamic>{
       'ToAccount': instance.toAccount,
       'TransferType': instance.transferType,
       'Type': instance.type,

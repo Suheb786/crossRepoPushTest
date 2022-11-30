@@ -28,7 +28,8 @@ BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
+    <String, dynamic>{
       'nickName': instance.nickName,
       'fullName': instance.fullName,
       'profileImage': instance.profileImage,

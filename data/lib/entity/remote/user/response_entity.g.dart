@@ -17,7 +17,8 @@ ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
       'token': instance.token,

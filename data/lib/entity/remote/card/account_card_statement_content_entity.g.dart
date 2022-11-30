@@ -6,14 +6,16 @@ part of 'account_card_statement_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountCardStatementContentEntity _$AccountCardStatementContentEntityFromJson(Map<String, dynamic> json) {
+AccountCardStatementContentEntity _$AccountCardStatementContentEntityFromJson(
+    Map<String, dynamic> json) {
   return AccountCardStatementContentEntity(
     pdfBase64String: json['pdfBase64String'] as String?,
     pdfFileName: json['pdfFileName'] as String?,
   );
 }
 
-Map<String, dynamic> _$AccountCardStatementContentEntityToJson(AccountCardStatementContentEntity instance) =>
+Map<String, dynamic> _$AccountCardStatementContentEntityToJson(
+        AccountCardStatementContentEntity instance) =>
     <String, dynamic>{
       'pdfFileName': instance.pdfFileName,
       'pdfBase64String': instance.pdfBase64String,

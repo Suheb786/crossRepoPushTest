@@ -14,7 +14,8 @@ CardIssuanceEntity _$CardIssuanceEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CardIssuanceEntityToJson(CardIssuanceEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CardIssuanceEntityToJson(CardIssuanceEntity instance) =>
+    <String, dynamic>{
       'cardNumber': instance.cardNumber,
       'pan': instance.pan,
       'nameOnCard': instance.nameOnCard,

@@ -13,11 +13,13 @@ JobDetailEntity _$JobDetailEntityFromJson(Map<String, dynamic> json) {
         .toList(),
     jobDetailContent: json['jobDetail1'] == null
         ? null
-        : JobDetailContentEntity.fromJson(json['jobDetail1'] as Map<String, dynamic>),
+        : JobDetailContentEntity.fromJson(
+            json['jobDetail1'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$JobDetailEntityToJson(JobDetailEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$JobDetailEntityToJson(JobDetailEntity instance) =>
+    <String, dynamic>{
       'additionalInfos1': instance.additionalIncomeList,
       'jobDetail1': instance.jobDetailContent,
     };

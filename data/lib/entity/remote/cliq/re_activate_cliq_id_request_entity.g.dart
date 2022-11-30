@@ -6,7 +6,8 @@ part of 're_activate_cliq_id_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReActivateCliqIdRequestEntity _$ReActivateCliqIdRequestEntityFromJson(Map<String, dynamic> json) {
+ReActivateCliqIdRequestEntity _$ReActivateCliqIdRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return ReActivateCliqIdRequestEntity(
     aliasId: json['aliasId'] as String?,
     getToken: json['getToken'] as bool?,
@@ -14,7 +15,8 @@ ReActivateCliqIdRequestEntity _$ReActivateCliqIdRequestEntityFromJson(Map<String
   );
 }
 
-Map<String, dynamic> _$ReActivateCliqIdRequestEntityToJson(ReActivateCliqIdRequestEntity instance) =>
+Map<String, dynamic> _$ReActivateCliqIdRequestEntityToJson(
+        ReActivateCliqIdRequestEntity instance) =>
     <String, dynamic>{
       'aliasId': instance.aliasId,
       'getToken': instance.getToken,

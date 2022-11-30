@@ -24,7 +24,8 @@ SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SaveJobInfoRequestToJson(SaveJobInfoRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$SaveJobInfoRequestToJson(SaveJobInfoRequest instance) =>
+    <String, dynamic>{
       'EmployeeName': instance.employeeName,
       'Occupation': instance.occupation,
       'BusinessType': instance.businessType,

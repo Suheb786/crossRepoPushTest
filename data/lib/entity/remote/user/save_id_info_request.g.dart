@@ -39,7 +39,8 @@ SaveIdInfoRequest _$SaveIdInfoRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SaveIdInfoRequestToJson(SaveIdInfoRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$SaveIdInfoRequestToJson(SaveIdInfoRequest instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'FullName': instance.fullName,

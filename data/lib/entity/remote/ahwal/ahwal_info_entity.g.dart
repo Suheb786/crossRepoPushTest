@@ -21,7 +21,8 @@ AhwalInfoEntity _$AhwalInfoEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$AhwalInfoEntityToJson(AhwalInfoEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$AhwalInfoEntityToJson(AhwalInfoEntity instance) =>
+    <String, dynamic>{
       'firstNameAr': instance.firstNameAr,
       'secNameAr': instance.secNameAr,
       'thirdNameAr': instance.thirdNameAr,
