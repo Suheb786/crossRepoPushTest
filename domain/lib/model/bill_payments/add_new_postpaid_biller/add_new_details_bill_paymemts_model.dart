@@ -1,9 +1,11 @@
 class AddNewDetailsBillPaymentsModel {
    String? amount;
-   String? nickName;
-   String? billerName;
-   String? service;
-   String? refNo;
+  String? nickName;
+  String? billerName;
+  String? service;
+  String? refNo;
+  bool? isPrepaidCategoryListEmpty;
+  String? accountNumber;
 
   AddNewDetailsBillPaymentsModel({
     this.amount,
@@ -11,5 +13,7 @@ class AddNewDetailsBillPaymentsModel {
     this.billerName,
     this.service,
     this.refNo,
+    this.isPrepaidCategoryListEmpty,
+    this.accountNumber,
   });
 }

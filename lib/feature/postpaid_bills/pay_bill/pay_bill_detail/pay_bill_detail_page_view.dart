@@ -335,7 +335,7 @@ class PayBillDetailPageView
         onPressed: () {
           FocusScope.of(context).unfocus();
         },
-        onChanged: (val){
+        onChanged: (val) {
           model.validateData();
         },
       ),
@@ -350,7 +350,7 @@ class PayBillDetailPageView
         hintText: S.of(context).searchBill,
         controller: model.payFromController,
         readOnly: true,
-        onChanged: (val){
+        onChanged: (val) {
           model.validateData();
         },
         onPressed: () {
@@ -431,7 +431,7 @@ class PayBillDetailPageView
           onPressed: () {
             FocusScope.of(context).unfocus();
           },
-          onChanged: (val){
+          onChanged: (val) {
             model.validateData();
           },
         ),
@@ -448,13 +448,22 @@ class PayBillDetailPageView
             ProviderScope.containerOf(context)
                 .read(payBillPageViewModelProvider)
                 .nextPage();
-            ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).setData(model.setData());
+            ProviderScope.containerOf(context)
+                .read(confirmBillPaymentAmountPageViewModelProvider)
+                .setData(model.setData());
+
+            if (model.isPrepaidCategoryListEmpty == false) {
+              if (AppConstantsUtils.PRE_PAID_FLOW) {
+                ProviderScope.containerOf(context)
+                    .read(confirmBillPaymentAmountPageViewModelProvider)
+                    .validatePrePaidBill();
+              }
+            }
           } else {
             ProviderScope.containerOf(context)
                 .read(payBillPageViewModelProvider)
                 .previousPage();
           }
-
         },
         child: AppStreamBuilder<bool>(
             stream: model.showButtonStream,
@@ -543,8 +552,9 @@ class PayBillDetailPageView
       stream: model.isPrepaidCategoryListEmptyStream,
       initialData: false,
       dataBuilder: (_, isPrepaidCategoryListEmpty) {
+        model.isPrepaidCategoryListEmpty = isPrepaidCategoryListEmpty!;
         return Visibility(
-          visible: !isPrepaidCategoryListEmpty!,
+          visible: !isPrepaidCategoryListEmpty,
           child: Padding(
             padding: EdgeInsets.only(top: 16.0.h),
             child: AppTextField(

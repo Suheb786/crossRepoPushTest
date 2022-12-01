@@ -24,8 +24,6 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   TextEditingController savingAccountController = TextEditingController()
     ..text = 'Savings Account';
 
-  String? billName = "";
-  String? nickName = "";
   String? serviceDescriptionEn = "";
   String? billerCode = "";
   String? billingNumber = "";

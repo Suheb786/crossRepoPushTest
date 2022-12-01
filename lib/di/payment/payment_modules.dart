@@ -329,7 +329,10 @@ final payBillDetailPageViewModelProvider =
 
 final confirmBillPaymentAmountPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmBillPaymentAmountPageViewModel>(
-  (ref) => ConfirmBillPaymentAmountPageViewModel(),
+  (ref) => ConfirmBillPaymentAmountPageViewModel(
+    ref.read(validatePrePaidBillUseCaseProvider),
+    ref.read(getPayPrePaidBillUseCaseProvider),
+  ),
 );
 
 final payBillDialogViewModelProvider =
@@ -364,7 +367,8 @@ final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider
 final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider
     .autoDispose
     .family<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPageArguments>(
-  (ref, args) => PrePaidBillsSuccessPageViewModel(args),
+  (ref, args) => PrePaidBillsSuccessPageViewModel(
+      args, ref.read(addNewPrepaidBillerUseCaseProvider)),
 );
 
 final howMuchLikeToPayPrePaidBillsPageViewModelProvider =

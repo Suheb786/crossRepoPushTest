@@ -57,6 +57,9 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   void callFromPage() {}
 
   setData() {
+    AppConstantsUtils.SELECTED_BILLING_NUMBER = billingNumberTextControl.text;
+    AppConstantsUtils.NICK_NAME = nicknameTextControl.text;
+    AppConstantsUtils.ACCOUNT_NUMBER = amountTextControl.text;
     AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel =
         AddNewDetailsBillPaymentsModel();
 
@@ -65,6 +68,9 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     addNewDetailsBillPaymentsModel.nickName = nicknameTextControl.text;
     addNewDetailsBillPaymentsModel.refNo = refNoController.text;
     addNewDetailsBillPaymentsModel.service = serviceTypeTextControl.text;
+    addNewDetailsBillPaymentsModel.isPrepaidCategoryListEmpty =
+        isPrepaidCategoryListEmpty;
+    addNewDetailsBillPaymentsModel.accountNumber = payFromController.text;
     return addNewDetailsBillPaymentsModel;
   }
 

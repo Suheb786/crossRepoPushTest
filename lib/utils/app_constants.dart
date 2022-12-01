@@ -45,6 +45,7 @@ class AppConstantsUtils {
   static String SELECTED_SERVICE_TYPE = "";
   static String SELECTED_SERVICE_DESCRIPTION_EN = "";
   static String NICK_NAME = "";
+  static String ACCOUNT_NUMBER = "";
   static String PREPAID_KEY = "Prepaid";
   static String POSTPAID_KEY = "Postpaid";
   static bool PRE_PAID_FLOW = false;
