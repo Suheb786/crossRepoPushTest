@@ -18,8 +18,10 @@ import 'package:rxdart/rxdart.dart';
 class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   TextEditingController searchBillController = TextEditingController();
   List<GetPrepaidBillerListModelData>? getPrepaidBillData = [];
+  GetPrepaidBillerListModelData getPrepaidBillerListModelData =
+      GetPrepaidBillerListModelData();
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
-  int selectedIndex = 0;
+  bool isPrePaidCategoryEmpty = true;
 
   final GetPrepaidBillerListUseCase getPrepaidBillerListUseCase;
   final GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
@@ -28,7 +30,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   PayMyPrePaidBillsPageViewModel(this.getPrepaidBillerListUseCase,
       this.getPrePaidCategoriesListUseCase, this.removePrepaidBillerUseCase) {
     prepaidBillerListener();
-    prePaidCategoriesRequestListener();
+    gerPrePaidCategoriesListener();
     removePrepaidBillerListenr();
     getPrepaidBiller();
   }
@@ -65,7 +67,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  /// ---------------- Call Api GetPrePaidCategoriesList -------------------------------- ///
+  /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
   PublishSubject<GetPrePaidCategoriesListUseCaseParams>
       _gerPrePaidCategoriesRequest = PublishSubject();
@@ -83,17 +85,17 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  void prePaidCategoriesRequestListener() {
+  void gerPrePaidCategoriesListener() {
     _gerPrePaidCategoriesRequest.listen(
       (params) {
         RequestManager(
           params,
-          createCall: () => getPrePaidCategoriesListUseCase.execute(
-            params: params,
-          ),
+          createCall: () =>
+              getPrePaidCategoriesListUseCase.execute(params: params),
         ).asFlow().listen((event) {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
+
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           }

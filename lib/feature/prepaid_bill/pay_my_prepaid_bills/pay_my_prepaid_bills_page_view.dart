@@ -14,9 +14,11 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/denomintion_dialog/denomination_dialog.dart';
 import 'package:neo_bank/ui/molecules/prepaid/pay_my_prepaid_bills/pay_my_prepaid_bill_list_item_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -38,19 +40,19 @@ class PayMyPrePaidBillsPageView
           if (value.status == Status.SUCCESS) {
             model.getPrepaidCategoriesModelData =
                 value.data!.content!.getPrepaidBillerListModelData!;
-            debugPrint("value.status:${value.status}");
-            // _showPrePaidCategoriesList(context);
-
-            /*Future.delayed(Duration(milliseconds: 200)).then((value) {
-                appLevelKey.currentState?.pushNamed(RoutePaths.payBillPrepaid,
-                    arguments: PrePaidBillArguments(
-                        GetPrepaidCategoriesModelData(),
-                        model.getPrepaidBillData[model.selectedIndex],
-                        isPrePaidCategoryEmpty: true));
-              });*/
-          } else if (value.status == Status.ERROR) {
-            debugPrint("value.status:${value.status}");
-            model.showToastWithError(value.appError!);
+            if (model.getPrepaidCategoriesModelData != null &&
+                model.getPrepaidCategoriesModelData.isNotEmpty) {
+              model.isPrePaidCategoryEmpty = false;
+              _showPrePaidCategoriesList(context, model);
+            } else {
+              model.isPrePaidCategoryEmpty = true;
+              Navigator.pushNamed(
+                  context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+                  arguments: HowMuchLikeToPayPrePaidBillsPageArgument(
+                      [model.getPrepaidBillerListModelData]));
+            }
+          } else {
+            model.isPrePaidCategoryEmpty = true;
           }
         },
         dataBuilder: (context, snapshot) {
@@ -152,20 +154,8 @@ class PayMyPrePaidBillsPageView
                                           itemBuilder: (context, index) {
                                             return InkWell(
                                               onTap: () {
-                                                Navigator.pushNamed(
-                                                    context,
-                                                    RoutePaths
-                                                        .HowMuchLikeToPayPrePaidBillsPage,
-                                                    arguments:
-                                                        HowMuchLikeToPayPrePaidBillsPageArgument([
-                                                      model.getPrepaidBillData?[
-                                                              index] ??
-                                                          GetPrepaidBillerListModelData()
-                                                    ]));
-
-                                                // Navigator.pushNamed(context, RoutePaths.PayingPrePaidBillsPage,
-                                                //     arguments:
-                                                //         PayingPrePaidBillsPageArgument(model.selectedPrePaidBillsPageDataList));
+                                                _onPrePaidListItemSection(
+                                                    model, index);
                                               },
                                               child: Slidable(
                                                 endActionPane: ActionPane(
@@ -336,6 +326,42 @@ class PayMyPrePaidBillsPageView
         displayDuration: Duration(milliseconds: 1000),
         hideOutAnimationDuration: Duration(milliseconds: 200),
         showOutAnimationDuration: Duration(milliseconds: 500));
+  }
+
+  void _onPrePaidListItemSection(
+      PayMyPrePaidBillsPageViewModel model, int index) {
+    model.getPrepaidBillerListModelData =
+        model.getPrepaidBillData?[index] ?? GetPrepaidBillerListModelData();
+    AppConstantsUtils.SELECTED_BILLER_CODE =
+        model.getPrepaidBillData?[index].billerCode ?? "";
+    AppConstantsUtils.SELECTED_SERVICE_CODE =
+        model.getPrepaidBillData?[index].serviceCode ?? "";
+    if (AppConstantsUtils.SELECTED_BILLER_CODE.isNotEmpty &&
+        AppConstantsUtils.SELECTED_SERVICE_CODE.isNotEmpty) {
+      model.getPrePaidCategoresList(AppConstantsUtils.SELECTED_SERVICE_CODE,
+          AppConstantsUtils.SELECTED_BILLER_CODE);
+    }
+  }
+
+  void _showPrePaidCategoriesList(
+      BuildContext context, PayMyPrePaidBillsPageViewModel model) {
+    DenominationsDialog.show(context,
+        getPrePaidCategoriesList: model.getPrepaidCategoriesModelData,
+        label: S.of(context).selectAccount,
+        billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
+        serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE,
+        onDismissed: () => Navigator.pop(context),
+        onSelected: (value) {
+          AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
+          AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION =
+              value.description.toString();
+          AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
+          Navigator.pop(context);
+          Navigator.pushNamed(
+              context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+              arguments: HowMuchLikeToPayPrePaidBillsPageArgument(
+                  [model.getPrepaidBillerListModelData]));
+        });
   }
 
 /*

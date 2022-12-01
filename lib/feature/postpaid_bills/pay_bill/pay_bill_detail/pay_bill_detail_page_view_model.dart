@@ -56,10 +56,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   void callFromPage() {}
 
-  AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel =
-      AddNewDetailsBillPaymentsModel();
-
   setData() {
+    AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel =
+        AddNewDetailsBillPaymentsModel();
+
     addNewDetailsBillPaymentsModel.amount = amountTextControl.text;
     addNewDetailsBillPaymentsModel.billerName = billerNameTextController.text;
     addNewDetailsBillPaymentsModel.nickName = nicknameTextControl.text;
@@ -271,7 +271,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   }
 
   final BehaviorSubject<bool> isPrepaidCategoryListEmptyResponse =
-      BehaviorSubject<bool>.seeded(false);
+      BehaviorSubject<bool>.seeded(true);
 
   Stream<bool> get isPrepaidCategoryListEmptyStream =>
       isPrepaidCategoryListEmptyResponse.stream;

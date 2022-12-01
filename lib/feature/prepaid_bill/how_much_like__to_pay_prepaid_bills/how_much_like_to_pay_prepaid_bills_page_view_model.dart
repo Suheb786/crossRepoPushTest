@@ -1,8 +1,6 @@
-import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
-import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,14 +16,11 @@ import 'how_much_like_to_pay_prepaid_bills_page.dart';
 
 class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   final HowMuchLikeToPayPrePaidBillsPageArgument argument;
-  final GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
   final ValidatePrePaidUseCase validatePrePaidUseCase;
   final PayPrePaidUseCase payPrePaidUseCase;
   bool isPrepaidCategoryListEmpty = false;
 
-  TextEditingController searchBillController = TextEditingController();
   TextEditingController amtController = TextEditingController();
-  TextEditingController denominationController = TextEditingController();
   TextEditingController savingAccountController = TextEditingController()
     ..text = 'Savings Account';
 
@@ -50,15 +45,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
 
   HowMuchLikeToPayPrePaidBillsPageViewModel(
-      this.argument,
-      this.getPrePaidCategoriesListUseCase,
-      this.validatePrePaidUseCase,
-      this.payPrePaidUseCase) {
-    // Future.delayed(Duration(milliseconds: 200)).then((value) =>
-    //     getPrePaidCategoresList(
-    //         argument.payMyPrePaidBillsPageDataList[0].serviceCode,
-    //         argument.payMyPrePaidBillsPageDataList[0].billerCode));
-    _gerPrePaidCategoriesListener();
+      this.argument, this.validatePrePaidUseCase, this.payPrePaidUseCase) {
     validatePrePaidBillListener();
     payPrePaidBillListener();
   }
@@ -127,7 +114,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: isPrepaidCategoryListEmpty == true ? dueAmount : "",
+        amount: isPrepaidCategoryListEmpty == true ? amtController.text : "",
         currencyCode: "JOD",
         accountNo: savingAccountController.text,
         otpCode: otpCode,
@@ -168,69 +155,13 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
-
-  PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-      _gerPrePaidCategoriesRequest = PublishSubject();
-
-  PublishSubject<Resource<GetPrePaidCategoriesModel>>
-      _gerPrePaidCategoriesResponse = PublishSubject();
-
-  Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
-      _gerPrePaidCategoriesResponse.stream;
-
-  void getPrePaidCategoresList(String? serviceCode, String? billerCode) {
-    _gerPrePaidCategoriesRequest.safeAdd(
-      GetPrePaidCategoriesListUseCaseParams(
-          billerCode: billerCode, serviceCode: serviceCode),
-    );
-  }
-
-  final BehaviorSubject<bool> isPrepaidCategoryListEmptyResponse =
-      BehaviorSubject<bool>.seeded(false);
-
-  Stream<bool> get isPrepaidCategoryListEmptyStream =>
-      isPrepaidCategoryListEmptyResponse.stream;
-
-  void _gerPrePaidCategoriesListener() {
-    _gerPrePaidCategoriesRequest.listen(
-      (params) {
-        RequestManager(
-          params,
-          createCall: () => getPrePaidCategoriesListUseCase.execute(
-            params: params,
-          ),
-        ).asFlow().listen((event) {
-          updateLoader();
-          _gerPrePaidCategoriesResponse.safeAdd(event);
-          isPrepaidCategoryListEmptyResponse.safeAdd(true);
-
-          if (event.status == Status.SUCCESS) {
-            isPrepaidCategoryListEmptyResponse.safeAdd(false);
-            getPrepaidCategoriesModelData =
-                event.data!.content!.getPrepaidBillerListModelData!;
-          }
-          if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
-          }
-        });
-      },
-    );
-  }
-
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    if (isPrepaidCategoryListEmpty == true &&
-        double.parse(amtController.text) > 0.0) {
-      if (savingAccountController.text.isNotEmpty) {
-        _showButtonSubject.safeAdd(true);
-      }
-    } else if (isPrepaidCategoryListEmpty == false &&
-        denominationController.text.isNotEmpty) {
+    if (double.parse(amtController.text) > 0.0) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
       }

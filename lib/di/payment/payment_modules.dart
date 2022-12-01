@@ -373,7 +373,6 @@ final howMuchLikeToPayPrePaidBillsPageViewModelProvider =
             HowMuchLikeToPayPrePaidBillsPageArgument>(
         (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
               args,
-              ref.read(getPrePaidCategoriesListUseCaseProvider),
               ref.read(validatePrePaidBillUseCaseProvider),
               ref.read(getPayPrePaidBillUseCaseProvider),
             ));

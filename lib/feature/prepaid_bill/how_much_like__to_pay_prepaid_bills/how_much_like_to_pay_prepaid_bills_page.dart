@@ -5,8 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page_view_model.dart';
-
 import 'how_much_like_to_pay_prepaid_bills_page_view.dart';
 import 'how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 
@@ -33,6 +31,17 @@ class HowMuchLikeToPayPrePaidBillsPageState extends BaseStatefulPage<
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColorDark;
+  }
+
+  @override
+  void onModelReady(HowMuchLikeToPayPrePaidBillsPageViewModel model) {
+    model.isPrepaidCategoryListEmpty = ProviderScope.containerOf(context)
+        .read(payMyPrePaidBillsPageViewModelProvider)
+        .isPrePaidCategoryEmpty;
+    if (model.isPrepaidCategoryListEmpty == false) {
+      model.validatePrePaidBill();
+    }
+    super.onModelReady(model);
   }
 
   @override

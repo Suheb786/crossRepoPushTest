@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
@@ -15,10 +14,8 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/denomintion_dialog/denomination_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -48,8 +45,10 @@ class HowMuchLikeToPayPrePaidBillsPageView
           model.otpCode = value.data?.content?.validationCode ?? "";
           model.isNewBiller =
               value.data?.content?.validationCode == "" ? false : true;
-          Future.delayed(Duration(milliseconds: 200))
-              .then((value) => model.payPrePaidBill());
+          if (model.isPrepaidCategoryListEmpty == true) {
+            Future.delayed(Duration(milliseconds: 200))
+                .then((value) => model.payPrePaidBill());
+          }
         }
       },
       dataBuilder: (context, snapshot) {
@@ -191,14 +190,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 16.h,
-                              ),
-                              // _ShowDenomination(model, context),
+                              SizedBox(height: 16.h),
                               _enterAmountAppTextField(model, context),
-                              SizedBox(
-                                height: 16.h,
-                              ),
+                              SizedBox(height: 16.h),
                               AppTextField(
                                 labelText: S.of(context).payFrom.toUpperCase(),
                                 hintText: S.of(context).savingAccount(''),
@@ -237,7 +231,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
                               GestureDetector(
                                 onHorizontalDragEnd: (details) {
                                   if (details.primaryVelocity!.isNegative) {
-                                    model.validatePrePaidBill();
+                                    if (model.isPrepaidCategoryListEmpty ==
+                                        false) {
+                                      model.payPrePaidBill();
+                                    } else if (model
+                                            .isPrepaidCategoryListEmpty ==
+                                        true) {
+                                      model.validatePrePaidBill();
+                                    }
                                   }
                                 },
                                 child: AppStreamBuilder<bool>(
@@ -285,99 +286,21 @@ class HowMuchLikeToPayPrePaidBillsPageView
     );
   }
 
-  ///show pre paid categories dialog
-  Widget _ShowDenomination(
-      HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
-    return AppStreamBuilder<Resource<GetPrePaidCategoriesModel>>(
-        stream: model.gerPrePaidCategoriesStream,
-        initialData: Resource.none(),
-        onData: (data) {
-          model.getPrepaidCategoriesModelData =
-              data.data!.content!.getPrepaidBillerListModelData!;
-        },
-        dataBuilder: (_, data) {
-          return AppStreamBuilder<bool>(
-            stream: model.isPrepaidCategoryListEmptyStream,
-            initialData: false,
-            dataBuilder: (_, isPrepaidCategoryListEmpty) {
-              return Visibility(
-                visible: !isPrepaidCategoryListEmpty!,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 16.0.h),
-                  child: AppTextField(
-                    labelText: "Denomination".toUpperCase(),
-                    // labelText: S.of(context).denomination.toUpperCase(),
-                    hintText: S.of(context).pleaseSelect,
-                    controller: model.denominationController,
-                    readOnly: true,
-                    onPressed: () {
-                      AppConstantsUtils.PREPAID_CATEGORY_CODE = "";
-                      AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";
-                      AppConstantsUtils.PREPAID_CATEGORY_TYPE = "";
-                      model.amtController.text = "";
-                      model.denominationController.text = "";
-                      print("aklsdjalksjd");
-                      _showPrePaidCategoriesList(model, context);
-                    },
-                    suffixIcon: (value, data) {
-                      return Container(
-                          height: 16.h,
-                          width: 16.w,
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: AppSvg.asset(AssetUtils.downArrow,
-                              color: AppColor.dark_gray_1));
-                    },
-                  ),
-                ),
-              );
-            },
-          );
-        });
-  }
-
-  void _showPrePaidCategoriesList(
-      HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
-    DenominationsDialog.show(context,
-        getPrePaidCategoriesList: model.getPrepaidCategoriesModelData,
-        label: S.of(context).selectAccount,
-        billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
-        serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE, onDismissed: () {
-      Navigator.pop(context);
-    }, onSelected: (value) {
-      AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
-      AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION =
-          value.description.toString();
-      AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
-      model.denominationController.text = value.description.toString();
-      // model.validateData();
-      model.validate();
-      Navigator.pop(context);
-    });
-  }
-
+  ///enter amount appTextField
   _enterAmountAppTextField(
       HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
-    return AppStreamBuilder<bool>(
-      stream: model.isPrepaidCategoryListEmptyStream,
-      initialData: false,
-      dataBuilder: (_, isPrepaidCategoryListEmpty) {
-        return Visibility(
-          visible: !isPrepaidCategoryListEmpty!,
-          child: Padding(
-              padding: EdgeInsets.only(top: 16.0.h),
-              child: AppTextField(
-                labelText: S.of(context).amount.toUpperCase(),
-                controller: model.amtController,
-                readOnly: false,
-                hintText: S.of(context).pleaseEnter,
-                inputType: TextInputType.number,
-                onPressed: () {},
-                onChanged: (val) {
-                  model.validate();
-                },
-              )),
-        );
-      },
-    );
+    return Padding(
+        padding: EdgeInsets.only(top: 16.0.h),
+        child: AppTextField(
+          labelText: S.of(context).amount.toUpperCase(),
+          controller: model.amtController,
+          readOnly: !model.isPrepaidCategoryListEmpty,
+          hintText: S.of(context).pleaseEnter,
+          inputType: TextInputType.number,
+          onPressed: () {},
+          onChanged: (val) {
+            model.validate();
+          },
+        ));
   }
 }
