@@ -185,6 +185,51 @@ class SettingsDialogView extends StatelessWidget {
                             ),
                           ),
                           InkWell(
+                            onTap: onClick
+                                ? () {
+                              Navigator.pushNamed(context, RoutePaths.CliqIdList);
+                            }
+                                : () {},
+                            child: Container(
+                              height: 174.0.h,
+                              width: 112.0.w,
+                              decoration: BoxDecoration(
+                                  color: currentStep == 3
+                                      ? Theme.of(context).accentTextTheme.bodyText1!.color
+                                      : Theme.of(context).accentColor,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: 64.0.h,
+                                      width: 64.0.w,
+                                      padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                      margin: EdgeInsets.only(bottom: 16.0.h),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                      child: AppSvg.asset(AssetUtils.cliqLogoSvg,
+                                          color: currentStep == 3
+                                              ? Theme.of(context).accentColor
+                                              : Theme.of(context).primaryColorDark)),
+                                  Text(
+                                    S.of(context).manageCliqIdRoute,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w600,
+                                        color: currentStep == 3
+                                            ? Theme.of(context).accentColor
+                                            : Theme.of(context).primaryColorDark,
+                                        fontSize: 12.0.t),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
                               onTap: onClick
                                   ? () {
                                       Navigator.pushNamed(context, RoutePaths.AccountSetting);
@@ -194,7 +239,7 @@ class SettingsDialogView extends StatelessWidget {
                                 height: 174.0.h,
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
-                                    color: currentStep == 3
+                                    color: currentStep == 4
                                         ? Theme.of(context).accentTextTheme.bodyText1!.color
                                         : Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(8)),
@@ -225,7 +270,7 @@ class SettingsDialogView extends StatelessWidget {
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w700,
                                                               fontSize: 18.0.t,
-                                                              color: currentStep == 3
+                                                              color: currentStep == 4
                                                                   ? Theme.of(context).accentColor
                                                                   : Theme.of(context).primaryColorDark),
                                                         );
@@ -245,7 +290,7 @@ class SettingsDialogView extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
-                                          color: currentStep == 3
+                                          color: currentStep == 4
                                               ? Theme.of(context).accentColor
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
@@ -273,7 +318,7 @@ class SettingsDialogView extends StatelessWidget {
                                     height: 174.0.h,
                                     width: 112.0.w,
                                     decoration: BoxDecoration(
-                                        color: currentStep == 4
+                                        color: currentStep == 5
                                             ? Theme.of(context).accentTextTheme.bodyText1!.color
                                             : Theme.of(context).accentColor,
                                         borderRadius: BorderRadius.circular(8)),
@@ -291,7 +336,7 @@ class SettingsDialogView extends StatelessWidget {
                                                 shape: BoxShape.circle,
                                                 border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                             child: AppSvg.asset(AssetUtils.logout,
-                                                color: currentStep == 4
+                                                color: currentStep == 5
                                                     ? Theme.of(context).accentColor
                                                     : Theme.of(context).primaryColorDark)),
                                         Text(
@@ -300,7 +345,7 @@ class SettingsDialogView extends StatelessWidget {
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
-                                              color: currentStep == 4
+                                              color: currentStep == 5
                                                   ? Theme.of(context).accentColor
                                                   : Theme.of(context).primaryColorDark,
                                               fontSize: 12.0.t),

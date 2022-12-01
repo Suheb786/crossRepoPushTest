@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -14644,6 +14645,16 @@ class S {
     return Intl.message(
       'Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.',
       name: 'areYourToChangeDefaultAccountOfYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage\nCliQ ID`
+  String get manageCliqIdRoute {
+    return Intl.message(
+      'Manage\nCliQ ID',
+      name: 'manageCliqIdRoute',
       desc: '',
       args: [],
     );
