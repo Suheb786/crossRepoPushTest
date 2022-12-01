@@ -6,7 +6,8 @@ part of 'delete_cliq_id_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DeleteCliqIdRequestEntity _$DeleteCliqIdRequestEntityFromJson(Map<String, dynamic> json) {
+DeleteCliqIdRequestEntity _$DeleteCliqIdRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return DeleteCliqIdRequestEntity(
     aliasId: json['aliasId'] as String?,
     getToken: json['getToken'] as bool?,
@@ -14,7 +15,8 @@ DeleteCliqIdRequestEntity _$DeleteCliqIdRequestEntityFromJson(Map<String, dynami
   );
 }
 
-Map<String, dynamic> _$DeleteCliqIdRequestEntityToJson(DeleteCliqIdRequestEntity instance) =>
+Map<String, dynamic> _$DeleteCliqIdRequestEntityToJson(
+        DeleteCliqIdRequestEntity instance) =>
     <String, dynamic>{
       'aliasId': instance.aliasId,
       'getToken': instance.getToken,

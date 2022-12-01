@@ -37,7 +37,9 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DashboardCardEntityToJson(DashboardCardEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$DashboardCardEntityToJson(
+        DashboardCardEntity instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'availableBalance': instance.availableBalance,
       'minDue': instance.minDue,

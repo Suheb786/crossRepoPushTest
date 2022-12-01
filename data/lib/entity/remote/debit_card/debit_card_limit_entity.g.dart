@@ -15,7 +15,9 @@ DebitCardLimitEntity _$DebitCardLimitEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DebitCardLimitEntityToJson(DebitCardLimitEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$DebitCardLimitEntityToJson(
+        DebitCardLimitEntity instance) =>
+    <String, dynamic>{
       'description': instance.description,
       'minLimit': instance.minLimit,
       'currentLimit': instance.currentLimit,

@@ -6,7 +6,8 @@ part of 'customer_details_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CustomerDetailsEntity _$CustomerDetailsEntityFromJson(Map<String, dynamic> json) {
+CustomerDetailsEntity _$CustomerDetailsEntityFromJson(
+    Map<String, dynamic> json) {
   return CustomerDetailsEntity(
     categoryId: json['categoryId'] as String?,
     name: json['name'] as String?,
@@ -36,7 +37,9 @@ CustomerDetailsEntity _$CustomerDetailsEntityFromJson(Map<String, dynamic> json)
     email: json['email'] as String?,
     nic: json['nic'] as String?,
     nationalCardNumber: json['nationalCardNumber'] as String?,
-    nicExpirydate: json['nicExpirydate'] == null ? null : DateTime.parse(json['nicExpirydate'] as String),
+    nicExpirydate: json['nicExpirydate'] == null
+        ? null
+        : DateTime.parse(json['nicExpirydate'] as String),
     dob: json['dob'] == null ? null : DateTime.parse(json['dob'] as String),
     gender: json['gender'] as String?,
     maritalstatus: json['maritalstatus'] as String?,
@@ -63,15 +66,18 @@ CustomerDetailsEntity _$CustomerDetailsEntityFromJson(Map<String, dynamic> json)
     nationality: json['nationality'] as String?,
     idIssueCountry: json['idIssueCountry'] as String?,
     passportNumber: json['passportNumber'] as String?,
-    passportIssueDate:
-        json['passportIssueDate'] == null ? null : DateTime.parse(json['passportIssueDate'] as String),
+    passportIssueDate: json['passportIssueDate'] == null
+        ? null
+        : DateTime.parse(json['passportIssueDate'] as String),
     passportExpiry: json['passportExpiry'],
     passportIssueCountry: json['passportIssueCountry'] as String?,
     passportGender: json['passportGender'] as String?,
     onboardingCountry: json['onboardingCountry'] as String?,
     employerName: json['employerName'] as String?,
     incomeBracket: json['incomeBracket'] as String?,
-    kycReviewDate: json['kycReviewDate'] == null ? null : DateTime.parse(json['kycReviewDate'] as String),
+    kycReviewDate: json['kycReviewDate'] == null
+        ? null
+        : DateTime.parse(json['kycReviewDate'] as String),
     dualCitizenship: json['dualCitizenship'] as String?,
     citizenCountry2: json['citizenCountry2'] as String?,
     pep: json['pep'] as String?,
@@ -120,7 +126,9 @@ CustomerDetailsEntity _$CustomerDetailsEntityFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$CustomerDetailsEntityToJson(CustomerDetailsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CustomerDetailsEntityToJson(
+        CustomerDetailsEntity instance) =>
+    <String, dynamic>{
       'categoryId': instance.categoryId,
       'name': instance.name,
       'addressCors': instance.addressCors,

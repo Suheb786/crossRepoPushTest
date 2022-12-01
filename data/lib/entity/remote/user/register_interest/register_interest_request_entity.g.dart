@@ -6,7 +6,8 @@ part of 'register_interest_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterInterestRequestEntity _$RegisterInterestRequestEntityFromJson(Map<String, dynamic> json) {
+RegisterInterestRequestEntity _$RegisterInterestRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return RegisterInterestRequestEntity(
     uniqueId: json['UniqueId'] as String?,
     email: json['Email'] as String?,
@@ -14,7 +15,8 @@ RegisterInterestRequestEntity _$RegisterInterestRequestEntityFromJson(Map<String
   );
 }
 
-Map<String, dynamic> _$RegisterInterestRequestEntityToJson(RegisterInterestRequestEntity instance) =>
+Map<String, dynamic> _$RegisterInterestRequestEntityToJson(
+        RegisterInterestRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'Email': instance.email,

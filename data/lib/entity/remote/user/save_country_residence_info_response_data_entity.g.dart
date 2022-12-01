@@ -6,8 +6,9 @@ part of 'save_country_residence_info_response_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveCountryResidenceInfoResponseDataEntity _$SaveCountryResidenceInfoResponseDataEntityFromJson(
-    Map<String, dynamic> json) {
+SaveCountryResidenceInfoResponseDataEntity
+    _$SaveCountryResidenceInfoResponseDataEntityFromJson(
+        Map<String, dynamic> json) {
   return SaveCountryResidenceInfoResponseDataEntity(
     code: json['code'] as int?,
     content: json['content'] as String?,

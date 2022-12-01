@@ -15,7 +15,9 @@ GetTimeSlotsRequest _$GetTimeSlotsRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$GetTimeSlotsRequestToJson(GetTimeSlotsRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$GetTimeSlotsRequestToJson(
+        GetTimeSlotsRequest instance) =>
+    <String, dynamic>{
       'callDate': instance.callDate,
       'dateToSend': instance.dateToSend,
       'gender': instance.gender,

@@ -6,7 +6,8 @@ part of 'verify_change_mobile_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyChangeMobileRequestEntity _$VerifyChangeMobileRequestEntityFromJson(Map<String, dynamic> json) {
+VerifyChangeMobileRequestEntity _$VerifyChangeMobileRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return VerifyChangeMobileRequestEntity(
     uniqueId: json['UniqueId'] as String,
     otp: json['Otp'] as String,
@@ -17,7 +18,8 @@ VerifyChangeMobileRequestEntity _$VerifyChangeMobileRequestEntityFromJson(Map<St
   );
 }
 
-Map<String, dynamic> _$VerifyChangeMobileRequestEntityToJson(VerifyChangeMobileRequestEntity instance) =>
+Map<String, dynamic> _$VerifyChangeMobileRequestEntityToJson(
+        VerifyChangeMobileRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'Otp': instance.otp,

@@ -17,7 +17,8 @@ AtmsEntity _$AtmsEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$AtmsEntityToJson(AtmsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$AtmsEntityToJson(AtmsEntity instance) =>
+    <String, dynamic>{
       'bankName': instance.bankName,
       'bankAddress': instance.bankAddress,
       'country': instance.country,
