@@ -1,12 +1,16 @@
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
+import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
-import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -17,13 +21,21 @@ import 'package:rxdart/rxdart.dart';
 class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   final ValidatePrePaidUseCase validatePrePaidUseCase;
   final PayPrePaidUseCase payPrePaidUseCase;
+  final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
+  final PayPostPaidBillUseCase payPostPaidBillUseCase;
+
   String? otpCode = "";
   bool? isNewBiller = false;
 
   ConfirmBillPaymentAmountPageViewModel(
-      this.validatePrePaidUseCase, this.payPrePaidUseCase) {
+      this.validatePrePaidUseCase,
+      this.payPrePaidUseCase,
+      this.postPaidBillInquiryUseCase,
+      this.payPostPaidBillUseCase) {
     validatePrePaidBillListener();
     payPrePaidBillListener();
+    postPaidBillInquiryListener();
+    payPostPaidBillListener();
   }
 
   TextEditingController amtController = TextEditingController();
@@ -35,16 +47,128 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   Stream<AddNewDetailsBillPaymentsModel> get getPurposeResponseStream =>
       _addNewDetailsBillPaymentsModelResponse.stream;
 
-  AddNewDetailsBillPaymentsModel data = AddNewDetailsBillPaymentsModel();
-
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
+  late AddNewDetailsBillPaymentsModel data;
+
   setData(AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel) {
     _addNewDetailsBillPaymentsModelResponse
         .safeAdd(addNewDetailsBillPaymentsModel);
+  }
+
+  /// ---------------- post paid bill enquiry -------------------------------- ///
+  List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
+
+  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest =
+      PublishSubject();
+
+  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse =
+      BehaviorSubject();
+
+  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream =>
+      _postPaidBillEnquiryResponse.stream;
+
+  void postPaidBillInquiry() {
+    List<PostpaidBillInquiry> postPaidRequestListJson = [];
+    postPaidRequestListJson.add(PostpaidBillInquiry(
+        billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
+        serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
+        billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER));
+
+    _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
+        postpaidBillInquiries: postPaidRequestListJson));
+  }
+
+  void postPaidBillInquiryListener() {
+    _postPaidBillEnquiryRequest.listen(
+      (params) {
+        RequestManager(params,
+                createCall: () =>
+                    postPaidBillInquiryUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
+          updateLoader();
+          _postPaidBillEnquiryResponse.safeAdd(event);
+        });
+      },
+    );
+  }
+
+  /// ---------------- pay postpaid bill -------------------------------- ///
+  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest =
+      PublishSubject();
+
+  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse =
+      BehaviorSubject();
+
+  Stream<Resource<PayPostPaidBill>> get payPostPaidStream =>
+      _payPostPaidResponse.stream;
+
+  void payPostPaidBill() {
+    List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
+    for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
+      PostPaidBillInquiryData item = postPaidBillInquiryData![i];
+      if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
+        tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
+            billerCode: item.billerCode,
+            billingNumber: item.billingNo,
+            billerName: AppConstantsUtils.BILLER_NAME,
+            serviceType: item.serviceType,
+            amount: item.dueAmount,
+            fees: item.feesAmt ?? "0.0"));
+      }
+    }
+    tempPostpaidBillInquiryRequestList =
+        tempPostpaidBillInquiryRequestList.toSet().toList();
+    _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
+        billerList: tempPostpaidBillInquiryRequestList,
+        accountNo: data.accountNumber,
+        totalAmount: addAllBillAmt().toString(),
+        currencyCode: "JOD",
+        isNewBiller: false,
+        isCreditCardPayment: /* cardType != null &&
+            cardType.isNotEmpty &&
+            cardType == AppConstants.KEY_CREDIT
+            ? true
+            : */
+            false,
+        CardId: /*cardType != null &&
+            cardType.isNotEmpty &&
+            cardType == AppConstants.KEY_CREDIT
+            ? cardID
+            :*/
+            "",
+        otpCode: ""));
+  }
+
+  addAllBillAmt() {
+    var totalBillAmt = 0.0;
+    postPaidBillInquiryData!.forEach((element) {
+      totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
+    });
+    return totalBillAmt.toStringAsFixed(3);
+  }
+
+  void payPostPaidBillListener() {
+    _payPostPaidRequest.listen(
+      (params) {
+        RequestManager(params,
+                createCall: () =>
+                    payPostPaidBillUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
+          //to do
+          updateLoader();
+          _payPostPaidResponse.safeAdd(event);
+          if (event.status == Status.ERROR) {
+            showToastWithError(event.appError!);
+          }
+        });
+      },
+    );
   }
 
   /// ---------------- validate prepaid bill -------------------------------- ///
@@ -61,7 +185,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         amount:
-            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         prepaidCategoryCode: data.isPrepaidCategoryListEmpty == false
@@ -71,18 +195,18 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired:
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-                ? true
-                : false));
+        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            ? true
+            : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params,
-                createCall: () =>
-                    validatePrePaidUseCase.execute(params: params))
+            createCall: () =>
+                validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -112,7 +236,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount:
-            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
         currencyCode: "JOD",
         accountNo: data.accountNumber,
         otpCode: otpCode,
@@ -124,19 +248,19 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired:
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-                ? true
-                : false,
+        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            ? true
+            : false,
         CardId: "",
         isCreditCardPayment: false));
   }
 
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params,
-                createCall: () => payPrePaidUseCase.execute(params: params))
+            createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do
@@ -158,5 +282,19 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  @override
+  void dispose() {
+    _validatePrePaidRequest.close();
+    _validatePrePaidResponse.close();
+    _payPrePaidRequest.close();
+    _payPrePaidResponse.close();
+    _postPaidBillEnquiryRequest.close();
+    _postPaidBillEnquiryResponse.close();
+    _payPostPaidRequest.close();
+    _payPostPaidResponse.close();
+    _showButtonSubject.close();
+    super.dispose();
   }
 }

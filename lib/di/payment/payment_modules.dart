@@ -301,7 +301,8 @@ final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider
 final postPaidBillsSuccessPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<PostPaidBillsSuccessPageViewModel,
         PostPaidBillsSuccessPageArguments>(
-  (ref, args) => PostPaidBillsSuccessPageViewModel(args),
+  (ref, args) => PostPaidBillsSuccessPageViewModel(
+      args, ref.read(addNewPostpaidBillerUseCaseProvider)),
 );
 
 final launcherPageViewModelProvider =
@@ -322,8 +323,6 @@ final payBillPageViewModelProvider =
 final payBillDetailPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
   (ref) => PayBillDetailPageViewModel(
-      ref.read(addNewPostpaidBillerUseCaseProvider),
-      ref.read(addNewPrepaidBillerUseCaseProvider),
       ref.read(getPrePaidCategoriesListUseCaseProvider)),
 );
 
@@ -332,6 +331,8 @@ final confirmBillPaymentAmountPageViewModelProvider =
   (ref) => ConfirmBillPaymentAmountPageViewModel(
     ref.read(validatePrePaidBillUseCaseProvider),
     ref.read(getPayPrePaidBillUseCaseProvider),
+    ref.read(postPaidBillInquiryUseCaseProvider),
+    ref.read(payPostPaidBillUseCaseProvider),
   ),
 );
 

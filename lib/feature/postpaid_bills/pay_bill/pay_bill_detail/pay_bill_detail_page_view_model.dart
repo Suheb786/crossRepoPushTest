@@ -18,7 +18,6 @@ import 'package:rxdart/rxdart.dart';
 
 class PayBillDetailPageViewModel extends BasePageViewModel {
   final ScrollController controller = ScrollController();
-  final TextEditingController refNoController = TextEditingController();
   final TextEditingController payFromController = TextEditingController()
     ..text = 'Savings Account';
   String fieldTextLabelEn = "Enter Billing Number";
@@ -66,7 +65,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     addNewDetailsBillPaymentsModel.amount = amountTextControl.text;
     addNewDetailsBillPaymentsModel.billerName = billerNameTextController.text;
     addNewDetailsBillPaymentsModel.nickName = nicknameTextControl.text;
-    addNewDetailsBillPaymentsModel.refNo = refNoController.text;
+    addNewDetailsBillPaymentsModel.refNo = billingNumberTextControl.text;
     addNewDetailsBillPaymentsModel.service = serviceTypeTextControl.text;
     addNewDetailsBillPaymentsModel.isPrepaidCategoryListEmpty =
         isPrepaidCategoryListEmpty;
@@ -106,6 +105,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   validateData() {
     isValidated = false;
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+      AppConstantsUtils.POST_PAID_FLOW = true;
+      AppConstantsUtils.PRE_PAID_FLOW = false;
+      AppConstantsUtils.IS_NEW_PAYMENT = true;
+
       if (billingNumberTextControl.text.trim() != "") {
         isValidated = true;
         if (isAddThisBillerToSaveList) {
@@ -117,6 +120,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       }
     }
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+      AppConstantsUtils.POST_PAID_FLOW = false;
+      AppConstantsUtils.PRE_PAID_FLOW = true;
+      AppConstantsUtils.IS_NEW_PAYMENT = true;
+
       isValidated = false;
       if (amountTextControl.text.trim() != "" ||
           denominationTextController.text.trim() != "") {
@@ -161,8 +168,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   }
 
   PublishSubject<bool> _switchStatusSubject = PublishSubject();
-  AddNewPostpaidBillerUseCase addNewPostpaidBillerUseCase;
-  AddNewPrepaidBillerUseCase addNewPrepaidBillerUseCase;
   GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
 
   Stream<bool> get totalBillAmtDueStream => _switchStatusSubject.stream;
@@ -171,91 +176,8 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     _switchStatusSubject.safeAdd(isActive);
   }
 
-  PayBillDetailPageViewModel(this.addNewPostpaidBillerUseCase,
-      this.addNewPrepaidBillerUseCase, this.getPrePaidCategoriesListUseCase) {
-    _addNewPostpaidBillerListener();
-    _addNewPrepaidBillerListener();
+  PayBillDetailPageViewModel(this.getPrePaidCategoriesListUseCase) {
     _gerPrePaidCategoriesListener();
-  }
-
-  /// ---------------- Call Api AddNewPostpaidBiller -------------------- ///
-
-  PublishSubject<AddNewPostpaidBillerUseCaseParams>
-      _addNewPostpaidBillerRequest = PublishSubject();
-
-  PublishSubject<Resource<AddNewPostpaidBillerModel>>
-      _addNewPostpaidBillerResponce = PublishSubject();
-
-  Stream<Resource<AddNewPostpaidBillerModel>> get addNewPostpaidStream =>
-      _addNewPostpaidBillerResponce.stream;
-
-  void addNewPostpaidBiller() {
-    _addNewPostpaidBillerRequest.safeAdd(
-      AddNewPostpaidBillerUseCaseParams(
-        serviceType: serviceTypeApiVal.trim(),
-        billerCode: billerCodeTextControl.text.trim(),
-        billingNumber: billingNumberTextControl.text.trim(),
-        nickname: nicknameTextControl.text.trim(),
-      ),
-    );
-  }
-
-  void _addNewPostpaidBillerListener() {
-    _addNewPostpaidBillerRequest.listen(
-      (params) {
-        RequestManager(params,
-                createCall: () =>
-                    addNewPostpaidBillerUseCase.execute(params: params))
-            .asFlow()
-            .listen((event) {
-          updateLoader();
-          _addNewPostpaidBillerResponce.safeAdd(event);
-        });
-      },
-    );
-  }
-
-  /// ---------------- Call Api AddNewPrepaidBiller -------------------- ///
-
-  PublishSubject<Resource<AddNewPrepaidBillerModel>>
-      _addNewPrepaidBillerResponce = PublishSubject();
-
-  Stream<Resource<AddNewPrepaidBillerModel>> get addNewPrepaidBillerStream =>
-      _addNewPrepaidBillerResponce.stream;
-
-  PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest =
-      PublishSubject();
-
-  void addNewPrepaidBiller() {
-    _addNewPrepaidBillerRequest.safeAdd(
-      AddNewPrepaidBillerUseCaseParams(
-          prepaidCategoryType: AppConstantsUtils.PREPAID_CATEGORY_TYPE,
-          prepaidCategoryCode: AppConstantsUtils.PREPAID_CATEGORY_CODE,
-          serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-          serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE,
-          billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
-          billerName: AppConstantsUtils.BILLER_NAME,
-          billingNumber: billingNumberTextControl.text.trim(),
-          nickname: nicknameTextControl.text.trim(),
-          amount: amountTextControl.text.trim(),
-          billingNumberRequired:
-              AppConstantsUtils.SELECTED_BILLING_NUMBER_REQUIRED),
-    );
-  }
-
-  void _addNewPrepaidBillerListener() {
-    _addNewPrepaidBillerRequest.listen(
-      (params) {
-        RequestManager(params,
-                createCall: () =>
-                    addNewPrepaidBillerUseCase.execute(params: params))
-            .asFlow()
-            .listen((event) {
-          updateLoader();
-          _addNewPrepaidBillerResponce.safeAdd(event);
-        });
-      },
-    );
   }
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
@@ -313,8 +235,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   void dispose() {
     _getPrePaidCategoriesRequest.close();
     _gerPrePaidCategoriesResponse.close();
-    _addNewPostpaidBillerRequest.close();
-    _addNewPostpaidBillerResponce.close();
     serviceTypeTextControl.dispose();
     _switchStatusSubject.close();
     super.dispose();

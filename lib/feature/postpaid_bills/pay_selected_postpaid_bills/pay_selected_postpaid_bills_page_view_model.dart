@@ -113,7 +113,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.toSet().toList();
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
-        accountNo: "accountNumber",
+        accountNo: savingAccountController.text,
         // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
         totalAmount: addAllBillAmt().toString(),
         currencyCode: "JOD",
@@ -236,10 +236,11 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   var totalAmount = "0.0";
+
   validate() {
     totalAmount = addAllBillAmt().toString();
     if (double.parse(totalAmount) > 0.0) {
-      if(savingAccountController.text.isNotEmpty) {
+      if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
       }
     } else {
@@ -247,11 +248,14 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-
   @override
   void dispose() {
     _showButtonSubject.close();
     _totalBillAmtDueSubject.close();
+    _postPaidBillEnquiryResponse.close();
+    _postPaidBillEnquiryResponse.close();
+    _payPostPaidResponse.close();
+    _payPostPaidRequest.close();
     super.dispose();
   }
 }

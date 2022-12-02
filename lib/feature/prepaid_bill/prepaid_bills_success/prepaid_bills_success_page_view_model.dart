@@ -14,8 +14,12 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
 
   PrePaidBillsSuccessPageViewModel(
       this.arguments, this.addNewPrepaidBillerUseCase) {
-    Future.delayed(Duration(milliseconds: 200))
-        .then((value) => addNewPrepaidBiller());
+    if (AppConstantsUtils.IS_NEW_PAYMENT &&
+        AppConstantsUtils.NICK_NAME.isNotEmpty) {
+      Future.delayed(Duration(milliseconds: 200))
+          .then((value) => addNewPrepaidBiller());
+    }
+
     _addNewPrepaidBillerListener();
   }
 

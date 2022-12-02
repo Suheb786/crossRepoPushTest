@@ -1,8 +1,10 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -21,6 +24,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/get_bill_payments_categories.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -39,478 +43,131 @@ class ConfirmBillPaymentAmountPageView
           initialData: false,
           stream: model.errorDetectorStream,
           dataBuilder: (context, isError) {
-            return AppStreamBuilder<Resource<PayPrePaid>>(
+            return AppStreamBuilder<Resource<PostPaidBillInquiry>>(
+              stream: model.postPaidBillEnquiryStream,
               initialData: Resource.none(),
-              stream: model.payPrePaidStream,
-              onData: (value) {
-                if (value.status == Status.SUCCESS) {
-                  Navigator.pushNamed(
-                      context, RoutePaths.PrePaidBillsSuccessPage,
-                      arguments: PrePaidBillsSuccessPageArguments(
-                          value.data!.content ?? PaidBillContent()));
+              onData: (data) {
+                if (data.status == Status.ERROR) {
+                  model.showToastWithError(data.appError!);
+                } else if (data.status == Status.SUCCESS) {
+                  model.postPaidBillInquiryData =
+                      data.data?.content?.postPaidBillInquiryData;
+
+                  model.amtController.text = model.addAllBillAmt().toString();
+                  model.data.amount = model.amtController.text;
+                  model.validate(model.amtController.text);
                 }
               },
-              dataBuilder: (context, snapshot) {
-                return AppStreamBuilder<Resource<ValidatePrePaidBill>>(
+              dataBuilder: (BuildContext context, data) {
+                return AppStreamBuilder<Resource<PayPostPaidBill>>(
+                  stream: model.payPostPaidStream,
                   initialData: Resource.none(),
-                  stream: model.validatePrePaidStream,
-                  onData: (value) {
-                    if (value.status == Status.SUCCESS) {
-                      model.amtController.text =
-                          value.data?.content?.dueAmount ?? "0";
-                      model.otpCode = value.data?.content?.validationCode ?? "";
-                      model.isNewBiller =
-                          value.data?.content?.validationCode == ""
-                              ? false
-                              : true;
-
-                      if (model.data.isPrepaidCategoryListEmpty == true) {
-                        model.payPrePaidBill();
-                      } else {
-                        model.validate(model.amtController.text);
-                      }
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      Future.delayed(Duration(milliseconds: 200)).then((value) {
+                        Navigator.pushNamed(
+                            context, RoutePaths.PostPaidBillsSuccessPage,
+                            arguments: PostPaidBillsSuccessPageArguments(
+                                data.data?.content?.billerList));
+                      });
                     }
                   },
-                  dataBuilder: (context, snapshot) {
-                    return AppStreamBuilder<AddNewDetailsBillPaymentsModel>(
-                      stream: model.getPurposeResponseStream,
-                      initialData: AddNewDetailsBillPaymentsModel(),
+                  dataBuilder: (BuildContext context, data) {
+                    return AppStreamBuilder<Resource<PayPrePaid>>(
+                      initialData: Resource.none(),
+                      stream: model.payPrePaidStream,
+                      onData: (value) {
+                        if (value.status == Status.SUCCESS) {
+                          Navigator.pushNamed(
+                              context, RoutePaths.PrePaidBillsSuccessPage,
+                              arguments: PrePaidBillsSuccessPageArguments(
+                                  value.data!.content ?? PaidBillContent()));
+                        }
+                      },
                       dataBuilder: (context, snapshot) {
-                        model.data = snapshot!;
-                        return ShakeAnimatedWidget(
-                            enabled: isError ?? false,
-                            duration: Duration(milliseconds: 100),
-                            shakeAngle: Rotation.deg(z: 1),
-                            curve: Curves.easeInOutSine,
-                            child: GestureDetector(
-                              onHorizontalDragEnd: (details) {
-                                if (ProviderScope.containerOf(context)
-                                        .read(payBillPageViewModelProvider)
-                                        .appSwiperController
-                                        .page ==
-                                    1.0) {
-                                  FocusScope.of(context).unfocus();
-
-                                  if (StringUtils.isDirectionRTL(context)) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      ProviderScope.containerOf(context)
-                                          .read(payBillPageViewModelProvider)
-                                          .previousPage();
-                                    } else {
-                                      ProviderScope.containerOf(context)
-                                          .read(payBillPageViewModelProvider)
-                                          .nextPage();
-                                    }
-                                  } else {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      ProviderScope.containerOf(context)
-                                          .read(payBillPageViewModelProvider)
-                                          .nextPage();
-                                    } else {
-                                      ProviderScope.containerOf(context)
-                                          .read(payBillPageViewModelProvider)
-                                          .previousPage();
-                                    }
-                                  }
+                        return AppStreamBuilder<Resource<ValidatePrePaidBill>>(
+                          initialData: Resource.none(),
+                          stream: model.validatePrePaidStream,
+                          onData: (value) {
+                            if (value.status == Status.SUCCESS) {
+                              model.amtController.text =
+                                  value.data?.content?.dueAmount ?? "0";
+                              model.otpCode =
+                                  value.data?.content?.validationCode ?? "";
+                              model.isNewBiller =
+                                  value.data?.content?.validationCode == ""
+                                      ? false
+                                      : true;
+                              if (AppConstantsUtils.PRE_PAID_FLOW == true) {
+                                if (model.data.isPrepaidCategoryListEmpty ==
+                                    true) {
+                                  model.payPrePaidBill();
+                                } else {
+                                  model.validate(model.amtController.text);
                                 }
+                              }
+                            }
+                          },
+                          dataBuilder: (context, snapshot) {
+                            return AppStreamBuilder<
+                                AddNewDetailsBillPaymentsModel>(
+                              stream: model.getPurposeResponseStream,
+                              initialData: AddNewDetailsBillPaymentsModel(),
+                              onData: (data) {
+                                model.data = data;
                               },
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 15.0.w, horizontal: 15.0.h),
-                                child: Card(
-                                  margin: EdgeInsets.zero,
-                                  child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 24.h, horizontal: 24.w),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SingleChildScrollView(
-                                            child: Container(
-                                                // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: AppColor
-                                                            .white_gray),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0)),
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 16.0.w,
-                                                          right: 16.0.w,
-                                                          top: 24.0.h),
-                                                      child: Text(
-                                                        S.of(context).amount,
-                                                        style: TextStyle(
-                                                          fontFamily:
-                                                              StringUtils
-                                                                  .appFont,
-                                                          color: AppColor
-                                                              .veryDarkGray2,
-                                                          fontSize: 10.0.t,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        AutoSizeTextField(
-                                                          wrapWords: false,
-                                                          fullwidth: false,
-                                                          inputFormatters: [
-                                                            FilteringTextInputFormatter
-                                                                .allow(RegExp(
-                                                                    r"[0-9.]")),
-                                                          ],
-                                                          controller: model
-                                                              .amtController,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .number,
-                                                          onChanged: (value) {
-                                                            model.validate(
-                                                                value);
-                                                            //  this.onChanged?.call(value);
-                                                          },
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  StringUtils
-                                                                      .appFont,
-                                                              color: AppColor
-                                                                  .black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              fontSize: 24.0.t),
-                                                        ),
-                                                        Text(
-                                                          S.of(context).JOD,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                StringUtils
-                                                                    .appFont,
-                                                            color: AppColor
-                                                                .verLightGray4,
-                                                            fontSize: 14.0.t,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    !AppConstantsUtils
-                                                            .PRE_PAID_FLOW
-                                                        ? Text(
-                                                            S
-                                                                .of(context)
-                                                                .tapAmtToEdit,
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  StringUtils
-                                                                      .appFont,
-                                                              color: AppColor
-                                                                  .gray1,
-                                                              fontSize: 10.0.t,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                          )
-                                                        : Container(),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 16.0.h,
-                                                        left: 16.0.w,
-                                                        right: 16.0.w,
-                                                      ),
-                                                      child: AppConstantsUtils
-                                                                  .PRE_PAID_FLOW ==
-                                                              false
-                                                          ? Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .dueAmt,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .black,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  '${model.data.amount} JOD',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .black,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            )
-                                                          : Container(),
-                                                    ),
-                                                    // Padding(
-                                                    //   padding: EdgeInsets.only(
-                                                    //     top: 8.0.h,
-                                                    //     left: 16.0.w,
-                                                    //     right: 16.0.w,
-                                                    //   ),
-                                                    //   child: Row(
-                                                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    //     children: [
-                                                    //       Text(
-                                                    //         S.of(context).fees,
-                                                    //         style: TextStyle(
-                                                    //           fontFamily: StringUtils.appFont,
-                                                    //           color: AppColor.black,
-                                                    //           fontSize: 12.0.t,
-                                                    //           fontWeight: FontWeight.w400,
-                                                    //         ),
-                                                    //       ),
-                                                    //       Text(
-                                                    //         '20.000 JOD',
-                                                    //         style: TextStyle(
-                                                    //           fontFamily: StringUtils.appFont,
-                                                    //           color: AppColor.black,
-                                                    //           fontSize: 12.0.t,
-                                                    //           fontWeight: FontWeight.w600,
-                                                    //         ),
-                                                    //       )
-                                                    //     ],
-                                                    //   ),
-                                                    // ),
-                                                    SizedBox(
-                                                      height: 24.0.h,
-                                                    ),
-                                                    Container(
-                                                      color:
-                                                          AppColor.white_gray,
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical:
-                                                                    16.0.h,
-                                                                horizontal:
-                                                                    16.0.w),
-                                                        child: Row(
-                                                          children: [
-                                                            Container(
-                                                              width: 40.w,
-                                                              height: 40.w,
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: AppColor
-                                                                    .vividYellow,
-                                                              ),
-                                                              child: AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .electricityIcon),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 16.w,
-                                                            ),
-                                                            Column(
-                                                              children: [
-                                                                Text(
-                                                                  model.data
-                                                                          .nickName ??
-                                                                      "",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .veryDarkGray2,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  model.data
-                                                                          .billerName ??
-                                                                      '',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .very_dark_gray_black,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  model.data
-                                                                          .service ??
-                                                                      "",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .veryDarkGray2,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  model.data
-                                                                          .refNo ??
-                                                                      "",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        StringUtils
-                                                                            .appFont,
-                                                                    color: AppColor
-                                                                        .veryDarkGray2,
-                                                                    fontSize:
-                                                                        12.0.t,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
-                                          ),
-                                          // SizedBox(
-                                          //   height: 107.h,
-                                          // ),
-                                          Spacer(),
-                                          Expanded(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onHorizontalDragEnd:
-                                                      (details) {
-                                                    if (details.primaryVelocity!
-                                                        .isNegative) {
-                                                      if (AppConstantsUtils
-                                                          .POST_PAID_FLOW) {
-                                                        ProviderScope
-                                                                .containerOf(
-                                                                    context)
-                                                            .read(
-                                                                payBillDetailPageViewModelProvider)
-                                                            .addNewPostpaidBiller();
-                                                      } else if (AppConstantsUtils
-                                                          .PRE_PAID_FLOW) {
-                                                        if (model.data
-                                                                .isPrepaidCategoryListEmpty ==
-                                                            false) {
-                                                          model
-                                                              .payPrePaidBill();
-                                                        } else if (model.data
-                                                                .isPrepaidCategoryListEmpty ==
-                                                            true) {
-                                                          model
-                                                              .validatePrePaidBill();
-                                                        }
-                                                      }
-                                                    }
-                                                  },
-                                                  child: AppStreamBuilder<bool>(
-                                                      stream: model
-                                                          .showButtonStream,
-                                                      initialData: false,
-                                                      dataBuilder:
-                                                          (context, isValid) {
-                                                        return Visibility(
-                                                          visible: isValid!,
-                                                          child: AnimatedButton(
-                                                            buttonText: S
-                                                                .of(context)
-                                                                .swipeToProceed,
-                                                          ),
-                                                        );
-                                                      }),
-                                                ),
-                                                SizedBox(
-                                                  height: 23.h,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .backToPayments,
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          StringUtils.appFont,
-                                                      color:
-                                                          AppColor.brightBlue,
-                                                      fontSize: 14.t,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            ));
+                              dataBuilder: (context, snapshot) {
+                                return ShakeAnimatedWidget(
+                                    enabled: isError ?? false,
+                                    duration: Duration(milliseconds: 100),
+                                    shakeAngle: Rotation.deg(z: 1),
+                                    curve: Curves.easeInOutSine,
+                                    child: GestureDetector(
+                                      onHorizontalDragEnd: (details) {
+                                        if (ProviderScope.containerOf(context)
+                                                .read(
+                                                    payBillPageViewModelProvider)
+                                                .appSwiperController
+                                                .page ==
+                                            1.0) {
+                                          FocusScope.of(context).unfocus();
+
+                                          if (StringUtils.isDirectionRTL(
+                                              context)) {
+                                            if (details
+                                                .primaryVelocity!.isNegative) {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      payBillPageViewModelProvider)
+                                                  .previousPage();
+                                            } else {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      payBillPageViewModelProvider)
+                                                  .nextPage();
+                                            }
+                                          } else {
+                                            if (details
+                                                .primaryVelocity!.isNegative) {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      payBillPageViewModelProvider)
+                                                  .nextPage();
+                                            } else {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      payBillPageViewModelProvider)
+                                                  .previousPage();
+                                            }
+                                          }
+                                        }
+                                      },
+                                      child: _cardWidget(model, context),
+                                    ));
+                              },
+                            );
+                          },
+                        );
                       },
                     );
                   },
@@ -518,6 +175,321 @@ class ConfirmBillPaymentAmountPageView
               },
             );
           }),
+    );
+  }
+
+  _cardWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 15.0.w, horizontal: 15.0.h),
+      child: Card(
+        margin: EdgeInsets.zero,
+        child: Container(
+            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _confirmDetailsWidget(model, context),
+                // SizedBox(height: 107.h),
+                Spacer(),
+                _swipeAndBackWidgets(model, context),
+              ],
+            )),
+      ),
+    );
+  }
+
+  _confirmDetailsWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+          // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
+          decoration: BoxDecoration(
+              border: Border.all(color: AppColor.white_gray),
+              borderRadius: BorderRadius.circular(12.0)),
+          child: Column(
+            children: [
+              _amountTitle(model, context),
+              _totalAmountWidget(model, context),
+              _tapToEditWidget(model, context),
+              _dueAmountPostPaidWidget(model, context),
+              // _feeAmountWidget(model, context),
+              SizedBox(
+                height: 24.0.h,
+              ),
+              Container(
+                color: AppColor.white_gray,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 16.0.h, horizontal: 16.0.w),
+                  child: Row(
+                    children: [
+                      _iconWidget(model, context),
+                      SizedBox(width: 16.w),
+                      _billDetailsWidget(model, context),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
+  }
+
+  _amountTitle(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 24.0.h),
+      child: Text(
+        S.of(context).amount,
+        style: TextStyle(
+          fontFamily: StringUtils.appFont,
+          color: AppColor.veryDarkGray2,
+          fontSize: 10.0.t,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
+  }
+
+  _totalAmountWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AutoSizeTextField(
+          wrapWords: false,
+          fullwidth: false,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+          ],
+          controller: model.amtController,
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
+          onChanged: (value) {
+            model.validate(value);
+            //  this.onChanged?.call(value);
+          },
+          style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.black,
+              fontWeight: FontWeight.w700,
+              overflow: TextOverflow.ellipsis,
+              fontSize: 24.0.t),
+        ),
+        Text(
+          S.of(context).JOD,
+          style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            color: AppColor.verLightGray4,
+            fontSize: 14.0.t,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ],
+    );
+  }
+
+  _tapToEditWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return !AppConstantsUtils.PRE_PAID_FLOW
+        ? Text(
+            S.of(context).tapAmtToEdit,
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.gray1,
+              fontSize: 10.0.t,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        : Container();
+  }
+
+  _dueAmountPostPaidWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 16.0.h,
+        left: 16.0.w,
+        right: 16.0.w,
+      ),
+      child: AppConstantsUtils.PRE_PAID_FLOW == false
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  S.of(context).dueAmt,
+                  style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.black,
+                    fontSize: 12.0.t,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  '${model.data.amount} JOD',
+                  style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.black,
+                    fontSize: 12.0.t,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            )
+          : Container(),
+    );
+  }
+
+  _feeAmountWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+/*
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 8.0.h,
+        left: 16.0.w,
+        right: 16.0.w,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            S.of(context).fees,
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.black,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Text(
+            '20.000 JOD',
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.black,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
+      ),
+    );
+*/
+  }
+
+  _iconWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Container(
+      width: 40.w,
+      height: 40.w,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColor.vividYellow,
+      ),
+      child: Image.asset(
+        GetBillPaymentsCategories.path(ProviderScope.containerOf(context)
+            .read(newBillsPageViewModelProvider)
+            .titleIcon),
+        matchTextDirection: false,
+      ),
+    );
+  }
+
+  _billDetailsWidget(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          model.data.nickName ?? "",
+          style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            color: AppColor.veryDarkGray2,
+            fontSize: 12.0.t,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Text(
+          model.data.billerName ?? '',
+          style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            color: AppColor.very_dark_gray_black,
+            fontSize: 12.0.t,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Text(
+          model.data.service ?? "",
+          style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            color: AppColor.veryDarkGray2,
+            fontSize: 12.0.t,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Text(
+          model.data.refNo ?? "",
+          style: TextStyle(
+            fontFamily: StringUtils.appFont,
+            color: AppColor.veryDarkGray2,
+            fontSize: 12.0.t,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
+    );
+  }
+
+  _swipeAndBackWidgets(
+      ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          GestureDetector(
+            onHorizontalDragEnd: (details) {
+              if (details.primaryVelocity!.isNegative) {
+                if (AppConstantsUtils.POST_PAID_FLOW) {
+                  model.payPostPaidBill();
+                } else if (AppConstantsUtils.PRE_PAID_FLOW) {
+                  if (model.data.isPrepaidCategoryListEmpty == false) {
+                    model.payPrePaidBill();
+                  } else if (model.data.isPrepaidCategoryListEmpty == true) {
+                    model.validatePrePaidBill();
+                  }
+                }
+              }
+            },
+            child: AppStreamBuilder<bool>(
+                stream: model.showButtonStream,
+                initialData: false,
+                dataBuilder: (context, isValid) {
+                  return Visibility(
+                    visible: isValid!,
+                    child: AnimatedButton(
+                      buttonText: S.of(context).swipeToProceed,
+                    ),
+                  );
+                }),
+          ),
+          SizedBox(
+            height: 23.h,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              S.of(context).backToPayments,
+              style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                color: AppColor.brightBlue,
+                fontSize: 14.t,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
