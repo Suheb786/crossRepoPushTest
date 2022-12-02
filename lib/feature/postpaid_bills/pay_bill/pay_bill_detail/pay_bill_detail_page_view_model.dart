@@ -58,7 +58,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   setData() {
     AppConstantsUtils.SELECTED_BILLING_NUMBER = billingNumberTextControl.text;
     AppConstantsUtils.NICK_NAME = nicknameTextControl.text;
-    AppConstantsUtils.ACCOUNT_NUMBER = amountTextControl.text;
+    AppConstantsUtils.ACCOUNT_NUMBER = payFromController.text;
     AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel =
         AddNewDetailsBillPaymentsModel();
 
