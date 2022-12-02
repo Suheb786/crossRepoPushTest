@@ -205,6 +205,10 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       isPrepaidCategoryListEmptyResponse.stream;
   bool isPrepaidCategoryListEmpty = false;
 
+  updateIsPrepaidCategoryListEmptyResponse(bool isPrepaidCategoryListEmpty) {
+    isPrepaidCategoryListEmptyResponse.safeAdd(true);
+  }
+
   void _gerPrePaidCategoriesListener() {
     _getPrePaidCategoriesRequest.listen(
       (params) {

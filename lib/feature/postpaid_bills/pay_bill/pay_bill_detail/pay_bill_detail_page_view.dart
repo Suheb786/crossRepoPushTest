@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_postpaid_biller_model.dart';
-import 'package:domain/model/bill_payments/add_new_prepaid_biller/add_new_prepaid_biller_model.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,11 +13,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
-import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -201,6 +196,7 @@ class PayBillDetailPageView
           Navigator.pop(context);
         }, onSelected: (billerDetails) {
           // Navigator.pop(context);
+          model.updateIsPrepaidCategoryListEmptyResponse(true);
           model.billerNameTextController.text =
               !StringUtils.isDirectionRTL(context)
                   ? billerDetails.billerNameEn!
@@ -236,13 +232,13 @@ class PayBillDetailPageView
         controller: model.serviceTypeTextControl,
         readOnly: true,
         onPressed: () {
+          model.updateIsPrepaidCategoryListEmptyResponse(true);
           model.amountTextControl.text = "";
           AppConstantsUtils.SELECTED_AMOUNT = "";
           AppConstantsUtils.PREPAID_CATEGORY_CODE = "";
           AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";
           AppConstantsUtils.PREPAID_CATEGORY_TYPE = "";
           model.denominationTextController.text = "";
-
           if (model.billerService != null && model.billerService.isNotEmpty) {
             SelectServiceDialog.show(
                 context, model.billerService, model.billerCodeString.toString(),

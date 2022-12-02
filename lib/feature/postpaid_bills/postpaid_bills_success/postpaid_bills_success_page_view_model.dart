@@ -14,8 +14,10 @@ class PostPaidBillsSuccessPageViewModel extends BasePageViewModel {
 
   PostPaidBillsSuccessPageViewModel(
       this.arguments, this.addNewPostpaidBillerUseCase) {
-    if (AppConstantsUtils.IS_NEW_PAYMENT &&
-        AppConstantsUtils.NICK_NAME.isNotEmpty) {
+    if (AppConstantsUtils
+            .IS_NEW_PAYMENT /*&&
+        AppConstantsUtils.NICK_NAME.isNotEmpty*/
+        ) {
       Future.delayed(Duration(milliseconds: 200))
           .then((value) => addNewPostpaidBiller());
     }
