@@ -12,9 +12,6 @@ import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/get_call_status_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
-import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/change_default_account/change_default_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
@@ -91,6 +88,10 @@ import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_reques
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/change_default_account/change_default_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id/create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
@@ -219,7 +220,6 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:data/entity/remote/cliq/create_cliq_id/create_cliq_id_request_entity.dart';
 
 part 'api_service.g.dart';
 
@@ -835,12 +835,9 @@ abstract class ApiService {
 
   @POST("/Cliq/SendQRPayment")
   Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
-  Future<HttpResponse<ResponseEntity>> deleteCliqId(
-      @Body() DeleteCliqIdRequestEntity request);
 
   @POST("/Cliq/GetAlias")
-  Future<HttpResponse<ResponseEntity>> getAlias(
-      @Body() CliqGetAliasResponseEntity request);
+  Future<HttpResponse<ResponseEntity>> getAlias(@Body() CliqGetAliasResponseEntity request);
 
   @POST("/Cliq/GetCliqAccountByAlias")
   Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
