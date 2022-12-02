@@ -6,7 +6,8 @@ part of 'change_password_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChangePasswordRequest _$ChangePasswordRequestFromJson(Map<String, dynamic> json) {
+ChangePasswordRequest _$ChangePasswordRequestFromJson(
+    Map<String, dynamic> json) {
   return ChangePasswordRequest(
     currentPassword: json['Password'] as String,
     newPassword: json['NewPassword'] as String,
@@ -16,7 +17,9 @@ ChangePasswordRequest _$ChangePasswordRequestFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$ChangePasswordRequestToJson(ChangePasswordRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ChangePasswordRequestToJson(
+        ChangePasswordRequest instance) =>
+    <String, dynamic>{
       'Password': instance.currentPassword,
       'NewPassword': instance.newPassword,
       'ConfirmPassword': instance.confirmPassword,

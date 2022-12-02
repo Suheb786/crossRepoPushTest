@@ -6,7 +6,8 @@ part of 'apply_debit_supplementary_card_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ApplyDebitSupplementaryCardRequest _$ApplyDebitSupplementaryCardRequestFromJson(Map<String, dynamic> json) {
+ApplyDebitSupplementaryCardRequest _$ApplyDebitSupplementaryCardRequestFromJson(
+    Map<String, dynamic> json) {
   return ApplyDebitSupplementaryCardRequest(
     id: json['id'] as String?,
     type: json['type'] as String?,

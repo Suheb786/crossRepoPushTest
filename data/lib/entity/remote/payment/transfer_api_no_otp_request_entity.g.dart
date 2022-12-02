@@ -6,7 +6,8 @@ part of 'transfer_api_no_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransferApiNoOtpRequestEntity _$TransferApiNoOtpRequestEntityFromJson(Map<String, dynamic> json) {
+TransferApiNoOtpRequestEntity _$TransferApiNoOtpRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return TransferApiNoOtpRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     toAmount: json['ToAmount'] as num,
@@ -24,7 +25,8 @@ TransferApiNoOtpRequestEntity _$TransferApiNoOtpRequestEntityFromJson(Map<String
   );
 }
 
-Map<String, dynamic> _$TransferApiNoOtpRequestEntityToJson(TransferApiNoOtpRequestEntity instance) =>
+Map<String, dynamic> _$TransferApiNoOtpRequestEntityToJson(
+        TransferApiNoOtpRequestEntity instance) =>
     <String, dynamic>{
       'BeneficiaryId': instance.beneficiaryId,
       'TransferType': instance.transferType,

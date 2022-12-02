@@ -6,10 +6,12 @@ part of 'profile_changed_success_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProfileChangedSuccessResponseEntity _$ProfileChangedSuccessResponseEntityFromJson(Map<String, dynamic> json) {
+ProfileChangedSuccessResponseEntity
+    _$ProfileChangedSuccessResponseEntityFromJson(Map<String, dynamic> json) {
   return ProfileChangedSuccessResponseEntity(
-    responseEntity:
-        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    responseEntity: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

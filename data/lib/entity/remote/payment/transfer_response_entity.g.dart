@@ -6,7 +6,8 @@ part of 'transfer_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransferResponseEntity _$TransferResponseEntityFromJson(Map<String, dynamic> json) {
+TransferResponseEntity _$TransferResponseEntityFromJson(
+    Map<String, dynamic> json) {
   return TransferResponseEntity(
     beneficiaryId: json['beneficiaryId'] as String?,
     transferType: json['transferType'] as String?,
@@ -18,7 +19,9 @@ TransferResponseEntity _$TransferResponseEntityFromJson(Map<String, dynamic> jso
   );
 }
 
-Map<String, dynamic> _$TransferResponseEntityToJson(TransferResponseEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$TransferResponseEntityToJson(
+        TransferResponseEntity instance) =>
+    <String, dynamic>{
       'beneficiaryId': instance.beneficiaryId,
       'transferType': instance.transferType,
       'beneficiaryImage': instance.beneficiaryImage,

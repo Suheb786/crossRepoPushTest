@@ -6,8 +6,9 @@ part of 'check_other_nationality_status_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckOtherNationalityStatusRequestEntity _$CheckOtherNationalityStatusRequestEntityFromJson(
-    Map<String, dynamic> json) {
+CheckOtherNationalityStatusRequestEntity
+    _$CheckOtherNationalityStatusRequestEntityFromJson(
+        Map<String, dynamic> json) {
   return CheckOtherNationalityStatusRequestEntity(
     getToken: json['GetToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>,

@@ -6,7 +6,8 @@ part of 'check_user_email_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckUserEmailRequest _$CheckUserEmailRequestFromJson(Map<String, dynamic> json) {
+CheckUserEmailRequest _$CheckUserEmailRequestFromJson(
+    Map<String, dynamic> json) {
   return CheckUserEmailRequest(
     channelId: json['channelId'] as String?,
     content: json['content'] as Map<String, dynamic>?,
@@ -14,7 +15,9 @@ CheckUserEmailRequest _$CheckUserEmailRequestFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$CheckUserEmailRequestToJson(CheckUserEmailRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$CheckUserEmailRequestToJson(
+        CheckUserEmailRequest instance) =>
+    <String, dynamic>{
       'channelId': instance.channelId,
       'content': instance.content,
       'baseClass': instance.baseData,

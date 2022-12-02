@@ -6,7 +6,8 @@ part of 'request_video_call_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestVideoCallRequest _$RequestVideoCallRequestFromJson(Map<String, dynamic> json) {
+RequestVideoCallRequest _$RequestVideoCallRequestFromJson(
+    Map<String, dynamic> json) {
   return RequestVideoCallRequest(
     gender: json['Gender'] as String?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
@@ -14,7 +15,9 @@ RequestVideoCallRequest _$RequestVideoCallRequestFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$RequestVideoCallRequestToJson(RequestVideoCallRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$RequestVideoCallRequestToJson(
+        RequestVideoCallRequest instance) =>
+    <String, dynamic>{
       'Gender': instance.gender,
       'Type': instance.type,
       'BaseClass': instance.baseData,

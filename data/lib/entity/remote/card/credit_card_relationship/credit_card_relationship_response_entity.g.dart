@@ -6,11 +6,12 @@ part of 'credit_card_relationship_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreditCardRelationshipResponseEntity _$CreditCardRelationshipResponseEntityFromJson(
-    Map<String, dynamic> json) {
+CreditCardRelationshipResponseEntity
+    _$CreditCardRelationshipResponseEntityFromJson(Map<String, dynamic> json) {
   return CreditCardRelationshipResponseEntity(
-    response:
-        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

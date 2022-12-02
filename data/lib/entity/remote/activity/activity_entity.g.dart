@@ -13,7 +13,8 @@ ActivityEntity _$ActivityEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ActivityEntityToJson(ActivityEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$ActivityEntityToJson(ActivityEntity instance) =>
+    <String, dynamic>{
       'heading': instance.heading,
       'description': instance.description,
     };

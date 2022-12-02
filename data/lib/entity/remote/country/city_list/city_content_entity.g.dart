@@ -14,6 +14,7 @@ CityContentEntity _$CityContentEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CityContentEntityToJson(CityContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CityContentEntityToJson(CityContentEntity instance) =>
+    <String, dynamic>{
       'getCities': instance.getCities,
     };

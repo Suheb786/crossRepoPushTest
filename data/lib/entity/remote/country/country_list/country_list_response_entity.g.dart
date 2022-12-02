@@ -6,14 +6,17 @@ part of 'country_list_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CountryListResponseEntity _$CountryListResponseEntityFromJson(Map<String, dynamic> json) {
+CountryListResponseEntity _$CountryListResponseEntityFromJson(
+    Map<String, dynamic> json) {
   return CountryListResponseEntity(
-    response:
-        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$CountryListResponseEntityToJson(CountryListResponseEntity instance) =>
+Map<String, dynamic> _$CountryListResponseEntityToJson(
+        CountryListResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

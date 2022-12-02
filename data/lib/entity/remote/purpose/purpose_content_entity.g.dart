@@ -10,10 +10,13 @@ PurposeContentEntity _$PurposeContentEntityFromJson(Map<String, dynamic> json) {
   return PurposeContentEntity(
     transferPurposeResponse: json['transferPurposeResponse'] == null
         ? null
-        : TransferPurposeResponseEntity.fromJson(json['transferPurposeResponse'] as Map<String, dynamic>),
+        : TransferPurposeResponseEntity.fromJson(
+            json['transferPurposeResponse'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PurposeContentEntityToJson(PurposeContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$PurposeContentEntityToJson(
+        PurposeContentEntity instance) =>
+    <String, dynamic>{
       'transferPurposeResponse': instance.transferPurposeResponse,
     };
