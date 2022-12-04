@@ -95,6 +95,7 @@ import 'package:data/entity/remote/cliq/create_cliq_id/create_cliq_id_request_en
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
+import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
@@ -837,7 +838,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
 
   @POST("/Cliq/GetAlias")
-  Future<HttpResponse<ResponseEntity>> getAlias(@Body() CliqGetAliasResponseEntity request);
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasResponseEntity request);
 
   @POST("/Cliq/GetCliqAccountByAlias")
   Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(

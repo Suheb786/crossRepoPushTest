@@ -18,10 +18,11 @@ import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
 final cliqIdListViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
-  (ref) => CliqIdListPageViewModel(
-      ref.read(getAliasUseCaseProvider), ref.read(deleteCliqIdUseCaseProvider)),
-);
+    ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>((ref) =>
+        CliqIdListPageViewModel(
+            ref.read(getAliasUseCaseProvider),
+            ref.read(deleteCliqIdUseCaseProvider),
+            ref.read(unLinkAccountFromCliqUseCaseProvider)));
 
 ///create cliq id
 final createCliqIdViewModelProvider =
@@ -64,7 +65,7 @@ final cliqIdCreationSuccessViewModelProvider =
 ///edit alias view model
 final editAliasViewModelProvider =
     ChangeNotifierProvider.autoDispose<EditAliasPageViewModel>(
-  (ref) => EditAliasPageViewModel(),
+  (ref) => EditAliasPageViewModel(ref.read(editCliqIdUseCaseProvider)),
 );
 
 final editCliqIDMobileNoPageViewModelProvider =

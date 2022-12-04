@@ -6,7 +6,8 @@ part of 'send_qr_clip_payment_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SendQrCliqPaymentRequestEntity _$SendQrCliqPaymentRequestEntityFromJson(Map<String, dynamic> json) {
+SendQrCliqPaymentRequestEntity _$SendQrCliqPaymentRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return SendQrCliqPaymentRequestEntity(
     referenceLabel: json['referenceLabel'] as String?,
     merchantCategoryCode: json['merchantCategoryCode'] as String?,
@@ -38,7 +39,8 @@ SendQrCliqPaymentRequestEntity _$SendQrCliqPaymentRequestEntityFromJson(Map<Stri
   );
 }
 
-Map<String, dynamic> _$SendQrCliqPaymentRequestEntityToJson(SendQrCliqPaymentRequestEntity instance) =>
+Map<String, dynamic> _$SendQrCliqPaymentRequestEntityToJson(
+        SendQrCliqPaymentRequestEntity instance) =>
     <String, dynamic>{
       'referenceLabel': instance.referenceLabel,
       'merchantCategoryCode': instance.merchantCategoryCode,

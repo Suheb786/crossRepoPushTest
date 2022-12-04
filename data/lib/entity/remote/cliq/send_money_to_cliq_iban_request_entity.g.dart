@@ -6,7 +6,8 @@ part of 'send_money_to_cliq_iban_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SendMoneyToCliqIbanRequestEntity _$SendMoneyToCliqIbanRequestEntityFromJson(Map<String, dynamic> json) {
+SendMoneyToCliqIbanRequestEntity _$SendMoneyToCliqIbanRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return SendMoneyToCliqIbanRequestEntity(
     otpCode: json['otpCode'] as String?,
     transferType: json['transferType'] as String?,
@@ -40,7 +41,8 @@ SendMoneyToCliqIbanRequestEntity _$SendMoneyToCliqIbanRequestEntityFromJson(Map<
   );
 }
 
-Map<String, dynamic> _$SendMoneyToCliqIbanRequestEntityToJson(SendMoneyToCliqIbanRequestEntity instance) =>
+Map<String, dynamic> _$SendMoneyToCliqIbanRequestEntityToJson(
+        SendMoneyToCliqIbanRequestEntity instance) =>
     <String, dynamic>{
       'otpCode': instance.otpCode,
       'transferType': instance.transferType,
