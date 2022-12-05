@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AppColor {
@@ -79,6 +80,7 @@ class AppColor {
   static const pure_blue = const Color(0xff007AFF);
   static const very_dark_blue1 = const Color(0xff29136F);
   static const white_gray = const Color(0xffDDDDDD);
+  static const skyblue = const Color(0xff3CB4E5);
 
   /// --------- NEW COLOR SCHEME
   static const white = const Color(0xffffffff);

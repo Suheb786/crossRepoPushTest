@@ -12,6 +12,9 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
     required Function()? onCancelled,
     required Function()? onDeleteId,
     required Function()? onSuspendId,
+    required Function()? onActivatId,
+    required Function()? onLinkId,
+    
     required String? title,
   }) async {
     return

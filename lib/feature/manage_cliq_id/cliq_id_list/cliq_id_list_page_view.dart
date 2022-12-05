@@ -1,5 +1,6 @@
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
+import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_v
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/alias_card_list_widget.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
@@ -19,6 +21,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
@@ -54,7 +57,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
             AppStreamBuilder<Resource<GetAlias>>(
               initialData: Resource.none(),
               stream: model.getAliasStream,
-                
               dataBuilder: (context, data) {
                 return ((data?.data?.aliases ?? []).isNotEmpty)
                     ? Expanded(
@@ -103,21 +105,93 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                       description:
                                           "Are you sure you want to unlink the account with your CliQ ID?",
                                       subDescription: '',
-                                      title: "Unlink account with CliQ ID"
-                                      
-                                      );
+                                      title: "Unlink account with CliQ ID");
                                 },
                                     onCancelled: () {},
                                     title: "Please select your action");
                               },
                               onTapAlias: () {
                                 UpdateCliqInfoBottomSheetSelectionWidget.show(
-                                    context,
+                                    context,onLinkId: () {
+                                      
+                                    },
+                                    onActivatId: () {
+                                      Navigator.pop(context);
+                                      CliqInformationDialog.show(context,
+                                          // image: AssetUtils.walletIcon,
+                                          title: "Reactivate CliQ ID",
+                                          description: S
+                                              .of(context)
+                                              .areYourToChangeDefaultAccountOfYourCliqId,
+                                          subDescription: S
+                                              .of(context)
+                                              .whenAcceptingCreationOfYourCliqId,
+                                          onSelected: () {
+                                        Navigator.pop(context);
+                                        model.reactivatetCliqID(
+                                          aliasId: (data.data?.aliases?[index]
+                                                  .aliasID) ??
+                                              "",
+                                          getToken: true,
+                                        );
+                                        // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
+                                      }, onDismissed: () {
+                                        Navigator.pop(context);
+                                      });
+                                    },
                                     onEditId: () {},
                                     onShareId: () {},
                                     onCancelled: () {},
-                                    onDeleteId: () {},
-                                    onSuspendId: () {},
+                                    onDeleteId: () {
+                                      Navigator.pop(context);
+                                      InformationDialog.show(
+                                        context,
+                                        title: "Confirm Delete?",
+                                        descriptionWidget: RichText(
+                                            text: TextSpan(children: [
+                                          TextSpan(
+                                              text:
+                                                  "Are you sure you want to delete "),
+                                          TextSpan(
+                                              text: (data.data?.aliases?[index]
+                                                      .aliasName) ??
+                                                  ""),
+                                          TextSpan(
+                                              text: " from your CliQ ID list?")
+                                        ])),
+
+                                        onSelected: () {
+                                          model.deleteCliqId(
+                                              true,
+                                              (data.data?.aliases?[index]
+                                                      .aliasID) ??
+                                                  "");
+                                        },
+                                        //  image: ,
+                                        isSwipeToCancel: true,
+                                      );
+                                    },
+                                    onSuspendId: () {
+                                      Navigator.pop(context);
+                                      InformationDialog.show(
+                                        context,
+                                        title: "Suspend CliQ ID",
+                                        descriptionWidget: Text(
+                                            "Are you sure you want to suspend your CliQ ID?"),
+
+                                        onSelected: () {
+                                          model.suspandCliqID(
+                                              getToken: true,
+                                              aliasId: (data
+                                                      .data
+                                                      ?.aliases?[index]
+                                                      .aliasID) ??
+                                                  "");
+                                        },
+                                        //  image: ,
+                                        isSwipeToCancel: true,
+                                      );
+                                    },
                                     title: "Please select your action");
                               },
                             );
@@ -207,4 +281,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
       ),
     );
   }
+
+  // void _shareFiles(CliqIdListPageViewModel model, BuildContext context,
+  //     AliasList alias) async {
+  //   final box = context.findRenderObject() as RenderBox?;
+  //   await Share.share(
+  //       'Hello! Here are my Blink account details: \n\n${alias.accountTitle ?? ''} \n${account.iban ?? '-'}\n\nOpen your Blink account today.',
+  //       subject: 'Share account info',
+  //       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  // }
 }
