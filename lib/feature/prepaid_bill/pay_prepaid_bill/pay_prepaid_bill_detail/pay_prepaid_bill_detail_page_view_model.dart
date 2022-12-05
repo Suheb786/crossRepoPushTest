@@ -14,8 +14,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
-
-
   final ScrollController controller = ScrollController();
   final TextEditingController refNoController = TextEditingController();
   final TextEditingController payFromController = TextEditingController()
@@ -84,7 +82,6 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   // final ScrollController controller = ScrollController();
   final TextEditingController billNameController = TextEditingController();
   final TextEditingController serviceController = TextEditingController();
-
   // final TextEditingController refNoController = TextEditingController();
   // final TextEditingController nickNameController = TextEditingController();
   // final TextEditingController payFromController = TextEditingController()..text = 'Savings Account';

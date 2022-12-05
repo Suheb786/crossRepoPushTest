@@ -52,112 +52,138 @@ class PayAllPostPaidBillsPageView
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: 24.0.w, right: 24.0.w, top: 8.0.h, bottom: 56.h),
-                  child: Column(
-                    children: [
-                      Container(
-                          width: 64.0.w,
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                              color: AppColor.whiteGrey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)))),
-                      SizedBox(
-                        height: 24.0.h,
-                      ),
-                      AppTextField(
-                        labelText: '',
-                        hintText: S.of(context).searchBill,
-                        controller: model.searchBillController,
-                        readOnly: true,
-                        onPressed: () {},
-                        suffixIcon: (value, data) {
-                          return Container(
-                              height: 16.h,
-                              width: 16.w,
-                              padding: EdgeInsets.only(right: 8.w),
-                              child: AppSvg.asset(AssetUtils.search,
-                                  color: AppColor.dark_gray_1));
-                        },
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            itemCount: model.payPostPaidBillsDataList.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  model.selectedItem(index);
-                                },
-                                child: Slidable(
-                                  endActionPane: ActionPane(
-                                    extentRatio: 0.25,
-                                    motion: DrawerMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        // An action can be bigger than the others.
-                                        onPressed: (context1) => {
-                                          InformationDialog.show(context,
-                                              image: AssetUtils.deleteBlackIcon,
-                                              isSwipeToCancel: false,
-                                              title: S.of(context).areYouSure,
-                                              descriptionWidget: Text(
-                                                S
-                                                    .of(context)
-                                                    .doYouReallyDeleteSavedBills,
-                                                style: TextStyle(
-                                                    fontFamily:
-                                                        StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ), onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: () {
-                                            Navigator.pop(context);
-                                            var billerCode = model
-                                                .payPostPaidBillsDataList[index]
-                                                .billerCode;
-                                            var billingNo = model
-                                                .payPostPaidBillsDataList[index]
-                                                .billingNo;
-                                            var serviceType = model
-                                                .payPostPaidBillsDataList[index]
-                                                .serviceType;
-                                            model.removeCustomerBilling(
-                                                billerCode,
-                                                billingNo,
-                                                serviceType);
-                                          })
-                                        },
-                                        backgroundColor: AppColor.dark_brown,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.delete,
+                  child: model.payPostPaidBillsDataList.length > 0
+                      ? Column(
+                          children: [
+                            Container(
+                                width: 64.0.w,
+                                height: 4.h,
+                                decoration: BoxDecoration(
+                                    color: AppColor.whiteGrey,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(4.0)))),
+                            SizedBox(
+                              height: 24.0.h,
+                            ),
+                            AppTextField(
+                              labelText: '',
+                              hintText: S.of(context).searchBill,
+                              controller: model.searchBillController,
+                              readOnly: true,
+                              onPressed: () {},
+                              suffixIcon: (value, data) {
+                                return Container(
+                                    height: 16.h,
+                                    width: 16.w,
+                                    padding: EdgeInsets.only(right: 8.w),
+                                    child: AppSvg.asset(AssetUtils.search,
+                                        color: AppColor.dark_gray_1));
+                              },
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: 24.0.h, bottom: 24.0.h),
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      model.payPostPaidBillsDataList.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        model.selectedItem(index);
+                                      },
+                                      child: Slidable(
+                                        endActionPane: ActionPane(
+                                          extentRatio: 0.25,
+                                          motion: DrawerMotion(),
+                                          children: [
+                                            SlidableAction(
+                                              // An action can be bigger than the others.
+                                              onPressed: (context1) => {
+                                                InformationDialog.show(context,
+                                                    image: AssetUtils
+                                                        .deleteBlackIcon,
+                                                    isSwipeToCancel: false,
+                                                    title: S
+                                                        .of(context)
+                                                        .areYouSure,
+                                                    descriptionWidget: Text(
+                                                      S
+                                                          .of(context)
+                                                          .doYouReallyDeleteSavedBills,
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                              StringUtils
+                                                                  .appFont,
+                                                          fontSize: 14.t,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ), onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: () {
+                                                  Navigator.pop(context);
+                                                  var billerCode = model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .billerCode;
+                                                  var billingNo = model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .billingNo;
+                                                  var serviceType = model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .serviceType;
+                                                  model.removeCustomerBilling(
+                                                      billerCode,
+                                                      billingNo,
+                                                      serviceType);
+                                                })
+                                              },
+                                              backgroundColor:
+                                                  AppColor.dark_brown,
+                                              foregroundColor: Colors.white,
+                                              icon: Icons.delete,
+                                            ),
+                                          ],
+                                        ),
+                                        child:
+                                            PayBillsMultipleListSelectionWidget(
+                                          icon: data![index].iconCode ?? "",
+                                          biller:
+                                              data[index].billerNameEN ?? "",
+                                          billAmtDue:
+                                              data[index].dueAmount.toString(),
+                                          isSelected:
+                                              data[index].isChecked ?? false,
+                                          billerName:
+                                              data[index].nickName ?? "",
+                                          paidBillsPayTypeOptionEnum: model
+                                              .arguments
+                                              .paidBillsPayTypeOptionEnum,
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                  child: PayBillsMultipleListSelectionWidget(
-                                    icon: data![index].iconCode ?? "",
-                                    biller: data[index].billerNameEN ?? "",
-                                    billAmtDue:
-                                        data[index].dueAmount.toString(),
-                                    isSelected: data[index].isChecked ?? false,
-                                    billerName: data[index].nickName ?? "",
-                                    paidBillsPayTypeOptionEnum: model
-                                        .arguments.paidBillsPayTypeOptionEnum,
-                                  ),
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return AppDivider();
+                                  },
                                 ),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return AppDivider();
-                            },
+                              ),
+                            ),
+                          ],
+                        )
+                      : Center(
+                          child: Text(
+                            S.of(context).noDataFound,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_violet_4),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
               Visibility(
