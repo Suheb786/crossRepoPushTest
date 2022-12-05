@@ -16,6 +16,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? billType;
   final String? billName;
   final String? billAmtDue;
+  final bool? allowPartialPay;
   final Function(String)? onChanged;
 
   SelectedBillsToPaidWidget(
@@ -24,6 +25,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billType,
       required this.billName,
       required this.billAmtDue,
+      this.allowPartialPay: false,
       this.onChanged})
       : super(key: key);
 
@@ -111,14 +113,29 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                           child: AutoSizeTextField(
                             wrapWords: false,
                             fullwidth: false,
-                            /*inputFormatters: [
-                              FilteringTextInputFormatter.allow(RegExp('\^[0-9]*\.?[0-9]*$\')),
-                            ]*/
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[0-9.]')),
+                            ],
                             controller: model!.amtController,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
+                            readOnly: this.allowPartialPay == false,
                             onChanged: (value) {
-                              this.onChanged?.call(value);
+                              if (value.length > 0) {
+                                this.onChanged?.call(value);
+                                if (value.length > 1 &&
+                                    value[0].toString().contains("0")) {
+                                  value = value.substring(1, value.length);
+                                }
+                                model.amtController.text = value;
+                              } else {
+                                this.onChanged?.call("0");
+                                model.amtController.text = "0";
+                              }
+                              model.amtController.selection =
+                                  TextSelection.fromPosition(TextPosition(
+                                      offset: model.amtController.text.length));
                             },
                             decoration: InputDecoration(
                                 isDense: true,
@@ -142,7 +159,9 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      S.of(context).tapToEditAmt,
+                      this.allowPartialPay == true
+                          ? S.of(context).tapToEditAmt
+                          : "",
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.gray5,

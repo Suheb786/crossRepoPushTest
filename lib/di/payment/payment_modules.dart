@@ -323,7 +323,8 @@ final payBillPageViewModelProvider =
 final payBillDetailPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
   (ref) => PayBillDetailPageViewModel(
-      ref.read(getPrePaidCategoriesListUseCaseProvider)),
+      ref.read(getPrePaidCategoriesListUseCaseProvider),
+      ref.read(getBillerLookupListUseCaseProvider)),
 );
 
 final confirmBillPaymentAmountPageViewModelProvider =
@@ -393,8 +394,9 @@ final confirmPrePaidBillPaymentAmountPageViewModelProvider =
 
 final payPrePaidBillDetailPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayPrePaidBillDetailPageViewModel>(
-  (ref) => PayPrePaidBillDetailPageViewModel(
-      ref.read(getPrePaidCategoriesListUseCaseProvider)),
+          (ref) => PayPrePaidBillDetailPageViewModel(
+      ref.read(getPrePaidCategoriesListUseCaseProvider),
+      ref.read(getBillerLookupListUseCaseProvider)),
 );
 
 final payPrePaidBillPageViewModelProvider =

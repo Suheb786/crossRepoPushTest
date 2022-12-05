@@ -8,7 +8,7 @@ part of 'biller_details_entity.dart';
 
 BillerDetailsEntity _$BillerDetailsEntityFromJson(Map<String, dynamic> json) {
   return BillerDetailsEntity(
-    billerCode: json['billerCode'] as String?,
+    billerCode: json['billerCode'],
     billerNameEn: json['billerNameEn'] as String?,
     billerNameAr: json['billerNameAr'] as String?,
     billerServices: (json['billerServices'] as List<dynamic>?)

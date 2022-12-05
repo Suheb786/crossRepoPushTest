@@ -23,6 +23,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   final PayPrePaidUseCase payPrePaidUseCase;
   final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
   final PayPostPaidBillUseCase payPostPaidBillUseCase;
+  bool isPartial = false;
 
   String? otpCode = "";
   bool? isNewBiller = false;
@@ -129,18 +130,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         totalAmount: addAllBillAmt().toString(),
         currencyCode: "JOD",
         isNewBiller: false,
-        isCreditCardPayment: /* cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? true
-            : */
-            false,
-        CardId: /*cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? cardID
-            :*/
-            "",
+        isCreditCardPayment: false,
+        CardId: "",
         otpCode: ""));
   }
 
@@ -160,7 +151,6 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
                     payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-          //to do
           updateLoader();
           _payPostPaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
@@ -185,7 +175,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         amount:
-        data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         prepaidCategoryCode: data.isPrepaidCategoryListEmpty == false
@@ -195,18 +185,18 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired:
-        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-            ? true
-            : false));
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+                ? true
+                : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
           (params) {
         RequestManager(params,
-            createCall: () =>
-                validatePrePaidUseCase.execute(params: params))
+                createCall: () =>
+                    validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -236,7 +226,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount:
-        data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
         currencyCode: "JOD",
         accountNo: data.accountNumber,
         otpCode: otpCode,
@@ -248,10 +238,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired:
-        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-            ? true
-            : false,
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+                ? true
+                : false,
         CardId: "",
         isCreditCardPayment: false));
   }
@@ -260,7 +250,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _payPrePaidRequest.listen(
           (params) {
         RequestManager(params,
-            createCall: () => payPrePaidUseCase.execute(params: params))
+                createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do

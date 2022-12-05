@@ -7,10 +7,19 @@ import 'bill_name_dialog_view.dart';
 class PayBillDialog {
   PayBillDialog._();
 
-  static show(BuildContext mContext, {Function? onDismissed, Function(BillerDetailsList)? onSelected, String? title}) {
+  static show(
+    BuildContext mContext, {
+    Function? onDismissed,
+    Function(BillerDetailsList)? onSelected,
+    String? title,
+    required List<BillerDetailsList> billerDetailsList,
+  }) {
     AppDialog.show(mContext,
         isDismissible: false,
-        builder: (context) =>
-            PayBillDialogView(onDismissed: onDismissed, onSelected: onSelected, title: title));
+        builder: (context) => PayBillDialogView(
+            onDismissed: onDismissed,
+            onSelected: onSelected,
+            title: title,
+            billerDetailsList: billerDetailsList));
   }
 }

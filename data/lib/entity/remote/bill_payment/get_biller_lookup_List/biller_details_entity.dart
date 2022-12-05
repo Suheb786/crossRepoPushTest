@@ -10,7 +10,7 @@ part 'biller_details_entity.g.dart';
 class BillerDetailsEntity
     extends BaseLayerDataTransformer<BillerDetailsEntity, BillerDetailsList> {
   @JsonKey(name: "billerCode")
-  String? billerCode;
+  dynamic? billerCode;
 
   @JsonKey(name: "billerNameEn")
   String? billerNameEn;
@@ -40,7 +40,7 @@ class BillerDetailsEntity
   @override
   BillerDetailsList transform() {
     return BillerDetailsList(
-        billerCode: this.billerCode,
+        billerCode: this.billerCode != null ? this.billerCode.toString() : "",
         billerNameAr: this.billerNameAr,
         billerNameEn: this.billerNameEn,
         billerService: this

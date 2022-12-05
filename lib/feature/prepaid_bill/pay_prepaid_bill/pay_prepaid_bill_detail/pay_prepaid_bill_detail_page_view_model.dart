@@ -1,5 +1,8 @@
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
+import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,13 +16,11 @@ import 'package:rxdart/rxdart.dart';
 class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
 
 
-
   final ScrollController controller = ScrollController();
   final TextEditingController refNoController = TextEditingController();
   final TextEditingController payFromController = TextEditingController()
     ..text = 'Savings Account';
   String fieldTextLabelEn = "Enter Billing Number";
-
 
   var denominationTextController = TextEditingController(text: '');
   final billerNameTextController = TextEditingController();
@@ -31,6 +32,7 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   final amountTextControl = TextEditingController(text: '');
   final serviceDescriptionEn = TextEditingController(text: '');
   GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
+  GetBillerLookupUseCase getBillerLookupUseCase;
 
   bool isShowBillingNumberSizeBox = false;
   bool isShowDemominationSizeBox = false;
@@ -39,9 +41,8 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
 
   List<BillerService> billerService = [];
 
-
   final BehaviorSubject<bool> isShowBillerNumber =
-  BehaviorSubject<bool>.seeded(false);
+      BehaviorSubject<bool>.seeded(false);
 
   String? isSelectedBillerName;
   bool isSelectedServiceType = false;
@@ -50,13 +51,15 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   String? billerType;
   bool? isPrepaidCategoryListEmpty = false;
 
+  List<BillerDetailsList>? billerDetailsList = [];
+
   Stream<bool> get isShowBillerNumberStream => isShowBillerNumber.stream;
 
   void callFromPage() {}
 
 //////////////////
   final BehaviorSubject<bool> isShowAmount =
-  BehaviorSubject<bool>.seeded(false);
+      BehaviorSubject<bool>.seeded(false);
 
   Stream<bool> get isShowAmountStream => isShowAmount.stream;
   bool showAmountField = false;
@@ -81,6 +84,7 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   // final ScrollController controller = ScrollController();
   final TextEditingController billNameController = TextEditingController();
   final TextEditingController serviceController = TextEditingController();
+
   // final TextEditingController refNoController = TextEditingController();
   // final TextEditingController nickNameController = TextEditingController();
   // final TextEditingController payFromController = TextEditingController()..text = 'Savings Account';
@@ -93,25 +97,61 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
     _switchStatusSubject.safeAdd(isActive);
   }
 
-
   void updateStreamForBillingNumber(bool value) {
     isShowBillerNumber.add(value);
     isShowBillingNumberSizeBox = value;
     SELECTED_BILLING_NUMBER_REQUIRED = value;
   }
 
-  PayPrePaidBillDetailPageViewModel(this.getPrePaidCategoriesListUseCase) {
+  PayPrePaidBillDetailPageViewModel(
+      this.getPrePaidCategoriesListUseCase, this.getBillerLookupUseCase) {
     prePaidCategoriesRequestListener();
+    billerLookUpListListener();
   }
 
+  /// ---------------- Call Api Get biller look up list -------------------- ///
+  PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<GetBillerLookUpList>> _getBillerLookupResponse =
+      PublishSubject();
+
+  Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream =>
+      _getBillerLookupResponse.stream;
+
+  void billerList() {
+    _getBillerLookupRequest.safeAdd(
+      GetBillerLookupUseCaseParams(
+          categoryName: AppConstantsUtils.BILLER_CATEGORY),
+    );
+  }
+
+  void billerLookUpListListener() {
+    _getBillerLookupRequest.listen(
+      (params) {
+        RequestManager(
+          params,
+          createCall: () => getBillerLookupUseCase.execute(
+            params: params,
+          ),
+        ).asFlow().listen((event) {
+          updateLoader();
+          _getBillerLookupResponse.safeAdd(event);
+          if (event.status == Status.ERROR) {
+            showToastWithError(event.appError!);
+          }
+        });
+      },
+    );
+  }
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------------------- ///
 
   PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-  _gerPrePaidCategoriesRequest = PublishSubject();
+      _gerPrePaidCategoriesRequest = PublishSubject();
 
   PublishSubject<Resource<GetPrePaidCategoriesModel>>
-  _gerPrePaidCategoriesResponse = PublishSubject();
+      _gerPrePaidCategoriesResponse = PublishSubject();
 
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;

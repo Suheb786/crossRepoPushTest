@@ -119,8 +119,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   void addAllBillAmt() {
     totalBillAmt = 0.0;
     payPostPaidBillsDataList.forEach((element) {
-      print("asjdtotalBillAmtsa:${element.dueAmount}");
-
       if (element.isChecked == true) {
         totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
       }
@@ -211,10 +209,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                   GetPostpaidBillerListModelData item =
                       payPostPaidBillsDataList[j];
                   debugPrint("item.billingNo: ${item.billingNo}");
-                  if (item.billingNo == "55" ||
-                      item.billingNo == "111" /*inquiryElement.billingNo*/)
-                  // if (item.billingNo == inquiryElement.billingNo)
-                  {
+                  if (item.billingNo == inquiryElement.billingNo) {
                     payPostPaidBillsDataList[j].dueAmount =
                         inquiryElement.dueAmount;
                   }

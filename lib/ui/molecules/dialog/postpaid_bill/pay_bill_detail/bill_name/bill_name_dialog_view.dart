@@ -27,8 +27,10 @@ class PayBillDialogView extends StatelessWidget {
   final Function(BillerDetailsList)? onSelected;
   final String? title;
   bool _keyboardVisible = false;
+  final List<BillerDetailsList>? billerDetailsList;
 
-  PayBillDialogView({this.onDismissed, this.onSelected, this.title});
+  PayBillDialogView(
+      {this.onDismissed, this.onSelected, this.title, this.billerDetailsList});
 
   ProviderBase providerBase() {
     return payBillDialogViewModelProvider;
@@ -46,6 +48,7 @@ class PayBillDialogView extends StatelessWidget {
               Navigator.pop(context);
             }
           });
+          model.billerDetailsList = this.billerDetailsList!;
         },
         builder: (context, model, child) {
           return AppStreamBuilder<Resource<GetBillerLookUpList>>(
@@ -53,8 +56,8 @@ class PayBillDialogView extends StatelessWidget {
             initialData: Resource.none(),
             onData: (value) {
               if (value.status == Status.SUCCESS) {
-                model.billerDetailsList =
-                    value.data!.content!.billerDetailsList!;
+                // model.billerDetailsList =
+                //     value.data!.content!.billerDetailsList!;
               }
             },
             dataBuilder: (context, snapshot) {
@@ -131,7 +134,7 @@ class PayBillDialogView extends StatelessWidget {
         textFieldBorderColor: AppColor.gray_1,
         hintTextColor: AppColor.gray_2,
         textColor: AppColor.black,
-        hintText: S.of(context).searchCountry,
+        hintText: S.of(context).searchBill,
         containerPadding:
             EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
         onChanged: (value) {

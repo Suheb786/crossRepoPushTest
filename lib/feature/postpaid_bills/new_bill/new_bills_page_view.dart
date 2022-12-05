@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -95,7 +94,8 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                             top: 26.0.h, bottom: 32.h, left: 24.w, right: 24.w),
                         child: AppTextField(
                           labelText: '',
-                          hintText: S.of(context).searchBill,
+                          hintText:
+                              "Search category" /*S.of(context).serchCategory*/,
                           controller: model.searchBillController,
                           onChanged: (value) {
                             model.searchBillerCategory(value);

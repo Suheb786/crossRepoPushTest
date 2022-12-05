@@ -109,6 +109,10 @@ class PaySelectedBillsPostPaidBillsPageView
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return SelectedBillsToPaidWidget(
+                                    allowPartialPay: model
+                                            .postPaidBillInquiryData?[index]
+                                            .IsPartial ??
+                                        false,
                                     billName: model.getValidBillerNickName(
                                         model
                                             .arguments

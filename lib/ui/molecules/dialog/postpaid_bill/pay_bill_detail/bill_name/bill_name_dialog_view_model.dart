@@ -66,7 +66,7 @@ class PayBillDialogViewModel extends BasePageViewModel {
         });
       },
     );
-    billerList();
+    // billerList();
   }
 
   PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest =

@@ -52,6 +52,8 @@ class ConfirmBillPaymentAmountPageView
                 } else if (data.status == Status.SUCCESS) {
                   model.postPaidBillInquiryData =
                       data.data?.content?.postPaidBillInquiryData;
+                  model.isPartial =
+                      model.postPaidBillInquiryData?[0].IsPartial ?? false;
 
                   model.amtController.text = model.addAllBillAmt().toString();
                   model.data.amount = model.amtController.text;
@@ -263,12 +265,16 @@ class ConfirmBillPaymentAmountPageView
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
           ],
+          readOnly: model.isPartial == false,
           controller: model.amtController,
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
-          onChanged: (value) {
+          // onChanged: (value) {
+          //   model.validate(value);
+          // },
+          onSubmitted: (value) {
+            model.amtController.text = double.parse(value).toStringAsFixed(3);
             model.validate(value);
-            //  this.onChanged?.call(value);
           },
           style: TextStyle(
               fontFamily: StringUtils.appFont,
@@ -292,7 +298,7 @@ class ConfirmBillPaymentAmountPageView
 
   _tapToEditWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return !AppConstantsUtils.PRE_PAID_FLOW
+    return !AppConstantsUtils.PRE_PAID_FLOW && model.isPartial == true
         ? Text(
             S.of(context).tapAmtToEdit,
             style: TextStyle(
@@ -476,7 +482,9 @@ class ConfirmBillPaymentAmountPageView
           ),
           InkWell(
             onTap: () {
-              Navigator.pop(context);
+              ProviderScope.containerOf(context)
+                  .read(payBillPageViewModelProvider)
+                  .previousPage();
             },
             child: Text(
               S.of(context).backToPayments,

@@ -1,10 +1,9 @@
-import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_postpaid_biller_model.dart';
-import 'package:domain/model/bill_payments/add_new_prepaid_biller/add_new_prepaid_biller_model.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
-import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
-import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +39,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   List<BillerService> billerService = [];
 
   final BehaviorSubject<bool> isShowBillerNumber =
-      BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<bool>.seeded(false);
 
   String? isSelectedBillerName;
   bool isSelectedServiceType = false;
@@ -50,6 +49,8 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   bool isAddThisBillerToSaveList = false;
 
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
+
+  List<BillerDetailsList>? billerDetailsList = [];
 
   Stream<bool> get isShowBillerNumberStream => isShowBillerNumber.stream;
 
@@ -170,23 +171,68 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _switchStatusSubject = PublishSubject();
   GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
 
+  GetBillerLookupUseCase getBillerLookupUseCase;
+
+
   Stream<bool> get totalBillAmtDueStream => _switchStatusSubject.stream;
 
   void switchStatus(bool isActive) {
     _switchStatusSubject.safeAdd(isActive);
   }
 
-  PayBillDetailPageViewModel(this.getPrePaidCategoriesListUseCase) {
+  PayBillDetailPageViewModel(this.getPrePaidCategoriesListUseCase,
+      this.getBillerLookupUseCase) {
     _gerPrePaidCategoriesListener();
+    billerLookUpListListener();
   }
+
+
+  /// ---------------- Call Api Get biller look up list -------------------- ///
+  PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest =
+  PublishSubject();
+
+  PublishSubject<Resource<GetBillerLookUpList>> _getBillerLookupResponse =
+  PublishSubject();
+
+  Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream =>
+      _getBillerLookupResponse.stream;
+
+  void billerList() {
+    _getBillerLookupRequest.safeAdd(
+      GetBillerLookupUseCaseParams(
+          categoryName: AppConstantsUtils.BILLER_CATEGORY),
+    );
+  }
+
+
+  void billerLookUpListListener() {
+    _getBillerLookupRequest.listen(
+          (params) {
+        RequestManager(
+          params,
+          createCall: () =>
+              getBillerLookupUseCase.execute(
+                params: params,
+              ),
+        ).asFlow().listen((event) {
+          updateLoader();
+          _getBillerLookupResponse.safeAdd(event);
+          if (event.status == Status.ERROR) {
+            showToastWithError(event.appError!);
+          }
+        });
+      },
+    );
+  }
+
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
   PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-      _getPrePaidCategoriesRequest = PublishSubject();
+  _getPrePaidCategoriesRequest = PublishSubject();
 
   PublishSubject<Resource<GetPrePaidCategoriesModel>>
-      _gerPrePaidCategoriesResponse = PublishSubject();
+  _gerPrePaidCategoriesResponse = PublishSubject();
 
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;
@@ -241,6 +287,9 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     _gerPrePaidCategoriesResponse.close();
     serviceTypeTextControl.dispose();
     _switchStatusSubject.close();
+    _getBillerLookupRequest.close();
+    _getBillerLookupResponse.close();
+    _showButtonSubject.close();
     super.dispose();
   }
 }

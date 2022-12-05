@@ -29,10 +29,13 @@ class GetBillerLookupEntity extends BaseLayerDataTransformer<
   @override
   GetBillerLookupListContent transform() {
     return GetBillerLookupListContent(
-      billerDetailsList: this
-          .billerDetails!
-          .map((messages) => BillerDetailsEntity.fromJson(messages).transform())
-          .toList(),
+      billerDetailsList: this.billerDetails == null
+          ? []
+          : this
+              .billerDetails!
+              .map((messages) =>
+                  BillerDetailsEntity.fromJson(messages).transform())
+              .toList(),
     );
   }
 }

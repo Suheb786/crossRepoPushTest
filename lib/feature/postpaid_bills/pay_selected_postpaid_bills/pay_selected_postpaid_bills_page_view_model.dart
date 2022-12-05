@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
@@ -37,8 +36,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     payPostPaidBillListener();
   }
 
-  addAllBillAmt() {
-    var totalBillAmt = 0.0;
+  double addAllBillAmt() {
+    double totalBillAmt = 0.0;
     arguments.noOfSelectedBills.forEach((element) {
       if (element.isChecked == true) {
         totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
@@ -153,9 +152,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void newAmtEnter(int index, String value) {
-    totalAmt[index] = double.parse(value);
+    if (value.length <= 0) {
+      value = "0";
+    }
+    // totalAmt[index] = double.parse(value);
     arguments.noOfSelectedBills[index].dueAmount = value;
-    _totalBillAmtDueSubject.safeAdd(totalAmt.sum);
+    _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
   bool isTotalAmountZero = true;
