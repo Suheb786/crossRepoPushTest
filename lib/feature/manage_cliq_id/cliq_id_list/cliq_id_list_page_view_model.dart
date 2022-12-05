@@ -1,22 +1,25 @@
 import 'package:domain/usecase/cliq/delete_cliq_id_usecase.dart';
 import 'package:domain/usecase/cliq/get_alias_usecase.dart';
+import 'package:domain/usecase/cliq/unlink_account_from_cliq_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/cliq/getAlias/get_alias.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
   final GetAliasUsecase _getAliasUsecase;
   final DeleteCliqIdUseCase _deleteCliqIdUseCase;
+  final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
 
   //*----------------Get Alias--------------///
 
   PublishSubject<GetAliasUseCaseParams> _getAliasRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _getAliasResponse = PublishSubject();
+  PublishSubject<Resource<GetAlias>> _getAliasResponse = PublishSubject();
 
-  Stream<Resource<bool>> get getAliasStream => _getAliasResponse.stream;
+  Stream<Resource<GetAlias>> get getAliasStream => _getAliasResponse.stream;
 
   void getAlias(bool getToken) {
     _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
@@ -37,8 +40,29 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   }
 
   ///----------------Delete Cliq Id--------------///
+  //*----------------unlick Cliq Id--------------///
+  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest =
+      PublishSubject();
+  PublishSubject<Resource<bool>> _unlinkCliqIdResponse = PublishSubject();
 
-  CliqIdListPageViewModel(this._getAliasUsecase, this._deleteCliqIdUseCase) {
+  Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
+
+  void unlinkCliqId(
+    bool getToken,
+    String aliasId,
+    String accountId,
+  ) {
+    _unlinkCliqIdRequest.safeAdd(UnlinkAccountFromCliqParams(
+      aliasId: aliasId,
+      accountId: accountId,
+      getToken: getToken,
+    ));
+  }
+
+  ///----------------Delete Cliq Id--------------///
+
+  CliqIdListPageViewModel(this._getAliasUsecase, this._deleteCliqIdUseCase,
+      this._unlinkAccountFromCliqUseCase) {
     _getAliasRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getAliasUsecase.execute(params: value))
@@ -64,5 +88,20 @@ class CliqIdListPageViewModel extends BasePageViewModel {
       });
     });
     //Todo call deleteCliqId();
+
+    _unlinkCliqIdRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _unlinkAccountFromCliqUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _unlinkCliqIdResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+    //Todo call unlinkCliqId();
   }
 }

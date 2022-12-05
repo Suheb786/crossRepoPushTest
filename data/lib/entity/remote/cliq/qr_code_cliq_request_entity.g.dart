@@ -6,7 +6,8 @@ part of 'qr_code_cliq_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QrCodeCliqRequestEntity _$QrCodeCliqRequestEntityFromJson(Map<String, dynamic> json) {
+QrCodeCliqRequestEntity _$QrCodeCliqRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return QrCodeCliqRequestEntity(
     code: json['code'] as String?,
     getToken: json['getToken'] as bool?,
@@ -14,7 +15,9 @@ QrCodeCliqRequestEntity _$QrCodeCliqRequestEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$QrCodeCliqRequestEntityToJson(QrCodeCliqRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$QrCodeCliqRequestEntityToJson(
+        QrCodeCliqRequestEntity instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,

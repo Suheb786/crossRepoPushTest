@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 
+import 'package:domain/model/cliq/getAlias/get_alias.dart';
+
 abstract class CliqRepository {
-  Future<Either<NetworkError, bool>> getAlias({
+  Future<Either<NetworkError, GetAlias>> getAlias({
     required bool getToken,
   });
 

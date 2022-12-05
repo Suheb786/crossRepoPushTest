@@ -6,7 +6,8 @@ part of 'update_rtp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateRtpRequestEntity _$UpdateRtpRequestEntityFromJson(Map<String, dynamic> json) {
+UpdateRtpRequestEntity _$UpdateRtpRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return UpdateRtpRequestEntity(
     msgId: json['msgId'] as String?,
     rejectReason: json['rejectReason'] as String?,
@@ -32,7 +33,9 @@ UpdateRtpRequestEntity _$UpdateRtpRequestEntityFromJson(Map<String, dynamic> jso
   );
 }
 
-Map<String, dynamic> _$UpdateRtpRequestEntityToJson(UpdateRtpRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$UpdateRtpRequestEntityToJson(
+        UpdateRtpRequestEntity instance) =>
+    <String, dynamic>{
       'msgId': instance.msgId,
       'rejectReason': instance.rejectReason,
       'rejectAddInfo': instance.rejectAddInfo,

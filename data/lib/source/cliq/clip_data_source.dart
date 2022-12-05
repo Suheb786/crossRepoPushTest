@@ -1,9 +1,10 @@
+import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class CliqDataSource {
-  Future<HttpResponse<ResponseEntity>> getAlias({
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias({
     required bool getToken,
   });
 
