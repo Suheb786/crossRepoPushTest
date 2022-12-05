@@ -8,7 +8,9 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_v
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/alias_card_list_widget.dart';
+import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -22,12 +24,12 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   @override
   Widget build(BuildContext context, CliqIdListPageViewModel model) {
     return GestureDetector(
-      // onVerticalDragEnd: (details) {
-      //   int sensitivity = 8;
-      //   if (details.primaryVelocity! > sensitivity) {
-      //     Navigator.pop(context);
-      //   } else if (details.primaryVelocity! < -sensitivity) {}
-      // },
+      onVerticalDragEnd: (details) {
+        int sensitivity = 8;
+        if (details.primaryVelocity! > sensitivity) {
+          Navigator.pop(context);
+        } else if (details.primaryVelocity! < -sensitivity) {}
+      },
       child: Container(
         height: double.infinity,
         width: double.infinity,
@@ -57,13 +59,37 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                           itemBuilder: (context, index) {
                             return AliasCardList(
                               accountList:
-                                  (data?.data?.aliases?[index].accounts ??
-                                      []),
+                                  (data?.data?.aliases?[index].accounts ?? []),
                               aliasName:
                                   "${data!.data?.aliases?[index].aliasName ?? ""}",
                               aliasType:
                                   "${data.data?.aliases?[index].aliasType}",
                               status: "${data.data?.aliases?[index].status}",
+                              onTapAccount: (accountData) {
+                                ManageCliqBottomSheetSelectionWidget.show(
+                                    context, setAsDefault: () {
+                                  Navigator.pop(context);
+                                  CliqInformationDialog.show(context,
+                                      image: AssetUtils.walletIcon,
+                                      title: S.of(context).changeDefaultAccount,
+                                      description: S
+                                          .of(context)
+                                          .areYourToChangeDefaultAccountOfYourCliqId,
+                                      subDescription: S
+                                          .of(context)
+                                          .whenAcceptingCreationOfYourCliqId,
+                                      onSelected: () {
+                                    Navigator.pop(context);
+                                    // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                    unlinkAccount: () {},
+                                    onCancelled: () {},
+                                    title: "Please select your action");
+                              },
+                              onTapAlias: () {},
                             );
                           },
                           itemCount: (data?.data?.aliases ?? []).length,
