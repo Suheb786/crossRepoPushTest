@@ -22,7 +22,8 @@ final cliqIdListViewModelProvider =
         CliqIdListPageViewModel(
             ref.read(getAliasUseCaseProvider),
             ref.read(deleteCliqIdUseCaseProvider),
-            ref.read(unLinkAccountFromCliqUseCaseProvider)));
+            ref.read(unLinkAccountFromCliqUseCaseProvider),
+            ref.read(changeDefaultAccountUseCaseProvider)));
 
 ///create cliq id
 final createCliqIdViewModelProvider =

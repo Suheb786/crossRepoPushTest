@@ -1,3 +1,4 @@
+import 'package:domain/usecase/cliq/change_default_account_usecase.dart';
 import 'package:domain/usecase/cliq/delete_cliq_id_usecase.dart';
 import 'package:domain/usecase/cliq/get_alias_usecase.dart';
 import 'package:domain/usecase/cliq/unlink_account_from_cliq_usecase.dart';
@@ -13,6 +14,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   final GetAliasUsecase _getAliasUsecase;
   final DeleteCliqIdUseCase _deleteCliqIdUseCase;
   final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
+  final ChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
 
   //*----------------Get Alias--------------///
 
@@ -40,6 +42,29 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   }
 
   ///----------------Delete Cliq Id--------------///
+  ///
+  ///  //*----------------Change Default Cliq Id--------------///
+  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest =
+      PublishSubject();
+  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse =
+      PublishSubject();
+
+  Stream<Resource<bool>> get changeDefaultCliqIdStream =>
+      _changeDefaultCliqIDResponse.stream;
+
+  void changeDefaultCliqId(bool getToken, String aliasId, String linkType,
+      String otpCode, String identifier) {
+    _changeDefaultCliqIDRequest.safeAdd(
+      ChangeDefaultAccountParams(
+          linkType: linkType,
+          otpCode: otpCode,
+          identifier: identifier,
+          aliasId: aliasId,
+          getToken: getToken),
+    );
+  }
+
+  ///----------------Delete Cliq Id--------------///
   //*----------------unlick Cliq Id--------------///
   PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest =
       PublishSubject();
@@ -62,7 +87,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   ///----------------Delete Cliq Id--------------///
 
   CliqIdListPageViewModel(this._getAliasUsecase, this._deleteCliqIdUseCase,
-      this._unlinkAccountFromCliqUseCase) {
+      this._unlinkAccountFromCliqUseCase, this._changeDefaultAccountUseCase) {
     _getAliasRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getAliasUsecase.execute(params: value))
@@ -103,5 +128,19 @@ class CliqIdListPageViewModel extends BasePageViewModel {
       });
     });
     //Todo call unlinkCliqId();
+
+    _changeDefaultCliqIDRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _changeDefaultAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _changeDefaultCliqIDResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 }

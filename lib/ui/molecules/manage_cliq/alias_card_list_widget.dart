@@ -1,6 +1,11 @@
 import 'package:domain/model/cliq/getAlias/account_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
+import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
+import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_sheet_selection_widget.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -12,6 +17,8 @@ class AliasCardList extends StatelessWidget {
   final String status;
   final List<AccountList> accountList;
 
+  final Function()? onTapAlias;
+  final Function(AccountList)? onTapAccount;
   final Resource<GetAlias>? data;
 
   const AliasCardList({
@@ -21,6 +28,8 @@ class AliasCardList extends StatelessWidget {
     required this.status,
     this.data,
     required this.accountList,
+    required this.onTapAlias,
+    required this.onTapAccount,
   }) : super(key: key);
 
   @override
@@ -37,7 +46,15 @@ class AliasCardList extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              onTap: () {},
+              onTap: () {
+                UpdateCliqInfoBottomSheetSelectionWidget.show(context,
+                    onEditId: () {},
+                    onShareId: () {},
+                    onCancelled: () {},
+                    onDeleteId: () {},
+                    onSuspendId: () {},
+                    title: "Please select your action");
+              },
               title: Text(
                 aliasName,
                 style: TextStyle(
@@ -66,12 +83,9 @@ class AliasCardList extends StatelessWidget {
                   SizedBox(
                     width: 18.w,
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.more_horiz_rounded,
-                      color: AppColor.black,
-                    ),
+                  Icon(
+                    Icons.more_horiz_rounded,
+                    color: AppColor.black,
                   )
                 ],
               ),
@@ -111,6 +125,9 @@ class AliasCardList extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: ListTile(
+                          onTap: () {
+                            onTapAccount?.call(accountList[i]);
+                          },
                           dense: false,
                           title: Text(
                             "${accountList[i].identifier}",
@@ -153,12 +170,9 @@ class AliasCardList extends StatelessWidget {
                               )
                             ],
                           ),
-                          trailing: GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.more_horiz_rounded,
-                              color: AppColor.black,
-                            ),
+                          trailing: Icon(
+                            Icons.more_horiz_rounded,
+                            color: AppColor.black,
                           ),
                         ),
                       );
