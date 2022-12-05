@@ -13,7 +13,8 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   CliqIdListPageState createState() => CliqIdListPageState();
 }
 
-class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
+class CliqIdListPageState
+    extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
   ProviderBase provideBase() {
     return cliqIdListViewModelProvider;
@@ -34,15 +35,21 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
           ),
           Text(
             S.of(context).manageCliqId,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Theme.of(context).accentColor),
           ),
           InkWell(
             onTap: () {
               CliqInformationDialog.show(context,
                   image: AssetUtils.walletIcon,
                   title: S.of(context).changeDefaultAccount,
-                  description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
-                  subDescription: S.of(context).whenAcceptingCreationOfYourCliqId, onSelected: () {
+                  description:
+                      S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
+                  subDescription: S
+                      .of(context)
+                      .whenAcceptingCreationOfYourCliqId, onSelected: () {
                 Navigator.pop(context);
               }, onDismissed: () {
                 Navigator.pop(context);
@@ -73,5 +80,11 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
   @override
   Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
     return CliqIdListPageView(provideBase());
+  }
+
+  @override
+  void onModelReady(CliqIdListPageViewModel model) {
+    // model.getAlias(true);
+    super.onModelReady(model);
   }
 }
