@@ -238,7 +238,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV2")
+  @POST("/auth/loginV3")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("/auth/RegisterV5")

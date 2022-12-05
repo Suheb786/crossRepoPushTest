@@ -11,10 +11,12 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/alias_card_list_widget.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
+import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_sheet_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
@@ -52,6 +54,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
             AppStreamBuilder<Resource<GetAlias>>(
               initialData: Resource.none(),
               stream: model.getAliasStream,
+                
               dataBuilder: (context, data) {
                 return ((data?.data?.aliases ?? []).isNotEmpty)
                     ? Expanded(
@@ -80,16 +83,43 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                           .whenAcceptingCreationOfYourCliqId,
                                       onSelected: () {
                                     Navigator.pop(context);
+                                    model.changeDefaultCliqId(
+                                      aliasId: (data
+                                              .data?.aliases?[index].aliasID) ??
+                                          "",
+                                      getToken: true,
+                                      linkType: "A",
+                                      otpCode: "576824",
+                                      identifier: (data.data?.aliases?[index]
+                                              .accounts?[index].identifier) ??
+                                          "",
+                                    );
                                     // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
                                   }, onDismissed: () {
                                     Navigator.pop(context);
                                   });
+                                }, unlinkAccount: () {
+                                  CliqInformationDialog.show(context,
+                                      description:
+                                          "Are you sure you want to unlink the account with your CliQ ID?",
+                                      subDescription: '',
+                                      title: "Unlink account with CliQ ID"
+                                      
+                                      );
                                 },
-                                    unlinkAccount: () {},
                                     onCancelled: () {},
                                     title: "Please select your action");
                               },
-                              onTapAlias: () {},
+                              onTapAlias: () {
+                                UpdateCliqInfoBottomSheetSelectionWidget.show(
+                                    context,
+                                    onEditId: () {},
+                                    onShareId: () {},
+                                    onCancelled: () {},
+                                    onDeleteId: () {},
+                                    onSuspendId: () {},
+                                    title: "Please select your action");
+                              },
                             );
                           },
                           itemCount: (data?.data?.aliases ?? []).length,
