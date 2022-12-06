@@ -55,239 +55,455 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
             ),
 //*-----------------------------------List of Cliq IDs--------------------------------------->>>>>>>>
             AppStreamBuilder<Resource<GetAlias>>(
-              initialData: Resource.none(),
-              stream: model.getAliasStream,
-              dataBuilder: (context, data) {
-                return ((data?.data?.aliases ?? []).isNotEmpty)
-                    ? Expanded(
-                        child: ListView.separated(
-                          itemBuilder: (context, index) {
-                            return AliasCardList(
-                              accountList:
-                                  (data?.data?.aliases?[index].accounts ?? []),
-                              aliasName:
-                                  "${data!.data?.aliases?[index].aliasName ?? ""}",
-                              aliasType:
-                                  "${data.data?.aliases?[index].aliasType}",
-                              status: "${data.data?.aliases?[index].status}",
-                              onTapAccount: (accountData) {
-                                ManageCliqBottomSheetSelectionWidget.show(
-                                    context, setAsDefault: () {
-                                  Navigator.pop(context);
-                                  CliqInformationDialog.show(context,
-                                      image: AssetUtils.walletIcon,
-                                      title: S.of(context).changeDefaultAccount,
-                                      description: S
-                                          .of(context)
-                                          .areYourToChangeDefaultAccountOfYourCliqId,
-                                      subDescription: S
-                                          .of(context)
-                                          .whenAcceptingCreationOfYourCliqId,
-                                      onSelected: () {
-                                    Navigator.pop(context);
-                                    model.changeDefaultCliqId(
-                                      aliasId: (data
-                                              .data?.aliases?[index].aliasID) ??
-                                          "",
-                                      getToken: true,
-                                      linkType: "A",
-                                      otpCode: "576824",
-                                      identifier: (data.data?.aliases?[index]
-                                              .accounts?[index].identifier) ??
-                                          "",
-                                    );
-                                    // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                  });
-                                }, unlinkAccount: () {
-                                  CliqInformationDialog.show(context,
-                                      description:
-                                          "Are you sure you want to unlink the account with your CliQ ID?",
-                                      subDescription: '',
-                                      title: "Unlink account with CliQ ID");
-                                },
-                                    onCancelled: () {},
-                                    title: "Please select your action");
-                              },
-                              onTapAlias: () {
-                                UpdateCliqInfoBottomSheetSelectionWidget.show(
-                                    context,onLinkId: () {
-                                      
-                                    },
-                                    onActivatId: () {
-                                      Navigator.pop(context);
-                                      CliqInformationDialog.show(context,
-                                          // image: AssetUtils.walletIcon,
-                                          title: "Reactivate CliQ ID",
-                                          description: S
-                                              .of(context)
-                                              .areYourToChangeDefaultAccountOfYourCliqId,
-                                          subDescription: S
-                                              .of(context)
-                                              .whenAcceptingCreationOfYourCliqId,
-                                          onSelected: () {
-                                        Navigator.pop(context);
-                                        model.reactivatetCliqID(
-                                          aliasId: (data.data?.aliases?[index]
-                                                  .aliasID) ??
-                                              "",
-                                          getToken: true,
-                                        );
-                                        // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
-                                      }, onDismissed: () {
-                                        Navigator.pop(context);
-                                      });
-                                    },
-                                    onEditId: () {},
-                                    onShareId: () {},
-                                    onCancelled: () {},
-                                    onDeleteId: () {
-                                      Navigator.pop(context);
-                                      InformationDialog.show(
-                                        context,
-                                        title: "Confirm Delete?",
-                                        descriptionWidget: RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                              text:
-                                                  "Are you sure you want to delete "),
-                                          TextSpan(
-                                              text: (data.data?.aliases?[index]
-                                                      .aliasName) ??
-                                                  ""),
-                                          TextSpan(
-                                              text: " from your CliQ ID list?")
-                                        ])),
-
-                                        onSelected: () {
-                                          model.deleteCliqId(
-                                              true,
-                                              (data.data?.aliases?[index]
-                                                      .aliasID) ??
-                                                  "");
-                                        },
-                                        //  image: ,
-                                        isSwipeToCancel: true,
-                                      );
-                                    },
-                                    onSuspendId: () {
-                                      Navigator.pop(context);
-                                      InformationDialog.show(
-                                        context,
-                                        title: "Suspend CliQ ID",
-                                        descriptionWidget: Text(
-                                            "Are you sure you want to suspend your CliQ ID?"),
-
-                                        onSelected: () {
-                                          model.suspandCliqID(
-                                              getToken: true,
-                                              aliasId: (data
-                                                      .data
-                                                      ?.aliases?[index]
-                                                      .aliasID) ??
-                                                  "");
-                                        },
-                                        //  image: ,
-                                        isSwipeToCancel: true,
-                                      );
-                                    },
-                                    title: "Please select your action");
-                              },
-                            );
-                          },
-                          itemCount: (data?.data?.aliases ?? []).length,
-                          separatorBuilder: (BuildContext context, int i) {
-                            return SizedBox(height: 10.h);
-                          },
-                        ),
-                      )
-                    : Expanded(
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 96,
-                                      width: 96,
-                                      margin: EdgeInsets.only(bottom: 16),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: Theme.of(context)
-                                                  .inputDecorationTheme
-                                                  .hintStyle!
-                                                  .color!)),
-                                      child: Container(
-                                          padding: EdgeInsets.all(32),
-                                          child: AppSvg.asset(
-                                              AssetUtils.cliqLogo)),
-                                    ),
-                                    Text(
-                                      S.of(context).NoCliqContactYet,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 14.t,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional.bottomCenter,
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.CreateCliqId);
+                initialData: Resource.none(),
+                stream: model.getAliasStream,
+                onData: (data) {
+                  if (data.status == Status.SUCCESS) {
+                    model.showSuccessToast(
+                        S.current.accountSuccessfullyUnlinked);
+                    // model.getAlias(true);
+                  }
+                },
+                dataBuilder: (context, getAliasSnapshot) {
+                  return AppStreamBuilder<Resource<bool>>(
+                      initialData: Resource.none(),
+                      stream: model.linkCliqIdStream,
+                      dataBuilder: (context, linkAccountSnapshot) {
+                        return AppStreamBuilder<Resource<bool>>(
+                            initialData: Resource.none(),
+                            stream: model.requestCliqIDStream,
+                            onData: (value) {
+                              if (value.status == Status.SUCCESS) {
+                                model.showSuccessToast(
+                                    S.current.accountSuccessfullyLinked);
+                                model.getAlias(true);
+                              }
+                            },
+                            dataBuilder: (context, reactivateSnapshot) {
+                              return AppStreamBuilder<Resource<bool>>(
+                                  initialData: Resource.none(),
+                                  stream: model.suspandCliqIDStream,
+                                  onData: (value) {
+                                    if (value.status == Status.SUCCESS) {
+                                      model.showSuccessToast(
+                                          "zeinmalhas3 has been suspended");
+                                      model.getAlias(true);
+                                    }
                                   },
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 24, vertical: 20),
-                                    padding: EdgeInsets.all(18),
-                                    height: 56,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1
-                                          ?.color,
-                                    ),
-                                    child: Center(
-                                      child: Text(S.of(context).createCliqId,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              letterSpacing: 1,
-                                              color: Theme.of(context)
-                                                  .accentColor)),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-              },
-            ),
+                                  dataBuilder: (context, suspnadSnapshot) {
+                                    return AppStreamBuilder<Resource<bool>>(
+                                        initialData: Resource.none(),
+                                        stream: model.deleteCliqIdStream,
+                                        onData: (value) {
+                                          if (value.status == Status.SUCCESS) {
+                                            model.showSuccessToast(
+                                                "zeinmalhas1 has been deleted");
+                                            model.getAlias(true);
+                                          }
+                                        },
+                                        dataBuilder: (context, deleteSnapshot) {
+                                          return AppStreamBuilder<
+                                              Resource<bool>>(
+                                            initialData: Resource.none(),
+                                            stream: model.unlinkCliqIdStream,
+                                            onData: (unlinkData) {
+                                              if (unlinkData.status ==
+                                                  Status.SUCCESS) {
+                                                model.showSuccessToast(
+                                                    ("Account successfully unlinked"));
+                                              }
+                                            },
+                                            dataBuilder: (context, data) {
+                                              return ((getAliasSnapshot
+                                                              ?.data?.aliases ??
+                                                          [])
+                                                      .isNotEmpty)
+                                                  ? Expanded(
+                                                      child: ListView.separated(
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          return AliasCardList(
+                                                            accountList: (getAliasSnapshot
+                                                                    ?.data
+                                                                    ?.aliases?[
+                                                                        index]
+                                                                    .accounts ??
+                                                                []),
+                                                            aliasName:
+                                                                "${getAliasSnapshot!.data?.aliases?[index].aliasName ?? ""}",
+                                                            aliasType:
+                                                                "${getAliasSnapshot.data?.aliases?[index].aliasType}",
+                                                            status:
+                                                                "${getAliasSnapshot.data?.aliases?[index].status}",
+                                                            onTapAccount:
+                                                                (accountData) {
+                                                              ManageCliqBottomSheetSelectionWidget.show(
+                                                                  context,
+                                                                  setAsDefault:
+                                                                      () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                CliqInformationDialog.show(
+                                                                    context,
+                                                                    image: AssetUtils
+                                                                        .walletIcon,
+                                                                    title: S
+                                                                        .of(
+                                                                            context)
+                                                                        .changeDefaultAccount,
+                                                                    description: S
+                                                                        .of(
+                                                                            context)
+                                                                        .areYourToChangeDefaultAccountOfYourCliqId,
+                                                                    subDescription: S
+                                                                        .of(
+                                                                            context)
+                                                                        .whenAcceptingCreationOfYourCliqId,
+                                                                    onSelected:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  model
+                                                                      .changeDefaultCliqId(
+                                                                    aliasId: (getAliasSnapshot
+                                                                            .data
+                                                                            ?.aliases?[index]
+                                                                            .aliasID) ??
+                                                                        "",
+                                                                    getToken:
+                                                                        true,
+                                                                    linkType:
+                                                                        "A",
+                                                                    otpCode:
+                                                                        "576824",
+                                                                    identifier: (getAliasSnapshot
+                                                                            .data
+                                                                            ?.aliases?[index]
+                                                                            .accounts?[index]
+                                                                            .identifier) ??
+                                                                        "",
+                                                                  );
+                                                                  // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
+                                                                }, onDismissed:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                });
+                                                              }, unlinkAccount:
+                                                                      () {
+                                                                InformationDialog.show(
+                                                                    context,
+                                                                    image: AssetUtils
+                                                                        .unlinkIcon,
+                                                                    title: S
+                                                                        .current
+                                                                        .unLinkAccountWithCliqId,
+                                                                    descriptionWidget:
+                                                                        Text(
+                                                                      S.current
+                                                                          .areYouSureToUnlinkAccount,
+                                                                    ),
+                                                                    onSelected:
+                                                                        model
+                                                                            .unlinkCliqId(
+                                                                      getToken:
+                                                                          true,
+                                                                      aliasId: (getAliasSnapshot
+                                                                              .data
+                                                                              ?.aliases?[index]
+                                                                              .aliasID) ??
+                                                                          "",
+                                                                      accountId: (getAliasSnapshot
+                                                                              .data
+                                                                              ?.aliases?[index]
+                                                                              .accounts?[index]
+                                                                              .accountID) ??
+                                                                          "",
+                                                                    ),
+                                                                    isSwipeToCancel:
+                                                                        true,
+                                                                    onDismissed:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                });
+                                                              },
+                                                                  onCancelled:
+                                                                      () {},
+                                                                  title: S
+                                                                      .of(context)
+                                                                      .pleaseSelectYourAction);
+                                                            },
+                                                            onTapAlias: () {
+                                                              UpdateCliqInfoBottomSheetSelectionWidget.show(
+                                                                  context,
+                                                                  onLinkId:
+                                                                      () {},
+                                                                  onActivatId:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    CliqInformationDialog.show(
+                                                                        context,
+                                                                        image: AssetUtils
+                                                                            .reactivateIcon,
+                                                                        title: S
+                                                                            .current
+                                                                            .reactivateCliqId,
+                                                                        description: S
+                                                                            .of(
+                                                                                context)
+                                                                            .areYourToChangeDefaultAccountOfYourCliqId,
+                                                                        subDescription: S
+                                                                            .of(
+                                                                                context)
+                                                                            .whenAcceptingCreationOfYourCliqId,
+                                                                        onSelected:
+                                                                            () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      model
+                                                                          .reactivatetCliqID(
+                                                                        aliasId:
+                                                                            (getAliasSnapshot.data?.aliases?[index].aliasID) ??
+                                                                                "",
+                                                                        getToken:
+                                                                            true,
+                                                                      );
+                                                                      // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
+                                                                    }, onDismissed:
+                                                                            () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    });
+                                                                  },
+                                                                  onEditId:
+                                                                      () {},
+                                                                  onShareId:
+                                                                      () {
+                                                                    _shareFiles(
+                                                                        context,
+                                                                        (getAliasSnapshot.data?.aliases?[index].aliasID) ??
+                                                                            "");
+                                                                  },
+                                                                  onCancelled:
+                                                                      () {},
+                                                                  onDeleteId:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    InformationDialog
+                                                                        .show(
+                                                                      context,
+                                                                      image: AssetUtils
+                                                                          .deleteIcon,
+                                                                      title: S
+                                                                          .current
+                                                                          .confirmDelete,
+                                                                      descriptionWidget:
+                                                                          RichText(
+                                                                              text: TextSpan(children: [
+                                                                        TextSpan(
+                                                                            text:
+                                                                                S.current.areYouSureWantToDelete),
+                                                                        TextSpan(
+                                                                            text:
+                                                                                (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""),
+                                                                        TextSpan(
+                                                                            text:
+                                                                                S.current.fromYourCliqIdList)
+                                                                      ])),
+
+                                                                      onSelected:
+                                                                          () {
+                                                                        model.deleteCliqId(
+                                                                            true,
+                                                                            (getAliasSnapshot.data?.aliases?[index].aliasID) ??
+                                                                                "");
+                                                                      },
+                                                                      //  image: ,
+                                                                    );
+                                                                  },
+                                                                  onSuspendId:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    InformationDialog
+                                                                        .show(
+                                                                      context,
+                                                                      image: AssetUtils
+                                                                          .suspandIcon,
+                                                                      title: S
+                                                                          .current
+                                                                          .suspandClidId,
+                                                                      descriptionWidget: Text(S
+                                                                          .current
+                                                                          .areYouSureToSuspandCliqId),
+
+                                                                      onSelected:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        model.suspandCliqID(
+                                                                            getToken:
+                                                                                true,
+                                                                            aliasId:
+                                                                                (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "");
+                                                                      },
+                                                                      //  image: ,
+                                                                      isSwipeToCancel:
+                                                                          true,
+                                                                    );
+                                                                  },
+                                                                  title: S
+                                                                      .current
+                                                                      .pleaseSelectYourAction);
+                                                            },
+                                                          );
+                                                        },
+                                                        itemCount: (getAliasSnapshot
+                                                                    ?.data
+                                                                    ?.aliases ??
+                                                                [])
+                                                            .length,
+                                                        separatorBuilder:
+                                                            (BuildContext
+                                                                    context,
+                                                                int i) {
+                                                          return SizedBox(
+                                                              height: 10.h);
+                                                        },
+                                                      ),
+                                                    )
+                                                  : Expanded(
+                                                      child: Center(
+                                                        child: Column(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Container(
+                                                                    height: 96,
+                                                                    width: 96,
+                                                                    margin: EdgeInsets.only(
+                                                                        bottom:
+                                                                            16),
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
+                                                                    child: Container(
+                                                                        padding:
+                                                                            EdgeInsets.all(
+                                                                                32),
+                                                                        child: AppSvg.asset(
+                                                                            AssetUtils.cliqLogo)),
+                                                                  ),
+                                                                  Text(
+                                                                    S
+                                                                        .of(context)
+                                                                        .NoCliqContactYet,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            StringUtils
+                                                                                .appFont,
+                                                                        fontSize: 14
+                                                                            .t,
+                                                                        fontWeight:
+                                                                            FontWeight.w600),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional
+                                                                      .bottomCenter,
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  Navigator.pushNamed(
+                                                                      context,
+                                                                      RoutePaths
+                                                                          .CreateCliqId);
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  margin: EdgeInsets.symmetric(
+                                                                      horizontal:
+                                                                          24,
+                                                                      vertical:
+                                                                          20),
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              18),
+                                                                  height: 56,
+                                                                  width: double
+                                                                      .maxFinite,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            100),
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .accentTextTheme
+                                                                        .bodyText1
+                                                                        ?.color,
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                        S
+                                                                            .of(
+                                                                                context)
+                                                                            .createCliqId,
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils
+                                                                                .appFont,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight: FontWeight
+                                                                                .w600,
+                                                                            letterSpacing:
+                                                                                1,
+                                                                            color:
+                                                                                Theme.of(context).accentColor)),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                            },
+                                          );
+                                        });
+                                  });
+                            });
+                      });
+                }),
           ],
         ),
       ),
     );
   }
 
-  // void _shareFiles(CliqIdListPageViewModel model, BuildContext context,
-  //     AliasList alias) async {
-  //   final box = context.findRenderObject() as RenderBox?;
-  //   await Share.share(
-  //       'Hello! Here are my Blink account details: \n\n${alias.accountTitle ?? ''} \n${account.iban ?? '-'}\n\nOpen your Blink account today.',
-  //       subject: 'Share account info',
-  //       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-  // }
+  void _shareFiles(
+    BuildContext context,
+    String s,
+  ) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await Share.share('Hello! Here are my Blink account details: \n\n${s} ',
+        subject: 'Share account info',
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
 }

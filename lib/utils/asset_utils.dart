@@ -285,4 +285,8 @@ class AssetUtils {
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
   static const String warningIcon = svg + "warning.svg";
+  static const String unlinkIcon = svg + "unlinkIcon.svg";
+  static const String suspandIcon = svg + "suspandIcon.svg";
+  static const String reactivateIcon = svg + "reactivate.svg";
+    static const String deleteIcon = svg + "deleteIcon.svg";
 }

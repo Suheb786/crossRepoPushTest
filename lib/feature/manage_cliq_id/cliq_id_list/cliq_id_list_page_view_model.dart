@@ -33,13 +33,18 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
   }
 
+
+void aliasString(){
+  
+}
+
   //*----------------Suspand Cliq ID--------------///
 
   PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest =
       PublishSubject();
-  PublishSubject<Resource<GetAlias>> _suspandCliqIDResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _suspandCliqIDResponse = PublishSubject();
 
-  Stream<Resource<GetAlias>> get suspandCliqIDStream =>
+  Stream<Resource<bool>> get suspandCliqIDStream =>
       _suspandCliqIDResponse.stream;
 
   void suspandCliqID({required bool getToken, required String aliasId}) {
@@ -51,10 +56,10 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest =
       PublishSubject();
-  PublishSubject<Resource<GetAlias>> _reactivateCliqIDResponse =
+  PublishSubject<Resource<bool>> _reactivateCliqIDResponse =
       PublishSubject();
 
-  Stream<Resource<GetAlias>> get requestCliqIDStream =>
+  Stream<Resource<bool>> get requestCliqIDStream =>
       _reactivateCliqIDResponse.stream;
 
   void reactivatetCliqID({required bool getToken, required String aliasId}) {
@@ -126,7 +131,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
 
-  void unlinkCliqId({
+   unlinkCliqId({
     required bool getToken,
     required String aliasId,
     required String accountId,
