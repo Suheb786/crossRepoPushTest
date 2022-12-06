@@ -7,7 +7,9 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -73,9 +75,17 @@ class PayAllPostPaidBillsPageState
                         : true,
                 child: Padding(
                   padding: EdgeInsets.only(right: 24.0.w),
-                  child: AppSvg.asset(
-                    AssetUtils.plusIcon,
-                    color: AppColor.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                      AppConstantsUtils.PRE_PAID_FLOW = false;
+                      AppConstantsUtils.POST_PAID_FLOW = true;
+                      AppConstantsUtils.IS_NEW_PAYMENT = true;
+                    },
+                    child: AppSvg.asset(
+                      AssetUtils.plusIcon,
+                      color: AppColor.white,
+                    ),
                   ),
                 ),
               ),
