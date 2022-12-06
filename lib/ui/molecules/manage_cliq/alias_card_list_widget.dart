@@ -1,4 +1,5 @@
 import 'package:domain/model/cliq/getAlias/account_list.dart';
+import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -47,13 +48,15 @@ class AliasCardList extends StatelessWidget {
           children: [
             ListTile(
               onTap: () {
-                UpdateCliqInfoBottomSheetSelectionWidget.show(context,
-                    onEditId: () {},
-                    onShareId: () {},
-                    onCancelled: () {},
-                    onDeleteId: () {},
-                    onSuspendId: () {},
-                    title: "Please select your action");
+                onTapAlias?.call();
+
+                // UpdateCliqInfoBottomSheetSelectionWidget.show(context,
+                //     onEditId: () {},
+                //     onShareId: () {},
+                //     onCancelled: () {},
+                //     onDeleteId: () {},
+                //     onSuspendId: () {},
+                //     title: "Please select your action");
               },
               title: Text(
                 aliasName,
