@@ -1441,5 +1441,11 @@
   "noTicketsFound": "No tickets found",
   "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
-  "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?"
+  "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?",
+  "searchCategory": "Search category",
+  "noBillerFound": "No Biller Found",
+  "noPrepaidCategoryFound": "No Prepaid Category Found",
+  "denomination": "Denomination",
+  "errorOnBillinquiry": "error on billinquiry",
+  "errorWhileAddingCustomer": "error while adding customer"
 }

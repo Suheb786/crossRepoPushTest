@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14666,6 +14665,66 @@ class S {
     return Intl.message(
       'No tickets found',
       name: 'noTicketsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search category`
+  String get searchCategory {
+    return Intl.message(
+      'Search category',
+      name: 'searchCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Biller Found`
+  String get noBillerFound {
+    return Intl.message(
+      'No Biller Found',
+      name: 'noBillerFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Prepaid Category Found`
+  String get noPrepaidCategoryFound {
+    return Intl.message(
+      'No Prepaid Category Found',
+      name: 'noPrepaidCategoryFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Denomination`
+  String get denomination {
+    return Intl.message(
+      'Denomination',
+      name: 'denomination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error on billinquiry`
+  String get errorOnBillinquiry {
+    return Intl.message(
+      'error on billinquiry',
+      name: 'errorOnBillinquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while adding customer`
+  String get errorWhileAddingCustomer {
+    return Intl.message(
+      'error while adding customer',
+      name: 'errorWhileAddingCustomer',
       desc: '',
       args: [],
     );
