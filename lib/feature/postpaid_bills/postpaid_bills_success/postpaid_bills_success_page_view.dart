@@ -21,7 +21,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
 
   @override
   Widget build(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
-    return AppStreamBuilder<Resource<AddNewPostpaidBillerModel>>(
+    return AppStreamBuilder<Resource<bool>>(
       stream: model.addNewPostpaidStream,
       initialData: Resource.none(),
       onData: (event) {

@@ -49,10 +49,10 @@ abstract class BillPaymentRemoteDS {
   Future<HttpResponse<PostPaidBillInquiryResponse>> postPaidBillInquiry(
       {required PostPaidBillInquiryUseCaseParams params});
 
-  Future<HttpResponse<AddNewPostpaidBillerEntityResponse>> addNewPostpaidBiller(
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBiller(
       {required AddNewPostpaidBillerUseCaseParams params});
 
-  Future<HttpResponse<AddNewPrepaidBillerEntityResponse>> addNewPrepaidBiller(
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBiller(
       {required AddNewPrepaidBillerUseCaseParams params});
 
   Future<HttpResponse<GetBillerLookupListResponse>> getBillerLookuplist(

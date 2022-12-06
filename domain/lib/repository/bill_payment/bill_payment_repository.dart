@@ -52,10 +52,10 @@ abstract class BillPaymentRepository {
   Future<Either<NetworkError, PostPaidBillInquiry>> postPaidBillInquiry(
       {required PostPaidBillInquiryUseCaseParams params});
 
-  Future<Either<NetworkError, AddNewPostpaidBillerModel>> addNewPostpaidBiller(
+  Future<Either<NetworkError, bool>> addNewPostpaidBiller(
       {required AddNewPostpaidBillerUseCaseParams params});
 
-  Future<Either<NetworkError, AddNewPrepaidBillerModel>> addNewPrepaidBiller(
+  Future<Either<NetworkError, bool>> addNewPrepaidBiller(
       {required AddNewPrepaidBillerUseCaseParams params});
 
   Future<Either<NetworkError, GetBillerLookUpList>> getBillerLookuplist({

@@ -7,14 +7,14 @@ import 'package:domain/usecase/base/params.dart';
 
 import '../../repository/bill_payment/bill_payment_repository.dart';
 
-class AddNewPostpaidBillerUseCase extends BaseUseCase<NetworkError,
-    AddNewPostpaidBillerUseCaseParams, AddNewPostpaidBillerModel> {
+class AddNewPostpaidBillerUseCase
+    extends BaseUseCase<NetworkError, AddNewPostpaidBillerUseCaseParams, bool> {
   final BillPaymentRepository billPaymentRepository;
 
   AddNewPostpaidBillerUseCase(this.billPaymentRepository);
 
   @override
-  Future<Either<NetworkError, AddNewPostpaidBillerModel>> execute(
+  Future<Either<NetworkError, bool>> execute(
       {required AddNewPostpaidBillerUseCaseParams params}) {
     return billPaymentRepository.addNewPostpaidBiller(params: params);
   }

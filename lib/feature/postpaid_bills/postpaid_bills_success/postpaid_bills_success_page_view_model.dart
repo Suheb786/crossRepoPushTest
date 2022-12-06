@@ -38,10 +38,9 @@ class PostPaidBillsSuccessPageViewModel extends BasePageViewModel {
   PublishSubject<AddNewPostpaidBillerUseCaseParams>
       _addNewPostpaidBillerRequest = PublishSubject();
 
-  PublishSubject<Resource<AddNewPostpaidBillerModel>>
-      _addNewPostpaidBillerResponce = PublishSubject();
+  PublishSubject<Resource<bool>> _addNewPostpaidBillerResponce = PublishSubject();
 
-  Stream<Resource<AddNewPostpaidBillerModel>> get addNewPostpaidStream =>
+  Stream<Resource<bool>> get addNewPostpaidStream =>
       _addNewPostpaidBillerResponce.stream;
 
   void addNewPostpaidBiller() {

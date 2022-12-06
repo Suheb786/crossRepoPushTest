@@ -21,7 +21,7 @@ class PrePaidBillsSuccessPageView
 
   @override
   Widget build(BuildContext context, PrePaidBillsSuccessPageViewModel model) {
-    return AppStreamBuilder<Resource<AddNewPrepaidBillerModel>>(
+    return AppStreamBuilder<Resource<bool>>(
       stream: model.addNewPrepaidBillerStream,
       initialData: Resource.none(),
       onData: (event) {

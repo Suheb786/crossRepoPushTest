@@ -2674,37 +2674,37 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<AddNewPostpaidBillerEntityResponse>>
-      addNewPostpaidBillerData(addNewPostpaidBillerEntityRequest) async {
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBillerData(
+      addNewPostpaidBillerEntityRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addNewPostpaidBillerEntityRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AddNewPostpaidBillerEntityResponse>>(
+        _setStreamType<HttpResponse<BaseResponse>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BillPayment/AddNewPostpaidBiller',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AddNewPostpaidBillerEntityResponse.fromJson(_result.data!);
+    final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<AddNewPrepaidBillerEntityResponse>>
-      addNewPrepaidBillerData(addNewPrepaidBillerEntityRequest) async {
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBillerData(
+      addNewPrepaidBillerEntityRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addNewPrepaidBillerEntityRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AddNewPrepaidBillerEntityResponse>>(
+        _setStreamType<HttpResponse<BaseResponse>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BillPayment/AddNewPrepaidBiller',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AddNewPrepaidBillerEntityResponse.fromJson(_result.data!);
+    final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

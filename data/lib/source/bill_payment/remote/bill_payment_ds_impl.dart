@@ -125,7 +125,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<AddNewPostpaidBillerEntityResponse>> addNewPostpaidBiller(
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBiller(
       {required AddNewPostpaidBillerUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
@@ -168,7 +168,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<AddNewPrepaidBillerEntityResponse>> addNewPrepaidBiller(
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBiller(
       {required AddNewPrepaidBillerUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 

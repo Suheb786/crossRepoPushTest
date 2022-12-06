@@ -25,10 +25,9 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
 
   /// ---------------- Call Api AddNewPrepaidBiller -------------------- ///
 
-  PublishSubject<Resource<AddNewPrepaidBillerModel>>
-      _addNewPrepaidBillerResponce = PublishSubject();
+  PublishSubject<Resource<bool>> _addNewPrepaidBillerResponce = PublishSubject();
 
-  Stream<Resource<AddNewPrepaidBillerModel>> get addNewPrepaidBillerStream =>
+  Stream<Resource<bool>> get addNewPrepaidBillerStream =>
       _addNewPrepaidBillerResponce.stream;
 
   PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest =

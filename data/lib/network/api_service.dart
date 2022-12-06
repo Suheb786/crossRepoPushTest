@@ -909,14 +909,12 @@ abstract class ApiService {
   );
 
   @POST("/BillPayment/AddNewPostpaidBiller")
-  Future<HttpResponse<AddNewPostpaidBillerEntityResponse>>
-      addNewPostpaidBillerData(
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBillerData(
     @Body() AddNewPostpaidBillerEntityRequest addNewPostpaidBillerEntityRequest,
   );
 
   @POST("/BillPayment/AddNewPrepaidBiller")
-  Future<HttpResponse<AddNewPrepaidBillerEntityResponse>>
-      addNewPrepaidBillerData(
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBillerData(
     @Body() AddNewPrepaidBillerEntityRequest addNewPrepaidBillerEntityRequest,
   );
 
