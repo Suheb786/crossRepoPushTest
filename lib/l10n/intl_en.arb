@@ -1492,5 +1492,7 @@
   "searchCategory": "Search category",
   "noBillerFound": "No Biller Found",
   "noPrepaidCategoryFound": "No Prepaid Category Found",
-  "denomination": "Denomination"
+  "denomination": "Denomination",
+  "errorOnBillinquiry": "error on billinquiry",
+  "errorWhileAddingCustomer": "error while adding customer"
 }

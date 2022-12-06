@@ -891,6 +891,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
+        "errorOnBillinquiry":
+            MessageLookupByLibrary.simpleMessage("error on billinquiry"),
         "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
             "واجهتنا مشكلة خلال طلب البطاقة، يرجى المحاولة مرة اخرى"),
         "errorPinTranslationXCS":
@@ -915,6 +917,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحميل الصورة"),
         "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الوصول لبيانات الهوية الشخصية"),
+        "errorWhileAddingCustomer":
+            MessageLookupByLibrary.simpleMessage("error while adding customer"),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال عملية استعراض رصيد الحساب. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 06-5200100"),
         "errorWhileCheckingIDNoBlacklisted":

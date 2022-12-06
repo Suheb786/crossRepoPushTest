@@ -14709,6 +14709,26 @@ class S {
       args: [],
     );
   }
+
+  /// `error on billinquiry`
+  String get errorOnBillinquiry {
+    return Intl.message(
+      'error on billinquiry',
+      name: 'errorOnBillinquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while adding customer`
+  String get errorWhileAddingCustomer {
+    return Intl.message(
+      'error while adding customer',
+      name: 'errorWhileAddingCustomer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

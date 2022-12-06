@@ -932,6 +932,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorOnBillinquiry":
+            MessageLookupByLibrary.simpleMessage("error on billinquiry"),
         "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
             "Error while applying for physical card request"),
         "errorPinTranslationXCS":
@@ -956,6 +958,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
         "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
             "error while Accessing Id Card Data."),
+        "errorWhileAddingCustomer":
+            MessageLookupByLibrary.simpleMessage("error while adding customer"),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to get your account balance. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorWhileCheckingIDNoBlacklisted": MessageLookupByLibrary.simpleMessage(
