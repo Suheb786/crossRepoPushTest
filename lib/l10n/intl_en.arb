@@ -1497,5 +1497,7 @@
  "suspandClidId": "Suspend CliQ ID",
  "areYouSureToSuspandCliqId" : "Are you sure you want to suspend your CliQ ID?",
  "reactivateCliqId" : "Reactivate CliQ ID",
- "accountSuccessfullyUnlinked" : "Account successfully unlinked"
+ "accountSuccessfullyUnlinked" : "Account successfully unlinked",
+ "activateId" : "ActivateId"
+
 }

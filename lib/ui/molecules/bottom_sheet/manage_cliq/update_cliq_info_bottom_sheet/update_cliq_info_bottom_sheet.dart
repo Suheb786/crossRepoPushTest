@@ -12,6 +12,7 @@ class UpdateCliqInfoBottomSheet {
     Function()? onShareId,
     Function()? onSuspendId,
     Function()? onDeleteId,
+    Function()? onActivateId,
     Function()? onCancel,
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
@@ -21,6 +22,7 @@ class UpdateCliqInfoBottomSheet {
           onShareId: onShareId,
           onSuspendId: onSuspendId,
           onCancel: onCancel,
+          onActivateId: onActivateId,
           title: title);
     });
   }

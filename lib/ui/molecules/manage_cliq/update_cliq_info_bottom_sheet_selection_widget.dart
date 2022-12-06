@@ -14,7 +14,6 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
     required Function()? onSuspendId,
     required Function()? onActivatId,
     required Function()? onLinkId,
-    
     required String? title,
   }) async {
     return
@@ -31,6 +30,7 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
             onEditId: onEditId,
             onDeleteId: onDeleteId,
             onSuspendId: onSuspendId,
+            onActivateId: onActivatId,
             title: title);
   }
 }

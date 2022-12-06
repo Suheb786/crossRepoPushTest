@@ -14759,6 +14759,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ActivateId`
+  String get activateId {
+    return Intl.message(
+      'ActivateId',
+      name: 'activateId',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

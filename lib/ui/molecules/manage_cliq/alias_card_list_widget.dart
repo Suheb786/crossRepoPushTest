@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
 import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
@@ -17,7 +18,7 @@ class AliasCardList extends StatelessWidget {
   final String aliasType;
   final String status;
   final List<AccountList> accountList;
-
+  final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
   final Function()? onTapAlias;
   final Function(AccountList)? onTapAccount;
   final Resource<GetAlias>? data;
@@ -31,6 +32,7 @@ class AliasCardList extends StatelessWidget {
     required this.accountList,
     required this.onTapAlias,
     required this.onTapAccount,
+    this.cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
   }) : super(key: key);
 
   @override
@@ -78,7 +80,10 @@ class AliasCardList extends StatelessWidget {
                   Text(
                     status,
                     style: TextStyle(
-                        color: AppColor.darkModerateLimeGreen,
+                        color: cliqAliasIdStatusEnum ==
+                                CliqAliasIdStatusEnum.ACTIVE
+                            ? AppColor.darkModerateLimeGreen
+                            : AppColor.dark_orange,
                         fontFamily: StringUtils.appFont,
                         fontSize: 12.t,
                         fontWeight: FontWeight.w600),

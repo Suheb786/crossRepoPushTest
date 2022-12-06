@@ -287,7 +287,10 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                             "");
                                                                   },
                                                                   onCancelled:
-                                                                      () {},
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
                                                                   onDeleteId:
                                                                       () {
                                                                     Navigator.pop(
@@ -300,19 +303,25 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                       title: S
                                                                           .current
                                                                           .confirmDelete,
-                                                                      descriptionWidget:
-                                                                          RichText(
-                                                                              text: TextSpan(children: [
-                                                                        TextSpan(
-                                                                            text:
-                                                                                S.current.areYouSureWantToDelete),
-                                                                        TextSpan(
-                                                                            text:
-                                                                                (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""),
-                                                                        TextSpan(
-                                                                            text:
-                                                                                S.current.fromYourCliqIdList)
-                                                                      ])),
+                                                                      descriptionWidget: Text(S
+                                                                              .current
+                                                                              .areYouSureWantToDelete +
+                                                                          "${(getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""}" +
+                                                                          S.current
+                                                                              .fromYourCliqIdList),
+
+                                                                      //     RichText(
+                                                                      //         text: TextSpan(children: [
+                                                                      //   TextSpan(
+                                                                      //       text:
+                                                                      //           S.current.areYouSureWantToDelete),
+                                                                      //   TextSpan(
+                                                                      //       text:
+                                                                      //           (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""),
+                                                                      //   TextSpan(
+                                                                      //       text:
+                                                                      //           S.current.fromYourCliqIdList)
+                                                                      // ])),
 
                                                                       onSelected:
                                                                           () {

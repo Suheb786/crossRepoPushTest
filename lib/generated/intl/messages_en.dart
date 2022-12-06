@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("About freezing your card:"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will be made available to you soon"),
+        "activateId": MessageLookupByLibrary.simpleMessage("ActivateId"),
         "activatingCreditCard":
             MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
