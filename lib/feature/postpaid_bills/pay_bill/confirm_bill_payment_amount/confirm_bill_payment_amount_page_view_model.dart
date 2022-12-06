@@ -42,7 +42,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   ///get new details bill payments model
   PublishSubject<AddNewDetailsBillPaymentsModel>
-  _addNewDetailsBillPaymentsModelResponse = PublishSubject();
+      _addNewDetailsBillPaymentsModelResponse = PublishSubject();
 
   Stream<AddNewDetailsBillPaymentsModel> get getPurposeResponseStream =>
       _addNewDetailsBillPaymentsModelResponse.stream;
@@ -52,7 +52,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  late AddNewDetailsBillPaymentsModel data;
+  AddNewDetailsBillPaymentsModel data = AddNewDetailsBillPaymentsModel();
 
   setData(AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel) {
     _addNewDetailsBillPaymentsModelResponse
