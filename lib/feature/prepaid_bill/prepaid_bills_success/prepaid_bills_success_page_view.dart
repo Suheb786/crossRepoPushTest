@@ -37,7 +37,10 @@ class PrePaidBillsSuccessPageView
         return GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
-              Navigator.pop(context);
+              Navigator.of(context)
+                ..pop()
+                ..pop()
+                ..pop();
             }
           },
           child: SingleChildScrollView(
@@ -219,11 +222,10 @@ class PrePaidBillsSuccessPageView
                 GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RoutePaths.OnBoarding,
-                          ModalRoute.withName(
-                              RoutePaths.PayAllPostPaidBillsPage));
+                      Navigator.of(context)
+                        ..pop()
+                        ..pop()
+                        ..pop();
                     }
                   },
                   child: AnimatedButton(

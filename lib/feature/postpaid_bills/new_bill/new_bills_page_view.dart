@@ -18,7 +18,6 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'new_bills_page_view_model.dart';
@@ -45,30 +44,37 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                   },
                   child: Column(
                     children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 48.w),
-                            height: 50.h,
-                            decoration: BoxDecoration(
-                                color: AppColor.black,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(16),
-                                    bottomRight: Radius.circular(16))),
-                          ),
-                          Positioned(
-                              bottom: -8,
-                              child: LottieBuilder.asset(
-                                AssetUtils.swipeDownAnimation,
-                                width: 28.0.w,
-                                height: 28.0.h,
-                              )),
-                        ],
+                      GestureDetector(
+                        onVerticalDragEnd: (details) {
+                          if (details.primaryVelocity!.isNegative) {
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 48.w),
+                              height: 50.h,
+                              decoration: BoxDecoration(
+                                  color: AppColor.black,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(16),
+                                      bottomRight: Radius.circular(16))),
+                            ),
+                            Positioned(
+                                bottom: -15,
+                                child: LottieBuilder.asset(
+                                  AssetUtils.swipeDownAnimation,
+                                  width: 28.0.w,
+                                  height: 28.0.h,
+                                )),
+                          ],
+                        ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(top: 8.h),
+                        padding: EdgeInsetsDirectional.only(top: 15.h),
                         child: Text(
                           S.of(context).backToPayments,
                           style: TextStyle(

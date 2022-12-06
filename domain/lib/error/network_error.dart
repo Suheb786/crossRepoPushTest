@@ -691,23 +691,42 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_FOR_PIN_CHANGE_NI);
 
           case "err-333":
-            return AppError(cause: cause, error: error, type: ErrorType.ID_VERIFICATION_FAILED);
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ID_VERIFICATION_FAILED);
 
           case "err-337":
-            return AppError(cause: cause, error: error, type: ErrorType.PAYMENT_NOT_DONE);
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PAYMENT_NOT_DONE);
 
           case "err-338":
-            return AppError(cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
+
+          case "err-358":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NO_BILLER_FOUND);
+
+          case "err-359":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.NO_PREPAID_CATEGORY_FOUND);
 
           case "err-150":
-            return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
+            return AppError(
+                cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 
           // case "err-164":
           //   return AppError(
           //       cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
 
           case "ex-001":
-            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ADDING_USERNAME);
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_ADDING_USERNAME);
 
           case "ex-002":
             return AppError(cause: cause, error: error, type: ErrorType.REGISTRATION_PROCESS_ERROR);

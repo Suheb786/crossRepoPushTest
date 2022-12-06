@@ -92,6 +92,11 @@ class PayBillDetailPageView
                                       ProviderScope.containerOf(context)
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
+                                    } else {
+                                      model.showToastWithError(AppError(
+                                          cause: Exception(),
+                                          error: ErrorInfo(message: ''),
+                                          type: ErrorType.ENTER_BILL_DETAILS));
                                     }
                                   }
                                 } else {
@@ -100,6 +105,11 @@ class PayBillDetailPageView
                                       ProviderScope.containerOf(context)
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
+                                    } else {
+                                      model.showToastWithError(AppError(
+                                          cause: Exception(),
+                                          error: ErrorInfo(message: ''),
+                                          type: ErrorType.ENTER_BILL_DETAILS));
                                     }
                                   } else {
                                     ProviderScope.containerOf(context)

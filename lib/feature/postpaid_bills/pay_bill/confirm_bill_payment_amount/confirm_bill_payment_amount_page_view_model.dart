@@ -28,8 +28,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
-  ConfirmBillPaymentAmountPageViewModel(
-      this.validatePrePaidUseCase,
+  ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase,
       this.payPrePaidUseCase,
       this.postPaidBillInquiryUseCase,
       this.payPostPaidBillUseCase) {
@@ -39,11 +38,11 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     payPostPaidBillListener();
   }
 
-  TextEditingController amtController = TextEditingController();
+  TextEditingController amtController = TextEditingController(text: "0.0");
 
   ///get new details bill payments model
   PublishSubject<AddNewDetailsBillPaymentsModel>
-      _addNewDetailsBillPaymentsModelResponse = PublishSubject();
+  _addNewDetailsBillPaymentsModelResponse = PublishSubject();
 
   Stream<AddNewDetailsBillPaymentsModel> get getPurposeResponseStream =>
       _addNewDetailsBillPaymentsModelResponse.stream;

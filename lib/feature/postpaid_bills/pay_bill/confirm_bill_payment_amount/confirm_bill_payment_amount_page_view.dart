@@ -117,6 +117,15 @@ class ConfirmBillPaymentAmountPageView
                               initialData: AddNewDetailsBillPaymentsModel(),
                               onData: (data) {
                                 model.data = data;
+
+                                /// prepaid case where there is no denomination and amount is filled from amtcontroller form details screen
+                                if (model.data.amount != null &&
+                                    model.data.amount!.isNotEmpty) {
+                                  model.amtController.text =
+                                      double.parse(model.data.amount!)
+                                          .toStringAsFixed(3);
+                                  model.validate(model.amtController.text);
+                                }
                               },
                               dataBuilder: (context, snapshot) {
                                 return ShakeAnimatedWidget(

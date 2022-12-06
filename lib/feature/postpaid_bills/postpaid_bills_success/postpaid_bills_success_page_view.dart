@@ -35,7 +35,10 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
         return GestureDetector(
           onHorizontalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
-              Navigator.pop(context);
+              Navigator.of(context)
+                ..pop()
+                ..pop()
+                ..pop();
             }
           },
           child: SingleChildScrollView(
