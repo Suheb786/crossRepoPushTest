@@ -42,8 +42,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   double totalBillAmt = 0.0;
 
-  PayAllPostPaidBillsPageViewModel(this.getPostpaidBillerListUseCase, this.removeCustomerBillingUseCase,
-      this.postPaidBillInquiryUseCase, this.arguments) {
+  PayAllPostPaidBillsPageViewModel(
+      this.getPostpaidBillerListUseCase,
+      this.removeCustomerBillingUseCase,
+      this.postPaidBillInquiryUseCase,
+      this.arguments) {
     getPostpaidBiller();
     postPaidBillerListener();
     removeCustomerBillingListener();

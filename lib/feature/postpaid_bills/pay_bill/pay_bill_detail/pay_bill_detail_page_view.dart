@@ -92,6 +92,28 @@ class PayBillDetailPageView
                                       ProviderScope.containerOf(context)
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
+                                      ProviderScope.containerOf(context)
+                                          .read(
+                                              confirmBillPaymentAmountPageViewModelProvider)
+                                          .setData(model.setData());
+
+                                      if (AppConstantsUtils.PRE_PAID_FLOW) {
+                                        if (model.isPrepaidCategoryListEmpty ==
+                                            false) {
+                                          /// prepaid bill details inquiry
+                                          ProviderScope.containerOf(context)
+                                              .read(
+                                                  confirmBillPaymentAmountPageViewModelProvider)
+                                              .validatePrePaidBill();
+                                        }
+                                      } else if (AppConstantsUtils
+                                          .POST_PAID_FLOW) {
+                                        /// post paid bill details inquiry
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                confirmBillPaymentAmountPageViewModelProvider)
+                                            .postPaidBillInquiry();
+                                      }
                                     } else {
                                       model.showToastWithError(AppError(
                                           cause: Exception(),
@@ -105,6 +127,28 @@ class PayBillDetailPageView
                                       ProviderScope.containerOf(context)
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
+                                      ProviderScope.containerOf(context)
+                                          .read(
+                                              confirmBillPaymentAmountPageViewModelProvider)
+                                          .setData(model.setData());
+
+                                      if (AppConstantsUtils.PRE_PAID_FLOW) {
+                                        if (model.isPrepaidCategoryListEmpty ==
+                                            false) {
+                                          /// prepaid bill details inquiry
+                                          ProviderScope.containerOf(context)
+                                              .read(
+                                                  confirmBillPaymentAmountPageViewModelProvider)
+                                              .validatePrePaidBill();
+                                        }
+                                      } else if (AppConstantsUtils
+                                          .POST_PAID_FLOW) {
+                                        /// post paid bill details inquiry
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                confirmBillPaymentAmountPageViewModelProvider)
+                                            .postPaidBillInquiry();
+                                      }
                                     } else {
                                       model.showToastWithError(AppError(
                                           cause: Exception(),
@@ -409,47 +453,17 @@ class PayBillDetailPageView
   _SwipeToProceedButton() {
     return Padding(
       padding: EdgeInsets.only(top: 32.0.h),
-      child: GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {
-            ProviderScope.containerOf(context)
-                .read(payBillPageViewModelProvider)
-                .nextPage();
-            ProviderScope.containerOf(context)
-                .read(confirmBillPaymentAmountPageViewModelProvider)
-                .setData(model.setData());
-
-            if (AppConstantsUtils.PRE_PAID_FLOW) {
-              if (model.isPrepaidCategoryListEmpty == false) {
-                /// prepaid bill details inquiry
-                ProviderScope.containerOf(context)
-                    .read(confirmBillPaymentAmountPageViewModelProvider)
-                    .validatePrePaidBill();
-              }
-            } else if (AppConstantsUtils.POST_PAID_FLOW) {
-              /// post paid bill details inquiry
-              ProviderScope.containerOf(context)
-                  .read(confirmBillPaymentAmountPageViewModelProvider)
-                  .postPaidBillInquiry();
-            }
-          } else {
-            ProviderScope.containerOf(context)
-                .read(payBillPageViewModelProvider)
-                .previousPage();
-          }
-        },
-        child: AppStreamBuilder<bool>(
-            stream: model.showButtonStream,
-            initialData: false,
-            dataBuilder: (context, isValid) {
-              return Visibility(
-                visible: isValid!,
-                child: AnimatedButton(
-                  buttonText: S.of(context).swipeToProceed,
-                ),
-              );
-            }),
-      ),
+      child: AppStreamBuilder<bool>(
+          stream: model.showButtonStream,
+          initialData: false,
+          dataBuilder: (context, isValid) {
+            return Visibility(
+              visible: isValid!,
+              child: AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+              ),
+            );
+          }),
     );
   }
 
@@ -523,6 +537,8 @@ class PayBillDetailPageView
       initialData: false,
       dataBuilder: (_, isPrepaidCategoryListEmpty) {
         model.isPrepaidCategoryListEmpty = isPrepaidCategoryListEmpty!;
+        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY =
+            isPrepaidCategoryListEmpty;
         return Visibility(
           visible: !isPrepaidCategoryListEmpty,
           child: Padding(

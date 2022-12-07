@@ -52,7 +52,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  AddNewDetailsBillPaymentsModel data = AddNewDetailsBillPaymentsModel();
+  AddNewDetailsBillPaymentsModel addNewBillDetailsData =
+      AddNewDetailsBillPaymentsModel();
 
   setData(AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel) {
     _addNewDetailsBillPaymentsModelResponse
@@ -125,7 +126,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList.toSet().toList();
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
-        accountNo: data.accountNumber,
+        accountNo: addNewBillDetailsData.accountNumber,
         totalAmount: addAllBillAmt().toString(),
         currencyCode: "JOD",
         isNewBiller: false,
@@ -173,16 +174,19 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   void validatePrePaidBill() {
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
-        amount:
-            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        amount: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == true
+            ? amtController.text
+            : "",
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
-        prepaidCategoryCode: data.isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-            : "",
-        prepaidCategoryType: data.isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-            : "",
+        prepaidCategoryCode:
+            AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+                ? AppConstantsUtils.PREPAID_CATEGORY_CODE
+                : "",
+        prepaidCategoryType:
+            AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+                ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
+                : "",
         billingNumberRequired:
             AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
                     AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
@@ -224,18 +228,21 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount:
-            data.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true
+            ? amtController.text
+            : "",
         currencyCode: "JOD",
-        accountNo: data.accountNumber,
+        accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,
         isNewBiller: isNewBiller,
-        prepaidCategoryCode: data.isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-            : "",
-        prepaidCategoryType: data.isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-            : "",
+        prepaidCategoryCode:
+            addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+                ? AppConstantsUtils.PREPAID_CATEGORY_CODE
+                : "",
+        prepaidCategoryType:
+            addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+                ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
+                : "",
         billingNumberRequired:
             AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
                     AppConstantsUtils.SELECTED_BILLING_NUMBER != ""

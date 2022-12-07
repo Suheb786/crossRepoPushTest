@@ -50,4 +50,5 @@ class AppConstantsUtils {
   static String POSTPAID_KEY = "Postpaid";
   static bool PRE_PAID_FLOW = false;
   static bool POST_PAID_FLOW = false;
+  static bool IS_PRE_PAID_CATEGORY_LIST_EMPTY = true;
 }

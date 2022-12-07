@@ -42,7 +42,7 @@ class PayAllPostPaidBillsPageView
             stream: model.itemSelectedStream,
             initialData: model.payPostPaidBillsDataList,
             onData: (data) {
-              model.payPostPaidBillsDataList = data ?? [];
+              model.payPostPaidBillsDataList = data;
             },
             dataBuilder: (BuildContext context, data) {
               return GestureDetector(
@@ -101,7 +101,7 @@ class PayAllPostPaidBillsPageView
                                   padding: EdgeInsets.only(
                                       top: 24.0.h, bottom: 24.0.h),
                                   child: model.payPostPaidBillsDataList.length >
-                                          0
+                                      0
                                       ? ListView.separated(
                                           shrinkWrap: true,
                                           itemCount: model

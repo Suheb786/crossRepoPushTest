@@ -56,7 +56,7 @@ class ConfirmBillPaymentAmountPageView
                       model.postPaidBillInquiryData?[0].isPartial ?? false;
 
                   model.amtController.text = model.addAllBillAmt().toString();
-                  model.data.amount = model.amtController.text;
+                  model.addNewBillDetailsData.amount = model.amtController.text;
                   model.validate(model.amtController.text);
                 }
               },
@@ -101,7 +101,8 @@ class ConfirmBillPaymentAmountPageView
                                       ? false
                                       : true;
                               if (AppConstantsUtils.PRE_PAID_FLOW == true) {
-                                if (model.data.isPrepaidCategoryListEmpty ==
+                                if (model.addNewBillDetailsData
+                                        .isPrepaidCategoryListEmpty ==
                                     true) {
                                   model.payPrePaidBill();
                                 } else {
@@ -116,14 +117,18 @@ class ConfirmBillPaymentAmountPageView
                               stream: model.getPurposeResponseStream,
                               initialData: AddNewDetailsBillPaymentsModel(),
                               onData: (data) {
-                                model.data = data;
+                                model.addNewBillDetailsData = data;
+                                print(
+                                    "addNewBillDetailsData:${model.addNewBillDetailsData.isPrepaidCategoryListEmpty}");
 
                                 /// prepaid case where there is no denomination and amount is filled from amtcontroller form details screen
-                                if (model.data.amount != null &&
-                                    model.data.amount!.isNotEmpty) {
-                                  model.amtController.text =
-                                      double.parse(model.data.amount!)
-                                          .toStringAsFixed(3);
+                                if (model.addNewBillDetailsData.amount !=
+                                        null &&
+                                    model.addNewBillDetailsData.amount!
+                                        .isNotEmpty) {
+                                  model.amtController.text = double.parse(
+                                          model.addNewBillDetailsData.amount!)
+                                      .toStringAsFixed(3);
                                   model.validate(model.amtController.text);
                                 }
                               },
@@ -342,7 +347,7 @@ class ConfirmBillPaymentAmountPageView
                   ),
                 ),
                 Text(
-                  '${model.data.amount} JOD',
+                  '${model.addNewBillDetailsData.amount} JOD',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
@@ -416,7 +421,7 @@ class ConfirmBillPaymentAmountPageView
     return Column(
       children: [
         Text(
-          model.data.nickName ?? "",
+          model.addNewBillDetailsData.nickName ?? "",
           style: TextStyle(
             fontFamily: StringUtils.appFont,
             color: AppColor.veryDarkGray2,
@@ -425,7 +430,7 @@ class ConfirmBillPaymentAmountPageView
           ),
         ),
         Text(
-          model.data.billerName ?? '',
+          model.addNewBillDetailsData.billerName ?? '',
           style: TextStyle(
             fontFamily: StringUtils.appFont,
             color: AppColor.very_dark_gray_black,
@@ -434,7 +439,7 @@ class ConfirmBillPaymentAmountPageView
           ),
         ),
         Text(
-          model.data.service ?? "",
+          model.addNewBillDetailsData.service ?? "",
           style: TextStyle(
             fontFamily: StringUtils.appFont,
             color: AppColor.veryDarkGray2,
@@ -443,7 +448,7 @@ class ConfirmBillPaymentAmountPageView
           ),
         ),
         Text(
-          model.data.refNo ?? "",
+          model.addNewBillDetailsData.refNo ?? "",
           style: TextStyle(
             fontFamily: StringUtils.appFont,
             color: AppColor.veryDarkGray2,
@@ -466,9 +471,12 @@ class ConfirmBillPaymentAmountPageView
                 if (AppConstantsUtils.POST_PAID_FLOW) {
                   model.payPostPaidBill();
                 } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                  if (model.data.isPrepaidCategoryListEmpty == false) {
+                  if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty ==
+                      false) {
                     model.payPrePaidBill();
-                  } else if (model.data.isPrepaidCategoryListEmpty == true) {
+                  } else if (model
+                          .addNewBillDetailsData.isPrepaidCategoryListEmpty ==
+                      true) {
                     model.validatePrePaidBill();
                   }
                 }
