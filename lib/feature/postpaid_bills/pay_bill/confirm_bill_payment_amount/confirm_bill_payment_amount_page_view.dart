@@ -118,9 +118,6 @@ class ConfirmBillPaymentAmountPageView
                               initialData: AddNewDetailsBillPaymentsModel(),
                               onData: (data) {
                                 model.addNewBillDetailsData = data;
-                                print(
-                                    "addNewBillDetailsData:${model.addNewBillDetailsData.isPrepaidCategoryListEmpty}");
-
                                 /// prepaid case where there is no denomination and amount is filled from amtcontroller form details screen
                                 if (model.addNewBillDetailsData.amount !=
                                         null &&
