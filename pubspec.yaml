@@ -79,8 +79,7 @@ dependencies:
   share_plus: any
   auto_size_text: ^3.0.0
   agora_rtc_engine: ^4.0.7
-  permission_handler: ^8.1.6
-  geolocator: 7.7.0
+  permission_handler: any
   firebase_analytics: ^9.1.1
   #  package_info: ^2.0.2
   #  infobip_mobilemessaging: ^0.5.2
@@ -100,7 +99,7 @@ dependencies:
   firebase_performance: 0.7.1+1
   syncfusion_flutter_pdfviewer: any
   wakelock: ^0.6.1+2
-  flutter_inappwebview: ^5.4.3+7
+  #  flutter_inappwebview: ^5.4.3+7
   mask_text_input_formatter: ^2.4.0
   device_preview: any
   auto_size_text_field: ^1.0.1
@@ -112,7 +111,8 @@ dependencies:
 dependency_overrides:
   firebase_crashlytics_platform_interface: 3.1.13
   firebase_analytics_platform_interface: 3.0.5
-
+  geolocator: 7.7.0
+  flutter_inappwebview: 5.4.3+7
 
 dev_dependencies:
   flutter_test:
