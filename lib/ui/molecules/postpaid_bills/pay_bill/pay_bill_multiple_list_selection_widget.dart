@@ -12,7 +12,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String icon;
   final String biller;
-  final String billerName;
+  final String nickName;
   final String billAmtDue;
   final bool isSelected;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
@@ -21,7 +21,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
       {Key? key,
       required this.icon,
       required this.biller,
-      required this.billerName,
+      required this.nickName,
       required this.billAmtDue,
       required this.isSelected,
       required this.paidBillsPayTypeOptionEnum})
@@ -71,7 +71,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                     fontSize: 14.0.t),
               ),
               Text(
-                billerName,
+                nickName,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.veryDarkGray2,

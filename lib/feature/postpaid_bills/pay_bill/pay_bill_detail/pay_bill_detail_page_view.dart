@@ -528,8 +528,7 @@ class PayBillDetailPageView
           child: Padding(
             padding: EdgeInsets.only(top: 16.0.h),
             child: AppTextField(
-              labelText: "Denomination".toUpperCase(),
-              // labelText: S.of(context).denomination.toUpperCase(),
+              labelText: S.of(context).denomination.toUpperCase(),
               hintText: S.of(context).pleaseSelect,
               controller: model.denominationTextController,
               readOnly: true,

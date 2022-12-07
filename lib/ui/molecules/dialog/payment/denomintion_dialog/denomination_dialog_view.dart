@@ -110,8 +110,13 @@ class DenominationsDialogView extends StatelessWidget {
                                             builder: (BuildContext context,
                                                 int index) {
                                               return AccountSelectionWidget(
+                                                labelTitle:
+                                                    S.of(context).denomination,
                                                 label:
-                                                    getPrePaidCategoriesList![index].description ??"",
+                                                    getPrePaidCategoriesList![
+                                                                index]
+                                                            .description ??
+                                                        "",
                                                 textColor: currentIndex == index
                                                     ? Theme.of(context)
                                                         .primaryColorDark

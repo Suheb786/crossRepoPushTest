@@ -25,13 +25,16 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   final TextEditingController searchBillController = TextEditingController();
   List<GetPostpaidBillerListModelData> payPostPaidBillsDataList = [];
+  List<GetPostpaidBillerListModelData> fList = [];
   List<GetPostpaidBillerListModelData> selectedPostPaidBillsList = [];
   List<PostpaidBillInquiry> postPaidRequestListJson = [];
   List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
 
-  PublishSubject<List<GetPostpaidBillerListModelData>> _itemSelectedSubject = PublishSubject();
+  PublishSubject<List<GetPostpaidBillerListModelData>> _itemSelectedSubject =
+      PublishSubject();
 
-  Stream<List<GetPostpaidBillerListModelData>> get itemSelectedStream => _itemSelectedSubject.stream;
+  Stream<List<GetPostpaidBillerListModelData>> get itemSelectedStream =>
+      _itemSelectedSubject.stream;
 
   BehaviorSubject<double> _totalBillAmtDueSubject = BehaviorSubject();
 
@@ -131,10 +134,20 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }*/
 
   /// ---------------- Call Api GetPostpaidBillerList -------------------------------- ///
-  BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest = BehaviorSubject();
-  PublishSubject<Resource<GetPostpaidBillerListModel>> _postpaidBillerResponse = PublishSubject();
+  BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest =
+      BehaviorSubject();
+  BehaviorSubject<Resource<GetPostpaidBillerListModel>>
+      _postpaidBillerResponse = BehaviorSubject();
 
-  Stream<Resource<GetPostpaidBillerListModel>> get postpaidBillerStream => _postpaidBillerResponse.stream;
+  ////search list
+  PublishSubject<Resource<List<GetPostpaidBillerListModelData>?>>
+      _searchPostpaidBillerResponse = PublishSubject();
+
+  Stream<Resource<List<GetPostpaidBillerListModelData>?>>
+      get searchPostpaidBillerStream => _searchPostpaidBillerResponse.stream;
+
+  Stream<Resource<GetPostpaidBillerListModel>> get postpaidBillerStream =>
+      _postpaidBillerResponse.stream;
 
   void getPostpaidBiller() {
     _postpaidBillerRequest.safeAdd(GetPostpaidBillerListUseCaseParams());
@@ -152,9 +165,13 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            payPostPaidBillsDataList =
-                event.data?.getPostpaidBillerListContent?.getPostpaidBillerListData ?? [];
+            payPostPaidBillsDataList = event.data?.getPostpaidBillerListContent
+                    ?.getPostpaidBillerListData ??
+                [];
             _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
+            _searchPostpaidBillerResponse.safeAdd(Resource.success(
+                data: event.data?.getPostpaidBillerListContent
+                    ?.getPostpaidBillerListData));
             postPaidRequestJsonListMethod();
           }
         });
@@ -254,11 +271,36 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  void removeCustomerBilling(String? billerCode, String? billingNo, String? serviceType) {
+  void removeCustomerBilling(
+      String? billerCode, String? billingNo, String? serviceType) {
     _removeCustomerBillingRequest.safeAdd(
       RemoveCustomerBillingUseCaseParams(
-          billerCode: billerCode, billingNo: billingNo, serviceType: serviceType),
+          billerCode: billerCode,
+          billingNo: billingNo,
+          serviceType: serviceType),
     );
+  }
+
+  void searchPostPaidBillerList(String? searchText) {
+    fList.clear();
+    List<GetPostpaidBillerListModelData>? getPostpaidBillerList =
+        _postpaidBillerResponse.value.data?.getPostpaidBillerListContent
+            ?.getPostpaidBillerListData;
+    if (searchText!.isNotEmpty) {
+      for (int i = 0; i < getPostpaidBillerList!.length; i++) {
+        GetPostpaidBillerListModelData item = getPostpaidBillerList[i];
+        if (item.nickName != null) {
+          if (item.nickName!.toLowerCase().contains(searchText.toLowerCase())) {
+            fList.add(item);
+          }
+        }
+      }
+      _searchPostpaidBillerResponse.safeAdd(Resource.success(data: fList));
+    } else {
+      _searchPostpaidBillerResponse.safeAdd(Resource.success(
+          data: _postpaidBillerResponse.value.data?.getPostpaidBillerListContent
+              ?.getPostpaidBillerListData));
+    }
   }
 
   @override

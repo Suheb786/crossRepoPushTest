@@ -96,24 +96,24 @@ class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
   @override
   GetPostpaidBillerListModelData transform() {
     return GetPostpaidBillerListModelData(
-      joebppsNo: this.joebppsNo,
-      customerId: this.customerId,
-      billerCode: this.billerCode,
-      billingNo: this.billingNo,
-      serviceType: this.serviceType,
-      billingStatus: this.billingStatus,
-      nickName: this.nickName,
-      billerNameEN: this.billerNameEN,
-      billerNameAR: this.billerNameAR,
-      billerCatogaryEN: this.billerCatogaryEN,
-      billerCatogaryAR: this.billerCatogaryAR,
-      serviceTypeDescEN: this.serviceTypeDescEN,
-      serviceTypeAR: this.serviceTypeAR,
+      joebppsNo: this.joebppsNo ?? "",
+      customerId: this.customerId ?? "",
+      billerCode: this.billerCode ?? "",
+      billingNo: this.billingNo ?? "",
+      serviceType: this.serviceType ?? "",
+      billingStatus: this.billingStatus ?? "",
+      nickName: this.nickName ?? "",
+      billerNameEN: this.billerNameEN ?? "",
+      billerNameAR: this.billerNameAR ?? "",
+      billerCatogaryEN: this.billerCatogaryEN ?? "",
+      billerCatogaryAR: this.billerCatogaryAR ?? "",
+      serviceTypeDescEN: this.serviceTypeDescEN ?? "",
+      serviceTypeAR: this.serviceTypeAR ?? "",
       dueAmount: this.dueAmount ?? "0",
       dueDate: this.dueDate ?? "0.0",
       fees: this.fees ?? "0.0",
       status: this.status,
-      iconCode: this.iconCode,
+      iconCode: this.iconCode ?? "",
     );
   }
 }
