@@ -32,7 +32,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   PaySelectedBillsPostPaidBillsPageViewModel(this.postPaidBillInquiryUseCase,
       this.payPostPaidBillUseCase, this.arguments) {
-    postPaidBillInquiryListener();
+    Future.delayed(Duration(milliseconds: 10))
+        .then((value) => postpaidInquiryDataListener());
+    // postPaidBillInquiryListener();
     payPostPaidBillListener();
   }
 
@@ -44,6 +46,18 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     });
     return totalBillAmt;
+  }
+
+  ///post paid data from allpostpaidbillsscreen
+
+  BehaviorSubject<List<PostPaidBillInquiryData>>
+      _postPaidBillEnquiryListResponse = BehaviorSubject();
+
+  Stream<List<PostPaidBillInquiryData>> get postPaidBillEnquiryListStream =>
+      _postPaidBillEnquiryListResponse.stream;
+
+  postpaidInquiryDataListener() {
+    _postPaidBillEnquiryListResponse.safeAdd(arguments.postPaidBillInquiryData);
   }
 
   /// ---------------- post paid bill enquiry -------------------------------- ///
@@ -189,19 +203,17 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerNameEN(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == "111" || item.billingNo == "55")
-        // if (item.billingNo == billingNumber )
+      if (item.billingNo == billingNumber)
         return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
             ? item.billerNameEN
-            : "null";
+            : "";
     }
   }
 
   getValidBillerNickName(String? billingNumber, {String? nickName}) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == "111" || item.billingNo == "55")
-        // if (item.billingNo == billingNumber )
-        return nickName != null && nickName.isNotEmpty ? nickName : "null";
+      if (item.billingNo == billingNumber)
+        return nickName != null && nickName.isNotEmpty ? nickName : "";
     }
   }
 
@@ -216,20 +228,18 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerDueAmount(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == "111" || item.billingNo == "55")
-        // if (item.billingNo == billingNumber )
+      if (item.billingNo == billingNumber)
         return item.dueAmount != null && item.dueAmount!.isNotEmpty
-            ? item.dueAmount
+            ? double.parse(item.dueAmount ?? "0").toStringAsFixed(3)
             : "0.0";
   }
 
   getValidBillerBillingNumber(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == "111" || item.billingNo == "55")
-        // if (item.billingNo == billingNumber )
+      if (item.billingNo == billingNumber)
         return item.billingNo != null && item.billingNo!.isNotEmpty
             ? item.billingNo
-            : "null";
+            : "";
   }
 
   /// button subject

@@ -347,7 +347,7 @@ class PayMyPrePaidBillsPageView
       BuildContext context, PayMyPrePaidBillsPageViewModel model) {
     DenominationsDialog.show(context,
         getPrePaidCategoriesList: model.getPrepaidCategoriesModelData,
-        label: S.of(context).selectAccount,
+        label: S.of(context).denomination,
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE,
         onDismissed: () => Navigator.pop(context),

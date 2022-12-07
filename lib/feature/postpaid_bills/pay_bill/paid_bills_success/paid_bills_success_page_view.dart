@@ -65,7 +65,7 @@ class PaidBillsSuccessPageView
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                text: model.arguments.amt,
+                text: '${double.parse(model.arguments.amt).toStringAsFixed(3)}',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,

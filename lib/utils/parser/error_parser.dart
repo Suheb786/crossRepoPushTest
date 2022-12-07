@@ -1108,11 +1108,11 @@ class ErrorParser {
       case ErrorType.NO_TICKETS_FOUND:
         return localisedHelper.noTicketsFound;
       case ErrorType.NO_BILLER_FOUND:
-        return "No Biller Found";
-      // return localisedHelper.noTicketsFound;
+        return localisedHelper.noTicketsFound;
       case ErrorType.NO_PREPAID_CATEGORY_FOUND:
-        return "No Prepaid Category Found";
-      // return localisedHelper.noTicketsFound;
+        return localisedHelper.noPrepaidCategoryFound;
+      case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
+        return "insufficient funds bill cannot be payed";
 
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;

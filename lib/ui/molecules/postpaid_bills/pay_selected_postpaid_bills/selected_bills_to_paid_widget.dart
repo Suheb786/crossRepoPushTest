@@ -40,7 +40,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       onModelReady: (model) {
         model.amtController.text =
             this.billAmtDue != null && this.billAmtDue!.isNotEmpty
-                ? this.billAmtDue ?? "0.0"
+                ? double.parse(this.billAmtDue ?? "0.0").toStringAsFixed(3)
                 : "0.0";
       },
       builder: (BuildContext context, model, child) {
@@ -50,7 +50,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                flex: 3,
+                flex: 2,
                 child: Row(
                   children: [
                     Container(
@@ -108,7 +108,11 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(
+                          width: 10.0.w,
+                        ),
                         Expanded(
                           child: AutoSizeTextField(
                             wrapWords: false,

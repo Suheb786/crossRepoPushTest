@@ -25,8 +25,8 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
   bool? success;
   @JsonKey(name: "message")
   dynamic message;
-  @JsonKey(name: "IsPartial")
-  bool? IsPartial;
+  @JsonKey(name: "isPartial")
+  bool? isPartial;
 
   PostPaidBillInquiryEntity({
     this.serviceType,
@@ -38,7 +38,7 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
     this.dueAmount,
     this.dueDate,
     this.feesAmt,
-    this.IsPartial,
+    this.isPartial,
   });
 
   factory PostPaidBillInquiryEntity.fromJson(Map<String, dynamic> json) =>
@@ -63,6 +63,6 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
         feesAmt: this.feesAmt ?? "0",
         serviceType: this.serviceType ?? "",
         success: this.success ?? false,
-        IsPartial: this.IsPartial ?? false);
+        isPartial: this.isPartial ?? false);
   }
 }

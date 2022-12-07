@@ -53,7 +53,7 @@ class ConfirmBillPaymentAmountPageView
                   model.postPaidBillInquiryData =
                       data.data?.content?.postPaidBillInquiryData;
                   model.isPartial =
-                      model.postPaidBillInquiryData?[0].IsPartial ?? false;
+                      model.postPaidBillInquiryData?[0].isPartial ?? false;
 
                   model.amtController.text = model.addAllBillAmt().toString();
                   model.data.amount = model.amtController.text;

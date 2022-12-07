@@ -9,7 +9,7 @@ class PostPaidBillInquiryData {
     this.feesAmt,
     this.success,
     this.message,
-    this.IsPartial,
+    this.isPartial,
   });
 
   String? billerCode;
@@ -21,5 +21,5 @@ class PostPaidBillInquiryData {
   String? feesAmt;
   bool? success;
   dynamic message;
-  bool? IsPartial;
+  bool? isPartial;
 }

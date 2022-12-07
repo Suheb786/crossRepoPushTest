@@ -84,13 +84,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                 payPostPaidBillsDataList[index].dueAmount!.isNotEmpty ||
             payPostPaidBillsDataList[index].dueAmount != null &&
                 payPostPaidBillsDataList[index].dueAmount == "0") {
-          postPaidBillInquiry([
-            PostpaidBillInquiry(
-              billerCode: payPostPaidBillsDataList[index].billerCode,
-              serviceType: payPostPaidBillsDataList[index].serviceType,
-              billingNumber: payPostPaidBillsDataList[index].billingNo,
-            )
-          ]);
+          postPaidBillInquiry(postPaidRequestListJson);
         }
       }
     }
@@ -194,8 +188,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            if (selectedIndex < 0) {
-              postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
+            // if (selectedIndex < 0) {
+            postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
               totalBillAmt = 0.0;
 
               for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
@@ -215,12 +209,12 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                   }
                 }
               }
-            } else {
+              /*  } else {
               postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
 
               payPostPaidBillsDataList[selectedIndex].dueAmount =
                   event.data?.content?.postPaidBillInquiryData?[0].dueAmount;
-            }
+            }*/
 
             addAllBillAmt();
             _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);

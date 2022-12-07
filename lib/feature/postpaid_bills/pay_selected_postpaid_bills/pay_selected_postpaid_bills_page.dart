@@ -42,6 +42,7 @@ class PaySelectedBillsPostPaidBillsPageState extends BaseStatefulPage<
   @override
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
     // model.postPaidBillInquiry();
+
     model.totalAmount = "0.0";
     model.validate();
     super.onModelReady(model);

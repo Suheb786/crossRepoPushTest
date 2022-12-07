@@ -22,8 +22,8 @@ class PostPaidBillsSuccessPageViewModel extends BasePageViewModel {
     _addNewPostpaidBillerListener();
   }
 
-  addAllBillAmt() {
-    var totalBillAmt = 0.0;
+  double addAllBillAmt() {
+    double totalBillAmt = 0.0;
     if (arguments.billerList == null || arguments.billerList!.isEmpty)
       return totalBillAmt;
 

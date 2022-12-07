@@ -79,7 +79,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                    text: model.addAllBillAmt().toString(),
+                    text: model.addAllBillAmt().toStringAsFixed(3),
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: AppColor.white,
@@ -174,28 +174,33 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${model.arguments.billerList?[index].totalAmount} ${S.of(context).JOD} ',
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.0.t),
-                                    ),
-                                    Text(
-                                      model.arguments.billerList?[index]
-                                              .refNo ??
-                                          "",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.gray5,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.0.t),
-                                    ),
-                                  ],
+                                SizedBox(
+                                  width: 10.0.w,
+                                ),
+                                Flexible(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        '${double.parse(model.arguments.billerList?[index].totalAmount ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.black,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12.0.t),
+                                      ),
+                                      Text(
+                                        model.arguments.billerList?[index]
+                                                .refNo ??
+                                            "",
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.gray5,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12.0.t),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

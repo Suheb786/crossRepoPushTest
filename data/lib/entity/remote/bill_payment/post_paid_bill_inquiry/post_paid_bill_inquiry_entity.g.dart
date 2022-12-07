@@ -20,7 +20,7 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
         ? null
         : DateTime.parse(json['dueDate'] as String),
     feesAmt: json['feesAmt'] as String?,
-    IsPartial: json['IsPartial'] as bool?,
+    isPartial: json['isPartial'] as bool?,
   );
 }
 
@@ -36,5 +36,5 @@ Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
       'feesAmt': instance.feesAmt,
       'success': instance.success,
       'message': instance.message,
-      'IsPartial': instance.IsPartial,
+      'isPartial': instance.isPartial,
     };

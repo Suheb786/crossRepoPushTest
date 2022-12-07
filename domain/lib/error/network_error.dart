@@ -1244,6 +1244,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_ADDING_CUSTOMER);
 
+          case "err-362":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
+
           case "err-150":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
