@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 
@@ -47,16 +48,19 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           onLoadStart: (controller, url) {
             debugPrint('-----onload start ---->${url}');
           },
-          onLoadStop: (controller, url) {
+          onLoadStop: (controller, url) async {
             debugPrint('-----onload stop ---->${url}');
             debugPrint('-----onload path ---->${url?.path}');
-            if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
-              debugPrint('------RJ DETAILS----');
-              debugPrint('-----onload path ---->${url}');
-              String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-              Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                  arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
-              debugPrint('------RJ DETAILS----');
+            if (model.rjBookingPageArguments.webViewRoute == WebViewRoute.bookingDialog) {
+              if ((url?.path ?? '').contains('/RJFlightConfirmation/Index')) {
+                debugPrint('------RJ DETAILS----');
+                debugPrint('-----onload path ---->${url}');
+                String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+                await Future.delayed(Duration(seconds: 5));
+                Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                    arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+                debugPrint('------RJ DETAILS----');
+              }
             }
           },
         ),

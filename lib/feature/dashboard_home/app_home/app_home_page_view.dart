@@ -47,7 +47,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  if (!(data.data?.isRJPopUPClicked ?? false)) {
+                  if (!(data.data?.isRJPopUPClicked ?? false) &&
+                      (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
                     RjDialog.show(context, image: AssetUtils.flight, title: S.of(context).bookFligtWithUs,
                         onDismissed: () {
                       Navigator.pop(context);

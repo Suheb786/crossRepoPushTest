@@ -6,13 +6,13 @@ part "flight_details_entity.g.dart";
 
 @JsonSerializable()
 class FlightDetailsEntity implements BaseLayerDataTransformer<FlightDetailsEntity, FlightDetails> {
-  @JsonKey(name: "flightNumber")
+  @JsonKey(name: "FlightNumber")
   final String? flightNumber;
-  @JsonKey(name: "origin")
+  @JsonKey(name: "Origin")
   final String? origin;
-  @JsonKey(name: "destination")
+  @JsonKey(name: "Destination")
   final String? destination;
-  @JsonKey(name: "flightDate")
+  @JsonKey(name: "FlightDate")
   final String? flightDate;
 
   FlightDetailsEntity({this.flightNumber, this.origin, this.destination, this.flightDate});

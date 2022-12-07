@@ -1,16 +1,23 @@
+import 'package:domain/constants/enum/flight_type_enum.dart';
 import 'package:domain/model/rj/get_flight_detail/flight_details.dart';
 
 class FlightDetailContent {
-  num? paymentAmount;
+  String? paymentAmount;
   String? paymentCurrency;
   String? requestReference;
   String? customerReference;
   List<FlightDetails>? flightDetails;
   String? confirmationUrl;
   String? cancellationUrl;
+  final FlightTypeEnum? flightType;
+  final String? paymentRequestId;
+  final String? createdOn;
 
   FlightDetailContent(
-      {this.paymentAmount,
+      {this.flightType,
+      this.paymentRequestId,
+      this.createdOn,
+      this.paymentAmount,
       this.paymentCurrency,
       this.requestReference,
       this.customerReference,

@@ -8,6 +8,9 @@ part of 'flight_details_content_entity.dart';
 
 FlightDetailsContentEntity _$FlightDetailsContentEntityFromJson(Map<String, dynamic> json) {
   return FlightDetailsContentEntity(
+    flightType: json['flightType'] as String?,
+    paymentRequestId: json['paymentRequestId'] as String?,
+    createdOn: json['createdOn'] as String?,
     paymentAmount: json['paymentAmount'] as num?,
     paymentCurrency: json['paymentCurrency'] as String?,
     requestReference: json['requestReference'] as String?,
@@ -29,4 +32,7 @@ Map<String, dynamic> _$FlightDetailsContentEntityToJson(FlightDetailsContentEnti
       'flightDetails': instance.flightDetails,
       'confirmationUrl': instance.confirmationUrl,
       'cancellationUrl': instance.cancellationUrl,
+      'flightType': instance.flightType,
+      'paymentRequestId': instance.paymentRequestId,
+      'createdOn': instance.createdOn,
     };

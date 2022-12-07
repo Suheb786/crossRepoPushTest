@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/rj/get_flight_details/flight_details_entity.dart';
+import 'package:domain/constants/enum/flight_type_enum.dart';
 import 'package:domain/model/rj/get_flight_detail/flight_detail_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -22,9 +23,18 @@ class FlightDetailsContentEntity
   final String? confirmationUrl;
   @JsonKey(name: "cancellationUrl")
   final String? cancellationUrl;
+  @JsonKey(name: "flightType")
+  final String? flightType;
+  @JsonKey(name: "paymentRequestId")
+  final String? paymentRequestId;
+  @JsonKey(name: "createdOn")
+  final String? createdOn;
 
   FlightDetailsContentEntity(
-      {this.paymentAmount,
+      {this.flightType,
+      this.paymentRequestId,
+      this.createdOn,
+      this.paymentAmount,
       this.paymentCurrency,
       this.requestReference,
       this.customerReference,
@@ -48,9 +58,12 @@ class FlightDetailsContentEntity
         cancellationUrl: this.cancellationUrl ?? '',
         confirmationUrl: this.cancellationUrl ?? '',
         customerReference: this.customerReference ?? '',
-        paymentAmount: this.paymentAmount ?? 0.0,
+        paymentAmount: (this.paymentAmount ?? 0.0).toStringAsFixed(3),
         requestReference: this.requestReference ?? '',
         paymentCurrency: this.paymentCurrency ?? '',
+        flightType: this.flightType?.fromFlightTypeValue(),
+        createdOn: this.createdOn ?? '',
+        paymentRequestId: this.paymentRequestId ?? '',
         flightDetails: this.flightDetails?.map((e) => e.transform()).toList());
   }
 }

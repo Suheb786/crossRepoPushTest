@@ -33,8 +33,11 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                      arguments: RjBookingPurchasePageArgument('1111111'));
+                  Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                      arguments: RjBookingPurchasePageArgument(
+                          flightDetailResponse: ProviderScope.containerOf(context)
+                              .read(rjFlightBookingDetailViewModelProvider)
+                              .flightDetailResponse));
                 }
               },
               dataBuilder: (context, data) {
@@ -60,7 +63,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                           } else {
                             model.makeTicketPayment(
                               accountNo: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
+                                      .read(rjFlightBookingDetailViewModelProvider)
                                       .selectedCard
                                       ?.cardNo ??
                                   '',
@@ -70,10 +73,13 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       .arguments
                                       ?.referenceNumber ??
                                   '',
-                              amount: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.amt ??
+                              amount: (ProviderScope.containerOf(context)
+                                              .read(rjFlightBookingDetailViewModelProvider)
+                                              .flightDetailResponse
+                                              .flightDetailContent
+                                              ?.paymentAmount ??
+                                          '')
+                                      .toString() ??
                                   '',
                             );
                           }
@@ -81,7 +87,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                           if (details.primaryVelocity!.isNegative) {
                             model.makeTicketPayment(
                               accountNo: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
+                                      .read(rjFlightBookingDetailViewModelProvider)
                                       .selectedCard
                                       ?.cardNo ??
                                   '',
@@ -91,10 +97,13 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       .arguments
                                       ?.referenceNumber ??
                                   '',
-                              amount: ProviderScope.containerOf(context)
-                                      .read(rjMakePaymentViewModelProvider)
-                                      .selectedCard
-                                      ?.amt ??
+                              amount: (ProviderScope.containerOf(context)
+                                              .read(rjFlightBookingDetailViewModelProvider)
+                                              .flightDetailResponse
+                                              .flightDetailContent
+                                              ?.paymentAmount ??
+                                          '')
+                                      .toString() ??
                                   '',
                             );
                           } else {

@@ -8,16 +8,16 @@ part of 'flight_details_entity.dart';
 
 FlightDetailsEntity _$FlightDetailsEntityFromJson(Map<String, dynamic> json) {
   return FlightDetailsEntity(
-    flightNumber: json['flightNumber'] as String?,
-    origin: json['origin'] as String?,
-    destination: json['destination'] as String?,
-    flightDate: json['flightDate'] as String?,
+    flightNumber: json['FlightNumber'] as String?,
+    origin: json['Origin'] as String?,
+    destination: json['Destination'] as String?,
+    flightDate: json['FlightDate'] as String?,
   );
 }
 
 Map<String, dynamic> _$FlightDetailsEntityToJson(FlightDetailsEntity instance) => <String, dynamic>{
-      'flightNumber': instance.flightNumber,
-      'origin': instance.origin,
-      'destination': instance.destination,
-      'flightDate': instance.flightDate,
+      'FlightNumber': instance.flightNumber,
+      'Origin': instance.origin,
+      'Destination': instance.destination,
+      'FlightDate': instance.flightDate,
     };

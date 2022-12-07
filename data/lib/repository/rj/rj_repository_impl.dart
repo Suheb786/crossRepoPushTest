@@ -3,6 +3,7 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/rj/rj_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/rj/destination_response.dart';
+import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/usecase/rj/get_destination_usecase.dart';
@@ -51,13 +52,14 @@ class RJRepositoryImpl extends RJRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getFlightDetails({required String referenceNumber}) async {
+  Future<Either<NetworkError, FlightDetailResponse>> getFlightDetails(
+      {required String referenceNumber}) async {
     final result = await safeApiCall(
       _rjRemoteDS.getFlightDetails(referenceNumber: referenceNumber),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
