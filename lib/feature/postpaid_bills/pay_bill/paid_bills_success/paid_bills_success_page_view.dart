@@ -170,28 +170,28 @@ class PaidBillsSuccessPageView
                 ),
               )),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 32.0.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppSvg.asset(AssetUtils.share,
-                      color: AppColor.light_acccent_blue),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  Text(
-                    S.of(context).shareMyReceipt,
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.light_acccent_blue,
-                      fontSize: 14.t,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(top: 32.0.h),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       AppSvg.asset(AssetUtils.share,
+            //           color: AppColor.light_acccent_blue),
+            //       SizedBox(
+            //         width: 8.w,
+            //       ),
+            //       Text(
+            //         S.of(context).shareMyReceipt,
+            //         style: TextStyle(
+            //           fontFamily: StringUtils.appFont,
+            //           fontWeight: FontWeight.w600,
+            //           color: AppColor.light_acccent_blue,
+            //           fontSize: 14.t,
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
             SizedBox(
               height: 166.h,
             ),

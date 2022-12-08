@@ -254,8 +254,8 @@ PODS:
     - AFNetworking
     - Flutter
     - InfobipRTC
-  - InfobipRTC (1.5.10):
-    - IBGoogleWebRTC (~> 1.0.37785)
+  - InfobipRTC (1.4.31):
+    - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
   - MobileMessaging/Core (9.2.11)
@@ -508,7 +508,7 @@ SPEC CHECKSUMS:
   image_picker: 541dcbb3b9cf32d87eacbd957845d8651d6c62c3
   infobip_mobilemessaging: eb1cab90dcea9199c25769e4653b957416e179c3
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
-  InfobipRTC: a18ae8253daf296de826617a1458ec0c5c25c260
+  InfobipRTC: 9ed1698add5d74133c57e30dd25117fd0c7c8d69
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
