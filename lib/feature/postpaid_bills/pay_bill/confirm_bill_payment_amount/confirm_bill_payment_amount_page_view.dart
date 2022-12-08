@@ -227,7 +227,7 @@ class ConfirmBillPaymentAmountPageView
   _cardWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15.0.w, horizontal: 15.0.h),
+      padding: EdgeInsets.symmetric(vertical: 5.0.w, horizontal: 5.0.h),
       child: Card(
         margin: EdgeInsets.zero,
         child: Container(
