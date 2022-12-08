@@ -8,12 +8,15 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PrePaidBillsSuccessPageView
     extends BasePageViewWidget<PrePaidBillsSuccessPageViewModel> {
@@ -192,28 +195,33 @@ class PrePaidBillsSuccessPageView
                     ),
                   )),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(top: 32.0.h),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       AppSvg.asset(AssetUtils.share,
-                //           color: AppColor.light_acccent_blue),
-                //       SizedBox(
-                //         width: 8.w,
-                //       ),
-                //       Text(
-                //         S.of(context).shareMyReceipt,
-                //         style: TextStyle(
-                //           fontFamily: StringUtils.appFont,
-                //           fontWeight: FontWeight.w600,
-                //           color: AppColor.light_acccent_blue,
-                //           fontSize: 14.t,
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: EdgeInsets.only(top: 32.0.h),
+                  child: GestureDetector(
+                    onTap: () {
+                      _shareDetails(context, model);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppSvg.asset(AssetUtils.share,
+                            color: AppColor.light_acccent_blue),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        Text(
+                          S.of(context).shareMyReceipt,
+                          style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.light_acccent_blue,
+                            fontSize: 14.t,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 166.h,
                 ),
@@ -255,6 +263,22 @@ class PrePaidBillsSuccessPageView
           ),
         );
       },
+    );
+  }
+
+  void _shareDetails(
+      BuildContext context, PrePaidBillsSuccessPageViewModel model) {
+    Share.share(
+      ShareInfo.newPostPaidSuccess(
+        context,
+        refNo: model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
+        billerName: model.arguments.paidBillContent.paidBill?[0].billName ?? "",
+        amount:
+            '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount).toStringAsFixed(3)}',
+        nickName:
+            AppConstantsUtils.IS_NEW_PAYMENT ? AppConstantsUtils.NICK_NAME : "",
+      ),
+      subject: S.of(context).billDetails,
     );
   }
 }

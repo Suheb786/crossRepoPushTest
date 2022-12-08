@@ -163,47 +163,42 @@ class PayBillDetailPageView
                                 }
                               }
                             },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 15.0.w, horizontal: 15.0.h),
-                              child: Card(
-                                //  clipBehavior: Clip.antiAlias,
-                                margin: EdgeInsets.zero,
-                                child: FadingEdgeScrollView
-                                    .fromSingleChildScrollView(
-                                  gradientFractionOnEnd: 0.2,
-                                  gradientFractionOnStart: 0.2,
-                                  child: SingleChildScrollView(
-                                    controller: model.controller,
-                                    child: AppStreamBuilder<bool>(
-                                      initialData: false,
-                                      stream: model.totalBillAmtDueStream,
-                                      dataBuilder: (BuildContext context,
-                                          isSwitchActive) {
-                                        return Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 32.h, horizontal: 24.w),
-                                          child: Column(children: [
-                                            _billDetailsTitle(),
-                                            _billerCategoryTitleWidget(),
-                                            _billerNameAppTextField(),
-                                            _servicesAppTextField(),
-                                            _billingNumberTypeTextField(
-                                                context),
-                                            _ShowDenomination(),
-                                            _showAmountForPrepaid(),
-                                            // _refNoAppTextField(),
-                                            _payFromAppTextField(),
-                                            _addThisBillerSwitch(
-                                                context, isSwitchActive),
-                                            _nickNameAppTextField(
-                                                context, isSwitchActive),
-                                            _SwipeToProceedButton(),
-                                            _backToPaymentsButton()
-                                          ]),
-                                        );
-                                      },
-                                    ),
+                            child: Card(
+                              //  clipBehavior: Clip.antiAlias,
+                              margin: EdgeInsets.zero,
+                              child: FadingEdgeScrollView
+                                  .fromSingleChildScrollView(
+                                gradientFractionOnEnd: 0.2,
+                                gradientFractionOnStart: 0.2,
+                                child: SingleChildScrollView(
+                                  controller: model.controller,
+                                  child: AppStreamBuilder<bool>(
+                                    initialData: false,
+                                    stream: model.totalBillAmtDueStream,
+                                    dataBuilder:
+                                        (BuildContext context, isSwitchActive) {
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 32.h, horizontal: 24.w),
+                                        child: Column(children: [
+                                          _billDetailsTitle(),
+                                          _billerCategoryTitleWidget(),
+                                          _billerNameAppTextField(),
+                                          _servicesAppTextField(),
+                                          _billingNumberTypeTextField(context),
+                                          _ShowDenomination(),
+                                          _showAmountForPrepaid(),
+                                          // _refNoAppTextField(),
+                                          _payFromAppTextField(),
+                                          _addThisBillerSwitch(
+                                              context, isSwitchActive),
+                                          _nickNameAppTextField(
+                                              context, isSwitchActive),
+                                          _SwipeToProceedButton(),
+                                          _backToPaymentsButton()
+                                        ]),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
@@ -357,7 +352,7 @@ class PayBillDetailPageView
       padding: EdgeInsets.only(top: 16.0.h),
       child: AppTextField(
         labelText: S.of(context).payFrom.toUpperCase(),
-        hintText: S.of(context).searchBill,
+        hintText: "",
         controller: model.payFromController,
         readOnly: true,
         onChanged: (val) {
@@ -407,24 +402,28 @@ class PayBillDetailPageView
                     color: AppColor.gray_black)),
           ),
           FlutterSwitch(
-              height: 40.h,
-              width: 70.w,
-              padding: 8,
-              activeTextFontWeight: FontWeight.w500,
-              showOnOff: true,
-              valueFontSize: 10.t,
-              inactiveColor: AppColor.gray1,
-              activeColor: AppColor.brightBlue,
-              activeText: S.of(context).yes.toUpperCase(),
-              inactiveText: S.of(context).no.toUpperCase(),
-              activeTextColor: AppColor.white,
-              inactiveTextColor: AppColor.darkGray,
-              value: isSwitchActive ?? false,
-              onToggle: (isActive) {
-                model.addThisBillerToSaveList(isActive);
-
-                model.switchStatus(isActive);
-              })
+            value: isSwitchActive ?? false,
+            onToggle: (isActive) {
+              model.addThisBillerToSaveList(isActive);
+              model.switchStatus(isActive);
+            },
+            width: 70.w,
+            height: 40.h,
+            padding: 8,
+            activeText: S.of(context).yes.toUpperCase(),
+            activeTextColor: AppColor.white,
+            inactiveTextColor: AppColor.darkGray,
+            activeTextFontWeight: FontWeight.w500,
+            showOnOff: true,
+            valueFontSize: 10.t,
+            activeToggleColor: AppColor.white,
+            inactiveText: S.of(context).no.toUpperCase(),
+            inactiveToggleColor: AppColor.lightGrayishMagenta,
+            inactiveTextFontWeight: FontWeight.w500,
+            inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+            activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+            inactiveColor: Theme.of(context).accentColor,
+          )
         ],
       ),
     );

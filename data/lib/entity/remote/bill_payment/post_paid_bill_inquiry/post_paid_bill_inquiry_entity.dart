@@ -14,7 +14,7 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "billNo")
   String? billNo;
   @JsonKey(name: "dueDate")
-  DateTime? dueDate;
+  String? dueDate;
   @JsonKey(name: "serviceType")
   String? serviceType;
   @JsonKey(name: "dueAmount")
@@ -54,14 +54,29 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
   @override
   PostPaidBillInquiryData transform() {
     return PostPaidBillInquiryData(
-        message: this.message ?? "",
-        billerCode: this.billerCode ?? "",
-        billingNo: this.billingNo ?? "0",
-        billNo: this.billNo ?? "0",
-        dueAmount: this.dueAmount ?? "0",
-        dueDate: this.dueDate ?? DateTime.now(),
-        feesAmt: this.feesAmt ?? "0",
-        serviceType: this.serviceType ?? "",
+        message: this.message != null && this.message!.isNotEmpty
+            ? this.message
+            : "",
+        billerCode: this.billerCode != null && this.billerCode!.isNotEmpty
+            ? this.billerCode
+            : "0",
+        billingNo: this.billingNo != null && this.billingNo!.isNotEmpty
+            ? this.billingNo
+            : "",
+        billNo:
+            this.billNo != null && this.billNo!.isNotEmpty ? this.billNo : "",
+        dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty
+            ? this.dueAmount
+            : "0",
+        dueDate: this.dueDate != null && this.dueDate!.isNotEmpty
+            ? this.dueDate
+            : "",
+        feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty
+            ? this.feesAmt
+            : "",
+        serviceType: this.serviceType != null && this.serviceType!.isNotEmpty
+            ? this.serviceType
+            : "",
         success: this.success ?? false,
         isPartial: this.isPartial ?? false);
   }

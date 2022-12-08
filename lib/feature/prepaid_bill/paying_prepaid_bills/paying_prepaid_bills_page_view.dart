@@ -165,7 +165,7 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                       ),
                       AppTextField(
                         labelText: S.of(context).payFrom.toUpperCase(),
-                        hintText: S.of(context).savingAccount(''),
+                        hintText: "",
                         controller: model.savingAccountController,
                         readOnly: true,
                         onPressed: () {},
@@ -174,7 +174,8 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                               height: 16.h,
                               width: 16.w,
                               padding: EdgeInsets.only(right: 8.w),
-                              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                              child: AppSvg.asset(AssetUtils.downArrow,
+                                  color: AppColor.dark_gray_1));
                         },
                       ),
                       SizedBox(

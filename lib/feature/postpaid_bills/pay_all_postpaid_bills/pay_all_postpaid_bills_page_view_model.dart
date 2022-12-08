@@ -292,12 +292,28 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < getPostpaidBillerList!.length; i++) {
         GetPostpaidBillerListModelData item = getPostpaidBillerList[i];
-        if (item.nickName != null) {
+
+        /// nickname filter
+        if (item.nickName != null && item.nickName!.isNotEmpty) {
           if (item.nickName!.toLowerCase().contains(searchText.toLowerCase())) {
             fList.add(item);
           }
         }
+
+        /// billerName filter
+        if (item.billerNameEN != null && item.billerNameEN!.isNotEmpty ||
+            item.billerNameAR != null && item.billerNameAR!.isNotEmpty) {
+          if (item.billerNameEN!
+                  .toLowerCase()
+                  .contains(searchText.toLowerCase()) ||
+              item.billerNameAR!
+                  .toLowerCase()
+                  .contains(searchText.toLowerCase())) {
+            fList.add(item);
+          }
+        }
       }
+      fList = fList.toSet().toList();
       _searchPostpaidBillerResponse.safeAdd(Resource.success(data: fList));
     } else {
       _searchPostpaidBillerResponse.safeAdd(Resource.success(

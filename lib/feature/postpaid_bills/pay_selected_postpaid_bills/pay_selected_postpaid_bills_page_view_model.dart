@@ -48,8 +48,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     return totalBillAmt;
   }
 
-  ///post paid data from allpostpaidbillsscreen
-
+  /// ---------------- post paid data from allpostpaidbillsscreen -------------------------------- ///
   BehaviorSubject<List<PostPaidBillInquiryData>>
       _postPaidBillEnquiryListResponse = BehaviorSubject();
 
@@ -184,8 +183,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
           double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
     }
     if (totalAmount > 0) isTotalAmountZero = false;
-    // showButton();
-    // return '${AppAmountFormatter.formatByCurrencyWithOutComma(totalAmount.toString(), currency: "JOD")}';
     return '${totalAmount.toString()}';
   }
 

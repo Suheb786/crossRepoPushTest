@@ -8,7 +8,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaidBillsSuccessPageViewModel extends BasePageViewModel {
-  final PaidBillsSuccessPageArguments arguments;
+  final PaidBillsSuccessPageArguments? arguments;
   AddNewPostpaidBillerUseCase addNewPostpaidBillerUseCase;
 
   PaidBillsSuccessPageViewModel(

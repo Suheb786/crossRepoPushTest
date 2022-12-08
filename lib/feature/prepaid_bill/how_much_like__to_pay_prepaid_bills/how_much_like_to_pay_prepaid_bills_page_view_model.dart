@@ -21,8 +21,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   bool isPrepaidCategoryListEmpty = false;
 
   TextEditingController amtController = TextEditingController();
-  TextEditingController savingAccountController = TextEditingController()
-    ..text = 'Savings Account';
+  TextEditingController savingAccountController = TextEditingController();
 
   String? serviceDescriptionEn = "";
   String? billerCode = "";

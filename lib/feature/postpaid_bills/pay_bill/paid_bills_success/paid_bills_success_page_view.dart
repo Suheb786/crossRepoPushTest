@@ -7,12 +7,15 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PaidBillsSuccessPageView
     extends BasePageViewWidget<PaidBillsSuccessPageViewModel> {
@@ -79,7 +82,7 @@ class PaidBillsSuccessPageView
                       text: TextSpan(children: [
                     TextSpan(
                       text:
-                          '${double.parse(model.arguments.amt).toStringAsFixed(3)}',
+                          '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.white,
@@ -124,7 +127,7 @@ class PaidBillsSuccessPageView
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments.billName,
+                                model.arguments?.billName ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -133,10 +136,10 @@ class PaidBillsSuccessPageView
                               )
                             ],
                           ),
-                          model.arguments.nickName.isNotEmpty
+                          model.arguments!.nickName.isNotEmpty
                               ? SizedBox(height: 16.h)
                               : Container(),
-                          model.arguments.nickName.isNotEmpty
+                          model.arguments!.nickName.isNotEmpty
                               ? Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -150,7 +153,7 @@ class PaidBillsSuccessPageView
                                           fontSize: 12.0.t),
                                     ),
                                     Text(
-                                      model.arguments.nickName,
+                                      model.arguments?.nickName ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
@@ -175,7 +178,7 @@ class PaidBillsSuccessPageView
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments.refNo,
+                                model.arguments?.refNo ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -188,28 +191,33 @@ class PaidBillsSuccessPageView
                       ),
                     )),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(top: 32.0.h),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       AppSvg.asset(AssetUtils.share,
-                  //           color: AppColor.light_acccent_blue),
-                  //       SizedBox(
-                  //         width: 8.w,
-                  //       ),
-                  //       Text(
-                  //         S.of(context).shareMyReceipt,
-                  //         style: TextStyle(
-                  //           fontFamily: StringUtils.appFont,
-                  //           fontWeight: FontWeight.w600,
-                  //           color: AppColor.light_acccent_blue,
-                  //           fontSize: 14.t,
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 32.0.h),
+                    child: GestureDetector(
+                      onTap: () {
+                        _shareDetails(context, model);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.share,
+                              color: AppColor.light_acccent_blue),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Text(
+                            S.of(context).shareMyReceipt,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.light_acccent_blue,
+                              fontSize: 14.t,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 166.h,
                   ),
@@ -251,5 +259,20 @@ class PaidBillsSuccessPageView
             ),
           );
         });
+  }
+
+  void _shareDetails(
+      BuildContext context, PaidBillsSuccessPageViewModel model) {
+    Share.share(
+      ShareInfo.newPostPaidSuccess(
+        context,
+        refNo: model.arguments?.refNo ?? "",
+        billerName: model.arguments?.billName ?? "",
+        amount:
+            '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
+        nickName: AppConstantsUtils.NICK_NAME,
+      ),
+      subject: S.of(context).billDetails,
+    );
   }
 }

@@ -15,7 +15,7 @@ class PostPaidBillInquiryData {
   String? billerCode;
   String? billingNo;
   String? billNo;
-  DateTime? dueDate;
+  String? dueDate;
   String? serviceType;
   String? dueAmount;
   String? feesAmt;

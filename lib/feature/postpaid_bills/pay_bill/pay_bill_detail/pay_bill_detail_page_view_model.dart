@@ -17,8 +17,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PayBillDetailPageViewModel extends BasePageViewModel {
   final ScrollController controller = ScrollController();
-  final TextEditingController payFromController = TextEditingController()
-    ..text = 'Savings Account';
+  final TextEditingController payFromController = TextEditingController();
   String fieldTextLabelEn = "Enter Billing Number";
 
   var denominationTextController = TextEditingController();
@@ -39,7 +38,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   List<BillerService> billerService = [];
 
   final BehaviorSubject<bool> isShowBillerNumber =
-  BehaviorSubject<bool>.seeded(false);
+      BehaviorSubject<bool>.seeded(false);
 
   String? isSelectedBillerName;
   bool isSelectedServiceType = false;
@@ -119,8 +118,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
           }
         }
       }
-    }
-    if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+
+      isValidated = false;
+      if (payFromController.text.trim() != "") {
+        isValidated = true;
+      }
+    } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
       AppConstantsUtils.POST_PAID_FLOW = false;
       AppConstantsUtils.PRE_PAID_FLOW = true;
       AppConstantsUtils.IS_NEW_PAYMENT = true;
@@ -151,7 +154,13 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       } else {
         isValidated = false;
       }
+
+      isValidated = false;
+      if (payFromController.text.trim() != "") {
+        isValidated = true;
+      }
     }
+
     _showButtonSubject.safeAdd(isValidated);
   }
 
@@ -173,26 +182,24 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   GetBillerLookupUseCase getBillerLookupUseCase;
 
-
   Stream<bool> get totalBillAmtDueStream => _switchStatusSubject.stream;
 
   void switchStatus(bool isActive) {
     _switchStatusSubject.safeAdd(isActive);
   }
 
-  PayBillDetailPageViewModel(this.getPrePaidCategoriesListUseCase,
-      this.getBillerLookupUseCase) {
+  PayBillDetailPageViewModel(
+      this.getPrePaidCategoriesListUseCase, this.getBillerLookupUseCase) {
     _gerPrePaidCategoriesListener();
     billerLookUpListListener();
   }
 
-
   /// ---------------- Call Api Get biller look up list -------------------- ///
   PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<GetBillerLookUpList>> _getBillerLookupResponse =
-  PublishSubject();
+      PublishSubject();
 
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream =>
       _getBillerLookupResponse.stream;
@@ -204,16 +211,14 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     );
   }
 
-
   void billerLookUpListListener() {
     _getBillerLookupRequest.listen(
           (params) {
         RequestManager(
           params,
-          createCall: () =>
-              getBillerLookupUseCase.execute(
-                params: params,
-              ),
+          createCall: () => getBillerLookupUseCase.execute(
+            params: params,
+          ),
         ).asFlow().listen((event) {
           updateLoader();
           _getBillerLookupResponse.safeAdd(event);
@@ -225,14 +230,13 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     );
   }
 
-
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
   PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-  _getPrePaidCategoriesRequest = PublishSubject();
+      _getPrePaidCategoriesRequest = PublishSubject();
 
   PublishSubject<Resource<GetPrePaidCategoriesModel>>
-  _gerPrePaidCategoriesResponse = PublishSubject();
+      _gerPrePaidCategoriesResponse = PublishSubject();
 
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;

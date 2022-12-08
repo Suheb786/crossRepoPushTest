@@ -16,8 +16,7 @@ import 'package:rxdart/rxdart.dart';
 class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   final ScrollController controller = ScrollController();
   final TextEditingController refNoController = TextEditingController();
-  final TextEditingController payFromController = TextEditingController()
-    ..text = 'Savings Account';
+  final TextEditingController payFromController = TextEditingController();
   String fieldTextLabelEn = "Enter Billing Number";
 
   var denominationTextController = TextEditingController(text: '');
@@ -84,7 +83,7 @@ class PayPrePaidBillDetailPageViewModel extends BasePageViewModel {
   final TextEditingController serviceController = TextEditingController();
   // final TextEditingController refNoController = TextEditingController();
   // final TextEditingController nickNameController = TextEditingController();
-  // final TextEditingController payFromController = TextEditingController()..text = 'Savings Account';
+  // final TextEditingController payFromController = TextEditingController();
 
   PublishSubject<bool> _switchStatusSubject = PublishSubject();
 

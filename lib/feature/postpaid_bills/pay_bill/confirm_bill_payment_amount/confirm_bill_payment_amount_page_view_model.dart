@@ -28,7 +28,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
-  ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase,
+  ConfirmBillPaymentAmountPageViewModel(
+      this.validatePrePaidUseCase,
       this.payPrePaidUseCase,
       this.postPaidBillInquiryUseCase,
       this.payPostPaidBillUseCase) {
@@ -127,7 +128,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: addNewBillDetailsData.accountNumber,
-        totalAmount: addAllBillAmt().toString(),
+        totalAmount: totalAmountToPay(),
         currencyCode: "JOD",
         isNewBiller: false,
         isCreditCardPayment: false,
@@ -141,6 +142,17 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
     });
     return totalBillAmt.toStringAsFixed(3);
+  }
+
+  totalAmountToPay() {
+    if (isPartial == true) {
+      if (double.parse(addAllBillAmt() ?? "0") !=
+          double.parse(amtController.text)) {
+        return double.parse(amtController.text).toStringAsFixed(3);
+      }
+      return addAllBillAmt();
+    }
+    return addAllBillAmt();
   }
 
   void payPostPaidBillListener() {

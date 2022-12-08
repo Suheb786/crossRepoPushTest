@@ -42,36 +42,34 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                       Navigator.pop(context);
                     }
                   },
+                  onVerticalDragEnd: (details) {
+                    if (details.primaryVelocity! > 0) {
+                      Navigator.pop(context);
+                    }
+                  },
                   child: Column(
                     children: [
-                      GestureDetector(
-                        onVerticalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 48.w),
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                  color: AppColor.black,
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(16),
-                                      bottomRight: Radius.circular(16))),
-                            ),
-                            Positioned(
-                                bottom: -15,
-                                child: LottieBuilder.asset(
-                                  AssetUtils.swipeDownAnimation,
-                                  width: 28.0.w,
-                                  height: 28.0.h,
-                                )),
-                          ],
-                        ),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 48.w),
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                color: AppColor.black,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(16),
+                                    bottomRight: Radius.circular(16))),
+                          ),
+                          Positioned(
+                              bottom: -15,
+                              child: LottieBuilder.asset(
+                                AssetUtils.swipeDownAnimation,
+                                width: 28.0.w,
+                                height: 28.0.h,
+                              )),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(top: 15.h),

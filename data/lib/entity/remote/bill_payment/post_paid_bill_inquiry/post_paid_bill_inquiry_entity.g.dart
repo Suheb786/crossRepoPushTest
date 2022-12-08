@@ -16,9 +16,7 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
     billingNo: json['billingNo'] as String?,
     billNo: json['billNo'] as String?,
     dueAmount: json['dueAmount'] as String?,
-    dueDate: json['dueDate'] == null
-        ? null
-        : DateTime.parse(json['dueDate'] as String),
+    dueDate: json['dueDate'] as String?,
     feesAmt: json['feesAmt'] as String?,
     isPartial: json['isPartial'] as bool?,
   );
@@ -30,7 +28,7 @@ Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
       'billerCode': instance.billerCode,
       'billingNo': instance.billingNo,
       'billNo': instance.billNo,
-      'dueDate': instance.dueDate?.toIso8601String(),
+      'dueDate': instance.dueDate,
       'serviceType': instance.serviceType,
       'dueAmount': instance.dueAmount,
       'feesAmt': instance.feesAmt,
