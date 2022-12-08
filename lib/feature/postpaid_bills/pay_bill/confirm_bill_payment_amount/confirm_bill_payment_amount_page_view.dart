@@ -13,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -68,9 +69,16 @@ class ConfirmBillPaymentAmountPageView
                     if (data.status == Status.SUCCESS) {
                       Future.delayed(Duration(milliseconds: 200)).then((value) {
                         Navigator.pushNamed(
-                            context, RoutePaths.PostPaidBillsSuccessPage,
-                            arguments: PostPaidBillsSuccessPageArguments(
-                                data.data?.content?.billerList));
+                            context, RoutePaths.PaidBillsSuccessPage,
+                            arguments: PaidBillsSuccessPageArguments(
+                                data.data?.content?.billerList?[0]
+                                        .totalAmount ??
+                                    "0.0",
+                                data.data?.content?.billerList?[0].billerName ??
+                                    "",
+                                AppConstantsUtils.NICK_NAME,
+                                data.data?.content?.billerList?[0].refNo ??
+                                    ""));
                       });
                     }
                   },
@@ -118,6 +126,7 @@ class ConfirmBillPaymentAmountPageView
                               initialData: AddNewDetailsBillPaymentsModel(),
                               onData: (data) {
                                 model.addNewBillDetailsData = data;
+
                                 /// prepaid case where there is no denomination and amount is filled from amtcontroller form details screen
                                 if (model.addNewBillDetailsData.amount !=
                                         null &&

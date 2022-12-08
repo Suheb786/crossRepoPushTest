@@ -301,8 +301,7 @@ final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider
 final postPaidBillsSuccessPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<PostPaidBillsSuccessPageViewModel,
         PostPaidBillsSuccessPageArguments>(
-  (ref, args) => PostPaidBillsSuccessPageViewModel(
-      args, ref.read(addNewPostpaidBillerUseCaseProvider)),
+  (ref, args) => PostPaidBillsSuccessPageViewModel(args),
 );
 
 final launcherPageViewModelProvider =
@@ -344,7 +343,8 @@ final payBillDialogViewModelProvider =
 
 final paidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaidBillsSuccessPageViewModel, PaidBillsSuccessPageArguments>(
-  (ref, args) => PaidBillsSuccessPageViewModel(args),
+  (ref, args) => PaidBillsSuccessPageViewModel(
+      args, ref.read(addNewPostpaidBillerUseCaseProvider)),
 );
 
 final selectServiceDialogViewModelProvider =

@@ -36,11 +36,12 @@ class BillerListEntity
   @override
   BillerList transform() {
     return BillerList(
-        billerName: this.billerName,
-        totalAmount: this.totalAmount,
-        refNo: this.refNo,
-        date: this.date ?? "",
-        isPaid: this.isPaid,
-        statusDescription: this.statusDescription);
+      billerName: this.billerName ?? "",
+      totalAmount: this.totalAmount ?? "0",
+      refNo: this.refNo ?? "",
+      date: this.date ?? "",
+      isPaid: this.isPaid ?? false,
+      statusDescription: this.statusDescription ?? "",
+    );
   }
 }
