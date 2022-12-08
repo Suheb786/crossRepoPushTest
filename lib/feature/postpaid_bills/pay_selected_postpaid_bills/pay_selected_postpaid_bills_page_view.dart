@@ -57,8 +57,14 @@ class PaySelectedBillsPostPaidBillsPageView
                   top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                    Navigator.pop(context);
+                  if (StringUtils.isDirectionRTL(context)) {
+                    if (!details.primaryVelocity!.isNegative) {
+                      Navigator.pop(context);
+                    }
+                  } else {
+                    if (details.primaryVelocity!.isNegative) {
+                      Navigator.pop(context);
+                    }
                   }
                 },
                 child: Column(
@@ -249,9 +255,17 @@ class PaySelectedBillsPostPaidBillsPageView
                                             (BuildContext context, data) {
                                           return GestureDetector(
                                             onHorizontalDragEnd: (details) {
-                                              if (details.primaryVelocity!
-                                                  .isNegative) {
-                                                model.payPostPaidBill();
+                                              if (StringUtils.isDirectionRTL(
+                                                  context)) {
+                                                if (!details.primaryVelocity!
+                                                    .isNegative) {
+                                                  model.payPostPaidBill();
+                                                }
+                                              } else {
+                                                if (details.primaryVelocity!
+                                                    .isNegative) {
+                                                  model.payPostPaidBill();
+                                                }
                                               }
                                             },
                                             child: AppStreamBuilder<bool>(

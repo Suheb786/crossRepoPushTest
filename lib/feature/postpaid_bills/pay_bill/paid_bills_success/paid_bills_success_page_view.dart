@@ -15,6 +15,8 @@ import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PaidBillsSuccessPageView
@@ -36,11 +38,16 @@ class PaidBillsSuccessPageView
         dataBuilder: (context, snapshot) {
           return GestureDetector(
             onHorizontalDragEnd: (details) {
-              if (details.primaryVelocity!.isNegative) {
-                Navigator.of(context)
-                  ..pop()
-                  ..pop()
-                  ..pop();
+              if (StringUtils.isDirectionRTL(context)) {
+                if (!details.primaryVelocity!.isNegative) {
+                  Navigator.of(context)
+                    ..pop()..pop()..pop();
+                }
+              } else {
+                if (details.primaryVelocity!.isNegative) {
+                  Navigator.of(context)
+                    ..pop()..pop()..pop();
+                }
               }
             },
             child: SingleChildScrollView(

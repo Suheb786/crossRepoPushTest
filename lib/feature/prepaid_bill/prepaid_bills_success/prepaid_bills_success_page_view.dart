@@ -37,11 +37,17 @@ class PrePaidBillsSuccessPageView
       dataBuilder: (context, snapshot) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
-            if (details.primaryVelocity!.isNegative) {
-              Navigator.of(context)
-                ..pop()
-                ..pop()
-                ..pop();
+            if (StringUtils.isDirectionRTL(context)) {
+              if (!details.primaryVelocity!.isNegative) {
+                Navigator.pop(context);
+              }
+            } else {
+              if (details.primaryVelocity!.isNegative) {
+                Navigator.of(context)
+                  ..pop()
+                  ..pop()
+                  ..pop();
+              }
             }
           },
           child: SingleChildScrollView(

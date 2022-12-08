@@ -23,11 +23,20 @@ class PostPaidBillsSuccessPageView
   Widget build(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.of(context)
-            ..pop()
-            ..pop()
-            ..pop();
+        if (StringUtils.isDirectionRTL(context)) {
+          if (!details.primaryVelocity!.isNegative) {
+            Navigator.of(context)
+              ..pop()
+              ..pop()
+              ..pop();
+          }
+        } else {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.of(context)
+              ..pop()
+              ..pop()
+              ..pop();
+          }
         }
       },
       child: SingleChildScrollView(

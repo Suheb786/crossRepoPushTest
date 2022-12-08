@@ -24,8 +24,14 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
   Widget build(BuildContext context, PayingPrePaidBillsPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.pop(context);
+        if (StringUtils.isDirectionRTL(context)) {
+          if (!details.primaryVelocity!.isNegative) {
+            Navigator.pop(context);
+          }
+        } else {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.pop(context);
+          }
         }
       },
       child: Padding(

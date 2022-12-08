@@ -65,8 +65,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
           dataBuilder: (context, snapshot) {
             return GestureDetector(
               onHorizontalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {
-                  Navigator.pop(context);
+                if (StringUtils.isDirectionRTL(context)) {
+                  if (!details.primaryVelocity!.isNegative) {
+                    Navigator.pop(context);
+                  }
+                } else {
+                  if (details.primaryVelocity!.isNegative) {
+                    Navigator.pop(context);
+                  }
                 }
               },
               child: Padding(
@@ -230,14 +236,27 @@ class HowMuchLikeToPayPrePaidBillsPageView
                               ),
                               GestureDetector(
                                 onHorizontalDragEnd: (details) {
-                                  if (details.primaryVelocity!.isNegative) {
-                                    if (model.isPrepaidCategoryListEmpty ==
-                                        false) {
-                                      model.payPrePaidBill();
-                                    } else if (model
-                                            .isPrepaidCategoryListEmpty ==
-                                        true) {
-                                      model.validatePrePaidBill();
+                                  if (StringUtils.isDirectionRTL(context)) {
+                                    if (!details.primaryVelocity!.isNegative) {
+                                      if (model.isPrepaidCategoryListEmpty ==
+                                          false) {
+                                        model.payPrePaidBill();
+                                      } else if (model
+                                              .isPrepaidCategoryListEmpty ==
+                                          true) {
+                                        model.validatePrePaidBill();
+                                      }
+                                    }
+                                  } else {
+                                    if (details.primaryVelocity!.isNegative) {
+                                      if (model.isPrepaidCategoryListEmpty ==
+                                          false) {
+                                        model.payPrePaidBill();
+                                      } else if (model
+                                              .isPrepaidCategoryListEmpty ==
+                                          true) {
+                                        model.validatePrePaidBill();
+                                      }
                                     }
                                   }
                                 },
