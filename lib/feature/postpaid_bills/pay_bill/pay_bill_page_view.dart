@@ -27,11 +27,11 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageStream,
@@ -41,7 +41,8 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       activeSize: Size(MediaQuery.of(context).size.width / 2.5, 5),
                       size: Size(MediaQuery.of(context).size.width / 2.5, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
