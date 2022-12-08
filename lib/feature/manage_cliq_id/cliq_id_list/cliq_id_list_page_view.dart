@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
 import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
@@ -120,17 +121,27 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                       .isNotEmpty)
                                                   ? Expanded(
                                                       child: ListView.separated(
+                                                        physics:
+                                                            ClampingScrollPhysics(),
                                                         itemBuilder:
                                                             (context, index) {
                                                           return AliasCardList(
+                                                            cliqAliasIdStatusEnum:
+                                                                getAliasSnapshot!
+                                                                        .data!
+                                                                        .aliases?[
+                                                                            index]
+                                                                        .status ??
+                                                                    CliqAliasIdStatusEnum
+                                                                        .NONE,
                                                             accountList: (getAliasSnapshot
-                                                                    ?.data
+                                                                    .data
                                                                     ?.aliases?[
                                                                         index]
                                                                     .accounts ??
                                                                 []),
                                                             aliasName:
-                                                                "${getAliasSnapshot!.data?.aliases?[index].aliasName ?? ""}",
+                                                                "${getAliasSnapshot.data?.aliases?[index].aliasName ?? ""}",
                                                             aliasType:
                                                                 "${getAliasSnapshot.data?.aliases?[index].aliasType}",
                                                             status:
@@ -191,6 +202,8 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                 });
                                                               }, unlinkAccount:
                                                                       () {
+                                                                Navigator.pop(
+                                                                    context);
                                                                 InformationDialog.show(
                                                                     context,
                                                                     image: AssetUtils
@@ -204,29 +217,28 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                           .areYouSureToUnlinkAccount,
                                                                     ),
                                                                     onSelected:
-                                                                        model
-                                                                            .unlinkCliqId(
-                                                                      getToken:
-                                                                          true,
-                                                                      aliasId: (getAliasSnapshot
-                                                                              .data
-                                                                              ?.aliases?[index]
-                                                                              .aliasID) ??
-                                                                          "",
-                                                                      accountId: (getAliasSnapshot
-                                                                              .data
-                                                                              ?.aliases?[index]
-                                                                              .accounts?[index]
-                                                                              .accountID) ??
-                                                                          "",
-                                                                    ),
+                                                                        () {
+                                                                      model
+                                                                          .unlinkCliqId(
+                                                                        getToken:
+                                                                            true,
+                                                                        aliasId:
+                                                                            (getAliasSnapshot.data?.aliases?[index].aliasID) ??
+                                                                                "",
+                                                                        accountId:
+                                                                            (getAliasSnapshot.data?.aliases?[index].accounts?[index].accountID) ??
+                                                                                "",
+                                                                      );
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
                                                                     isSwipeToCancel:
                                                                         true,
                                                                     onDismissed:
                                                                         () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                });
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    });
                                                               },
                                                                   onCancelled:
                                                                       () {},
@@ -237,6 +249,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             onTapAlias: () {
                                                               UpdateCliqInfoBottomSheetSelectionWidget.show(
                                                                   context,
+                                                                  cliqAliasIdStatusEnum: getAliasSnapshot
+                                                                          .data
+                                                                          ?.aliases?[
+                                                                              index]
+                                                                          .status ??
+                                                                      CliqAliasIdStatusEnum
+                                                                          .NONE,
                                                                   onLinkId:
                                                                       () {},
                                                                   onActivatId:
@@ -245,6 +264,8 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         context);
                                                                     CliqInformationDialog.show(
                                                                         context,
+                                                                        isSwipeToCancel:
+                                                                            true,
                                                                         image: AssetUtils
                                                                             .reactivateIcon,
                                                                         title: S
@@ -270,7 +291,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         getToken:
                                                                             true,
                                                                       );
-                                                                      // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
                                                                     }, onDismissed:
                                                                             () {
                                                                       Navigator.pop(
@@ -281,6 +301,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                       () {},
                                                                   onShareId:
                                                                       () {
+                                                                    //Todo need to fix this------
                                                                     _shareFiles(
                                                                         context,
                                                                         (getAliasSnapshot.data?.aliases?[index].aliasID) ??
@@ -298,6 +319,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     InformationDialog
                                                                         .show(
                                                                       context,
+                                                                      isSwipeToCancel:
+                                                                          true,
+                                                                      onDismissed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      },
                                                                       image: AssetUtils
                                                                           .deleteIcon,
                                                                       title: S
@@ -309,28 +337,15 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                           "${(getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""}" +
                                                                           S.current
                                                                               .fromYourCliqIdList),
-
-                                                                      //     RichText(
-                                                                      //         text: TextSpan(children: [
-                                                                      //   TextSpan(
-                                                                      //       text:
-                                                                      //           S.current.areYouSureWantToDelete),
-                                                                      //   TextSpan(
-                                                                      //       text:
-                                                                      //           (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""),
-                                                                      //   TextSpan(
-                                                                      //       text:
-                                                                      //           S.current.fromYourCliqIdList)
-                                                                      // ])),
-
                                                                       onSelected:
                                                                           () {
+                                                                        Navigator.pop(
+                                                                            context);
                                                                         model.deleteCliqId(
                                                                             true,
                                                                             (getAliasSnapshot.data?.aliases?[index].aliasID) ??
                                                                                 "");
                                                                       },
-                                                                      //  image: ,
                                                                     );
                                                                   },
                                                                   onSuspendId:
@@ -340,6 +355,11 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     InformationDialog
                                                                         .show(
                                                                       context,
+                                                                      onDismissed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      },
                                                                       image: AssetUtils
                                                                           .suspandIcon,
                                                                       title: S
@@ -511,8 +531,8 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
     String s,
   ) async {
     final box = context.findRenderObject() as RenderBox?;
-    await Share.share('Hello! Here are my Blink account details: \n\n${s} ',
-        subject: 'Share account info',
+    await Share.share(S.of(context).helloHereMyBlinkAccount + '\n\n${s} ',
+        subject: S.current.shareAccountInfo,
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

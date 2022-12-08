@@ -32,7 +32,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(
       {required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAlias(CliqGetAliasResponseEntity(
+    return _apiService.getAlias(CliqGetAliasRequestEntity(
         baseData: baseData.toJson(), getToken: getToken));
   }
 

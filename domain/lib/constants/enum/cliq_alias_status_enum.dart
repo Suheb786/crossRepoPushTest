@@ -9,21 +9,22 @@ class CliqAliasIdStatusEnum {
   @override
   String toString() => _value.toString();
 
-  static const CliqAliasIdStatusEnum ACTIVE = CliqAliasIdStatusEnum._("A");
-  static const CliqAliasIdStatusEnum SUSPAND = CliqAliasIdStatusEnum._("S");
+  static const CliqAliasIdStatusEnum ACTIVE = CliqAliasIdStatusEnum._("Active");
+  static const CliqAliasIdStatusEnum SUSPEND =
+      CliqAliasIdStatusEnum._("Suspend");
   static const CliqAliasIdStatusEnum NONE = CliqAliasIdStatusEnum._("None");
 }
 
 extension CliqAliasIdStatusEnumExt on String {
   CliqAliasIdStatusEnum fromCliqAliasIdStatus() {
     switch (this) {
-      case "A":
+      case "active":
         return CliqAliasIdStatusEnum.ACTIVE;
-      case "S":
-        return CliqAliasIdStatusEnum.SUSPAND;
+      case "suspend":
+        return CliqAliasIdStatusEnum.SUSPEND;
 
       default:
-        return CliqAliasIdStatusEnum.SUSPAND;
+        return CliqAliasIdStatusEnum.SUSPEND;
     }
   }
 }

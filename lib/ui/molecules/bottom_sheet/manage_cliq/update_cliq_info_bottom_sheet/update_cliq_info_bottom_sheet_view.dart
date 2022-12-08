@@ -86,7 +86,7 @@ class _UpdateCliqInfoBottomSheetViewState
           ),
         ),
         Visibility(
-          visible: cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.SUSPAND,
+          visible: cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.SUSPEND,
           child: CupertinoActionSheetAction(
             child: Text(S.of(context).activateId,
                 style: TextStyle(

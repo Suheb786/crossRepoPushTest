@@ -14760,11 +14760,21 @@ class S {
     );
   }
 
-  /// `ActivateId`
+  /// `Activate ID`
   String get activateId {
     return Intl.message(
-      'ActivateId',
+      'Activate ID',
       name: 'activateId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Here are my Blink account details: `
+  String get helloHereMyBlinkAccount {
+    return Intl.message(
+      'Hello! Here are my Blink account details: ',
+      name: 'helloHereMyBlinkAccount',
       desc: '',
       args: [],
     );

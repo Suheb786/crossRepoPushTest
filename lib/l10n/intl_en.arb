@@ -1498,6 +1498,6 @@
  "areYouSureToSuspandCliqId" : "Are you sure you want to suspend your CliQ ID?",
  "reactivateCliqId" : "Reactivate CliQ ID",
  "accountSuccessfullyUnlinked" : "Account successfully unlinked",
- "activateId" : "ActivateId"
-
+ "activateId" : "Activate ID",
+"helloHereMyBlinkAccount": "Hello! Here are my Blink account details: "
 }

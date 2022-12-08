@@ -1440,5 +1440,17 @@
   "dateComparison": "Depart on date should not be greater than return date",
   "whenAcceptingCreationOfYourCliqId": "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.",
   "areYourToChangeDefaultAccountOfYourCliqId": "Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.",
-  "manageCliqIdRoute": "Manage\nCliQ ID"
+  "manageCliqIdRoute": "Manage\nCliQ ID",
+    "accountSuccessfullyLinked" : "Account is successfully linked with CliQ ID"  ,
+  "areYouSureToUnlinkAccount" :"Are you sure you want to unlink the account with your CliQ ID?",
+  "unLinkAccountWithCliqId" :"Unlink account with CliQ ID",
+  "confirmDelete" : "Confirm Delete?",
+ "areYouSureWantToDelete" : "Are you sure you want to delete ",
+ "fromYourCliqIdList" : " from your CliQ ID list?",
+ "suspandClidId": "Suspend CliQ ID",
+ "areYouSureToSuspandCliqId" : "Are you sure you want to suspend your CliQ ID?",
+ "reactivateCliqId" : "Reactivate CliQ ID",
+ "accountSuccessfullyUnlinked" : "Account successfully unlinked",
+ "activateId" : "ActivateId",
+ "helloHereMyBlinkAccount": "Hello! Here are my Blink account details: "
 }

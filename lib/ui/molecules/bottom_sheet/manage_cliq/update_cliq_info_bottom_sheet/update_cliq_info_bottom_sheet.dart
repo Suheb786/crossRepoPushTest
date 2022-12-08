@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/ui/molecules/bottom_sheet/manage_cliq/update_cliq_info_bottom_sheet/update_cliq_info_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
@@ -8,6 +9,7 @@ class UpdateCliqInfoBottomSheet {
   static show(
     BuildContext context, {
     String? title,
+    CliqAliasIdStatusEnum cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
     Function()? onEditId,
     Function()? onShareId,
     Function()? onSuspendId,
@@ -21,6 +23,7 @@ class UpdateCliqInfoBottomSheet {
           onEditId: onEditId,
           onShareId: onShareId,
           onSuspendId: onSuspendId,
+          cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
           onCancel: onCancel,
           onActivateId: onActivateId,
           title: title);

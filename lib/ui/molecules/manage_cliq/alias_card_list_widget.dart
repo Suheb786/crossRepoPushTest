@@ -120,76 +120,94 @@ class AliasCardList extends StatelessWidget {
                         blurRadius: 24),
                   ],
                 ),
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.only(bottom: 10),
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        color: Color(0xffDDDDDD),
-                      );
-                    },
-                    itemCount: accountList.length,
-                    itemBuilder: (context, i) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: ListTile(
-                          onTap: () {
-                            onTapAccount?.call(accountList[i]);
-                          },
-                          dense: false,
-                          title: Text(
-                            "${accountList[i].identifier}",
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 14.t,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "${accountList[i].accountID}",
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 12.t,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Visibility(
-                                visible: accountList[i].isDefault ?? false,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8, right: 8, bottom: 4, top: 5),
-                                    child: Text(
-                                      "Default",
-                                      style: TextStyle(
-                                          color: AppColor.white,
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                child: NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (overScroll) {
+                    overScroll.disallowGlow();
+                    throw "";
+                  },
+                  child: ListView.separated(
+                      physics: ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.only(bottom: 10),
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          color: Color(0xffDDDDDD),
+                        );
+                      },
+                      itemCount: accountList.length,
+                      itemBuilder: (context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: ListTile(
+                            onTap: () {
+                              onTapAccount?.call(accountList[i]);
+                            },
+                            dense: false,
+                            title: Text(
+                              "${accountList[i].identifier}",
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "${accountList[i].accountID}",
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12.t,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Visibility(
+                                  visible: accountList[i].isDefault ?? false,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8, right: 8, bottom: 4, top: 5),
+                                      child: Text(
+                                        "Default",
+                                        style: TextStyle(
+                                            color: AppColor.white,
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 12.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
+                            trailing: Icon(
+                              Icons.more_horiz_rounded,
+                              color: AppColor.black,
+                            ),
                           ),
-                          trailing: Icon(
-                            Icons.more_horiz_rounded,
-                            color: AppColor.black,
-                          ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Color getStatusColor(CliqAliasIdStatusEnum value) {
+    switch (value) {
+      case CliqAliasIdStatusEnum.ACTIVE:
+        return AppColor.darkModerateLimeGreen;
+      case CliqAliasIdStatusEnum.SUSPEND:
+        return AppColor.dark_orange;
+      default:
+        return AppColor.dark_orange;
+    }
   }
 }

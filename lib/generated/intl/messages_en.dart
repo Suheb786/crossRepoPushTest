@@ -97,7 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("About freezing your card:"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will be made available to you soon"),
-        "activateId": MessageLookupByLibrary.simpleMessage("ActivateId"),
+        "activateId": MessageLookupByLibrary.simpleMessage("Activate ID"),
         "activatingCreditCard":
             MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
@@ -1209,6 +1209,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Age must be greater than 18 to proceed."),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
+        "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
+            "Hello! Here are my Blink account details: "),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
