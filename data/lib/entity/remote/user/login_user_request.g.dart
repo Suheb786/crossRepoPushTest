@@ -18,7 +18,8 @@ LoginUserRequest _$LoginUserRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$LoginUserRequestToJson(LoginUserRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$LoginUserRequestToJson(LoginUserRequest instance) =>
+    <String, dynamic>{
       'uniqueId': instance.uniqueId,
       'getToken': instance.getToken,
       'platform': instance.platform,

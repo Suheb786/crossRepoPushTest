@@ -6,9 +6,12 @@ part of 'check_videocall_status_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckVideoCallStatusResponseEntity _$CheckVideoCallStatusResponseEntityFromJson(Map<String, dynamic> json) {
+CheckVideoCallStatusResponseEntity _$CheckVideoCallStatusResponseEntityFromJson(
+    Map<String, dynamic> json) {
   return CheckVideoCallStatusResponseEntity(
-    json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

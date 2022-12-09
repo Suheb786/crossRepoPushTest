@@ -6,8 +6,8 @@ part of 'credit_card_limits_update_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreditCardSLimitsUpdateRequestEntity _$CreditCardSLimitsUpdateRequestEntityFromJson(
-    Map<String, dynamic> json) {
+CreditCardSLimitsUpdateRequestEntity
+    _$CreditCardSLimitsUpdateRequestEntityFromJson(Map<String, dynamic> json) {
   return CreditCardSLimitsUpdateRequestEntity(
     getToken: json['GetToken'] as bool?,
     atmWithdrawal: json['ATMLimit'] as num?,

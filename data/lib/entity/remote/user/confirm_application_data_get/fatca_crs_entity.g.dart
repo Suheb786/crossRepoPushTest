@@ -43,7 +43,9 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) {
     exemptPayeeCode: json['exemptPayeeCode'],
     socialSecurityNo: json['socialSecurityNo'],
     createBy: json['createBy'] as String?,
-    createTime: json['createTime'] == null ? null : DateTime.parse(json['createTime'] as String),
+    createTime: json['createTime'] == null
+        ? null
+        : DateTime.parse(json['createTime'] as String),
     createTerminal: json['createTerminal'] as String?,
     taxResidenceCountry: json['taxResidenceCountry'] as String?,
     deactivatedDate: json['deactivatedDate'],
@@ -54,7 +56,8 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'companyId': instance.companyId,

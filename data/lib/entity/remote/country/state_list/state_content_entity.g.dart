@@ -14,6 +14,7 @@ StateContentEntity _$StateContentEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$StateContentEntityToJson(StateContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$StateContentEntityToJson(StateContentEntity instance) =>
+    <String, dynamic>{
       'getStates': instance.getStates,
     };

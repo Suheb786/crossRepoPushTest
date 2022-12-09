@@ -6,7 +6,8 @@ part of 'change_credit_card_pin_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChangeCreditCardPinRequestEntity _$ChangeCreditCardPinRequestEntityFromJson(Map<String, dynamic> json) {
+ChangeCreditCardPinRequestEntity _$ChangeCreditCardPinRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return ChangeCreditCardPinRequestEntity(
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,
@@ -17,7 +18,8 @@ ChangeCreditCardPinRequestEntity _$ChangeCreditCardPinRequestEntityFromJson(Map<
   );
 }
 
-Map<String, dynamic> _$ChangeCreditCardPinRequestEntityToJson(ChangeCreditCardPinRequestEntity instance) =>
+Map<String, dynamic> _$ChangeCreditCardPinRequestEntityToJson(
+        ChangeCreditCardPinRequestEntity instance) =>
     <String, dynamic>{
       'getToken': instance.getToken,
       'CardCode': instance.cardCode,

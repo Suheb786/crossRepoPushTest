@@ -6,7 +6,8 @@ part of 'debit_card_limits_update_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DebitCardSLimitsUpdateRequestEntity _$DebitCardSLimitsUpdateRequestEntityFromJson(Map<String, dynamic> json) {
+DebitCardSLimitsUpdateRequestEntity
+    _$DebitCardSLimitsUpdateRequestEntityFromJson(Map<String, dynamic> json) {
   return DebitCardSLimitsUpdateRequestEntity(
     getToken: json['getToken'] as bool?,
     tokenizedPan: json['TokenizedPan'] as String?,

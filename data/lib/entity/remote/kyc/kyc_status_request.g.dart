@@ -13,7 +13,8 @@ KYCStatusRequest _$KYCStatusRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$KYCStatusRequestToJson(KYCStatusRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$KYCStatusRequestToJson(KYCStatusRequest instance) =>
+    <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

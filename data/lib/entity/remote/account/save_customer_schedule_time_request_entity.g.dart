@@ -6,8 +6,8 @@ part of 'save_customer_schedule_time_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveCustomerScheduleTimeRequestEntity _$SaveCustomerScheduleTimeRequestEntityFromJson(
-    Map<String, dynamic> json) {
+SaveCustomerScheduleTimeRequestEntity
+    _$SaveCustomerScheduleTimeRequestEntityFromJson(Map<String, dynamic> json) {
   return SaveCustomerScheduleTimeRequestEntity(
     callDate: json['callDate'] as String?,
     gender: json['gender'] as String?,

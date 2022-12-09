@@ -6,7 +6,8 @@ part of 'verify_beneficiary_otp_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyBeneficiaryOtpRequest _$VerifyBeneficiaryOtpRequestFromJson(Map<String, dynamic> json) {
+VerifyBeneficiaryOtpRequest _$VerifyBeneficiaryOtpRequestFromJson(
+    Map<String, dynamic> json) {
   return VerifyBeneficiaryOtpRequest(
     type: json['Type'] as String,
     otp: json['OTPCode'] as String,
@@ -15,7 +16,8 @@ VerifyBeneficiaryOtpRequest _$VerifyBeneficiaryOtpRequestFromJson(Map<String, dy
   );
 }
 
-Map<String, dynamic> _$VerifyBeneficiaryOtpRequestToJson(VerifyBeneficiaryOtpRequest instance) =>
+Map<String, dynamic> _$VerifyBeneficiaryOtpRequestToJson(
+        VerifyBeneficiaryOtpRequest instance) =>
     <String, dynamic>{
       'Type': instance.type,
       'OTPCode': instance.otp,
