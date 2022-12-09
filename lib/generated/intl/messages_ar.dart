@@ -218,51 +218,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "إنت أو أي حدا من أقارب الدرجة الأولى عندكم علاقة بأحد السياسيين PEP؟"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
-        "areYouSureYouEnteredYour":
-            MessageLookupByLibrary.simpleMessage("متأكد من إنك أدخلت"),
-        "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
-            "بتدفع ضريبة بأي دولة غير الأردن وأمريكا"),
-        "areYouUSCitizen":
-            MessageLookupByLibrary.simpleMessage("إنت مواطن أمريكي؟"),
-        "areYouUSTaxResident":
-            MessageLookupByLibrary.simpleMessage("بتدفع ضرائب بأمريكا؟"),
-        "areYouUSTaxResidentHint":
-            MessageLookupByLibrary.simpleMessage("عندك إقامة بأمريكا؟"),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("متأكد من إنك أدخلت"),
+        "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage("بتدفع ضريبة بأي دولة غير الأردن وأمريكا"),
+        "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("إنت مواطن أمريكي؟"),
+        "areYouUSTaxResident": MessageLookupByLibrary.simpleMessage("بتدفع ضرائب بأمريكا؟"),
+        "areYouUSTaxResidentHint": MessageLookupByLibrary.simpleMessage("عندك إقامة بأمريكا؟"),
+        "areYourToChangeDefaultAccountOfYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request."),
         "area": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("المنطقة"),
-        "armexApiError":
-            MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
-        "assignTokenError": MessageLookupByLibrary.simpleMessage(
-            "خطأ أثناء تعيين الرمز المميز vkey"),
-        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
-            "تم تجاوز سقف السحب من الصراف الآلي"),
-        "atmWithDrawal":
-            MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
+        "armexApiError": MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
+        "assignTokenError": MessageLookupByLibrary.simpleMessage("خطأ أثناء تعيين الرمز المميز vkey"),
+        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف السحب من الصراف الآلي"),
+        "atmWithDrawal": MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
         "attention": MessageLookupByLibrary.simpleMessage("تنويه"),
         "authorization": MessageLookupByLibrary.simpleMessage("تفويض"),
         "authorize": MessageLookupByLibrary.simpleMessage(
             "أقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لبطاقات Blink الائتمانية"),
-        "availableAmount":
-            MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
-        "availableBalance":
-            MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
+        "availableAmount": MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
+        "availableBalance": MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
         "awesome": MessageLookupByLibrary.simpleMessage("ممتاز!"),
-        "backToCardSettings":
-            MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
-        "backToLogin":
-            MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("العودة للدفعات"),
-        "backToRegistration":
-            MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
+        "backToCardSettings": MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
+        "backToLogin": MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "backToManageCliq": MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("العودة للدفعات"),
+        "backToRegistration": MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
-        "beneficialOwnerIsAResidenceOf":
-            MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
-        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
-            "المستقبِل غير موجود. حاول مع حدا جديد."),
+        "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
+        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage("المستقبِل غير موجود. حاول مع حدا جديد."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
         "biometricLogin":
@@ -389,26 +374,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير حساب الدفع للبطاقة"),
         "changeCardPin": MessageLookupByLibrary.simpleMessage(
             "تغيير الرمز السري PIN البطاقة"),
-        "changeCardPinError": MessageLookupByLibrary.simpleMessage(
-            "خطأ في تغيير الرمز السري PIN للبطاقة"),
-        "changeCardRestrictionDesc": MessageLookupByLibrary.simpleMessage(
-            "رح يتم تقييد بطاقتك في الدولة المذكورة أدناه حسب اختيارك"),
-        "changeCountryRestriction": MessageLookupByLibrary.simpleMessage(
-            "تغيير القيود المفروضة من الدولة"),
-        "changeCreditLimit":
-            MessageLookupByLibrary.simpleMessage("تغيير سقف البطاقة"),
-        "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage(
-            "اضبط سقف البطاقة الائتمانية المطلوب "),
-        "changeEmailAddress":
-            MessageLookupByLibrary.simpleMessage("تغيير الإيميل"),
-        "changeEmailError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeLinkAccount":
-            MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
-        "changeLinkedAccount":
-            MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
-        "changeLinkedMobileNo":
-            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
+        "changeCardPinError": MessageLookupByLibrary.simpleMessage("خطأ في تغيير الرمز السري PIN للبطاقة"),
+        "changeCardRestrictionDesc":
+            MessageLookupByLibrary.simpleMessage("رح يتم تقييد بطاقتك في الدولة المذكورة أدناه حسب اختيارك"),
+        "changeCountryRestriction": MessageLookupByLibrary.simpleMessage("تغيير القيود المفروضة من الدولة"),
+        "changeCreditLimit": MessageLookupByLibrary.simpleMessage("تغيير سقف البطاقة"),
+        "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage("اضبط سقف البطاقة الائتمانية المطلوب "),
+        "changeDefaultAccount": MessageLookupByLibrary.simpleMessage("Change default account"),
+        "changeEmailAddress": MessageLookupByLibrary.simpleMessage("تغيير الإيميل"),
+        "changeEmailError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeLinkAccount": MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
+        "changeLinkedAccount": MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
+        "changeLinkedMobileNo": MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
         "changeLinkedMobileNumber":
             MessageLookupByLibrary.simpleMessage("تغير رقم الموبايل المرتبط"),
         "changeMobileNoError": MessageLookupByLibrary.simpleMessage(
@@ -1455,26 +1432,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-153)"),
         "letsCreateNewCliqId":
             MessageLookupByLibrary.simpleMessage("خلينا نعمل CliQ جديد"),
-        "letsCreateNewPass":
-            MessageLookupByLibrary.simpleMessage("خلينا نعمل كلمة مرور جديدة"),
-        "letsCreateYourAccount":
-            MessageLookupByLibrary.simpleMessage("خلينا نفتح حسابك"),
-        "letsCreateYourProfile":
-            MessageLookupByLibrary.simpleMessage("خلينا نعمل ملفك الشخصي"),
-        "letsSet4DigitPin": MessageLookupByLibrary.simpleMessage(
-            "خلينا نعمل الرمز السري PIN مكون من 4 أرقام"),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage("خلينا نعمل كلمة مرور جديدة"),
+        "letsCreateYourAccount": MessageLookupByLibrary.simpleMessage("خلينا نفتح حسابك"),
+        "letsCreateYourProfile": MessageLookupByLibrary.simpleMessage("خلينا نعمل ملفك الشخصي"),
+        "letsSet4DigitPin":
+            MessageLookupByLibrary.simpleMessage("خلينا نعمل الرمز السري PIN مكون من 4 أرقام"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز السقف"),
-        "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
-            "اربط حسابك البنكي مع  حساب CliQ الجديد"),
+        "linkBankAccountToYourNewId":
+            MessageLookupByLibrary.simpleMessage("اربط حسابك البنكي مع  حساب CliQ الجديد"),
+        "linkedAccount": MessageLookupByLibrary.simpleMessage("Linked Account"),
         "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
             "رح يتم القيد من الحساب المرتبط لأي حركة بتنعمل من على هاي البطاقة"),
-        "linkedAccountNumber":
-            MessageLookupByLibrary.simpleMessage("رقم الحساب المرتبط"),
+        "linkedAccountNumber": MessageLookupByLibrary.simpleMessage("رقم الحساب المرتبط"),
         "liveChat": MessageLookupByLibrary.simpleMessage("محادثة مباشرة"),
         "loanAccountListNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-098)"),
-        "loanNotActive":
-            MessageLookupByLibrary.simpleMessage("حساب القرض غير فعال"),
+        "loanNotActive": MessageLookupByLibrary.simpleMessage("حساب القرض غير فعال"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-137)"),
         "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
@@ -1519,23 +1492,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " تأكد إنك ما دخّلت الدخل الشهري بالغلط لتحصل على بطاقتك الائتمانية."),
-        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
-            "تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
+        "makeSureYourFaceFitsTheFrame":
+            MessageLookupByLibrary.simpleMessage("تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("موظف ذكر"),
-        "manageCardLimits":
-            MessageLookupByLibrary.simpleMessage("إدارة سقوف البطاقات"),
-        "manageCardPin": MessageLookupByLibrary.simpleMessage(
-            "إدارة الرمز السري PIN للبطاقة"),
+        "manageCardLimits": MessageLookupByLibrary.simpleMessage("إدارة سقوف البطاقات"),
+        "manageCardPin": MessageLookupByLibrary.simpleMessage("إدارة الرمز السري PIN للبطاقة"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("إدارة CliQ"),
+        "manageCliqIdRoute": MessageLookupByLibrary.simpleMessage("Manage\nCliQ ID"),
         "manageContacts": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
-        "manageContactsSettings":
-            MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
-        "manageSettlement":
-            MessageLookupByLibrary.simpleMessage("إدارة نسب السداد"),
+        "manageContactsSettings": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
+        "manageSettlement": MessageLookupByLibrary.simpleMessage("إدارة نسب السداد"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "وصلت للحد الأقصى من عدد الحسابات. للأسف ما رح تقدر تفتح حساب جديد."),
-        "maximumAgeOfUser": MessageLookupByLibrary.simpleMessage(
-            "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
+        "maximumAgeOfUser":
+            MessageLookupByLibrary.simpleMessage("الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
         "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("خليها لبعدين"),
         "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
@@ -2503,20 +2473,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("مولود بأمريكا؟"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("شو يعني PEP؟"),
-        "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),
-        "whatIsYourEmploymentStatus":
-            MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
-        "whatRelationshipWithCardHolder":
-            MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
-        "whatYourEmailAndMobileNumber":
-            MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
-        "whereDoYouCurrentlyLive":
-            MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
-        "whichTaxPayerAreYou":
-            MessageLookupByLibrary.simpleMessage("شو نوع ضريبتك؟"),
-        "whichTaxPayerAreYouSmall":
-            MessageLookupByLibrary.simpleMessage("شو نوع الملف الضريبي؟"),
+        "whatIsTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
+        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
+        "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
+        "whenAcceptingCreationOfYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ."),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
+        "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("شو نوع ضريبتك؟"),
+        "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("شو نوع الملف الضريبي؟"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),
         "yearly": MessageLookupByLibrary.simpleMessage("الدخل السنوي "),
