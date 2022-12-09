@@ -55,12 +55,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "accountCreated": MessageLookupByLibrary.simpleMessage(
-            "Account has been created successfully."),
-        "accountDetails":
-            MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
-        "accountHolderName":
-            MessageLookupByLibrary.simpleMessage("account holder name"),
+        "accountCreated": MessageLookupByLibrary.simpleMessage("Account has been created successfully."),
+        "accountDetails": MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountHolderName": MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
@@ -248,17 +245,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card "),
         "availableAmount":
             MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
-        "availableBalance":
-            MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
+        "availableBalance": MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
-        "backToCardSettings":
-            MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
+        "backToCardSettings": MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToCategory": m8,
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("Back to Payments"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "backToRegistration": MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
@@ -280,10 +273,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
-        "blinkCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
-        "blockThisCountry":
-            MessageLookupByLibrary.simpleMessage("Block this country?"),
+        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockThisCountry": MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
@@ -679,16 +670,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
-        "deviceNotSupported":
-            MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
+        "deviceNotSupported": MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
         "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
             "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
         "disableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while disabling biometric login. Please try again later."),
-        "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
-            "I\'m dissatisfied with the digital platform"),
+        "dissatisfiedWithDigitalPlatform":
+            MessageLookupByLibrary.simpleMessage("I\'m dissatisfied with the digital platform"),
         "dissatisfiedWithOverallBankingExp":
             MessageLookupByLibrary.simpleMessage("I\'m dissatisfied with the overall banking experience"),
         "district": MessageLookupByLibrary.simpleMessage("District"),
@@ -712,8 +702,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
             "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally."),
-        "eVoucherSearchLabel":
-            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "eVoucherSearchLabel": MessageLookupByLibrary.simpleMessage("What are you looking for?"),
         "eVouchers": MessageLookupByLibrary.simpleMessage("eVouchers"),
         "eVouchersAreHere":
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
@@ -1079,10 +1068,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Foreign Tax Identifying Number"),
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password?"),
-        "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
-            "You can unfreeze and activate your card at anytime."),
+        "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "freezeAndActiveAtAnyTime":
+            MessageLookupByLibrary.simpleMessage("You can unfreeze and activate your card at anytime."),
         "freezeCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
@@ -1104,8 +1092,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "generateBlockPin": MessageLookupByLibrary.simpleMessage("Error while generating block pin"),
         "generateKeyPairError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "genericError": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong. Please try again."),
+        "genericError": MessageLookupByLibrary.simpleMessage("Something went wrong. Please try again."),
         "getAccountByAliasError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -1262,8 +1249,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "inValidLoanValueId": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
-        "increaseCreditLimit":
-            MessageLookupByLibrary.simpleMessage("Increase credit limit"),
+        "increaseCreditLimit": MessageLookupByLibrary.simpleMessage("Increase credit limit"),
         "infobipInitError": MessageLookupByLibrary.simpleMessage("Error occurred while Initialization"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
@@ -1284,14 +1270,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAmount": MessageLookupByLibrary.simpleMessage(
             "The amount you\'ve entered exceeds your account balance. Please add money to your account or choose another amount."),
-        "invalidAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("Enter Annual income"),
-        "invalidAnnualIncomeValue": MessageLookupByLibrary.simpleMessage(
-            "Annual Income should be greater than 0"),
+        "invalidAnnualIncome": MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+        "invalidAnnualIncomeValue":
+            MessageLookupByLibrary.simpleMessage("Annual Income should be greater than 0"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
             "We\'re sorry, you must be the beneficial owner of the account to proceed."),
-        "invalidBeneficiary":
-            MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
+        "invalidBeneficiary": MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
         "invalidBusinessType":
             MessageLookupByLibrary.simpleMessage("Select Business Type"),
         "invalidCardId": MessageLookupByLibrary.simpleMessage(
@@ -1784,16 +1768,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
-        "passwordDialogHeader":
-            MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
-            "The passwords you entered do not match. Please try again."),
+        "passwordDialogHeader": MessageLookupByLibrary.simpleMessage("Create Password"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("The passwords you entered do not match. Please try again."),
         "passwordMismatchError": MessageLookupByLibrary.simpleMessage(
             "The passwords you entered do not match. Please check and try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
-        "passwordUpdate": MessageLookupByLibrary.simpleMessage(
-            "Password is successfully updated"),
+        "passwordUpdate": MessageLookupByLibrary.simpleMessage("Password is successfully updated"),
         "passwordUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("Your password has been updated successfully"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
@@ -1816,8 +1798,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "paymentNotDone":
-            MessageLookupByLibrary.simpleMessage("payment not done"),
+        "paymentNotDone": MessageLookupByLibrary.simpleMessage("payment not done"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
@@ -2648,8 +2629,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can change the above details in the card settings "),
+            MessageLookupByLibrary.simpleMessage("You can change the above details in the card settings "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
@@ -2670,13 +2650,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourCardReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
-        "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage(
-            "Your contact details have been saved."),
-        "yourFreeVirtualDebitCardHasBeenIssued":
-            MessageLookupByLibrary.simpleMessage(
-                "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourContactDetailsUpdated":
+            MessageLookupByLibrary.simpleMessage("Your contact details have been saved."),
+        "yourFreeVirtualDebitCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
+            "Your free virtual debit card has been issued, and the physical one is on its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
-        "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
-            "Your Yellow Sun debit card has been issued!")
+        "yourYellowSunDebitCardIssued":
+            MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card has been issued!")
       };
 }
