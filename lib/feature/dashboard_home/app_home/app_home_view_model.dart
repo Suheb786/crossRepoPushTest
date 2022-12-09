@@ -546,7 +546,7 @@ class AppHomeViewModel extends BasePageViewModel {
       }
 
       /// adding rj card pages
-      if (!(dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+      if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
         pages.add(RjCardWidget());
 
         cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));

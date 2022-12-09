@@ -19,4 +19,11 @@ class RjBookingPageViewModel extends BasePageViewModel {
   void setIndicatorProgressValue(double progress) {
     _indicatorProgressSubject.add(progress);
   }
+
+  loadNewUrl() {
+    webViewController?.loadUrl(
+        urlRequest: URLRequest(
+            url: Uri.parse(
+                'http://10.6.13.2:2186/RJFlightConfirmation/Index/?customerReferece=BLNKY239UKFW11&status=SUCCESS&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0LnVzZXIucmpAbWFpbC5jb20iLCJhY2Nlc3NUb2tlbiI6ImNvb2tpZSIsIm5iZiI6MTY3MDQwNzM5MywiZXhwIjoxNjcwNDA5MTkzLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMS8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMS8ifQ.7aYHSkTGjkhwYusODiqBk7nAa2wkWtJf8Q4YqWoTkLc')));
+  }
 }

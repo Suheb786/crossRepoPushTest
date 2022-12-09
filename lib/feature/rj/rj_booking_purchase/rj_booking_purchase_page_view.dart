@@ -249,7 +249,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       ),
                     ),
                     Visibility(
-                      visible: model.arguments.flightDetailResponse?.flightDetailContent?.flightType ==
+                      visible: model.arguments.flightDetailResponse.flightDetailContent?.flightType ==
                           FlightTypeEnum.RoundTrip,
                       child: Padding(
                         padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 16.h),

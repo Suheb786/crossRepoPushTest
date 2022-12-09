@@ -17,4 +17,6 @@ class AppConstantsUtils {
   static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
 
   static bool isInfobipRegistered = false;
+
+  static String RJRouteLink = '/RJFlightConfirmation/Index';
 }

@@ -74,13 +74,12 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       ?.referenceNumber ??
                                   '',
                               amount: (ProviderScope.containerOf(context)
-                                              .read(rjFlightBookingDetailViewModelProvider)
-                                              .flightDetailResponse
-                                              .flightDetailContent
-                                              ?.paymentAmount ??
-                                          '')
-                                      .toString() ??
-                                  '',
+                                          .read(rjFlightBookingDetailViewModelProvider)
+                                          .flightDetailResponse
+                                          .flightDetailContent
+                                          ?.paymentAmount ??
+                                      '')
+                                  .toString(),
                             );
                           }
                         } else {
@@ -98,13 +97,12 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       ?.referenceNumber ??
                                   '',
                               amount: (ProviderScope.containerOf(context)
-                                              .read(rjFlightBookingDetailViewModelProvider)
-                                              .flightDetailResponse
-                                              .flightDetailContent
-                                              ?.paymentAmount ??
-                                          '')
-                                      .toString() ??
-                                  '',
+                                          .read(rjFlightBookingDetailViewModelProvider)
+                                          .flightDetailResponse
+                                          .flightDetailContent
+                                          ?.paymentAmount ??
+                                      '')
+                                  .toString(),
                             );
                           } else {
                             ProviderScope.containerOf(context)
