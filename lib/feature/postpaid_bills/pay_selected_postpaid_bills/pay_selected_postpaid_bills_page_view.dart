@@ -140,29 +140,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
                                             return SelectedBillsToPaidWidget(
-                                              allowPartialPay: model
-                                                      .postPaidBillInquiryData?[
-                                                          index]
-                                                      .isPartial ??
-                                                  false,
-                                              billName:
-                                                  model.getValidBillerNickName(
-                                                      model
-                                                          .arguments
-                                                          .postPaidBillInquiryData?[
-                                                              index]
-                                                          .billingNo,
-                                                      nickName: model
-                                                          .arguments
-                                                          .noOfSelectedBills[
-                                                              index]
-                                                          .nickName),
-                                              billType: model
-                                                  .getValidBillerNameEN(model
-                                                      .arguments
-                                                      .postPaidBillInquiryData?[
-                                                          index]
-                                                      .billingNo),
+                                              allowPartialPay: model.postPaidBillInquiryData?[index].isPartial ?? false,
+                                              billName: model.getValidBillerNickName(
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                              billType: model.getValidBillerNameEN(
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
                                               itemCount: (index + 1).toString(),
                                               onChanged: (value) {
                                                 model.newAmtEnter(index, value);

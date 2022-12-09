@@ -4,6 +4,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -25,8 +26,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class PayAllPostPaidBillsPageView
-    extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
+class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
   PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
@@ -57,9 +57,8 @@ class PayAllPostPaidBillsPageView
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: AppColor.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16))),
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                       child: Padding(
                           padding: EdgeInsetsDirectional.only(
                               end: 24.0.w, start: 24.0.w, top: 8.0.h, bottom: 56.h),
@@ -94,12 +93,10 @@ class PayAllPostPaidBillsPageView
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),
-                                  child: model.payPostPaidBillsDataList.length >
-                                      0
+                                  child: model.payPostPaidBillsDataList.length > 0
                                       ? ListView.separated(
                                           shrinkWrap: true,
-                                          itemCount: model
-                                              .payPostPaidBillsDataList.length,
+                                          itemCount: model.payPostPaidBillsDataList.length,
                                           itemBuilder: (context, index) {
                                             return InkWell(
                                               onTap: () {
@@ -112,86 +109,52 @@ class PayAllPostPaidBillsPageView
                                                   children: [
                                                     SlidableAction(
                                                       // An action can be bigger than the others.
-                                                      onPressed: (context1) => {
-                                                        InformationDialog.show(
-                                                            context,
-                                                            image: AssetUtils
-                                                                .deleteBlackIcon,
-                                                            isSwipeToCancel:
-                                                                false,
-                                                            title: S
-                                                                .of(context)
-                                                                .areYouSure,
-                                                            descriptionWidget:
-                                                                Text(
-                                                                  "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
+                                                      onPressed: (context1) =>
+                                                      {
+                                                        InformationDialog.show(context,
+                                                            image: AssetUtils.deleteBlackIcon,
+                                                            isSwipeToCancel: false,
+                                                            title: S.of(context).areYouSure,
+                                                            descriptionWidget: Text(
+                                                              "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontSize: 14.t,
                                                                   fontWeight: FontWeight.w400),
                                                             ), onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
+                                                          Navigator.pop(context);
                                                         }, onSelected: () {
-                                                          Navigator.pop(
-                                                              context);
+                                                          Navigator.pop(context);
                                                           var billerCode = model
-                                                              .payPostPaidBillsDataList[
-                                                                  index]
-                                                              .billerCode;
-                                                          var billingNo = model
-                                                              .payPostPaidBillsDataList[
-                                                                  index]
-                                                              .billingNo;
+                                                              .payPostPaidBillsDataList[index].billerCode;
+                                                          var billingNo =
+                                                              model.payPostPaidBillsDataList[index].billingNo;
                                                           var serviceType = model
-                                                              .payPostPaidBillsDataList[
-                                                                  index]
-                                                              .serviceType;
-                                                          model
-                                                              .removeCustomerBilling(
-                                                                  billerCode,
-                                                                  billingNo,
-                                                                  serviceType);
+                                                              .payPostPaidBillsDataList[index].serviceType;
+                                                          model.removeCustomerBilling(
+                                                              billerCode, billingNo, serviceType);
                                                         })
                                                       },
-                                                      backgroundColor:
-                                                          AppColor.dark_brown,
-                                                      foregroundColor:
-                                                          Colors.white,
+                                                      backgroundColor: AppColor.dark_brown,
+                                                      foregroundColor: Colors.white,
                                                       icon: Icons.delete,
                                                     ),
                                                   ],
                                                 ),
-                                                child:
-                                                    PayBillsMultipleListSelectionWidget(
-                                                  icon: model
-                                                          .payPostPaidBillsDataList[
-                                                              index]
-                                                          .iconCode ??
-                                                      "",
-                                                  biller: model
-                                                          .payPostPaidBillsDataList[
-                                                              index]
-                                                          .billerNameEN ??
-                                                      "",
-                                                  billAmtDue: model
-                                                      .payPostPaidBillsDataList[
-                                                          index]
-                                                      .dueAmount
+                                                child: PayBillsMultipleListSelectionWidget(
+                                                  icon: model.payPostPaidBillsDataList[index].iconCode ?? "",
+                                                  biller:
+                                                      model.payPostPaidBillsDataList[index].billerNameEN ??
+                                                          "",
+                                                  billAmtDue: model.payPostPaidBillsDataList[index].dueAmount
                                                       .toString(),
-                                                  isSelected: model
-                                                          .payPostPaidBillsDataList[
-                                                              index]
-                                                          .isChecked ??
-                                                      false,
-                                                  nickName: model
-                                                          .payPostPaidBillsDataList[
-                                                              index]
-                                                          .nickName ??
-                                                      "",
-                                                  paidBillsPayTypeOptionEnum: model
-                                                      .arguments
-                                                      .paidBillsPayTypeOptionEnum,
+                                                  isSelected:
+                                                      model.payPostPaidBillsDataList[index].isChecked ??
+                                                          false,
+                                                  nickName:
+                                                      model.payPostPaidBillsDataList[index].nickName ?? "",
+                                                  paidBillsPayTypeOptionEnum:
+                                                      model.arguments.paidBillsPayTypeOptionEnum,
                                                 ),
                                               ),
                                             );
@@ -207,8 +170,7 @@ class PayAllPostPaidBillsPageView
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
+                                                color: Theme.of(context).primaryColorDark),
                                           ),
                                         ),
                                 ),
@@ -217,8 +179,7 @@ class PayAllPostPaidBillsPageView
                           )),
                     ),
                     Visibility(
-                      visible: model.payPostPaidBillsDataList
-                          .any((item) => item.isChecked == true),
+                      visible: model.payPostPaidBillsDataList.any((item) => item.isChecked == true),
                       child: AppStreamBuilder<double>(
                         initialData: 0.0,
                         stream: model.totalBillAmtDueStream,
@@ -230,14 +191,30 @@ class PayAllPostPaidBillsPageView
                               child: InkWell(
                                 onTap: () {
                                   if (amt! > 0.0) {
+                                    List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList = [];
+                                    for (var item in model.selectedPostPaidBillsList) {
+                                      if (double.parse(item.dueAmount ?? "0") > 0.0) {
+                                        tempSelectedPostPaidBillsList.add(item);
+                                      }
+                                    }
+                                    List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
+                                    for (var item in model.postPaidBillInquiryData!) {
+                                      var dueAmt = double.parse(item.dueAmount ?? "0");
+                                      if (dueAmt > 0.0 || dueAmt == 0.0 && item.isPartial == true) {
+                                        temPostPaidBillInquiryData.add(item);
+                                      }
+                                    }
+
+                                    tempSelectedPostPaidBillsList =
+                                        tempSelectedPostPaidBillsList.toSet().toList();
+                                    temPostPaidBillInquiryData = temPostPaidBillInquiryData.toSet().toList();
                                     Navigator.pushNamed(context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
                                         arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                            model.postPaidBillInquiryData!.length
-                                                    .toString(),
-                                                amt,
-                                                model.selectedPostPaidBillsList,
-                                                model.postPaidRequestListJson,
-                                                model.postPaidBillInquiryData));
+                                            model.postPaidBillInquiryData!.length.toString(),
+                                            amt,
+                                            tempSelectedPostPaidBillsList,
+                                            // model.postPaidRequestListJson,
+                                            temPostPaidBillInquiryData));
                                   } else {
                                     model.showToastWithError(AppError(
                                         cause: Exception(),
@@ -250,16 +227,10 @@ class PayAllPostPaidBillsPageView
                                   height: 56.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100.0),
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!,
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                   ),
                                   child: Center(
-                                    child: Text(
-                                        S.of(context).pay +
-                                            " " +
-                                            amt.toString(),
+                                    child: Text(S.of(context).pay + " " + amt.toString(),
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 14.t,
@@ -292,8 +263,7 @@ class PayAllPostPaidBillsPageView
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
               decoration: BoxDecoration(
-                  color: AppColor.darkModerateLimeGreen,
-                  borderRadius: BorderRadius.circular(16)),
+                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -308,13 +278,10 @@ class PayAllPostPaidBillsPageView
                               fontSize: 10),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
+                          padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  color: AppColor.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12)),
+                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
                         ),
                       ],
                     ),

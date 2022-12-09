@@ -43,7 +43,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       // arguments.noOfSelectedBills.forEach((element) {
       //   if(inquiryData.billingNo  == inquiryData.billingNo || inquiryData.isPartial ==true){
       //     if (inquiryData.isChecked == true) {
-      totalBillAmt = double.parse(inquiryData.dueAmount ?? "0.0") + totalBillAmt;
+      totalBillAmt = totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
       // }
       // }
       // });
@@ -69,10 +69,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream => _postPaidBillEnquiryResponse.stream;
 
-  void postPaidBillInquiry() {
-    _postPaidBillEnquiryRequest
-        .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: arguments.postPaidRequestListJson));
-  }
+  // void postPaidBillInquiry() {
+  //   _postPaidBillEnquiryRequest
+  //       .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: arguments.postPaidRequestListJson));
+  // }
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
@@ -195,9 +195,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  getValidBillerNickName(String? billingNumber, {String? nickName}) {
+  getValidBillerNickName(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber) return nickName != null && nickName.isNotEmpty ? nickName : "";
+      if (item.billingNo == billingNumber)
+        return item.nickName != null && item.nickName!.isNotEmpty ? item.nickName : "";
     }
   }
 

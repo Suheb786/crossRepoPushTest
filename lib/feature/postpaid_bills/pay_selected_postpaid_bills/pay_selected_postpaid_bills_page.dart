@@ -1,5 +1,4 @@
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
-import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,13 +52,13 @@ class PaySelectedBillsPostPaidBillsPageArguments {
   final String nosOfBills;
   final double amt;
   final List<GetPostpaidBillerListModelData> noOfSelectedBills;
-  List<PostpaidBillInquiry> postPaidRequestListJson;
+  // List<PostpaidBillInquiry> postPaidRequestListJson;
   List<PostPaidBillInquiryData>? postPaidBillInquiryData;
 
   PaySelectedBillsPostPaidBillsPageArguments(
       this.nosOfBills,
       this.amt,
       this.noOfSelectedBills,
-      this.postPaidRequestListJson,
+      // this.postPaidRequestListJson,
       this.postPaidBillInquiryData);
 }
