@@ -63,10 +63,18 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                           .read(rjFlightBookingDetailViewModelProvider)
                                           .previousPage();
                                     } else {
+                                      debugPrint('Selected card----?${model.selectedCard?.amt}');
+                                      ProviderScope.containerOf(context)
+                                          .read(rjFlightBookingDetailViewModelProvider)
+                                          .selectedCard = model.selectedCard;
                                       model.rjOtpValidate();
                                     }
                                   } else {
                                     if (details.primaryVelocity!.isNegative) {
+                                      ProviderScope.containerOf(context)
+                                          .read(rjFlightBookingDetailViewModelProvider)
+                                          .selectedCard = model.selectedCard;
+                                      debugPrint('Selected card----?${model.selectedCard?.amt}');
                                       model.rjOtpValidate();
                                     } else {
                                       ProviderScope.containerOf(context)
@@ -82,21 +90,25 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                     padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                     child: Column(
                                       children: [
-                                        Align(
-                                          alignment: AlignmentDirectional.topStart,
-                                          child: Text(
-                                            S.of(context).payFrom,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.veryDarkGray2,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14.t),
+                                        Padding(
+                                          padding: EdgeInsets.only(bottom: 16.h),
+                                          child: Align(
+                                            alignment: AlignmentDirectional.topStart,
+                                            child: Text(
+                                              S.of(context).payFrom,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  color: AppColor.veryDarkGray2,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14.t),
+                                            ),
                                           ),
                                         ),
 
                                         Expanded(
                                           child: ListView.separated(
                                             itemCount: model.makePaymentCardList.length,
+                                            padding: EdgeInsets.zero,
                                             itemBuilder: (BuildContext context, int index) {
                                               return (data ?? []).length > 0
                                                   ? GestureDetector(

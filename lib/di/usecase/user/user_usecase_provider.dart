@@ -29,6 +29,7 @@ import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
+import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
@@ -194,3 +195,7 @@ final changeMyNumberUseCaseProvider =
 ///change my number usecase
 final checkVersionUpdateUseCaseProvider = Provider.autoDispose<CheckVersionUpdateUseCase>(
     (ref) => CheckVersionUpdateUseCase(ref.read(userRepoProvider)));
+
+///save user usecase
+final saveDataUserUseCaseProvider =
+    Provider.autoDispose<SaveUserDataUseCase>((ref) => SaveUserDataUseCase(ref.read(userRepoProvider)));

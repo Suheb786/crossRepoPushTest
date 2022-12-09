@@ -22,41 +22,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  app_links:
-    dependency: transitive
-    description:
-      name: app_links
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.0"
-  app_links_macos:
-    dependency: transitive
-    description:
-      name: app_links_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  app_links_platform_interface:
-    dependency: transitive
-    description:
-      name: app_links_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
-  app_links_web:
-    dependency: transitive
-    description:
-      name: app_links_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  app_links_windows:
-    dependency: transitive
-    description:
-      name: app_links_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   appsflyer_sdk:
     dependency: transitive
     description:
@@ -457,7 +422,7 @@ packages:
     source: hosted
     version: "4.1.0"
   flutter_inappwebview:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
@@ -619,7 +584,7 @@ packages:
     source: hosted
     version: "2.0.1"
   geolocator:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: geolocator
       url: "https://pub.dartlang.org"

@@ -440,6 +440,9 @@ class RjFlightBookingDialogView extends StatelessWidget {
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
                                 model.getTripLink(context);
+                                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                                //     arguments:
+                                //         RJFlightDetailsPageArguments(referenceNumber: 'BLNKY239UKFW91'));
                               }
                             },
                             child: AppStreamBuilder<Resource<GetTripResponse>>(
@@ -447,9 +450,11 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                 initialData: Resource.none(),
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
+                                    Navigator.pop(context);
                                     Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                        arguments:
-                                            RjBookingPageArguments(url: data.data?.content?.content?.link));
+                                        arguments: RjBookingPageArguments(
+                                            url: data.data?.content?.content?.link ?? '',
+                                            webViewRoute: WebViewRoute.bookingDialog));
                                   }
                                 },
                                 dataBuilder: (context, getOneWayTripLinkResponse) {
@@ -458,9 +463,11 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                       initialData: Resource.none(),
                                       onData: (data) {
                                         if (data.status == Status.SUCCESS) {
+                                          Navigator.pop(context);
                                           Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
                                               arguments: RjBookingPageArguments(
-                                                  url: data.data?.content?.content?.link));
+                                                  url: data.data?.content?.content?.link ?? '',
+                                                  webViewRoute: WebViewRoute.bookingDialog));
                                         }
                                       },
                                       dataBuilder: (context, getOneWayTripLinkResponse) {

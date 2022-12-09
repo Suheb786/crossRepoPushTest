@@ -67,10 +67,11 @@ final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<Placehol
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
   (ref) => AppHomeViewModel(
-    ref.read(getDashboardDataUseCaseProvider),
-    ref.read(getPlaceHolderUseCaseProvider),
-    ref.read(initDynamicLinkUseCaseProvider),
-  ),
+      ref.read(getDashboardDataUseCaseProvider),
+      ref.read(getPlaceHolderUseCaseProvider),
+      ref.read(initDynamicLinkUseCaseProvider),
+      ref.read(currentUserUseCaseProvider),
+      ref.read(saveDataUserUseCaseProvider)),
 );
 
 final filterTransactionDialogViewModelProvier =
