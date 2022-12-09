@@ -14659,6 +14659,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Account is successfully linked with CliQ ID`
+  String get accountSuccessfullyLinked {
+    return Intl.message(
+      'Account is successfully linked with CliQ ID',
+      name: 'accountSuccessfullyLinked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to unlink the account with your CliQ ID?`
+  String get areYouSureToUnlinkAccount {
+    return Intl.message(
+      'Are you sure you want to unlink the account with your CliQ ID?',
+      name: 'areYouSureToUnlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlink account with CliQ ID`
+  String get unLinkAccountWithCliqId {
+    return Intl.message(
+      'Unlink account with CliQ ID',
+      name: 'unLinkAccountWithCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Delete?`
+  String get confirmDelete {
+    return Intl.message(
+      'Confirm Delete?',
+      name: 'confirmDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete `
+  String get areYouSureWantToDelete {
+    return Intl.message(
+      'Are you sure you want to delete ',
+      name: 'areYouSureWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from your CliQ ID list?`
+  String get fromYourCliqIdList {
+    return Intl.message(
+      ' from your CliQ ID list?',
+      name: 'fromYourCliqIdList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspend CliQ ID`
+  String get suspandClidId {
+    return Intl.message(
+      'Suspend CliQ ID',
+      name: 'suspandClidId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to suspend your CliQ ID?`
+  String get areYouSureToSuspandCliqId {
+    return Intl.message(
+      'Are you sure you want to suspend your CliQ ID?',
+      name: 'areYouSureToSuspandCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reactivate CliQ ID`
+  String get reactivateCliqId {
+    return Intl.message(
+      'Reactivate CliQ ID',
+      name: 'reactivateCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account successfully unlinked`
+  String get accountSuccessfullyUnlinked {
+    return Intl.message(
+      'Account successfully unlinked',
+      name: 'accountSuccessfullyUnlinked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate ID`
+  String get activateId {
+    return Intl.message(
+      'Activate ID',
+      name: 'activateId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Here are my Blink account details: `
+  String get helloHereMyBlinkAccount {
+    return Intl.message(
+      'Hello! Here are my Blink account details: ',
+      name: 'helloHereMyBlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

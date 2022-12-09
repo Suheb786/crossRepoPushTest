@@ -2,6 +2,7 @@ import 'package:data/entity/remote/cliq/get_alias/account_list_entity.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:domain/model/cliq/getAlias/alias_list.dart';
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 part 'alias_list_entity.g.dart';
 
 @JsonSerializable()
@@ -58,6 +59,6 @@ class AliasListEntity
         aliasID: this.aliasID,
         aliasName: this.aliasName,
         aliasType: this.aliasType,
-        status: this.status);
+        status: this.status?.fromCliqAliasIdStatus());
   }
 }
