@@ -375,4 +375,16 @@ class CliqRepositoryImpl extends CliqRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> getCustomerByAccount(
+      {required String accountCode,
+      required String CustID,
+      required bool GetToken}) async {
+    final result = await safeApiCall(
+      _cliqDataSource.getCustomerByAccount(
+          accountCode: accountCode, CustID: CustID, GetToken: GetToken),
+    );
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
 }

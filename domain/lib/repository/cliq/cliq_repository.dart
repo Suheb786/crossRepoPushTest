@@ -180,4 +180,10 @@ abstract class CliqRepository {
       required String TipOrConvenienceIndicator,
       dynamic valueOfPercentageConvenience,
       required bool getToken});
+
+  Future<Either<NetworkError, bool>> getCustomerByAccount({
+    required String accountCode,
+    required String CustID,
+    required bool GetToken,
+  });
 }

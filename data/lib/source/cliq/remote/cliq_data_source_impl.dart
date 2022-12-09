@@ -8,6 +8,7 @@ import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
@@ -372,5 +373,18 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         dbtrPstlAdr: dbtrPstlAdr,
         getToken: getToken,
         baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
+      {required String accountCode,
+      required String CustID,
+      required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCustomerByAccount(GetCustomByAccountRequestEntity(
+        accountCode: accountCode,
+        CustID: CustID,
+        GetToken: GetToken,
+        BaseClass: baseData.toJson()));
   }
 }

@@ -191,7 +191,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                             .data
                                                                             ?.aliases?[index]
                                                                             .accounts?[index]
-                                                                            .identifier) ??
+                                                                            .acciban) ??
                                                                         "",
                                                                   );
                                                                   // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
@@ -226,7 +226,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                             (getAliasSnapshot.data?.aliases?[index].aliasID) ??
                                                                                 "",
                                                                         accountId:
-                                                                            (getAliasSnapshot.data?.aliases?[index].accounts?[index].accountID) ??
+                                                                            (getAliasSnapshot.data?.aliases?[index].accounts?[index].recordId) ??
                                                                                 "",
                                                                       );
                                                                       Navigator.pop(

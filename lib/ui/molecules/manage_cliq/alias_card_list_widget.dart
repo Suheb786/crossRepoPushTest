@@ -42,9 +42,15 @@ class AliasCardList extends StatelessWidget {
       child: Container(
         width: 327.w,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
-        ),
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 24,
+                  color: Color(0x14000000),
+                  offset: Offset(0, 8),
+                  spreadRadius: 0)
+            ]),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -144,7 +150,7 @@ class AliasCardList extends StatelessWidget {
                             },
                             dense: false,
                             title: Text(
-                              "${accountList[i].identifier}",
+                              "${accountList[i].acciban}",
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.t,
@@ -155,7 +161,7 @@ class AliasCardList extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  "${accountList[i].accountID}",
+                                  "${accountList[i].recordId}",
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 12.t,

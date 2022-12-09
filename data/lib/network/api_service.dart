@@ -221,6 +221,7 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 
 part 'api_service.g.dart';
 
@@ -965,5 +966,9 @@ abstract class ApiService {
   @POST("/Cliq/RequestMoneyActivity")
   Future<HttpResponse<ResponseEntity>> requestMoneyActivity(
     @Body() RequestMoneyActivityRequestEntity request,
+  );
+  @POST("/Cliq/GetCustomerByAccount")
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
+    @Body() GetCustomByAccountRequestEntity request,
   );
 }
