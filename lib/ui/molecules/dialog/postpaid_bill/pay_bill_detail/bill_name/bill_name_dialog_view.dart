@@ -178,7 +178,7 @@ class PayBillDialogView extends StatelessWidget {
                 key: ValueKey(billList.length),
                 child: ClickableListWheelScrollView(
                   scrollController: model.scrollController,
-                  itemHeight: 72,
+                  itemHeight: 75,
                   itemCount: billList.length,
                   //   itemCount: data.data!.length,
                   onItemTapCallback: (index) {

@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -35,7 +33,7 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
         }
       },
       child: Padding(
-        padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 97.h, bottom: 56.h),
+        padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w, top: 97.h, bottom: 56.h),
         child: Column(
           children: [
             Text(
@@ -60,7 +58,8 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {},
-                  decoration: InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
+                  decoration:
+                      InputDecoration(isDense: true, contentPadding: const EdgeInsetsDirectional.all(0.0)),
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: AppColor.white,
@@ -179,9 +178,8 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                           return Container(
                               height: 16.h,
                               width: 16.w,
-                              padding: EdgeInsets.only(right: 8.w),
-                              child: AppSvg.asset(AssetUtils.downArrow,
-                                  color: AppColor.dark_gray_1));
+                              padding: EdgeInsetsDirectional.only(end: 8.w),
+                              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                         },
                       ),
                       SizedBox(

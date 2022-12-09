@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14220,11 +14221,21 @@ class S {
     );
   }
 
-  /// `Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?`
-  String get doYouReallyDeleteSavedBills {
+  /// `Do you really want to delete`
+  String get doYouReallyWantToDelete {
     return Intl.message(
-      'Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?',
-      name: 'doYouReallyDeleteSavedBills',
+      'Do you really want to delete',
+      name: 'doYouReallyWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from Saved Bills?`
+  String get fromSavedBills {
+    return Intl.message(
+      'from Saved Bills?',
+      name: 'fromSavedBills',
       desc: '',
       args: [],
     );
@@ -14725,6 +14736,56 @@ class S {
     return Intl.message(
       'error while adding customer',
       name: 'errorWhileAddingCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay My Bill`
+  String get payMyBill {
+    return Intl.message(
+      'Pay My Bill',
+      name: 'payMyBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient funds bill cannot be payed`
+  String get insufficientFundsBillCannotBePayed {
+    return Intl.message(
+      'Insufficient funds bill cannot be payed',
+      name: 'insufficientFundsBillCannotBePayed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BILL UPDATED\nYour bill has been removed.`
+  String get yourBillHasBeenRemoved {
+    return Intl.message(
+      'BILL UPDATED\\nYour bill has been removed.',
+      name: 'yourBillHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BILL UPDATED\nBiller Added Successfully.`
+  String get billerAddedSuccessfully {
+    return Intl.message(
+      'BILL UPDATED\\nBiller Added Successfully.',
+      name: 'billerAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search category`
+  String get SearchCategory {
+    return Intl.message(
+      'Search category',
+      name: 'SearchCategory',
       desc: '',
       args: [],
     );

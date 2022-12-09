@@ -27,7 +27,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.only(top: 56.h),
+      padding: EdgeInsetsDirectional.only(top: 56.h),
       child: Column(
         children: [
           Padding(

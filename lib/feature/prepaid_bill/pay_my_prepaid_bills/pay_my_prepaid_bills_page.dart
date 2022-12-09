@@ -9,8 +9,8 @@ import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepai
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PayMyPrePaidBillsPage extends BasePage<PayMyPrePaidBillsPageViewModel> {
   @override
@@ -32,35 +32,35 @@ class PayMyPrePaidBillsPageState
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 107.h),
-        child: Padding(
-          padding: EdgeInsets.only(top: 52.0.h, bottom: 35.0.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24.0.w),
-                  child: AppSvg.asset(
-                    AssetUtils.leftArrow,
-                    color: AppColor.white,
-                  ),
-                ),
+        preferredSize: Size(double.maxFinite, 85.0.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 24.0.w),
+                child: AppSvg.asset(AssetUtils.leftArrow,
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
-              Text(
-                // S.of(context).payAllBills,
-                "Pay My Bills",
-                style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.white),
+            ),
+            Text(
+              S.of(context).payMyBill,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 14.t,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).accentColor),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(end: 18.0.w),
+              child: Container(
+                width: 28.w,
               ),
-              SizedBox.shrink()
-            ],
-          ),
+            )
+          ],
         ));
   }
 

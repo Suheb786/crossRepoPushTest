@@ -46,11 +46,13 @@ class PaidBillEntity
   @override
   PaidBill transform() {
     return PaidBill(
-        billName: this.billName,
-        totalAmount: this.totalAmount,
-        refNo: this.refNo,
-        date: this.date,
-        statusDescription: this.statusDescription,
-        isPaid: this.isPaid);
+        billName: this.billName != null && this.billName!.isNotEmpty ? this.billName : "",
+        totalAmount: this.totalAmount != null && this.totalAmount!.isNotEmpty ? this.totalAmount : "0",
+        refNo: this.refNo != null && this.refNo!.isNotEmpty ? this.refNo : "",
+        date: this.date != null && this.date!.isNotEmpty ? this.date : "",
+        statusDescription: this.statusDescription != null && this.statusDescription!.isNotEmpty
+            ? this.statusDescription
+            : "",
+        isPaid: this.isPaid ?? false);
   }
 }

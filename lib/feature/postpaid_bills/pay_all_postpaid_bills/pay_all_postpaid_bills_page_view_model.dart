@@ -285,10 +285,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void searchPostPaidBillerList(String? searchText) {
-    fList.clear();
+    if (fList != null && fList.isNotEmpty) {
+      fList.clear();
+    }
     List<GetPostpaidBillerListModelData>? getPostpaidBillerList =
-        _postpaidBillerResponse.value.data?.getPostpaidBillerListContent
-            ?.getPostpaidBillerListData;
+        _postpaidBillerResponse.value.data?.getPostpaidBillerListContent?.getPostpaidBillerListData;
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < getPostpaidBillerList!.length; i++) {
         GetPostpaidBillerListModelData item = getPostpaidBillerList[i];

@@ -103,11 +103,7 @@ import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/new_prepaid_bills/new_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/confirm_prepaid_bill_payment_amount/confirm_prepaid_bill_payment_amount_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_detail/pay_prepaid_bill_detail_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
@@ -147,8 +143,6 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
-import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 class AppRouter {
@@ -814,25 +808,25 @@ class AppRouter {
                 settings.arguments as HowMuchLikeToPayPrePaidBillsPageArgument),
             settings: RouteSettings(name: RoutePaths.HowMuchLikeToPayPrePaidBillsPage));
 
-      case RoutePaths.PayPrePaidBillPage:
-        return CupertinoPageRoute(
-            builder: (context) => PayPrePaidBillPage(),
-            settings: RouteSettings(name: RoutePaths.PayPrePaidBillPage));
-
-      case RoutePaths.NewPrePaidBillsPage:
-        return CupertinoPageRoute(
-            builder: (context) => NewPrePaidBillsPage(),
-            settings: RouteSettings(name: RoutePaths.NewPrePaidBillsPage));
-
-      case RoutePaths.PayPrePaidBillDetailPage:
-        return CupertinoPageRoute(
-            builder: (context) => PayPrePaidBillDetailPage(),
-            settings: RouteSettings(name: RoutePaths.PayPrePaidBillDetailPage));
-
-      case RoutePaths.ConfirmPrePaidBillPaymentAmountPage:
-        return CupertinoPageRoute(
-            builder: (context) => ConfirmPrePaidBillPaymentAmountPage(),
-            settings: RouteSettings(name: RoutePaths.ConfirmPrePaidBillPaymentAmountPage));
+      // case RoutePaths.PayPrePaidBillPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => PayPrePaidBillPage(),
+      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillPage));
+      //
+      // case RoutePaths.NewPrePaidBillsPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => NewPrePaidBillsPage(),
+      //       settings: RouteSettings(name: RoutePaths.NewPrePaidBillsPage));
+      //
+      // case RoutePaths.PayPrePaidBillDetailPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => PayPrePaidBillDetailPage(),
+      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillDetailPage));
+      //
+      // case RoutePaths.ConfirmPrePaidBillPaymentAmountPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => ConfirmPrePaidBillPaymentAmountPage(),
+      //       settings: RouteSettings(name: RoutePaths.ConfirmPrePaidBillPaymentAmountPage));
 
       case RoutePaths.QRScanningScreen:
         return CupertinoPageRoute(

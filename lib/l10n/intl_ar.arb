@@ -1395,7 +1395,8 @@
   "howWouldLikeToPayPrePaidYourBills": "How would you like to\npay your prepaid bills?",
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList": "Add this bill to your saved list",
-  "doYouReallyDeleteSavedBills": "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
+  "doYouReallyWantToDelete": "Do you really want to delete",
+  "fromSavedBills": "from Saved Bills?",
   "payViaQR": "Pay via QR",
   "payAndRequestMoneyViaQR": "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.",
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
@@ -1441,11 +1442,16 @@
   "noTicketsFound": "No tickets found",
   "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
-  "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?",
+  "howMuchWouldYouLikeToPay": "How much would you\nlike to pay?",
   "searchCategory": "Search category",
   "noBillerFound": "No Biller Found",
   "noPrepaidCategoryFound": "No Prepaid Category Found",
   "denomination": "Denomination",
   "errorOnBillinquiry": "error on billinquiry",
-  "errorWhileAddingCustomer": "error while adding customer"
+  "errorWhileAddingCustomer": "error while adding customer",
+  "payMyBill": "Pay My Bill",
+  "insufficientFundsBillCannotBePayed": "Insufficient funds bill cannot be payed",
+  "yourBillHasBeenRemoved": "BILL UPDATED\\nYour bill has been removed.",
+  "billerAddedSuccessfully": "BILL UPDATED\\nBiller Added Successfully.",
+  "SearchCategory": "Search category"
 }

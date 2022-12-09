@@ -5,21 +5,21 @@ import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_b
 import 'package:domain/usecase/bill_payment/get_prepaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:rxdart/subjects.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:rxdart/subjects.dart';
 
 class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   TextEditingController searchBillController = TextEditingController();
   List<GetPrepaidBillerListModelData>? getPrepaidBillData = [];
-  GetPrepaidBillerListModelData getPrepaidBillerListModelData =
-      GetPrepaidBillerListModelData();
+  List<GetPrepaidBillerListModelData>? fList = [];
+  GetPrepaidBillerListModelData getPrepaidBillerListModelData = GetPrepaidBillerListModelData();
   List<GetPrepaidCategoriesModelData> getPrepaidCategoriesModelData = [];
   bool isPrePaidCategoryEmpty = true;
 
@@ -27,23 +27,25 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   final GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
   final RemovePrepaidBillerUseCase removePrepaidBillerUseCase;
 
-  PayMyPrePaidBillsPageViewModel(this.getPrepaidBillerListUseCase,
-      this.getPrePaidCategoriesListUseCase, this.removePrepaidBillerUseCase) {
+  PayMyPrePaidBillsPageViewModel(this.getPrepaidBillerListUseCase, this.getPrePaidCategoriesListUseCase,
+      this.removePrepaidBillerUseCase) {
     prepaidBillerListener();
     gerPrePaidCategoriesListener();
-    removePrepaidBillerListenr();
+    removePrepaidBillerListener();
     getPrepaidBiller();
   }
 
   /// ---------------- Call Api GetPrepaidBillerList -------------------------------- ///
 
-  PublishSubject<GetPrepaidBillerListUseCaseParams> _prepaidBillerRequest =
-      PublishSubject();
-  PublishSubject<Resource<GetPrepaidBillerListModel>> _prepaidBillerResponse =
+  BehaviorSubject<GetPrepaidBillerListUseCaseParams> _prepaidBillerRequest = BehaviorSubject();
+  BehaviorSubject<Resource<GetPrepaidBillerListModel>> _prepaidBillerResponse = BehaviorSubject();
+
+  ////search list
+  PublishSubject<Resource<List<GetPrepaidBillerListModelData>?>> _searchPrepaidBillerResponse =
       PublishSubject();
 
-  Stream<Resource<GetPrepaidBillerListModel>> get prepaidBillerStream =>
-      _prepaidBillerResponse.stream;
+  Stream<Resource<List<GetPrepaidBillerListModelData>?>> get searchPrepaidBillerStream =>
+      _searchPrepaidBillerResponse.stream;
 
   void getPrepaidBiller() {
     _prepaidBillerRequest.safeAdd(GetPrepaidBillerListUseCaseParams());
@@ -52,13 +54,14 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   void prepaidBillerListener() {
     _prepaidBillerRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    getPrepaidBillerListUseCase.execute(params: params))
+        RequestManager(params, createCall: () => getPrepaidBillerListUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
           _prepaidBillerResponse.safeAdd(event);
+          _searchPrepaidBillerResponse.safeAdd(Resource.success(
+              data: event.data?.getPrepaidBillerListContent?.getPrepaidBillerListData ?? []));
+
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           }
@@ -69,19 +72,16 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
 
   /// ---------------- Call Api GetPrePaidCategoriesList -------------------- ///
 
-  PublishSubject<GetPrePaidCategoriesListUseCaseParams>
-      _gerPrePaidCategoriesRequest = PublishSubject();
+  PublishSubject<GetPrePaidCategoriesListUseCaseParams> _gerPrePaidCategoriesRequest = PublishSubject();
 
-  PublishSubject<Resource<GetPrePaidCategoriesModel>>
-      _gerPrePaidCategoriesResponse = PublishSubject();
+  PublishSubject<Resource<GetPrePaidCategoriesModel>> _gerPrePaidCategoriesResponse = PublishSubject();
 
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;
 
   void getPrePaidCategoresList(String? serviceCode, String? billerCode) {
     _gerPrePaidCategoriesRequest.safeAdd(
-      GetPrePaidCategoriesListUseCaseParams(
-          billerCode: billerCode, serviceCode: serviceCode),
+      GetPrePaidCategoriesListUseCaseParams(billerCode: billerCode, serviceCode: serviceCode),
     );
   }
 
@@ -90,8 +90,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
       (params) {
         RequestManager(
           params,
-          createCall: () =>
-              getPrePaidCategoriesListUseCase.execute(params: params),
+          createCall: () => getPrePaidCategoriesListUseCase.execute(params: params),
         ).asFlow().listen((event) {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
@@ -106,21 +105,16 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
 
   /// ---------------- remove prepaid biller -------------------------------- ///
 
-  PublishSubject<RemovePrepaidBillerUseCaseParams> _removePrepaidBillerRequest =
-      PublishSubject();
+  PublishSubject<RemovePrepaidBillerUseCaseParams> _removePrepaidBillerRequest = PublishSubject();
 
-  BehaviorSubject<Resource<bool>> _removePrepaidBillerResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<bool>> _removePrepaidBillerResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get removePrepaidBillerStream =>
-      _removePrepaidBillerResponse.stream;
+  Stream<Resource<bool>> get removePrepaidBillerStream => _removePrepaidBillerResponse.stream;
 
-  void removePrepaidBillerListenr() {
+  void removePrepaidBillerListener() {
     _removePrepaidBillerRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    removePrepaidBillerUseCase.execute(params: params))
+        RequestManager(params, createCall: () => removePrepaidBillerUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -130,11 +124,8 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
             if (event.data == true) {
-              // showToastWithSuccess(AppConstants.SUCCESS_MESSAGE_BOOL);
-              Future.delayed(Duration(milliseconds: 200))
-                  .then((value) => getPrepaidBiller());
-            } else {
-              // showToastWithErrorMessage(AppConstants.ERROR_MESSAGE_BOOL);
+              showSuccessToast('BILL UPDATED\nYour bill has been removed.');
+              Future.delayed(Duration(milliseconds: 200)).then((value) => getPrepaidBiller());
             }
           }
         });
@@ -150,5 +141,38 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
         registrationID: registrationID,
       ),
     );
+  }
+
+  void searchPrePaidBillerList(String? searchText) {
+    if (fList != null && fList!.isNotEmpty) {
+      fList!.clear();
+    }
+    List<GetPrepaidBillerListModelData>? getPrepaidBillerList =
+        _prepaidBillerResponse.value.data?.getPrepaidBillerListContent?.getPrepaidBillerListData ?? [];
+    if (searchText!.isNotEmpty) {
+      for (int i = 0; i < getPrepaidBillerList.length; i++) {
+        GetPrepaidBillerListModelData item = getPrepaidBillerList[i];
+
+        /// nickname filter
+        if (item.nickname != null && item.nickname!.isNotEmpty) {
+          if (item.nickname!.toLowerCase().contains(searchText.toLowerCase())) {
+            fList?.add(item);
+          }
+        }
+
+        /// billerName filter
+        if (item.billerName != null && item.billerName!.isNotEmpty) {
+          if (item.billerName!.toLowerCase().contains(searchText.toLowerCase())) {
+            fList?.add(item);
+          }
+        }
+      }
+      fList = fList!.toSet().toList();
+      _searchPrepaidBillerResponse.safeAdd(Resource.success(data: fList));
+    } else {
+      _searchPrepaidBillerResponse.safeAdd(Resource.success(
+          data: _prepaidBillerResponse.value.data?.getPrepaidBillerListContent?.getPrepaidBillerListData ??
+              []));
+    }
   }
 }

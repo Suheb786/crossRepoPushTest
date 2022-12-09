@@ -43,11 +43,7 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/new_prepaid_bills/new_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/confirm_prepaid_bill_payment_amount/confirm_prepaid_bill_payment_amount_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_detail/pay_prepaid_bill_detail_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
@@ -373,38 +369,35 @@ final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider
       args, ref.read(addNewPrepaidBillerUseCaseProvider)),
 );
 
-final howMuchLikeToPayPrePaidBillsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-            HowMuchLikeToPayPrePaidBillsPageViewModel,
-            HowMuchLikeToPayPrePaidBillsPageArgument>(
+final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPageArgument>(
         (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
               args,
               ref.read(validatePrePaidBillUseCaseProvider),
               ref.read(getPayPrePaidBillUseCaseProvider),
             ));
-final newPrePaidBillsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<NewPrePaidBillsPageViewModel>(
-  (ref) => NewPrePaidBillsPageViewModel(),
-);
-final confirmPrePaidBillPaymentAmountPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<
-        ConfirmPrePaidBillPaymentAmountPageViewModel>(
-  (ref) => ConfirmPrePaidBillPaymentAmountPageViewModel(),
-);
-
-final payPrePaidBillDetailPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PayPrePaidBillDetailPageViewModel>(
-  (ref) => PayPrePaidBillDetailPageViewModel(
-      ref.read(getPrePaidCategoriesListUseCaseProvider),
-      ref.read(getBillerLookupListUseCaseProvider)),
-);
-
-final payPrePaidBillPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PayPrePaidBillPageViewModel>(
-  (ref) => PayPrePaidBillPageViewModel(),
-);
+// final newPrePaidBillsPageViewModelProvider =
+//     ChangeNotifierProvider.autoDispose<NewPrePaidBillsPageViewModel>(
+//   (ref) => NewPrePaidBillsPageViewModel(),
+// );
+// final confirmPrePaidBillPaymentAmountPageViewModelProvider =
+//     ChangeNotifierProvider.autoDispose<
+//         ConfirmPrePaidBillPaymentAmountPageViewModel>(
+//   (ref) => ConfirmPrePaidBillPaymentAmountPageViewModel(),
+// );
+//
+// final payPrePaidBillDetailPageViewModelProvider =
+//     ChangeNotifierProvider.autoDispose<PayPrePaidBillDetailPageViewModel>(
+//   (ref) => PayPrePaidBillDetailPageViewModel(
+//       ref.read(getPrePaidCategoriesListUseCaseProvider),
+//       ref.read(getBillerLookupListUseCaseProvider)),
+// );
+//
+// final payPrePaidBillPageViewModelProvider =
+//     ChangeNotifierProvider.autoDispose<PayPrePaidBillPageViewModel>(
+//   (ref) => PayPrePaidBillPageViewModel(),
+// );
 
 ///qr scanning screen view model provider
-final qrScanningScreenViewModelProvider =
-    ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
-        (ref) => QrScanningScreenPageViewModel());
+final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
+    (ref) => QrScanningScreenPageViewModel());

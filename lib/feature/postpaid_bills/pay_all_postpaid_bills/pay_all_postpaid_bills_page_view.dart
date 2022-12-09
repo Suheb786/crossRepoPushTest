@@ -61,11 +61,8 @@ class PayAllPostPaidBillsPageView
                               topLeft: Radius.circular(16),
                               topRight: Radius.circular(16))),
                       child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 24.0.w,
-                              right: 24.0.w,
-                              top: 8.0.h,
-                              bottom: 56.h),
+                          padding: EdgeInsetsDirectional.only(
+                              end: 24.0.w, start: 24.0.w, top: 8.0.h, bottom: 56.h),
                           child: Column(
                             children: [
                               Container(
@@ -73,8 +70,7 @@ class PayAllPostPaidBillsPageView
                                   height: 4.h,
                                   decoration: BoxDecoration(
                                       color: AppColor.whiteGrey,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(4.0)))),
+                                      borderRadius: BorderRadius.all(Radius.circular(4.0)))),
                               SizedBox(
                                 height: 24.0.h,
                               ),
@@ -91,15 +87,13 @@ class PayAllPostPaidBillsPageView
                                   return Container(
                                       height: 16.h,
                                       width: 16.w,
-                                      padding: EdgeInsets.only(right: 8.w),
-                                      child: AppSvg.asset(AssetUtils.search,
-                                          color: AppColor.dark_gray_1));
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
                                 },
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 24.0.h, bottom: 24.0.h),
+                                  padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),
                                   child: model.payPostPaidBillsDataList.length >
                                       0
                                       ? ListView.separated(
@@ -130,18 +124,11 @@ class PayAllPostPaidBillsPageView
                                                                 .areYouSure,
                                                             descriptionWidget:
                                                                 Text(
-                                                              S
-                                                                  .of(context)
-                                                                  .doYouReallyDeleteSavedBills,
+                                                                  "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.t,
+                                                                  fontWeight: FontWeight.w400),
                                                             ), onDismissed: () {
                                                           Navigator.pop(
                                                               context);
@@ -233,25 +220,19 @@ class PayAllPostPaidBillsPageView
                       visible: model.payPostPaidBillsDataList
                           .any((item) => item.isChecked == true),
                       child: AppStreamBuilder<double>(
-                        initialData: 0.1,
+                        initialData: 0.0,
                         stream: model.totalBillAmtDueStream,
                         dataBuilder: (BuildContext context, amt) {
                           return Align(
                             alignment: Alignment.bottomCenter,
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: 36.0.h, left: 24.0.w, right: 24.0.w),
+                              padding: EdgeInsetsDirectional.only(bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
                               child: InkWell(
                                 onTap: () {
                                   if (amt! > 0.0) {
-                                    Navigator.pushNamed(
-                                        context,
-                                        RoutePaths
-                                            .PaySelectedBillsPostPaidBillsPage,
-                                        arguments:
-                                            PaySelectedBillsPostPaidBillsPageArguments(
-                                                model.postPaidBillInquiryData!
-                                                    .length
+                                    Navigator.pushNamed(context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                        arguments: PaySelectedBillsPostPaidBillsPageArguments(
+                                            model.postPaidBillInquiryData!.length
                                                     .toString(),
                                                 amt,
                                                 model.selectedPostPaidBillsList,

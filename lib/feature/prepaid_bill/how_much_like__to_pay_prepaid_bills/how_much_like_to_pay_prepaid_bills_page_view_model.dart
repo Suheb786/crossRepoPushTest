@@ -20,7 +20,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   final PayPrePaidUseCase payPrePaidUseCase;
   bool isPrepaidCategoryListEmpty = false;
 
-  TextEditingController amtController = TextEditingController();
+  TextEditingController amtController = TextEditingController(text: "0.0");
   TextEditingController savingAccountController = TextEditingController();
 
   String? serviceDescriptionEn = "";
@@ -48,41 +48,32 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- validate prepaid bill -------------------------------- ///
-  PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest =
-      PublishSubject();
+  PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest = PublishSubject();
 
-  BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse = BehaviorSubject();
 
-  Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream =>
-      _validatePrePaidResponse.stream;
+  Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
   void validatePrePaidBill() {
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: argument.payMyPrePaidBillsPageDataList[0].billerCode,
-        amount: isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
         billingNumber: argument.payMyPrePaidBillsPageDataList[0].billingNumber,
-        prepaidCategoryCode: isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-            : "",
-        prepaidCategoryType: isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-            : "",
-        billingNumberRequired:
-            argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-                    argument.payMyPrePaidBillsPageDataList[0].billingNumber !=
-                        ""
-                ? true
-                : false));
+        prepaidCategoryCode:
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+        prepaidCategoryType:
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+        billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
+                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+            ? true
+            : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    validatePrePaidUseCase.execute(params: params))
+        RequestManager(params, createCall: () => validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -101,8 +92,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<PayPrePaid>> _payPrePaidResponse = BehaviorSubject();
 
-  Stream<Resource<PayPrePaid>> get payPrePaidStream =>
-      _payPrePaidResponse.stream;
+  Stream<Resource<PayPrePaid>> get payPrePaidStream => _payPrePaidResponse.stream;
 
   ///already saved flow.
   void payPrePaidBill() {
@@ -111,23 +101,19 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
         currencyCode: "JOD",
         accountNo: savingAccountController.text,
         otpCode: otpCode,
         isNewBiller: isNewBiller,
-        prepaidCategoryCode: isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-            : "",
-        prepaidCategoryType: isPrepaidCategoryListEmpty == false
-            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-            : "",
-        billingNumberRequired:
-            argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-                    argument.payMyPrePaidBillsPageDataList[0].billingNumber !=
-                        ""
-                ? true
-                : false,
+        prepaidCategoryCode:
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+        prepaidCategoryType:
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+        billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
+                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+            ? true
+            : false,
         CardId: "",
         isCreditCardPayment: false));
   }
@@ -135,8 +121,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () => payPrePaidUseCase.execute(params: params))
+        RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do

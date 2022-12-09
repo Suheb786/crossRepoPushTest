@@ -1,5 +1,4 @@
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
-import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
@@ -200,16 +199,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 24.0.w, right: 24.0.w),
+                                        padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
                                         child: AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .payFrom
-                                              .toUpperCase(),
+                                          labelText: S.of(context).payFrom.toUpperCase(),
                                           hintText: S.of(context).pleaseSelect,
-                                          controller:
-                                              model.savingAccountController,
+                                          controller: model.savingAccountController,
                                           readOnly: true,
                                           onPressed: () {
                                             AccountsDialog.show(context,
@@ -236,12 +230,9 @@ class PaySelectedBillsPostPaidBillsPageView
                                             return Container(
                                                 height: 16.h,
                                                 width: 16.w,
-                                                padding:
-                                                    EdgeInsets.only(right: 8.w),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow,
-                                                    color:
-                                                        AppColor.dark_gray_1));
+                                                padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                    color: AppColor.dark_gray_1));
                                           },
                                         ),
                                       ),

@@ -30,27 +30,30 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
-  PaySelectedBillsPostPaidBillsPageViewModel(this.postPaidBillInquiryUseCase,
-      this.payPostPaidBillUseCase, this.arguments) {
-    Future.delayed(Duration(milliseconds: 10))
-        .then((value) => postpaidInquiryDataListener());
+  PaySelectedBillsPostPaidBillsPageViewModel(
+      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this.arguments) {
+    Future.delayed(Duration(milliseconds: 10)).then((value) => postpaidInquiryDataListener());
     // postPaidBillInquiryListener();
     payPostPaidBillListener();
   }
 
   double addAllBillAmt() {
     double totalBillAmt = 0.0;
-    arguments.noOfSelectedBills.forEach((element) {
-      if (element.isChecked == true) {
-        totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
-      }
+    arguments.postPaidBillInquiryData?.forEach((inquiryData) {
+      // arguments.noOfSelectedBills.forEach((element) {
+      //   if(inquiryData.billingNo  == inquiryData.billingNo || inquiryData.isPartial ==true){
+      //     if (inquiryData.isChecked == true) {
+      totalBillAmt = double.parse(inquiryData.dueAmount ?? "0.0") + totalBillAmt;
+      // }
+      // }
+      // });
     });
+
     return totalBillAmt;
   }
 
   /// ---------------- post paid data from allpostpaidbillsscreen -------------------------------- ///
-  BehaviorSubject<List<PostPaidBillInquiryData>>
-      _postPaidBillEnquiryListResponse = BehaviorSubject();
+  BehaviorSubject<List<PostPaidBillInquiryData>> _postPaidBillEnquiryListResponse = BehaviorSubject();
 
   Stream<List<PostPaidBillInquiryData>> get postPaidBillEnquiryListStream =>
       _postPaidBillEnquiryListResponse.stream;
@@ -60,26 +63,21 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- post paid bill enquiry -------------------------------- ///
-  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest =
-      PublishSubject();
+  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse = BehaviorSubject();
 
-  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream =>
-      _postPaidBillEnquiryResponse.stream;
+  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream => _postPaidBillEnquiryResponse.stream;
 
   void postPaidBillInquiry() {
-    _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
-        postpaidBillInquiries: arguments.postPaidRequestListJson));
+    _postPaidBillEnquiryRequest
+        .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: arguments.postPaidRequestListJson));
   }
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    postPaidBillInquiryUseCase.execute(params: params))
+        RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -88,8 +86,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            postPaidBillInquiryData =
-                event.data?.content?.postPaidBillInquiryData;
+            postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
           }
         });
       },
@@ -97,14 +94,11 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- pay prepaid bill -------------------------------- ///
-  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest =
-      PublishSubject();
+  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest = PublishSubject();
 
-  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse = BehaviorSubject();
 
-  Stream<Resource<PayPostPaidBill>> get payPostPaidStream =>
-      _payPostPaidResponse.stream;
+  Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
   void payPostPaidBill() {
     tempPostpaidBillInquiryRequestList = [];
@@ -121,13 +115,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             fees: item.feesAmt ?? "0.0"));
       }
     }
-    tempPostpaidBillInquiryRequestList =
-        tempPostpaidBillInquiryRequestList?.toSet().toList();
+    tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
         // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
-        totalAmount: addAllBillAmt().toString(),
+        totalAmount: addAllBillAmt().toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
         isCreditCardPayment: /* cardType != null &&
@@ -148,9 +141,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    payPostPaidBillUseCase.execute(params: params))
+        RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do
@@ -169,7 +160,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       value = "0";
     }
     // totalAmt[index] = double.parse(value);
-    arguments.noOfSelectedBills[index].dueAmount = value;
+    // arguments.noOfSelectedBills[index].dueAmount = value;
+    arguments.postPaidBillInquiryData?[index].dueAmount = value;
     _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
@@ -179,8 +171,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     double totalAmount = 0.0;
     isTotalAmountZero = true;
     for (var item in list!) {
-      totalAmount = totalAmount +
-          double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
+      totalAmount = totalAmount + double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
     }
     if (totalAmount > 0) isTotalAmountZero = false;
     return '${totalAmount.toString()}';
@@ -194,23 +185,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   getValidBillerIcon(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber) return item.iconCode;
+    for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
   }
 
   getValidBillerNameEN(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) {
       if (item.billingNo == billingNumber)
-        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
-            ? item.billerNameEN
-            : "";
+        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : "";
     }
   }
 
   getValidBillerNickName(String? billingNumber, {String? nickName}) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
-        return nickName != null && nickName.isNotEmpty ? nickName : "";
+      if (item.billingNo == billingNumber) return nickName != null && nickName.isNotEmpty ? nickName : "";
     }
   }
 
@@ -234,9 +221,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   getValidBillerBillingNumber(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
       if (item.billingNo == billingNumber)
-        return item.billingNo != null && item.billingNo!.isNotEmpty
-            ? item.billingNo
-            : "";
+        return item.billingNo != null && item.billingNo!.isNotEmpty ? item.billingNo : "";
   }
 
   /// button subject
@@ -247,7 +232,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   var totalAmount = "0.0";
 
   validate() {
-    totalAmount = addAllBillAmt().toString();
+    totalAmount = addAllBillAmt().toStringAsFixed(3);
     if (double.parse(totalAmount) > 0.0) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);

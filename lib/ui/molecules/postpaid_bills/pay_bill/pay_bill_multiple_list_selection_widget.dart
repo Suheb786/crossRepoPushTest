@@ -44,8 +44,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
             child: AppSvg.asset(icon),
           )*/
           Container(
-            width: 40.w,
-            height: 40.w,
+            width: 50.w,
+            height: 50.h,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -54,6 +54,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
             child: Image.asset(
               GetBillPaymentsCategories.path(icon),
               matchTextDirection: false,
+              width: 24.w,
+              height: 24.h,
             ),
           ),
           SizedBox(

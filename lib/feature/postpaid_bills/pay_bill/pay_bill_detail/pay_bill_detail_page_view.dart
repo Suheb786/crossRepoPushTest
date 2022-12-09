@@ -38,8 +38,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PayBillDetailPageView
-    extends BasePageViewWidget<PayBillDetailPageViewModel> {
+class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewModel> {
   late PayBillDetailPageViewModel model;
   late BuildContext context;
 
@@ -93,25 +92,20 @@ class PayBillDetailPageView
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
                                       ProviderScope.containerOf(context)
-                                          .read(
-                                              confirmBillPaymentAmountPageViewModelProvider)
+                                          .read(confirmBillPaymentAmountPageViewModelProvider)
                                           .setData(model.setData());
 
                                       if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                        if (model.isPrepaidCategoryListEmpty ==
-                                            false) {
+                                        if (model.isPrepaidCategoryListEmpty == false) {
                                           /// prepaid bill details inquiry
                                           ProviderScope.containerOf(context)
-                                              .read(
-                                                  confirmBillPaymentAmountPageViewModelProvider)
+                                              .read(confirmBillPaymentAmountPageViewModelProvider)
                                               .validatePrePaidBill();
                                         }
-                                      } else if (AppConstantsUtils
-                                          .POST_PAID_FLOW) {
+                                      } else if (AppConstantsUtils.POST_PAID_FLOW) {
                                         /// post paid bill details inquiry
                                         ProviderScope.containerOf(context)
-                                            .read(
-                                                confirmBillPaymentAmountPageViewModelProvider)
+                                            .read(confirmBillPaymentAmountPageViewModelProvider)
                                             .postPaidBillInquiry();
                                       }
                                     } else {
@@ -128,25 +122,20 @@ class PayBillDetailPageView
                                           .read(payBillPageViewModelProvider)
                                           .nextPage();
                                       ProviderScope.containerOf(context)
-                                          .read(
-                                              confirmBillPaymentAmountPageViewModelProvider)
+                                          .read(confirmBillPaymentAmountPageViewModelProvider)
                                           .setData(model.setData());
 
                                       if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                        if (model.isPrepaidCategoryListEmpty ==
-                                            false) {
+                                        if (model.isPrepaidCategoryListEmpty == false) {
                                           /// prepaid bill details inquiry
                                           ProviderScope.containerOf(context)
-                                              .read(
-                                                  confirmBillPaymentAmountPageViewModelProvider)
+                                              .read(confirmBillPaymentAmountPageViewModelProvider)
                                               .validatePrePaidBill();
                                         }
-                                      } else if (AppConstantsUtils
-                                          .POST_PAID_FLOW) {
+                                      } else if (AppConstantsUtils.POST_PAID_FLOW) {
                                         /// post paid bill details inquiry
                                         ProviderScope.containerOf(context)
-                                            .read(
-                                                confirmBillPaymentAmountPageViewModelProvider)
+                                            .read(confirmBillPaymentAmountPageViewModelProvider)
                                             .postPaidBillInquiry();
                                       }
                                     } else {
@@ -164,58 +153,41 @@ class PayBillDetailPageView
                               }
                             },
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom -
-                                                  50.0.h <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48.h),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 5.0.w, horizontal: 5.0.h),
-                                child: Card(
-                                  //  clipBehavior: Clip.antiAlias,
-                                  margin: EdgeInsets.zero,
-                                  child: FadingEdgeScrollView
-                                      .fromSingleChildScrollView(
-                                    gradientFractionOnEnd: 0.2,
-                                    gradientFractionOnStart: 0.2,
-                                    child: SingleChildScrollView(
-                                      controller: model.controller,
-                                      child: AppStreamBuilder<bool>(
-                                        initialData: false,
-                                        stream: model.totalBillAmtDueStream,
-                                        dataBuilder: (BuildContext context,
-                                            isSwitchActive) {
-                                          return Container(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 32.h,
-                                                horizontal: 24.w),
-                                            child: Column(children: [
-                                              _billDetailsTitle(),
-                                              _billerCategoryTitleWidget(),
-                                              _billerNameAppTextField(),
-                                              _servicesAppTextField(),
-                                              _billingNumberTypeTextField(
-                                                  context),
-                                              _ShowDenomination(),
-                                              _showAmountForPrepaid(),
-                                              // _refNoAppTextField(),
-                                              _payFromAppTextField(),
-                                              _addThisBillerSwitch(
-                                                  context, isSwitchActive),
-                                              _nickNameAppTextField(
-                                                  context, isSwitchActive),
-                                              _SwipeToProceedButton(),
-                                              _backToPaymentsButton()
-                                            ]),
-                                          );
-                                        },
-                                      ),
+                              padding: EdgeInsetsDirectional.only(
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
+                                      ? 0
+                                      : MediaQuery.of(context).viewInsets.bottom - 48.h),
+                              child: Card(
+                                //  clipBehavior: Clip.antiAlias,
+                                margin: EdgeInsets.zero,
+                                child: FadingEdgeScrollView.fromSingleChildScrollView(
+                                  gradientFractionOnEnd: 0.2,
+                                  gradientFractionOnStart: 0.2,
+                                  child: SingleChildScrollView(
+                                    controller: model.controller,
+                                    child: AppStreamBuilder<bool>(
+                                      initialData: false,
+                                      stream: model.totalBillAmtDueStream,
+                                      dataBuilder: (BuildContext context, isSwitchActive) {
+                                        return Container(
+                                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                          child: Column(children: [
+                                            _billDetailsTitle(),
+                                            _billerCategoryTitleWidget(),
+                                            _billerNameAppTextField(),
+                                            _servicesAppTextField(),
+                                            _billingNumberTypeTextField(context),
+                                            _ShowDenomination(),
+                                            _showAmountForPrepaid(),
+                                            // _refNoAppTextField(),
+                                            _payFromAppTextField(),
+                                            _addThisBillerSwitch(context, isSwitchActive),
+                                            _nickNameAppTextField(context, isSwitchActive),
+                                            _SwipeToProceedButton(),
+                                            _backToPaymentsButton()
+                                          ]),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
@@ -237,15 +209,14 @@ class PayBillDetailPageView
         return Visibility(
             visible: isShowBillerNumber!,
             child: Padding(
-              padding: EdgeInsets.only(top: 16.0.h),
+              padding: EdgeInsetsDirectional.only(top: 16.0.h),
               child: AppTextField(
                 labelText: model.fieldTextLabelEn.toUpperCase(),
                 hintText: S.of(context).pleaseEnter,
                 controller: model.billingNumberTextControl,
-                inputType:
-                    model.fieldTextLabelEn.toUpperCase() == "ENTER USERNAME"
-                        ? TextInputType.text
-                        : TextInputType.number,
+                inputType: model.fieldTextLabelEn.toUpperCase() == "ENTER USERNAME"
+                    ? TextInputType.text
+                    : TextInputType.number,
                 onPressed: () {
                   FocusScope.of(context).unfocus();
                 },
@@ -276,10 +247,7 @@ class PayBillDetailPageView
         Expanded(
           child: PostPaidSettingTitleWidget(
             title: AppConstantsUtils.BILLER_CATEGORY_API_VALUE,
-            tileIcon: ProviderScope.containerOf(context)
-                    .read(newBillsPageViewModelProvider)
-                    .titleIcon ??
-                "",
+            tileIcon: ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon ?? "",
           ),
         )
       ],
@@ -293,22 +261,25 @@ class PayBillDetailPageView
       controller: model.billerNameTextController,
       readOnly: true,
       onPressed: () {
-        model.billerList();
+        if (model.billerDetailsList != null && model.billerDetailsList!.isEmpty) {
+          model.billerList();
+        } else {
+          _showBillerNameDialog(model.billerDetailsList);
+        }
       },
       suffixIcon: (value, data) {
         return Container(
             height: 16.h,
             width: 16.w,
-            padding: EdgeInsets.only(right: 8.w),
-            child: AppSvg.asset(AssetUtils.downArrow,
-                color: AppColor.dark_gray_1));
+            padding: EdgeInsetsDirectional.only(end: 8.w),
+            child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
       },
     );
   }
 
   _servicesAppTextField() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.0.h),
+      padding: EdgeInsetsDirectional.only(top: 16.0.h),
       child: AppTextField(
         labelText: S.of(context).services.toUpperCase(),
         hintText: S.of(context).pleaseSelect,
@@ -323,8 +294,7 @@ class PayBillDetailPageView
           AppConstantsUtils.PREPAID_CATEGORY_TYPE = "";
           model.denominationTextController.text = "";
           if (model.billerService != null && model.billerService.isNotEmpty) {
-            SelectServiceDialog.show(
-                context, model.billerService, model.billerCodeString.toString(),
+            SelectServiceDialog.show(context, model.billerService, model.billerCodeString.toString(),
                 title: S.of(context).services, onDismissed: () {
               Navigator.pop(context);
             }, onSelected: (billerServices) {
@@ -337,9 +307,8 @@ class PayBillDetailPageView
           return Container(
               height: 16.h,
               width: 16.w,
-              padding: EdgeInsets.only(right: 8.w),
-              child: AppSvg.asset(AssetUtils.downArrow,
-                  color: AppColor.dark_gray_1));
+              padding: EdgeInsetsDirectional.only(end: 8.w),
+              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
         },
       ),
     );
@@ -348,7 +317,7 @@ class PayBillDetailPageView
 /*
   _refNoAppTextField() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.0.h),
+      padding: EdgeInsetsDirectional.only(top: 16.0.h),
       child: AppTextField(
         labelText: S.of(context).referenceNo.toUpperCase(),
         hintText: S.of(context).pleaseEnter,
@@ -367,7 +336,7 @@ class PayBillDetailPageView
 
   _payFromAppTextField() {
     return Padding(
-      padding: EdgeInsets.only(top: 16.0.h),
+      padding: EdgeInsetsDirectional.only(top: 16.0.h),
       child: AppTextField(
         labelText: S.of(context).payFrom.toUpperCase(),
         hintText: "",
@@ -377,8 +346,7 @@ class PayBillDetailPageView
           model.validateData();
         },
         onPressed: () {
-          AccountsDialog.show(context, label: S.of(context).selectAccount,
-              onDismissed: () {
+          AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
             Navigator.pop(context);
           }, onSelected: (value) {
             model.payFromController.text = value;
@@ -397,9 +365,8 @@ class PayBillDetailPageView
           return Container(
               height: 16.h,
               width: 16.w,
-              padding: EdgeInsets.only(right: 8.w),
-              child: AppSvg.asset(AssetUtils.downArrow,
-                  color: AppColor.dark_gray_1));
+              padding: EdgeInsetsDirectional.only(end: 8.w),
+              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
         },
       ),
     );
@@ -407,7 +374,7 @@ class PayBillDetailPageView
 
   _addThisBillerSwitch(context, bool? isSwitchActive) {
     return Padding(
-      padding: EdgeInsets.only(top: 24.0.h),
+      padding: EdgeInsetsDirectional.only(top: 24.0.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -451,7 +418,7 @@ class PayBillDetailPageView
     return Visibility(
       visible: isSwitchActive ?? false,
       child: Padding(
-        padding: EdgeInsets.only(top: 16.0.h),
+        padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(
           labelText: S.of(context).nickName.toUpperCase(),
           hintText: S.of(context).pleaseEnter,
@@ -469,7 +436,7 @@ class PayBillDetailPageView
 
   _SwipeToProceedButton() {
     return Padding(
-      padding: EdgeInsets.only(top: 32.0.h),
+      padding: EdgeInsetsDirectional.only(top: 32.0.h),
       child: AppStreamBuilder<bool>(
           stream: model.showButtonStream,
           initialData: false,
@@ -490,7 +457,7 @@ class PayBillDetailPageView
         Navigator.pop(context);
       },
       child: Padding(
-        padding: EdgeInsets.only(
+        padding: EdgeInsetsDirectional.only(
           top: 23.0.h,
         ),
         child: Text(S.of(context).backToPayments,
@@ -512,8 +479,7 @@ class PayBillDetailPageView
         : billerServices.serviceDescriptionAr!;
     model.serviceTypeApiVal = billerServices.serviceType!;
     model.serviceDescriptionEn.text = billerServices.serviceDescriptionEn ?? "";
-    AppConstantsUtils.SELECTED_SERVICE_DESCRIPTION_EN =
-        billerServices.serviceDescriptionEn ?? "";
+    AppConstantsUtils.SELECTED_SERVICE_DESCRIPTION_EN = billerServices.serviceDescriptionEn ?? "";
     AppConstantsUtils.SELECTED_SERVICE_TYPE = billerServices.serviceType!;
     AppConstantsUtils.SELECTED_SERVICE_CODE = billerServices.serviceCode!;
     AppConstantsUtils.BILLER_TYPE = billerServices.paymentType!;
@@ -527,9 +493,8 @@ class PayBillDetailPageView
 
   void _paymentTypePrePaid(BillerService billerServices) {
     model.updateStreamForShowAmount(billerServices.containPrepaidCat!);
-    model.fieldTextLabelEn = !StringUtils.isDirectionRTL(context)
-        ? billerServices.fieldLabelEn!
-        : billerServices.fieldLabelAr!;
+    model.fieldTextLabelEn =
+        !StringUtils.isDirectionRTL(context) ? billerServices.fieldLabelEn! : billerServices.fieldLabelAr!;
     model.updateStreamForBillingNumber(billerServices.billingNoRequired!);
     Future.delayed(Duration(milliseconds: 200)).then((value) => {
           model.getPrePaidCategoresList(
@@ -540,9 +505,8 @@ class PayBillDetailPageView
   }
 
   void _paymentTypePostPaid(BillerService billerServices) {
-    model.fieldTextLabelEn = !StringUtils.isDirectionRTL(context)
-        ? billerServices.fieldLabelEn!
-        : billerServices.fieldLabelAr!;
+    model.fieldTextLabelEn =
+        !StringUtils.isDirectionRTL(context) ? billerServices.fieldLabelEn! : billerServices.fieldLabelAr!;
     model.updateStreamForBillingNumber(true);
     model.updateStreamForShowAmount(false);
   }
@@ -554,12 +518,11 @@ class PayBillDetailPageView
       initialData: false,
       dataBuilder: (_, isPrepaidCategoryListEmpty) {
         model.isPrepaidCategoryListEmpty = isPrepaidCategoryListEmpty!;
-        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY =
-            isPrepaidCategoryListEmpty;
+        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY = isPrepaidCategoryListEmpty;
         return Visibility(
           visible: !isPrepaidCategoryListEmpty,
           child: Padding(
-            padding: EdgeInsets.only(top: 16.0.h),
+            padding: EdgeInsetsDirectional.only(top: 16.0.h),
             child: AppTextField(
               labelText: S.of(context).denomination.toUpperCase(),
               hintText: S.of(context).pleaseSelect,
@@ -576,9 +539,8 @@ class PayBillDetailPageView
                 return Container(
                     height: 16.h,
                     width: 16.w,
-                    padding: EdgeInsets.only(right: 8.w),
-                    child: AppSvg.asset(AssetUtils.downArrow,
-                        color: AppColor.dark_gray_1));
+                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                    child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
               },
             ),
           ),
@@ -591,7 +553,7 @@ class PayBillDetailPageView
     return Visibility(
       visible: model.showAmountField,
       child: Padding(
-        padding: EdgeInsets.only(top: 16.0.h),
+        padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(
           labelText: S.of(context).amount.toUpperCase(),
           hintText: S.of(context).pleaseEnter,
@@ -600,13 +562,11 @@ class PayBillDetailPageView
             signed: true,
             decimal: true,
           ),
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))
-          ],
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           onChanged: (text) {
             model.amountTextControl.text = text;
-            model.amountTextControl.selection = TextSelection.fromPosition(
-                TextPosition(offset: model.amountTextControl.text.length));
+            model.amountTextControl.selection =
+                TextSelection.fromPosition(TextPosition(offset: model.amountTextControl.text.length));
             model.validateData();
           },
           onPressed: () {
@@ -625,9 +585,8 @@ class PayBillDetailPageView
         serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE, onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (value) {
-      AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
-      AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION =
-          value.description.toString();
+          AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
+      AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = value.description.toString();
       AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
       model.denominationTextController.text = value.description.toString();
       model.validateData();
@@ -637,24 +596,39 @@ class PayBillDetailPageView
   }
 
   void _showBillerNameDialog(List<BillerDetailsList>? billerDetailsList) {
-    PayBillDialog.show(context,
-        title: S.of(context).billName,
-        billerDetailsList: billerDetailsList ?? [], onDismissed: () {
+    PayBillDialog.show(context, title: S.of(context).billName, billerDetailsList: billerDetailsList ?? [],
+        onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (billerDetails) {
-      // Navigator.pop(context);
+      resetIfSelectedOtherBillerName(billerDetails.billerCode, model);
       model.updateIsPrepaidCategoryListEmptyResponse(true);
-      model.billerNameTextController.text = !StringUtils.isDirectionRTL(context)
-          ? billerDetails.billerNameEn!
-          : billerDetails.billerNameAr!;
-      AppConstantsUtils.BILLER_NAME = !StringUtils.isDirectionRTL(context)
-          ? billerDetails.billerNameEn!
-          : billerDetails.billerNameAr!;
+      model.billerNameTextController.text =
+          !StringUtils.isDirectionRTL(context) ? billerDetails.billerNameEn! : billerDetails.billerNameAr!;
+      AppConstantsUtils.BILLER_NAME =
+          !StringUtils.isDirectionRTL(context) ? billerDetails.billerNameEn! : billerDetails.billerNameAr!;
       AppConstantsUtils.SELECTED_BILLER_CODE = billerDetails.billerCode!;
       model.billerCodeTextControl.text = billerDetails.billerCode.toString();
       model.billerCodeString = billerDetails.billerCode.toString();
       model.billerService = billerDetails.billerService!;
       model.validateData();
     });
+  }
+}
+
+void resetIfSelectedOtherBillerName(billerCode, PayBillDetailPageViewModel model) {
+  if (billerCode != AppConstantsUtils.SELECTED_BILLER_CODE) {
+    model.updateIsPrepaidCategoryListEmptyResponse(true);
+    model.amountTextControl.text = "";
+    AppConstantsUtils.SELECTED_AMOUNT = "";
+    AppConstantsUtils.PREPAID_CATEGORY_CODE = "";
+    AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";
+    AppConstantsUtils.PREPAID_CATEGORY_TYPE = "";
+    model.denominationTextController.text = "";
+    model.serviceTypeTextControl.text = "";
+    model.billingNumberTextControl.text = "";
+    AppConstantsUtils.SELECTED_SERVICE_DESCRIPTION_EN = "";
+    AppConstantsUtils.SELECTED_SERVICE_TYPE = "";
+    AppConstantsUtils.SELECTED_SERVICE_CODE = "";
+    AppConstantsUtils.BILLER_TYPE = "";
   }
 }

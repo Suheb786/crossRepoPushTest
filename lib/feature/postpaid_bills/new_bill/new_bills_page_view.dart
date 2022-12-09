@@ -94,12 +94,11 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                             color: AppColor.gray_black),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                            top: 26.0.h, bottom: 32.h, left: 24.w, right: 24.w),
+                        padding:
+                            EdgeInsetsDirectional.only(top: 26.0.h, bottom: 32.h, start: 24.w, end: 24.w),
                         child: AppTextField(
                           labelText: '',
-                          hintText:
-                              "Search category" /*S.of(context).serchCategory*/,
+                          hintText: S.of(context).searchCategory,
                           controller: model.searchBillController,
                           onChanged: (value) {
                             model.searchBillerCategory(value);
@@ -109,9 +108,8 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                             return Container(
                                 height: 16.h,
                                 width: 16.w,
-                                padding: EdgeInsets.only(right: 8.w),
-                                child: AppSvg.asset(AssetUtils.search,
-                                    color: AppColor.dark_gray_1));
+                                padding: EdgeInsetsDirectional.only(end: 8.w),
+                                child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
                           },
                         ),
                       ),

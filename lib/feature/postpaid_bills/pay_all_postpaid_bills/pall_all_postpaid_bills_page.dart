@@ -13,6 +13,7 @@ import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PayAllPostPaidBillsPage extends BasePage<PayAllPostPaidBillsPageViewModel> {
   final PayAllPostPaidBillsPageArguments arguments;
@@ -38,59 +39,62 @@ class PayAllPostPaidBillsPageState
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 107.h),
-        child: Padding(
-          padding: EdgeInsets.only(top: 52.0.h, bottom: 35.0.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+        preferredSize: Size(double.maxFinite, 85.0.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: Visibility(
                   visible: widget.arguments.paidBillsPayTypeOptionEnum ==
                           PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                       ? true
                       : false,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 24.0.w),
-                    child: AppSvg.asset(
-                      AssetUtils.leftArrow,
-                      color: AppColor.white,
-                    ),
-                  ),
+                  child: AppSvg.asset(AssetUtils.leftArrow,
+                      matchTextDirection: true, color: Theme.of(context).accentColor),
                 ),
               ),
-              Text(
+            ),
+            Expanded(
+              child: Text(
                 widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                     ? S.of(context).payAllBills
                     : S.of(context).myBills,
-                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: AppColor.white),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14.t,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).accentColor),
               ),
-              Visibility(
-                visible:
-                    widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                        ? false
-                        : true,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 24.0.w),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.NewBillsPage);
-                      AppConstantsUtils.PRE_PAID_FLOW = false;
-                      AppConstantsUtils.POST_PAID_FLOW = true;
-                      AppConstantsUtils.IS_NEW_PAYMENT = true;
-                    },
-                    child: AppSvg.asset(
-                      AssetUtils.plusIcon,
-                      color: AppColor.white,
-                    ),
+            ),
+            Container(),
+            Visibility(
+              visible:
+                  widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                      ? false
+                      : true,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(end: 24.0.w),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                    AppConstantsUtils.PRE_PAID_FLOW = false;
+                    AppConstantsUtils.POST_PAID_FLOW = true;
+                    AppConstantsUtils.IS_NEW_PAYMENT = true;
+                  },
+                  child: AppSvg.asset(
+                    AssetUtils.plusIcon,
+                    color: AppColor.white,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 
@@ -99,7 +103,6 @@ class PayAllPostPaidBillsPageState
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light, child: PayAllPostPaidBillsPageView(provideBase()));
   }
-
 }
 
 class PayAllPostPaidBillsPageArguments {

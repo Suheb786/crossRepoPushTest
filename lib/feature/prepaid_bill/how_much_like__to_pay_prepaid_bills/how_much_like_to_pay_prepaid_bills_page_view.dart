@@ -38,16 +38,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
       onData: (value) {
         if (value.status == Status.SUCCESS) {
           model.dueAmount = value.data?.content?.dueAmount;
-          model.amtController.text = value.data?.content?.dueAmount ?? "0";
+          model.amtController.text = double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
           model.feesAmt = value.data?.content?.feesAmount;
           model.billerCode = value.data?.content?.billerCode ?? "";
           model.billingNumber = value.data?.content?.billingNo ?? "";
           model.otpCode = value.data?.content?.validationCode ?? "";
-          model.isNewBiller =
-              value.data?.content?.validationCode == "" ? false : true;
+          model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
           if (model.isPrepaidCategoryListEmpty == true) {
-            Future.delayed(Duration(milliseconds: 200))
-                .then((value) => model.payPrePaidBill());
+            Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill());
           }
         }
       },
@@ -76,8 +74,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                 }
               },
               child: Padding(
-                padding: EdgeInsets.only(
-                    left: 24.0.w, right: 24.0.w, top: 96.h, bottom: 56.h),
+                padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w, top: 96.h, bottom: 56.h),
                 child: Column(
                   children: [
                     Text(
@@ -226,9 +223,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   return Container(
                                       height: 16.h,
                                       width: 16.w,
-                                      padding: EdgeInsets.only(right: 8.w),
-                                      child: AppSvg.asset(AssetUtils.downArrow,
-                                          color: AppColor.dark_gray_1));
+                                      padding: EdgeInsetsDirectional.only(end: 8.w),
+                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                                 },
                               ),
                               SizedBox(
@@ -309,7 +305,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
   _enterAmountAppTextField(
       HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: 16.0.h),
+        padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(
           labelText: S.of(context).amount.toUpperCase(),
           controller: model.amtController,

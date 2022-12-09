@@ -7,7 +7,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/share_bill_payments_info.dart';
@@ -15,8 +14,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
-class PostPaidBillsSuccessPageView
-    extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
+class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
   PostPaidBillsSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -44,7 +42,7 @@ class PostPaidBillsSuccessPageView
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 top: 92.h,
               ),
               child: Stack(
@@ -102,7 +100,7 @@ class PostPaidBillsSuccessPageView
                   fontSize: 24.0.t),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.0.w),
+              padding: EdgeInsetsDirectional.only(top: 40.0.h, start: 24.w, end: 24.0.w),
               child: Card(
                 child: ListView.separated(
                     padding: EdgeInsets.zero,
@@ -110,11 +108,8 @@ class PostPaidBillsSuccessPageView
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            start: 15.w,
-                            end: 19.w,
-                            top: 16.0.h,
-                            bottom: 16.0.h),
+                        padding:
+                            EdgeInsetsDirectional.only(start: 15.w, end: 19.w, top: 16.0.h, bottom: 16.0.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -128,10 +123,7 @@ class PostPaidBillsSuccessPageView
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(
-                                        start: 16.0.w,
-                                        end: 16.0.w,
-                                        top: 16.0.h,
-                                        bottom: 16.h),
+                                        start: 16.0.w, end: 16.0.w, top: 16.0.h, bottom: 16.h),
                                     child: Text(
                                       (index + 1).toString(),
                                       style: TextStyle(
@@ -149,9 +141,7 @@ class PostPaidBillsSuccessPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.billerList?[index]
-                                              .billerName ??
-                                          "",
+                                      model.arguments.billerList?[index].billerName ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
@@ -186,8 +176,7 @@ class PostPaidBillsSuccessPageView
                                         fontSize: 12.0.t),
                                   ),
                                   Text(
-                                    model.arguments.billerList?[index].refNo ??
-                                        "",
+                                    model.arguments.billerList?[index].refNo ?? "",
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: AppColor.gray5,
@@ -208,7 +197,7 @@ class PostPaidBillsSuccessPageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 25.0.h),
+              padding: EdgeInsetsDirectional.only(top: 25.0.h),
               child: GestureDetector(
                 onTap: () {
                   _shareDetails(context, model);
@@ -216,8 +205,7 @@ class PostPaidBillsSuccessPageView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share,
-                        color: AppColor.light_acccent_blue),
+                    AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
                     SizedBox(
                       width: 8.w,
                     ),
@@ -246,7 +234,7 @@ class PostPaidBillsSuccessPageView
               height: 8.h,
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 bottom: 56.h,
               ),
               child: Center(
@@ -266,8 +254,7 @@ class PostPaidBillsSuccessPageView
     );
   }
 
-  void _shareDetails(
-      BuildContext context, PostPaidBillsSuccessPageViewModel model) {
+  void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
     Share.share(
       ShareInfo.savedMultipleBillsPostPaidSuccess(
         context,

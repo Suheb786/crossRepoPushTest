@@ -1,5 +1,5 @@
-import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller_data.dart';
+import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'validate_pre_paid_bill_entity.g.dart';
@@ -47,13 +47,16 @@ class ValidatePrePaidBillEntity extends BaseLayerDataTransformer<
   @override
   ValidatePrePaidBillData transform() {
     return ValidatePrePaidBillData(
-        success: this.success,
-        message: this.message,
-        billerCode: this.billerCode,
-        billingNo: this.billingNo,
-        customerName: this.customerName,
-        dueAmount: this.dueAmount,
-        feesAmount: this.feesAmount,
-        validationCode: this.validationCode);
+        success: this.success ?? false,
+        message: this.message != null && this.message!.toString().isNotEmpty ? this.message : "",
+        billerCode: this.billerCode != null && this.billerCode!.toString().isNotEmpty ? this.billerCode : "",
+        billingNo: this.billingNo != null && this.billingNo!.toString().isNotEmpty ? this.billingNo : "",
+        customerName:
+            this.customerName != null && this.customerName!.toString().isNotEmpty ? this.customerName : "",
+        dueAmount: this.dueAmount != null && this.dueAmount!.toString().isNotEmpty ? this.dueAmount : "0",
+        feesAmount: this.feesAmount != null && this.feesAmount!.toString().isNotEmpty ? this.feesAmount : "0",
+        validationCode: this.validationCode != null && this.validationCode!.toString().isNotEmpty
+            ? this.validationCode
+            : "");
   }
 }

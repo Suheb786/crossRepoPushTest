@@ -1,6 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
+import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
@@ -14,23 +15,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
-import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/get_bill_payments_categories.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
+
 import 'confirm_bill_payment_amount_page_view_model.dart';
 
 class ConfirmBillPaymentAmountPageView
@@ -226,22 +224,19 @@ class ConfirmBillPaymentAmountPageView
 
   _cardWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.0.w, horizontal: 5.0.h),
-      child: Card(
-        margin: EdgeInsets.zero,
-        child: Container(
-            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _confirmDetailsWidget(model, context),
-                // SizedBox(height: 107.h),
-                Spacer(),
-                _swipeAndBackWidgets(model, context),
-              ],
-            )),
-      ),
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Container(
+          padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _confirmDetailsWidget(model, context),
+              // SizedBox(height: 107.h),
+              Spacer(),
+              _swipeAndBackWidgets(model, context),
+            ],
+          )),
     );
   }
 
@@ -285,7 +280,7 @@ class ConfirmBillPaymentAmountPageView
   _amountTitle(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 24.0.h),
+      padding: EdgeInsetsDirectional.only(start: 16.0.w, end: 16.0.w, top: 24.0.h),
       child: Text(
         S.of(context).amount,
         style: TextStyle(
@@ -358,10 +353,10 @@ class ConfirmBillPaymentAmountPageView
   _dueAmountPostPaidWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: EdgeInsetsDirectional.only(
         top: 16.0.h,
-        left: 16.0.w,
-        right: 16.0.w,
+        start: 16.0.w,
+        end: 16.0.w,
       ),
       child: AppConstantsUtils.PRE_PAID_FLOW == false
           ? Row(
@@ -395,7 +390,7 @@ class ConfirmBillPaymentAmountPageView
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
 /*
     return Padding(
-      padding: EdgeInsets.only(
+      padding: EdgeInsetsDirectional.only(
         top: 8.0.h,
         left: 16.0.w,
         right: 16.0.w,
@@ -430,18 +425,19 @@ class ConfirmBillPaymentAmountPageView
   _iconWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return Container(
-      width: 40.w,
-      height: 40.w,
+      width: 50.w,
+      height: 50.h,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: AppColor.vividYellow,
       ),
       child: Image.asset(
-        GetBillPaymentsCategories.path(ProviderScope.containerOf(context)
-            .read(newBillsPageViewModelProvider)
-            .titleIcon),
+        GetBillPaymentsCategories.path(
+            ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon),
         matchTextDirection: false,
+        width: 24.w,
+        height: 24.h,
       ),
     );
   }

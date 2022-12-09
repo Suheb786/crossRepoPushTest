@@ -15,8 +15,6 @@ import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:neo_bank/utils/string_utils.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PaidBillsSuccessPageView
@@ -30,7 +28,7 @@ class PaidBillsSuccessPageView
         initialData: Resource.none(),
         onData: (event) {
           if (event.status == Status.SUCCESS) {
-            model.showSuccessToast('Biller Added Successfully.');
+            model.showSuccessToast(S.of(context).billerAddedSuccessfully);
           } else if (event.status == Status.ERROR) {
             model.showToastWithError(event.appError!);
           }
@@ -55,7 +53,7 @@ class PaidBillsSuccessPageView
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: EdgeInsetsDirectional.only(
                       top: 92.h,
                     ),
                     child: Stack(
@@ -114,12 +112,11 @@ class PaidBillsSuccessPageView
                         fontSize: 24.0.t),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.0.w),
+                    padding: EdgeInsetsDirectional.only(top: 40.0.h, end: 24.w, start: 24.0.w),
                     child: Card(
                         child: Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          start: 24.w, end: 24.w, top: 24.0.h, bottom: 24.0.h),
+                      padding:
+                          EdgeInsetsDirectional.only(start: 24.w, end: 24.w, top: 24.0.h, bottom: 24.0.h),
                       child: Column(
                         children: [
                           Row(
@@ -199,7 +196,7 @@ class PaidBillsSuccessPageView
                     )),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 32.0.h),
+                    padding: EdgeInsetsDirectional.only(top: 32.0.h),
                     child: GestureDetector(
                       onTap: () {
                         _shareDetails(context, model);
@@ -207,8 +204,7 @@ class PaidBillsSuccessPageView
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppSvg.asset(AssetUtils.share,
-                              color: AppColor.light_acccent_blue),
+                          AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
                           SizedBox(
                             width: 8.w,
                           ),
@@ -247,7 +243,7 @@ class PaidBillsSuccessPageView
                     height: 8.h,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: EdgeInsetsDirectional.only(
                       bottom: 56.h,
                     ),
                     child: Center(
