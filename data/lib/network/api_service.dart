@@ -222,6 +222,7 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 
 part 'api_service.g.dart';
 
@@ -816,31 +817,40 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
   @POST("/Cliq/EditCliqID")
-  Future<HttpResponse<ResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> editCliqID(
+      @Body() EditCliqIdRequestEntity request);
 
   @POST("/Cliq/SuspendCliqId")
-  Future<HttpResponse<ResponseEntity>> suspendCliqId(@Body() SuspendCliqIdRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> suspendCliqId(
+      @Body() SuspendCliqIdRequestEntity request);
 
   @POST("/Cliq/ReActivateCliqId")
-  Future<HttpResponse<ResponseEntity>> reActivateCliqId(@Body() ReActivateCliqIdRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> reActivateCliqId(
+      @Body() ReActivateCliqIdRequestEntity request);
 
   @POST("/Cliq/DeleteCliqId")
-  Future<HttpResponse<ResponseEntity>> deleteCliqId(@Body() DeleteCliqIdRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> deleteCliqId(
+      @Body() DeleteCliqIdRequestEntity request);
 
   @POST("/Cliq/UpdateRTPRequest")
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
+      @Body() UpdateRtpRequestEntity request);
 
   @POST("/Cliq/SendMoneytoCliqIBAN")
-  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(@Body() SendMoneyToCliqIbanRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(
+      @Body() SendMoneyToCliqIbanRequestEntity request);
 
   @POST("/Cliq/QRCode")
-  Future<HttpResponse<ResponseEntity>> qRCliqCode(@Body() QrCodeCliqRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> qRCliqCode(
+      @Body() QrCodeCliqRequestEntity request);
 
   @POST("/Cliq/SendQRPayment")
-  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(
+      @Body() SendQrCliqPaymentRequestEntity request);
 
   @POST("/Cliq/GetAlias")
-  Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasResponseEntity request);
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias(
+      @Body() CliqGetAliasRequestEntity request);
 
   @POST("/Cliq/GetCliqAccountByAlias")
   Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
@@ -871,5 +881,9 @@ abstract class ApiService {
   @POST("/Cliq/RequestMoneyActivity")
   Future<HttpResponse<ResponseEntity>> requestMoneyActivity(
     @Body() RequestMoneyActivityRequestEntity request,
+  );
+  @POST("/Cliq/GetCustomerByAccount")
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
+    @Body() GetCustomByAccountRequestEntity request,
   );
 }

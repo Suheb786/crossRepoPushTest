@@ -179,4 +179,10 @@ abstract class CliqDataSource {
       required String TipOrConvenienceIndicator,
       dynamic valueOfPercentageConvenience,
       required bool getToken});
+
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount({
+    required String accountCode,
+    required String CustID,
+    required bool GetToken,
+  });
 }
