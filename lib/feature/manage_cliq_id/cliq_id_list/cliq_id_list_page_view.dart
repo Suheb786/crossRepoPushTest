@@ -175,24 +175,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                   Navigator.pop(
                                                                       context);
                                                                   model
-                                                                      .changeDefaultCliqId(
-                                                                    aliasId: (getAliasSnapshot
-                                                                            .data
-                                                                            ?.aliases?[index]
-                                                                            .aliasID) ??
-                                                                        "",
-                                                                    getToken:
+                                                                      .confirmChangeDefaultCliqId(
+                                                                    GetToken:
                                                                         true,
-                                                                    linkType:
-                                                                        "A",
-                                                                    otpCode:
-                                                                        "576824",
-                                                                    identifier: (getAliasSnapshot
-                                                                            .data
-                                                                            ?.aliases?[index]
-                                                                            .accounts?[index]
-                                                                            .acciban) ??
-                                                                        "",
                                                                   );
                                                                   // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
                                                                 }, onDismissed:

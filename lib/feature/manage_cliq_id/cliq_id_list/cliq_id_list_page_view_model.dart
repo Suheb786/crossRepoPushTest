@@ -1,5 +1,5 @@
 import 'package:domain/usecase/cliq/add_link_account_usecase.dart';
-import 'package:domain/usecase/cliq/change_default_account_usecase.dart';
+import 'package:domain/usecase/cliq/confirm_change_default_account_usecase.dart';
 import 'package:domain/usecase/cliq/delete_cliq_id_usecase.dart';
 import 'package:domain/usecase/cliq/get_alias_usecase.dart';
 import 'package:domain/usecase/cliq/re_activate_cliq_id_usecase.dart';
@@ -17,7 +17,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   final GetAliasUsecase _getAliasUsecase;
   final DeleteCliqIdUseCase _deleteCliqIdUseCase;
   final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
-  final ChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
+  final ConfirmChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
   final SuspendCliqIdUseCase _suspendCliqIdUseCase;
   final ReActivateCliqIdUseCase _reActivateCliqIdUseCase;
   final AddLInkAccountUseCase _addLInkAccountUseCase;
@@ -33,10 +33,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
   }
 
-
-void aliasString(){
-  
-}
+  void aliasString() {}
 
   //*----------------Suspand Cliq ID--------------///
 
@@ -56,8 +53,7 @@ void aliasString(){
 
   PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest =
       PublishSubject();
-  PublishSubject<Resource<bool>> _reactivateCliqIDResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _reactivateCliqIDResponse = PublishSubject();
 
   Stream<Resource<bool>> get requestCliqIDStream =>
       _reactivateCliqIDResponse.stream;
@@ -88,19 +84,11 @@ void aliasString(){
   Stream<Resource<bool>> get changeDefaultCliqIdStream =>
       _changeDefaultCliqIDResponse.stream;
 
-  void changeDefaultCliqId(
-      {required bool getToken,
-      required String aliasId,
-      required String linkType,
-      required String otpCode,
-      required String identifier}) {
+  void confirmChangeDefaultCliqId({
+    required bool GetToken,
+  }) {
     _changeDefaultCliqIDRequest.safeAdd(
-      ChangeDefaultAccountParams(
-          linkType: linkType,
-          otpCode: otpCode,
-          identifier: identifier,
-          aliasId: aliasId,
-          getToken: getToken),
+      ChangeDefaultAccountParams(GetToken: GetToken),
     );
   }
 
@@ -131,7 +119,7 @@ void aliasString(){
 
   Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
 
-   unlinkCliqId({
+  unlinkCliqId({
     required bool getToken,
     required String aliasId,
     required String accountId,

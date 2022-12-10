@@ -14,39 +14,27 @@ class GetCliqAccountByAliasUseCase
   Future<Either<NetworkError, bool>> execute(
       {required GetCliqAccountByAliasParams params}) {
     return _cliqRepository.getCliqAccountByAlias(
-        alias: params.alias,
-        mobileNo: params.mobileNo,
-        iban: params.iban,
-        accountNo: params.accountNo,
-        swiftCode: params.swiftCode,
-        bankCountry: params.bankCountry,
-        transferType: params.transferType,
-        cliqType: params.cliqType,
-        getToken: params.getToken);
+        GetToken: params.GetToken,
+        CustID: params.CustID,
+        Currency: params.Currency,
+        type: params.type,
+        value: params.value);
   }
 }
 
 class GetCliqAccountByAliasParams extends Params {
-  final String alias;
-  final String mobileNo;
-  final String iban;
-  final String accountNo;
-  final String swiftCode;
-  final String bankCountry;
-  final String transferType;
-  final String cliqType;
-  final bool getToken;
+  final String type;
+  final String value;
+  final String Currency;
+  final String CustID;
+  final bool GetToken;
 
   GetCliqAccountByAliasParams(
-      {required this.alias,
-      required this.mobileNo,
-      required this.iban,
-      required this.accountNo,
-      required this.swiftCode,
-      required this.bankCountry,
-      required this.transferType,
-      required this.cliqType,
-      required this.getToken});
+      {required this.type,
+      required this.value,
+      required this.Currency,
+      required this.CustID,
+      required this.GetToken});
   @override
   Either<AppError, bool> verify() {
     return Right(true);

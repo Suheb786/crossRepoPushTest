@@ -1,6 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/cliq/add_link_account_usecase.dart';
-import 'package:domain/usecase/cliq/change_default_account_usecase.dart';
+import 'package:domain/usecase/cliq/confirm_change_default_account_usecase.dart';
 import 'package:domain/usecase/cliq/create_cliq_id_usecase.dart';
 import 'package:domain/usecase/cliq/delete_cliq_id_usecase.dart';
 import 'package:domain/usecase/cliq/edit_cliq_id_usecase.dart';
@@ -17,6 +17,11 @@ import 'package:domain/usecase/cliq/unlink_account_from_cliq_usecase.dart';
 import 'package:domain/usecase/cliq/update_rtp_cliq_request_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/cliq/get_customer_by_account_usecase.dart';
+import 'package:domain/usecase/cliq/request_to_pay_result_usecase.dart';
+import 'package:domain/usecase/cliq/get_account_by_customerID_usecase.dart';
+import 'package:domain/usecase/cliq/change_default_account_otp_usecase.dart';
+import 'package:domain/usecase/cliq/approve_RTP_request_usecase.dart';
+import 'package:domain/usecase/cliq/submit_outward_payment_usecase.dart';
 
 ///[EditCliqIdUseCase] provider
 final editCliqIdUseCaseProvider = Provider.autoDispose<EditCliqIdUseCase>(
@@ -61,10 +66,10 @@ final addLinkAccountUseCaseProvider =
   (ref) => AddLInkAccountUseCase(ref.read(cliqRepositoryProvider)),
 );
 
-///[changeDefaultAccountUseCase] provider
-final changeDefaultAccountUseCaseProvider =
-    Provider.autoDispose<ChangeDefaultAccountUseCase>(
-  (ref) => ChangeDefaultAccountUseCase(ref.read(cliqRepositoryProvider)),
+///[confirmChangeDefaultAccountUseCase] provider
+final confirmChangeDefaultAccountUseCaseProvider =
+    Provider.autoDispose<ConfirmChangeDefaultAccountUseCase>(
+  (ref) => ConfirmChangeDefaultAccountUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[UnLinkAccountFromCliqUseCase] provider
@@ -107,7 +112,34 @@ final qrClipCodeUsecaseProvider = Provider.autoDispose<QrClipCodeUsecase>(
   (ref) => QrClipCodeUsecase(ref.read(cliqRepositoryProvider)),
 );
 
-///[GetCustomerByAccount] provider
+///[GetCustomerByAccountUsecase] provider
 final getCustomerByAccount = Provider.autoDispose<GetCustomerByAccountUseCase>(
   (ref) => GetCustomerByAccountUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[RequestToPayResultUsecase] provider
+final requestToPayResult = Provider.autoDispose<RequestToPayResultUseCase>(
+  (ref) => RequestToPayResultUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[GetAccountByCustomerIDUsecase] provider
+final getAccountByCustomerID =
+    Provider.autoDispose<GetAccountByCustomerIDUseCase>(
+  (ref) => GetAccountByCustomerIDUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[ChangeDefaultAccountOtpUsecase] provider
+final changeDefaultAccountOtp =
+    Provider.autoDispose<ChangeDefaultAccountOtpUseCase>(
+  (ref) => ChangeDefaultAccountOtpUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[ApproveRTPRequestUseCase] provider
+final approveRTPRequest = Provider.autoDispose<ApproveRTPRequestUseCase>(
+  (ref) => ApproveRTPRequestUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[SubmitOutwardPaymentUseCase] provider
+final submitOutwardPayment = Provider.autoDispose<SubmitOutwardPaymentUseCase>(
+  (ref) => SubmitOutwardPaymentUseCase(ref.read(cliqRepositoryProvider)),
 );

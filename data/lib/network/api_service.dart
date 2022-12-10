@@ -89,7 +89,8 @@ import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/change_default_account/change_default_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id/create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
@@ -100,8 +101,10 @@ import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
 import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
 import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
+import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
@@ -950,9 +953,9 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> addLinkAccount(
     @Body() AddLinkAccountRequestEntity request,
   );
-  @POST("/Cliq/ChangeDefaultAccount")
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccount(
-    @Body() ChangeDefaultAccountRequestEntity request,
+  @POST("/Cliq/ConfirmChangeDefaultAccount")
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
+    @Body() BaseRequest request,
   );
   @POST("/Cliq/UnLinkAccountFromCliq")
   Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq(
@@ -970,5 +973,28 @@ abstract class ApiService {
   @POST("/Cliq/GetCustomerByAccount")
   Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
     @Body() GetCustomByAccountRequestEntity request,
+  );
+  @POST("/Cliq/RequestToPayResult")
+  Future<HttpResponse<ResponseEntity>> requestToPayResult(
+    @Body() RequestToPayResultRequestEntity request,
+  );
+
+  @POST("/Cliq/GetAccountByCustomerID")
+  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/ChangeDefaultAccountOtp")
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/ApproveRTPRequest")
+  Future<HttpResponse<ResponseEntity>> approveRTPRequest(
+    @Body() ApproveRTPRequestReqestEntity request,
+  );
+  @POST("/Cliq/SubmitOutwardPayment")
+  Future<HttpResponse<ResponseEntity>> submitOutwardPayment(
+    @Body() SubmitOutwardPaymentRequestEntity request,
   );
 }

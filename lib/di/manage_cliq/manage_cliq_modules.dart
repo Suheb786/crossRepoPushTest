@@ -23,7 +23,7 @@ final cliqIdListViewModelProvider =
       ref.read(getAliasUseCaseProvider),
       ref.read(deleteCliqIdUseCaseProvider),
       ref.read(unLinkAccountFromCliqUseCaseProvider),
-      ref.read(changeDefaultAccountUseCaseProvider),
+      ref.read(confirmChangeDefaultAccountUseCaseProvider),
       ref.read(suspendCliqIdUseCaseProvider),
       ref.read(reActivateCliqIdUseCaseProvider),
       ref.read(addLinkAccountUseCaseProvider)),

@@ -5,28 +5,22 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class QrClipCodeUsecase
-    extends BaseUseCase<NetworkError, QrClipCodeUsecaseParams, bool> {
+class ChangeDefaultAccountOtpUseCase extends BaseUseCase<NetworkError,
+    ChangeDefaultAccountOtpUseCaseParams, bool> {
   final CliqRepository _cliqRepository;
-
-  QrClipCodeUsecase(this._cliqRepository);
+  ChangeDefaultAccountOtpUseCase(this._cliqRepository);
 
   @override
   Future<Either<NetworkError, bool>> execute(
-      {required QrClipCodeUsecaseParams params}) {
-    return _cliqRepository.qRCliqCode(
-        code: params.code, getToken: params.getToken);
+      {required ChangeDefaultAccountOtpUseCaseParams params}) {
+    return _cliqRepository.changeDefaultAccountOtp(GetToken: params.GetToken);
   }
 }
 
-class QrClipCodeUsecaseParams extends Params {
-  final String code;
-  final bool getToken;
+class ChangeDefaultAccountOtpUseCaseParams extends Params {
+  final bool GetToken;
 
-  QrClipCodeUsecaseParams({
-    required this.code,
-    required this.getToken,
-  });
+  ChangeDefaultAccountOtpUseCaseParams(this.GetToken);
 
   @override
   Either<AppError, bool> verify() {
