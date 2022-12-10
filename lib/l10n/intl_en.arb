@@ -1442,8 +1442,8 @@
   "payAndRequestMoneyViaQR": "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.",
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
   "to": "to",
-  "qrExpired": "QR Expired. Try scanning valid QR",
-  "qrInvalid": "Invalid QR. Try scanning valid QR",
+  "qrExpired": "QR Expired",
+  "qrInvalid": "QR does not exist",
   "bookFligtWithUs": "Book flight with us!",
   "bookNow": "Book Now",
   "rjFrom": "FROM",
@@ -1481,5 +1481,6 @@
   "accountCard": "Account Card",
   "paymentNotDone": "payment not done",
   "noTicketsFound": "No tickets found",
-  "dateComparison": "Depart on date should not be greater than return date"
+  "dateComparison": "Depart on date should not be greater than return date",
+  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
 }

@@ -68,57 +68,84 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           if (currentStep == 0)
-                            InkWell(
-                                onTap: () {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.payRequestViaQRBlackIcon,
-                                      title: S.of(context).payViaQR,
-                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14.0.t)), onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onSelected: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
-                                  });
-                                },
-                                child: AppSvg.asset(AssetUtils.payViaQrIcon))
+                            (ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .dashboardFeatures
+                                        ?.appBillPaymentQrCode ??
+                                    true)
+                                ? InkWell(
+                                    onTap: () {
+                                      InformationDialog.show(context,
+                                          image: AssetUtils.payRequestViaQRBlackIcon,
+                                          title: S.of(context).payViaQR,
+                                          descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14.0.t)), onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: () {
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                      });
+                                    },
+                                    child: AppSvg.asset(AssetUtils.payViaQrIcon))
+                                : AppSvg.asset(AssetUtils.payments)
                           else
-                            InkWell(
-                                onTap: () {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.payRequestViaQRBlackIcon,
-                                      title: S.of(context).requestViaQR,
-                                      descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14.0.t)), onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onSelected: () {
-                                    Navigator.pop(context);
+                            (ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .dashboardFeatures
+                                        ?.appBillPaymentQrCode ??
+                                    true)
+                                ? InkWell(
+                                    onTap: () {
+                                      InformationDialog.show(context,
+                                          image: AssetUtils.payRequestViaQRBlackIcon,
+                                          title: S.of(context).requestViaQR,
+                                          descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14.0.t)), onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: () {
+                                        Navigator.pop(context);
 
-                                    Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
-                                        arguments: RequestMoneyQrGenerationPageArguments(
-                                            ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .account!));
-                                  });
-                                },
-                                child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
-                          Padding(
-                            padding: EdgeInsets.only(top: 9.0.h),
-                            child: Text(
-                              currentStep == 0 ? S.of(context).payViaQR : S.of(context).requestViaQR,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18.0.t),
-                            ),
-                          ),
+                                        Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                            arguments: RequestMoneyQrGenerationPageArguments(
+                                                ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .account!));
+                                      });
+                                    },
+                                    child: AppSvg.asset(AssetUtils.requestViaQrIcon))
+                                : AppSvg.asset(AssetUtils.payments),
+                          (ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.appBillPaymentQrCode ??
+                                  true)
+                              ? Padding(
+                                  padding: EdgeInsets.only(top: 9.0.h),
+                                  child: Text(
+                                    currentStep == 0 ? S.of(context).payViaQR : S.of(context).requestViaQR,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18.0.t),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.only(top: 9.0.h),
+                                  child: Text(
+                                    S.of(context).payments,
+                                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                                  ),
+                                ),
                           Expanded(
                             child: Column(
                               children: [

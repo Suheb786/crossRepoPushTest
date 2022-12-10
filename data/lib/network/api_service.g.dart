@@ -21,9 +21,9 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
-                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, 'https://10.6.13.1:2181/api/auth/CheckUserName',
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'https://10.6.13.1:2181/api/auth/CheckUserName',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -2654,6 +2654,53 @@ class _ApiService implements ApiService {
             .compose(_dio.options, '/RJ/MakeTicketPaymentOtp', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<QRResponseEntity>> generateQR(generateQRRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(generateQRRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<QRResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/Transfer/GenerateQR', queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = QRResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(verifyQRRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(verifyQRRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VerifyQRResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/Transfer/VerifyQR', queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VerifyQRResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(transferQRRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(transferQRRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<QRTransferResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/Transfer/TransferQR', queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = QRTransferResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

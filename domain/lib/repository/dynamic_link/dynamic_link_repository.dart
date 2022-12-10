@@ -8,6 +8,7 @@ abstract class DynamicLinkRepository {
     required String accountNo,
     required String requestAmt,
     required String dateTime,
+    required String requestId,
   });
 
   /// log events

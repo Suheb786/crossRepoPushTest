@@ -140,6 +140,9 @@ import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.d
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
+import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
@@ -147,6 +150,9 @@ import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
+import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/flight_details_response_entity.dart';
@@ -797,4 +803,15 @@ abstract class ApiService {
 
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  ///QR
+  @POST("/Transfer/GenerateQR")
+  Future<HttpResponse<QRResponseEntity>> generateQR(@Body() GenerateQRRequestEntity generateQRRequestEntity);
+
+  @POST("/Transfer/VerifyQR")
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(@Body() VerifyQRRequestEntity verifyQRRequestEntity);
+
+  @POST("/Transfer/TransferQR")
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(
+      @Body() TransferQRRequestEntity transferQRRequestEntity);
 }

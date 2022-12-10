@@ -75,7 +75,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            model.arguments.requestAmt,
+                            num.parse(model.arguments.requestAmt).toStringAsFixed(3),
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 24.t,
@@ -97,8 +97,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                       child: Container(
                         color: AppColor.white,
                         child: QrImage(
-                          data:
-                              "${model.arguments.account.accountTitle}%${model.arguments.account.accountNo}%${model.arguments.requestAmt}%${DateTime.now()}",
+                          data: "${model.arguments.requestId}",
                           version: QrVersions.auto,
                           size: 223.0,
                         ),

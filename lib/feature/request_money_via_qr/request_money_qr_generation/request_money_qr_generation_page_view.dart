@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/qr/qr_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -13,9 +14,12 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQrGenerationPageViewModel> {
@@ -188,47 +192,57 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                     ],
                   ),
                 ),
-                Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: NumericKeyboard(
-                      onKeyboardTap: (value) {
-                        model.changeValue(value);
-                      },
-                      textColor: Colors.black,
-                      rightButtonFn: () {
-                        if (double.parse(model.currentPinValue) <= 0) {
-                          model.showToastWithError(AppError(
-                              cause: Exception(),
-                              error: ErrorInfo(message: ""),
-                              type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
-                        } else {
-                          Navigator.pushNamed(context, RoutePaths.QRScreen,
-                              arguments:
-                                  QrScreenPageArguments(model.arguments.account, model.currentPinValue));
-                        }
+                AppStreamBuilder<Resource<QrResponse>>(
+                    stream: model.generateQRStream,
+                    initialData: Resource.none(),
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {
+                        Navigator.pushNamed(context, RoutePaths.QRScreen,
+                            arguments: QrScreenPageArguments(model.arguments.account, model.currentPinValue,
+                                data.data?.qrContent?.requestId ?? ''));
+                      }
+                    },
+                    dataBuilder: (context, value) {
+                      return Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: NumericKeyboard(
+                            onKeyboardTap: (value) {
+                              model.changeValue(value);
+                            },
+                            textColor: Colors.black,
+                            rightButtonFn: () {
+                              if (double.parse(model.currentPinValue) <= 0) {
+                                model.showToastWithError(AppError(
+                                    cause: Exception(),
+                                    error: ErrorInfo(message: ""),
+                                    type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                              } else {
+                                model.generateQR();
+                              }
 
-                        ///TODO:don't show account selection here
-                        // AccountsDialog.show(context, onDismissed: () {
-                        //   Navigator.pop(context);
-                        // });
-                      },
-                      leftIcon: Icon(
-                        Icons.circle,
-                        color: AppColor.black,
-                        size: 5,
-                      ),
-                      rightWidget: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: AppColor.brightBlue,
-                        child: Center(
-                          child: AppSvg.asset(AssetUtils.next),
-                        ),
-                      ),
-                      leftButtonFn: () {
-                        model.changeValue(".");
-                      },
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-                ),
+                              ///TODO:don't show account selection here
+                              // AccountsDialog.show(context, onDismissed: () {
+                              //   Navigator.pop(context);
+                              // });
+                            },
+                            leftIcon: Icon(
+                              Icons.circle,
+                              color: AppColor.black,
+                              size: 5,
+                            ),
+                            rightWidget: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: AppColor.brightBlue,
+                              child: Center(
+                                child: AppSvg.asset(AssetUtils.next),
+                              ),
+                            ),
+                            leftButtonFn: () {
+                              model.changeValue(".");
+                            },
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                      );
+                    }),
               ],
             )
           ],

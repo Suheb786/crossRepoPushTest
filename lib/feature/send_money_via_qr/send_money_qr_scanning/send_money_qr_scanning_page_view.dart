@@ -1,8 +1,7 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/payment/check_send_money_response.dart';
-import 'package:domain/model/payment/transfer_success_response.dart';
+import 'package:domain/model/qr/qr_transfer_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,188 +57,176 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
           ),
           Expanded(
               child: Card(
-            child: AppStreamBuilder<Resource<TransferSuccessResponse>>(
-                stream: model.transferStream,
+            child: AppStreamBuilder<Resource<QRTransferResponse>>(
+                stream: model.transferQRStream,
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
                     Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess,
                         arguments: SendMoneyViaQRSuccessPageArguments(
-                            referenceNo: data.data?.transferSuccessContent?.referenceNo ?? '',
-                            amount: '${data.data?.transferSuccessContent?.amount ?? ''}',
-                            user: data.data?.transferSuccessContent?.name ?? ''));
-                  } else if (data.status == Status.ERROR) {
-                    //Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
+                            referenceNo: data.data?.qrContent?.reference ?? '',
+                            amount: '${data.data?.qrContent?.amount ?? ''}',
+                            user: data.data?.qrContent?.name ?? ''));
                   }
                 },
-                dataBuilder: (context, snapshot) {
-                  return AppStreamBuilder<Resource<CheckSendMoneyResponse>>(
-                      stream: model.checkSendMoneyStream,
-                      initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          model.transfer(data.data!.checkSendMoneyContent!.transferResponse!);
+                dataBuilder: (context, checkSendMoneyResponse) {
+                  return GestureDetector(
+                    onHorizontalDragEnd: (details) {
+                      if (details.primaryVelocity!.isNegative) {
+                        if (model.payFromController.text.isEmpty) {
+                          model.showToastWithError(AppError(
+                              cause: Exception(),
+                              error: ErrorInfo(message: ''),
+                              type: ErrorType.SELECT_ACCOUNT));
+                        } else {
+                          model.transferQR();
                         }
-                      },
-                      dataBuilder: (context, checkSendMoneyResponse) {
-                        return GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              if (model.payFromController.text.isEmpty) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.SELECT_ACCOUNT));
-                              } else {
-                                model.checkSendMoney();
-                              }
-                            }
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
+                      }
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 38,
+                            ),
+                            Text(
+                              S.of(context).amount,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                    height: 38,
-                                  ),
                                   Text(
-                                    S.of(context).amount,
+                                    num.parse(model.arguments.amount).toStringAsFixed(3),
                                     style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 24,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 4),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          model.arguments.amount,
-                                          style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 24,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
-                                          child: Text(
-                                            S.of(context).JOD,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14,
-                                                color: AppColor.verLightGray4),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          S.of(context).nameOfBeneficiary,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: AppColor.dark_gray_1),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 4.0),
-                                          child: Text(
-                                            model.arguments.accountHolderName,
-                                            style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(start: 24, top: 32, end: 24),
-                                    child: AppTextField(
-                                      labelText: S.of(context).payFrom.toUpperCase(),
-                                      hintText: S.of(context).pleaseSelect,
-                                      controller: model.payFromController,
-                                      key: model.payFromKey,
-                                      readOnly: true,
-                                      onPressed: () {
-                                        AccountsDialog.show(context, label: S.of(context).selectAccount,
-                                            onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.payFromController.text = value;
-                                          model.validate();
-                                        }, accountsList: [
-                                          ProviderScope.containerOf(context)
-                                                  .read(appHomeViewModelProvider)
-                                                  .dashboardDataContent
-                                                  .account
-                                                  ?.accountNo ??
-                                              ''
-                                        ]);
-                                      },
-                                      suffixIcon: (isValid, value) {
-                                        return Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.symmetric(horizontal: 7),
-                                            child: AppSvg.asset(AssetUtils.downArrow,
-                                                color: Theme.of(context).primaryColorDark));
-                                      },
+                                    padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
+                                    child: Text(
+                                      S.of(context).JOD,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14,
+                                          color: AppColor.verLightGray4),
                                     ),
                                   ),
                                 ],
                               ),
-                              Column(
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  AppStreamBuilder<bool>(
-                                      stream: model.showButtonStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isValid) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(top: 26.0),
-                                          child: Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
-                                          ),
-                                        );
-                                      }),
+                                  Text(
+                                    S.of(context).nameOfBeneficiary,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color: AppColor.dark_gray_1),
+                                  ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                                    child: Center(
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          S.of(context).backToPayments,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColor.brightBlue),
-                                        ),
+                                    padding: EdgeInsetsDirectional.only(start: 4.0),
+                                    child: Text(
+                                      model.arguments.accountHolderName,
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ),
                                 ],
-                              )
-                            ],
-                          ),
-                        );
-                      });
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.only(start: 24, top: 32, end: 24),
+                              child: AppTextField(
+                                labelText: S.of(context).payFrom.toUpperCase(),
+                                hintText: S.of(context).pleaseSelect,
+                                controller: model.payFromController,
+                                key: model.payFromKey,
+                                readOnly: true,
+                                onPressed: () {
+                                  AccountsDialog.show(context, label: S.of(context).selectAccount,
+                                      onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.payFromController.text = value;
+                                    model.validate();
+                                  }, accountsList: [
+                                    ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .account
+                                            ?.accountNo ??
+                                        ''
+                                  ]);
+                                },
+                                suffixIcon: (isValid, value) {
+                                  return Container(
+                                      height: 16,
+                                      width: 16,
+                                      padding: EdgeInsets.symmetric(horizontal: 7),
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: Theme.of(context).primaryColorDark));
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            AppStreamBuilder<bool>(
+                                stream: model.showButtonStream,
+                                initialData: false,
+                                dataBuilder: (context, isValid) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 26.0),
+                                    child: Visibility(
+                                      visible: isValid!,
+                                      child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
+                                    ),
+                                  );
+                                }),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                              child: Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    S.of(context).backToPayments,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.brightBlue),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
                 }),
           ))
         ],

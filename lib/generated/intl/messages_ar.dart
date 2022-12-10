@@ -1887,32 +1887,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeDetail": MessageLookupByLibrary.simpleMessage("تفاصيل السبب"),
         "purposeDetailSmall":
             MessageLookupByLibrary.simpleMessage("تفاصيل السبب"),
-        "purposeDetails":
-            MessageLookupByLibrary.simpleMessage("تفاصيل التحويل "),
+        "purposeDetails": MessageLookupByLibrary.simpleMessage("تفاصيل التحويل "),
         "purposeDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-110)"),
-        "purposeOfAccount":
-            MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
-        "purposeOfAccountOpening":
-            MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
-        "purposeOfOpeningAccount":
-            MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
+        "purposeOfAccount": MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
+        "purposeOfAccountOpening": MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
+        "purposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("السبب"),
-        "qrExpired": MessageLookupByLibrary.simpleMessage(
-            "رمز الاستجابة السريع منتهي الصلاحية حاول مسح رمز اخر فعال"),
-        "qrInvalid": MessageLookupByLibrary.simpleMessage(
-            "رمز الاستجابة السريع غير فعال حاول مسح رمز اخر فعال"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage("QR Expired"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage("QR does not exist"),
+        "qrNotScanned": MessageLookupByLibrary.simpleMessage("QR Not Scanned or Re Read the qr code/link"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("دفعات QR"),
-        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
-            "رمز الاستجابة فعال لمدة 30 دقيقة"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "يا ريت تكون بمكان هادي وفيه خصوصية"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage("رمز الاستجابة فعال لمدة 30 دقيقة"),
+        "quietSurrounding": MessageLookupByLibrary.simpleMessage("يا ريت تكون بمكان هادي وفيه خصوصية"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(

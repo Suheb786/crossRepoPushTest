@@ -1975,32 +1975,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeDetailSmall":
             MessageLookupByLibrary.simpleMessage("Purpose Details"),
-        "purposeDetails":
-            MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
+        "purposeDetails": MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "purposeOfAccount":
-            MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
-        "purposeOfAccountOpening":
-            MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
-        "purposeOfOpeningAccount":
-            MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
+        "purposeOfAccount": MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
+        "purposeOfAccountOpening": MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
+        "purposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("Purpose"),
-        "qrExpired": MessageLookupByLibrary.simpleMessage(
-            "QR Expired. Try scanning valid QR"),
-        "qrInvalid": MessageLookupByLibrary.simpleMessage(
-            "Invalid QR. Try scanning valid QR"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage("QR Expired"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage("QR does not exist"),
+        "qrNotScanned": MessageLookupByLibrary.simpleMessage("QR Not Scanned or Re Read the qr code/link"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("QR PAYMENTS"),
-        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
-            "QR code will be valid\nfor 30 mins"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "Best if your surrounding is quiet and private"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage("QR code will be valid\nfor 30 mins"),
+        "quietSurrounding":
+            MessageLookupByLibrary.simpleMessage("Best if your surrounding is quiet and private"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(

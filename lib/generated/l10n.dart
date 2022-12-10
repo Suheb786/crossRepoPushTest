@@ -14200,20 +14200,20 @@ class S {
     );
   }
 
-  /// `QR Expired. Try scanning valid QR`
+  /// `QR Expired`
   String get qrExpired {
     return Intl.message(
-      'QR Expired. Try scanning valid QR',
+      'QR Expired',
       name: 'qrExpired',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid QR. Try scanning valid QR`
+  /// `QR does not exist`
   String get qrInvalid {
     return Intl.message(
-      'Invalid QR. Try scanning valid QR',
+      'QR does not exist',
       name: 'qrInvalid',
       desc: '',
       args: [],
@@ -14595,6 +14595,16 @@ class S {
     return Intl.message(
       'Depart on date should not be greater than return date',
       name: 'dateComparison',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Not Scanned or Re Read the qr code/link`
+  String get qrNotScanned {
+    return Intl.message(
+      'QR Not Scanned or Re Read the qr code/link',
+      name: 'qrNotScanned',
       desc: '',
       args: [],
     );

@@ -5,6 +5,7 @@ abstract class DynamicLinkDataSource {
     required String accountNo,
     required String requestAmt,
     required String dateTime,
+    required String requestId,
   });
 
   /// listen for dynamic link

@@ -36,7 +36,11 @@ class SendMoneyQRScanningArguments {
   final String amount;
   final String accountHolderName;
   final String accountNo;
+  final String requestId;
 
   SendMoneyQRScanningArguments(
-      {required this.amount, required this.accountHolderName, required this.accountNo});
+      {required this.amount,
+      required this.accountHolderName,
+      required this.accountNo,
+      required this.requestId});
 }

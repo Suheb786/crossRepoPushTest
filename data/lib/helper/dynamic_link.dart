@@ -21,14 +21,14 @@ class DynamicLinksService {
     required String accountNo,
     required String requestAmt,
     required String dateTime,
+    required String requestId,
   }) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String uriPrefix = "https://blinkcbt.page.link";
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: uriPrefix,
-      link: Uri.parse(
-          '${uriPrefix}/payments?accountTitle=${accountTitle}&accountNo=${accountNo}&requestAmt=${requestAmt}&dateTime=${dateTime}'),
+      link: Uri.parse('${uriPrefix}/payments?requestId=${requestId}'),
       androidParameters: AndroidParameters(
         packageName: packageInfo.packageName,
         minimumVersion: 21,

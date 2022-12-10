@@ -12,10 +12,12 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
+import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
+import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +47,7 @@ class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final SaveUserDataUseCase _saveUserDataUseCase;
+  final VerifyQRUseCase _verifyQRUseCase;
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
@@ -189,8 +192,21 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///--------Save current user ---------///
 
+  ///---------------Verify QR----------------------///
+  PublishSubject<VerifyQRUseCaseParams> _verifyQRRequest = PublishSubject();
+
+  PublishSubject<Resource<VerifyQrResponse>> _verifyQRResponse = PublishSubject();
+
+  Stream<Resource<VerifyQrResponse>> get verifyQRStream => _verifyQRResponse.stream;
+
+  void verifyQR({required String requestId}) {
+    _verifyQRRequest.safeAdd(VerifyQRUseCaseParams(requestId: requestId, source: 'L'));
+  }
+
+  ///---------------Verify QR----------------------///
+
   AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase,
-      this._getCurrentUserUseCase, this._saveUserDataUseCase) {
+      this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -287,6 +303,18 @@ class AppHomeViewModel extends BasePageViewModel {
       }).asFlow().listen((event) async {
         updateLoader();
         _saveCurrentUserResponseSubject.add(event);
+      });
+    });
+
+    _verifyQRRequest.listen((value) {
+      RequestManager(value, createCall: () => _verifyQRUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyQRResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 

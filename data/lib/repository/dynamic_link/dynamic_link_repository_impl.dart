@@ -15,9 +15,14 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
       {required String accountTitle,
       required String accountNo,
       required String requestAmt,
-      required String dateTime}) async {
+      required String dateTime,
+      required String requestId}) async {
     final result = await _dynamicLinkDataSource.createDynamicLink(
-        accountTitle: accountTitle, accountNo: accountNo, requestAmt: requestAmt, dateTime: dateTime);
+        accountTitle: accountTitle,
+        accountNo: accountNo,
+        requestAmt: requestAmt,
+        dateTime: dateTime,
+        requestId: requestId);
     if (result.isNotEmpty) {
       return Right(result);
     } else {

@@ -699,6 +699,15 @@ class NetworkError extends BaseError {
           case "err-338":
             return AppError(cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
 
+          case "err-363":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_EXPIRED);
+
+          case "err-364":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_NOT_SCANNED);
+
+          case "err-365":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_INVALID);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

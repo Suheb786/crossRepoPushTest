@@ -3,6 +3,7 @@ import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
+import 'package:domain/usecase/payment/transfer_qr_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
@@ -12,10 +13,10 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/qr/qr_transfer_response.dart';
 
 class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
-  final CheckSendMoneyUseCase _checkSendMoneyUseCase;
-  final TransferApiNoOtpUseCase _transferApiNoOtpUseCase;
+  final TransferQRUseCase _transferQRUseCase;
 
   final SendMoneyQRScanningArguments arguments;
 
@@ -26,68 +27,28 @@ class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
-  ///----------------Check send money---------------///
+  ///----------------Transfer QR Usecase---------------///
 
-  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest = PublishSubject();
+  PublishSubject<TransferQRUseCaseParams> _transferQRRequest = PublishSubject();
 
-  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse = PublishSubject();
+  PublishSubject<Resource<QRTransferResponse>> _transferQRResponse = PublishSubject();
 
-  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream => _checkSendMoneyResponse.stream;
+  Stream<Resource<QRTransferResponse>> get transferQRStream => _transferQRResponse.stream;
 
-  void checkSendMoney() {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: arguments.accountNo, toAmount: double.parse(arguments.amount)));
+  void transferQR() {
+    _transferQRRequest.safeAdd(TransferQRUseCaseParams(
+        toAccount: arguments.accountNo, toAmount: arguments.amount, requestId: arguments.requestId));
   }
 
-  ///----------------Check send money---------------///
+  ///----------------Transfer QR Usecase---------------///
 
-  ///----------------Transfer money---------------///
-
-  PublishSubject<TransferApiNoOtpUseCaseParams> _transferRequest = PublishSubject();
-
-  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse = PublishSubject();
-
-  Stream<Resource<TransferSuccessResponse>> get transferStream => _transferResponse.stream;
-
-  void transfer(TransferResponse transferResponse) {
-    _transferRequest.safeAdd(TransferApiNoOtpUseCaseParams(
-        toAmount: transferResponse.toAmount,
-        toAccount: transferResponse.toAccount,
-        limit: 10000,
-        memo: '101',
-        //Friend or family
-        isFriend: false,
-        nickName: "",
-        transferType: transferResponse.transferType,
-        localEq: transferResponse.localEq,
-        beneficiaryId: transferResponse.beneficiaryId,
-        beneficiaryImage: "",
-        type: "",
-        detCustomerType: ""));
-  }
-
-  ///----------------Transfer money---------------///
-  SendMoneyQrScanningPageViewModel(
-      this.arguments, this._checkSendMoneyUseCase, this._transferApiNoOtpUseCase) {
-    _checkSendMoneyRequest.listen((value) {
-      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
+  SendMoneyQrScanningPageViewModel(this.arguments, this._transferQRUseCase) {
+    _transferQRRequest.listen((value) {
+      RequestManager(value, createCall: () => _transferQRUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _checkSendMoneyResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _transferRequest.listen((value) {
-      RequestManager(value, createCall: () => _transferApiNoOtpUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _transferResponse.safeAdd(event);
+        _transferQRResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
