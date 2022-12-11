@@ -27,6 +27,16 @@ import 'package:share_plus/share_plus.dart';
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
 
+  void _shareFiles(
+    BuildContext context,
+    String s,
+  ) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await Share.share(S.of(context).helloHereMyBlinkAccount + '\n\n${s} ',
+        subject: S.current.shareAccountInfo,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
+
   @override
   Widget build(BuildContext context, CliqIdListPageViewModel model) {
     return GestureDetector(
@@ -43,7 +53,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
         decoration: BoxDecoration(
             color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                topLeft: Radius.circular(16), topRight: Radius.circular(16),),),
         child: Column(
           children: [
             Container(
@@ -58,13 +68,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
             AppStreamBuilder<Resource<GetAlias>>(
                 initialData: Resource.none(),
                 stream: model.getAliasStream,
-                onData: (data) {
-                  if (data.status == Status.SUCCESS) {
-                    model.showSuccessToast(
-                        S.current.accountSuccessfullyUnlinked);
-                    // model.getAlias(true);
-                  }
-                },
                 dataBuilder: (context, getAliasSnapshot) {
                   return AppStreamBuilder<Resource<bool>>(
                       initialData: Resource.none(),
@@ -509,15 +512,5 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
         ),
       ),
     );
-  }
-
-  void _shareFiles(
-    BuildContext context,
-    String s,
-  ) async {
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(S.of(context).helloHereMyBlinkAccount + '\n\n${s} ',
-        subject: S.current.shareAccountInfo,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

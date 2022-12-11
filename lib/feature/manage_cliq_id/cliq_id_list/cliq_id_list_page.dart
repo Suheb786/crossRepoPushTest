@@ -16,11 +16,6 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
 class CliqIdListPageState
     extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
-  ProviderBase provideBase() {
-    return cliqIdListViewModelProvider;
-  }
-
-  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85),
@@ -36,9 +31,10 @@ class CliqIdListPageState
           Text(
             S.of(context).manageCliqId,
             style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).accentColor),
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).accentColor,
+            ),
           ),
           InkWell(
             onTap: () {
@@ -68,23 +64,28 @@ class CliqIdListPageState
   }
 
   @override
-  bool extendBodyBehindAppBar() {
-    return false;
-  }
-
-  @override
-  Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
-  }
-
-  @override
   Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
     return CliqIdListPageView(provideBase());
+  }
+
+  @override
+  bool extendBodyBehindAppBar() {
+    return false;
   }
 
   @override
   void onModelReady(CliqIdListPageViewModel model) {
     model.getAlias(true);
     super.onModelReady(model);
+  }
+
+  @override
+  ProviderBase provideBase() {
+    return cliqIdListViewModelProvider;
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
   }
 }

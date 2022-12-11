@@ -14,131 +14,17 @@ import 'package:rxdart/rxdart.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
-  final GetAliasUsecase _getAliasUsecase;
-  final DeleteCliqIdUseCase _deleteCliqIdUseCase;
-  final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
-  final ConfirmChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
-  final SuspendCliqIdUseCase _suspendCliqIdUseCase;
-  final ReActivateCliqIdUseCase _reActivateCliqIdUseCase;
-  final AddLInkAccountUseCase _addLInkAccountUseCase;
-
-  //*----------------Get Alias--------------///
-
-  PublishSubject<GetAliasUseCaseParams> _getAliasRequest = PublishSubject();
-  PublishSubject<Resource<GetAlias>> _getAliasResponse = PublishSubject();
-
-  Stream<Resource<GetAlias>> get getAliasStream => _getAliasResponse.stream;
-
-  void getAlias(bool getToken) {
-    _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
-  }
-
-  void aliasString() {}
-
-  //*----------------Suspand Cliq ID--------------///
-
-  PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _suspandCliqIDResponse = PublishSubject();
-
-  Stream<Resource<bool>> get suspandCliqIDStream =>
-      _suspandCliqIDResponse.stream;
-
-  void suspandCliqID({required bool getToken, required String aliasId}) {
-    _suspandCliqIDRequest.safeAdd(
-        SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
-  }
-
-  //*----------------reactivate Cliq ID--------------///
-
-  PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _reactivateCliqIDResponse = PublishSubject();
-
-  Stream<Resource<bool>> get requestCliqIDStream =>
-      _reactivateCliqIDResponse.stream;
-
-  void reactivatetCliqID({required bool getToken, required String aliasId}) {
-    _reactivateCliqIDRequest.safeAdd(
-        ReActivateCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
-  }
-
-  //*----------------Delete Cliq Id--------------///
-  PublishSubject<DeleteCliqIdUseCaseParams> _deleteCliqIdRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _deleteCliqIdResponse = PublishSubject();
-
-  Stream<Resource<bool>> get deleteCliqIdStream => _deleteCliqIdResponse.stream;
-
-  void deleteCliqId(bool getToken, String aliasId) {
-    _deleteCliqIdRequest.safeAdd(
-        DeleteCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
-  }
-
-  //*----------------Change Default Cliq Id--------------///
-  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse =
-      PublishSubject();
-
-  Stream<Resource<bool>> get changeDefaultCliqIdStream =>
-      _changeDefaultCliqIDResponse.stream;
-
-  void confirmChangeDefaultCliqId({
-    required bool GetToken,
-  }) {
-    _changeDefaultCliqIDRequest.safeAdd(
-      ChangeDefaultAccountParams(GetToken: GetToken),
-    );
-  }
-
-//*----------------link Cliq Id--------------///
-  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _linkCliqIdResponse = PublishSubject();
-
-  Stream<Resource<bool>> get linkCliqIdStream => _linkCliqIdResponse.stream;
-
-  void linkCliqId({
-    required bool getToken,
-    required String aliasId,
-    required String accountId,
-    required String linkType,
-    required String accountNumber,
-    required bool isAlias,
-    required String aliasValue,
-  }) {
-    _unlinkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
-        aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
-  }
-
-  //*----------------unlick Cliq Id--------------///
-  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _unlinkCliqIdResponse = PublishSubject();
-
-  Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
-
-  unlinkCliqId({
-    required bool getToken,
-    required String aliasId,
-    required String accountId,
-  }) {
-    _unlinkCliqIdRequest.safeAdd(UnlinkAccountFromCliqParams(
-      aliasId: aliasId,
-      accountId: accountId,
-      getToken: getToken,
-    ));
-  }
+  ///-----------------------[ Named-Constructors ]-----------------------///
 
   CliqIdListPageViewModel(
-      this._getAliasUsecase,
-      this._deleteCliqIdUseCase,
-      this._unlinkAccountFromCliqUseCase,
-      this._changeDefaultAccountUseCase,
-      this._suspendCliqIdUseCase,
-      this._reActivateCliqIdUseCase,
-      this._addLInkAccountUseCase) {
+    this._getAliasUsecase,
+    this._deleteCliqIdUseCase,
+    this._unlinkAccountFromCliqUseCase,
+    this._changeDefaultAccountUseCase,
+    this._suspendCliqIdUseCase,
+    this._reActivateCliqIdUseCase,
+    this._addLInkAccountUseCase,
+  ) {
     _getAliasRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getAliasUsecase.execute(params: value))
@@ -234,5 +120,134 @@ class CliqIdListPageViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  ///-----------------------[ Private-Instance-Variables ]-----------------------///
+
+  //*----------------Change Default Cliq Id--------------///
+  final ConfirmChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
+  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse =
+      PublishSubject();
+
+  //*----------------Delete Cliq Id--------------///
+
+  PublishSubject<DeleteCliqIdUseCaseParams> _deleteCliqIdRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _deleteCliqIdResponse = PublishSubject();
+  final DeleteCliqIdUseCase _deleteCliqIdUseCase;
+
+  //*----------------Get Alias--------------///
+
+  PublishSubject<GetAliasUseCaseParams> _getAliasRequest = PublishSubject();
+
+  PublishSubject<Resource<GetAlias>> _getAliasResponse = PublishSubject();
+  final GetAliasUsecase _getAliasUsecase;
+
+//*----------------link Cliq Id--------------///
+
+  final AddLInkAccountUseCase _addLInkAccountUseCase;
+  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _linkCliqIdResponse = PublishSubject();
+
+  //*----------------reactivate Cliq ID--------------///
+
+  final ReActivateCliqIdUseCase _reActivateCliqIdUseCase;
+  PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _reactivateCliqIDResponse = PublishSubject();
+
+  //*----------------Suspand Cliq ID--------------///
+
+  PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _suspandCliqIDResponse = PublishSubject();
+  final SuspendCliqIdUseCase _suspendCliqIdUseCase;
+
+  //*----------------unlick Cliq Id--------------///
+
+  final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
+
+  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _unlinkCliqIdResponse = PublishSubject();
+
+  ///-----------------------[ Public-Other-Methods ]-----------------------///
+
+  Stream<Resource<GetAlias>> get getAliasStream => _getAliasResponse.stream;
+
+  void getAlias(bool getToken) {
+    _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
+  }
+
+  Stream<Resource<bool>> get suspandCliqIDStream =>
+      _suspandCliqIDResponse.stream;
+
+  void suspandCliqID({required bool getToken, required String aliasId}) {
+    _suspandCliqIDRequest.safeAdd(
+        SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  }
+
+  Stream<Resource<bool>> get requestCliqIDStream =>
+      _reactivateCliqIDResponse.stream;
+
+  void reactivatetCliqID({required bool getToken, required String aliasId}) {
+    _reactivateCliqIDRequest.safeAdd(
+        ReActivateCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  }
+
+  Stream<Resource<bool>> get deleteCliqIdStream => _deleteCliqIdResponse.stream;
+
+  void deleteCliqId(bool getToken, String aliasId) {
+    _deleteCliqIdRequest.safeAdd(
+        DeleteCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  }
+
+  Stream<Resource<bool>> get changeDefaultCliqIdStream =>
+      _changeDefaultCliqIDResponse.stream;
+
+  void confirmChangeDefaultCliqId({
+    required bool GetToken,
+  }) {
+    _changeDefaultCliqIDRequest.safeAdd(
+      ChangeDefaultAccountParams(GetToken: GetToken),
+    );
+  }
+
+  Stream<Resource<bool>> get linkCliqIdStream => _linkCliqIdResponse.stream;
+
+  void linkCliqId({
+    required bool getToken,
+    required String aliasId,
+    required String accountId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+  }) {
+    _unlinkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
+        aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
+  }
+
+  Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
+
+  unlinkCliqId({
+    required bool getToken,
+    required String aliasId,
+    required String accountId,
+  }) {
+    _unlinkCliqIdRequest.safeAdd(UnlinkAccountFromCliqParams(
+      aliasId: aliasId,
+      accountId: accountId,
+      getToken: getToken,
+    ));
   }
 }
