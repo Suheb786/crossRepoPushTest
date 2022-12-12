@@ -5,14 +5,13 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddLInkAccountUseCase
-    extends BaseUseCase<NetworkError, AddLinkAccountUseCaseParams, bool> {
+class AddLInkAccountUseCase extends BaseUseCase<NetworkError, AddLinkAccountUseCaseParams, bool> {
   final CliqRepository _cliqRepository;
 
   AddLInkAccountUseCase(this._cliqRepository);
+
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required AddLinkAccountUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required AddLinkAccountUseCaseParams params}) {
     return _cliqRepository.addLinkAccount(
         aliasId: params.aliasId,
         linkType: params.linkType,
@@ -31,8 +30,8 @@ class AddLinkAccountUseCaseParams extends Params {
   final String aliasValue;
   final bool getToken;
 
-  AddLinkAccountUseCaseParams(this.aliasId, this.linkType, this.accountNumber,
-      this.isAlias, this.aliasValue, this.getToken);
+  AddLinkAccountUseCaseParams(
+      this.aliasId, this.linkType, this.accountNumber, this.isAlias, this.aliasValue, this.getToken);
 
   @override
   Either<AppError, bool> verify() {

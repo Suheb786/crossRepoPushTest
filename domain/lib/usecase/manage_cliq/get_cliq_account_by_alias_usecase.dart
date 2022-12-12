@@ -5,14 +5,13 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCliqAccountByAliasUseCase
-    extends BaseUseCase<NetworkError, GetCliqAccountByAliasParams, bool> {
+class GetCliqAccountByAliasUseCase extends BaseUseCase<NetworkError, GetCliqAccountByAliasParams, bool> {
   final CliqRepository _cliqRepository;
 
   GetCliqAccountByAliasUseCase(this._cliqRepository);
+
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required GetCliqAccountByAliasParams params}) {
+  Future<Either<NetworkError, bool>> execute({required GetCliqAccountByAliasParams params}) {
     return _cliqRepository.getCliqAccountByAlias(
         alias: params.alias,
         mobileNo: params.mobileNo,

@@ -5,15 +5,13 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ChangeDefaultAccountUseCase
-    extends BaseUseCase<NetworkError, ChangeDefaultAccountParams, bool> {
+class ChangeDefaultAccountUseCase extends BaseUseCase<NetworkError, ChangeDefaultAccountParams, bool> {
   final CliqRepository _cliqRepository;
 
   ChangeDefaultAccountUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ChangeDefaultAccountParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ChangeDefaultAccountParams params}) {
     return _cliqRepository.changeDefaultAccount(
         linkType: params.linkType,
         otpCode: params.otpCode,

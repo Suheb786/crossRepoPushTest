@@ -5,15 +5,13 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RequestMoneyActivityUseCase
-    extends BaseUseCase<NetworkError, RequestMoneyActivityParams, bool> {
+class RequestMoneyActivityUseCase extends BaseUseCase<NetworkError, RequestMoneyActivityParams, bool> {
   final CliqRepository _cliqRepository;
 
   RequestMoneyActivityUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required RequestMoneyActivityParams params}) {
+  Future<Either<NetworkError, bool>> execute({required RequestMoneyActivityParams params}) {
     return _cliqRepository.requestMoneyActivity(getToken: params.getToken);
   }
 }
