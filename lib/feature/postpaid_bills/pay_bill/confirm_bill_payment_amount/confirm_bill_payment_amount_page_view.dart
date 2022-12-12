@@ -304,10 +304,12 @@ class ConfirmBillPaymentAmountPageView
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
           ],
+          keyboardType: TextInputType.numberWithOptions(
+            decimal: true,
+          ),
           readOnly: model.isPartial == false,
           controller: model.amtController,
           textAlign: TextAlign.center,
-          keyboardType: TextInputType.number,
           // onChanged: (value) {
           //   model.validate(value);
           // },

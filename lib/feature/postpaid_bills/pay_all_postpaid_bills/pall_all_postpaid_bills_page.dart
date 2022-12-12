@@ -72,7 +72,12 @@ class PayAllPostPaidBillsPageState
                     color: Theme.of(context).accentColor),
               ),
             ),
-            Container(),
+            Padding(
+              padding: EdgeInsetsDirectional.only(end: 18.0.w),
+              child: Container(
+                width: 28.w,
+              ),
+            ),
             Visibility(
               visible:
                   widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS

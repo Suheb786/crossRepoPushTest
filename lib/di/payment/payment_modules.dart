@@ -277,7 +277,6 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider =
         PaySelectedBillsPostPaidBillsPageViewModel,
         PaySelectedBillsPostPaidBillsPageArguments>(
   (ref, args) => PaySelectedBillsPostPaidBillsPageViewModel(
-    ref.read(postPaidBillEnquiryUseCaseProvider),
     ref.read(payPostPaidBillUseCaseProvider),
     args,
   ),

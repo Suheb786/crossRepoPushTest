@@ -30,11 +30,9 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   List<PostpaidBillInquiry> postPaidRequestListJson = [];
   List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
 
-  PublishSubject<List<GetPostpaidBillerListModelData>> _itemSelectedSubject =
-      PublishSubject();
+  PublishSubject<List<GetPostpaidBillerListModelData>> _itemSelectedSubject = PublishSubject();
 
-  Stream<List<GetPostpaidBillerListModelData>> get itemSelectedStream =>
-      _itemSelectedSubject.stream;
+  Stream<List<GetPostpaidBillerListModelData>> get itemSelectedStream => _itemSelectedSubject.stream;
 
   BehaviorSubject<double> _totalBillAmtDueSubject = BehaviorSubject();
 
@@ -42,11 +40,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   double totalBillAmt = 0.0;
 
-  PayAllPostPaidBillsPageViewModel(
-      this.getPostpaidBillerListUseCase,
-      this.removeCustomerBillingUseCase,
-      this.postPaidBillInquiryUseCase,
-      this.arguments) {
+  PayAllPostPaidBillsPageViewModel(this.getPostpaidBillerListUseCase, this.removeCustomerBillingUseCase,
+      this.postPaidBillInquiryUseCase, this.arguments) {
     getPostpaidBiller();
     postPaidBillerListener();
     removeCustomerBillingListener();
@@ -75,13 +70,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           serviceType: payPostPaidBillsDataList[index].serviceType,
           billingNumber: payPostPaidBillsDataList[index].billingNo,
         ));
-        debugPrint(
-            "payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
+        debugPrint("payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
-        totalBillAmt = totalBillAmt +
-            double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
+        totalBillAmt = totalBillAmt + double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
         debugPrint("selectedIndex123:$index");
         selectedIndex = index;
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
@@ -126,31 +119,18 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
 
-  /*void removeItem(int index) {
-    // _totalBillAmtDueSubject.safeAdd(totalBillAmt);
-    totalBillAmt = totalBillAmt -
-        double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
-    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
-    payPostPaidBillsDataList.removeAt(index);
-    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
-    _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
-  }*/
-
   /// ---------------- Call Api GetPostpaidBillerList -------------------------------- ///
-  BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest =
-      BehaviorSubject();
-  BehaviorSubject<Resource<GetPostpaidBillerListModel>>
-      _postpaidBillerResponse = BehaviorSubject();
+  BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest = BehaviorSubject();
+  BehaviorSubject<Resource<GetPostpaidBillerListModel>> _postpaidBillerResponse = BehaviorSubject();
 
   ////search list
-  PublishSubject<Resource<List<GetPostpaidBillerListModelData>?>>
-      _searchPostpaidBillerResponse = PublishSubject();
+  PublishSubject<Resource<List<GetPostpaidBillerListModelData>?>> _searchPostpaidBillerResponse =
+      PublishSubject();
 
-  Stream<Resource<List<GetPostpaidBillerListModelData>?>>
-      get searchPostpaidBillerStream => _searchPostpaidBillerResponse.stream;
+  Stream<Resource<List<GetPostpaidBillerListModelData>?>> get searchPostpaidBillerStream =>
+      _searchPostpaidBillerResponse.stream;
 
-  Stream<Resource<GetPostpaidBillerListModel>> get postpaidBillerStream =>
-      _postpaidBillerResponse.stream;
+  Stream<Resource<GetPostpaidBillerListModel>> get postpaidBillerStream => _postpaidBillerResponse.stream;
 
   void getPostpaidBiller() {
     _postpaidBillerRequest.safeAdd(GetPostpaidBillerListUseCaseParams());
@@ -168,13 +148,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            payPostPaidBillsDataList = event.data?.getPostpaidBillerListContent
-                    ?.getPostpaidBillerListData ??
-                [];
+            payPostPaidBillsDataList =
+                event.data?.getPostpaidBillerListContent?.getPostpaidBillerListData ?? [];
             _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
-            _searchPostpaidBillerResponse.safeAdd(Resource.success(
-                data: event.data?.getPostpaidBillerListContent
-                    ?.getPostpaidBillerListData));
+            _searchPostpaidBillerResponse.safeAdd(
+                Resource.success(data: event.data?.getPostpaidBillerListContent?.getPostpaidBillerListData));
             postPaidRequestJsonListMethod();
           }
         });
@@ -208,34 +186,21 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            // if (selectedIndex < 0) {
             postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
-              totalBillAmt = 0.0;
-
-              for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
-                totalBillAmt = totalBillAmt +
-                    double.parse(
-                        postPaidBillInquiryData![i].dueAmount.toString());
-                debugPrint("totalBillAmt:${totalBillAmt}");
-                PostPaidBillInquiryData inquiryElement =
-                    postPaidBillInquiryData![i];
-                for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
-                  GetPostpaidBillerListModelData item =
-                      payPostPaidBillsDataList[j];
-                  debugPrint("item.billingNo: ${item.billingNo}");
-                  if (item.billingNo == inquiryElement.billingNo) {
-                    payPostPaidBillsDataList[j].dueAmount =
-                        inquiryElement.dueAmount;
-                  }
+            totalBillAmt = 0.0;
+            var postPaidBillInquiryDataLength = postPaidBillInquiryData?.length ?? 0;
+            for (int i = 0; i < postPaidBillInquiryDataLength; i++) {
+              totalBillAmt = totalBillAmt + double.parse(postPaidBillInquiryData![i].dueAmount.toString());
+              debugPrint("totalBillAmt:${totalBillAmt}");
+              PostPaidBillInquiryData inquiryElement = postPaidBillInquiryData![i];
+              for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
+                GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
+                debugPrint("item.billingNo: ${item.billingNo}");
+                if (item.billingNo == inquiryElement.billingNo) {
+                  payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
                 }
               }
-              /*  } else {
-              postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
-
-              payPostPaidBillsDataList[selectedIndex].dueAmount =
-                  event.data?.content?.postPaidBillInquiryData?[0].dueAmount;
-            }*/
-
+            }
             addAllBillAmt();
             _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
           }
@@ -274,13 +239,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  void removeCustomerBilling(
-      String? billerCode, String? billingNo, String? serviceType) {
+  void removeCustomerBilling(String? billerCode, String? billingNo, String? serviceType) {
     _removeCustomerBillingRequest.safeAdd(
       RemoveCustomerBillingUseCaseParams(
-          billerCode: billerCode,
-          billingNo: billingNo,
-          serviceType: serviceType),
+          billerCode: billerCode, billingNo: billingNo, serviceType: serviceType),
     );
   }
 
@@ -304,12 +266,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         /// billerName filter
         if (item.billerNameEN != null && item.billerNameEN!.isNotEmpty ||
             item.billerNameAR != null && item.billerNameAR!.isNotEmpty) {
-          if (item.billerNameEN!
-                  .toLowerCase()
-                  .contains(searchText.toLowerCase()) ||
-              item.billerNameAR!
-                  .toLowerCase()
-                  .contains(searchText.toLowerCase())) {
+          if (item.billerNameEN!.toLowerCase().contains(searchText.toLowerCase()) ||
+              item.billerNameAR!.toLowerCase().contains(searchText.toLowerCase())) {
             fList.add(item);
           }
         }
@@ -318,8 +276,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       _searchPostpaidBillerResponse.safeAdd(Resource.success(data: fList));
     } else {
       _searchPostpaidBillerResponse.safeAdd(Resource.success(
-          data: _postpaidBillerResponse.value.data?.getPostpaidBillerListContent
-              ?.getPostpaidBillerListData));
+          data: _postpaidBillerResponse.value.data?.getPostpaidBillerListContent?.getPostpaidBillerListData));
     }
   }
 

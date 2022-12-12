@@ -14763,7 +14763,7 @@ class S {
   /// `BILL UPDATED\nYour bill has been removed.`
   String get yourBillHasBeenRemoved {
     return Intl.message(
-      'BILL UPDATED\\nYour bill has been removed.',
+      'BILL UPDATED\nYour bill has been removed.',
       name: 'yourBillHasBeenRemoved',
       desc: '',
       args: [],
@@ -14773,7 +14773,7 @@ class S {
   /// `BILL UPDATED\nBiller Added Successfully.`
   String get billerAddedSuccessfully {
     return Intl.message(
-      'BILL UPDATED\\nBiller Added Successfully.',
+      'BILL UPDATED\nBiller Added Successfully.',
       name: 'billerAddedSuccessfully',
       desc: '',
       args: [],

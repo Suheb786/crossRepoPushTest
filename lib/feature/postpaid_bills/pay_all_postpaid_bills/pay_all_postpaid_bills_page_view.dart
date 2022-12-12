@@ -200,7 +200,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                     List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
                                     for (var item in model.postPaidBillInquiryData!) {
                                       var dueAmt = double.parse(item.dueAmount ?? "0");
-                                      if (dueAmt > 0.0 || dueAmt == 0.0 && item.isPartial == true) {
+                                      if (dueAmt > 0.0 /*|| dueAmt == 0.0 && item.isPartial == true*/) {
                                         temPostPaidBillInquiryData.add(item);
                                       }
                                     }

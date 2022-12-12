@@ -1,3 +1,4 @@
+import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
@@ -10,7 +11,6 @@ import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart'
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -28,8 +28,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
-  ConfirmBillPaymentAmountPageViewModel(
-      this.validatePrePaidUseCase,
+  ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase,
       this.payPrePaidUseCase,
       this.postPaidBillInquiryUseCase,
       this.payPostPaidBillUseCase) {
@@ -43,7 +42,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   ///get new details bill payments model
   PublishSubject<AddNewDetailsBillPaymentsModel>
-      _addNewDetailsBillPaymentsModelResponse = PublishSubject();
+  _addNewDetailsBillPaymentsModelResponse = PublishSubject();
 
   Stream<AddNewDetailsBillPaymentsModel> get getPurposeResponseStream =>
       _addNewDetailsBillPaymentsModelResponse.stream;
@@ -54,7 +53,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   AddNewDetailsBillPaymentsModel addNewBillDetailsData =
-      AddNewDetailsBillPaymentsModel();
+  AddNewDetailsBillPaymentsModel();
 
   setData(AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel) {
     _addNewDetailsBillPaymentsModelResponse
@@ -65,10 +64,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
 
   PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest =
-      PublishSubject();
+  PublishSubject();
 
   BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream =>
       _postPaidBillEnquiryResponse.stream;
@@ -86,10 +85,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params,
-                createCall: () =>
-                    postPaidBillInquiryUseCase.execute(params: params))
+            createCall: () =>
+                postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -101,10 +100,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   /// ---------------- pay postpaid bill -------------------------------- ///
   PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest =
-      PublishSubject();
+  PublishSubject();
 
   BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   Stream<Resource<PayPostPaidBill>> get payPostPaidStream =>
       _payPostPaidResponse.stream;
@@ -119,7 +118,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             billingNumber: item.billingNo,
             billerName: AppConstantsUtils.BILLER_NAME,
             serviceType: item.serviceType,
-            amount: item.dueAmount,
+            amount: totalAmountToPay(),
             fees: item.feesAmt ?? "0.0"));
       }
     }
@@ -157,10 +156,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params,
-                createCall: () =>
-                    payPostPaidBillUseCase.execute(params: params))
+            createCall: () =>
+                payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -175,10 +174,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   /// ---------------- validate prepaid bill -------------------------------- ///
   PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest =
-      PublishSubject();
+  PublishSubject();
 
   BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream =>
       _validatePrePaidResponse.stream;
@@ -192,26 +191,26 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         prepaidCategoryCode:
-            AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
-                ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-                : "",
+        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
+            : "",
         prepaidCategoryType:
-            AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
-                ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-                : "",
+        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
+            : "",
         billingNumberRequired:
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-                ? true
-                : false));
+        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            ? true
+            : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
           (params) {
         RequestManager(params,
-                createCall: () =>
-                    validatePrePaidUseCase.execute(params: params))
+            createCall: () =>
+                validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -248,18 +247,18 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         otpCode: otpCode,
         isNewBiller: isNewBiller,
         prepaidCategoryCode:
-            addNewBillDetailsData.isPrepaidCategoryListEmpty == false
-                ? AppConstantsUtils.PREPAID_CATEGORY_CODE
-                : "",
+        addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+            ? AppConstantsUtils.PREPAID_CATEGORY_CODE
+            : "",
         prepaidCategoryType:
-            addNewBillDetailsData.isPrepaidCategoryListEmpty == false
-                ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
-                : "",
+        addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+            ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
+            : "",
         billingNumberRequired:
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                    AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-                ? true
-                : false,
+        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            ? true
+            : false,
         CardId: "",
         isCreditCardPayment: false));
   }
@@ -268,7 +267,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _payPrePaidRequest.listen(
           (params) {
         RequestManager(params,
-                createCall: () => payPrePaidUseCase.execute(params: params))
+            createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do

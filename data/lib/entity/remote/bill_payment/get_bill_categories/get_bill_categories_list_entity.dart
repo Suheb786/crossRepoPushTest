@@ -10,7 +10,7 @@ class GetBillCategoriesListEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "categoryName")
   final String? categoryName;
   @JsonKey(name: "iconCode")
-  final String? iconCode;
+  final dynamic iconCode;
   @JsonKey(name: "categoryNameAr")
   final String? categoryNameAr;
 
@@ -34,7 +34,7 @@ class GetBillCategoriesListEntity extends BaseLayerDataTransformer<
   GetBillCategoriesList transform() {
     return GetBillCategoriesList(
       categoryName: this.categoryName ?? "",
-      iconCode: this.iconCode ?? "",
+      iconCode: this.iconCode?.toString() ?? "",
       categoryNameAr: this.categoryNameAr ?? "",
     );
   }

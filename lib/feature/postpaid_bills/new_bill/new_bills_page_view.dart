@@ -59,8 +59,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                             decoration: BoxDecoration(
                                 color: AppColor.black,
                                 borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(16),
-                                    bottomRight: Radius.circular(16))),
+                                    bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
                           ),
                           Positioned(
                               bottom: -15,
@@ -124,30 +123,20 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    model.billerCategory =
-                                        snapshot!.data![index].categoryName ??
-                                            "";
-                                    model.titleIcon =
-                                        snapshot.data![index].iconCode ?? "";
                                     return PostPaidSettingTitleWidget(
-                                      tileIcon: model.titleIcon.toString(),
-                                      title: model.billerCategory,
+                                      tileIcon: snapshot!.data?[index].iconCode ?? "",
+                                      title: snapshot.data?[index].categoryName ?? "",
                                       onTap: () {
+                                        model.billerCategory = snapshot.data?[index].categoryName ?? "";
+                                        model.titleIcon = snapshot.data?[index].iconCode ?? "";
                                         AppConstantsUtils.BILLER_CATEGORY =
-                                            snapshot.data![index]
-                                                    .categoryName ??
-                                                "";
-                                        AppConstantsUtils
-                                                .BILLER_CATEGORY_API_VALUE =
+                                            snapshot.data?[index].categoryName ?? "";
+                                        AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
                                             !StringUtils.isDirectionRTL(context)
-                                                ? snapshot.data![index]
-                                                        .categoryName ??
-                                                    ""
-                                                : snapshot.data![index]
-                                                        .categoryNameAr ??
-                                                    "";
-                                        Navigator.pushNamed(
-                                            context, RoutePaths.PayBillPage);
+                                                ? snapshot.data![index].categoryName ?? ""
+                                                : snapshot.data![index].categoryNameAr ?? "";
+
+                                        Navigator.pushNamed(context, RoutePaths.PayBillPage);
                                       },
                                     );
                                   },

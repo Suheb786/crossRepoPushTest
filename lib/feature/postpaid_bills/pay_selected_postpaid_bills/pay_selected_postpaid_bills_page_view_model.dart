@@ -1,9 +1,7 @@
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
-import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
-import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
@@ -24,16 +22,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<double> get totalBillAmtDueStream => _totalBillAmtDueSubject.stream;
 
-  final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
   final PayPostPaidBillUseCase payPostPaidBillUseCase;
   List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
 
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
-  PaySelectedBillsPostPaidBillsPageViewModel(
-      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this.arguments) {
+  PaySelectedBillsPostPaidBillsPageViewModel(this.payPostPaidBillUseCase, this.arguments) {
     Future.delayed(Duration(milliseconds: 10)).then((value) => postpaidInquiryDataListener());
-    // postPaidBillInquiryListener();
     payPostPaidBillListener();
   }
 
@@ -62,38 +57,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _postPaidBillEnquiryListResponse.safeAdd(arguments.postPaidBillInquiryData);
   }
 
-  /// ---------------- post paid bill enquiry -------------------------------- ///
-  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest = PublishSubject();
-
-  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse = BehaviorSubject();
-
-  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream => _postPaidBillEnquiryResponse.stream;
-
-  // void postPaidBillInquiry() {
-  //   _postPaidBillEnquiryRequest
-  //       .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: arguments.postPaidRequestListJson));
-  // }
-
-  void postPaidBillInquiryListener() {
-    _postPaidBillEnquiryRequest.listen(
-      (params) {
-        RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
-            .asFlow()
-            .listen((event) {
-          updateLoader();
-          _postPaidBillEnquiryResponse.safeAdd(event);
-          if (event.status == Status.ERROR) {
-            showErrorState();
-            showToastWithError(event.appError!);
-          } else if (event.status == Status.SUCCESS) {
-            postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
-          }
-        });
-      },
-    );
-  }
-
-  /// ---------------- pay prepaid bill -------------------------------- ///
+  /// ---------------- pay postPaid bill -------------------------------- ///
   PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest = PublishSubject();
 
   BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse = BehaviorSubject();
@@ -247,8 +211,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void dispose() {
     _showButtonSubject.close();
     _totalBillAmtDueSubject.close();
-    _postPaidBillEnquiryResponse.close();
-    _postPaidBillEnquiryResponse.close();
     _payPostPaidResponse.close();
     _payPostPaidRequest.close();
     super.dispose();

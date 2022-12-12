@@ -26,7 +26,7 @@ GetPostpaidBillerListEntityData _$GetPostpaidBillerListEntityDataFromJson(
     dueDate: json['dueDate'] as String?,
     fees: json['fees'] as String?,
     status: json['status'] as String?,
-    iconCode: json['iconCode'] as String?,
+    iconCode: json['iconCode'],
   );
 }
 

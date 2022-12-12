@@ -10,7 +10,7 @@ GetBillCategoriesListEntity _$GetBillCategoriesListEntityFromJson(
     Map<String, dynamic> json) {
   return GetBillCategoriesListEntity(
     categoryName: json['categoryName'] as String?,
-    iconCode: json['iconCode'] as String?,
+    iconCode: json['iconCode'],
     categoryNameAr: json['categoryNameAr'] as String?,
   );
 }

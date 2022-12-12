@@ -20,7 +20,7 @@ GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
     joebppsNo: json['joebppsNo'] as String?,
     serviceType: json['serviceType'] as String?,
     serviceCode: json['serviceCode'] as String?,
-    iconCode: json['iconCode'] as String?,
+    iconCode: json['iconCode'],
     rimNo: json['rimNo'] as String?,
   );
 }

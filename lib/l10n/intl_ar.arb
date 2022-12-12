@@ -1451,7 +1451,7 @@
   "errorWhileAddingCustomer": "error while adding customer",
   "payMyBill": "Pay My Bill",
   "insufficientFundsBillCannotBePayed": "Insufficient funds bill cannot be payed",
-  "yourBillHasBeenRemoved": "BILL UPDATED\\nYour bill has been removed.",
-  "billerAddedSuccessfully": "BILL UPDATED\\nBiller Added Successfully.",
+  "yourBillHasBeenRemoved": "BILL UPDATED\nYour bill has been removed.",
+  "billerAddedSuccessfully": "BILL UPDATED\nBiller Added Successfully.",
   "SearchCategory": "Search category"
 }

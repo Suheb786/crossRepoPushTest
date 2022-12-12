@@ -42,7 +42,7 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
   final String? serviceCode;
 
   @JsonKey(name: "iconCode")
-  final String? iconCode;
+  final dynamic iconCode;
 
   @JsonKey(name: "rimNo")
   final String? rimNo;
@@ -87,7 +87,7 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
         joebppsNo: this.joebppsNo,
         serviceType: this.serviceType,
         serviceCode: this.serviceCode,
-        iconCode: this.iconCode,
+        iconCode: this.iconCode?.toString() ?? "",
         rimNo: this.rimNo);
   }
 }

@@ -59,7 +59,7 @@ class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
   final String? status;
 
   @JsonKey(name: "iconCode")
-  final String? iconCode;
+  final dynamic iconCode;
 
   GetPostpaidBillerListEntityData({
     this.joebppsNo,
@@ -113,7 +113,7 @@ class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
       dueDate: this.dueDate ?? "0.0",
       fees: this.fees ?? "0.0",
       status: this.status,
-      iconCode: this.iconCode ?? "",
+      iconCode: this.iconCode?.toString() ?? "",
     );
   }
 }

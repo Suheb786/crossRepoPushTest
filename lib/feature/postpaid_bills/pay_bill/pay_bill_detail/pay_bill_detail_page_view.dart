@@ -559,7 +559,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
           hintText: S.of(context).pleaseEnter,
           controller: model.amountTextControl,
           inputType: TextInputType.numberWithOptions(
-            signed: true,
+            signed: false,
             decimal: true,
           ),
           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],

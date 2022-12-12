@@ -40,8 +40,6 @@ class PaySelectedBillsPostPaidBillsPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
-    // model.postPaidBillInquiry();
-
     model.totalAmount = "0.0";
     model.validate();
     super.onModelReady(model);
@@ -52,13 +50,11 @@ class PaySelectedBillsPostPaidBillsPageArguments {
   final String nosOfBills;
   final double amt;
   final List<GetPostpaidBillerListModelData> noOfSelectedBills;
-  // List<PostpaidBillInquiry> postPaidRequestListJson;
   List<PostPaidBillInquiryData>? postPaidBillInquiryData;
 
   PaySelectedBillsPostPaidBillsPageArguments(
       this.nosOfBills,
       this.amt,
       this.noOfSelectedBills,
-      // this.postPaidRequestListJson,
       this.postPaidBillInquiryData);
 }
