@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "مقبولة عالمياً بدون رسوم مخفية"),
+        "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Activated Successfully"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "accountBalance": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "accountHolderName":
@@ -61,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الحصول على معلومات حسابك. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
+        "accountLinkedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Account Linked Successfully"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
@@ -89,6 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account is successfully linked with CliQ ID"),
         "accountSuccessfullyUnlinked": MessageLookupByLibrary.simpleMessage(
             "Account successfully unlinked"),
+        "accountSuspendedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Suspended Successfully"),
+        "accountUnlinkedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Unlinked from CliqID Successfully"),
         "acknowledgeBeforeFreezingCard":
             MessageLookupByLibrary.simpleMessage("عن تجميد بطاقتك"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
@@ -1158,6 +1168,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "getYourBlinkAccountTodayBlinkNow":
+            MessageLookupByLibrary.simpleMessage(
+                "Get your blink account today. Blink now!"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -1165,7 +1178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "helloE": MessageLookupByLibrary.simpleMessage("مرحبا!"),
         "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
-            "Hello! Here are my Blink account details: "),
+            "Hello! Here’s my blink CliQ details:"),
         "highInterestFeesAndCharges":
             MessageLookupByLibrary.simpleMessage("فوائد ورسوم وتكاليف مرتفعة"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),

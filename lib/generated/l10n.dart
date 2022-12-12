@@ -14779,6 +14779,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Get your blink account today. Blink now!`
+  String get getYourBlinkAccountTodayBlinkNow {
+    return Intl.message(
+      'Get your blink account today. Blink now!',
+      name: 'getYourBlinkAccountTodayBlinkNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Unlinked from CliqID Successfully`
+  String get accountUnlinkedSuccessfully {
+    return Intl.message(
+      'Account Unlinked from CliqID Successfully',
+      name: 'accountUnlinkedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Linked Successfully`
+  String get accountLinkedSuccessfully {
+    return Intl.message(
+      'Account Linked Successfully',
+      name: 'accountLinkedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Deleted Successfully `
+  String get accountDeletedSuccessfully {
+    return Intl.message(
+      'Account Deleted Successfully ',
+      name: 'accountDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Activated Successfully`
+  String get accountActivatedSuccessfully {
+    return Intl.message(
+      'Account Activated Successfully',
+      name: 'accountActivatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Suspended Successfully`
+  String get accountSuspendedSuccessfully {
+    return Intl.message(
+      'Account Suspended Successfully',
+      name: 'accountSuspendedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

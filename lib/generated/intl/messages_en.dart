@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
+        "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Activated Successfully"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "accountBalance":
@@ -57,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
         "accountHolderName":
@@ -65,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to get your account information. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "accountLinkedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Account Linked Successfully"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
@@ -93,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account is successfully linked with CliQ ID"),
         "accountSuccessfullyUnlinked": MessageLookupByLibrary.simpleMessage(
             "Account successfully unlinked"),
+        "accountSuspendedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Suspended Successfully"),
+        "accountUnlinkedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Unlinked from CliqID Successfully"),
         "acknowledgeBeforeFreezingCard":
             MessageLookupByLibrary.simpleMessage("About freezing your card:"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
@@ -1203,6 +1213,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "getYourBlinkAccountTodayBlinkNow":
+            MessageLookupByLibrary.simpleMessage(
+                "Get your blink account today. Blink now!"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(

@@ -196,7 +196,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
         SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get requestCliqIDStream =>
+  Stream<Resource<bool>> get reactivateCliqIDStream =>
       _reactivateCliqIDResponse.stream;
 
   void reactivatetCliqID({required bool getToken, required String aliasId}) {
