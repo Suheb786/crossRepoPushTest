@@ -9,15 +9,11 @@ abstract class CliqRepository {
   });
 
   Future<Either<NetworkError, bool>> getCliqAccountByAlias({
-    required String alias,
-    required String mobileNo,
-    required String iban,
-    required String accountNo,
-    required String swiftCode,
-    required String bankCountry,
-    required String transferType,
-    required String cliqType,
-    required bool getToken,
+    required String type,
+    required String value,
+    required String Currency,
+    required String CustID,
+    required bool GetToken,
   });
 
   Future<Either<NetworkError, bool>> createCliqId({
@@ -36,12 +32,8 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> changeDefaultAccount({
-    required String linkType,
-    required String otpCode,
-    required String identifier,
-    required String aliasId,
-    required bool getToken,
+  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount({
+    required bool GetToken,
   });
 
   Future<Either<NetworkError, bool>> unLinkAccountFromCliq({
@@ -184,6 +176,68 @@ abstract class CliqRepository {
   Future<Either<NetworkError, bool>> getCustomerByAccount({
     required String accountCode,
     required String CustID,
+    required bool GetToken,
+  });
+
+  Future<Either<NetworkError, bool>> requestToPayResult({
+    required String CustID,
+    required String OrgnlMsgId,
+    required String RTPStatus,
+    required String RejectReason,
+    required String RejectADdInfo,
+  });
+
+  Future<Either<NetworkError, bool>> getAccountByCustomerID({
+    required bool GetToken,
+  });
+  Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
+    required bool GetToken,
+  });
+
+  Future<Either<NetworkError, bool>> approveRTPRequest(
+      {required String custID,
+      required String dbtrAcct,
+      required String dbtrName,
+      required String dbtrPstlAdr,
+      required String dbtrRecordID,
+      required String dbtrAlias,
+      required String currency,
+      required String amount,
+      required String cdtrBic,
+      required String cdtrName,
+      required String cdtrAcct,
+      required String cdtrPstlAdr,
+      required String cdtrRecordID,
+      required String cdtrAlias,
+      required String rgltryRptg,
+      required String payRefNo,
+      required String rejectReason,
+      required String rejectADdInfo,
+      required String rtpStatus,
+      required bool GetToken});
+
+  Future<Either<NetworkError, bool>> submitOutwardPayment({
+    required String custID,
+    required String dbtrAcct,
+    required String dbtrName,
+    required String dbtrPstlAdr,
+    required String dbtrRecordID,
+    required String dbtrAlias,
+    required String currency,
+    required String amount,
+    required String purposE_CODE,
+    required String cdtrBic,
+    required String cdtrName,
+    required String cdtrAcct,
+    required String cdtrPstlAdr,
+    required String cdtrRecordID,
+    required String cdtrAlias,
+    required String rgltryRptg,
+    required String CustIDTO,
+    required String DbtrIsIndvl,
+    required String CdtrIsIndvl,
+    required String RmtInf,
+    required String QRFlag,
     required bool GetToken,
   });
 }

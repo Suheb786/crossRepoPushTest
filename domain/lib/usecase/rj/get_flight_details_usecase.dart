@@ -1,20 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
-import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetFlightDetailsUseCase
-    extends BaseUseCase<NetworkError, GetFlightDetailsUseCaseParams, FlightDetailResponse> {
+class GetFlightDetailsUseCase extends BaseUseCase<NetworkError, GetFlightDetailsUseCaseParams, bool> {
   final RJRepository _repository;
 
   GetFlightDetailsUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, FlightDetailResponse>> execute(
-      {required GetFlightDetailsUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required GetFlightDetailsUseCaseParams params}) {
     return _repository.getFlightDetails(referenceNumber: params.referenceNumber);
   }
 }

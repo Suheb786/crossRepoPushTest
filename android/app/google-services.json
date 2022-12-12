@@ -40,11 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "570110559067-m7m1lvva67p71pohp34ljdddhcru55np.apps.googleusercontent.com",
+              "client_id": "570110559067-mq61gn8fdvks787413134rl1ef8gr810.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.blink.cbt",
-                "app_store_id": "1607969058"
+                "bundle_id": "com.blink.cbt"
               }
             }
           ]

@@ -19,7 +19,6 @@ class User {
   String? accountNumber;
   String? applicationId;
   String? selectedLanguage;
-  bool? isRJPopUPClicked;
 
   User(
       {this.token,
@@ -41,34 +40,31 @@ class User {
       this.newDevice: false,
       this.isBiometricEnabled: false,
       this.applicationId: "",
-      this.selectedLanguage: 'en',
-      this.isRJPopUPClicked});
+      this.selectedLanguage: 'en'});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        token: json["token"],
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        email: json["email"],
-        mobile: json["mobile"],
-        mobileCode: json["mobileCode"],
-        isCurrent: json["isCurrent"],
-        refreshToken: json["refreshToken"],
-        tokenType: json["tokenType"],
-        expiredIn: json["expiredIn"],
-        isExisting: json["isExisting"],
-        publicPEM: json["publicPEM"],
-        privatePEM: json["privatePEM"],
-        cifNumber: json["cifNumber"],
-        accountNumber: json["accountNumber"],
-        newDevice: json["newDevice"],
-        isBiometricEnabled: json["isBiometricEnabled"],
-        applicationId: json["applicationId"],
-        selectedLanguage: json["selectedLanguage"],
-        isRJPopUPClicked: json["isRJPopUPClicked"],
-      );
+      token: json["token"],
+      id: json["id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      email: json["email"],
+      mobile: json["mobile"],
+      mobileCode: json["mobileCode"],
+      isCurrent: json["isCurrent"],
+      refreshToken: json["refreshToken"],
+      tokenType: json["tokenType"],
+      expiredIn: json["expiredIn"],
+      isExisting: json["isExisting"],
+      publicPEM: json["publicPEM"],
+      privatePEM: json["privatePEM"],
+      cifNumber: json["cifNumber"],
+      accountNumber: json["accountNumber"],
+      newDevice: json["newDevice"],
+      isBiometricEnabled: json["isBiometricEnabled"],
+      applicationId: json["applicationId"],
+      selectedLanguage: json["selectedLanguage"]);
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -90,7 +86,6 @@ class User {
         "newDevice": newDevice,
         "isBiometricEnabled": isBiometricEnabled,
         "applicationId": applicationId,
-        "selectedLanguage": selectedLanguage,
-        "isRJPopUPClicked": isRJPopUPClicked
+        "selectedLanguage": selectedLanguage
       };
 }

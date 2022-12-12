@@ -21,25 +21,17 @@ class CliqRepositoryImpl extends CliqRepository {
 
   @override
   Future<Either<NetworkError, bool>> getCliqAccountByAlias(
-      {required String alias,
-      required String mobileNo,
-      required String iban,
-      required String accountNo,
-      required String swiftCode,
-      required String bankCountry,
-      required String transferType,
-      required String cliqType,
-      required bool getToken}) async {
+      {required String type,
+      required String value,
+      required String Currency,
+      required String CustID,
+      required bool GetToken}) async {
     final result = await safeApiCall(_cliqDataSource.getCliqAccountByAlias(
-        alias: alias,
-        mobileNo: mobileNo,
-        iban: iban,
-        accountNo: accountNo,
-        swiftCode: swiftCode,
-        bankCountry: bankCountry,
-        transferType: transferType,
-        cliqType: cliqType,
-        getToken: getToken));
+        CustId: CustID,
+        type: type,
+        Currency: Currency,
+        value: value,
+        GetToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
@@ -78,18 +70,10 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> changeDefaultAccount(
-      {required String linkType,
-      required String otpCode,
-      required String identifier,
-      required String aliasId,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.changeDefaultAccount(
-        linkType: linkType,
-        otpCode: otpCode,
-        identifier: identifier,
-        aliasId: aliasId,
-        getToken: getToken));
+  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
+      {required bool GetToken}) async {
+    final result = await safeApiCall(
+        _cliqDataSource.changeDefaultAccountOtp(GetToken: GetToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
@@ -385,6 +369,134 @@ class CliqRepositoryImpl extends CliqRepository {
       _cliqDataSource.getCustomerByAccount(
           accountCode: accountCode, CustID: CustID, GetToken: GetToken),
     );
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> requestToPayResult(
+      {required String CustID,
+      required String OrgnlMsgId,
+      required String RTPStatus,
+      required String RejectReason,
+      required String RejectADdInfo}) async {
+    final result = await safeApiCall(_cliqDataSource.requestToPayResult(
+        CustID: CustID,
+        OrgnlMsgId: OrgnlMsgId,
+        RTPStatus: RTPStatus,
+        RejectReason: RejectReason,
+        RejectADdInfo: RejectADdInfo));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getAccountByCustomerID(
+      {required bool GetToken}) async {
+    final result = await safeApiCall(
+        _cliqDataSource.getAccountByCustomerID(GetToken: GetToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> changeDefaultAccountOtp(
+      {required bool GetToken}) async {
+    final result = await safeApiCall(
+        _cliqDataSource.getAccountByCustomerID(GetToken: GetToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> approveRTPRequest(
+      {required String custID,
+      required String dbtrAcct,
+      required String dbtrName,
+      required String dbtrPstlAdr,
+      required String dbtrRecordID,
+      required String dbtrAlias,
+      required String currency,
+      required String amount,
+      required String cdtrBic,
+      required String cdtrName,
+      required String cdtrAcct,
+      required String cdtrPstlAdr,
+      required String cdtrRecordID,
+      required String cdtrAlias,
+      required String rgltryRptg,
+      required String payRefNo,
+      required String rejectReason,
+      required String rejectADdInfo,
+      required String rtpStatus,
+      required bool GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.approveRTPRequest(
+        custID: custID,
+        dbtrAcct: dbtrAcct,
+        dbtrName: dbtrName,
+        dbtrPstlAdr: dbtrPstlAdr,
+        dbtrRecordID: dbtrRecordID,
+        dbtrAlias: dbtrAlias,
+        currency: currency,
+        amount: amount,
+        cdtrBic: cdtrBic,
+        cdtrName: cdtrName,
+        cdtrAcct: cdtrAcct,
+        cdtrPstlAdr: cdtrPstlAdr,
+        cdtrRecordID: cdtrRecordID,
+        cdtrAlias: cdtrAlias,
+        rgltryRptg: rgltryRptg,
+        payRefNo: payRefNo,
+        rejectReason: rejectReason,
+        rejectADdInfo: rejectADdInfo,
+        rtpStatus: rtpStatus,
+        GetToken: GetToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> submitOutwardPayment(
+      {required String custID,
+      required String dbtrAcct,
+      required String dbtrName,
+      required String dbtrPstlAdr,
+      required String dbtrRecordID,
+      required String dbtrAlias,
+      required String currency,
+      required String amount,
+      required String purposE_CODE,
+      required String cdtrBic,
+      required String cdtrName,
+      required String cdtrAcct,
+      required String cdtrPstlAdr,
+      required String cdtrRecordID,
+      required String cdtrAlias,
+      required String rgltryRptg,
+      required String CustIDTO,
+      required String DbtrIsIndvl,
+      required String CdtrIsIndvl,
+      required String RmtInf,
+      required String QRFlag,
+      required bool GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.submitOutwardPayment(
+        custID: custID,
+        dbtrAcct: dbtrAcct,
+        dbtrName: dbtrName,
+        dbtrPstlAdr: dbtrPstlAdr,
+        dbtrRecordID: dbtrRecordID,
+        dbtrAlias: dbtrAlias,
+        currency: currency,
+        amount: amount,
+        purposE_CODE: purposE_CODE,
+        cdtrBic: cdtrBic,
+        cdtrName: cdtrName,
+        cdtrAcct: cdtrAcct,
+        cdtrPstlAdr: cdtrPstlAdr,
+        cdtrRecordID: cdtrRecordID,
+        cdtrAlias: cdtrAlias,
+        rgltryRptg: rgltryRptg,
+        CustIDTO: CustIDTO,
+        DbtrIsIndvl: DbtrIsIndvl,
+        CdtrIsIndvl: CdtrIsIndvl,
+        RmtInf: RmtInf,
+        QRFlag: QRFlag,
+        GetToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }

@@ -5,14 +5,17 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class QrClipCodeUsecase extends BaseUseCase<NetworkError, QrClipCodeUsecaseParams, bool> {
+class QrClipCodeUsecase
+    extends BaseUseCase<NetworkError, QrClipCodeUsecaseParams, bool> {
   final CliqRepository _cliqRepository;
 
   QrClipCodeUsecase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required QrClipCodeUsecaseParams params}) {
-    return _cliqRepository.qRCliqCode(code: params.code, getToken: params.getToken);
+  Future<Either<NetworkError, bool>> execute(
+      {required QrClipCodeUsecaseParams params}) {
+    return _cliqRepository.qRCliqCode(
+        code: params.code, getToken: params.getToken);
   }
 }
 

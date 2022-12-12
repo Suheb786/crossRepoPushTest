@@ -50,6 +50,7 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   appsflyer_sdk: ^6.8.2
   firebase_dynamic_links: ^3.0.2
+  app_links: ^3.3.0
 
 dev_dependencies:
   flutter_test:
