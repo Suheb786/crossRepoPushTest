@@ -3,6 +3,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/qr/qr_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -210,7 +211,12 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                               model.changeValue(value);
                             },
                             textColor: Colors.black,
-                            rightButtonFn: () {
+                            rightButtonFn: () async {
+                              ///LOG EVENT TO FIREBASE
+                              await FirebaseAnalytics.instance.logEvent(
+                                name: "amount_entered",
+                                parameters: {"amount": "${model.currentPinValue}"},
+                              );
                               if (double.parse(model.currentPinValue) <= 0) {
                                 model.showToastWithError(AppError(
                                     cause: Exception(),
@@ -219,11 +225,6 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                               } else {
                                 model.generateQR();
                               }
-
-                              ///TODO:don't show account selection here
-                              // AccountsDialog.show(context, onDismissed: () {
-                              //   Navigator.pop(context);
-                              // });
                             },
                             leftIcon: Icon(
                               Icons.circle,

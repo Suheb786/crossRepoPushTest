@@ -50,6 +50,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning,
                       arguments: SendMoneyQRScanningArguments(
+                          source: 'Link',
                           requestId: data.data?.qrContent?.requestId ?? '',
                           amount: data.data?.qrContent?.amount ?? '',
                           accountHolderName: data.data?.qrContent?.accountHolderName ?? '',

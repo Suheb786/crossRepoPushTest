@@ -1,4 +1,5 @@
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -75,7 +76,10 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         ?.appBillPaymentQrCode ??
                                     true)
                                 ? InkWell(
-                                    onTap: () {
+                                    onTap: () async {
+                                      ///LOG EVENT TO FIREBASE
+                                      await FirebaseAnalytics.instance.logEvent(
+                                          name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true});
                                       InformationDialog.show(context,
                                           image: AssetUtils.payRequestViaQRBlackIcon,
                                           title: S.of(context).payViaQR,
@@ -100,7 +104,11 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                         ?.appBillPaymentQrCode ??
                                     true)
                                 ? InkWell(
-                                    onTap: () {
+                                    onTap: () async {
+                                      ///LOG EVENT TO FIREBASE
+                                      await FirebaseAnalytics.instance.logEvent(
+                                          name: "request_via_qr",
+                                          parameters: {"request_via_qr_clicked": true});
                                       InformationDialog.show(context,
                                           image: AssetUtils.payRequestViaQRBlackIcon,
                                           title: S.of(context).requestViaQR,

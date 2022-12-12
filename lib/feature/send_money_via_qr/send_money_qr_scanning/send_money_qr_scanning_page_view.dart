@@ -2,6 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/qr/qr_transfer_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,8 +61,12 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
             child: AppStreamBuilder<Resource<QRTransferResponse>>(
                 stream: model.transferQRStream,
                 initialData: Resource.none(),
-                onData: (data) {
+                onData: (data) async {
                   if (data.status == Status.SUCCESS) {
+                    ///LOG EVENT TO FIREBASE
+                    await FirebaseAnalytics.instance.logEvent(
+                        name: "payment_success",
+                        parameters: {"is_payment_success": true, "request_id": model.arguments.requestId});
                     Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess,
                         arguments: SendMoneyViaQRSuccessPageArguments(
                             referenceNo: data.data?.qrContent?.reference ?? '',
@@ -208,8 +213,16 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                               padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: Center(
                                 child: InkWell(
-                                  onTap: () {
+                                  onTap: () async {
                                     Navigator.pop(context);
+
+                                    ///LOG EVENT TO FIREBASE
+                                    await FirebaseAnalytics.instance.logEvent(
+                                        name: "payment_cancelled",
+                                        parameters: {
+                                          "is_payment_cancelled": true,
+                                          "request_id": model.arguments.requestId
+                                        });
                                   },
                                   child: Text(
                                     S.of(context).backToPayments,

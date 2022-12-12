@@ -1,4 +1,5 @@
 import 'package:domain/model/qr/verify_qr_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -32,8 +33,16 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                 if (data.status == Status.SUCCESS) {
                   await Future.delayed(const Duration(milliseconds: 300));
                   model.controller?.resumeCamera();
+
+                  ///LOG EVENT TO FIREBASE
+                  await FirebaseAnalytics.instance.logEvent(
+                    name: "qr_scanned",
+                    parameters: {"is_qr_scanned": true, "request_id": data.data?.qrContent?.requestId ?? ''},
+                  );
+
                   Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
                       arguments: SendMoneyQRScanningArguments(
+                          source: 'QR',
                           amount: data.data?.qrContent?.amount ?? '',
                           accountHolderName: data.data?.qrContent?.accountHolderName ?? '',
                           accountNo: data.data?.qrContent?.toAccount ?? '',
@@ -107,7 +116,12 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   ),
                   SizedBox(height: 50),
                   InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        ///LOG EVENT TO FIREBASE
+                        await FirebaseAnalytics.instance.logEvent(
+                          name: "qr_screen_dismissed",
+                          parameters: {"is_qr_screen_dismissed": true},
+                        );
                         Navigator.pop(context);
                       },
                       child: Container(
