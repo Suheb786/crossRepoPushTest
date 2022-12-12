@@ -1,6 +1,9 @@
+import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class CliqDataSource {
@@ -19,7 +22,15 @@ abstract class CliqDataSource {
       required String cliqType,
       required bool getToken});
 
-  Future<HttpResponse<ResponseEntity>> createCliqId({
+  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID({
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp({
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
@@ -70,11 +81,18 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> editCliqID({
+  Future<HttpResponse<EditCliqResponseEntity>> editCliqID({
     required bool isAlias,
     required String aliasId,
     required String aliasValue,
     required String OtpCode,
+    required bool getToken,
+  });
+
+  Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp({
+    required String aliasId,
+    required bool isAlias,
+    required String aliasValue,
     required bool getToken,
   });
 

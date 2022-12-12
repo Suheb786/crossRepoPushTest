@@ -2,8 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
+import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 
 class CliqRepositoryImpl extends CliqRepository {
   final CliqDataSource _cliqDataSource;
@@ -11,10 +15,8 @@ class CliqRepositoryImpl extends CliqRepository {
   CliqRepositoryImpl(this._cliqDataSource);
 
   @override
-  Future<Either<NetworkError, GetAlias>> getAlias(
-      {required bool getToken}) async {
-    final result =
-        await safeApiCall(_cliqDataSource.getAlias(getToken: getToken));
+  Future<Either<NetworkError, GetAlias>> getAlias({required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.getAlias(getToken: getToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
@@ -44,18 +46,32 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> createCliqId(
+  Future<Either<NetworkError, ConfirmCreateCliqId>> confirmCreateCLidID(
+      {required String accountNumber,
+      required bool isAlias,
+      required String aliasValue,
+      required String otpCode,
+      required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.confirmCreateCLidID(
+        accountNumber: accountNumber,
+        isAlias: isAlias,
+        aliasValue: aliasValue,
+        otpCode: otpCode,
+        getToken: getToken));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, CreateCliqOtp>> createCliqIdOtp(
       {required String accountNumber,
       required bool isAlias,
       required String aliasValue,
       required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.createCliqId(
-        accountNumber: accountNumber,
-        isAlias: isAlias,
-        aliasValue: aliasValue,
-        getToken: getToken));
+    final result = await safeApiCall(_cliqDataSource.createCliqIdOtp(
+        accountNumber: accountNumber, isAlias: isAlias, aliasValue: aliasValue, getToken: getToken));
 
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override
@@ -85,17 +101,13 @@ class CliqRepositoryImpl extends CliqRepository {
       required String aliasId,
       required bool getToken}) async {
     final result = await safeApiCall(_cliqDataSource.changeDefaultAccount(
-        linkType: linkType,
-        otpCode: otpCode,
-        identifier: identifier,
-        aliasId: aliasId,
-        getToken: getToken));
+        linkType: linkType, otpCode: otpCode, identifier: identifier, aliasId: aliasId, getToken: getToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
   @override
-  Future<Either<NetworkError, bool>> editCliqID(
+  Future<Either<NetworkError, EditCliq>> editCliqID(
       {required bool isAlias,
       required String aliasId,
       required String aliasValue,
@@ -103,23 +115,17 @@ class CliqRepositoryImpl extends CliqRepository {
       required bool getToken}) async {
     final result = await safeApiCall(
       _cliqDataSource.editCliqID(
-          isAlias: isAlias,
-          aliasId: aliasId,
-          aliasValue: aliasValue,
-          OtpCode: OtpCode,
-          getToken: getToken),
+          isAlias: isAlias, aliasId: aliasId, aliasValue: aliasValue, OtpCode: OtpCode, getToken: getToken),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> deleteCliqId(
-      {required String aliasId, required bool getToken}) async {
-    final result = await safeApiCall(
-        _cliqDataSource.deleteCliqId(aliasId: aliasId, getToken: getToken));
+  Future<Either<NetworkError, bool>> deleteCliqId({required String aliasId, required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.deleteCliqId(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -129,8 +135,7 @@ class CliqRepositoryImpl extends CliqRepository {
   @override
   Future<Either<NetworkError, bool>> reActivateCliqId(
       {required String aliasId, required bool getToken}) async {
-    final result = await safeApiCall(
-        _cliqDataSource.reActivateCliqId(aliasId: aliasId, getToken: getToken));
+    final result = await safeApiCall(_cliqDataSource.reActivateCliqId(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -138,10 +143,8 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> suspendCliqId(
-      {required String aliasId, required bool getToken}) async {
-    final result = await safeApiCall(
-        _cliqDataSource.suspendCliqId(aliasId: aliasId, getToken: getToken));
+  Future<Either<NetworkError, bool>> suspendCliqId({required String aliasId, required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.suspendCliqId(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -150,11 +153,9 @@ class CliqRepositoryImpl extends CliqRepository {
 
   @override
   Future<Either<NetworkError, bool>> unLinkAccountFromCliq(
-      {required String aliasId,
-      required String accountId,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.unLinkAccountFromCliq(
-        aliasId: aliasId, accountId: accountId, getToken: getToken));
+      {required String aliasId, required String accountId, required bool getToken}) async {
+    final result = await safeApiCall(
+        _cliqDataSource.unLinkAccountFromCliq(aliasId: aliasId, accountId: accountId, getToken: getToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
@@ -174,7 +175,6 @@ class CliqRepositoryImpl extends CliqRepository {
       required String toAccountHolderName,
       required String receipentAddress,
       required bool getToken}) async {
-    // TODO: implement requestMoney
     final result = await safeApiCall(_cliqDataSource.requestMoney(
         cliqType: cliqType,
         iban: iban,
@@ -194,16 +194,13 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> requestMoneyActivity(
-      {required bool getToken}) async {
-    final result = await safeApiCall(
-        _cliqDataSource.requestMoneyActivity(getToken: getToken));
+  Future<Either<NetworkError, bool>> requestMoneyActivity({required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.requestMoneyActivity(getToken: getToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
   @override
-  Future<Either<NetworkError, bool>> qRCliqCode(
-      {required String code, required bool getToken}) async {
+  Future<Either<NetworkError, bool>> qRCliqCode({required String code, required bool getToken}) async {
     final result = await safeApiCall(
       _cliqDataSource.qRCliqCode(code: code, getToken: getToken),
     );
@@ -374,5 +371,17 @@ class CliqRepositoryImpl extends CliqRepository {
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, EditCliqOtp>> editCliqIdOtp(
+      {required String aliasId,
+      required bool isAlias,
+      required String aliasValue,
+      required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.editCliqIdOtp(
+        aliasId: aliasId, isAlias: isAlias, aliasValue: aliasValue, getToken: getToken));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

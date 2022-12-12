@@ -8,20 +8,21 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class CliqIdTypeSelectionUseCase extends BaseUseCase<NetworkError, CliqIdTypeSelectionUseCaseParams, bool> {
+class CliqIdTypeSelectionValidationUseCase
+    extends BaseUseCase<NetworkError, CliqIdTypeSelectionValidationUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute({required CliqIdTypeSelectionUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CliqIdTypeSelectionValidationUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
 
-class CliqIdTypeSelectionUseCaseParams extends Params {
+class CliqIdTypeSelectionValidationUseCaseParams extends Params {
   final String cliqIdType;
   final String alias;
   final String mobileNo;
   final CliqIdTypeEnum cliqIdTypeEnum;
 
-  CliqIdTypeSelectionUseCaseParams({
+  CliqIdTypeSelectionValidationUseCaseParams({
     required this.cliqIdType,
     required this.alias,
     required this.cliqIdTypeEnum,

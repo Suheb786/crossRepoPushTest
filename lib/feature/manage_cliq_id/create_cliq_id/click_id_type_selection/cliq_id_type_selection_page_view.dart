@@ -39,7 +39,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                 curve: Curves.easeInOutSine,
                 child: AppStreamBuilder<Resource<bool>>(
                     initialData: Resource.none(),
-                    stream: model.cliqIdTypeSelectionResponseStream,
+                    stream: model.cliqIdTypeSelectionValidationStream,
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         if (data.data!) {
@@ -93,8 +93,10 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               onPressed: () {
                                                 RelationshipWithCardHolderDialog.show(context,
                                                     title: S.of(context).cliqIdType,
-                                                    relationSHipWithCardHolder: ['Alias', 'Mobile Number'],
-                                                    onDismissed: () {
+                                                    relationSHipWithCardHolder: [
+                                                      S.of(context).alias,
+                                                      S.of(context).mobileNumber
+                                                    ], onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);

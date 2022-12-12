@@ -790,7 +790,8 @@ class AppRouter {
 
       case RoutePaths.OtpForEditAliasAndMobileNoPage:
         return CupertinoPageRoute(
-            builder: (context) => OtpForEditAliasAndMobileNoPage(),
+            builder: (context) =>
+                OtpForEditAliasAndMobileNoPage(settings.arguments as OtpForEditAliasAndMobileNoPageArguments),
             settings: RouteSettings(name: RoutePaths.OtpForEditAliasAndMobileNoPage));
 
       case RoutePaths.QRScanningScreen:

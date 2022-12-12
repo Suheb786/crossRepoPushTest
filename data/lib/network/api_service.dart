@@ -91,9 +91,15 @@ import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account/change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
-import 'package:data/entity/remote/cliq/create_cliq_id/create_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
-import 'package:data/entity/remote/cliq/edit_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
@@ -813,8 +819,13 @@ abstract class ApiService {
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
-  @POST("/Cliq/EditCliqID")
-  Future<HttpResponse<ResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
+  @POST("/Cliq/ConfirmEditCliqID")
+  Future<HttpResponse<EditCliqResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
+
+  @POST("/Cliq/EditCliqIDOtp")
+  Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp(
+    @Body() EditCliqOtpRequestEntity request,
+  );
 
   @POST("/Cliq/SuspendCliqId")
   Future<HttpResponse<ResponseEntity>> suspendCliqId(@Body() SuspendCliqIdRequestEntity request);
@@ -845,10 +856,16 @@ abstract class ApiService {
     @Body() GetCliqAccountByAliasEntity request,
   );
 
-  @POST("/Cliq/CreateCliqId")
-  Future<HttpResponse<ResponseEntity>> createCliqId(
-    @Body() CreateCliqIdRequestEntity request,
+  @POST("/Cliq/ConfirmCreateCLidID")
+  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
+    @Body() ConfirmCreateCliqIdRequestEntity request,
   );
+
+  @POST("/Cliq/CreateCliqIdOtp")
+  Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
+    @Body() CreateCliqIdOtpRequestEntity request,
+  );
+
   @POST("/Cliq/AddLinkAccount")
   Future<HttpResponse<ResponseEntity>> addLinkAccount(
     @Body() AddLinkAccountRequestEntity request,

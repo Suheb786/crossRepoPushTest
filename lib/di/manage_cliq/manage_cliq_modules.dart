@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/cliq/cliq_usecase_modules.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page_view_model.dart';
@@ -10,6 +9,7 @@ import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cli
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account_cliqId/link_bank_account_cliqId_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page_view_model.dart';
@@ -42,18 +42,21 @@ final cliqIdTypeSelectionViewModelProvider =
 ///link bank account to cliq id view model
 final linkBankAccountCliqIdViewModelProvider =
     ChangeNotifierProvider.autoDispose<LinkBankAccountCliqIdPageViewModel>(
-  (ref) => LinkBankAccountCliqIdPageViewModel(ref.read(createCliqIdUseCaseProvider)),
+  (ref) => LinkBankAccountCliqIdPageViewModel(
+      ref.read(linkBankAccountCliqIdValidationUseCaseProvider), ref.read(createCliqIdOtpUseCaseProvider)),
 );
 
 ///enter otp for cliq id view model
 final enterOtpFortCliqIdViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOtpForCliqIdPageViewModel>(
-  (ref) => EnterOtpForCliqIdPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider)),
+  (ref) => EnterOtpForCliqIdPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider),
+      ref.read(confirmCreateCliqIdUseCaseProvider), ref.read(createCliqIdOtpUseCaseProvider)),
 );
 
-final otpForEditAliasAndMobileNoPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<OtpForEditAliasAndMobileNoPageViewModel>(
-  (ref) => OtpForEditAliasAndMobileNoPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider)),
+final otpForEditAliasAndMobileNoPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<OtpForEditAliasAndMobileNoPageViewModel, OtpForEditAliasAndMobileNoPageArguments>(
+  (ref, args) => OtpForEditAliasAndMobileNoPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider),
+      ref.read(editCliqIdUseCaseProvider), args, ref.read(editCliqOtpUseCaseProvider)),
 );
 
 ///cliq id creation success view model
@@ -64,7 +67,8 @@ final cliqIdCreationSuccessViewModelProvider =
 
 ///edit alias view model
 final editAliasViewModelProvider = ChangeNotifierProvider.autoDispose<EditAliasPageViewModel>(
-  (ref) => EditAliasPageViewModel(ref.read(editCliqIdUseCaseProvider)),
+  (ref) => EditAliasPageViewModel(
+      ref.read(editAliasValidationUseCaseProvider), ref.read(editCliqOtpUseCaseProvider)),
 );
 
 final editCliqIDMobileNoPageViewModelProvider =

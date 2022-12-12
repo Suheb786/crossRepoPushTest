@@ -5,16 +5,13 @@ import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-import 'package:domain/usecase/cliq/edit_cliq_id_usecase.dart';
 
-class GetAliasUsecase
-    extends BaseUseCase<NetworkError, GetAliasUseCaseParams, GetAlias> {
+class GetAliasUsecase extends BaseUseCase<NetworkError, GetAliasUseCaseParams, GetAlias> {
   final CliqRepository _cliqRepository;
 
   GetAliasUsecase(this._cliqRepository);
   @override
-  Future<Either<NetworkError, GetAlias>> execute(
-      {required GetAliasUseCaseParams params}) {
+  Future<Either<NetworkError, GetAlias>> execute({required GetAliasUseCaseParams params}) {
     return _cliqRepository.getAlias(getToken: params.getToken);
   }
 }

@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Default": MessageLookupByLibrary.simpleMessage("Default"),
         "JOD": MessageLookupByLibrary.simpleMessage("دينار أردني"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "ما عندك رقم CliQ. أنشئ حسابك الأول من خلال Blink"),
@@ -61,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الحصول على معلومات حسابك. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
+        "accountIsLinkedToTheAliasButUnableToSetItToDefault":
+            MessageLookupByLibrary.simpleMessage(
+                "Account is linked to the alias, but unable to set it to default"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
@@ -468,6 +472,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqIdCreateSuccessFully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("نوع حساب CliQ"),
+        "cliqIdUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -598,6 +604,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نسبة السداد الحالية"),
         "customerNotEligible": MessageLookupByLibrary.simpleMessage(
             "الخدمة غير متاحة إلك حالياً. الرجاء التواصل معنا على 5200100-06"),
+        "customerOfInvalidAlias":
+            MessageLookupByLibrary.simpleMessage("Customer of invalid Alias"),
         "customerPreferenceNotFound":
             MessageLookupByLibrary.simpleMessage("خيارات العملاء غير موجودة"),
         "customerService":
@@ -900,6 +908,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
+        "errorOnApproveRtpRequest": MessageLookupByLibrary.simpleMessage(
+            "Error on Approve RTP Request"),
+        "errorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage(
+            "Error on Request To Pay Result"),
         "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
             "واجهتنا مشكلة خلال طلب البطاقة، يرجى المحاولة مرة اخرى"),
         "errorPinTranslationXCS":
@@ -939,6 +951,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحديد الحالة"),
         "errorWhileGettingAccountBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-114)"),
+        "errorWhileGettingAccountByCustomerId":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Getting Account By Customer ID"),
         "errorWhileGettingAccountCloseOtp":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ خلال الحصول على كلمة المرور OTP"),
@@ -964,6 +979,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-112)"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال عملية التسجيل، حاول مرة ثانية."),
+        "errorWhileSubmittingOutwardPayment":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Submitting Outward Payment"),
         "errorWhileUnblockPinNI": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين.(Err-108)"),
         "errorWhileUpdatingCardStatusNI": MessageLookupByLibrary.simpleMessage(
@@ -1242,6 +1260,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAdditionSourceIncome":
             MessageLookupByLibrary.simpleMessage("اختار مصدر الدخل الإضافي"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
+        "invalidAlias": MessageLookupByLibrary.simpleMessage("Invalid Alias"),
+        "invalidAliasValue":
+            MessageLookupByLibrary.simpleMessage("Invalid Alias Value"),
         "invalidAmount": MessageLookupByLibrary.simpleMessage(
             "الرقم اللي أدخلته أكبر من رصيد حسابك. الرجاء إيداع المبلغ بالحساب أو اختيار مبلغ آخر."),
         "invalidAnnualIncome":
@@ -1315,6 +1336,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-124)"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "هويتك الشخصية غير صالحة. الرجاء مسح هوية شخصية أردنية."),
+        "invalidIban": MessageLookupByLibrary.simpleMessage("Invalid Iban"),
         "invalidIdCardCannotProceed": MessageLookupByLibrary.simpleMessage(
             "مش قادرين نتحقق من هويتك. تواصل معنا على 5200100-06 لتعرف أكتر."),
         "invalidIdNo": MessageLookupByLibrary.simpleMessage(
@@ -1787,6 +1809,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("معرف PlaceHolder فارغ"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-164)"),
+        "pleaseAddLinkAccount":
+            MessageLookupByLibrary.simpleMessage("Please Add Link Account"),
         "pleaseAgreeToTheTermAndCondition":
             MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
         "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(

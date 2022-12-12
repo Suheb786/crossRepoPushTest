@@ -1,6 +1,3 @@
-import 'package:data/entity/remote/user/response_entity.dart';
-import 'package:domain/model/cliq/getAlias/account_list.dart';
-import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,10 +15,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:neo_bank/utils/status.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
@@ -41,17 +36,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
         padding: EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
             color: Theme.of(context).accentColor,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
         child: Column(
           children: [
             Container(
               margin: EdgeInsets.only(top: 8, bottom: 24),
               height: 4,
               width: 64,
-              decoration: BoxDecoration(
-                  color: AppColor.white_gray,
-                  borderRadius: BorderRadius.circular(4)),
+              decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
             ),
 //*-----------------------------------List of Cliq IDs--------------------------------------->>>>>>>>
             AppStreamBuilder<Resource<GetAlias>>(
@@ -63,38 +55,27 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                         child: ListView.separated(
                           itemBuilder: (context, index) {
                             return AliasCardList(
-                              accountList:
-                                  (data?.data?.aliases?[index].accounts ?? []),
-                              aliasName:
-                                  "${data!.data?.aliases?[index].aliasName ?? ""}",
-                              aliasType:
-                                  "${data.data?.aliases?[index].aliasType}",
+                              accountList: (data?.data?.aliases?[index].accounts ?? []),
+                              aliasName: "${data!.data?.aliases?[index].aliasName ?? ""}",
+                              aliasType: "${data.data?.aliases?[index].aliasType}",
                               status: "${data.data?.aliases?[index].status}",
                               onTapAccount: (accountData) {
-                                ManageCliqBottomSheetSelectionWidget.show(
-                                    context, setAsDefault: () {
+                                ManageCliqBottomSheetSelectionWidget.show(context, setAsDefault: () {
                                   Navigator.pop(context);
                                   CliqInformationDialog.show(context,
                                       image: AssetUtils.walletIcon,
                                       title: S.of(context).changeDefaultAccount,
-                                      description: S
-                                          .of(context)
-                                          .areYourToChangeDefaultAccountOfYourCliqId,
-                                      subDescription: S
-                                          .of(context)
-                                          .whenAcceptingCreationOfYourCliqId,
+                                      description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
+                                      subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
                                       onSelected: () {
                                     Navigator.pop(context);
                                     model.changeDefaultCliqId(
-                                      aliasId: (data
-                                              .data?.aliases?[index].aliasID) ??
-                                          "",
+                                      aliasId: (data.data?.aliases?[index].aliasID) ?? "",
                                       getToken: true,
                                       linkType: "A",
                                       otpCode: "576824",
-                                      identifier: (data.data?.aliases?[index]
-                                              .accounts?[index].identifier) ??
-                                          "",
+                                      identifier:
+                                          (data.data?.aliases?[index].accounts?[index].identifier) ?? "",
                                     );
                                     // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
                                   }, onDismissed: () {
@@ -106,32 +87,23 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                           "Are you sure you want to unlink the account with your CliQ ID?",
                                       subDescription: '',
                                       title: "Unlink account with CliQ ID");
-                                },
-                                    onCancelled: () {},
-                                    title: "Please select your action");
+                                }, onCancelled: () {}, title: "Please select your action");
                               },
                               onTapAlias: () {
-                                UpdateCliqInfoBottomSheetSelectionWidget.show(
-                                    context,onLinkId: () {
-                                      
-                                    },
+                                UpdateCliqInfoBottomSheetSelectionWidget.show(context,
+                                    onLinkId: () {},
                                     onActivatId: () {
                                       Navigator.pop(context);
                                       CliqInformationDialog.show(context,
                                           // image: AssetUtils.walletIcon,
                                           title: "Reactivate CliQ ID",
-                                          description: S
-                                              .of(context)
-                                              .areYourToChangeDefaultAccountOfYourCliqId,
-                                          subDescription: S
-                                              .of(context)
-                                              .whenAcceptingCreationOfYourCliqId,
+                                          description:
+                                              S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
+                                          subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
                                           onSelected: () {
                                         Navigator.pop(context);
                                         model.reactivatetCliqID(
-                                          aliasId: (data.data?.aliases?[index]
-                                                  .aliasID) ??
-                                              "",
+                                          aliasId: (data.data?.aliases?[index].aliasID) ?? "",
                                           getToken: true,
                                         );
                                         // model.changeDefaultCliqId(getToken, aliasId, linkType, otpCode, identifier)
@@ -149,23 +121,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                         title: "Confirm Delete?",
                                         descriptionWidget: RichText(
                                             text: TextSpan(children: [
-                                          TextSpan(
-                                              text:
-                                                  "Are you sure you want to delete "),
-                                          TextSpan(
-                                              text: (data.data?.aliases?[index]
-                                                      .aliasName) ??
-                                                  ""),
-                                          TextSpan(
-                                              text: " from your CliQ ID list?")
+                                          TextSpan(text: "Are you sure you want to delete "),
+                                          TextSpan(text: (data.data?.aliases?[index].aliasName) ?? ""),
+                                          TextSpan(text: " from your CliQ ID list?")
                                         ])),
 
                                         onSelected: () {
                                           model.deleteCliqId(
-                                              true,
-                                              (data.data?.aliases?[index]
-                                                      .aliasID) ??
-                                                  "");
+                                              true, (data.data?.aliases?[index].aliasID) ?? "");
                                         },
                                         //  image: ,
                                         isSwipeToCancel: true,
@@ -176,17 +139,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                       InformationDialog.show(
                                         context,
                                         title: "Suspend CliQ ID",
-                                        descriptionWidget: Text(
-                                            "Are you sure you want to suspend your CliQ ID?"),
+                                        descriptionWidget:
+                                            Text("Are you sure you want to suspend your CliQ ID?"),
+                                        onDismissed: () {
+                                          Navigator.pop(context);
+                                        },
 
                                         onSelected: () {
                                           model.suspandCliqID(
                                               getToken: true,
-                                              aliasId: (data
-                                                      .data
-                                                      ?.aliases?[index]
-                                                      .aliasID) ??
-                                                  "");
+                                              aliasId: (data.data?.aliases?[index].aliasID) ?? "");
                                         },
                                         //  image: ,
                                         isSwipeToCancel: true,
@@ -217,14 +179,11 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           border: Border.all(
-                                              color: Theme.of(context)
-                                                  .inputDecorationTheme
-                                                  .hintStyle!
-                                                  .color!)),
+                                              color:
+                                                  Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
                                       child: Container(
                                           padding: EdgeInsets.all(32),
-                                          child: AppSvg.asset(
-                                              AssetUtils.cliqLogo)),
+                                          child: AppSvg.asset(AssetUtils.cliqLogo)),
                                     ),
                                     Text(
                                       S.of(context).NoCliqContactYet,
@@ -241,21 +200,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                 alignment: AlignmentDirectional.bottomCenter,
                                 child: InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.CreateCliqId);
+                                    Navigator.pushNamed(context, RoutePaths.CreateCliqId);
                                   },
                                   child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 24, vertical: 20),
+                                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                                     padding: EdgeInsets.all(18),
                                     height: 56,
                                     width: double.maxFinite,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1
-                                          ?.color,
+                                      color: Theme.of(context).accentTextTheme.bodyText1?.color,
                                     ),
                                     child: Center(
                                       child: Text(S.of(context).createCliqId,
@@ -264,8 +218,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                               letterSpacing: 1,
-                                              color: Theme.of(context)
-                                                  .accentColor)),
+                                              color: Theme.of(context).accentColor)),
                                     ),
                                   ),
                                 ),

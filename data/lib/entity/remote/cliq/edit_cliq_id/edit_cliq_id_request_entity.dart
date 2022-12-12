@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part "edit_cliq_id_request_entity.g.dart";
+part 'edit_cliq_id_request_entity.g.dart';
 
 @JsonSerializable()
 class EditCliqIdRequestEntity {

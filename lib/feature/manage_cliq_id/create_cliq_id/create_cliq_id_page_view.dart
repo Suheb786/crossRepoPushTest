@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page.dart';
@@ -105,7 +106,9 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                           child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: Text(
-                              "+962 79 322 8080",
+                              ProviderScope.containerOf(context)
+                                  .read(linkBankAccountCliqIdViewModelProvider)
+                                  .mobileNumber,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,

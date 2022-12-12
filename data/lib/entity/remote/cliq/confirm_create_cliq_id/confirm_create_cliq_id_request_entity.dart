@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'create_cliq_id_request_entity.g.dart';
+
+part 'confirm_create_cliq_id_request_entity.g.dart';
 
 @JsonSerializable()
-class CreateCliqIdRequestEntity {
+class ConfirmCreateCliqIdRequestEntity {
   @JsonKey(name: "accountNumber")
   final String? accountNumber;
   @JsonKey(name: "isAlias")
@@ -13,20 +13,25 @@ class CreateCliqIdRequestEntity {
 
   @JsonKey(name: "aliasValue")
   final String? aliasValue;
+
+  @JsonKey(name: "otpCode")
+  final String? otpCode;
+
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseClass;
 
-  CreateCliqIdRequestEntity(
+  ConfirmCreateCliqIdRequestEntity(
       {required this.accountNumber,
       required this.isAlias,
       required this.aliasValue,
+      required this.otpCode,
       required this.getToken,
       required this.baseClass});
 
-  Map<String, dynamic> toJson() => _$CreateCliqIdRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ConfirmCreateCliqIdRequestEntityToJson(this);
 
-  factory CreateCliqIdRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$CreateCliqIdRequestEntityFromJson(json);
+  factory ConfirmCreateCliqIdRequestEntity.fromJson(Map<String, dynamic> json) =>
+      _$ConfirmCreateCliqIdRequestEntityFromJson(json);
 }
