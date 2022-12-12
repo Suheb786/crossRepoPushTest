@@ -1,3 +1,4 @@
+import 'package:data/helper/key_helper.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
@@ -24,7 +25,7 @@ class DynamicLinksService {
     required String requestId,
   }) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String uriPrefix = "https://blinkcbt.page.link";
+    String uriPrefix = KeyHelper.DevDynamicLinkPrefix;
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: uriPrefix,

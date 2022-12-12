@@ -5,7 +5,6 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:neo_bank/utils/status.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -37,9 +36,9 @@ class QrScanningScreenPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _verifyQRResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        }
+        // if (event.status == Status.ERROR) {
+        //
+        // }
       });
     });
   }

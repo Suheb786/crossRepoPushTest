@@ -28,8 +28,10 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
           AppStreamBuilder<Resource<VerifyQrResponse>>(
               initialData: Resource.none(),
               stream: model.verifyQRStream,
-              onData: (data) {
+              onData: (data) async {
                 if (data.status == Status.SUCCESS) {
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  model.controller?.resumeCamera();
                   Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
                       arguments: SendMoneyQRScanningArguments(
                           amount: data.data?.qrContent?.amount ?? '',
@@ -37,6 +39,8 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                           accountNo: data.data?.qrContent?.toAccount ?? '',
                           requestId: data.data?.qrContent?.requestId ?? ''));
                 } else if (data.status == Status.ERROR) {
+                  model.showToastWithError(data.appError!);
+                  await Future.delayed(const Duration(milliseconds: 300));
                   model.controller?.resumeCamera();
                   Navigator.pop(context);
                 }
