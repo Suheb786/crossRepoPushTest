@@ -1,11 +1,11 @@
+import 'package:domain/model/cliq/getAlias/account_list.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/cliq/getAlias/account_list.dart';
+
 part 'account_list_entity.g.dart';
 
 @JsonSerializable()
-class AccountListEntity
-    extends BaseLayerDataTransformer<AccountListEntity, AccountList> {
+class AccountListEntity extends BaseLayerDataTransformer<AccountListEntity, AccountList> {
   @JsonKey(
     name: "recordId",
     defaultValue: "",
@@ -57,8 +57,8 @@ class AccountListEntity
     required this.type,
     required this.isDefault,
   });
-  factory AccountListEntity.fromJson(Map<String, dynamic> json) =>
-      _$AccountListEntityFromJson(json);
+
+  factory AccountListEntity.fromJson(Map<String, dynamic> json) => _$AccountListEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AccountListEntityToJson(this);
 

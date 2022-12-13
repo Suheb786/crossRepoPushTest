@@ -6,8 +6,7 @@ part of 'get_customer_by_account_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCustomByAccountRequestEntity _$GetCustomByAccountRequestEntityFromJson(
-    Map<String, dynamic> json) {
+GetCustomByAccountRequestEntity _$GetCustomByAccountRequestEntityFromJson(Map<String, dynamic> json) {
   return GetCustomByAccountRequestEntity(
     accountCode: json['accountCode'] as String?,
     CustID: json['CustID'] as String?,
@@ -16,8 +15,7 @@ GetCustomByAccountRequestEntity _$GetCustomByAccountRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$GetCustomByAccountRequestEntityToJson(
-        GetCustomByAccountRequestEntity instance) =>
+Map<String, dynamic> _$GetCustomByAccountRequestEntityToJson(GetCustomByAccountRequestEntity instance) =>
     <String, dynamic>{
       'accountCode': instance.accountCode,
       'CustID': instance.CustID,

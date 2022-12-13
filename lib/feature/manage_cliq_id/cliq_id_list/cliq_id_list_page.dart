@@ -5,16 +5,14 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   @override
   CliqIdListPageState createState() => CliqIdListPageState();
 }
 
-class CliqIdListPageState
-    extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
+class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
@@ -38,20 +36,17 @@ class CliqIdListPageState
           ),
           InkWell(
             onTap: () {
-              CliqInformationDialog.show(context,
+              /*    CliqInformationDialog.show(context,
                   image: AssetUtils.walletIcon,
                   title: S.of(context).changeDefaultAccount,
-                  description:
-                      S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
-                  subDescription: S
-                      .of(context)
-                      .whenAcceptingCreationOfYourCliqId, onSelected: () {
+                  description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
+                  subDescription: S.of(context).whenAcceptingCreationOfYourCliqId, onSelected: () {
                 Navigator.pop(context);
               }, onDismissed: () {
                 Navigator.pop(context);
-              });
+              });*/
 
-              //  Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+              Navigator.pushNamed(context, RoutePaths.CreateCliqId);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(end: 24.0),

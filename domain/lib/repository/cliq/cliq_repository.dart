@@ -1,6 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
-
+import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
+import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
+import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 
 abstract class CliqRepository {
@@ -16,7 +19,15 @@ abstract class CliqRepository {
     required bool GetToken,
   });
 
-  Future<Either<NetworkError, bool>> createCliqId({
+  Future<Either<NetworkError, ConfirmCreateCliqId>> confirmCreateCLidID({
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, CreateCliqOtp>> createCliqIdOtp({
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
@@ -63,7 +74,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> editCliqID({
+  Future<Either<NetworkError, EditCliq>> editCliqID({
     required bool isAlias,
     required String aliasId,
     required String aliasValue,
@@ -173,6 +184,13 @@ abstract class CliqRepository {
       dynamic valueOfPercentageConvenience,
       required bool getToken});
 
+  Future<Either<NetworkError, EditCliqOtp>> editCliqIdOtp({
+    required String aliasId,
+    required bool isAlias,
+    required String aliasValue,
+    required bool getToken,
+  });
+
   Future<Either<NetworkError, bool>> getCustomerByAccount({
     required String accountCode,
     required String CustID,
@@ -190,6 +208,7 @@ abstract class CliqRepository {
   Future<Either<NetworkError, bool>> getAccountByCustomerID({
     required bool GetToken,
   });
+
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
     required bool GetToken,
   });

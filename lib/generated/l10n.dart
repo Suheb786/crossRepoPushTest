@@ -12270,6 +12270,16 @@ class S {
     );
   }
 
+  /// `Default`
+  String get Default {
+    return Intl.message(
+      'Default',
+      name: 'Default',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unlink Account`
   String get unlinkAccount {
     return Intl.message(
@@ -14650,16 +14660,6 @@ class S {
     );
   }
 
-  /// `Manage\nCliQ ID`
-  String get manageCliqIdRoute {
-    return Intl.message(
-      'Manage\nCliQ ID',
-      name: 'manageCliqIdRoute',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Account is successfully linked with CliQ ID`
   String get accountSuccessfullyLinked {
     return Intl.message(
@@ -14835,6 +14835,126 @@ class S {
     return Intl.message(
       'Account Suspended Successfully',
       name: 'accountSuspendedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage\nCliQ ID`
+  String get manageCliqIdRoute {
+    return Intl.message(
+      'Manage\nCliQ ID',
+      name: 'manageCliqIdRoute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Getting Account By Customer ID`
+  String get errorWhileGettingAccountByCustomerId {
+    return Intl.message(
+      'Error while Getting Account By Customer ID',
+      name: 'errorWhileGettingAccountByCustomerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Submitting Outward Payment`
+  String get errorWhileSubmittingOutwardPayment {
+    return Intl.message(
+      'Error while Submitting Outward Payment',
+      name: 'errorWhileSubmittingOutwardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Approve RTP Request`
+  String get errorOnApproveRtpRequest {
+    return Intl.message(
+      'Error on Approve RTP Request',
+      name: 'errorOnApproveRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is linked to the alias, but unable to set it to default`
+  String get accountIsLinkedToTheAliasButUnableToSetItToDefault {
+    return Intl.message(
+      'Account is linked to the alias, but unable to set it to default',
+      name: 'accountIsLinkedToTheAliasButUnableToSetItToDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Request To Pay Result`
+  String get errorOnRequestToPayResult {
+    return Intl.message(
+      'Error on Request To Pay Result',
+      name: 'errorOnRequestToPayResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer of invalid Alias`
+  String get customerOfInvalidAlias {
+    return Intl.message(
+      'Customer of invalid Alias',
+      name: 'customerOfInvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Iban`
+  String get invalidIban {
+    return Intl.message(
+      'Invalid Iban',
+      name: 'invalidIban',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias`
+  String get invalidAlias {
+    return Intl.message(
+      'Invalid Alias',
+      name: 'invalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias Value`
+  String get invalidAliasValue {
+    return Intl.message(
+      'Invalid Alias Value',
+      name: 'invalidAliasValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliqID Updated Successfully`
+  String get cliqIdUpdatedSuccessfully {
+    return Intl.message(
+      'CliqID Updated Successfully',
+      name: 'cliqIdUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Add Link Account`
+  String get pleaseAddLinkAccount {
+    return Intl.message(
+      'Please Add Link Account',
+      name: 'pleaseAddLinkAccount',
       desc: '',
       args: [],
     );

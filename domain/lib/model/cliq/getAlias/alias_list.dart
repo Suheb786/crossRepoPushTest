@@ -1,10 +1,11 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
+import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
 
 class AliasList {
   final String? aliasID;
   final String? aliasName;
-  final String? aliasType;
+  final CliqAliasTypeEnum? aliasType;
   final CliqAliasIdStatusEnum? status;
   final List<AccountList>? accounts;
 

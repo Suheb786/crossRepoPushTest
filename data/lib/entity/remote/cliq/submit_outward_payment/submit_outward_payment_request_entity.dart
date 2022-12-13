@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'submit_outward_payment_request_entity.g.dart';
 
 @JsonSerializable()
@@ -75,10 +76,9 @@ class SubmitOutwardPaymentRequestEntity {
       this.QRFlag,
       this.GetToken,
       this.BaseClass);
-  factory SubmitOutwardPaymentRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+
+  factory SubmitOutwardPaymentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SubmitOutwardPaymentRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SubmitOutwardPaymentRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SubmitOutwardPaymentRequestEntityToJson(this);
 }

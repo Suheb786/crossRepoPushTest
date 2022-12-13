@@ -1,17 +1,17 @@
-import 'package:domain/usecase/cliq/add_link_account_usecase.dart';
-import 'package:domain/usecase/cliq/confirm_change_default_account_usecase.dart';
-import 'package:domain/usecase/cliq/delete_cliq_id_usecase.dart';
-import 'package:domain/usecase/cliq/get_alias_usecase.dart';
-import 'package:domain/usecase/cliq/re_activate_cliq_id_usecase.dart';
-import 'package:domain/usecase/cliq/suspend_cliq_id_usecase.dart';
-import 'package:domain/usecase/cliq/unlink_account_from_cliq_usecase.dart';
+import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
+import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
+import 'package:domain/usecase/manage_cliq/delete_cliq_id_usecase.dart';
+import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
+import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
+import 'package:domain/usecase/manage_cliq/suspend_cliq_id_usecase.dart';
+import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/model/cliq/getAlias/get_alias.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
   ///-----------------------[ Named-Constructors ]-----------------------///
@@ -26,8 +26,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     this._addLInkAccountUseCase,
   ) {
     _getAliasRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAliasUsecase.execute(params: value))
+      RequestManager(value, createCall: () => _getAliasUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -39,8 +38,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     });
 
     _suspandCliqIDRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _suspendCliqIdUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _suspendCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -52,8 +50,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     });
 
     _reactivateCliqIDRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _reActivateCliqIdUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _reActivateCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -65,8 +62,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     });
 
     _deleteCliqIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _deleteCliqIdUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _deleteCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -79,9 +75,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     //Todo call deleteCliqId();
 
     _unlinkCliqIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _unlinkAccountFromCliqUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _unlinkAccountFromCliqUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -94,8 +88,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     //Todo call unlinkCliqId();
 
     _linkCliqIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _addLInkAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _addLInkAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -108,9 +101,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     //Todo call unlinkCliqId();
 
     _changeDefaultCliqIDRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _changeDefaultAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _changeDefaultAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -126,16 +117,13 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   //*----------------Change Default Cliq Id--------------///
   final ConfirmChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
-  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest =
-      PublishSubject();
+  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse = PublishSubject();
 
   //*----------------Delete Cliq Id--------------///
 
-  PublishSubject<DeleteCliqIdUseCaseParams> _deleteCliqIdRequest =
-      PublishSubject();
+  PublishSubject<DeleteCliqIdUseCaseParams> _deleteCliqIdRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _deleteCliqIdResponse = PublishSubject();
   final DeleteCliqIdUseCase _deleteCliqIdUseCase;
@@ -150,23 +138,20 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 //*----------------link Cliq Id--------------///
 
   final AddLInkAccountUseCase _addLInkAccountUseCase;
-  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest =
-      PublishSubject();
+  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _linkCliqIdResponse = PublishSubject();
 
   //*----------------reactivate Cliq ID--------------///
 
   final ReActivateCliqIdUseCase _reActivateCliqIdUseCase;
-  PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest =
-      PublishSubject();
+  PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _reactivateCliqIDResponse = PublishSubject();
 
   //*----------------Suspand Cliq ID--------------///
 
-  PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest =
-      PublishSubject();
+  PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _suspandCliqIDResponse = PublishSubject();
   final SuspendCliqIdUseCase _suspendCliqIdUseCase;
@@ -175,8 +160,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
 
-  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest =
-      PublishSubject();
+  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _unlinkCliqIdResponse = PublishSubject();
 
@@ -188,31 +172,25 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
   }
 
-  Stream<Resource<bool>> get suspandCliqIDStream =>
-      _suspandCliqIDResponse.stream;
+  Stream<Resource<bool>> get suspandCliqIDStream => _suspandCliqIDResponse.stream;
 
   void suspandCliqID({required bool getToken, required String aliasId}) {
-    _suspandCliqIDRequest.safeAdd(
-        SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+    _suspandCliqIDRequest.safeAdd(SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get reactivateCliqIDStream =>
-      _reactivateCliqIDResponse.stream;
+  Stream<Resource<bool>> get reactivateCliqIDStream => _reactivateCliqIDResponse.stream;
 
   void reactivatetCliqID({required bool getToken, required String aliasId}) {
-    _reactivateCliqIDRequest.safeAdd(
-        ReActivateCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+    _reactivateCliqIDRequest.safeAdd(ReActivateCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
   Stream<Resource<bool>> get deleteCliqIdStream => _deleteCliqIdResponse.stream;
 
   void deleteCliqId(bool getToken, String aliasId) {
-    _deleteCliqIdRequest.safeAdd(
-        DeleteCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+    _deleteCliqIdRequest.safeAdd(DeleteCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get changeDefaultCliqIdStream =>
-      _changeDefaultCliqIDResponse.stream;
+  Stream<Resource<bool>> get changeDefaultCliqIdStream => _changeDefaultCliqIDResponse.stream;
 
   void confirmChangeDefaultCliqId({
     required bool GetToken,
@@ -233,8 +211,8 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     required bool isAlias,
     required String aliasValue,
   }) {
-    _unlinkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
-        aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
+    _unlinkCliqIdRequest.safeAdd(
+        AddLinkAccountUseCaseParams(aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
   }
 
   Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;

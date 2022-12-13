@@ -16,11 +16,11 @@ import 'link_account_dialog_view_model.dart';
 
 class LinkAccountDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(LinkBankAccountData)? onSelected;
-
+  final Function(String)? onSelected;
+  final List<String>? accountsList;
   final String label;
 
-  LinkAccountDialogView({this.onDismissed, this.onSelected, required this.label});
+  LinkAccountDialogView({this.onDismissed, this.onSelected, this.accountsList, required this.label});
 
   ProviderBase providerBase() {
     return linkAccountDialogViewModelProvider;
@@ -29,12 +29,7 @@ class LinkAccountDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<LinkAccountDialogViewModel>(
-        onModelReady: (model) {
-          model.accountsList = [
-            LinkBankAccountData('Savings Account 1', '5669 4900 2111'),
-            LinkBankAccountData('Savings Account 2', '5669 4900 2222'),
-          ];
-        },
+        onModelReady: (model) {},
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -79,11 +74,11 @@ class LinkAccountDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
-                              key: ValueKey(model.accountsList.length),
+                              key: ValueKey(accountsList!.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
-                                itemCount: model.accountsList.length,
+                                itemCount: accountsList!.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
@@ -96,11 +91,10 @@ class LinkAccountDialogView extends StatelessWidget {
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
                                     childDelegate: ListWheelChildBuilderDelegate(
-                                        childCount: model.accountsList.length,
+                                        childCount: accountsList!.length,
                                         builder: (BuildContext context, int index) {
                                           return LinkAccountSelectionWidget(
-                                            accountNo: model.accountsList[index].accountNo,
-                                            accountType: model.accountsList[index].accountType,
+                                            label: accountsList![index],
                                             textColor: currentIndex == index
                                                 ? Theme.of(context).primaryColorDark
                                                 : AppColor.dark_gray_1,
@@ -114,7 +108,7 @@ class LinkAccountDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(model.accountsList[currentIndex!]);
+                            onSelected!.call(accountsList![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),

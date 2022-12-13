@@ -1117,6 +1117,36 @@ class ErrorParser {
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
 
+      case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID:
+        return localisedHelper.errorWhileGettingAccountByCustomerId;
+
+      case ErrorType.ERROR_WHILE_SUBMITTING_OUTWARD_PAYMENT:
+        return localisedHelper.errorWhileSubmittingOutwardPayment;
+
+      case ErrorType.ERROR_ON_APPROVE_RTP_REQUEST:
+        return localisedHelper.errorOnApproveRtpRequest;
+
+      case ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
+        return localisedHelper.accountIsLinkedToTheAliasButUnableToSetItToDefault;
+
+      case ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT:
+        return localisedHelper.errorOnRequestToPayResult;
+
+      case ErrorType.CUSTOMER_OF_INVALID_ALIAS:
+        return localisedHelper.customerOfInvalidAlias;
+
+      case ErrorType.INVALID_IBAN:
+        return localisedHelper.invalidIban;
+
+      case ErrorType.INVALID_ALIAS:
+        return localisedHelper.invalidAlias;
+
+      case ErrorType.INVALID_ALIAS_VALUE:
+        return localisedHelper.invalidAliasValue;
+
+      case ErrorType.PLEASE_ADD_LINK_ACCOUNT:
+        return localisedHelper.pleaseAddLinkAccount;
+
       default:
         return "";
     }

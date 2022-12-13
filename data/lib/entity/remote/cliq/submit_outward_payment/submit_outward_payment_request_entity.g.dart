@@ -6,8 +6,7 @@ part of 'submit_outward_payment_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SubmitOutwardPaymentRequestEntity _$SubmitOutwardPaymentRequestEntityFromJson(
-    Map<String, dynamic> json) {
+SubmitOutwardPaymentRequestEntity _$SubmitOutwardPaymentRequestEntityFromJson(Map<String, dynamic> json) {
   return SubmitOutwardPaymentRequestEntity(
     json['custID'] as String,
     json['dbtrAcct'] as String,
@@ -35,8 +34,7 @@ SubmitOutwardPaymentRequestEntity _$SubmitOutwardPaymentRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$SubmitOutwardPaymentRequestEntityToJson(
-        SubmitOutwardPaymentRequestEntity instance) =>
+Map<String, dynamic> _$SubmitOutwardPaymentRequestEntityToJson(SubmitOutwardPaymentRequestEntity instance) =>
     <String, dynamic>{
       'custID': instance.custID,
       'dbtrAcct': instance.dbtrAcct,

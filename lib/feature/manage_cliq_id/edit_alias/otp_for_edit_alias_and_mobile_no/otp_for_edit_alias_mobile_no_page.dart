@@ -1,3 +1,4 @@
+import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,9 @@ import 'otp_for_edit_alias_mobile_no_page_view.dart';
 import 'otp_for_edit_alias_mobile_no_page_view_model.dart';
 
 class OtpForEditAliasAndMobileNoPage extends BasePage<OtpForEditAliasAndMobileNoPageViewModel> {
+  final OtpForEditAliasAndMobileNoPageArguments _arguments;
+
+  OtpForEditAliasAndMobileNoPage(this._arguments);
   @override
   OtpForEditAliasAndMobileNoPageState createState() => OtpForEditAliasAndMobileNoPageState();
 }
@@ -20,7 +24,7 @@ class OtpForEditAliasAndMobileNoPageState
 
   @override
   ProviderBase provideBase() {
-    return otpForEditAliasAndMobileNoPageViewModelProvider;
+    return otpForEditAliasAndMobileNoPageViewModelProvider.call(widget._arguments);
   }
 
   @override
@@ -68,4 +72,14 @@ class OtpForEditAliasAndMobileNoPageState
     super.dispose();
     cancel();
   }
+}
+
+class OtpForEditAliasAndMobileNoPageArguments {
+  final EditCliqOtp data;
+  final String aliasId;
+  final String aliasValue;
+  final bool isAlias;
+
+  OtpForEditAliasAndMobileNoPageArguments(
+      {required this.data, required this.aliasId, required this.aliasValue, required this.isAlias});
 }

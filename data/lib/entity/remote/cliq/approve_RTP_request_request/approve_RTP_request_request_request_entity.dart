@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'approve_RTP_request_request_request_entity.g.dart';
+
 @JsonSerializable()
 class ApproveRTPRequestReqestEntity {
   @JsonKey(name: "custID")
@@ -45,8 +47,6 @@ class ApproveRTPRequestReqestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> BaseClass;
 
- 
-
   ApproveRTPRequestReqestEntity(
       {required this.dbtrName,
       required this.dbtrPstlAdr,
@@ -72,6 +72,6 @@ class ApproveRTPRequestReqestEntity {
 
   Map<String, dynamic> toJson() => _$ApproveRTPRequestReqestEntityToJson(this);
 
- factory ApproveRTPRequestReqestEntity.fromJson(Map<String, dynamic> json) =>
+  factory ApproveRTPRequestReqestEntity.fromJson(Map<String, dynamic> json) =>
       _$ApproveRTPRequestReqestEntityFromJson(json);
 }

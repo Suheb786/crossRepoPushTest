@@ -172,5 +172,3 @@ var dynamicLinkRepositoryProvider = Provider<DynamicLinkRepository>(
 /// inject [CliqRepository] provider
 var cliqRepositoryProvider =
     Provider<CliqRepository>((ref) => CliqRepositoryImpl(ref.read(cliqDataSourceProvider)));
-
-

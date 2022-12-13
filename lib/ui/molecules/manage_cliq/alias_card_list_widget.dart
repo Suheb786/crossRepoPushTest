@@ -1,13 +1,7 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
-import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog.dart';
-import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
-import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_sheet_selection_widget.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -41,16 +35,9 @@ class AliasCardList extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: 327.w,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 24,
-                  color: Color(0x14000000),
-                  offset: Offset(0, 8),
-                  spreadRadius: 0)
-            ]),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white, boxShadow: [
+          BoxShadow(blurRadius: 24, color: Color(0x14000000), offset: Offset(0, 8), spreadRadius: 0)
+        ]),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -68,17 +55,13 @@ class AliasCardList extends StatelessWidget {
               },
               title: Text(
                 aliasName,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600),
+                style:
+                    TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
               ),
               subtitle: Text(
                 aliasType,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontSize: 12.t,
-                    fontWeight: FontWeight.w600),
+                style:
+                    TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -86,8 +69,7 @@ class AliasCardList extends StatelessWidget {
                   Text(
                     status,
                     style: TextStyle(
-                        color: cliqAliasIdStatusEnum ==
-                                CliqAliasIdStatusEnum.ACTIVE
+                        color: cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.ACTIVE
                             ? AppColor.darkModerateLimeGreen
                             : AppColor.dark_orange,
                         fontFamily: StringUtils.appFont,
@@ -175,8 +157,7 @@ class AliasCardList extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(100),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8, right: 8, bottom: 4, top: 5),
+                                      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4, top: 5),
                                       child: Text(
                                         "Default",
                                         style: TextStyle(

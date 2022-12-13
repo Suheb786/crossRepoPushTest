@@ -1,6 +1,7 @@
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_usecase.dart';
+import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
+import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_validation_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -9,44 +10,21 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
 
 class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
-  final CliqIdTypeSelectionUseCase _cliqIdTypeSelectionnUseCase;
+  final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
+  final CliqIdTypeSelectionValidationUseCase _cliqIdTypeSelectionValidationUseCase;
 
-  ///controllers and keys
-  final TextEditingController aliasController = TextEditingController();
-  final GlobalKey<AppTextFieldState> aliasKey = GlobalKey(debugLabel: "alias");
-
-  final TextEditingController cliqIdTypeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> clickIdTypeKey = GlobalKey(debugLabel: "clickIdType");
-
-  final TextEditingController mobileNumberController = TextEditingController();
-  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
-
-  ///click id type selection
-  PublishSubject<CliqIdTypeSelectionUseCaseParams> _cliqIdTypeSelectionRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _cliqIdTypeSelectionResponse = PublishSubject();
-
-  Stream<Resource<bool>> get cliqIdTypeSelectionResponseStream => _cliqIdTypeSelectionResponse.stream;
-
-  /// button subject
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get showButtonStream => _showButtonSubject.stream;
-
-  ///cliq id type
-  BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
-
-  Stream<CliqIdTypeEnum> get cliqIdTypeStream => _cliqIdTypeSubject.stream;
-
-  CliqIdTypeSelectionPageViewModel(this._cliqIdTypeSelectionnUseCase) {
-    _cliqIdTypeSelectionRequest.listen((value) {
-      RequestManager(value, createCall: () => _cliqIdTypeSelectionnUseCase.execute(params: value))
+  CliqIdTypeSelectionPageViewModel(
+      this._cliqIdTypeSelectionValidationUseCase, this._allowedCodeCountryListUseCase) {
+    ///validation request
+    _cliqIdTypeSelectionValidationRequest.listen((value) {
+      RequestManager(value, createCall: () => _cliqIdTypeSelectionValidationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
-        _cliqIdTypeSelectionResponse.safeAdd(event);
+        _cliqIdTypeSelectionValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -54,10 +32,35 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getAllowedCountryRequest.listen((value) {
+      RequestManager(value, createCall: () => _allowedCodeCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAllowedCountryResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          countryData = event.data!.contentData!.countryData!.firstWhere(
+              (element) => element.isoCode3 == 'JOR',
+              orElse: () => event.data!.contentData!.countryData!.first);
+          setSelectedCountry(countryData);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
+        }
+      });
+    });
+
+    getAllowedCountryCode();
+  }
+
+  /// get allowed country code
+  void getAllowedCountryCode() {
+    _getAllowedCountryRequest.safeAdd(GetAllowedCodeCountryListUseCaseParams());
   }
 
   void addIdNumberForResetPassword() {
-    _cliqIdTypeSelectionRequest.safeAdd(CliqIdTypeSelectionUseCaseParams(
+    _cliqIdTypeSelectionValidationRequest.safeAdd(CliqIdTypeSelectionValidationUseCaseParams(
         cliqIdType: cliqIdTypeController.text,
         alias: aliasController.text,
         cliqIdTypeEnum: _cliqIdTypeSubject.value,
@@ -80,6 +83,10 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
     }
   }
 
+  void setSelectedCountry(CountryData data) {
+    _selectedCountryResponse.safeAdd(data);
+  }
+
   void validate() {
     if (cliqIdTypeController.text.isNotEmpty &&
         _cliqIdTypeSubject.value == CliqIdTypeEnum.ALIAS &&
@@ -100,9 +107,57 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _cliqIdTypeSelectionRequest.close();
-    _cliqIdTypeSelectionResponse.close();
+    _cliqIdTypeSelectionValidationRequest.close();
+    _cliqIdTypeSelectionValidationResponse.close();
     _showButtonSubject.close();
     super.dispose();
   }
+
+  ///---------------------------------------variables--------------------------------------------------
+  CountryData countryData = CountryData();
+
+  ///controllers and keys
+  final TextEditingController aliasController = TextEditingController();
+  final GlobalKey<AppTextFieldState> aliasKey = GlobalKey(debugLabel: "alias");
+
+  final TextEditingController cliqIdTypeController = TextEditingController();
+  final GlobalKey<AppTextFieldState> clickIdTypeKey = GlobalKey(debugLabel: "clickIdType");
+
+  final TextEditingController mobileNumberController = TextEditingController();
+  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
+
+  ///validation request and response
+  PublishSubject<CliqIdTypeSelectionValidationUseCaseParams> _cliqIdTypeSelectionValidationRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _cliqIdTypeSelectionValidationResponse = PublishSubject();
+
+  Stream<Resource<bool>> get cliqIdTypeSelectionValidationStream =>
+      _cliqIdTypeSelectionValidationResponse.stream;
+
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
+  ///cliq id type
+  BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
+
+  Stream<CliqIdTypeEnum> get cliqIdTypeStream => _cliqIdTypeSubject.stream;
+
+  ///selected country response holder
+  BehaviorSubject<CountryData> _selectedCountryResponse = BehaviorSubject.seeded(CountryData());
+
+  ///get allowed code country response stream
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
+
+  ///get allowed code country request holder
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams> _getAllowedCountryRequest = PublishSubject();
+
+  ///get allowed code country response holder
+  PublishSubject<Resource<AllowedCountryListResponse>> _getAllowedCountryResponse = PublishSubject();
+
+  ///get allowed code country response stream
+  Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
+      _getAllowedCountryResponse.stream;
 }

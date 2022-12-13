@@ -620,7 +620,8 @@ class AppRouter {
 
       case RoutePaths.EditAlias:
         return CupertinoPageRoute(
-            builder: (context) => EditAliasPage(), settings: RouteSettings(name: RoutePaths.EditAlias));
+            builder: (context) => EditAliasPage(settings.arguments as EditAliasPageArguments),
+            settings: RouteSettings(name: RoutePaths.EditAlias));
 
       case RoutePaths.EditMobileNoCliq:
         return CupertinoPageRoute(
@@ -785,12 +786,14 @@ class AppRouter {
 
       case RoutePaths.EditCliqIDMobileNoPage:
         return CupertinoPageRoute(
-            builder: (context) => EditCliqIDMobileNoPage(),
+            builder: (context) =>
+                EditCliqIDMobileNoPage(settings.arguments as EditCliqIDMobileNoPageArguments),
             settings: RouteSettings(name: RoutePaths.EditCliqIDMobileNoPage));
 
       case RoutePaths.OtpForEditAliasAndMobileNoPage:
         return CupertinoPageRoute(
-            builder: (context) => OtpForEditAliasAndMobileNoPage(),
+            builder: (context) =>
+                OtpForEditAliasAndMobileNoPage(settings.arguments as OtpForEditAliasAndMobileNoPageArguments),
             settings: RouteSettings(name: RoutePaths.OtpForEditAliasAndMobileNoPage));
 
       case RoutePaths.QRScanningScreen:

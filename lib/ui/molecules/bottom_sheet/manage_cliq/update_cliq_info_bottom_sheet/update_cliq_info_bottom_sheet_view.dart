@@ -32,11 +32,11 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
       _UpdateCliqInfoBottomSheetViewState(cliqAliasIdStatusEnum);
 }
 
-class _UpdateCliqInfoBottomSheetViewState
-    extends State<UpdateCliqInfoBottomSheetView> {
+class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomSheetView> {
   final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
 
   _UpdateCliqInfoBottomSheetViewState(this.cliqAliasIdStatusEnum);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
