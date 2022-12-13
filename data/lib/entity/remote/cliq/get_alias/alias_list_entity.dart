@@ -1,12 +1,13 @@
 import 'package:data/entity/remote/cliq/get_alias/account_list_entity.dart';
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
+import 'package:domain/model/cliq/getAlias/alias_list.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/cliq/getAlias/alias_list.dart';
+import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 part 'alias_list_entity.g.dart';
 
 @JsonSerializable()
-class AliasListEntity
-    extends BaseLayerDataTransformer<AliasListEntity, AliasList> {
+class AliasListEntity extends BaseLayerDataTransformer<AliasListEntity, AliasList> {
   @JsonKey(
     name: "aliasID",
     defaultValue: "",
@@ -40,8 +41,8 @@ class AliasListEntity
     required this.status,
     required this.accounts,
   });
-  factory AliasListEntity.fromJson(Map<String, dynamic> json) =>
-      _$AliasListEntityFromJson(json);
+
+  factory AliasListEntity.fromJson(Map<String, dynamic> json) => _$AliasListEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AliasListEntityToJson(this);
   @override
@@ -53,11 +54,10 @@ class AliasListEntity
   @override
   AliasList transform() {
     return AliasList(
-        accounts:
-            this.accounts?.map((e) => e.transform()).toList() ?? List.empty(),
+        accounts: this.accounts?.map((e) => e.transform()).toList() ?? List.empty(),
         aliasID: this.aliasID,
         aliasName: this.aliasName,
-        aliasType: this.aliasType,
-        status: this.status);
+        aliasType: this.aliasType?.fromCliqAliasType(),
+        status: this.status?.fromCliqAliasIdStatus());
   }
 }

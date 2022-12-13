@@ -11,17 +11,21 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'edit_alias_page.dart';
+
 class EditAliasPageViewModel extends BasePageViewModel {
   final EditAliasValidationUseCase _editAliasValidationUseCase;
   final EditCliqOtpUseCase _editCliqOtpUseCase;
+  final EditAliasPageArguments arguments;
 
-  EditAliasPageViewModel(this._editAliasValidationUseCase, this._editCliqOtpUseCase) {
+  EditAliasPageViewModel(this._editAliasValidationUseCase, this._editCliqOtpUseCase, this.arguments) {
+    aliasController.text = arguments.aliasName;
+
     /// validation request
     _editAliasValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _editAliasValidationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
         _editAliasValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -117,7 +121,7 @@ class EditAliasPageViewModel extends BasePageViewModel {
 
   PublishSubject<Resource<EditCliqOtp>> _editCliqOtpResponse = PublishSubject();
 
-  Stream<Resource<EditCliqOtp>> get createCliqIdOtpStream => _editCliqOtpResponse.stream;
+  Stream<Resource<EditCliqOtp>> get editCliqIdOtpStream => _editCliqOtpResponse.stream;
 
   ///  terms and condition request stream
   BehaviorSubject<bool> _isSelectedRequest = BehaviorSubject.seeded(false);

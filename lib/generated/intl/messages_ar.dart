@@ -46,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "مقبولة عالمياً بدون رسوم مخفية"),
+        "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Activated Successfully"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "accountBalance": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
@@ -54,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "accountHolderName":
@@ -65,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountIsLinkedToTheAliasButUnableToSetItToDefault":
             MessageLookupByLibrary.simpleMessage(
                 "Account is linked to the alias, but unable to set it to default"),
+        "accountLinkedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Account Linked Successfully"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
@@ -89,10 +95,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الحساب"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "احكيلنا ليش بدك تفتح الحساب؟"),
+        "accountSuccessfullyLinked": MessageLookupByLibrary.simpleMessage(
+            "Account is successfully linked with CliQ ID"),
+        "accountSuccessfullyUnlinked": MessageLookupByLibrary.simpleMessage(
+            "Account successfully unlinked"),
+        "accountSuspendedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Suspended Successfully"),
+        "accountUnlinkedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Account Unlinked from CliqID Successfully"),
         "acknowledgeBeforeFreezingCard":
             MessageLookupByLibrary.simpleMessage("عن تجميد بطاقتك"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "الخدمات الي جنبها 🔴  رح تتوفر قريباً"),
+        "activateId": MessageLookupByLibrary.simpleMessage("ActivateId"),
         "activatingCreditCard":
             MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
@@ -222,6 +237,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "إنت أو أي حدا من أقارب الدرجة الأولى عندكم علاقة بأحد السياسيين PEP؟"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
+        "areYouSureToSuspandCliqId": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to suspend your CliQ ID?"),
+        "areYouSureToUnlinkAccount": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to unlink the account with your CliQ ID?"),
+        "areYouSureWantToDelete": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete "),
         "areYouSureYouEnteredYour":
             MessageLookupByLibrary.simpleMessage("متأكد من إنك أدخلت"),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
@@ -477,6 +498,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "confirmDelete":
+            MessageLookupByLibrary.simpleMessage("Confirm Delete?"),
         "confirmDeliveryError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "confirmDetailsConfirmation": MessageLookupByLibrary.simpleMessage(
@@ -1082,6 +1105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
         "fromS": MessageLookupByLibrary.simpleMessage("من "),
+        "fromYourCliqIdList":
+            MessageLookupByLibrary.simpleMessage(" from your CliQ ID list?"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderHint": MessageLookupByLibrary.simpleMessage("أدخل الجنس"),
@@ -1161,12 +1186,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "getYourBlinkAccountTodayBlinkNow":
+            MessageLookupByLibrary.simpleMessage(
+                "Get your blink account today. Blink now!"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "للاستمرار، لازم يكون العمر أكبر من 18 سنة."),
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "helloE": MessageLookupByLibrary.simpleMessage("مرحبا!"),
+        "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
+            "Hello! Here’s my blink CliQ details:"),
         "highInterestFeesAndCharges":
             MessageLookupByLibrary.simpleMessage("فوائد ورسوم وتكاليف مرتفعة"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
@@ -1941,6 +1971,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "رمز الاستجابة فعال لمدة 30 دقيقة"),
         "quietSurrounding": MessageLookupByLibrary.simpleMessage(
             "يا ريت تكون بمكان هادي وفيه خصوصية"),
+        "reactivateCliqId":
+            MessageLookupByLibrary.simpleMessage("Reactivate CliQ ID"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
         "reasonOfUnavailability":
@@ -2252,6 +2284,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-308) "),
         "supplementaryDebitcardSuccessDesc": MessageLookupByLibrary.simpleMessage(
             "رح يتواصلوا معك من أرامكس قريباً، حالياً بتقدر تستخدم بطاقتك الافتراضية فوراً."),
+        "suspandClidId":
+            MessageLookupByLibrary.simpleMessage("Suspend CliQ ID"),
         "suspendId": MessageLookupByLibrary.simpleMessage("حساب موقوف"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("اسحب الشاشة لتحت للإلغاء"),
@@ -2389,6 +2423,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "لقد تم ايقاف الرمز السري للبطاقة لإحتياطات أمنية. للاستمرار باستخدام الرمز السري لاجراء عمليات الشراء يرجى القيام باعادة تفعيل الرمز السري. عند اعادة تفعيل الرمز السري، قد يتم رفض أول عملية باستخدامه."),
+        "unLinkAccountWithCliqId":
+            MessageLookupByLibrary.simpleMessage("Unlink account with CliQ ID"),
         "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
             "خطأ! الحركة غير ممكنة حالياً."),
         "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(

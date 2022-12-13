@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -9,17 +10,33 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   final Function()? onSuspendId;
   final Function()? onDeleteId;
   final Function()? onCancel;
+  final Function()? onActivateId;
   final String? title;
 
+  final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
+
   const UpdateCliqInfoBottomSheetView(
-      {Key? key, this.onEditId, this.onShareId, this.onSuspendId, this.onDeleteId, this.onCancel, this.title})
+      {Key? key,
+      this.onEditId,
+      this.onShareId,
+      this.onSuspendId,
+      this.onDeleteId,
+      this.onCancel,
+      this.title,
+      this.cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
+      this.onActivateId})
       : super(key: key);
 
   @override
-  _UpdateCliqInfoBottomSheetViewState createState() => _UpdateCliqInfoBottomSheetViewState();
+  _UpdateCliqInfoBottomSheetViewState createState() =>
+      _UpdateCliqInfoBottomSheetViewState(cliqAliasIdStatusEnum);
 }
 
 class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomSheetView> {
+  final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
+
+  _UpdateCliqInfoBottomSheetViewState(this.cliqAliasIdStatusEnum);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
@@ -54,16 +71,33 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
             widget.onShareId?.call();
           },
         ),
-        CupertinoActionSheetAction(
-          child: Text(S.of(context).suspendId,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColor.pure_blue)),
-          onPressed: () {
-            widget.onSuspendId?.call();
-          },
+        Visibility(
+          visible: cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.ACTIVE,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).suspendId,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColor.pure_blue)),
+            onPressed: () {
+              widget.onSuspendId?.call();
+            },
+          ),
+        ),
+        Visibility(
+          visible: cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.SUSPEND,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).activateId,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColor.pure_blue)),
+            onPressed: () {
+              widget.onActivateId?.call();
+            },
+          ),
         ),
         CupertinoActionSheetAction(
           child: Text(S.of(context).deleteCliqId,

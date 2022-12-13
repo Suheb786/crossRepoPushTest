@@ -19,7 +19,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias();
+          ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
           Navigator.pop(context);
         }
       },

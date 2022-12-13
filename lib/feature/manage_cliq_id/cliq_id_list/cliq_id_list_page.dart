@@ -14,11 +14,6 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
 
 class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
-  ProviderBase provideBase() {
-    return cliqIdListViewModelProvider;
-  }
-
-  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85),
@@ -33,12 +28,25 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
           ),
           Text(
             S.of(context).manageCliqId,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).accentColor,
+            ),
           ),
           InkWell(
             onTap: () {
+              /*    CliqInformationDialog.show(context,
+                  image: AssetUtils.walletIcon,
+                  title: S.of(context).changeDefaultAccount,
+                  description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
+                  subDescription: S.of(context).whenAcceptingCreationOfYourCliqId, onSelected: () {
+                Navigator.pop(context);
+              }, onDismissed: () {
+                Navigator.pop(context);
+              });*/
+
               Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-              //  Navigator.pushNamed(context, RoutePaths.EditAlias);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(end: 24.0),
@@ -51,23 +59,28 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
   }
 
   @override
-  bool extendBodyBehindAppBar() {
-    return false;
-  }
-
-  @override
-  Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
-  }
-
-  @override
   Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
     return CliqIdListPageView(provideBase());
+  }
+
+  @override
+  bool extendBodyBehindAppBar() {
+    return false;
   }
 
   @override
   void onModelReady(CliqIdListPageViewModel model) {
     model.getAlias(true);
     super.onModelReady(model);
+  }
+
+  @override
+  ProviderBase provideBase() {
+    return cliqIdListViewModelProvider;
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
   }
 }

@@ -1,7 +1,8 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/change_default_account/change_default_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
@@ -14,12 +15,15 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_reques
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
 import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
 import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
+import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
@@ -37,10 +41,10 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   @override
   Future<HttpResponse<GetAliasResponseEntity>> getAlias({required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAlias(CliqGetAliasResponseEntity(baseData: baseData.toJson(), getToken: getToken));
+    return _apiService.getAlias(CliqGetAliasRequestEntity(baseData: baseData.toJson(), getToken: getToken));
   }
 
-  @override
+/*  @override
   Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
       {required String alias,
       required String mobileNo,
@@ -63,7 +67,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         cliqType: cliqType,
         getToken: getToken,
         baseClass: baseData.toJson()));
-  }
+  }*/
 
   @override
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
@@ -117,20 +121,11 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccount(
-      {required String linkType,
-      required String otpCode,
-      required String identifier,
-      required String aliasId,
-      required bool getToken}) async {
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount({required bool GetToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeDefaultAccount(ChangeDefaultAccountRequestEntity(
-        linkType: linkType,
-        otpCode: otpCode,
-        identifier: identifier,
-        aliasId: aliasId,
-        getToken: getToken,
-        baseClass: baseData.toJson()));
+    return _apiService.confirmChangeDefaultAccount(
+      BaseRequest(baseData: baseData.toJson()),
+    );
   }
 
   @override
@@ -400,5 +395,157 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         aliasValue: aliasValue,
         GetToken: getToken,
         baseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
+      {required String accountCode, required String CustID, required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCustomerByAccount(GetCustomByAccountRequestEntity(
+        accountCode: accountCode, CustID: CustID, GetToken: GetToken, BaseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
+      {required String type,
+      required String value,
+      required String Currency,
+      required String CustId,
+      required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCliqAccountByAlias(GetCliqAccountByAliasEntity(
+        type: type,
+        value: value,
+        Currency: Currency,
+        CustID: CustId,
+        GetToken: GetToken,
+        BaseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> requestToPayResult(
+      {required String CustID,
+      required String OrgnlMsgId,
+      required String RTPStatus,
+      required String RejectReason,
+      required String RejectADdInfo}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.requestToPayResult(RequestToPayResultRequestEntity(
+        CustID: CustID,
+        OrgnlMsgId: OrgnlMsgId,
+        RTPStatus: RTPStatus,
+        RejectReason: RejectReason,
+        RejectADdInfo: RejectADdInfo));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID({required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getAccountByCustomerID(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getAccountByCustomerID(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> approveRTPRequest(
+      {required String custID,
+      required String dbtrAcct,
+      required String dbtrName,
+      required String dbtrPstlAdr,
+      required String dbtrRecordID,
+      required String dbtrAlias,
+      required String currency,
+      required String amount,
+      required String cdtrBic,
+      required String cdtrName,
+      required String cdtrAcct,
+      required String cdtrPstlAdr,
+      required String cdtrRecordID,
+      required String cdtrAlias,
+      required String rgltryRptg,
+      required String payRefNo,
+      required String rejectReason,
+      required String rejectADdInfo,
+      required String rtpStatus,
+      required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.approveRTPRequest(ApproveRTPRequestReqestEntity(
+      custID: custID,
+      dbtrAcct: dbtrAcct,
+      dbtrName: dbtrName,
+      dbtrPstlAdr: dbtrPstlAdr,
+      dbtrRecordID: dbtrRecordID,
+      dbtrAlias: dbtrAlias,
+      currency: currency,
+      amount: amount,
+      cdtrBic: cdtrBic,
+      cdtrName: cdtrName,
+      cdtrAcct: cdtrAcct,
+      cdtrPstlAdr: cdtrPstlAdr,
+      cdtrRecordID: cdtrRecordID,
+      cdtrAlias: cdtrAlias,
+      rgltryRptg: rgltryRptg,
+      payRefNo: payRefNo,
+      rejectReason: rejectReason,
+      rejectADdInfo: rejectADdInfo,
+      rtpStatus: rtpStatus,
+      GetToken: GetToken,
+      BaseClass: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> submitOutwardPayment(
+      {required String custID,
+      required String dbtrAcct,
+      required String dbtrName,
+      required String dbtrPstlAdr,
+      required String dbtrRecordID,
+      required String dbtrAlias,
+      required String currency,
+      required String amount,
+      required String purposE_CODE,
+      required String cdtrBic,
+      required String cdtrName,
+      required String cdtrAcct,
+      required String cdtrPstlAdr,
+      required String cdtrRecordID,
+      required String cdtrAlias,
+      required String rgltryRptg,
+      required String CustIDTO,
+      required String DbtrIsIndvl,
+      required String CdtrIsIndvl,
+      required String RmtInf,
+      required String QRFlag,
+      required bool GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.submitOutwardPayment(SubmitOutwardPaymentRequestEntity(
+        custID,
+        dbtrAcct,
+        dbtrName,
+        dbtrPstlAdr,
+        dbtrRecordID,
+        dbtrAlias,
+        currency,
+        amount,
+        purposE_CODE,
+        cdtrBic,
+        cdtrName,
+        cdtrAcct,
+        cdtrPstlAdr,
+        cdtrRecordID,
+        cdtrAlias,
+        rgltryRptg,
+        CustIDTO,
+        DbtrIsIndvl,
+        CdtrIsIndvl,
+        RmtInf,
+        QRFlag,
+        GetToken,
+        baseData.toJson()));
   }
 }

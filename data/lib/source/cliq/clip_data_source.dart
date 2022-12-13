@@ -12,15 +12,11 @@ abstract class CliqDataSource {
   });
 
   Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
-      {required String alias,
-      required String mobileNo,
-      required String iban,
-      required String accountNo,
-      required String swiftCode,
-      required String bankCountry,
-      required String transferType,
-      required String cliqType,
-      required bool getToken});
+      {required String type,
+      required String value,
+      required String Currency,
+      required String CustId,
+      required bool GetToken});
 
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID({
     required String accountNumber,
@@ -46,12 +42,8 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccount({
-    required String linkType,
-    required String otpCode,
-    required String identifier,
-    required String aliasId,
-    required bool getToken,
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount({
+    required bool GetToken,
   });
 
   Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq({
@@ -197,4 +189,74 @@ abstract class CliqDataSource {
       required String TipOrConvenienceIndicator,
       dynamic valueOfPercentageConvenience,
       required bool getToken});
+
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount({
+    required String accountCode,
+    required String CustID,
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> requestToPayResult({
+    required String CustID,
+    required String OrgnlMsgId,
+    required String RTPStatus,
+    required String RejectReason,
+    required String RejectADdInfo,
+  });
+
+  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID({
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> approveRTPRequest({
+    required String custID,
+    required String dbtrAcct,
+    required String dbtrName,
+    required String dbtrPstlAdr,
+    required String dbtrRecordID,
+    required String dbtrAlias,
+    required String currency,
+    required String amount,
+    required String cdtrBic,
+    required String cdtrName,
+    required String cdtrAcct,
+    required String cdtrPstlAdr,
+    required String cdtrRecordID,
+    required String cdtrAlias,
+    required String rgltryRptg,
+    required String payRefNo,
+    required String rejectReason,
+    required String rejectADdInfo,
+    required String rtpStatus,
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> submitOutwardPayment({
+    required String custID,
+    required String dbtrAcct,
+    required String dbtrName,
+    required String dbtrPstlAdr,
+    required String dbtrRecordID,
+    required String dbtrAlias,
+    required String currency,
+    required String amount,
+    required String purposE_CODE,
+    required String cdtrBic,
+    required String cdtrName,
+    required String cdtrAcct,
+    required String cdtrPstlAdr,
+    required String cdtrRecordID,
+    required String cdtrAlias,
+    required String rgltryRptg,
+    required String CustIDTO,
+    required String DbtrIsIndvl,
+    required String CdtrIsIndvl,
+    required String RmtInf,
+    required String QRFlag,
+    required bool GetToken,
+  });
 }

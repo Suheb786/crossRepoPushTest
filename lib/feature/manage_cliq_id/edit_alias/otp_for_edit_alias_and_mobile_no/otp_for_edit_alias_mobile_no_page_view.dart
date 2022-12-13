@@ -70,7 +70,9 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             model.showSuccessToast(S.of(context).cliqIdUpdatedSuccessfully);
-                            ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias();
+                            ProviderScope.containerOf(context)
+                                .read(cliqIdListViewModelProvider)
+                                .getAlias(true);
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.CliqIdList));
                           }
                         },

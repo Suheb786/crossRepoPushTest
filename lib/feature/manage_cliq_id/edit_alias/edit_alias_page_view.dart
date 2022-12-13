@@ -66,14 +66,14 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                       curve: Curves.easeInOutSine,
                       child: AppStreamBuilder<Resource<EditCliqOtp>>(
                           initialData: Resource.none(),
-                          stream: model.createCliqIdOtpStream,
+                          stream: model.editCliqIdOtpStream,
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
                               if (data.data != null) {
                                 Navigator.pushNamed(context, RoutePaths.OtpForEditAliasAndMobileNoPage,
                                     arguments: OtpForEditAliasAndMobileNoPageArguments(
                                         data: data.data!,
-                                        aliasId: '77046',
+                                        aliasId: model.arguments.aliasID,
                                         aliasValue: model.aliasController.text,
                                         isAlias: true));
                               }
@@ -94,7 +94,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
 
                                     ///api call
                                     model.makeOtpRequest(
-                                        aliasId: '77046',
+                                        aliasId: model.arguments.aliasID,
                                         aliasValue: model.aliasController.text,
                                         isAlias: true);
                                   }

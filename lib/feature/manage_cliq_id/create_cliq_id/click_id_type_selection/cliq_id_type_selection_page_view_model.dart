@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
 import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_validation_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -9,11 +10,15 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
 
 class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
+  final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
   final CliqIdTypeSelectionValidationUseCase _cliqIdTypeSelectionValidationUseCase;
 
-  CliqIdTypeSelectionPageViewModel(this._cliqIdTypeSelectionValidationUseCase) {
+  CliqIdTypeSelectionPageViewModel(
+      this._cliqIdTypeSelectionValidationUseCase, this._allowedCodeCountryListUseCase) {
     ///validation request
     _cliqIdTypeSelectionValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _cliqIdTypeSelectionValidationUseCase.execute(params: value))
@@ -27,6 +32,31 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getAllowedCountryRequest.listen((value) {
+      RequestManager(value, createCall: () => _allowedCodeCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAllowedCountryResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          countryData = event.data!.contentData!.countryData!.firstWhere(
+              (element) => element.isoCode3 == 'JOR',
+              orElse: () => event.data!.contentData!.countryData!.first);
+          setSelectedCountry(countryData);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
+        }
+      });
+    });
+
+    getAllowedCountryCode();
+  }
+
+  /// get allowed country code
+  void getAllowedCountryCode() {
+    _getAllowedCountryRequest.safeAdd(GetAllowedCodeCountryListUseCaseParams());
   }
 
   void addIdNumberForResetPassword() {
@@ -51,6 +81,10 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
       default:
         break;
     }
+  }
+
+  void setSelectedCountry(CountryData data) {
+    _selectedCountryResponse.safeAdd(data);
   }
 
   void validate() {
@@ -80,6 +114,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   }
 
   ///---------------------------------------variables--------------------------------------------------
+  CountryData countryData = CountryData();
 
   ///controllers and keys
   final TextEditingController aliasController = TextEditingController();
@@ -109,4 +144,20 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
 
   Stream<CliqIdTypeEnum> get cliqIdTypeStream => _cliqIdTypeSubject.stream;
+
+  ///selected country response holder
+  BehaviorSubject<CountryData> _selectedCountryResponse = BehaviorSubject.seeded(CountryData());
+
+  ///get allowed code country response stream
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
+
+  ///get allowed code country request holder
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams> _getAllowedCountryRequest = PublishSubject();
+
+  ///get allowed code country response holder
+  PublishSubject<Resource<AllowedCountryListResponse>> _getAllowedCountryResponse = PublishSubject();
+
+  ///get allowed code country response stream
+  Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
+      _getAllowedCountryResponse.stream;
 }
