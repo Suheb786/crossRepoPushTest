@@ -60,8 +60,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                           borderRadius:
                               BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                       child: Padding(
-                          padding: EdgeInsetsDirectional.only(
-                              end: 24.0.w, start: 24.0.w, top: 8.0.h, bottom: 56.h),
+                          padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 56.h),
                           child: Column(
                             children: [
                               Container(
@@ -70,25 +69,29 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                   decoration: BoxDecoration(
                                       color: AppColor.whiteGrey,
                                       borderRadius: BorderRadius.all(Radius.circular(4.0)))),
-                              SizedBox(
-                                height: 24.0.h,
-                              ),
-                              AppTextField(
-                                labelText: '',
-                                hintText: S.of(context).searchBill,
-                                controller: model.searchBillController,
-                                readOnly: false,
-                                onPressed: () {},
-                                onChanged: (val) {
-                                  model.searchPostPaidBillerList(val);
-                                },
-                                suffixIcon: (value, data) {
-                                  return Container(
-                                      height: 16.h,
-                                      width: 16.w,
-                                      padding: EdgeInsetsDirectional.only(end: 8.w),
-                                      child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
-                                },
+                              SizedBox(height: 24.0.h),
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                  end: 24.0.w,
+                                  start: 24.0.w,
+                                ),
+                                child: AppTextField(
+                                  labelText: '',
+                                  hintText: S.of(context).searchBill,
+                                  controller: model.searchBillController,
+                                  readOnly: false,
+                                  onPressed: () {},
+                                  onChanged: (val) {
+                                    model.searchPostPaidBillerList(val);
+                                  },
+                                  suffixIcon: (value, data) {
+                                    return Container(
+                                        height: 16.h,
+                                        width: 16.w,
+                                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                                        child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
+                                  },
+                                ),
                               ),
                               Expanded(
                                 child: Padding(
@@ -109,8 +112,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   children: [
                                                     SlidableAction(
                                                       // An action can be bigger than the others.
-                                                      onPressed: (context1) =>
-                                                      {
+                                                      onPressed: (context1) => {
                                                         InformationDialog.show(context,
                                                             image: AssetUtils.deleteBlackIcon,
                                                             isSwipeToCancel: false,

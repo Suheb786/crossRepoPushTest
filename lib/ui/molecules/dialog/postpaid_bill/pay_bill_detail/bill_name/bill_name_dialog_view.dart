@@ -166,7 +166,7 @@ class PayBillDialogView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: Container(
-                  height: 64.h,
+                  height: 70.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
@@ -178,7 +178,7 @@ class PayBillDialogView extends StatelessWidget {
                 key: ValueKey(billList.length),
                 child: ClickableListWheelScrollView(
                   scrollController: model.scrollController,
-                  itemHeight: 75,
+                  itemHeight: 78,
                   itemCount: billList.length,
                   //   itemCount: data.data!.length,
                   onItemTapCallback: (index) {
@@ -186,7 +186,7 @@ class PayBillDialogView extends StatelessWidget {
                   },
                   child: ListWheelScrollView.useDelegate(
                       controller: model.scrollController,
-                      itemExtent: 75,
+                      itemExtent: 78,
                       onSelectedItemChanged: (int index) {
                         model.currentIndexUpdate(index);
                       },
@@ -209,8 +209,7 @@ class PayBillDialogView extends StatelessWidget {
                                 children: <Widget>[
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0.w),
+                                      padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                       child: Text(
                                         billList[index].billerNameEn!,
                                         //  data.data![index],

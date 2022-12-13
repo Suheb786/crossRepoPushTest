@@ -1112,7 +1112,7 @@ class ErrorParser {
       case ErrorType.NO_PREPAID_CATEGORY_FOUND:
         return localisedHelper.noPrepaidCategoryFound;
       case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
-        return localisedHelper.insufficientFundsBillCannotBePayed;
+        return localisedHelper.insufficientFundsBillCannotBePaid;
 
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;

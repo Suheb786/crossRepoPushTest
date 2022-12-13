@@ -60,7 +60,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                     alignment: Alignment.center,
                     children: [
                       Image.asset(
-                        AssetUtils.line,
+                        AssetUtils.line_gray,
                         color: AppColor.veryDarkGray1,
                       ),
                       Align(
@@ -94,7 +94,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                         fontSize: 32.0.t),
                   ),
                   TextSpan(
-                    text: S.of(context).JOD,
+                    text: '  ${S.of(context).JOD}',
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: AppColor.gray5,

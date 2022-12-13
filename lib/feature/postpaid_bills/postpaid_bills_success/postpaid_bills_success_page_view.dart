@@ -49,7 +49,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    AssetUtils.line,
+                    AssetUtils.line_gray,
                     color: AppColor.veryDarkGray1,
                   ),
                   Align(
@@ -83,7 +83,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     fontSize: 32.0.t),
               ),
               TextSpan(
-                text: S.of(context).JOD,
+                text: '  ${S.of(context).JOD}',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.gray5,

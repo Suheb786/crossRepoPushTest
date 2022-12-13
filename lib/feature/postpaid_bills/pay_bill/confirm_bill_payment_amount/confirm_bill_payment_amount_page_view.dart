@@ -259,10 +259,12 @@ class ConfirmBillPaymentAmountPageView
                 height: 24.0.h,
               ),
               Container(
-                color: AppColor.white_gray,
+                decoration: BoxDecoration(
+                    color: AppColor.white_gray,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 16.0.h, horizontal: 16.0.w),
+                  padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.w),
                   child: Row(
                     children: [
                       _iconWidget(model, context),
@@ -324,13 +326,16 @@ class ConfirmBillPaymentAmountPageView
               overflow: TextOverflow.ellipsis,
               fontSize: 24.0.t),
         ),
-        Text(
-          S.of(context).JOD,
-          style: TextStyle(
-            fontFamily: StringUtils.appFont,
-            color: AppColor.verLightGray4,
-            fontSize: 14.0.t,
-            fontWeight: FontWeight.w700,
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 4.0.w),
+          child: Text(
+            S.of(context).JOD,
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.verLightGray4,
+              fontSize: 14.0.t,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],
@@ -446,45 +451,48 @@ class ConfirmBillPaymentAmountPageView
 
   _billDetailsWidget(
       ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          model.addNewBillDetailsData.nickName ?? "",
-          style: TextStyle(
-            fontFamily: StringUtils.appFont,
-            color: AppColor.veryDarkGray2,
-            fontSize: 12.0.t,
-            fontWeight: FontWeight.w600,
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            model.addNewBillDetailsData.nickName ?? "",
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.veryDarkGray2,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        Text(
-          model.addNewBillDetailsData.billerName ?? '',
-          style: TextStyle(
-            fontFamily: StringUtils.appFont,
-            color: AppColor.very_dark_gray_black,
-            fontSize: 12.0.t,
-            fontWeight: FontWeight.w400,
+          Text(
+            model.addNewBillDetailsData.billerName ?? '',
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.very_dark_gray_black,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-        Text(
-          model.addNewBillDetailsData.service ?? "",
-          style: TextStyle(
-            fontFamily: StringUtils.appFont,
-            color: AppColor.veryDarkGray2,
-            fontSize: 12.0.t,
-            fontWeight: FontWeight.w400,
+          Text(
+            model.addNewBillDetailsData.service ?? "",
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.veryDarkGray2,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-        Text(
-          model.addNewBillDetailsData.refNo ?? "",
-          style: TextStyle(
-            fontFamily: StringUtils.appFont,
-            color: AppColor.veryDarkGray2,
-            fontSize: 12.0.t,
-            fontWeight: FontWeight.w400,
+          Text(
+            model.addNewBillDetailsData.refNo ?? "",
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              color: AppColor.veryDarkGray2,
+              fontSize: 12.0.t,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

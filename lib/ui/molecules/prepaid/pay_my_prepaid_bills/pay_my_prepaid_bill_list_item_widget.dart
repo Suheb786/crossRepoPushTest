@@ -21,7 +21,7 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 0.0.w),
+      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
         children: [
           Container(

@@ -1497,7 +1497,7 @@
   "errorOnBillinquiry": "error on billinquiry",
   "errorWhileAddingCustomer": "error while adding customer",
   "payMyBill": "Pay My Bill",
-  "insufficientFundsBillCannotBePayed": "Insufficient funds bill cannot be payed",
+  "insufficientFundsBillCannotBePaid": "Insufficient funds bill cannot be paid",
   "yourBillHasBeenRemoved": "BILL UPDATED\nYour bill has been removed.",
   "billerAddedSuccessfully": "BILL UPDATED\nBiller Added Successfully.",
   "SearchCategory": "Search category"

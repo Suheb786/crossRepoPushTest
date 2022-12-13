@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14750,11 +14751,11 @@ class S {
     );
   }
 
-  /// `Insufficient funds bill cannot be payed`
-  String get insufficientFundsBillCannotBePayed {
+  /// `Insufficient funds bill cannot be paid`
+  String get insufficientFundsBillCannotBePaid {
     return Intl.message(
-      'Insufficient funds bill cannot be payed',
-      name: 'insufficientFundsBillCannotBePayed',
+      'Insufficient funds bill cannot be paid',
+      name: 'insufficientFundsBillCannotBePaid',
       desc: '',
       args: [],
     );

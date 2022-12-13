@@ -188,6 +188,7 @@ class AssetUtils {
   static const String blink = drawable + "blink.png";
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
+  static const String line_gray = drawable + "line_gray.png";
   static const String line_black_white = drawable + "line_black_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";

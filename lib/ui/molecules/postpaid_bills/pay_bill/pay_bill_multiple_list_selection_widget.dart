@@ -30,7 +30,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 0.0.w),
+      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
         children: [
 /*          Container(
@@ -80,8 +80,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 12.0.t),
               ),
-              this.paidBillsPayTypeOptionEnum ==
-                      PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+              this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                   ? RichText(
                       text: TextSpan(
                           text: S.of(context).due + " ",
@@ -141,8 +140,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   height: 40.h,
                   width: 40.w,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
+                    padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
                     child: AppSvg.asset(AssetUtils.tick, color: AppColor.black),
                   ),
                   decoration: BoxDecoration(

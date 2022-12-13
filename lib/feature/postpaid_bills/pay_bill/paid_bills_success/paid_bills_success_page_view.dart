@@ -17,8 +17,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
-class PaidBillsSuccessPageView
-    extends BasePageViewWidget<PaidBillsSuccessPageViewModel> {
+class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageViewModel> {
   PaidBillsSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -39,12 +38,16 @@ class PaidBillsSuccessPageView
               if (StringUtils.isDirectionRTL(context)) {
                 if (!details.primaryVelocity!.isNegative) {
                   Navigator.of(context)
-                    ..pop()..pop()..pop();
+                    ..pop()
+                    ..pop()
+                    ..pop();
                 }
               } else {
                 if (details.primaryVelocity!.isNegative) {
                   Navigator.of(context)
-                    ..pop()..pop()..pop();
+                    ..pop()
+                    ..pop()
+                    ..pop();
                 }
               }
             },
@@ -60,7 +63,7 @@ class PaidBillsSuccessPageView
                       alignment: Alignment.center,
                       children: [
                         Image.asset(
-                          AssetUtils.line,
+                          AssetUtils.line_gray,
                           color: AppColor.veryDarkGray1,
                         ),
                         Align(
@@ -86,8 +89,7 @@ class PaidBillsSuccessPageView
                   RichText(
                       text: TextSpan(children: [
                     TextSpan(
-                      text:
-                          '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
+                      text: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.white,
@@ -95,7 +97,7 @@ class PaidBillsSuccessPageView
                           fontSize: 32.0.t),
                     ),
                     TextSpan(
-                      text: S.of(context).JOD,
+                      text: '  ${S.of(context).JOD}',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.gray5,
@@ -140,13 +142,10 @@ class PaidBillsSuccessPageView
                               )
                             ],
                           ),
-                          model.arguments!.nickName.isNotEmpty
-                              ? SizedBox(height: 16.h)
-                              : Container(),
+                          model.arguments!.nickName.isNotEmpty ? SizedBox(height: 16.h) : Container(),
                           model.arguments!.nickName.isNotEmpty
                               ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       S.of(context).nickName,
@@ -264,15 +263,13 @@ class PaidBillsSuccessPageView
         });
   }
 
-  void _shareDetails(
-      BuildContext context, PaidBillsSuccessPageViewModel model) {
+  void _shareDetails(BuildContext context, PaidBillsSuccessPageViewModel model) {
     Share.share(
       ShareInfo.newPostPaidSuccess(
         context,
         refNo: model.arguments?.refNo ?? "",
         billerName: model.arguments?.billName ?? "",
-        amount:
-            '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
+        amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,
       ),
       subject: S.of(context).billDetails,

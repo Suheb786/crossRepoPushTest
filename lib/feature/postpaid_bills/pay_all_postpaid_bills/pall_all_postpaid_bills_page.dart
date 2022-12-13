@@ -49,24 +49,10 @@ class PayAllPostPaidBillsPageState
               },
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                child: Visibility(
-                  visible: widget.arguments.paidBillsPayTypeOptionEnum ==
-                          PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                      ? true
-                      : false,
-                  child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true, color: Theme.of(context).accentColor),
-                ),
+                child: AppSvg.asset(AssetUtils.leftArrow,
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
-            widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                ? Container()
-                : Padding(
-                    padding: EdgeInsetsDirectional.only(end: 18.0.w),
-                    child: Container(
-                      width: 28.w,
-                    ),
-                  ),
             Expanded(
               child: Text(
                 widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS

@@ -85,8 +85,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(
-                              start: 24.0.w, end: 24.0.w, top: 8.0.h, bottom: 56.h),
+                          padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 56.h),
                           child: Column(
                             children: [
                               Container(
@@ -135,8 +134,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                                   children: [
                                                     SlidableAction(
                                                       // An action can be bigger than the others.
-                                                      onPressed: (context1) =>
-                                                      {
+                                                      onPressed: (context1) => {
                                                         InformationDialog.show(context,
                                                             image: AssetUtils.deleteBlackIcon,
                                                             isSwipeToCancel: false,
