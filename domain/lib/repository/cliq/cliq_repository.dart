@@ -5,6 +5,7 @@ import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 
 abstract class CliqRepository {
   Future<Either<NetworkError, GetAlias>> getAlias({
@@ -70,7 +71,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> requestMoneyActivity({
+  Future<Either<NetworkError, RequestMoneyActivity>> requestMoneyActivity({
     required bool getToken,
   });
 

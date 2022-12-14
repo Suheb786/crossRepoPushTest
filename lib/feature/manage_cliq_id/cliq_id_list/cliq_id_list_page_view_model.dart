@@ -211,7 +211,7 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     required bool isAlias,
     required String aliasValue,
   }) {
-    _unlinkCliqIdRequest.safeAdd(
+    _linkCliqIdRequest.safeAdd(
         AddLinkAccountUseCaseParams(aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
   }
 

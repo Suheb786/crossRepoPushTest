@@ -3,6 +3,7 @@ import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_re
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/request_money_activity/response/request_money_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
 
@@ -69,7 +70,8 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> requestMoneyActivity({
+  Future<HttpResponse<RequestMoneyActivityResponseEntity>>
+      requestMoneyActivity({
     required bool getToken,
   });
 
