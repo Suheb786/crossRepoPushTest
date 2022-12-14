@@ -105,6 +105,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   decimal: true,
                                 ),
                                 controller: model.amtController,
+                                readOnly: true,
                                 textAlign: TextAlign.center,
                                 onChanged: (value) {},
                                 decoration: InputDecoration(
@@ -126,17 +127,17 @@ class HowMuchLikeToPayPrePaidBillsPageView
                               ),
                             ],
                           ),
-                    model.isPrepaidCategoryListEmpty == true
-                        ? Container()
-                        : Text(
-                            S.of(context).tapAmtToEdit,
-                            style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 12.0.t,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.gray5,
-                            ),
-                          ),
+                    // model.isPrepaidCategoryListEmpty == true
+                    //     ? Container()
+                    //     : Text(
+                    //         S.of(context).tapAmtToEdit,
+                    //         style: TextStyle(
+                    //           fontFamily: StringUtils.appFont,
+                    //           fontSize: 12.0.t,
+                    //           fontWeight: FontWeight.w600,
+                    //           color: AppColor.gray5,
+                    //         ),
+                    //       ),
                     model.isPrepaidCategoryListEmpty == false
                         ? Container()
                         : Text(
