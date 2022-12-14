@@ -9,11 +9,11 @@ part of 'get_prepaid_biller_list_entity_data.dart';
 GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
     Map<String, dynamic> json) {
   return GetPrepaidBillerListEntityData(
-    billingNumber: json['billingNumber'] as String?,
+    billingNumber: json['billingNo'] as String?,
     billerCode: json['billerCode'] as String?,
     billerName: json['billerName'] as String?,
-    nickname: json['nickname'] as String?,
-    registrationId: json['registrationId'] as String?,
+    nickname: json['nickName'] as String?,
+    registrationId: json['registrationID'] as String?,
     prepaidCategoryDescription: json['prepaidCategoryDescription'] as String?,
     prepaidCategoryCode: json['prepaidCategoryCode'] as String?,
     customerType: json['customerType'] as String?,
@@ -28,11 +28,11 @@ GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
 Map<String, dynamic> _$GetPrepaidBillerListEntityDataToJson(
         GetPrepaidBillerListEntityData instance) =>
     <String, dynamic>{
-      'billingNumber': instance.billingNumber,
+      'billingNo': instance.billingNumber,
       'billerCode': instance.billerCode,
       'billerName': instance.billerName,
-      'nickname': instance.nickname,
-      'registrationId': instance.registrationId,
+      'nickName': instance.nickname,
+      'registrationID': instance.registrationId,
       'prepaidCategoryDescription': instance.prepaidCategoryDescription,
       'prepaidCategoryCode': instance.prepaidCategoryCode,
       'customerType': instance.customerType,

@@ -148,8 +148,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   biller:
                                                       model.payPostPaidBillsDataList[index].billerNameEN ??
                                                           "",
-                                                  billAmtDue: model.payPostPaidBillsDataList[index].dueAmount
-                                                      .toString(),
+                                                  billAmtDue: double.parse(
+                                                          model.payPostPaidBillsDataList[index].dueAmount ??
+                                                              "0")
+                                                      .toStringAsFixed(3),
                                                   isSelected:
                                                       model.payPostPaidBillsDataList[index].isChecked ??
                                                           false,

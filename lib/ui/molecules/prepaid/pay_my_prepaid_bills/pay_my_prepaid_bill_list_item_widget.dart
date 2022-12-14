@@ -8,13 +8,13 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
   final String icon;
-  final String billType;
+  final String nickname;
   final String billName;
 
   const PayMyPrepPaidBillListItemWidget({
     Key? key,
     required this.icon,
-    required this.billType,
+    required this.nickname,
     required this.billName,
   }) : super(key: key);
 
@@ -41,7 +41,7 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                billType,
+                nickname,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,

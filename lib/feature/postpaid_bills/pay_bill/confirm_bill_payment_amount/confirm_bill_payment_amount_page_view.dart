@@ -99,17 +99,11 @@ class ConfirmBillPaymentAmountPageView
                           onData: (value) {
                             if (value.status == Status.SUCCESS) {
                               model.amtController.text =
-                                  value.data?.content?.dueAmount ?? "0";
-                              model.otpCode =
-                                  value.data?.content?.validationCode ?? "";
-                              model.isNewBiller =
-                                  value.data?.content?.validationCode == ""
-                                      ? false
-                                      : true;
+                                  double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
+                              model.otpCode = value.data?.content?.validationCode ?? "";
+                              model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
                               if (AppConstantsUtils.PRE_PAID_FLOW == true) {
-                                if (model.addNewBillDetailsData
-                                        .isPrepaidCategoryListEmpty ==
-                                    true) {
+                                if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
                                   model.payPrePaidBill();
                                 } else {
                                   model.validate(model.amtController.text);

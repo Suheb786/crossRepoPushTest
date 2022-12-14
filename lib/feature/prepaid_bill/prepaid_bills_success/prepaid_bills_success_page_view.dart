@@ -86,7 +86,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                    text: model.arguments.paidBillContent.paidBill?[0].totalAmount,
+                    text: double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount ?? "0")
+                        .toStringAsFixed(3),
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: AppColor.white,
@@ -267,7 +268,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
         refNo: model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
         billerName: model.arguments.paidBillContent.paidBill?[0].billName ?? "",
         amount:
-            '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount).toStringAsFixed(3)}',
+            '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.IS_NEW_PAYMENT ? AppConstantsUtils.NICK_NAME : "",
       ),
       subject: S.of(context).billDetails,

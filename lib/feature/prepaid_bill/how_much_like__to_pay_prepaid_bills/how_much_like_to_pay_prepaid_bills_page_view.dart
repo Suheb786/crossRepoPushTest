@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
@@ -30,8 +32,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
   HowMuchLikeToPayPrePaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, HowMuchLikeToPayPrePaidBillsPageViewModel model) {
+  Widget build(BuildContext context, HowMuchLikeToPayPrePaidBillsPageViewModel model) {
     return AppStreamBuilder<Resource<ValidatePrePaidBill>>(
       initialData: Resource.none(),
       stream: model.validatePrePaidStream,
@@ -56,8 +57,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
           onData: (value) {
             if (value.status == Status.SUCCESS) {
               Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
-                  arguments: PrePaidBillsSuccessPageArguments(
-                      value.data!.content ?? PaidBillContent()));
+                  arguments: PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+            } else {
+              model.showToastWithError(value.appError!);
             }
           },
           dataBuilder: (context, snapshot) {
@@ -77,33 +79,94 @@ class HowMuchLikeToPayPrePaidBillsPageView
                 padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w, top: 96.h, bottom: 56.h),
                 child: Column(
                   children: [
-                    Text(
-                      S.of(context).payBill.toUpperCase(),
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 10.0.t,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.white,
-                      ),
-                    ),
-                    Text(
-                      S.of(context).howMuchWouldYouLikeToPay,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontSize: 20.0.t,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.white,
-                      ),
-                    ),
+                    model.isPrepaidCategoryListEmpty == true
+                        ? Container()
+                        : Text(
+                            S.of(context).paying,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 20.0.t,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.white,
+                            ),
+                          ),
+                    model.isPrepaidCategoryListEmpty == true
+                        ? Container()
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AutoSizeTextField(
+                                wrapWords: false,
+                                fullwidth: false,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+                                ],
+                                keyboardType: TextInputType.numberWithOptions(
+                                  decimal: true,
+                                ),
+                                controller: model.amtController,
+                                textAlign: TextAlign.center,
+                                onChanged: (value) {},
+                                decoration: InputDecoration(
+                                    isDense: true, contentPadding: const EdgeInsetsDirectional.all(0.0)),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.white,
+                                    fontWeight: FontWeight.w700,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 28.0.t),
+                              ),
+                              Text(
+                                S.of(context).JOD,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.gray5,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14.0.t),
+                              ),
+                            ],
+                          ),
+                    model.isPrepaidCategoryListEmpty == true
+                        ? Container()
+                        : Text(
+                            S.of(context).tapAmtToEdit,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12.0.t,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.gray5,
+                            ),
+                          ),
+                    model.isPrepaidCategoryListEmpty == false
+                        ? Container()
+                        : Text(
+                            S.of(context).payBill.toUpperCase(),
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 10.0.t,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.white,
+                            ),
+                          ),
+                    model.isPrepaidCategoryListEmpty == false
+                        ? Container()
+                        : Text(
+                            S.of(context).howMuchWouldYouLikeToPay,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 20.0.t,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.white,
+                            ),
+                          ),
                     SizedBox(
                       height: 32.h,
                     ),
                     Expanded(
                       child: Card(
                           child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 24.0.h, horizontal: 24.h),
+                        padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.h),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -112,8 +175,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
-                                  itemCount: model.argument
-                                      .payMyPrePaidBillsPageDataList.length,
+                                  itemCount: model.argument.payMyPrePaidBillsPageDataList.length,
                                   itemBuilder: (context, index) {
                                     return Row(
                                       children: [
@@ -124,14 +186,12 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                             color: AppColor.black,
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16.0.w,
-                                                vertical: 16.0.h),
+                                            padding:
+                                                EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
                                             child: Text(
                                               (index + 1).toString(),
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.white,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 12.0.t),
@@ -142,33 +202,24 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                           width: 8.w,
                                         ),
                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              model
-                                                      .argument
-                                                      .payMyPrePaidBillsPageDataList[
-                                                          index]
+                                              model.argument.payMyPrePaidBillsPageDataList[index]
                                                       .serviceType ??
                                                   "",
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.black,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 14.0.t),
                                             ),
                                             Text(
-                                              model
-                                                      .argument
-                                                      .payMyPrePaidBillsPageDataList[
-                                                          index]
+                                              model.argument.payMyPrePaidBillsPageDataList[index]
                                                       .billerName ??
                                                   '',
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryDarkGray2,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12.0.t),
@@ -181,20 +232,26 @@ class HowMuchLikeToPayPrePaidBillsPageView
                               SizedBox(
                                 height: 32.h,
                               ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  S.of(context).pleaseEnter,
-                                  style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14.0.t,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.gray_black,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 16.h),
-                              _enterAmountAppTextField(model, context),
+                              model.isPrepaidCategoryListEmpty == false
+                                  ? Container()
+                                  : Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        S.of(context).pleaseEnter,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColor.gray_black,
+                                        ),
+                                      ),
+                                    ),
+                              model.isPrepaidCategoryListEmpty == false
+                                  ? Container()
+                                  : SizedBox(height: 16.h),
+                              model.isPrepaidCategoryListEmpty == false
+                                  ? Container()
+                                  : _enterAmountAppTextField(model, context),
                               SizedBox(height: 16.h),
                               AppTextField(
                                 labelText: S.of(context).payFrom.toUpperCase(),
@@ -202,8 +259,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                 controller: model.savingAccountController,
                                 readOnly: true,
                                 onPressed: () {
-                                  AccountsDialog.show(context,
-                                      label: S.of(context).selectAccount,
+                                  AccountsDialog.show(context, label: S.of(context).selectAccount,
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
@@ -234,23 +290,17 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                 onHorizontalDragEnd: (details) {
                                   if (StringUtils.isDirectionRTL(context)) {
                                     if (!details.primaryVelocity!.isNegative) {
-                                      if (model.isPrepaidCategoryListEmpty ==
-                                          false) {
+                                      if (model.isPrepaidCategoryListEmpty == false) {
                                         model.payPrePaidBill();
-                                      } else if (model
-                                              .isPrepaidCategoryListEmpty ==
-                                          true) {
+                                      } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
                                     }
                                   } else {
                                     if (details.primaryVelocity!.isNegative) {
-                                      if (model.isPrepaidCategoryListEmpty ==
-                                          false) {
+                                      if (model.isPrepaidCategoryListEmpty == false) {
                                         model.payPrePaidBill();
-                                      } else if (model
-                                              .isPrepaidCategoryListEmpty ==
-                                          true) {
+                                      } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
                                     }
@@ -263,8 +313,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       return Visibility(
                                         visible: isValid!,
                                         child: AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
+                                          buttonText: S.of(context).swipeToProceed,
                                         ),
                                       );
                                     }),
@@ -302,8 +351,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
   }
 
   ///enter amount appTextField
-  _enterAmountAppTextField(
-      HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
+  _enterAmountAppTextField(HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
     return Padding(
         padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(

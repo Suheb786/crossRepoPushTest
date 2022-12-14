@@ -162,8 +162,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                                 ),
                                                 child: PayMyPrepPaidBillListItemWidget(
                                                   billName: model.getPrepaidBillData?[index].billerName ?? "",
-                                                  billType:
-                                                      model.getPrepaidBillData?[index].serviceType ?? "",
+                                                  nickname: model.getPrepaidBillData?[index].nickname ?? "",
                                                   icon: model.getPrepaidBillData?[index].iconCode ?? "",
                                                 ),
                                               ),
