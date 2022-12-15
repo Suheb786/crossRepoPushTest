@@ -7,11 +7,18 @@ class AccountSelectionWidget extends StatelessWidget {
   final Color? textColor;
   final Color? widgetColor;
   final String label;
+  final String? labelTitle;
   final Function? onTap;
   final int currentIndex;
 
   const AccountSelectionWidget(
-      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor, this.currentIndex: 0})
+      {Key? key,
+      required this.label,
+      this.labelTitle: "",
+      this.onTap,
+      this.textColor,
+      this.widgetColor,
+      this.currentIndex: 0})
       : super(key: key);
 
   @override
@@ -25,13 +32,16 @@ class AccountSelectionWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              S.of(context).savingAccount('${currentIndex + 1}'),
+              labelTitle == null || labelTitle == ""
+                  ? S.of(context).savingAccount('${currentIndex + 1}')
+                  : '$labelTitle ${currentIndex + 1}',
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: textColor,

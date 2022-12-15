@@ -6,7 +6,8 @@ part of 'save_selfie_image_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveSelfieImageRequest _$SaveSelfieImageRequestFromJson(Map<String, dynamic> json) {
+SaveSelfieImageRequest _$SaveSelfieImageRequestFromJson(
+    Map<String, dynamic> json) {
   return SaveSelfieImageRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
@@ -14,7 +15,9 @@ SaveSelfieImageRequest _$SaveSelfieImageRequestFromJson(Map<String, dynamic> jso
   );
 }
 
-Map<String, dynamic> _$SaveSelfieImageRequestToJson(SaveSelfieImageRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$SaveSelfieImageRequestToJson(
+        SaveSelfieImageRequest instance) =>
+    <String, dynamic>{
       'GetToken': instance.getToken,
       'SelfeeImage': instance.selfieImage,
       'baseClass': instance.baseData,

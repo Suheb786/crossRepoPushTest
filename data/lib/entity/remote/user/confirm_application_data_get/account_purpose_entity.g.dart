@@ -17,13 +17,17 @@ AccountPurposeEntity _$AccountPurposeEntityFromJson(Map<String, dynamic> json) {
     isOther: json['isOther'] as bool?,
     monthlyTransaction: (json['monthlyTransaction'] as num?)?.toDouble(),
     anualTransaction: (json['anualTransaction'] as num?)?.toDouble(),
-    createdOn: json['createdOn'] == null ? null : DateTime.parse(json['createdOn'] as String),
+    createdOn: json['createdOn'] == null
+        ? null
+        : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
     purposeAr: json['purposeAr'] as String?,
   );
 }
 
-Map<String, dynamic> _$AccountPurposeEntityToJson(AccountPurposeEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$AccountPurposeEntityToJson(
+        AccountPurposeEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'purpose': instance.purpose,

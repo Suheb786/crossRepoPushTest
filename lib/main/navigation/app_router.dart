@@ -102,6 +102,10 @@ import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bil
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
@@ -780,6 +784,49 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaidBillsSuccessPage(settings.arguments as PaidBillsSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.PaidBillsSuccessPage));
+
+      case RoutePaths.PayMyPrePaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => PayMyPrePaidBillsPage(),
+            settings: RouteSettings(name: RoutePaths.PayMyPrePaidBillsPage));
+
+      case RoutePaths.PayingPrePaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PayingPrePaidBillsPage(settings.arguments as PayingPrePaidBillsPageArgument),
+            settings: RouteSettings(name: RoutePaths.PayingPrePaidBillsPage));
+
+      case RoutePaths.PrePaidBillsSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PrePaidBillsSuccessPage(settings.arguments as PrePaidBillsSuccessPageArguments),
+            settings: RouteSettings(name: RoutePaths.PrePaidBillsSuccessPage));
+
+      case RoutePaths.HowMuchLikeToPayPrePaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => HowMuchLikeToPayPrePaidBillsPage(
+                settings.arguments as HowMuchLikeToPayPrePaidBillsPageArgument),
+            settings: RouteSettings(name: RoutePaths.HowMuchLikeToPayPrePaidBillsPage));
+
+      // case RoutePaths.PayPrePaidBillPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => PayPrePaidBillPage(),
+      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillPage));
+      //
+      // case RoutePaths.NewPrePaidBillsPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => NewPrePaidBillsPage(),
+      //       settings: RouteSettings(name: RoutePaths.NewPrePaidBillsPage));
+      //
+      // case RoutePaths.PayPrePaidBillDetailPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => PayPrePaidBillDetailPage(),
+      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillDetailPage));
+      //
+      // case RoutePaths.ConfirmPrePaidBillPaymentAmountPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => ConfirmPrePaidBillPaymentAmountPage(),
+      //       settings: RouteSettings(name: RoutePaths.ConfirmPrePaidBillPaymentAmountPage));
 
       case RoutePaths.QRScanningScreen:
         return CupertinoPageRoute(

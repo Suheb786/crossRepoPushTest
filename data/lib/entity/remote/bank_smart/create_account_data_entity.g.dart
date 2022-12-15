@@ -6,7 +6,8 @@ part of 'create_account_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateAccountDataEntity _$CreateAccountDataEntityFromJson(Map<String, dynamic> json) {
+CreateAccountDataEntity _$CreateAccountDataEntityFromJson(
+    Map<String, dynamic> json) {
   return CreateAccountDataEntity(
     accountDate: json['accountDate'],
     name: json['name'],
@@ -26,7 +27,9 @@ CreateAccountDataEntity _$CreateAccountDataEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$CreateAccountDataEntityToJson(CreateAccountDataEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CreateAccountDataEntityToJson(
+        CreateAccountDataEntity instance) =>
+    <String, dynamic>{
       'accountDate': instance.accountDate,
       'name': instance.name,
       'accountNumber': instance.accountNumber,

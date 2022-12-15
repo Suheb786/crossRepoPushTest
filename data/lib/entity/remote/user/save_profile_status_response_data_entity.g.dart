@@ -6,7 +6,8 @@ part of 'save_profile_status_response_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveProfileStatusResponseDataEntity _$SaveProfileStatusResponseDataEntityFromJson(Map<String, dynamic> json) {
+SaveProfileStatusResponseDataEntity
+    _$SaveProfileStatusResponseDataEntityFromJson(Map<String, dynamic> json) {
   return SaveProfileStatusResponseDataEntity(
     code: json['code'] as int?,
     content: json['content'] as String?,

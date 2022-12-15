@@ -6,7 +6,8 @@ part of 'check_kyc_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckKycContentEntity _$CheckKycContentEntityFromJson(Map<String, dynamic> json) {
+CheckKycContentEntity _$CheckKycContentEntityFromJson(
+    Map<String, dynamic> json) {
   return CheckKycContentEntity(
     data: (json['data'] as List<dynamic>?)
         ?.map((e) => CheckKycDataEntity.fromJson(e as Map<String, dynamic>))
@@ -14,6 +15,8 @@ CheckKycContentEntity _$CheckKycContentEntityFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$CheckKycContentEntityToJson(CheckKycContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$CheckKycContentEntityToJson(
+        CheckKycContentEntity instance) =>
+    <String, dynamic>{
       'data': instance.data,
     };

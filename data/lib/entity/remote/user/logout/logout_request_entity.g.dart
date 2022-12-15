@@ -21,7 +21,9 @@ LogoutRequestEntity _$LogoutRequestEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$LogoutRequestEntityToJson(LogoutRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$LogoutRequestEntityToJson(
+        LogoutRequestEntity instance) =>
+    <String, dynamic>{
       'IP': instance.iP,
       'DeviceID': instance.deviceID,
       'ChannelType': instance.channelType,

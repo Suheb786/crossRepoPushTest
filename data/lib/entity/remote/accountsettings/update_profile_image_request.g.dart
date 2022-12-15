@@ -6,7 +6,8 @@ part of 'update_profile_image_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateProfileImageRequest _$UpdateProfileImageRequestFromJson(Map<String, dynamic> json) {
+UpdateProfileImageRequest _$UpdateProfileImageRequestFromJson(
+    Map<String, dynamic> json) {
   return UpdateProfileImageRequest(
     image: json['Image'] as String,
     getToken: json['GetToken'] as bool,
@@ -14,7 +15,8 @@ UpdateProfileImageRequest _$UpdateProfileImageRequestFromJson(Map<String, dynami
   );
 }
 
-Map<String, dynamic> _$UpdateProfileImageRequestToJson(UpdateProfileImageRequest instance) =>
+Map<String, dynamic> _$UpdateProfileImageRequestToJson(
+        UpdateProfileImageRequest instance) =>
     <String, dynamic>{
       'Image': instance.image,
       'GetToken': instance.getToken,

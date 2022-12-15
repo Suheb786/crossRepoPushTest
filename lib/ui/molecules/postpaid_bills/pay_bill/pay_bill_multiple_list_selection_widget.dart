@@ -5,13 +5,14 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/get_bill_payments_categories.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String icon;
-  final String billType;
-  final String billName;
+  final String biller;
+  final String nickName;
   final String billAmtDue;
   final bool isSelected;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
@@ -19,8 +20,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   const PayBillsMultipleListSelectionWidget(
       {Key? key,
       required this.icon,
-      required this.billType,
-      required this.billName,
+      required this.biller,
+      required this.nickName,
       required this.billAmtDue,
       required this.isSelected,
       required this.paidBillsPayTypeOptionEnum})
@@ -32,7 +33,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
         children: [
-          Container(
+/*          Container(
             width: 40.w,
             height: 40.w,
             alignment: Alignment.center,
@@ -41,15 +42,30 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               color: AppColor.vividYellow,
             ),
             child: AppSvg.asset(icon),
+          )*/
+          Container(
+            width: 50.w,
+            height: 50.h,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColor.vividYellow,
+            ),
+            child: Image.asset(
+              GetBillPaymentsCategories.path(icon),
+              matchTextDirection: false,
+              width: 24.w,
+              height: 24.h,
+            ),
           ),
           SizedBox(
-            width: 5.w,
+            width: 8.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                billType,
+                biller,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
@@ -57,7 +73,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                     fontSize: 14.0.t),
               ),
               Text(
-                billName,
+                nickName,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.veryDarkGray2,
@@ -67,7 +83,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                   ? RichText(
                       text: TextSpan(
-                          text: S.of(context).due + "",
+                          text: S.of(context).due + " ",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.veryDarkGray2,
@@ -93,7 +109,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                       visible: this.isSelected,
                       child: RichText(
                           text: TextSpan(
-                              text: S.of(context).due + "",
+                              text: S.of(context).due + " ",
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,

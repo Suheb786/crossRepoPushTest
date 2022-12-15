@@ -6,8 +6,9 @@ part of 'supplementary_credit_card_application_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SupplementaryCreditCardApplicationContentEntity _$SupplementaryCreditCardApplicationContentEntityFromJson(
-    Map<String, dynamic> json) {
+SupplementaryCreditCardApplicationContentEntity
+    _$SupplementaryCreditCardApplicationContentEntityFromJson(
+        Map<String, dynamic> json) {
   return SupplementaryCreditCardApplicationContentEntity(
     createdDate: json['createdDate'] as String?,
     primaryCardId: json['primaryCardId'] as String?,

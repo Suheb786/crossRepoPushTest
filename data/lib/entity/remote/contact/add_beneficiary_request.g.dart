@@ -6,7 +6,8 @@ part of 'add_beneficiary_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddBeneficiaryRequest _$AddBeneficiaryRequestFromJson(Map<String, dynamic> json) {
+AddBeneficiaryRequest _$AddBeneficiaryRequestFromJson(
+    Map<String, dynamic> json) {
   return AddBeneficiaryRequest(
     nickName: json['NickName'] as String?,
     fullName: json['FullName'] as String?,
@@ -21,7 +22,9 @@ AddBeneficiaryRequest _$AddBeneficiaryRequestFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$AddBeneficiaryRequestToJson(AddBeneficiaryRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$AddBeneficiaryRequestToJson(
+        AddBeneficiaryRequest instance) =>
+    <String, dynamic>{
       'NickName': instance.nickName,
       'FullName': instance.fullName,
       'AccountNo': instance.accountNo,

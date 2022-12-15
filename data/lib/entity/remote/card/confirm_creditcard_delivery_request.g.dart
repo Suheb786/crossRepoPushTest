@@ -6,7 +6,8 @@ part of 'confirm_creditcard_delivery_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmCreditCardDeliveryRequest _$ConfirmCreditCardDeliveryRequestFromJson(Map<String, dynamic> json) {
+ConfirmCreditCardDeliveryRequest _$ConfirmCreditCardDeliveryRequestFromJson(
+    Map<String, dynamic> json) {
   return ConfirmCreditCardDeliveryRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
@@ -16,7 +17,8 @@ ConfirmCreditCardDeliveryRequest _$ConfirmCreditCardDeliveryRequestFromJson(Map<
   );
 }
 
-Map<String, dynamic> _$ConfirmCreditCardDeliveryRequestToJson(ConfirmCreditCardDeliveryRequest instance) =>
+Map<String, dynamic> _$ConfirmCreditCardDeliveryRequestToJson(
+        ConfirmCreditCardDeliveryRequest instance) =>
     <String, dynamic>{
       'CardId': instance.cardId,
       'CardDigit': instance.cardDigit,

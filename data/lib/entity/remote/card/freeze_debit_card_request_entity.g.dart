@@ -6,7 +6,8 @@ part of 'freeze_debit_card_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FreezeDebitCardRequestEntity _$FreezeDebitCardRequestEntityFromJson(Map<String, dynamic> json) {
+FreezeDebitCardRequestEntity _$FreezeDebitCardRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return FreezeDebitCardRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
@@ -15,7 +16,8 @@ FreezeDebitCardRequestEntity _$FreezeDebitCardRequestEntityFromJson(Map<String, 
   );
 }
 
-Map<String, dynamic> _$FreezeDebitCardRequestEntityToJson(FreezeDebitCardRequestEntity instance) =>
+Map<String, dynamic> _$FreezeDebitCardRequestEntityToJson(
+        FreezeDebitCardRequestEntity instance) =>
     <String, dynamic>{
       'status': instance.status,
       'TokenizedPan': instance.tokenizedPan,

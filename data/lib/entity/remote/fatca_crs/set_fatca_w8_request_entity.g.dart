@@ -6,7 +6,8 @@ part of 'set_fatca_w8_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(Map<String, dynamic> json) {
+SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
+    Map<String, dynamic> json) {
   return SetFatcaW8RequestEntity(
     nameIncomeTAXReturn: json['NameIncomeTAXReturn'] as String?,
     dateOfBirth: json['DateOfBirth'] as String?,
@@ -38,7 +39,9 @@ SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$SetFatcaW8RequestEntityToJson(SetFatcaW8RequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$SetFatcaW8RequestEntityToJson(
+        SetFatcaW8RequestEntity instance) =>
+    <String, dynamic>{
       'NameIncomeTAXReturn': instance.nameIncomeTAXReturn,
       'DateOfBirth': instance.dateOfBirth,
       'CitizenShipCountry': instance.citizenShipCountry,

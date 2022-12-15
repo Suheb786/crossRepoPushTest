@@ -188,6 +188,7 @@ class AssetUtils {
   static const String blink = drawable + "blink.png";
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
+  static const String line_gray = drawable + "line_gray.png";
   static const String line_black_white = drawable + "line_black_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";
@@ -256,6 +257,9 @@ class AssetUtils {
   static const String flightIcon = svg + "flight_icon.svg";
   static const String deleteBlackIcon = svg + "delete_black_icon.svg";
   static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
+  static const String logoeFawateerRed = svg + "logo_eFawateer_red.svg";
+  static const String logoeFawateerYellow = svg + "logo_eFawateer_yellow.svg";
+
   static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
   static const String requestViaQrIcon = svg + "request_via_qr.svg";
   static const String payRequestViaQRBlackIcon = svg + "pay_request_via_qr_black.svg";

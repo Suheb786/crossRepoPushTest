@@ -99,6 +99,7 @@ dependencies:
   firebase_performance: 0.7.1+1
   syncfusion_flutter_pdfviewer: any
   wakelock: ^0.6.1+2
+  #  flutter_inappwebview: ^5.4.3+7
   mask_text_input_formatter: ^2.4.0
   device_preview: any
   auto_size_text_field: ^1.0.1
@@ -134,6 +135,8 @@ flutter:
     - assets/drawable/
     - assets/animation/
     - assets/flags/
+    - assets/images/
+    - assets/images/bill_payments_categories/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
