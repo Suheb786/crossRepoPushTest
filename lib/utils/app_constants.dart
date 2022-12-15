@@ -43,6 +43,7 @@ class AppConstantsUtils {
   static String PREPAID_CATEGORY_TYPE = "";
   static String BILLER_TYPE = "";
   static bool IS_NEW_PAYMENT = false;
+  static bool IS_NEW_BILL_ADD_API_CALL = false;
   static String SELECTED_BILLING_NUMBER = "";
   static String SELECTED_SERVICE_TYPE = "";
   static String SELECTED_SERVICE_DESCRIPTION_EN = "";

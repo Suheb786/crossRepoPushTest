@@ -1128,6 +1128,9 @@ class ErrorParser {
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
 
+      case ErrorType.IS_PAID_FAILED:
+        return "";
+
       default:
         return "";
     }

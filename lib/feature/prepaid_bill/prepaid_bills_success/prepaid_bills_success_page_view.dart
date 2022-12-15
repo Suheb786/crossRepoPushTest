@@ -71,10 +71,9 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                             shape: BoxShape.circle,
                             color: Theme.of(context).canvasColor,
                           ),
-                          child: Center(
-                              child: AppSvg.asset(
-                            AssetUtils.right,
-                          )),
+                          child: model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                              ? Center(child: AppSvg.asset(AssetUtils.right))
+                              : Center(child: AppSvg.asset(AssetUtils.cancel, color: AppColor.black)),
                         ),
                       ),
                     ],
@@ -163,6 +162,32 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                             )
                           ],
                         ),
+                        model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                            ? SizedBox(height: 16.h)
+                            : Container(),
+                        model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    S.of(context).refNo,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.0.t),
+                                  ),
+                                  Text(
+                                    model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t),
+                                  )
+                                ],
+                              )
+                            : Container(),
                         SizedBox(
                           height: 16.h,
                         ),
@@ -170,7 +195,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              S.of(context).refNo,
+                              S.of(context).status,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.black,
@@ -178,10 +203,14 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                                   fontSize: 12.0.t),
                             ),
                             Text(
-                              model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
+                              model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                                  ? S.of(context).successS
+                                  : S.of(context).failed,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
+                                  color: model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                                      ? Colors.green
+                                      : Colors.red,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.0.t),
                             )

@@ -283,8 +283,12 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     );
   }
 
+  bool isAmountMoreThanZero = false;
+
   validate(String value) {
+    isAmountMoreThanZero = false;
     if (double.parse(value) > 0.0) {
+      isAmountMoreThanZero = true;
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

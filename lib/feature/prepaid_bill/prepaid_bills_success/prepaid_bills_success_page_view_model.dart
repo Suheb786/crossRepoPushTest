@@ -1,4 +1,3 @@
-import 'package:domain/model/bill_payments/add_new_prepaid_biller/add_new_prepaid_biller_model.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
@@ -12,12 +11,12 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
   final PrePaidBillsSuccessPageArguments arguments;
   AddNewPrepaidBillerUseCase addNewPrepaidBillerUseCase;
 
-  PrePaidBillsSuccessPageViewModel(
-      this.arguments, this.addNewPrepaidBillerUseCase) {
-    if (AppConstantsUtils.IS_NEW_PAYMENT &&
-        AppConstantsUtils.NICK_NAME.isNotEmpty) {
-      Future.delayed(Duration(milliseconds: 200))
-          .then((value) => addNewPrepaidBiller());
+  PrePaidBillsSuccessPageViewModel(this.arguments, this.addNewPrepaidBillerUseCase) {
+    if (AppConstantsUtils.IS_NEW_PAYMENT == true && AppConstantsUtils.NICK_NAME.toString().isNotEmpty) {
+      if (AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL == true) {
+        AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = false;
+        Future.delayed(Duration(milliseconds: 10)).then((value) => addNewPrepaidBiller());
+      }
     }
 
     _addNewPrepaidBillerListener();
@@ -27,11 +26,9 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
 
   PublishSubject<Resource<bool>> _addNewPrepaidBillerResponce = PublishSubject();
 
-  Stream<Resource<bool>> get addNewPrepaidBillerStream =>
-      _addNewPrepaidBillerResponce.stream;
+  Stream<Resource<bool>> get addNewPrepaidBillerStream => _addNewPrepaidBillerResponce.stream;
 
-  PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest =
-      PublishSubject();
+  PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest = PublishSubject();
 
   void addNewPrepaidBiller() {
     _addNewPrepaidBillerRequest.safeAdd(
@@ -45,17 +42,14 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
           billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
           nickname: AppConstantsUtils.NICK_NAME,
           amount: AppConstantsUtils.ACCOUNT_NUMBER,
-          billingNumberRequired:
-              AppConstantsUtils.SELECTED_BILLING_NUMBER_REQUIRED),
+          billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER_REQUIRED),
     );
   }
 
   void _addNewPrepaidBillerListener() {
     _addNewPrepaidBillerRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    addNewPrepaidBillerUseCase.execute(params: params))
+        RequestManager(params, createCall: () => addNewPrepaidBillerUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();

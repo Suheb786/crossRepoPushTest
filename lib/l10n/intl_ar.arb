@@ -1456,5 +1456,8 @@
   "insufficientFundsBillCannotBePaid": "Insufficient funds bill cannot be paid",
   "yourBillHasBeenRemoved": "BILL UPDATED\nYour bill has been removed.",
   "billerAddedSuccessfully": "BILL UPDATED\nBiller Added Successfully.",
-  "SearchCategory": "Search category"
+  "SearchCategory": "Search category",
+  "status": "Status",
+  "failed": "Failed",
+  "successS": "Success"
 }

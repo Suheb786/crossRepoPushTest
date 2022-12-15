@@ -83,9 +83,15 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                   0.0) {
                                 if (StringUtils.isDirectionRTL(context)) {
                                   if (details.primaryVelocity!.isNegative) {
-                                    ProviderScope.containerOf(context)
-                                        .read(payBillPageViewModelProvider)
-                                        .previousPage();
+                                    if (ProviderScope.containerOf(context)
+                                            .read(payBillPageViewModelProvider)
+                                            .appSwiperController
+                                            .page ==
+                                        1.0) {
+                                      ProviderScope.containerOf(context)
+                                          .read(payBillPageViewModelProvider)
+                                          .previousPage();
+                                    }
                                   } else {
                                     if (isValid == true) {
                                       ProviderScope.containerOf(context)
@@ -145,9 +151,15 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                           type: ErrorType.ENTER_BILL_DETAILS));
                                     }
                                   } else {
-                                    ProviderScope.containerOf(context)
-                                        .read(payBillPageViewModelProvider)
-                                        .previousPage();
+                                    if (ProviderScope.containerOf(context)
+                                            .read(payBillPageViewModelProvider)
+                                            .appSwiperController
+                                            .page ==
+                                        1.0) {
+                                      ProviderScope.containerOf(context)
+                                          .read(payBillPageViewModelProvider)
+                                          .previousPage();
+                                    }
                                   }
                                 }
                               }
