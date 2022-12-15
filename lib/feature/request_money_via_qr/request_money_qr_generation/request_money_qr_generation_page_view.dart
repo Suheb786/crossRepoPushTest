@@ -6,6 +6,7 @@ import 'package:domain/model/qr/qr_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
@@ -198,6 +199,13 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
+                        ///Log event to infobip
+                        var event = {
+                          "definitionId": "LinkQRGenerated",
+                          "properties": {"completed": true}
+                        };
+                        InfobipMobilemessaging.submitEventImmediately(event);
+
                         Navigator.pushNamed(context, RoutePaths.QRScreen,
                             arguments: QrScreenPageArguments(model.arguments.account, model.currentPinValue,
                                 data.data?.qrContent?.requestId ?? ''));

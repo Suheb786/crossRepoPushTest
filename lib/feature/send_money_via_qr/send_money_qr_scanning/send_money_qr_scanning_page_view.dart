@@ -6,6 +6,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
@@ -67,6 +68,14 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                     await FirebaseAnalytics.instance.logEvent(
                         name: "payment_success",
                         parameters: {"is_payment_success": true, "request_id": model.arguments.requestId});
+
+                    ///Log event to infobip
+                    var event = {
+                      "definitionId": "PaymentSuccess",
+                      "properties": {"completed": true}
+                    };
+                    InfobipMobilemessaging.submitEventImmediately(event);
+
                     Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess,
                         arguments: SendMoneyViaQRSuccessPageArguments(
                             referenceNo: data.data?.qrContent?.reference ?? '',
@@ -223,6 +232,13 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                                           "is_payment_cancelled": true,
                                           "request_id": model.arguments.requestId
                                         });
+
+                                    ///Log event to infobip
+                                    var event = {
+                                      "definitionId": "PaymentCancelled",
+                                      "properties": {"completed": true}
+                                    };
+                                    InfobipMobilemessaging.submitEventImmediately(event);
                                   },
                                   child: Text(
                                     S.of(context).backToPayments,

@@ -2,6 +2,7 @@ import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
@@ -39,6 +40,13 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                     name: "qr_scanned",
                     parameters: {"is_qr_scanned": true, "request_id": data.data?.qrContent?.requestId ?? ''},
                   );
+
+                  ///Log event to infobip
+                  var event = {
+                    "definitionId": "QRScanned",
+                    "properties": {"completed": true}
+                  };
+                  InfobipMobilemessaging.submitEventImmediately(event);
 
                   Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
                       arguments: SendMoneyQRScanningArguments(
