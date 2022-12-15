@@ -12,6 +12,7 @@ class DatePicker {
     required Function(DateTime)? onSelected,
     required Function()? onCancelled,
     required String? title,
+    DateTime? firstDate,
     required DateTime initialDate,
     DateTime? lastDate,
   }) async {
@@ -19,12 +20,12 @@ class DatePicker {
         ? showDatePicker(
                 context: context,
                 initialDate: initialDate,
-                firstDate: DateTime(1900),
+                firstDate: firstDate ?? DateTime(1900),
                 lastDate: lastDate ?? DateTime(2100))
             .then((value) {
             value != null ? onSelected?.call(value) : () {};
           })
-        : DatePickerBottomSheet.show(context, onDateSelected: (date) {
+        : DatePickerBottomSheet.show(context, firstDate: firstDate, onDateSelected: (date) {
             onSelected?.call(date);
             Navigator.pop(context);
           }, onCancel: () {

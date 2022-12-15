@@ -4,6 +4,9 @@ import 'package:data/entity/remote/payment/payment_activity_response_entity.dart
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
+import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
 
@@ -65,4 +68,11 @@ abstract class PaymentRemoteDs {
       String nickName,
       String detCustomerType,
       String type});
+
+  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount});
+
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR({required String requestId, required String source});
+
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(
+      {required String requestId, required String toAmount, required String toAccount});
 }

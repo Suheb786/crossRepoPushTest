@@ -26,6 +26,8 @@ class AppConstantsUtils {
 
   static bool isInfobipRegistered = false;
 
+  static String RJRouteLink = '/RJFlightConfirmation/Index';
+
   static String SELECTED_BILLER_CODE = "";
   static String BILLER_NAME = "";
   static String SELECTED_BILLER_CATEGORY_CODE = "";

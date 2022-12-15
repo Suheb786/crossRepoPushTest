@@ -8,6 +8,9 @@ import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
+import 'package:domain/model/qr/qr_response.dart';
+import 'package:domain/model/qr/qr_transfer_response.dart';
+import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 
 class PaymentRepositoryImpl extends PaymentRepository {
@@ -171,6 +174,41 @@ class PaymentRepositoryImpl extends PaymentRepository {
           nickName: nickName!,
           detCustomerType: detCustomerType!,
           type: type!),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, QrResponse>> generateQR({required String amount}) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.generateQR(amount: amount),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, QRTransferResponse>> transferQR(
+      {required String requestId, required String toAmount, required String toAccount}) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.transferQR(requestId: requestId, toAmount: toAmount, toAccount: toAccount),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, VerifyQrResponse>> verifyQR(
+      {required String requestId, required String source}) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.verifyQR(requestId: requestId, source: source),
     );
     return result!.fold(
       (l) => Left(l),

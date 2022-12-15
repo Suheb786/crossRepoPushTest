@@ -1122,6 +1122,12 @@ class ErrorParser {
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
 
+      case ErrorType.QR_NOT_SCANNED:
+        return localisedHelper.qrNotScanned;
+
+      case ErrorType.DATE_COMPARISON:
+        return localisedHelper.dateComparison;
+
       case ErrorType.IS_PAID_FAILED:
         return "";
 

@@ -10,7 +10,7 @@ class MakeTicketPaymentRequestEntity {
   final String? amount;
   @JsonKey(name: "ReferenceNumber")
   final String? referenceNumber;
-  @JsonKey(name: "OtpCode")
+  @JsonKey(name: "Otp")
   final String? otpCode;
   @JsonKey(name: "GetToken")
   final bool? getToken;

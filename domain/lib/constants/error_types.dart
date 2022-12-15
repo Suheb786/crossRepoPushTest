@@ -598,6 +598,8 @@ enum ErrorType {
   QR_INVALID,
   PAYMENT_NOT_DONE,
   NO_TICKETS_FOUND,
+  DATE_COMPARISON,
+  QR_NOT_SCANNED,
 
   ///manage cliq
   EMPTY_CLIQ_ID_TYPE,

@@ -5,13 +5,20 @@ class DashboardFeatures {
   final bool? isRegisterFeatureEnabled;
   final bool? isPinChangeEnabled;
   final bool? isDebitCardRequestPhysicalCardEnabled;
+  final bool? appBillPaymentPostpaid;
+  final bool? appBillPaymentPrepaid;
+  final bool? appBillPaymentQrCode;
+  final bool? blinkRetailAppBillPayment;
 
-  DashboardFeatures({
-    this.isCreditCardFeatureEnabled,
-    this.isRJFeatureEnabled,
-    this.isLoginFeatureEnabled,
-    this.isRegisterFeatureEnabled,
-    this.isPinChangeEnabled,
-    this.isDebitCardRequestPhysicalCardEnabled,
-  });
+  DashboardFeatures(
+      {this.appBillPaymentPostpaid,
+      this.appBillPaymentQrCode,
+      this.isCreditCardFeatureEnabled,
+      this.isRJFeatureEnabled,
+      this.isLoginFeatureEnabled,
+      this.isRegisterFeatureEnabled,
+      this.isPinChangeEnabled,
+      this.isDebitCardRequestPhysicalCardEnabled,
+      this.blinkRetailAppBillPayment,
+      this.appBillPaymentPrepaid});
 }

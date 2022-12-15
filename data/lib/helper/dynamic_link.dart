@@ -1,4 +1,4 @@
-import 'package:data/db/exception/app_local_exception.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
@@ -22,15 +22,14 @@ class DynamicLinksService {
     required String accountNo,
     required String requestAmt,
     required String dateTime,
+    required String requestId,
   }) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    print(packageInfo.packageName);
-    String uriPrefix = "https://blinkcbt.page.link";
+    String uriPrefix = KeyHelper.DevDynamicLinkPrefix;
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: uriPrefix,
-      link: Uri.parse(
-          '${uriPrefix}?accountTitle=${accountTitle}&accountNo=${accountNo}&requestAmt=${requestAmt}&dateTime=${dateTime}'),
+      link: Uri.parse('${uriPrefix}/payments?requestId=${requestId}'),
       androidParameters: AndroidParameters(
         packageName: packageInfo.packageName,
         minimumVersion: 21,
@@ -50,26 +49,24 @@ class DynamicLinksService {
 
   Future<Uri> initDynamicLinks() async {
     Uri? deepLink;
-    FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-      Uri? link = dynamicLink?.link;
-
-      debugPrint('-----Get On Link----${link}');
-
-      if (link != null) {
-        deepLink = link;
-        _initDynamicLinkRequestResponse.add(link);
-        debugPrint("----------Account Title${link.queryParameters['accountTitle']}");
-      }
-    }, onError: (OnLinkErrorException e) async {
-      debugPrint("----------On Link Error Exception");
-      throw AppLocalException(
-        appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
-      );
-    });
+    // FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData? dynamicLink) async {
+    //   Uri? link = dynamicLink?.link;
+    //
+    //   debugPrint('-----Get On Link----${link}');
+    //
+    //   if (link != null) {
+    //     deepLink = link;
+    //     _initDynamicLinkRequestResponse.add(link);
+    //     debugPrint("----------Account Title${link.queryParameters['accountTitle']}");
+    //   }
+    // }, onError: (OnLinkErrorException e) async {
+    //   debugPrint("----------On Link Error Exception");
+    //   throw AppLocalException(
+    //     appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
+    //   );
+    // });
 
     debugPrint('-----Anything----');
-
-    await Future.delayed(const Duration(seconds: 1));
 
     final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
     debugPrint('-----Get Initial Url----${data}');

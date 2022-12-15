@@ -11,9 +11,14 @@ class DynamicLinkDataSourceImpl extends DynamicLinkDataSource {
       {required String accountTitle,
       required String accountNo,
       required String requestAmt,
-      required String dateTime}) {
+      required String dateTime,
+      required String requestId}) {
     return _dynamicLinkService.createDynamicLink(
-        accountTitle: accountTitle, accountNo: accountNo, requestAmt: requestAmt, dateTime: dateTime);
+        accountTitle: accountTitle,
+        accountNo: accountNo,
+        requestAmt: requestAmt,
+        dateTime: dateTime,
+        requestId: requestId);
   }
 
   @override

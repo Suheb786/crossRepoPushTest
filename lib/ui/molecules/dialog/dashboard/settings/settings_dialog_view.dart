@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,7 +51,10 @@ class SettingsDialogView extends StatelessWidget {
                         pages = [
                           InkWell(
                             onTap: onClick!
-                                ? () {
+                                ? () async {
+                                    ///LOG EVENT TO FIREBASE
+                                    await FirebaseAnalytics.instance.logEvent(
+                                        name: "payments_opened", parameters: {"is_payment_opened": true});
                                     Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                         arguments: NavigationType.DASHBOARD);
                                   }
