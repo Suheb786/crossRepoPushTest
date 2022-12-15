@@ -74,10 +74,9 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                               shape: BoxShape.circle,
                               color: Theme.of(context).canvasColor,
                             ),
-                            child: Center(
-                                child: AppSvg.asset(
-                              AssetUtils.right,
-                            )),
+                            child: model.arguments?.isPaid == true
+                                ? Center(child: AppSvg.asset(AssetUtils.right))
+                                : Center(child: AppSvg.asset(AssetUtils.cancel, color: AppColor.black)),
                           ),
                         ),
                       ],
@@ -166,6 +165,30 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                   ],
                                 )
                               : Container(),
+                          model.arguments?.isPaid == true ? SizedBox(height: 16.h) : Container(),
+                          model.arguments?.isPaid == true
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).refNo,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12.0.t),
+                                    ),
+                                    Text(
+                                      model.arguments?.refNo ?? "",
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12.0.t),
+                                    )
+                                  ],
+                                )
+                              : Container(),
                           SizedBox(
                             height: 16.h,
                           ),
@@ -173,7 +196,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                S.of(context).refNo,
+                                S.of(context).status,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -181,10 +204,12 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments?.refNo ?? "",
+                                model.arguments?.isPaid == true
+                                    ? S.of(context).successS
+                                    : S.of(context).failed,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: AppColor.black,
+                                    color: model.arguments?.isPaid == true ? Colors.green : Colors.red,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12.0.t),
                               )
