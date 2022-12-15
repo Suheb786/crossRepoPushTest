@@ -1442,12 +1442,7 @@
   "dateComparison": "Depart on date should not be greater than return date",
   "qrExpired": "QR Expired",
   "qrInvalid": "QR does not exist",
-  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
-  "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.",
-  "accountCard": "Account Card",
-  "qrValidForOneHour": "QR code will be valid\nfor 30 mins",
-  "paymentNotDone": "payment not done",
-  "noTicketsFound": "No tickets found",
+  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
   "howMuchWouldYouLikeToPay": "How much would you\nlike to pay?",

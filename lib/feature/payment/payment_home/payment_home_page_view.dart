@@ -1,4 +1,5 @@
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -81,103 +82,142 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           if (currentStep == 0)
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      InformationDialog.show(context,
-                                          image: AssetUtils
-                                              .payRequestViaQRBlackIcon,
-                                          title: S.of(context).payViaQR,
-                                          descriptionWidget: Text(
-                                              S
-                                                  .of(context)
-                                                  .payAndRequestMoneyViaQR,
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14.0.t)),
-                                          onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: () {
-                                        Navigator.pop(context);
-                                        Navigator.pushNamed(context,
-                                            RoutePaths.QRScanningScreen);
-                                      });
-                                    },
-                                    child:
-                                        AppSvg.asset(AssetUtils.payViaQrIcon)),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 9.0.h),
-                                  child: Text(
-                                    S.of(context).payViaQR,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18.0.t),
-                                  ),
-                                ),
-                              ],
-                            )
-                          else if (currentStep == 1)
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      InformationDialog.show(context,
-                                          image: AssetUtils
-                                              .payRequestViaQRBlackIcon,
-                                          title: S.of(context).requestViaQR,
-                                          descriptionWidget: Text(
-                                              S
-                                                  .of(context)
-                                                  .payAndRequestMoneyViaQR,
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14.0.t)),
-                                          onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: () {
-                                        Navigator.pop(context);
+                            ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .dashboardFeatures
+                                        ?.appBillPaymentQrCode ??
+                                    true
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      InkWell(
+                                          onTap: () async {
+                                            ///LOG EVENT TO FIREBASE
+                                            await FirebaseAnalytics.instance.logEvent(
+                                                name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true});
 
-                                        Navigator.pushNamed(context,
-                                            RoutePaths.RequestMoneyQrGeneration,
-                                            arguments:
-                                                RequestMoneyQrGenerationPageArguments(
-                                                    ProviderScope.containerOf(
-                                                            context)
-                                                        .read(
-                                                            appHomeViewModelProvider)
-                                                        .dashboardDataContent
-                                                        .account!));
-                                      });
-                                    },
-                                    child: AppSvg.asset(
-                                        AssetUtils.requestViaQrIcon)),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 9.0.h),
-                                  child: Text(
-                                    S.of(context).requestViaQR,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18.0.t),
-                                  ),
-                                ),
-                              ],
-                            )
+                                            InformationDialog.show(context,
+                                                image: AssetUtils.payRequestViaQRBlackIcon,
+                                                title: S.of(context).payViaQR,
+                                                descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 14.0.t)), onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: () {
+                                              Navigator.pop(context);
+                                              Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
+                                            });
+                                          },
+                                          child: AppSvg.asset(AssetUtils.payViaQrIcon)),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 9.0.h),
+                                        child: Text(
+                                          S.of(context).payViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                        child: AppSvg.asset(AssetUtils.payments),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 9.0.h),
+                                        child: Text(
+                                          S.of(context).payments,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                          else if (currentStep == 1)
+                            ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .dashboardFeatures
+                                        ?.appBillPaymentQrCode ??
+                                    true
+                                ? Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      InkWell(
+                                          onTap: () async {
+                                            ///LOG EVENT TO FIREBASE
+                                            await FirebaseAnalytics.instance.logEvent(
+                                                name: "request_via_qr",
+                                                parameters: {"request_via_qr_clicked": true});
+                                            InformationDialog.show(context,
+                                                image: AssetUtils.payRequestViaQRBlackIcon,
+                                                title: S.of(context).requestViaQR,
+                                                descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 14.0.t)), onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: () {
+                                              Navigator.pop(context);
+
+                                              Navigator.pushNamed(
+                                                  context, RoutePaths.RequestMoneyQrGeneration,
+                                                  arguments: RequestMoneyQrGenerationPageArguments(
+                                                      ProviderScope.containerOf(context)
+                                                          .read(appHomeViewModelProvider)
+                                                          .dashboardDataContent
+                                                          .account!));
+                                            });
+                                          },
+                                          child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 9.0.h),
+                                        child: Text(
+                                          S.of(context).requestViaQR,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                        child: AppSvg.asset(AssetUtils.payments),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 9.0.h),
+                                        child: Text(
+                                          S.of(context).payments,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18.0.t),
+                                        ),
+                                      )
+                                    ],
+                                  )
                           else
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(vertical: 10.0.h),
+                                  padding: EdgeInsets.symmetric(vertical: 10.0.h),
                                   child: AppSvg.asset(AssetUtils.payments),
                                 ),
                                 Padding(
@@ -197,18 +237,12 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 34.0.h, bottom: 5.0.h),
+                                    padding: EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
                                     child: AppSwiper(
-                                      appSwiperController:
-                                          model.appSwiperController,
+                                      appSwiperController: model.appSwiperController,
                                       pages: [
-                                        AddSendMoneyContactPage(
-                                            beneficiaries:
-                                                model.smBeneficiaries),
-                                        AddRequestMoneyContactPage(
-                                            beneficiaries:
-                                                model.rtpBeneficiaries),
+                                        AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
+                                        AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
                                         PostPaidBillCardWidget(),
                                         PrePaidBillCardWidget(),
                                       ],
@@ -227,11 +261,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                   effect: ScrollingDotsEffect(
                                     activeStrokeWidth: 2.6,
                                     activeDotScale: 1.3,
-                                    activeDotColor:
-                                        Theme.of(context).primaryColorDark,
-                                    dotColor: Theme.of(context)
-                                        .primaryColorDark
-                                        .withOpacity(0.6),
+                                    activeDotColor: Theme.of(context).primaryColorDark,
+                                    dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
                                     maxVisibleDots: 5,
                                     radius: 8,
                                     spacing: 10,

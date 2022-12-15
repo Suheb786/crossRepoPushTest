@@ -1491,8 +1491,7 @@
   "paymentNotDone": "payment not done",
   "noTicketsFound": "No tickets found",
   "dateComparison": "Depart on date should not be greater than return date",
-  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
-  "noTicketsFound": "No tickets found",
+  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "searchCategory": "Search category",
   "noBillerFound": "No Biller Found",
   "noPrepaidCategoryFound": "No Prepaid Category Found",
