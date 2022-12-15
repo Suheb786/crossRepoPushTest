@@ -31,6 +31,9 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-bill-payment-pay-postpaid")
   final bool? blinkRetailAppBillPaymentPayPostpaid;
 
+  @JsonKey(name: "blink-retail-app-bill-payment-pay-prepaid")
+  final bool? blinkRetailAppBillPaymentPayPrepaid;
+
   @JsonKey(name: "blink-retail-app-payments-qrcode")
   final bool? paymentQRCode;
 
@@ -43,7 +46,8 @@ class DashboardFeaturesEntity
       this.isLoginEnabled,
       this.isRegisterEnabled,
       this.isCreditCardPinChangeEnabled,
-      this.isDebitCardPhysicalCardRequestEnabled});
+      this.isDebitCardPhysicalCardRequestEnabled,
+      this.blinkRetailAppBillPaymentPayPrepaid});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -66,6 +70,7 @@ class DashboardFeaturesEntity
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? true,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? true,
-        appBillPaymentQrCode: this.paymentQRCode ?? true);
+        appBillPaymentQrCode: this.paymentQRCode ?? true,
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? true);
   }
 }

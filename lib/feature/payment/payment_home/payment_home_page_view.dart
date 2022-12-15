@@ -61,10 +61,34 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                         } else if (currentStep == 1) {
                           Navigator.pushNamed(context, RoutePaths.RequestMoney);
                         } else if (currentStep == 2) {
-                          Navigator.pushNamed(context, RoutePaths.NewBillsPage);
-                          AppConstantsUtils.POST_PAID_FLOW = true;
-                          AppConstantsUtils.PRE_PAID_FLOW = false;
-                          AppConstantsUtils.IS_NEW_PAYMENT = true;
+                          if (((ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.blinkRetailAppBillPayment ??
+                                  true) &&
+                              (ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.appBillPaymentPrepaid ??
+                                  true) &&
+                              !(ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .dashboardFeatures
+                                      ?.appBillPaymentPostpaid ??
+                                  true))) {
+                            Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                            AppConstantsUtils.PRE_PAID_FLOW = true;
+                            AppConstantsUtils.POST_PAID_FLOW = false;
+                            AppConstantsUtils.IS_NEW_PAYMENT = true;
+                          } else {
+                            Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+                            AppConstantsUtils.POST_PAID_FLOW = true;
+                            AppConstantsUtils.PRE_PAID_FLOW = false;
+                            AppConstantsUtils.IS_NEW_PAYMENT = true;
+                          }
                         } else if (currentStep == 3) {
                           Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                           AppConstantsUtils.PRE_PAID_FLOW = true;
@@ -212,7 +236,30 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       )
                                     ],
                                   )
-                          else
+                          else if (((ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .dashboardFeatures
+                                          ?.blinkRetailAppBillPayment ??
+                                      true) &&
+                                  (ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .dashboardFeatures
+                                          ?.appBillPaymentPrepaid ??
+                                      true)) ||
+                              ((ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .dashboardFeatures
+                                          ?.blinkRetailAppBillPayment ??
+                                      true) &&
+                                  (ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .dashboardFeatures
+                                          ?.appBillPaymentPostpaid ??
+                                      true)))
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -243,8 +290,32 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       pages: [
                                         AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
                                         AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
-                                        PostPaidBillCardWidget(),
-                                        PrePaidBillCardWidget(),
+                                        if ((ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .dashboardFeatures
+                                                    ?.blinkRetailAppBillPayment ??
+                                                true) &&
+                                            (ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .dashboardFeatures
+                                                    ?.appBillPaymentPostpaid ??
+                                                true))
+                                          PostPaidBillCardWidget(),
+                                        if ((ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .dashboardFeatures
+                                                    ?.blinkRetailAppBillPayment ??
+                                                true) &&
+                                            (ProviderScope.containerOf(context)
+                                                    .read(appHomeViewModelProvider)
+                                                    .dashboardDataContent
+                                                    .dashboardFeatures
+                                                    ?.appBillPaymentPrepaid ??
+                                                true))
+                                          PrePaidBillCardWidget(),
                                       ],
                                       pageController: model.pageController,
                                       onIndexChanged: (index) {
@@ -257,7 +328,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 ),
                                 SmoothPageIndicator(
                                   controller: model.controller,
-                                  count: 4,
+                                  count: getChildCount(context),
                                   effect: ScrollingDotsEffect(
                                     activeStrokeWidth: 2.6,
                                     activeDotScale: 1.3,
@@ -284,5 +355,57 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
             return Container();
           }
         });
+  }
+
+  int getChildCount(context) {
+    int count = 2;
+    if ((ProviderScope.containerOf(context)
+            .read(appHomeViewModelProvider)
+            .dashboardDataContent
+            .dashboardFeatures
+            ?.blinkRetailAppBillPayment ??
+        true)) {
+      if ((ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPrepaid ??
+              true) &&
+          !(ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPostpaid ??
+              true)) {
+        count = 3;
+      } else if ((ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPostpaid ??
+              true) &&
+          !(ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPrepaid ??
+              true)) {
+        count = 3;
+      } else if ((ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPrepaid ??
+              true) &&
+          (ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .dashboardFeatures
+                  ?.appBillPaymentPostpaid ??
+              true)) {
+        count = 4;
+      }
+    }
+    return count;
   }
 }

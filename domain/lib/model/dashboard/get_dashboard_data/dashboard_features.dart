@@ -6,6 +6,7 @@ class DashboardFeatures {
   final bool? isPinChangeEnabled;
   final bool? isDebitCardRequestPhysicalCardEnabled;
   final bool? appBillPaymentPostpaid;
+  final bool? appBillPaymentPrepaid;
   final bool? appBillPaymentQrCode;
   final bool? blinkRetailAppBillPayment;
 
@@ -18,5 +19,6 @@ class DashboardFeatures {
       this.isRegisterFeatureEnabled,
       this.isPinChangeEnabled,
       this.isDebitCardRequestPhysicalCardEnabled,
-      this.blinkRetailAppBillPayment});
+      this.blinkRetailAppBillPayment,
+      this.appBillPaymentPrepaid});
 }
