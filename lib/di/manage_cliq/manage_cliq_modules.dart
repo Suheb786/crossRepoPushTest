@@ -37,8 +37,7 @@ final createCliqIdViewModelProvider = ChangeNotifierProvider.autoDispose<CreateC
 
 final cliqIdTypeSelectionViewModelProvider =
     ChangeNotifierProvider.autoDispose<CliqIdTypeSelectionPageViewModel>(
-  (ref) => CliqIdTypeSelectionPageViewModel(
-      ref.read(cliqIdTypSelectioneUseCaseProvider), ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+  (ref) => CliqIdTypeSelectionPageViewModel(ref.read(cliqIdTypSelectioneUseCaseProvider)),
 );
 
 ///link bank account to cliq id view model
@@ -76,8 +75,8 @@ final editAliasViewModelProvider =
 
 final editCliqIDMobileNoPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<EditCliqIDMobileNoPageViewModel, EditCliqIDMobileNoPageArguments>(
-  (ref, args) => EditCliqIDMobileNoPageViewModel(ref.read(editCliqMobileNoValidationUseCaseProvider),
-      ref.read(editCliqOtpUseCaseProvider), ref.read(getAllowedCodeCountriesListUseCaseProvider), args),
+  (ref, args) => EditCliqIDMobileNoPageViewModel(
+      ref.read(editCliqMobileNoValidationUseCaseProvider), ref.read(editCliqOtpUseCaseProvider), args),
 );
 
 ///edit mobile number cliq

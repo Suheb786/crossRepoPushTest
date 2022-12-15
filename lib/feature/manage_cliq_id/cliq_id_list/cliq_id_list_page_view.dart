@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
+import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +23,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
+
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
 
@@ -232,9 +233,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     aliasName: (getAliasSnapshot.data
                                                                             ?.aliases?[index].aliasName) ??
                                                                         ""));
-                                                          } else if
-                                                          ( getAliasSnapshot
-                                                              .data?.aliases?[index].aliasType ==CliqAliasTypeEnum.ALIAS){
+                                                          } else if (getAliasSnapshot
+                                                                  .data?.aliases?[index].aliasType ==
+                                                              CliqAliasTypeEnum.ALIAS) {
                                                             Navigator.pushNamed(context, RoutePaths.EditAlias,
                                                                 arguments: EditAliasPageArguments(
                                                                     aliasID: (getAliasSnapshot
@@ -381,7 +382,75 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                               );
 
                                       default:
-                                        return Container();
+                                        return Expanded(
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Container(
+                                                        height: 96,
+                                                        width: 96,
+                                                        margin: EdgeInsets.only(bottom: 16),
+                                                        decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            border: Border.all(
+                                                                color: Theme.of(context)
+                                                                    .inputDecorationTheme
+                                                                    .hintStyle!
+                                                                    .color!)),
+                                                        child: Container(
+                                                            padding: EdgeInsets.all(32),
+                                                            child: AppSvg.asset(AssetUtils.cliqLogo)),
+                                                      ),
+                                                      Text(
+                                                        S.of(context).NoCliqContactYet,
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: AlignmentDirectional.bottomCenter,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+                                                    },
+                                                    child: Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                                      padding: EdgeInsets.all(18),
+                                                      height: 56,
+                                                      width: double.maxFinite,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(100),
+                                                        color: Theme.of(context)
+                                                            .accentTextTheme
+                                                            .bodyText1
+                                                            ?.color,
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(S.of(context).createCliqId,
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 14,
+                                                                fontWeight: FontWeight.w600,
+                                                                letterSpacing: 1,
+                                                                color: Theme.of(context).accentColor)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
                                     }
                                   },
                                 );
