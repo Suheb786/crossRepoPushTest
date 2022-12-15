@@ -60,10 +60,9 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                         shape: BoxShape.circle,
                         color: Theme.of(context).canvasColor,
                       ),
-                      child: Center(
-                          child: AppSvg.asset(
-                        AssetUtils.right,
-                      )),
+                      child: model.addAllBillAmt() > 0.0
+                          ? Center(child: AppSvg.asset(AssetUtils.right))
+                          : Center(child: AppSvg.asset(AssetUtils.cancel, color: AppColor.black)),
                     ),
                   ),
                 ],
@@ -148,8 +147,18 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14.0.t),
                                     ),
+                                    model.arguments.billerList?[index].isPaid == true
+                                        ? Text(
+                                            S.of(context).refTitle,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.veryDarkGray2,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          )
+                                        : Container(),
                                     Text(
-                                      S.of(context).refTitle,
+                                      S.of(context).status,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.veryDarkGray2,
@@ -175,11 +184,25 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12.0.t),
                                   ),
+                                  model.arguments.billerList?[index].isPaid == true
+                                      ? Text(
+                                          model.arguments.billerList?[index].refNo ?? "",
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.gray5,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12.0.t),
+                                        )
+                                      : Container(),
                                   Text(
-                                    model.arguments.billerList?[index].refNo ?? "",
+                                    model.arguments.billerList?[index].isPaid == true
+                                        ? S.of(context).successS
+                                        : S.of(context).failed,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.gray5,
+                                        color: model.arguments.billerList?[index].isPaid == true
+                                            ? Colors.green
+                                            : Colors.red,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.0.t),
                                   ),

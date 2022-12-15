@@ -14789,6 +14789,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Status`
+  String get status {
+    return Intl.message(
+      'Status',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get successS {
+    return Intl.message(
+      'Success',
+      name: 'successS',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
