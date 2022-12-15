@@ -75,7 +75,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             billingNumber: /*"121344"*/ item.billingNo,
             billerName: arguments.noOfSelectedBills[i].billerNameEN,
             serviceType: item.serviceType,
-            amount: /*"20.0"*/ item.dueAmount,
+            amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
             fees: item.feesAmt ?? "0.0"));
       }
     }

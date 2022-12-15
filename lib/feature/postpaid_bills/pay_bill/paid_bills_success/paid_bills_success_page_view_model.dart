@@ -11,26 +11,23 @@ class PaidBillsSuccessPageViewModel extends BasePageViewModel {
   final PaidBillsSuccessPageArguments? arguments;
   AddNewPostpaidBillerUseCase addNewPostpaidBillerUseCase;
 
-  PaidBillsSuccessPageViewModel(
-      this.arguments, this.addNewPostpaidBillerUseCase) {
-    if (AppConstantsUtils.IS_NEW_PAYMENT &&
-        AppConstantsUtils.NICK_NAME.isNotEmpty) {
-      Future.delayed(Duration(milliseconds: 200))
-          .then((value) => addNewPostpaidBiller());
+  PaidBillsSuccessPageViewModel(this.arguments, this.addNewPostpaidBillerUseCase) {
+    if (AppConstantsUtils.IS_NEW_PAYMENT == true && AppConstantsUtils.NICK_NAME.isNotEmpty) {
+      if (AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL == true) {
+        AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = false;
+        Future.delayed(Duration(milliseconds: 10)).then((value) => addNewPostpaidBiller());
+      }
     }
     _addNewPostpaidBillerListener();
   }
 
   /// ---------------- Call Api AddNewPostpaidBiller -------------------- ///
 
-  PublishSubject<AddNewPostpaidBillerUseCaseParams>
-      _addNewPostpaidBillerRequest = PublishSubject();
+  PublishSubject<AddNewPostpaidBillerUseCaseParams> _addNewPostpaidBillerRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _addNewPostpaidBillerResponce =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _addNewPostpaidBillerResponce = PublishSubject();
 
-  Stream<Resource<bool>> get addNewPostpaidStream =>
-      _addNewPostpaidBillerResponce.stream;
+  Stream<Resource<bool>> get addNewPostpaidStream => _addNewPostpaidBillerResponce.stream;
 
   void addNewPostpaidBiller() {
     _addNewPostpaidBillerRequest.safeAdd(
@@ -46,9 +43,7 @@ class PaidBillsSuccessPageViewModel extends BasePageViewModel {
   void _addNewPostpaidBillerListener() {
     _addNewPostpaidBillerRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    addNewPostpaidBillerUseCase.execute(params: params))
+        RequestManager(params, createCall: () => addNewPostpaidBillerUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();

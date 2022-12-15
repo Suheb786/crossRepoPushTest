@@ -19,11 +19,9 @@ class ShareInfo {
 
     final billNameText = S.of(context).billName + ": " + billerName + newLine;
 
-    final nickText = nickName.isNotEmpty
-        ? S.of(context).nickName + ": " + nickName + newLine
-        : "";
+    final nickText = nickName.isNotEmpty ? S.of(context).nickName + ": " + nickName + newLine : "";
 
-    final amountText = S.of(context).amount + ": " + amount + newLine;
+    final amountText = S.of(context).amount + ": " + double.parse(amount ?? "0").toStringAsFixed(3) + newLine;
 
     final refNoText = S.of(context).refNo + ": " + refNo + newLine;
 
@@ -53,8 +51,10 @@ class ShareInfo {
           }
 
           if (item.totalAmount != null && item.totalAmount!.isNotEmpty) {
-            amountText =
-                S.of(context).amount + ": " + item.totalAmount! + newLine;
+            amountText = S.of(context).amount +
+                ": " +
+                double.parse(item.totalAmount ?? "0").toStringAsFixed(3) +
+                newLine;
           } else {
             amountText = "";
           }
