@@ -1122,6 +1122,9 @@ class ErrorParser {
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
 
+      case ErrorType.IS_PAID_FAILED:
+        return "";
+
       default:
         return "";
     }
