@@ -737,6 +737,12 @@ class NetworkError extends BaseError {
           case "err-365":
             return AppError(cause: cause, error: error, type: ErrorType.QR_INVALID);
 
+          case "err-375":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

@@ -14780,20 +14780,20 @@ class S {
     );
   }
 
-  /// `BILL UPDATED\nYour bill has been removed.`
+  /// `Your bill has been removed.`
   String get yourBillHasBeenRemoved {
     return Intl.message(
-      'BILL UPDATED\nYour bill has been removed.',
+      'Your bill has been removed.',
       name: 'yourBillHasBeenRemoved',
       desc: '',
       args: [],
     );
   }
 
-  /// `BILL UPDATED\nBiller Added Successfully.`
+  /// `Biller Added Successfully.`
   String get billerAddedSuccessfully {
     return Intl.message(
-      'BILL UPDATED\nBiller Added Successfully.',
+      'Biller Added Successfully.',
       name: 'billerAddedSuccessfully',
       desc: '',
       args: [],
@@ -14835,6 +14835,16 @@ class S {
     return Intl.message(
       'Success',
       name: 'successS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller already exists with the same billing number`
+  String get billerAlreadyExistsMessage {
+    return Intl.message(
+      'Biller already exists with the same billing number',
+      name: 'billerAlreadyExistsMessage',
       desc: '',
       args: [],
     );

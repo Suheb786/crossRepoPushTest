@@ -86,6 +86,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
         showAmountField = false;
       } else {
         showAmountField = true;
+        isShowAmount.safeAdd(showAmountField);
       }
     }
     isShowAmount.safeAdd(showAmountField);
@@ -262,7 +263,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
             getPrepaidCategoriesModelData = event.data!.content!.getPrepaidBillerListModelData!;
           }
           if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
+            // showToastWithError(event.appError!);
           }
         });
       },

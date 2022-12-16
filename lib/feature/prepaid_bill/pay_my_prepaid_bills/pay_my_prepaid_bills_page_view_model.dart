@@ -96,7 +96,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
           _gerPrePaidCategoriesResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
+            // showToastWithError(event.appError!);
           }
         });
       },

@@ -138,30 +138,32 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              S.of(context).date,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12.0.t),
-                            ),
-                            Text(
-                              model.arguments.paidBillContent.paidBill?[0].date ?? "",
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.0.t),
-                            )
-                          ],
-                        ),
+                        AppConstantsUtils.NICK_NAME.toString().isNotEmpty
+                            ? SizedBox(height: 16.h)
+                            : Container(),
+                        AppConstantsUtils.NICK_NAME.toString().isNotEmpty
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    S.of(context).nickName,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.0.t),
+                                  ),
+                                  Text(
+                                    AppConstantsUtils.NICK_NAME,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t),
+                                  )
+                                ],
+                              )
+                            : Container(),
                         model.arguments.paidBillContent.paidBill?[0].isPaid == true
                             ? SizedBox(height: 16.h)
                             : Container(),
@@ -300,7 +302,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
         billerName: model.arguments.paidBillContent.paidBill?[0].billName ?? "",
         amount:
             '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount ?? "0").toStringAsFixed(3)}',
-        nickName: AppConstantsUtils.IS_NEW_PAYMENT ? AppConstantsUtils.NICK_NAME : "",
+        nickName: AppConstantsUtils.IS_NEW_PAYMENT == true ? AppConstantsUtils.NICK_NAME : "",
       ),
       subject: S.of(context).billDetails,
     );

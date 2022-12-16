@@ -562,31 +562,36 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
   }
 
   Widget _showAmountForPrepaid() {
-    return Visibility(
-      visible: model.showAmountField,
-      child: Padding(
-        padding: EdgeInsetsDirectional.only(top: 16.0.h),
-        child: AppTextField(
-          labelText: S.of(context).amount.toUpperCase(),
-          hintText: S.of(context).pleaseEnter,
-          controller: model.amountTextControl,
-          inputType: TextInputType.numberWithOptions(
-            signed: false,
-            decimal: true,
-          ),
-          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
-          onChanged: (text) {
-            model.amountTextControl.text = text;
-            model.amountTextControl.selection =
-                TextSelection.fromPosition(TextPosition(offset: model.amountTextControl.text.length));
-            model.validateData();
-          },
-          onPressed: () {
-            FocusScope.of(context).unfocus();
-          },
-        ),
-      ),
-    );
+    return AppStreamBuilder<bool>(
+        stream: model.isShowAmountStream,
+        initialData: false,
+        dataBuilder: (context, isShowAmount) {
+          return Visibility(
+            visible: isShowAmount!,
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(top: 16.0.h),
+              child: AppTextField(
+                labelText: S.of(context).amount.toUpperCase(),
+                hintText: S.of(context).pleaseEnter,
+                controller: model.amountTextControl,
+                inputType: TextInputType.numberWithOptions(
+                  signed: false,
+                  decimal: true,
+                ),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
+                onChanged: (text) {
+                  model.amountTextControl.text = text;
+                  model.amountTextControl.selection =
+                      TextSelection.fromPosition(TextPosition(offset: model.amountTextControl.text.length));
+                  model.validateData();
+                },
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                },
+              ),
+            ),
+          );
+        });
   }
 
   void _showPrePaidCategoriesList(BuildContext context) {

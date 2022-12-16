@@ -1125,6 +1125,9 @@ class ErrorParser {
       case ErrorType.QR_NOT_SCANNED:
         return localisedHelper.qrNotScanned;
 
+      case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
+        return localisedHelper.billerAlreadyExistsMessage;
+
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
 
