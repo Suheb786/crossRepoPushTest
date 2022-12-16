@@ -48,6 +48,8 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
             }
           } else {
             model.isPrePaidCategoryEmpty = true;
+            Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+                arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
           }
         },
         dataBuilder: (context, snapshot) {
