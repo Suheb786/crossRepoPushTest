@@ -62,7 +62,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                       ),
                       child: model.addAllBillAmt() > 0.0
                           ? Center(child: AppSvg.asset(AssetUtils.right))
-                          : Center(child: AppSvg.asset(AssetUtils.cancel, color: AppColor.black)),
+                          : Center(child: AppSvg.asset(AssetUtils.fail, color: AppColor.black)),
                     ),
                   ),
                 ],
@@ -225,7 +225,8 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                 onTap: () {
                   _shareDetails(context, model);
                 },
-                child: Row(
+                child: model.addAllBillAmt() > 0.0
+                    ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
@@ -233,7 +234,9 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                       width: 8.w,
                     ),
                     Text(
-                      S.of(context).shareMyReceipt,
+                      S
+                          .of(context)
+                          .shareMyReceipt,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
@@ -242,7 +245,8 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                       ),
                     )
                   ],
-                ),
+                )
+                    : Container(),
               ),
             ),
             SizedBox(

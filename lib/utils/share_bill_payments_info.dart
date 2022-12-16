@@ -9,7 +9,7 @@ class ShareInfo {
     BuildContext context, {
     required String billerName,
     required String nickName,
-    required String amount,
+    required String? amount,
     required String refNo,
   }) {
     final newLine = "\n\n";
@@ -44,8 +44,7 @@ class ShareInfo {
 
         if (item != null) {
           if (item.billerName != null && item.billerName!.isNotEmpty) {
-            billNameText =
-                S.of(context).billName + ": " + item.billerName! + newLine;
+            billNameText = S.of(context).billName + ": " + item.billerName! + newLine;
           } else {
             billNameText = "";
           }
@@ -63,9 +62,9 @@ class ShareInfo {
           } else {
             refNoText = "";
           }
-
-          allBillsString =
-              allBillsString + newLine + billNameText + amountText + refNoText;
+          if (item.isPaid == true) {
+            allBillsString = allBillsString + newLine + billNameText + amountText + refNoText;
+          }
         }
       }
     }

@@ -73,7 +73,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                           ),
                           child: model.arguments.paidBillContent.paidBill?[0].isPaid == true
                               ? Center(child: AppSvg.asset(AssetUtils.right))
-                              : Center(child: AppSvg.asset(AssetUtils.cancel, color: AppColor.black)),
+                              : Center(child: AppSvg.asset(AssetUtils.fail, color: AppColor.black)),
                         ),
                       ),
                     ],
@@ -226,24 +226,26 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                     onTap: () {
                       _shareDetails(context, model);
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-                        Text(
-                          S.of(context).shareMyReceipt,
-                          style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            color: AppColor.light_acccent_blue,
-                            fontSize: 14.t,
-                          ),
-                        )
-                      ],
-                    ),
+                    child: model.arguments.paidBillContent.paidBill?[0].isPaid == true
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+                              SizedBox(
+                                width: 8.w,
+                              ),
+                              Text(
+                                S.of(context).shareMyReceipt,
+                                style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.light_acccent_blue,
+                                  fontSize: 14.t,
+                                ),
+                              )
+                            ],
+                          )
+                        : Container(),
                   ),
                 ),
                 SizedBox(

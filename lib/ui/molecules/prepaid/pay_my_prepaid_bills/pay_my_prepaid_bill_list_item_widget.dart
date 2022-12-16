@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/get_bill_payments_categories.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -24,15 +25,30 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
         children: [
+          // Container(
+          //   width: 40.w,
+          //   height: 40.w,
+          //   alignment: Alignment.center,
+          //   decoration: BoxDecoration(
+          //     shape: BoxShape.circle,
+          //     color: AppColor.vividYellow,
+          //   ),
+          //   child: AppSvg.asset(icon),
+          // ),
           Container(
-            width: 40.w,
-            height: 40.w,
+            width: 50.w,
+            height: 50.h,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColor.vividYellow,
             ),
-            child: AppSvg.asset(icon),
+            child: Image.asset(
+              GetBillPaymentsCategories.path(icon),
+              matchTextDirection: false,
+              width: 24.w,
+              height: 24.h,
+            ),
           ),
           SizedBox(
             width: 8.w,
