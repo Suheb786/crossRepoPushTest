@@ -1454,10 +1454,11 @@
   "errorWhileAddingCustomer": "error while adding customer",
   "payMyBill": "Pay My Bill",
   "insufficientFundsBillCannotBePaid": "Insufficient funds bill cannot be paid",
-  "yourBillHasBeenRemoved": "BILL UPDATED\nYour bill has been removed.",
-  "billerAddedSuccessfully": "BILL UPDATED\nBiller Added Successfully.",
+  "yourBillHasBeenRemoved": "Your bill has been removed.",
+  "billerAddedSuccessfully": "Biller Added Successfully.",
   "SearchCategory": "Search category",
   "status": "Status",
   "failed": "Failed",
-  "successS": "Success"
+  "successS": "Success",
+  "billerAlreadyExistsMessage": "Biller already exists with the same billing number"
 }

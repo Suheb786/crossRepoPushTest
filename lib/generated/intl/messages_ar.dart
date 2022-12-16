@@ -249,8 +249,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage("المستقبِل غير موجود. حاول مع حدا جديد."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
-        "billerAddedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("BILL UPDATED\nBiller Added Successfully."),
+        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
+        "billerAlreadyExistsMessage":
+            MessageLookupByLibrary.simpleMessage("Biller already exists with the same billing number"),
         "biometricLogin": MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل الدخول بالبصمة بنجاح"),
         "biometricLoginDeactivated":
@@ -2322,8 +2323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
         "yourApplicationInReviewNote":
             MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة، رح نخبرك قريباً."),
-        "yourBillHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("BILL UPDATED\nYour bill has been removed."),
+        "yourBillHasBeenRemoved": MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("تم إصدار بطاقة الدفع المباشر Yellow Sun"),
         "yourCardIsReady": MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة!"),

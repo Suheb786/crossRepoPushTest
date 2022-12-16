@@ -96,7 +96,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
           _gerPrePaidCategoriesResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
+            // showToastWithError(event.appError!);
           }
         });
       },
@@ -123,10 +123,8 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            if (event.data == true) {
-              showSuccessToast('BILL UPDATED\nYour bill has been removed.');
-              Future.delayed(Duration(milliseconds: 200)).then((value) => getPrepaidBiller());
-            }
+              showSuccessToast('Your bill has been removed.');
+            Future.delayed(Duration(milliseconds: 200)).then((value) => getPrepaidBiller());
           }
         });
       },

@@ -256,8 +256,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recipient not found. Please try another recipient."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
-        "billerAddedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("BILL UPDATED\nBiller Added Successfully."),
+        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
+        "billerAlreadyExistsMessage":
+            MessageLookupByLibrary.simpleMessage("Biller already exists with the same billing number"),
         "biometricLogin": MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated":
             MessageLookupByLibrary.simpleMessage("Your biometric login has been activated successfully"),
@@ -2459,8 +2460,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
-        "yourBillHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("BILL UPDATED\nYour bill has been removed."),
+        "yourBillHasBeenRemoved": MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
