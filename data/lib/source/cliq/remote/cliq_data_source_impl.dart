@@ -447,7 +447,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   @override
   Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({required bool GetToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAccountByCustomerID(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.changeDefaultAccountOtp(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
