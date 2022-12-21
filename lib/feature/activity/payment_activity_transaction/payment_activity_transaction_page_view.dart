@@ -15,7 +15,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
+class PaymentActivityTransactionPageView
+    extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
   PaymentActivityTransactionPageView(ProviderBase model) : super(model);
 
   @override
@@ -38,7 +39,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                   child: Text(
                     S.of(context).paymentActivity,
                     style: TextStyle(
-                        fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0.t),
                   ),
                 ),
               ),
@@ -49,8 +52,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                     height: double.infinity,
                     decoration: BoxDecoration(
                         color: Theme.of(context).accentColor,
-                        borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(16),
+                            topLeft: Radius.circular(16))),
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(top: 8.0.h),
                       child: Column(
@@ -61,11 +65,13 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                               height: 4.0.h,
                               width: 64.0.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: AppColor.whiteGray),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 38.0.w),
+                            padding: EdgeInsetsDirectional.only(
+                                top: 24.0.h, start: 24.0.w, end: 38.0.w),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -77,7 +83,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                       borderRadius: BorderRadius.circular(16),
                                       color: AppColor.whiteGray,
                                     ),
-                                    padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10.0.h, horizontal: 16.0.w),
                                     child: Row(
                                       children: [
                                         Text(
@@ -89,8 +96,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 12.0.w),
-                                          child: AppSvg.asset(AssetUtils.dropDown),
+                                          padding: EdgeInsetsDirectional.only(
+                                            start: 12.0.w,
+                                          ),
+                                          child: AppSvg.asset(
+                                            AssetUtils.dropDown,
+                                          ),
                                         )
                                       ],
                                     ),
@@ -98,39 +109,53 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                   AppStreamBuilder<String>(
                                       stream: model.paymentPeriodResponseStream,
                                       initialData:
-                                          StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
+                                          StringUtils.isDirectionRTL(context)
+                                              ? "آخر 30 يوم"
+                                              : 'Last 30 days',
                                       dataBuilder: (mContext, paymentPeriod) {
                                         return Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 8.0.w),
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 8.0.w),
                                           child: InkWell(
                                             onTap: () {
-                                              PaymentActivityFilterDialog.show(context,
-                                                  type: FilterType.period, onSelected: (value) {
+                                              PaymentActivityFilterDialog.show(
+                                                  context,
+                                                  type: FilterType.period,
+                                                  onSelected: (value) {
                                                 Navigator.pop(context);
-                                                model.updatePaymentPeriod(value);
+                                                model
+                                                    .updatePaymentPeriod(value);
                                               }, onDismissed: () {
                                                 Navigator.pop(context);
                                               });
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(16),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
                                                 color: AppColor.whiteGray,
                                               ),
-                                              padding:
-                                                  EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 10.0.h,
+                                                  horizontal: 16.0.w),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     paymentPeriod!,
                                                     style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
+                                                        fontFamily:
+                                                            StringUtils.appFont,
                                                         fontSize: 12.0.t,
-                                                        fontWeight: FontWeight.w600),
+                                                        fontWeight:
+                                                            FontWeight.w600),
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsetsDirectional.only(start: 12.0.w),
-                                                    child: AppSvg.asset(AssetUtils.dropDown),
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .only(
+                                                                start: 12.0.w),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.dropDown),
                                                   )
                                                 ],
                                               ),
@@ -144,22 +169,37 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(top: 28.0.h, start: 24.0.w, end: 24.0.w),
-                              child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
-                                  stream: model.paymentActivityTransactionResponse,
+                              padding: EdgeInsetsDirectional.only(
+                                  top: 28.0.h, start: 24.0.w, end: 24.0.w),
+                              child: AppStreamBuilder<
+                                      Resource<PaymentActivityResponse>>(
+                                  stream:
+                                      model.paymentActivityTransactionResponse,
                                   initialData: Resource.none(),
                                   dataBuilder: (context, transaction) {
                                     return ListView.builder(
                                       itemBuilder: (context, index) {
-                                        return transaction!.data!.paymentActivityContent!.length > 0
+                                        return transaction!
+                                                    .data!
+                                                    .paymentActivityContent!
+                                                    .length >
+                                                0
                                             ? PaymentActivityTransactionWidget(
-                                                transactions:
-                                                    transaction.data!.paymentActivityContent![index],
+                                                transactions: transaction.data!
+                                                        .paymentActivityContent![
+                                                    index],
                                               )
-                                            : Center(child: Text(S.of(context).noTransactionToDisplay));
+                                            : Center(
+                                                child: Text(
+                                                  S
+                                                      .of(context)
+                                                      .noTransactionToDisplay,
+                                                ),
+                                              );
                                       },
                                       shrinkWrap: true,
-                                      itemCount: transaction!.data!.paymentActivityContent!.length,
+                                      itemCount: transaction!
+                                          .data!.paymentActivityContent!.length,
                                     );
                                   }),
                             ),

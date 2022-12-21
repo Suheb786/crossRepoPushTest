@@ -103,7 +103,7 @@ class CliqRepositoryImpl extends CliqRepository {
   Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
       {required bool GetToken}) async {
     final result = await safeApiCall(
-        _cliqDataSource.changeDefaultAccountOtp(GetToken: GetToken));
+        _cliqDataSource.confirmChangeDefaultAccount(GetToken: GetToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
@@ -415,12 +415,15 @@ class CliqRepositoryImpl extends CliqRepository {
       required String RTPStatus,
       required String RejectReason,
       required String RejectADdInfo}) async {
-    final result = await safeApiCall(_cliqDataSource.requestToPayResult(
+    final result = await safeApiCall(
+      _cliqDataSource.requestToPayResult(
         CustID: CustID,
         OrgnlMsgId: OrgnlMsgId,
         RTPStatus: RTPStatus,
         RejectReason: RejectReason,
-        RejectADdInfo: RejectADdInfo));
+        RejectADdInfo: RejectADdInfo,
+      ),
+    );
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
@@ -436,32 +439,33 @@ class CliqRepositoryImpl extends CliqRepository {
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp(
       {required bool GetToken}) async {
     final result = await safeApiCall(
-        _cliqDataSource.getAccountByCustomerID(GetToken: GetToken));
+        _cliqDataSource.changeDefaultAccountOtp(GetToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
   @override
-  Future<Either<NetworkError, bool>> approveRTPRequest(
-      {required String custID,
-      required String dbtrAcct,
-      required String dbtrName,
-      required String dbtrPstlAdr,
-      required String dbtrRecordID,
-      required String dbtrAlias,
-      required String currency,
-      required String amount,
-      required String cdtrBic,
-      required String cdtrName,
-      required String cdtrAcct,
-      required String cdtrPstlAdr,
-      required String cdtrRecordID,
-      required String cdtrAlias,
-      required String rgltryRptg,
-      required String payRefNo,
-      required String rejectReason,
-      required String rejectADdInfo,
-      required String rtpStatus,
-      required bool GetToken}) async {
+  Future<Either<NetworkError, bool>> approveRTPRequest({
+    required String custID,
+    required String dbtrAcct,
+    required String dbtrName,
+    required String dbtrPstlAdr,
+    required String dbtrRecordID,
+    required String dbtrAlias,
+    required String currency,
+    required String amount,
+    required String cdtrBic,
+    required String cdtrName,
+    required String cdtrAcct,
+    required String cdtrPstlAdr,
+    required String cdtrRecordID,
+    required String cdtrAlias,
+    required String rgltryRptg,
+    required String payRefNo,
+    required String rejectReason,
+    required String rejectADdInfo,
+    required String rtpStatus,
+    required bool GetToken,
+  }) async {
     final result = await safeApiCall(_cliqDataSource.approveRTPRequest(
         custID: custID,
         dbtrAcct: dbtrAcct,

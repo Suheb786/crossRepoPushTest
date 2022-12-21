@@ -35,7 +35,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
         );
       },
     );
-
+//! ------------------------ This Api is deprecated from backend ------------------>>>>>>>>>>>>>>>>
     _paymentActivityTransactionRequest.listen(
       (value) {
         RequestManager(value,
@@ -50,13 +50,13 @@ class ActivityHomeViewModel extends BasePageViewModel {
               showToastWithError(event.appError!);
             } else if (event.status == Status.SUCCESS) {
               getPaymentActivityList(event.data!.paymentActivityContent!);
-              getRequestMoneyActivity(true);
             }
           },
         );
       },
     );
 
+    ///--------------------------------------------------------------------///
     _notificationRequest.listen(
       (value) {
         RequestManager(value,
@@ -69,7 +69,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
             if (event.status == Status.ERROR) {
               showToastWithError(event.appError!);
             } else if (event.status == Status.SUCCESS) {
-              getPaymentActivity();
+              getRequestMoneyActivity(true);
             }
           },
         );
