@@ -1517,5 +1517,19 @@
   "invalidAlias": "Invalid Alias",
   "invalidAliasValue": "Invalid Alias Value",
   "cliqIdUpdatedSuccessfully": "CliqID Updated Successfully",
-  "pleaseAddLinkAccount": "Please Add Link Account"
+  "pleaseAddLinkAccount": "Please Add Link Account",
+  "recipientName": "RECIPIENT NAME",
+  "recipientAddress": "RECIPIENT ADDRESS",
+  "accountMobileNoAlias": "IBAN / ACCOUNT NO. / Mobile No. / ALIAS",
+  "mobileNoRegisteredWithBlink": "Mobile number registered with blink",
+  "mobileNoRegisteredWithBlinkDesc": "We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.",
+  "numberFormatting": "Number formatting",
+  "dummyIBAN": "ABC000012341234123819241213",
+  "dummyAccountNo": "9911 1407 61",
+  "mobileNo": "Mobile No.",
+  "dummyMobileNo": "+962 3320 8080",
+  "dummyAlias": "username1",
+  "samplesOfNoFormatting": "Here are samples of the number formatting :\n",
+  "emptyRecipientName": "Enter Recipient Name",
+  "emptyRecipientAddress": "Enter Recipient Address"
 }

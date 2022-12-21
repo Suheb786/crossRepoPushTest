@@ -23,6 +23,8 @@ TransferRequestEntity _$TransferRequestEntityFromJson(
     detCustomerType: json['DetCustomerType'] as String?,
     getToken: json['getToken'] as bool,
     otpCode: json['OtpCode'] as String?,
+    recipientName: json['RecipientName'] as String?,
+    recipientAddress: json['RecipientAddress'] as String?,
   );
 }
 
@@ -42,5 +44,7 @@ Map<String, dynamic> _$TransferRequestEntityToJson(
       'DetCustomerType': instance.detCustomerType,
       'getToken': instance.getToken,
       'NickName': instance.nickName,
+      'RecipientName': instance.recipientName,
+      'RecipientAddress': instance.recipientAddress,
       'baseClass': instance.baseData,
     };

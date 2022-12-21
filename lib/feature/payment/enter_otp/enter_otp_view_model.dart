@@ -112,14 +112,15 @@ class EnterOtpViewModel extends BasePageViewModel {
     SmsAutoFill().listenForCode();
   }
 
-  void transfer(
-      {required TransferResponse transferResponse,
-      required String memo,
-      required bool isFriend,
-      required String beneficiaryImage,
-      required String nickName,
-      required num limit,
-      required String amount}) {
+  void transfer({required TransferResponse transferResponse,
+    required String memo,
+    required bool isFriend,
+    required String beneficiaryImage,
+    required String nickName,
+    required num limit,
+    required String amount,
+    required String recipientName,
+    required String recipientAddress}) {
     print('isFriend:--->$isFriend');
     _transferRequest.safeAdd(TransferUseCaseParams(
         limit: limit,
@@ -134,7 +135,9 @@ class EnterOtpViewModel extends BasePageViewModel {
         beneficiaryId: transferResponse.beneficiaryId,
         beneficiaryImage: beneficiaryImage,
         type: "",
-        detCustomerType: ""));
+        detCustomerType: "",
+        recipientName: recipientName,
+        recipientAddress: recipientAddress));
   }
 
   void validate(String value) {

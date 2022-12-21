@@ -59,7 +59,6 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        print('i am here');
                         model.transfer(
                             nickName: ProviderScope.containerOf(context)
                                     .read(sendToNewRecipientViewModelProvider)
@@ -81,15 +80,28 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                             isFriend: ProviderScope.containerOf(context)
                                 .read(sendToNewRecipientViewModelProvider)
                                 .isFriend,
-                            beneficiaryImage: ProviderScope.containerOf(context)
+                            beneficiaryImage: ProviderScope
+                                .containerOf(context)
                                 .read(sendToNewRecipientViewModelProvider)
                                 .selectedProfile,
-                            limit: ProviderScope.containerOf(context)
+                            limit: ProviderScope
+                                .containerOf(context)
                                 .read(sendToNewRecipientViewModelProvider)
                                 .limit!,
-                            amount: ProviderScope.containerOf(context)
+                            amount: ProviderScope
+                                .containerOf(context)
                                 .read(sendMoneyViewModelProvider)
-                                .currentPinValue);
+                                .currentPinValue,
+                            recipientName: ProviderScope
+                                .containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .recipientNameController
+                                .text,
+                            recipientAddress: ProviderScope
+                                .containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .recipientAddressController
+                                .text);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

@@ -27,7 +27,9 @@ class TransferUseCase extends BaseUseCase<NetworkError, TransferUseCaseParams, T
         memo: params.memo!,
         nickName: params.nickName!,
         detCustomerType: params.detCustomerType!,
-        type: params.type!);
+        type: params.type!,
+        recipientName: params.recipientName,
+        recipientAddress: params.recipientAddress);
   }
 }
 
@@ -45,6 +47,8 @@ class TransferUseCaseParams extends Params {
   final String? detCustomerType;
   final String? type;
   final num? limit;
+  final String? recipientName;
+  final String? recipientAddress;
 
   TransferUseCaseParams(
       {this.beneficiaryId,
@@ -59,7 +63,9 @@ class TransferUseCaseParams extends Params {
       this.type,
       this.detCustomerType,
       this.nickName,
-      this.toAccount});
+      this.toAccount,
+      this.recipientName = '',
+      this.recipientAddress = ''});
 
   @override
   Either<AppError, bool> verify() {

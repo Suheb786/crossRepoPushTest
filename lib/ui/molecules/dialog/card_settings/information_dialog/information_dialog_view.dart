@@ -43,8 +43,12 @@ class InformationDialogView extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 32.h),
-                      image != null ? AppSvg.asset(image!, height: 50.h, width: 50.w) : Container(),
-                      SizedBox(height: 25.h),
+                      image != null
+                          ? Padding(
+                        padding: EdgeInsets.only(bottom: 25.0.h),
+                        child: AppSvg.asset(image!, height: 50.h, width: 50.w),
+                      )
+                          : Container(),
                       Text(
                         title,
                         textAlign: TextAlign.center,
