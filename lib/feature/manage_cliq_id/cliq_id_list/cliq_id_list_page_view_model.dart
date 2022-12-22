@@ -111,6 +111,8 @@ class CliqIdListPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    getAlias(true);
   }
 
   ///-----------------------[ Private-Instance-Variables ]-----------------------///

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -23,7 +23,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 
 class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
   LinkBankAccountCliqIdPageView(ProviderBase model) : super(model);
@@ -258,79 +257,74 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                               stream: model.isSelectedStream,
                                                               dataBuilder:
                                                                   (BuildContext context, isSelected) {
-                                                                return Visibility(
-                                                                  visible: data.length > 0,
-                                                                  child: Padding(
-                                                                    padding: EdgeInsets.symmetric(
-                                                                        vertical: 24.0.h),
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment.spaceBetween,
-                                                                      children: [
-                                                                        if (isSelected!)
-                                                                          InkWell(
-                                                                            onTap: () {
-                                                                              model.termAndConditionSelected(
-                                                                                  false);
-                                                                            },
-                                                                            child: Container(
-                                                                              width: 40.0.w,
-                                                                              height: 42.0.h,
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional
-                                                                                    .only(
-                                                                                        start: 10.w,
-                                                                                        end: 10.w,
-                                                                                        bottom: 10.h,
-                                                                                        top: 10.h),
-                                                                                child: AppSvg.asset(
-                                                                                    AssetUtils.tick,
-                                                                                    color: AppColor.black),
-                                                                              ),
-                                                                              decoration: BoxDecoration(
-                                                                                color: AppColor.vividYellow,
-                                                                                borderRadius:
-                                                                                    BorderRadius.circular(
-                                                                                        100),
-                                                                              ),
+                                                                return Padding(
+                                                                  padding:
+                                                                      EdgeInsets.symmetric(vertical: 24.0.h),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment.spaceBetween,
+                                                                    children: [
+                                                                      if (isSelected!)
+                                                                        InkWell(
+                                                                          onTap: () {
+                                                                            model.termAndConditionSelected(
+                                                                                false);
+                                                                          },
+                                                                          child: Container(
+                                                                            width: 40.0.w,
+                                                                            height: 42.0.h,
+                                                                            child: Padding(
+                                                                              padding:
+                                                                                  EdgeInsetsDirectional.only(
+                                                                                      start: 10.w,
+                                                                                      end: 10.w,
+                                                                                      bottom: 10.h,
+                                                                                      top: 10.h),
+                                                                              child: AppSvg.asset(
+                                                                                  AssetUtils.tick,
+                                                                                  color: AppColor.black),
                                                                             ),
-                                                                          )
-                                                                        else
-                                                                          InkWell(
-                                                                            onTap: () {
-                                                                              model.termAndConditionSelected(
-                                                                                  true);
-                                                                            },
-                                                                            child: Container(
-                                                                              width: 40.0.w,
-                                                                              height: 42.0.h,
-                                                                              decoration: BoxDecoration(
-                                                                                border: Border.all(
-                                                                                    color: AppColor.gray1),
-                                                                                borderRadius:
-                                                                                    BorderRadius.all(
-                                                                                        Radius.circular(
-                                                                                            100.0)),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        SizedBox(
-                                                                          width: 16.w,
-                                                                        ),
-                                                                        Expanded(
-                                                                          child: Text(
-                                                                            S
-                                                                                .of(context)
-                                                                                .whenAcceptingCreationOfYourCliqId,
-                                                                            style: TextStyle(
-                                                                              color: AppColor.veryDarkGray2,
-                                                                              fontSize: 12.t,
-                                                                              fontWeight: FontWeight.w600,
+                                                                            decoration: BoxDecoration(
+                                                                              color: AppColor.vividYellow,
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(100),
                                                                             ),
                                                                           ),
                                                                         )
+                                                                      else
+                                                                        InkWell(
+                                                                          onTap: () {
+                                                                            model.termAndConditionSelected(
+                                                                                true);
+                                                                          },
+                                                                          child: Container(
+                                                                            width: 40.0.w,
+                                                                            height: 42.0.h,
+                                                                            decoration: BoxDecoration(
+                                                                              border: Border.all(
+                                                                                  color: AppColor.gray1),
+                                                                              borderRadius: BorderRadius.all(
+                                                                                  Radius.circular(100.0)),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      SizedBox(
+                                                                        width: 16.w,
+                                                                      ),
+                                                                      Expanded(
+                                                                        child: Text(
+                                                                          S
+                                                                              .of(context)
+                                                                              .whenAcceptingCreationOfYourCliqId,
+                                                                          style: TextStyle(
+                                                                            color: AppColor.veryDarkGray2,
+                                                                            fontSize: 12.t,
+                                                                            fontWeight: FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      )
 
-                                                                        /*: Container(
+                                                                      /*: Container(
                                                             width: 40.0.w,
                                                             height: 40.0.h,
                                                             decoration: BoxDecoration(
@@ -338,8 +332,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                               border: Border.all(color: AppColor.gray1),
                                                             ),
                                                           ),*/
-                                                                      ],
-                                                                    ),
+                                                                    ],
                                                                   ),
                                                                 );
                                                               },

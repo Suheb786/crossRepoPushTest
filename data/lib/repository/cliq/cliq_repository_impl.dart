@@ -83,7 +83,7 @@ class CliqRepositoryImpl extends CliqRepository {
 
   @override
   Future<Either<NetworkError, bool>> confirmChangeDefaultAccount({required bool GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.changeDefaultAccountOtp(GetToken: GetToken));
+    final result = await safeApiCall(_cliqDataSource.confirmChangeDefaultAccount(GetToken: GetToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
@@ -400,7 +400,7 @@ class CliqRepositoryImpl extends CliqRepository {
 
   @override
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp({required bool GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.getAccountByCustomerID(GetToken: GetToken));
+    final result = await safeApiCall(_cliqDataSource.changeDefaultAccountOtp(GetToken: GetToken));
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
