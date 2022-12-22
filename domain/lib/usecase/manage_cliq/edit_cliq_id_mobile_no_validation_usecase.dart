@@ -25,7 +25,10 @@ class EditCliqMobileNoValidationUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (mobileNo.isEmpty || mobileNo.length < 8) {
+    if (mobileNo.isEmpty || mobileNo.length < 14) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
+    } else if (mobileNo.substring(0, 5) == '00962') {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
     } else if (isSelected == false) {

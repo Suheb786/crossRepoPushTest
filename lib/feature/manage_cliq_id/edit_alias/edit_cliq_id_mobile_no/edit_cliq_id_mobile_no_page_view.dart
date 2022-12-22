@@ -1,8 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
-import 'package:domain/model/country/country_list/country_data.dart';
-import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,13 +11,10 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_an
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_term_condition_selection_widget.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -82,8 +77,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                     arguments: OtpForEditAliasAndMobileNoPageArguments(
                                         data: data.data!,
                                         aliasId: model.arguments.aliasID,
-                                        aliasValue: "00${model.countryData.phoneCode}" +
-                                            model.mobileNoController.text,
+                                        aliasValue: "00962" + model.mobileNoController.text,
                                         isAlias: false));
                               }
                             }
@@ -104,8 +98,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                     ///api call
                                     model.makeOtpRequest(
                                         aliasId: model.arguments.aliasID,
-                                        aliasValue: "00${model.countryData.phoneCode}" +
-                                            model.mobileNoController.text,
+                                        aliasValue: "00962" + model.mobileNoController.text,
                                         isAlias: false);
                                   }
                                 },
@@ -124,112 +117,25 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                         children: [
                                           Column(
                                             children: [
-                                              AppStreamBuilder<Resource<AllowedCountryListResponse>>(
-                                                  stream: model.getAllowedCountryStream,
-                                                  initialData: Resource.none(),
-                                                  dataBuilder: (context, country) {
-                                                    return AppStreamBuilder<CountryData>(
-                                                        stream: model.getSelectedCountryStream,
-                                                        initialData: CountryData(),
-                                                        dataBuilder: (context, countryData) {
-                                                          return Padding(
-                                                            padding: EdgeInsetsDirectional.only(
-                                                                start: 24.w, top: 32.h, end: 24.w),
-                                                            child: AppTextField(
-                                                              labelText:
-                                                                  S.of(context).mobileNumber.toUpperCase(),
-                                                              hintText: S.of(context).mobileNumberHint,
-                                                              inputType: TextInputType.phone,
-                                                              inputAction: TextInputAction.done,
-                                                              inputFormatters: [
-                                                                LengthLimitingTextInputFormatter(10),
-                                                                FilteringTextInputFormatter.allow(
-                                                                    RegExp(r'[0-9]')),
-                                                              ],
-                                                              controller: model.mobileNoController,
-                                                              key: model.mobileNumberKey,
-                                                              onChanged: (value) {
-                                                                model.showBtn();
-                                                              },
-                                                              prefixIcon: () {
-                                                                return InkWell(
-                                                                  onTap: () {
-                                                                    MobileNumberDialog.show(context,
-                                                                        title: S.of(context).mobileNumber,
-                                                                        selectedCountryData: model
-                                                                            .countryData, onSelected: (data) {
-                                                                      Navigator.pop(context);
-                                                                      model.countryData = data;
-                                                                      model.setSelectedCountry(data);
-                                                                    }, onDismissed: () {
-                                                                      Navigator.pop(context);
-                                                                    },
-                                                                        countryDataList: country!
-                                                                            .data!.contentData!.countryData);
-                                                                  },
-                                                                  child: Padding(
-                                                                    padding: EdgeInsets.only(top: 8.0.h),
-                                                                    child: Row(
-                                                                      mainAxisSize: MainAxisSize.min,
-                                                                      children: <Widget>[
-                                                                        Container(
-                                                                          height: 16,
-                                                                          width: 16,
-                                                                          decoration: BoxDecoration(
-                                                                            color: Theme.of(context)
-                                                                                .primaryColorDark,
-                                                                            shape: BoxShape.circle,
-                                                                          ),
-                                                                          child: AppSvg.asset(countryData!
-                                                                                      .isoCode3 !=
-                                                                                  null
-                                                                              ? "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase()}.svg"
-                                                                              : "assets/flags/jor.svg"),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsets.symmetric(
-                                                                              horizontal: 8.0.w),
-                                                                          child: Directionality(
-                                                                            textDirection: TextDirection.ltr,
-                                                                            child: Text(
-                                                                              countryData
-                                                                                      .phoneCode!.isNotEmpty
-                                                                                  ? '+${countryData.phoneCode!}'
-                                                                                  : "",
-                                                                              style: TextStyle(
-                                                                                fontFamily:
-                                                                                    StringUtils.appFont,
-                                                                                color: Theme.of(context)
-                                                                                    .textTheme
-                                                                                    .bodyText1!
-                                                                                    .color,
-                                                                                fontSize: 14.t,
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                            height: 16.h,
-                                                                            width: 16.w,
-                                                                            margin:
-                                                                                EdgeInsetsDirectional.only(
-                                                                                    end: 8.w),
-                                                                            child: AppSvg.asset(
-                                                                                AssetUtils.downArrow,
-                                                                                color: Theme.of(context)
-                                                                                    .primaryTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color))
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ),
-                                                          );
-                                                        });
-                                                  }),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional.only(
+                                                    start: 24.w, top: 32.h, end: 24.w),
+                                                child: AppTextField(
+                                                  labelText: S.of(context).mobileNumber.toUpperCase(),
+                                                  hintText: S.of(context).mobileNumberHint,
+                                                  inputType: TextInputType.phone,
+                                                  inputAction: TextInputAction.done,
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(10),
+                                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                                  ],
+                                                  controller: model.mobileNoController,
+                                                  key: model.mobileNumberKey,
+                                                  onChanged: (value) {
+                                                    model.showBtn();
+                                                  },
+                                                ),
+                                              ),
                                               AppStreamBuilder<bool>(
                                                 initialData: false,
                                                 stream: model.isSelectedStream,

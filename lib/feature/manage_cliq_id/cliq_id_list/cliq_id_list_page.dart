@@ -70,7 +70,7 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
 
   @override
   void onModelReady(CliqIdListPageViewModel model) {
-    model.getAlias(true);
+    //  model.getAlias(true);
     super.onModelReady(model);
   }
 
