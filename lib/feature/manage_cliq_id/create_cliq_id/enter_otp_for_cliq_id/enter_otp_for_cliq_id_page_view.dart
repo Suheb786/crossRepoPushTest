@@ -71,7 +71,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .aliasController
                                         .text
-                                    : "00${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).countryData.phoneCode}" +
+                                    : "00962" +
                                         ProviderScope.containerOf(context)
                                             .read(cliqIdTypeSelectionViewModelProvider)
                                             .mobileNumberController
