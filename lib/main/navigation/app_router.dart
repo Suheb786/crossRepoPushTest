@@ -73,6 +73,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart'
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
@@ -814,12 +815,17 @@ class AppRouter {
                 RjBookingPurchasePage(arguments: settings.arguments as RjBookingPurchasePageArgument),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
 
-      /// Rj Flight Booking Detail Page
+    /// Rj Flight Booking Detail Page
       case RoutePaths.RjFlightBookingDetailPage:
         return CupertinoPageRoute(
             builder: (context) =>
                 RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
+
+      case RoutePaths.LinkAccountPage:
+        return CupertinoPageRoute(
+            builder: (context) => LinkAccountPage(),
+            settings: RouteSettings(name: RoutePaths.LinkAccountPage));
 
       default:
         return CupertinoPageRoute(

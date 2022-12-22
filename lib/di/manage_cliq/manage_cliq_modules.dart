@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_an
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
@@ -106,4 +107,8 @@ final linkAccountDialogViewModelProvider = ChangeNotifierProvider.autoDispose<Li
 final cliqInformationDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<CliqInformationDialogViewModel>(
   (ref) => CliqInformationDialogViewModel(),
+);
+
+final linkAccountPageViewModelProvider = ChangeNotifierProvider.autoDispose<LinkAccountPageViewModel>(
+  (ref) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider)),
 );
