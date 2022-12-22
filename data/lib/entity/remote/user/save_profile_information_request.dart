@@ -18,6 +18,8 @@ class SaveProfileInformationRequest {
   final bool? isAdditionalNational;
   @JsonKey(name: "IsEmployed")
   final bool? isEmployed;
+  @JsonKey(name: "IsBeneficialOwner")
+  final bool? isBeneficialOwner;
   @JsonKey(name: "AdditionalNationality")
   final String? additionalNationality;
   @JsonKey(name: "baseClass")
@@ -32,6 +34,7 @@ class SaveProfileInformationRequest {
       this.additionalNationality,
       this.isAdditionalNational,
       this.isEmployed,
+      this.isBeneficialOwner,
       required this.baseData});
 
   factory SaveProfileInformationRequest.fromJson(Map<String, dynamic> json) =>

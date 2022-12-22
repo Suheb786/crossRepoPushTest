@@ -511,7 +511,7 @@ SPEC CHECKSUMS:
   http_certificate_pinning: 23157eae20c5887e49372b3cbe7a1d5863eb9bad
   IBGoogleWebRTC: 5814fcf577b2c7eca22385af7a74c79f648f2aac
   image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
-  image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
+  image_picker: 541dcbb3b9cf32d87eacbd957845d8651d6c62c3
   infobip_mobilemessaging: eb1cab90dcea9199c25769e4653b957416e179c3
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
   InfobipRTC: 9ed1698add5d74133c57e30dd25117fd0c7c8d69
