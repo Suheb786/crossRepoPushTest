@@ -5,6 +5,7 @@ import 'package:domain/model/payment/payment_activity_data.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/notification_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
+import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -12,93 +13,157 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 
 class ActivityHomeViewModel extends BasePageViewModel {
-  PaymentActivityTransactionUseCase _paymentActivityTransactionUseCase;
+  ActivityHomeViewModel(this._paymentActivityTransactionUseCase,
+      this._notificationUseCase, this._requestMoneyActivityUseCase) {
+    _requestMoneyActivityRequest.listen(
+      (value) {
+        RequestManager(value,
+                createCall: () =>
+                    _requestMoneyActivityUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            updateLoader();
+            _requestMoneyActivityResponse.safeAdd(event);
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            }
+          },
+        );
+      },
+    );
+//! ------------------------ This Api is deprecated from backend ------------------>>>>>>>>>>>>>>>>
+    _paymentActivityTransactionRequest.listen(
+      (value) {
+        RequestManager(value,
+                createCall: () =>
+                    _paymentActivityTransactionUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            updateLoader();
+            _paymentActivityTransactionResponse.safeAdd(event);
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            } else if (event.status == Status.SUCCESS) {
+              getPaymentActivityList(event.data!.paymentActivityContent!);
+            }
+          },
+        );
+      },
+    );
 
-  NotificationUseCase _notificationUseCase;
+    ///--------------------------------------------------------------------///
+    _notificationRequest.listen(
+      (value) {
+        RequestManager(value,
+                createCall: () => _notificationUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            updateLoader();
+            _activityResponse.safeAdd(event);
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            } else if (event.status == Status.SUCCESS) {
+              getRequestMoneyActivity(true);
+            }
+          },
+        );
+      },
+    );
+
+    getActivity();
+  }
+
+  PageController appSwiperController = PageController(viewportFraction: 0.8);
+  PageController controller =
+      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
 
   final SwiperController pageController = SwiperController();
-  PageController appSwiperController = PageController(viewportFraction: 0.8);
-  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
+  List<PaymentActivityData> paymentActivityData = [];
+
+  BehaviorSubject<Resource<ActivityResponse>> _activityResponse =
+      BehaviorSubject();
+
   PublishSubject<int> _currentStep = PublishSubject();
+
+  ///activity response
+  BehaviorSubject<NotificationUseCaseParams> _notificationRequest =
+      BehaviorSubject();
+
+  NotificationUseCase _notificationUseCase;
+  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
+  BehaviorSubject<Resource<List<PaymentActivityData>>>
+      _paymentActivityListResponse = BehaviorSubject();
+
+  ///payment activity transcation
+  BehaviorSubject<PaymentActivityTransactionUseCaseParams>
+      _paymentActivityTransactionRequest = BehaviorSubject();
+
+  BehaviorSubject<Resource<PaymentActivityResponse>>
+      _paymentActivityTransactionResponse = BehaviorSubject();
+
+  PaymentActivityTransactionUseCase _paymentActivityTransactionUseCase;
+  //*--------------------[request-money-activity]---------------------->>>>>>>
+
+  PublishSubject<RequestMoneyActivityParams> _requestMoneyActivityRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<RequestMoneyActivity>> _requestMoneyActivityResponse =
+      PublishSubject();
+
+  RequestMoneyActivityUseCase _requestMoneyActivityUseCase;
+
+  @override
+  void dispose() {
+    _currentStep.close();
+    super.dispose();
+  }
 
   Stream<int> get currentStep => _currentStep.stream;
 
-  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
+  Stream<PageController> get pageControllerStream =>
+      _pageControllerSubject.stream;
 
-  Stream<PageController> get pageControllerStream => _pageControllerSubject.stream;
+  Stream<Resource<PaymentActivityResponse>>
+      get paymentActivityTransactionResponse =>
+          _paymentActivityTransactionResponse.stream;
 
-  ///payment activity transcation
-  BehaviorSubject<PaymentActivityTransactionUseCaseParams> _paymentActivityTransactionRequest =
-      BehaviorSubject();
+  Stream<Resource<RequestMoneyActivity>> get requestMoneyActivity =>
+      _requestMoneyActivityResponse.stream;
 
-  BehaviorSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = BehaviorSubject();
+  void getRequestMoneyActivity(bool getToken) {
+    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(getToken));
+  }
 
-  Stream<Resource<PaymentActivityResponse>> get paymentActivityTransactionResponse =>
-      _paymentActivityTransactionResponse.stream;
-
-  ///activity response
-  BehaviorSubject<NotificationUseCaseParams> _notificationRequest = BehaviorSubject();
-
-  BehaviorSubject<Resource<ActivityResponse>> _activityResponse = BehaviorSubject();
-
-  Stream<Resource<ActivityResponse>> get activityResponse => _activityResponse.stream;
+  Stream<Resource<ActivityResponse>> get activityResponse =>
+      _activityResponse.stream;
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
 
   void updatePageControllerStream(int index) {
-    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
+    controller = PageController(
+        initialPage: index, viewportFraction: 0.8, keepPage: true);
     _pageControllerSubject.safeAdd(controller);
   }
-
-  List<PaymentActivityData> paymentActivityData = [];
-
-  BehaviorSubject<Resource<List<PaymentActivityData>>> _paymentActivityListResponse = BehaviorSubject();
 
   Stream<Resource<List<PaymentActivityData>>> get paymentActivityListStream =>
       _paymentActivityListResponse.stream;
 
-  ActivityHomeViewModel(this._paymentActivityTransactionUseCase, this._notificationUseCase) {
-    _paymentActivityTransactionRequest.listen((value) {
-      RequestManager(value, createCall: () => _paymentActivityTransactionUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _paymentActivityTransactionResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          getPaymentActivityList(event.data!.paymentActivityContent!);
-        }
-      });
-    });
-
-    _notificationRequest.listen((value) {
-      RequestManager(value, createCall: () => _notificationUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _activityResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          getPaymentActivity();
-        }
-      });
-    });
-
-    getActivity();
-  }
-
   void getPaymentActivity() {
-    _paymentActivityTransactionRequest.safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 180));
+    _paymentActivityTransactionRequest
+        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 180));
   }
 
   void getActivity() {
-    _notificationRequest.safeAdd(NotificationUseCaseParams(noOfDays: 90, isDebit: "true"));
+    _notificationRequest
+        .safeAdd(NotificationUseCaseParams(noOfDays: 90, isDebit: "true"));
   }
 
   void getPaymentActivityList(List<PaymentActivityContent> content) {
@@ -110,12 +175,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
         });
       });
     }
-    _paymentActivityListResponse.safeAdd(Resource.success(data: paymentActivityData));
-  }
-
-  @override
-  void dispose() {
-    _currentStep.close();
-    super.dispose();
+    _paymentActivityListResponse
+        .safeAdd(Resource.success(data: paymentActivityData));
   }
 }

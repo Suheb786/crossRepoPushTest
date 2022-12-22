@@ -16,7 +16,8 @@ class ActivityHomePage extends BasePage<ActivityHomeViewModel> {
   ActivityHomePageState createState() => ActivityHomePageState();
 }
 
-class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
+class ActivityHomePageState
+    extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
@@ -44,14 +45,18 @@ class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, Acti
               child: Container(
                 height: 80.0.h,
                 width: 80.0.w,
-                decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColorDark,
+                    shape: BoxShape.circle),
                 child: Center(
                   child: AppSvg.asset(AssetUtils.logoWhite),
                 ),
               ),
             ),
           ),
-          TabItem(icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)), title: " "),
+          TabItem(
+              icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
+              title: " "),
         ],
         initialActiveIndex: 0,
         onTap: (i) {
@@ -86,6 +91,12 @@ class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, Acti
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);
+  }
+
+  @override
+  void onModelReady(ActivityHomeViewModel model) {
+    // model.getRequestMoneyActivity(true);
+    super.onModelReady(model);
   }
 
   @override
