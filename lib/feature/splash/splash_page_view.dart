@@ -33,7 +33,10 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               title: S.of(context).deviceNotSupported,
               descriptionWidget: Text(
                 S.of(context).deviceNotSupportedNote,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14.0.t,
+                    height: 1.7),
               ), onDismissed: () {
             exit(0);
           }, onSelected: () {
