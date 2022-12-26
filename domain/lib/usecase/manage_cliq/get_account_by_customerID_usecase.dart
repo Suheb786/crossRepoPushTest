@@ -13,15 +13,11 @@ class GetAccountByCustomerIDUseCase
 
   @override
   Future<Either<NetworkError, bool>> execute({required GetAccountByCustomerIDUseCaseParams params}) {
-    return _cliqRepository.getAccountByCustomerID(GetToken: params.GetToken);
+    return _cliqRepository.getAccountByCustomerID();
   }
 }
 
 class GetAccountByCustomerIDUseCaseParams extends Params {
-  final bool GetToken;
-
-  GetAccountByCustomerIDUseCaseParams(this.GetToken);
-
   @override
   Either<AppError, bool> verify() {
     return Right(true);

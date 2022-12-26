@@ -206,9 +206,7 @@ abstract class CliqRepository {
     required String RejectADdInfo,
   });
 
-  Future<Either<NetworkError, bool>> getAccountByCustomerID({
-    required bool GetToken,
-  });
+  Future<Either<NetworkError, bool>> getAccountByCustomerID();
 
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
     required bool GetToken,
