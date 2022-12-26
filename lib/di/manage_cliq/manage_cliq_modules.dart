@@ -44,9 +44,10 @@ final cliqIdTypeSelectionViewModelProvider =
 ///link bank account to cliq id view model
 final linkBankAccountCliqIdViewModelProvider =
     ChangeNotifierProvider.autoDispose<LinkBankAccountCliqIdPageViewModel>(
-  (ref) => LinkBankAccountCliqIdPageViewModel(
-      ref.read(linkBankAccountCliqIdValidationUseCaseProvider), ref.read(createCliqIdOtpUseCaseProvider)),
-);
+          (ref) =>
+          LinkBankAccountCliqIdPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
+              ref.read(createCliqIdOtpUseCaseProvider), ref.read(getAccountByCustomerID)),
+    );
 
 ///enter otp for cliq id view model
 final enterOtpFortCliqIdViewModelProvider =

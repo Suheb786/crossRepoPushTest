@@ -246,7 +246,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         ""));
                                                           }
                                                         }, onShareId: () {
-                                                          //Todo need to fix this------
                                                           _shareFiles(
                                                               context,
                                                               (getAliasSnapshot
@@ -382,75 +381,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                               );
 
                                       default:
-                                        return Expanded(
-                                          child: Center(
-                                            child: Column(
-                                              children: [
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      Container(
-                                                        height: 96,
-                                                        width: 96,
-                                                        margin: EdgeInsets.only(bottom: 16),
-                                                        decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            border: Border.all(
-                                                                color: Theme.of(context)
-                                                                    .inputDecorationTheme
-                                                                    .hintStyle!
-                                                                    .color!)),
-                                                        child: Container(
-                                                            padding: EdgeInsets.all(32),
-                                                            child: AppSvg.asset(AssetUtils.cliqLogo)),
-                                                      ),
-                                                      Text(
-                                                        S.of(context).NoCliqContactYet,
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontSize: 14.t,
-                                                            fontWeight: FontWeight.w600),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment: AlignmentDirectional.bottomCenter,
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-                                                    },
-                                                    child: Container(
-                                                      margin:
-                                                          EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                                                      padding: EdgeInsets.all(18),
-                                                      height: 56,
-                                                      width: double.maxFinite,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(100),
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1
-                                                            ?.color,
-                                                      ),
-                                                      child: Center(
-                                                        child: Text(S.of(context).createCliqId,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontSize: 14,
-                                                                fontWeight: FontWeight.w600,
-                                                                letterSpacing: 1,
-                                                                color: Theme.of(context).accentColor)),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        );
+                                        return Container();
                                     }
                                   },
                                 );

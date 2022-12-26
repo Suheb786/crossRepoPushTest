@@ -584,11 +584,11 @@ abstract class ApiService {
           @Body()
               GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoney")
+  @POST("/transfer/CheckSendMoneyV2")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
-  @POST("/transfer/TransferAPIV2")
+  @POST("/transfer/TransferAPIV3")
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 

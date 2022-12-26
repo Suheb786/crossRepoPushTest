@@ -250,16 +250,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? natureOfSpecialNeeds}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveProfileInformation(SaveProfileInformationRequest(
-      baseData: baseData.toJson(),
-      married: married,
-      specialPerson: specialPerson,
-      employmentStatus: employmentStatus,
-      spauseName: spouseName,
-      natureSP: natureOfSpecialNeeds,
-      additionalNationality: otherNationality,
-      isEmployed: isEmployed,
-      isAdditionalNational: anyOtherNationality,
-    ));
+        baseData: baseData.toJson(),
+        married: married,
+        specialPerson: specialPerson,
+        employmentStatus: employmentStatus,
+        spauseName: spouseName,
+        natureSP: natureOfSpecialNeeds,
+        additionalNationality: otherNationality,
+        isEmployed: isEmployed,
+        isAdditionalNational: anyOtherNationality,
+        isBeneficialOwner: beneficialOwnerAccount));
   }
 
   @override

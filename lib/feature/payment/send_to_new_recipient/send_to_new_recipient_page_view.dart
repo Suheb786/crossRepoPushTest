@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
@@ -15,8 +16,10 @@ import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
+import 'package:neo_bank/ui/molecules/payment/number_formatting_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -59,6 +62,46 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                       dataBuilder: (context, transferVerified) {
                         return AppStreamBuilder<Resource<CheckSendMoneyResponse>>(
                             stream: model.checkSendMoneyStream,
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                model.purposeController.clear();
+                                model.purposeDetailController.clear();
+
+                                model.checkSendMoneyMessageEnum =
+                                    data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ??
+                                        CheckSendMoneyMessageEnum.NONE;
+                                if (data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ==
+                                    CheckSendMoneyMessageEnum.IBAN_FROM_CliQ) {
+                                  model.showCheckSendMoneyRecipientDetailsVisibility(true);
+                                  model.showNameVisibility(false);
+                                } else {
+                                  model.showCheckSendMoneyRecipientDetailsVisibility(false);
+                                  model.showNameVisibility(true);
+                                }
+
+                                if (data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ==
+                                    CheckSendMoneyMessageEnum.Mobile_NUMBER_BANKSMART) {
+                                  InformationDialog.show(context,
+                                      isSwipeToCancel: false,
+                                      title: S
+                                          .of(context)
+                                          .mobileNoRegisteredWithBlink,
+                                      descriptionWidget: Text(
+                                        S
+                                            .of(context)
+                                            .mobileNoRegisteredWithBlinkDesc,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      onDismissed: () {},
+                                      onSelected: () {
+                                        Navigator.pop(context);
+                                      });
+                                }
+                              }
+                            },
                             initialData: Resource.none(),
                             dataBuilder: (context, checkSendMoneyResponse) {
                               return AppStreamBuilder<Resource<bool>>(
@@ -67,8 +110,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
                                     if (checkSendMoneyResponse!.data!.checkSendMoneyContent!.transferResponse!
-                                                .beneficiaryId !=
-                                            null &&
+                                        .beneficiaryId !=
+                                        null &&
                                         checkSendMoneyResponse.data!.checkSendMoneyContent!.transferResponse!
                                             .beneficiaryId!.isNotEmpty) {
                                       ProviderScope.containerOf(context)
@@ -153,8 +196,89 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         padding: EdgeInsets.only(top: 16.0.h),
                                                         child: Focus(
                                                           child: AppTextField(
-                                                            labelText: S.of(context).ibanOrMobileOrAccount,
-                                                            hintText: S.of(context).pleaseEnter,
+                                                            labelText: S
+                                                                .of(context)
+                                                                .accountMobileNoAlias,
+                                                            labelIcon: () {
+                                                              return InkWell(
+                                                                onTap: () async {
+                                                                  InformationDialog.show(context,
+                                                                      isSwipeToCancel: false,
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .mobileNoRegisteredWithBlink,
+                                                                      descriptionWidget: Column(
+                                                                        children: [
+                                                                          Text(
+                                                                            S
+                                                                                .of(context)
+                                                                                .samplesOfNoFormatting,
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                StringUtils.appFont,
+                                                                                fontSize: 14.t,
+                                                                                fontWeight: FontWeight.w400),
+                                                                          ),
+                                                                          NumberFormattingWidget(
+                                                                            title: S
+                                                                                .of(context)
+                                                                                .iban,
+                                                                            desc: S
+                                                                                .of(context)
+                                                                                .dummyIBAN,
+                                                                          ),
+                                                                          NumberFormattingWidget(
+                                                                            title:
+                                                                            S
+                                                                                .of(context)
+                                                                                .accountNumber,
+                                                                            desc:
+                                                                            S
+                                                                                .of(context)
+                                                                                .dummyAccountNo,
+                                                                          ),
+                                                                          NumberFormattingWidget(
+                                                                            title: S
+                                                                                .of(context)
+                                                                                .mobileNo,
+                                                                            desc: S
+                                                                                .of(context)
+                                                                                .dummyMobileNo,
+                                                                          ),
+                                                                          NumberFormattingWidget(
+                                                                            title: S
+                                                                                .of(context)
+                                                                                .alias,
+                                                                            desc: S
+                                                                                .of(context)
+                                                                                .dummyAlias,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      onDismissed: () {},
+                                                                      onSelected: () {
+                                                                        Navigator.pop(context);
+                                                                      });
+                                                                },
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional.only(
+                                                                      start: 5.0.w),
+                                                                  child: Container(
+                                                                      height: 14.h,
+                                                                      width: 14.w,
+                                                                      child: AppSvg.asset(AssetUtils.info,
+                                                                          color: Theme
+                                                                              .of(context)
+                                                                              .inputDecorationTheme
+                                                                              .focusedBorder!
+                                                                              .borderSide
+                                                                              .color)),
+                                                                ),
+                                                              );
+                                                            },
+                                                            hintText: S
+                                                                .of(context)
+                                                                .pleaseEnter,
                                                             key: model.ibanOrMobileKey,
                                                             controller: model.ibanOrMobileController,
                                                             onPressed: () {},
@@ -164,7 +288,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                               if (model
                                                                   .ibanOrMobileController.text.isNotEmpty) {
                                                                 model.checkSendMoney(
-                                                                    amount: ProviderScope.containerOf(context)
+                                                                    amount: ProviderScope
+                                                                        .containerOf(context)
                                                                         .read(sendMoneyViewModelProvider)
                                                                         .currentPinValue,
                                                                     iban: model.ibanOrMobileController.text);
@@ -173,6 +298,47 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           },
                                                         ),
                                                       ),
+                                                      AppStreamBuilder<bool>(
+                                                          stream: model
+                                                              .checkSendMoneyRecipientDetailsVisibilityStream,
+                                                          initialData: false,
+                                                          dataBuilder: (context, visible) {
+                                                            return Visibility(
+                                                                visible: visible ?? false,
+                                                                child: Column(
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    AppTextField(
+                                                                      labelText: S
+                                                                          .of(context)
+                                                                          .recipientName,
+                                                                      hintText: S
+                                                                          .of(context)
+                                                                          .pleaseEnter,
+                                                                      key: model.recipientNameKey,
+                                                                      controller:
+                                                                      model.recipientNameController,
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    AppTextField(
+                                                                      labelText:
+                                                                      S
+                                                                          .of(context)
+                                                                          .recipientAddress,
+                                                                      hintText: S
+                                                                          .of(context)
+                                                                          .pleaseEnter,
+                                                                      key: model.recipientAddressKey,
+                                                                      controller:
+                                                                      model.recipientAddressController,
+                                                                    ),
+                                                                  ],
+                                                                ));
+                                                          }),
                                                       AppStreamBuilder<bool>(
                                                           stream: model.showNameVisibilityStream,
                                                           initialData: false,

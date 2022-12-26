@@ -15,17 +15,19 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
-      String? otpCode,
-      String transferType,
-      String beneficiaryImage,
-      bool isFriend,
-      num toAmount,
-      num localEq,
-      String memo,
-      String toAccount,
-      String nickName,
-      String detCustomerType,
-      String type});
+        String? otpCode,
+        String transferType,
+        String beneficiaryImage,
+        bool isFriend,
+        num toAmount,
+        num localEq,
+        String memo,
+        String toAccount,
+        String nickName,
+        String detCustomerType,
+        String type,
+        String? recipientName,
+        String? recipientAddress});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       String ctgyPurp,

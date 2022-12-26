@@ -47,8 +47,8 @@ class RequestPaymentFromNewRecipientPageView
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        activeSize: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
-                        size: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
+                        activeSize: Size(MediaQuery.of(context).size.width / 1.2, 4),
+                        size: Size(MediaQuery.of(context).size.width / 1.2, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
                         activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeColor: Theme.of(context).primaryColorDark,

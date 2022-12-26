@@ -14959,6 +14959,146 @@ class S {
       args: [],
     );
   }
+
+  /// `RECIPIENT NAME`
+  String get recipientName {
+    return Intl.message(
+      'RECIPIENT NAME',
+      name: 'recipientName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RECIPIENT ADDRESS`
+  String get recipientAddress {
+    return Intl.message(
+      'RECIPIENT ADDRESS',
+      name: 'recipientAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get accountMobileNoAlias {
+    return Intl.message(
+      'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'accountMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number registered with blink`
+  String get mobileNoRegisteredWithBlink {
+    return Intl.message(
+      'Mobile number registered with blink',
+      name: 'mobileNoRegisteredWithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.`
+  String get mobileNoRegisteredWithBlinkDesc {
+    return Intl.message(
+      'We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.',
+      name: 'mobileNoRegisteredWithBlinkDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number formatting`
+  String get numberFormatting {
+    return Intl.message(
+      'Number formatting',
+      name: 'numberFormatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ABC000012341234123819241213`
+  String get dummyIBAN {
+    return Intl.message(
+      'ABC000012341234123819241213',
+      name: 'dummyIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `9911 1407 61`
+  String get dummyAccountNo {
+    return Intl.message(
+      '9911 1407 61',
+      name: 'dummyAccountNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No.`
+  String get mobileNo {
+    return Intl.message(
+      'Mobile No.',
+      name: 'mobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+962 3320 8080`
+  String get dummyMobileNo {
+    return Intl.message(
+      '+962 3320 8080',
+      name: 'dummyMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `username1`
+  String get dummyAlias {
+    return Intl.message(
+      'username1',
+      name: 'dummyAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here are samples of the number formatting :\n`
+  String get samplesOfNoFormatting {
+    return Intl.message(
+      'Here are samples of the number formatting :\n',
+      name: 'samplesOfNoFormatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Recipient Name`
+  String get emptyRecipientName {
+    return Intl.message(
+      'Enter Recipient Name',
+      name: 'emptyRecipientName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Recipient Address`
+  String get emptyRecipientAddress {
+    return Intl.message(
+      'Enter Recipient Address',
+      name: 'emptyRecipientAddress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

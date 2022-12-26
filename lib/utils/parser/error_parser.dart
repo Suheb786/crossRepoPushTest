@@ -1147,6 +1147,12 @@ class ErrorParser {
       case ErrorType.PLEASE_ADD_LINK_ACCOUNT:
         return localisedHelper.pleaseAddLinkAccount;
 
+      case ErrorType.EMPTY_RECIPIENT_NAME:
+        return localisedHelper.emptyRecipientName;
+
+      case ErrorType.EMPTY_RECIPIENT_ADDRESS:
+        return localisedHelper.emptyRecipientAddress;
+
       default:
         return "";
     }

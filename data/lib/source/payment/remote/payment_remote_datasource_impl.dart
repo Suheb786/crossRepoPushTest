@@ -46,17 +46,19 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   @override
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String? beneficiaryId,
-      String? otpCode,
-      String? transferType,
-      String? beneficiaryImage,
-      bool? isFriend,
-      num? toAmount,
-      num? localEq,
-      String? memo,
-      String? toAccount,
-      String? nickName,
-      String? detCustomerType,
-      String? type}) async {
+        String? otpCode,
+        String? transferType,
+        String? beneficiaryImage,
+        bool? isFriend,
+        num? toAmount,
+        num? localEq,
+        String? memo,
+        String? toAccount,
+        String? nickName,
+        String? detCustomerType,
+        String? type,
+        String? recipientName,
+        String? recipientAddress}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transfer(TransferRequestEntity(
         baseData: baseData.toJson(),
@@ -74,7 +76,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         transferType: transferType!,
         getToken: true,
         detCustomerType: detCustomerType,
-        type: type));
+        type: type,
+        recipientName: recipientName,
+        recipientAddress: recipientAddress));
   }
 
   @override

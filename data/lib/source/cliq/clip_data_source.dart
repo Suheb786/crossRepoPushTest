@@ -70,8 +70,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<RequestMoneyActivityResponseEntity>>
-      requestMoneyActivity({
+  Future<HttpResponse<RequestMoneyActivityResponseEntity>> requestMoneyActivity({
     required bool getToken,
   });
 
@@ -206,14 +205,12 @@ abstract class CliqDataSource {
     required String RejectADdInfo,
   });
 
-  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID({
-    required bool GetToken,
-  });
+  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID();
 
   Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({
     required bool GetToken,
   });
-      
+
   Future<HttpResponse<ResponseEntity>> approveRTPRequest({
     required String custID,
     required String dbtrAcct,
