@@ -46,10 +46,6 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
               Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
                   arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
             }
-          } else {
-            model.isPrePaidCategoryEmpty = true;
-            Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
-                arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
           }
         },
         dataBuilder: (context, snapshot) {
@@ -130,7 +126,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                           itemBuilder: (context, index) {
                                             return InkWell(
                                               onTap: () {
-                                                _onPrePaidListItemSection(model, index);
+                                                _onPrePaidListItemSection(model, index, context);
                                               },
                                               child: Slidable(
                                                 endActionPane: ActionPane(
@@ -247,14 +243,18 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
         showOutAnimationDuration: Duration(milliseconds: 500));
   }
 
-  void _onPrePaidListItemSection(PayMyPrePaidBillsPageViewModel model, int index) {
+  void _onPrePaidListItemSection(PayMyPrePaidBillsPageViewModel model, int index, BuildContext context) {
     model.getPrepaidBillerListModelData = model.getPrepaidBillData?[index] ?? GetPrepaidBillerListModelData();
     AppConstantsUtils.SELECTED_BILLER_CODE = model.getPrepaidBillData?[index].billerCode ?? "";
     AppConstantsUtils.SELECTED_SERVICE_CODE = model.getPrepaidBillData?[index].serviceCode ?? "";
     if (AppConstantsUtils.SELECTED_BILLER_CODE.isNotEmpty &&
         AppConstantsUtils.SELECTED_SERVICE_CODE.isNotEmpty) {
-      model.getPrePaidCategoresList(
-          AppConstantsUtils.SELECTED_SERVICE_CODE, AppConstantsUtils.SELECTED_BILLER_CODE);
+      Future.delayed(Duration(milliseconds: 200)).then((value) => model.getPrePaidCategoresList(
+          AppConstantsUtils.SELECTED_SERVICE_CODE, AppConstantsUtils.SELECTED_BILLER_CODE));
+    } else {
+      model.isPrePaidCategoryEmpty = true;
+      Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+          arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
     }
   }
 
@@ -270,6 +270,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
           AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = value.description.toString();
           AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
           Navigator.pop(context);
+          model.isPrePaidCategoryEmpty = false;
           Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
               arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
         });

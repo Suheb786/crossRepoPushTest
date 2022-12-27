@@ -125,7 +125,9 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                   itemBuilder: (context, index) {
                                     return PostPaidSettingTitleWidget(
                                       tileIcon: snapshot!.data?[index].iconCode ?? "",
-                                      title: snapshot.data?[index].categoryName ?? "",
+                                      title: !StringUtils.isDirectionRTL(context)
+                                          ? snapshot.data![index].categoryName ?? ""
+                                          : snapshot.data![index].categoryNameAr ?? "",
                                       onTap: () {
                                         model.billerCategory = snapshot.data?[index].categoryName ?? "";
                                         model.titleIcon = snapshot.data?[index].iconCode ?? "";

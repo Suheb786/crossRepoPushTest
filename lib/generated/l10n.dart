@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -13100,6 +13101,16 @@ class S {
     );
   }
 
+  /// `How would you like to\npay your postpaid bills?`
+  String get howWouldLikeToPayPostPaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your postpaid bills?',
+      name: 'howWouldLikeToPayPostPaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `REGION`
   String get region {
     return Intl.message(
@@ -14795,16 +14806,6 @@ class S {
     return Intl.message(
       'Biller Added Successfully.',
       name: 'billerAddedSuccessfully',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search category`
-  String get SearchCategory {
-    return Intl.message(
-      'Search category',
-      name: 'SearchCategory',
       desc: '',
       args: [],
     );
