@@ -14850,6 +14850,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Nick name can only contain alphanumerics`
+  String get nickNameCanOnlyContainAlphanumerics {
+    return Intl.message(
+      'Nick name can only contain alphanumerics',
+      name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

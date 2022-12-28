@@ -1506,5 +1506,6 @@
   "status": "Status",
   "failed": "Failed",
   "successS": "Success",
-  "billerAlreadyExistsMessage": "Biller already exists with the same billing number"
+  "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
+  "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics"
 }

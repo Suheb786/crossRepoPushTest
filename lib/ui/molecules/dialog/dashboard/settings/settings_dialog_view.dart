@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -262,6 +263,7 @@ class SettingsDialogView extends StatelessWidget {
                               initialData: Resource.none(),
                               onData: (response) {
                                 if (response.status == Status.SUCCESS) {
+                                  AppConstantsUtils.resetCacheLists();
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                                 }

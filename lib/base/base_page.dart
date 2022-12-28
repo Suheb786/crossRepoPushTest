@@ -10,6 +10,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/base_page_extensions.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 
@@ -169,6 +170,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             error: event,
             localisedHelper: S.of(context),
           ));
+          AppConstantsUtils.resetCacheLists();
           Navigator.pushNamedAndRemoveUntil(
               context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {

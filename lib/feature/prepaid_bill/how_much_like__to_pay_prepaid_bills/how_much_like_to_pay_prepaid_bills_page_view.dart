@@ -99,7 +99,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                 wrapWords: false,
                                 fullwidth: false,
                                 inputFormatters: [
-                                  FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+                                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))
                                 ],
                                 keyboardType: TextInputType.numberWithOptions(
                                   decimal: true,

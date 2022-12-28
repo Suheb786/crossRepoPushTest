@@ -209,6 +209,15 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                       }
                                     }
 
+                                    for (var item in model.payPostPaidBillsDataList) {
+                                      if (item.isChecked == false) {
+                                        temPostPaidBillInquiryData
+                                            .removeWhere((element) => element.billingNo == item.billingNo);
+                                        tempSelectedPostPaidBillsList
+                                            .removeWhere((element) => element.billingNo == item.billingNo);
+                                      }
+                                    }
+
                                     tempSelectedPostPaidBillsList =
                                         tempSelectedPostPaidBillsList.toSet().toList();
                                     temPostPaidBillInquiryData = temPostPaidBillInquiryData.toSet().toList();
@@ -223,7 +232,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                     model.showToastWithError(AppError(
                                         cause: Exception(),
                                         error: ErrorInfo(message: ""),
-                                        type: ErrorType.ZERO_AMOUNT));
+                                        type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                   }
                                 },
                                 child: Container(

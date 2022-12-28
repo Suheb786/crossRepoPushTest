@@ -2,10 +2,12 @@ import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_detai
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list_content.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/app_constants.dart';
@@ -98,8 +100,9 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   bool isValidated = false;
+  bool isNickNameValid = true;
 
-  validateData() {
+  validateData(BuildContext context) {
     isValidated = false;
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       AppConstantsUtils.POST_PAID_FLOW = true;
@@ -110,15 +113,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
         isValidated = true;
         if (isAddThisBillerToSaveList) {
           isValidated = false;
-          if (nicknameTextControl.text.trim() != "") {
-            isValidated = true;
-          }
+          nickNameValidation();
         }
       }
-
-      isValidated = false;
-      if (payFromController.text.trim() != "") {
-        isValidated = true;
+      if (!isValidated) {
+        _showButtonSubject.safeAdd(false);
+        return;
       }
     } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
       AppConstantsUtils.POST_PAID_FLOW = false;
@@ -134,35 +134,35 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
             isValidated = true;
             if (isAddThisBillerToSaveList) {
               isValidated = false;
-              if (nicknameTextControl.text.trim() != "") {
-                isValidated = true;
-              }
+              nickNameValidation();
             }
           }
         } else {
           if (isAddThisBillerToSaveList) {
             isValidated = false;
-            if (nicknameTextControl.text.trim() != "") {
-              isValidated = true;
-            }
+            nickNameValidation();
           }
         }
       } else {
         isValidated = false;
       }
 
-      isValidated = false;
-      if (payFromController.text.trim() != "") {
-        isValidated = true;
+      if (!isValidated) {
+        _showButtonSubject.safeAdd(false);
+        return;
       }
+    }
+    isValidated = false;
+    if (payFromController.text.trim() != "") {
+      isValidated = true;
     }
 
     _showButtonSubject.safeAdd(isValidated);
   }
 
-  addThisBillerToSaveList(value) {
+  addThisBillerToSaveList(value, context) {
     isAddThisBillerToSaveList = value;
-    validateData();
+    validateData(context);
   }
 
 //////////////////
@@ -197,9 +197,15 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
-    _getBillerLookupRequest.safeAdd(
-      GetBillerLookupUseCaseParams(categoryName: AppConstantsUtils.BILLER_CATEGORY),
-    );
+    billerDetailsList = AppConstantsUtils.billerDetailsCacheList;
+    if (billerDetailsList == null || billerDetailsList!.isEmpty) {
+      _getBillerLookupRequest
+          .safeAdd(GetBillerLookupUseCaseParams(categoryName: AppConstantsUtils.BILLER_CATEGORY));
+    } else {
+      _getBillerLookupResponse.safeAdd(Resource.success(
+          data: GetBillerLookUpList(
+              content: GetBillerLookupListContent(billerDetailsList: billerDetailsList))));
+    }
   }
 
   void billerLookUpListListener() {
@@ -230,7 +236,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;
 
-  void getPrePaidCategoresList(String? serviceCode, String? billerCode) {
+  void getPrePaidCategoriesList(String? serviceCode, String? billerCode) {
     _getPrePaidCategoriesRequest.safeAdd(
       GetPrePaidCategoriesListUseCaseParams(billerCode: billerCode, serviceCode: serviceCode),
     );
@@ -257,7 +263,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
           isPrepaidCategoryListEmptyResponse.safeAdd(true);
-
           if (event.status == Status.SUCCESS) {
             isPrepaidCategoryListEmptyResponse.safeAdd(false);
             getPrepaidCategoriesModelData = event.data!.content!.getPrepaidBillerListModelData!;
@@ -280,5 +285,21 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     _getBillerLookupResponse.close();
     _showButtonSubject.close();
     super.dispose();
+  }
+
+  void nickNameValidation() {
+    if (nicknameTextControl.text.trim() == "") {
+      isValidated = false;
+      return;
+    } else {
+      if (Validator.nickName(nicknameTextControl.text) == false) {
+        isValidated = false;
+        isNickNameValid = false;
+        return;
+      } else {
+        isNickNameValid = true;
+        isValidated = true;
+      }
+    }
   }
 }

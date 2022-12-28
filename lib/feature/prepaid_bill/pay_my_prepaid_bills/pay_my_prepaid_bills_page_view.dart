@@ -249,7 +249,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
     AppConstantsUtils.SELECTED_SERVICE_CODE = model.getPrepaidBillData?[index].serviceCode ?? "";
     if (AppConstantsUtils.SELECTED_BILLER_CODE.isNotEmpty &&
         AppConstantsUtils.SELECTED_SERVICE_CODE.isNotEmpty) {
-      Future.delayed(Duration(milliseconds: 200)).then((value) => model.getPrePaidCategoresList(
+      Future.delayed(Duration(milliseconds: 200)).then((value) => model.getPrePaidCategoriesList(
           AppConstantsUtils.SELECTED_SERVICE_CODE, AppConstantsUtils.SELECTED_BILLER_CODE));
     } else {
       model.isPrePaidCategoryEmpty = true;

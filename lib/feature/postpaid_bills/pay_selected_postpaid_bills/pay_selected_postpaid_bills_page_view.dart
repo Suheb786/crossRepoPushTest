@@ -100,7 +100,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                 fontSize: 28.0.t),
                           ),
                           TextSpan(
-                            text: S.of(context).JOD,
+                            text: ' ${S.of(context).JOD}',
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.gray5,

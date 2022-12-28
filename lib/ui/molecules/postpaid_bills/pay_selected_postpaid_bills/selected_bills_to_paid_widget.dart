@@ -110,9 +110,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                           child: AutoSizeTextField(
                             wrapWords: false,
                             fullwidth: false,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
-                            ],
+                            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
                             keyboardType: TextInputType.numberWithOptions(
                               decimal: true,
                               signed: false,

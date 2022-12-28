@@ -230,7 +230,7 @@
 //                                                         milliseconds: 200))
 //                                                     .then((value) => {
 //                                                           model
-//                                                               .getPrePaidCategoresList(
+//                                                               .getPrePaidCategoriesList(
 //                                                             AppConstantsUtils
 //                                                                 .SELECTED_SERVICE_CODE,
 //                                                             AppConstantsUtils

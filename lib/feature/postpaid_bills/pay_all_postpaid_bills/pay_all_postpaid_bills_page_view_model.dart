@@ -4,12 +4,13 @@ import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_list_data.dart';
 import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pall_all_postpaid_bills_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -55,8 +56,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         totalBillAmt = totalBillAmt - double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
         selectedPostPaidBillsList
             .removeWhere((element) => element.billingNo == payPostPaidBillsDataList[index].billingNo);
-        postPaidRequestListJson
-            .removeWhere((element) => element.billingNumber == payPostPaidBillsDataList[index].billingNo);
+
+        // postPaidRequestListJson.removeWhere((element) =>
+        //     element.billingNumber == payPostPaidBillsDataList[index].billingNo &&
+        //     (double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0") <= 0.0));
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
@@ -64,7 +67,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         debugPrint('multiple selected $totalBillAmt');
       } else {
         payPostPaidBillsDataList[index].isChecked = true;
-
+        postPaidRequestListJson = [];
         postPaidRequestListJson.add(PostpaidBillInquiry(
           billerCode: payPostPaidBillsDataList[index].billerCode,
           serviceType: payPostPaidBillsDataList[index].serviceType,
@@ -74,6 +77,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
+
         totalBillAmt = totalBillAmt + double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
         debugPrint("selectedIndex123:$index");
         selectedIndex = index;
@@ -83,7 +87,15 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                 payPostPaidBillsDataList[index].dueAmount!.isNotEmpty ||
             payPostPaidBillsDataList[index].dueAmount != null &&
                 payPostPaidBillsDataList[index].dueAmount == "0") {
-          postPaidBillInquiry(postPaidRequestListJson);
+          if (postPaidBillInquiryData == null || postPaidBillInquiryData!.isEmpty) {
+            postPaidBillInquiry(postPaidRequestListJson);
+          } else {
+            if (payPostPaidBillsDataList[index].isAmountUpdatedFromApi == false) {
+              postPaidBillInquiry(postPaidRequestListJson);
+            } else {
+              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
+            }
+          }
         }
       }
     }
@@ -123,7 +135,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest = BehaviorSubject();
   BehaviorSubject<Resource<GetPostpaidBillerListModel>> _postpaidBillerResponse = BehaviorSubject();
 
-  ////search list
+////search list
   PublishSubject<Resource<List<GetPostpaidBillerListModelData>?>> _searchPostpaidBillerResponse =
       PublishSubject();
 
@@ -186,27 +198,36 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
-            totalBillAmt = 0.0;
-            var postPaidBillInquiryDataLength = postPaidBillInquiryData?.length ?? 0;
-            for (int i = 0; i < postPaidBillInquiryDataLength; i++) {
-              totalBillAmt = totalBillAmt + double.parse(postPaidBillInquiryData![i].dueAmount.toString());
-              debugPrint("totalBillAmt:${totalBillAmt}");
-              PostPaidBillInquiryData inquiryElement = postPaidBillInquiryData![i];
-              for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
-                GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
-                debugPrint("item.billingNo: ${item.billingNo}");
-                if (item.billingNo == inquiryElement.billingNo) {
-                  payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
-                }
-              }
-            }
-            addAllBillAmt();
-            _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
+            postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
+            postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
+            postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
           }
         });
       },
     );
+  }
+
+  void postpaidBillEnquiryOnSuccessMethod(List<PostPaidBillInquiryData>? inquiryData) {
+    _postPaidBillEnquiryResponse.safeAdd(Resource.success(
+        data:
+            PostPaidBillInquiry(content: PostPaidBillInquiryListData(postPaidBillInquiryData: inquiryData))));
+    totalBillAmt = 0.0;
+    var postPaidBillInquiryDataLength = inquiryData?.length ?? 0;
+    for (int i = 0; i < postPaidBillInquiryDataLength; i++) {
+      totalBillAmt = totalBillAmt + double.parse(inquiryData![i].dueAmount.toString());
+      debugPrint("totalBillAmt:${totalBillAmt}");
+      PostPaidBillInquiryData inquiryElement = inquiryData[i];
+      for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
+        GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
+        debugPrint("item.billingNo: ${item.billingNo}");
+        if (item.billingNo == inquiryElement.billingNo) {
+          payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
+          payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
+        }
+      }
+    }
+    addAllBillAmt();
+    _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
   }
 
   /// ---------------- remove customer billing -------------------------------- ///
@@ -230,7 +251,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
             if (event.data == true) {
-              showSuccessToast('BILL UPDATED\nYour bill has been removed.');
+              showSuccessToast('Your bill has been removed.');
               Future.delayed(Duration(milliseconds: 200)).then((value) => getPostpaidBiller());
             }
           }

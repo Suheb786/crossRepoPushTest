@@ -1460,5 +1460,6 @@
   "failed": "فشل",
   "successS": "نجاح",
   "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
-  "searchBill": "البحث عن فاتورة"
+  "searchBill": "البحث عن فاتورة",
+  "nickNameCanOnlyContainAlphanumerics": "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"
 }
