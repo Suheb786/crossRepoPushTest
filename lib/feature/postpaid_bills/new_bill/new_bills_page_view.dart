@@ -125,7 +125,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                       physics: NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
                                         return PostPaidSettingTitleWidget(
-                                          tileIcon: snapshot!.data?[index].iconCode ?? "",
+                                          tileIcon: snapshot.data?[index].iconCode ?? "",
                                           title: !StringUtils.isDirectionRTL(context)
                                               ? snapshot.data![index].categoryName ?? ""
                                               : snapshot.data![index].categoryNameAr ?? "",
@@ -146,7 +146,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                       separatorBuilder: (context, index) {
                                         return AppDivider();
                                       },
-                                      itemCount: snapshot!.data!.length)
+                                      itemCount: snapshot.data!.length)
                                   : Center(
                                       child: Text(
                                         S.of(context).noDataFound,
