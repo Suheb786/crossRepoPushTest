@@ -13,13 +13,13 @@ class PaymentActivityPage extends BasePage<PaymentActivityViewModel> {
 class PaymentActivityPageState extends BaseStatefulPage<PaymentActivityViewModel, PaymentActivityPage>
     with AutomaticKeepAliveClientMixin {
   @override
-  ProviderBase provideBase() {
-    return paymentActivityViewModelProvider;
+  Widget buildView(BuildContext context, PaymentActivityViewModel model) {
+    return PaymentActivityPageView(provideBase());
   }
 
   @override
-  Widget buildView(BuildContext context, PaymentActivityViewModel model) {
-    return PaymentActivityPageView(provideBase());
+  ProviderBase provideBase() {
+    return paymentActivityViewModelProvider;
   }
 
   @override
@@ -28,11 +28,11 @@ class PaymentActivityPageState extends BaseStatefulPage<PaymentActivityViewModel
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

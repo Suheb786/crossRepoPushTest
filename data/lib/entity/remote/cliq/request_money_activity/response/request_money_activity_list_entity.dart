@@ -1,3 +1,4 @@
+import "package:domain/constants/enum/request_money_activity_enum.dart";
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
@@ -250,7 +251,7 @@ class RequestMoneyActivityListEntity extends BaseLayerDataTransformer<
     name: "trxDir",
     defaultValue: "",
   )
-  final String trxDir;
+  final String? trxDir;
 
   @JsonKey(
     name: "trxReason",
@@ -262,7 +263,7 @@ class RequestMoneyActivityListEntity extends BaseLayerDataTransformer<
     name: "trxStatus",
     defaultValue: "",
   )
-  final String trxStatus;
+  final String? trxStatus;
 
   @JsonKey(
     name: "trxType",
@@ -275,7 +276,7 @@ class RequestMoneyActivityListEntity extends BaseLayerDataTransformer<
     return RequestMoneyActivityList(
       msgID: this.msgID,
       trxType: this.trxType,
-      trxDir: this.trxDir,
+      trxDir: this.trxDir!.fromRequestactivityStatus(),
       amount: this.amount,
       curr: this.curr,
       svcLvl: this.svcLvl,
@@ -303,7 +304,7 @@ class RequestMoneyActivityListEntity extends BaseLayerDataTransformer<
       addInfo2: this.addInfo2,
       addInfo3: this.addInfo3,
       addInfo4: this.addInfo4,
-      trxStatus: this.trxStatus,
+      trxStatus: this.trxStatus?.fromRequestactivityStatus(),
       trxReason: this.trxReason,
       processFlag: this.processFlag,
       rtpDate: this.rtpDate,
@@ -313,6 +314,5 @@ class RequestMoneyActivityListEntity extends BaseLayerDataTransformer<
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      _$RequestMoneyActivityListEntityToJson(this);
+  Map<String, dynamic> toJson() => _$RequestMoneyActivityListEntityToJson(this);
 }

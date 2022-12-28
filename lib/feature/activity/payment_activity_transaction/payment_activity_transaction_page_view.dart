@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +16,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class PaymentActivityTransactionPageView
     extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
@@ -107,7 +110,7 @@ class PaymentActivityTransactionPageView
                                     ),
                                   ),
                                   AppStreamBuilder<String>(
-                                      stream: model.paymentPeriodResponseStream,
+                                      stream: model.requestMoneyPeriodResponse,
                                       initialData:
                                           StringUtils.isDirectionRTL(context)
                                               ? "آخر 30 يوم"
@@ -172,22 +175,63 @@ class PaymentActivityTransactionPageView
                               padding: EdgeInsetsDirectional.only(
                                   top: 28.0.h, start: 24.0.w, end: 24.0.w),
                               child: AppStreamBuilder<
-                                      Resource<PaymentActivityResponse>>(
-                                  stream:
-                                      model.paymentActivityTransactionResponse,
+                                      Resource<RequestMoneyActivity>>(
+                                  stream: model.requestMoneyActivity,
                                   initialData: Resource.none(),
-                                  dataBuilder: (context, transaction) {
+                                  dataBuilder: (context, requestActivity) {
                                     return ListView.builder(
                                       itemBuilder: (context, index) {
-                                        return transaction!
+                                        return requestActivity!
                                                     .data!
-                                                    .paymentActivityContent!
+                                                    .requestMoneyActivity!
                                                     .length >
                                                 0
                                             ? PaymentActivityTransactionWidget(
-                                                transactions: transaction.data!
-                                                        .paymentActivityContent![
-                                                    index],
+                                                dbtrDpText: StringUtils
+                                                    .getFirstInitials(
+                                                        (requestActivity
+                                                                .data!
+                                                                .requestMoneyActivity?[
+                                                                    index]
+                                                                .dbtrName) ??
+                                                            ""),
+                                                cdtrDpText: StringUtils
+                                                    .getFirstInitials(
+                                                        (requestActivity
+                                                                .data!
+                                                                .requestMoneyActivity?[
+                                                                    index]
+                                                                .cdtrName) ??
+                                                            ""),
+                                                amount:
+                                                    " ${(requestActivity.data?.requestMoneyActivity?[index].amount) ?? ""} ${S.of(context).JOD}",
+                                                dbtrName:
+                                                    "${(requestActivity.data?.requestMoneyActivity?[index].dbtrName) ?? ""}",
+                                                cdtrName:
+                                                    "${(requestActivity.data?.requestMoneyActivity?[index].cdtrName) ?? ""}",
+                                                onAcceptButton: () {},
+                                                rtpDate: TimeUtils
+                                                    .getFormattedDateForTransaction(
+                                                        (requestActivity
+                                                                .data
+                                                                ?.requestMoneyActivity?[
+                                                                    index]
+                                                                .rtpDate) ??
+                                                            ""),
+                                                trxStatus: requestActivity
+                                                    .data!
+                                                    .requestMoneyActivity![
+                                                        index]
+                                                    .trxStatus,
+                                                trxDIR: requestActivity
+                                                    .data!
+                                                    .requestMoneyActivity![
+                                                        index]
+                                                    .trxDir,
+                                                model: model,
+                                                index: index,
+                                                activity: requestActivity
+                                                    .data!.requestMoneyActivity,
                                               )
                                             : Center(
                                                 child: Text(
@@ -198,8 +242,8 @@ class PaymentActivityTransactionPageView
                                               );
                                       },
                                       shrinkWrap: true,
-                                      itemCount: transaction!
-                                          .data!.paymentActivityContent!.length,
+                                      itemCount: requestActivity!
+                                          .data!.requestMoneyActivity!.length,
                                     );
                                   }),
                             ),

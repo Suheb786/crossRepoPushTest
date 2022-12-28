@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "ما عندك رقم CliQ. أنشئ حسابك الأول من خلال Blink"),
         "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
+        "accept": MessageLookupByLibrary.simpleMessage("Accept"),
+        "acceptRequest": MessageLookupByLibrary.simpleMessage("Accept Request"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "مقبولة عالمياً بدون رسوم مخفية"),
         "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -260,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "areaSmall": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "armexApiError":
             MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
+        "asperhisrequestconfirmthisaction":
+            MessageLookupByLibrary.simpleMessage(
+                "as per his request. Confirm this action?"),
         "assignTokenError": MessageLookupByLibrary.simpleMessage(
             "خطأ أثناء تعيين الرمز المميز vkey"),
         "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
@@ -822,6 +827,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyPurpose": MessageLookupByLibrary.simpleMessage("لازم تكتب السبب"),
         "emptyPurposeDetail":
             MessageLookupByLibrary.simpleMessage("لازم تكتب تفاصيل السبب"),
+        "emptyRecipientAddress":
+            MessageLookupByLibrary.simpleMessage("Enter Recipient Address"),
         "emptyResidentCountry":
             MessageLookupByLibrary.simpleMessage("لازم تدخل دولة الإقامة"),
         "emptySignature": MessageLookupByLibrary.simpleMessage("حمّل توقيعك"),
@@ -1100,11 +1107,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("بدك تجمد البطاقة؟"),
         "freezeThisCard": MessageLookupByLibrary.simpleMessage("تجميد البطاقة"),
-        "from": MessageLookupByLibrary.simpleMessage("من"),
+        "from": MessageLookupByLibrary.simpleMessage(" من"),
         "fromLabelForRJFlightBooking":
             MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
         "fromS": MessageLookupByLibrary.simpleMessage("من "),
+        "fromYouWouldYouLikeToAcceptIt": MessageLookupByLibrary.simpleMessage(
+            " from you. Would you like to accept?"),
         "fromYourCliqIdList":
             MessageLookupByLibrary.simpleMessage(" from your CliQ ID list?"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
@@ -1487,6 +1496,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
             "أدخل الاسم التجاري إذا كان مختلف عن اسمك"),
+        "isRequesting": MessageLookupByLibrary.simpleMessage(" is Requesting "),
         "isoNationalityNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-087)"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("تاريخ الإصدار"),
@@ -2002,6 +2012,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تسجيل المستخدم"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-002)"),
+        "reject": MessageLookupByLibrary.simpleMessage("Reject"),
+        "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة! يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو ابنك أو والدك (Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -2036,6 +2048,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "متأكد من الاستمرار؟ رح يتم إلغاء بطاقتك، بس ما تقلق رح نصدرلك بطاقة جديدة فوراً."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "requestFrom": MessageLookupByLibrary.simpleMessage("Request Form"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("طلب أموال"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("طلب أموال من"),
@@ -2072,6 +2085,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "requestViaQR":
             MessageLookupByLibrary.simpleMessage("الطلب من خلال QR"),
+        "requested": MessageLookupByLibrary.simpleMessage(" requested "),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("تم الطلب من"),
         "requestedMoneyVia":
             MessageLookupByLibrary.simpleMessage("طلب أموال من خلال"),
@@ -2593,6 +2607,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),
         "yearly": MessageLookupByLibrary.simpleMessage("الدخل السنوي "),
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
+        "you": MessageLookupByLibrary.simpleMessage("you"),
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
                 "تم قبول طلب الأموال من خلال QR"),
@@ -2608,6 +2623,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
             "ما وصلتك رسالة SMS؟ تواصل معنا."),
+        "youareabouttoreject":
+            MessageLookupByLibrary.simpleMessage("You are about to reject "),
+        "youareabouttosend":
+            MessageLookupByLibrary.simpleMessage("You are about to send "),
         "yourApplicationInReview":
             MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(

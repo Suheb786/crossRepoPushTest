@@ -1,7 +1,9 @@
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
+
 class RequestMoneyActivityList {
   final String msgID;
   final String trxType;
-  final String trxDir;
+  final RequestMoneyActivityStatusEnum trxDir;
   final double amount;
   final String curr;
   final String svcLvl;
@@ -29,7 +31,7 @@ class RequestMoneyActivityList {
   final String addInfo2;
   final String addInfo3;
   final String addInfo4;
-  final String trxStatus;
+  final RequestMoneyActivityStatusEnum? trxStatus;
   final String trxReason;
   final String processFlag;
   final String rtpDate;

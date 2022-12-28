@@ -8100,10 +8100,10 @@ class S {
     );
   }
 
-  /// `\nfrom`
+  /// ` from `
   String get from {
     return Intl.message(
-      '\nfrom',
+      ' from ',
       name: 'from',
       desc: '',
       args: [],
@@ -15095,6 +15095,126 @@ class S {
     return Intl.message(
       'Enter Recipient Address',
       name: 'emptyRecipientAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` requested `
+  String get requested {
+    return Intl.message(
+      ' requested ',
+      name: 'requested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you`
+  String get you {
+    return Intl.message(
+      'you',
+      name: 'you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message(
+      'Reject',
+      name: 'reject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is Requesting `
+  String get isRequesting {
+    return Intl.message(
+      ' is Requesting ',
+      name: 'isRequesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from you. Would you like to accept?`
+  String get fromYouWouldYouLikeToAcceptIt {
+    return Intl.message(
+      ' from you. Would you like to accept?',
+      name: 'fromYouWouldYouLikeToAcceptIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `as per his request. Confirm this action?`
+  String get asperhisrequestconfirmthisaction {
+    return Intl.message(
+      'as per his request. Confirm this action?',
+      name: 'asperhisrequestconfirmthisaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to send `
+  String get youareabouttosend {
+    return Intl.message(
+      'You are about to send ',
+      name: 'youareabouttosend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept Request`
+  String get acceptRequest {
+    return Intl.message(
+      'Accept Request',
+      name: 'acceptRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject Request`
+  String get rejectRequest {
+    return Intl.message(
+      'Reject Request',
+      name: 'rejectRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to reject `
+  String get youareabouttoreject {
+    return Intl.message(
+      'You are about to reject ',
+      name: 'youareabouttoreject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Form`
+  String get requestFrom {
+    return Intl.message(
+      'Request Form',
+      name: 'requestFrom',
       desc: '',
       args: [],
     );

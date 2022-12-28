@@ -26,8 +26,10 @@ class InformationDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding:
+            EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async => false,
           child: GestureDetector(
@@ -45,15 +47,18 @@ class InformationDialogView extends StatelessWidget {
                       SizedBox(height: 32.h),
                       image != null
                           ? Padding(
-                        padding: EdgeInsets.only(bottom: 25.0.h),
-                        child: AppSvg.asset(image!, height: 50.h, width: 50.w),
-                      )
+                              padding: EdgeInsets.only(bottom: 25.0.h),
+                              child: AppSvg.asset(image!,
+                                  height: 50.h, width: 50.w),
+                            )
                           : Container(),
                       Text(
                         title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 20.t,
+                            fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: 31.h),
                       descriptionWidget,
@@ -68,8 +73,12 @@ class InformationDialogView extends StatelessWidget {
                           width: 57.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color!),
+                          child: AppSvg.asset(AssetUtils.tick,
+                              color: Theme.of(context).accentColor),
                         ),
                       ),
                       Padding(

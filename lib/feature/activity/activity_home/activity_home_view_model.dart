@@ -1,5 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
+import 'package:domain/model/activity/activity_content.dart';
 import 'package:domain/model/activity/activity_response.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_data.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
@@ -28,8 +31,12 @@ class ActivityHomeViewModel extends BasePageViewModel {
           (event) {
             updateLoader();
             _requestMoneyActivityResponse.safeAdd(event);
+
             if (event.status == Status.ERROR) {
-              showToastWithError(event.appError!);
+              _requestMoneyActivityResponse.safeAdd(Resource.success(
+                  data: RequestMoneyActivity(
+                      dummyList))); //Todo : - dummy List remove on error
+              // showToastWithError(event.appError!);
             }
           },
         );
@@ -110,11 +117,11 @@ class ActivityHomeViewModel extends BasePageViewModel {
   PaymentActivityTransactionUseCase _paymentActivityTransactionUseCase;
   //*--------------------[request-money-activity]---------------------->>>>>>>
 
-  PublishSubject<RequestMoneyActivityParams> _requestMoneyActivityRequest =
-      PublishSubject();
+  BehaviorSubject<RequestMoneyActivityParams> _requestMoneyActivityRequest =
+      BehaviorSubject();
 
-  PublishSubject<Resource<RequestMoneyActivity>> _requestMoneyActivityResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<RequestMoneyActivity>>
+      _requestMoneyActivityResponse = BehaviorSubject();
 
   RequestMoneyActivityUseCase _requestMoneyActivityUseCase;
 
@@ -178,4 +185,204 @@ class ActivityHomeViewModel extends BasePageViewModel {
     _paymentActivityListResponse
         .safeAdd(Resource.success(data: paymentActivityData));
   }
+
+//* getting response error for requestMoneyActivity
+
+  List<RequestMoneyActivityList> dummyList = [
+    RequestMoneyActivityList(
+      msgID: "",
+      trxType: "",
+      trxDir: RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING,
+      amount: 20.0,
+      curr: "",
+      svcLvl: "",
+      ctgyPurp: "",
+      dbtrAgt: "",
+      dbtrAcct: "",
+      dbtrName: "Suheb",
+      dbtrAddr: "",
+      dbtrIsIndvl: "",
+      dbtrRecordID: "",
+      dbtrAlias: "",
+      dbtrMCC: "",
+      cdtrAgt: "",
+      cdtrAcct: "",
+      cdtrName: "Ahmed Lutfi",
+      cdtrAddr: "98435905349805845894538904539804532890",
+      cdtrIsIndvl: "",
+      cdtrRecordID: "",
+      cdtrAlias: "",
+      cdtrMCC: "",
+      instrInfo: "",
+      rmtInf: "",
+      rgltryRptg: "",
+      addInfo1: "",
+      addInfo2: "",
+      addInfo3: "",
+      addInfo4: "",
+      trxStatus: RequestMoneyActivityStatusEnum.CATEGORY_PENDING,
+      trxReason: "",
+      processFlag: "",
+      rtpDate: DateTime.now().toString(),
+      statusDate: "",
+      payRefNo: "",
+      errorCode: 234,
+    ),
+    RequestMoneyActivityList(
+      msgID: "",
+      trxType: "",
+      trxDir: RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING,
+      amount: 20.0,
+      curr: "",
+      svcLvl: "",
+      ctgyPurp: "",
+      dbtrAgt: "",
+      dbtrAcct: "",
+      dbtrName: "Faiz",
+      dbtrAddr: "",
+      dbtrIsIndvl: "",
+      dbtrRecordID: "",
+      dbtrAlias: "",
+      dbtrMCC: "",
+      cdtrAgt: "",
+      cdtrAcct: "09-0890-8-09",
+      cdtrName: "Ahmed Lutfi",
+      cdtrAddr: "",
+      cdtrIsIndvl: "",
+      cdtrRecordID: "",
+      cdtrAlias: "",
+      cdtrMCC: "",
+      instrInfo: "",
+      rmtInf: "",
+      rgltryRptg: "",
+      addInfo1: "",
+      addInfo2: "",
+      addInfo3: "",
+      addInfo4: "",
+      trxStatus: RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED,
+      trxReason: "",
+      processFlag: "",
+      rtpDate: DateTime.now().toString(),
+      statusDate: "",
+      payRefNo: "",
+      errorCode: 234,
+    ),
+    RequestMoneyActivityList(
+      msgID: "",
+      trxType: "",
+      trxDir: RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING,
+      amount: 20.0,
+      curr: "",
+      svcLvl: "",
+      ctgyPurp: "",
+      dbtrAgt: "",
+      dbtrAcct: "",
+      dbtrName: "Mohammad Suheb",
+      dbtrAddr: "",
+      dbtrIsIndvl: "",
+      dbtrRecordID: "",
+      dbtrAlias: "",
+      dbtrMCC: "",
+      cdtrAgt: "",
+      cdtrAcct: "",
+      cdtrName: "Ahmed Lutfi",
+      cdtrAddr: "",
+      cdtrIsIndvl: "",
+      cdtrRecordID: "",
+      cdtrAlias: "",
+      cdtrMCC: "",
+      instrInfo: "",
+      rmtInf: "",
+      rgltryRptg: "",
+      addInfo1: "",
+      addInfo2: "",
+      addInfo3: "",
+      addInfo4: "",
+      trxStatus: RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED,
+      trxReason: "",
+      processFlag: "",
+      rtpDate: DateTime.now().toString(),
+      statusDate: "",
+      payRefNo: "",
+      errorCode: 234,
+    ),
+    RequestMoneyActivityList(
+      msgID: "",
+      trxType: "",
+      trxDir: RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING,
+      amount: 20.0,
+      curr: "",
+      svcLvl: "",
+      ctgyPurp: "",
+      dbtrAgt: "",
+      dbtrAcct: "",
+      dbtrName: "Mohammad Suheb",
+      dbtrAddr: "",
+      dbtrIsIndvl: "",
+      dbtrRecordID: "",
+      dbtrAlias: "",
+      dbtrMCC: "",
+      cdtrAgt: "",
+      cdtrAcct: "",
+      cdtrName: "Ahmed Lutfi",
+      cdtrAddr: "",
+      cdtrIsIndvl: "",
+      cdtrRecordID: "",
+      cdtrAlias: "",
+      cdtrMCC: "",
+      instrInfo: "",
+      rmtInf: "",
+      rgltryRptg: "",
+      addInfo1: "",
+      addInfo2: "",
+      addInfo3: "",
+      addInfo4: "",
+      trxStatus: RequestMoneyActivityStatusEnum.CATEGORY_REJECTED,
+      trxReason: "",
+      processFlag: "",
+      rtpDate: DateTime.now().toString(),
+      statusDate: "",
+      payRefNo: "",
+      errorCode: 234,
+    ),
+    RequestMoneyActivityList(
+      msgID: "",
+      trxType: "",
+      trxDir: RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING,
+      amount: 20.0,
+      curr: "",
+      svcLvl: "",
+      ctgyPurp: "",
+      dbtrAgt: "",
+      dbtrAcct: "",
+      dbtrName: "Mohammad Suheb",
+      dbtrAddr: "",
+      dbtrIsIndvl: "",
+      dbtrRecordID: "",
+      dbtrAlias: "",
+      dbtrMCC: "",
+      cdtrAgt: "",
+      cdtrAcct: "",
+      cdtrName: "Ahmed Lutfi",
+      cdtrAddr: "",
+      cdtrIsIndvl: "",
+      cdtrRecordID: "",
+      cdtrAlias: "",
+      cdtrMCC: "",
+      instrInfo: "",
+      rmtInf: "",
+      rgltryRptg: "",
+      addInfo1: "",
+      addInfo2: "",
+      addInfo3: "",
+      addInfo4: "",
+      trxStatus: RequestMoneyActivityStatusEnum.CATEGORY_REJECTED,
+      trxReason: "",
+      processFlag: "",
+      rtpDate: DateTime.now().toString(),
+      statusDate: "",
+      payRefNo: "",
+      errorCode: 234,
+    ),
+  ];
 }

@@ -828,7 +828,7 @@
   "deviceNotSupportedNote": "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.",
   "residentCity": "Resident City",
   "youRequested": "You requested ",
-  "from": "\nfrom",
+  "from": " from ",
   "addRequestMoney": "You don't have any contacts yet. Your Blink contacts can be saved while requesting money.",
   "errorWhileProcessLoanRequest": "Error While Process Loan Request.",
   "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp.",
@@ -1531,5 +1531,17 @@
   "dummyAlias": "username1",
   "samplesOfNoFormatting": "Here are samples of the number formatting :\n",
   "emptyRecipientName": "Enter Recipient Name",
-  "emptyRecipientAddress": "Enter Recipient Address"
+  "emptyRecipientAddress": "Enter Recipient Address",
+  "requested": " requested ",
+  "you": "you",
+  "accept": "Accept",
+  "reject": "Reject",
+  "isRequesting": " is Requesting ",
+  "fromYouWouldYouLikeToAcceptIt": " from you. Would you like to accept?",
+  "asperhisrequestconfirmthisaction": "as per his request. Confirm this action?",
+  "youareabouttosend": "You are about to send ",
+  "acceptRequest": "Accept Request",
+  "rejectRequest": "Reject Request",
+  "youareabouttoreject": "You are about to reject ",
+  "requestFrom": "Request Form"
 }
