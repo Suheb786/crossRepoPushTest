@@ -48,8 +48,6 @@ import AntelopSDK
             "status": "onDeviceEligible is called",
         ]
         callBackMethods(event: "onDeviceEligible", dic: deviceEligibilityDic)
-        //        launchWallet(clientId: "000009", walletId: "9012566", settingsProfileId: "piraeus", phoneNumber: "+962123456789")
-        // delegate?.onDeviceEligible(result: "onDeviceEligible is called")
     }
     
     func onCheckEligibilityError(error: AntelopError) {
@@ -95,7 +93,6 @@ import AntelopSDK
     
     func onProvisioningRequired() {
         print("onProvisioningRequired")
-        //  provisioner.initialize()
         let provisioningDic: [String: Any] = [
             "status": "On Provisioning Required",
         ]
@@ -109,8 +106,6 @@ import AntelopSDK
             "status": "On Credentials Required",
         ]
         callBackMethods(event: "onProvisioningRequired", dic: walletIdDic)
-        // provisioner.initialize()
-        //you should not continue, dismiss this Controller and retry connection step
     }
     
     func onConnectionSuccess(wallet: Wallet) {
@@ -118,7 +113,6 @@ import AntelopSDK
         print(wallet)
         self.wallet = wallet
         print(wallet.getId() ?? "")
-        // getCards()
         let walletIdDic: [String: Any] = [
             "walletId": wallet.getId(),
             "getIssuerWalletId": wallet.getIssuerWalletId(),
@@ -182,13 +176,10 @@ import AntelopSDK
         provisioner.checkEligibility(forbidJailBrokenDevices: false)
     }
     
-    
-    
     public func walletConnect(){
         print("wallet connect method called")
         walletManager.connect()
     }
-    
     
     public func getCards(){
         print("enter get cards method")
@@ -226,11 +217,8 @@ import AntelopSDK
                 allCardsDetail.append(cardtempDict)
                 if  index == self.cardsArr.count - 1 {
                     print("loopEnded: ", allCardsDetail)
-                    self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
                     
-                    //                    DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                    //                        self.pushToCard(cardId: card.getIssuerCardId() ?? "")
-                    //                    }
+                    self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
                 }
             } errorHandler: { Error in
                 print(Error)
@@ -238,82 +226,34 @@ import AntelopSDK
             } catch {
                 print(error)
             }
-            
-            
-            //                do { try card.getApplePayService().isCardInApplePay { status in
-            //
-            //                    let isCardInApplePayStatus = stat
-            //                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
-            //                                    "getStatus": isActiveCard,
-            //                                    "isCardInApplePay": status,
-            //                    ] as [String : Any]
-            //
-            //                    allCardsDetail.append(cardtempDict)
-            //                    if  index == self.cardsArr.count - 1 {
-            //                        print("loopEnded: ", allCardsDetail)
-            //                        self.callBackMethodsCardDetails(event: "idsArrray", dic: allCardsDetail)
-            //                    }
-            //                }
-            //                }
-            //                catch {
-            //                    print(error)
-            //                }
         }
         print(allCardsDetail)
-        //        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
-        
-        // self.callBackMethods(event: "getCards", dic: allCardsDetail)
     }
     
+    //push card to apple pay
     
-    //    public func getCards(){
-    //        print("enter get cards method")
-    //       var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
-    //
-    //        if(cards?.count != 0){
-    //
-    //        let card = cards?.values.map({$0})[0]
-    //         var cardsArr = [String: DigitalCard]()
-    //        guard let cardsDits = cards else { return }
-    //        cardsArr = cardsDits
-    //
-    //        var cardIds = [String]()
-    //        for (index, card)  in cardsArr.enumerated()  {
-    //            let card = cardsArr.values.map({$0})[index]
-    //
-    //            let cardDescrition = card.getStatus()?.description
-    //            print("card description ",cardDescrition)
-    //
-    //            cardIds.append(card.getIssuerCardId() ?? "")
-    //        }
-    //
-    //
-    //
-    //        print("cardsIDss----",cardIds)
-    //
-    //        let getAllCardIds: [String: Any] = [
-    //            "idsArrray": cardIds,
-    //        ]
-    //        self.callBackMethods(event: "getCards", dic: getAllCardIds)
-    //
-    //
-    //       // callBackMethods(event: "getCards", dic: cards)
-    //
-    //        }
-    //    }
     func pushToCard(cardId:String) {
+        print("ios side card id ", cardId)
         for (index, CARD)  in cardsArr.enumerated()  {
             let card = cardsArr.values.map({$0})[index]
-            if card.getIssuerCardId() == cardId {
+            print("ios side getIssuerCardId id ", card.getIssuerCardId())
+            if card.getIssuerCardId()?.trimmingCharacters(in: .whitespacesAndNewlines) == cardId {
                 
                 do { try  card.getApplePayService().pushCard({ result in
                     switch result {
                         
                     case .success(let status ) :
                         print ("status_getApplePayService: -- ", status)
+                        let pushCardDic: [String: Any] = [
+                            "status": status,
+                        ]
+                        self.callBackMethods(event: "pushCardSuccess", dic: pushCardDic)
                     case .failure(let error):
                         print( "status_getApplePayService_Failure,\(error)")
-                        
+                        let pushCardDic: [String: Any] = [
+                            "status": error,
+                        ]
+                        self.callBackMethods(event: "pushCardError", dic: pushCardDic)
                     }
                 })
                     break
@@ -322,14 +262,59 @@ import AntelopSDK
                 }
             }
         }
+    }
+    
+    public func getAntelopCards(){
+        print("enter Antelop get cards method")
+        var newCards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+        print("antelopCardsList card list \(newCards) end")
+        if (newCards?.values.count ?? 0) == 0 {
+            self.callBackMethodsCardDetails(event: "antelopEmptyCardsList", dic: [[:]])
+            print("Don't have any cards")
+            return
+        }
+        let card = newCards?.values.map({$0})[0]
         
+        guard let cardsDits = newCards else { return }
+        cardsArr = cardsDits
+        
+        var allCardsDetail = [[String: Any]]()
+        var cardtempDict =  [String:Any]()
+        for (index, CARD)  in cardsArr.enumerated()  {
+            let card = cardsArr.values.map({$0})[index]
+            
+            let cardStatus = (card.getStatus()?.description ?? "").lowercased()
+            print("card status ---> ", cardStatus)
+            
+            var isActiveCard = false
+            if cardStatus == "active" {
+                isActiveCard = true
+            }
+            do { try  card.getApplePayService().isCardInApplePay { status in
+                
+                cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
+                                "getStatus": isActiveCard,
+                                "isCardInApplePay": status,
+                ] as [String : Any]
+                
+                allCardsDetail.append(cardtempDict)
+                if  index == self.cardsArr.count - 1 {
+                    print("loopEnded: ", allCardsDetail)
+                    self.callBackMethodsCardDetails(event: "antelopCardsList", dic: allCardsDetail)
+                }
+            } errorHandler: { Error in
+                print(Error)
+            }
+            } catch {
+                print(error)
+            }
+        }
+        print(allCardsDetail)
     }
     
     
     func enrollmentDataCard(enrollmentData: [[String:Any]]) {
         print("Before loop card array count :--- " , enrollmentData.count)
-        
-        
         let myGroup = DispatchGroup()
         var cardsREsponceArr = [[String:Any]]()
         for (index, enrolmentObject) in enrollmentData.enumerated() {
@@ -365,23 +350,9 @@ import AntelopSDK
         myGroup.notify(queue: .main) {
             print("Finished all requests.")
             print("cards array coiunt:--- " , cardsREsponceArr.count)
-            self.callBackMethodsCardDetails(event: "enrollCardCatch", dic: cardsREsponceArr)
+            self.callBackMethodsCardDetails(event: "enrollCardSuccess", dic: cardsREsponceArr)
         }
     }
-    public func getCheckStatus(){
-        print("Enter into getStaus method")
-    }
-    
-    public func getStatus(_ completion: @escaping OperationCompletion<DigitalCardServiceStatus>){
-        
-    }
-    
-    
-    
-    public func cardInApplePay(){
-        
-    }
-    
     
     private func callJavaScript(_ methodName: String, result text: String) {
         let dic: [String: String] = ["eventName": methodName, "response": text]
@@ -392,7 +363,6 @@ import AntelopSDK
     private func callBackMethods(event eventName: String, dic: [String: Any]?, strData: String = "") {
         let strData = strData.isEmpty ? (dic == nil ? "" : convertDictionaryToString(dicData: dic!)) : strData
         printData(event: eventName, data: strData)
-        //CallBack
         callJavaScript(eventName, result: strData)
     }
     
@@ -400,7 +370,6 @@ import AntelopSDK
     private func callBackMethodsCardDetails(event eventName: String, dic: [[String: Any]], strData: String = "") {
         let strData = strData.isEmpty ?  dic.toJSONString() : strData
         printData(event: eventName, data: strData)
-        //CallBack
         callJavaScript(eventName, result: strData)
     }
     
@@ -424,7 +393,7 @@ import AntelopSDK
     }
     
     var controller = FlutterViewController()
-    var batteryChannel = FlutterMethodChannel()
+    var blinkMethodChannel = FlutterMethodChannel()
     
     var provisioner: WalletProvisioning!
     var walletManager: WalletManager!
@@ -441,7 +410,7 @@ import AntelopSDK
         walletManager = WalletManager(self)
         
         controller = window?.rootViewController as! FlutterViewController
-        batteryChannel = FlutterMethodChannel(name: "com.capital.cbt", binaryMessenger: controller.binaryMessenger)
+        blinkMethodChannel = FlutterMethodChannel(name: "com.capital.cbt", binaryMessenger: controller.binaryMessenger)
         
         let instance = AppDelegate()
         
@@ -454,7 +423,7 @@ import AntelopSDK
         
         //  var walletProvisioningView = WalletProvisioningView()
         
-        batteryChannel.setMethodCallHandler({
+        blinkMethodChannel.setMethodCallHandler({
             [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
             case "initialize":
@@ -462,7 +431,6 @@ import AntelopSDK
                 
             case "getWalletLaunch":
                 let dicData = call.arguments as? [String : Any]
-                // print(dicData["clientId"] as? String)
                 self?.launchWallet(clientId: dicData!["clientId"] as? String,
                                    walletId: dicData!["walletId"] as! String,
                                    settingsProfileId: dicData?["settingsProfileId"] as? String,
@@ -487,8 +455,8 @@ import AntelopSDK
             case "getAllCards":
                 self?.getCards()
                 
-            case "getStatusApplePay":
-                self?.getCheckStatus()
+            case "getAntelopCards":
+                self?.getAntelopCards()
                 
             default:
                 result("iOS " + UIDevice.current.systemVersion)
@@ -502,6 +470,22 @@ import AntelopSDK
         GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
+    //    func checkPassRequest(){
+    //        guard let configuration = PKAddPaymentPassRequestConfiguration(encryptionScheme: .ECC_V2) else {
+    //                    // error
+    //                    return
+    //                }
+    //
+    //            // you need at least one of the 2, cardholderName or lastDigits
+    //                configuration.cardholderName = "Test name"
+    //                configuration.primaryAccountSuffix = lastDigits
+    //
+    //        guard let viewController = PKAddPaymentPassViewController(requestConfiguration: configuration, delegate: self) else {
+    //    // if PKAddPaymentPassViewController is nil there, most probably an entitlement issue, check the logs
+    //            return
+    //        }
+    //    }
     
     func registerForFirebaseNotification(application : UIApplication){
         //    Messaging.messaging().delegate     = self;

@@ -3,6 +3,7 @@ import 'package:domain/usecase/apple_pay/add_user_wallet_detail_usecase.dart';
 import 'package:domain/usecase/apple_pay/clear_wallet_id_usecase.dart';
 import 'package:domain/usecase/apple_pay/enroll_card_usecase.dart';
 import 'package:domain/usecase/apple_pay/get_all_card_list_usecase.dart';
+import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/usecase/apple_pay/get_user_wallet_detail_usecase.dart';
 import 'package:domain/usecase/apple_pay/initialize_antelop_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,3 +31,7 @@ final initializeAntelopSDKUseCaseProvider = Provider.autoDispose<InitializeAntel
 ///[ClearWalletIdUseCase] provider
 final clearWalletIdUseCaseProvider =
     Provider.autoDispose<ClearWalletIdUseCase>((ref) => ClearWalletIdUseCase(ref.read(userRepoProvider)));
+
+///[GetAntelopCardsListUseCase] provider
+final getAntelopCardListUseCaseProvider = Provider.autoDispose<GetAntelopCardsListUseCase>(
+    (ref) => GetAntelopCardsListUseCase(ref.read(applePayRepositoryProvider)));

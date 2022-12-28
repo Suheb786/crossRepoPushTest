@@ -168,6 +168,7 @@ class AssetUtils {
   static const String dashboardSwiggle = svg + "dashboard_swiggle.svg";
   static const String card_activation = svg + "card_activation.svg";
   static const String videocallAgent = svg + "videocall_agent.svg";
+  static const String applePayButton = svg + "apple_pay_button.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -250,7 +251,7 @@ class AssetUtils {
   static const String applePayLogo = drawable + "apple_pay_logo.png";
 
   ///Apple Pay svg
-  static const String addAppleWalletIcon = svg + "add_apple_wallet_icon.svg";
+  static const String addAppleWalletIcon = svg + "add_apple_pay_icon.svg";
   static const String creditCardRedSmall = svg + "credit_card_red_small.svg";
   static const String debitCardYellowSmall = svg + "debit_card_yellow_small_icon.svg";
   static const String applePayIcon = svg + "apple_pay_icon.svg";

@@ -725,7 +725,9 @@ class AppRouter {
 
       case RoutePaths.SelectedCardForApplePayPage:
         return CupertinoPageRoute(
-            builder: (context) => SelectedCardForApplePayPage(),
+            builder: (context) => SelectedCardForApplePayPage(
+                  arguments: settings.arguments as SelectedCardsForApplePayPageArguments,
+                ),
             settings: RouteSettings(name: RoutePaths.SelectedCardForApplePayPage));
 
       case RoutePaths.ApplePaySuccessAndErrorPage:

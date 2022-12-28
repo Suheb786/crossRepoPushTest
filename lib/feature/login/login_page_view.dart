@@ -350,7 +350,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 ));
                                                                           }
                                                                         } else {
-                                                                          model.antelopSdkInitialize();
+                                                                          if (Platform.isIOS) {
+                                                                            model.antelopSdkInitialize();
+                                                                          }
                                                                           Navigator.popAndPushNamed(
                                                                               context, RoutePaths.AppHome);
                                                                         }

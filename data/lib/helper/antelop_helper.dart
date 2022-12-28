@@ -13,8 +13,21 @@ import 'package:eventify/eventify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/constants/app_constants.dart';
 
 BehaviorSubject<List<GetAllCardData>> listOfCardFromAntelop = BehaviorSubject.seeded([]);
+
+BehaviorSubject<bool> antelopStepCompleted = BehaviorSubject.seeded(true);
+
+Stream<bool> get antelopStepCompletedStream => antelopStepCompleted.stream;
+
+BehaviorSubject<bool> pushCardError = BehaviorSubject.seeded(false);
+
+Stream<bool> get pushCardErrorStream => pushCardError.stream;
+
+BehaviorSubject<bool> pushCardSuccess = BehaviorSubject.seeded(false);
+
+Stream<bool> get pushCardSuccessStream => pushCardSuccess.stream;
 
 class AntelopHelper {
   static const platform = const MethodChannel('com.capital.cbt');
@@ -27,6 +40,7 @@ class AntelopHelper {
   final EventEmitter _eventEmitter = EventEmitter();
   String antelopWalletId = '';
   static String constantAuthToken = "";
+  bool onProvisioningError = true;
 
   AntelopHelper(this._apiService, this._deviceInfoHelper) {
     registerAntelopEvents();
@@ -66,10 +80,34 @@ class AntelopHelper {
 
   Future<bool> onInitializationFromNative() async {
     try {
+      getWalletId();
       var data = await platform.invokeMethod('initialize');
       return true;
     } on PlatformException catch (e) {
       debugPrint('Failed to get version: ${e.message}');
+      return false;
+    }
+  }
+
+  Future<bool> getAntelopCardList() async {
+    try {
+      var data = await platform.invokeMethod('getAntelopCards');
+      return true;
+    } on PlatformException catch (e) {
+      debugPrint('Failed : ${e.message}');
+      return false;
+    }
+  }
+
+  Future<bool> pushCardToApplePay(String cardId) async {
+    var parameter = {
+      "cardId": cardId,
+    };
+    try {
+      var data = await platform.invokeMethod('pushCard', parameter);
+      return true;
+    } on PlatformException catch (e) {
+      debugPrint('Failed : ${e.message}');
       return false;
     }
   }
@@ -104,7 +142,7 @@ class AntelopHelper {
               "${(user.mobileCode ?? '').isNotEmpty ? (user.mobileCode!.contains('00') ? user.mobileCode!.replaceAll('00', '+') : '+') : ''}${user.mobile ?? ''}";
         }
 
-        if (antelopWalletId.isEmpty) {
+        if (antelopWalletId == '' || antelopWalletId.isEmpty) {
           String randomWalletId = RandomDigits.getInteger(16).toString();
           debugPrint("randomWalletId----> $randomWalletId");
           var parameter = {
@@ -142,6 +180,33 @@ class AntelopHelper {
       case "onProvisioningError":
         Map newData = jsonDecode(data);
         debugPrint("Flutter onProvisioningError " + newData.toString());
+        break;
+
+      case "onProvisioningError":
+        Map newData = jsonDecode(data);
+        debugPrint("Flutter onProvisioningError " + newData.toString());
+
+        if (onProvisioningError) {
+          String clientId = '';
+          String phoneNumber = '';
+          User? user = await SecureStorageHelper.instance.getUserDataFromSecureStorage();
+          if (user != null) {
+            clientId = user.cifNumber ?? '';
+            phoneNumber =
+                "${(user.mobileCode ?? '').isNotEmpty ? (user.mobileCode!.contains('00') ? user.mobileCode!.replaceAll('00', '+') : '+') : ''}${user.mobile ?? ''}";
+          }
+          String randomWalletId = RandomDigits.getInteger(16).toString();
+          debugPrint("randomWalletId in onProvisioningError----> $randomWalletId");
+          onProvisioningError = false;
+          var parameter = {
+            "clientId": clientId,
+            "walletId": randomWalletId,
+            "settingsProfileId": "blink",
+            "phoneNumber": phoneNumber
+          };
+          debugPrint("parameter in onProvisioningError----> ${parameter.toString()}");
+          var launchData = await platform.invokeMethod('getWalletLaunch', parameter);
+        }
         break;
 
       case "onConnectionError":
@@ -184,34 +249,6 @@ class AntelopHelper {
         /// TODO getCards from Antelop and call API
 
         var cardsData = await platform.invokeMethod('getAllCards');
-
-        // if (walletData["walletId"] != '') {
-        //   _apiService
-        //       .getEnrollCard(
-        //     EnrollCardRequest(
-        //         cardType: "C",
-        //         //  cardId: "205897122871160",
-        //         //  cardId: "205897122871140",
-        //         cardId: "",
-        //         walletId: walletData["walletId"].toString()),
-        //   )
-        //       .then((value) async {
-        //     if (value.data.transform().status?.isSuccess ?? false) {
-        //       debugPrint("Final enroll Card length " + value.data.content!.cards!.length.toString());
-        //       debugPrint("Final  enroll Card ---> " + value.data.content!.cards![0].toString());
-        //       value.data.content!.cards![0].enrollmentData!;
-        //       var parameter = {"enrollmentData": value.data.content!.cards![0].enrollmentData!.toString()};
-        //       var data = await platform.invokeMethod('enrollCard', parameter);
-        //     } else {
-        //       var cardsData = await platform.invokeMethod('getAllCards');
-        //     }
-        //   }, onError: (error) async {
-        //     debugPrint("MainError ${error.toString()}");
-        //     var cardsData = await platform.invokeMethod('getAllCards');
-        //   });
-        // } else {
-        //   var cardsData = await platform.invokeMethod('getAllCards');
-        // }
         _eventEmitter.emit(eventName, null, result);
         break;
 
@@ -220,15 +257,19 @@ class AntelopHelper {
         dynamic newData = jsonDecode(data);
 
         if (newData != null) {
-          print("print 1--> ");
+          debugPrint("print 1--> ");
           List<dynamic> newList = newData;
-          print("print 2--> ");
+          debugPrint("print 2--> ");
           List<GetAllCardData> newDataList = [];
-          print("print 3--> ");
+          debugPrint("print 3--> ");
           newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
-          print("print 4--> ");
-          print("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
+          debugPrint("print 4--> ");
+          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
           listOfCardFromAntelop.add(newDataList);
+
+          if (newDataList.isNotEmpty) {
+            antelopStepCompleted.add(false);
+          }
 
           List<GetAllCardData> antelopIssuerCardList = listOfCardFromAntelop.value;
 
@@ -241,68 +282,70 @@ class AntelopHelper {
           BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
           _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson())).then((value) {
-            ///TODO:uncomment after wards
-            // if (value.data.transform().status?.isSuccess ?? false) {
-            //   for (int i = 0; i < value.data.content!.creditCardList!.length; i++) {
-            //     if (!(tempAntelopIssuerCardId.contains(value.data.content!.creditCardList![i].cardId))) {
-            //       unEnrolledDataList.add(value.data.content!.creditCardList![i].cardId ?? "");
-            //     }
-            //   }
-            //
-            //   for (int i = 0; i < value.data.content!.debitCardList!.length; i++) {
-            //     if (!(tempAntelopIssuerCardId.contains(value.data.content!.debitCardList![i].cardId))) {
-            //       unEnrolledDataList.add(value.data.content!.debitCardList![i].cardId ?? "");
-            //     }
-            //   }
-            //   debugPrint("Antelop Wallet id ********** ${antelopWalletId} **********");
-            //
-            //   if (unEnrolledDataList.isNotEmpty) {
-            //     _apiService
-            //         .enrollCards(EnrollCardRequestEntity(
-            //             baseData: baseData.toJson(),
-            //             walletId: antelopWalletId,
-            //             getToken: false,
-            //             cardType: "C",
-            //             cardId: ""))
-            //         .then((value) async {
-            //       if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-            //         ///getting list from api
-            //         var cards = value.data.transform().enrollCardList;
-            //
-            //         ///map to send to native
-            //         List<Map<String, dynamic>> params = [];
-            //         for (int i = 0; i < (cards ?? []).length; i++) {
-            //           for (int j = 0; j < unEnrolledDataList.length; j++) {
-            //             if (unEnrolledDataList[j] == cards![i].cardId) {
-            //               debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId!} ---> " +
-            //                   cards[i].enrollmentData.toString());
-            //               params.add({
-            //                 "cardId": cards[i].cardId,
-            //                 "enrollmentData": cards[i].enrollmentData,
-            //                 "isEnrolled": false
-            //               });
-            //               // var parameter = {
-            //               //   "enrollmentData": value.data.content!.cards![i].enrollmentData!.toString()
-            //               // };
-            //             }
-            //           }
-            //         }
-            //         var data = await platform.invokeMethod('enrollCard', params);
-            //       } else {
-            //         //  var cardsData = await platform.invokeMethod('getAllCards');
-            //       }
-            //     }, onError: (error) async {
-            //       debugPrint("MainError ${error.toString()}");
-            //       //  var cardsData = await platform.invokeMethod('getAllCards');
-            //     });
-            //   }
-            // }
+            if (value.data.transform().dashboardDataContent != null) {
+              var dashBoardData = value.data.transform().dashboardDataContent;
+              for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
+                ///TODO:check cardID
+                if (!(tempAntelopIssuerCardId.contains(dashBoardData!.creditCard![i].cardCode))) {
+                  unEnrolledDataList.add(dashBoardData.creditCard![i].cardCode ?? "");
+                }
+              }
+
+              for (int i = 0; i < (dashBoardData?.debitCard ?? []).length; i++) {
+                if (!(tempAntelopIssuerCardId.contains(dashBoardData!.debitCard![i].cardCode))) {
+                  unEnrolledDataList.add(dashBoardData.debitCard![i].cardCode ?? "");
+                }
+              }
+
+              debugPrint("Antelop Wallet id *********** ${antelopWalletId} ***********");
+
+              if (unEnrolledDataList.isNotEmpty) {
+                AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
+
+                Future.delayed(Duration(seconds: 0), () {
+                  _apiService
+                      .enrollCards(EnrollCardRequestEntity(
+                          baseData: baseData.toJson(),
+                          walletId: antelopWalletId,
+                          getToken: false,
+                          cardType: "",
+                          cardId: ""))
+                      .then((value) async {
+                    if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+                      AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+
+                      ///getting list from api
+                      var cards = value.data.transform().enrollCardList;
+                      List<Map<String, dynamic>> params = [];
+                      for (int i = 0; i < (cards ?? []).length; i++) {
+                        for (int j = 0; j < unEnrolledDataList.length; j++) {
+                          if (unEnrolledDataList[j] == cards![i].cardId) {
+                            debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId} ---> " +
+                                cards[i].enrollmentData.toString());
+                            params.add({
+                              "cardId": cards[i].cardId,
+                              "enrollmentData": cards[i].enrollmentData,
+                              "isEnrolled": false
+                            });
+                          }
+                        }
+                      }
+                      var data = await platform.invokeMethod('enrollCard', params);
+                    }
+                  }, onError: (error) async {
+                    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+                    debugPrint("MainError------> ${error.toString()}");
+                  });
+                });
+              }
+            }
           });
         }
         break;
 
       case "emptyGetCards":
         debugPrint("Flutter side Empty Get Cards ");
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
         BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
         // ///Test purpose
@@ -310,17 +353,18 @@ class AntelopHelper {
 
         ///Test purpose
 
-
-        Future.delayed(Duration(seconds: 4), () {
+        Future.delayed(Duration(seconds: 0), () {
           _apiService
               .enrollCards(EnrollCardRequestEntity(
                   baseData: baseData.toJson(),
                   walletId: antelopWalletId,
                   getToken: false,
-                  cardType: "C",
+                  cardType: "",
                   cardId: ""))
               .then((value) async {
             if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+              AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+
               ///getting list from api
               var cards = value.data.transform().enrollCardList;
               List<Map<String, dynamic>> params = [];
@@ -338,7 +382,8 @@ class AntelopHelper {
               var data = await platform.invokeMethod('enrollCard', params);
             }
           }, onError: (error) async {
-            debugPrint("MainError ${error.toString()}");
+            AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+            debugPrint("MainError------> ${error.toString()}");
           });
         });
 
@@ -346,18 +391,52 @@ class AntelopHelper {
 
       case "enrollCardSuccess":
         debugPrint("Flutter side enrollCardSuccess " + data.toString());
-        var cardsData = await platform.invokeMethod('getAllCards');
+        var cardsData = await platform.invokeMethod('getAntelopCards');
         break;
 
       case "enrollCardError":
-        var cardsData = await platform.invokeMethod('getAllCards');
         debugPrint("Flutter side enrollCardError " + data.toString());
-
         break;
 
       case "enrollCardCatch":
-        var cardsData = await platform.invokeMethod('getAllCards');
         debugPrint("Flutter side enrollCardCatch " + data.toString());
+        break;
+
+      case "pushCardSuccess":
+        debugPrint("Flutter side push card success " + data.toString());
+        pushCardSuccess.add(true);
+        break;
+
+      case "pushCardError":
+        debugPrint("Flutter side push card error " + data.toString());
+        pushCardError.add(true);
+        break;
+
+      case "antelopCardsList":
+        debugPrint("Flutter side antelopCards " + data.toString());
+        dynamic newData = jsonDecode(data);
+
+        if (newData != null) {
+          debugPrint("print 1--> ");
+          List<dynamic> newList = newData;
+          debugPrint("print 2--> ");
+          List<GetAllCardData> newDataList = [];
+          debugPrint("print 3--> ");
+          newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
+          debugPrint("print 4--> ");
+          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
+          listOfCardFromAntelop.add(newDataList);
+          antelopStepCompleted.add(false);
+        }
+        break;
+
+      case "antelopEmptyCardsList":
+        debugPrint("Flutter side antelopEmptyCardsList " + data.toString());
+        List<GetAllCardData> newDataList = [];
+        listOfCardFromAntelop.add(newDataList);
+        if (newDataList.isNotEmpty) {
+          antelopStepCompleted.add(false);
+        }
         break;
 
       default:

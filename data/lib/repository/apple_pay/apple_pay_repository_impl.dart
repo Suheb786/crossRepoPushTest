@@ -3,6 +3,7 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/apple_pay/apple_pay_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/apple_pay/enroll_card_response.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/repository/apple_pay/apple_pay_repository.dart';
 
 class ApplePayRepositoryImpl extends ApplePayRepository {
@@ -33,11 +34,11 @@ class ApplePayRepositoryImpl extends ApplePayRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getAllCardListUseCase() async {
+  Future<Either<NetworkError, GetDashboardDataResponse>> getAllCardListUseCase() async {
     final result = await safeApiCall(applePayRemoteDataSource.getAllCardListUseCase());
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -56,6 +57,17 @@ class ApplePayRepositoryImpl extends ApplePayRepository {
       applePayRemoteDataSource.initializeAntelopSDK(),
     );
 
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getAntelopCards() async {
+    final result = await safeApiCall(
+      applePayRemoteDataSource.getAntelopCardList(),
+    );
     return result!.fold(
       (l) => Left(l),
       (r) => Right(true),

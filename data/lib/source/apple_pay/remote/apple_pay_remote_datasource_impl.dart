@@ -4,6 +4,7 @@ import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
 import 'package:data/entity/remote/apple_pay/enroll_card_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:data/network/api_service.dart';
@@ -34,7 +35,7 @@ class AppPayRemoteDSImpl extends ApplePayRemoteDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getAllCardListUseCase() async {
+  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardListUseCase() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
@@ -48,5 +49,10 @@ class AppPayRemoteDSImpl extends ApplePayRemoteDataSource {
   @override
   Future<bool> initializeAntelopSDK() {
     return _antelopHelper.onInitializationFromNative();
+  }
+
+  @override
+  Future<bool> getAntelopCardList() {
+    return _antelopHelper.getAntelopCardList();
   }
 }

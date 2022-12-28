@@ -29,7 +29,9 @@ class CreditCard {
       this.minimumSettlement: 0,
       this.callStatus: CreditCardCallStatusEnum.NONE,
       this.isCallPending: false,
-      this.parentId: ""});
+      this.parentId: "",
+      this.isCardInApplePay = false,
+      this.getStatus = false});
 
   String? name;
   String? cardNumber;
@@ -57,4 +59,6 @@ class CreditCard {
   FreezeCardStatusEnum? cardStatus;
   CreditCardCallStatusEnum? callStatus;
   bool? isCallPending;
+  bool isCardInApplePay;
+  bool getStatus;
 }

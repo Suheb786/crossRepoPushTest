@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
@@ -65,8 +66,8 @@ final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<Placehol
 );
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) =>
-      AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider), ref.read(getPlaceHolderUseCaseProvider)),
+  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider),
+      ref.read(getPlaceHolderUseCaseProvider), ref.read(getAntelopCardListUseCaseProvider)),
 );
 
 final filterTransactionDialogViewModelProvier =

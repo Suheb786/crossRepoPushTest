@@ -16,14 +16,14 @@ DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
     linkedAccountNumber: json['linkedAccountNumber'] as String?,
     debitDeliveredDatetime: json['debitDeliveredDatetime'],
     isDebitDelivered: json['isDebitDelivered'] as bool?,
-    debitCardActivated: json['debitCardActivated'] == null
-        ? null
-        : DateTime.parse(json['debitCardActivated'] as String),
+    debitCardActivated:
+        json['debitCardActivated'] == null ? null : DateTime.parse(json['debitCardActivated'] as String),
     cardStatus: json['cardStatus'] as String?,
     code: json['code'] as String?,
     primarySecondaryCard: json['primarySecondaryCard'] as String?,
     isPINSet: json['isPINSet'] as bool?,
     isPhysicalDebitCardRequested: json['isPhysicalDebitCardRequested'] as bool?,
+    cardCode: json['cardCode'] as String?,
   );
 }
 
@@ -43,4 +43,5 @@ Map<String, dynamic> _$DashboardDebitCardEntityToJson(
       'primarySecondaryCard': instance.primarySecondaryCard,
       'isPINSet': instance.isPINSet,
       'isPhysicalDebitCardRequested': instance.isPhysicalDebitCardRequested,
+      'cardCode': instance.cardCode,
     };

@@ -59,9 +59,9 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
   @override
   GetDashboardDataContent transform() {
     return GetDashboardDataContent(
-        account: this.account!.transform(),
-        creditCard: this.creditCard!.map((e) => e.transform()).toList(),
-        debitCard: this.debitCard!.map((e) => e.transform()).toList(),
+        account: this.account?.transform(),
+        creditCard: this.creditCard?.map((e) => e.transform()).toList(),
+        debitCard: this.debitCard?.map((e) => e.transform()).toList(),
         blinkWasBorn: this.blinkBornDate,
         youJoinedBlink: this.blinkJoinedDate,
         mobileNumber: this.mobileNumber,

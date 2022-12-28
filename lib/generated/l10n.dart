@@ -13910,10 +13910,10 @@ class S {
     );
   }
 
-  /// `Rebellious Red\nCredit Card`
+  /// `Rebellious Red\nVisa Credit Card`
   String get rebelliousRedCreditCard {
     return Intl.message(
-      'Rebellious Red\nCredit Card',
+      'Rebellious Red\nVisa Credit Card',
       name: 'rebelliousRedCreditCard',
       desc: '',
       args: [],
@@ -13930,10 +13930,10 @@ class S {
     );
   }
 
-  /// `Yellow Sun\nDebit Card`
+  /// `Yellow Sun\nVisa Debit Card`
   String get yellowSunDebitCard {
     return Intl.message(
-      'Yellow Sun\nDebit Card',
+      'Yellow Sun\nVisa Debit Card',
       name: 'yellowSunDebitCard',
       desc: '',
       args: [],
@@ -13995,6 +13995,26 @@ class S {
     return Intl.message(
       'You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.',
       name: 'blinkWithApplePayLandingDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card`
+  String get debitCards {
+    return Intl.message(
+      'Debit Card',
+      name: 'debitCards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No cards to display`
+  String get noCardsToDisplay {
+    return Intl.message(
+      'No cards to display',
+      name: 'noCardsToDisplay',
       desc: '',
       args: [],
     );

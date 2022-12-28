@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
         onData: (data) {
           if (data.status == Status.SUCCESS) {
             CheckKYCData kycData = data.data?.content?.kycData
-                    ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
+                ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
@@ -39,19 +41,20 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                     arguments: AccountRegistrationParams(
                         kycData: kycData,
                         mobileCode:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
+                        ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
                         mobileNumber:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
+                        ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(
                         kycData: kycData,
                         applicationId:
-                            ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
+                        ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
-              model.antelopSdkInitialize();
-              print('in change device');
+              if (Platform.isIOS) {
+                model.antelopSdkInitialize();
+              }
               Navigator.popAndPushNamed(context, RoutePaths.AppHome);
             }
           }

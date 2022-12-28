@@ -768,7 +768,7 @@ abstract class ApiService {
   ///Apple Pay
 
   @POST("/Applepay/GetAllCardList")
-  Future<HttpResponse<ResponseEntity>> getAllCardList(@Body() BaseRequest request);
+  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(@Body() BaseRequest request);
 
   @POST("/Applepay/AddUserWalletDetail")
   Future<HttpResponse<ResponseEntity>> addUserWalletDetail(@Body() AddUserWalletDetailRequestEntity request);

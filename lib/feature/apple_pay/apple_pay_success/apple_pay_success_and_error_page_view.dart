@@ -37,8 +37,6 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                     title: S.of(context).applePaySetUpFailed,
                     titleDescription: S.of(context).errorSettingUpApplePay,
                     successOrErrorIcon: AssetUtils.cancel));
-
-            // model.sendOtpTokenMobile();
           });
         }
       },

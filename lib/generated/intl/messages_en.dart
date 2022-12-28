@@ -637,25 +637,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered?"),
         "debitCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
-        "debitCardSettings":
-            MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
+        "debitCardSettings": MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
         "debitCardStatementError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "debitCardTransactionListError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "debitCardVerified": MessageLookupByLibrary.simpleMessage(
-            "Debit card\nhas been verified."),
-        "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
-            "declaration is true and correct."),
+        "debitCardVerified": MessageLookupByLibrary.simpleMessage("Debit card\nhas been verified."),
+        "debitCards": MessageLookupByLibrary.simpleMessage("Debit Card"),
+        "declarationIsTrueAndCorrect":
+            MessageLookupByLibrary.simpleMessage("declaration is true and correct."),
         "deleteBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "deleteCliqId": MessageLookupByLibrary.simpleMessage("Delete CliQ ID"),
         "deleteProfileImageError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "deliveryIssue":
-            MessageLookupByLibrary.simpleMessage("I have delivery issue"),
-        "depositViaATM":
-            MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
+        "deliveryIssue": MessageLookupByLibrary.simpleMessage("I have delivery issue"),
+        "depositViaATM": MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
         "depositViaeFawateercom":
@@ -1645,19 +1642,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData": MessageLookupByLibrary.simpleMessage(
-            "ATM data cannot be retrieved. Please try again later."),
+        "noATMData":
+            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
-        "noActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Activity to Display"),
+        "noActivityToDisplay": MessageLookupByLibrary.simpleMessage("No Activity to Display"),
+        "noCardsToDisplay": MessageLookupByLibrary.simpleMessage("No cards to display"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
-        "noCountriesFound":
-            MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "noCountriesFound": MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("No Data Found"),
-        "noDataFoundInFI": MessageLookupByLibrary.simpleMessage(
-            "No data Found in Financial Institutions"),
+        "noDataFoundInFI": MessageLookupByLibrary.simpleMessage("No data Found in Financial Institutions"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "Something wrong with your Yellow Sun debit card information. Please contact our Engagement Team from the app or call 06-5200100."),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
@@ -1932,29 +1927,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("Purpose"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("QR PAYMENTS"),
-        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
-            "QR code will be valid\nfor 1 hour"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "Best if your surrounding is quiet and private"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
-        "rebelliousRedCreditCard":
-            MessageLookupByLibrary.simpleMessage("Rebellious Red\nCredit Card"),
-        "receiveMoneyFromOthers":
-            MessageLookupByLibrary.simpleMessage("Receive money from others"),
-        "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
-            "Share your account info to be able to receive money."),
+        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage("QR code will be valid\nfor 1 hour"),
+        "quietSurrounding":
+            MessageLookupByLibrary.simpleMessage("Best if your surrounding is quiet and private"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage("Rebellious Red\nVisa Credit Card"),
+        "receiveMoneyFromOthers": MessageLookupByLibrary.simpleMessage("Receive money from others"),
+        "receiveMoneyFromOthersDesc":
+            MessageLookupByLibrary.simpleMessage("Share your account info to be able to receive money."),
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
             "You will receive OTP to your\nnew number for future\ntransactions."),
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
-        "referenceNumber":
-            MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
+        "referenceNumber": MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
         "referenceNumberSmall":
             MessageLookupByLibrary.simpleMessage("Reference Number"),
         "refno": MessageLookupByLibrary.simpleMessage("Ref No."),
@@ -2539,26 +2527,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "What is your relationship\nwith the cardholder?"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
             "What’s your email and mobile number?"),
-        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
-            "Where do you \ncurrently live?"),
-        "whichTaxPayerAreYou":
-            MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
-        "whichTaxPayerAreYouSmall":
-            MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("Where do you \ncurrently live?"),
+        "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
+        "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
-        "yellowSunDebitCard":
-            MessageLookupByLibrary.simpleMessage("Yellow Sun\nDebit Card"),
+        "yellowSunDebitCard": MessageLookupByLibrary.simpleMessage("Yellow Sun\nVisa Debit Card"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youAreAcceptingMoneyRequestViaQr":
-            MessageLookupByLibrary.simpleMessage(
-                "You are accepting a money\nrequest via QR"),
+            MessageLookupByLibrary.simpleMessage("You are accepting a money\nrequest via QR"),
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can change the above details in the card settings "),
+            MessageLookupByLibrary.simpleMessage("You can change the above details in the card settings "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
