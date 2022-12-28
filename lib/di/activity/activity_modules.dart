@@ -29,7 +29,9 @@ final paymentActivityViewModelProvider =
 final paymentActivityTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentActivityTransactionViewModel>(
   (ref) => PaymentActivityTransactionViewModel(
-      ref.read(paymentActivityTransactionUseCaseProvider),
-      ref.read(requestMoneyActivityUseCaseProvider),
-      ref.read(approveRTPRequestUseCaseProivder)),
+    ref.read(paymentActivityTransactionUseCaseProvider),
+    ref.read(requestMoneyActivityUseCaseProvider),
+    ref.read(approveRTPRequestUseCaseProivder),
+    ref.read(requestToPayResultUseCaseProvider),
+  ),
 );

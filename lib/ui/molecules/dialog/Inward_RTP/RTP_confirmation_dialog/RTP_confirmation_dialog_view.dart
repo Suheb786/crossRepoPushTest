@@ -11,21 +11,23 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RTPConfirmationDialogView extends StatelessWidget {
+  final String amount;
+  final String cdtrAcct;
+  final String cdtrDpText;
+  final String cdtrName;
   final Function? onAccepted;
-  final Function? onRejected;
   final Function? onDismiss;
-
-  final List<RequestMoneyActivityList>? activity;
-  final int index;
-  final PaymentActivityTransactionViewModel model;
+  final Function? onRejected;
 
   const RTPConfirmationDialogView(
-      {this.activity,
-      required this.index,
-      required this.model,
+      {
       this.onDismiss,
       this.onAccepted,
-      this.onRejected});
+      this.onRejected,
+      required this.cdtrName,
+      required this.cdtrDpText,
+      required this.amount,
+      required this.cdtrAcct});
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +59,8 @@ class RTPConfirmationDialogView extends StatelessWidget {
                               color: Theme.of(context).primaryColor),
                           child: Center(
                             child: Text(
-                              activity![index].dbtrName.split(" ").length > 1
-                                  ? StringUtils.getFirstInitials(
-                                      (activity?[index].cdtrName) ?? "")
-                                  : "",
+                              cdtrDpText,
+                             
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentColor,
@@ -70,7 +70,8 @@ class RTPConfirmationDialogView extends StatelessWidget {
                           )),
                       SizedBox(height: 16.0.h),
                       Text(
-                        (activity?[index].cdtrName) ?? "",
+                        cdtrName,
+                   
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
@@ -78,7 +79,8 @@ class RTPConfirmationDialogView extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        (activity?[index].cdtrAcct) ?? "",
+                        cdtrAcct,
+                      
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
@@ -90,7 +92,8 @@ class RTPConfirmationDialogView extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: (activity?[index].cdtrName) ?? "",
+                              text: cdtrName,
+                          
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.0.t,
@@ -106,8 +109,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                                   color: Theme.of(context).primaryColorDark),
                             ),
                             TextSpan(
-                              text:
-                                  "${(activity?[index].amount) ?? ""}" + " JOD",
+                              text: amount,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.0.t,

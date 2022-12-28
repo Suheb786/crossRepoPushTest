@@ -129,8 +129,9 @@ final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
   (ref) => RequestMoneyUseCase(ref.read(cliqRepositoryProvider)),
 );
 
-///[RequestToPayResultUsecase] provider
-final requestToPayResult = Provider.autoDispose<RequestToPayResultUseCase>(
+//[RequestToPayResultUsecase] provider
+final requestToPayResultUseCaseProvider =
+    Provider.autoDispose<RequestToPayResultUseCase>(
   (ref) => RequestToPayResultUseCase(ref.read(cliqRepositoryProvider)),
 );
 

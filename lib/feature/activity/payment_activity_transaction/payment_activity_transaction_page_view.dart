@@ -187,6 +187,24 @@ class PaymentActivityTransactionPageView
                                                     .length >
                                                 0
                                             ? PaymentActivityTransactionWidget(
+                                                getColor: model.getColor(
+                                                    (requestActivity
+                                                            .data
+                                                            ?.requestMoneyActivity?[
+                                                                index]
+                                                            .trxStatus) ??
+                                                        RequestMoneyActivityStatusEnum
+                                                            .CATEGORY_NONE),
+                                                itemCount: requestActivity
+                                                    .data!
+                                                    .requestMoneyActivity!
+                                                    .length,
+                                                cdtrAcct: (requestActivity
+                                                        .data
+                                                        ?.requestMoneyActivity?[
+                                                            index]
+                                                        .cdtrAcct) ??
+                                                    "",
                                                 dbtrDpText: StringUtils
                                                     .getFirstInitials(
                                                         (requestActivity
@@ -209,7 +227,45 @@ class PaymentActivityTransactionPageView
                                                     "${(requestActivity.data?.requestMoneyActivity?[index].dbtrName) ?? ""}",
                                                 cdtrName:
                                                     "${(requestActivity.data?.requestMoneyActivity?[index].cdtrName) ?? ""}",
-                                                onAcceptButton: () {},
+                                                onAcceptButton: () {
+                                                  //Todo -- pass approveRTP parameters values
+                                                  // model.approveRTPRequest(
+                                                  //   custID: custID,
+                                                  //   dbtrAcct: dbtrAcct,
+                                                  //   dbtrName: dbtrName,
+                                                  //   dbtrPstlAdr: dbtrPstlAdr,
+                                                  //   dbtrRecordID: dbtrRecordID,
+                                                  //   currency: currency,
+                                                  //   amount: amount,
+                                                  //   dbtrAlias: dbtrAlias,
+                                                  //   cdtrBic: cdtrBic,
+                                                  //   cdtrName: cdtrName,
+                                                  //   cdtrAcct: cdtrAcct,
+                                                  //   cdtrPstlAdr: cdtrPstlAdr,
+                                                  //   cdtrRecordID: cdtrRecordID,
+                                                  //   cdtrAlias: cdtrAlias,
+                                                  //   rgltryRptg: rgltryRptg,
+                                                  //   payRefNo: payRefNo,
+                                                  //   rejectReason: rejectReason,
+                                                  //   rtpStatus: rtpStatus,
+                                                  //   rejectADdInfo:
+                                                  //       rejectADdInfo,
+                                                  //   getToken: getToken,
+                                                  // );
+                                                },
+                                                onRejectButton: () {
+                                                  model.requestToPayResult(
+                                                      CustID: "",
+                                                      RTPStatus: "",
+                                                      OrgnlMsgId: (requestActivity
+                                                              .data
+                                                              ?.requestMoneyActivity?[
+                                                                  index]
+                                                              .msgID) ??
+                                                          "",
+                                                      RejectADdInfo: "",
+                                                      RejectReason: "");
+                                                },
                                                 rtpDate: TimeUtils
                                                     .getFormattedDateForTransaction(
                                                         (requestActivity
@@ -228,10 +284,6 @@ class PaymentActivityTransactionPageView
                                                     .requestMoneyActivity![
                                                         index]
                                                     .trxDir,
-                                                model: model,
-                                                index: index,
-                                                activity: requestActivity
-                                                    .data!.requestMoneyActivity,
                                               )
                                             : Center(
                                                 child: Text(

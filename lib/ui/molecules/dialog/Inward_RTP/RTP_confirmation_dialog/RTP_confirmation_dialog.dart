@@ -12,19 +12,21 @@ class RTPConfirmationDialog {
     Function()? onDismiss,
     Function()? onAccepted,
     Function()? onRejected,
-    List<RequestMoneyActivityList>? activity,
-    required int index,
-    required PaymentActivityTransactionViewModel model,
+    required String amount,
+    required String cdtrAcct,
+    required String cdtrDpText,
+    required String cdtrName,
   }) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => RTPConfirmationDialogView(
-              index: index,
+              amount: amount,
+              cdtrAcct: cdtrAcct,
+              cdtrDpText: cdtrDpText,
+              cdtrName: cdtrName,
               onAccepted: onAccepted,
               onDismiss: onDismiss,
               onRejected: onRejected,
-              model: model,
-              activity: activity,
             ));
   }
 }

@@ -271,7 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error in aramex api"),
         "asperhisrequestconfirmthisaction":
             MessageLookupByLibrary.simpleMessage(
-                "as per his request. Confirm this action?"),
+                " as per his request. Confirm this action?"),
         "assignTokenError": MessageLookupByLibrary.simpleMessage(
             "Error while assigning token vkey"),
         "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
@@ -1563,7 +1563,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
             "Please enter if only the business name is different from the name above"),
-        "isRequesting": MessageLookupByLibrary.simpleMessage(" is Requesting "),
+        "isRequesting": MessageLookupByLibrary.simpleMessage(" is Requesting"),
         "isoNationalityNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-087)"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
@@ -2157,7 +2157,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "requestFrom": MessageLookupByLibrary.simpleMessage("Request Form"),
+        "requestFrom": MessageLookupByLibrary.simpleMessage(" Request Form "),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
@@ -2533,6 +2533,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
         "transactionHistory":
             MessageLookupByLibrary.simpleMessage("Transaction History"),
         "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(

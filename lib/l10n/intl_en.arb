@@ -1536,12 +1536,13 @@
   "you": "you",
   "accept": "Accept",
   "reject": "Reject",
-  "isRequesting": " is Requesting ",
+  "isRequesting": " is Requesting",
   "fromYouWouldYouLikeToAcceptIt": " from you. Would you like to accept?",
-  "asperhisrequestconfirmthisaction": "as per his request. Confirm this action?",
+  "asperhisrequestconfirmthisaction": " as per his request. Confirm this action?",
   "youareabouttosend": "You are about to send ",
   "acceptRequest": "Accept Request",
   "rejectRequest": "Reject Request",
   "youareabouttoreject": "You are about to reject ",
-  "requestFrom": "Request Form"
+  "requestFrom": " Request Form ",
+  "towithspace": " to "
 }

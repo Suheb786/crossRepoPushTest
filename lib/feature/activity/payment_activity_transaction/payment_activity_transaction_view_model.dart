@@ -6,6 +6,7 @@ import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
+import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:rxdart/rxdart.dart';
@@ -176,7 +177,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
     ),
   ];
 
-  //*--------------------[accept-request-money-activity]---------------------->>>>>>>
+  ///*--------------------[accept-request-money-activity]---------------------->>>>>>>
 
   PublishSubject<ApproveRTPRequestUseCaseParam> _approveRTPRequest =
       PublishSubject();
@@ -184,6 +185,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   ApproveRTPRequestUseCase _approveRTPRequestUseCase;
   PublishSubject<Resource<bool>> _approveRTPResponse = PublishSubject();
 
+  ///---------------------------------------------------------------------------///
   /// payment activity subject holder
   PublishSubject<PaymentActivityTransactionUseCaseParams>
       _paymentActivityTransactionRequest = PublishSubject();
@@ -194,7 +196,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   ///payment period
   BehaviorSubject<String> _paymentPeriodResponse = BehaviorSubject();
 
-//*--------------------[request-money-activity]---------------------->>>>>>>
+  ///*--------------------[request-money-activity]---------------------->>>>>>>
 
   BehaviorSubject<RequestMoneyActivityParams> _requestMoneyActivityRequest =
       BehaviorSubject();
@@ -205,16 +207,24 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   RequestMoneyActivityUseCase _requestMoneyActivityUseCase;
   BehaviorSubject<String> _requestPeriodResponse = BehaviorSubject();
 
+  ///[reject-request-money-activity]
+
+  PublishSubject<RequestToPayResultUsecaseParams> _requestToPayResultRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _requestToPayResultResponse = PublishSubject();
+  RequestToPayResultUseCase _requestToPayResultUseCase;
+
   ///transaction type
   BehaviorSubject<String> _transactionTypeResponse = BehaviorSubject();
 
   PaymentActivityTransactionUseCase _useCase;
 
   PaymentActivityTransactionViewModel(
-    this._useCase,
-    this._requestMoneyActivityUseCase,
-    this._approveRTPRequestUseCase,
-  ) {
+      this._useCase,
+      this._requestMoneyActivityUseCase,
+      this._approveRTPRequestUseCase,
+      this._requestToPayResultUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
         RequestManager(value,
@@ -255,6 +265,18 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       },
     );
 
+    _requestToPayResultRequest.listen((value) {
+      RequestManager(value, createCall: () {
+        return _requestToPayResultUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _requestMoneyActivityResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     _paymentActivityTransactionRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
@@ -275,6 +297,24 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
     _paymentActivityTransactionResponse.close();
     _paymentActivityTransactionRequest.close();
     super.dispose();
+  }
+
+  Stream<Resource<bool>> get requestToPayResultStream =>
+      _requestToPayResultResponse.stream;
+
+  void requestToPayResult({
+    required final String CustID,
+    required final String OrgnlMsgId,
+    required final String RTPStatus,
+    required final String RejectReason,
+    required final String RejectADdInfo,
+  }) {
+    _requestMoneyActivityResponse.safeAdd(RequestToPayResultUsecaseParams(
+        CustID: CustID,
+        OrgnlMsgId: OrgnlMsgId,
+        RTPStatus: RTPStatus,
+        RejectReason: RejectReason,
+        RejectADdInfo: RejectADdInfo));
   }
 
   void approveRTPRequest({
@@ -389,7 +429,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
         return AppColor.dark_orange;
       case RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED:
-        return AppColor.vividRed;
+        return AppColor.gray5;
       default:
         return AppColor.darkModerateLimeGreen;
     }

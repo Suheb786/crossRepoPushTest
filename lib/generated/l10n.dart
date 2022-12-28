@@ -15140,10 +15140,10 @@ class S {
     );
   }
 
-  /// ` is Requesting `
+  /// ` is Requesting`
   String get isRequesting {
     return Intl.message(
-      ' is Requesting ',
+      ' is Requesting',
       name: 'isRequesting',
       desc: '',
       args: [],
@@ -15160,10 +15160,10 @@ class S {
     );
   }
 
-  /// `as per his request. Confirm this action?`
+  /// ` as per his request. Confirm this action?`
   String get asperhisrequestconfirmthisaction {
     return Intl.message(
-      'as per his request. Confirm this action?',
+      ' as per his request. Confirm this action?',
       name: 'asperhisrequestconfirmthisaction',
       desc: '',
       args: [],
@@ -15210,11 +15210,21 @@ class S {
     );
   }
 
-  /// `Request Form`
+  /// ` Request Form `
   String get requestFrom {
     return Intl.message(
-      'Request Form',
+      ' Request Form ',
       name: 'requestFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` to `
+  String get towithspace {
+    return Intl.message(
+      ' to ',
+      name: 'towithspace',
       desc: '',
       args: [],
     );

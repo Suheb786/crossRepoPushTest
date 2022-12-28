@@ -211,12 +211,15 @@ class PaymentActivityPageView
                                                           EdgeInsetsDirectional
                                                               .only(top: 6.0.h),
                                                       child: Container(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    8.0.w,
-                                                                vertical:
-                                                                    2.0.h),
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .only(
+                                                                    start:
+                                                                        8.0.w,
+                                                                    end: 8.0.w,
+                                                                    top: 3.0.h,
+                                                                    bottom:
+                                                                        2.0.h),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: model.getColor(
