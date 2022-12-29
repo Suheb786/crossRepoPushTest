@@ -1507,5 +1507,6 @@
   "failed": "Failed",
   "successS": "Success",
   "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
-  "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics"
+  "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics",
+  "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."
 }

@@ -32,18 +32,18 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     payPostPaidBillListener();
   }
 
-  double addAllBillAmt() {
-    double totalBillAmt = 0.0;
-    arguments.postPaidBillInquiryData?.forEach((inquiryData) {
-      // arguments.noOfSelectedBills.forEach((element) {
-      //   if(inquiryData.billingNo  == inquiryData.billingNo || inquiryData.isPartial ==true){
-      //     if (inquiryData.isChecked == true) {
-      totalBillAmt = totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
-      // }
-      // }
-      // });
-    });
+  bool isTotalAmountZero = true;
 
+  addAllBillAmt() {
+    double totalBillAmt = 0.0;
+    for (var inquiryData in postPaidBillInquiryData!) {
+      if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
+        totalBillAmt = totalBillAmt + double.parse("0.0");
+      } else {
+        totalBillAmt = totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+      }
+    }
+    isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
     return totalBillAmt;
   }
 
@@ -129,25 +129,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
-  bool isTotalAmountZero = true;
-
-  String getTotalAmountList(final List<PostPaidBillInquiryData>? list) {
-    double totalAmount = 0.0;
-    isTotalAmountZero = true;
-    for (var item in list!) {
-      totalAmount = totalAmount + double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
-    }
-    if (totalAmount > 0) isTotalAmountZero = false;
-    return '${totalAmount.toString()}';
-  }
-
-  String getTotalAmountItemWise(String? due, String? fees) {
-    double dueAmount = due == null ? 0.0 : double.parse(due);
-    double feesAmount = fees == null ? 0.0 : double.parse(fees);
-    return '${dueAmount}';
-    // return '${AppAmountFormatter.formatByCurrencyWithOutComma((dueAmount /*+ feesAmount*/).toString(), currency: "JOD")}';
-  }
-
   getValidBillerIcon(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
   }
@@ -194,13 +175,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  var totalAmount = "0.0";
-
   validate() {
-    totalAmount = addAllBillAmt().toStringAsFixed(3);
-    if (double.parse(totalAmount) > 0.0) {
+    print("aslkdslakd: ${isTotalAmountZero}");
+    if (isTotalAmountZero == false) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
+      } else {
+        _showButtonSubject.safeAdd(false);
       }
     } else {
       _showButtonSubject.safeAdd(false);

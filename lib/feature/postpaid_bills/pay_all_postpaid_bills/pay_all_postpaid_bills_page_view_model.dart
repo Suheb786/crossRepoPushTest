@@ -53,7 +53,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     if (payPostPaidBillsDataList.isNotEmpty) {
       if (payPostPaidBillsDataList[index].isChecked == true) {
         payPostPaidBillsDataList[index].isChecked = false;
-        totalBillAmt = totalBillAmt - double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
+        totalBillAmt =
+            totalBillAmt - double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
         selectedPostPaidBillsList
             .removeWhere((element) => element.billingNo == payPostPaidBillsDataList[index].billingNo);
 
@@ -78,7 +79,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
 
-        totalBillAmt = totalBillAmt + double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0.0");
+        totalBillAmt =
+            totalBillAmt + double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
         debugPrint("selectedIndex123:$index");
         selectedIndex = index;
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
@@ -125,7 +127,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     totalBillAmt = 0.0;
     payPostPaidBillsDataList.forEach((element) {
       if (element.isChecked == true) {
-        totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
+        totalBillAmt = double.parse(element.actualdueAmountFromApi ?? "0.0") + totalBillAmt;
       }
     });
     _totalBillAmtDueSubject.safeAdd(totalBillAmt);
@@ -211,23 +213,23 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     _postPaidBillEnquiryResponse.safeAdd(Resource.success(
         data:
             PostPaidBillInquiry(content: PostPaidBillInquiryListData(postPaidBillInquiryData: inquiryData))));
-    totalBillAmt = 0.0;
     var postPaidBillInquiryDataLength = inquiryData?.length ?? 0;
     for (int i = 0; i < postPaidBillInquiryDataLength; i++) {
-      totalBillAmt = totalBillAmt + double.parse(inquiryData![i].dueAmount.toString());
-      debugPrint("totalBillAmt:${totalBillAmt}");
-      PostPaidBillInquiryData inquiryElement = inquiryData[i];
+      PostPaidBillInquiryData inquiryElement = inquiryData![i];
       for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
         GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
         debugPrint("item.billingNo: ${item.billingNo}");
         if (item.billingNo == inquiryElement.billingNo) {
+          if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
+            payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
+          }
           payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
           payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
         }
       }
     }
-    addAllBillAmt();
     _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
+    addAllBillAmt();
   }
 
   /// ---------------- remove customer billing -------------------------------- ///

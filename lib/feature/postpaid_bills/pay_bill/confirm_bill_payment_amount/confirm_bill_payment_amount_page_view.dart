@@ -388,7 +388,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   ),
                 ),
                 Text(
-                  '${model.addNewBillDetailsData.amount} JOD',
+                  '${model.addNewBillDetailsData.amount} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
