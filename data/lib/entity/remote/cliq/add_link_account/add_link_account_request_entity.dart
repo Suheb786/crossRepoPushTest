@@ -1,24 +1,24 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+
 part 'add_link_account_request_entity.g.dart';
 
 @JsonSerializable()
 class AddLinkAccountRequestEntity {
-  @JsonKey(name: "aliasId")
+  @JsonKey(name: "AliasId")
   final String aliasId;
-  @JsonKey(name: "linkType")
+  @JsonKey(name: "LinkType")
   final String linkType;
-  @JsonKey(name: "accountNumber")
+  @JsonKey(name: "AccountNumber")
   final String accountNumber;
   @JsonKey(name: "isAlias")
   final bool isAlias;
-  @JsonKey(name: "aliasValue")
+  @JsonKey(name: "AliasValue")
   final String aliasValue;
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseClass;
 
   AddLinkAccountRequestEntity(

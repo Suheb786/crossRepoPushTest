@@ -1,4 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -16,8 +17,8 @@ import 'link_account_dialog_view_model.dart';
 
 class LinkAccountDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
-  final List<String>? accountsList;
+  final Function(GetAccountByCustomerId)? onSelected;
+  final List<GetAccountByCustomerId>? accountsList;
   final String label;
 
   LinkAccountDialogView({this.onDismissed, this.onSelected, this.accountsList, required this.label});
@@ -94,7 +95,7 @@ class LinkAccountDialogView extends StatelessWidget {
                                         childCount: accountsList!.length,
                                         builder: (BuildContext context, int index) {
                                           return LinkAccountSelectionWidget(
-                                            label: accountsList![index],
+                                            label: accountsList![index].accountNumber ?? '',
                                             textColor: currentIndex == index
                                                 ? Theme.of(context).primaryColorDark
                                                 : AppColor.dark_gray_1,

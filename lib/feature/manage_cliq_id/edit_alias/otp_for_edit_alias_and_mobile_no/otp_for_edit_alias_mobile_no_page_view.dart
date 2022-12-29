@@ -69,7 +69,12 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                         stream: model.editCliqIdStream,
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            model.showSuccessToast(S.of(context).cliqIdUpdatedSuccessfully);
+                            if (model.arguments.isAlias) {
+                              model.showSuccessToast(S.of(context).cliqAliasUpdate);
+                            } else {
+                              model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
+                            }
+
                             ProviderScope.containerOf(context)
                                 .read(cliqIdListViewModelProvider)
                                 .getAlias(true);

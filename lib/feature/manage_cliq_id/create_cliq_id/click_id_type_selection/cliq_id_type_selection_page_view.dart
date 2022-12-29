@@ -58,11 +58,11 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                             FocusScope.of(context).unfocus();
                             if (StringUtils.isDirectionRTL(context)) {
                               if (!details.primaryVelocity!.isNegative) {
-                                model.addIdNumberForResetPassword();
+                                model.validateUserInput();
                               }
                             } else {
                               if (details.primaryVelocity!.isNegative) {
-                                model.addIdNumberForResetPassword();
+                                model.validateUserInput();
                               }
                             }
                           }
@@ -150,7 +150,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             inputType: TextInputType.phone,
                                                             inputAction: TextInputAction.done,
                                                             inputFormatters: [
-                                                              LengthLimitingTextInputFormatter(10),
+                                                              LengthLimitingTextInputFormatter(14),
                                                               FilteringTextInputFormatter.allow(
                                                                   RegExp(r'[0-9]')),
                                                             ],

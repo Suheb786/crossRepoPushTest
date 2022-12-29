@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_an
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog/cliq_information_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
@@ -44,10 +45,9 @@ final cliqIdTypeSelectionViewModelProvider =
 ///link bank account to cliq id view model
 final linkBankAccountCliqIdViewModelProvider =
     ChangeNotifierProvider.autoDispose<LinkBankAccountCliqIdPageViewModel>(
-          (ref) =>
-          LinkBankAccountCliqIdPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
-              ref.read(createCliqIdOtpUseCaseProvider), ref.read(getAccountByCustomerID)),
-    );
+  (ref) => LinkBankAccountCliqIdPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
+      ref.read(createCliqIdOtpUseCaseProvider), ref.read(getAccountByCustomerID)),
+);
 
 ///enter otp for cliq id view model
 final enterOtpFortCliqIdViewModelProvider =
@@ -110,6 +110,8 @@ final cliqInformationDialogViewModelProvider =
   (ref) => CliqInformationDialogViewModel(),
 );
 
-final linkAccountPageViewModelProvider = ChangeNotifierProvider.autoDispose<LinkAccountPageViewModel>(
-  (ref) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider)),
+final linkAccountPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<LinkAccountPageViewModel, LinkAccountPageArgument>(
+  (ref, arg) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
+      ref.read(getAccountByCustomerID), ref.read(addLinkAccountUseCaseProvider), arg),
 );

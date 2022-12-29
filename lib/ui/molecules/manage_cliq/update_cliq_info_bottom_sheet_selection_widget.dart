@@ -30,6 +30,7 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
             onCancel: onCancelled,
             onShareId: onShareId,
             onEditId: onEditId,
+            onLinkId: onLinkId,
             onDeleteId: onDeleteId,
             onSuspendId: onSuspendId,
             onActivateId: onActivatId,

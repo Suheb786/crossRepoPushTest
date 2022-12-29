@@ -31,7 +31,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
     });
   }
 
-  void addIdNumberForResetPassword() {
+  void validateUserInput() {
     _cliqIdTypeSelectionValidationRequest.safeAdd(CliqIdTypeSelectionValidationUseCaseParams(
         cliqIdType: cliqIdTypeController.text,
         alias: aliasController.text,

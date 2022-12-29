@@ -1470,5 +1470,8 @@
   "accountLinkedSuccessfully": "Account Linked Successfully",
   "accountDeletedSuccessfully": "Account Deleted Successfully ",
   "accountActivatedSuccessfully": "Account Activated Successfully",
-  "accountSuspendedSuccessfully": "Account Suspended Successfully"
+  "accountSuspendedSuccessfully": "Account Suspended Successfully",
+  "linkAccount": "Link Account",
+  "cliqAliasUpdate": "CLIQ ID UPDATE\nCliQ ID Alias has been updated",
+  "cliqMobileNumberUpdate": "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"
 }

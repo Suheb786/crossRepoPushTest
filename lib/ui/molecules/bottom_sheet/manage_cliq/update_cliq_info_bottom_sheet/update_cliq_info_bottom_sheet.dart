@@ -11,6 +11,7 @@ class UpdateCliqInfoBottomSheet {
     String? title,
     CliqAliasIdStatusEnum cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
     Function()? onEditId,
+    Function()? onLinkId,
     Function()? onShareId,
     Function()? onSuspendId,
     Function()? onDeleteId,
@@ -21,6 +22,7 @@ class UpdateCliqInfoBottomSheet {
       return UpdateCliqInfoBottomSheetView(
           onDeleteId: onDeleteId,
           onEditId: onEditId,
+          onLinkId: onLinkId,
           onShareId: onShareId,
           onSuspendId: onSuspendId,
           cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
