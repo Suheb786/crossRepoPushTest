@@ -31,7 +31,12 @@ class AddLinkAccountUseCaseParams extends Params {
   final bool getToken;
 
   AddLinkAccountUseCaseParams(
-      this.aliasId, this.linkType, this.accountNumber, this.isAlias, this.aliasValue, this.getToken);
+      {required this.aliasId,
+      required this.linkType,
+      required this.accountNumber,
+      required this.isAlias,
+      required this.aliasValue,
+      required this.getToken});
 
   @override
   Either<AppError, bool> verify() {

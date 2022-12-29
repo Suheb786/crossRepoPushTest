@@ -65,7 +65,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
   }
 
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 20;
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
     listenForSmsCode();
   }

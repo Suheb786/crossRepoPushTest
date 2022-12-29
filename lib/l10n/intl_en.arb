@@ -1531,5 +1531,8 @@
   "dummyAlias": "username1",
   "samplesOfNoFormatting": "Here are samples of the number formatting :\n",
   "emptyRecipientName": "Enter Recipient Name",
-  "emptyRecipientAddress": "Enter Recipient Address"
+  "emptyRecipientAddress": "Enter Recipient Address",
+  "linkAccount": "Link Account",
+  "cliqAliasUpdate": "CLIQ ID UPDATE\nCliQ ID Alias has been updated",
+  "cliqMobileNumberUpdate": "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"
 }

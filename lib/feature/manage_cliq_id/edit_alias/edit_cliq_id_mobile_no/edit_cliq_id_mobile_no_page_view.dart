@@ -77,7 +77,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                     arguments: OtpForEditAliasAndMobileNoPageArguments(
                                         data: data.data!,
                                         aliasId: model.arguments.aliasID,
-                                        aliasValue: "00962" + model.mobileNoController.text,
+                                        aliasValue: model.mobileNoController.text,
                                         isAlias: false));
                               }
                             }
@@ -98,7 +98,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                     ///api call
                                     model.makeOtpRequest(
                                         aliasId: model.arguments.aliasID,
-                                        aliasValue: "00962" + model.mobileNoController.text,
+                                        aliasValue: model.mobileNoController.text,
                                         isAlias: false);
                                   }
                                 },
@@ -126,7 +126,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                   inputType: TextInputType.phone,
                                                   inputAction: TextInputAction.done,
                                                   inputFormatters: [
-                                                    LengthLimitingTextInputFormatter(10),
+                                                    LengthLimitingTextInputFormatter(14),
                                                     FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                                   ],
                                                   controller: model.mobileNoController,

@@ -5,6 +5,7 @@ import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 
 abstract class CliqRepository {
@@ -206,7 +207,7 @@ abstract class CliqRepository {
     required String RejectADdInfo,
   });
 
-  Future<Either<NetworkError, bool>> getAccountByCustomerID();
+  Future<Either<NetworkError, List<GetAccountByCustomerId>>> getAccountByCustomerID();
 
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
     required bool GetToken,

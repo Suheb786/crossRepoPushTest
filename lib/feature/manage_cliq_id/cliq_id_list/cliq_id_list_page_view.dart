@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -196,8 +197,27 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                         UpdateCliqInfoBottomSheetSelectionWidget.show(context,
                                                             cliqAliasIdStatusEnum: getAliasSnapshot
                                                                     .data?.aliases?[index].status ??
-                                                                CliqAliasIdStatusEnum.NONE,
-                                                            onLinkId: () {}, onActivatId: () {
+                                                                CliqAliasIdStatusEnum.NONE, onLinkId: () {
+                                                          Navigator.pop(context);
+                                                          Navigator.pushNamed(
+                                                              context, RoutePaths.LinkAccountPage,
+                                                              arguments: LinkAccountPageArgument(
+                                                                  aliasId: getAliasSnapshot
+                                                                          .data?.aliases?[index].aliasID ??
+                                                                      '',
+                                                                  aliasValue: getAliasSnapshot
+                                                                          .data?.aliases?[index].aliasName ??
+                                                                      '',
+                                                                  isAlias: getAliasSnapshot
+                                                                          .data?.aliases?[index].aliasType ==
+                                                                      CliqAliasTypeEnum.ALIAS,
+                                                                  getToken: true,
+                                                                  linkType: (getAliasSnapshot.data
+                                                                              ?.aliases?[index].aliasType ==
+                                                                          CliqAliasTypeEnum.ALIAS)
+                                                                      ? 'A'
+                                                                      : 'M'));
+                                                        }, onActivatId: () {
                                                           Navigator.pop(context);
                                                           CliqInformationDialog.show(context,
                                                               isSwipeToCancel: true,
@@ -221,6 +241,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             Navigator.pop(context);
                                                           });
                                                         }, onEditId: () {
+                                                              Navigator.pop(context);
                                                           if (getAliasSnapshot
                                                                   .data?.aliases?[index].aliasType ==
                                                               CliqAliasTypeEnum.MOBL) {
@@ -232,19 +253,19 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         "",
                                                                     aliasName: (getAliasSnapshot.data
                                                                             ?.aliases?[index].aliasName) ??
-                                                                        ""));
-                                                          } else if (getAliasSnapshot
+                                                                            ""));
+                                                              } else if (getAliasSnapshot
                                                                   .data?.aliases?[index].aliasType ==
-                                                              CliqAliasTypeEnum.ALIAS) {
-                                                            Navigator.pushNamed(context, RoutePaths.EditAlias,
-                                                                arguments: EditAliasPageArguments(
-                                                                    aliasID: (getAliasSnapshot
+                                                                  CliqAliasTypeEnum.ALIAS) {
+                                                                Navigator.pushNamed(context, RoutePaths.EditAlias,
+                                                                    arguments: EditAliasPageArguments(
+                                                                        aliasID: (getAliasSnapshot
                                                                             .data?.aliases?[index].aliasID) ??
-                                                                        "",
-                                                                    aliasName: (getAliasSnapshot.data
+                                                                            "",
+                                                                        aliasName: (getAliasSnapshot.data
                                                                             ?.aliases?[index].aliasName) ??
-                                                                        ""));
-                                                          }
+                                                                            ""));
+                                                              }
                                                         }, onShareId: () {
                                                           _shareFiles(
                                                               context,

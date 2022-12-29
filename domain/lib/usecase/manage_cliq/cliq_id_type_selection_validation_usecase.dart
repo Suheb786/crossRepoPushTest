@@ -39,10 +39,10 @@ class CliqIdTypeSelectionValidationUseCaseParams extends Params {
         return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_ALIAS, cause: Exception()));
       }
     } else if (cliqIdTypeEnum == CliqIdTypeEnum.MOBILE_NO) {
-      if (mobileNo.isEmpty || mobileNo.length < 14) {
+      if (mobileNo.isEmpty || mobileNo.length != 14) {
         return Left(
             AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
-      } else if (mobileNo.substring(0, 5) == '00962') {
+      } else if (mobileNo.substring(0, 5) != '00962') {
         return Left(
             AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
       }

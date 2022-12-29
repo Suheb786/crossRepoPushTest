@@ -6,6 +6,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   final Function()? onEditId;
+  final Function()? onLinkId;
   final Function()? onShareId;
   final Function()? onSuspendId;
   final Function()? onDeleteId;
@@ -18,6 +19,7 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   const UpdateCliqInfoBottomSheetView(
       {Key? key,
       this.onEditId,
+      this.onLinkId,
       this.onShareId,
       this.onSuspendId,
       this.onDeleteId,
@@ -58,6 +60,17 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
                   color: AppColor.pure_blue)),
           onPressed: () {
             widget.onEditId?.call();
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: Text(S.of(context).linkAccount,
+              style: TextStyle(
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                  color: AppColor.pure_blue)),
+          onPressed: () {
+            widget.onLinkId?.call();
           },
         ),
         CupertinoActionSheetAction(

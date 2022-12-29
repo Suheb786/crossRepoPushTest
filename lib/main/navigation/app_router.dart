@@ -824,7 +824,7 @@ class AppRouter {
 
       case RoutePaths.LinkAccountPage:
         return CupertinoPageRoute(
-            builder: (context) => LinkAccountPage(),
+            builder: (context) => LinkAccountPage(settings.arguments as LinkAccountPageArgument),
             settings: RouteSettings(name: RoutePaths.LinkAccountPage));
 
       default:

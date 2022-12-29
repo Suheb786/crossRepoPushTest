@@ -71,11 +71,10 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .aliasController
                                         .text
-                                    : "00962" +
-                                        ProviderScope.containerOf(context)
-                                            .read(cliqIdTypeSelectionViewModelProvider)
-                                            .mobileNumberController
-                                            .text,
+                                    : ProviderScope.containerOf(context)
+                                        .read(cliqIdTypeSelectionViewModelProvider)
+                                        .mobileNumberController
+                                        .text,
                                 getToken: true,
                                 otpCode: model.otpController.text);
                           }

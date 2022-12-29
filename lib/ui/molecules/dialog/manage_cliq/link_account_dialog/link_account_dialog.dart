@@ -1,3 +1,4 @@
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_dialog.dart';
 
@@ -8,9 +9,9 @@ class LinkAccountDialog {
 
   static show(BuildContext mContext,
       {Function? onDismissed,
-      Function(String)? onSelected,
+      Function(GetAccountByCustomerId)? onSelected,
       required String label,
-      required List<String>? accountsList}) {
+      required List<GetAccountByCustomerId>? accountsList}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => LinkAccountDialogView(

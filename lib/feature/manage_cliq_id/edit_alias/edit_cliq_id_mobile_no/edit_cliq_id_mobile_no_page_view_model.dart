@@ -118,7 +118,7 @@ class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
 
   Stream<Resource<EditCliqOtp>> get editCliqIdOtpStream => _editCliqOtpResponse.stream;
 
-  BehaviorSubject<bool> _isSelectedRequest = BehaviorSubject();
+  BehaviorSubject<bool> _isSelectedRequest = BehaviorSubject.seeded(false);
 
   Stream<bool> get isSelectedStream => _isSelectedRequest.stream;
 
