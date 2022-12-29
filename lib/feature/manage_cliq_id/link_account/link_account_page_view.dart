@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -71,6 +72,9 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
                               model.showToastWithString(S.of(context).accountSuccessfullyLinked);
+                              ProviderScope.containerOf(context)
+                                  .read(cliqIdListViewModelProvider)
+                                  .getAlias(true);
 
                               Navigator.pop(context);
                             }

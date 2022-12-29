@@ -55,6 +55,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _editCliqOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _editCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
