@@ -241,7 +241,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             Navigator.pop(context);
                                                           });
                                                         }, onEditId: () {
-                                                              Navigator.pop(context);
+                                                          Navigator.pop(context);
                                                           if (getAliasSnapshot
                                                                   .data?.aliases?[index].aliasType ==
                                                               CliqAliasTypeEnum.MOBL) {
@@ -253,19 +253,19 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         "",
                                                                     aliasName: (getAliasSnapshot.data
                                                                             ?.aliases?[index].aliasName) ??
-                                                                            ""));
-                                                              } else if (getAliasSnapshot
+                                                                        ""));
+                                                          } else if (getAliasSnapshot
                                                                   .data?.aliases?[index].aliasType ==
-                                                                  CliqAliasTypeEnum.ALIAS) {
-                                                                Navigator.pushNamed(context, RoutePaths.EditAlias,
-                                                                    arguments: EditAliasPageArguments(
-                                                                        aliasID: (getAliasSnapshot
+                                                              CliqAliasTypeEnum.ALIAS) {
+                                                            Navigator.pushNamed(context, RoutePaths.EditAlias,
+                                                                arguments: EditAliasPageArguments(
+                                                                    aliasID: (getAliasSnapshot
                                                                             .data?.aliases?[index].aliasID) ??
-                                                                            "",
-                                                                        aliasName: (getAliasSnapshot.data
+                                                                        "",
+                                                                    aliasName: (getAliasSnapshot.data
                                                                             ?.aliases?[index].aliasName) ??
-                                                                            ""));
-                                                              }
+                                                                        ""));
+                                                          }
                                                         }, onShareId: () {
                                                           _shareFiles(
                                                               context,
