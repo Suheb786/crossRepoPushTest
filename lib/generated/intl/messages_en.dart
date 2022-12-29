@@ -42,7 +42,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
+            "Account is linked to the alias, but unable to set it to default"),
+        "CustomerOfInvalidAlias":
+            MessageLookupByLibrary.simpleMessage("Customer of invalid Alias"),
         "Default": MessageLookupByLibrary.simpleMessage("Default"),
+        "ErrorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage(
+            "Error on Request To Pay Result"),
+        "InvalidAlias": MessageLookupByLibrary.simpleMessage("Invalid Alias"),
+        "InvalidMobileNo":
+            MessageLookupByLibrary.simpleMessage("Invalid Mobile Number"),
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "You don’t have any CliQ ID.\nCreate your first one via Blink."),
@@ -987,6 +996,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorOnApproveRTPRequest": MessageLookupByLibrary.simpleMessage(
+            "Error on Approve RTP Request"),
         "errorOnApproveRtpRequest": MessageLookupByLibrary.simpleMessage(
             "Error on Approve RTP Request"),
         "errorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage(
@@ -1017,8 +1028,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "error while Accessing Id Card Data."),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to get your account balance. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorWhileChangingToDefaultAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while changing to default account"),
         "errorWhileCheckingIDNoBlacklisted": MessageLookupByLibrary.simpleMessage(
             "It seems your account is under review. Please contact our Engagement Team on 06-5200100 for more information."),
+        "errorWhileCreatingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while creating an alias"),
+        "errorWhileDeletingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while deleting an alias"),
+        "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while editing an alias"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -1029,6 +1049,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Get Status"),
         "errorWhileGettingAccountBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorWhileGettingAccountByAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while getting account by alias"),
+        "errorWhileGettingAccountByCustomerID":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Getting Account By Customer ID"),
         "errorWhileGettingAccountByCustomerId":
             MessageLookupByLibrary.simpleMessage(
                 "Error while Getting Account By Customer ID"),
@@ -1037,6 +1062,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Error While Getting Account Close Otp."),
         "errorWhileGettingAccountDetailsA2A": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorWhileGettingAlias":
+            MessageLookupByLibrary.simpleMessage("Error while getting alias"),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
@@ -1048,6 +1075,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Error while getting XCS Customer Card Details"),
         "errorWhileIssueCard":
             MessageLookupByLibrary.simpleMessage("Error while Issue Card"),
+        "errorWhileLinkingAccount":
+            MessageLookupByLibrary.simpleMessage("Error while linking account"),
         "errorWhileLinkingDebitCard": MessageLookupByLibrary.simpleMessage(
             "Error while linking Debit Card"),
         "errorWhileLogout":
@@ -1056,17 +1085,37 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error While Process Loan Request."),
         "errorWhileRTPA2A": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorWhileReActivatingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while re-activating an alias"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
+        "errorWhileRequestingMoney": MessageLookupByLibrary.simpleMessage(
+            "Error while requesting money"),
+        "errorWhileRequestingMoneyActivity":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while requesting money activity"),
+        "errorWhileSendingMoneyToCliqIBAN":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while sending money to cliq iban"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage(
                 "Error while Submitting Outward Payment"),
+        "errorWhileSubmmitingOutwardPayment":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Submitting Outward Payment"),
+        "errorWhileTryingTosuspandAnAlias":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while trying to suspend an alias"),
+        "errorWhileUnLinkingAccount": MessageLookupByLibrary.simpleMessage(
+            "Error while un-linking account"),
         "errorWhileUnblockPinNI": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "errorWhileUpdatingCardStatusNI": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "errorWhileUpdatingRTPRequest": MessageLookupByLibrary.simpleMessage(
+            "Error while updating RTP request"),
         "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
             "Error while requesting for pin change"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
@@ -1436,6 +1485,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-124)"),
+        "invalidIBAN": MessageLookupByLibrary.simpleMessage("Invalid Iban"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIban": MessageLookupByLibrary.simpleMessage("Invalid Iban"),
@@ -2337,6 +2387,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "Server is under maintenance. Please try again in sometime."),
+        "serviceIsNotavaliable":
+            MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout":
             MessageLookupByLibrary.simpleMessage("Session Timeout."),

@@ -39,7 +39,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
+            "Account is linked to the alias, but unable to set it to default"),
+        "CustomerOfInvalidAlias":
+            MessageLookupByLibrary.simpleMessage("Customer of invalid Alias"),
         "Default": MessageLookupByLibrary.simpleMessage("Default"),
+        "ErrorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage(
+            "Error on Request To Pay Result"),
+        "InvalidAlias": MessageLookupByLibrary.simpleMessage("Invalid Alias"),
+        "InvalidMobileNo":
+            MessageLookupByLibrary.simpleMessage("Invalid Mobile Number"),
         "JOD": MessageLookupByLibrary.simpleMessage("دينار أردني"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "ما عندك رقم CliQ. أنشئ حسابك الأول من خلال Blink"),
@@ -938,6 +947,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
+        "errorOnApproveRTPRequest": MessageLookupByLibrary.simpleMessage(
+            "Error on Approve RTP Request"),
         "errorOnApproveRtpRequest": MessageLookupByLibrary.simpleMessage(
             "Error on Approve RTP Request"),
         "errorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage(
@@ -968,9 +979,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال الوصول لبيانات الهوية الشخصية"),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال عملية استعراض رصيد الحساب. حاول كمان مرة بعدين أو تواصل معنا من التطبيق أو بالاتصال على 06-5200100"),
+        "errorWhileChangingToDefaultAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while changing to default account"),
         "errorWhileCheckingIDNoBlacklisted":
             MessageLookupByLibrary.simpleMessage(
                 "حسابك قيد المراجعة. تواصل معنا على 5200100-06 لتعرف أكتر."),
+        "errorWhileCreatingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while creating an alias"),
+        "errorWhileDeletingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while deleting an alias"),
+        "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while editing an alias"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("خطأ خلال فتح الحساب"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -981,6 +1001,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحديد الحالة"),
         "errorWhileGettingAccountBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-114)"),
+        "errorWhileGettingAccountByAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while getting account by alias"),
+        "errorWhileGettingAccountByCustomerID":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Getting Account By Customer ID"),
         "errorWhileGettingAccountByCustomerId":
             MessageLookupByLibrary.simpleMessage(
                 "Error while Getting Account By Customer ID"),
@@ -989,6 +1014,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "خطأ خلال الحصول على كلمة المرور OTP"),
         "errorWhileGettingAccountDetailsA2A": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-109)"),
+        "errorWhileGettingAlias":
+            MessageLookupByLibrary.simpleMessage("Error while getting alias"),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الوصول على شاشة التحكم بالحساب"),
         "errorWhileGettingFatcaCrs":
@@ -999,6 +1026,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-089)"),
         "errorWhileIssueCard":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إصدار البطاقة"),
+        "errorWhileLinkingAccount":
+            MessageLookupByLibrary.simpleMessage("Error while linking account"),
         "errorWhileLinkingDebitCard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال ربط بطاقة الدفع المباشر"),
         "errorWhileLogout":
@@ -1007,17 +1036,37 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال طلب القرض"),
         "errorWhileRTPA2A": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-112)"),
+        "errorWhileReActivatingAnAlias": MessageLookupByLibrary.simpleMessage(
+            "Error while re-activating an alias"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال عملية التسجيل، حاول مرة ثانية."),
+        "errorWhileRequestingMoney": MessageLookupByLibrary.simpleMessage(
+            "Error while requesting money"),
+        "errorWhileRequestingMoneyActivity":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while requesting money activity"),
+        "errorWhileSendingMoneyToCliqIBAN":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while sending money to cliq iban"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage(
                 "Error while Submitting Outward Payment"),
+        "errorWhileSubmmitingOutwardPayment":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while Submitting Outward Payment"),
+        "errorWhileTryingTosuspandAnAlias":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while trying to suspend an alias"),
+        "errorWhileUnLinkingAccount": MessageLookupByLibrary.simpleMessage(
+            "Error while un-linking account"),
         "errorWhileUnblockPinNI": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين.(Err-108)"),
         "errorWhileUpdatingCardStatusNI": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-107)"),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-106)"),
+        "errorWhileUpdatingRTPRequest": MessageLookupByLibrary.simpleMessage(
+            "Error while updating RTP request"),
         "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
             "واجهتنا مشكلة عند تغيير الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
@@ -1373,6 +1422,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-124)"),
+        "invalidIBAN": MessageLookupByLibrary.simpleMessage("Invalid Iban"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "هويتك الشخصية غير صالحة. الرجاء مسح هوية شخصية أردنية."),
         "invalidIban": MessageLookupByLibrary.simpleMessage("Invalid Iban"),
@@ -2218,6 +2268,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "السيرفر تحت الصيانة، حاول بعدين."),
+        "serviceIsNotavaliable":
+            MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
         "setAsDefault":
@@ -2408,6 +2460,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إجمالي المبلغ المستغل "),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("السقف الإجمالي المستغل "),
+        "towithspace": MessageLookupByLibrary.simpleMessage(" to "),
         "transactionHistory":
             MessageLookupByLibrary.simpleMessage("سجل الحركات"),
         "transactionNotAllowed":

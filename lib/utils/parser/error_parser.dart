@@ -5,7 +5,8 @@ import 'package:neo_bank/generated/l10n.dart';
 class ErrorParser {
   ErrorParser._();
 
-  static String getLocalisedStringError({AppError? error, required S localisedHelper}) {
+  static String getLocalisedStringError(
+      {AppError? error, required S localisedHelper}) {
     switch (error?.type) {
       case ErrorType.IOEXCEPTION:
         return localisedHelper.genericError;
@@ -1066,7 +1067,8 @@ class ErrorParser {
       case ErrorType.PRIM_CREDIT_CARD_ID_NOT_MATCH_GROOM:
         return localisedHelper.primaryCreditCardHoldIdNotMatchGroom;
       case ErrorType.SUPP_CREDIT_HOLDER_ID_NOT_MATCH_FATHER_MOTHER:
-        return localisedHelper.supplementaryCreditCardHolderIdNotMatchMotherFather;
+        return localisedHelper
+            .supplementaryCreditCardHolderIdNotMatchMotherFather;
       case ErrorType.PRIM_DEBIT_CREDIT_CARD_ID_NOT_MATCH_MOTHER_FATHER:
         return localisedHelper.primaryDebitCreditCardHolderNotMatchMotherFather;
       case ErrorType.NO_DATA_FOUND_IN_FINANCIAL_INSTITUTION:
@@ -1117,6 +1119,51 @@ class ErrorParser {
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
 
+      case ErrorType.ERROR_WHILE_GETTING_ALIAS:
+        return localisedHelper.errorWhileGettingAlias;
+
+      case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS:
+        return localisedHelper.errorWhileGettingAccountByAlias;
+
+      case ErrorType.ERROR_WHILE_CREATING_AN_ALIAS:
+        return localisedHelper.errorWhileCreatingAnAlias;
+
+      case ErrorType.ERROR_WHILE_LINKING_ACCOUNT:
+        return localisedHelper.errorWhileLinkingAccount;
+
+      case ErrorType.ERROR_WHILE_EDITING_AN_ALIAS:
+        return localisedHelper.errorWhileEditingAnAlias;
+
+      case ErrorType.ERROR_WHILE_TRYING_TO_SUSPEND_AN_ALIAS:
+        return localisedHelper.errorWhileTryingTosuspandAnAlias;
+
+      case ErrorType.ERROR_WHILE_RE_ACTIVATING_AN_ALIAS:
+        return localisedHelper.errorWhileReActivatingAnAlias;
+
+      case ErrorType.ERROR_WHILE_DELETING_AN_ALIAS:
+        return localisedHelper.errorWhileDeletingAnAlias;
+
+      case ErrorType.ERROR_WHILE_CHANGING_TO_DEFAULT_ACCOUNT:
+        return localisedHelper.errorWhileChangingToDefaultAccount;
+
+      case ErrorType.ERROR_WHILE_UN_LINKING_ACCOUNT:
+        return localisedHelper.errorWhileUnLinkingAccount;
+
+      case ErrorType.ERROR_WHILE_REQUESTING_MONEY:
+        return localisedHelper.errorWhileRequestingMoney;
+
+      case ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY:
+        return localisedHelper.errorWhileRequestingMoneyActivity;
+
+      case ErrorType.ERROR_WHILE_UPDATING_RTP_REQUEST:
+        return localisedHelper.errorWhileUpdatingRTPRequest;
+
+      case ErrorType.ERROR_WHILE_SENDING_MONEY_TO_CLIQ_IBAN:
+        return localisedHelper.errorWhileSendingMoneyToCliqIBAN;
+
+      case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID:
+        return localisedHelper.errorWhileGettingAccountByCustomerID;
+
       case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID:
         return localisedHelper.errorWhileGettingAccountByCustomerId;
 
@@ -1126,8 +1173,10 @@ class ErrorParser {
       case ErrorType.ERROR_ON_APPROVE_RTP_REQUEST:
         return localisedHelper.errorOnApproveRtpRequest;
 
-      case ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
-        return localisedHelper.accountIsLinkedToTheAliasButUnableToSetItToDefault;
+      case ErrorType
+          .ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
+        return localisedHelper
+            .accountIsLinkedToTheAliasButUnableToSetItToDefault;
 
       case ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT:
         return localisedHelper.errorOnRequestToPayResult;
@@ -1140,6 +1189,12 @@ class ErrorParser {
 
       case ErrorType.INVALID_ALIAS:
         return localisedHelper.invalidAlias;
+
+      case ErrorType.INVALID_MOBILE_NUMBER:
+        return localisedHelper.invalidMobileNo;
+
+      case ErrorType.SERVICE_NOT_AVAILABLE:
+        return localisedHelper.serviceIsNotavaliable;
 
       case ErrorType.INVALID_ALIAS_VALUE:
         return localisedHelper.invalidAliasValue;

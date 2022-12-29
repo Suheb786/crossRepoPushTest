@@ -15229,6 +15229,246 @@ class S {
       args: [],
     );
   }
+
+  /// `Error while getting alias`
+  String get errorWhileGettingAlias {
+    return Intl.message(
+      'Error while getting alias',
+      name: 'errorWhileGettingAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting account by alias`
+  String get errorWhileGettingAccountByAlias {
+    return Intl.message(
+      'Error while getting account by alias',
+      name: 'errorWhileGettingAccountByAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while creating an alias`
+  String get errorWhileCreatingAnAlias {
+    return Intl.message(
+      'Error while creating an alias',
+      name: 'errorWhileCreatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking account`
+  String get errorWhileLinkingAccount {
+    return Intl.message(
+      'Error while linking account',
+      name: 'errorWhileLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while editing an alias`
+  String get errorWhileEditingAnAlias {
+    return Intl.message(
+      'Error while editing an alias',
+      name: 'errorWhileEditingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while trying to suspend an alias`
+  String get errorWhileTryingTosuspandAnAlias {
+    return Intl.message(
+      'Error while trying to suspend an alias',
+      name: 'errorWhileTryingTosuspandAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while re-activating an alias`
+  String get errorWhileReActivatingAnAlias {
+    return Intl.message(
+      'Error while re-activating an alias',
+      name: 'errorWhileReActivatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while deleting an alias`
+  String get errorWhileDeletingAnAlias {
+    return Intl.message(
+      'Error while deleting an alias',
+      name: 'errorWhileDeletingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while changing to default account`
+  String get errorWhileChangingToDefaultAccount {
+    return Intl.message(
+      'Error while changing to default account',
+      name: 'errorWhileChangingToDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while un-linking account`
+  String get errorWhileUnLinkingAccount {
+    return Intl.message(
+      'Error while un-linking account',
+      name: 'errorWhileUnLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money`
+  String get errorWhileRequestingMoney {
+    return Intl.message(
+      'Error while requesting money',
+      name: 'errorWhileRequestingMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money activity`
+  String get errorWhileRequestingMoneyActivity {
+    return Intl.message(
+      'Error while requesting money activity',
+      name: 'errorWhileRequestingMoneyActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating RTP request`
+  String get errorWhileUpdatingRTPRequest {
+    return Intl.message(
+      'Error while updating RTP request',
+      name: 'errorWhileUpdatingRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while sending money to cliq iban`
+  String get errorWhileSendingMoneyToCliqIBAN {
+    return Intl.message(
+      'Error while sending money to cliq iban',
+      name: 'errorWhileSendingMoneyToCliqIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Getting Account By Customer ID`
+  String get errorWhileGettingAccountByCustomerID {
+    return Intl.message(
+      'Error while Getting Account By Customer ID',
+      name: 'errorWhileGettingAccountByCustomerID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Submitting Outward Payment`
+  String get errorWhileSubmmitingOutwardPayment {
+    return Intl.message(
+      'Error while Submitting Outward Payment',
+      name: 'errorWhileSubmmitingOutwardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Approve RTP Request`
+  String get errorOnApproveRTPRequest {
+    return Intl.message(
+      'Error on Approve RTP Request',
+      name: 'errorOnApproveRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is linked to the alias, but unable to set it to default`
+  String get AccountIsLinkedToTheAlias {
+    return Intl.message(
+      'Account is linked to the alias, but unable to set it to default',
+      name: 'AccountIsLinkedToTheAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Request To Pay Result`
+  String get ErrorOnRequestToPayResult {
+    return Intl.message(
+      'Error on Request To Pay Result',
+      name: 'ErrorOnRequestToPayResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer of invalid Alias`
+  String get CustomerOfInvalidAlias {
+    return Intl.message(
+      'Customer of invalid Alias',
+      name: 'CustomerOfInvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Iban`
+  String get invalidIBAN {
+    return Intl.message(
+      'Invalid Iban',
+      name: 'invalidIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias`
+  String get InvalidAlias {
+    return Intl.message(
+      'Invalid Alias',
+      name: 'InvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Mobile Number`
+  String get InvalidMobileNo {
+    return Intl.message(
+      'Invalid Mobile Number',
+      name: 'InvalidMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is not available`
+  String get serviceIsNotavaliable {
+    return Intl.message(
+      'Service is not available',
+      name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
