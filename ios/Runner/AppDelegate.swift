@@ -238,7 +238,7 @@ import AntelopSDK
             let card = cardsArr.values.map({$0})[index]
             print("ios side getIssuerCardId id ", card.getIssuerCardId())
             if card.getIssuerCardId()?.trimmingCharacters(in: .whitespacesAndNewlines) == cardId {
-                
+                print("Match Found --------------", cardId)
                 do { try  card.getApplePayService().pushCard({ result in
                     switch result {
                         

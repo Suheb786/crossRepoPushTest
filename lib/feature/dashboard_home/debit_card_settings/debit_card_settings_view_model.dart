@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/usecase/apple_pay/push_antelop_cards_usecase.dart';
 
 class DebitCardSettingsViewModel extends BasePageViewModel {
   final DebitCardSettingsArguments debitCardSettingsArguments;
@@ -21,6 +22,7 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   final RemoveOrReapplySupplementaryDebitCardUseCase _removeOrReapplySupplementaryDebitCardUseCase;
   final RemoveOrReapplySuppDebitCardWithResponseUseCase _removeOrReapplySuppDebitCardWithResponseUseCase;
   final RequestPhysicalDebitCardUseCase _requestPhysicalDebitCardUseCase;
+  final PushAntelopCardsUseCase _pushAntelopCardsUseCase;
 
   ///freeze card
   PublishSubject<bool> _freezeCardSubject = PublishSubject();
@@ -92,6 +94,20 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   ///----------------request phsical debit card----------------///
 
+  ///---------------push antelop cards-----------------------///
+
+  PublishSubject<PushAntelopCardsUseCaseParams> _pushAntelopCardsRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _pushAntelopCardsResponse = PublishSubject();
+
+  Stream<Resource<bool>> get pushAntelopCardsStream => _pushAntelopCardsResponse.stream;
+
+  void pushCardToAntelop({required String cardCode}) {
+    _pushAntelopCardsRequest.safeAdd(PushAntelopCardsUseCaseParams(cardId: cardCode));
+  }
+
+  ///---------------push antelop cards-----------------------///
+
   bool isFreezed = false;
   bool isUnFreezed = false;
   bool isCancelled = false;
@@ -123,7 +139,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
       this.debitCardSettingsArguments,
       this._removeOrReapplySupplementaryDebitCardUseCase,
       this._removeOrReapplySuppDebitCardWithResponseUseCase,
-      this._requestPhysicalDebitCardUseCase) {
+      this._requestPhysicalDebitCardUseCase,
+      this._pushAntelopCardsUseCase) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _freezeDebitCardUseCase.execute(params: value);
@@ -237,6 +254,15 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+
+    _pushAntelopCardsRequest.listen((value) {
+      RequestManager(value, createCall: () {
+        return _pushAntelopCardsUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        // updateLoader();
+        _pushAntelopCardsResponse.safeAdd(event);
       });
     });
   }

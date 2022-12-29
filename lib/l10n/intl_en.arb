@@ -1423,5 +1423,6 @@
   "selectOneCardToAddApplePay": "Select one card that you want to add to Apple Pay",
   "blinkWithApplePayLandingDialogDescription": "You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.",
   "debitCards": "Debit Card",
-  "noCardsToDisplay": "No cards to display"
+  "noCardsToDisplay": "No cards to display",
+  "addedTo": "Added to"
 }

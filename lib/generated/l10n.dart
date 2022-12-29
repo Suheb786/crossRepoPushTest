@@ -14019,6 +14019,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Added to`
+  String get addedTo {
+    return Intl.message(
+      'Added to',
+      name: 'addedTo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

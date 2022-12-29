@@ -17,4 +17,6 @@ abstract class ApplePayRemoteDataSource {
   Future<bool> initializeAntelopSDK();
 
   Future<bool> getAntelopCardList();
+
+  Future<bool> pushCardAntelopData(String cardId);
 }

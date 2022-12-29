@@ -23,4 +23,7 @@ abstract class ApplePayRepository {
 
   /// get antelop cards
   Future<Either<NetworkError, bool>> getAntelopCards();
+
+  ///push card
+  Future<Either<NetworkError, bool>> pushCardAntelop(String cardId);
 }

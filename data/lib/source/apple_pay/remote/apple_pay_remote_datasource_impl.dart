@@ -55,4 +55,9 @@ class AppPayRemoteDSImpl extends ApplePayRemoteDataSource {
   Future<bool> getAntelopCardList() {
     return _antelopHelper.getAntelopCardList();
   }
+
+  @override
+  Future<bool> pushCardAntelopData(String cardId) {
+    return _antelopHelper.pushCardToApplePay(cardId);
+  }
 }

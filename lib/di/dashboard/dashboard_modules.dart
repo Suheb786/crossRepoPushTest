@@ -168,7 +168,8 @@ final debitCardSettingsViewModelProvider =
       args,
       ref.read(removeOrReapplySuppDebitUseCaseProvider),
       ref.read(removeOrReapplySuppDebitWithResponseUseCaseProvider),
-      ref.read(requestPhysicalDebitCardUseCaseProvider)),
+      ref.read(requestPhysicalDebitCardUseCaseProvider),
+      ref.read(pushAntelopCardUseCaseProvider)),
 );
 
 /// Credit CArd Settings

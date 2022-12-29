@@ -73,4 +73,16 @@ class ApplePayRepositoryImpl extends ApplePayRepository {
       (r) => Right(true),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> pushCardAntelop(String cardId) async {
+    final result = await safeApiCall(
+      applePayRemoteDataSource.pushCardAntelopData(cardId),
+    );
+
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
+    );
+  }
 }

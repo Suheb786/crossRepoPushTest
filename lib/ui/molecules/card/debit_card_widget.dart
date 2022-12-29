@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
@@ -11,6 +15,7 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
@@ -28,7 +33,8 @@ class DebitCardWidget extends StatefulWidget {
       {required this.key,
       required this.debitCard,
       this.isSmallDevice: false,
-      required this.isPrimaryDebitCard,  this.isDebitCardRequestPhysicalCardEnabled:false});
+      required this.isPrimaryDebitCard,
+      this.isDebitCardRequestPhysicalCardEnabled: false});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -85,67 +91,110 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               ),
                               widget.debitCard.cardStatus == FreezeCardStatusEnum.F
                                   ? Container(
-                                      height: 24.0.h,
-                                      alignment: Alignment.center,
-                                      padding: EdgeInsetsDirectional.only(end: 23.0.w),
-                                      child: Text(
-                                        S.of(context).cardFrozen,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!
-                                                .color!
-                                                .withOpacity(0.5),
-                                            fontSize: 14.0.t,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )
+                                height: 24.0.h,
+                                alignment: Alignment.center,
+                                padding: EdgeInsetsDirectional.only(end: 23.0.w),
+                                child: Text(
+                                  S.of(context).cardFrozen,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .color!
+                                          .withOpacity(0.5),
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              )
                                   : InkWell(
-                                      splashFactory: NoSplash.splashFactory,
-                                      onTap: () async {
-                                        ///go to settings
-                                        // var result = await Navigator.pushNamed(
-                                        //     context, RoutePaths.DebitCardSettings,
-                                        //     arguments: DebitCardSettingsArguments(
-                                        //         debitCard: widget.debitCard));
-                                        // if (result != null) {
-                                        //   bool value = result as bool;
-                                        //   if (value) {
-                                        //     ProviderScope.containerOf(context)
-                                        //         .read(appHomeViewModelProvider)
-                                        //         .getDashboardData();
-                                        //   }
-                                        // }
-                                        widget.flipCardController!.toggleCard();
-                                      },
-                                      child: Container(
-                                        height: 24.0.h,
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: EdgeInsetsDirectional.only(end: 23.0.w),
-                                          child: Text(
-                                            S.of(context).flipCard,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                                fontSize: 14.0.t,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
-                                      ),
-                                    )
+                                splashFactory: NoSplash.splashFactory,
+                                onTap: () async {
+                                  ///go to settings
+                                  // var result = await Navigator.pushNamed(
+                                  //     context, RoutePaths.DebitCardSettings,
+                                  //     arguments: DebitCardSettingsArguments(
+                                  //         debitCard: widget.debitCard));
+                                  // if (result != null) {
+                                  //   bool value = result as bool;
+                                  //   if (value) {
+                                  //     ProviderScope.containerOf(context)
+                                  //         .read(appHomeViewModelProvider)
+                                  //         .getDashboardData();
+                                  //   }
+                                  // }
+                                  widget.flipCardController!.toggleCard();
+                                },
+                                child: Container(
+                                  height: 24.0.h,
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.only(end: 23.0.w),
+                                    child: Text(
+                                      S.of(context).flipCard,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          fontSize: 14.0.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Align(
-                                alignment: AlignmentDirectional.centerStart,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 10.0.h),
-                                  child: AppSvg.asset(AssetUtils.blinkBlack),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 10.0.h),
+                                      child: AppSvg.asset(AssetUtils.blinkBlack),
+                                    ),
+                                  ),
+                                  AppStreamBuilder<bool>(
+                                      stream: antelopStepCompletedStream,
+                                      initialData: true,
+                                      onData: (value) {
+                                        if (!value) {
+                                          List<GetAllCardData> antelopIssuerCardList =
+                                              listOfCardFromAntelop.value;
+
+                                          for (int j = 0; j < antelopIssuerCardList.length; j++) {
+                                            if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
+                                                widget.debitCard.code?.trim()) {
+                                              //isCardInApplePay = true;
+                                              widget.debitCard.isCardInApplePay =
+                                                  antelopIssuerCardList[j].isCardInApplePay ?? false;
+                                              widget.debitCard.getStatus =
+                                                  antelopIssuerCardList[j].getStatus ?? false;
+                                            }
+                                          }
+                                        }
+                                      },
+                                      dataBuilder: (context, antelopStepCompleted) {
+                                        return Platform.isIOS
+                                            ? (antelopStepCompleted ?? true)
+                                                ? Container()
+                                                : (widget.debitCard.isCardInApplePay)
+                                                    ? InkWell(
+                                                        onTap: () {
+                                                          ///Pay
+                                                        },
+                                                        child: Padding(
+                                                          padding: EdgeInsetsDirectional.only(end: 24.0.w),
+                                                          child: AppSvg.asset(AssetUtils.applePayButton),
+                                                        ),
+                                                      )
+                                                    : Container()
+                                            : Container();
+                                      })
+                                ],
                               ),
                               Align(
                                 alignment: AlignmentDirectional.centerStart,
@@ -175,7 +224,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           ),
                           Directionality(
                             textDirection:
-                                StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                            StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                             child: Padding(
                               padding: EdgeInsetsDirectional.only(
                                   start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0,
@@ -213,8 +262,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                           arguments: DebitCardSettingsArguments(
                                               isPrimaryDebitCard: widget.isPrimaryDebitCard,
                                               debitCard: widget.debitCard,
-                                              debitCardRequestPhysicalCardEnabled: widget.isDebitCardRequestPhysicalCardEnabled
-                                          ));
+                                              debitCardRequestPhysicalCardEnabled:
+                                                  widget.isDebitCardRequestPhysicalCardEnabled));
                                       if (result != null) {
                                         bool value = result as bool;
                                         if (value) {
@@ -250,7 +299,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       height: 24.0.h,
                       width: 125.0.w,
                       decoration:
-                          BoxDecoration(color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
+                      BoxDecoration(color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
                       child: Center(
                         child: Text(
                           S.of(context).cardDelivered,
@@ -344,7 +393,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 onTap: () {
                                   Clipboard.setData(ClipboardData(text: widget.debitCard.cardNumber ?? ''))
                                       .then((value) =>
-                                          Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
+                                      Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                                 },
                                 child: AppSvg.asset(AssetUtils.copy)),
                           )
