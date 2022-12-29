@@ -228,30 +228,37 @@ class PaymentActivityTransactionPageView
                                                 cdtrName:
                                                     "${(requestActivity.data?.requestMoneyActivity?[index].cdtrName) ?? ""}",
                                                 onAcceptButton: () {
-                                                  //Todo -- pass approveRTP parameters values
-                                                  // model.approveRTPRequest(
-                                                  //   custID: custID,
-                                                  //   dbtrAcct: dbtrAcct,
-                                                  //   dbtrName: dbtrName,
-                                                  //   dbtrPstlAdr: dbtrPstlAdr,
-                                                  //   dbtrRecordID: dbtrRecordID,
-                                                  //   currency: currency,
-                                                  //   amount: amount,
-                                                  //   dbtrAlias: dbtrAlias,
-                                                  //   cdtrBic: cdtrBic,
-                                                  //   cdtrName: cdtrName,
-                                                  //   cdtrAcct: cdtrAcct,
-                                                  //   cdtrPstlAdr: cdtrPstlAdr,
-                                                  //   cdtrRecordID: cdtrRecordID,
-                                                  //   cdtrAlias: cdtrAlias,
-                                                  //   rgltryRptg: rgltryRptg,
-                                                  //   payRefNo: payRefNo,
-                                                  //   rejectReason: rejectReason,
-                                                  //   rtpStatus: rtpStatus,
-                                                  //   rejectADdInfo:
-                                                  //       rejectADdInfo,
-                                                  //   getToken: getToken,
-                                                  // );
+                                                  model.approveRTPRequest(
+                                                      custID: "",
+                                                      dbtrAcct: "",
+                                                      dbtrName: "",
+                                                      dbtrPstlAdr: "",
+                                                      dbtrRecordID: "",
+                                                      currency: "",
+                                                      amount: "",
+                                                      dbtrAlias: "",
+                                                      cdtrBic: (requestActivity
+                                                              .data
+                                                              ?.requestMoneyActivity?[
+                                                                  index]
+                                                              .cdtrAgt) ??
+                                                          "",
+                                                      cdtrName: "",
+                                                      cdtrAcct: "",
+                                                      cdtrPstlAdr: (requestActivity
+                                                              .data
+                                                              ?.requestMoneyActivity?[
+                                                                  index]
+                                                              .cdtrAddr) ??
+                                                          "",
+                                                      cdtrRecordID: "",
+                                                      cdtrAlias: "",
+                                                      rgltryRptg: "",
+                                                      payRefNo: "",
+                                                      rejectReason: "",
+                                                      rtpStatus: "",
+                                                      rejectADdInfo: "",
+                                                      getToken: true);
                                                 },
                                                 onRejectButton: () {
                                                   model.requestToPayResult(
