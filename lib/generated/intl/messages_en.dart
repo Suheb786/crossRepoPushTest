@@ -105,14 +105,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
-        "addLinkAccount":
-            MessageLookupByLibrary.simpleMessage("Add link account"),
-        "addMobileHeader":
-            MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
+        "addLinkAccount": MessageLookupByLibrary.simpleMessage("Add link account"),
+        "addMobileHeader": MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
         "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
-        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage(
-            "Add other card to\nApple Wallet?"),
+        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage("Add other card to\nApple Wallet?"),
         "addOtherCardToAppleWalletDialogDescription": MessageLookupByLibrary.simpleMessage(
             "Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like."),
         "addRecipientToContact":
@@ -131,14 +128,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalIncomePopUpDesc1": MessageLookupByLibrary.simpleMessage("Make sure you enter your "),
         "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
             "additional income instead of monthly income to get your credit card right away."),
-        "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage(
-            "Additional Nationality Passport"),
+        "additionalNationalityPassport":
+            MessageLookupByLibrary.simpleMessage("Additional Nationality Passport"),
         "additionalNationalityPassportDesc": MessageLookupByLibrary.simpleMessage(
             "Please provide your additional nationality passport as a proof"),
-        "additionalRequester":
-            MessageLookupByLibrary.simpleMessage("Additional Requester"),
-        "additionalSourceIncome":
-            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalRequester": MessageLookupByLibrary.simpleMessage("Additional Requester"),
+        "additionalSourceIncome": MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage(
             "Do you have additional source of income"),
         "additionalSourceOfIncome":
@@ -614,10 +609,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dailyLimit": MessageLookupByLibrary.simpleMessage("Daily Limit"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
-        "dateOfBirthSmall":
-            MessageLookupByLibrary.simpleMessage("Date of Birth"),
-        "dcEnterOtpHeader":
-            MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "dateOfBirthSmall": MessageLookupByLibrary.simpleMessage("Date of Birth"),
+        "dcEnterOtpHeader": MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your new mobile number has been successfully verified and tied to your card transactions."),
         "dcSettingCardReady": MessageLookupByLibrary.simpleMessage(
@@ -653,16 +646,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "deviceNotFound": MessageLookupByLibrary.simpleMessage("Device Not Found"),
-        "deviceNotSupported":
-            MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
+        "deviceNotSupported": MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
         "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
             "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
         "disableFingerPrintError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while disabling biometric login. Please try again later."),
-        "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
-            "I\'m dissatisfied with the digital platform"),
+        "dissatisfiedWithDigitalPlatform":
+            MessageLookupByLibrary.simpleMessage("I\'m dissatisfied with the digital platform"),
         "dissatisfiedWithOverallBankingExp":
             MessageLookupByLibrary.simpleMessage(
                 "I\'m dissatisfied with the overall banking experience"),
@@ -1614,14 +1606,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
-        "newDeviceDetected":
-            MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
-        "newMobileNumber":
-            MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
+        "newMobileNumber": MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "newSettlementAccount": MessageLookupByLibrary.simpleMessage("New settlement account"),
@@ -1649,16 +1639,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "noInternetConnection": MessageLookupByLibrary.simpleMessage("Service is Unavailable"),
         "noMatchingYearFound": MessageLookupByLibrary.simpleMessage("No matching year found!"),
         "noPaymentActivityToDisplay": MessageLookupByLibrary.simpleMessage("No Payment activity to display"),
-        "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
-            "No Placeholder Record Found against this Id"),
+        "noPlaceholderFound":
+            MessageLookupByLibrary.simpleMessage("No Placeholder Record Found against this Id"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-086)"),
         "noSignatureFound": MessageLookupByLibrary.simpleMessage(
             "It seems your signature on the FATCA form is missing. Please check that you provided the signature or contact or Engagement Team for help 06-5200100."),
-        "noSuppUserDetailsFound": MessageLookupByLibrary.simpleMessage(
-            "No Supplimentary User Details Found"),
-        "noTransactionToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Transaction to display"),
+        "noSuppUserDetailsFound": MessageLookupByLibrary.simpleMessage("No Supplimentary User Details Found"),
+        "noTransactionToDisplay": MessageLookupByLibrary.simpleMessage("No Transaction to display"),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
             "ID card issuer is not allowed at this moment. Please try again with valid ID card issuer."),
         "notAllowedToLogin": MessageLookupByLibrary.simpleMessage(
@@ -1896,12 +1884,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("FIFA 22 Voucher Lorem Ipsum"),
         "purchasedFor": MessageLookupByLibrary.simpleMessage("Purchased for"),
         "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
-        "purposeDetail":
-            MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
-        "purposeDetailSmall":
-            MessageLookupByLibrary.simpleMessage("Purpose Details"),
-        "purposeDetails":
-            MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
+        "purposeDetail": MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
+        "purposeDetailSmall": MessageLookupByLibrary.simpleMessage("Purpose Details"),
+        "purposeDetails": MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "purposeOfAccount": MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
@@ -1939,8 +1924,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0009)"),
-        "relationShipWithPepCaps":
-            MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
+        "relationShipWithPepCaps": MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationship": MessageLookupByLibrary.simpleMessage("Relationship"),
         "relationshipListError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
@@ -2485,15 +2469,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You have entered one of the previous 10 passwords used. Please try a new password."),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
-        "weWillConnectYou": MessageLookupByLibrary.simpleMessage(
-            "We will connect you\nin Blink..."),
-        "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
-            "We will connect you\nin Blink..."),
-        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
-            "We will notify you once it\'s ready!"),
+        "weWillConnectYou": MessageLookupByLibrary.simpleMessage("We will connect you\nin Blink..."),
+        "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage("We will connect you\nin Blink..."),
+        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage("We will notify you once it\'s ready!"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
-        "welcomeToNeuBank":
-            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
+        "welcomeToNeuBank": MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
@@ -2528,16 +2508,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Didn\'t receive an SMS? Contact our Engagement Team."),
         "yourAddOtherCardFromCardSettings":
             MessageLookupByLibrary.simpleMessage("You can add your other cards from\nCard Settings."),
-        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
-            "Your application is under review"),
+        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
-        "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
-            "Your Yellow Sun debit card \n has been issued!"),
-        "yourCardIsReady":
-            MessageLookupByLibrary.simpleMessage("Your card is ready!"),
-        "yourCardIssued":
-            MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
+        "yourCardHasBeenIssued":
+            MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card \n has been issued!"),
+        "yourCardIsReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardIssued": MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardLimit":
             MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
         "yourCardReady":
