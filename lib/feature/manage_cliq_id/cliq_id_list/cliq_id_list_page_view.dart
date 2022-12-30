@@ -52,7 +52,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
       child: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
           color: Theme.of(context).accentColor,
           borderRadius: BorderRadius.only(
@@ -68,7 +67,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
               width: 64,
               decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
             ),
-//*-----------------------------------List of Cliq IDs--------------------------------------->>>>>>>>
             AppStreamBuilder<Resource<GetAlias>>(
               initialData: Resource.none(),
               stream: model.getAliasStream,
@@ -137,7 +135,6 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                   ? Expanded(
                                                       child: ListView.separated(
                                                         physics: ClampingScrollPhysics(),
-                                                        clipBehavior: Clip.none,
                                                         itemBuilder: (context, index) {
                                                           return AliasCardList(
                                                             cliqAliasIdStatusEnum: getAliasSnapshot!
@@ -303,7 +300,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                 }
                                                               }, onShareId: () {
                                                                 _shareFiles(context,
-                                                                    "${S.of(context).cliqType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}");
+                                                                    "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}");
                                                               }, onCancelled: () {
                                                                 Navigator.pop(context);
                                                               }, onDeleteId: () {

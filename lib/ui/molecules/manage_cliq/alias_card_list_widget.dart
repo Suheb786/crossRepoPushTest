@@ -33,7 +33,7 @@ class AliasCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: EdgeInsetsDirectional.only(bottom: 8.0, start: 24.w, end: 24.w),
       child: Container(
         width: 327.w,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white, boxShadow: [

@@ -31,6 +31,10 @@ extension CliqAliasTypeStringExt on CliqAliasTypeEnum {
         return 'Alias';
       case CliqAliasTypeEnum.MOBL:
         return 'Mobile Number';
+      case CliqAliasTypeEnum.ALIAS:
+        return 'الاسم المستعار';
+      case CliqAliasTypeEnum.MOBL:
+        return 'رقم الموبايل';
 
       default:
         return 'Alias';

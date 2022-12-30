@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(additionalIncomeList) => "Add. Income \n${additionalIncomeList}";
 
-  static String m8(String) => "Back to ${String}";
+  static String m9(String) => "Back to ${String}";
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
@@ -34,11 +34,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(accountNo) => "Savings Account ${accountNo}";
 
-  static String m9(String) => "Savings Account ${String}";
+  static String m6(String) => "Savings Account ${String}";
 
-  static String m6(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m7(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
 
-  static String m7(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
+  static String m8(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
@@ -239,7 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "availableBalance": MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "backToCardSettings": MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
-        "backToCategory": m8,
+        "backToCategory": m9,
         "backToDashboard": MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "backToManageCliq": MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),
@@ -1754,7 +1754,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveEarningsDigitally":
             MessageLookupByLibrary.simpleMessage("Save your earnings digitally and securely"),
         "savingAccount": m5,
-        "savingAccountList": m9,
+        "savingAccountList": m6,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -1772,7 +1772,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanIDAgain": MessageLookupByLibrary.simpleMessage("Something wrong, scan ID again"),
         "scanIdToProceedFurther": MessageLookupByLibrary.simpleMessage("Scan your Id to proceed further."),
         "scheduleLater": MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m6,
+        "scrollToSetDate": m7,
         "searchAgain": MessageLookupByLibrary.simpleMessage("Search Again"),
         "searchBill": MessageLookupByLibrary.simpleMessage("Search bill"),
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
@@ -1979,7 +1979,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage("Type of expected transactions"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions": MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m7,
+        "typeOfTransactionsSmall": m8,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),

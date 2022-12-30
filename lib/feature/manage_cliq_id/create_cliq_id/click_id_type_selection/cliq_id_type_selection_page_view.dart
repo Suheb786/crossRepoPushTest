@@ -93,10 +93,10 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               onPressed: () {
                                                 RelationshipWithCardHolderDialog.show(context,
                                                     title: S.of(context).cliqIdType,
-                                                    relationSHipWithCardHolder: [
-                                                      S.of(context).alias,
-                                                      S.of(context).mobileNumber
-                                                    ], onDismissed: () {
+                                                    relationSHipWithCardHolder:
+                                                        StringUtils.isDirectionRTL(context)
+                                                            ? model.cliqIDTypeListAr
+                                                            : model.cliqIDTypeListEn, onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);
