@@ -34,11 +34,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(accountNo) => "Savings Account ${accountNo}";
 
+  static String m9(String) => "Savings Account ${String}";
+
   static String m6(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
 
   static String m7(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Default": MessageLookupByLibrary.simpleMessage("Default"),
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
@@ -409,11 +412,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Click to edit the fields, some may be disabled."),
         "cliqAliasUpdate":
             MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE\nCliQ ID Alias has been updated"),
+        "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
         "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage("CliQ ID created\nsuccessfully"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
         "cliqIdUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
         "cliqMobileNumberUpdate":
             MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
+        "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
         "completeTaxReportInfo":
             MessageLookupByLibrary.simpleMessage("Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -550,6 +555,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitCardVerified": MessageLookupByLibrary.simpleMessage("Debit card\nhas been verified."),
         "declarationIsTrueAndCorrect":
             MessageLookupByLibrary.simpleMessage("declaration is true and correct."),
+        "defaultAccountUpdated": MessageLookupByLibrary.simpleMessage("Default account has been updated"),
+        "defaultWord": MessageLookupByLibrary.simpleMessage("Default"),
         "deleteBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "deleteCliqId": MessageLookupByLibrary.simpleMessage("Delete CliQ ID"),
@@ -965,13 +972,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getYourBlinkAccountTodayBlinkNow":
-            MessageLookupByLibrary.simpleMessage("Get your blink account today. Blink now!"),
+            MessageLookupByLibrary.simpleMessage("\n\nGet your blink account today."),
         "governmentService": MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage("Age must be greater than 18 to proceed."),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
         "helloHereMyBlinkAccount":
             MessageLookupByLibrary.simpleMessage("Hello! Here are my Blink account details: "),
+        "hereMyCliqDetails": MessageLookupByLibrary.simpleMessage("Hello! Here’s my blink CliQ details:\n\n"),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage("High interest,fees,and charges"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint": MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -1741,6 +1749,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveEarningsDigitally":
             MessageLookupByLibrary.simpleMessage("Save your earnings digitally and securely"),
         "savingAccount": m5,
+        "savingAccountList": m9,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(

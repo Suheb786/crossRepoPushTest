@@ -44,9 +44,8 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount({
-    required bool GetToken,
-  });
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
+      {required String acc, required String aliasId});
 
   Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq({
     required String aliasId,

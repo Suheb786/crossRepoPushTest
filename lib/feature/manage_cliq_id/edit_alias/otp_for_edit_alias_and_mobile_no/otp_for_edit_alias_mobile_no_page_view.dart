@@ -32,7 +32,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              S.of(context).createNewCliqId,
+              S.of(context).editCliqId,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,

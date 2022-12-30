@@ -90,8 +90,9 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount({required bool GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.confirmChangeDefaultAccount(GetToken: GetToken));
+  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
+      {required String acc, required String aliasId}) async {
+    final result = await safeApiCall(_cliqDataSource.confirmChangeDefaultAccount(acc: acc, aliasId: aliasId));
 
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }

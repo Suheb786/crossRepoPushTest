@@ -9,24 +9,24 @@ part of 'add_link_account_request_entity.dart';
 AddLinkAccountRequestEntity _$AddLinkAccountRequestEntityFromJson(
     Map<String, dynamic> json) {
   return AddLinkAccountRequestEntity(
-    aliasId: json['aliasId'] as String,
-    linkType: json['linkType'] as String,
-    accountNumber: json['accountNumber'] as String,
+    aliasId: json['AliasId'] as String,
+    linkType: json['LinkType'] as String,
+    accountNumber: json['AccountNumber'] as String,
     isAlias: json['isAlias'] as bool,
-    aliasValue: json['aliasValue'] as String,
-    getToken: json['getToken'] as bool,
-    baseClass: json['baseClass'] as Map<String, dynamic>,
+    aliasValue: json['AliasValue'] as String,
+    getToken: json['GetToken'] as bool,
+    baseClass: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$AddLinkAccountRequestEntityToJson(
         AddLinkAccountRequestEntity instance) =>
     <String, dynamic>{
-      'aliasId': instance.aliasId,
-      'linkType': instance.linkType,
-      'accountNumber': instance.accountNumber,
+      'AliasId': instance.aliasId,
+      'LinkType': instance.linkType,
+      'AccountNumber': instance.accountNumber,
       'isAlias': instance.isAlias,
-      'aliasValue': instance.aliasValue,
-      'getToken': instance.getToken,
-      'baseClass': instance.baseClass,
+      'AliasValue': instance.aliasValue,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseClass,
     };

@@ -91,6 +91,7 @@ import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
+import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
@@ -878,7 +879,7 @@ abstract class ApiService {
 
   @POST("/Cliq/ConfirmChangeDefaultAccount")
   Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
-    @Body() BaseRequest request,
+    @Body() ConfirmChangeDefaultAccountRequestEntity request,
   );
 
   @POST("/Cliq/UnLinkAccountFromCliq")

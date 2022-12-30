@@ -12,14 +12,15 @@ class ConfirmChangeDefaultAccountUseCase extends BaseUseCase<NetworkError, Chang
 
   @override
   Future<Either<NetworkError, bool>> execute({required ChangeDefaultAccountParams params}) {
-    return _cliqRepository.confirmChangeDefaultAccount(GetToken: params.GetToken);
+    return _cliqRepository.confirmChangeDefaultAccount(aliasId: params.aliasId, acc: params.acc);
   }
 }
 
 class ChangeDefaultAccountParams extends Params {
-  final bool GetToken;
+  final String acc;
+  final String aliasId;
 
-  ChangeDefaultAccountParams({required this.GetToken});
+  ChangeDefaultAccountParams({required this.acc, required this.aliasId});
 
   @override
   Either<AppError, bool> verify() {
