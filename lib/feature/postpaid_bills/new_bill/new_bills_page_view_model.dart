@@ -1,9 +1,9 @@
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
-import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_data.dart';
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_list.dart';
 import 'package:domain/usecase/bill_payment/get_bill_categories_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -24,9 +24,7 @@ class NewBillsPageViewModel extends BasePageViewModel {
   NewBillsPageViewModel(this.getBillCategoriesUseCase) {
     _getCategoriesRequest.listen(
       (params) {
-        RequestManager(params,
-                createCall: () =>
-                    getBillCategoriesUseCase.execute(params: params))
+        RequestManager(params, createCall: () => getBillCategoriesUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -34,11 +32,12 @@ class NewBillsPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
+            AppConstantsUtils.billCategoriesCacheList =
+                event.data!.getBillCategoriesData?.getBillCategoriesList;
             list = event.data!.getBillCategoriesData?.getBillCategoriesList;
             _getCategoriesResponse.safeAdd(event);
-            _searchCategoryListSubject.safeAdd(Resource.success(
-                data:
-                    event.data!.getBillCategoriesData!.getBillCategoriesList));
+            _searchCategoryListSubject
+                .safeAdd(Resource.success(data: event.data!.getBillCategoriesData!.getBillCategoriesList));
           }
         });
       },
@@ -47,36 +46,35 @@ class NewBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------------- Get Category -------------------------------- ///
-  PublishSubject<GetBillCategoriesUseCaseParams> _getCategoriesRequest =
-      PublishSubject();
+  PublishSubject<GetBillCategoriesUseCaseParams> _getCategoriesRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBillCategories>> _getCategoriesResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<GetBillCategories>> _getCategoriesResponse = BehaviorSubject();
 
-  Stream<Resource<GetBillCategories>> get getCategoriesStream =>
-      _getCategoriesResponse.stream;
+  Stream<Resource<GetBillCategories>> get getCategoriesStream => _getCategoriesResponse.stream;
 
-  BehaviorSubject<Resource<List<GetBillCategoriesList>>>
-      _searchCategoryListSubject = BehaviorSubject();
+  BehaviorSubject<Resource<List<GetBillCategoriesList>>> _searchCategoryListSubject = BehaviorSubject();
 
   Stream<Resource<List<GetBillCategoriesList>>> get searchCategoryListStream =>
       _searchCategoryListSubject.stream;
 
   void getCategories() {
-    _getCategoriesRequest.safeAdd(GetBillCategoriesUseCaseParams());
+    list = AppConstantsUtils.billCategoriesCacheList;
+    if (list == null || list!.isEmpty) {
+      _getCategoriesRequest.safeAdd(GetBillCategoriesUseCaseParams());
+    } else {
+      _searchCategoryListSubject.safeAdd(Resource.success(data: list));
+    }
   }
 
   void searchBillerCategory(String? searchText) {
-     fList!.clear();
-    List<GetBillCategoriesList>? billCategoryList = _getCategoriesResponse
-        .value.data?.getBillCategoriesData?.getBillCategoriesList;
+    fList!.clear();
+    List<GetBillCategoriesList>? billCategoryList =
+        _getCategoriesResponse.value.data?.getBillCategoriesData?.getBillCategoriesList;
     if (searchText!.isNotEmpty) {
-       for (int i = 0; i < billCategoryList!.length; i++) {
+      for (int i = 0; i < billCategoryList!.length; i++) {
         GetBillCategoriesList item = billCategoryList[i];
         if (item.categoryName != null) {
-          if (item.categoryName!
-              .toLowerCase()
-              .contains(searchText.toLowerCase())) {
+          if (item.categoryName!.toLowerCase().contains(searchText.toLowerCase())) {
             fList!.add(item);
           }
         }
@@ -84,12 +82,11 @@ class NewBillsPageViewModel extends BasePageViewModel {
       _searchCategoryListSubject.safeAdd(Resource.success(data: fList));
     } else {
       _searchCategoryListSubject.safeAdd(Resource.success(
-          data: _getCategoriesResponse
-              .value.data?.getBillCategoriesData?.getBillCategoriesList));
+          data: _getCategoriesResponse.value.data?.getBillCategoriesData?.getBillCategoriesList));
     }
   }
 
-  // Dispose
+// Dispose
   @override
   void dispose() {
     _getCategoriesRequest.close();

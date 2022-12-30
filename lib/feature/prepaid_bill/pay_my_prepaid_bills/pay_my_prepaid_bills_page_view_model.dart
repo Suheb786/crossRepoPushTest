@@ -79,7 +79,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   Stream<Resource<GetPrePaidCategoriesModel>> get gerPrePaidCategoriesStream =>
       _gerPrePaidCategoriesResponse.stream;
 
-  void getPrePaidCategoresList(String? serviceCode, String? billerCode) {
+  void getPrePaidCategoriesList(String? serviceCode, String? billerCode) {
     _gerPrePaidCategoriesRequest.safeAdd(
       GetPrePaidCategoriesListUseCaseParams(billerCode: billerCode, serviceCode: serviceCode),
     );

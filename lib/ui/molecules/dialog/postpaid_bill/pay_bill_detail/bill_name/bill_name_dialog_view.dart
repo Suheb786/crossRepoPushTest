@@ -29,8 +29,7 @@ class PayBillDialogView extends StatelessWidget {
   bool _keyboardVisible = false;
   final List<BillerDetailsList>? billerDetailsList;
 
-  PayBillDialogView(
-      {this.onDismissed, this.onSelected, this.title, this.billerDetailsList});
+  PayBillDialogView({this.onDismissed, this.onSelected, this.title, this.billerDetailsList});
 
   ProviderBase providerBase() {
     return payBillDialogViewModelProvider;
@@ -62,13 +61,9 @@ class PayBillDialogView extends StatelessWidget {
             },
             dataBuilder: (context, snapshot) {
               return Dialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
                   insetPadding: EdgeInsets.only(
-                      left: 24.w,
-                      right: 24.w,
-                      bottom: 36.h,
-                      top: _keyboardVisible ? 36.h : 204.h),
+                      left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
                   child: GestureDetector(
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity! > 0) {
@@ -86,8 +81,7 @@ class PayBillDialogView extends StatelessWidget {
                               return AppKeyBoardHide(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     ///title
                                     _titleWidget(),
@@ -114,18 +108,14 @@ class PayBillDialogView extends StatelessWidget {
       child: Center(
         child: Text(
           title!,
-          style: TextStyle(
-              fontFamily: StringUtils.appFont,
-              fontSize: 14.t,
-              fontWeight: FontWeight.w600),
+          style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
         ),
       ),
     );
   }
 
   ///search widget
-  _searchWidget(PayBillDialogViewModel model, BuildContext context,
-      List<BillerDetailsList>? billList) {
+  _searchWidget(PayBillDialogViewModel model, BuildContext context, List<BillerDetailsList>? billList) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       child: AppTextField(
@@ -135,8 +125,7 @@ class PayBillDialogView extends StatelessWidget {
         hintTextColor: AppColor.gray_2,
         textColor: AppColor.black,
         hintText: S.of(context).searchBill,
-        containerPadding:
-            EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
         onChanged: (value) {
           model.searchBillName(value);
         },
@@ -147,8 +136,7 @@ class PayBillDialogView extends StatelessWidget {
                 height: 16.h,
                 width: 16.w,
                 padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
-                child: AppSvg.asset(AssetUtils.search,
-                    color: Theme.of(context).primaryColorDark)),
+                child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
           );
         },
       ),
@@ -156,8 +144,7 @@ class PayBillDialogView extends StatelessWidget {
   }
 
   ///biller list widget
-  _billerListWidget(PayBillDialogViewModel model, BuildContext context,
-      List<BillerDetailsList>? billList) {
+  _billerListWidget(PayBillDialogViewModel model, BuildContext context, List<BillerDetailsList>? billList) {
     return billList != null && billList.isNotEmpty
         ? Expanded(
             child: Stack(
@@ -197,21 +184,19 @@ class PayBillDialogView extends StatelessWidget {
                           builder: (BuildContext context, int index) {
                             return Container(
                               margin: EdgeInsets.symmetric(horizontal: 16.w),
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 24.w,
-                                  end: 20.w,
-                                  top: 20.h,
-                                  bottom: 20.h),
+                              padding:
+                                  EdgeInsetsDirectional.only(start: 24.w, end: 20.w, top: 20.h, bottom: 20.h),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: Colors.transparent),
+                                  borderRadius: BorderRadius.circular(16), color: Colors.transparent),
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                       child: Text(
-                                        billList[index].billerNameEn!,
+                                        !StringUtils.isDirectionRTL(context)
+                                            ? billList[index].billerNameEn!
+                                            : billList[index].billerNameAr!,
                                         //  data.data![index],
                                         softWrap: true,
                                         maxLines: 2,
@@ -242,8 +227,7 @@ class PayBillDialogView extends StatelessWidget {
   }
 
   ///tick widget
-  _tickWidget(
-      BuildContext context, List<BillerDetailsList>? billList, int? index) {
+  _tickWidget(BuildContext context, List<BillerDetailsList>? billList, int? index) {
     return InkWell(
       onTap: () {
         if (billList != null && billList.length > 0) {
@@ -255,11 +239,9 @@ class PayBillDialogView extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
         height: 57.h,
         width: 57.w,
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-        child:
-            AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+        decoration:
+            BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+        child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
       ),
     );
   }

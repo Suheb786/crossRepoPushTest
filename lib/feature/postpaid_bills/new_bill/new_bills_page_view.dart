@@ -116,35 +116,48 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                           child: Column(
                         children: [
                           Expanded(
-                            child: SingleChildScrollView(
-                              padding: EdgeInsets.symmetric(horizontal: 24.w),
-                              child: ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return PostPaidSettingTitleWidget(
-                                      tileIcon: snapshot!.data?[index].iconCode ?? "",
-                                      title: snapshot.data?[index].categoryName ?? "",
-                                      onTap: () {
-                                        model.billerCategory = snapshot.data?[index].categoryName ?? "";
-                                        model.titleIcon = snapshot.data?[index].iconCode ?? "";
-                                        AppConstantsUtils.BILLER_CATEGORY =
-                                            snapshot.data?[index].categoryName ?? "";
-                                        AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
-                                            !StringUtils.isDirectionRTL(context)
+                            child: snapshot != null && snapshot.data != null && snapshot.data!.length > 0
+                                ? SingleChildScrollView(
+                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                    child: ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index) {
+                                          return PostPaidSettingTitleWidget(
+                                            tileIcon: snapshot.data?[index].iconCode ?? "",
+                                            title: !StringUtils.isDirectionRTL(context)
                                                 ? snapshot.data![index].categoryName ?? ""
-                                                : snapshot.data![index].categoryNameAr ?? "";
+                                                : snapshot.data![index].categoryNameAr ?? "",
+                                            onTap: () {
+                                              model.billerCategory = snapshot.data?[index].categoryName ?? "";
+                                            model.titleIcon = snapshot.data?[index].iconCode ?? "";
+                                            AppConstantsUtils.BILLER_CATEGORY =
+                                                snapshot.data?[index].categoryName ?? "";
+                                            AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
+                                                !StringUtils.isDirectionRTL(context)
+                                                    ? snapshot.data![index].categoryName ?? ""
+                                                      : snapshot.data![index].categoryNameAr ?? "";
 
-                                        Navigator.pushNamed(context, RoutePaths.PayBillPage);
-                                      },
-                                    );
-                                  },
-                                  separatorBuilder: (context, index) {
-                                    return AppDivider();
-                                  },
-                                  itemCount: snapshot!.data!.length),
-                            ),
+                                              Navigator.pushNamed(context, RoutePaths.PayBillPage);
+                                            },
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) {
+                                          return AppDivider();
+                                        },
+                                        itemCount: snapshot.data!.length),
+                                  )
+                                : Center(
+                                    child: Text(
+                                      S.of(context).noDataFound,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context).primaryColorDark),
+                                    ),
+                                  ),
                           ),
                         ],
                       ))

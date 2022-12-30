@@ -75,7 +75,7 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
             ],
           ),
           Spacer(),
-          AppSvg.asset(AssetUtils.rightChevron)
+          AppSvg.asset(AssetUtils.rightChevron, matchTextDirection: true)
         ],
       ),
     );

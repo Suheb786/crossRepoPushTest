@@ -13100,6 +13100,16 @@ class S {
     );
   }
 
+  /// `How would you like to\npay your postpaid bills?`
+  String get howWouldLikeToPayPostPaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your postpaid bills?',
+      name: 'howWouldLikeToPayPostPaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `REGION`
   String get region {
     return Intl.message(
@@ -14800,16 +14810,6 @@ class S {
     );
   }
 
-  /// `Search category`
-  String get SearchCategory {
-    return Intl.message(
-      'Search category',
-      name: 'SearchCategory',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Status`
   String get status {
     return Intl.message(
@@ -14845,6 +14845,26 @@ class S {
     return Intl.message(
       'Biller already exists with the same billing number',
       name: 'billerAlreadyExistsMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nick name can only contain alphanumerics`
+  String get nickNameCanOnlyContainAlphanumerics {
+    return Intl.message(
+      'Nick name can only contain alphanumerics',
+      name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
+  String get billPaymentSorryMessage {
+    return Intl.message(
+      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
+      name: 'billPaymentSorryMessage',
       desc: '',
       args: [],
     );

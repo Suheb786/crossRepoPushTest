@@ -19,6 +19,8 @@ class GetPostpaidBillerListModelData {
   String? status;
   bool? isChecked;
   String? iconCode;
+  bool? isAmountUpdatedFromApi; //
+  String? actualdueAmountFromApi;
 
   GetPostpaidBillerListModelData({
     this.joebppsNo,
@@ -40,5 +42,7 @@ class GetPostpaidBillerListModelData {
     this.status,
     this.iconCode,
     this.isChecked = false,
+    this.isAmountUpdatedFromApi = false,
+    this.actualdueAmountFromApi = "0.000",
   });
 }

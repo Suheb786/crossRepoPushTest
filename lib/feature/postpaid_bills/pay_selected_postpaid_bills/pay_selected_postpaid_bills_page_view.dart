@@ -28,13 +28,13 @@ class PaySelectedBillsPostPaidBillsPageView
   PaySelectedBillsPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+  Widget build(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return AppStreamBuilder<List<PostPaidBillInquiryData>>(
       stream: model.postPaidBillEnquiryListStream,
       initialData: model.postPaidBillInquiryData!,
       onData: (data) {
         model.postPaidBillInquiryData = data;
+        model.addAllBillAmt();
       },
       dataBuilder: (BuildContext context, data) {
         return AppStreamBuilder<Resource<PayPostPaidBill>>(
@@ -43,34 +43,24 @@ class PaySelectedBillsPostPaidBillsPageView
           onData: (data) {
             if (data.status == Status.SUCCESS) {
               Future.delayed(Duration(milliseconds: 200)).then((value) {
-                Navigator.pushNamed(
-                    context, RoutePaths.PostPaidBillsSuccessPage,
-                    arguments: PostPaidBillsSuccessPageArguments(
-                        data.data?.content?.billerList));
+                Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
+                    arguments: PostPaidBillsSuccessPageArguments(data.data?.content?.billerList));
               });
             }
           },
           dataBuilder: (BuildContext context, data) {
             return Padding(
-              padding: EdgeInsetsDirectional.only(
-                  top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
+              padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
               child: GestureDetector(
-                onHorizontalDragEnd: (details) {
-                  if (StringUtils.isDirectionRTL(context)) {
-                    if (!details.primaryVelocity!.isNegative) {
-                      Navigator.pop(context);
-                    }
-                  } else {
-                    if (details.primaryVelocity!.isNegative) {
-                      Navigator.pop(context);
-                    }
+                onHorizontalDragUpdate: (details) {
+                  if (details.primaryDelta!.isNegative) {
+                    Navigator.pop(context);
                   }
                 },
                 child: Column(
                   children: [
                     Text(
-                      S.of(context).payBills(
-                          '${model.postPaidBillInquiryData?.length ?? 0}'),
+                      S.of(context).payBills('${model.postPaidBillInquiryData?.length ?? 0}'),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.white,
@@ -84,15 +74,14 @@ class PaySelectedBillsPostPaidBillsPageView
                       initialData: model.arguments.amt,
                       stream: model.totalBillAmtDueStream,
                       onData: (amount) {
-                        model.totalAmount = amount.toString();
+                        // model.totalAmount = amount.toString();
                         model.validate();
                       },
                       dataBuilder: (BuildContext context, data) {
                         return RichText(
                             text: TextSpan(children: [
                           TextSpan(
-                            text:
-                                data != null ? data.toStringAsFixed(3) : "0.0",
+                            text: data != null ? data.toStringAsFixed(3) : "0.0",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.white,
@@ -100,7 +89,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                 fontSize: 28.0.t),
                           ),
                           TextSpan(
-                            text: S.of(context).JOD,
+                            text: ' ${S.of(context).JOD}',
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.gray5,
@@ -115,8 +104,7 @@ class PaySelectedBillsPostPaidBillsPageView
                     ),
                     Expanded(
                       child: Card(
-                        child: model.postPaidBillInquiryData == null ||
-                                model.postPaidBillInquiryData!.isEmpty
+                        child: model.postPaidBillInquiryData == null || model.postPaidBillInquiryData!.isEmpty
                             ? Center(
                                 child: Text(
                                   S.of(context).noDataFound,
@@ -124,8 +112,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color:
-                                          Theme.of(context).primaryColorDark),
+                                      color: Theme.of(context).primaryColorDark),
                                 ),
                               )
                             : FadingEdgeScrollView.fromSingleChildScrollView(
@@ -135,12 +122,12 @@ class PaySelectedBillsPostPaidBillsPageView
                                     children: [
                                       ListView.separated(
                                           padding: EdgeInsets.zero,
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
+                                          physics: NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
                                             return SelectedBillsToPaidWidget(
-                                              allowPartialPay: model.postPaidBillInquiryData?[index].isPartial ?? false,
+                                              allowPartialPay:
+                                                  model.postPaidBillInquiryData?[index].isPartial ?? false,
                                               billName: model.getValidBillerNickName(
                                                   model.arguments.postPaidBillInquiryData?[index].billingNo),
                                               billType: model.getValidBillerNameEN(
@@ -149,27 +136,19 @@ class PaySelectedBillsPostPaidBillsPageView
                                               onChanged: (value) {
                                                 model.newAmtEnter(index, value);
                                               },
-                                              billAmtDue: model
-                                                  .getValidBillerDueAmount(model
-                                                      .arguments
-                                                      .postPaidBillInquiryData?[
-                                                          index]
-                                                      .billingNo),
+                                              billAmtDue: model.getValidBillerDueAmount(
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
                                             );
                                           },
                                           separatorBuilder: (context, index) {
                                             return AppDivider();
                                           },
-                                          itemCount: model.arguments
-                                              .postPaidBillInquiryData!.length),
+                                          itemCount: model.arguments.postPaidBillInquiryData!.length),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            start: 24.w,
-                                            top: 32.h,
-                                            bottom: 16.h),
+                                        padding:
+                                            EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
                                         child: Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
+                                          alignment: AlignmentDirectional.topStart,
                                           child: Text(
                                             S.of(context).selectAccount,
                                             style: TextStyle(
@@ -188,20 +167,16 @@ class PaySelectedBillsPostPaidBillsPageView
                                           controller: model.savingAccountController,
                                           readOnly: true,
                                           onPressed: () {
-                                            AccountsDialog.show(context,
-                                                label:
-                                                    S.of(context).selectAccount,
+                                            AccountsDialog.show(context, label: S.of(context).selectAccount,
                                                 onDismissed: () {
                                               Navigator.pop(context);
                                             }, onSelected: (value) {
-                                              model.savingAccountController
-                                                  .text = value;
+                                              model.savingAccountController.text = value;
                                               Navigator.pop(context);
                                               model.validate();
                                             }, accountsList: [
                                               ProviderScope.containerOf(context)
-                                                      .read(
-                                                          appHomeViewModelProvider)
+                                                      .read(appHomeViewModelProvider)
                                                       .dashboardDataContent
                                                       .account
                                                       ?.accountNo ??
@@ -224,19 +199,15 @@ class PaySelectedBillsPostPaidBillsPageView
                                       AppStreamBuilder<double>(
                                         initialData: model.arguments.amt,
                                         stream: model.totalBillAmtDueStream,
-                                        dataBuilder:
-                                            (BuildContext context, data) {
+                                        dataBuilder: (BuildContext context, data) {
                                           return GestureDetector(
                                             onHorizontalDragEnd: (details) {
-                                              if (StringUtils.isDirectionRTL(
-                                                  context)) {
-                                                if (!details.primaryVelocity!
-                                                    .isNegative) {
+                                              if (StringUtils.isDirectionRTL(context)) {
+                                                if (!details.primaryVelocity!.isNegative) {
                                                   model.payPostPaidBill();
                                                 }
                                               } else {
-                                                if (details.primaryVelocity!
-                                                    .isNegative) {
+                                                if (details.primaryVelocity!.isNegative) {
                                                   model.payPostPaidBill();
                                                 }
                                               }
@@ -244,14 +215,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                             child: AppStreamBuilder<bool>(
                                                 stream: model.showButtonStream,
                                                 initialData: false,
-                                                dataBuilder:
-                                                    (context, isValid) {
+                                                dataBuilder: (context, isValid) {
                                                   return Visibility(
                                                     visible: isValid!,
                                                     child: AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed,
+                                                      buttonText: S.of(context).swipeToProceed,
                                                     ),
                                                   );
                                                 }),

@@ -1332,6 +1332,7 @@
   "howWouldLikeToPay": "How would you like to\nmake the payment",
   "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
   "howWouldLikeToPayPrePaidYourBills": "How would you like to\npay your prepaid bills?",
+  "howWouldLikeToPayPostPaidYourBills": "How would you like to\npay your postpaid bills?",
   "region": "REGION",
   "value": "VALUE",
   "backToCategory": "Back to {String}",
@@ -1502,9 +1503,10 @@
   "insufficientFundsBillCannotBePaid": "Insufficient funds bill cannot be paid",
   "yourBillHasBeenRemoved": "Your bill has been removed.",
   "billerAddedSuccessfully": "Biller Added Successfully.",
-  "SearchCategory": "Search category",
   "status": "Status",
   "failed": "Failed",
   "successS": "Success",
-  "billerAlreadyExistsMessage": "Biller already exists with the same billing number"
+  "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
+  "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics",
+  "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."
 }

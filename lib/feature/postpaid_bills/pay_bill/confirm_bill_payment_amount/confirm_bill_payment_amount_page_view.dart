@@ -316,9 +316,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         AutoSizeTextField(
           wrapWords: false,
           fullwidth: false,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
-          ],
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           keyboardType: TextInputType.numberWithOptions(
             decimal: true,
           ),
@@ -390,7 +388,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   ),
                 ),
                 Text(
-                  '${model.addNewBillDetailsData.amount} JOD',
+                  '${model.addNewBillDetailsData.amount} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,

@@ -106,7 +106,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                                   fontSize: 12.0.t)),
                         ]))
                   : Visibility(
-                      visible: this.isSelected,
+                      visible: this.isSelected || double.parse(billAmtDue) > 0.0,
                       child: RichText(
                           text: TextSpan(
                               text: S.of(context).due + " ",

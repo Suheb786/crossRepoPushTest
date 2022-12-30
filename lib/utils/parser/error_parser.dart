@@ -1122,6 +1122,9 @@ class ErrorParser {
       case ErrorType.ENTER_BILL_DETAILS:
         return localisedHelper.enterBillDetails;
 
+      case ErrorType.INVALID_NICK_NAME:
+        return localisedHelper.nickNameCanOnlyContainAlphanumerics;
+
       case ErrorType.QR_NOT_SCANNED:
         return localisedHelper.qrNotScanned;
 
