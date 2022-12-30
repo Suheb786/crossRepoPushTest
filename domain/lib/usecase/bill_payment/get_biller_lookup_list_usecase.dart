@@ -6,8 +6,8 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetBillerLookupUseCase extends BaseUseCase<NetworkError,
-    GetBillerLookupUseCaseParams, GetBillerLookUpList> {
+class GetBillerLookupUseCase
+    extends BaseUseCase<NetworkError, GetBillerLookupUseCaseParams, GetBillerLookUpList> {
   final BillPaymentRepository billPaymentRepository;
 
   GetBillerLookupUseCase(this.billPaymentRepository);
@@ -22,10 +22,9 @@ class GetBillerLookupUseCase extends BaseUseCase<NetworkError,
 
 class GetBillerLookupUseCaseParams extends Params {
   String? categoryName;
+  String? type;
 
-  GetBillerLookupUseCaseParams({
-    this.categoryName,
-  });
+  GetBillerLookupUseCaseParams({this.categoryName, this.type});
 
   @override
   Either<AppError, bool> verify() {

@@ -199,8 +199,11 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   void billerList() {
     billerDetailsList = AppConstantsUtils.billerDetailsCacheList;
     if (billerDetailsList == null || billerDetailsList!.isEmpty) {
-      _getBillerLookupRequest
-          .safeAdd(GetBillerLookupUseCaseParams(categoryName: AppConstantsUtils.BILLER_CATEGORY));
+      _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
+          categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          type: AppConstantsUtils.POST_PAID_FLOW == true
+              ? AppConstantsUtils.POSTPAID_KEY.toLowerCase()
+              : AppConstantsUtils.PREPAID_KEY.toLowerCase()));
     } else {
       _getBillerLookupResponse.safeAdd(Resource.success(
           data: GetBillerLookUpList(

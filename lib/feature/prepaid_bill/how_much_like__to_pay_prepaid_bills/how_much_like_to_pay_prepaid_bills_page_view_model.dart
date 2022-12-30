@@ -10,6 +10,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'how_much_like_to_pay_prepaid_bills_page.dart';
@@ -95,9 +96,11 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   Stream<Resource<PayPrePaid>> get payPrePaidStream => _payPrePaidResponse.stream;
 
   ///already saved flow.
-  void payPrePaidBill() {
+  void payPrePaidBill(BuildContext context) {
     _payPrePaidRequest.safeAdd(PayPrePaidUseCaseParams(
-        billerName: argument.payMyPrePaidBillsPageDataList[0].billerName,
+        billerName: StringUtils.isDirectionRTL(context)
+            ? argument.payMyPrePaidBillsPageDataList[0].billerNameAR
+            : argument.payMyPrePaidBillsPageDataList[0].billerName,
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,

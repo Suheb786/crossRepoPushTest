@@ -131,7 +131,8 @@ class PaySelectedBillsPostPaidBillsPageView
                                               billName: model.getValidBillerNickName(
                                                   model.arguments.postPaidBillInquiryData?[index].billingNo),
                                               billType: model.getValidBillerNameEN(
-                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                  context),
                                               itemCount: (index + 1).toString(),
                                               onChanged: (value) {
                                                 model.newAmtEnter(index, value);
@@ -204,11 +205,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                             onHorizontalDragEnd: (details) {
                                               if (StringUtils.isDirectionRTL(context)) {
                                                 if (!details.primaryVelocity!.isNegative) {
-                                                  model.payPostPaidBill();
+                                                  model.payPostPaidBill(context);
                                                 }
                                               } else {
                                                 if (details.primaryVelocity!.isNegative) {
-                                                  model.payPostPaidBill();
+                                                  model.payPostPaidBill(context);
                                                 }
                                               }
                                             },

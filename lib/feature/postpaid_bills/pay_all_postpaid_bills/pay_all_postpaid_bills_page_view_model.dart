@@ -248,15 +248,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             .listen((event) {
           updateLoader();
           _removeCustomerBillingResponse.safeAdd(event);
-          if (event.status == Status.ERROR) {
-            showErrorState();
-            showToastWithError(event.appError!);
-          } else if (event.status == Status.SUCCESS) {
-            if (event.data == true) {
-              showSuccessToast('Your bill has been removed.');
-              Future.delayed(Duration(milliseconds: 200)).then((value) => getPostpaidBiller());
-            }
-          }
         });
       },
     );

@@ -12,6 +12,7 @@ GetPrepaidBillerListEntityData _$GetPrepaidBillerListEntityDataFromJson(
     billingNumber: json['billingNo'] as String?,
     billerCode: json['billerCode'] as String?,
     billerName: json['billerName'] as String?,
+    billerNameAR: json['billerNameAR'] as String?,
     nickname: json['nickName'] as String?,
     registrationId: json['registrationID'] as String?,
     prepaidCategoryDescription: json['prepaidCategoryDescription'] as String?,
@@ -30,6 +31,7 @@ Map<String, dynamic> _$GetPrepaidBillerListEntityDataToJson(
     <String, dynamic>{
       'billingNo': instance.billingNumber,
       'billerCode': instance.billerCode,
+      'billerNameAR': instance.billerNameAR,
       'billerName': instance.billerName,
       'nickName': instance.nickname,
       'registrationID': instance.registrationId,

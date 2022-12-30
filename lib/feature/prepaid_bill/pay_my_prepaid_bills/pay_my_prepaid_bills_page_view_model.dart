@@ -118,14 +118,7 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
             .asFlow()
             .listen((event) {
           updateLoader();
-
           _removePrepaidBillerResponse.safeAdd(event);
-          if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
-          } else if (event.status == Status.SUCCESS) {
-              showSuccessToast('Your bill has been removed.');
-            Future.delayed(Duration(milliseconds: 200)).then((value) => getPrepaidBiller());
-          }
         });
       },
     );
@@ -159,8 +152,10 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// billerName filter
-        if (item.billerName != null && item.billerName!.isNotEmpty) {
-          if (item.billerName!.toLowerCase().contains(searchText.toLowerCase())) {
+        if (item.billerName != null && item.billerName!.isNotEmpty ||
+            item.billerNameAR != null && item.billerNameAR!.isNotEmpty) {
+          if (item.billerName!.toLowerCase().contains(searchText.toLowerCase()) ||
+              item.billerNameAR!.toLowerCase().contains(searchText.toLowerCase())) {
             fList?.add(item);
           }
         }

@@ -89,7 +89,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                           height: 8.h,
                         ),
                         Text(
-                            S.of(context).howWouldLikeToPayYourBills,
+                            S.of(context).howWouldLikeToPayPostPaidYourBills,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,

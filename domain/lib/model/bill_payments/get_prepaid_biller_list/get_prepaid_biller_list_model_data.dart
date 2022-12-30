@@ -2,6 +2,7 @@ class GetPrepaidBillerListModelData {
   String? billingNumber;
   String? billerCode;
   String? billerName;
+  String? billerNameAR;
   String? nickname;
   String? registrationId;
   String? prepaidCategoryDescription;
@@ -19,6 +20,7 @@ class GetPrepaidBillerListModelData {
       {this.billingNumber,
       this.billerCode,
       this.billerName,
+      this.billerNameAR,
       this.nickname,
       this.registrationId,
       this.rimNo,

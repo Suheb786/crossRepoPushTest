@@ -5,13 +5,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_prepaid_biller_list_entity_data.g.dart';
 
 @JsonSerializable()
-class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
-    GetPrepaidBillerListEntityData, GetPrepaidBillerListModelData> {
+class GetPrepaidBillerListEntityData
+    extends BaseLayerDataTransformer<GetPrepaidBillerListEntityData, GetPrepaidBillerListModelData> {
   @JsonKey(name: "billingNo")
   final String? billingNumber;
 
   @JsonKey(name: "billerCode")
   final String? billerCode;
+
+  @JsonKey(name: "billerNameAR")
+  final String? billerNameAR;
 
   @JsonKey(name: "billerName")
   final String? billerName;
@@ -50,6 +53,7 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
       {this.billingNumber,
       this.billerCode,
       this.billerName,
+      this.billerNameAR,
       this.nickname,
       this.registrationId,
       this.prepaidCategoryDescription,
@@ -76,7 +80,8 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
     return GetPrepaidBillerListModelData(
         billingNumber: this.billingNumber,
         billerCode: this.billerCode,
-        billerName: this.billerName,
+        billerName: this.billerName ?? "",
+        billerNameAR: this.billerNameAR ?? "",
         nickname: this.nickname,
         registrationId: this.registrationId,
         prepaidCategoryDescription: this.prepaidCategoryDescription,

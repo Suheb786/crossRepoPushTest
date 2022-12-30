@@ -46,7 +46,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
           model.otpCode = value.data?.content?.validationCode ?? "";
           model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
           if (model.isPrepaidCategoryListEmpty == true) {
-            Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill());
+            Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
           }
         }
       },
@@ -216,9 +216,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                                   fontSize: 14.0.t),
                                             ),
                                             Text(
-                                              model.argument.payMyPrePaidBillsPageDataList[index]
-                                                      .billerName ??
-                                                  '',
+                                              StringUtils.isDirectionRTL(context)
+                                                  ? "${model.argument.payMyPrePaidBillsPageDataList[index].billerNameAR ?? ''}"
+                                                  : "${model.argument.payMyPrePaidBillsPageDataList[index].billerName ?? ''}",
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryDarkGray2,
@@ -292,7 +292,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   if (StringUtils.isDirectionRTL(context)) {
                                     if (!details.primaryVelocity!.isNegative) {
                                       if (model.isPrepaidCategoryListEmpty == false) {
-                                        model.payPrePaidBill();
+                                        model.payPrePaidBill(context);
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
@@ -300,7 +300,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   } else {
                                     if (details.primaryVelocity!.isNegative) {
                                       if (model.isPrepaidCategoryListEmpty == false) {
-                                        model.payPrePaidBill();
+                                        model.payPrePaidBill(context);
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }

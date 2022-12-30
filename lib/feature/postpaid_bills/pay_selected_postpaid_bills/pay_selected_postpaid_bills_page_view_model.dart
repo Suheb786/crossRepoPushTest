@@ -9,6 +9,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
@@ -64,7 +65,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
-  void payPostPaidBill() {
+  void payPostPaidBill(BuildContext context) {
     tempPostpaidBillInquiryRequestList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
@@ -73,7 +74,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
             billingNumber: /*"121344"*/ item.billingNo,
-            billerName: arguments.noOfSelectedBills[i].billerNameEN,
+            billerName: StringUtils.isDirectionRTL(context)
+                ? arguments.noOfSelectedBills[i].billerNameEN
+                : arguments.noOfSelectedBills[i].billerNameAR,
             serviceType: item.serviceType,
             amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
             fees: item.feesAmt ?? "0.0"));
@@ -133,10 +136,14 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
   }
 
-  getValidBillerNameEN(String? billingNumber) {
+  getValidBillerNameEN(String? billingNumber, BuildContext context) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
-        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : "";
+      if (item.billingNo == billingNumber) {
+        if (StringUtils.isDirectionRTL(context)) {
+          return item.billerNameAR != null && item.billerNameAR!.isNotEmpty ? item.billerNameAR : "";
+        } else
+          return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : "";
+      }
     }
   }
 
@@ -176,7 +183,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    print("aslkdslakd: ${isTotalAmountZero}");
     if (isTotalAmountZero == false) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
