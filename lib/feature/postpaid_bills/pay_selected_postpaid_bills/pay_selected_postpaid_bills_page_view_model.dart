@@ -132,13 +132,14 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
-  getValidBillerIcon(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
+  getValidBillerIcon(String? billingNumber, String? serviceType) {
+    for (var item in arguments.noOfSelectedBills)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) return item.iconCode;
   }
 
-  getValidBillerNameEN(String? billingNumber, BuildContext context) {
+  getValidBillerNameEN(String? billingNumber, String? serviceType, BuildContext context) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber) {
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) {
         if (StringUtils.isDirectionRTL(context)) {
           return item.billerNameAR != null && item.billerNameAR!.isNotEmpty ? item.billerNameAR : "";
         } else
@@ -147,9 +148,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  getValidBillerNickName(String? billingNumber) {
+  getValidBillerNickName(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.nickName != null && item.nickName!.isNotEmpty ? item.nickName : "";
     }
   }
@@ -163,17 +164,17 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             : null;
   }*/
 
-  getValidBillerDueAmount(String? billingNumber) {
+  getValidBillerDueAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.dueAmount != null && item.dueAmount!.isNotEmpty
             ? double.parse(item.dueAmount ?? "0").toStringAsFixed(3)
             : "0.0";
   }
 
-  getValidBillerBillingNumber(String? billingNumber) {
+  getValidBillerBillingNumber(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.billingNo != null && item.billingNo!.isNotEmpty ? item.billingNo : "";
   }
 

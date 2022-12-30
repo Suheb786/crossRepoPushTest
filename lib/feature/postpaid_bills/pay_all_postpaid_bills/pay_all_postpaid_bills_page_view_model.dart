@@ -55,11 +55,13 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         payPostPaidBillsDataList[index].isChecked = false;
         totalBillAmt =
             totalBillAmt - double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
-        selectedPostPaidBillsList
-            .removeWhere((element) => element.billingNo == payPostPaidBillsDataList[index].billingNo);
+        selectedPostPaidBillsList.removeWhere((element) =>
+            element.billingNo == payPostPaidBillsDataList[index].billingNo &&
+            element.serviceType == payPostPaidBillsDataList[index].serviceType);
 
         // postPaidRequestListJson.removeWhere((element) =>
         //     element.billingNumber == payPostPaidBillsDataList[index].billingNo &&
+        //     element.serviceType == payPostPaidBillsDataList[index].serviceType &&
         //     (double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0") <= 0.0));
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
@@ -219,7 +221,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
         GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
         debugPrint("item.billingNo: ${item.billingNo}");
-        if (item.billingNo == inquiryElement.billingNo) {
+        if (item.billingNo == inquiryElement.billingNo && item.serviceType == inquiryElement.serviceType) {
           if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
             payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
           }

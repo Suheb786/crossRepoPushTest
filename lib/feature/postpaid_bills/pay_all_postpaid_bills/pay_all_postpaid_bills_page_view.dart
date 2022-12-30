@@ -232,6 +232,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               if (double.parse(item.dueAmount ?? "0") > 0.0) {
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
+                                                    item.serviceType ==
+                                                        payPostPaidBillsDataListItem.serviceType &&
                                                     payPostPaidBillsDataListItem.isAmountUpdatedFromApi ==
                                                         true) {
                                                   item.dueAmount =
@@ -244,6 +246,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               var dueAmt = double.parse(item.dueAmount ?? "0");
 
                                               if (item.billingNo == payPostPaidBillsDataListItem.billingNo &&
+                                                  item.serviceType ==
+                                                      payPostPaidBillsDataListItem.serviceType &&
                                                   payPostPaidBillsDataListItem.isAmountUpdatedFromApi ==
                                                       true) {
                                                 dueAmt = double.parse(
@@ -260,10 +264,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
                                           for (var item in model.payPostPaidBillsDataList) {
                                             if (item.isChecked == false) {
-                                              temPostPaidBillInquiryData.removeWhere(
-                                                  (element) => element.billingNo == item.billingNo);
-                                              tempSelectedPostPaidBillsList.removeWhere(
-                                                  (element) => element.billingNo == item.billingNo);
+                                              temPostPaidBillInquiryData.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
+                                              tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
                                             }
                                           }
                                           tempSelectedPostPaidBillsList =
