@@ -159,6 +159,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable":
             MessageLookupByLibrary.simpleMessage("Service is down please try again later"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
+        "aliasHint":
+            MessageLookupByLibrary.simpleMessage("Alias must be a maximum of 10 alphanumeric characters"),
+        "aliasMobileHint": MessageLookupByLibrary.simpleMessage("Alias mobile hint: "),
+        "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("Mobile number must start with 00962"),
+        "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric": MessageLookupByLibrary.simpleMessage("Allow biometric"),

@@ -121,6 +121,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                   switch (cliqIdType) {
                                                     case CliqIdTypeEnum.ALIAS:
                                                       return Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           SizedBox(
                                                             height: 16.h,
@@ -129,16 +130,53 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                               labelText: S.of(context).alias.toUpperCase(),
                                                               hintText: S.of(context).pleaseEnter,
                                                               inputType: TextInputType.text,
+                                                              inputFormatters: [
+                                                                LengthLimitingTextInputFormatter(10),
+                                                                FilteringTextInputFormatter.allow(
+                                                                    RegExp("[a-zA-Z0-9]")),
+                                                                // FilteringTextInputFormatter.allow(
+                                                                //     RegExp("(?=.)(?=.[A-Z][a-z])([A-Z0-9]){3,10}"))
+                                                              ],
+                                                              //inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9\-]'))],
                                                               inputAction: TextInputAction.done,
                                                               controller: model.aliasController,
                                                               key: model.aliasKey,
                                                               onChanged: (value) {
+                                                                model.aliasController.value =
+                                                                    TextEditingValue(
+                                                                        text: value.toUpperCase(),
+                                                                        selection:
+                                                                            model.aliasController.selection);
                                                                 model.validate();
                                                               }),
+                                                          SizedBox(
+                                                            height: 32.h,
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text(
+                                                                S.of(context).aliasNickNameHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 12.t,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              ),
+                                                              Text(
+                                                                S.of(context).aliasHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.t,
+                                                                    color: AppColor.dark_gray_1,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              )
+                                                            ],
+                                                          )
                                                         ],
                                                       );
                                                     case CliqIdTypeEnum.MOBILE_NO:
                                                       return Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           SizedBox(
                                                             height: 16.h,
@@ -159,6 +197,29 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             onChanged: (value) {
                                                               model.validate();
                                                             },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 32.h,
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text(
+                                                                S.of(context).aliasMobileHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 12.t,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              ),
+                                                              Text(
+                                                                S.of(context).aliasMobileNoHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.t,
+                                                                    color: AppColor.dark_gray_1,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              )
+                                                            ],
                                                           )
                                                         ],
                                                       );

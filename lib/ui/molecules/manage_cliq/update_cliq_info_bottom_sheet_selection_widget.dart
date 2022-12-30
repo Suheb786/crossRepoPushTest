@@ -9,17 +9,17 @@ import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_widget
 class UpdateCliqInfoBottomSheetSelectionWidget {
   UpdateCliqInfoBottomSheetSelectionWidget._();
 
-  static Future show(BuildContext context, {
-    required Function()? onEditId,
-    required Function()? onShareId,
-    required Function()? onCancelled,
-    required Function()? onDeleteId,
-    required Function()? onSuspendId,
-    required Function()? onActivatId,
-    required Function()? onLinkId,
-    required CliqAliasIdStatusEnum cliqAliasIdStatusEnum,
-    required String? title,
-  }) async {
+  static Future show(BuildContext context,
+      {required Function()? onEditId,
+      required Function()? onShareId,
+      required Function()? onCancelled,
+      required Function()? onDeleteId,
+      required Function()? onSuspendId,
+      required Function()? onActivatId,
+      required Function()? onLinkId,
+      required CliqAliasIdStatusEnum cliqAliasIdStatusEnum,
+      required String? title,
+      required bool showLinkAccount}) async {
     return Platform.isAndroid
         ? showModalBottomSheet(
             context: context,
@@ -33,7 +33,8 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
                   onSuspendId: onSuspendId,
                   onActivateId: onActivatId,
                   cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
-                  title: title);
+                  title: title,
+                  showLinkAccount: showLinkAccount);
             })
         : UpdateCliqInfoBottomSheet.show(context,
             onCancel: onCancelled,
@@ -43,6 +44,7 @@ class UpdateCliqInfoBottomSheetSelectionWidget {
             onDeleteId: onDeleteId,
             onSuspendId: onSuspendId,
             onActivateId: onActivatId,
+            showLinkAccount: showLinkAccount,
             cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
             title: title);
   }

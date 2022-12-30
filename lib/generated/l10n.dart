@@ -15190,6 +15190,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Alias must be a maximum of 10 alphanumeric characters`
+  String get aliasHint {
+    return Intl.message(
+      'Alias must be a maximum of 10 alphanumeric characters',
+      name: 'aliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number must start with 00962`
+  String get aliasMobileNoHint {
+    return Intl.message(
+      'Mobile number must start with 00962',
+      name: 'aliasMobileNoHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias nickname hint: `
+  String get aliasNickNameHint {
+    return Intl.message(
+      'Alias nickname hint: ',
+      name: 'aliasNickNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias mobile hint: `
+  String get aliasMobileHint {
+    return Intl.message(
+      'Alias mobile hint: ',
+      name: 'aliasMobileHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

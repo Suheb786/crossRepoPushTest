@@ -1540,5 +1540,9 @@
   "hereMyCliqDetails": "Hello! Here’s my blink CliQ details:\n\n",
   "cliqType": "CLIQ Type",
   "cliqID": "CLIQ ID",
-  "defaultAccountUpdated": "Default account has been updated"
+  "defaultAccountUpdated": "Default account has been updated",
+  "aliasHint": "Alias must be a maximum of 10 alphanumeric characters",
+  "aliasMobileNoHint": "Mobile number must start with 00962",
+  "aliasNickNameHint": "Alias nickname hint: ",
+  "aliasMobileHint": "Alias mobile hint: "
 }

@@ -154,7 +154,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                 "${getAliasSnapshot.data?.aliases?[index].status}",
                                                             onTapAccount: (accountData) {
                                                               ManageCliqBottomSheetSelectionWidget.show(
-                                                                  context, setAsDefault: () {
+                                                                  context,
+                                                                  showSetAsDefault: !(accountData.isDefault ??
+                                                                      true), setAsDefault: () {
                                                                 Navigator.pop(context);
                                                                 CliqInformationDialog.show(context,
                                                                     image: AssetUtils.walletIcon,
@@ -199,14 +201,22 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     onDismissed: () {
                                                                       Navigator.pop(context);
                                                                     });
-                                                              },
-                                                                  onCancelled: () {},
-                                                                  title:
-                                                                      S.of(context).pleaseSelectYourAction);
+                                                              }, onCancelled: () {
+                                                                Navigator.pop(context);
+                                                              }, title: S.of(context).pleaseSelectYourAction);
                                                             },
                                                             onTapAlias: () {
                                                               UpdateCliqInfoBottomSheetSelectionWidget.show(
                                                                   context,
+                                                                  showLinkAccount: (getAliasSnapshot
+                                                                                      .data
+                                                                                      ?.aliases?[index]
+                                                                                      .accounts ??
+                                                                                  [])
+                                                                              .length ==
+                                                                          0
+                                                                      ? true
+                                                                      : false,
                                                                   cliqAliasIdStatusEnum: getAliasSnapshot
                                                                           .data?.aliases?[index].status ??
                                                                       CliqAliasIdStatusEnum.NONE,
