@@ -8,25 +8,29 @@ import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_widge
 class ManageCliqBottomSheetSelectionWidget {
   ManageCliqBottomSheetSelectionWidget._();
 
-  static Future show(
-    BuildContext context, {
-    required Function()? setAsDefault,
-    required Function()? unlinkAccount,
-    required Function()? onCancelled,
-    required String? title,
-  }) async {
+  static Future show(BuildContext context,
+      {required Function()? setAsDefault,
+      required Function()? unlinkAccount,
+      required Function()? onCancelled,
+      required String? title,
+      required bool showSetAsDefault}) async {
     return Platform.isAndroid
         ? showModalBottomSheet(
             context: context,
             builder: (context) {
               return ManageCliqBottomSheetWidget(
                 title: title,
+                showSetAsDefault: showSetAsDefault,
                 setAsDefault: setAsDefault,
                 onCancelTap: onCancelled,
                 unlinkAccount: unlinkAccount,
               );
             })
         : ManageCliqBottomSheet.show(context,
-            onCancel: onCancelled, setAsDefault: setAsDefault, unlinkAccount: unlinkAccount, title: title);
+            showSetAsDefault: showSetAsDefault,
+            onCancel: onCancelled,
+            setAsDefault: setAsDefault,
+            unlinkAccount: unlinkAccount,
+            title: title);
   }
 }

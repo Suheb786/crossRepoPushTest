@@ -36,16 +36,6 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
           ),
           InkWell(
             onTap: () {
-              /*    CliqInformationDialog.show(context,
-                  image: AssetUtils.walletIcon,
-                  title: S.of(context).changeDefaultAccount,
-                  description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
-                  subDescription: S.of(context).whenAcceptingCreationOfYourCliqId, onSelected: () {
-                Navigator.pop(context);
-              }, onDismissed: () {
-                Navigator.pop(context);
-              });*/
-
               Navigator.pushNamed(context, RoutePaths.CreateCliqId);
             },
             child: Padding(

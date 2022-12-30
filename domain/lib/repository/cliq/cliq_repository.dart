@@ -45,9 +45,8 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount({
-    required bool GetToken,
-  });
+  Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
+      {required String acc, required String aliasId});
 
   Future<Either<NetworkError, bool>> unLinkAccountFromCliq({
     required String aliasId,

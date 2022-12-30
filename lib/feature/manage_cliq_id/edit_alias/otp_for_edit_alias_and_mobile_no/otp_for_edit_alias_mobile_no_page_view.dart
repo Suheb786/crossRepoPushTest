@@ -32,7 +32,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              S.of(context).createNewCliqId,
+              S.of(context).editCliqId,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
@@ -43,7 +43,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               height: 8.h,
             ),
             Text(
-              "${S.of(context).enterOtpHeader}  ${model.arguments.data.mobileNumber ?? ''}",
+              "${S.of(context).enterOtpHeader} \n ${model.arguments.data.mobileNumber ?? ''}",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,

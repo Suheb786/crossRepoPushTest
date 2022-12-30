@@ -1500,7 +1500,7 @@
   "accountSuccessfullyUnlinked": "Account successfully unlinked",
   "activateId": "Activate ID",
   "helloHereMyBlinkAccount": "Hello! Here are my Blink account details: ",
-  "getYourBlinkAccountTodayBlinkNow": "Get your blink account today. Blink now!",
+  "getYourBlinkAccountTodayBlinkNow": "\n\nGet your blink account today.",
   "accountUnlinkedSuccessfully": "Account Unlinked from CliqID Successfully",
   "accountLinkedSuccessfully": "Account Linked Successfully",
   "accountDeletedSuccessfully": "Account Deleted Successfully ",
@@ -1534,5 +1534,15 @@
   "emptyRecipientAddress": "Enter Recipient Address",
   "linkAccount": "Link Account",
   "cliqAliasUpdate": "CLIQ ID UPDATE\nCliQ ID Alias has been updated",
-  "cliqMobileNumberUpdate": "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"
+  "cliqMobileNumberUpdate": "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated",
+  "savingAccountList": "Savings Account {String}",
+  "defaultWord": "Default",
+  "hereMyCliqDetails": "Hello! Here’s my blink CliQ details:\n\n",
+  "cliqType": "CLIQ Type",
+  "cliqID": "CLIQ ID",
+  "defaultAccountUpdated": "Default account has been updated",
+  "aliasHint": "Alias must be a maximum of 10 alphanumeric characters",
+  "aliasMobileNoHint": "Mobile number must start with 00962",
+  "aliasNickNameHint": "Alias nickname hint: ",
+  "aliasMobileHint": "Alias mobile hint: "
 }

@@ -13,7 +13,7 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   final Function()? onCancel;
   final Function()? onActivateId;
   final String? title;
-
+  final bool showLinkAccount;
   final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
 
   const UpdateCliqInfoBottomSheetView(
@@ -26,7 +26,8 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
       this.onCancel,
       this.title,
       this.cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
-      this.onActivateId})
+      this.onActivateId,
+      required this.showLinkAccount})
       : super(key: key);
 
   @override
@@ -62,16 +63,19 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
             widget.onEditId?.call();
           },
         ),
-        CupertinoActionSheetAction(
-          child: Text(S.of(context).linkAccount,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColor.pure_blue)),
-          onPressed: () {
-            widget.onLinkId?.call();
-          },
+        Visibility(
+          visible: widget.showLinkAccount,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).linkAccount,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColor.pure_blue)),
+            onPressed: () {
+              widget.onLinkId?.call();
+            },
+          ),
         ),
         CupertinoActionSheetAction(
           child: Text(S.of(context).shareId,

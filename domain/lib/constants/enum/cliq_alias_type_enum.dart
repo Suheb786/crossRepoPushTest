@@ -23,3 +23,21 @@ extension CliqAliasTypeEnumExt on String {
     }
   }
 }
+
+extension CliqAliasTypeStringExt on CliqAliasTypeEnum {
+  String fromCliqAliasString() {
+    switch (this) {
+      case CliqAliasTypeEnum.ALIAS:
+        return 'Alias';
+      case CliqAliasTypeEnum.MOBL:
+        return 'Mobile Number';
+      case CliqAliasTypeEnum.ALIAS:
+        return 'الاسم المستعار';
+      case CliqAliasTypeEnum.MOBL:
+        return 'رقم الموبايل';
+
+      default:
+        return 'Alias';
+    }
+  }
+}

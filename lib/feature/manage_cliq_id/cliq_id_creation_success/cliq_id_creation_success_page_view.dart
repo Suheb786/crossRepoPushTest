@@ -104,7 +104,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               ),
             ),
             Visibility(
-              visible: true,
+              visible: false,
               child: Padding(
                 padding: EdgeInsets.only(top: 23.h),
                 child: Row(

@@ -194,11 +194,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get changeDefaultCliqIdStream => _changeDefaultCliqIDResponse.stream;
 
-  void confirmChangeDefaultCliqId({
-    required bool GetToken,
-  }) {
+  void confirmChangeDefaultCliqId({required String acc, required String aliasId}) {
     _changeDefaultCliqIDRequest.safeAdd(
-      ChangeDefaultAccountParams(GetToken: GetToken),
+      ChangeDefaultAccountParams(aliasId: aliasId, acc: acc),
     );
   }
 
