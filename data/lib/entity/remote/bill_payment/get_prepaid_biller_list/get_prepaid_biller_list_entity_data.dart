@@ -92,8 +92,8 @@ class GetPrepaidBillerListEntityData
         prepaidCategoryCode: this.prepaidCategoryCode,
         customerType: this.customerType,
         joebppsNo: this.joebppsNo,
-        serviceType: this.serviceType,
-        serviceTypeAR: this.serviceTypeAR,
+        serviceType: this.serviceType ?? "",
+        serviceTypeAR: this.serviceTypeAR ?? "",
         serviceCode: this.serviceCode,
         iconCode: this.iconCode?.toString() ?? "",
         rimNo: this.rimNo);
