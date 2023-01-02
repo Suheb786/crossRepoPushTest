@@ -35,6 +35,7 @@ class QrScreenPageState extends BaseStatefulPage<QrScreenPageViewModel, QrScreen
 class QrScreenPageArguments {
   final Account account;
   final String requestAmt;
+  final String requestId;
 
-  QrScreenPageArguments(this.account, this.requestAmt);
+  QrScreenPageArguments(this.account, this.requestAmt, this.requestId);
 }

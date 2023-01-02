@@ -9,8 +9,10 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
   PostPaidBillsSuccessPageView(ProviderBase model) : super(model);
@@ -19,8 +21,20 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
   Widget build(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-          Navigator.pop(context);
+        if (StringUtils.isDirectionRTL(context)) {
+          if (!details.primaryVelocity!.isNegative) {
+            Navigator.of(context)
+              ..pop()
+              ..pop()
+              ..pop();
+          }
+        } else {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.of(context)
+              ..pop()
+              ..pop()
+              ..pop();
+          }
         }
       },
       child: SingleChildScrollView(
@@ -28,14 +42,14 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 top: 92.h,
               ),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    AssetUtils.line,
+                    AssetUtils.line_gray,
                     color: AppColor.veryDarkGray1,
                   ),
                   Align(
@@ -46,10 +60,9 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                         shape: BoxShape.circle,
                         color: Theme.of(context).canvasColor,
                       ),
-                      child: Center(
-                          child: AppSvg.asset(
-                        AssetUtils.right,
-                      )),
+                      child: model.addAllBillAmt() > 0.0
+                          ? Center(child: AppSvg.asset(AssetUtils.right))
+                          : Center(child: AppSvg.asset(AssetUtils.fail, color: AppColor.black)),
                     ),
                   ),
                 ],
@@ -61,7 +74,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                text: model.arguments.amt,
+                text: model.addAllBillAmt().toStringAsFixed(3),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,
@@ -69,7 +82,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     fontSize: 32.0.t),
               ),
               TextSpan(
-                text: S.of(context).JOD,
+                text: '  ${S.of(context).JOD}',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.gray5,
@@ -86,7 +99,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                   fontSize: 24.0.t),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.0.w),
+              padding: EdgeInsetsDirectional.only(top: 40.0.h, start: 24.w, end: 24.0.w),
               child: Card(
                 child: ListView.separated(
                     padding: EdgeInsets.zero,
@@ -127,15 +140,25 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.noOfSelectedBills[index].billType,
+                                      model.getBillerName(context, model.arguments.billerList![index]),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14.0.t),
                                     ),
+                                    model.arguments.billerList?[index].isPaid == true
+                                        ? Text(
+                                            S.of(context).refTitle,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.veryDarkGray2,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          )
+                                        : Container(),
                                     Text(
-                                      S.of(context).refTitle,
+                                      S.of(context).status,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.veryDarkGray2,
@@ -146,27 +169,45 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                 ),
                               ],
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  model.arguments.noOfSelectedBills[index].billAmtDue.toString() +
-                                      S.of(context).JOD,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12.0.t),
-                                ),
-                                Text(
-                                  '12313141245',
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.gray5,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.0.t),
-                                ),
-                              ],
+                            SizedBox(
+                              width: 10.0.w,
+                            ),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    '${double.parse(model.arguments.billerList?[index].totalAmount ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t),
+                                  ),
+                                  model.arguments.billerList?[index].isPaid == true
+                                      ? Text(
+                                          model.arguments.billerList?[index].refNo ?? "",
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.gray5,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12.0.t),
+                                        )
+                                      : Container(),
+                                  Text(
+                                    model.arguments.billerList?[index].isPaid == true
+                                        ? S.of(context).successS
+                                        : S.of(context).failed,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: model.arguments.billerList?[index].isPaid == true
+                                            ? Colors.green
+                                            : Colors.red,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.0.t),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -175,28 +216,37 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     separatorBuilder: (context, index) {
                       return AppDivider();
                     },
-                    itemCount: model.arguments.noOfSelectedBills.length),
+                    itemCount: model.arguments.billerList!.length),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 25.0.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  Text(
-                    S.of(context).shareMyReceipt,
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.light_acccent_blue,
-                      fontSize: 14.t,
+              padding: EdgeInsetsDirectional.only(top: 25.0.h),
+              child: GestureDetector(
+                onTap: () {
+                  _shareDetails(context, model);
+                },
+                child: model.addAllBillAmt() > 0.0
+                    ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+                    SizedBox(
+                      width: 8.w,
                     ),
-                  )
-                ],
+                    Text(
+                      S
+                          .of(context)
+                          .shareMyReceipt,
+                      style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.light_acccent_blue,
+                        fontSize: 14.t,
+                      ),
+                    )
+                  ],
+                )
+                    : Container(),
               ),
             ),
             SizedBox(
@@ -211,7 +261,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
               height: 8.h,
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 bottom: 56.h,
               ),
               child: Center(
@@ -228,6 +278,16 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
           ],
         ),
       ),
+    );
+  }
+
+  void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
+    Share.share(
+      ShareInfo.savedMultipleBillsPostPaidSuccess(
+        context,
+        paidBillsList: model.arguments.billerList ?? [],
+      ),
+      subject: S.of(context).billDetails,
     );
   }
 }

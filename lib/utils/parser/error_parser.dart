@@ -1109,15 +1109,31 @@ class ErrorParser {
         return localisedHelper.paymentNotDone;
       case ErrorType.NO_TICKETS_FOUND:
         return localisedHelper.noTicketsFound;
-
+      case ErrorType.NO_BILLER_FOUND:
+      case ErrorType.NO_BILLER_FOUND:
+        return localisedHelper.noTicketsFound;
+      case ErrorType.NO_PREPAID_CATEGORY_FOUND:
+        return localisedHelper.noPrepaidCategoryFound;
+      case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
+        return localisedHelper.insufficientFundsBillCannotBePaid;
       case ErrorType.QR_INVALID:
         return localisedHelper.qrInvalid;
-
       case ErrorType.QR_EXPIRED:
         return localisedHelper.qrExpired;
-
+      case ErrorType.ENTER_BILL_DETAILS:
+        return localisedHelper.enterBillDetails;
+      case ErrorType.INVALID_NICK_NAME:
+        return localisedHelper.nickNameCanOnlyContainAlphanumerics;
+      case ErrorType.QR_NOT_SCANNED:
+        return localisedHelper.qrNotScanned;
+      case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
+        return localisedHelper.billerAlreadyExistsMessage;
+      case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
+        return localisedHelper.billPaymentSorryMessage;
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
+      case ErrorType.IS_PAID_FAILED:
+        return "";
 
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;

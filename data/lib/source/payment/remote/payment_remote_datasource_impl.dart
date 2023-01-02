@@ -9,6 +9,9 @@ import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.d
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
+import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
@@ -16,6 +19,9 @@ import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
+import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/payment/payment_datasource.dart';
@@ -182,5 +188,32 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         getToken: true,
         detCustomerType: detCustomerType,
         type: type));
+  }
+
+  @override
+  Future<HttpResponse<QRResponseEntity>> generateQR({required String amount}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .generateQR(GenerateQRRequestEntity(baseData: baseData.toJson(), getToken: true, amount: amount));
+  }
+
+  @override
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(
+      {required String requestId, required String toAmount, required String toAccount}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.transferQR(TransferQRRequestEntity(
+        baseData: baseData.toJson(),
+        getToken: true,
+        qrRequestId: requestId,
+        toAccount: toAccount,
+        toAmount: toAmount));
+  }
+
+  @override
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(
+      {required String requestId, required String source}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.verifyQR(VerifyQRRequestEntity(
+        baseData: baseData.toJson(), source: source, getToken: true, qrRequestId: requestId));
   }
 }

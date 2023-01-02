@@ -6,6 +6,7 @@ import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
+import 'package:domain/usecase/payment/generate_qr_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/pay_back_credit_card_usecase.dart';
@@ -20,8 +21,10 @@ import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
+import 'package:domain/usecase/payment/transfer_qr_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
+import 'package:domain/usecase/payment/verify_qr_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
@@ -136,4 +139,19 @@ final createDynamicLinkUseCaseProvider = Provider.autoDispose<CreateDynamicLinkU
 
 final initDynamicLinkUseCaseProvider = Provider.autoDispose<InitDynamicLinkUseCase>(
   (ref) => InitDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
+);
+
+///[GenerateQRUseCase] provider
+final generateQRUseCaseProvider = Provider.autoDispose<GenerateQRUseCase>(
+  (ref) => GenerateQRUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[TransferQRUseCase] provider
+final transferQRUseCaseProvider = Provider.autoDispose<TransferQRUseCase>(
+  (ref) => TransferQRUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[VerifyQRUseCase] provider
+final verifyQRUseCaseProvider = Provider.autoDispose<VerifyQRUseCase>(
+  (ref) => VerifyQRUseCase(ref.read(paymentRepositoryProvider)),
 );

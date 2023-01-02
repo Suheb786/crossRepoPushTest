@@ -9,6 +9,8 @@ import 'package:data/source/activity/activity_datasource.dart';
 import 'package:data/source/activity/remote/activity_remote_datasource_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
+import 'package:data/source/bill_payment/bill_payment_data_source.dart';
+import 'package:data/source/bill_payment/remote/bill_payment_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:data/source/card/remote/card_remote_ds_impl.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
@@ -156,6 +158,14 @@ var activityDataSourceProvider = Provider<ActivityRemoteDs>(
 
 var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>(
     (ref) => ChangeDeviceRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+/// Bill payment DS provider
+final billPaymentDSProvider = Provider<BillPaymentRemoteDS>(
+  (ref) => BillPaymentRemoteDSImpl(
+    ref.read(apiServiceProvider),
+    ref.read(deviceInfoHelperProvider),
+  ),
+);
 
 ///RJ remote DS
 var rjDataSourceProvider = Provider<RJRemoteDS>(

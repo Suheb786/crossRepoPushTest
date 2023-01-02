@@ -6,6 +6,9 @@ import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
+import 'package:domain/model/qr/qr_response.dart';
+import 'package:domain/model/qr/qr_transfer_response.dart';
+import 'package:domain/model/qr/verify_qr_response.dart';
 
 abstract class PaymentRepository {
   Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
@@ -67,4 +70,13 @@ abstract class PaymentRepository {
       String nickName,
       String? detCustomerType,
       String? type});
+
+  ///QR
+  Future<Either<NetworkError, QrResponse>> generateQR({required String amount});
+
+  Future<Either<NetworkError, VerifyQrResponse>> verifyQR(
+      {required String requestId, required String source});
+
+  Future<Either<NetworkError, QRTransferResponse>> transferQR(
+      {required String requestId, required String toAmount, required String toAccount});
 }

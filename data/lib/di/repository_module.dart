@@ -5,6 +5,7 @@ import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/activity/activity_repository_impl.dart';
 import 'package:data/repository/app_flyer_repo/app_flyer_repository_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
+import 'package:data/repository/bill_payment/bill_payment_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
 import 'package:data/repository/cliq/cliq_repository_impl.dart';
@@ -56,6 +57,7 @@ import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/repository/utility/utility_repository.dart';
+import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 /// inject [UserRepository] provider
@@ -162,6 +164,14 @@ var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
 /// inject [ChangeDeviceRepository] provider
 var appFlyerRepositoryProvider =
     Provider<AppFlyerRepository>((ref) => AppFlyerRepositoryImpl(ref.read(appFlyerSdkDatasourceProvider)));
+
+/// inject [BillPaymentRepository] provider
+var billPaymentRepoProvider = Provider<BillPaymentRepository>(
+        (ref) => BillPaymentRepositoryImpl(
+        ref.read(billPaymentDSProvider),
+    ),
+);
+
 
 /// inject [RJRepository] provider
 var rjRepositoryProvider = Provider<RJRepository>((ref) => RJRepositoryImpl(ref.read(rjDataSourceProvider)));

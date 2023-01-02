@@ -1,4 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,11 +19,12 @@ import 'select_service_dialog_view_model.dart';
 
 class SelectServiceDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(BillerService)? onSelected;
   final String? title;
   bool _keyboardVisible = false;
+  List<BillerService>? billerService;
 
-  SelectServiceDialogView({this.onDismissed, this.onSelected, this.title});
+  SelectServiceDialogView({this.onDismissed, this.onSelected, this.title, this.billerService});
 
   ProviderBase providerBase() {
     return selectServiceDialogViewModelProvider;
@@ -32,13 +34,6 @@ class SelectServiceDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<SelectServiceDialogViewModel>(
-        onModelReady: (model) {
-          model.serviceList = [
-            'Internet Bill Payment',
-            'Deactivate Internet Service',
-            'Deactivate T.F Service',
-          ];
-        },
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -71,7 +66,7 @@ class SelectServiceDialogView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            model.serviceList.isNotEmpty
+                            billerService!.isNotEmpty
                                 ? Expanded(
                                     child: Stack(
                                     alignment: Alignment.center,
@@ -88,27 +83,27 @@ class SelectServiceDialogView extends StatelessWidget {
                                         ),
                                       ),
                                       AppScrollableListViewWidget(
-                                        key: ValueKey(model.serviceList.length),
+                                        key: ValueKey(billerService!.length),
                                         child: ClickableListWheelScrollView(
                                           scrollController: model.scrollController,
-                                          itemHeight: 72,
-                                          itemCount: model.serviceList.length,
+                                          itemHeight: 75,
+                                          itemCount: billerService!.length,
                                           //   itemCount: data.data!.length,
                                           onItemTapCallback: (index) {
-                                            print('onItemTapCallback----->$index');
+                                            debugPrint('onItemTapCallback----->$index');
                                           },
 
                                           child: ListWheelScrollView.useDelegate(
                                               controller: model.scrollController,
-                                              itemExtent: 72,
+                                              itemExtent: 75,
                                               onSelectedItemChanged: (int index) {
-                                                print('onSelectedItemChanged----->$index');
+                                                debugPrint('onSelectedItemChanged----->$index');
                                                 model.currentIndexUpdate(index);
                                               },
                                               physics: FixedExtentScrollPhysics(),
                                               perspective: 0.0000000001,
                                               childDelegate: ListWheelChildBuilderDelegate(
-                                                  childCount: model.serviceList.length,
+                                                  childCount: billerService!.length,
                                                   builder: (BuildContext context, int index) {
                                                     return Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -124,7 +119,11 @@ class SelectServiceDialogView extends StatelessWidget {
                                                               padding:
                                                                   EdgeInsets.symmetric(horizontal: 16.0.w),
                                                               child: Text(
-                                                                model.serviceList[index],
+                                                                !StringUtils.isDirectionRTL(context)
+                                                                    ? billerService![index]
+                                                                        .serviceDescriptionEn!
+                                                                    : billerService![index]
+                                                                        .serviceDescriptionAr!,
                                                                 //  data.data![index],
                                                                 softWrap: true,
                                                                 maxLines: 2,
@@ -148,18 +147,15 @@ class SelectServiceDialogView extends StatelessWidget {
                                 : Expanded(
                                     child: Center(
                                       child: Container(
-                                        child: Text('No Data Found'),
+                                        child: Text(S.of(context).noDataFound),
                                       ),
                                     ),
                                   ),
                             InkWell(
                               onTap: () {
-                                if (model.serviceList != null && model.serviceList.length > 0) {
-                                  onSelected!.call(model.serviceList[selectedIndex ?? 0]);
-                                } else {
-                                  onSelected!.call('');
+                                if (billerService != null && billerService!.length > 0) {
+                                  onSelected!.call(billerService![selectedIndex ?? 0]);
                                 }
-
                                 Navigator.pop(context);
                               },
                               child: Container(

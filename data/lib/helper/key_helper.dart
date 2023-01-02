@@ -18,6 +18,10 @@ class KeyHelper {
   static String INFOBIP_APP_KEY = "";
   static String INFOBIP_APPLICATION_CODE = "";
 
+  ///Dynamic link
+  static String DevDynamicLinkPrefix = 'https://blinkcbt.page.link';
+  static String UATDynamicLinkPrefix = '';
+
   static setKeyValues(String content) {
     var mapContent = Map<String, dynamic>();
     if (content != null) {

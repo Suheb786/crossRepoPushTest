@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,6 +20,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Padding(
@@ -48,7 +50,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.arguments.amount,
+                    num.parse(model.arguments.amount).toStringAsFixed(3),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,

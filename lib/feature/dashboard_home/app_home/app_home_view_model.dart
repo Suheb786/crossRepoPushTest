@@ -12,9 +12,14 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
+import 'package:domain/model/qr/verify_qr_response.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
+import 'package:domain/usecase/payment/verify_qr_usecase.dart';
+import 'package:domain/usecase/user/get_current_user_usecase.dart';
+import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
@@ -28,6 +33,8 @@ import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
@@ -40,6 +47,9 @@ import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final SaveUserDataUseCase _saveUserDataUseCase;
+  final VerifyQRUseCase _verifyQRUseCase;
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
@@ -156,7 +166,49 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase) {
+  ///--------Get current user ---------///
+
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
+
+  final PublishSubject<Resource<User>> _currentUserResponseSubject = PublishSubject();
+
+  Stream<Resource<User>> get currentUser => _currentUserResponseSubject.stream;
+
+  void getCurrentUser() {
+    _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
+  }
+
+  ///--------Get current user ---------///
+
+  ///--------Save current user ---------///
+
+  final PublishSubject<SaveUserDataUseCaseParams> _saveCurrentUserRequestSubject = PublishSubject();
+
+  final PublishSubject<Resource<User>> _saveCurrentUserResponseSubject = PublishSubject();
+
+  Stream<Resource<User>> get saveCurrentUser => _saveCurrentUserResponseSubject.stream;
+
+  void saveCurrentUserData({required User user}) {
+    _saveCurrentUserRequestSubject.add(SaveUserDataUseCaseParams(user: user));
+  }
+
+  ///--------Save current user ---------///
+
+  ///---------------Verify QR----------------------///
+  PublishSubject<VerifyQRUseCaseParams> _verifyQRRequest = PublishSubject();
+
+  PublishSubject<Resource<VerifyQrResponse>> _verifyQRResponse = PublishSubject();
+
+  Stream<Resource<VerifyQrResponse>> get verifyQRStream => _verifyQRResponse.stream;
+
+  void verifyQR({required String requestId}) {
+    _verifyQRRequest.safeAdd(VerifyQRUseCaseParams(requestId: requestId, source: 'L'));
+  }
+
+  ///---------------Verify QR----------------------///
+
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase,
+      this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -190,11 +242,13 @@ class AppHomeViewModel extends BasePageViewModel {
           triggerRequestMoneyPopup();
           // showErrorState();
           initDynamicLink();
+          getCurrentUser();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
         } else if (event.status == Status.SUCCESS) {
           triggerRequestMoneyPopup();
           initDynamicLink();
+          getCurrentUser();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
         }
@@ -233,6 +287,35 @@ class AppHomeViewModel extends BasePageViewModel {
           .listen((event) {
         if (event.status == Status.SUCCESS) {
           _initDynamicLinkRequestResponse.safeAdd(event);
+        }
+      });
+    });
+
+    _currentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _getCurrentUserUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        _currentUserResponseSubject.add(event);
+      });
+    });
+
+    _saveCurrentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserDataUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        updateLoader();
+        _saveCurrentUserResponseSubject.add(event);
+      });
+    });
+
+    _verifyQRRequest.listen((value) {
+      RequestManager(value, createCall: () => _verifyQRUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyQRResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });

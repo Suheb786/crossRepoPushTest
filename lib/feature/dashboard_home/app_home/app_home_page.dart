@@ -68,25 +68,9 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
     // });
     DynamicLinksService().initDynamicLinkRequestStream.listen((event) {
       if (event != null ? event.queryParameters.isNotEmpty : false) {
-        var accountTitle = event.queryParameters['accountTitle'];
-        var accountNo = event.queryParameters['accountNo'];
-        var requestAmt = event.queryParameters['requestAmt'];
-        var dateTime = event.queryParameters['dateTime'];
-        if ((accountNo ?? '').isNotEmpty && dateTime != null) {
-          DateTime qrDate = DateTime.parse(dateTime);
-          final currentDate = DateTime.now();
-          final difference = currentDate.difference(qrDate).inMinutes;
-          if (difference >= 30) {
-            getViewModel().showToastWithError(
-                AppError(type: ErrorType.QR_EXPIRED, error: ErrorInfo(message: ''), cause: Exception()));
-          } else {
-            Navigator.pushNamed(appLevelKey.currentContext!, RoutePaths.SendMoneyQrScanning,
-                arguments: SendMoneyQRScanningArguments(
-                    amount: requestAmt ?? '',
-                    accountHolderName: accountTitle ?? '',
-                    accountNo: accountNo ?? ''));
-          }
-        }
+        var requestId = event.queryParameters['requestId'];
+
+        model.verifyQR(requestId: requestId ?? '');
       }
     });
 

@@ -16,7 +16,8 @@ class CreateDynamicLinkUseCase extends BaseUseCase<BaseError, CreateDynamicLinkU
         accountTitle: params.accountTitle,
         accountNo: params.accountNo,
         requestAmt: params.requestAmt,
-        dateTime: params.dateTime);
+        dateTime: params.dateTime,
+        requestId: params.requestId);
   }
 }
 
@@ -25,12 +26,14 @@ class CreateDynamicLinkUseCaseParams extends Params {
   final String accountNo;
   final String requestAmt;
   final String dateTime;
+  final String requestId;
 
   CreateDynamicLinkUseCaseParams(
       {required this.accountTitle,
       required this.accountNo,
       required this.requestAmt,
-      required this.dateTime});
+      required this.dateTime,
+      required this.requestId});
 
   @override
   Either<AppError, bool> verify() {

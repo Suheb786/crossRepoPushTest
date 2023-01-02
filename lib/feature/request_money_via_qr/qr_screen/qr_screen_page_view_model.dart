@@ -39,6 +39,7 @@ class QrScreenPageViewModel extends BasePageViewModel {
         dateTime: DateTime.now().toString(),
         accountNo: arguments.account.accountNo ?? '',
         accountTitle: arguments.account.accountTitle ?? '',
+        requestId: arguments.requestId,
         requestAmt: arguments.requestAmt));
   }
 }

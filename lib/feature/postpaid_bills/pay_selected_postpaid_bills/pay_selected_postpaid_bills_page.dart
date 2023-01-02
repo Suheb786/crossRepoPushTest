@@ -1,8 +1,9 @@
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 
@@ -31,20 +32,14 @@ class PaySelectedBillsPostPaidBillsPageState
   Widget buildView(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return PaySelectedBillsPostPaidBillsPageView(provideBase());
   }
-
-  @override
-  void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
-    model.arguments.noOfSelectedBills.forEach((element) {
-      model.totalAmt.add(element.billAmtDue);
-    });
-    super.onModelReady(model);
-  }
 }
 
 class PaySelectedBillsPostPaidBillsPageArguments {
   final String nosOfBills;
   final double amt;
-  final List<PallAllPostPaidBillsData> noOfSelectedBills;
+  final List<GetPostpaidBillerListModelData> noOfSelectedBills;
+  List<PostPaidBillInquiryData>? postPaidBillInquiryData;
 
-  PaySelectedBillsPostPaidBillsPageArguments(this.nosOfBills, this.amt, this.noOfSelectedBills);
+  PaySelectedBillsPostPaidBillsPageArguments(
+      this.nosOfBills, this.amt, this.noOfSelectedBills, this.postPaidBillInquiryData);
 }
