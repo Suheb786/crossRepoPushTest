@@ -281,14 +281,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPersonalization": MessageLookupByLibrary.simpleMessage("لتخصيص البطاقة"),
         "cardPinChangedDesc":
             MessageLookupByLibrary.simpleMessage("لازم تزور اي صراف ألي عشان تأكًد على تغير الرقم السري"),
-        "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
-            "تم تغيير الرمز السري PIN على بطاقتك بنجاح"),
-        "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
-            "تم فك حظر الرمز السري PIN بنجاح"),
+        "cardPinChangedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تغيير الرمز السري PIN على بطاقتك بنجاح"),
+        "cardPinSucccesFullyUnblocked":
+            MessageLookupByLibrary.simpleMessage("تم فك حظر الرمز السري PIN بنجاح"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
             "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح"),
-        "cardRequiresActivation":
-            MessageLookupByLibrary.simpleMessage("بطاقتك في الطريق."),
+        "cardRequiresActivation": MessageLookupByLibrary.simpleMessage("بطاقتك في الطريق."),
         "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
             "بمجرد استلام بطاقتك، ستتمكن من تفعيلها والاستمتاع بمزاياها."),
         "cardSettingsDisabled":
@@ -325,14 +324,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
         "changeLinkedAccount":
             MessageLookupByLibrary.simpleMessage("تغيير الحساب المرتبط"),
-        "changeLinkedMobileNo":
-            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
-        "changeLinkedMobileNumber":
-            MessageLookupByLibrary.simpleMessage("تغير رقم الموبايل المرتبط"),
-        "changeMobileNoError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeMobileNumber":
-            MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
+        "changeLinkedMobileNo": MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل المرتبط"),
+        "changeLinkedMobileNumber": MessageLookupByLibrary.simpleMessage("تغير رقم الموبايل المرتبط"),
+        "changeMobileNoError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeMobileNumber": MessageLookupByLibrary.simpleMessage("تغيير رقم الموبايل"),
         "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
             "رح يتم تغيير الرقم فقط للاشعارات المتعلقة بالبطاقة. بتقدرى تغيّر الرقم المرتبط بالحساب من خلال إعدادات الحساب."),
         "changeMyNumber": MessageLookupByLibrary.simpleMessage("تغيير رقمي"),
@@ -1011,17 +1007,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidIssuerCountry": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 "),
         "invalidIssuingDate": MessageLookupByLibrary.simpleMessage("اختار تاريخ الإصدار"),
-        "invalidIssuingPlace":
-            MessageLookupByLibrary.simpleMessage("أدخل مكان الإصدار"),
+        "invalidIssuingPlace": MessageLookupByLibrary.simpleMessage("أدخل مكان الإصدار"),
         "invalidJobName": MessageLookupByLibrary.simpleMessage("أدخل الوظيفة"),
-        "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
-            "القيمة لازم تكون أقل من الحد الاقصى للبطاقة "),
-        "invalidLivelinessSCore": MessageLookupByLibrary.simpleMessage(
-            "عفوًا! جودة الصورة غير واضحة. حاول كمان مرة!"),
-        "invalidMainSourceIncome":
-            MessageLookupByLibrary.simpleMessage("أدخل مصدر الدخل"),
-        "invalidMaximumAge": MessageLookupByLibrary.simpleMessage(
-            "المنتج محدد لفئة عمرية معينة."),
+        "invalidLimitValue":
+            MessageLookupByLibrary.simpleMessage("القيمة لازم تكون أقل من الحد الاقصى للبطاقة "),
+        "invalidLivelinessSCore":
+            MessageLookupByLibrary.simpleMessage("عفوًا! جودة الصورة غير واضحة. حاول كمان مرة!"),
+        "invalidMainSourceIncome": MessageLookupByLibrary.simpleMessage("أدخل مصدر الدخل"),
+        "invalidMaximumAge": MessageLookupByLibrary.simpleMessage("المنتج محدد لفئة عمرية معينة."),
         "invalidMessageId":
             MessageLookupByLibrary.simpleMessage("رسالة غير صالحة"),
         "invalidMinimumAge": MessageLookupByLibrary.simpleMessage(
@@ -1162,8 +1155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "liveChat": MessageLookupByLibrary.simpleMessage("محادثة مباشرة"),
         "loanAccountListNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-098)"),
-        "loanNotActive":
-            MessageLookupByLibrary.simpleMessage("حساب القرض غير فعال"),
+        "loanNotActive": MessageLookupByLibrary.simpleMessage("حساب القرض غير فعال"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-137)"),
         "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
@@ -1582,10 +1574,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "دولة الإقامة غير موجودة. اختار دولة أخرى أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "residentCity": MessageLookupByLibrary.simpleMessage("مدينة الإقامة"),
         "residentCountry": MessageLookupByLibrary.simpleMessage("الدولة"),
-        "residentCountryHint":
-            MessageLookupByLibrary.simpleMessage("أدخل الدولة"),
-        "residentCountryRestricted": MessageLookupByLibrary.simpleMessage(
-            "عفواً، المنتج مخصص لدول معينة فقط."),
+        "residentCountryHint": MessageLookupByLibrary.simpleMessage("أدخل الدولة"),
+        "residentCountryRestricted":
+            MessageLookupByLibrary.simpleMessage("عفواً، المنتج مخصص لدول معينة فقط."),
         "residentCountrySmall": MessageLookupByLibrary.simpleMessage("الدولة"),
         "residentInfoNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-012)"),
