@@ -132,7 +132,9 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments?.billName ?? "",
+                                StringUtils.isDirectionRTL(context)
+                                    ? model.arguments?.billNameAr ?? ""
+                                    : model.arguments?.billName ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -295,7 +297,9 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
       ShareInfo.newPostPaidSuccess(
         context,
         refNo: model.arguments?.refNo ?? "",
-        billerName: model.arguments?.billName ?? "",
+        billerName: StringUtils.isDirectionRTL(context)
+            ? model.arguments?.billNameAr ?? ""
+            : model.arguments?.billName ?? "",
         amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,
       ),

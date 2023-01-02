@@ -9,6 +9,8 @@ class BillerListEntity
     extends BaseLayerDataTransformer<BillerListEntity, BillerList> {
   @JsonKey(name: "billerName")
   String? billerName;
+  @JsonKey(name: "billerNameAR")
+  String? billerNameAR;
   @JsonKey(name: "totalAmount")
   String? totalAmount;
   @JsonKey(name: "refNo")
@@ -22,6 +24,7 @@ class BillerListEntity
 
   BillerListEntity(
       {this.billerName,
+      this.billerNameAR,
       this.totalAmount,
       this.refNo,
       this.date,
@@ -37,6 +40,7 @@ class BillerListEntity
   BillerList transform() {
     return BillerList(
       billerName: this.billerName ?? "",
+      billerNameAR: this.billerNameAR ?? "",
       totalAmount: this.totalAmount ?? "0",
       refNo: this.refNo ?? "",
       date: this.date ?? "",

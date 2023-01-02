@@ -104,6 +104,20 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   validateData(BuildContext context) {
     isValidated = false;
+
+    if (billerNameTextController.text != "") {
+      isValidated = true;
+    } else {
+      isValidated = false;
+      return;
+    }
+    if (serviceTypeTextControl.text != "") {
+      isValidated = true;
+    } else {
+      isValidated = false;
+      return;
+    }
+
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       AppConstantsUtils.POST_PAID_FLOW = true;
       AppConstantsUtils.PRE_PAID_FLOW = false;
@@ -202,8 +216,8 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
           type: AppConstantsUtils.POST_PAID_FLOW == true
-              ? AppConstantsUtils.POSTPAID_KEY.toLowerCase()
-              : AppConstantsUtils.PREPAID_KEY.toLowerCase()));
+              ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
+              : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()));
     } else {
       _getBillerLookupResponse.safeAdd(Resource.success(
           data: GetBillerLookUpList(

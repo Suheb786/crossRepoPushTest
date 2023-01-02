@@ -82,8 +82,8 @@ class PayBillDialogViewModel extends BasePageViewModel {
       GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
           type: AppConstantsUtils.POST_PAID_FLOW == true
-              ? AppConstantsUtils.POSTPAID_KEY.toLowerCase()
-              : AppConstantsUtils.PREPAID_KEY.toLowerCase()),
+              ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
+              : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()),
     );
   }
 

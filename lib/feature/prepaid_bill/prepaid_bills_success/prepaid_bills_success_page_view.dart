@@ -129,7 +129,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                                   fontSize: 12.0.t),
                             ),
                             Text(
-                              model.arguments.paidBillContent.paidBill?[0].billName ?? "",
+                              model.getBillerName(context, model.arguments.paidBillContent.paidBill![0]),
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.black,
@@ -299,7 +299,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
       ShareInfo.newPostPaidSuccess(
         context,
         refNo: model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
-        billerName: model.arguments.paidBillContent.paidBill?[0].billName ?? "",
+        billerName: model.getBillerName(context, model.arguments.paidBillContent.paidBill![0]),
         amount:
             '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.IS_NEW_PAYMENT == true ? AppConstantsUtils.NICK_NAME : "",

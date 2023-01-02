@@ -140,7 +140,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.billerList?[index].billerName ?? "",
+                                      model.getBillerName(context, model.arguments.billerList![index]),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,

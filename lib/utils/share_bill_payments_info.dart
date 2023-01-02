@@ -1,6 +1,7 @@
 import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ShareInfo {
   ShareInfo._();
@@ -43,8 +44,8 @@ class ShareInfo {
         var refNoText = "";
 
         if (item != null) {
-          if (item.billerName != null && item.billerName!.isNotEmpty) {
-            billNameText = S.of(context).billName + ": " + item.billerName! + newLine;
+          if (getBillerName(context, item) != null && getBillerName(context, item).isNotEmpty) {
+            billNameText = S.of(context).billName + ": " + getBillerName(context, item) + newLine;
           } else {
             billNameText = "";
           }
@@ -73,4 +74,8 @@ class ShareInfo {
 
     return title + allBillsString;
   }
+}
+
+String getBillerName(BuildContext context, BillerList item) {
+  return StringUtils.isDirectionRTL(context) ? item.billerNameAR ?? "" : item.billerName ?? "";
 }

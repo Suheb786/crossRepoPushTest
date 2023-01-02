@@ -65,10 +65,9 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
               stream: model.getBillerLookupStream,
               initialData: Resource.none(),
               onData: (event) {
-                AppConstantsUtils.billerDetailsCacheList = event.data?.content?.billerDetailsList;
-                model.billerDetailsList = event.data?.content?.billerDetailsList;
-
                 if (event.status == Status.SUCCESS) {
+                  AppConstantsUtils.billerDetailsCacheList = event.data?.content?.billerDetailsList;
+                  model.billerDetailsList = event.data?.content?.billerDetailsList;
                   _showBillerNameDialog(model.billerDetailsList);
                 }
               },
