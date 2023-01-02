@@ -1,3 +1,4 @@
+import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
@@ -28,5 +29,9 @@ final paymentActivityViewModelProvider =
 final paymentActivityTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentActivityTransactionViewModel>(
   (ref) => PaymentActivityTransactionViewModel(
-      ref.read(paymentActivityTransactionUseCaseProvider)),
+    ref.read(paymentActivityTransactionUseCaseProvider),
+    ref.read(requestMoneyActivityUseCaseProvider),
+    ref.read(approveRTPRequestUseCaseProivder),
+    ref.read(requestToPayResultUseCaseProvider),
+  ),
 );

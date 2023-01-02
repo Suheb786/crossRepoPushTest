@@ -6,13 +6,20 @@ part 'request_money_activity_request_entity.g.dart';
 
 @JsonSerializable()
 class RequestMoneyActivityRequestEntity {
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "FilterDays")
+  final int FilterDays;
+  @JsonKey(name: "TransactionType")
+  final String TransactionType;
+  @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseClass;
 
   RequestMoneyActivityRequestEntity(
-      {required this.getToken, required this.baseClass});
+      {required this.FilterDays,
+      required this.TransactionType,
+      required this.getToken,
+      required this.baseClass});
 
   Map<String, dynamic> toJson() =>
       _$RequestMoneyActivityRequestEntityToJson(this);

@@ -33,22 +33,26 @@ import 'package:domain/usecase/manage_cliq/update_rtp_cliq_request_usecase.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CliqIdTypeSelectionUseCase] provider
-final cliqIdTypSelectioneUseCaseProvider = Provider.autoDispose<CliqIdTypeSelectionValidationUseCase>(
+final cliqIdTypSelectioneUseCaseProvider =
+    Provider.autoDispose<CliqIdTypeSelectionValidationUseCase>(
   (ref) => CliqIdTypeSelectionValidationUseCase(),
 );
 
 ///[EnterOtpForCliqIdUseCase] provider
-final enterOtpForCliqIdUseCaseProvider = Provider.autoDispose<EnterOtpForCliqIdValidationUseCase>(
+final enterOtpForCliqIdUseCaseProvider =
+    Provider.autoDispose<EnterOtpForCliqIdValidationUseCase>(
   (ref) => EnterOtpForCliqIdValidationUseCase(),
 );
 
 ///[AddNewMobileNumberCliqUseCase] provider
-final addNewMobileNumberCliqUseCaseProvider = Provider.autoDispose<AddNewMobileNumberCliqUseCase>(
+final addNewMobileNumberCliqUseCaseProvider =
+    Provider.autoDispose<AddNewMobileNumberCliqUseCase>(
   (ref) => AddNewMobileNumberCliqUseCase(),
 );
 
 ///[EnterOtpForMobileNumberCliqUseCaseParams] provider
-final enterOtpForMobileNumberCliqUseCaseProvider = Provider.autoDispose<EnterOtpForMobileNumberCliqUseCase>(
+final enterOtpForMobileNumberCliqUseCaseProvider =
+    Provider.autoDispose<EnterOtpForMobileNumberCliqUseCase>(
   (ref) => EnterOtpForMobileNumberCliqUseCase(),
 );
 
@@ -63,12 +67,14 @@ final deleteCliqIdUseCaseProvider = Provider.autoDispose<DeleteCliqIdUseCase>(
 );
 
 ///[ReActivateCliqIdUseCase] provider
-final reActivateCliqIdUseCaseProvider = Provider.autoDispose<ReActivateCliqIdUseCase>(
+final reActivateCliqIdUseCaseProvider =
+    Provider.autoDispose<ReActivateCliqIdUseCase>(
   (ref) => ReActivateCliqIdUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[GetAccountByCustomerIDUsecase] provider
-final getAccountByCustomerID = Provider.autoDispose<GetAccountByCustomerIDUseCase>(
+final getAccountByCustomerID =
+    Provider.autoDispose<GetAccountByCustomerIDUseCase>(
   (ref) => GetAccountByCustomerIDUseCase(ref.read(cliqRepositoryProvider)),
 );
 
@@ -83,32 +89,38 @@ final getAliasUseCaseProvider = Provider.autoDispose<GetAliasUsecase>(
 );
 
 ///[getCliqAccountByAliasUseCase] provider
-final getCliqAccountByAliasUseCaseProvider = Provider.autoDispose<GetCliqAccountByAliasUseCase>(
+final getCliqAccountByAliasUseCaseProvider =
+    Provider.autoDispose<GetCliqAccountByAliasUseCase>(
   (ref) => GetCliqAccountByAliasUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[ConfirmCreateCliqIdUseCase] provider
-final confirmCreateCliqIdUseCaseProvider = Provider.autoDispose<ConfirmCreateCliqIdUseCase>(
+final confirmCreateCliqIdUseCaseProvider =
+    Provider.autoDispose<ConfirmCreateCliqIdUseCase>(
   (ref) => ConfirmCreateCliqIdUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[addLinkAccountUseCase] provider
-final addLinkAccountUseCaseProvider = Provider.autoDispose<AddLInkAccountUseCase>(
+final addLinkAccountUseCaseProvider =
+    Provider.autoDispose<AddLInkAccountUseCase>(
   (ref) => AddLInkAccountUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[ChangeDefaultAccountOtpUsecase] provider
-final changeDefaultAccountOtp = Provider.autoDispose<ChangeDefaultAccountOtpUseCase>(
+final changeDefaultAccountOtp =
+    Provider.autoDispose<ChangeDefaultAccountOtpUseCase>(
   (ref) => ChangeDefaultAccountOtpUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[confirmChangeDefaultAccountUseCase] provider
-final confirmChangeDefaultAccountUseCaseProvider = Provider.autoDispose<ConfirmChangeDefaultAccountUseCase>(
+final confirmChangeDefaultAccountUseCaseProvider =
+    Provider.autoDispose<ConfirmChangeDefaultAccountUseCase>(
   (ref) => ConfirmChangeDefaultAccountUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[UnLinkAccountFromCliqUseCase] provider
-final unLinkAccountFromCliqUseCaseProvider = Provider.autoDispose<UnlinkAccountFromCliqUseCase>(
+final unLinkAccountFromCliqUseCaseProvider =
+    Provider.autoDispose<UnlinkAccountFromCliqUseCase>(
   (ref) => UnlinkAccountFromCliqUseCase(ref.read(cliqRepositoryProvider)),
 );
 
@@ -117,28 +129,33 @@ final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
   (ref) => RequestMoneyUseCase(ref.read(cliqRepositoryProvider)),
 );
 
-///[RequestToPayResultUsecase] provider
-final requestToPayResult = Provider.autoDispose<RequestToPayResultUseCase>(
+//[RequestToPayResultUsecase] provider
+final requestToPayResultUseCaseProvider =
+    Provider.autoDispose<RequestToPayResultUseCase>(
   (ref) => RequestToPayResultUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[RequestMoneyActivityUseCase] provider
-final requestMoneyActivityUseCaseProvider = Provider.autoDispose<RequestMoneyActivityUseCase>(
+final requestMoneyActivityUseCaseProvider =
+    Provider.autoDispose<RequestMoneyActivityUseCase>(
   (ref) => RequestMoneyActivityUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[UpdateRtpCliqRequestUsecase] provider
-final updateRtpCliqRequestUsecaseProvider = Provider.autoDispose<UpdateRtpCliqRequestUsecase>(
+final updateRtpCliqRequestUsecaseProvider =
+    Provider.autoDispose<UpdateRtpCliqRequestUsecase>(
   (ref) => UpdateRtpCliqRequestUsecase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[SendQrCliqPaymentUsecase] provider
-final sendQrCliqPaymentUsecaseProvider = Provider.autoDispose<SendQrCliqPaymentUsecase>(
+final sendQrCliqPaymentUsecaseProvider =
+    Provider.autoDispose<SendQrCliqPaymentUsecase>(
   (ref) => SendQrCliqPaymentUsecase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[ApproveRTPRequestUseCase] provider
-final approveRTPRequest = Provider.autoDispose<ApproveRTPRequestUseCase>(
+final approveRTPRequestUseCaseProivder =
+    Provider.autoDispose<ApproveRTPRequestUseCase>(
   (ref) => ApproveRTPRequestUseCase(ref.read(cliqRepositoryProvider)),
 );
 
@@ -148,7 +165,8 @@ final submitOutwardPayment = Provider.autoDispose<SubmitOutwardPaymentUseCase>(
 );
 
 ///[SendMoneyToCliqIbnUsecase] provider
-final sendMoneyToCliqIbnUsecaseProvider = Provider.autoDispose<SendMoneyToCliqIbnUsecase>(
+final sendMoneyToCliqIbnUsecaseProvider =
+    Provider.autoDispose<SendMoneyToCliqIbnUsecase>(
   (ref) => SendMoneyToCliqIbnUsecase(ref.read(cliqRepositoryProvider)),
 );
 
@@ -163,7 +181,8 @@ final getCustomerByAccount = Provider.autoDispose<GetCustomerByAccountUseCase>(
 );
 
 ///[CreateCliqIdUseCase] provider
-final createCliqIdOtpUseCaseProvider = Provider.autoDispose<CreateCliqIdOtpUseCase>(
+final createCliqIdOtpUseCaseProvider =
+    Provider.autoDispose<CreateCliqIdOtpUseCase>(
   (ref) => CreateCliqIdOtpUseCase(ref.read(cliqRepositoryProvider)),
 );
 
@@ -173,7 +192,8 @@ final linkBankAccountCliqIdValidationUseCaseProvider =
   (ref) => LinkBankAccountCliqIdValidationUseCase(),
 );
 
-final editAliasValidationUseCaseProvider = Provider.autoDispose<EditAliasValidationUseCase>(
+final editAliasValidationUseCaseProvider =
+    Provider.autoDispose<EditAliasValidationUseCase>(
   (ref) => EditAliasValidationUseCase(),
 );
 
@@ -181,6 +201,7 @@ final editCliqOtpUseCaseProvider = Provider.autoDispose<EditCliqOtpUseCase>(
   (ref) => EditCliqOtpUseCase(ref.read(cliqRepositoryProvider)),
 );
 
-final editCliqMobileNoValidationUseCaseProvider = Provider.autoDispose<EditCliqMobileNoValidationUseCase>(
+final editCliqMobileNoValidationUseCaseProvider =
+    Provider.autoDispose<EditCliqMobileNoValidationUseCase>(
   (ref) => EditCliqMobileNoValidationUseCase(),
 );

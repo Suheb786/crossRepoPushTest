@@ -893,7 +893,7 @@ abstract class ApiService {
   );
 
   @POST("/Cliq/RequestMoneyActivity")
-  Future<HttpResponse<RequestMoneyActivityResponseEntity>> requestMoneyActivity(
+  Future<HttpResponse<PaymentActivityResponseEntity>> requestMoneyActivity(
     @Body() RequestMoneyActivityRequestEntity request,
   );
 

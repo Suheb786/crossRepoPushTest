@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8101,10 +8100,10 @@ class S {
     );
   }
 
-  /// `\nfrom`
+  /// ` from `
   String get from {
     return Intl.message(
-      '\nfrom',
+      ' from ',
       name: 'from',
       desc: '',
       args: [],
@@ -15101,6 +15100,376 @@ class S {
     );
   }
 
+  /// ` requested `
+  String get requested {
+    return Intl.message(
+      ' requested ',
+      name: 'requested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you`
+  String get you {
+    return Intl.message(
+      'you',
+      name: 'you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message(
+      'Reject',
+      name: 'reject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is Requesting`
+  String get isRequesting {
+    return Intl.message(
+      ' is Requesting',
+      name: 'isRequesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from you. Would you like to accept?`
+  String get fromYouWouldYouLikeToAcceptIt {
+    return Intl.message(
+      ' from you. Would you like to accept?',
+      name: 'fromYouWouldYouLikeToAcceptIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` as per his request. Confirm this action?`
+  String get asperhisrequestconfirmthisaction {
+    return Intl.message(
+      ' as per his request. Confirm this action?',
+      name: 'asperhisrequestconfirmthisaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to send `
+  String get youareabouttosend {
+    return Intl.message(
+      'You are about to send ',
+      name: 'youareabouttosend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept Request`
+  String get acceptRequest {
+    return Intl.message(
+      'Accept Request',
+      name: 'acceptRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject Request`
+  String get rejectRequest {
+    return Intl.message(
+      'Reject Request',
+      name: 'rejectRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to reject `
+  String get youareabouttoreject {
+    return Intl.message(
+      'You are about to reject ',
+      name: 'youareabouttoreject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Request Form `
+  String get requestFrom {
+    return Intl.message(
+      ' Request Form ',
+      name: 'requestFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` to `
+  String get towithspace {
+    return Intl.message(
+      ' to ',
+      name: 'towithspace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting alias`
+  String get errorWhileGettingAlias {
+    return Intl.message(
+      'Error while getting alias',
+      name: 'errorWhileGettingAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting account by alias`
+  String get errorWhileGettingAccountByAlias {
+    return Intl.message(
+      'Error while getting account by alias',
+      name: 'errorWhileGettingAccountByAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while creating an alias`
+  String get errorWhileCreatingAnAlias {
+    return Intl.message(
+      'Error while creating an alias',
+      name: 'errorWhileCreatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking account`
+  String get errorWhileLinkingAccount {
+    return Intl.message(
+      'Error while linking account',
+      name: 'errorWhileLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while editing an alias`
+  String get errorWhileEditingAnAlias {
+    return Intl.message(
+      'Error while editing an alias',
+      name: 'errorWhileEditingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while trying to suspend an alias`
+  String get errorWhileTryingTosuspandAnAlias {
+    return Intl.message(
+      'Error while trying to suspend an alias',
+      name: 'errorWhileTryingTosuspandAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while re-activating an alias`
+  String get errorWhileReActivatingAnAlias {
+    return Intl.message(
+      'Error while re-activating an alias',
+      name: 'errorWhileReActivatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while deleting an alias`
+  String get errorWhileDeletingAnAlias {
+    return Intl.message(
+      'Error while deleting an alias',
+      name: 'errorWhileDeletingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while changing to default account`
+  String get errorWhileChangingToDefaultAccount {
+    return Intl.message(
+      'Error while changing to default account',
+      name: 'errorWhileChangingToDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while un-linking account`
+  String get errorWhileUnLinkingAccount {
+    return Intl.message(
+      'Error while un-linking account',
+      name: 'errorWhileUnLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money`
+  String get errorWhileRequestingMoney {
+    return Intl.message(
+      'Error while requesting money',
+      name: 'errorWhileRequestingMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money activity`
+  String get errorWhileRequestingMoneyActivity {
+    return Intl.message(
+      'Error while requesting money activity',
+      name: 'errorWhileRequestingMoneyActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating RTP request`
+  String get errorWhileUpdatingRTPRequest {
+    return Intl.message(
+      'Error while updating RTP request',
+      name: 'errorWhileUpdatingRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while sending money to cliq iban`
+  String get errorWhileSendingMoneyToCliqIBAN {
+    return Intl.message(
+      'Error while sending money to cliq iban',
+      name: 'errorWhileSendingMoneyToCliqIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Getting Account By Customer ID`
+  String get errorWhileGettingAccountByCustomerID {
+    return Intl.message(
+      'Error while Getting Account By Customer ID',
+      name: 'errorWhileGettingAccountByCustomerID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Submitting Outward Payment`
+  String get errorWhileSubmmitingOutwardPayment {
+    return Intl.message(
+      'Error while Submitting Outward Payment',
+      name: 'errorWhileSubmmitingOutwardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Approve RTP Request`
+  String get errorOnApproveRTPRequest {
+    return Intl.message(
+      'Error on Approve RTP Request',
+      name: 'errorOnApproveRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is linked to the alias, but unable to set it to default`
+  String get AccountIsLinkedToTheAlias {
+    return Intl.message(
+      'Account is linked to the alias, but unable to set it to default',
+      name: 'AccountIsLinkedToTheAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Request To Pay Result`
+  String get ErrorOnRequestToPayResult {
+    return Intl.message(
+      'Error on Request To Pay Result',
+      name: 'ErrorOnRequestToPayResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer of invalid Alias`
+  String get CustomerOfInvalidAlias {
+    return Intl.message(
+      'Customer of invalid Alias',
+      name: 'CustomerOfInvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Iban`
+  String get invalidIBAN {
+    return Intl.message(
+      'Invalid Iban',
+      name: 'invalidIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias`
+  String get InvalidAlias {
+    return Intl.message(
+      'Invalid Alias',
+      name: 'InvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Mobile Number`
+  String get InvalidMobileNo {
+    return Intl.message(
+      'Invalid Mobile Number',
+      name: 'InvalidMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is not available`
+  String get serviceIsNotavaliable {
+    return Intl.message(
+      'Service is not available',
+      name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Link Account`
   String get linkAccount {
     return Intl.message(
@@ -15226,6 +15595,16 @@ class S {
     return Intl.message(
       'Alias mobile hint: ',
       name: 'aliasMobileHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are currently no requests to display`
+  String get noRTPActivityToDisplay {
+    return Intl.message(
+      'There are currently no requests to display',
+      name: 'noRTPActivityToDisplay',
       desc: '',
       args: [],
     );

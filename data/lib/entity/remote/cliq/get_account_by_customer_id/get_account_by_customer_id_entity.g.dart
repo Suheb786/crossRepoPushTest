@@ -6,7 +6,8 @@ part of 'get_account_by_customer_id_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAccountByCustomerIdEntity _$GetAccountByCustomerIdEntityFromJson(Map<String, dynamic> json) {
+GetAccountByCustomerIdEntity _$GetAccountByCustomerIdEntityFromJson(
+    Map<String, dynamic> json) {
   return GetAccountByCustomerIdEntity(
     recordId: json['recordId'] as String? ?? '',
     acciban: json['acciban'] as String? ?? '',
@@ -20,7 +21,8 @@ GetAccountByCustomerIdEntity _$GetAccountByCustomerIdEntityFromJson(Map<String, 
   );
 }
 
-Map<String, dynamic> _$GetAccountByCustomerIdEntityToJson(GetAccountByCustomerIdEntity instance) =>
+Map<String, dynamic> _$GetAccountByCustomerIdEntityToJson(
+        GetAccountByCustomerIdEntity instance) =>
     <String, dynamic>{
       'recordId': instance.recordId,
       'acciban': instance.acciban,
