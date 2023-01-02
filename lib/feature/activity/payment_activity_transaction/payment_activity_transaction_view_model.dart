@@ -111,7 +111,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       });
     });
     getRequestMoneyActivity(true, 30, "All");
-    // getPaymentActivity(30);
   }
 
   @override
@@ -208,14 +207,21 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: filterDays));
   }
 
+  int filterDays = 30;
+
+  String transactionType = 'All';
+
   void updateTransactionType(String value) {
     _transactionTypeResponse.safeAdd(value);
+    transactionType = getTransactionType(value);
+
+    getRequestMoneyActivity(true, filterDays, transactionType);
   }
 
   void updatePaymentPeriod(String value) {
     _paymentPeriodResponse.safeAdd(value);
-    getRequestMoneyActivity(true, getFilterDays(value), 'I');
-    // getPaymentActivity(getFilterDays(value));
+    filterDays = getFilterDays(value);
+    getRequestMoneyActivity(true, filterDays, transactionType);
   }
 
   int getFilterDays(String value) {
@@ -234,6 +240,25 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         return 180;
       default:
         return 180;
+    }
+  }
+
+  String getTransactionType(String value) {
+    switch (value) {
+      case "All Transactions":
+        return 'All';
+      case "From Me":
+        return 'O';
+      case "From Others":
+        return 'I';
+      case "كل الحركات":
+        return 'All';
+      case "لي":
+        return 'O';
+      case "من الآخرين":
+        return 'I';
+      default:
+        return 'All';
     }
   }
 }

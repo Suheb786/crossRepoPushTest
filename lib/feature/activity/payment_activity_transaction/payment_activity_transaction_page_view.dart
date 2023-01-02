@@ -76,33 +76,51 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: AppColor.whiteGray,
-                                    ),
-                                    padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          S.of(context).fromMe,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.0.t,
-                                              color: AppColor.gray,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                            start: 12.0.w,
+                                  AppStreamBuilder<String>(
+                                      stream: model.transactionTypeResponseStream,
+                                      initialData: StringUtils.isDirectionRTL(context)
+                                          ? "كل الحركات"
+                                          : 'All Transactions',
+                                      dataBuilder: (context, transactionType) {
+                                        return InkWell(
+                                          onTap: () {
+                                            PaymentActivityFilterDialog.show(context, type: FilterType.type,
+                                                onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.updateTransactionType(value);
+                                            }, onDismissed: () {
+                                              Navigator.pop(context);
+                                            });
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(16),
+                                              color: AppColor.whiteGray,
+                                            ),
+                                            padding:
+                                                EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  transactionType!,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 12.0.t,
+                                                      fontWeight: FontWeight.w600),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional.only(
+                                                    start: 12.0.w,
+                                                  ),
+                                                  child: AppSvg.asset(
+                                                    AssetUtils.dropDown,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                          child: AppSvg.asset(
-                                            AssetUtils.dropDown,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                        );
+                                      }),
                                   AppStreamBuilder<String>(
                                       stream: model.paymentPeriodResponseStream,
                                       initialData:

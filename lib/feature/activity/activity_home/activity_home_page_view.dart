@@ -38,7 +38,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        if (currentStep == 1 && (paymentActivity?.data ?? []).length >= 2) {
+                        if (currentStep == 1 && (paymentActivity?.data ?? []).length > 4) {
                           Navigator.push(context, CustomRoute.createRoute(PaymentActivityTransactionPage()));
                         }
                       } else {
