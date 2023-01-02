@@ -2,6 +2,7 @@ class GetPrepaidBillerListModelData {
   String? billingNumber;
   String? billerCode;
   String? billerName;
+  String? billerNameAR;
   String? nickname;
   String? registrationId;
   String? prepaidCategoryDescription;
@@ -9,6 +10,7 @@ class GetPrepaidBillerListModelData {
   String? customerType;
   String? joebppsNo;
   String? serviceType;
+  String? serviceTypeAR;
   String? serviceCode;
   String? iconCode;
   String? rimNo;
@@ -19,6 +21,7 @@ class GetPrepaidBillerListModelData {
       {this.billingNumber,
       this.billerCode,
       this.billerName,
+      this.billerNameAR,
       this.nickname,
       this.registrationId,
       this.rimNo,
@@ -27,6 +30,7 @@ class GetPrepaidBillerListModelData {
       this.customerType,
       this.joebppsNo,
       this.serviceType,
+      this.serviceTypeAR,
       this.serviceCode,
       this.iconCode,
       this.serviceDescriptionEn, //this is not coming from api

@@ -55,11 +55,12 @@ class AppConstantsUtils {
   static List<GetBillCategoriesList>? billCategoriesCacheList = [];
 
   ///billerDetailsList
-  static List<BillerDetailsList>? billerDetailsCacheList = [];
+  static Map<String, List<BillerDetailsList>?> billerDetailsCacheList =
+      Map<String, List<BillerDetailsList>?>();
 
   /// reset lists
   static void resetCacheLists() {
     billCategoriesCacheList = [];
-    billerDetailsCacheList = [];
+    billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
   }
 }

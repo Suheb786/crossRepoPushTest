@@ -104,6 +104,20 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   validateData(BuildContext context) {
     isValidated = false;
+
+    if (billerNameTextController.text != "") {
+      isValidated = true;
+    } else {
+      isValidated = false;
+      return;
+    }
+    if (serviceTypeTextControl.text != "") {
+      isValidated = true;
+    } else {
+      isValidated = false;
+      return;
+    }
+
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       AppConstantsUtils.POST_PAID_FLOW = true;
       AppConstantsUtils.PRE_PAID_FLOW = false;
@@ -197,10 +211,13 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
-    billerDetailsList = AppConstantsUtils.billerDetailsCacheList;
+    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY];
     if (billerDetailsList == null || billerDetailsList!.isEmpty) {
-      _getBillerLookupRequest
-          .safeAdd(GetBillerLookupUseCaseParams(categoryName: AppConstantsUtils.BILLER_CATEGORY));
+      _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
+          categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          type: AppConstantsUtils.POST_PAID_FLOW == true
+              ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
+              : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()));
     } else {
       _getBillerLookupResponse.safeAdd(Resource.success(
           data: GetBillerLookUpList(

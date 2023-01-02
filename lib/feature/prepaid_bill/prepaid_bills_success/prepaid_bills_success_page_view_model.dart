@@ -1,10 +1,14 @@
+import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
@@ -31,6 +35,8 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
   PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest = PublishSubject();
 
   void addNewPrepaidBiller() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("add_new_pre_paid_biller", {"add_new_pre_paid_biller_call": true});
     _addNewPrepaidBillerRequest.safeAdd(
       AddNewPrepaidBillerUseCaseParams(
           prepaidCategoryType: AppConstantsUtils.PREPAID_CATEGORY_TYPE,
@@ -57,5 +63,9 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
         });
       },
     );
+  }
+
+  String getBillerName(BuildContext context, PaidBill paidBill) {
+    return StringUtils.isDirectionRTL(context) ? paidBill.billerNameAR ?? "" : paidBill.billName ?? "";
   }
 }

@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -55,11 +56,13 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         payPostPaidBillsDataList[index].isChecked = false;
         totalBillAmt =
             totalBillAmt - double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
-        selectedPostPaidBillsList
-            .removeWhere((element) => element.billingNo == payPostPaidBillsDataList[index].billingNo);
+        selectedPostPaidBillsList.removeWhere((element) =>
+            element.billingNo == payPostPaidBillsDataList[index].billingNo &&
+            element.serviceType == payPostPaidBillsDataList[index].serviceType);
 
         // postPaidRequestListJson.removeWhere((element) =>
         //     element.billingNumber == payPostPaidBillsDataList[index].billingNo &&
+        //     element.serviceType == payPostPaidBillsDataList[index].serviceType &&
         //     (double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0") <= 0.0));
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
@@ -184,6 +187,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   int selectedIndex = -1;
 
   void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("post_paid_saved_bill_enquiry", {"post_paid_saved_bill_enquiry_call": true});
     _postPaidBillEnquiryRequest
         .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postpaidBillInquiry));
   }
@@ -219,7 +224,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
         GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
         debugPrint("item.billingNo: ${item.billingNo}");
-        if (item.billingNo == inquiryElement.billingNo) {
+        if (item.billingNo == inquiryElement.billingNo && item.serviceType == inquiryElement.serviceType) {
           if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
             payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
           }
@@ -248,15 +253,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             .listen((event) {
           updateLoader();
           _removeCustomerBillingResponse.safeAdd(event);
-          if (event.status == Status.ERROR) {
-            showErrorState();
-            showToastWithError(event.appError!);
-          } else if (event.status == Status.SUCCESS) {
-            if (event.data == true) {
-              showSuccessToast('Your bill has been removed.');
-              Future.delayed(Duration(milliseconds: 200)).then((value) => getPostpaidBiller());
-            }
-          }
         });
       },
     );

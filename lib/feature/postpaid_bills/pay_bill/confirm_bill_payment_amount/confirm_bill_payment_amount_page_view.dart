@@ -72,6 +72,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           arguments: PaidBillsSuccessPageArguments(
                             data.data?.content?.billerList?[0].totalAmount ?? "0.0",
                             data.data?.content?.billerList?[0].billerName ?? "",
+                            data.data?.content?.billerList?[0].billerNameAR ?? "",
                             AppConstantsUtils.NICK_NAME,
                             data.data?.content?.billerList?[0].refNo ?? "",
                             data.data?.content?.billerList?[0].isPaid ?? false,

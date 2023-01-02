@@ -3,6 +3,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
@@ -30,6 +31,8 @@ class PaidBillsSuccessPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get addNewPostpaidStream => _addNewPostpaidBillerResponce.stream;
 
   void addNewPostpaidBiller() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("add_new_post_paid_biller", {"add_new_post_paid_biller_call": true});
     _addNewPostpaidBillerRequest.safeAdd(
       AddNewPostpaidBillerUseCaseParams(
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,

@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -27,6 +28,8 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
         initialData: Resource.none(),
         onData: (event) {
           if (event.status == Status.SUCCESS) {
+            ///LOG EVENT TO FIREBASE
+            FireBaseLogUtil.fireBaseLog("saved_new_post_paid_biller", {"saved_new_post_paid_biller": true});
             model.showSuccessToast(S.of(context).billerAddedSuccessfully);
           } else if (event.status == Status.ERROR) {
             model.showToastWithError(event.appError!);
@@ -132,7 +135,9 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments?.billName ?? "",
+                                StringUtils.isDirectionRTL(context)
+                                    ? model.arguments?.billNameAr ?? ""
+                                    : model.arguments?.billName ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -295,7 +300,9 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
       ShareInfo.newPostPaidSuccess(
         context,
         refNo: model.arguments?.refNo ?? "",
-        billerName: model.arguments?.billName ?? "",
+        billerName: StringUtils.isDirectionRTL(context)
+            ? model.arguments?.billNameAr ?? ""
+            : model.arguments?.billName ?? "",
         amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,
       ),

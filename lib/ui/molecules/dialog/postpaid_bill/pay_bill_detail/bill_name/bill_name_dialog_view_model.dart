@@ -27,9 +27,11 @@ class PayBillDialogViewModel extends BasePageViewModel {
   }
 
   PublishSubject<List<BillerDetailsList>> _searchBillNameSubject = PublishSubject();
+
   Stream<List<BillerDetailsList>> get searchBillNameStream => _searchBillNameSubject.stream;
 
   List<BillerDetailsList> searchList = [];
+
   void searchBillName(String searchText) {
     searchList.clear();
     if (searchText.isNotEmpty) {
@@ -60,7 +62,7 @@ class PayBillDialogViewModel extends BasePageViewModel {
           _getBillerLookupResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
-          }else if(event.status == Status.SUCCESS){
+          } else if (event.status == Status.SUCCESS) {
             billerDetailsList = event.data!.content!.billerDetailsList!;
           }
         });
@@ -69,18 +71,19 @@ class PayBillDialogViewModel extends BasePageViewModel {
     // billerList();
   }
 
-  PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest =
-  PublishSubject();
+  PublishSubject<GetBillerLookupUseCaseParams> _getBillerLookupRequest = PublishSubject();
 
-  PublishSubject<Resource<GetBillerLookUpList>> _getBillerLookupResponse =
-  PublishSubject();
+  PublishSubject<Resource<GetBillerLookUpList>> _getBillerLookupResponse = PublishSubject();
 
-  Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream =>
-      _getBillerLookupResponse.stream;
+  Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
     _getBillerLookupRequest.safeAdd(
-      GetBillerLookupUseCaseParams(categoryName: AppConstantsUtils.BILLER_CATEGORY),
+      GetBillerLookupUseCaseParams(
+          categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          type: AppConstantsUtils.POST_PAID_FLOW == true
+              ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
+              : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()),
     );
   }
 

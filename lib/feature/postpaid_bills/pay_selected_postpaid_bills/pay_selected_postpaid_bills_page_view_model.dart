@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
@@ -64,7 +66,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
-  void payPostPaidBill() {
+  void payPostPaidBill(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("pay_post_paid_saved_bill", {"pay_post_paid_saved_bill_call": true});
     tempPostpaidBillInquiryRequestList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
@@ -73,7 +77,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
             billingNumber: /*"121344"*/ item.billingNo,
-            billerName: arguments.noOfSelectedBills[i].billerNameEN,
+            billerName: StringUtils.isDirectionRTL(context)
+                ? arguments.noOfSelectedBills[i].billerNameEN
+                : arguments.noOfSelectedBills[i].billerNameAR,
             serviceType: item.serviceType,
             amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
             fees: item.feesAmt ?? "0.0"));
@@ -92,13 +98,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             cardType == AppConstants.KEY_CREDIT
             ? true
             : */
-            false,
+        false,
         CardId: /*cardType != null &&
             cardType.isNotEmpty &&
             cardType == AppConstants.KEY_CREDIT
             ? cardID
             :*/
-            "",
+        "",
         otpCode: ""));
   }
 
@@ -112,6 +118,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
           updateLoader();
           _payPostPaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
+            FireBaseLogUtil.fireBaseLog(
+                "pay_post_paid_saved_bill_fail", {"pay_post_paid_saved_bill_fail": true});
             showToastWithError(event.appError!);
           }
         });
@@ -129,20 +137,25 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
-  getValidBillerIcon(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
+  getValidBillerIcon(String? billingNumber, String? serviceType) {
+    for (var item in arguments.noOfSelectedBills)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) return item.iconCode;
   }
 
-  getValidBillerNameEN(String? billingNumber) {
+  getValidBillerNameEN(String? billingNumber, String? serviceType, BuildContext context) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
-        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : "";
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) {
+        if (StringUtils.isDirectionRTL(context)) {
+          return item.billerNameAR != null && item.billerNameAR!.isNotEmpty ? item.billerNameAR : "";
+        } else
+          return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : "";
+      }
     }
   }
 
-  getValidBillerNickName(String? billingNumber) {
+  getValidBillerNickName(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills) {
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.nickName != null && item.nickName!.isNotEmpty ? item.nickName : "";
     }
   }
@@ -156,17 +169,17 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             : null;
   }*/
 
-  getValidBillerDueAmount(String? billingNumber) {
+  getValidBillerDueAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.dueAmount != null && item.dueAmount!.isNotEmpty
             ? double.parse(item.dueAmount ?? "0").toStringAsFixed(3)
             : "0.0";
   }
 
-  getValidBillerBillingNumber(String? billingNumber) {
+  getValidBillerBillingNumber(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.billingNo != null && item.billingNo!.isNotEmpty ? item.billingNo : "";
   }
 
@@ -176,7 +189,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    print("aslkdslakd: ${isTotalAmountZero}");
     if (isTotalAmountZero == false) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);

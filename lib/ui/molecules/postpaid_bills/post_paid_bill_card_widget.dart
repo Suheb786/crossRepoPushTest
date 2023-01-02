@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -88,8 +89,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                         SizedBox(
                           height: 8.h,
                         ),
-                        Text(
-                            S.of(context).howWouldLikeToPayYourBills,
+                        Text(S.of(context).howWouldLikeToPayPostPaidYourBills,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
@@ -102,7 +102,10 @@ class PostPaidBillCardWidget extends StatelessWidget {
                         Spacer(),
                         InkWell(
                           onTap: () {
-                            //
+                            ///LOG EVENT TO FIREBASE
+                            FireBaseLogUtil.fireBaseLog(
+                                "view_my_post_paid_bills", {"view_my_post_paid_bills_clicked": true});
+
                             AppConstantsUtils.IS_NEW_PAYMENT = false;
                             Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage,
                                 arguments: PayAllPostPaidBillsPageArguments(
@@ -130,7 +133,10 @@ class PostPaidBillCardWidget extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            //
+                            ///LOG EVENT TO FIREBASE
+                            FireBaseLogUtil.fireBaseLog(
+                                "pay_all_post_paid_bills", {"pay_all_post_paid_bills_clicked": true});
+
                             AppConstantsUtils.IS_NEW_PAYMENT = false;
                             Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage,
                                 arguments: PayAllPostPaidBillsPageArguments(

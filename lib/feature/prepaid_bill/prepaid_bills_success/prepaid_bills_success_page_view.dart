@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -27,6 +28,8 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
       initialData: Resource.none(),
       onData: (event) {
         if (event.status == Status.SUCCESS) {
+          ///LOG EVENT TO FIREBASE
+          FireBaseLogUtil.fireBaseLog("saved_new_pre_paid_biller", {"saved_new_pre_paid_biller": true});
           model.showSuccessToast(S.of(context).billerAddedSuccessfully);
         } else if (event.status == Status.ERROR) {
           model.showToastWithError(event.appError!);
@@ -129,7 +132,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                                   fontSize: 12.0.t),
                             ),
                             Text(
-                              model.arguments.paidBillContent.paidBill?[0].billName ?? "",
+                              model.getBillerName(context, model.arguments.paidBillContent.paidBill![0]),
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.black,
@@ -299,7 +302,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
       ShareInfo.newPostPaidSuccess(
         context,
         refNo: model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
-        billerName: model.arguments.paidBillContent.paidBill?[0].billName ?? "",
+        billerName: model.getBillerName(context, model.arguments.paidBillContent.paidBill![0]),
         amount:
             '${double.parse(model.arguments.paidBillContent.paidBill?[0].totalAmount ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.IS_NEW_PAYMENT == true ? AppConstantsUtils.NICK_NAME : "",

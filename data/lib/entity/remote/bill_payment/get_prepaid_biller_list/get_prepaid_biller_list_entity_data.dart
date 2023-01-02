@@ -5,13 +5,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_prepaid_biller_list_entity_data.g.dart';
 
 @JsonSerializable()
-class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
-    GetPrepaidBillerListEntityData, GetPrepaidBillerListModelData> {
+class GetPrepaidBillerListEntityData
+    extends BaseLayerDataTransformer<GetPrepaidBillerListEntityData, GetPrepaidBillerListModelData> {
   @JsonKey(name: "billingNo")
   final String? billingNumber;
 
   @JsonKey(name: "billerCode")
   final String? billerCode;
+
+  @JsonKey(name: "billerNameAR")
+  final String? billerNameAR;
 
   @JsonKey(name: "billerName")
   final String? billerName;
@@ -37,6 +40,9 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
   @JsonKey(name: "serviceType")
   final String? serviceType;
 
+  @JsonKey(name: "serviceTypeAR")
+  final String? serviceTypeAR;
+
   @JsonKey(name: "serviceCode")
   final String? serviceCode;
 
@@ -50,6 +56,7 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
       {this.billingNumber,
       this.billerCode,
       this.billerName,
+      this.billerNameAR,
       this.nickname,
       this.registrationId,
       this.prepaidCategoryDescription,
@@ -57,6 +64,7 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
       this.customerType,
       this.joebppsNo,
       this.serviceType,
+      this.serviceTypeAR,
       this.serviceCode,
       this.iconCode,
       this.rimNo});
@@ -76,14 +84,16 @@ class GetPrepaidBillerListEntityData extends BaseLayerDataTransformer<
     return GetPrepaidBillerListModelData(
         billingNumber: this.billingNumber,
         billerCode: this.billerCode,
-        billerName: this.billerName,
+        billerName: this.billerName ?? "",
+        billerNameAR: this.billerNameAR ?? "",
         nickname: this.nickname,
         registrationId: this.registrationId,
         prepaidCategoryDescription: this.prepaidCategoryDescription,
         prepaidCategoryCode: this.prepaidCategoryCode,
         customerType: this.customerType,
         joebppsNo: this.joebppsNo,
-        serviceType: this.serviceType,
+        serviceType: this.serviceType ?? "",
+        serviceTypeAR: this.serviceTypeAR ?? "",
         serviceCode: this.serviceCode,
         iconCode: this.iconCode?.toString() ?? "",
         rimNo: this.rimNo);

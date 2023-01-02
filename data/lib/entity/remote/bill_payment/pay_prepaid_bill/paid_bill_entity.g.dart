@@ -9,6 +9,7 @@ part of 'paid_bill_entity.dart';
 PaidBillEntity _$PaidBillEntityFromJson(Map<String, dynamic> json) {
   return PaidBillEntity(
     billName: json['billerName'] as String?,
+    billerNameAR: json['billerNameAR'] as String?,
     totalAmount: json['totalAmount'] as String?,
     refNo: json['refNo'] as String?,
     date: json['date'] as String?,
@@ -20,6 +21,7 @@ PaidBillEntity _$PaidBillEntityFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PaidBillEntityToJson(PaidBillEntity instance) =>
     <String, dynamic>{
       'billerName': instance.billName,
+      'billerNameAR': instance.billerNameAR,
       'totalAmount': instance.totalAmount,
       'refNo': instance.refNo,
       'date': instance.date,

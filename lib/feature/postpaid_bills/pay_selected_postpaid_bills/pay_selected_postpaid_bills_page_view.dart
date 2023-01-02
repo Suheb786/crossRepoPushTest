@@ -129,15 +129,21 @@ class PaySelectedBillsPostPaidBillsPageView
                                               allowPartialPay:
                                                   model.postPaidBillInquiryData?[index].isPartial ?? false,
                                               billName: model.getValidBillerNickName(
-                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                                model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                              ),
                                               billType: model.getValidBillerNameEN(
-                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                  model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                                  context),
                                               itemCount: (index + 1).toString(),
                                               onChanged: (value) {
                                                 model.newAmtEnter(index, value);
                                               },
                                               billAmtDue: model.getValidBillerDueAmount(
-                                                  model.arguments.postPaidBillInquiryData?[index].billingNo),
+                                                model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                              ),
                                             );
                                           },
                                           separatorBuilder: (context, index) {
@@ -204,11 +210,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                             onHorizontalDragEnd: (details) {
                                               if (StringUtils.isDirectionRTL(context)) {
                                                 if (!details.primaryVelocity!.isNegative) {
-                                                  model.payPostPaidBill();
+                                                  model.payPostPaidBill(context);
                                                 }
                                               } else {
                                                 if (details.primaryVelocity!.isNegative) {
-                                                  model.payPostPaidBill();
+                                                  model.payPostPaidBill(context);
                                                 }
                                               }
                                             },
