@@ -66,7 +66,8 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
               initialData: Resource.none(),
               onData: (event) {
                 if (event.status == Status.SUCCESS) {
-                  AppConstantsUtils.billerDetailsCacheList = event.data?.content?.billerDetailsList;
+                  AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY] =
+                      event.data?.content?.billerDetailsList;
                   model.billerDetailsList = event.data?.content?.billerDetailsList;
                   _showBillerNameDialog(model.billerDetailsList);
                 }
@@ -293,8 +294,9 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
       readOnly: true,
       onPressed: () {
         model.billerDetailsList = [];
-        model.billerDetailsList = AppConstantsUtils.billerDetailsCacheList;
-        if (model.billerDetailsList != null && model.billerDetailsList!.isEmpty) {
+        model.billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY];
+        if (model.billerDetailsList == null ||
+            model.billerDetailsList != null && model.billerDetailsList!.isEmpty) {
           model.billerList();
         } else {
           _showBillerNameDialog(model.billerDetailsList);

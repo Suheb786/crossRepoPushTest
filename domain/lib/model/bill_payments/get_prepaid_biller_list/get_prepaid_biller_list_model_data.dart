@@ -10,6 +10,7 @@ class GetPrepaidBillerListModelData {
   String? customerType;
   String? joebppsNo;
   String? serviceType;
+  String? serviceTypeAR;
   String? serviceCode;
   String? iconCode;
   String? rimNo;
@@ -29,6 +30,7 @@ class GetPrepaidBillerListModelData {
       this.customerType,
       this.joebppsNo,
       this.serviceType,
+      this.serviceTypeAR,
       this.serviceCode,
       this.iconCode,
       this.serviceDescriptionEn, //this is not coming from api

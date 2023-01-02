@@ -40,6 +40,9 @@ class GetPrepaidBillerListEntityData
   @JsonKey(name: "serviceType")
   final String? serviceType;
 
+  @JsonKey(name: "serviceTypeAR")
+  final String? serviceTypeAR;
+
   @JsonKey(name: "serviceCode")
   final String? serviceCode;
 
@@ -61,6 +64,7 @@ class GetPrepaidBillerListEntityData
       this.customerType,
       this.joebppsNo,
       this.serviceType,
+      this.serviceTypeAR,
       this.serviceCode,
       this.iconCode,
       this.rimNo});
@@ -89,6 +93,7 @@ class GetPrepaidBillerListEntityData
         customerType: this.customerType,
         joebppsNo: this.joebppsNo,
         serviceType: this.serviceType,
+        serviceTypeAR: this.serviceTypeAR,
         serviceCode: this.serviceCode,
         iconCode: this.iconCode?.toString() ?? "",
         rimNo: this.rimNo);

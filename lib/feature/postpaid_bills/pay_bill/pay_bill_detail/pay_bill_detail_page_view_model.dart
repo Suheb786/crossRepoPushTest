@@ -211,7 +211,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
-    billerDetailsList = AppConstantsUtils.billerDetailsCacheList;
+    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY];
     if (billerDetailsList == null || billerDetailsList!.isEmpty) {
       _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
