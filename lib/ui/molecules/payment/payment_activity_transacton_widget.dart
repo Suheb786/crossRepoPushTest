@@ -1,51 +1,23 @@
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
-import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
-import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
+import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-
-import "";
-import 'package:domain/model/payment/payment_activity_content.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class PaymentActivityTransactionWidget extends StatelessWidget {
-  final String amount;
-  final String cdtrAcct;
-  final String cdtrDpText;
-  final String cdtrName;
-  final String dbtrDpText;
-  final String dbtrName;
-  final Color getColor;
-  final int itemCount;
-  final Function() onAcceptButton;
-  final Function() onRejectButton;
-  final String rtpDate;
-  final RequestMoneyActivityStatusEnum? trxDIR;
-  final RequestMoneyActivityStatusEnum? trxStatus;
+  final PaymentActivityContent content;
+  final Function(RequestMoneyActivityList) onAcceptButton;
+  final Function(RequestMoneyActivityList) onRejectButton;
 
   const PaymentActivityTransactionWidget(
-      {Key? key,
-      this.trxDIR = RequestMoneyActivityStatusEnum.CATEGORY_NONE,
-      this.trxStatus = RequestMoneyActivityStatusEnum.CATEGORY_NONE,
-      required this.rtpDate,
-      required this.dbtrDpText,
-      required this.cdtrDpText,
-      required this.amount,
-      required this.dbtrName,
-      required this.cdtrName,
-      required this.onAcceptButton,
-      required this.cdtrAcct,
-      required this.itemCount,
-      required this.getColor,
-      required this.onRejectButton})
+      {Key? key, required this.onAcceptButton, required this.onRejectButton, required this.content})
       : super(key: key);
 
   @override
@@ -54,7 +26,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          rtpDate,
+          content.rtpDate != null ? TimeUtils.getFormattedDateForRTP(content.rtpDate!.toString()) : '-',
           style: TextStyle(
               fontFamily: StringUtils.appFont,
               fontSize: 15.0.t,
@@ -73,15 +45,13 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                   Container(
                       height: 50.0.h,
                       width: 50.0.w,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor),
+                      decoration:
+                          BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
-                          child: trxDIR ==
-                                  RequestMoneyActivityStatusEnum
-                                      .TRANSACTION_DIRECTORY_INCOMING
+                          child: content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
                               ? Text(
-                                  cdtrDpText,
+                                  StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: Theme.of(context).accentColor,
@@ -89,7 +59,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       fontSize: 14.0.t),
                                 )
                               : Text(
-                                  dbtrDpText,
+                                  StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: Theme.of(context).accentColor,
@@ -102,14 +72,12 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          trxDIR ==
-                                  RequestMoneyActivityStatusEnum
-                                      .TRANSACTION_DIRECTORY_INCOMING
+                          content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
                               ? RichText(
                                   maxLines: 3,
                                   text: TextSpan(
-                                      text: cdtrName,
-                                      //  (activity?[index].cdtrName) ?? "",
+                                      text: content.data?[index].cdtrName,
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontSize: 12.0.t,
@@ -124,47 +92,34 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 12.0.t,
                                                 fontWeight: FontWeight.w400,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
+                                                color: Theme.of(context).primaryColorDark),
                                             children: [
                                               TextSpan(
-                                                text: amount,
-                                                // "${(activity?[index].amount) ?? ""}" +
-                                                //     " JOD",
+                                                text:
+                                                    "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 12.0.t,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark,
+                                                  color: Theme.of(context).primaryColorDark,
                                                 ),
                                                 children: [
                                                   TextSpan(
                                                     text: S.of(context).from,
                                                     style: TextStyle(
-                                                        fontFamily:
-                                                            StringUtils.appFont,
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 12.0.t,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark),
+                                                        fontWeight: FontWeight.w400,
+                                                        color: Theme.of(context).primaryColorDark),
                                                     children: [
                                                       TextSpan(
                                                         text: S.current.you,
                                                         style: TextStyle(
-                                                          fontFamily:
-                                                              StringUtils
-                                                                  .appFont,
+                                                          fontFamily: StringUtils.appFont,
                                                           fontSize: 12.0.t,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          fontWeight: FontWeight.w400,
+                                                          color: Theme.of(context).primaryColorDark,
                                                         ),
                                                       ),
                                                     ],
@@ -173,8 +128,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               ),
                                             ])
                                       ]))
-                              : //*Dbtr text
-                              RichText(
+                              : RichText(
                                   maxLines: 3,
                                   text: TextSpan(
                                       text: S.of(context).youRequested,
@@ -183,71 +137,54 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                           fontSize: 12.0.t,
                                           overflow: TextOverflow.ellipsis,
                                           fontWeight: FontWeight.w400,
-                                          color: Theme.of(context)
-                                              .primaryColorDark),
+                                          color: Theme.of(context).primaryColorDark),
                                       children: [
                                         TextSpan(
-                                          text: amount,
-                                          // " ${(activity?[index].amount) ?? ""} ${S.of(context).JOD}",
+                                          text:
+                                              "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 12.0.t,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark),
+                                              color: Theme.of(context).primaryColorDark),
                                           children: [
                                             TextSpan(
                                               text: S.of(context).from,
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 12.0.t,
                                                   fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark),
+                                                  color: Theme.of(context).primaryColorDark),
                                               children: [
                                                 TextSpan(
-                                                  text: dbtrName,
-                                                  // "${(activity?[index].dbtrName) ?? ""}",
+                                                  text: content.data?[index].dbtrName,
                                                   style: TextStyle(
-                                                    fontFamily:
-                                                        StringUtils.appFont,
+                                                    fontFamily: StringUtils.appFont,
                                                     fontSize: 12.0.t,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
+                                                    overflow: TextOverflow.ellipsis,
                                                     fontWeight: FontWeight.w600,
-                                                    color:
-                                                        AppColor.sky_blue_mid,
+                                                    // color: AppColor.sky_blue_mid,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
-                                      ]))
-                          //*Cdtr text
-
-                          ,
+                                      ])),
                           Padding(
                               padding: EdgeInsets.only(top: 5.0.h),
-                              child: trxDIR ==
-                                          RequestMoneyActivityStatusEnum
-                                              .TRANSACTION_DIRECTORY_INCOMING &&
-                                      trxStatus ==
-                                          RequestMoneyActivityStatusEnum
-                                              .CATEGORY_PENDING
+                              child: content.data?[index].trxDir ==
+                                          RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+                                      content.data?[index].trxStatus ==
+                                          RequestMoneyActivityStatusEnum.CATEGORY_PENDING
                                   ? Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          rtpDate,
-                                          // TimeUtils
-                                          //     .getFormattedTimeForTransaction(
-                                          //         (activity?[index]
-                                          //                 .rtpDate
-                                          //                 .toString()) ??
-                                          //             ""),
+                                          content.data?[index].rtpDate != null
+                                              ? TimeUtils.getFormattedTimeForTransaction(
+                                                  content.data![index].rtpDate.toString())
+                                              : '-',
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: AppColor.gray1,
@@ -257,113 +194,71 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                         Padding(
                                           padding: EdgeInsets.only(top: 5.0.h),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                  RTPConfirmationDialog.show(
-                                                      context,
-                                                      amount: amount,
-                                                      cdtrAcct: cdtrAcct,
-                                                      cdtrDpText: cdtrDpText,
-                                                      cdtrName: cdtrName,
+                                                  RTPConfirmationDialog.show(context,
+                                                      amount:
+                                                          "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                      cdtrAcct: content.data?[index].cdtrAcct ?? '',
+                                                      cdtrDpText: content.data?[index].cdtrName ?? '',
+                                                      cdtrName: content.data?[index].cdtrName ?? '',
                                                       onAccepted: () {
                                                     Navigator.pop(context);
                                                     InformationDialog.show(
                                                       context,
                                                       isSwipeToCancel: true,
-                                                      onDismissed: () =>
-                                                          Navigator.pop(
-                                                              context),
+                                                      onDismissed: () => Navigator.pop(context),
                                                       onSelected: () {
-                                                        onAcceptButton.call();
+                                                        onAcceptButton.call(content.data![index]);
                                                       },
-                                                      image:
-                                                          AssetUtils.acceptIcon,
-                                                      title: S.current
-                                                          .acceptRequest,
-                                                      descriptionWidget:
-                                                          RichText(
+                                                      image: AssetUtils.acceptIcon,
+                                                      title: S.current.acceptRequest,
+                                                      descriptionWidget: RichText(
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .youareabouttosend,
+                                                              text: S.current.youareabouttosend,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: amount,
+                                                              text:
+                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .towithspace,
+                                                              text: S.current.towithspace,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: cdtrName,
+                                                              text: content.data?[index].cdtrName ?? '',
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .asperhisrequestconfirmthisaction,
+                                                              text:
+                                                                  S.current.asperhisrequestconfirmthisaction,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                           ],
                                                         ),
@@ -378,93 +273,54 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                         Navigator.pop(context);
                                                       },
                                                       onSelected: () {
-                                                        onRejectButton.call();
+                                                        onRejectButton.call(content.data![index]);
                                                       },
-                                                      image:
-                                                          AssetUtils.rejectIcon,
-                                                      title: S.current
-                                                          .rejectRequest,
-                                                      descriptionWidget:
-                                                          RichText(
+                                                      image: AssetUtils.rejectIcon,
+                                                      title: S.current.rejectRequest,
+                                                      descriptionWidget: RichText(
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .youareabouttoreject,
+                                                              text: S.current.youareabouttoreject,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: amount,
+                                                              text:
+                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .requestFrom,
+                                                              text: S.current.requestFrom,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: cdtrName,
+                                                              text: content.data?[index].cdtrName ?? '',
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .asperhisrequestconfirmthisaction,
+                                                              text:
+                                                                  S.current.asperhisrequestconfirmthisaction,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                           ],
                                                         ),
@@ -474,27 +330,21 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
-                                                    color:
-                                                        AppColor.sky_blue_mid,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
+                                                    color: AppColor.sky_blue_mid,
+                                                    borderRadius: BorderRadius.circular(20),
                                                   ),
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
+                                                    padding: EdgeInsets.symmetric(
                                                       horizontal: 16.0.w,
                                                       vertical: 10.h,
                                                     ),
                                                     child: Text(
                                                       S.of(context).accept,
                                                       style: TextStyle(
-                                                        fontFamily:
-                                                            StringUtils.appFont,
+                                                        fontFamily: StringUtils.appFont,
                                                         color: AppColor.white,
                                                         fontSize: 12.0.t,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
@@ -505,109 +355,68 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               ),
                                               GestureDetector(
                                                 onTap: () {
-                                                  RTPConfirmationDialog.show(
-                                                      context,
-                                                      amount: amount,
-                                                      cdtrAcct: cdtrAcct,
-                                                      cdtrDpText: cdtrDpText,
-                                                      cdtrName: cdtrName,
+                                                  RTPConfirmationDialog.show(context,
+                                                      amount:
+                                                          "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                      cdtrAcct: content.data?[index].cdtrAcct ?? '',
+                                                      cdtrDpText: content.data?[index].cdtrName ?? '',
+                                                      cdtrName: content.data?[index].cdtrName ?? '',
                                                       onAccepted: () {
                                                     Navigator.pop(context);
                                                     InformationDialog.show(
                                                       context,
                                                       isSwipeToCancel: true,
-                                                      onDismissed: () =>
-                                                          Navigator.pop(
-                                                              context),
+                                                      onDismissed: () => Navigator.pop(context),
                                                       onSelected: () {
                                                         Navigator.pop(context);
                                                         //Todo Api calling
                                                       },
-                                                      image:
-                                                          AssetUtils.acceptIcon,
-                                                      title: S.current
-                                                          .acceptRequest,
-                                                      descriptionWidget:
-                                                          RichText(
+                                                      image: AssetUtils.acceptIcon,
+                                                      title: S.current.acceptRequest,
+                                                      descriptionWidget: RichText(
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .youareabouttosend,
+                                                              text: S.current.youareabouttosend,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: amount,
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
                                                               text:
-                                                                  S.current.to,
+                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: cdtrName,
+                                                              text: S.current.to,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .asperhisrequestconfirmthisaction,
+                                                              text: content.data?[index].cdtrName ?? '',
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
+                                                            ),
+                                                            TextSpan(
+                                                              text:
+                                                                  S.current.asperhisrequestconfirmthisaction,
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                           ],
                                                         ),
@@ -625,91 +434,52 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                         Navigator.pop(context);
                                                         //Todo api calling
                                                       },
-                                                      image:
-                                                          AssetUtils.rejectIcon,
-                                                      title: S.current
-                                                          .rejectRequest,
-                                                      descriptionWidget:
-                                                          RichText(
+                                                      image: AssetUtils.rejectIcon,
+                                                      title: S.current.rejectRequest,
+                                                      descriptionWidget: RichText(
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .youareabouttoreject,
+                                                              text: S.current.youareabouttoreject,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: amount,
+                                                              text: (content.data?[index].cdtrName ?? 0.0)
+                                                                  .toString(),
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .requestFrom,
+                                                              text: S.current.requestFrom,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: cdtrName,
+                                                              text: content.data?[index].cdtrName ?? '',
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                             TextSpan(
-                                                              text: S.current
-                                                                  .asperhisrequestconfirmthisaction,
+                                                              text:
+                                                                  S.current.asperhisrequestconfirmthisaction,
                                                               style: TextStyle(
-                                                                  fontFamily:
-                                                                      StringUtils
-                                                                          .appFont,
-                                                                  fontSize:
-                                                                      14.0.t,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontSize: 14.0.t,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  color: Theme.of(context).primaryColorDark),
                                                             ),
                                                           ],
                                                         ),
@@ -720,28 +490,20 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       color: AppColor.white,
-                                                      border: Border.all(
-                                                          color: AppColor
-                                                              .white_gray),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
+                                                      border: Border.all(color: AppColor.white_gray),
+                                                      borderRadius: BorderRadius.circular(20)),
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
+                                                    padding: EdgeInsets.symmetric(
                                                       horizontal: 16.0.w,
                                                       vertical: 10.h,
                                                     ),
                                                     child: Text(
                                                       S.of(context).reject,
                                                       style: TextStyle(
-                                                          fontFamily:
-                                                              StringUtils
-                                                                  .appFont,
+                                                          fontFamily: StringUtils.appFont,
                                                           color: AppColor.black,
                                                           fontSize: 12.0.t,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontWeight: FontWeight.w600),
                                                     ),
                                                   ),
                                                 ),
@@ -754,13 +516,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   : Row(
                                       children: [
                                         Text(
-                                          rtpDate,
-                                          // TimeUtils
-                                          //     .getFormattedTimeForTransaction(
-                                          //         (activity?[index]
-                                          //                 .rtpDate
-                                          //                 .toString()) ??
-                                          //             ""),
+                                          content.data?[index].rtpDate != null
+                                              ? TimeUtils.getFormattedTimeForTransaction(
+                                                  content.data![index].rtpDate.toString())
+                                              : '-',
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: AppColor.gray1,
@@ -768,28 +527,18 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 9.0.w),
+                                          padding: EdgeInsetsDirectional.only(start: 9.0.w),
                                           child: Container(
                                             padding: EdgeInsetsDirectional.only(
-                                                start: 8.0.w,
-                                                end: 8.0.w,
-                                                top: 3.5.h,
-                                                bottom: 1.5.h),
+                                                start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
                                             decoration: BoxDecoration(
-                                                color: getColor,
-                                                // getColor(
-                                                //     activity![index].trxStatus),
-                                                borderRadius:
-                                                    BorderRadius.circular(100)),
+                                                color: getColor(content.data?[index].trxStatus),
+                                                borderRadius: BorderRadius.circular(100)),
                                             child: Text(
-                                              trxStatus.toString(),
-                                           
+                                              (content.data?[index].trxStatus ?? '').toString(),
                                               style: TextStyle(
-                                                  fontFamily:
-                                                      StringUtils.appFont,
-                                                  color: Theme.of(context)
-                                                      .accentColor,
+                                                  fontFamily: StringUtils.appFont,
+                                                  color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 12.0.t),
                                             ),
@@ -812,7 +561,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
               );
             },
             shrinkWrap: true,
-            itemCount: itemCount,
+            itemCount: (content.data ?? []).length,
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0.h),
@@ -826,5 +575,20 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color getColor(RequestMoneyActivityStatusEnum? value) {
+    switch (value) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
+        return AppColor.darkModerateLimeGreen;
+      case RequestMoneyActivityStatusEnum.CATEGORY_REJECTED:
+        return AppColor.vividRed;
+      case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
+        return AppColor.dark_orange;
+      case RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED:
+        return AppColor.gray5;
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }

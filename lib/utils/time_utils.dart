@@ -137,4 +137,10 @@ class TimeUtils {
     final DateFormat formatter = DateFormat('yyyyMMdd');
     return formatter.format(dateTime);
   }
+
+  static String getFormattedDateForRTP(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('dd MMMM');
+    return formatter.format(dateTime);
+  }
 }

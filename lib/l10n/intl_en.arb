@@ -1581,5 +1581,6 @@
   "aliasHint": "Alias must be a maximum of 10 alphanumeric characters",
   "aliasMobileNoHint": "Mobile number must start with 00962",
   "aliasNickNameHint": "Alias nickname hint: ",
-  "aliasMobileHint": "Alias mobile hint: "
+  "aliasMobileHint": "Alias mobile hint: ",
+  "noRTPActivityToDisplay": "There are currently no requests to display"
 }

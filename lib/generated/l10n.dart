@@ -15599,6 +15599,16 @@ class S {
       args: [],
     );
   }
+
+  /// `There are currently no requests to display`
+  String get noRTPActivityToDisplay {
+    return Intl.message(
+      'There are currently no requests to display',
+      name: 'noRTPActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

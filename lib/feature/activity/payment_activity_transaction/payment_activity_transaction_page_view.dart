@@ -1,5 +1,5 @@
-import 'package:domain/constants/enum/request_money_activity_enum.dart';
-import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +16,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:neo_bank/utils/time_utils.dart';
 
-class PaymentActivityTransactionPageView
-    extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
+class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
   PaymentActivityTransactionPageView(ProviderBase model) : super(model);
 
   @override
@@ -43,9 +42,7 @@ class PaymentActivityTransactionPageView
                   child: Text(
                     S.of(context).paymentActivity,
                     style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.0.t),
+                        fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
                   ),
                 ),
               ),
@@ -56,9 +53,8 @@ class PaymentActivityTransactionPageView
                     height: double.infinity,
                     decoration: BoxDecoration(
                         color: Theme.of(context).accentColor,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16))),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(top: 8.0.h),
                       child: Column(
@@ -69,13 +65,11 @@ class PaymentActivityTransactionPageView
                               height: 4.0.h,
                               width: 64.0.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: AppColor.whiteGray),
+                                  borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                top: 24.0.h, start: 24.0.w, end: 38.0.w),
+                            padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 38.0.w),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -87,8 +81,7 @@ class PaymentActivityTransactionPageView
                                       borderRadius: BorderRadius.circular(16),
                                       color: AppColor.whiteGray,
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 10.0.h, horizontal: 16.0.w),
+                                    padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
                                     child: Row(
                                       children: [
                                         Text(
@@ -111,55 +104,41 @@ class PaymentActivityTransactionPageView
                                     ),
                                   ),
                                   AppStreamBuilder<String>(
-                                      stream: model.requestMoneyPeriodResponse,
+                                      stream: model.paymentPeriodResponseStream,
                                       initialData:
-                                          StringUtils.isDirectionRTL(context)
-                                              ? "آخر 30 يوم"
-                                              : 'Last 30 days',
+                                          StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
                                       dataBuilder: (mContext, paymentPeriod) {
                                         return Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 8.0.w),
+                                          padding: EdgeInsetsDirectional.only(start: 8.0.w),
                                           child: InkWell(
                                             onTap: () {
-                                              PaymentActivityFilterDialog.show(
-                                                  context,
-                                                  type: FilterType.period,
-                                                  onSelected: (value) {
+                                              PaymentActivityFilterDialog.show(context,
+                                                  type: FilterType.period, onSelected: (value) {
                                                 Navigator.pop(context);
-                                                model
-                                                    .updatePaymentPeriod(value);
+                                                model.updatePaymentPeriod(value);
                                               }, onDismissed: () {
                                                 Navigator.pop(context);
                                               });
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
+                                                borderRadius: BorderRadius.circular(16),
                                                 color: AppColor.whiteGray,
                                               ),
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 10.0.h,
-                                                  horizontal: 16.0.w),
+                                              padding:
+                                                  EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     paymentPeriod!,
                                                     style: TextStyle(
-                                                        fontFamily:
-                                                            StringUtils.appFont,
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 12.0.t,
-                                                        fontWeight:
-                                                            FontWeight.w600),
+                                                        fontWeight: FontWeight.w600),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .only(
-                                                                start: 12.0.w),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.dropDown),
+                                                    padding: EdgeInsetsDirectional.only(start: 12.0.w),
+                                                    child: AppSvg.asset(AssetUtils.dropDown),
                                                   )
                                                 ],
                                               ),
@@ -173,122 +152,78 @@ class PaymentActivityTransactionPageView
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  top: 28.0.h, start: 24.0.w, end: 24.0.w),
-                              child: AppStreamBuilder<
-                                      Resource<PaymentActivityContent>>(
+                              padding: EdgeInsetsDirectional.only(top: 28.0.h, start: 24.0.w, end: 24.0.w),
+                              child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
                                   stream: model.requestMoneyActivity,
                                   initialData: Resource.none(),
                                   dataBuilder: (context, requestActivity) {
-                                    return ListView.builder(
-                                      itemBuilder: (context, index) {
-                                        return requestActivity!
-                                                    .data!.data!.length >
-                                                0
-                                            ? PaymentActivityTransactionWidget(
-                                                getColor: model.getColor(
-                                                    (requestActivity
-                                                            .data
-                                                            ?.data?[index]
-                                                            .trxStatus) ??
-                                                        RequestMoneyActivityStatusEnum
-                                                            .CATEGORY_NONE),
-                                                itemCount: requestActivity
-                                                    .data!.data!.length,
-                                                cdtrAcct: (requestActivity
-                                                        .data
-                                                        ?.data?[index]
-                                                        .cdtrAcct) ??
-                                                    "",
-                                                dbtrDpText: StringUtils
-                                                    .getFirstInitials(
-                                                        (requestActivity
-                                                                .data!
-                                                                .data?[index]
-                                                                .dbtrName) ??
-                                                            ""),
-                                                cdtrDpText: StringUtils
-                                                    .getFirstInitials(
-                                                        (requestActivity
-                                                                .data!
-                                                                .data?[index]
-                                                                .cdtrName) ??
-                                                            ""),
-                                                amount:
-                                                    " ${(requestActivity.data?.data?[index].amount) ?? ""} ${S.of(context).JOD}",
-                                                dbtrName:
-                                                    "${(requestActivity.data?.data?[index].dbtrName) ?? ""}",
-                                                cdtrName:
-                                                    "${(requestActivity.data?.data?[index].cdtrName) ?? ""}",
-                                                onAcceptButton: () {
-                                                  model.approveRTPRequest(
-                                                      custID: "",
-                                                      dbtrAcct: "",
-                                                      dbtrName: "",
-                                                      dbtrPstlAdr: "",
-                                                      dbtrRecordID: "",
-                                                      currency: "",
-                                                      amount: "",
-                                                      dbtrAlias: "",
-                                                      cdtrBic: (requestActivity
-                                                              .data
-                                                              ?.data?[index]
-                                                              .cdtrAgt) ??
-                                                          "",
-                                                      cdtrName: "",
-                                                      cdtrAcct: "",
-                                                      cdtrPstlAdr:
-                                                          (requestActivity
-                                                                  .data
-                                                                  ?.data?[index]
-                                                                  .cdtrAddr) ??
-                                                              "",
-                                                      cdtrRecordID: "",
-                                                      cdtrAlias: "",
-                                                      rgltryRptg: "",
-                                                      payRefNo: "",
-                                                      rejectReason: "",
-                                                      rtpStatus: "",
-                                                      rejectADdInfo: "",
-                                                      getToken: true);
-                                                },
-                                                onRejectButton: () {
-                                                  model.requestToPayResult(
-                                                      CustID: "",
-                                                      RTPStatus: "",
-                                                      OrgnlMsgId:
-                                                          (requestActivity
-                                                                  .data
-                                                                  ?.data?[index]
-                                                                  .msgID) ??
-                                                              "",
-                                                      RejectADdInfo: "",
-                                                      RejectReason: "");
-                                                },
-                                                rtpDate: TimeUtils
-                                                    .getFormattedDateForTransaction(
-                                                        (requestActivity
-                                                                .data
-                                                                ?.data?[index]
-                                                                .rtpDate) ??
-                                                            ""),
-                                                trxStatus: requestActivity.data!
-                                                    .data![index].trxStatus,
-                                                trxDIR: requestActivity
-                                                    .data!.data![index].trxDir,
-                                              )
-                                            : Center(
-                                                child: Text(
-                                                  S
-                                                      .of(context)
-                                                      .noTransactionToDisplay,
-                                                ),
-                                              );
-                                      },
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          requestActivity!.data!.data!.length,
-                                    );
+                                    switch (requestActivity!.status) {
+                                      case Status.SUCCESS:
+                                        return ListView.builder(
+                                          itemBuilder: (context, index) {
+                                            return (requestActivity.data?.paymentActivityContent ?? [])
+                                                        .length >
+                                                    0
+                                                ? PaymentActivityTransactionWidget(
+                                                    content: requestActivity
+                                                            .data?.paymentActivityContent?[index] ??
+                                                        PaymentActivityContent(),
+                                                    onAcceptButton: (RequestMoneyActivityList data) {
+                                                      model.approveRTPRequest(
+                                                          custID: "",
+                                                          dbtrAcct: "",
+                                                          dbtrName: "",
+                                                          dbtrPstlAdr: "",
+                                                          dbtrRecordID: "",
+                                                          currency: "",
+                                                          amount: "",
+                                                          dbtrAlias: "",
+                                                          cdtrBic: (data.cdtrAgt),
+                                                          cdtrName: "",
+                                                          cdtrAcct: "",
+                                                          cdtrPstlAdr: (data.cdtrAddr),
+                                                          cdtrRecordID: "",
+                                                          cdtrAlias: "",
+                                                          rgltryRptg: "",
+                                                          payRefNo: "",
+                                                          rejectReason: "",
+                                                          rtpStatus: "",
+                                                          rejectADdInfo: "",
+                                                          getToken: true);
+                                                    },
+                                                    onRejectButton: (RequestMoneyActivityList data) {
+                                                      model.requestToPayResult(
+                                                          CustID: "",
+                                                          RTPStatus: "",
+                                                          OrgnlMsgId: (data.msgID),
+                                                          RejectADdInfo: "",
+                                                          RejectReason: "");
+                                                    },
+                                                  )
+                                                : Center(
+                                                    child: Text(
+                                                      S.of(context).noRTPActivityToDisplay,
+                                                    ),
+                                                  );
+                                          },
+                                          shrinkWrap: true,
+                                          itemCount: requestActivity.data!.paymentActivityContent!.length,
+                                        );
+
+                                      case Status.ERROR:
+                                        if (requestActivity.appError!.type ==
+                                            ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY) {
+                                          return Center(
+                                            child: Text(
+                                              S.of(context).noRTPActivityToDisplay,
+                                            ),
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      default:
+                                        return Container();
+                                    }
                                   }),
                             ),
                           ),

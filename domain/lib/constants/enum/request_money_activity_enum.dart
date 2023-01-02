@@ -8,16 +8,13 @@ class RequestMoneyActivityStatusEnum {
     return _value.toString();
   }
 
-  static const RequestMoneyActivityStatusEnum CATEGORY_PENDING =
-      RequestMoneyActivityStatusEnum._("Pending");
+  static const RequestMoneyActivityStatusEnum CATEGORY_PENDING = RequestMoneyActivityStatusEnum._("Pending");
   static const RequestMoneyActivityStatusEnum CATEGORY_REJECTED =
       RequestMoneyActivityStatusEnum._("Rejected");
   static const RequestMoneyActivityStatusEnum CATEGORY_ACCEPTED =
       RequestMoneyActivityStatusEnum._("Accepted");
-  static const RequestMoneyActivityStatusEnum CATEGORY_EXPIRED =
-      RequestMoneyActivityStatusEnum._("Expired");
-  static const RequestMoneyActivityStatusEnum CATEGORY_NONE =
-      RequestMoneyActivityStatusEnum._("None");
+  static const RequestMoneyActivityStatusEnum CATEGORY_EXPIRED = RequestMoneyActivityStatusEnum._("Expired");
+  static const RequestMoneyActivityStatusEnum CATEGORY_NONE = RequestMoneyActivityStatusEnum._("None");
   static const RequestMoneyActivityStatusEnum TRANSACTION_DIRECTORY_INCOMING =
       RequestMoneyActivityStatusEnum._("I");
   static const RequestMoneyActivityStatusEnum TRANSACTION_DIRECTORY_OUTGOING =
@@ -27,13 +24,13 @@ class RequestMoneyActivityStatusEnum {
 extension TransactionStatusEnumExt on String {
   RequestMoneyActivityStatusEnum fromRequestactivityStatus() {
     switch (this) {
-      case "NACK":
+      case "Pending":
         return RequestMoneyActivityStatusEnum.CATEGORY_PENDING;
-      case "RJCT":
+      case "Rejected":
         return RequestMoneyActivityStatusEnum.CATEGORY_REJECTED;
-      case "ACSP":
+      case "Accepted":
         return RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED;
-      case "EXPRD":
+      case "Expired":
         return RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED;
       case "I":
         return RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING;
