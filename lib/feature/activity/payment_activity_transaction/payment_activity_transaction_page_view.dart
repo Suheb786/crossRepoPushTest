@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -175,58 +176,50 @@ class PaymentActivityTransactionPageView
                               padding: EdgeInsetsDirectional.only(
                                   top: 28.0.h, start: 24.0.w, end: 24.0.w),
                               child: AppStreamBuilder<
-                                      Resource<RequestMoneyActivity>>(
+                                      Resource<PaymentActivityContent>>(
                                   stream: model.requestMoneyActivity,
                                   initialData: Resource.none(),
                                   dataBuilder: (context, requestActivity) {
                                     return ListView.builder(
                                       itemBuilder: (context, index) {
                                         return requestActivity!
-                                                    .data!
-                                                    .requestMoneyActivity!
-                                                    .length >
+                                                    .data!.data!.length >
                                                 0
                                             ? PaymentActivityTransactionWidget(
                                                 getColor: model.getColor(
                                                     (requestActivity
                                                             .data
-                                                            ?.requestMoneyActivity?[
-                                                                index]
+                                                            ?.data?[index]
                                                             .trxStatus) ??
                                                         RequestMoneyActivityStatusEnum
                                                             .CATEGORY_NONE),
                                                 itemCount: requestActivity
-                                                    .data!
-                                                    .requestMoneyActivity!
-                                                    .length,
+                                                    .data!.data!.length,
                                                 cdtrAcct: (requestActivity
                                                         .data
-                                                        ?.requestMoneyActivity?[
-                                                            index]
+                                                        ?.data?[index]
                                                         .cdtrAcct) ??
                                                     "",
                                                 dbtrDpText: StringUtils
                                                     .getFirstInitials(
                                                         (requestActivity
                                                                 .data!
-                                                                .requestMoneyActivity?[
-                                                                    index]
+                                                                .data?[index]
                                                                 .dbtrName) ??
                                                             ""),
                                                 cdtrDpText: StringUtils
                                                     .getFirstInitials(
                                                         (requestActivity
                                                                 .data!
-                                                                .requestMoneyActivity?[
-                                                                    index]
+                                                                .data?[index]
                                                                 .cdtrName) ??
                                                             ""),
                                                 amount:
-                                                    " ${(requestActivity.data?.requestMoneyActivity?[index].amount) ?? ""} ${S.of(context).JOD}",
+                                                    " ${(requestActivity.data?.data?[index].amount) ?? ""} ${S.of(context).JOD}",
                                                 dbtrName:
-                                                    "${(requestActivity.data?.requestMoneyActivity?[index].dbtrName) ?? ""}",
+                                                    "${(requestActivity.data?.data?[index].dbtrName) ?? ""}",
                                                 cdtrName:
-                                                    "${(requestActivity.data?.requestMoneyActivity?[index].cdtrName) ?? ""}",
+                                                    "${(requestActivity.data?.data?[index].cdtrName) ?? ""}",
                                                 onAcceptButton: () {
                                                   model.approveRTPRequest(
                                                       custID: "",
@@ -239,18 +232,17 @@ class PaymentActivityTransactionPageView
                                                       dbtrAlias: "",
                                                       cdtrBic: (requestActivity
                                                               .data
-                                                              ?.requestMoneyActivity?[
-                                                                  index]
+                                                              ?.data?[index]
                                                               .cdtrAgt) ??
                                                           "",
                                                       cdtrName: "",
                                                       cdtrAcct: "",
-                                                      cdtrPstlAdr: (requestActivity
-                                                              .data
-                                                              ?.requestMoneyActivity?[
-                                                                  index]
-                                                              .cdtrAddr) ??
-                                                          "",
+                                                      cdtrPstlAdr:
+                                                          (requestActivity
+                                                                  .data
+                                                                  ?.data?[index]
+                                                                  .cdtrAddr) ??
+                                                              "",
                                                       cdtrRecordID: "",
                                                       cdtrAlias: "",
                                                       rgltryRptg: "",
@@ -264,12 +256,12 @@ class PaymentActivityTransactionPageView
                                                   model.requestToPayResult(
                                                       CustID: "",
                                                       RTPStatus: "",
-                                                      OrgnlMsgId: (requestActivity
-                                                              .data
-                                                              ?.requestMoneyActivity?[
-                                                                  index]
-                                                              .msgID) ??
-                                                          "",
+                                                      OrgnlMsgId:
+                                                          (requestActivity
+                                                                  .data
+                                                                  ?.data?[index]
+                                                                  .msgID) ??
+                                                              "",
                                                       RejectADdInfo: "",
                                                       RejectReason: "");
                                                 },
@@ -277,20 +269,13 @@ class PaymentActivityTransactionPageView
                                                     .getFormattedDateForTransaction(
                                                         (requestActivity
                                                                 .data
-                                                                ?.requestMoneyActivity?[
-                                                                    index]
+                                                                ?.data?[index]
                                                                 .rtpDate) ??
                                                             ""),
-                                                trxStatus: requestActivity
-                                                    .data!
-                                                    .requestMoneyActivity![
-                                                        index]
-                                                    .trxStatus,
+                                                trxStatus: requestActivity.data!
+                                                    .data![index].trxStatus,
                                                 trxDIR: requestActivity
-                                                    .data!
-                                                    .requestMoneyActivity![
-                                                        index]
-                                                    .trxDir,
+                                                    .data!.data![index].trxDir,
                                               )
                                             : Center(
                                                 child: Text(
@@ -301,8 +286,8 @@ class PaymentActivityTransactionPageView
                                               );
                                       },
                                       shrinkWrap: true,
-                                      itemCount: requestActivity!
-                                          .data!.requestMoneyActivity!.length,
+                                      itemCount:
+                                          requestActivity!.data!.data!.length,
                                     );
                                   }),
                             ),

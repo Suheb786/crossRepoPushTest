@@ -6,8 +6,9 @@ part of 'confirm_change_default_account_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmChangeDefaultAccountRequestEntity _$ConfirmChangeDefaultAccountRequestEntityFromJson(
-    Map<String, dynamic> json) {
+ConfirmChangeDefaultAccountRequestEntity
+    _$ConfirmChangeDefaultAccountRequestEntityFromJson(
+        Map<String, dynamic> json) {
   return ConfirmChangeDefaultAccountRequestEntity(
     aliasId: json['AliasId'] as String,
     acc: json['Acc'] as String,

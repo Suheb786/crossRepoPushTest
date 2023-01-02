@@ -7,6 +7,8 @@ import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
+import 'package:domain/model/payment/payment_activity_response.dart';
 
 abstract class CliqRepository {
   Future<Either<NetworkError, GetAlias>> getAlias({
@@ -71,7 +73,9 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, RequestMoneyActivity>> requestMoneyActivity({
+  Future<Either<NetworkError, PaymentActivityResponse>> requestMoneyActivity({
+    required int FilterDays,
+    required String TransactionType,
     required bool getToken,
   });
 
@@ -206,7 +210,8 @@ abstract class CliqRepository {
     required String RejectADdInfo,
   });
 
-  Future<Either<NetworkError, List<GetAccountByCustomerId>>> getAccountByCustomerID();
+  Future<Either<NetworkError, List<GetAccountByCustomerId>>>
+      getAccountByCustomerID();
 
   Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
     required bool GetToken,

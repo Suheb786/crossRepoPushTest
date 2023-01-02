@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/cliq/request_money_activity/response/request_money_activity_list_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_data_entity.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
@@ -11,7 +12,7 @@ class PaymentActivityContentEntity
   @JsonKey(name: "rtpDate")
   DateTime? rtpDate;
   @JsonKey(name: "data")
-  List<PaymentActivityDataEntity>? data;
+  List<RequestMoneyActivityListEntity>? data;
 
   PaymentActivityContentEntity({this.rtpDate, this.data});
 

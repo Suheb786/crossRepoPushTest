@@ -5,6 +5,7 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/response/request_money_activity_response_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
 
@@ -70,7 +71,9 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<RequestMoneyActivityResponseEntity>> requestMoneyActivity({
+  Future<HttpResponse<PaymentActivityResponseEntity>> requestMoneyActivity({
+    required int FilterDays,
+    required String TransactionType,
     required bool getToken,
   });
 
@@ -205,7 +208,8 @@ abstract class CliqDataSource {
     required String RejectADdInfo,
   });
 
-  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID();
+  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>>
+      getAccountByCustomerID();
 
   Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({
     required bool GetToken,

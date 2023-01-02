@@ -1,5 +1,7 @@
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_data.dart';
+import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -70,7 +72,7 @@ class PaymentActivityPageView
                   height: 10.0.h,
                 ),
                 Expanded(
-                  child: AppStreamBuilder<Resource<RequestMoneyActivity>>(
+                  child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
                       stream: ProviderScope.containerOf(context)
                           .read(activityHomeViewModelProvider)
                           .requestMoneyActivity,
@@ -78,14 +80,15 @@ class PaymentActivityPageView
                       dataBuilder: (context, activity) {
                         switch (activity!.status) {
                           case Status.SUCCESS:
-                            return ((activity.data?.requestMoneyActivity ?? [])
+                            return ((activity.data?.paymentActivityContent ??
+                                            [])
                                         .length >
                                     0)
                                 ? ListView.builder(
-                                    itemCount:
-                                        (activity.data?.requestMoneyActivity ??
-                                                [])
-                                            .length,
+                                    itemCount: (activity
+                                                .data?.paymentActivityContent ??
+                                            [])
+                                        .length,
                                     shrinkWrap: true,
                                     itemBuilder: (mContext, index) {
                                       return Padding(
@@ -94,7 +97,7 @@ class PaymentActivityPageView
                                             bottom: index ==
                                                     activity
                                                             .data!
-                                                            .requestMoneyActivity!
+                                                            .paymentActivityContent!
                                                             .length -
                                                         1
                                                 ? 10.0.h
@@ -112,8 +115,9 @@ class PaymentActivityPageView
                                                 child: Text(
                                                   activity
                                                               .data!
-                                                              .requestMoneyActivity![
+                                                              .paymentActivityContent![
                                                                   index]
+                                                              .data![index]
                                                               .dbtrName
                                                               .split(" ")
                                                               .length >
@@ -121,8 +125,9 @@ class PaymentActivityPageView
                                                       ? StringUtils
                                                           .getFirstInitials(activity
                                                               .data!
-                                                              .requestMoneyActivity![
+                                                              .paymentActivityContent![
                                                                   index]
+                                                              .data?[index]
                                                               .dbtrName)
                                                       : "",
                                                   style: TextStyle(
@@ -159,7 +164,7 @@ class PaymentActivityPageView
                                                         children: [
                                                           TextSpan(
                                                               text:
-                                                                  '${activity.data!.requestMoneyActivity![index].amount} ${S.of(context).JOD} ',
+                                                                  '${activity.data!.paymentActivityContent?[index].data![index].amount} ${S.of(context).JOD} ',
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       StringUtils
@@ -184,7 +189,7 @@ class PaymentActivityPageView
                                                                       12.0.t)),
                                                           TextSpan(
                                                               text:
-                                                                  '${activity.data!.requestMoneyActivity![index].dbtrName}',
+                                                                  '${activity.data!.paymentActivityContent?[index].data![index].dbtrName}',
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       StringUtils
@@ -225,8 +230,9 @@ class PaymentActivityPageView
                                                           color: model.getColor(
                                                               (activity
                                                                   .data
-                                                                  ?.requestMoneyActivity![
+                                                                  ?.paymentActivityContent?[
                                                                       index]
+                                                                  .data![index]
                                                                   .trxStatus)),
                                                           borderRadius:
                                                               BorderRadius
@@ -234,7 +240,7 @@ class PaymentActivityPageView
                                                                       100),
                                                         ),
                                                         child: Text(
-                                                          "${(activity.data?.requestMoneyActivity?[index].trxStatus) ?? ""}",
+                                                          "${(activity.data?.paymentActivityContent?[index].data?[index].trxStatus) ?? ""}",
                                                           style: TextStyle(
                                                             color: Theme.of(
                                                                     context)

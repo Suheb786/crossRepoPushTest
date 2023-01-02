@@ -1,5 +1,7 @@
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_data.dart';
+import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -28,7 +30,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
       onVerticalDragEnd: (details) {},
       child: Padding(
         padding: EdgeInsetsDirectional.only(bottom: 47.0.h),
-        child: AppStreamBuilder<Resource<RequestMoneyActivity>>(
+        child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
             stream: model.requestMoneyActivity,
             initialData: Resource.none(),
             dataBuilder: (context, paymentActivity) {
@@ -41,8 +43,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                       if (details.primaryVelocity!.isNegative) {
                         if (currentStep == 1 &&
                             paymentActivity!
-                                    .data!.requestMoneyActivity!.length >
-                                4) {
+                                    .data!.paymentActivityContent!.length >
+                                2) {
                           Navigator.push(
                               context,
                               CustomRoute.createRoute(
@@ -110,7 +112,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                             visible: currentStep == 1 &&
                                                 paymentActivity!
                                                         .data!
-                                                        .requestMoneyActivity!
+                                                        .paymentActivityContent!
                                                         .length >
                                                     4,
                                             child: Positioned(

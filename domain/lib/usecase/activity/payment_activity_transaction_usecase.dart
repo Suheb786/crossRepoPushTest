@@ -6,8 +6,8 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PaymentActivityTransactionUseCase
-    extends BaseUseCase<NetworkError, PaymentActivityTransactionUseCaseParams, PaymentActivityResponse> {
+class PaymentActivityTransactionUseCase extends BaseUseCase<NetworkError,
+    PaymentActivityTransactionUseCaseParams, PaymentActivityResponse> {
   final PaymentRepository _repository;
 
   PaymentActivityTransactionUseCase(this._repository);

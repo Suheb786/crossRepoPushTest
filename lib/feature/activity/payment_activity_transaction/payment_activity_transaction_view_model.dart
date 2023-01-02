@@ -2,6 +2,7 @@
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
@@ -201,7 +202,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   BehaviorSubject<RequestMoneyActivityParams> _requestMoneyActivityRequest =
       BehaviorSubject();
 
-  BehaviorSubject<Resource<RequestMoneyActivity>>
+  BehaviorSubject<Resource<PaymentActivityContent>>
       _requestMoneyActivityResponse = BehaviorSubject();
 
   RequestMoneyActivityUseCase _requestMoneyActivityUseCase;
@@ -288,7 +289,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         }
       });
     });
-    getRequestMoneyActivity(true);
+    getRequestMoneyActivity(true, 30, "All");
     // getPaymentActivity(30);
   }
 
@@ -380,11 +381,15 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   Stream<String> get requestMoneyPeriodResponse =>
       _requestPeriodResponse.stream;
 
-  Stream<Resource<RequestMoneyActivity>> get requestMoneyActivity =>
+  Stream<Resource<PaymentActivityContent>> get requestMoneyActivity =>
       _requestMoneyActivityResponse.stream;
 
-  void getRequestMoneyActivity(bool getToken) {
-    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(getToken));
+  void getRequestMoneyActivity(
+      bool getToken, int FilterDays, String TransactionType) {
+    _requestMoneyActivityRequest.safeAdd(RequestMoneyActivityParams(
+        getToken: getToken,
+        FilterDays: FilterDays,
+        TransactionType: TransactionType));
   }
 
   void getPaymentActivity(int filterDays) {

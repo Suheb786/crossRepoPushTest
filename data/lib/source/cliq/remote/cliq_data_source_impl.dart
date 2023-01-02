@@ -30,6 +30,7 @@ import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_pa
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
@@ -42,21 +43,25 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   CliqRemoteDataSourceImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<GetAliasResponseEntity>> getAlias({required bool getToken}) async {
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias(
+      {required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAlias(CliqGetAliasRequestEntity(baseData: baseData.toJson(), getToken: getToken));
+    return _apiService.getAlias(CliqGetAliasRequestEntity(
+        baseData: baseData.toJson(), getToken: getToken));
   }
 
   @override
-  Future<HttpResponse<RequestMoneyActivityResponseEntity>> requestMoneyActivity(
-      {required bool getToken}) async {
+  Future<HttpResponse<PaymentActivityResponseEntity>> requestMoneyActivity({
+    required bool getToken,
+    required int FilterDays,
+    required String TransactionType,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.requestMoneyActivity(
-      RequestMoneyActivityRequestEntity(
+    return _apiService.requestMoneyActivity(RequestMoneyActivityRequestEntity(
+        FilterDays: FilterDays,
+        TransactionType: TransactionType,
         getToken: getToken,
-        baseClass: baseData.toJson(),
-      ),
-    );
+        baseClass: baseData.toJson()));
   }
 
 /*  @override
@@ -141,7 +146,10 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmChangeDefaultAccount(
       ConfirmChangeDefaultAccountRequestEntity(
-          getToken: true, acc: acc, aliasId: aliasId, baseClass: baseData.toJson()),
+          getToken: true,
+          acc: acc,
+          aliasId: aliasId,
+          baseClass: baseData.toJson()),
     );
   }
 
@@ -163,34 +171,40 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteCliqId({required String aliasId, required bool getToken}) async {
+  Future<HttpResponse<ResponseEntity>> deleteCliqId(
+      {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deleteCliqId(
-        DeleteCliqIdRequestEntity(aliasId: aliasId, getToken: getToken, baseData: baseData.toJson()));
+    return _apiService.deleteCliqId(DeleteCliqIdRequestEntity(
+        aliasId: aliasId, getToken: getToken, baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> reActivateCliqId(
       {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.reActivateCliqId(
-        ReActivateCliqIdRequestEntity(getToken: getToken, aliasId: aliasId, baseData: baseData.toJson()));
+    return _apiService.reActivateCliqId(ReActivateCliqIdRequestEntity(
+        getToken: getToken, aliasId: aliasId, baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> suspendCliqId(
       {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.suspendCliqId(
-        SuspendCliqIdRequestEntity(aliasId: aliasId, getToken: getToken, baseData: baseData.toJson()));
+    return _apiService.suspendCliqId(SuspendCliqIdRequestEntity(
+        aliasId: aliasId, getToken: getToken, baseData: baseData.toJson()));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq(
-      {required String aliasId, required String accountId, required bool getToken}) async {
+      {required String aliasId,
+      required String accountId,
+      required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.unLinkAccountFromCliq(UnLinkAccountFromCliqRequestEntity(
-        aliasId: aliasId, accountId: accountId, getToken: getToken, baseClass: baseData.toJson()));
+        aliasId: aliasId,
+        accountId: accountId,
+        getToken: getToken,
+        baseClass: baseData.toJson()));
   }
 
   @override
@@ -229,10 +243,11 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> qRCliqCode({required String code, required bool getToken}) async {
+  Future<HttpResponse<ResponseEntity>> qRCliqCode(
+      {required String code, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .qRCliqCode(QrCodeCliqRequestEntity(code: code, getToken: getToken, baseData: baseData.toJson()));
+    return _apiService.qRCliqCode(QrCodeCliqRequestEntity(
+        code: code, getToken: getToken, baseData: baseData.toJson()));
   }
 
   @override
@@ -409,10 +424,15 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
 
   @override
   Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
-      {required String accountCode, required String CustID, required bool GetToken}) async {
+      {required String accountCode,
+      required String CustID,
+      required bool GetToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCustomerByAccount(GetCustomByAccountRequestEntity(
-        accountCode: accountCode, CustID: CustID, GetToken: GetToken, BaseClass: baseData.toJson()));
+        accountCode: accountCode,
+        CustID: CustID,
+        GetToken: GetToken,
+        BaseClass: baseData.toJson()));
   }
 
   @override
@@ -449,15 +469,19 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID() async {
+  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>>
+      getAccountByCustomerID() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAccountByCustomerID(BaseRequest(getToken: true, baseData: baseData.toJson()));
+    return _apiService.getAccountByCustomerID(
+        BaseRequest(getToken: true, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({required bool GetToken}) async {
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp(
+      {required bool GetToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeDefaultAccountOtp(BaseRequest(baseData: baseData.toJson()));
+    return _apiService
+        .changeDefaultAccountOtp(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
