@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -56,6 +57,8 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
   void validatePrePaidBill() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: argument.payMyPrePaidBillsPageDataList[0].billerCode,
         amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
@@ -81,6 +84,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
           _validatePrePaidResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
+            ///LOG EVENT TO FIREBASE
+            FireBaseLogUtil.fireBaseLog(
+                "new_pre_paid_inquire_bill_fail_call", {"new_pre_paid_inquire_bill_fail": true});
             showToastWithError(event.appError!);
           }
         });
@@ -97,6 +103,8 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   ///already saved flow.
   void payPrePaidBill(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("pay_pre_paid_saved_bill", {"pay_pre_paid_saved_bill_call": true});
     _payPrePaidRequest.safeAdd(PayPrePaidUseCaseParams(
         billerName: StringUtils.isDirectionRTL(context)
             ? argument.payMyPrePaidBillsPageDataList[0].billerNameAR
@@ -110,11 +118,11 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         otpCode: otpCode,
         isNewBiller: isNewBiller,
         prepaidCategoryCode:
-            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
         prepaidCategoryType:
-            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
         billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+            argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
             ? true
             : false,
         CardId: "",

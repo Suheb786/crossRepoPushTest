@@ -13,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -28,10 +29,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
-  ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase,
-      this.payPrePaidUseCase,
-      this.postPaidBillInquiryUseCase,
-      this.payPostPaidBillUseCase) {
+  ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase, this.payPrePaidUseCase,
+      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase) {
     validatePrePaidBillListener();
     payPrePaidBillListener();
     postPaidBillInquiryListener();
@@ -41,8 +40,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   TextEditingController amtController = TextEditingController(text: "0.0");
 
   ///get new details bill payments model
-  PublishSubject<AddNewDetailsBillPaymentsModel>
-  _addNewDetailsBillPaymentsModelResponse = PublishSubject();
+  PublishSubject<AddNewDetailsBillPaymentsModel> _addNewDetailsBillPaymentsModelResponse = PublishSubject();
 
   Stream<AddNewDetailsBillPaymentsModel> get getPurposeResponseStream =>
       _addNewDetailsBillPaymentsModelResponse.stream;
@@ -52,25 +50,20 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  AddNewDetailsBillPaymentsModel addNewBillDetailsData =
-  AddNewDetailsBillPaymentsModel();
+  AddNewDetailsBillPaymentsModel addNewBillDetailsData = AddNewDetailsBillPaymentsModel();
 
   setData(AddNewDetailsBillPaymentsModel addNewDetailsBillPaymentsModel) {
-    _addNewDetailsBillPaymentsModelResponse
-        .safeAdd(addNewDetailsBillPaymentsModel);
+    _addNewDetailsBillPaymentsModelResponse.safeAdd(addNewDetailsBillPaymentsModel);
   }
 
   /// ---------------- post paid bill enquiry -------------------------------- ///
   List<PostPaidBillInquiryData>? postPaidBillInquiryData = [];
 
-  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest =
-  PublishSubject();
+  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse =
-  BehaviorSubject();
+  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse = BehaviorSubject();
 
-  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream =>
-      _postPaidBillEnquiryResponse.stream;
+  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream => _postPaidBillEnquiryResponse.stream;
 
   void postPaidBillInquiry() {
     List<PostpaidBillInquiry> postPaidRequestListJson = [];
@@ -79,16 +72,14 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER));
 
-    _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
-        postpaidBillInquiries: postPaidRequestListJson));
+    _postPaidBillEnquiryRequest
+        .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postPaidRequestListJson));
   }
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-          (params) {
-        RequestManager(params,
-            createCall: () =>
-                postPaidBillInquiryUseCase.execute(params: params))
+      (params) {
+        RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -99,16 +90,16 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- pay postpaid bill -------------------------------- ///
-  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest =
-  PublishSubject();
+  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest = PublishSubject();
 
-  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse =
-  BehaviorSubject();
+  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse = BehaviorSubject();
 
-  Stream<Resource<PayPostPaidBill>> get payPostPaidStream =>
-      _payPostPaidResponse.stream;
+  Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
   void payPostPaidBill() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("pay_post_paid", {"pay_post_paid_clicked": true});
+
     List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
@@ -122,8 +113,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             fees: item.feesAmt ?? "0.0"));
       }
     }
-    tempPostpaidBillInquiryRequestList =
-        tempPostpaidBillInquiryRequestList.toSet().toList();
+    tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList.toSet().toList();
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: addNewBillDetailsData.accountNumber,
@@ -145,8 +135,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   totalAmountToPay() {
     if (isPartial == true) {
-      if (double.parse(addAllBillAmt() ?? "0") !=
-          double.parse(amtController.text)) {
+      if (double.parse(addAllBillAmt() ?? "0") != double.parse(amtController.text)) {
         return double.parse(amtController.text).toStringAsFixed(3);
       }
       return addAllBillAmt();
@@ -156,10 +145,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
-        RequestManager(params,
-            createCall: () =>
-                payPostPaidBillUseCase.execute(params: params))
+      (params) {
+        RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -173,50 +160,45 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- validate prepaid bill -------------------------------- ///
-  PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest =
-  PublishSubject();
+  PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest = PublishSubject();
 
-  BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse =
-  BehaviorSubject();
+  BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse = BehaviorSubject();
 
-  Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream =>
-      _validatePrePaidResponse.stream;
+  Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
   void validatePrePaidBill() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
-        amount: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == true
-            ? amtController.text
-            : "",
+        amount: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == true ? amtController.text : "",
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
-        prepaidCategoryCode:
-        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+        prepaidCategoryCode: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
             : "",
-        prepaidCategoryType:
-        AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
+        prepaidCategoryType: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
-        billingNumberRequired:
-        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
-          (params) {
-        RequestManager(params,
-            createCall: () =>
-                validatePrePaidUseCase.execute(params: params))
+      (params) {
+        RequestManager(params, createCall: () => validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
           _validatePrePaidResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
+            ///LOG EVENT TO FIREBASE
+            FireBaseLogUtil.fireBaseLog(
+                "validate_pre_paid_saved_bill_fail", {"validate_pre_paid_saved_bill_fail_call": true});
             showToastWithError(event.appError!);
           }
         });
@@ -229,34 +211,30 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   BehaviorSubject<Resource<PayPrePaid>> _payPrePaidResponse = BehaviorSubject();
 
-  Stream<Resource<PayPrePaid>> get payPrePaidStream =>
-      _payPrePaidResponse.stream;
+  Stream<Resource<PayPrePaid>> get payPrePaidStream => _payPrePaidResponse.stream;
 
   ///already saved flow.
   void payPrePaidBill() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("pay_pre_paid", {"pay_pre_paid_clicked": true});
     _payPrePaidRequest.safeAdd(PayPrePaidUseCaseParams(
         billerName: AppConstantsUtils.BILLER_NAME,
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? amtController.text
-            : "",
+        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? amtController.text : "",
         currencyCode: "JOD",
         accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,
         isNewBiller: isNewBiller,
-        prepaidCategoryCode:
-        addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+        prepaidCategoryCode: addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
             : "",
-        prepaidCategoryType:
-        addNewBillDetailsData.isPrepaidCategoryListEmpty == false
+        prepaidCategoryType: addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
-        billingNumberRequired:
-        AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
+                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
         CardId: "",
@@ -265,9 +243,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
-          (params) {
-        RequestManager(params,
-            createCall: () => payPrePaidUseCase.execute(params: params))
+      (params) {
+        RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -66,6 +67,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
   void payPostPaidBill(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("pay_post_paid_saved_bill", {"pay_post_paid_saved_bill_call": true});
     tempPostpaidBillInquiryRequestList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
@@ -95,13 +98,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             cardType == AppConstants.KEY_CREDIT
             ? true
             : */
-            false,
+        false,
         CardId: /*cardType != null &&
             cardType.isNotEmpty &&
             cardType == AppConstants.KEY_CREDIT
             ? cardID
             :*/
-            "",
+        "",
         otpCode: ""));
   }
 
@@ -115,6 +118,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
           updateLoader();
           _payPostPaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
+            FireBaseLogUtil.fireBaseLog(
+                "pay_post_paid_saved_bill_fail", {"pay_post_paid_saved_bill_fail": true});
             showToastWithError(event.appError!);
           }
         });

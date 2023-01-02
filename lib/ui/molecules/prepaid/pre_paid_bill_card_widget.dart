@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -86,7 +87,9 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       Spacer(),
                       InkWell(
                         onTap: () {
-                          //
+                          ///LOG EVENT TO FIREBASE
+                          FireBaseLogUtil.fireBaseLog(
+                              "pay_my_pre_paid_bills", {"pay_my_pre_paid_bills_clicked": true});
                           AppConstantsUtils.IS_NEW_PAYMENT = false;
                           Navigator.pushNamed(context, RoutePaths.PayMyPrePaidBillsPage);
                         },

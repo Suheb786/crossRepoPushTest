@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -27,6 +28,8 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
         initialData: Resource.none(),
         onData: (event) {
           if (event.status == Status.SUCCESS) {
+            ///LOG EVENT TO FIREBASE
+            FireBaseLogUtil.fireBaseLog("saved_new_post_paid_biller", {"saved_new_post_paid_biller": true});
             model.showSuccessToast(S.of(context).billerAddedSuccessfully);
           } else if (event.status == Status.ERROR) {
             model.showToastWithError(event.appError!);

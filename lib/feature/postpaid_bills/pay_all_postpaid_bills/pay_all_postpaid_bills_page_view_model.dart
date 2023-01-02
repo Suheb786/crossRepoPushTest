@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -186,6 +187,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   int selectedIndex = -1;
 
   void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("post_paid_saved_bill_enquiry", {"post_paid_saved_bill_enquiry_call": true});
     _postPaidBillEnquiryRequest
         .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postpaidBillInquiry));
   }

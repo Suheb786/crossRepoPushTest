@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -79,17 +80,23 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       .dashboardFeatures
                                       ?.appBillPaymentPostpaid ??
                                   true))) {
+                            ///LOG EVENT TO FIREBASE
+                            FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
                             Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                             AppConstantsUtils.PRE_PAID_FLOW = true;
                             AppConstantsUtils.POST_PAID_FLOW = false;
                             AppConstantsUtils.IS_NEW_PAYMENT = true;
                           } else {
+                            ///LOG EVENT TO FIREBASE
+                            FireBaseLogUtil.fireBaseLog("new_post_paid", {"new_post_paid_clicked": true});
                             Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                             AppConstantsUtils.POST_PAID_FLOW = true;
                             AppConstantsUtils.PRE_PAID_FLOW = false;
                             AppConstantsUtils.IS_NEW_PAYMENT = true;
                           }
                         } else if (currentStep == 3) {
+                          ///LOG EVENT TO FIREBASE
+                          FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
                           Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                           AppConstantsUtils.PRE_PAID_FLOW = true;
                           AppConstantsUtils.POST_PAID_FLOW = false;
