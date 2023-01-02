@@ -4,6 +4,7 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
+import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
@@ -13,6 +14,7 @@ import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_request_entity
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
@@ -134,10 +136,12 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount({required bool GetToken}) async {
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
+      {required String acc, required String aliasId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmChangeDefaultAccount(
-      BaseRequest(baseData: baseData.toJson()),
+      ConfirmChangeDefaultAccountRequestEntity(
+          getToken: true, acc: acc, aliasId: aliasId, baseClass: baseData.toJson()),
     );
   }
 
@@ -445,7 +449,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getAccountByCustomerID() async {
+  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountByCustomerID(BaseRequest(getToken: true, baseData: baseData.toJson()));
   }

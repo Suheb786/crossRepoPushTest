@@ -14780,10 +14780,10 @@ class S {
     );
   }
 
-  /// `Get your blink account today. Blink now!`
+  /// `\n\nGet your blink account today.`
   String get getYourBlinkAccountTodayBlinkNow {
     return Intl.message(
-      'Get your blink account today. Blink now!',
+      '\n\nGet your blink account today.',
       name: 'getYourBlinkAccountTodayBlinkNow',
       desc: '',
       args: [],
@@ -15465,6 +15465,136 @@ class S {
     return Intl.message(
       'Service is not available',
       name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link Account`
+  String get linkAccount {
+    return Intl.message(
+      'Link Account',
+      name: 'linkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE\nCliQ ID Alias has been updated`
+  String get cliqAliasUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE\nCliQ ID Alias has been updated',
+      name: 'cliqAliasUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated`
+  String get cliqMobileNumberUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated',
+      name: 'cliqMobileNumberUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Savings Account {String}`
+  String savingAccountList(Object String) {
+    return Intl.message(
+      'Savings Account $String',
+      name: 'savingAccountList',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Default`
+  String get defaultWord {
+    return Intl.message(
+      'Default',
+      name: 'defaultWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Here’s my blink CliQ details:\n\n`
+  String get hereMyCliqDetails {
+    return Intl.message(
+      'Hello! Here’s my blink CliQ details:\n\n',
+      name: 'hereMyCliqDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ Type`
+  String get cliqType {
+    return Intl.message(
+      'CLIQ Type',
+      name: 'cliqType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID`
+  String get cliqID {
+    return Intl.message(
+      'CLIQ ID',
+      name: 'cliqID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default account has been updated`
+  String get defaultAccountUpdated {
+    return Intl.message(
+      'Default account has been updated',
+      name: 'defaultAccountUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias must be a maximum of 10 alphanumeric characters`
+  String get aliasHint {
+    return Intl.message(
+      'Alias must be a maximum of 10 alphanumeric characters',
+      name: 'aliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number must start with 00962`
+  String get aliasMobileNoHint {
+    return Intl.message(
+      'Mobile number must start with 00962',
+      name: 'aliasMobileNoHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias nickname hint: `
+  String get aliasNickNameHint {
+    return Intl.message(
+      'Alias nickname hint: ',
+      name: 'aliasNickNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias mobile hint: `
+  String get aliasMobileHint {
+    return Intl.message(
+      'Alias mobile hint: ',
+      name: 'aliasMobileHint',
       desc: '',
       args: [],
     );

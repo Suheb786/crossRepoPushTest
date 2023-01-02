@@ -6,27 +6,29 @@ import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
 class UpdateCliqInfoBottomSheet {
   UpdateCliqInfoBottomSheet._();
 
-  static show(
-    BuildContext context, {
-    String? title,
-    CliqAliasIdStatusEnum cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
-    Function()? onEditId,
-    Function()? onShareId,
-    Function()? onSuspendId,
-    Function()? onDeleteId,
-    Function()? onActivateId,
-    Function()? onCancel,
-  }) async {
+  static show(BuildContext context,
+      {String? title,
+      CliqAliasIdStatusEnum cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
+      Function()? onEditId,
+      Function()? onLinkId,
+      Function()? onShareId,
+      Function()? onSuspendId,
+      Function()? onDeleteId,
+      Function()? onActivateId,
+      Function()? onCancel,
+      required bool showLinkAccount}) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return UpdateCliqInfoBottomSheetView(
           onDeleteId: onDeleteId,
           onEditId: onEditId,
+          onLinkId: onLinkId,
           onShareId: onShareId,
           onSuspendId: onSuspendId,
           cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
           onCancel: onCancel,
           onActivateId: onActivateId,
-          title: title);
+          title: title,
+          showLinkAccount: showLinkAccount);
     });
   }
 }

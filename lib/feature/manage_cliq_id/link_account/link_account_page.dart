@@ -7,6 +7,10 @@ import 'link_account_page_view.dart';
 import 'link_account_page_view_model.dart';
 
 class LinkAccountPage extends BasePage<LinkAccountPageViewModel> {
+  final LinkAccountPageArgument _arguments;
+
+  LinkAccountPage(this._arguments);
+
   @override
   LinkAccountPageState createState() => LinkAccountPageState();
 }
@@ -14,7 +18,7 @@ class LinkAccountPage extends BasePage<LinkAccountPageViewModel> {
 class LinkAccountPageState extends BaseStatefulPage<LinkAccountPageViewModel, LinkAccountPage> {
   @override
   ProviderBase provideBase() {
-    return linkAccountPageViewModelProvider;
+    return linkAccountPageViewModelProvider.call(widget._arguments);
   }
 
   @override
@@ -26,4 +30,20 @@ class LinkAccountPageState extends BaseStatefulPage<LinkAccountPageViewModel, Li
   Widget buildView(BuildContext context, LinkAccountPageViewModel model) {
     return LinkAccountPageView(provideBase());
   }
+}
+
+class LinkAccountPageArgument {
+  final String aliasId;
+  final String linkType;
+
+  final bool isAlias;
+  final String aliasValue;
+  final bool getToken;
+
+  LinkAccountPageArgument(
+      {required this.aliasId,
+      required this.aliasValue,
+      required this.isAlias,
+      required this.getToken,
+      required this.linkType});
 }

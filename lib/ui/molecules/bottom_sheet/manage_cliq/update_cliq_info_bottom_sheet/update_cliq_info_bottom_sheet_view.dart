@@ -6,25 +6,28 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   final Function()? onEditId;
+  final Function()? onLinkId;
   final Function()? onShareId;
   final Function()? onSuspendId;
   final Function()? onDeleteId;
   final Function()? onCancel;
   final Function()? onActivateId;
   final String? title;
-
+  final bool showLinkAccount;
   final CliqAliasIdStatusEnum cliqAliasIdStatusEnum;
 
   const UpdateCliqInfoBottomSheetView(
       {Key? key,
       this.onEditId,
+      this.onLinkId,
       this.onShareId,
       this.onSuspendId,
       this.onDeleteId,
       this.onCancel,
       this.title,
       this.cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
-      this.onActivateId})
+      this.onActivateId,
+      required this.showLinkAccount})
       : super(key: key);
 
   @override
@@ -59,6 +62,20 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
           onPressed: () {
             widget.onEditId?.call();
           },
+        ),
+        Visibility(
+          visible: widget.showLinkAccount,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).linkAccount,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColor.pure_blue)),
+            onPressed: () {
+              widget.onLinkId?.call();
+            },
+          ),
         ),
         CupertinoActionSheetAction(
           child: Text(S.of(context).shareId,

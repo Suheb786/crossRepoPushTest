@@ -194,11 +194,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get changeDefaultCliqIdStream => _changeDefaultCliqIDResponse.stream;
 
-  void confirmChangeDefaultCliqId({
-    required bool GetToken,
-  }) {
+  void confirmChangeDefaultCliqId({required String acc, required String aliasId}) {
     _changeDefaultCliqIDRequest.safeAdd(
-      ChangeDefaultAccountParams(GetToken: GetToken),
+      ChangeDefaultAccountParams(aliasId: aliasId, acc: acc),
     );
   }
 
@@ -207,14 +205,18 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   void linkCliqId({
     required bool getToken,
     required String aliasId,
-    required String accountId,
     required String linkType,
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
   }) {
-    _linkCliqIdRequest.safeAdd(
-        AddLinkAccountUseCaseParams(aliasId, linkType, accountNumber, isAlias, aliasValue, getToken));
+    _linkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
+        linkType: linkType,
+        getToken: getToken,
+        accountNumber: accountNumber,
+        isAlias: isAlias,
+        aliasId: aliasId,
+        aliasValue: aliasValue));
   }
 
   Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;

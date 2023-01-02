@@ -55,6 +55,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _editCliqOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _editCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -65,7 +66,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
   }
 
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 20;
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
     listenForSmsCode();
   }

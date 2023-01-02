@@ -1,4 +1,5 @@
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/manage_cliq/create_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
@@ -58,7 +59,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
     });
   }
 
-  void updateLinkAccount(String data) {
+  void updateLinkAccount(GetAccountByCustomerId data) {
     linkBankAccountCliqIdList.add(data);
     _linkBankAccountCliqIdListRequest.safeAdd(linkBankAccountCliqIdList);
   }
@@ -69,7 +70,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   void validate() {
     _linkBankAccountCliqIdValidationRequest.safeAdd(LinkBankAccountCliqIdValidationUseCaseParams(
-        isSelected: _isSelectedRequest.value, listOfString: linkBankAccountCliqIdList));
+        isSelected: _isSelectedRequest.value, listOfCustomerAccount: linkBankAccountCliqIdList));
   }
 
   void makeOtpRequest(
@@ -87,7 +88,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
     _createCliqIdOtpResponse.close();
     _linkBankAccountCliqIdValidationRequest.close();
     _linkBankAccountCliqIdValidationResponse.close();
-    _linkBankAccountCliqIdListRequest.close();
+    //  _linkBankAccountCliqIdListRequest.close();
     _isSelectedRequest.close();
     super.dispose();
   }
@@ -98,7 +99,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   String mobileNumber = '';
 
-  List<String> linkBankAccountCliqIdList = [];
+  List<GetAccountByCustomerId> linkBankAccountCliqIdList = [];
 
   ///---------for otp subject-----------------------------------
 
@@ -117,9 +118,10 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get linkBankAccountCliqIdValidationStream =>
       _linkBankAccountCliqIdValidationResponse.stream;
 
-  PublishSubject<List<String>> _linkBankAccountCliqIdListRequest = PublishSubject();
+  PublishSubject<List<GetAccountByCustomerId>> _linkBankAccountCliqIdListRequest = PublishSubject();
 
-  Stream<List<String>> get linkBankAccountCliqIdListStream => _linkBankAccountCliqIdListRequest.stream;
+  Stream<List<GetAccountByCustomerId>> get linkBankAccountCliqIdListStream =>
+      _linkBankAccountCliqIdListRequest.stream;
 
   /// terms and conditions
   BehaviorSubject<bool> _isSelectedRequest = BehaviorSubject.seeded(false);
@@ -130,14 +132,15 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   PublishSubject<GetAccountByCustomerIDUseCaseParams> _getAccountByCustomerIdRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _getAccountByCustomerIdResponse = PublishSubject();
+  PublishSubject<Resource<List<GetAccountByCustomerId>>> _getAccountByCustomerIdResponse = PublishSubject();
 
-  Stream<Resource<bool>> get getAccountByCustomerIdStream => _getAccountByCustomerIdResponse.stream;
+  Stream<Resource<List<GetAccountByCustomerId>>> get getAccountByCustomerIdStream =>
+      _getAccountByCustomerIdResponse.stream;
 
   void getAccountByCustomerId() {
     _getAccountByCustomerIdRequest.safeAdd(GetAccountByCustomerIDUseCaseParams());
   }
 
-///-------------------Get Account By Customer ID----------------///
+  ///-------------------Get Account By Customer ID----------------///
 
 }

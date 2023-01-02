@@ -31,7 +31,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
     });
   }
 
-  void addIdNumberForResetPassword() {
+  void validateUserInput() {
     _cliqIdTypeSelectionValidationRequest.safeAdd(CliqIdTypeSelectionValidationUseCaseParams(
         cliqIdType: cliqIdTypeController.text,
         alias: aliasController.text,
@@ -54,6 +54,9 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
         break;
     }
   }
+
+  List<String> cliqIDTypeListEn = ['Alias', 'Mobile Number'];
+  List<String> cliqIDTypeListAr = ['الاسم المستعار', 'رقم الموبايل'];
 
   void validate() {
     if (cliqIdTypeController.text.isNotEmpty &&

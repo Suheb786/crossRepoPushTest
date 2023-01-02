@@ -32,7 +32,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              S.of(context).createNewCliqId,
+              S.of(context).editCliqId,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
@@ -43,7 +43,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               height: 8.h,
             ),
             Text(
-              "${S.of(context).enterOtpHeader}  ${model.arguments.data.mobileNumber ?? ''}",
+              "${S.of(context).enterOtpHeader} \n ${model.arguments.data.mobileNumber ?? ''}",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
@@ -69,7 +69,12 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                         stream: model.editCliqIdStream,
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            model.showSuccessToast(S.of(context).cliqIdUpdatedSuccessfully);
+                            if (model.arguments.isAlias) {
+                              model.showSuccessToast(S.of(context).cliqAliasUpdate);
+                            } else {
+                              model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
+                            }
+
                             ProviderScope.containerOf(context)
                                 .read(cliqIdListViewModelProvider)
                                 .getAlias(true);

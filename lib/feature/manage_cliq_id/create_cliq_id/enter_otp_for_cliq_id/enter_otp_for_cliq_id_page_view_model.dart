@@ -47,12 +47,13 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
       });
     });
 
-    /// api calling for otp on resend otp click
+    /// api calling for otp on resend otp btn click
     _createCliqIdOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _createCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createCliqIdOtpResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

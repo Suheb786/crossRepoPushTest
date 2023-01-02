@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/account_list.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -32,7 +33,7 @@ class AliasCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: EdgeInsetsDirectional.only(bottom: 8.0, start: 24.w, end: 24.w),
       child: Container(
         width: 327.w,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white, boxShadow: [
@@ -44,24 +45,19 @@ class AliasCardList extends StatelessWidget {
             ListTile(
               onTap: () {
                 onTapAlias?.call();
-
-                // UpdateCliqInfoBottomSheetSelectionWidget.show(context,
-                //     onEditId: () {},
-                //     onShareId: () {},
-                //     onCancelled: () {},
-                //     onDeleteId: () {},
-                //     onSuspendId: () {},
-                //     title: "Please select your action");
               },
               title: Text(
                 aliasName,
                 style:
                     TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
               ),
-              subtitle: Text(
-                aliasType,
-                style:
-                    TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
+              subtitle: Padding(
+                padding: EdgeInsets.only(top: 4.0.h),
+                child: Text(
+                  aliasType,
+                  style:
+                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
+                ),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -132,10 +128,10 @@ class AliasCardList extends StatelessWidget {
                             },
                             dense: false,
                             title: Text(
-                              "${accountList[i].acciban}",
+                              S.of(context).savingAccountList(i + 1),
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  fontSize: 14.t,
+                                  fontSize: 12.t,
                                   fontWeight: FontWeight.w600),
                             ),
                             subtitle: Column(
@@ -143,12 +139,20 @@ class AliasCardList extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  "${accountList[i].recordId}",
+                                  "${accountList[i].acciban}",
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 12.t,
+                                      color: AppColor.dark_gray_1,
                                       fontWeight: FontWeight.w600),
                                 ),
+                                // Text(
+                                //   "${accountList[i].recordId}",
+                                //   style: TextStyle(
+                                //       fontFamily: StringUtils.appFont,
+                                //       fontSize: 12.t,
+                                //       fontWeight: FontWeight.w600),
+                                // ),
                                 Visibility(
                                   visible: accountList[i].isDefault ?? false,
                                   child: Container(
@@ -157,9 +161,10 @@ class AliasCardList extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(100),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4, top: 5),
+                                      padding: EdgeInsetsDirectional.only(
+                                          start: 8.w, end: 8.w, bottom: 4.h, top: 8.h),
                                       child: Text(
-                                        "Default",
+                                        S.of(context).defaultWord,
                                         style: TextStyle(
                                             color: AppColor.white,
                                             fontFamily: StringUtils.appFont,
