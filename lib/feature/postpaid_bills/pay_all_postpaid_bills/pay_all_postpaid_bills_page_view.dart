@@ -257,6 +257,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
                                               if (dueAmt >
                                                   0.0 /*|| dueAmt == 0.0 && item.isPartial == true*/) {
+                                                ///resetting dueAmount back to actual api dueAmount
+                                                item.dueAmount = dueAmt.toStringAsFixed(3);
+
                                                 temPostPaidBillInquiryData.add(item);
                                               }
                                             }

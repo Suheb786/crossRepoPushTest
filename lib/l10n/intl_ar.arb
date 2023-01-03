@@ -1462,5 +1462,6 @@
   "billerAlreadyExistsMessage": "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي",
   "searchBill": "البحث عن فاتورة",
   "nickNameCanOnlyContainAlphanumerics": "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط",
+  "paymentAmountCanBe": "Payment amount can be",
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
 }

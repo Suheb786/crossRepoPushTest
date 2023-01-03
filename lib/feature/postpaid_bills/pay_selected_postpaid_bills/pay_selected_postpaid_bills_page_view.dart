@@ -126,6 +126,12 @@ class PaySelectedBillsPostPaidBillsPageView
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
                                             return SelectedBillsToPaidWidget(
+                                              minRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].minValue ?? "0")
+                                                  .toStringAsFixed(3),
+                                              maxRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].maxValue ?? "0")
+                                                  .toStringAsFixed(3),
                                               allowPartialPay:
                                                   model.postPaidBillInquiryData?[index].isPartial ?? false,
                                               billName: model.getValidBillerNickName(

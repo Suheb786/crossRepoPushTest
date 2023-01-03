@@ -181,7 +181,11 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.getBillerLookupList(GetBillerLookupListRequest(
-        categoryName: params.categoryName, type: params.type, getToken: true, baseData: baseData.toJson()));
+        categoryName: params.categoryName,
+        // categoryNameAr: params.categoryNameAr, // might need in future
+        type: params.type,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override

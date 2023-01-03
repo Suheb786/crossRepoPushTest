@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
@@ -46,6 +49,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
     isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
+    if (isTotalAmountZero) {
+      showToastWithError(AppError(
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+    }
     return totalBillAmt;
   }
 
@@ -98,19 +105,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             cardType == AppConstants.KEY_CREDIT
             ? true
             : */
-        false,
+            false,
         CardId: /*cardType != null &&
             cardType.isNotEmpty &&
             cardType == AppConstants.KEY_CREDIT
             ? cardID
             :*/
-        "",
+            "",
         otpCode: ""));
   }
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {

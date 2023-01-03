@@ -25,6 +25,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
   final PayPostPaidBillUseCase payPostPaidBillUseCase;
   bool isPartial = false;
+  String? minRange = "0";
+  String? maxRange = "0";
 
   String? otpCode = "";
   bool? isNewBiller = false;
@@ -38,6 +40,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   TextEditingController amtController = TextEditingController(text: "0.0");
+  TextEditingController feeAmtController = TextEditingController(text: "0.0");
 
   ///get new details bill payments model
   PublishSubject<AddNewDetailsBillPaymentsModel> _addNewDetailsBillPaymentsModelResponse = PublishSubject();

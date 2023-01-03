@@ -1,4 +1,5 @@
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
+import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_data.dart';
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_list.dart';
 import 'package:domain/usecase/bill_payment/get_bill_categories_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,6 +63,9 @@ class NewBillsPageViewModel extends BasePageViewModel {
     if (list == null || list!.isEmpty) {
       _getCategoriesRequest.safeAdd(GetBillCategoriesUseCaseParams());
     } else {
+      _getCategoriesResponse.safeAdd(Resource.success(
+          data:
+              GetBillCategories(getBillCategoriesData: GetBillCategoriesData(getBillCategoriesList: list))));
       _searchCategoryListSubject.safeAdd(Resource.success(data: list));
     }
   }

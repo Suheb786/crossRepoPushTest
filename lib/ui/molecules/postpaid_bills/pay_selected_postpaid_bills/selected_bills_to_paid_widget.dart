@@ -16,6 +16,8 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? billType;
   final String? billName;
   final String? billAmtDue;
+  final String? minRange;
+  final String? maxRange;
   final bool? allowPartialPay;
   final Function(String)? onChanged;
 
@@ -25,6 +27,8 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billType,
       required this.billName,
       required this.billAmtDue,
+      required this.minRange,
+      required this.maxRange,
       this.allowPartialPay: false,
       this.onChanged})
       : super(key: key);
@@ -46,125 +50,146 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
         return Padding(
           padding: const EdgeInsetsDirectional.all(24.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColor.black,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.all(16.0),
-                        child: Text(
-                          this.itemCount != null && this.itemCount!.isNotEmpty ? this.itemCount ?? "" : "",
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12.0.t),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            this.billType != null && this.billType!.isNotEmpty ? this.billType ?? "" : "",
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.0.t),
-                          ),
-                          Text(
-                            this.billName != null && this.billName!.isNotEmpty ? this.billName ?? "" : "",
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.veryDarkGray2,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.0.t),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Row(
                       children: [
-                        SizedBox(
-                          width: 10.0.w,
-                        ),
-                        AutoSizeTextField(
-                          wrapWords: false,
-                          fullwidth: false,
-                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
-                          keyboardType: TextInputType.numberWithOptions(
-                            decimal: true,
-                            signed: false,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColor.black,
                           ),
-                          controller: model!.amtController,
-                          textAlign: TextAlign.center,
-                          readOnly: this.allowPartialPay == false,
-                          onChanged: (value) {
-                            this.onChanged?.call(value);
-                            // if (value.length > 0) {
-                            //   this.onChanged?.call(value);
-                            //   if (value.length > 1 && value[0].toString().contains("0")) {
-                            //     value = value.substring(1, value.length);
-                            //   }
-                            //   model.amtController.text = value;
-                            // } else {
-                            //   this.onChanged?.call("0");
-                            //   model.amtController.text = "0";
-                            // }
-                            model.amtController.selection = TextSelection.fromPosition(
-                                TextPosition(offset: model.amtController.text.length));
-                          },
-                          decoration:
-                              InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.brightBlue,
-                              fontWeight: FontWeight.w700,
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 14.0.t),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.all(16.0),
+                            child: Text(
+                              this.itemCount != null && this.itemCount!.isNotEmpty
+                                  ? this.itemCount ?? ""
+                                  : "",
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.t),
+                            ),
+                          ),
                         ),
-                        Text(
-                          S.of(context).JOD,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.brightBlue,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14.0.t),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                this.billType != null && this.billType!.isNotEmpty ? this.billType ?? "" : "",
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0.t),
+                              ),
+                              Text(
+                                this.billName != null && this.billName!.isNotEmpty ? this.billName ?? "" : "",
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.veryDarkGray2,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0.t),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                    Text(
-                      this.allowPartialPay == true ? S.of(context).tapToEditAmt : "",
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.gray5,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0.t),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 10.0.w,
+                            ),
+                            AutoSizeTextField(
+                              wrapWords: false,
+                              fullwidth: false,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
+                              keyboardType: TextInputType.numberWithOptions(
+                                decimal: true,
+                                signed: false,
+                              ),
+                              controller: model!.amtController,
+                              textAlign: TextAlign.center,
+                              readOnly: this.allowPartialPay == false,
+                              onChanged: (value) {
+                                this.onChanged?.call(value);
+                                // if (value.length > 0) {
+                                //   this.onChanged?.call(value);
+                                //   if (value.length > 1 && value[0].toString().contains("0")) {
+                                //     value = value.substring(1, value.length);
+                                //   }
+                                //   model.amtController.text = value;
+                                // } else {
+                                //   this.onChanged?.call("0");
+                                //   model.amtController.text = "0";
+                                // }
+                                model.amtController.selection = TextSelection.fromPosition(
+                                    TextPosition(offset: model.amtController.text.length));
+                              },
+                              decoration:
+                                  InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.brightBlue,
+                                  fontWeight: FontWeight.w700,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 14.0.t),
+                            ),
+                            Text(
+                              S.of(context).JOD,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.brightBlue,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14.0.t),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          this.allowPartialPay == true ? S.of(context).tapToEditAmt : "",
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.gray5,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0.t),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              this.allowPartialPay == true
+                  ? Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(top: 8.0.h),
+                        child: Text(
+                          '${S.of(context).pay} ${S.of(context).from.toLowerCase()} ${minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${maxRange} ${S.of(context).JOD}',
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.gray5,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0.t),
+                        ),
+                      ),
+                    )
+                  : SizedBox.shrink()
             ],
           ),
         );

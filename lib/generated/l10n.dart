@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14855,6 +14856,16 @@ class S {
     return Intl.message(
       'Nick name can only contain alphanumerics',
       name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment amount can be`
+  String get paymentAmountCanBe {
+    return Intl.message(
+      'Payment amount can be',
+      name: 'paymentAmountCanBe',
       desc: '',
       args: [],
     );
