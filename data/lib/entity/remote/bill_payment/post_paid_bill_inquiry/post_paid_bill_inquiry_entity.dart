@@ -67,8 +67,10 @@ class PostPaidBillInquiryEntity
         dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty ? this.dueAmount : "0",
         dueDate: this.dueDate != null && this.dueDate!.isNotEmpty ? this.dueDate : "0",
         feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty ? this.feesAmt : "0",
-        minValue: this.minValue != null && this.minValue!.isNotEmpty ? this.minValue.toString() : "0",
-        maxValue: this.maxValue != null && this.maxValue!.isNotEmpty ? this.maxValue.toString() : "0",
+        minValue:
+            this.minValue != null && this.minValue!.toString().isNotEmpty ? this.minValue.toString() : "0",
+        maxValue:
+            this.maxValue != null && this.maxValue!.toString().isNotEmpty ? this.maxValue.toString() : "0",
         serviceType: this.serviceType != null && this.serviceType!.isNotEmpty ? this.serviceType : "",
         success: this.success ?? false,
         isPartial: this.isPartial ?? false);

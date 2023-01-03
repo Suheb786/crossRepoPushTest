@@ -230,6 +230,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               in model.payPostPaidBillsDataList) {
                                             for (var item in model.selectedPostPaidBillsList) {
                                               if (double.parse(item.dueAmount ?? "0") > 0.0) {
+                                                var dueAmt = double.parse(item.dueAmount ?? "0");
+
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
                                                     item.serviceType ==
@@ -238,7 +240,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                         true) {
                                                   item.dueAmount =
                                                       payPostPaidBillsDataListItem.actualdueAmountFromApi;
+                                                  dueAmt = double.parse(
+                                                      payPostPaidBillsDataListItem.actualdueAmountFromApi ??
+                                                          "0");
                                                 }
+                                                item.dueAmount = dueAmt.toStringAsFixed(3);
+
                                                 tempSelectedPostPaidBillsList.add(item);
                                               }
                                             }

@@ -137,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المبلغ لازم ما يزيد عن الحد الاعلى"),
         "amountLimitError":
             MessageLookupByLibrary.simpleMessage("المبلغ لازم يكون أكبر من أو يساوي الحد الأدنى للسداد"),
+        "amountShouldBeLessThanOrEqualTo":
+            MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون اقل او يساوي"),
+        "amountShouldBeMoreThan": MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون اكثر من"),
+        "amountShouldBetween": MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون بين"),
         "amountZero": MessageLookupByLibrary.simpleMessage("مبلغ غير صحيح"),
         "androidLoginError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -295,22 +299,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "بطاقتك في الطريق. بمجرد استلامها، ستتمكن من إدارة إعدادات بطاقتك."),
         "cardSettlementAccount": MessageLookupByLibrary.simpleMessage("حساب تسوية البطاقة"),
         "cardSubscription": MessageLookupByLibrary.simpleMessage("اشتراكات البطاقة"),
-        "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
-            "خلال تجميد البطاقة، ما رح تقدر تستخدمها لأي حركة."),
-        "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "changeCardPaymentAccount":
-            MessageLookupByLibrary.simpleMessage("تغيير حساب الدفع للبطاقة"),
-        "changeCardPin": MessageLookupByLibrary.simpleMessage(
-            "تغيير الرمز السري PIN البطاقة"),
-        "changeCardPinError": MessageLookupByLibrary.simpleMessage(
-            "خطأ في تغيير الرمز السري PIN للبطاقة"),
-        "changeCardRestrictionDesc": MessageLookupByLibrary.simpleMessage(
-            "رح يتم تقييد بطاقتك في الدولة المذكورة أدناه حسب اختيارك"),
-        "changeCountryRestriction": MessageLookupByLibrary.simpleMessage(
-            "تغيير القيود المفروضة من الدولة"),
-        "changeCreditLimit":
-            MessageLookupByLibrary.simpleMessage("تغيير سقف البطاقة"),
+        "cardcantBeUsedForTransactions":
+            MessageLookupByLibrary.simpleMessage("خلال تجميد البطاقة، ما رح تقدر تستخدمها لأي حركة."),
+        "changeCallStatusError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "changeCardPaymentAccount": MessageLookupByLibrary.simpleMessage("تغيير حساب الدفع للبطاقة"),
+        "changeCardPin": MessageLookupByLibrary.simpleMessage("تغيير الرمز السري PIN البطاقة"),
+        "changeCardPinError": MessageLookupByLibrary.simpleMessage("خطأ في تغيير الرمز السري PIN للبطاقة"),
+        "changeCardRestrictionDesc":
+            MessageLookupByLibrary.simpleMessage("رح يتم تقييد بطاقتك في الدولة المذكورة أدناه حسب اختيارك"),
+        "changeCountryRestriction": MessageLookupByLibrary.simpleMessage("تغيير القيود المفروضة من الدولة"),
+        "changeCreditLimit": MessageLookupByLibrary.simpleMessage("تغيير سقف البطاقة"),
         "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage("اضبط سقف البطاقة الائتمانية المطلوب "),
         "changeEmailAddress": MessageLookupByLibrary.simpleMessage("تغيير الإيميل"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -791,6 +790,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
         "fromS": MessageLookupByLibrary.simpleMessage("من "),
         "fromSavedBills": MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
+        "fromSingleLine": MessageLookupByLibrary.simpleMessage("من"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("الوقود و الغاز"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderHint": MessageLookupByLibrary.simpleMessage("أدخل الجنس"),
@@ -1019,12 +1019,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "مش قادرين نتحقق من هويتك. تواصل معنا على 06-5200100 لتعرف أكتر."),
         "invalidNationality": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-154)"),
-        "invalidOccupation":
-            MessageLookupByLibrary.simpleMessage("اكتب الوظيفة"),
-        "invalidOtp": MessageLookupByLibrary.simpleMessage(
-            "الكود غير صحيح. حاول مرة ثانية."),
-        "invalidOtpCodeNetwork": MessageLookupByLibrary.simpleMessage(
-            "رمز غير صحيح. حاول كمان مرة."),
+        "invalidOccupation": MessageLookupByLibrary.simpleMessage("اكتب الوظيفة"),
+        "invalidOtp": MessageLookupByLibrary.simpleMessage("الكود غير صحيح. حاول مرة ثانية."),
+        "invalidOtpCodeNetwork": MessageLookupByLibrary.simpleMessage("رمز غير صحيح. حاول كمان مرة."),
         "invalidOtpEntered": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور OTP اللي دخلتها غير صحيحة. الرجاء إدخال كلمة صحيحة."),
         "invalidOtpNetwork": MessageLookupByLibrary.simpleMessage(
@@ -1124,16 +1121,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الوثيقة القانونية"),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-153)"),
-        "letsCreateNewCliqId":
-            MessageLookupByLibrary.simpleMessage("خلينا نعمل CliQ جديد"),
-        "letsCreateNewPass":
-            MessageLookupByLibrary.simpleMessage("خلينا نعمل كلمة مرور جديدة"),
-        "letsCreateYourAccount":
-            MessageLookupByLibrary.simpleMessage("خلينا نفتح حسابك"),
-        "letsCreateYourProfile":
-            MessageLookupByLibrary.simpleMessage("خلينا نعمل ملفك الشخصي"),
-        "letsSet4DigitPin": MessageLookupByLibrary.simpleMessage(
-            "خلينا نعمل الرمز السري PIN مكون من 4 أرقام"),
+        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage("خلينا نعمل CliQ جديد"),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage("خلينا نعمل كلمة مرور جديدة"),
+        "letsCreateYourAccount": MessageLookupByLibrary.simpleMessage("خلينا نفتح حسابك"),
+        "letsCreateYourProfile": MessageLookupByLibrary.simpleMessage("خلينا نعمل ملفك الشخصي"),
+        "letsSet4DigitPin":
+            MessageLookupByLibrary.simpleMessage("خلينا نعمل الرمز السري PIN مكون من 4 أرقام"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز السقف"),
         "linkBankAccountToYourNewId":
             MessageLookupByLibrary.simpleMessage("اربط حسابك البنكي مع  حساب CliQ الجديد"),

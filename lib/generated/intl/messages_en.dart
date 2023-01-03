@@ -166,25 +166,25 @@ class MessageLookup extends MessageLookupByLibrary {
             "Service is down please try again later"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
-        "allTransaction":
-            MessageLookupByLibrary.simpleMessage("All Transactions"),
-        "allowBiometric":
-            MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "allTransaction": MessageLookupByLibrary.simpleMessage("All Transactions"),
+        "allowBiometric": MessageLookupByLibrary.simpleMessage("Allow biometric"),
         "amount": MessageLookupByLibrary.simpleMessage("AMOUNT"),
-        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
-            "Amount to pay should be greater than 0"),
-        "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
-            "Amount Should be Not Greater then Total OutStandings"),
-        "amountLimitError": MessageLookupByLibrary.simpleMessage(
-            "Amount Should be Greater then or equal to minimum Amount"),
+        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage("Amount to pay should be greater than 0"),
+        "amountGreaterThanOutstanding":
+            MessageLookupByLibrary.simpleMessage("Amount Should be Not Greater then Total OutStandings"),
+        "amountLimitError":
+            MessageLookupByLibrary.simpleMessage("Amount Should be Greater then or equal to minimum Amount"),
+        "amountShouldBeLessThanOrEqualTo":
+            MessageLookupByLibrary.simpleMessage("Amount should be less than or equal to"),
+        "amountShouldBeMoreThan": MessageLookupByLibrary.simpleMessage("Amount should be more than"),
+        "amountShouldBetween": MessageLookupByLibrary.simpleMessage("Amount should be between"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "amt": MessageLookupByLibrary.simpleMessage("3,540"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "annual": MessageLookupByLibrary.simpleMessage("ANNUAL "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
-        "annualIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Annual Income"),
+        "annualIncomeSmall": MessageLookupByLibrary.simpleMessage("Annual Income"),
         "anyAgent": MessageLookupByLibrary.simpleMessage("Any Agent"),
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
@@ -1105,25 +1105,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
         "freezeDebitCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "freezeTheCard":
-            MessageLookupByLibrary.simpleMessage("Freeze this card?"),
-        "freezeThisCard":
-            MessageLookupByLibrary.simpleMessage("Freeze this card"),
+        "freezeTheCard": MessageLookupByLibrary.simpleMessage("Freeze this card?"),
+        "freezeThisCard": MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
-        "fromLabelForRJFlightBooking":
-            MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
+        "fromLabelForRJFlightBooking": MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "fromS": MessageLookupByLibrary.simpleMessage("from "),
-        "fromSavedBills":
-            MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
+        "fromSavedBills": MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
+        "fromSingleLine": MessageLookupByLibrary.simpleMessage("from"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
         "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
-        "genderHint":
-            MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
+        "genderHint": MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
-        "generateBlockPin": MessageLookupByLibrary.simpleMessage(
-            "Error while generating block pin"),
+        "generateBlockPin": MessageLookupByLibrary.simpleMessage("Error while generating block pin"),
         "generateKeyPairError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "genericError": MessageLookupByLibrary.simpleMessage(
@@ -1859,14 +1854,10 @@ class MessageLookup extends MessageLookupByLibrary {
             " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
         "permanentAddress": MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
-        "permanentCountry":
-            MessageLookupByLibrary.simpleMessage("Permanent Country"),
-        "permanentHomeAddress":
-            MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
-        "permanentResidence":
-            MessageLookupByLibrary.simpleMessage("Permanent residence"),
-        "permanentResidentAddressLine":
-            MessageLookupByLibrary.simpleMessage("Permanent residence address"),
+        "permanentCountry": MessageLookupByLibrary.simpleMessage("Permanent Country"),
+        "permanentHomeAddress": MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
+        "permanentResidence": MessageLookupByLibrary.simpleMessage("Permanent residence"),
+        "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage("Permanent residence address"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
         "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":

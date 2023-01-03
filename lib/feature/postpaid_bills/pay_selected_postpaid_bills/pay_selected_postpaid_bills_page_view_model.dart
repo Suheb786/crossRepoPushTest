@@ -34,7 +34,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
   PaySelectedBillsPostPaidBillsPageViewModel(this.payPostPaidBillUseCase, this.arguments) {
-    Future.delayed(Duration(milliseconds: 10)).then((value) => postpaidInquiryDataListener());
     payPostPaidBillListener();
   }
 
@@ -63,8 +62,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<List<PostPaidBillInquiryData>> get postPaidBillEnquiryListStream =>
       _postPaidBillEnquiryListResponse.stream;
 
-  postpaidInquiryDataListener() {
-    _postPaidBillEnquiryListResponse.safeAdd(arguments.postPaidBillInquiryData);
+  postpaidInquiryDataListener({required List<PostPaidBillInquiryData> list}) {
+    _postPaidBillEnquiryListResponse.safeAdd(list);
   }
 
   /// ---------------- pay postPaid bill -------------------------------- ///
@@ -146,18 +145,15 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (value.length <= 0) {
       value = "0";
     }
-
-    minMaxValidate(
-      isPartial,
-      minRange,
-      maxRange,
-      value,
-      context,
-    );
+    arguments.postPaidBillInquiryData?[index].dueAmount = value;
+    arguments.noOfSelectedBills[index].dueAmount = value;
+    if (isPartial == true) {
+      print('m here 1 ');
+      minMaxValidate(isPartial, minRange, maxRange, value, context, index);
+    }
 
     // totalAmt[index] = double.parse(value);
     // arguments.noOfSelectedBills[index].dueAmount = value;
-    arguments.postPaidBillInquiryData?[index].dueAmount = value;
     _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
   }
 
@@ -230,21 +226,36 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
 
   void minMaxValidate(
-      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
     if (isPartial == true) {
       if (value.isEmpty) {
-        _editAmountFieldSubject.safeAdd(
-            "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
-        return;
+        print('m here 2 ');
+
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
+
+        // _editAmountFieldSubject.safeAdd(
+        //     "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
       } else if (double.parse(value) < double.parse(minRange ?? "0")) {
-        _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
-        return;
+        print('m here 3');
+
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}";
+
+        // _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        _editAmountFieldSubject
-            .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
-        return;
+        print('m here 4');
+
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+
+        // _editAmountFieldSubject
+        //     .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
       } else {
-        _editAmountFieldSubject.safeAdd("");
+        print('m here 5');
+
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
+        // _editAmountFieldSubject.safeAdd("");
       }
     }
   }

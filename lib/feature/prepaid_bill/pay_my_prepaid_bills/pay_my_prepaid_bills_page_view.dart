@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -31,187 +32,207 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
 
   @override
   Widget build(BuildContext context, PayMyPrePaidBillsPageViewModel model) {
-    return AppStreamBuilder<Resource<bool>>(
+    return AppStreamBuilder<Resource<ValidatePrePaidBill>>(
         initialData: Resource.none(),
-        stream: model.removePrepaidBillerStream,
-        onData: (data) {
-          if (data.status == Status.ERROR) {
-            model.showToastWithError(data.appError!);
-          } else if (data.status == Status.SUCCESS) {
-            model.showSuccessToast(S.of(context).yourBillHasBeenRemoved);
-            Future.delayed(Duration(milliseconds: 200)).then((value) => model.getPrepaidBiller());
+        stream: model.validatePrePaidStream,
+        onData: (value) {
+          if (value.status == Status.ERROR) {
+            model.showToastWithError(value.appError!);
+          } else if (value.status == Status.SUCCESS) {
+            Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+                arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData],
+                    validatePrePaidBillData: value.data?.content));
           }
         },
         dataBuilder: (context, snapshot) {
-          return AppStreamBuilder<Resource<GetPrePaidCategoriesModel>>(
+          return AppStreamBuilder<Resource<bool>>(
               initialData: Resource.none(),
-              stream: model.gerPrePaidCategoriesStream,
-              onData: (value) {
-                if (value.status == Status.SUCCESS) {
-                  model.getPrepaidCategoriesModelData = value.data!.content!.getPrepaidBillerListModelData!;
-                  if (model.getPrepaidCategoriesModelData != null &&
-                      model.getPrepaidCategoriesModelData.isNotEmpty) {
-                    model.isPrePaidCategoryEmpty = false;
-                    _showPrePaidCategoriesList(context, model);
-                  } else {
-                    model.isPrePaidCategoryEmpty = true;
-                    Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
-                        arguments:
-                            HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
-                  }
+              stream: model.removePrepaidBillerStream,
+              onData: (data) {
+                if (data.status == Status.ERROR) {
+                  model.showToastWithError(data.appError!);
+                } else if (data.status == Status.SUCCESS) {
+                  model.showSuccessToast(S.of(context).yourBillHasBeenRemoved);
+                  Future.delayed(Duration(milliseconds: 200)).then((value) => model.getPrepaidBiller());
                 }
               },
               dataBuilder: (context, snapshot) {
-                return AppStreamBuilder<Resource<List<GetPrepaidBillerListModelData>?>>(
+                return AppStreamBuilder<Resource<GetPrePaidCategoriesModel>>(
                     initialData: Resource.none(),
-                    stream: model.searchPrepaidBillerStream,
+                    stream: model.gerPrePaidCategoriesStream,
                     onData: (value) {
                       if (value.status == Status.SUCCESS) {
-                        model.getPrepaidBillData = value.data;
-                        debugPrint("value.status:${value.status}");
-                      } else if (value.status == Status.ERROR) {
-                        debugPrint("value.status:${value.status}");
-                        model.showToastWithError(value.appError!);
+                        model.getPrepaidCategoriesModelData =
+                            value.data!.content!.getPrepaidBillerListModelData!;
+                        if (model.getPrepaidCategoriesModelData != null &&
+                            model.getPrepaidCategoriesModelData.isNotEmpty) {
+                          model.isPrePaidCategoryEmpty = false;
+                          _showPrePaidCategoriesList(context, model);
+                        } else {
+                          model.isPrePaidCategoryEmpty = true;
+                          Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+                              arguments: HowMuchLikeToPayPrePaidBillsPageArgument(
+                                  [model.getPrepaidBillerListModelData]));
+                        }
                       }
                     },
                     dataBuilder: (context, snapshot) {
-                      return GestureDetector(
-                        onHorizontalDragEnd: (details) {
-                          if (StringUtils.isDirectionRTL(context)) {
-                            if (!details.primaryVelocity!.isNegative) {
-                              Navigator.pop(context);
+                      return AppStreamBuilder<Resource<List<GetPrepaidBillerListModelData>?>>(
+                          initialData: Resource.none(),
+                          stream: model.searchPrepaidBillerStream,
+                          onData: (value) {
+                            if (value.status == Status.SUCCESS) {
+                              model.getPrepaidBillData = value.data;
+                              debugPrint("value.status:${value.status}");
+                            } else if (value.status == Status.ERROR) {
+                              debugPrint("value.status:${value.status}");
+                              model.showToastWithError(value.appError!);
                             }
-                          } else {
-                            if (details.primaryVelocity!.isNegative) {
-                              Navigator.pop(context);
-                            }
-                          }
-                        },
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  color: AppColor.white,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 56.h),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        width: 64.0.w,
-                                        height: 4.h,
-                                        decoration: BoxDecoration(
-                                            color: AppColor.whiteGrey,
-                                            borderRadius: BorderRadius.all(Radius.circular(4.0)))),
-                                    SizedBox(
-                                      height: 24.0.h,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(start: 24.0, end: 24.0),
-                                      child: AppTextField(
-                                        labelText: '',
-                                        hintText: S.of(context).searchBill,
-                                        controller: model.searchBillController,
-                                        readOnly: false,
-                                        onPressed: () {},
-                                        onChanged: (val) {
-                                          model.searchPrePaidBillerList(val);
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.w,
-                                              padding: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(AssetUtils.search,
-                                                  color: AppColor.dark_gray_1));
-                                        },
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),
-                                        child: model.getPrepaidBillData != null &&
-                                                model.getPrepaidBillData!.length > 0
-                                            ? ListView.separated(
-                                                shrinkWrap: true,
-                                                itemCount: model.getPrepaidBillData?.length ?? 0,
-                                                itemBuilder: (context, index) {
-                                                  return InkWell(
-                                                    onTap: () {
-                                                      _onPrePaidListItemSection(model, index, context);
-                                                    },
-                                                    child: Slidable(
-                                                      endActionPane: ActionPane(
-                                                        extentRatio: 0.25,
-                                                        motion: DrawerMotion(),
-                                                        children: [
-                                                          SlidableAction(
-                                                            // An action can be bigger than the others.
-                                                            onPressed: (context1) => {
-                                                              InformationDialog.show(context,
-                                                                  image: AssetUtils.deleteBlackIcon,
-                                                                  isSwipeToCancel: false,
-                                                                  title: S.of(context).areYouSure,
-                                                                  descriptionWidget: Text(
-                                                                    StringUtils.isDirectionRTL(context)
-                                                                        ? "${S.of(context).doYouReallyWantToDelete} ${model.getPrepaidBillData?[index].billerNameAR} ${S.of(context).fromSavedBills}"
-                                                                        : "${S.of(context).doYouReallyWantToDelete} ${model.getPrepaidBillData?[index].billerName} ${S.of(context).fromSavedBills}",
-                                                                    style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w400),
-                                                                  ), onDismissed: () {
-                                                                Navigator.pop(context);
-                                                              }, onSelected: () {
-                                                                Navigator.pop(context);
-                                                                var registrationId = model
-                                                                    .getPrepaidBillData?[index]
-                                                                    .registrationId;
-                                                                model.removePrepaidBiller(registrationId);
-                                                              })
-                                                            },
-                                                            backgroundColor: AppColor.dark_brown,
-                                                            foregroundColor: Colors.white,
-                                                            icon: Icons.delete,
+                          },
+                          dataBuilder: (context, snapshot) {
+                            return GestureDetector(
+                              onHorizontalDragEnd: (details) {
+                                if (StringUtils.isDirectionRTL(context)) {
+                                  if (!details.primaryVelocity!.isNegative) {
+                                    Navigator.pop(context);
+                                  }
+                                } else {
+                                  if (details.primaryVelocity!.isNegative) {
+                                    Navigator.pop(context);
+                                  }
+                                }
+                              },
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        color: AppColor.white,
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 56.h),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              width: 64.0.w,
+                                              height: 4.h,
+                                              decoration: BoxDecoration(
+                                                  color: AppColor.whiteGrey,
+                                                  borderRadius: BorderRadius.all(Radius.circular(4.0)))),
+                                          SizedBox(
+                                            height: 24.0.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.only(start: 24.0, end: 24.0),
+                                            child: AppTextField(
+                                              labelText: '',
+                                              hintText: S.of(context).searchBill,
+                                              controller: model.searchBillController,
+                                              readOnly: false,
+                                              onPressed: () {},
+                                              onChanged: (val) {
+                                                model.searchPrePaidBillerList(val);
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.h,
+                                                    width: 16.w,
+                                                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                    child: AppSvg.asset(AssetUtils.search,
+                                                        color: AppColor.dark_gray_1));
+                                              },
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),
+                                              child: model.getPrepaidBillData != null &&
+                                                      model.getPrepaidBillData!.length > 0
+                                                  ? ListView.separated(
+                                                      shrinkWrap: true,
+                                                      itemCount: model.getPrepaidBillData?.length ?? 0,
+                                                      itemBuilder: (context, index) {
+                                                        return InkWell(
+                                                          onTap: () {
+                                                            _onPrePaidListItemSection(model, index, context);
+                                                          },
+                                                          child: Slidable(
+                                                            endActionPane: ActionPane(
+                                                              extentRatio: 0.25,
+                                                              motion: DrawerMotion(),
+                                                              children: [
+                                                                SlidableAction(
+                                                                  // An action can be bigger than the others.
+                                                                  onPressed: (context1) => {
+                                                                    InformationDialog.show(context,
+                                                                        image: AssetUtils.deleteBlackIcon,
+                                                                        isSwipeToCancel: false,
+                                                                        title: S.of(context).areYouSure,
+                                                                        descriptionWidget: Text(
+                                                                          StringUtils.isDirectionRTL(context)
+                                                                              ? "${S.of(context).doYouReallyWantToDelete} ${model.getPrepaidBillData?[index].billerNameAR} ${S.of(context).fromSavedBills}"
+                                                                              : "${S.of(context).doYouReallyWantToDelete} ${model.getPrepaidBillData?[index].billerName} ${S.of(context).fromSavedBills}",
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 14.t,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ), onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, onSelected: () {
+                                                                      Navigator.pop(context);
+                                                                      var registrationId = model
+                                                                          .getPrepaidBillData?[index]
+                                                                          .registrationId;
+                                                                      model.removePrepaidBiller(
+                                                                          registrationId);
+                                                                    })
+                                                                  },
+                                                                  backgroundColor: AppColor.dark_brown,
+                                                                  foregroundColor: Colors.white,
+                                                                  icon: Icons.delete,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            child: PayMyPrepPaidBillListItemWidget(
+                                                              billName: StringUtils.isDirectionRTL(context)
+                                                                  ? "${model.getPrepaidBillData?[index].billerNameAR ?? ""}"
+                                                                  : "${model.getPrepaidBillData?[index].billerName ?? ""}",
+                                                              nickname:
+                                                                  model.getPrepaidBillData?[index].nickname ??
+                                                                      "",
+                                                              icon:
+                                                                  model.getPrepaidBillData?[index].iconCode ??
+                                                                      "",
+                                                            ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                      child: PayMyPrepPaidBillListItemWidget(
-                                                        billName: StringUtils.isDirectionRTL(context)
-                                                            ? "${model.getPrepaidBillData?[index].billerNameAR ?? ""}"
-                                                            : "${model.getPrepaidBillData?[index].billerName ?? ""}",
-                                                        nickname:
-                                                            model.getPrepaidBillData?[index].nickname ?? "",
-                                                        icon: model.getPrepaidBillData?[index].iconCode ?? "",
+                                                        );
+                                                      },
+                                                      separatorBuilder: (context, index) {
+                                                        return AppDivider();
+                                                      },
+                                                    )
+                                                  : Center(
+                                                      child: Text(
+                                                        S.of(context).noDataFound,
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w400,
+                                                            color: Theme.of(context).primaryColorDark),
                                                       ),
                                                     ),
-                                                  );
-                                                },
-                                                separatorBuilder: (context, index) {
-                                                  return AppDivider();
-                                                },
-                                              )
-                                            : Center(
-                                                child: Text(
-                                                  S.of(context).noDataFound,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Theme.of(context).primaryColorDark),
-                                                ),
-                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      );
+                            );
+                          });
                     });
               });
         });
@@ -292,8 +313,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
           AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
           Navigator.pop(context);
           model.isPrePaidCategoryEmpty = false;
-          Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
-              arguments: HowMuchLikeToPayPrePaidBillsPageArgument([model.getPrepaidBillerListModelData]));
+          model.validatePrePaidBill();
         });
   }
 }

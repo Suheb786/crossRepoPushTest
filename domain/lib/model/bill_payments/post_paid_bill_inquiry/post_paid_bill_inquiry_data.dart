@@ -12,6 +12,7 @@ class PostPaidBillInquiryData {
     this.success,
     this.message,
     this.isPartial,
+    this.minMaxValidationMessage,
   });
 
   String? billerCode;
@@ -26,4 +27,5 @@ class PostPaidBillInquiryData {
   bool? success;
   dynamic message;
   bool? isPartial;
+  String? minMaxValidationMessage;
 }

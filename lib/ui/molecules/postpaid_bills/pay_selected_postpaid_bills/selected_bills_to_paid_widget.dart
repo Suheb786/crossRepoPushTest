@@ -21,6 +21,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? maxRange;
   final bool? allowPartialPay;
   final Function(String)? onChanged;
+  final Function(bool)? onFocusChanged;
 
   SelectedBillsToPaidWidget(
       {Key? key,
@@ -32,7 +33,8 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.minMaxValidationMessage,
       required this.maxRange,
       this.allowPartialPay: false,
-      this.onChanged})
+      this.onChanged,
+      this.onFocusChanged})
       : super(key: key);
 
   ProviderBase provideBase() {
@@ -52,6 +54,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
         return Padding(
           padding: const EdgeInsetsDirectional.all(24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,40 +122,47 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                             SizedBox(
                               width: 10.0.w,
                             ),
-                            AutoSizeTextField(
-                              wrapWords: false,
-                              fullwidth: false,
-                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
-                              keyboardType: TextInputType.numberWithOptions(
-                                decimal: true,
-                                signed: false,
-                              ),
-                              controller: model!.amtController,
-                              textAlign: TextAlign.center,
-                              readOnly: this.allowPartialPay == false,
-                              onChanged: (value) {
-                                this.onChanged?.call(value);
-                                // if (value.length > 0) {
-                                //   this.onChanged?.call(value);
-                                //   if (value.length > 1 && value[0].toString().contains("0")) {
-                                //     value = value.substring(1, value.length);
-                                //   }
-                                //   model.amtController.text = value;
-                                // } else {
-                                //   this.onChanged?.call("0");
-                                //   model.amtController.text = "0";
-                                // }
-                                model.amtController.selection = TextSelection.fromPosition(
-                                    TextPosition(offset: model.amtController.text.length));
+                            Focus(
+                              onFocusChange: (hasFocus) {
+                                this.onFocusChanged?.call(hasFocus);
                               },
-                              decoration:
-                                  InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.brightBlue,
-                                  fontWeight: FontWeight.w700,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 14.0.t),
+                              child: AutoSizeTextField(
+                                wrapWords: false,
+                                fullwidth: false,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))
+                                ],
+                                keyboardType: TextInputType.numberWithOptions(
+                                  decimal: true,
+                                  signed: false,
+                                ),
+                                controller: model!.amtController,
+                                textAlign: TextAlign.center,
+                                readOnly: this.allowPartialPay == false,
+                                onChanged: (value) {
+                                  this.onChanged?.call(value);
+                                  // if (value.length > 0) {
+                                  //   this.onChanged?.call(value);
+                                  //   if (value.length > 1 && value[0].toString().contains("0")) {
+                                  //     value = value.substring(1, value.length);
+                                  //   }
+                                  //   model.amtController.text = value;
+                                  // } else {
+                                  //   this.onChanged?.call("0");
+                                  //   model.amtController.text = "0";
+                                  // }
+                                  model.amtController.selection = TextSelection.fromPosition(
+                                      TextPosition(offset: model.amtController.text.length));
+                                },
+                                decoration:
+                                    InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.brightBlue,
+                                    fontWeight: FontWeight.w700,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 14.0.t),
+                              ),
                             ),
                             Text(
                               S.of(context).JOD,
@@ -172,38 +182,34 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                               fontSize: 12.0.t),
                         ),
-                        this.allowPartialPay == true
-                            ? Flexible(
-                                child: Text(
-                                  minMaxValidationMessage!,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: AppColor.soft_red,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.0.t),
-                                ),
-                              )
-                            : SizedBox.shrink(),
                       ],
                     ),
                   ),
                 ],
               ),
               this.allowPartialPay == true
-                  ? Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(top: 8.0.h),
-                        child: Text(
-                          '${S.of(context).pay} ${S.of(context).from.toLowerCase()} ${minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${maxRange} ${S.of(context).JOD}',
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.gray5,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12.0.t),
-                        ),
+                  ? Padding(
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h),
+                      child: Text(
+                        '${S.of(context).pay} ${S.of(context).fromSingleLine.toLowerCase()} ${minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${maxRange} ${S.of(context).JOD}',
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.gray5,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12.0.t),
                       ),
                     )
-                  : SizedBox.shrink()
+                  : Container(),
+              this.allowPartialPay == true
+                  ? Text(
+                      minMaxValidationMessage ?? "",
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.soft_red,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.0.t),
+                    )
+                  : Container()
             ],
           ),
         );

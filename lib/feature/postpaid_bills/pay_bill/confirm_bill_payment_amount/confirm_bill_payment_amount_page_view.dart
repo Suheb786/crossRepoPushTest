@@ -454,7 +454,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
             child: Row(
               children: [
                 Text(
-                  '${S.of(context).pay} ${S.of(context).from.toLowerCase()} ${model.minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${model.maxRange} ${S.of(context).JOD}',
+                  '${S.of(context).pay} ${S.of(context).fromSingleLine.toLowerCase()} ${model.minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${model.maxRange} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.gray1,
