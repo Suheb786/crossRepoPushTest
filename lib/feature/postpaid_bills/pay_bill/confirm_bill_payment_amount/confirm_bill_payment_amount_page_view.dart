@@ -287,6 +287,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               _amountTitle(model, context),
               _totalAmountWidget(model, context),
               _tapToEditWidget(model, context),
+              _minMaxErrorWidget(model, context),
               _dueAmountPostPaidWidget(model, context),
               _feeAmountWidget(model, context),
               _minMaxRangeWidget(model, context),
@@ -344,6 +345,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           controller: model.amtController,
           textAlign: TextAlign.center,
           onChanged: (value) {
+            model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, value, context);
             model.validate(value);
           },
           onSubmitted: (value) {
@@ -384,6 +386,25 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               fontWeight: FontWeight.w600,
             ),
           )
+        : Container();
+  }
+
+  _minMaxErrorWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return !AppConstantsUtils.PRE_PAID_FLOW && model.isPartial == true
+        ? AppStreamBuilder<String>(
+            stream: model.minMaxErrorFieldStream,
+            initialData: "",
+            dataBuilder: (context, value) {
+              return Text(
+                value!,
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: AppColor.soft_red,
+                  fontSize: 10.0.t,
+                  fontWeight: FontWeight.w600,
+                ),
+              );
+            })
         : Container();
   }
 

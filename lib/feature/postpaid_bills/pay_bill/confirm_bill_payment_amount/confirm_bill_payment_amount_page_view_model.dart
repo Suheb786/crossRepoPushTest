@@ -11,6 +11,7 @@ import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart'
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
@@ -287,5 +288,27 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     _payPostPaidResponse.close();
     _showButtonSubject.close();
     super.dispose();
+  }
+
+  /// edit amount field  subject
+  BehaviorSubject<String> _editAmountFieldSubject = BehaviorSubject.seeded("");
+
+  Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
+
+  void minMaxValidate(
+      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+    if (isPartial == true) {
+      if (value.isEmpty) {
+        _editAmountFieldSubject.safeAdd(
+            "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
+      } else if (double.parse(value) < double.parse(minRange ?? "0")) {
+        _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
+      } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
+        _editAmountFieldSubject
+            .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
+      } else {
+        _editAmountFieldSubject.safeAdd("");
+      }
+    }
   }
 }

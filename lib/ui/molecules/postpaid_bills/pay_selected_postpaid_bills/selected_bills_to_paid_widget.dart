@@ -17,6 +17,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? billName;
   final String? billAmtDue;
   final String? minRange;
+  final String? minMaxValidationMessage;
   final String? maxRange;
   final bool? allowPartialPay;
   final Function(String)? onChanged;
@@ -28,6 +29,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billName,
       required this.billAmtDue,
       required this.minRange,
+      required this.minMaxValidationMessage,
       required this.maxRange,
       this.allowPartialPay: false,
       this.onChanged})
@@ -49,7 +51,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       builder: (BuildContext context, model, child) {
         return Padding(
           padding: const EdgeInsetsDirectional.all(24.0),
-          child: Row(
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,6 +172,18 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                               fontSize: 12.0.t),
                         ),
+                        this.allowPartialPay == true
+                            ? Flexible(
+                                child: Text(
+                                  minMaxValidationMessage!,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.soft_red,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.0.t),
+                                ),
+                              )
+                            : SizedBox.shrink(),
                       ],
                     ),
                   ),

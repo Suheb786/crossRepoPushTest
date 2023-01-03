@@ -8,6 +8,7 @@ import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -134,10 +135,26 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  void newAmtEnter(int index, String value) {
+  void newAmtEnter(
+    int index,
+    String value,
+    bool isPartial,
+    String? minRange,
+    String? maxRange,
+    BuildContext context,
+  ) {
     if (value.length <= 0) {
       value = "0";
     }
+
+    minMaxValidate(
+      isPartial,
+      minRange,
+      maxRange,
+      value,
+      context,
+    );
+
     // totalAmt[index] = double.parse(value);
     // arguments.noOfSelectedBills[index].dueAmount = value;
     arguments.postPaidBillInquiryData?[index].dueAmount = value;
@@ -204,6 +221,31 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     } else {
       _showButtonSubject.safeAdd(false);
+    }
+  }
+
+  /// edit amount field  subject
+  BehaviorSubject<String> _editAmountFieldSubject = BehaviorSubject.seeded("");
+
+  Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
+
+  void minMaxValidate(
+      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+    if (isPartial == true) {
+      if (value.isEmpty) {
+        _editAmountFieldSubject.safeAdd(
+            "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
+        return;
+      } else if (double.parse(value) < double.parse(minRange ?? "0")) {
+        _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
+        return;
+      } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
+        _editAmountFieldSubject
+            .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
+        return;
+      } else {
+        _editAmountFieldSubject.safeAdd("");
+      }
     }
   }
 
