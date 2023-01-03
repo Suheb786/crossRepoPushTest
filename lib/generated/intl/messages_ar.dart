@@ -1024,14 +1024,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidOtpCodeNetwork": MessageLookupByLibrary.simpleMessage("رمز غير صحيح. حاول كمان مرة."),
         "invalidOtpEntered": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور OTP اللي دخلتها غير صحيحة. الرجاء إدخال كلمة صحيحة."),
-        "invalidOtpNetwork": MessageLookupByLibrary.simpleMessage(
-            "رمز غير صحيح. حاول كمان مرة."),
-        "invalidOtpReq": MessageLookupByLibrary.simpleMessage(
-            "رمز غير صحيح. حاول كمان مرة."),
+        "invalidOtpNetwork": MessageLookupByLibrary.simpleMessage("رمز غير صحيح. حاول كمان مرة."),
+        "invalidOtpReq": MessageLookupByLibrary.simpleMessage("رمز غير صحيح. حاول كمان مرة."),
         "invalidPayBackAmount": MessageLookupByLibrary.simpleMessage(
             "مبلغ السداد بيتجاوز رصيد الحساب. الرجاء إيداع المبلغ بالحساب أو اختيار حساب آخر."),
-        "invalidPermanentAddress":
-            MessageLookupByLibrary.simpleMessage("أدخل عنوان الإقامة الدائمة"),
+        "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage("أدخل عنوان الإقامة الدائمة"),
         "invalidPinLength": MessageLookupByLibrary.simpleMessage(
             "الحد الأدنى للرمز السري PIN هو 4 أرقام"),
         "invalidPostCode":
@@ -1112,13 +1109,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
             "تحمّلنا بشويّة أسئلة عن دخلك"),
         "jobName": MessageLookupByLibrary.simpleMessage("الوظيفة"),
-        "joinedBlink":
-            MessageLookupByLibrary.simpleMessage("صار عندك مع Blink"),
+        "joinedBlink": MessageLookupByLibrary.simpleMessage("صار عندك مع Blink"),
         "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-004)"),
-        "legalDocumentNo":
-            MessageLookupByLibrary.simpleMessage("رقم الوثيقة القانونية"),
+        "legalDocumentNo": MessageLookupByLibrary.simpleMessage("رقم الوثيقة القانونية"),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-153)"),
         "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage("خلينا نعمل CliQ جديد"),
