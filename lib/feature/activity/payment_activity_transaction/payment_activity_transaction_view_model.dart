@@ -94,7 +94,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         return _requestToPayResultUseCase.execute(params: value);
       }).asFlow().listen((event) {
         updateLoader();
-        _requestMoneyActivityResponse.safeAdd(event);
+        _requestToPayResultResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -129,7 +129,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
     required final String RejectReason,
     required final String RejectADdInfo,
   }) {
-    _requestMoneyActivityResponse.safeAdd(RequestToPayResultUsecaseParams(
+    _requestToPayResultRequest.safeAdd(RequestToPayResultUsecaseParams(
         CustID: CustID,
         OrgnlMsgId: OrgnlMsgId,
         RTPStatus: RTPStatus,

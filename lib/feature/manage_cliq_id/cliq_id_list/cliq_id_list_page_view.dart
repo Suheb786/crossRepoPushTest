@@ -19,6 +19,7 @@ import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_sheet_
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -398,9 +399,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             Align(
                                                               alignment: AlignmentDirectional.bottomCenter,
                                                               child: InkWell(
-                                                                onTap: () {
+                                                                onTap: () async {
                                                                   Navigator.pushNamed(
                                                                       context, RoutePaths.CreateCliqId);
+
+                                                                  ///LOG EVENT TO FIREBASE
+                                                                  await FireBaseLogUtil.fireBaseLog(
+                                                                      "navigation_alias_creation",
+                                                                      {"navigated_alias_creation": true});
                                                                 },
                                                                 child: Container(
                                                                   margin: EdgeInsets.symmetric(

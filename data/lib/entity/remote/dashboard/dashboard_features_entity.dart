@@ -37,6 +37,18 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-payments-qrcode")
   final bool? paymentQRCode;
 
+  @JsonKey(name: "blink-retail-app-cliq")
+  final bool? blinkRetailAppCliq;
+
+  @JsonKey(name: "blink-retail-app-cliq-alias-management")
+  final bool? blinkRetailAppAliasManagement;
+
+  @JsonKey(name: "blink-retail-app-cliq-rtp")
+  final bool? blinkRetailAppRTP;
+
+  @JsonKey(name: "blink-retail-app-cliq-send-payment")
+  final bool? blinkRetailAppCliqSendPayment;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -47,7 +59,11 @@ class DashboardFeaturesEntity
       this.isRegisterEnabled,
       this.isCreditCardPinChangeEnabled,
       this.isDebitCardPhysicalCardRequestEnabled,
-      this.blinkRetailAppBillPaymentPayPrepaid});
+      this.blinkRetailAppBillPaymentPayPrepaid,
+      this.blinkRetailAppAliasManagement,
+      this.blinkRetailAppCliq,
+      this.blinkRetailAppCliqSendPayment,
+      this.blinkRetailAppRTP});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -71,6 +87,10 @@ class DashboardFeaturesEntity
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? true,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? true,
         appBillPaymentQrCode: this.paymentQRCode ?? true,
-        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? true);
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? true,
+        blinkRetailAppCliq: this.blinkRetailAppCliq ?? true,
+        blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? true,
+        blinkRetailAppCliqRTP: blinkRetailAppRTP ?? true,
+        blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? true);
   }
 }

@@ -1540,8 +1540,7 @@
   "aliasMobileNoHint": "رقم الموبايل يجب ان يبدأ ب ٠٠٩٦٢",
   "aliasNickNameHint": "تلميح للاسم المستعار: ",
   "aliasMobileHint": "تلميح لرقم الموبايل: ",
-  "noRTPActivityToDisplay": "Tلا يوجد حاليا أي طلبات لعرضها"
-  "dateComparison": "Depart on date should not be greater than return date",
+  "noRTPActivityToDisplay": "Tلا يوجد حاليا أي طلبات لعرضها",
   "qrExpired": "QR Expired",
   "qrInvalid": "QR does not exist",
   "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",

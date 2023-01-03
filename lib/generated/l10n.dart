@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -13090,6 +13091,36 @@ class S {
     );
   }
 
+  /// `How would you like to\npay your bills?`
+  String get howWouldLikeToPayYourBills {
+    return Intl.message(
+      'How would you like to\npay your bills?',
+      name: 'howWouldLikeToPayYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\npay your prepaid bills?`
+  String get howWouldLikeToPayPrePaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your prepaid bills?',
+      name: 'howWouldLikeToPayPrePaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\npay your postpaid bills?`
+  String get howWouldLikeToPayPostPaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your postpaid bills?',
+      name: 'howWouldLikeToPayPostPaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `REGION`
   String get region {
     return Intl.message(
@@ -14150,6 +14181,56 @@ class S {
     );
   }
 
+  /// `My Postpaid Bill`
+  String get myPostPaidBill {
+    return Intl.message(
+      'My Postpaid Bill',
+      name: 'myPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View my bills`
+  String get viewMyBills {
+    return Intl.message(
+      'View my bills',
+      name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paying`
+  String get paying {
+    return Intl.message(
+      'Paying',
+      name: 'paying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Prepaid Bills`
+  String get myPrePaidBills {
+    return Intl.message(
+      'My Prepaid Bills',
+      name: 'myPrePaidBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to pay new bill`
+  String get swipeUpToPayNewBill {
+    return Intl.message(
+      'Swipe up to pay new bill',
+      name: 'swipeUpToPayNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm your payment\namount below`
   String get confirmYourPaymentAmtBelow {
     return Intl.message(
@@ -14170,11 +14251,31 @@ class S {
     );
   }
 
-  /// `Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?`
-  String get doYouReallyDeleteSavedBills {
+  /// `Do you really want to delete`
+  String get doYouReallyWantToDelete {
     return Intl.message(
-      'Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?',
-      name: 'doYouReallyDeleteSavedBills',
+      'Do you really want to delete',
+      name: 'doYouReallyWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from Saved Bills?`
+  String get fromSavedBills {
+    return Intl.message(
+      'from Saved Bills?',
+      name: 'fromSavedBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much would you\nlike to pay?`
+  String get howMuchWouldYouLikeToPay {
+    return Intl.message(
+      'How much would you\nlike to pay?',
+      name: 'howMuchWouldYouLikeToPay',
       desc: '',
       args: [],
     );
@@ -14220,20 +14321,20 @@ class S {
     );
   }
 
-  /// `QR Expired. Try scanning valid QR`
+  /// `QR Expired`
   String get qrExpired {
     return Intl.message(
-      'QR Expired. Try scanning valid QR',
+      'QR Expired',
       name: 'qrExpired',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid QR. Try scanning valid QR`
+  /// `QR does not exist`
   String get qrInvalid {
     return Intl.message(
-      'Invalid QR. Try scanning valid QR',
+      'QR does not exist',
       name: 'qrInvalid',
       desc: '',
       args: [],
@@ -15605,6 +15706,176 @@ class S {
     return Intl.message(
       'There are currently no requests to display',
       name: 'noRTPActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Not Scanned or Re Read the qr code/link`
+  String get qrNotScanned {
+    return Intl.message(
+      'QR Not Scanned or Re Read the qr code/link',
+      name: 'qrNotScanned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search category`
+  String get searchCategory {
+    return Intl.message(
+      'Search category',
+      name: 'searchCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Biller Found`
+  String get noBillerFound {
+    return Intl.message(
+      'No Biller Found',
+      name: 'noBillerFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Prepaid Category Found`
+  String get noPrepaidCategoryFound {
+    return Intl.message(
+      'No Prepaid Category Found',
+      name: 'noPrepaidCategoryFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Denomination`
+  String get denomination {
+    return Intl.message(
+      'Denomination',
+      name: 'denomination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error on billinquiry`
+  String get errorOnBillinquiry {
+    return Intl.message(
+      'error on billinquiry',
+      name: 'errorOnBillinquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while adding customer`
+  String get errorWhileAddingCustomer {
+    return Intl.message(
+      'error while adding customer',
+      name: 'errorWhileAddingCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay My Bill`
+  String get payMyBill {
+    return Intl.message(
+      'Pay My Bill',
+      name: 'payMyBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient funds bill cannot be paid`
+  String get insufficientFundsBillCannotBePaid {
+    return Intl.message(
+      'Insufficient funds bill cannot be paid',
+      name: 'insufficientFundsBillCannotBePaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your bill has been removed.`
+  String get yourBillHasBeenRemoved {
+    return Intl.message(
+      'Your bill has been removed.',
+      name: 'yourBillHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller Added Successfully.`
+  String get billerAddedSuccessfully {
+    return Intl.message(
+      'Biller Added Successfully.',
+      name: 'billerAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status`
+  String get status {
+    return Intl.message(
+      'Status',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get successS {
+    return Intl.message(
+      'Success',
+      name: 'successS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller already exists with the same billing number`
+  String get billerAlreadyExistsMessage {
+    return Intl.message(
+      'Biller already exists with the same billing number',
+      name: 'billerAlreadyExistsMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nick name can only contain alphanumerics`
+  String get nickNameCanOnlyContainAlphanumerics {
+    return Intl.message(
+      'Nick name can only contain alphanumerics',
+      name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
+  String get billPaymentSorryMessage {
+    return Intl.message(
+      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
+      name: 'billPaymentSorryMessage',
       desc: '',
       args: [],
     );

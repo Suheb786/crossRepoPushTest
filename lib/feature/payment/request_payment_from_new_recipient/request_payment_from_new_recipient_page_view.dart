@@ -29,7 +29,6 @@ class RequestPaymentFromNewRecipientPageView
         stream: model.currentStep,
         initialData: 0,
         dataBuilder: (context, currentStep) {
-          print("got current step : $currentStep");
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {

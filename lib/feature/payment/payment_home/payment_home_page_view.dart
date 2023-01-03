@@ -50,7 +50,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                 stream: model.currentStep,
                 initialData: navigationType == NavigationType.DASHBOARD ? 0 : 1,
                 dataBuilder: (context, currentStep) {
-                  print("current step : $currentStep");
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (currentStep == 2) {}

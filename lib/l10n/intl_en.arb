@@ -1592,8 +1592,7 @@
   "aliasMobileNoHint": "Mobile number must start with 00962",
   "aliasNickNameHint": "Alias nickname hint: ",
   "aliasMobileHint": "Alias mobile hint: ",
-  "noRTPActivityToDisplay": "There are currently no requests to display"
-  "dateComparison": "Depart on date should not be greater than return date",
+  "noRTPActivityToDisplay": "There are currently no requests to display",
   "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "searchCategory": "Search category",
   "noBillerFound": "No Biller Found",

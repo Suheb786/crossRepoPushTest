@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -30,14 +31,22 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
       child: AppStreamBuilder<Resource<RequestToPayContentResponse>>(
           stream: model.requestFromContactResponseStream,
           initialData: Resource.none(),
-          onData: (data) {
+          onData: (data) async {
             if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
+
+              ///LOG EVENT TO FIREBASE
+              await FireBaseLogUtil.fireBaseLog(
+                  "request_money_from_saved_beneficiary_failure", {"is_money_requested": false});
             } else if (data.status == Status.SUCCESS) {
               ///LOGGING EVENT TO APP FLYER
               model.logEventsForAppFlyer(
                   eventName: 'request_money_from_contact',
                   eventValue: {"money_requested": model.currentPinValue});
+
+              ///LOG EVENT TO FIREBASE
+              await FireBaseLogUtil.fireBaseLog("request_money_from_saved_beneficiary_success",
+                  {"is_money_requested": true, "money_requested": model.currentPinValue});
               Navigator.pushNamed(context, RoutePaths.RequestAmountFromContactSuccess, arguments: [
                 model.currentPinValue,
                 data.data!.requestToPayContent!.dbtrName!,

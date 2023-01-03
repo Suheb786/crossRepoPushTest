@@ -755,9 +755,9 @@ class AppRouter {
                 PayAllPostPaidBillsPage(settings.arguments as PayAllPostPaidBillsPageArguments),
             settings: RouteSettings(name: RoutePaths.PayAllPostPaidBillsPage));
 
-      case RoutePaths.LauncherPage:
-        return CupertinoPageRoute(
-            builder: (context) => LauncherPage(), settings: RouteSettings(name: RoutePaths.LauncherPage));
+      // case RoutePaths.LauncherPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => LauncherPage(), settings: RouteSettings(name: RoutePaths.LauncherPage));
 
       case RoutePaths.PostPaidBillsSuccessPage:
         return CupertinoPageRoute(

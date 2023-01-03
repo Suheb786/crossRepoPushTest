@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_v
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 
 class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   @override
@@ -35,8 +36,12 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
             ),
           ),
           InkWell(
-            onTap: () {
+            onTap: () async {
               Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+
+              ///LOG EVENT TO FIREBASE
+              await FireBaseLogUtil.fireBaseLog(
+                  "navigation_alias_creation", {"navigated_alias_creation": true});
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(end: 24.0),

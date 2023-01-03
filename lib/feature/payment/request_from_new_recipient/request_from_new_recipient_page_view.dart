@@ -23,6 +23,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -49,10 +50,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                     child: AppStreamBuilder<Resource<RequestToPayContentResponse>>(
                         stream: model.requestFromNewRecipientResponseStream,
                         initialData: Resource.none(),
-                        onData: (data) {
+                        onData: (data) async {
                           if (data.status == Status.SUCCESS) {
-                            print("got event: ${data.data!.requestToPayContent!.dbtrAcct}");
-
                             ///LOG Evenet to appflyer
                             model.logEventsForAppFlyer(
                                 eventName: 'request_money_from_new_contact',
@@ -61,6 +60,14 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                       .read(requestMoneyViewModelProvider)
                                       .currentPinValue
                                 });
+
+                            ///LOG EVENT TO FIREBASE
+                            await FireBaseLogUtil.fireBaseLog("request_money_from_new_recipient_success", {
+                              "is_money_requested": true,
+                              "money_requested": ProviderScope.containerOf(context)
+                                  .read(requestMoneyViewModelProvider)
+                                  .currentPinValue
+                            });
                             Navigator.pushReplacementNamed(
                                 context, RoutePaths.RequestAmountFromContactSuccess,
                                 arguments: [
@@ -71,11 +78,11 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                   data.data!.requestToPayContent!.dbtrMcc!,
                                 ]);
                           } else if (data.status == Status.ERROR) {
-                            // if (data.appError!.type ==
-                            //     ErrorType.EMPTY_RESIDENT_COUNTRY) {
-                            //   model.residentCountryKey.currentState!.isValid =
-                            //       false;
-                            // }
+                            ///LOG EVENT TO FIREBASE
+                            await FireBaseLogUtil.fireBaseLog("request_money_from_new_recipient_failure", {
+                              "is_money_requested": false,
+                            });
+
                             model.showToastWithError(data.appError!);
                           }
                         },

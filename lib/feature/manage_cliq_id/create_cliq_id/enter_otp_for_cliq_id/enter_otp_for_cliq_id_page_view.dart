@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -37,9 +38,15 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
             child: AppStreamBuilder<Resource<ConfirmCreateCliqId>>(
                 initialData: Resource.none(),
                 stream: model.createCliqIdStream,
-                onData: (data) {
-                  if (data.status == Status.SUCCESS)
+                onData: (data) async {
+                  if (data.status == Status.SUCCESS) {
+                    ///LOG EVENT TO FIREBASE
+                    await FireBaseLogUtil.fireBaseLog("alias_created", {"is_alias_created": true});
                     Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
+                  } else if (data.status == Status.ERROR) {
+                    ///LOG EVENT TO FIREBASE
+                    await FireBaseLogUtil.fireBaseLog("alias_created", {"is_alias_created": false});
+                  }
                 },
                 dataBuilder: (context, createCliqIdResponse) {
                   return AppStreamBuilder<Resource<bool>>(
