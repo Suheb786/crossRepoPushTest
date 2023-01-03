@@ -15,7 +15,7 @@ class DenominationsDialog {
       required String label,
       List<GetPrepaidCategoriesModelData>? getPrePaidCategoriesList}) {
     AppDialog.show(mContext,
-        isDismissible: true,
+        isDismissible: false,
         builder: (context) => DenominationsDialogView(
             billerCode: billerCode,
             serviceCode: serviceCode,

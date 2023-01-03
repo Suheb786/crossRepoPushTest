@@ -34,6 +34,7 @@ class PaySelectedBillsPostPaidBillsPageView
       initialData: model.postPaidBillInquiryData!,
       onData: (data) {
         model.postPaidBillInquiryData = data;
+
         model.addAllBillAmt();
       },
       dataBuilder: (BuildContext context, data) {
@@ -125,7 +126,17 @@ class PaySelectedBillsPostPaidBillsPageView
                                           physics: NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
+                                            model.arguments.noOfSelectedBills[index].dueAmount =
+                                                model.arguments.postPaidBillInquiryData?[index].dueAmount;
                                             return SelectedBillsToPaidWidget(
+                                              minMaxValidationMessage: model
+                                                  .postPaidBillInquiryData?[index].minMaxValidationMessage,
+                                              minRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].minValue ?? "0")
+                                                  .toStringAsFixed(3),
+                                              maxRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].maxValue ?? "0")
+                                                  .toStringAsFixed(3),
                                               allowPartialPay:
                                                   model.postPaidBillInquiryData?[index].isPartial ?? false,
                                               billName: model.getValidBillerNickName(
@@ -137,8 +148,27 @@ class PaySelectedBillsPostPaidBillsPageView
                                                   model.arguments.postPaidBillInquiryData?[index].serviceType,
                                                   context),
                                               itemCount: (index + 1).toString(),
+                                              onFocusChanged: (hasChanged) {
+                                                if (!hasChanged) {
+                                                  model.postpaidInquiryDataListener(
+                                                      list: model.postPaidBillInquiryData!);
+                                                }
+                                              },
                                               onChanged: (value) {
-                                                model.newAmtEnter(index, value);
+                                                model.newAmtEnter(
+                                                  index,
+                                                  value,
+                                                  model.postPaidBillInquiryData?[index].isPartial ?? false,
+                                                  double.parse(
+                                                          model.postPaidBillInquiryData?[index].minValue ??
+                                                              "0")
+                                                      .toStringAsFixed(3),
+                                                  double.parse(
+                                                          model.postPaidBillInquiryData?[index].maxValue ??
+                                                              "0")
+                                                      .toStringAsFixed(3),
+                                                  context,
+                                                );
                                               },
                                               billAmtDue: model.getValidBillerDueAmount(
                                                 model.arguments.postPaidBillInquiryData?[index].billingNo,

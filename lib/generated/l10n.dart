@@ -8110,6 +8110,16 @@ class S {
     );
   }
 
+  /// `from`
+  String get fromSingleLine {
+    return Intl.message(
+      'from',
+      name: 'fromSingleLine',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You don't have any contacts yet. Your Blink contacts can be saved while requesting money.`
   String get addRequestMoney {
     return Intl.message(
@@ -14855,6 +14865,46 @@ class S {
     return Intl.message(
       'Nick name can only contain alphanumerics',
       name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment amount can be`
+  String get paymentAmountCanBe {
+    return Intl.message(
+      'Payment amount can be',
+      name: 'paymentAmountCanBe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be between`
+  String get amountShouldBetween {
+    return Intl.message(
+      'Amount should be between',
+      name: 'amountShouldBetween',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be more than`
+  String get amountShouldBeMoreThan {
+    return Intl.message(
+      'Amount should be more than',
+      name: 'amountShouldBeMoreThan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be less than or equal to`
+  String get amountShouldBeLessThanOrEqualTo {
+    return Intl.message(
+      'Amount should be less than or equal to',
+      name: 'amountShouldBeLessThanOrEqualTo',
       desc: '',
       args: [],
     );

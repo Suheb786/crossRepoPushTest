@@ -7,6 +7,9 @@ class GetBillerLookupListRequest {
   @JsonKey(name: "categoryName")
   String? categoryName;
 
+  // @JsonKey(name: "categoryNameAr")
+  // String? categoryNameAr;
+
   @JsonKey(name: "Type")
   String? type;
 
@@ -15,7 +18,13 @@ class GetBillerLookupListRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetBillerLookupListRequest({this.categoryName, this.type, this.getToken, required this.baseData});
+  GetBillerLookupListRequest({
+    this.categoryName,
+    // this.categoryNameAr,
+    this.type,
+    this.getToken,
+    required this.baseData,
+  });
 
   factory GetBillerLookupListRequest.fromJson(Map<String, dynamic> json) =>
       _$GetBillerLookupListRequestFromJson(json);

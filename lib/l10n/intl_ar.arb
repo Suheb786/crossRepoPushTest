@@ -828,6 +828,7 @@
   "residentCity": "مدينة الإقامة",
   "youRequested": "إنت طلبت ",
   "from": "من",
+  "fromSingleLine": "من",
   "addRequestMoney": "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال.",
   "errorWhileProcessLoanRequest": "خطأ خلال طلب القرض",
   "errorWhileGettingAccountCloseOtp": "خطأ خلال الحصول على كلمة المرور OTP",
@@ -1462,5 +1463,9 @@
   "billerAlreadyExistsMessage": "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي",
   "searchBill": "البحث عن فاتورة",
   "nickNameCanOnlyContainAlphanumerics": "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط",
+  "paymentAmountCanBe": "Payment amount can be",
+  "amountShouldBetween": "المبلغ يجب ان يكون بين",
+  "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
+  "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
 }

@@ -22,9 +22,10 @@ class GetBillerLookupUseCase
 
 class GetBillerLookupUseCaseParams extends Params {
   String? categoryName;
+  String? categoryNameAr;
   String? type;
 
-  GetBillerLookupUseCaseParams({this.categoryName, this.type});
+  GetBillerLookupUseCaseParams({this.categoryName, this.categoryNameAr, this.type});
 
   @override
   Either<AppError, bool> verify() {

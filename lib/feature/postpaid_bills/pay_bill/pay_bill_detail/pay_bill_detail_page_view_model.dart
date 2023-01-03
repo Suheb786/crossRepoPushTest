@@ -211,10 +211,11 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
-    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY];
+    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.billerDetailsCacheListKey];
     if (billerDetailsList == null || billerDetailsList!.isEmpty) {
       _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          categoryNameAr: AppConstantsUtils.BILLER_CATEGORY_ARABIC,
           type: AppConstantsUtils.POST_PAID_FLOW == true
               ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
               : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()));
