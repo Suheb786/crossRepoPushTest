@@ -14,7 +14,8 @@ GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$GenerateQRRequestEntityToJson(GenerateQRRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$GenerateQRRequestEntityToJson(GenerateQRRequestEntity instance) =>
+    <String, dynamic>{
       'Amount': instance.amount,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

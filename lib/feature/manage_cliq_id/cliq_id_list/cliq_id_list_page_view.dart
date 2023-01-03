@@ -428,11 +428,15 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                             fontSize: 14,
                                                                             fontWeight: FontWeight.w600,
                                                                             letterSpacing: 1,
-                                                                            color: Theme.of(context)
+                                                                            color: Theme
+                                                                                .of(context)
                                                                                 .accentColor)),
                                                                   ),
                                                                 ),
                                                               ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 16.h,
                                                             )
                                                           ],
                                                         ),
