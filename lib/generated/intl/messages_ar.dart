@@ -1029,14 +1029,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPayBackAmount": MessageLookupByLibrary.simpleMessage(
             "مبلغ السداد بيتجاوز رصيد الحساب. الرجاء إيداع المبلغ بالحساب أو اختيار حساب آخر."),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage("أدخل عنوان الإقامة الدائمة"),
-        "invalidPinLength": MessageLookupByLibrary.simpleMessage(
-            "الحد الأدنى للرمز السري PIN هو 4 أرقام"),
-        "invalidPostCode":
-            MessageLookupByLibrary.simpleMessage("أدخل الرمز البريدي"),
-        "invalidPreferredDate":
-            MessageLookupByLibrary.simpleMessage("اختار التاريخ"),
-        "invalidPreferredTime":
-            MessageLookupByLibrary.simpleMessage("اختار الوقت"),
+        "invalidPinLength": MessageLookupByLibrary.simpleMessage("الحد الأدنى للرمز السري PIN هو 4 أرقام"),
+        "invalidPostCode": MessageLookupByLibrary.simpleMessage("أدخل الرمز البريدي"),
+        "invalidPreferredDate": MessageLookupByLibrary.simpleMessage("اختار التاريخ"),
+        "invalidPreferredTime": MessageLookupByLibrary.simpleMessage("اختار الوقت"),
         "invalidPrimaryId": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-147)"),
         "invalidProductId": MessageLookupByLibrary.simpleMessage(
@@ -1099,15 +1095,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "issuingPlace": MessageLookupByLibrary.simpleMessage("مكان الإصدار"),
         "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "إصدار بطاقتك الائتمانية التابعة"),
-        "issuingYourCreditCard":
-            MessageLookupByLibrary.simpleMessage("إصدار بطاقتك الائتمانية"),
+        "issuingYourCreditCard": MessageLookupByLibrary.simpleMessage("إصدار بطاقتك الائتمانية"),
         "japan": MessageLookupByLibrary.simpleMessage("Japan"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("العمل والدخل"),
         "jobDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "المعلومات الوظيفية المطلوبة ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
         "jobIncome": MessageLookupByLibrary.simpleMessage("العمل والدخل"),
-        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
-            "تحمّلنا بشويّة أسئلة عن دخلك"),
+        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage("تحمّلنا بشويّة أسئلة عن دخلك"),
         "jobName": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "joinedBlink": MessageLookupByLibrary.simpleMessage("صار عندك مع Blink"),
         "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),

@@ -83,7 +83,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
-            billingNumber: /*"121344"*/ item.billingNo,
+            billingNumber: item.billingNo,
             billerName: StringUtils.isDirectionRTL(context)
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,
@@ -100,18 +100,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         totalAmount: addAllBillAmt().toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
-        isCreditCardPayment: /* cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? true
-            : */
-            false,
-        CardId: /*cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? cardID
-            :*/
-            "",
+        isCreditCardPayment: false,
+        CardId: "",
         otpCode: ""));
   }
 
@@ -148,7 +138,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     arguments.postPaidBillInquiryData?[index].dueAmount = value;
     arguments.noOfSelectedBills[index].dueAmount = value;
     if (isPartial == true) {
-      print('m here 1 ');
       minMaxValidate(isPartial, minRange, maxRange, value, context, index);
     }
 
@@ -220,42 +209,20 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  /// edit amount field  subject
-  BehaviorSubject<String> _editAmountFieldSubject = BehaviorSubject.seeded("");
-
-  Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
-
   void minMaxValidate(
       bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
     if (isPartial == true) {
       if (value.isEmpty) {
-        print('m here 2 ');
-
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
-
-        // _editAmountFieldSubject.safeAdd(
-        //     "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
       } else if (double.parse(value) < double.parse(minRange ?? "0")) {
-        print('m here 3');
-
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}";
-
-        // _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        print('m here 4');
-
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
-
-        // _editAmountFieldSubject
-        //     .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
       } else {
-        print('m here 5');
-
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
-        // _editAmountFieldSubject.safeAdd("");
       }
     }
   }

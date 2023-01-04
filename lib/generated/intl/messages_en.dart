@@ -147,14 +147,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
-        "addressInUnitedStates":
-            MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
+        "addressInUnitedStates": MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
             "Engagement team is currently not available, please try later"),
         "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
             "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM"),
-        "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
-            "Please select your preferred agent for a video call"),
+        "agentSelectionHeader":
+            MessageLookupByLibrary.simpleMessage("Please select your preferred agent for a video call"),
         "agreeData": MessageLookupByLibrary.simpleMessage("and "),
         "agreeTermsCondition": MessageLookupByLibrary.simpleMessage("Please agree to terms and conditions."),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
@@ -193,12 +192,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "applicationInProcess": MessageLookupByLibrary.simpleMessage("Your Application Is In Process"),
         "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
             "The Blink mobile application is not available in your region!"),
-        "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately, your application was rejected."),
+        "applicationNotSuccessful":
+            MessageLookupByLibrary.simpleMessage("Unfortunately, your application was rejected."),
         "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
             "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."),
-        "applicationSubmitted":
-            MessageLookupByLibrary.simpleMessage("Application submitted"),
+        "applicationSubmitted": MessageLookupByLibrary.simpleMessage("Application submitted"),
         "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
             "To complete your credit card application, you are required to verify yourself via video call."),
         "applicationUnderReview": MessageLookupByLibrary.simpleMessage(
@@ -1087,10 +1085,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "flipBackDesc": MessageLookupByLibrary.simpleMessage(
             "Once your card is delivered, you will be able to retrieve your card information and use it online."),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
-        "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
-            "for this Product, cannot proceed."),
-        "foreignTaxIdNumber": MessageLookupByLibrary.simpleMessage(
-            "Foreign Tax Identifying Number"),
+        "forThisProductCannotProceed":
+            MessageLookupByLibrary.simpleMessage("for this Product, cannot proceed."),
+        "foreignTaxIdNumber": MessageLookupByLibrary.simpleMessage("Foreign Tax Identifying Number"),
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
@@ -1863,8 +1860,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "physicalCardUse": MessageLookupByLibrary.simpleMessage(
             "You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD."),
-        "pinDoesNotMatch":
-            MessageLookupByLibrary.simpleMessage("Pin does not match"),
+        "pinDoesNotMatch": MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "pinRequired": MessageLookupByLibrary.simpleMessage("Pin Required"),
         "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place of birth"),
         "placeholderIdNull":
