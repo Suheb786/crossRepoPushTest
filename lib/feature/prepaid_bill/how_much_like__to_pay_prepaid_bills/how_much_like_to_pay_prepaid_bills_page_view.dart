@@ -269,7 +269,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
-                                        model.savingAccountController.text = value;
+                                    model.savingAccountController.text = value;
                                     model.validate(model.amtController.text);
                                     Navigator.pop(context);
                                   }, accountsList: [
@@ -363,10 +363,10 @@ class HowMuchLikeToPayPrePaidBillsPageView
         child: AppTextField(
           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           labelText: S.of(context).amount.toUpperCase(),
+          inputType: TextInputType.numberWithOptions(decimal: true),
           controller: model.amtController,
           readOnly: !model.isPrepaidCategoryListEmpty,
           hintText: S.of(context).pleaseEnter,
-          inputType: TextInputType.number,
           onPressed: () {},
           onChanged: (val) {
             if (val != null && val.isNotEmpty) {
