@@ -743,6 +743,9 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO);
 
+          case "err-376":
+            return AppError(cause: cause, error: error, type: ErrorType.SERVICE_NOT_AVAILABLE);
+
           case "err-377":
             return AppError(cause: cause, error: error, type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE);
 

@@ -138,14 +138,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Additional Nationality Passport"),
         "additionalNationalityPassportDesc": MessageLookupByLibrary.simpleMessage(
             "Please provide your additional nationality passport as a proof"),
-        "additionalRequester":
-            MessageLookupByLibrary.simpleMessage("Additional Requester"),
-        "additionalSourceIncome":
-            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
-        "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage(
-            "Do you have additional source of income"),
-        "additionalSourceOfIncome":
-            MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "additionalRequester": MessageLookupByLibrary.simpleMessage("Additional Requester"),
+        "additionalSourceIncome": MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalSourceIncomeQ1":
+            MessageLookupByLibrary.simpleMessage("Do you have additional source of income"),
+        "additionalSourceOfIncome": MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
         "addressInUnitedStates": MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -199,14 +196,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "applicationSubmitted": MessageLookupByLibrary.simpleMessage("Application submitted"),
         "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
             "To complete your credit card application, you are required to verify yourself via video call."),
-        "applicationUnderReview": MessageLookupByLibrary.simpleMessage(
-            "Your application is under review. Please bear with us."),
-        "applyCreditCard":
-            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
-        "applyCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
-        "applyDebitCard":
-            MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
+        "applicationUnderReview":
+            MessageLookupByLibrary.simpleMessage("Your application is under review. Please bear with us."),
+        "applyCreditCard": MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyCreditCardTitle": MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyDebitCard": MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
         "applyForCreditCard":
             MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyNow": MessageLookupByLibrary.simpleMessage("Apply now"),
@@ -1863,14 +1857,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinDoesNotMatch": MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "pinRequired": MessageLookupByLibrary.simpleMessage("Pin Required"),
         "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place of birth"),
-        "placeholderIdNull":
-            MessageLookupByLibrary.simpleMessage("PlaceHolder Id is null"),
+        "placeholderIdNull": MessageLookupByLibrary.simpleMessage("PlaceHolder Id is null"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "playStation": MessageLookupByLibrary.simpleMessage("PlayStation"),
         "pleaseAgreeToTheTermAndCondition":
-            MessageLookupByLibrary.simpleMessage(
-                "Please agree to the term and condition"),
+            MessageLookupByLibrary.simpleMessage("Please agree to the term and condition"),
         "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(
             "Please confirm your\nflight details"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
@@ -2248,8 +2240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
-        "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
-            "Send money to your friends and family"),
+        "sendMoneyToFriendAndFamily":
+            MessageLookupByLibrary.simpleMessage("Send money to your friends and family"),
         "sendOtpTokenError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
@@ -2258,9 +2250,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "Server is under maintenance. Please try again in sometime."),
+        "serviceIsNotavaliable": MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
-        "sessionTimeout":
-            MessageLookupByLibrary.simpleMessage("Session Timeout."),
+        "sessionTimeout": MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
         "setCardPintError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
