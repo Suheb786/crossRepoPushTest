@@ -71,6 +71,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
                   model.amtController.text = model.addAllBillAmt();
                   model.addNewBillDetailsData.amount = model.amtController.text;
+
+                  model.minMaxValidate(
+                      model.isPartial, model.minRange, model.maxRange, model.amtController.text, context);
                   model.validate(model.amtController.text);
                 }
               },
@@ -92,6 +95,13 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                             data.data?.content?.billerList?[0].refNo ?? "",
                             data.data?.content?.billerList?[0].isPaid ?? false,
                           ));
+                      var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
+                      if (errorBillFail == "err-377") {
+                        model.showToastWithError(AppError(
+                            cause: Exception(),
+                            error: ErrorInfo(message: ''),
+                            type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                      }
                     }
                   },
                   dataBuilder: (BuildContext context, data) {
@@ -106,6 +116,14 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
                               arguments:
                                   PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+
+                          var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
+                          if (errorBillFail == "err-377") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                          }
                         }
                       },
                       dataBuilder: (context, snapshot) {

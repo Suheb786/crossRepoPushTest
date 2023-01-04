@@ -303,21 +303,19 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                         ),
                                         child: Center(
-                                          child: Expanded(
-                                            child: Text(
-                                                S.of(context).pay +
-                                                    " " +
-                                                    "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
-                                                    " " +
-                                                    S.of(context).JOD,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w600,
-                                                    letterSpacing: 1,
-                                                    color: AppColor.white)),
-                                          ),
+                                          child: Text(
+                                              S.of(context).pay +
+                                                  " " +
+                                                  "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
+                                                  " " +
+                                                  S.of(context).JOD,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.t,
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 1,
+                                                  color: AppColor.white)),
                                         ),
                                       ),
                                     ),

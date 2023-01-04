@@ -228,7 +228,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   void billerLookUpListListener() {
     _getBillerLookupRequest.listen(
-          (params) {
+      (params) {
         RequestManager(
           params,
           createCall: () => getBillerLookupUseCase.execute(
@@ -284,9 +284,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
           if (event.status == Status.SUCCESS) {
             isPrepaidCategoryListEmptyResponse.safeAdd(false);
             getPrepaidCategoriesModelData = event.data!.content!.getPrepaidBillerListModelData!;
-          }
-          if (event.status == Status.ERROR) {
-            // showToastWithError(event.appError!);
+          } else if (event.status == Status.ERROR) {
+            if (event.appError?.error.message.toString().toLowerCase() == "err-359".toLowerCase()) {
+              isPrepaidCategoryListEmptyResponse.safeAdd(true);
+            } else {
+              showToastWithError(event.appError!);
+            }
           }
         });
       },

@@ -269,8 +269,15 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   validate(String value) {
     isAmountMoreThanZero = false;
     if (double.parse(value) > 0.0) {
-      isAmountMoreThanZero = true;
-      _showButtonSubject.safeAdd(true);
+      isAmountMoreThanZero = true; // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
+      if (isPartial == true && isAmountInRange == true) {
+        // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
+        _showButtonSubject.safeAdd(true);
+      } else if (isPartial == false && isAmountInRange == false) {
+        _showButtonSubject.safeAdd(true);
+      } else {
+        _showButtonSubject.safeAdd(false);
+      }
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -294,20 +301,24 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   BehaviorSubject<String> _editAmountFieldSubject = BehaviorSubject.seeded("");
 
   Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
+  bool isAmountInRange = false;
 
   void minMaxValidate(
       bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
     if (isPartial == true) {
+      isAmountInRange = false;
       if (value.isEmpty) {
         _editAmountFieldSubject.safeAdd(
-            "Amount should be between ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
+            "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
       } else if (double.parse(value) < double.parse(minRange ?? "0")) {
-        _editAmountFieldSubject.safeAdd("Amount should be more than ${minRange} ${S.of(context).JOD}");
+        _editAmountFieldSubject
+            .safeAdd("${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}");
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
         _editAmountFieldSubject
-            .safeAdd("Amount should be less than or equal to ${maxRange} ${S.of(context).JOD}");
+            .safeAdd("${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}");
       } else {
         _editAmountFieldSubject.safeAdd("");
+        isAmountInRange = true;
       }
     }
   }

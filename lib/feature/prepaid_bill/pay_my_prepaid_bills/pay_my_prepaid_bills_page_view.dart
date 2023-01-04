@@ -74,6 +74,16 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                               arguments: HowMuchLikeToPayPrePaidBillsPageArgument(
                                   [model.getPrepaidBillerListModelData]));
                         }
+                      } else if (value.status == Status.ERROR) {
+                        if (value.appError?.error.message.toString().toLowerCase() ==
+                            "err-359".toLowerCase()) {
+                          model.isPrePaidCategoryEmpty = true;
+                          Navigator.pushNamed(context, RoutePaths.HowMuchLikeToPayPrePaidBillsPage,
+                              arguments: HowMuchLikeToPayPrePaidBillsPageArgument(
+                                  [model.getPrepaidBillerListModelData]));
+                        } else {
+                          model.showToastWithError(value.appError!);
+                        }
                       }
                     },
                     dataBuilder: (context, snapshot) {

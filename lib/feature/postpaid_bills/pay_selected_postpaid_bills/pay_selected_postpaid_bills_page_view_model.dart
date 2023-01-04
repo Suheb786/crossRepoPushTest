@@ -39,9 +39,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   bool isTotalAmountZero = true;
 
-  addAllBillAmt() {
+  addAllBillAmt(BuildContext context) {
     double totalBillAmt = 0.0;
-    for (var inquiryData in postPaidBillInquiryData!) {
+    for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
+      PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
         totalBillAmt = totalBillAmt + double.parse("0.0");
       } else {
@@ -97,7 +98,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
         // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
-        totalAmount: addAllBillAmt().toStringAsFixed(3),
+        totalAmount: addAllBillAmt(context).toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
         isCreditCardPayment: false,
@@ -143,7 +144,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
     // totalAmt[index] = double.parse(value);
     // arguments.noOfSelectedBills[index].dueAmount = value;
-    _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
+    _totalBillAmtDueSubject.safeAdd(addAllBillAmt(context));
   }
 
   getValidBillerIcon(String? billingNumber, String? serviceType) {
@@ -201,8 +202,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (isTotalAmountZero == false) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
-      } else {
-        _showButtonSubject.safeAdd(false);
       }
     } else {
       _showButtonSubject.safeAdd(false);
