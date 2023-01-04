@@ -229,9 +229,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           for (var payPostPaidBillsDataListItem
                                               in model.payPostPaidBillsDataList) {
                                             for (var item in model.selectedPostPaidBillsList) {
-                                              if (double.parse(item.dueAmount ?? "0") > 0.0) {
-                                                var dueAmt = double.parse(item.dueAmount ?? "0");
-
+                                              if (double.parse(item.actualdueAmountFromApi ?? "0") > 0.0) {
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
                                                     item.serviceType ==
@@ -240,12 +238,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                         true) {
                                                   item.dueAmount =
                                                       payPostPaidBillsDataListItem.actualdueAmountFromApi;
-                                                  dueAmt = double.parse(
-                                                      payPostPaidBillsDataListItem.actualdueAmountFromApi ??
-                                                          "0");
                                                 }
-                                                item.dueAmount = dueAmt.toStringAsFixed(3);
-
                                                 tempSelectedPostPaidBillsList.add(item);
                                               }
                                             }
@@ -266,6 +259,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   0.0 /*|| dueAmt == 0.0 && item.isPartial == true*/) {
                                                 ///resetting dueAmount back to actual api dueAmount
                                                 item.dueAmount = dueAmt.toStringAsFixed(3);
+                                                item.minMaxValidationMessage = "";
 
                                                 temPostPaidBillInquiryData.add(item);
                                               }
@@ -309,21 +303,19 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                         ),
                                         child: Center(
-                                          child: Expanded(
-                                            child: Text(
-                                                S.of(context).pay +
-                                                    " " +
-                                                    "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
-                                                    " " +
-                                                    S.of(context).JOD,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w600,
-                                                    letterSpacing: 1,
-                                                    color: AppColor.white)),
-                                          ),
+                                          child: Text(
+                                              S.of(context).pay +
+                                                  " " +
+                                                  "${amt == null || amt.toString().isEmpty ? double.parse("0").toStringAsFixed(3) : amt.toStringAsFixed(3)}" +
+                                                  " " +
+                                                  S.of(context).JOD,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.t,
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 1,
+                                                  color: AppColor.white)),
                                         ),
                                       ),
                                     ),

@@ -215,6 +215,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void postpaidBillEnquiryOnSuccessMethod(List<PostPaidBillInquiryData>? inquiryData) {
+    selectedPostPaidBillsList = [];
     _postPaidBillEnquiryResponse.safeAdd(Resource.success(
         data:
             PostPaidBillInquiry(content: PostPaidBillInquiryListData(postPaidBillInquiryData: inquiryData))));
@@ -230,6 +231,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           }
           payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
           payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
+          selectedPostPaidBillsList.add(item);
         }
       }
     }

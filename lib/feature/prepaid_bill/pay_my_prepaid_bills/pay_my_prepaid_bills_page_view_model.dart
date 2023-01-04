@@ -100,10 +100,6 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
         ).asFlow().listen((event) {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
-
-          if (event.status == Status.ERROR) {
-            showToastWithError(event.appError!);
-          }
         });
       },
     );
