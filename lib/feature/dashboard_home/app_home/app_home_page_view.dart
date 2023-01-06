@@ -54,7 +54,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                     stream: model.applePayPopUpStream,
                     initialData: false,
                     onData: (value) {
-                      if (value && Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                      if (value &&
+                          Platform.isIOS &&
+                          AppConstantsUtils.isApplePayFeatureEnabled &&
+                          isAllCardsInApplePay) {
                         ApplePayDialog.show(context,
                             image: AssetUtils.applePayLogo,
                             title: S.of(context).blinkWithApplePay, onSelected: () {

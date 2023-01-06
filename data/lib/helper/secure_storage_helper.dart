@@ -90,6 +90,8 @@ class SecureStorageHelper {
         secureUser.accountNumber = user.accountNumber ?? secureUser.accountNumber;
         secureUser.applicationId = user.applicationId ?? secureUser.applicationId;
         secureUser.selectedLanguage = user.selectedLanguage ?? secureUser.selectedLanguage;
+        secureUser.allCardsAddedToAppleWallet =
+            user.allCardsAddedToAppleWallet ?? secureUser.allCardsAddedToAppleWallet;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {

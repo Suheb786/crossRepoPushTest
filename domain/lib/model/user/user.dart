@@ -20,6 +20,7 @@ class User {
   String? applicationId;
   String? selectedLanguage;
   bool? applePay;
+  bool? allCardsAddedToAppleWallet;
 
   User(
       {this.token,
@@ -42,7 +43,8 @@ class User {
       this.isBiometricEnabled: false,
       this.applicationId: "",
       this.selectedLanguage: 'en',
-      this.applePay});
+      this.applePay,
+      this.allCardsAddedToAppleWallet});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
@@ -66,6 +68,7 @@ class User {
       newDevice: json["newDevice"],
       isBiometricEnabled: json["isBiometricEnabled"],
       applicationId: json["applicationId"],
+      allCardsAddedToAppleWallet: json["allCardsAddedToAppleWallet"],
       selectedLanguage: json["selectedLanguage"]);
 
   Map<String, dynamic> toJson() => {
@@ -88,6 +91,7 @@ class User {
         "newDevice": newDevice,
         "isBiometricEnabled": isBiometricEnabled,
         "applicationId": applicationId,
-        "selectedLanguage": selectedLanguage
+        "selectedLanguage": selectedLanguage,
+        "allCardsAddedToAppleWallet": allCardsAddedToAppleWallet
       };
 }

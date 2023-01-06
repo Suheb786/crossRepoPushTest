@@ -29,6 +29,8 @@ BehaviorSubject<bool> pushCardSuccess = BehaviorSubject.seeded(false);
 
 Stream<bool> get pushCardSuccessStream => pushCardSuccess.stream;
 
+bool isAllCardsInApplePay = true;
+
 class AntelopHelper {
   static const platform = const MethodChannel('com.capital.cbt');
   String result = '';
@@ -264,17 +266,16 @@ class AntelopHelper {
         dynamic newData = jsonDecode(data);
 
         if (newData != null) {
-          debugPrint("print 1--> ");
           List<dynamic> newList = newData;
-          debugPrint("print 2--> ");
           List<GetAllCardData> newDataList = [];
-          debugPrint("print 3--> ");
           newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
-          debugPrint("print 4--> ");
-          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
           listOfCardFromAntelop.add(newDataList);
 
           if (newDataList.isNotEmpty) {
+            var isAllCardInApplePay = newDataList.any((element) => !(element.isCardInApplePay ?? false));
+            isAllCardsInApplePay = isAllCardInApplePay;
+            debugPrint('Is all card in apple pay=======>$isAllCardInApplePay');
+
             antelopStepCompleted.add(false);
           }
 
@@ -288,7 +289,7 @@ class AntelopHelper {
           List<String> unEnrolledDataList = [];
           BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
-          _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson())).then((value) {
+          _apiService.getAllCardList(BaseRequest(getToken: false, baseData: baseData.toJson())).then((value) {
             if (value.data.transform().dashboardDataContent != null) {
               var dashBoardData = value.data.transform().dashboardDataContent;
               for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
@@ -354,6 +355,8 @@ class AntelopHelper {
         debugPrint("Flutter side Empty Get Cards ");
         AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
         BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+        isAllCardsInApplePay = false;
 
         // ///Test purpose
         // _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson()));
@@ -424,15 +427,16 @@ class AntelopHelper {
         dynamic newData = jsonDecode(data);
 
         if (newData != null) {
-          debugPrint("print 1--> ");
           List<dynamic> newList = newData;
-          debugPrint("print 2--> ");
           List<GetAllCardData> newDataList = [];
-          debugPrint("print 3--> ");
           newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
-          debugPrint("print 4--> ");
-          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
           listOfCardFromAntelop.add(newDataList);
+
+          ///check whether all card in apple pay
+          var isAllCardInApplePay = newDataList.any((element) => !(element.isCardInApplePay ?? false));
+
+          debugPrint('Is all card in apple pay=======>$isAllCardInApplePay');
+          isAllCardsInApplePay = isAllCardInApplePay;
           antelopStepCompleted.add(false);
         }
         break;
@@ -442,6 +446,7 @@ class AntelopHelper {
         List<GetAllCardData> newDataList = [];
         listOfCardFromAntelop.add(newDataList);
         if (newDataList.isNotEmpty) {
+          isAllCardsInApplePay = false;
           antelopStepCompleted.add(false);
         }
         break;
