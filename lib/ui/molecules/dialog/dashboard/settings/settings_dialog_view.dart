@@ -85,7 +85,7 @@ class SettingsDialogView extends StatelessWidget {
                                               ? Theme.of(context).accentColor
                                               : Theme.of(context).primaryColorDark)),
                                   Text(
-                                    S.of(context).payments,
+                                    S.of(context).billsAndPayments,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,

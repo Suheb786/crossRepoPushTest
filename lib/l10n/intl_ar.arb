@@ -1378,6 +1378,8 @@
   "travelAndTransportation": "السفر و التنقل",
   "newBill": "فاتورة جديدة",
   "billName": "اسم الفاتورة",
+  "billerName": "اسم المفوتر",
+  "billsAndPayments": "الفواتير و الدفع",
   "services": "الخدمات",
   "referenceNo": "الرقم المرجعي",
   "tapAmtToEdit": "اضغط على المبلغ للتعديل",

@@ -18,7 +18,7 @@ class ShareInfo {
 
     final title = S.of(context).billDetails + ":" + newLineX2;
 
-    final billNameText = S.of(context).billName + ": " + billerName + newLine;
+    final billNameText = S.of(context).billerName + ": " + billerName + newLine;
 
     final nickText = nickName.isNotEmpty ? S.of(context).nickName + ": " + nickName + newLine : "";
 
@@ -45,7 +45,7 @@ class ShareInfo {
 
         if (item != null) {
           if (getBillerName(context, item) != null && getBillerName(context, item).isNotEmpty) {
-            billNameText = S.of(context).billName + ": " + getBillerName(context, item) + newLine;
+            billNameText = S.of(context).billerName + ": " + getBillerName(context, item) + newLine;
           } else {
             billNameText = "";
           }

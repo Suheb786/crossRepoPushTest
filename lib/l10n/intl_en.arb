@@ -1428,6 +1428,8 @@
   "travelAndTransportation": "Travel and Transportation",
   "newBill": "New Bill",
   "billName": "Bill Name",
+  "billerName": "Biller name",
+  "billsAndPayments": "Bills & Payments",
   "services": "Services",
   "referenceNo": "Reference No.",
   "tapAmtToEdit": "Tap amount to edit",

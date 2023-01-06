@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14055,6 +14056,26 @@ class S {
     return Intl.message(
       'Bill Name',
       name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller name`
+  String get billerName {
+    return Intl.message(
+      'Biller name',
+      name: 'billerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills & Payments`
+  String get billsAndPayments {
+    return Intl.message(
+      'Bills & Payments',
+      name: 'billsAndPayments',
       desc: '',
       args: [],
     );

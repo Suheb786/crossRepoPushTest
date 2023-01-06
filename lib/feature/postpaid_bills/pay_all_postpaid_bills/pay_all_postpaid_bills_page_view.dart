@@ -130,7 +130,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                             onPressed: (context1) => {
                                                               InformationDialog.show(context,
                                                                   image: AssetUtils.deleteBlackIcon,
-                                                                  isSwipeToCancel: false,
+                                                                  isSwipeToCancel: true,
                                                                   title: S.of(context).areYouSure,
                                                                   descriptionWidget: Text(
                                                                     "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",

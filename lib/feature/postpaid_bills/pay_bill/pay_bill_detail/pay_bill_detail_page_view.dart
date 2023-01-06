@@ -288,7 +288,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
 
   _billerNameAppTextField() {
     return AppTextField(
-      labelText: S.of(context).billName.toUpperCase(),
+      labelText: S.of(context).billerName.toUpperCase(),
       hintText: S.of(context).pleaseSelect,
       controller: model.billerNameTextController,
       readOnly: true,
@@ -637,11 +637,11 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
   }
 
   void _showBillerNameDialog(List<BillerDetailsList>? billerDetailsList) {
-    PayBillDialog.show(context, title: S.of(context).billName, billerDetailsList: billerDetailsList ?? [],
+    PayBillDialog.show(context, title: S.of(context).billerName, billerDetailsList: billerDetailsList ?? [],
         onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (billerDetails) {
-          resetIfSelectedOtherBillerName(billerDetails.billerCode, model);
+      resetIfSelectedOtherBillerName(billerDetails.billerCode, model);
       model.updateIsPrepaidCategoryListEmptyResponse(true);
       model.billerNameTextController.text =
           !StringUtils.isDirectionRTL(context) ? billerDetails.billerNameEn! : billerDetails.billerNameAr!;

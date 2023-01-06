@@ -121,12 +121,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
-        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
-            "Add this bill to your saved list"),
-        "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
-            "You will be able to add contacts to your list soon."),
-        "additionIncomeSource":
-            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage("Add this bill to your saved list"),
+        "addingContactsDesc":
+            MessageLookupByLibrary.simpleMessage("You will be able to add contacts to your list soon."),
+        "additionIncomeSource": MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalIncome": MessageLookupByLibrary.simpleMessage("Additional Income"),
         "additionalIncomeList": m0,
         "additionalIncomePopUpDesc1": MessageLookupByLibrary.simpleMessage("Make sure you enter your "),
@@ -210,14 +208,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
-        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you entered your "),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
-        "areYouUSCitizen":
-            MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
-        "areYouUSTaxResident":
-            MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
+        "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
+        "areYouUSTaxResident": MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
@@ -252,22 +247,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
-        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
-            "Recipient not found. Please try another recipient."),
+        "beneficiaryNotFound":
+            MessageLookupByLibrary.simpleMessage("Recipient not found. Please try another recipient."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."),
-        "billerAddedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
-        "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
-            "Biller already exists with the same billing number"),
-        "biometricLogin":
-            MessageLookupByLibrary.simpleMessage("Biometric Login"),
-        "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
-            "Your biometric login has been activated successfully"),
-        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
-            "Biometric login is successfully deactivated"),
+        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
+        "billerAlreadyExistsMessage":
+            MessageLookupByLibrary.simpleMessage("Biller already exists with the same billing number"),
+        "billerName": MessageLookupByLibrary.simpleMessage("Biller name"),
+        "billsAndPayments": MessageLookupByLibrary.simpleMessage("Bills & Payments"),
+        "biometricLogin": MessageLookupByLibrary.simpleMessage("Biometric Login"),
+        "biometricLoginActivated":
+            MessageLookupByLibrary.simpleMessage("Your biometric login has been activated successfully"),
+        "biometricLoginDeactivated":
+            MessageLookupByLibrary.simpleMessage("Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To Blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
@@ -1870,10 +1865,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
-            MessageLookupByLibrary.simpleMessage(
-                "Please provide information below, if applies to you"),
-        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage(
-            "Please provide selfie to proceed further."),
+            MessageLookupByLibrary.simpleMessage("Please provide information below, if applies to you"),
+        "pleaseProvideSelfie":
+            MessageLookupByLibrary.simpleMessage("Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
@@ -2215,18 +2209,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select Credit Limit Settings"),
         "selectExpectedTransaction":
             MessageLookupByLibrary.simpleMessage("Select expected transaction"),
-        "selectFromLibrary":
-            MessageLookupByLibrary.simpleMessage("Select from Library"),
-        "selectFutureDate":
-            MessageLookupByLibrary.simpleMessage("Please select future date"),
-        "selectMinimumSettlement":
-            MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
+        "selectFromLibrary": MessageLookupByLibrary.simpleMessage("Select from Library"),
+        "selectFutureDate": MessageLookupByLibrary.simpleMessage("Please select future date"),
+        "selectMinimumSettlement": MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "Select new settlement percentage for your next payment cycle"),
         "selectPreferredInstallmentDuration":
-            MessageLookupByLibrary.simpleMessage(
-                "Select your preferred instalment duration"),
-        "selectPreferredRegionAmount": MessageLookupByLibrary.simpleMessage("Select your preferred\nregion and amount"),
+            MessageLookupByLibrary.simpleMessage("Select your preferred instalment duration"),
+        "selectPreferredRegionAmount":
+            MessageLookupByLibrary.simpleMessage("Select your preferred\nregion and amount"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
@@ -2259,13 +2250,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "settlementPercentage": MessageLookupByLibrary.simpleMessage("Settlement Percentages"),
         "setupAndPersonalizeYourNewCreditCard":
-            MessageLookupByLibrary.simpleMessage(
-                "Complete the details to issue the supplementary card"),
+            MessageLookupByLibrary.simpleMessage("Complete the details to issue the supplementary card"),
         "setupAndPersonalizeYourNewDebitCard":
-            MessageLookupByLibrary.simpleMessage(
-                "Set up and personalize your new debit card"),
-        "shareAccountInfo":
-            MessageLookupByLibrary.simpleMessage("Share account info"),
+            MessageLookupByLibrary.simpleMessage("Set up and personalize your new debit card"),
+        "shareAccountInfo": MessageLookupByLibrary.simpleMessage("Share account info"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("Share CliQ ID"),
         "shareId": MessageLookupByLibrary.simpleMessage("Share ID"),
         "shareMyReceipt":
