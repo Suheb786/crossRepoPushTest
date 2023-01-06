@@ -396,6 +396,10 @@ typedef SWIFT_ENUM(NSInteger, AntelopError, open) {
   AntelopErrorCardDeleted = 42,
 /// Management error code reported when an online operation is refused from backend server.
   AntelopErrorOperationRefused = 43,
+/// The Issuer Id is not defined in the plist file or in the SDK.
+  AntelopErrorIssuerIdNotDefined = 44,
+/// The operation has failed because the integrity of the application cannot be verified.
+  AntelopErrorAppIntegrityCheckFailed = 45,
 };
 static NSString * _Nonnull const AntelopErrorDomain = @"AntelopSDK.AntelopError";
 
@@ -2008,6 +2012,10 @@ typedef SWIFT_ENUM(NSInteger, AntelopError, open) {
   AntelopErrorCardDeleted = 42,
 /// Management error code reported when an online operation is refused from backend server.
   AntelopErrorOperationRefused = 43,
+/// The Issuer Id is not defined in the plist file or in the SDK.
+  AntelopErrorIssuerIdNotDefined = 44,
+/// The operation has failed because the integrity of the application cannot be verified.
+  AntelopErrorAppIntegrityCheckFailed = 45,
 };
 static NSString * _Nonnull const AntelopErrorDomain = @"AntelopSDK.AntelopError";
 
@@ -3620,6 +3628,10 @@ typedef SWIFT_ENUM(NSInteger, AntelopError, open) {
   AntelopErrorCardDeleted = 42,
 /// Management error code reported when an online operation is refused from backend server.
   AntelopErrorOperationRefused = 43,
+/// The Issuer Id is not defined in the plist file or in the SDK.
+  AntelopErrorIssuerIdNotDefined = 44,
+/// The operation has failed because the integrity of the application cannot be verified.
+  AntelopErrorAppIntegrityCheckFailed = 45,
 };
 static NSString * _Nonnull const AntelopErrorDomain = @"AntelopSDK.AntelopError";
 

@@ -7,13 +7,13 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
+import 'package:domain/constants/app_constants.dart';
 import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:eventify/eventify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/constants/app_constants.dart';
 
 BehaviorSubject<List<GetAllCardData>> listOfCardFromAntelop = BehaviorSubject.seeded([]);
 
@@ -76,6 +76,13 @@ class AntelopHelper {
 
   onConnectionSuccessWallet(var data) {
     debugPrint(data.toString());
+  }
+
+  static Future<void> walletLogout() async {
+    try {
+      debugPrint("wallet logout");
+      var data = await platform.invokeMethod('walletLogout');
+    } on PlatformException catch (e) {}
   }
 
   Future<bool> onInitializationFromNative() async {

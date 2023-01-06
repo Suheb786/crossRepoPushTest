@@ -249,6 +249,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.applicationId =
                                                                         data.data!.applicationId!;
                                                                     model.saveUserData();
+                                                                    AppConstantsUtils
+                                                                            .isApplePayFeatureEnabled =
+                                                                        data.data?.applePay ?? false;
 
                                                                     ///refresh token api
                                                                     // ProviderScope.containerOf(
@@ -350,7 +353,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 ));
                                                                           }
                                                                         } else {
-                                                                          if (Platform.isIOS) {
+                                                                          if (Platform.isIOS &&
+                                                                              AppConstantsUtils
+                                                                                  .isApplePayFeatureEnabled) {
                                                                             model.antelopSdkInitialize();
                                                                           }
                                                                           Navigator.popAndPushNamed(

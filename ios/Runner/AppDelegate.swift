@@ -147,6 +147,7 @@ import AntelopSDK
     
     func onAsyncRequestSuccess(asyncRequestType: AsyncRequestType) {
         print("onAsyncRequestSuccess")
+         walletManager = WalletManager(self)
         let walletIdDic: [String: Any] = [
             "status": "On Async Request Success",
         ]
@@ -180,6 +181,16 @@ import AntelopSDK
         print("wallet connect method called")
         walletManager.connect()
     }
+
+    public func walletLogout(){
+            print("wallet logout method called")
+
+            do { try
+                walletManager.delete()
+            } catch {
+                print(error)
+            }
+        }
     
     public func getCards(){
         print("enter get cards method")
@@ -356,7 +367,7 @@ import AntelopSDK
     
     private func callJavaScript(_ methodName: String, result text: String) {
         let dic: [String: String] = ["eventName": methodName, "response": text]
-        eventSink!(dic)
+        eventSink?(dic)
     }
     
     
@@ -438,6 +449,9 @@ import AntelopSDK
                 
             case "walletConnect":
                 self?.walletConnect()
+
+                case "walletLogout":
+                                self?.walletLogout()
                 
             case "checkEligibility":
                 self?.callCheckEligibility()

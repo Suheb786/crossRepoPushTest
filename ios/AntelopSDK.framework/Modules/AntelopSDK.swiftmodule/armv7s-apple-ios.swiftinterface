@@ -27,6 +27,10 @@ extension AntelopSDK.DeviceBiometricCustomerAuthenticationPrompt {
 extension AntelopSDK.DeviceBiometricCustomerAuthenticationPrompt {
   @objc dynamic public func getTitle() -> Swift.String?
 }
+public protocol SecurePinInputProtocol : AnyObject {
+  func onSuccess(currentPin: Foundation.Data?, newPin: Foundation.Data)
+  func onCancel()
+}
 extension Swift.String {
   public var sha256: Swift.String {
     get
@@ -271,8 +275,8 @@ extension AntelopSDK.VirtualCardNumber {
   @objc deinit
 }
 public struct DigitalCard : Swift.Equatable, Swift.Comparable {
+  public static func == (lhs: AntelopSDK.DigitalCard, rhs: AntelopSDK.DigitalCard) -> Swift.Bool
   public static func < (lhs: AntelopSDK.DigitalCard, rhs: AntelopSDK.DigitalCard) -> Swift.Bool
-  public static func == (a: AntelopSDK.DigitalCard, b: AntelopSDK.DigitalCard) -> Swift.Bool
 }
 extension AntelopSDK.DigitalCard {
   public func getId() -> Swift.String
@@ -293,6 +297,8 @@ extension AntelopSDK.DigitalCard {
   public func getPinDisplayService() -> AntelopSDK.PinDisplayService
   public func getPushToTokenRequestorService() -> AntelopSDK.PushToTokenRequestorService
   public func getVirtualCardNumberService() -> AntelopSDK.VirtualCardNumberService
+  public func getCmsActivationService() -> AntelopSDK.CmsActivationService
+  public func requiresCmsActivation() -> Swift.Bool
 }
 public protocol PushAuthenticationRequestFetcherProtocol : AnyObject {
   func onFetchError(error: AntelopSDK.AntelopError)
@@ -431,6 +437,20 @@ extension AntelopSDK.EligibilityDenialReason : Swift.CustomStringConvertible {
   public func getSecurePinDisplay() throws -> AntelopSDK.SecurePinDisplay
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class SecureCmsActivation {
+  public func isPinCodeUpdated() -> Swift.Bool
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol, securePinInput: AntelopSDK.SecurePinInput?) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol, securePinInput: AntelopSDK.SecurePinInput?) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureCmsActivation : AntelopSDK.CustomerAuthenticatedProcess {
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
 public struct EmvApplication : Swift.Equatable {
   public static func == (a: AntelopSDK.EmvApplication, b: AntelopSDK.EmvApplication) -> Swift.Bool
 }
@@ -473,9 +493,12 @@ extension AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol {
   public func onProcessError(error: AntelopSDK.AntelopError)
   public func onError(error: AntelopSDK.AntelopError, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
 }
-@objc public enum TokenRequestorType : Swift.Int {
+@objc public enum TokenRequestorType : Swift.Int, Swift.CustomStringConvertible {
   case wallet
   case ecommerce
+  public var description: Swift.String {
+    get
+  }
   public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
@@ -585,6 +608,13 @@ extension AntelopSDK.CardDisplay {
 @_inheritsConvenienceInitializers @objc public class CancellationSignal : ObjectiveC.NSObject {
   @objc public func cancel()
   @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class CmsActivationService {
+  public func isPinCodeRequired() -> Swift.Bool
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func activate(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>, securePinInput: AntelopSDK.SecurePinInput?) throws
+  public func getSecureCmsActivation() -> AntelopSDK.SecureCmsActivation
   @objc deinit
 }
 public typealias OperationCompletion<ResultType> = (Swift.Result<ResultType, AntelopSDK.AntelopError>) -> Swift.Void
@@ -750,6 +780,8 @@ extension AntelopSDK.SecureTokenDelete : AntelopSDK.CustomerAuthenticatedProcess
   case cardLocked
   case cardDeleted
   case operationRefused
+  case issuerIdNotDefined
+  case appIntegrityCheckFailed
   public init?(rawValue: Swift.Int)
   public typealias AllCases = [AntelopSDK.AntelopError]
   public typealias RawValue = Swift.Int
@@ -822,6 +854,8 @@ public enum WalletValidationError : Swift.Error, Swift.Equatable {
     case unexpected
     case wallet
     case pushAuthenticationRequest
+    case cmsActivationService
+    case securePinInput
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: AntelopSDK.WalletValidationError.Domain, b: AntelopSDK.WalletValidationError.Domain) -> Swift.Bool
     public var hashValue: Swift.Int {
@@ -834,6 +868,16 @@ public enum WalletValidationError : Swift.Error, Swift.Equatable {
   case unknown(AntelopSDK.WalletValidationError.Domain)
   case wrongState(AntelopSDK.WalletValidationError.Domain)
   public static func == (a: AntelopSDK.WalletValidationError, b: AntelopSDK.WalletValidationError) -> Swift.Bool
+}
+extension AntelopSDK.WalletValidationError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension AntelopSDK.WalletValidationError.Domain : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
 }
 public struct Security : Swift.Equatable {
   public static func == (a: AntelopSDK.Security, b: AntelopSDK.Security) -> Swift.Bool
@@ -972,6 +1016,7 @@ extension AntelopSDK.PinCustomerAuthenticationPrompt {
   @objc final public func getSecondaryColor() -> UIKit.UIColor?
   final public func getRandomizeKeyboard() -> Swift.Bool?
   final public func getPinCheckDisabled() -> Swift.Bool?
+  final public func getInputBulletIcon() -> UIKit.UIImage?
 }
 @_hasMissingDesignatedInitializers public class PushToTokenRequestorService {
   public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
@@ -1032,6 +1077,10 @@ extension AntelopSDK.EmvApplicationStatus : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
+}
+public class SecurePinInput {
+  public init(currentPinInputProperties: AntelopSDK.CurrentPinInputProperties? = nil, newPinInputProperties: AntelopSDK.NewPinInputProperties)
+  @objc deinit
 }
 @objc final public class WalletManager : ObjectiveC.NSObject {
   public init(_ delegate: AntelopSDK.WalletManagerProtocol)
@@ -1187,6 +1236,13 @@ extension AntelopSDK.CustomerCredentialsRequiredReason : Swift.CustomStringConve
   public var description: Swift.String {
     get
   }
+}
+public struct CurrentPinInputProperties {
+  public init(title: Swift.String, subTitle: Swift.String)
+}
+public struct NewPinInputProperties {
+  public init(title: Swift.String, subTitle: Swift.String)
+  public init(title: Swift.String, subTitle: Swift.String, confirmationTitle: Swift.String, confirmationSubTitle: Swift.String)
 }
 public protocol CustomerAuthenticatedProcessProtocol : AnyObject {
   func onProcessStart()

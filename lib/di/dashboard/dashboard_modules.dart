@@ -181,7 +181,8 @@ final creditCardSettingsViewModelProvider =
       ref.read(cancelCreditCardUseCaseProvider),
       args,
       ref.read(getSupplementaryCreditCardApplicationUseCaseProvider),
-      ref.read(reportLostStolenCCUseCaseProvider)),
+      ref.read(reportLostStolenCCUseCaseProvider),
+      ref.read(pushAntelopCardUseCaseProvider)),
 );
 
 /// check rescheduled video call

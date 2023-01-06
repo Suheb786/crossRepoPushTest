@@ -14,6 +14,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -32,7 +33,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
         onData: (data) {
           if (data.status == Status.SUCCESS) {
             CheckKYCData kycData = data.data?.content?.kycData
-                ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
+                    ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
@@ -41,18 +42,18 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                     arguments: AccountRegistrationParams(
                         kycData: kycData,
                         mobileCode:
-                        ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
                         mobileNumber:
-                        ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(
                         kycData: kycData,
                         applicationId:
-                        ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
-              if (Platform.isIOS) {
+              if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                 model.antelopSdkInitialize();
               }
               Navigator.popAndPushNamed(context, RoutePaths.AppHome);

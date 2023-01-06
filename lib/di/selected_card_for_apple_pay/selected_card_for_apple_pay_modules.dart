@@ -8,7 +8,8 @@ import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_
 ///selected card for apple pay vm provider
 final selectedCardForApplePayPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<SelectedCardForApplePayPageViewModel, SelectedCardsForApplePayPageArguments>(
-  (ref, args) => SelectedCardForApplePayPageViewModel(args, ref.read(getAntelopCardListUseCaseProvider)),
+  (ref, args) => SelectedCardForApplePayPageViewModel(
+      args, ref.read(getAntelopCardListUseCaseProvider), ref.read(pushAntelopCardUseCaseProvider)),
 );
 
 ///apple Pay Success Page vm provider

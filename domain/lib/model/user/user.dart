@@ -19,6 +19,7 @@ class User {
   String? accountNumber;
   String? applicationId;
   String? selectedLanguage;
+  bool? applePay;
 
   User(
       {this.token,
@@ -40,7 +41,8 @@ class User {
       this.newDevice: false,
       this.isBiometricEnabled: false,
       this.applicationId: "",
-      this.selectedLanguage: 'en'});
+      this.selectedLanguage: 'en',
+      this.applePay});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 

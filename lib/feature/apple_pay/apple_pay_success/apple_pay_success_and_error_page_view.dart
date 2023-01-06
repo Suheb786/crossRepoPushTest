@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/apple_pay/add_other_card_to_apple_wallet_page_dialog/add_other_card_to_apple_wallet_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import 'apple_pay_success_and_error_page.dart';
 import 'apple_pay_success_and_error_page_view_model.dart';
 
 class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccessAndErrorPageViewModel> {
@@ -22,22 +21,25 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          AddOtherCardToAppleWalletDialog.show(context,
-              image: AssetUtils.applePayIcon,
-              title: S.of(context).addOtherCardToAppleWallet,
-              descriptionWidget: Text(
-                S.of(context).addOtherCardToAppleWalletDialogDescription,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
-              ), onDismissed: () {
-            Navigator.pop(context);
-          }, onSelected: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
-                arguments: ApplePaySuccessAndErrorPageArguments(
-                    title: S.of(context).applePaySetUpFailed,
-                    titleDescription: S.of(context).errorSettingUpApplePay,
-                    successOrErrorIcon: AssetUtils.cancel));
-          });
+          // AddOtherCardToAppleWalletDialog.show(context,
+          //     image: AssetUtils.applePayIcon,
+          //     title: S.of(context).addOtherCardToAppleWallet,
+          //     descriptionWidget: Text(
+          //       S.of(context).addOtherCardToAppleWalletDialogDescription,
+          //       style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+          //     ), onDismissed: () {
+          //   Navigator.pop(context);
+          // }, onSelected: () {
+          //   Navigator.pop(context);
+          //   Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
+          //       arguments: ApplePaySuccessAndErrorPageArguments(
+          //           title: S.of(context).applePaySetUpFailed,
+          //           titleDescription: S.of(context).errorSettingUpApplePay,
+          //           successOrErrorIcon: AssetUtils.cancel));
+          // });
+
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getAntelopCards();
         }
       },
       child: Container(
