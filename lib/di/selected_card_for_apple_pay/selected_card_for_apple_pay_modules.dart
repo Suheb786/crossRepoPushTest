@@ -15,5 +15,5 @@ final selectedCardForApplePayPageViewModelProvider = ChangeNotifierProvider.auto
 ///apple Pay Success Page vm provider
 final applePaySuccessAndErrorPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<ApplePaySuccessAndErrorPageViewModel, ApplePaySuccessAndErrorPageArguments>(
-  (ref, args) => ApplePaySuccessAndErrorPageViewModel(args),
+  (ref, args) => ApplePaySuccessAndErrorPageViewModel(args, ref.read(getAntelopCardListUseCaseProvider)),
 );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -39,7 +38,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
           // });
 
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getAntelopCards();
+          model.getAntelopCards();
         }
       },
       child: Container(

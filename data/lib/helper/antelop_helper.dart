@@ -293,7 +293,6 @@ class AntelopHelper {
             if (value.data.transform().dashboardDataContent != null) {
               var dashBoardData = value.data.transform().dashboardDataContent;
               for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
-                ///TODO:check cardID
                 if (!(tempAntelopIssuerCardId.contains(dashBoardData!.creditCard![i].cardCode))) {
                   unEnrolledDataList.add(dashBoardData.creditCard![i].cardCode ?? "");
                 }

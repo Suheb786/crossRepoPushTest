@@ -101,14 +101,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "addIncome": MessageLookupByLibrary.simpleMessage("إضافة دخل"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("إضافة دخل 1"),
         "addIncome2": MessageLookupByLibrary.simpleMessage("إضافة دخل 2"),
-        "addLinkAccount":
-            MessageLookupByLibrary.simpleMessage("أضف حساب مرتبط"),
-        "addMobileHeader":
-            MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
+        "addLinkAccount": MessageLookupByLibrary.simpleMessage("أضف حساب مرتبط"),
+        "addMobileHeader": MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
         "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
         "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
-        "addOtherCardToAppleWallet":
-            MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
+        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
         "addOtherCardToAppleWalletDialogDescription": MessageLookupByLibrary.simpleMessage(
             "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
@@ -125,15 +122,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalIncomePopUpDesc1": MessageLookupByLibrary.simpleMessage("تأكد من إنك دخّلت "),
         "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
             "الإضافي بدل الدخل الشهري لتحصل على بطاقتك الائتمانية الصحيحة."),
-        "additionalNationalityPassport":
-            MessageLookupByLibrary.simpleMessage("جواز سفر إضافي لجنسية أخرى"),
+        "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage("جواز سفر إضافي لجنسية أخرى"),
         "additionalNationalityPassportDesc":
-            MessageLookupByLibrary.simpleMessage(
-                "الرجاء تزويدنا بجواز سفر جنسيتك الأخرى كإثبات"),
-        "additionalRequester":
-            MessageLookupByLibrary.simpleMessage("مقدم طلب إضافي"),
-        "additionalSourceIncome":
-            MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
+            MessageLookupByLibrary.simpleMessage("الرجاء تزويدنا بجواز سفر جنسيتك الأخرى كإثبات"),
+        "additionalRequester": MessageLookupByLibrary.simpleMessage("مقدم طلب إضافي"),
+        "additionalSourceIncome": MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
         "additionalSourceIncomeQ1":
             MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
         "additionalSourceOfIncome":
@@ -594,14 +587,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم التحقق من رقم الموبايل الجديد بنجاح وربطه بحركات البطاقة."),
         "debitCard":
             MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
-        "debitCardActivated": MessageLookupByLibrary.simpleMessage(
-            "تم تفعيل بطاقة الدفع المباشر"),
-        "debitCardDelivered":
-            MessageLookupByLibrary.simpleMessage("وصلت بطاقة الدفع المباشر"),
-        "debitCardDeliveredDate": MessageLookupByLibrary.simpleMessage(
-            "تم تسليم بطاقة الدفع المباشر"),
-        "debitCardDeliveredQ":
-            MessageLookupByLibrary.simpleMessage("وصلتك بطاقة الدفع المباشر؟"),
+        "debitCardActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل بطاقة الدفع المباشر"),
+        "debitCardDelivered": MessageLookupByLibrary.simpleMessage("وصلت بطاقة الدفع المباشر"),
+        "debitCardDeliveredDate": MessageLookupByLibrary.simpleMessage("تم تسليم بطاقة الدفع المباشر"),
+        "debitCardDeliveredQ": MessageLookupByLibrary.simpleMessage("وصلتك بطاقة الدفع المباشر؟"),
         "debitCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "رح يتواصلوا معك من أرامكس قريباً، ورح يوصلك الرمز السري PIN برسالة SMS. تواصل معنا إذا ما وصلتك البطاقة."),
         "debitCardSettings": MessageLookupByLibrary.simpleMessage("إعدادات بطاقة الدفع المباشر"),
@@ -621,14 +610,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "depositViaATM": MessageLookupByLibrary.simpleMessage("إيداع في صراف آلي"),
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "إيداع مباشر بحسابك على Blink من خلال صرافات كابيتال بنك، مع أو بدون بطاقة."),
-        "depositViaeFawateercom": MessageLookupByLibrary.simpleMessage(
-            "إيداع من خلال خدمة إي فواتيركم"),
+        "depositViaeFawateercom": MessageLookupByLibrary.simpleMessage("إيداع من خلال خدمة إي فواتيركم"),
         "depositViaeFawateercomDesc": MessageLookupByLibrary.simpleMessage(
             "إيداع فوري بحسابك من خلال اي وكيل لخدمة إي فواتيركم او من خلال تطبيق البنك الخاص بك بإستخدام رقم حسابك"),
         "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-0005)"),
-        "deviceNotFound":
-            MessageLookupByLibrary.simpleMessage("الجهاز غير موجود"),
+        "deviceNotFound": MessageLookupByLibrary.simpleMessage("الجهاز غير موجود"),
         "deviceNotSupported":
             MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز كشف الحماية"),
         "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
@@ -1557,13 +1544,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تسجيل جهازك الجديد بنجاح. بتقدر تنتقل هلأ لشاشة التحكم."),
         "newMobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
-        "newPassword":
-            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
-        "newSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
-        "newSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
+        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
         "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
@@ -1583,14 +1567,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-090)"),
         "noDueAmount": MessageLookupByLibrary.simpleMessage("لا يوجد مبلغ مستحق"),
-        "noInternetConnection":
-            MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
-        "noMatchingYearFound":
-            MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
-        "noPaymentActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
-        "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
-            "لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
+        "noInternetConnection": MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
+        "noMatchingYearFound": MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
+        "noPaymentActivityToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
+        "noPlaceholderFound":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-086)"),
         "noSignatureFound": MessageLookupByLibrary.simpleMessage(

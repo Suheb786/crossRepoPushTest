@@ -12,6 +12,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
+import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
@@ -94,7 +94,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///dashboard card data response
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
-  BehaviorSubject.seeded(GetDashboardDataContent());
+      BehaviorSubject.seeded(GetDashboardDataContent());
 
   ///dashboard card data response stream
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
@@ -215,7 +215,8 @@ class AppHomeViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getRequestMoneyPlaceHolderResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {} else if (event.status == Status.SUCCESS) {
+        if (event.status == Status.ERROR) {
+        } else if (event.status == Status.SUCCESS) {
           showRequestMoneyPopUp(false);
           if (event.data!.data!.status ?? false) {
             requestMoneyPlaceholderData = event.data!.data!;
@@ -338,7 +339,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 cardTypeList.add(
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
-                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {} else {
+                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
+                } else {
                   switch (creditCard.callStatus) {
                     case CreditCardCallStatusEnum.APPROVED:
                       pages.add(GetCreditCardNowWidget(
@@ -680,6 +682,7 @@ class AppHomeViewModel extends BasePageViewModel {
   void getAntelopCards() async {
     debugPrint("Enter in get antelop card from dashboard method");
     if (isolate != null) {
+      debugPrint("Isolate not null");
       return;
     }
     try {

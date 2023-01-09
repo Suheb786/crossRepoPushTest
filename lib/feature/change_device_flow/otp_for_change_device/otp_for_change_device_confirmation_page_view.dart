@@ -15,13 +15,15 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class OtpForChangeDeviceConfirmationPageView extends BasePageViewWidget<OtpForChangeDeviceConfirmationPageViewModel> {
+class OtpForChangeDeviceConfirmationPageView
+    extends BasePageViewWidget<OtpForChangeDeviceConfirmationPageViewModel> {
   OtpForChangeDeviceConfirmationPageView(ProviderBase model) : super(model);
 
   @override
@@ -107,7 +109,7 @@ class OtpForChangeDeviceConfirmationPageView extends BasePageViewWidget<OtpForCh
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
                           model.saveUserData();
-                          if (Platform.isIOS) {
+                          if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                             AntelopHelper.walletLogout();
                             model.clearWallet();
                           }
@@ -158,32 +160,32 @@ class OtpForChangeDeviceConfirmationPageView extends BasePageViewWidget<OtpForCh
                                           widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
                                                 ? TextButton(
-                                                onPressed: () {
-                                                  model.resendOtp();
-                                                },
-                                                child: Text(
-                                                  S.of(context).resendCode,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color!),
-                                                ))
+                                                    onPressed: () {
+                                                      model.resendOtp();
+                                                    },
+                                                    child: Text(
+                                                      S.of(context).resendCode,
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 14.t,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color!),
+                                                    ))
                                                 : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14.t,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
-                                            );
+                                                    S.of(context).resendIn(
+                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.t,
+                                                        fontWeight: FontWeight.w600,
+                                                        color: Theme.of(context)
+                                                            .accentTextTheme
+                                                            .bodyText1!
+                                                            .color!),
+                                                  );
                                           },
                                         ),
                                         Padding(
