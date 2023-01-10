@@ -15,6 +15,14 @@ class CreateCliqIdPageViewModel extends BasePageViewModel {
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
+  BehaviorSubject<String> _changeHeaderWhileEnteringText = BehaviorSubject();
+
+  Stream<String> get changeHeaderWhileEnteringText => _changeHeaderWhileEnteringText.stream;
+
+  void changeHeader(String value) {
+    _changeHeaderWhileEnteringText.safeAdd(value);
+  }
+
   void nextPage() {
     appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }

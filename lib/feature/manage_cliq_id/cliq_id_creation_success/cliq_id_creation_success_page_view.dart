@@ -50,26 +50,19 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                 S.of(context).cliqIdCreateSuccessFully,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24.t),
+                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24.t),
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(top: 40.h, end: 24.w, start: 24.w),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      ProviderScope.containerOf(context)
-                                  .read(cliqIdTypeSelectionViewModelProvider)
-                                  .cliqIdTypeController
-                                  .text ==
+                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
                               S.of(context).alias
                           ? S.of(context).alias
                           : S.of(context).mobileNumber,
@@ -80,19 +73,10 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                       ),
                     ),
                     Text(
-                      ProviderScope.containerOf(context)
-                                  .read(cliqIdTypeSelectionViewModelProvider)
-                                  .cliqIdTypeController
-                                  .text ==
+                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
                               S.of(context).alias
-                          ? ProviderScope.containerOf(context)
-                              .read(cliqIdTypeSelectionViewModelProvider)
-                              .aliasController
-                              .text
-                          : ProviderScope.containerOf(context)
-                              .read(cliqIdTypeSelectionViewModelProvider)
-                              .mobileNumberController
-                              .text,
+                          ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text
+                          : ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontSize: 12.t,
@@ -104,25 +88,33 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               ),
             ),
             Visibility(
-              visible: false,
-              child: Padding(
-                padding: EdgeInsets.only(top: 23.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(start: 11.w),
-                      child: Text(
-                        S.of(context).shareCliqId,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.t,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                      ),
-                    )
-                  ],
+              visible: true,
+              child: GestureDetector(
+                onTap: () {
+                  model.shareFiles(
+                    context,
+                    "${S.of(context).cliqIdType} - ${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text == S.of(context).alias ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text : ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text} \n${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text == S.of(context).alias ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text : ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text}",
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 23.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(start: 11.w),
+                        child: Text(
+                          S.of(context).shareCliqId,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.t,
+                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -137,10 +129,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               child: Text(
                 S.of(context).toManageCliq,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
-                    fontSize: 12.t,
-                    fontWeight: FontWeight.w600),
+                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 12.t, fontWeight: FontWeight.w600),
               ),
             ),
           ],

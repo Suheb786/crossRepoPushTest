@@ -50,11 +50,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                     dataBuilder: (context, cliqIdTypeSelectionResponse) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
-                          if (ProviderScope.containerOf(context)
-                                  .read(createCliqIdViewModelProvider)
-                                  .appSwiperController
-                                  .page ==
-                              0.0) {
+                          if (ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).appSwiperController.page == 0.0) {
                             FocusScope.of(context).unfocus();
                             if (StringUtils.isDirectionRTL(context)) {
                               if (!details.primaryVelocity!.isNegative) {
@@ -71,9 +67,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                           margin: EdgeInsets.zero,
                           child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
-                                    ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom - 48),
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0 ? 0 : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
@@ -93,10 +87,9 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               onPressed: () {
                                                 RelationshipWithCardHolderDialog.show(context,
                                                     title: S.of(context).cliqIdType,
-                                                    relationSHipWithCardHolder:
-                                                        StringUtils.isDirectionRTL(context)
-                                                            ? model.cliqIDTypeListAr
-                                                            : model.cliqIDTypeListEn, onDismissed: () {
+                                                    relationSHipWithCardHolder: StringUtils.isDirectionRTL(context)
+                                                        ? model.cliqIDTypeListAr
+                                                        : model.cliqIDTypeListEn, onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);
@@ -110,8 +103,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                     height: 16.h,
                                                     width: 16.w,
                                                     padding: EdgeInsets.symmetric(horizontal: 7.w),
-                                                    child: AppSvg.asset(AssetUtils.downArrow,
-                                                        color: Theme.of(context).primaryColorDark));
+                                                    child: AppSvg.asset(AssetUtils.downArrow, color: Theme.of(context).primaryColorDark));
                                               },
                                             ),
                                             AppStreamBuilder(
@@ -132,8 +124,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                               inputType: TextInputType.text,
                                                               inputFormatters: [
                                                                 LengthLimitingTextInputFormatter(10),
-                                                                FilteringTextInputFormatter.allow(
-                                                                    RegExp("[a-zA-Z0-9]")),
+                                                                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
                                                                 // FilteringTextInputFormatter.allow(
                                                                 //     RegExp("(?=.)(?=.[A-Z][a-z])([A-Z0-9]){3,10}"))
                                                               ],
@@ -142,11 +133,11 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                               controller: model.aliasController,
                                                               key: model.aliasKey,
                                                               onChanged: (value) {
-                                                                model.aliasController.value =
-                                                                    TextEditingValue(
-                                                                        text: value.toUpperCase(),
-                                                                        selection:
-                                                                            model.aliasController.selection);
+                                                                ProviderScope.containerOf(context)
+                                                                    .read(createCliqIdViewModelProvider)
+                                                                    .changeHeader(S.current.letsGiveANameToYourCliqId);
+                                                                model.aliasController.value = TextEditingValue(
+                                                                    text: value.toUpperCase(), selection: model.aliasController.selection);
                                                                 model.validate();
                                                               }),
                                                           SizedBox(
@@ -182,15 +173,13 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             height: 16.h,
                                                           ),
                                                           AppTextField(
-                                                            labelText:
-                                                                S.of(context).mobileNumber.toUpperCase(),
+                                                            labelText: S.of(context).mobileNumber.toUpperCase(),
                                                             hintText: S.of(context).mobileNumberHint,
                                                             inputType: TextInputType.phone,
                                                             inputAction: TextInputAction.done,
                                                             inputFormatters: [
                                                               LengthLimitingTextInputFormatter(14),
-                                                              FilteringTextInputFormatter.allow(
-                                                                  RegExp(r'[0-9]')),
+                                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                                             ],
                                                             controller: model.mobileNumberController,
                                                             key: model.mobileNumberKey,

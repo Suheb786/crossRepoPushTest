@@ -15879,6 +15879,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s give a name\n to your new CliQ ID`
+  String get letsGiveANameToYourCliqId {
+    return Intl.message(
+      'Let’s give a name\n to your new CliQ ID',
+      name: 'letsGiveANameToYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your mobile number`
+  String get pleaseEnterYourMobileNumber {
+    return Intl.message(
+      'Please enter your mobile number',
+      name: 'pleaseEnterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

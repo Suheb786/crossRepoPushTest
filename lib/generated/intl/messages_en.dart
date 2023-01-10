@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptRequest": MessageLookupByLibrary.simpleMessage("Accept Request"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
         "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Account Activated Successfully"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
@@ -1695,6 +1696,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
+        "letsGiveANameToYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "Let’s give a name\n to your new CliQ ID"),
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
@@ -2062,6 +2065,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
+        "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter your mobile number"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":

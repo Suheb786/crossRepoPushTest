@@ -61,15 +61,11 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                   children: [
                     Text(
                       S.of(context).createNewCliqId.toUpperCase(),
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -77,20 +73,22 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                         curve: Curves.easeInOut,
                         direction: Direction.vertical,
                         offset: 0.5,
-                        child: Text(
-                          StepTextHelper.accountRegistrationTextHelper(
-                            currentStep ?? 0,
-                            S.of(context).letsCreateNewCliqId,
-                            S.of(context).linkBankAccountToYourNewId,
-                            S.of(context).enterOtpHeader,
-                          ),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        child: AppStreamBuilder<String>(
+                            initialData: S.of(context).letsCreateNewCliqId,
+                            stream: model.changeHeaderWhileEnteringText,
+                            dataBuilder: (context, header) {
+                              return Text(
+                                StepTextHelper.accountRegistrationTextHelper(
+                                  currentStep ?? 0,
+                                  header!,
+                                  S.of(context).linkBankAccountToYourNewId,
+                                  S.of(context).enterOtpHeader,
+                                ),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                              );
+                            }),
                       ),
                     ),
                     Visibility(
@@ -106,15 +104,10 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                           child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: Text(
-                              ProviderScope.containerOf(context)
-                                  .read(linkBankAccountCliqIdViewModelProvider)
-                                  .mobileNumber,
+                              ProviderScope.containerOf(context).read(linkBankAccountCliqIdViewModelProvider).mobileNumber,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),

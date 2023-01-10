@@ -7,11 +7,9 @@ import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_cust
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class LinkBankAccountCliqIdValidationUseCase
-    extends BaseUseCase<BaseError, LinkBankAccountCliqIdValidationUseCaseParams, bool> {
+class LinkBankAccountCliqIdValidationUseCase extends BaseUseCase<BaseError, LinkBankAccountCliqIdValidationUseCaseParams, bool> {
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required LinkBankAccountCliqIdValidationUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required LinkBankAccountCliqIdValidationUseCaseParams params}) async {
     return Future.value(Right(true));
   }
 }
@@ -20,19 +18,16 @@ class LinkBankAccountCliqIdValidationUseCaseParams extends Params {
   final bool isSelected;
   final List<GetAccountByCustomerId> listOfCustomerAccount;
 
-  LinkBankAccountCliqIdValidationUseCaseParams(
-      {required this.isSelected, required this.listOfCustomerAccount});
+  LinkBankAccountCliqIdValidationUseCaseParams({required this.isSelected, required this.listOfCustomerAccount});
 
   @override
   Either<AppError, bool> verify() {
-    if (listOfCustomerAccount.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
-    } else if (isSelected == false) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION,
-          cause: Exception()));
+    // if (listOfCustomerAccount.isEmpty) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
+    // } else
+    if (isSelected == false) {
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION, cause: Exception()));
     }
     return Right(true);
   }
