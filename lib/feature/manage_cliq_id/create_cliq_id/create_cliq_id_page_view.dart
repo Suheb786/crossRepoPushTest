@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page.dart';
@@ -61,11 +61,15 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                   children: [
                     Text(
                       S.of(context).createNewCliqId.toUpperCase(),
-                      style:
-                          TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: Theme.of(context).accentColor,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(
+                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -86,7 +90,10 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600),
                               );
                             }),
                       ),
@@ -104,10 +111,14 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                           child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: Text(
-                              ProviderScope.containerOf(context).read(linkBankAccountCliqIdViewModelProvider).mobileNumber,
+                              "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),

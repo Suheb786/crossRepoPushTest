@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page_view_model.dart';
@@ -22,15 +23,14 @@ import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
 final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
-  (ref) => CliqIdListPageViewModel(
-      ref.read(getAliasUseCaseProvider),
-      ref.read(deleteCliqIdUseCaseProvider),
-      ref.read(unLinkAccountFromCliqUseCaseProvider),
-      ref.read(confirmChangeDefaultAccountUseCaseProvider),
-      ref.read(suspendCliqIdUseCaseProvider),
-      ref.read(reActivateCliqIdUseCaseProvider),
-     
-      ),
+      (ref) => CliqIdListPageViewModel(
+    ref.read(getAliasUseCaseProvider),
+    ref.read(deleteCliqIdUseCaseProvider),
+    ref.read(unLinkAccountFromCliqUseCaseProvider),
+    ref.read(confirmChangeDefaultAccountUseCaseProvider),
+    ref.read(suspendCliqIdUseCaseProvider),
+    ref.read(reActivateCliqIdUseCaseProvider),
+  ),
 );
 
 ///create cliq id
@@ -64,9 +64,9 @@ final otpForEditAliasAndMobileNoPageViewModelProvider = ChangeNotifierProvider.a
 );
 
 ///cliq id creation success view model
-final cliqIdCreationSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CliqIdCreationSuccessPageViewModel>(
-  (ref) => CliqIdCreationSuccessPageViewModel(),
+final cliqIdCreationSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CliqIdCreationSuccessPageViewModel, CliqIdCreationSuccessPageArguments>(
+  (ref, args) => CliqIdCreationSuccessPageViewModel(args),
 );
 
 ///edit alias view model

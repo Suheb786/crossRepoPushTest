@@ -62,6 +62,9 @@ class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_MOBILE:
         mobileNumberKey.currentState!.isValid = false;
         break;
+      case ErrorType.PLEASE_ENTER_MOBILE_NO:
+        mobileNumberKey.currentState!.isValid = false;
+        break;
 
       default:
         break;

@@ -5,7 +5,7 @@
   "addMobileHeader": "What’s your\nmobile number?",
   "enterOtpHeader": "Enter the 6-digit code sent to",
   "mobileNumber": "Mobile Number",
-  "mobileNumberHint": "00962 000 0000",
+  "mobileNumberHint": "00 000 0000",
   "enterValidMobileNumber": "You entered an invalid mobile number. Please try again.",
   "changeMyNumber": "Change My Number",
   "resendIn": "Resend in {resendTime}",
@@ -1624,5 +1624,7 @@
   "hasbeenSuspended": "{String} has been suspended",
   "hasBeenActivated": "{String} has been activated",
   "hasBeenDeleted": "{String} has been deleted",
-  "cliqAliasUpdate": "CliQ ID Alias has been updated"
+  "cliqAliasUpdate": "CliQ ID Alias has been updated",
+  "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
+  "mobileNoAliasHint": "00962000000000"
 }

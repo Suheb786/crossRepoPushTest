@@ -79,15 +79,13 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                   description: S.current.cliqAliasUpdate,
                                 ),
                               );
-                              // model.showSuccessToast(S.of(context).cliqAliasUpdate);
                             } else {
                               model.showSuccessTitleandDescriptionToast(
                                 ToastwithTitleandDescription(
                                   title: S.current.cliqIdUpdate,
-                                  description: S.current.cliqMobileNumberUpdate,
+                                  description: S.current.cliqAliasMobileNoUpdate,
                                 ),
                               );
-                              // model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
                             }
 
                             ProviderScope.containerOf(context)

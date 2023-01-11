@@ -1,12 +1,13 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -42,7 +43,26 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                   if (data.status == Status.SUCCESS) {
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog("alias_created", {"is_alias_created": true});
-                    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
+
+                    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess,
+                        arguments: CliqIdCreationSuccessPageArguments(
+                            cliqName: ProviderScope.containerOf(context)
+                                        .read(cliqIdTypeSelectionViewModelProvider)
+                                        .cliqIdTypeSubject
+                                        .value ==
+                                    CliqIdTypeEnum.ALIAS
+                                ? ProviderScope.containerOf(context)
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .aliasController
+                                    .text
+                                : ProviderScope.containerOf(context)
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .mobileNumberController
+                                    .text,
+                            cliqType: ProviderScope.containerOf(context)
+                                .read(cliqIdTypeSelectionViewModelProvider)
+                                .cliqIdTypeController
+                                .text));
                   } else if (data.status == Status.ERROR) {
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog("alias_created", {"is_alias_created": false});
@@ -95,20 +115,29 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                       dataBuilder: (context, enterOtpForCliqResponse) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).appSwiperController.page ==
+                            if (ProviderScope.containerOf(context)
+                                    .read(createCliqIdViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
                                 2.0) {
                               FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
                                   model.validateOtp();
                                 } else {
-                                  ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
+                                  model.otpController.clear();
+                                  ProviderScope.containerOf(context)
+                                      .read(createCliqIdViewModelProvider)
+                                      .previousPage();
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
                                   model.validateOtp();
                                 } else {
-                                  ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
+                                  model.otpController.clear();
+                                  ProviderScope.containerOf(context)
+                                      .read(createCliqIdViewModelProvider)
+                                      .previousPage();
                                 }
                               }
                             }
@@ -154,7 +183,8 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                                 .linkBankAccountCliqIdList
                                                                 .isNotEmpty
                                                             ? (ProviderScope.containerOf(context)
-                                                                    .read(linkBankAccountCliqIdViewModelProvider)
+                                                                    .read(
+                                                                        linkBankAccountCliqIdViewModelProvider)
                                                                     .linkBankAccountCliqIdList
                                                                     .first
                                                                     .accountNumber ??
@@ -166,7 +196,8 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                                 .text ==
                                                             S.of(context).alias,
                                                         aliasValue: (ProviderScope.containerOf(context)
-                                                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                                                    .read(
+                                                                        cliqIdTypeSelectionViewModelProvider)
                                                                     .cliqIdTypeController
                                                                     .text ==
                                                                 S.of(context).alias)
@@ -190,16 +221,22 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 14.t,
                                                           fontWeight: FontWeight.w600,
-                                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                          color: Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color!),
                                                     ))
                                                 : Text(
-                                                    S.of(context).resendIn(
+                                              S.of(context).resendIn(
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
-                                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                        color: Theme.of(context)
+                                                            .accentTextTheme
+                                                            .bodyText1!
+                                                            .color!),
                                                   );
                                           },
                                         ),

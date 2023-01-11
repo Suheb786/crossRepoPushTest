@@ -19,7 +19,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -39,7 +40,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -107,10 +109,10 @@ class S {
     );
   }
 
-  /// `00962 000 0000`
+  /// `00 000 0000`
   String get mobileNumberHint {
     return Intl.message(
-      '00962 000 0000',
+      '00 000 0000',
       name: 'mobileNumberHint',
       desc: '',
       args: [],
@@ -16022,6 +16024,26 @@ class S {
     return Intl.message(
       'CliQ ID Alias has been updated',
       name: 'cliqAliasUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Mobile Number has been updated`
+  String get cliqAliasMobileNoUpdate {
+    return Intl.message(
+      'CliQ ID Mobile Number has been updated',
+      name: 'cliqAliasMobileNoUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `00962000000000`
+  String get mobileNoAliasHint {
+    return Intl.message(
+      '00962000000000',
+      name: 'mobileNoAliasHint',
       desc: '',
       args: [],
     );

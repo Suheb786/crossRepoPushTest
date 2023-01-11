@@ -1515,7 +1515,6 @@
   "accountActivatedSuccessfully": "تم تفعيل الحساب بنجاح",
   "accountSuspendedSuccessfully": "تم تعليق الحساب بنجاح",
   "linkAccount": "ربط حساب",
-  "cliqAliasUpdate": "تعديل حساب كليك\nتم تعديل الاسم المستعار لحساب كليك",
   "cliqMobileNumberUpdate": "تعديل حساب كليك\nتم تحديث رقم الهاتف المحمول الخاص بمعرف CliQ",
   "recipientName": "اسم المستلم",
   "recipientAddress": "عنوان المستلم",
@@ -1576,5 +1575,10 @@
   "amountShouldBetween": "المبلغ يجب ان يكون بين",
   "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
   "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
-  "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
+  "hasbeenSuspended": "{String} has been suspended",
+  "hasBeenActivated": "{String} has been activated",
+  "hasBeenDeleted": "{String} has been deleted",
+  "cliqAliasUpdate": "CliQ ID Alias has been updated",
+  "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
+  "mobileNoAliasHint": "00962000000000"
 }

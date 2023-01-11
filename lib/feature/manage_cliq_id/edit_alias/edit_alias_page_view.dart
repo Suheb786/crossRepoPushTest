@@ -116,17 +116,18 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                           Column(
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
+                                                padding: EdgeInsetsDirectional.only(
+                                                    start: 24.w, top: 32.h, end: 24.w),
                                                 child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     AppTextField(
                                                       labelText: S.of(context).alias.toUpperCase(),
                                                       hintText: S.of(context).pleaseEnter,
                                                       inputFormatters: [
                                                         LengthLimitingTextInputFormatter(10),
-                                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
-                                                        // FilteringTextInputFormatter.allow(
-                                                        //     RegExp("(?=.)(?=.[A-Z][a-z])([A-Z0-9]){3,10}"))
+                                                        FilteringTextInputFormatter.allow(
+                                                            RegExp("[a-zA-Z0-9]")),
                                                       ],
                                                       controller: model.aliasController,
                                                       key: model.aliasKey,

@@ -619,7 +619,8 @@ class AppRouter {
 
       case RoutePaths.CliqIdCreationSuccess:
         return CupertinoPageRoute(
-            builder: (context) => CliqIdCreationSuccessPage(),
+            builder: (context) =>
+                CliqIdCreationSuccessPage(settings.arguments as CliqIdCreationSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.CliqIdCreationSuccess));
 
       case RoutePaths.EditAlias:

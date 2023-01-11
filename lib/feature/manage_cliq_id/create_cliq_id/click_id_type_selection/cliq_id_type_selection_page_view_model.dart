@@ -35,7 +35,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
     _cliqIdTypeSelectionValidationRequest.safeAdd(CliqIdTypeSelectionValidationUseCaseParams(
         cliqIdType: cliqIdTypeController.text,
         alias: aliasController.text,
-        cliqIdTypeEnum: _cliqIdTypeSubject.value,
+        cliqIdTypeEnum: cliqIdTypeSubject.value,
         mobileNo: mobileNumberController.text));
   }
 
@@ -50,6 +50,9 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_MOBILE:
         mobileNumberKey.currentState!.isValid = false;
         break;
+      case ErrorType.PLEASE_ENTER_MOBILE_NO:
+        mobileNumberKey.currentState!.isValid = false;
+        break;
       default:
         break;
     }
@@ -59,14 +62,12 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   List<String> cliqIDTypeListAr = ['الاسم المستعار', 'رقم الموبايل'];
 
   void validate() {
-    // if (cliqIdTypeController.text.isNotEmpty &&
-    //     _cliqIdTypeSubject.value == CliqIdTypeEnum.ALIAS &&
-    //     aliasController.text.isNotEmpty) {
-    //   _showButtonSubject.safeAdd(true);
-    // } else
-    
-     if (cliqIdTypeController.text.isNotEmpty &&
-        _cliqIdTypeSubject.value == CliqIdTypeEnum.MOBILE_NO &&
+    if (cliqIdTypeController.text.isNotEmpty &&
+        cliqIdTypeSubject.value == CliqIdTypeEnum.ALIAS &&
+        aliasController.text.isNotEmpty) {
+      _showButtonSubject.safeAdd(true);
+    } else if (cliqIdTypeController.text.isNotEmpty &&
+        cliqIdTypeSubject.value == CliqIdTypeEnum.MOBILE_NO &&
         mobileNumberController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
@@ -75,7 +76,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   }
 
   void updateCliqIdType(CliqIdTypeEnum cliqIdTypeEnum) {
-    _cliqIdTypeSubject.safeAdd(cliqIdTypeEnum);
+    cliqIdTypeSubject.safeAdd(cliqIdTypeEnum);
   }
 
   @override
@@ -113,7 +114,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///cliq id type
-  BehaviorSubject<CliqIdTypeEnum> _cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
+  BehaviorSubject<CliqIdTypeEnum> cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
 
-  Stream<CliqIdTypeEnum> get cliqIdTypeStream => _cliqIdTypeSubject.stream;
+  Stream<CliqIdTypeEnum> get cliqIdTypeStream => cliqIdTypeSubject.stream;
 }
