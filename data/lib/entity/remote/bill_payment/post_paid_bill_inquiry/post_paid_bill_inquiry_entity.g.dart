@@ -19,6 +19,8 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
     dueDate: json['dueDate'] as String?,
     feesAmt: json['feesAmt'] as String?,
     isPartial: json['isPartial'] as bool?,
+    minValue: json['minValue'],
+    maxValue: json['maxValue'],
   );
 }
 
@@ -35,4 +37,6 @@ Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
       'success': instance.success,
       'message': instance.message,
       'isPartial': instance.isPartial,
+      'minValue': instance.minValue,
+      'maxValue': instance.maxValue,
     };

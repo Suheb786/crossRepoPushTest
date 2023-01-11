@@ -828,7 +828,8 @@
   "deviceNotSupportedNote": "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.",
   "residentCity": "Resident City",
   "youRequested": "You requested ",
-  "from": " from ",
+  "from": "\nfrom",
+  "fromSingleLine": "from",
   "addRequestMoney": "You don't have any contacts yet. Your Blink contacts can be saved while requesting money.",
   "errorWhileProcessLoanRequest": "Error While Process Loan Request.",
   "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp.",
@@ -1609,5 +1610,9 @@
   "successS": "Success",
   "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
   "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics",
+  "paymentAmountCanBe": "Payment amount can be",
+  "amountShouldBetween": "Amount should be between",
+  "amountShouldBeMoreThan": "Amount should be more than",
+  "amountShouldBeLessThanOrEqualTo": "Amount should be less than or equal to",
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."
 }

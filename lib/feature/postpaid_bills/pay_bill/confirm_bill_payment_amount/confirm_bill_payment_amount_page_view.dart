@@ -52,10 +52,28 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   model.showToastWithError(data.appError!);
                 } else if (data.status == Status.SUCCESS) {
                   model.postPaidBillInquiryData = data.data?.content?.postPaidBillInquiryData;
+
+                  if (model.postPaidBillInquiryData != null &&
+                      model.postPaidBillInquiryData?[0] != null &&
+                      model.postPaidBillInquiryData?[0].feesAmt != null &&
+                      model.postPaidBillInquiryData![0].feesAmt!.isNotEmpty) {
+                    model.feeAmtController.text =
+                        double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
+                  } else {
+                    model.feeAmtController.text = double.parse('0').toStringAsFixed(3);
+                  }
+
+                  model.minRange =
+                      double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
+                  model.maxRange =
+                      double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
                   model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
 
                   model.amtController.text = model.addAllBillAmt();
                   model.addNewBillDetailsData.amount = model.amtController.text;
+
+                  model.minMaxValidate(
+                      model.isPartial, model.minRange, model.maxRange, model.amtController.text, context);
                   model.validate(model.amtController.text);
                 }
               },
@@ -77,6 +95,13 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                             data.data?.content?.billerList?[0].refNo ?? "",
                             data.data?.content?.billerList?[0].isPaid ?? false,
                           ));
+                      var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
+                      if (errorBillFail == "err-377") {
+                        model.showToastWithError(AppError(
+                            cause: Exception(),
+                            error: ErrorInfo(message: ''),
+                            type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                      }
                     }
                   },
                   dataBuilder: (BuildContext context, data) {
@@ -91,6 +116,14 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
                               arguments:
                                   PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+
+                          var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
+                          if (errorBillFail == "err-377") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                          }
                         }
                       },
                       dataBuilder: (context, snapshot) {
@@ -99,6 +132,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           stream: model.validatePrePaidStream,
                           onData: (value) {
                             if (value.status == Status.SUCCESS) {
+                              model.feeAmtController.text = "0.0";
+                              model.feeAmtController.text =
+                                  double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
                               model.amtController.text =
                                   double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
                               model.validate(model.amtController.text);
@@ -269,8 +305,10 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               _amountTitle(model, context),
               _totalAmountWidget(model, context),
               _tapToEditWidget(model, context),
+              _minMaxErrorWidget(model, context),
               _dueAmountPostPaidWidget(model, context),
-              // _feeAmountWidget(model, context),
+              _feeAmountWidget(model, context),
+              _minMaxRangeWidget(model, context),
               SizedBox(
                 height: 24.0.h,
               ),
@@ -325,6 +363,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           controller: model.amtController,
           textAlign: TextAlign.center,
           onChanged: (value) {
+            model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, value, context);
             model.validate(value);
           },
           onSubmitted: (value) {
@@ -368,6 +407,25 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         : Container();
   }
 
+  _minMaxErrorWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return !AppConstantsUtils.PRE_PAID_FLOW && model.isPartial == true
+        ? AppStreamBuilder<String>(
+            stream: model.minMaxErrorFieldStream,
+            initialData: "",
+            dataBuilder: (context, value) {
+              return Text(
+                value!,
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: AppColor.soft_red,
+                  fontSize: 10.0.t,
+                  fontWeight: FontWeight.w600,
+                ),
+              );
+            })
+        : Container();
+  }
+
   _dueAmountPostPaidWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(
@@ -403,39 +461,73 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
     );
   }
 
-  _feeAmountWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-/*
-    return Padding(
-      padding: EdgeInsetsDirectional.only(
-        top: 8.0.h,
-        left: 16.0.w,
-        right: 16.0.w,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            S.of(context).fees,
-            style: TextStyle(
-              fontFamily: StringUtils.appFont,
-              color: AppColor.black,
-              fontSize: 12.0.t,
-              fontWeight: FontWeight.w400,
+  _minMaxRangeWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return !AppConstantsUtils.PRE_PAID_FLOW && model.isPartial == true
+        ? Padding(
+            padding: EdgeInsetsDirectional.only(
+              top: 8.0.h,
+              start: 16.0.w,
+              end: 16.0.w,
             ),
-          ),
-          Text(
-            '20.000 JOD',
-            style: TextStyle(
-              fontFamily: StringUtils.appFont,
-              color: AppColor.black,
-              fontSize: 12.0.t,
-              fontWeight: FontWeight.w600,
+            child: Row(
+              children: [
+                Text(
+                  '${S.of(context).pay} ${S.of(context).fromSingleLine.toLowerCase()} ${model.minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${model.maxRange} ${S.of(context).JOD}',
+                  style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.gray1,
+                    fontSize: 10.0.t,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                // Text(
+                //   '${model.maxRange} ${S.of(context).JOD}',
+                //   style: TextStyle(
+                //     fontFamily: StringUtils.appFont,
+                //     color: AppColor.black,
+                //     fontSize: 12.0.t,
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // )
+              ],
             ),
           )
-        ],
-      ),
-    );
-*/
+        : SizedBox.shrink();
+  }
+
+  _feeAmountWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    return model.feeAmtController.text.isNotEmpty && double.parse(model.feeAmtController.text) > 0.0
+        ? Padding(
+            padding: EdgeInsetsDirectional.only(
+              top: 8.0.h,
+              start: 16.0.w,
+              end: 16.0.w,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  S.of(context).fees,
+                  style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.black,
+                    fontSize: 12.0.t,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  '${model.feeAmtController.text} ${S.of(context).JOD}',
+                  style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.black,
+                    fontSize: 12.0.t,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            ),
+          )
+        : SizedBox.shrink();
   }
 
   _iconWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {

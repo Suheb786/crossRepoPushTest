@@ -211,10 +211,11 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBillerLookUpList>> get getBillerLookupStream => _getBillerLookupResponse.stream;
 
   void billerList() {
-    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.BILLER_CATEGORY];
+    billerDetailsList = AppConstantsUtils.billerDetailsCacheList[AppConstantsUtils.billerDetailsCacheListKey];
     if (billerDetailsList == null || billerDetailsList!.isEmpty) {
       _getBillerLookupRequest.safeAdd(GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          categoryNameAr: AppConstantsUtils.BILLER_CATEGORY_ARABIC,
           type: AppConstantsUtils.POST_PAID_FLOW == true
               ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
               : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()));
@@ -227,7 +228,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   void billerLookUpListListener() {
     _getBillerLookupRequest.listen(
-          (params) {
+      (params) {
         RequestManager(
           params,
           createCall: () => getBillerLookupUseCase.execute(
@@ -283,9 +284,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
           if (event.status == Status.SUCCESS) {
             isPrepaidCategoryListEmptyResponse.safeAdd(false);
             getPrepaidCategoriesModelData = event.data!.content!.getPrepaidBillerListModelData!;
-          }
-          if (event.status == Status.ERROR) {
-            // showToastWithError(event.appError!);
+          } else if (event.status == Status.ERROR) {
+            if (event.appError?.error.message.toString().toLowerCase() == "err-359".toLowerCase()) {
+              isPrepaidCategoryListEmptyResponse.safeAdd(true);
+            } else {
+              showToastWithError(event.appError!);
+            }
           }
         });
       },

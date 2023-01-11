@@ -32,82 +32,48 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-/*          Container(
-            width: 40.w,
-            height: 40.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColor.vividYellow,
-            ),
-            child: AppSvg.asset(icon),
-          )*/
-          Container(
-            width: 50.w,
-            height: 50.h,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColor.vividYellow,
-            ),
-            child: Image.asset(
-              GetBillPaymentsCategories.path(icon),
-              matchTextDirection: false,
-              width: 24.w,
-              height: 24.h,
-            ),
-          ),
-          SizedBox(
-            width: 8.w,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                nickName,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.0.t),
+              Container(
+                width: 50.w,
+                height: 50.h,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColor.vividYellow,
+                ),
+                child: Image.asset(
+                  GetBillPaymentsCategories.path(icon),
+                  matchTextDirection: false,
+                  width: 24.w,
+                  height: 24.h,
+                ),
               ),
-              Text(
-                biller,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.veryDarkGray2,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0.t),
-              ),
-              this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                  ? RichText(
-                      text: TextSpan(
-                          text: S.of(context).due + " ",
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.veryDarkGray2,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12.0.t),
-                          children: [
-                          TextSpan(
-                              text: billAmtDue,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.veryDarkGray2,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.0.t)),
-                          TextSpan(
-                              text: ' ' + S.of(context).JOD,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.veryDarkGray2,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.0.t)),
-                        ]))
-                  : Visibility(
-                      visible: this.isSelected || double.parse(billAmtDue) > 0.0,
-                      child: RichText(
+              SizedBox(width: 8.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    nickName,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0.t),
+                  ),
+                  Text(
+                    biller,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.veryDarkGray2,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.0.t),
+                  ),
+                  this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                      ? RichText(
                           text: TextSpan(
                               text: S.of(context).due + " ",
                               style: TextStyle(
@@ -116,25 +82,53 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12.0.t),
                               children: [
-                            TextSpan(
-                                text: billAmtDue,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.veryDarkGray2,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12.0.t)),
-                            TextSpan(
-                                text: ' ' + S.of(context).JOD,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.veryDarkGray2,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12.0.t)),
-                          ])),
-                    )
+                              TextSpan(
+                                  text: billAmtDue,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.veryDarkGray2,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12.0.t)),
+                              TextSpan(
+                                  text: ' ' + S.of(context).JOD,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.veryDarkGray2,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12.0.t)),
+                            ]))
+                      : Visibility(
+                          visible: this.isSelected || double.parse(billAmtDue) > 0.0,
+                          child: RichText(
+                              text: TextSpan(
+                                  text: S.of(context).due + " ",
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.veryDarkGray2,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.0.t),
+                                  children: [
+                                TextSpan(
+                                    text: billAmtDue,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.veryDarkGray2,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12.0.t)),
+                                TextSpan(
+                                    text: ' ' + S.of(context).JOD,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.veryDarkGray2,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12.0.t)),
+                              ])),
+                        )
+                ],
+              ),
+              // Spacer(),
             ],
           ),
-          Spacer(),
           isSelected
               ? Container(
                   height: 40.h,
@@ -146,16 +140,16 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColor.vividYellow,
                     borderRadius: BorderRadius.circular(100),
-                  ),
-                )
+            ),
+          )
               : Container(
-                  width: 40.0.w,
-                  height: 40.0.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                    border: Border.all(color: AppColor.gray1),
-                  ),
-                ),
+            width: 40.0.w,
+            height: 40.0.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(100.0)),
+              border: Border.all(color: AppColor.gray1),
+            ),
+          ),
         ],
       ),
     );

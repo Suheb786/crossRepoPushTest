@@ -45,6 +45,12 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   HowMuchLikeToPayPrePaidBillsPageViewModel(
       this.argument, this.validatePrePaidUseCase, this.payPrePaidUseCase) {
+    if (isPrepaidCategoryListEmpty == false) {
+      if (argument.validatePrePaidBillData != null) {
+        _validatePrePaidResponse
+            .safeAdd(Resource.success(data: ValidatePrePaidBill(content: argument.validatePrePaidBillData)));
+      }
+    }
     validatePrePaidBillListener();
     payPrePaidBillListener();
   }
@@ -118,11 +124,11 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         otpCode: otpCode,
         isNewBiller: isNewBiller,
         prepaidCategoryCode:
-        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
         prepaidCategoryType:
-        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
         billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-            argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
             ? true
             : false,
         CardId: "",
@@ -153,8 +159,8 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  validate() {
-    if (double.parse(amtController.text) > 0.0) {
+  validate(String? amount) {
+    if (double.parse(amount ?? "0") > 0.0) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
       }

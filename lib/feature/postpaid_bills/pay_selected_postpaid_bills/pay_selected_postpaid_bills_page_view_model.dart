@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
@@ -5,6 +8,7 @@ import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -30,15 +34,15 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
   PaySelectedBillsPostPaidBillsPageViewModel(this.payPostPaidBillUseCase, this.arguments) {
-    Future.delayed(Duration(milliseconds: 10)).then((value) => postpaidInquiryDataListener());
     payPostPaidBillListener();
   }
 
   bool isTotalAmountZero = true;
 
-  addAllBillAmt() {
+  addAllBillAmt(BuildContext context) {
     double totalBillAmt = 0.0;
-    for (var inquiryData in postPaidBillInquiryData!) {
+    for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
+      PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
         totalBillAmt = totalBillAmt + double.parse("0.0");
       } else {
@@ -46,6 +50,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
     isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
+    if (isTotalAmountZero) {
+      showToastWithError(AppError(
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+    }
     return totalBillAmt;
   }
 
@@ -55,8 +63,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<List<PostPaidBillInquiryData>> get postPaidBillEnquiryListStream =>
       _postPaidBillEnquiryListResponse.stream;
 
-  postpaidInquiryDataListener() {
-    _postPaidBillEnquiryListResponse.safeAdd(arguments.postPaidBillInquiryData);
+  postpaidInquiryDataListener({required List<PostPaidBillInquiryData> list}) {
+    _postPaidBillEnquiryListResponse.safeAdd(list);
   }
 
   /// ---------------- pay postPaid bill -------------------------------- ///
@@ -76,7 +84,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
-            billingNumber: /*"121344"*/ item.billingNo,
+            billingNumber: item.billingNo,
             billerName: StringUtils.isDirectionRTL(context)
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,
@@ -90,27 +98,17 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
         // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
-        totalAmount: addAllBillAmt().toStringAsFixed(3),
+        totalAmount: addAllBillAmt(context).toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
-        isCreditCardPayment: /* cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? true
-            : */
-        false,
-        CardId: /*cardType != null &&
-            cardType.isNotEmpty &&
-            cardType == AppConstants.KEY_CREDIT
-            ? cardID
-            :*/
-        "",
+        isCreditCardPayment: false,
+        CardId: "",
         otpCode: ""));
   }
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -127,14 +125,26 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
-  void newAmtEnter(int index, String value) {
+  void newAmtEnter(
+    int index,
+    String value,
+    bool isPartial,
+    String? minRange,
+    String? maxRange,
+    BuildContext context,
+  ) {
     if (value.length <= 0) {
       value = "0";
     }
+    arguments.postPaidBillInquiryData?[index].dueAmount = value;
+    arguments.noOfSelectedBills[index].dueAmount = value;
+    if (isPartial == true) {
+      minMaxValidate(isPartial, minRange, maxRange, value, context, index);
+    }
+
     // totalAmt[index] = double.parse(value);
     // arguments.noOfSelectedBills[index].dueAmount = value;
-    arguments.postPaidBillInquiryData?[index].dueAmount = value;
-    _totalBillAmtDueSubject.safeAdd(addAllBillAmt());
+    _totalBillAmtDueSubject.safeAdd(addAllBillAmt(context));
   }
 
   getValidBillerIcon(String? billingNumber, String? serviceType) {
@@ -192,11 +202,27 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (isTotalAmountZero == false) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
-      } else {
-        _showButtonSubject.safeAdd(false);
       }
     } else {
       _showButtonSubject.safeAdd(false);
+    }
+  }
+
+  void minMaxValidate(
+      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
+    if (isPartial == true) {
+      if (value.isEmpty) {
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
+      } else if (double.parse(value) < double.parse(minRange ?? "0")) {
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}";
+      } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+            "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+      } else {
+        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
+      }
     }
   }
 

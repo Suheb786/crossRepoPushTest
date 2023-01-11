@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8110,6 +8111,16 @@ class S {
     );
   }
 
+  /// `from`
+  String get fromSingleLine {
+    return Intl.message(
+      'from',
+      name: 'fromSingleLine',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You don't have any contacts yet. Your Blink contacts can be saved while requesting money.`
   String get addRequestMoney {
     return Intl.message(
@@ -15870,11 +15881,61 @@ class S {
     );
   }
 
+  /// `Payment amount can be`
+  String get paymentAmountCanBe {
+    return Intl.message(
+      'Payment amount can be',
+      name: 'paymentAmountCanBe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be between`
+  String get amountShouldBetween {
+    return Intl.message(
+      'Amount should be between',
+      name: 'amountShouldBetween',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be more than`
+  String get amountShouldBeMoreThan {
+    return Intl.message(
+      'Amount should be more than',
+      name: 'amountShouldBeMoreThan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be less than or equal to`
+  String get amountShouldBeLessThanOrEqualTo {
+    return Intl.message(
+      'Amount should be less than or equal to',
+      name: 'amountShouldBeLessThanOrEqualTo',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
   String get billPaymentSorryMessage {
     return Intl.message(
       'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
       name: 'billPaymentSorryMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is not available`
+  String get serviceIsNotavaliable {
+    return Intl.message(
+      'Service is not available',
+      name: 'serviceIsNotavaliable',
       desc: '',
       args: [],
     );
