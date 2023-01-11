@@ -135,7 +135,29 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                     model.showBtn();
                                                   },
                                                 ),
-                                              ),
+                                              ),    SizedBox(
+                                                            height: 16.h,
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              // Text(
+                                                              //   S.of(context).aliasMobileHint,
+                                                              //   style: TextStyle(
+                                                              //       fontWeight: FontWeight.w600,
+                                                              //       fontSize: 12.t,
+                                                              //       fontFamily: StringUtils.appFont),
+                                                              // ),
+                                                              Text(
+                                                                S.of(context).aliasMobileNoHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.t,
+                                                                    color: AppColor.dark_gray_1,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              )
+                                                            ],
+                                                          )
                                               AppStreamBuilder<bool>(
                                                 initialData: false,
                                                 stream: model.isSelectedStream,

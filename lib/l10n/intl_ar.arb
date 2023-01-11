@@ -5,7 +5,7 @@
   "addMobileHeader": "شو رقم موبايلك؟",
   "enterOtpHeader": "أدخل الكود المكون من 6 خانات اللي وصلك على رقم",
   "mobileNumber": "رقم الموبايل",
-  "mobileNumberHint": "00 000 0000",
+  "mobileNumberHint": "00962 000 0000",
   "enterValidMobileNumber": "رقم الموبايل اللي دخلته غير صحيح. حاول كمان مرة.",
   "changeMyNumber": "تغيير رقمي",
   "resendIn": "إعادة الإرسال خلال {resendTime}",

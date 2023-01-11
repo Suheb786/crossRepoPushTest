@@ -210,27 +210,31 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
-        "allowBiometric": MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
+        "allowBiometric":
+            MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
         "amount": MessageLookupByLibrary.simpleMessage("المبلغ"),
-        "amountGreaterThan0":
-            MessageLookupByLibrary.simpleMessage("يجب أن يكون المبلغ المطلوب دفعه أكبر من 0"),
-        "amountGreaterThanOutstanding":
-            MessageLookupByLibrary.simpleMessage("المبلغ لازم ما يزيد عن الحد الاعلى"),
-        "amountLimitError":
-            MessageLookupByLibrary.simpleMessage("المبلغ لازم يكون أكبر من أو يساوي الحد الأدنى للسداد"),
-        "amountShouldBeLessThanOrEqualTo":
-            MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون اقل او يساوي"),
-        "amountShouldBeMoreThan": MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون اكثر من"),
-        "amountShouldBetween": MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون بين"),
+        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يكون المبلغ المطلوب دفعه أكبر من 0"),
+        "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
+            "المبلغ لازم ما يزيد عن الحد الاعلى"),
+        "amountLimitError": MessageLookupByLibrary.simpleMessage(
+            "المبلغ لازم يكون أكبر من أو يساوي الحد الأدنى للسداد"),
+        "amountShouldBeLessThanOrEqualTo": MessageLookupByLibrary.simpleMessage(
+            "المبلغ يجب ان يكون اقل او يساوي"),
+        "amountShouldBeMoreThan":
+            MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون اكثر من"),
+        "amountShouldBetween":
+            MessageLookupByLibrary.simpleMessage("المبلغ يجب ان يكون بين"),
         "amountZero": MessageLookupByLibrary.simpleMessage("مبلغ غير صحيح"),
-        "androidLoginError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "androidLoginError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "annual": MessageLookupByLibrary.simpleMessage("الدخل سنوي ؟ "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
-        "annualIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
+        "annualIncomeSmall":
+            MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
         "anyAgent": MessageLookupByLibrary.simpleMessage("أي موظف"),
-        "anyOtherCountryTaxResident":
-            MessageLookupByLibrary.simpleMessage("بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
+        "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
+            "بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "لقد تم تقيم طلبك بناءً على معلوماتك الشخصية والائتمانية وللأسف لم يتم الموافقه غليها. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),
@@ -1188,28 +1192,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
-        "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage("بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت. "),
-        "freezeCreditCardError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
+            "بتقدر تفك تجميد بطاقتك وتفعلها بأي وقت. "),
+        "freezeCreditCardError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
             "مجموعة من المعلومات اللي لازم تعرفها قبل ما تجمّد بطاقتك. * خلال التجميد، ما رح تقدر تستخدم بطاقتك لأي حركة. * خلال التجميد، ما رح تقدر تستفيد من عمليات الدفع المباشر المربوطة على البطاقة، مثل: دفعات النادي الرياضي وشركة الاتصالات. * بتقدر تفك تجميد البطاقة وتفعلها بأي وقت."),
-        "freezeDebitCardError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "freezeTheCard": MessageLookupByLibrary.simpleMessage("بدك تجمد البطاقة؟"),
+        "freezeDebitCardError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "freezeTheCard":
+            MessageLookupByLibrary.simpleMessage("بدك تجمد البطاقة؟"),
         "freezeThisCard": MessageLookupByLibrary.simpleMessage("تجميد البطاقة"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
-        "fromLabelForRJFlightBooking": MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
+        "fromLabelForRJFlightBooking":
+            MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
         "fromS": MessageLookupByLibrary.simpleMessage("من "),
-        "fromSavedBills": MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
+        "fromSavedBills":
+            MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("من"),
-        "fromYouWouldYouLikeToAcceptIt": MessageLookupByLibrary.simpleMessage("منك، هل تريد الموافقة"),
-        "fromYourCliqIdList": MessageLookupByLibrary.simpleMessage(" من لائحة حسابات كليك؟"),
+        "fromYouWouldYouLikeToAcceptIt":
+            MessageLookupByLibrary.simpleMessage("منك، هل تريد الموافقة"),
+        "fromYourCliqIdList":
+            MessageLookupByLibrary.simpleMessage(" من لائحة حسابات كليك؟"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("الوقود و الغاز"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderHint": MessageLookupByLibrary.simpleMessage("أدخل الجنس"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("الجنس"),
-        "generateBlockPin": MessageLookupByLibrary.simpleMessage("خطأ خلال إنشاء حظر الرمز السري PIN "),
+        "generateBlockPin": MessageLookupByLibrary.simpleMessage(
+            "خطأ خلال إنشاء حظر الرمز السري PIN "),
         "generateKeyPairError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "genericError":
@@ -1743,7 +1754,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNoRegisteredWithBlinkDesc": MessageLookupByLibrary.simpleMessage(
             "لقد وجدنا أن رقم الهاتف المحمول الذي أدخلته مسجل في blink. إذا تابعت ، فسيتم إرسال الأموال إلى حساب المستلم الوامض. إذا كنت تنوي المتابعة مع حساب مصرفي آخر ، فيمكنك استخدام رقم الحساب المصرفي الدولي (IBAN) أو الاسم المستعار."),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
-        "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
+        "mobileNumberHint":
+            MessageLookupByLibrary.simpleMessage("00962 000 0000"),
         "mobileNumberUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
@@ -1932,25 +1944,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
-        "payViaQR": MessageLookupByLibrary.simpleMessage("الدفع من خلال رمز الاستجابة السريع"),
-        "payViaQRDesc":
-            MessageLookupByLibrary.simpleMessage("ضع رمز الاستجابة السريعة داخل الإطار وأكد عملية الدفع"),
-        "paybackCreditCardError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "payViaQR": MessageLookupByLibrary.simpleMessage(
+            "الدفع من خلال رمز الاستجابة السريع"),
+        "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
+            "ضع رمز الاستجابة السريعة داخل الإطار وأكد عملية الدفع"),
+        "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "paying": MessageLookupByLibrary.simpleMessage("تسديد الى"),
         "paymentActivity": MessageLookupByLibrary.simpleMessage("حركة دائمة"),
-        "paymentActivityApiError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "paymentAmountCanBe": MessageLookupByLibrary.simpleMessage("Payment amount can be"),
+        "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "paymentAmountCanBe":
+            MessageLookupByLibrary.simpleMessage("Payment amount can be"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-146)"),
-        "paymentNotDone": MessageLookupByLibrary.simpleMessage("لم تتم عملية الدفع"),
+        "paymentNotDone":
+            MessageLookupByLibrary.simpleMessage("لم تتم عملية الدفع"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("فترة الدفعة"),
         "payments": MessageLookupByLibrary.simpleMessage("دفعات"),
         "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             "\nالاشخاص السياسيون ممثلو المخاطر الأجانب (Foreign Politically Exposed Persons) :هم الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في دولـة أجنبيـة، مثل: رئيس دولة أو حكومة  أو المسؤولين القضائيين أو العسكريين، أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة لدولة أجنبية ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم\n الاشخاص السياسيون ممثلو المخاطر المحليون (Local Politically Exposed Persons) الأشخاص الذين يشغلون أو شغلوا وظيفة عامة عليا في المملكة، مثل: رئيس حكومة أو وزير أو المسؤولين القضائيين أو العسكريين أو منصب حكومي رفيع المستوى أو كان سياسي بارز أو شخصية بارزة في حزب سياسي أو كبار التنفيذيين في الشركات المملوكة للدولة ويشمل ذلك أقارب هؤلاء الاشخاص من الدرجة الأولى كحد أدنى أو شركائهم في العمل أو أي أشخاص يعملون بالنيابة عنهم أو يملكون تفاويض صادرة عنهم."),
-        "permanentAddress": MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
+        "permanentAddress":
+            MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
         "permanentCity":
             MessageLookupByLibrary.simpleMessage("مدينة الإقامة الدائمة"),
         "permanentCountry":

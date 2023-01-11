@@ -36,10 +36,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
           Text(
             S.of(context).createNewCliqId.toUpperCase(),
             style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 10.t,
-                color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.t, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8.h,
@@ -48,10 +45,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
             S.of(context).linkBankAccountToYourNewId,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.t,
-                color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32.h,
@@ -121,11 +115,9 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                             stream: model.getAccountByCustomerIdStream,
                                                             onData: (getAccountByCustomerIdResponse) {
                                                               if (getAccountByCustomerIdResponse.status == Status.SUCCESS) {
-                                                                LinkAccountDialog.show(context,
-                                                                    label: S.of(context).addLinkAccount,
+                                                                LinkAccountDialog.show(context, label: S.of(context).addLinkAccount,
                                                                     onSelected: (linkBankAccountItemSelected) {
-                                                                  model.accountNumber =
-                                                                      linkBankAccountItemSelected.recordId ?? '';
+                                                                  model.accountNumber = linkBankAccountItemSelected.recordId ?? '';
                                                                   Navigator.pop(context);
                                                                   model.updateLinkAccount(linkBankAccountItemSelected);
                                                                 }, onDismissed: () {
@@ -174,8 +166,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                                     Text(
                                                                                         '${data[index].accountType} ${S.current.account} ${index + 1} '),
                                                                                     Row(
-                                                                                      mainAxisAlignment:
-                                                                                          MainAxisAlignment.spaceBetween,
+                                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                       children: [
                                                                                         Text(data[index].accountNumber ?? ''),
                                                                                         Icon(
@@ -190,8 +181,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                                           horizontal: 16.0.w, vertical: 10.0.h),
                                                                                       decoration: BoxDecoration(
                                                                                           color: AppColor.black,
-                                                                                          borderRadius:
-                                                                                              BorderRadius.circular(100.0)),
+                                                                                          borderRadius: BorderRadius.circular(100.0)),
                                                                                       child: Text(
                                                                                         S.of(context).Default,
                                                                                         style: TextStyle(
@@ -242,7 +232,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                                     },
                                                                                     child: Container(
                                                                                       width: 40.0.w,
-                                                                                      height: 42.0.h,
+                                                                                      height: 40.0.w,
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.only(
                                                                                             start: 10.w,
@@ -265,11 +255,11 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                                     },
                                                                                     child: Container(
                                                                                       width: 40.0.w,
-                                                                                      height: 42.0.h,
+                                                                                      height: 40.0.w,
                                                                                       decoration: BoxDecoration(
                                                                                         border: Border.all(color: AppColor.gray1),
-                                                                                        borderRadius: BorderRadius.all(
-                                                                                            Radius.circular(100.0)),
+                                                                                        borderRadius:
+                                                                                            BorderRadius.all(Radius.circular(100.0)),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -278,9 +268,7 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                                 ),
                                                                                 Expanded(
                                                                                   child: Text(
-                                                                                    S
-                                                                                        .of(context)
-                                                                                        .whenAcceptingCreationOfYourCliqId,
+                                                                                    S.of(context).whenAcceptingCreationOfYourCliqId,
                                                                                     style: TextStyle(
                                                                                       color: AppColor.veryDarkGray2,
                                                                                       fontSize: 12.t,
@@ -322,10 +310,8 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                                                 return Padding(
                                                                   padding: EdgeInsets.only(top: 26.0.h),
                                                                   child: Visibility(
-                                                                    visible:
-                                                                        (data == true ? (isValid == true ? true : false) : false),
-                                                                    child:
-                                                                        AnimatedButton(buttonText: S.of(context).swipeToProceed),
+                                                                    visible: (data == true ? (isValid == true ? true : false) : false),
+                                                                    child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                                                   ),
                                                                 );
                                                               },
