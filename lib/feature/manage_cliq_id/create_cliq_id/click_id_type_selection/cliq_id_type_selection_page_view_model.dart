@@ -59,11 +59,13 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   List<String> cliqIDTypeListAr = ['الاسم المستعار', 'رقم الموبايل'];
 
   void validate() {
-    if (cliqIdTypeController.text.isNotEmpty &&
-        _cliqIdTypeSubject.value == CliqIdTypeEnum.ALIAS &&
-        aliasController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(true);
-    } else if (cliqIdTypeController.text.isNotEmpty &&
+    // if (cliqIdTypeController.text.isNotEmpty &&
+    //     _cliqIdTypeSubject.value == CliqIdTypeEnum.ALIAS &&
+    //     aliasController.text.isNotEmpty) {
+    //   _showButtonSubject.safeAdd(true);
+    // } else
+    
+     if (cliqIdTypeController.text.isNotEmpty &&
         _cliqIdTypeSubject.value == CliqIdTypeEnum.MOBILE_NO &&
         mobileNumberController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);

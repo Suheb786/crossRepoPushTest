@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -34,10 +35,11 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
             Text(
               S.of(context).editCliqId,
               style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10.t,
-                  color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 10.t,
+                color: Theme.of(context).accentColor,
+              ),
             ),
             SizedBox(
               height: 8.h,
@@ -46,10 +48,11 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               "${S.of(context).enterOtpHeader} \n ${model.arguments.data.mobileNumber ?? ''}",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20.t,
-                  color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.t,
+                color: Theme.of(context).accentColor,
+              ),
             ),
             SizedBox(
               height: 32.h,
@@ -70,14 +73,24 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             if (model.arguments.isAlias) {
-                              model.showSuccessToast(S.of(context).cliqAliasUpdate);
+                              model.showSuccessTitleandDescriptionToast(
+                                ToastwithTitleandDescription(
+                                  title: S.current.cliqIdUpdate,
+                                  description: S.current.cliqAliasUpdate,
+                                ),
+                              );
+                              // model.showSuccessToast(S.of(context).cliqAliasUpdate);
                             } else {
-                              model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
+                              model.showSuccessTitleandDescriptionToast(
+                                ToastwithTitleandDescription(
+                                  title: S.current.cliqIdUpdate,
+                                  description: S.current.cliqMobileNumberUpdate,
+                                ),
+                              );
+                              // model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
                             }
 
-                            ProviderScope.containerOf(context)
-                                .read(cliqIdListViewModelProvider)
-                                .getAlias(true);
+                            ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.CliqIdList));
                           }
                         },
@@ -135,20 +148,18 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                 textStyle: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 16.t,
-                                                    color:
-                                                        Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                 widgetBuilder: (context, currentTimeRemaining) {
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
                                                           onPressed: () {
                                                             model.makeOtpRequest(
-                                                              accountNumber:
-                                                                  ProviderScope.containerOf(context)
-                                                                          .read(appHomeViewModelProvider)
-                                                                          .dashboardDataContent
-                                                                          .account
-                                                                          ?.accountNo ??
-                                                                      '',
+                                                              accountNumber: ProviderScope.containerOf(context)
+                                                                      .read(linkBankAccountCliqIdViewModelProvider)
+                                                                      .linkBankAccountCliqIdList
+                                                                      .first
+                                                                      .accountNumber ??
+                                                                  '',
                                                               isAlias: model.arguments.isAlias,
                                                               aliasValue: model.arguments.aliasValue,
                                                               aliasId: model.arguments.aliasId,
@@ -162,10 +173,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontSize: 14.t,
                                                                 fontWeight: FontWeight.w600,
-                                                                color: Theme.of(context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color!),
+                                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                           ))
                                                       : Text(
                                                           S.of(context).resendIn(
@@ -174,10 +182,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,
-                                                              color: Theme.of(context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color!),
+                                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                         );
                                                 },
                                               ),
@@ -191,8 +196,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                     ),
                                                     child: Visibility(
                                                       visible: isValid!,
-                                                      child: AnimatedButton(
-                                                          buttonText: S.of(context).swipeToProceed),
+                                                      child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                                     ),
                                                   );
                                                 },

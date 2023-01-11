@@ -34,10 +34,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
             Text(
               S.of(context).editCliqId,
               style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10.t,
-                  color: Theme.of(context).accentColor),
+                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.t, color: Theme.of(context).accentColor),
             ),
             SizedBox(
               height: 8.h,
@@ -46,10 +43,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
               S.of(context).editYourAlias,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20.t,
-                  color: Theme.of(context).accentColor),
+                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t, color: Theme.of(context).accentColor),
             ),
             SizedBox(
               height: 32.h,
@@ -94,9 +88,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
 
                                     ///api call
                                     model.makeOtpRequest(
-                                        aliasId: model.arguments.aliasID,
-                                        aliasValue: model.aliasController.text,
-                                        isAlias: true);
+                                        aliasId: model.arguments.aliasID, aliasValue: model.aliasController.text, isAlias: true);
                                   }
                                 },
                                 dataBuilder: (context, isValid) {
@@ -115,8 +107,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                           Column(
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(
-                                                    start: 24.w, top: 32.h, end: 24.w),
+                                                padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
                                                 child: AppTextField(
                                                   labelText: S.of(context).alias.toUpperCase(),
                                                   hintText: S.of(context).pleaseEnter,
@@ -134,11 +125,9 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                                 stream: model.isSelectedStream,
                                                 dataBuilder: (BuildContext context, data) {
                                                   return Padding(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        start: 24.w, top: 32.h, end: 24.w),
+                                                    padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
                                                     child: CliqTermConditionSelectionWidget(
-                                                      subDescription:
-                                                          S.of(context).whenAcceptingCreationOfYourCliqId,
+                                                      subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
                                                       isSelected: data,
                                                       unMarkSelected: () {
                                                         model.termAndConditionSelected(false);
@@ -163,13 +152,10 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                                     initialData: false,
                                                     dataBuilder: (BuildContext context, isValid) {
                                                       return Padding(
-                                                        padding: EdgeInsets.only(top: 26.0.h),
+                                                        padding: EdgeInsets.only(bottom: 27.0.h),
                                                         child: Visibility(
-                                                          visible: (data == true
-                                                              ? (isValid == true ? true : false)
-                                                              : false),
-                                                          child: AnimatedButton(
-                                                              buttonText: S.of(context).swipeToProceed),
+                                                          visible: (data == true ? (isValid == true ? true : false) : false),
+                                                          child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                                         ),
                                                       );
                                                     },
@@ -177,7 +163,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                                 },
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
+                                                padding: EdgeInsets.only(bottom: 32.h),
                                                 child: Center(
                                                   child: InkWell(
                                                     onTap: () {

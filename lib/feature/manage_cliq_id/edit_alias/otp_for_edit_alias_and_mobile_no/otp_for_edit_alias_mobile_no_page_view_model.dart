@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/usecase/manage_cliq/edit_cliq_id_otp_usecase.dart';
@@ -21,13 +23,11 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
   final EditCliqOtpUseCase _editCliqOtpUseCase;
   final OtpForEditAliasAndMobileNoPageArguments arguments;
 
-  OtpForEditAliasAndMobileNoPageViewModel(this._enterOtpForCliqIdValidationUseCase, this._editCliqIdUseCase,
-      this.arguments, this._editCliqOtpUseCase) {
+  OtpForEditAliasAndMobileNoPageViewModel(
+      this._enterOtpForCliqIdValidationUseCase, this._editCliqIdUseCase, this.arguments, this._editCliqOtpUseCase) {
     ///validation request
     _enterOtpForCliqIdValidationRequest.listen((value) {
-      RequestManager(value, createCall: () => _enterOtpForCliqIdValidationUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _enterOtpForCliqIdValidationUseCase.execute(params: value)).asFlow().listen((event) {
         _enterOtpForCliqIdValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -52,9 +52,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
 
     ///api calling for otp
     _editCliqIdOtpRequest.listen((value) {
-      RequestManager(value, createCall: () => _editCliqOtpUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _editCliqOtpUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _editCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -72,29 +70,19 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
   }
 
   void makeEditCliqIdRequest(
-      {required bool getToken,
-      required String aliasId,
-      required bool isAlias,
-      required String aliasValue,
-      required String otpCode}) {
-    _editCliqIdRequest.safeAdd(EditCliqIdUseCaseParams(
-        isAlias: isAlias, aliasValue: aliasValue, aliasId: aliasId, getToken: getToken, OtpCode: otpCode));
+      {required bool getToken, required String aliasId, required bool isAlias, required String aliasValue, required String otpCode}) {
+    _editCliqIdRequest
+        .safeAdd(EditCliqIdUseCaseParams(isAlias: isAlias, aliasValue: aliasValue, aliasId: aliasId, getToken: getToken, OtpCode: otpCode));
   }
 
-  void makeOtpRequest(
-      {required String aliasId,
-      required String aliasValue,
-      required bool isAlias,
-      required String accountNumber}) {
-    _editCliqIdOtpRequest
-        .safeAdd(EditCliqOtpUseCaseParams(aliasId: aliasId, isAlias: isAlias, aliasValue: aliasValue));
+  void makeOtpRequest({required String aliasId, required String aliasValue, required bool isAlias, required String accountNumber}) {
+    _editCliqIdOtpRequest.safeAdd(EditCliqOtpUseCaseParams(aliasId: aliasId, isAlias: isAlias, aliasValue: aliasValue));
   }
 
   ///validation otp request
 
   void validateOtp() {
-    _enterOtpForCliqIdValidationRequest
-        .safeAdd(EnterOtpForCliqIdValidationUseCaseParams(otp: _otpSubject.value));
+    _enterOtpForCliqIdValidationRequest.safeAdd(EnterOtpForCliqIdValidationUseCaseParams(otp: _otpSubject.value));
   }
 
   /// validation for i/p and btn
@@ -154,8 +142,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   /// otp request validation
-  PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest =
-      PublishSubject();
+  PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest = PublishSubject();
 
   /// otp response
   PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();

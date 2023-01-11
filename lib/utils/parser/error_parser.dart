@@ -5,8 +5,7 @@ import 'package:neo_bank/generated/l10n.dart';
 class ErrorParser {
   ErrorParser._();
 
-  static String getLocalisedStringError(
-      {AppError? error, required S localisedHelper}) {
+  static String getLocalisedStringError({AppError? error, required S localisedHelper}) {
     switch (error?.type) {
       case ErrorType.IOEXCEPTION:
         return localisedHelper.genericError;
@@ -38,6 +37,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.PLEASE_ENTER_MOBILE_NO:
+        return localisedHelper.pleaseEnterYourMobileNumber;
       case ErrorType.ERROR_DECRYPT_CARD:
         return localisedHelper.establishCallError;
       case ErrorType.ERROR_GENERATE_BLOCK_PIN:
@@ -1067,8 +1068,7 @@ class ErrorParser {
       case ErrorType.PRIM_CREDIT_CARD_ID_NOT_MATCH_GROOM:
         return localisedHelper.primaryCreditCardHoldIdNotMatchGroom;
       case ErrorType.SUPP_CREDIT_HOLDER_ID_NOT_MATCH_FATHER_MOTHER:
-        return localisedHelper
-            .supplementaryCreditCardHolderIdNotMatchMotherFather;
+        return localisedHelper.supplementaryCreditCardHolderIdNotMatchMotherFather;
       case ErrorType.PRIM_DEBIT_CREDIT_CARD_ID_NOT_MATCH_MOTHER_FATHER:
         return localisedHelper.primaryDebitCreditCardHolderNotMatchMotherFather;
       case ErrorType.NO_DATA_FOUND_IN_FINANCIAL_INSTITUTION:
@@ -1191,10 +1191,8 @@ class ErrorParser {
       case ErrorType.ERROR_ON_APPROVE_RTP_REQUEST:
         return localisedHelper.errorOnApproveRtpRequest;
 
-      case ErrorType
-          .ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
-        return localisedHelper
-            .accountIsLinkedToTheAliasButUnableToSetItToDefault;
+      case ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT:
+        return localisedHelper.accountIsLinkedToTheAliasButUnableToSetItToDefault;
 
       case ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT:
         return localisedHelper.errorOnRequestToPayResult;

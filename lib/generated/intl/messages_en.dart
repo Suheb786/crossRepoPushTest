@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptRequest": MessageLookupByLibrary.simpleMessage("Accept Request"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
         "accountActivatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Account Activated Successfully"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
@@ -131,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "Activating your supplementary credit card"),
+        "active": MessageLookupByLibrary.simpleMessage("Active"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -546,9 +548,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
             "CLIQ ID UPDATE\nCliQ ID Alias has been updated"),
         "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
+        "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
+            "CliQ ID Mobile Number has been updated"),
         "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage(
             "CliQ ID created\nsuccessfully"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
+        "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE"),
         "cliqIdUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
@@ -1690,6 +1695,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
+        "letsGiveANameToYourCliqId": MessageLookupByLibrary.simpleMessage(
+            "Let’s give a name\n to your new CliQ ID"),
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
@@ -2055,6 +2062,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
+        "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter your mobile number"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
@@ -2537,6 +2546,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "suspandClidId":
             MessageLookupByLibrary.simpleMessage("Suspend CliQ ID"),
         "suspendId": MessageLookupByLibrary.simpleMessage("Suspend ID"),
+        "suspended": MessageLookupByLibrary.simpleMessage("Suspended"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(

@@ -15929,6 +15929,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s give a name\n to your new CliQ ID`
+  String get letsGiveANameToYourCliqId {
+    return Intl.message(
+      'Let’s give a name\n to your new CliQ ID',
+      name: 'letsGiveANameToYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your mobile number`
+  String get pleaseEnterYourMobileNumber {
+    return Intl.message(
+      'Please enter your mobile number',
+      name: 'pleaseEnterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspended`
+  String get suspended {
+    return Intl.message(
+      'Suspended',
+      name: 'suspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message(
+      'Active',
+      name: 'active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE`
+  String get cliqIdUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE',
+      name: 'cliqIdUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Mobile Number has been updated`
+  String get cliqIDmobileNOUpdated {
+    return Intl.message(
+      'CliQ ID Mobile Number has been updated',
+      name: 'cliqIDmobileNOUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

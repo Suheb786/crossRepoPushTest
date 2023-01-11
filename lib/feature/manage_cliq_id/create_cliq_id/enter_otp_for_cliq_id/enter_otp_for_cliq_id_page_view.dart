@@ -59,11 +59,16 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
 
                             model.makeCreateCliqIDRequest(
                                 accountNumber: ProviderScope.containerOf(context)
-                                        .read(appHomeViewModelProvider)
-                                        .dashboardDataContent
-                                        .account
-                                        ?.accountNo ??
-                                    '',
+                                        .read(linkBankAccountCliqIdViewModelProvider)
+                                        .linkBankAccountCliqIdList
+                                        .isNotEmpty
+                                    ? (ProviderScope.containerOf(context)
+                                            .read(linkBankAccountCliqIdViewModelProvider)
+                                            .linkBankAccountCliqIdList
+                                            .first
+                                            .accountNumber ??
+                                        '')
+                                    : "",
                                 isAlias: ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .cliqIdTypeController
@@ -90,27 +95,20 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                       dataBuilder: (context, enterOtpForCliqResponse) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (ProviderScope.containerOf(context)
-                                    .read(createCliqIdViewModelProvider)
-                                    .appSwiperController
-                                    .page ==
+                            if (ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).appSwiperController.page ==
                                 2.0) {
                               FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
                                   model.validateOtp();
                                 } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(createCliqIdViewModelProvider)
-                                      .previousPage();
+                                  ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
                                 }
                               } else {
                                 if (details.primaryVelocity!.isNegative) {
                                   model.validateOtp();
                                 } else {
-                                  ProviderScope.containerOf(context)
-                                      .read(createCliqIdViewModelProvider)
-                                      .previousPage();
+                                  ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
                                 }
                               }
                             }
@@ -152,19 +150,23 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                     onPressed: () {
                                                       model.makeOtpRequest(
                                                         accountNumber: ProviderScope.containerOf(context)
-                                                                .read(appHomeViewModelProvider)
-                                                                .dashboardDataContent
-                                                                .account
-                                                                ?.accountNo ??
-                                                            '',
+                                                                .read(linkBankAccountCliqIdViewModelProvider)
+                                                                .linkBankAccountCliqIdList
+                                                                .isNotEmpty
+                                                            ? (ProviderScope.containerOf(context)
+                                                                    .read(linkBankAccountCliqIdViewModelProvider)
+                                                                    .linkBankAccountCliqIdList
+                                                                    .first
+                                                                    .accountNumber ??
+                                                                '')
+                                                            : "",
                                                         isAlias: ProviderScope.containerOf(context)
                                                                 .read(cliqIdTypeSelectionViewModelProvider)
                                                                 .cliqIdTypeController
                                                                 .text ==
                                                             S.of(context).alias,
                                                         aliasValue: (ProviderScope.containerOf(context)
-                                                                    .read(
-                                                                        cliqIdTypeSelectionViewModelProvider)
+                                                                    .read(cliqIdTypeSelectionViewModelProvider)
                                                                     .cliqIdTypeController
                                                                     .text ==
                                                                 S.of(context).alias)
@@ -188,10 +190,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 14.t,
                                                           fontWeight: FontWeight.w600,
-                                                          color: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!),
+                                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                     ))
                                                 : Text(
                                                     S.of(context).resendIn(
@@ -200,10 +199,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color!),
+                                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                   );
                                           },
                                         ),

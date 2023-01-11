@@ -1564,10 +1564,17 @@
   "billerAlreadyExistsMessage": "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي",
   "searchBill": "البحث عن فاتورة",
   "nickNameCanOnlyContainAlphanumerics": "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط",
+  "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة",
+  "account": "Account",
+  "letsGiveANameToYourCliqId": "Let’s give a name\n to your new CliQ ID",
+  "pleaseEnterYourMobileNumber": "Please enter your mobile number",
+  "suspended": "Suspended",
+  "active": "Active",
+  "cliqIdUpdate": "CLIQ ID UPDATE",
+  "cliqIDmobileNOUpdated": "CliQ ID Mobile Number has been updated",
   "paymentAmountCanBe": "Payment amount can be",
   "amountShouldBetween": "المبلغ يجب ان يكون بين",
   "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
   "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
-  "serviceIsNotavaliable": "الخدمة غير متوفرة حاليا",
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
 }

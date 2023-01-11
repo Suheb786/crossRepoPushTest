@@ -29,7 +29,8 @@ final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdLis
       ref.read(confirmChangeDefaultAccountUseCaseProvider),
       ref.read(suspendCliqIdUseCaseProvider),
       ref.read(reActivateCliqIdUseCaseProvider),
-      ref.read(addLinkAccountUseCaseProvider)),
+     
+      ),
 );
 
 ///create cliq id
