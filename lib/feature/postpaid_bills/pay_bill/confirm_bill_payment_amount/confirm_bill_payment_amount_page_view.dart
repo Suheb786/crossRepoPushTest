@@ -399,7 +399,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
             S.of(context).tapAmtToEdit,
             style: TextStyle(
               fontFamily: StringUtils.appFont,
-              color: AppColor.gray1,
+              color: AppColor.brightBlue,
               fontSize: 10.0.t,
               fontWeight: FontWeight.w600,
             ),

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14215,6 +14216,16 @@ class S {
     return Intl.message(
       'View my bills',
       name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage my bills”`
+  String get manageMyBills {
+    return Intl.message(
+      'Manage my bills”',
+      name: 'manageMyBills',
       desc: '',
       args: [],
     );

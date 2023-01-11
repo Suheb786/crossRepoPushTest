@@ -81,7 +81,7 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                 fontFamily: StringUtils.appFont,
                 fontSize: 12.0.t,
                 fontWeight: FontWeight.w600,
-                color: AppColor.gray5,
+                color: AppColor.brightBlue,
               ),
             ),
             SizedBox(
