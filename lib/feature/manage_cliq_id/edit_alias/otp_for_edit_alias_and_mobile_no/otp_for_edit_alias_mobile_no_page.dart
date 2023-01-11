@@ -57,7 +57,7 @@ class OtpForEditAliasAndMobileNoPageState
     listenForCode();
 
     SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
+      debugPrint('inside signature---->$signature');
     });
   }
 
@@ -68,7 +68,6 @@ class OtpForEditAliasAndMobileNoPageState
 
   @override
   void dispose() {
-    print('inside dispose');
     super.dispose();
     cancel();
   }

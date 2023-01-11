@@ -97,10 +97,10 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                             model.showSuccessTitleandDescriptionToast(
                               ToastwithTitleandDescription(
                                 title: S.current.cliqIdUpdate,
-                                description: S.current.accountActivatedSuccessfully,
+                                description: S.current.hasBeenActivated(model.activatedCliq),
                               ),
                             );
-                            // model.showSuccessToast(S.current.accountActivatedSuccessfully);
+                            model.activatedCliq = '';
                             model.getAlias(true);
                           }
                         },
@@ -113,10 +113,10 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                 model.showSuccessTitleandDescriptionToast(
                                   ToastwithTitleandDescription(
                                     title: S.current.cliqIdUpdate,
-                                    description: S.current.accountSuspendedSuccessfully,
+                                    description: S.current.hasbeenSuspended(model.suspendedCliq),
                                   ),
                                 );
-                                // model.showSuccessToast(S.of(context).accountSuspendedSuccessfully);
+                                model.suspendedCliq = '';
                                 model.getAlias(true);
                               }
                             },
@@ -129,12 +129,10 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                     model.showSuccessTitleandDescriptionToast(
                                       ToastwithTitleandDescription(
                                         title: S.current.cliqIdUpdate,
-                                        description: S.current.accountDeletedSuccessfully,
+                                        description: S.current.hasBeenDeleted(model.deletedCliq),
                                       ),
                                     );
-                                    // model.showSuccessToast(
-                                    //   S.of(context).accountDeletedSuccessfully
-                                    // );
+                                    model.deletedCliq = '';
                                     model.getAlias(true);
                                   }
                                 },
@@ -166,26 +164,39 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                     itemBuilder: (context, index) {
                                                       return AliasCardList(
                                                         cliqAliasIdStatusEnum:
-                                                            getAliasSnapshot!.data!.aliases?[index].status ?? CliqAliasIdStatusEnum.NONE,
-                                                        accountList: (getAliasSnapshot.data?.aliases?[index].accounts ?? []),
-                                                        aliasName: "${getAliasSnapshot.data?.aliases?[index].aliasName ?? ""}",
+                                                            getAliasSnapshot!.data!.aliases?[index].status ??
+                                                                CliqAliasIdStatusEnum.NONE,
+                                                        accountList: (getAliasSnapshot
+                                                                .data?.aliases?[index].accounts ??
+                                                            []),
+                                                        aliasName:
+                                                            "${getAliasSnapshot.data?.aliases?[index].aliasName ?? ""}",
                                                         aliasType:
                                                             "${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()}",
-                                                        status: model.getStatus(getAliasSnapshot.data?.aliases?[index].status, context),
+                                                        status: model.getStatus(
+                                                            getAliasSnapshot.data?.aliases?[index].status,
+                                                            context),
                                                         // "${getAliasSnapshot.data?.aliases?[index].status}",
                                                         onTapAccount: (accountData) {
                                                           ManageCliqBottomSheetSelectionWidget.show(context,
-                                                              showSetAsDefault: !(accountData.isDefault ?? true), setAsDefault: () {
+                                                              showSetAsDefault: !(accountData.isDefault ??
+                                                                  true), setAsDefault: () {
                                                             Navigator.pop(context);
                                                             CliqInformationDialog.show(context,
                                                                 image: AssetUtils.walletIcon,
                                                                 title: S.of(context).changeDefaultAccount,
-                                                                description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
-                                                                subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
+                                                                description: S
+                                                                    .of(context)
+                                                                    .areYourToChangeDefaultAccountOfYourCliqId,
+                                                                subDescription: S
+                                                                    .of(context)
+                                                                    .whenAcceptingCreationOfYourCliqId,
                                                                 onSelected: () {
                                                               Navigator.pop(context);
                                                               model.confirmChangeDefaultCliqId(
-                                                                aliasId: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "",
+                                                                aliasId: (getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasID) ??
+                                                                    "",
                                                                 acc: (accountData.recordId) ?? "",
                                                               );
                                                             }, onDismissed: () {
@@ -201,13 +212,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
                                                                       fontSize: 14.t,
+                                                                      color: AppColor.veryDarkGray1,
                                                                       fontWeight: FontWeight.w400),
                                                                 ),
                                                                 onSelected: () {
                                                                   Navigator.pop(context);
                                                                   model.unlinkCliqId(
                                                                     getToken: true,
-                                                                    aliasId: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "",
+                                                                    aliasId: (getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasID) ??
+                                                                        "",
                                                                     accountId: (accountData.recordId) ?? "",
                                                                   );
                                                                 },
@@ -220,22 +234,36 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                           }, title: S.of(context).pleaseSelectYourAction);
                                                         },
                                                         onTapAlias: () {
-                                                          UpdateCliqInfoBottomSheetSelectionWidget.show(context,
-                                                              showLinkAccount:
-                                                                  (getAliasSnapshot.data?.aliases?[index].accounts ?? []).length == 0
-                                                                      ? true
-                                                                      : false,
-                                                              cliqAliasIdStatusEnum: getAliasSnapshot.data?.aliases?[index].status ??
+                                                          UpdateCliqInfoBottomSheetSelectionWidget.show(
+                                                              context,
+                                                              showLinkAccount: (getAliasSnapshot
+                                                                                  .data
+                                                                                  ?.aliases?[index]
+                                                                                  .accounts ??
+                                                                              [])
+                                                                          .length ==
+                                                                      0
+                                                                  ? true
+                                                                  : false,
+                                                              cliqAliasIdStatusEnum: getAliasSnapshot
+                                                                      .data?.aliases?[index].status ??
                                                                   CliqAliasIdStatusEnum.NONE, onLinkId: () {
                                                             Navigator.pop(context);
-                                                            Navigator.pushNamed(context, RoutePaths.LinkAccountPage,
+                                                            Navigator.pushNamed(
+                                                                context, RoutePaths.LinkAccountPage,
                                                                 arguments: LinkAccountPageArgument(
-                                                                    aliasId: getAliasSnapshot.data?.aliases?[index].aliasID ?? '',
-                                                                    aliasValue: getAliasSnapshot.data?.aliases?[index].aliasName ?? '',
-                                                                    isAlias: getAliasSnapshot.data?.aliases?[index].aliasType ==
+                                                                    aliasId: getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasID ??
+                                                                        '',
+                                                                    aliasValue: getAliasSnapshot.data
+                                                                            ?.aliases?[index].aliasName ??
+                                                                        '',
+                                                                    isAlias: getAliasSnapshot.data
+                                                                            ?.aliases?[index].aliasType ==
                                                                         CliqAliasTypeEnum.ALIAS,
                                                                     getToken: true,
-                                                                    linkType: (getAliasSnapshot.data?.aliases?[index].aliasType ==
+                                                                    linkType: (getAliasSnapshot.data
+                                                                                ?.aliases?[index].aliasType ==
                                                                             CliqAliasTypeEnum.ALIAS)
                                                                         ? 'A'
                                                                         : 'M'));
@@ -245,12 +273,21 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                 isSwipeToCancel: true,
                                                                 image: AssetUtils.reactivateIcon,
                                                                 title: S.current.reactivateCliqId,
-                                                                description: S.of(context).areYourToChangeDefaultAccountOfYourCliqId,
-                                                                subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
+                                                                description: S
+                                                                    .of(context)
+                                                                    .areYourToChangeDefaultAccountOfYourCliqId,
+                                                                subDescription: S
+                                                                    .of(context)
+                                                                    .whenAcceptingCreationOfYourCliqId,
                                                                 onSelected: () {
                                                               Navigator.pop(context);
+                                                              model.activatedCliq = getAliasSnapshot
+                                                                      .data?.aliases?[index].aliasName ??
+                                                                  '';
                                                               model.reactivatetCliqID(
-                                                                aliasId: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "",
+                                                                aliasId: (getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasID) ??
+                                                                    "",
                                                                 getToken: true,
                                                               );
                                                             }, onDismissed: () {
@@ -258,18 +295,30 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             });
                                                           }, onEditId: () {
                                                             Navigator.pop(context);
-                                                            if (getAliasSnapshot.data?.aliases?[index].aliasType ==
+                                                            if (getAliasSnapshot
+                                                                    .data?.aliases?[index].aliasType ==
                                                                 CliqAliasTypeEnum.MOBL) {
-                                                              Navigator.pushNamed(context, RoutePaths.EditCliqIDMobileNoPage,
+                                                              Navigator.pushNamed(
+                                                                  context, RoutePaths.EditCliqIDMobileNoPage,
                                                                   arguments: EditCliqIDMobileNoPageArguments(
-                                                                      aliasID: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "",
-                                                                      aliasName: (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""));
-                                                            } else if (getAliasSnapshot.data?.aliases?[index].aliasType ==
+                                                                      aliasID: (getAliasSnapshot.data
+                                                                              ?.aliases?[index].aliasID) ??
+                                                                          "",
+                                                                      aliasName: (getAliasSnapshot.data
+                                                                              ?.aliases?[index].aliasName) ??
+                                                                          ""));
+                                                            } else if (getAliasSnapshot
+                                                                    .data?.aliases?[index].aliasType ==
                                                                 CliqAliasTypeEnum.ALIAS) {
-                                                              Navigator.pushNamed(context, RoutePaths.EditAlias,
+                                                              Navigator.pushNamed(
+                                                                  context, RoutePaths.EditAlias,
                                                                   arguments: EditAliasPageArguments(
-                                                                      aliasID: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "",
-                                                                      aliasName: (getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""));
+                                                                      aliasID: (getAliasSnapshot.data
+                                                                              ?.aliases?[index].aliasID) ??
+                                                                          "",
+                                                                      aliasName: (getAliasSnapshot.data
+                                                                              ?.aliases?[index].aliasName) ??
+                                                                          ""));
                                                             }
                                                           }, onShareId: () {
                                                             _shareFiles(context,
@@ -286,13 +335,46 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                               },
                                                               image: AssetUtils.deleteIcon,
                                                               title: S.current.confirmDelete,
-                                                              descriptionWidget: Text(S.current.areYouSureWantToDelete +
-                                                                  "${(getAliasSnapshot.data?.aliases?[index].aliasName) ?? ""}" +
-                                                                  S.current.fromYourCliqIdList),
+                                                              descriptionWidget: Text.rich(TextSpan(
+                                                                  text: S.current.areYouSureWantToDelete,
+                                                                  style: TextStyle(
+                                                                      color: AppColor.veryDarkGray1,
+                                                                      fontFamily: StringUtils.appFont,
+                                                                      fontSize: 14.t,
+                                                                      fontWeight: FontWeight.w400),
+                                                                  children: [
+                                                                    TextSpan(
+                                                                        text: getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasName,
+                                                                        style: TextStyle(
+                                                                            color: AppColor.veryDarkGray1,
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontSize: 14.t,
+                                                                            fontWeight: FontWeight.w600),
+                                                                        children: [
+                                                                          TextSpan(
+                                                                              text: S
+                                                                                  .current.fromYourCliqIdList,
+                                                                              style: TextStyle(
+                                                                                  color:
+                                                                                      AppColor.veryDarkGray1,
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 14.t,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w400))
+                                                                        ])
+                                                                  ])),
                                                               onSelected: () {
                                                                 Navigator.pop(context);
+                                                                model.deletedCliq = getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasName ??
+                                                                    "";
                                                                 model.deleteCliqId(
-                                                                    true, (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "");
+                                                                    true,
+                                                                    (getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasID) ??
+                                                                        "");
                                                               },
                                                             );
                                                           }, onSuspendId: () {
@@ -304,13 +386,24 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                               },
                                                               image: AssetUtils.suspandIcon,
                                                               title: S.current.suspandClidId,
-                                                              descriptionWidget: Text(S.current.areYouSureToSuspandCliqId),
+                                                              descriptionWidget: Text(
+                                                                  S.current.areYouSureToSuspandCliqId,
+                                                                  style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
+                                                                      fontSize: 14.t,
+                                                                      color: AppColor.veryDarkGray1,
+                                                                      fontWeight: FontWeight.w400)),
 
                                                               onSelected: () {
                                                                 Navigator.pop(context);
+                                                                model.suspendedCliq = getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasName ??
+                                                                    '';
                                                                 model.suspandCliqID(
                                                                     getToken: true,
-                                                                    aliasId: (getAliasSnapshot.data?.aliases?[index].aliasID) ?? "");
+                                                                    aliasId: (getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasID) ??
+                                                                        "");
                                                               },
                                                               //  image: ,
                                                               isSwipeToCancel: true,
@@ -340,9 +433,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                 decoration: BoxDecoration(
                                                                     shape: BoxShape.circle,
                                                                     border: Border.all(
-                                                                        color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
+                                                                        color: Theme.of(context)
+                                                                            .inputDecorationTheme
+                                                                            .hintStyle!
+                                                                            .color!)),
                                                                 child: Container(
-                                                                    padding: EdgeInsets.all(32), child: AppSvg.asset(AssetUtils.cliqLogo)),
+                                                                    padding: EdgeInsets.all(32),
+                                                                    child: AppSvg.asset(AssetUtils.cliqLogo)),
                                                               ),
                                                               Text(
                                                                 S.of(context).NoCliqContactYet,
@@ -359,20 +456,26 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                           alignment: AlignmentDirectional.bottomCenter,
                                                           child: InkWell(
                                                             onTap: () async {
-                                                              Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+                                                              Navigator.pushNamed(
+                                                                  context, RoutePaths.CreateCliqId);
 
                                                               ///LOG EVENT TO FIREBASE
                                                               await FireBaseLogUtil.fireBaseLog(
-                                                                  "navigation_alias_creation", {"navigated_alias_creation": true});
+                                                                  "navigation_alias_creation",
+                                                                  {"navigated_alias_creation": true});
                                                             },
                                                             child: Container(
-                                                              margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                                              margin: EdgeInsets.symmetric(
+                                                                  horizontal: 24, vertical: 20),
                                                               padding: EdgeInsets.all(18),
                                                               height: 56,
                                                               width: double.maxFinite,
                                                               decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(100),
-                                                                color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                                                color: Theme.of(context)
+                                                                    .accentTextTheme
+                                                                    .bodyText1
+                                                                    ?.color,
                                                               ),
                                                               child: Center(
                                                                 child: Text(S.of(context).createCliqId,
@@ -381,7 +484,8 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         fontSize: 14,
                                                                         fontWeight: FontWeight.w600,
                                                                         letterSpacing: 1,
-                                                                        color: Theme.of(context).accentColor)),
+                                                                        color:
+                                                                            Theme.of(context).accentColor)),
                                                               ),
                                                             ),
                                                           ),

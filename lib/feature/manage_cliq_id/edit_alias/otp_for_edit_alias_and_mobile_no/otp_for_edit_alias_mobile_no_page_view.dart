@@ -45,7 +45,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               height: 8.h,
             ),
             Text(
-              "${S.of(context).enterOtpHeader} \n ${model.arguments.data.mobileNumber ?? ''}",
+              "${S.of(context).enterOtpHeader} \n ${"${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" + " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}"}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
@@ -90,7 +90,9 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                               // model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
                             }
 
-                            ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);
+                            ProviderScope.containerOf(context)
+                                .read(cliqIdListViewModelProvider)
+                                .getAlias(true);
                             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.CliqIdList));
                           }
                         },
@@ -148,14 +150,17 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                 textStyle: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 16.t,
-                                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                    color:
+                                                        Theme.of(context).accentTextTheme.bodyText1!.color!),
                                                 widgetBuilder: (context, currentTimeRemaining) {
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
                                                           onPressed: () {
                                                             model.makeOtpRequest(
-                                                              accountNumber: ProviderScope.containerOf(context)
-                                                                      .read(linkBankAccountCliqIdViewModelProvider)
+                                                              accountNumber: ProviderScope.containerOf(
+                                                                          context)
+                                                                      .read(
+                                                                          linkBankAccountCliqIdViewModelProvider)
                                                                       .linkBankAccountCliqIdList
                                                                       .first
                                                                       .accountNumber ??
@@ -173,16 +178,22 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontSize: 14.t,
                                                                 fontWeight: FontWeight.w600,
-                                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                                color: Theme.of(context)
+                                                                    .accentTextTheme
+                                                                    .bodyText1!
+                                                                    .color!),
                                                           ))
                                                       : Text(
-                                                          S.of(context).resendIn(
+                                                    S.of(context).resendIn(
                                                               '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,
-                                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                              color: Theme.of(context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color!),
                                                         );
                                                 },
                                               ),
@@ -196,7 +207,8 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                     ),
                                                     child: Visibility(
                                                       visible: isValid!,
-                                                      child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
+                                                      child: AnimatedButton(
+                                                          buttonText: S.of(context).swipeToProceed),
                                                     ),
                                                   );
                                                 },

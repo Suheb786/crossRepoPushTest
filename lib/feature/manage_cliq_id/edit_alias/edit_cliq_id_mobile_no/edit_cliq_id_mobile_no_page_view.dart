@@ -184,7 +184,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                 },
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
+                                                padding: EdgeInsets.only(top: 27.0.h, bottom: 32.h),
                                                 child: Center(
                                                   child: InkWell(
                                                     onTap: () {

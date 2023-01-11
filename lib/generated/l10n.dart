@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -15590,16 +15591,6 @@ class S {
     );
   }
 
-  /// `CLIQ ID UPDATE\nCliQ ID Alias has been updated`
-  String get cliqAliasUpdate {
-    return Intl.message(
-      'CLIQ ID UPDATE\nCliQ ID Alias has been updated',
-      name: 'cliqAliasUpdate',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated`
   String get cliqMobileNumberUpdate {
     return Intl.message(
@@ -15880,56 +15871,6 @@ class S {
     );
   }
 
-  /// `Payment amount can be`
-  String get paymentAmountCanBe {
-    return Intl.message(
-      'Payment amount can be',
-      name: 'paymentAmountCanBe',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amount should be between`
-  String get amountShouldBetween {
-    return Intl.message(
-      'Amount should be between',
-      name: 'amountShouldBetween',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amount should be more than`
-  String get amountShouldBeMoreThan {
-    return Intl.message(
-      'Amount should be more than',
-      name: 'amountShouldBeMoreThan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amount should be less than or equal to`
-  String get amountShouldBeLessThanOrEqualTo {
-    return Intl.message(
-      'Amount should be less than or equal to',
-      name: 'amountShouldBeLessThanOrEqualTo',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
-  String get billPaymentSorryMessage {
-    return Intl.message(
-      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
-      name: 'billPaymentSorryMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Account`
   String get account {
     return Intl.message(
@@ -15995,6 +15936,96 @@ class S {
     return Intl.message(
       'CliQ ID Mobile Number has been updated',
       name: 'cliqIDmobileNOUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment amount can be`
+  String get paymentAmountCanBe {
+    return Intl.message(
+      'Payment amount can be',
+      name: 'paymentAmountCanBe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be between`
+  String get amountShouldBetween {
+    return Intl.message(
+      'Amount should be between',
+      name: 'amountShouldBetween',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be more than`
+  String get amountShouldBeMoreThan {
+    return Intl.message(
+      'Amount should be more than',
+      name: 'amountShouldBeMoreThan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be less than or equal to`
+  String get amountShouldBeLessThanOrEqualTo {
+    return Intl.message(
+      'Amount should be less than or equal to',
+      name: 'amountShouldBeLessThanOrEqualTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
+  String get billPaymentSorryMessage {
+    return Intl.message(
+      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
+      name: 'billPaymentSorryMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{String} has been suspended`
+  String hasbeenSuspended(Object String) {
+    return Intl.message(
+      '$String has been suspended',
+      name: 'hasbeenSuspended',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been activated`
+  String hasBeenActivated(Object String) {
+    return Intl.message(
+      '$String has been activated',
+      name: 'hasBeenActivated',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been deleted`
+  String hasBeenDeleted(Object String) {
+    return Intl.message(
+      '$String has been deleted',
+      name: 'hasBeenDeleted',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `CliQ ID Alias has been updated`
+  String get cliqAliasUpdate {
+    return Intl.message(
+      'CliQ ID Alias has been updated',
+      name: 'cliqAliasUpdate',
       desc: '',
       args: [],
     );

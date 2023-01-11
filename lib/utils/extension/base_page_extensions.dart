@@ -75,7 +75,8 @@ extension PageExtensions on BaseStatefulPage {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
-              decoration: BoxDecoration(color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -84,11 +85,16 @@ extension PageExtensions on BaseStatefulPage {
                       children: [
                         Text(
                           S.of(context).success,
-                          style: TextStyle(color: AppColor.light_grayish_violet, fontWeight: FontWeight.w400, fontSize: 10),
+                          style: TextStyle(
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
-                          child: Text(message, style: TextStyle(color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                          child: Text(message,
+                              style: TextStyle(
+                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
                         ),
                       ],
                     ),
@@ -116,7 +122,8 @@ extension PageExtensions on BaseStatefulPage {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
-              decoration: BoxDecoration(color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -125,11 +132,16 @@ extension PageExtensions on BaseStatefulPage {
                       children: [
                         Text(
                           title,
-                          style: TextStyle(color: AppColor.light_grayish_violet, fontWeight: FontWeight.w400, fontSize: 10),
+                          style: TextStyle(
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
-                          child: Text(description, style: TextStyle(color: AppColor.white, fontWeight: FontWeight.w700, fontSize: 12)),
+                          child: Text(description,
+                              style: TextStyle(
+                                  color: AppColor.white, fontWeight: FontWeight.w700, fontSize: 12)),
                         ),
                       ],
                     ),

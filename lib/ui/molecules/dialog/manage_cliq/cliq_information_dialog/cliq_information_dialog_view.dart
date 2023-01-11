@@ -59,7 +59,7 @@ class CliqInformationDialogView extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(height: 32.h),
-                          image != null ? AppSvg.asset(image!, height: 50.h, width: 50.w) : Container(),
+                          image != null ? AppSvg.asset(image!, height: 40.h, width: 40.w) : Container(),
                           SizedBox(height: 25.h),
                           Text(
                             title,
@@ -68,7 +68,7 @@ class CliqInformationDialogView extends StatelessWidget {
                                 color: AppColor.very_dark_gray,
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 20.t,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w700),
                           ),
                           SizedBox(height: 24.h),
                           Text(
@@ -112,9 +112,11 @@ class CliqInformationDialogView extends StatelessWidget {
                                     padding: EdgeInsets.all(16),
                                     height: 57.h,
                                     width: 57.h,
-                                    decoration:
-                                        BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                                    child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                    child:
+                                        AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                                   ),
                                 ),
                               );

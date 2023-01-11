@@ -1,6 +1,5 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
-import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/delete_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
@@ -28,7 +27,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     this._reActivateCliqIdUseCase,
   ) {
     _getAliasRequest.listen((value) {
-      RequestManager(value, createCall: () => _getAliasUsecase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getAliasUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getAliasResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -38,30 +39,39 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     });
 
     _suspandCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _suspendCliqIdUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _suspendCliqIdUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _suspandCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          suspendedCliq = '';
           showToastWithError(event.appError!);
         }
       });
     });
 
     _reactivateCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _reActivateCliqIdUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _reActivateCliqIdUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _reactivateCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          activatedCliq = '';
           showToastWithError(event.appError!);
         }
       });
     });
 
     _deleteCliqIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _deleteCliqIdUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _deleteCliqIdUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _deleteCliqIdResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          deletedCliq = '';
           showToastWithError(event.appError!);
         }
       });
@@ -69,7 +79,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     //Todo call deleteCliqId();
 
     _unlinkCliqIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _unlinkAccountFromCliqUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _unlinkAccountFromCliqUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _unlinkCliqIdResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -80,7 +92,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     //Todo call unlinkCliqId();
 
     _changeDefaultCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _changeDefaultAccountUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _changeDefaultAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _changeDefaultCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -91,6 +105,10 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
     getAlias(true);
   }
+
+  String suspendedCliq = "";
+  String deletedCliq = "";
+  String activatedCliq = "";
 
   ///-----------------------[ Private-Instance-Variables ]-----------------------///
 
