@@ -96,7 +96,8 @@ class PrePaidBillCardWidget extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                           decoration: BoxDecoration(
-                              color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
+                              border: Border.all(width: 1, color: AppColor.white_gray),
+                              borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Text(
                               S.of(context).manageAndPayMyBills,
