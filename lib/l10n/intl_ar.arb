@@ -827,7 +827,8 @@
   "deviceNotSupportedNote": "لحماية عملائنا ، قمنا بتعطيل Blink على الأجهزة عالية الخطورة. بتقدر تستخدم Blink على جهاز آخر أو تعمل إعادة ضبط لجهازك على إعداداته الأصلية.",
   "residentCity": "مدينة الإقامة",
   "youRequested": "إنت طلبت ",
-  "from": " من",
+  "from": "من",
+  "fromSingleLine": "من",
   "addRequestMoney": "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال.",
   "errorWhileProcessLoanRequest": "خطأ خلال طلب القرض",
   "errorWhileGettingAccountCloseOtp": "خطأ خلال الحصول على كلمة المرور OTP",
@@ -1570,5 +1571,10 @@
   "suspended": "Suspended",
   "active": "Active",
   "cliqIdUpdate": "CLIQ ID UPDATE",
-  "cliqIDmobileNOUpdated": "CliQ ID Mobile Number has been updated"
+  "cliqIDmobileNOUpdated": "CliQ ID Mobile Number has been updated",
+  "paymentAmountCanBe": "Payment amount can be",
+  "amountShouldBetween": "المبلغ يجب ان يكون بين",
+  "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
+  "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
+  "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
 }

@@ -30,6 +30,7 @@ class AppConstantsUtils {
   static bool SELECTED_BILLING_NUMBER_REQUIRED = true;
   static String SELECTED_SERVICE_CODE = "";
   static String BILLER_CATEGORY = "eCommerce";
+  static String BILLER_CATEGORY_ARABIC = "";
   static String BILLER_CATEGORY_API_VALUE = "eCommerce";
   static String BILLER_CATEGORY_ICON_CODE = "101";
   static String SELECTED_AMOUNT = "";
@@ -57,6 +58,8 @@ class AppConstantsUtils {
   ///billerDetailsList
   static Map<String, List<BillerDetailsList>?> billerDetailsCacheList =
       Map<String, List<BillerDetailsList>?>();
+
+  static String billerDetailsCacheListKey = "";
 
   /// reset lists
   static void resetCacheLists() {

@@ -2,13 +2,17 @@ import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_c
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
 import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_biller_list_model.dart';
 import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -26,13 +30,15 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
   final GetPrepaidBillerListUseCase getPrepaidBillerListUseCase;
   final GetPrePaidCategoriesListUseCase getPrePaidCategoriesListUseCase;
   final RemovePrepaidBillerUseCase removePrepaidBillerUseCase;
+  final ValidatePrePaidUseCase validatePrePaidUseCase;
 
   PayMyPrePaidBillsPageViewModel(this.getPrepaidBillerListUseCase, this.getPrePaidCategoriesListUseCase,
-      this.removePrepaidBillerUseCase) {
+      this.removePrepaidBillerUseCase, this.validatePrePaidUseCase) {
     prepaidBillerListener();
     gerPrePaidCategoriesListener();
     removePrepaidBillerListener();
     getPrepaidBiller();
+    validatePrePaidBillListener();
   }
 
   /// ---------------- Call Api GetPrepaidBillerList -------------------------------- ///
@@ -94,9 +100,48 @@ class PayMyPrePaidBillsPageViewModel extends BasePageViewModel {
         ).asFlow().listen((event) {
           updateLoader();
           _gerPrePaidCategoriesResponse.safeAdd(event);
+        });
+      },
+    );
+  }
+
+  /// ---------------- validate prepaid bill -------------------------------- ///
+  PublishSubject<ValidatePrePaidUseCaseParams> _validatePrePaidRequest = PublishSubject();
+
+  BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse = BehaviorSubject();
+
+  Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
+
+  void validatePrePaidBill() {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
+    _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
+        billerCode: getPrepaidBillerListModelData.billerCode,
+        amount: isPrePaidCategoryEmpty == true ? double.parse("0").toStringAsFixed(3) : "",
+        serviceType: getPrepaidBillerListModelData.serviceType,
+        billingNumber: getPrepaidBillerListModelData.billingNumber,
+        prepaidCategoryCode: isPrePaidCategoryEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+        prepaidCategoryType: isPrePaidCategoryEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+        billingNumberRequired: getPrepaidBillerListModelData.billingNumber != null &&
+                getPrepaidBillerListModelData.billingNumber != ""
+            ? true
+            : false));
+  }
+
+  void validatePrePaidBillListener() {
+    _validatePrePaidRequest.listen(
+      (params) {
+        RequestManager(params, createCall: () => validatePrePaidUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
+          updateLoader();
+          _validatePrePaidResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
-            // showToastWithError(event.appError!);
+            ///LOG EVENT TO FIREBASE
+            FireBaseLogUtil.fireBaseLog(
+                "new_pre_paid_inquire_bill_fail_call", {"new_pre_paid_inquire_bill_fail": true});
+            showToastWithError(event.appError!);
           }
         });
       },

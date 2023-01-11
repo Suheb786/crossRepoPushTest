@@ -1132,6 +1132,8 @@ class ErrorParser {
         return localisedHelper.billPaymentSorryMessage;
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
+      case ErrorType.SERVICE_NOT_AVAILABLE:
+        return localisedHelper.serviceIsNotavaliable;
       case ErrorType.IS_PAID_FAILED:
         return "";
 

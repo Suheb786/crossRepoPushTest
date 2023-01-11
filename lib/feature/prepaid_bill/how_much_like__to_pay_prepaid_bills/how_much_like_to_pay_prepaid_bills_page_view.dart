@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:auto_size_text_field/auto_size_text_field.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
@@ -38,9 +41,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
       stream: model.validatePrePaidStream,
       onData: (value) {
         if (value.status == Status.SUCCESS) {
-          model.dueAmount = value.data?.content?.dueAmount;
+          model.dueAmount = value.data?.content?.dueAmount ?? '0';
           model.amtController.text = double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
-          model.feesAmt = value.data?.content?.feesAmount;
+          model.feesAmt = value.data?.content?.feesAmount ?? "0";
           model.billerCode = value.data?.content?.billerCode ?? "";
           model.billingNumber = value.data?.content?.billingNo ?? "";
           model.otpCode = value.data?.content?.validationCode ?? "";
@@ -58,6 +61,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
             if (value.status == Status.SUCCESS) {
               Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
                   arguments: PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+
+              var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
+              if (errorBillFail == "err-377") {
+                model.showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+              }
             } else {
               model.showToastWithError(value.appError!);
             }
@@ -65,14 +76,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
           dataBuilder: (context, snapshot) {
             return GestureDetector(
               onHorizontalDragEnd: (details) {
-                if (StringUtils.isDirectionRTL(context)) {
-                  if (!details.primaryVelocity!.isNegative) {
-                    Navigator.pop(context);
-                  }
-                } else {
-                  if (details.primaryVelocity!.isNegative) {
-                    Navigator.pop(context);
-                  }
+                if (details.primaryVelocity!.isNegative) {
+                  Navigator.pop(context);
                 }
               },
               child: Padding(
@@ -264,8 +269,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
-                                    model.savingAccountController.text = value;
-                                    model.validate();
+                                        model.savingAccountController.text = value;
+                                    model.validate(model.amtController.text);
                                     Navigator.pop(context);
                                   }, accountsList: [
                                     ProviderScope.containerOf(context)
@@ -356,6 +361,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
     return Padding(
         padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           labelText: S.of(context).amount.toUpperCase(),
           controller: model.amtController,
           readOnly: !model.isPrepaidCategoryListEmpty,
@@ -363,7 +369,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
           inputType: TextInputType.number,
           onPressed: () {},
           onChanged: (val) {
-            model.validate();
+            if (val != null && val.isNotEmpty) {
+              model.validate(val);
+            }
           },
         ));
   }

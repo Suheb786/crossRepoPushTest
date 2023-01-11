@@ -81,6 +81,7 @@ class PayBillDialogViewModel extends BasePageViewModel {
     _getBillerLookupRequest.safeAdd(
       GetBillerLookupUseCaseParams(
           categoryName: AppConstantsUtils.BILLER_CATEGORY,
+          categoryNameAr: AppConstantsUtils.BILLER_CATEGORY_ARABIC,
           type: AppConstantsUtils.POST_PAID_FLOW == true
               ? AppConstantsUtils.POSTPAID_KEY.toString().toLowerCase()
               : AppConstantsUtils.PREPAID_KEY.toString().toLowerCase()),

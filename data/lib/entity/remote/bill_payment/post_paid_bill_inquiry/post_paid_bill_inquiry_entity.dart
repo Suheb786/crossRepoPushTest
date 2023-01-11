@@ -5,8 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'post_paid_bill_inquiry_entity.g.dart';
 
 @JsonSerializable()
-class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
-    PostPaidBillInquiryEntity, PostPaidBillInquiryData> {
+class PostPaidBillInquiryEntity
+    extends BaseLayerDataTransformer<PostPaidBillInquiryEntity, PostPaidBillInquiryData> {
   @JsonKey(name: "billerCode")
   String? billerCode;
   @JsonKey(name: "billingNo")
@@ -27,6 +27,10 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
   dynamic message;
   @JsonKey(name: "isPartial")
   bool? isPartial;
+  @JsonKey(name: "minValue")
+  dynamic minValue;
+  @JsonKey(name: "maxValue")
+  dynamic maxValue;
 
   PostPaidBillInquiryEntity({
     this.serviceType,
@@ -39,6 +43,8 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
     this.dueDate,
     this.feesAmt,
     this.isPartial,
+    this.minValue,
+    this.maxValue,
   });
 
   factory PostPaidBillInquiryEntity.fromJson(Map<String, dynamic> json) =>
@@ -54,29 +60,18 @@ class PostPaidBillInquiryEntity extends BaseLayerDataTransformer<
   @override
   PostPaidBillInquiryData transform() {
     return PostPaidBillInquiryData(
-        message: this.message != null && this.message!.isNotEmpty
-            ? this.message
-            : "",
-        billerCode: this.billerCode != null && this.billerCode!.isNotEmpty
-            ? this.billerCode
-            : "0",
-        billingNo: this.billingNo != null && this.billingNo!.isNotEmpty
-            ? this.billingNo
-            : "",
-        billNo:
-            this.billNo != null && this.billNo!.isNotEmpty ? this.billNo : "",
-        dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty
-            ? this.dueAmount
-            : "0",
-        dueDate: this.dueDate != null && this.dueDate!.isNotEmpty
-            ? this.dueDate
-            : "",
-        feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty
-            ? this.feesAmt
-            : "",
-        serviceType: this.serviceType != null && this.serviceType!.isNotEmpty
-            ? this.serviceType
-            : "",
+        message: this.message != null && this.message!.isNotEmpty ? this.message : "",
+        billerCode: this.billerCode != null && this.billerCode!.isNotEmpty ? this.billerCode : "0",
+        billingNo: this.billingNo != null && this.billingNo!.isNotEmpty ? this.billingNo : "",
+        billNo: this.billNo != null && this.billNo!.isNotEmpty ? this.billNo : "",
+        dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty ? this.dueAmount : "0",
+        dueDate: this.dueDate != null && this.dueDate!.isNotEmpty ? this.dueDate : "0",
+        feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty ? this.feesAmt : "0",
+        minValue:
+            this.minValue != null && this.minValue!.toString().isNotEmpty ? this.minValue.toString() : "0",
+        maxValue:
+            this.maxValue != null && this.maxValue!.toString().isNotEmpty ? this.maxValue.toString() : "0",
+        serviceType: this.serviceType != null && this.serviceType!.isNotEmpty ? this.serviceType : "",
         success: this.success ?? false,
         isPartial: this.isPartial ?? false);
   }

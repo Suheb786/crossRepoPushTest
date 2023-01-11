@@ -32,6 +32,13 @@ class PaySelectedBillsPostPaidBillsPageState
   Widget buildView(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return PaySelectedBillsPostPaidBillsPageView(provideBase());
   }
+
+  @override
+  void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
+    Future.delayed(Duration(milliseconds: 10))
+        .then((value) => model.postpaidInquiryDataListener(list: model.arguments.postPaidBillInquiryData!));
+    super.onModelReady(model);
+  }
 }
 
 class PaySelectedBillsPostPaidBillsPageArguments {
