@@ -130,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "تفعيل بطاقتك الائتمانية التابعة"),
+        "active": MessageLookupByLibrary.simpleMessage("Active"),
         "activity": MessageLookupByLibrary.simpleMessage("حركة"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-009)"),
@@ -528,9 +529,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
             "تعديل حساب كليك\nتم تعديل الاسم المستعار لحساب كليك"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
+        "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
+            "CliQ ID Mobile Number has been updated"),
         "cliqIdCreateSuccessFully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("نوع حساب CliQ"),
+        "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE"),
         "cliqIdUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث CliqID بنجاح"),
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
@@ -2448,6 +2452,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "suspandClidId":
             MessageLookupByLibrary.simpleMessage("ايقاف حساب كليك"),
         "suspendId": MessageLookupByLibrary.simpleMessage("حساب موقوف"),
+        "suspended": MessageLookupByLibrary.simpleMessage("Suspended"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("اسحب الشاشة لتحت للإلغاء"),
         "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(

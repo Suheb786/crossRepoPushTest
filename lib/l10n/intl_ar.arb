@@ -1566,5 +1566,9 @@
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة",
   "account": "Account",
   "letsGiveANameToYourCliqId": "Let’s give a name\n to your new CliQ ID",
-  "pleaseEnterYourMobileNumber": "Please enter your mobile number"
+  "pleaseEnterYourMobileNumber": "Please enter your mobile number",
+  "suspended": "Suspended",
+  "active": "Active",
+  "cliqIdUpdate": "CLIQ ID UPDATE",
+  "cliqIDmobileNOUpdated": "CliQ ID Mobile Number has been updated"
 }

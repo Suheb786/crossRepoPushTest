@@ -26,10 +26,8 @@ class InformationDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding:
-            EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async => false,
           child: GestureDetector(
@@ -48,20 +46,22 @@ class InformationDialogView extends StatelessWidget {
                       image != null
                           ? Padding(
                               padding: EdgeInsets.only(bottom: 25.0.h),
-                              child: AppSvg.asset(image!,
-                                  height: 50.h, width: 50.w),
+                              child: AppSvg.asset(image!, height: 50.h, width: 50.w),
                             )
                           : Container(),
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 20.t,
-                            fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 28.0, end: 28.0),
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                      SizedBox(height: 31.h),
-                      descriptionWidget,
+                      SizedBox(height: 24.h),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15),
+                        child: descriptionWidget,
+                      ),
                       SizedBox(height: 30.h),
                       InkWell(
                         onTap: () {
@@ -71,14 +71,8 @@ class InformationDialogView extends StatelessWidget {
                           padding: EdgeInsets.all(16),
                           height: 57.h,
                           width: 57.w,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color!),
-                          child: AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                         ),
                       ),
                       Padding(

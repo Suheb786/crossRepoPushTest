@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/manage_cliq/link_account_selection_widget.
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'link_account_dialog_view_model.dart';
@@ -54,8 +55,7 @@ class LinkAccountDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               label,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -96,9 +96,7 @@ class LinkAccountDialogView extends StatelessWidget {
                                         builder: (BuildContext context, int index) {
                                           return LinkAccountSelectionWidget(
                                             label: accountsList![index].accountNumber ?? '',
-                                            textColor: currentIndex == index
-                                                ? Theme.of(context).primaryColorDark
-                                                : AppColor.dark_gray_1,
+                                            textColor: currentIndex == index ? Theme.of(context).primaryColorDark : AppColor.dark_gray_1,
                                             widgetColor: Colors.transparent,
                                             currentIndex: index,
                                           );
@@ -113,11 +111,9 @@ class LinkAccountDialogView extends StatelessWidget {
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
-                            height: 57,
-                            width: 57,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            height: 57.w,
+                            width: 57.w,
+                            decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                             child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
@@ -127,10 +123,7 @@ class LinkAccountDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont, fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

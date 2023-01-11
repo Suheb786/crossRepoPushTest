@@ -1612,5 +1612,9 @@
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
   "account": "Account",
   "letsGiveANameToYourCliqId": "Let’s give a name\n to your new CliQ ID",
-  "pleaseEnterYourMobileNumber": "Please enter your mobile number"
+  "pleaseEnterYourMobileNumber": "Please enter your mobile number",
+  "suspended": "Suspended",
+  "active": "Active",
+  "cliqIdUpdate": "CLIQ ID UPDATE",
+  "cliqIDmobileNOUpdated": "CliQ ID Mobile Number has been updated"
 }

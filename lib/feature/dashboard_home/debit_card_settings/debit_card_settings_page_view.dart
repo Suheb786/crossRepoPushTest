@@ -248,11 +248,11 @@ class DebitCardSettingsPageView
                                         .code!,
                                     cardType: CardType.DEBIT));
                           },
-                          isEnabled: model.debitCardSettingsArguments.debitCard
-                                      .cardStatus ==
-                                  FreezeCardStatusEnum.F
-                              ? false
-                              : true,
+                          // isEnabled: model.debitCardSettingsArguments.debitCard
+                          //             .cardStatus ==
+                          //         FreezeCardStatusEnum.F
+                          //     ? false
+                          //     : true,
                           title: S.of(context).manageCardLimits,
                           tileIcon: AssetUtils.settingBars,
                         ),
@@ -275,16 +275,16 @@ class DebitCardSettingsPageView
                                           .debitCard
                                           .cardStatus!));
                             },
-                            isEnabled: model.debitCardSettingsArguments
-                                        .debitCard.cardStatus ==
-                                    FreezeCardStatusEnum.F
-                                ? false
-                                : true,
+                            // isEnabled: model.debitCardSettingsArguments
+                            //             .debitCard.cardStatus ==
+                            //         FreezeCardStatusEnum.F
+                            //     ? false
+                            //     : true,
                             title: S.of(context).manageCardPin,
                             tileIcon: AssetUtils.cardShield,
-                            // isEnabled: model.debitCardSettingsArguments
-                            //         .debitCard.primarySecondaryCard ==
-                            //     PrimarySecondaryEnum.PRIMARY,
+                            isEnabled: model.debitCardSettingsArguments
+                                    .debitCard.primarySecondaryCard ==
+                                PrimarySecondaryEnum.PRIMARY,
                             isNotify: model.debitCardSettingsArguments.debitCard
                                     .primarySecondaryCard ==
                                 PrimarySecondaryEnum.SECONDARY),

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -47,7 +48,11 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               "${S.of(context).enterOtpHeader} \n ${model.arguments.data.mobileNumber ?? ''}",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t, color: Theme.of(context).accentColor,),
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.t,
+                color: Theme.of(context).accentColor,
+              ),
             ),
             SizedBox(
               height: 32.h,
@@ -68,9 +73,21 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             if (model.arguments.isAlias) {
-                              model.showSuccessToast(S.of(context).cliqAliasUpdate);
+                              model.showSuccessTitleandDescriptionToast(
+                                ToastwithTitleandDescription(
+                                  title: S.current.cliqIdUpdate,
+                                  description: S.current.cliqAliasUpdate,
+                                ),
+                              );
+                              // model.showSuccessToast(S.of(context).cliqAliasUpdate);
                             } else {
-                              model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
+                              model.showSuccessTitleandDescriptionToast(
+                                ToastwithTitleandDescription(
+                                  title: S.current.cliqIdUpdate,
+                                  description: S.current.cliqMobileNumberUpdate,
+                                ),
+                              );
+                              // model.showSuccessToast(S.of(context).cliqMobileNumberUpdate);
                             }
 
                             ProviderScope.containerOf(context).read(cliqIdListViewModelProvider).getAlias(true);

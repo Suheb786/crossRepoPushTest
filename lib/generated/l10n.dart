@@ -15909,6 +15909,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Suspended`
+  String get suspended {
+    return Intl.message(
+      'Suspended',
+      name: 'suspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message(
+      'Active',
+      name: 'active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE`
+  String get cliqIdUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE',
+      name: 'cliqIdUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Mobile Number has been updated`
+  String get cliqIDmobileNOUpdated {
+    return Intl.message(
+      'CliQ ID Mobile Number has been updated',
+      name: 'cliqIDmobileNOUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

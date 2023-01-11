@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -15,8 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterOtpForMobileNumberCliqPageView
-    extends BasePageViewWidget<EnterOtpForMobileNumberCliqPageViewModel> {
+class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpForMobileNumberCliqPageViewModel> {
   EnterOtpForMobileNumberCliqPageView(ProviderBase model) : super(model);
 
   @override
@@ -37,7 +37,13 @@ class EnterOtpForMobileNumberCliqPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pop(context);
-                  model.showSuccessToast('CliQ ID Mobile Number has been updated');
+                  model.showSuccessTitleandDescriptionToast(
+                    ToastwithTitleandDescription(
+                      title: S.current.cliqIdUpdate,
+                      description: S.current.cliqIDmobileNOUpdated,
+                    ),
+                  );
+                  // model.showSuccessToast('CliQ ID Mobile Number has been updated');
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -45,42 +51,26 @@ class EnterOtpForMobileNumberCliqPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (ProviderScope.containerOf(context)
-                            .read(editMobileNoViewModelProvider)
-                            .appSwiperController
-                            .page ==
-                        1.0) {
+                    if (ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).appSwiperController.page == 1.0) {
                       FocusScope.of(context).unfocus();
                       if (StringUtils.isDirectionRTL(context)) {
                         if (!details.primaryVelocity!.isNegative) {
                           model.validateOtp(
-                              mobile: ProviderScope.containerOf(context)
-                                  .read(addNewMobileNumberCliqViewModelProvider)
-                                  .mobileNumber,
-                              mobileCode: ProviderScope.containerOf(context)
-                                  .read(addNewMobileNumberCliqViewModelProvider)
-                                  .countryData
-                                  .phoneCode!);
+                              mobile: ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).mobileNumber,
+                              mobileCode:
+                                  ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).countryData.phoneCode!);
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(editMobileNoViewModelProvider)
-                              .previousPage();
+                          ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).previousPage();
                           // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
                           model.validateOtp(
-                              mobile: ProviderScope.containerOf(context)
-                                  .read(addNewMobileNumberCliqViewModelProvider)
-                                  .mobileNumber,
-                              mobileCode: ProviderScope.containerOf(context)
-                                  .read(addNewMobileNumberCliqViewModelProvider)
-                                  .countryData
-                                  .phoneCode!);
+                              mobile: ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).mobileNumber,
+                              mobileCode:
+                                  ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).countryData.phoneCode!);
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(editMobileNoViewModelProvider)
-                              .previousPage();
+                          ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).previousPage();
                           // .previous(animation: true);
                         }
                       }

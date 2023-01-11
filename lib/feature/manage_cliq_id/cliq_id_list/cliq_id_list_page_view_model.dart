@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
@@ -6,7 +7,9 @@ import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/suspend_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -168,6 +171,17 @@ class CliqIdListPageViewModel extends BasePageViewModel {
   }
 
   Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
+
+  String getStatus(CliqAliasIdStatusEnum? statusType, BuildContext context) {
+    switch (statusType) {
+      case CliqAliasIdStatusEnum.ACTIVE:
+        return S.of(context).active;
+      case CliqAliasIdStatusEnum.SUSPEND:
+        return S.of(context).suspended;
+      default:
+        return "";
+    }
+  }
 
   unlinkCliqId({
     required bool getToken,
