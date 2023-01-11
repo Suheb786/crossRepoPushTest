@@ -20,12 +20,17 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(additionalIncomeList) =>
-      "Add. Income \n${additionalIncomeList}";
+  static String m0(additionalIncomeList) => "Add. Income \n${additionalIncomeList}";
 
   static String m9(String) => "Back to ${String}";
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
+
+  static String m10(String) => "${String} has been activated";
+
+  static String m11(String) => "${String} has been deleted";
+
+  static String m12(String) => "${String} has been suspended";
 
   static String m2(maximumLimit) => "Maximum ${maximumLimit} JOD";
 
@@ -201,14 +206,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
             "Service is down please try again later"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
-        "aliasHint": MessageLookupByLibrary.simpleMessage(
-            "Alias must be a maximum of 10 alphanumeric characters"),
-        "aliasMobileHint":
-            MessageLookupByLibrary.simpleMessage("Alias mobile hint: "),
-        "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage(
-            "Mobile number must start with 00962"),
-        "aliasNickNameHint":
-            MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
+        "aliasHint":
+            MessageLookupByLibrary.simpleMessage("Alias must be a maximum of 10 alphanumeric characters"),
+        "aliasMobileHint": MessageLookupByLibrary.simpleMessage("Alias mobile hint: "),
+        "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("Mobile number must start with 00962"),
+        "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction":
             MessageLookupByLibrary.simpleMessage("All Transactions"),
@@ -241,8 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
-        "applicationInProcess": MessageLookupByLibrary.simpleMessage(
-            "Your Application Is In Process"),
+        "applicationInProcess": MessageLookupByLibrary.simpleMessage("Your Application Is In Process"),
         "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
             "The Blink mobile application is not available in your region!"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
@@ -547,23 +548,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
-        "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "Claim of Tax Treaty Benefits"),
-        "clickToEditSomeMayBeDisabled": MessageLookupByLibrary.simpleMessage(
-            "Click to edit the fields, some may be disabled."),
-        "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
-            "CLIQ ID UPDATE\nCliQ ID Alias has been updated"),
+        "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage("Claim of Tax Treaty Benefits"),
+        "clickToEditSomeMayBeDisabled":
+            MessageLookupByLibrary.simpleMessage("Click to edit the fields, some may be disabled."),
+        "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage("CliQ ID Alias has been updated"),
         "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
-        "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
-            "CliQ ID Mobile Number has been updated"),
-        "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage(
-            "CliQ ID created\nsuccessfully"),
+        "cliqIDmobileNOUpdated":
+            MessageLookupByLibrary.simpleMessage("CliQ ID Mobile Number has been updated"),
+        "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage("CliQ ID created\nsuccessfully"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
         "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE"),
-        "cliqIdUpdatedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
-        "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
-            "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
+        "cliqIdUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
+        "cliqMobileNumberUpdate":
+            MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
@@ -1238,10 +1235,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Foreign Tax Identifying Number"),
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password?"),
-        "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
-            "You can unfreeze and activate your card at anytime."),
+        "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "freezeAndActiveAtAnyTime":
+            MessageLookupByLibrary.simpleMessage("You can unfreeze and activate your card at anytime."),
         "freezeCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
@@ -1270,12 +1266,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
-        "generateBlockPin": MessageLookupByLibrary.simpleMessage(
-            "Error while generating block pin"),
+        "generateBlockPin": MessageLookupByLibrary.simpleMessage("Error while generating block pin"),
         "generateKeyPairError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "genericError": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong. Please try again."),
+        "genericError": MessageLookupByLibrary.simpleMessage("Something went wrong. Please try again."),
         "getAccountByAliasError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -1344,23 +1338,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getYourBlinkAccountTodayBlinkNow":
-            MessageLookupByLibrary.simpleMessage(
-                "\n\nGet your blink account today."),
-        "governmentService":
-            MessageLookupByLibrary.simpleMessage("Government Service"),
-        "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
-            "Age must be greater than 18 to proceed."),
+            MessageLookupByLibrary.simpleMessage("\n\nGet your blink account today."),
+        "governmentService": MessageLookupByLibrary.simpleMessage("Government Service"),
+        "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage("Age must be greater than 18 to proceed."),
+        "hasBeenActivated": m10,
+        "hasBeenDeleted": m11,
+        "hasbeenSuspended": m12,
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
-        "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
-            "Hello! Here are my Blink account details: "),
-        "hereMyCliqDetails": MessageLookupByLibrary.simpleMessage(
-            "Hello! Here’s my blink CliQ details:\n\n"),
-        "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
-            "High interest,fees,and charges"),
+        "helloHereMyBlinkAccount":
+            MessageLookupByLibrary.simpleMessage("Hello! Here are my Blink account details: "),
+        "hereMyCliqDetails": MessageLookupByLibrary.simpleMessage("Hello! Here’s my blink CliQ details:\n\n"),
+        "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage("High interest,fees,and charges"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
-        "homeAddressHint":
-            MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
+        "homeAddressHint": MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
         "howMuchWouldYouLikeToPay": MessageLookupByLibrary.simpleMessage(
@@ -2040,14 +2031,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "permanentAddress":
             MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
-        "permanentCountry":
-            MessageLookupByLibrary.simpleMessage("Permanent Country"),
-        "permanentHomeAddress":
-            MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
-        "permanentResidence":
-            MessageLookupByLibrary.simpleMessage("Permanent residence"),
-        "permanentResidentAddressLine":
-            MessageLookupByLibrary.simpleMessage("Permanent residence address"),
+        "permanentCountry": MessageLookupByLibrary.simpleMessage("Permanent Country"),
+        "permanentHomeAddress": MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
+        "permanentResidence": MessageLookupByLibrary.simpleMessage("Permanent residence"),
+        "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage("Permanent residence address"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
         "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":

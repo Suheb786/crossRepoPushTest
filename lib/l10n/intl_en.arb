@@ -1581,7 +1581,6 @@
   "InvalidMobileNo": "Invalid Mobile Number",
   "serviceIsNotavaliable": "Service is not available",
   "linkAccount": "Link Account",
-  "cliqAliasUpdate": "CLIQ ID UPDATE\nCliQ ID Alias has been updated",
   "cliqMobileNumberUpdate": "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated",
   "savingAccountList": "Savings Account {String}",
   "defaultWord": "Default",
@@ -1610,7 +1609,6 @@
   "successS": "Success",
   "billerAlreadyExistsMessage": "Biller already exists with the same billing number",
   "nickNameCanOnlyContainAlphanumerics": "Nick name can only contain alphanumerics",
-  "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
   "account": "Account",
   "letsGiveANameToYourCliqId": "Let’s give a name\n to your new CliQ ID",
   "pleaseEnterYourMobileNumber": "Please enter your mobile number",
@@ -1622,5 +1620,9 @@
   "amountShouldBetween": "Amount should be between",
   "amountShouldBeMoreThan": "Amount should be more than",
   "amountShouldBeLessThanOrEqualTo": "Amount should be less than or equal to",
-  "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."
+  "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
+  "hasbeenSuspended": "{String} has been suspended",
+  "hasBeenActivated": "{String} has been activated",
+  "hasBeenDeleted": "{String} has been deleted",
+  "cliqAliasUpdate": "CliQ ID Alias has been updated"
 }

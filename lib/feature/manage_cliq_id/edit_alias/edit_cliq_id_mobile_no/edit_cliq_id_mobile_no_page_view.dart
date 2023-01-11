@@ -37,10 +37,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
           Text(
             S.of(context).editCliqId,
             style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 10.t,
-                color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10.t, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8.h,
@@ -49,10 +46,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
             S.of(context).editYourMobileNo,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.t,
-                color: Theme.of(context).accentColor),
+                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32.h,
@@ -97,9 +91,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
 
                                     ///api call
                                     model.makeOtpRequest(
-                                        aliasId: model.arguments.aliasID,
-                                        aliasValue: model.mobileNoController.text,
-                                        isAlias: false);
+                                        aliasId: model.arguments.aliasID, aliasValue: model.mobileNoController.text, isAlias: false);
                                   }
                                 },
                                 dataBuilder: (context, isValid) {
@@ -118,8 +110,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                           Column(
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(
-                                                    start: 24.w, top: 32.h, end: 24.w),
+                                                padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
                                                 child: AppTextField(
                                                   labelText: S.of(context).mobileNumber.toUpperCase(),
                                                   hintText: S.of(context).mobileNumberHint,
@@ -135,39 +126,38 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                     model.showBtn();
                                                   },
                                                 ),
-                                              ),    SizedBox(
-                                                            height: 16.h,
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              // Text(
-                                                              //   S.of(context).aliasMobileHint,
-                                                              //   style: TextStyle(
-                                                              //       fontWeight: FontWeight.w600,
-                                                              //       fontSize: 12.t,
-                                                              //       fontFamily: StringUtils.appFont),
-                                                              // ),
-                                                              Text(
-                                                                S.of(context).aliasMobileNoHint,
-                                                                style: TextStyle(
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: 12.t,
-                                                                    color: AppColor.dark_gray_1,
-                                                                    fontFamily: StringUtils.appFont),
-                                                              )
-                                                            ],
-                                                          )
+                                              ),
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  // Text(
+                                                  //   S.of(context).aliasMobileHint,
+                                                  //   style: TextStyle(
+                                                  //       fontWeight: FontWeight.w600,
+                                                  //       fontSize: 12.t,
+                                                  //       fontFamily: StringUtils.appFont),
+                                                  // ),
+                                                  Text(
+                                                    S.of(context).aliasMobileNoHint,
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.dark_gray_1,
+                                                        fontFamily: StringUtils.appFont),
+                                                  )
+                                                ],
+                                              ),
                                               AppStreamBuilder<bool>(
                                                 initialData: false,
                                                 stream: model.isSelectedStream,
                                                 dataBuilder: (BuildContext context, data) {
                                                   return Padding(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        start: 24.w, top: 32.h, end: 24.w),
+                                                    padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
                                                     child: CliqTermConditionSelectionWidget(
-                                                      subDescription:
-                                                          S.of(context).whenAcceptingCreationOfYourCliqId,
+                                                      subDescription: S.of(context).whenAcceptingCreationOfYourCliqId,
                                                       isSelected: data,
                                                       unMarkSelected: () {
                                                         model.termAndConditionSelected(false);
@@ -194,11 +184,8 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                       return Padding(
                                                         padding: EdgeInsets.only(top: 26.0.h),
                                                         child: Visibility(
-                                                          visible: (data == true
-                                                              ? (isValid == true ? true : false)
-                                                              : false),
-                                                          child: AnimatedButton(
-                                                              buttonText: S.of(context).swipeToProceed),
+                                                          visible: (data == true ? (isValid == true ? true : false) : false),
+                                                          child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                                         ),
                                                       );
                                                     },
@@ -206,7 +193,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                                 },
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
+                                                padding: EdgeInsets.only(top: 27.0.h, bottom: 32.h),
                                                 child: Center(
                                                   child: InkWell(
                                                     onTap: () {

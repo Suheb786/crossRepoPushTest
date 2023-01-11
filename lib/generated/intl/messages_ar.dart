@@ -202,12 +202,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار يجب ان لا يزيد عن ١٠ خانات، و يمكن ان يحتوي احرف وارقام"),
-        "aliasMobileHint":
-            MessageLookupByLibrary.simpleMessage("تلميح لرقم الموبايل: "),
-        "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage(
-            "رقم الموبايل يجب ان يبدأ ب ٠٠٩٦٢"),
-        "aliasNickNameHint":
-            MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
+        "aliasMobileHint": MessageLookupByLibrary.simpleMessage("تلميح لرقم الموبايل: "),
+        "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("رقم الموبايل يجب ان يبدأ ب ٠٠٩٦٢"),
+        "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
         "allowBiometric":
@@ -238,12 +235,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "لقد تم تقيم طلبك بناءً على معلوماتك الشخصية والائتمانية وللأسف لم يتم الموافقه غليها. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),
-        "applicationInProcess":
-            MessageLookupByLibrary.simpleMessage("طلبك قيد المعالجة"),
-        "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
-            "تطبيق بلنك غير متاح في منطقتك الجغرافية"),
-        "applicationNotSuccessful":
-            MessageLookupByLibrary.simpleMessage("للأسف، تم رفض طلبك."),
+        "applicationInProcess": MessageLookupByLibrary.simpleMessage("طلبك قيد المعالجة"),
+        "applicationNotAvailableInRegion":
+            MessageLookupByLibrary.simpleMessage("تطبيق بلنك غير متاح في منطقتك الجغرافية"),
+        "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage("للأسف، تم رفض طلبك."),
         "applicationRejectedByEngagementTeam":
             MessageLookupByLibrary.simpleMessage("لم يتم الموافقة على طلبك "),
         "applicationSubmitted":
@@ -1229,8 +1224,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-021)"),
-        "getAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "getAdditionalDocumentationError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getAllowedCountriesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getAtmError": MessageLookupByLibrary.simpleMessage(
@@ -1935,8 +1930,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "pay": MessageLookupByLibrary.simpleMessage("دفع"),
-        "payAllBills":
-            MessageLookupByLibrary.simpleMessage("تسديد كل الفواتير"),
+        "payAllBills": MessageLookupByLibrary.simpleMessage("تسديد كل الفواتير"),
         "payAndRequestMoneyViaQR": MessageLookupByLibrary.simpleMessage(
             "الدفع و طلب الأموال من خلال رمز الاستجابة السريع  متاح حاليا فقط للتحويل بين عملاء بلينك ، سنعلمك في حال أصبحت جاهزة و فعالة للجميع"),
         "payBack": MessageLookupByLibrary.simpleMessage("سداد"),

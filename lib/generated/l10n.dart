@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -18,17 +19,14 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +39,7 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -15590,16 +15587,6 @@ class S {
     );
   }
 
-  /// `CLIQ ID UPDATE\nCliQ ID Alias has been updated`
-  String get cliqAliasUpdate {
-    return Intl.message(
-      'CLIQ ID UPDATE\nCliQ ID Alias has been updated',
-      name: 'cliqAliasUpdate',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated`
   String get cliqMobileNumberUpdate {
     return Intl.message(
@@ -15880,16 +15867,6 @@ class S {
     );
   }
 
-  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
-  String get billPaymentSorryMessage {
-    return Intl.message(
-      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
-      name: 'billPaymentSorryMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Account`
   String get account {
     return Intl.message(
@@ -15995,6 +15972,56 @@ class S {
     return Intl.message(
       'Amount should be less than or equal to',
       name: 'amountShouldBeLessThanOrEqualTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
+  String get billPaymentSorryMessage {
+    return Intl.message(
+      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
+      name: 'billPaymentSorryMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{String} has been suspended`
+  String hasbeenSuspended(Object String) {
+    return Intl.message(
+      '$String has been suspended',
+      name: 'hasbeenSuspended',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been activated`
+  String hasBeenActivated(Object String) {
+    return Intl.message(
+      '$String has been activated',
+      name: 'hasBeenActivated',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been deleted`
+  String hasBeenDeleted(Object String) {
+    return Intl.message(
+      '$String has been deleted',
+      name: 'hasBeenDeleted',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `CliQ ID Alias has been updated`
+  String get cliqAliasUpdate {
+    return Intl.message(
+      'CliQ ID Alias has been updated',
+      name: 'cliqAliasUpdate',
       desc: '',
       args: [],
     );
