@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8101,10 +8100,10 @@ class S {
     );
   }
 
-  /// ` from `
+  /// `\nfrom`
   String get from {
     return Intl.message(
-      ' from ',
+      '\nfrom',
       name: 'from',
       desc: '',
       args: [],
@@ -15926,16 +15925,6 @@ class S {
     return Intl.message(
       'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
       name: 'billPaymentSorryMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Service is not available`
-  String get serviceIsNotavaliable {
-    return Intl.message(
-      'Service is not available',
-      name: 'serviceIsNotavaliable',
       desc: '',
       args: [],
     );
