@@ -5,7 +5,7 @@
   "addMobileHeader": "What’s your\nmobile number?",
   "enterOtpHeader": "Enter the 6-digit code sent to",
   "mobileNumber": "Mobile Number",
-  "mobileNumberHint": "00 000 0000",
+  "mobileNumberHint": "00962 000 0000",
   "enterValidMobileNumber": "You entered an invalid mobile number. Please try again.",
   "changeMyNumber": "Change My Number",
   "resendIn": "Resend in {resendTime}",

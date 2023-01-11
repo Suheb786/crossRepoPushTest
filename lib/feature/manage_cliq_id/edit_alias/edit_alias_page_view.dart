@@ -2,6 +2,7 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view_model.dart';
@@ -115,18 +116,36 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                           Column(
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(
-                                                    start: 24.w, top: 32.h, end: 24.w),
-                                                child: AppTextField(
-                                                  labelText: S.of(context).alias.toUpperCase(),
-                                                  hintText: S.of(context).pleaseEnter,
-                                                  controller: model.aliasController,
-                                                  key: model.aliasKey,
-                                                  inputAction: TextInputAction.done,
-                                                  onChanged: (value) {
-                                                    model.showBtn();
-                                                  },
-                                                  inputType: TextInputType.text,
+                                                padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, end: 24.w),
+                                                child: Column(
+                                                  children: [
+                                                    AppTextField(
+                                                      labelText: S.of(context).alias.toUpperCase(),
+                                                      hintText: S.of(context).pleaseEnter,
+                                                      inputFormatters: [
+                                                        LengthLimitingTextInputFormatter(10),
+                                                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+                                                        // FilteringTextInputFormatter.allow(
+                                                        //     RegExp("(?=.)(?=.[A-Z][a-z])([A-Z0-9]){3,10}"))
+                                                      ],
+                                                      controller: model.aliasController,
+                                                      key: model.aliasKey,
+                                                      inputAction: TextInputAction.done,
+                                                      onChanged: (value) {
+                                                        model.showBtn();
+                                                      },
+                                                      inputType: TextInputType.text,
+                                                    ),
+                                                    SizedBox(height: 16.h),
+                                                    Text(
+                                                      S.of(context).aliasHint,
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 12.t,
+                                                          color: AppColor.dark_gray_1,
+                                                          fontFamily: StringUtils.appFont),
+                                                    )
+                                                  ],
                                                 ),
                                               ),
                                               AppStreamBuilder<bool>(
