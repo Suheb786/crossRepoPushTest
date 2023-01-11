@@ -7,10 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -174,13 +172,13 @@ class PayingPrePaidBillsPageView extends BasePageViewWidget<PayingPrePaidBillsPa
                         controller: model.savingAccountController,
                         readOnly: true,
                         onPressed: () {},
-                        suffixIcon: (value, data) {
-                          return Container(
-                              height: 16.h,
-                              width: 16.w,
-                              padding: EdgeInsetsDirectional.only(end: 8.w),
-                              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                        },
+                        // suffixIcon: (value, data) {
+                        //   return Container(
+                        //       height: 16.h,
+                        //       width: 16.w,
+                        //       padding: EdgeInsetsDirectional.only(end: 8.w),
+                        //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                        // },
                       ),
                       SizedBox(
                         height: 196.h,

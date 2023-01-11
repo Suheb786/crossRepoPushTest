@@ -99,7 +99,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                               color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Text(
-                              S.of(context).payMyBill,
+                              S.of(context).manageAndPayMyBills,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.0.t,

@@ -13,13 +13,11 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -227,25 +225,25 @@ class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelect
                                           }, onSelected: (value) {
                                             model.savingAccountController.text = value;
                                             Navigator.pop(context);
-                                            model.validate();
-                                          }, accountsList: [
-                                            ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .account
-                                                ?.accountNo ??
-                                                ''
-                                          ]);
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return Container(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
-                                    },
-                                  ),
+                                              model.validate();
+                                            }, accountsList: [
+                                              ProviderScope.containerOf(context)
+                                                      .read(appHomeViewModelProvider)
+                                                      .dashboardDataContent
+                                                      .account
+                                                      ?.accountNo ??
+                                                  ''
+                                            ]);
+                                          },
+                                          // suffixIcon: (value, data) {
+                                          //   return Container(
+                                          //       height: 16.h,
+                                          //       width: 16.w,
+                                          //       padding: EdgeInsetsDirectional.only(end: 8.w),
+                                          //       child: AppSvg.asset(AssetUtils.downArrow,
+                                          //           color: AppColor.dark_gray_1));
+                                          // },
+                                        ),
                                 ),
                                 SizedBox(
                                   height: 40.h,

@@ -148,7 +148,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                                 color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
                             child: Center(
                               child: Text(
-                                S.of(context).payAllBills,
+                                S.of(context).viewAndPayYourDueBills,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14.0.t,

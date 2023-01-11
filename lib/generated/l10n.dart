@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -13961,6 +13960,16 @@ class S {
     );
   }
 
+  /// `View and pay your due bills`
+  String get viewAndPayYourDueBills {
+    return Intl.message(
+      'View and pay your due bills',
+      name: 'viewAndPayYourDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `to Payments`
   String get toPayments {
     return Intl.message(
@@ -14806,6 +14815,16 @@ class S {
     return Intl.message(
       'Pay My Bill',
       name: 'payMyBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage and pay my bills`
+  String get manageAndPayMyBills {
+    return Intl.message(
+      'Manage and pay my bills',
+      name: 'manageAndPayMyBills',
       desc: '',
       args: [],
     );

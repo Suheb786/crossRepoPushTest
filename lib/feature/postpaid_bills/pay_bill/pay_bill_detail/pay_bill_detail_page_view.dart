@@ -397,13 +397,13 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                 ''
           ]);
         },
-        suffixIcon: (value, data) {
-          return Container(
-              height: 16.h,
-              width: 16.w,
-              padding: EdgeInsetsDirectional.only(end: 8.w),
-              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-        },
+        // suffixIcon: (value, data) {
+        //   return Container(
+        //       height: 16.h,
+        //       width: 16.w,
+        //       padding: EdgeInsetsDirectional.only(end: 8.w),
+        //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+        // },
       ),
     );
   }
