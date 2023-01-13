@@ -112,7 +112,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             : (!(model.creditCardSettingsArguments.creditCard.isCardInApplePay) &&
                                     model.creditCardSettingsArguments.creditCard.getStatus)
                                 ? InkWell(
-                          onTap: () {
+                                    onTap: () {
                                       debugPrint('Adding to apple wallet---------');
                                       model.pushCardToAntelop(
                                           cardCode:
@@ -147,7 +147,27 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                           ),
                                         ],
                                       )
-                                    : Container(),
+                                    : Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            S.of(context).addedTo,
+                                            style: TextStyle(
+                                                fontSize: 14.t,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            width: 9.w,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              ///Pay
+                                            },
+                                            child: AppSvg.asset(AssetUtils.applePayButton),
+                                          ),
+                                        ],
+                                      ),
                       );
                     })
                 : Container(),

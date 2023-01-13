@@ -116,7 +116,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                             : (!(model.debitCardSettingsArguments.debitCard.isCardInApplePay) &&
                                     model.debitCardSettingsArguments.debitCard.getStatus)
                                 ? InkWell(
-                          onTap: () async {
+                                    onTap: () async {
                                       ///Add to apple wallet
                                       model.pushCardToAntelop(
                                           cardCode:
@@ -129,13 +129,48 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     ),
                                   )
                                 : (model.debitCardSettingsArguments.debitCard.isCardInApplePay)
-                                    ? InkWell(
-                                        onTap: () {
-                                          ///Pay
-                                        },
-                                        child: AppSvg.asset(AssetUtils.applePayButton),
+                                    ? Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            S.of(context).addedTo,
+                                            style: TextStyle(
+                                                fontSize: 14.t,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            width: 9.w,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              ///Pay
+                                            },
+                                            child: AppSvg.asset(AssetUtils.applePayButton),
+                                          ),
+                                        ],
                                       )
-                                    : Container(),
+                                    : Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            S.of(context).addedTo,
+                                            style: TextStyle(
+                                                fontSize: 14.t,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            width: 9.w,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              ///Pay
+                                            },
+                                            child: AppSvg.asset(AssetUtils.applePayButton),
+                                          ),
+                                        ],
+                                      ),
                       );
                     })
                 : Container(),
