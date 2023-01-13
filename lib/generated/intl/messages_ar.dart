@@ -1041,14 +1041,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-015)"),
         "invalidProvisionClaim": MessageLookupByLibrary.simpleMessage("أدخل مادة وفقرة أحكام المطالبة"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage("اختار سبب فتح الحساب"),
-        "invalidReasonUnavailability":
-            MessageLookupByLibrary.simpleMessage("اختار سبب عدم التوفر"),
-        "invalidReferenceNumber":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم المرجع"),
+        "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage("اختار سبب عدم التوفر"),
+        "invalidReferenceNumber": MessageLookupByLibrary.simpleMessage("أدخل رقم المرجع"),
         "invalidRelation": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة! يرجى التأكد من أن حامل البطاقة الإضافي هو زوجتك أو طفلك أو والديك. (Err-302)"),
-        "invalidRelationship":
-            MessageLookupByLibrary.simpleMessage("اختار العلاقة"),
+        "invalidRelationship": MessageLookupByLibrary.simpleMessage("اختار العلاقة"),
         "invalidRelationshipAPI": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-306) "),
         "invalidRequestedAmount":
@@ -1073,16 +1070,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل إجمال الدخل الإضافي"),
         "invalidTreatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "أدخل نوع الاتفاق الضريبي للمطالبة بالنسبة "),
-        "invalidTypesOfTransaction":
-            MessageLookupByLibrary.simpleMessage("أدخل نوع الحركة"),
-        "invalidUser": MessageLookupByLibrary.simpleMessage(
-            "خطأ في اسم المستخدم. حاول مرة ثانية."),
-        "invalidUserName":
-            MessageLookupByLibrary.simpleMessage("أدخل اسم مستخدم صحيح"),
-        "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
-            "خطأ في اسم المستخدم أو كلمة المرور. حاول مرة ثانية. "),
-        "ipAddressCallInternalServerError":
-            MessageLookupByLibrary.simpleMessage("خطأ في عنوان IP"),
+        "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage("أدخل نوع الحركة"),
+        "invalidUser": MessageLookupByLibrary.simpleMessage("خطأ في اسم المستخدم. حاول مرة ثانية."),
+        "invalidUserName": MessageLookupByLibrary.simpleMessage("أدخل اسم مستخدم صحيح"),
+        "invalidUserNamePassword":
+            MessageLookupByLibrary.simpleMessage("خطأ في اسم المستخدم أو كلمة المرور. حاول مرة ثانية. "),
+        "ipAddressCallInternalServerError": MessageLookupByLibrary.simpleMessage("خطأ في عنوان IP"),
         "iphoneLoginError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "isBusinessNameDifferent":
             MessageLookupByLibrary.simpleMessage("أدخل الاسم التجاري إذا كان مختلف عن اسمك"),
