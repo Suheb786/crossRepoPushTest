@@ -37,10 +37,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
               if (details.primaryVelocity!.isNegative) {
                 print("got current step : $currentStep");
               } else {
-                ProviderScope.containerOf(context)
-                    .read(paymentToNewRecipientViewModelProvider)
-                    .pageController
-                    .previous();
+                ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).pageController.previous();
               }
             },
             child: Column(
@@ -75,10 +72,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                         children: [
                           Text(
                             S.of(context).sending,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
-                                fontSize: 20.0.t),
+                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20.0.t),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6.0.h),
@@ -97,13 +91,15 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                 autofocus: true,
                                                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                                                 inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                                                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
                                                 ],
+                                                /* inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                                                ], */
                                                 onChanged: (value) {
                                                   if (value != ".") {
-                                                    ProviderScope.containerOf(context)
-                                                        .read(sendMoneyViewModelProvider)
-                                                        .currentPinValue = model.editAmountController.text;
+                                                    ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue =
+                                                        model.editAmountController.text;
                                                     print(
                                                         "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
                                                   }
@@ -125,9 +121,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                               ),
                                             )
                                           : Text(
-                                              double.parse(ProviderScope.containerOf(context)
-                                                      .read(sendMoneyViewModelProvider)
-                                                      .currentPinValue)
+                                              double.parse(
+                                                      ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue)
                                                   .toStringAsFixed(3),
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
@@ -159,9 +154,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                   return InkWell(
                                     onTap: () {
                                       if (!value!) {
-                                        model.editAmountController.text = ProviderScope.containerOf(context)
-                                            .read(sendMoneyViewModelProvider)
-                                            .currentPinValue;
+                                        model.editAmountController.text =
+                                            ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue;
                                         model.updateEditAmount(true);
                                       }
                                     },

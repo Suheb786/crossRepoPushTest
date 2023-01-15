@@ -13,12 +13,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
   final bool? isSelected;
 
   const CliqTermConditionSelectionWidget(
-      {Key? key,
-      required this.subDescription,
-      this.markSelected,
-      this.unMarkSelected,
-      required this.isSelected,
-      required})
+      {Key? key, required this.subDescription, this.markSelected, this.unMarkSelected, required this.isSelected, required})
       : super(key: key);
 
   @override
@@ -71,7 +66,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
               color: AppColor.veryDarkGray2,
               fontFamily: StringUtils.appFont,
               fontSize: 12.t,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
