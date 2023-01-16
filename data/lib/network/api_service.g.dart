@@ -2525,6 +2525,21 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<HttpResponse<BaseResponse>> validateBillerOtp(validateBillerOtpRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = validateBillerOtpRequestEntity;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/BillPayment/ValidateBillerOtp',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(transferApiNoOtpRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

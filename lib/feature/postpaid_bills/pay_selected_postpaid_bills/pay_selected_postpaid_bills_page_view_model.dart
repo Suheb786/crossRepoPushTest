@@ -38,9 +38,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   bool isTotalAmountZero = true;
+  double totalBillAmt = 0.0;
 
   addAllBillAmt(BuildContext context) {
-    double totalBillAmt = 0.0;
+    totalBillAmt = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
@@ -224,6 +225,11 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
     }
+  }
+
+  ///checkAmountMoreThanHundred
+  bool checkAmountMoreThanHundred() {
+    return totalBillAmt >= 100.0 ? true : false;
   }
 
   @override

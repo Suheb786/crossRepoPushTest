@@ -28,6 +28,7 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/enter_otp_bill_payments/enter_otp_bill_payments_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view_model.dart';
@@ -229,6 +230,7 @@ final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
 
 class SelectedBillsToPaidWidgetViewModelProvider {
   provide() {
+    ///selected bills to paid widget view model provider
     final selectedBillsToPaidWidgetViewModelProvider =
         ChangeNotifierProvider.autoDispose<SelectedBillsToPaidWidgetViewModel>(
       (ref) => SelectedBillsToPaidWidgetViewModel(),
@@ -237,6 +239,7 @@ class SelectedBillsToPaidWidgetViewModelProvider {
   }
 }
 
+///paySelectedBillsPostPaidBillsPageViewModelProvider
 final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPageArguments>(
   (ref, args) => PaySelectedBillsPostPaidBillsPageViewModel(
@@ -245,6 +248,7 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvide
   ),
 );
 
+///payAllPostPaidBillsPageViewModelProvider
 final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
   (ref, args) => PayAllPostPaidBillsPageViewModel(
@@ -255,24 +259,29 @@ final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDisp
   ),
 );
 
+///postPaidBillsSuccessPageViewModelProvider
 final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PostPaidBillsSuccessPageViewModel, PostPaidBillsSuccessPageArguments>(
   (ref, args) => PostPaidBillsSuccessPageViewModel(args),
 );
 
+///newBillsPageViewModelProvider
 final newBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose<NewBillsPageViewModel>(
   (ref) => NewBillsPageViewModel(ref.read(getBillCategoriesUseCaseProvider)),
 );
 
+///payBillPageViewModelProvider
 final payBillPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayBillPageViewModel>(
   (ref) => PayBillPageViewModel(),
 );
 
+///payBillDetailPageViewModelProvider
 final payBillDetailPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
   (ref) => PayBillDetailPageViewModel(
       ref.read(getPrePaidCategoriesListUseCaseProvider), ref.read(getBillerLookupListUseCaseProvider)),
 );
 
+///confirmBillPaymentAmountPageViewModelProvider
 final confirmBillPaymentAmountPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmBillPaymentAmountPageViewModel>(
   (ref) => ConfirmBillPaymentAmountPageViewModel(
@@ -283,19 +292,23 @@ final confirmBillPaymentAmountPageViewModelProvider =
   ),
 );
 
+///payBillDialogViewModelProvider
 final payBillDialogViewModelProvider = ChangeNotifierProvider.autoDispose<PayBillDialogViewModel>(
   (ref) => PayBillDialogViewModel(ref.read(getBillerLookupListUseCaseProvider)),
 );
 
+///paidBillsSuccessPageViewModelProvider
 final paidBillsSuccessPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<PaidBillsSuccessPageViewModel, PaidBillsSuccessPageArguments>(
   (ref, args) => PaidBillsSuccessPageViewModel(args, ref.read(addNewPostpaidBillerUseCaseProvider)),
 );
 
+///selectServiceDialogViewModelProvider
 final selectServiceDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SelectServiceDialogViewModel>(
   (ref) => SelectServiceDialogViewModel(),
 );
 
+///payMyPrePaidBillsPageViewModelProvider
 final payMyPrePaidBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
           (ref) => PayMyPrePaidBillsPageViewModel(
@@ -306,16 +319,19 @@ final payMyPrePaidBillsPageViewModelProvider =
   ),
 );
 
+///payingPrePaidBillsPageViewModelProvider
 final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PayingPrePaidBillsPageViewModel, PayingPrePaidBillsPageArgument>(
   (ref, args) => PayingPrePaidBillsPageViewModel(args),
 );
 
+///prePaidBillsSuccessPageViewModelProvider
 final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPageArguments>(
   (ref, args) => PrePaidBillsSuccessPageViewModel(args, ref.read(addNewPrepaidBillerUseCaseProvider)),
 );
 
+///howMuchLikeToPayPrePaidBillsPageViewModelProvider
 final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPageArgument>(
         (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(
@@ -323,27 +339,13 @@ final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider
               ref.read(validatePrePaidBillUseCaseProvider),
               ref.read(getPayPrePaidBillUseCaseProvider),
             ));
-// final newPrePaidBillsPageViewModelProvider =
-//     ChangeNotifierProvider.autoDispose<NewPrePaidBillsPageViewModel>(
-//   (ref) => NewPrePaidBillsPageViewModel(),
-// );
-// final confirmPrePaidBillPaymentAmountPageViewModelProvider =
-//     ChangeNotifierProvider.autoDispose<
-//         ConfirmPrePaidBillPaymentAmountPageViewModel>(
-//   (ref) => ConfirmPrePaidBillPaymentAmountPageViewModel(),
-// );
-//
-// final payPrePaidBillDetailPageViewModelProvider =
-//     ChangeNotifierProvider.autoDispose<PayPrePaidBillDetailPageViewModel>(
-//   (ref) => PayPrePaidBillDetailPageViewModel(
-//       ref.read(getPrePaidCategoriesListUseCaseProvider),
-//       ref.read(getBillerLookupListUseCaseProvider)),
-// );
-//
-// final payPrePaidBillPageViewModelProvider =
-//     ChangeNotifierProvider.autoDispose<PayPrePaidBillPageViewModel>(
-//   (ref) => PayPrePaidBillPageViewModel(),
-// );
+
+///enterOtpBillPaymentsViewModelProvider
+final enterOtpBillPaymentsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterOtpBillPaymentsViewModel>(
+  (ref) => EnterOtpBillPaymentsViewModel(ref.read(enterOtpBillPaymentsUseCaseProvider),
+      ref.read(transferUseCaseProvider), ref.read(transferVerifyUseCaseProvider)),
+);
 
 ///qr scanning screen view model provider
 final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(

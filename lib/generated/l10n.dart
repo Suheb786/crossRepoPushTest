@@ -14221,10 +14221,10 @@ class S {
     );
   }
 
-  /// `Manage my bills”`
+  /// `Manage my bills`
   String get manageMyBills {
     return Intl.message(
-      'Manage my bills”',
+      'Manage my bills',
       name: 'manageMyBills',
       desc: '',
       args: [],
