@@ -1361,10 +1361,16 @@ public class ApplePayService {
   public func getStatus(_ completion: @escaping AntelopSDK.OperationCompletion<AntelopSDK.DigitalCardServiceStatus>)
   public func isCardInApplePay(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
   @objc public func isCardInApplePay(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func isCardInApplePayOffline(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  @objc public func isCardInApplePayOffline(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
   public func isCardInApplePayOnPairedDevice(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
   @objc public func isCardInApplePayOnPairedDevice(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func isCardInApplePayOnPairedDeviceOffline(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  @objc public func isCardInApplePayOnPairedDeviceOffline(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
   public func getApplePayTokenLocations(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.ApplePayTokenLocation]>) throws
   @objc public func getApplePayTokenLocations(successHandler: @escaping ([Foundation.NSNumber]) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func getApplePayTokenLocationsOffline(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.ApplePayTokenLocation]>) throws
+  @objc public func getApplePayTokenLocationsOffline(successHandler: @escaping ([Foundation.NSNumber]) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
   public func pushCard(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
   public func getSecureCardPush() -> AntelopSDK.SecureCardPushToApplePay
   public func configureWallet(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws

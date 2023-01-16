@@ -218,7 +218,7 @@ import AntelopSDK
             if cardStatus == "active" {
                 isActiveCard = true
             }
-            do { try  card.getApplePayService().isCardInApplePay { status in
+            do { try  card.getApplePayService().isCardInApplePayOffline { status in
                 
                 cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
                                 "getStatus": isActiveCard,
@@ -301,7 +301,7 @@ import AntelopSDK
             if cardStatus == "active" {
                 isActiveCard = true
             }
-            do { try  card.getApplePayService().isCardInApplePay { status in
+            do { try  card.getApplePayService().isCardInApplePayOffline { status in
                 
                 cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
                                 "getStatus": isActiveCard,

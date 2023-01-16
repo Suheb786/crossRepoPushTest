@@ -1424,5 +1424,8 @@
   "blinkWithApplePayLandingDialogDescription": "You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.",
   "debitCards": "Debit Card",
   "noCardsToDisplay": "No cards to display",
-  "addedTo": "Added to"
+  "addedTo": "Added to",
+  "yourCardAddedToApplePay": "Your card has been added\nto Apple Wallet.",
+  "yourCardAddedToApplePayDesc1": "Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.",
+  "yourCardAddedToApplePayDesc2": "Use Apple Pay wherever you see \nthese symbols."
 }

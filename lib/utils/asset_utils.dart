@@ -260,4 +260,6 @@ class AssetUtils {
   static const String addAppleWalletIconPng = drawable + "add_apple_pay_icon.png";
   static const String cardCreditPng = drawable + "cardCredit.png";
   static const String cardDebitPng = drawable + "cardDebit.png";
+  static const String wifiPay = drawable + "wifi_pay.png";
+  static const String applePayButtonS = drawable + "apple_pay_button.png";
 }

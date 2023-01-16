@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		15712BB827A00C8400A0E607 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15712BB727A00C8400A0E607 /* GoogleService-Info.plist */; };
-		18EE88372966CBFB00676D0B /* AntelopSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE88332966CBA900676D0B /* AntelopSDK.framework */; platformFilter = ios; };
-		18EE88382966CBFB00676D0B /* AntelopSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE88332966CBA900676D0B /* AntelopSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		18EE88392966CC0000676D0B /* SecureCModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE88352966CBD200676D0B /* SecureCModule.framework */; platformFilter = ios; };
-		18EE883A2966CC0000676D0B /* SecureCModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE88352966CBD200676D0B /* SecureCModule.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18E3F7EF2975CB9A00BD2D53 /* AntelopSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3F7EB2975CB7E00BD2D53 /* AntelopSDK.framework */; platformFilter = ios; };
+		18E3F7F02975CB9A00BD2D53 /* AntelopSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3F7EB2975CB7E00BD2D53 /* AntelopSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18E3F7F12975CB9C00BD2D53 /* SecureCModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3F7ED2975CB9400BD2D53 /* SecureCModule.framework */; platformFilter = ios; };
+		18E3F7F22975CB9C00BD2D53 /* SecureCModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3F7ED2975CB9400BD2D53 /* SecureCModule.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		68DD899414B24106724360F9 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8769EA8ED1B456175EC965BA /* Pods_Runner.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -30,8 +30,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				18EE88382966CBFB00676D0B /* AntelopSDK.framework in Embed Frameworks */,
-				18EE883A2966CC0000676D0B /* SecureCModule.framework in Embed Frameworks */,
+				18E3F7F02975CB9A00BD2D53 /* AntelopSDK.framework in Embed Frameworks */,
+				18E3F7F22975CB9C00BD2D53 /* SecureCModule.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,8 +43,8 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		15712BB727A00C8400A0E607 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15D6E3F127956374001E0106 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		18EE88332966CBA900676D0B /* AntelopSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AntelopSDK.framework; sourceTree = "<group>"; };
-		18EE88352966CBD200676D0B /* SecureCModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecureCModule.framework; sourceTree = "<group>"; };
+		18E3F7EB2975CB7E00BD2D53 /* AntelopSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AntelopSDK.framework; sourceTree = "<group>"; };
+		18E3F7ED2975CB9400BD2D53 /* SecureCModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecureCModule.framework; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,8 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18EE88392966CC0000676D0B /* SecureCModule.framework in Frameworks */,
-				18EE88372966CBFB00676D0B /* AntelopSDK.framework in Frameworks */,
+				18E3F7F12975CB9C00BD2D53 /* SecureCModule.framework in Frameworks */,
+				18E3F7EF2975CB9A00BD2D53 /* AntelopSDK.framework in Frameworks */,
 				68DD899414B24106724360F9 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,8 +130,8 @@
 		C0A3159C4E7F2C4CEA2A69B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18EE88352966CBD200676D0B /* SecureCModule.framework */,
-				18EE88332966CBA900676D0B /* AntelopSDK.framework */,
+				18E3F7ED2975CB9400BD2D53 /* SecureCModule.framework */,
+				18E3F7EB2975CB7E00BD2D53 /* AntelopSDK.framework */,
 				8769EA8ED1B456175EC965BA /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -422,7 +422,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2211011;
+				CURRENT_PROJECT_VERSION = 2301161;
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
 				ENABLE_BITCODE = NO;
@@ -563,7 +563,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2211011;
+				CURRENT_PROJECT_VERSION = 2301161;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
@@ -599,7 +599,7 @@
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2211011;
+				CURRENT_PROJECT_VERSION = 2301161;
 				DEVELOPMENT_TEAM = 235F45XS77;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 235F45XS77;
 				ENABLE_BITCODE = NO;

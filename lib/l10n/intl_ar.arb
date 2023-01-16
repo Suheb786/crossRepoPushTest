@@ -1379,5 +1379,8 @@
   "blinkWithApplePayLandingDialogDescription": "دايما في اكثر مع بلينك! تألق بالدفع باستعمال أبل باي! ما عليك سوى إضافة بطاقة الائتمان أو الدفع المباشر الخاصة بك إلى محفظة أبل التابعة لك في بضع خطوات آمنة فقط.",
   "debitCards": "بطاقة الدفع المباشر",
   "noCardsToDisplay": "لا يوجد بطاقات للعرض",
-  "addedTo": "اضيفت الى"
+  "addedTo": "اضيفت الى",
+  "yourCardAddedToApplePay": "تمت إضافة بطاقتك إلى Apple Wallet",
+  "yourCardAddedToApplePayDesc1": "Apple Pay هي طريقة أسهل للدفع في المتاجر والتطبيقات وعبر الإنترنت باستخدام iPhone و Apple Watch و iPad و Mac",
+  "yourCardAddedToApplePayDesc2": "استخدم Apple Pay أينما ترى هذه الرموز"
 }

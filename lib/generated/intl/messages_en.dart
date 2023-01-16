@@ -69,12 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountNotFound":
             MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account No."),
-        "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
-            "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
+        "accountNumberOptional": MessageLookupByLibrary.simpleMessage("LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
             "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!"),
-        "accountOpeningPurpose":
-            MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
+        "accountOpeningPurpose": MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountPurposeNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some information relating to purpose of opening your account. Please check again and ensure all information is provided."),
         "accountReady": MessageLookupByLibrary.simpleMessage(
@@ -151,15 +149,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("All Transactions"),
-        "allowBiometric":
-            MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "allowBiometric": MessageLookupByLibrary.simpleMessage("Allow biometric"),
         "amount": MessageLookupByLibrary.simpleMessage("AMOUNT"),
-        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
-            "Amount to pay should be greater than 0"),
-        "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
-            "Amount Should be Not Greater then Total OutStandings"),
-        "amountLimitError": MessageLookupByLibrary.simpleMessage(
-            "Amount Should be Greater then or equal to minimum Amount"),
+        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage("Amount to pay should be greater than 0"),
+        "amountGreaterThanOutstanding":
+            MessageLookupByLibrary.simpleMessage("Amount Should be Not Greater then Total OutStandings"),
+        "amountLimitError":
+            MessageLookupByLibrary.simpleMessage("Amount Should be Greater then or equal to minimum Amount"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "amt": MessageLookupByLibrary.simpleMessage("3,540"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
@@ -564,14 +560,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
-        "creditLimitChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "New credit limit has been set for your credit card."),
-        "creditLimitChangedSuccess": MessageLookupByLibrary.simpleMessage(
-            "Credit limit is successfully updated"),
-        "creditLimitSettings":
-            MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
-        "creditSettlementPercentageChangedDesc":
-            MessageLookupByLibrary.simpleMessage(
+        "creditLimitChangedDesc":
+            MessageLookupByLibrary.simpleMessage("New credit limit has been set for your credit card."),
+        "creditLimitChangedSuccess":
+            MessageLookupByLibrary.simpleMessage("Credit limit is successfully updated"),
+        "creditLimitSettings": MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
+        "creditSettlementPercentageChangedDesc": MessageLookupByLibrary.simpleMessage(
             "Your credit card settlement percentages has been updated with your new selected account"),
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "creditZeroBalanceRejDesc": MessageLookupByLibrary.simpleMessage(
@@ -665,14 +659,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
-        "editInformation":
-            MessageLookupByLibrary.simpleMessage("Edit Information"),
-        "editTransactionPurpose":
-            MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
-        "editYourAlias":
-            MessageLookupByLibrary.simpleMessage("Edit your alias"),
-        "editYourMobileNo":
-            MessageLookupByLibrary.simpleMessage("Edit your mobile number"),
+        "editInformation": MessageLookupByLibrary.simpleMessage("Edit Information"),
+        "editTransactionPurpose": MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
+        "editYourAlias": MessageLookupByLibrary.simpleMessage("Edit your alias"),
+        "editYourMobileNo": MessageLookupByLibrary.simpleMessage("Edit your mobile number"),
         "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while EDraw API get wrong"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
@@ -1553,10 +1543,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
-        "motherNameHint":
-            MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
-        "mothersBirthplace":
-            MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
+        "motherNameHint": MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
+        "mothersBirthplace": MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
@@ -1644,17 +1632,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter": MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
-        "onlinePurchase":
-            MessageLookupByLibrary.simpleMessage("Online Purchase"),
-        "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
-            "Online purchase limit exceeded."),
+        "onlinePurchase": MessageLookupByLibrary.simpleMessage("Online Purchase"),
+        "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage("Online purchase limit exceeded."),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
-        "openAccountNow":
-            MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "openAccountNow": MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
-        "orContinueWith":
-            MessageLookupByLibrary.simpleMessage("or continue with"),
+        "orContinueWith": MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("or you can upload"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("OTHER DETAILS"),
@@ -1812,14 +1796,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you a special need person?"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("Are you employed?"),
-        "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
-            "Your profile picture has been updated successfully"),
-        "profileSettings":
-            MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
+        "profilePhotoUpdated":
+            MessageLookupByLibrary.simpleMessage("Your profile picture has been updated successfully"),
+        "profileSettings": MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
         "profileStatusNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-5200100."),
-        "proofOfAddress":
-            MessageLookupByLibrary.simpleMessage("Proof of Address"),
+        "proofOfAddress": MessageLookupByLibrary.simpleMessage("Proof of Address"),
         "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
             "Please provide your latest electricity bill to proof your address"),
         "proofOfAddressDescSetting":
@@ -1912,14 +1894,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Request money from another bank account"),
         "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
             "If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account"),
-        "requestNewCardImmediately": MessageLookupByLibrary.simpleMessage(
-            "I would like to request new card immediately"),
-        "requestNewDebitcard":
-            MessageLookupByLibrary.simpleMessage("Request new debit card"),
-        "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
-            "Your Request Is Not Completed"),
-        "requestPhysicalCard":
-            MessageLookupByLibrary.simpleMessage("Request physical card"),
+        "requestNewCardImmediately":
+            MessageLookupByLibrary.simpleMessage("I would like to request new card immediately"),
+        "requestNewDebitcard": MessageLookupByLibrary.simpleMessage("Request new debit card"),
+        "requestNotCompleted": MessageLookupByLibrary.simpleMessage("Your Request Is Not Completed"),
+        "requestPhysicalCard": MessageLookupByLibrary.simpleMessage("Request physical card"),
         "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
@@ -2458,6 +2437,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
+        "yourCardAddedToApplePay":
+            MessageLookupByLibrary.simpleMessage("Your card has been added\nto Apple Wallet."),
+        "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(
+            "Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac."),
+        "yourCardAddedToApplePayDesc2":
+            MessageLookupByLibrary.simpleMessage("Use Apple Pay wherever you see \nthese symbols."),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),

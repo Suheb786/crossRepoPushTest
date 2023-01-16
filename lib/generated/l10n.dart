@@ -14029,6 +14029,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Your card has been added\nto Apple Wallet.`
+  String get yourCardAddedToApplePay {
+    return Intl.message(
+      'Your card has been added\nto Apple Wallet.',
+      name: 'yourCardAddedToApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.`
+  String get yourCardAddedToApplePayDesc1 {
+    return Intl.message(
+      'Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.',
+      name: 'yourCardAddedToApplePayDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Apple Pay wherever you see \nthese symbols.`
+  String get yourCardAddedToApplePayDesc2 {
+    return Intl.message(
+      'Use Apple Pay wherever you see \nthese symbols.',
+      name: 'yourCardAddedToApplePayDesc2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

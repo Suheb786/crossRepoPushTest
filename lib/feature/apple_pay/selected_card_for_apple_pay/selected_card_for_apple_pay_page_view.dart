@@ -62,9 +62,11 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                           ///Navigate to success screen
                           Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
                               arguments: ApplePaySuccessAndErrorPageArguments(
+                                  isSuccess: true,
                                   successOrErrorIcon: AssetUtils.right,
-                                  title: S.of(context).yourNowSetWithApplePay,
-                                  titleDescription: S.of(context).yourAddOtherCardFromCardSettings));
+                                  title: S.of(context).yourCardAddedToApplePay,
+                                  titleDescription:
+                                      "${S.of(context).yourCardAddedToApplePayDesc1}\n\n${S.of(context).yourCardAddedToApplePayDesc2}"));
                         }
                       },
                       dataBuilder: (context, pushCardSuccess) {
@@ -78,6 +80,7 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                 ///Navigate to error screen
                                 Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
                                     arguments: ApplePaySuccessAndErrorPageArguments(
+                                        isSuccess: false,
                                         successOrErrorIcon: AssetUtils.cancel,
                                         title: S.of(context).applePaySetFailed,
                                         titleDescription: S.of(context).errorSettingApplePay));
@@ -176,36 +179,36 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                               textAlign: TextAlign.center,
                                                                               style: TextStyle(
                                                                                   fontFamily:
-                                                                      StringUtils.appFont,
-                                                                      fontSize: 14.t,
-                                                                      fontWeight:
-                                                                      FontWeight.w600),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10.h,
-                                                                ),
-                                                                ListView.separated(
-                                                                    shrinkWrap: true,
-                                                                    physics:
-                                                                    NeverScrollableScrollPhysics(),
-                                                                    itemBuilder:
-                                                                        (context, index) {
-                                                                      return Row(
-                                                                        mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                        children: [
-                                                                          Container(
-                                                                            width: 124.w,
-                                                                            height: 190.h,
-                                                                            child: Image.asset(
-                                                                              AssetUtils
-                                                                                  .cardCreditPng,
-                                                                              height: 190.h,
-                                                                              width: 124.w,
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 14.t,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600),
                                                                             ),
-                                                                          ),
-                                                                          Column(
+                                                                            SizedBox(
+                                                                              height: 10.h,
+                                                                            ),
+                                                                            ListView.separated(
+                                                                                shrinkWrap: true,
+                                                                                physics:
+                                                                                    NeverScrollableScrollPhysics(),
+                                                                                itemBuilder:
+                                                                                    (context, index) {
+                                                                                  return Row(
+                                                                                    mainAxisAlignment:
+                                                                                        MainAxisAlignment
+                                                                                            .spaceBetween,
+                                                                                    children: [
+                                                                                      Container(
+                                                                                        width: 124.w,
+                                                                                        height: 190.h,
+                                                                                        child: Image.asset(
+                                                                                          AssetUtils
+                                                                                              .cardCreditPng,
+                                                                                          height: 190.h,
+                                                                                          width: 124.w,
+                                                                                        ),
+                                                                                      ),
+                                                                                      Column(
                                                                                         crossAxisAlignment:
                                                                                             CrossAxisAlignment
                                                                                                 .start,
@@ -220,39 +223,39 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                                             style: TextStyle(
                                                                                                 fontFamily:
                                                                                                     StringUtils
-                                                                                        .appFont,
-                                                                                    fontSize:
-                                                                                    16.t,
-                                                                                    fontWeight:
-                                                                                    FontWeight
-                                                                                        .w600),
-                                                                              ),
-                                                                              SizedBox(
-                                                                                height: 16.h,
-                                                                              ),
-                                                                              (Platform.isIOS)
-                                                                                  ? (antelopStepCompleted ??
-                                                                                  true)
-                                                                                  ? Container()
+                                                                                                        .appFont,
+                                                                                                fontSize:
+                                                                                                    16.t,
+                                                                                                fontWeight:
+                                                                                                    FontWeight
+                                                                                                        .w600),
+                                                                                          ),
+                                                                                          SizedBox(
+                                                                                            height: 16.h,
+                                                                                          ),
+                                                                                          (Platform.isIOS)
+                                                                                              ? (antelopStepCompleted ??
+                                                                                                      true)
+                                                                                                  ? Container()
 
-                                                                              ///show add to apple wallet button
-                                                                                  : (!(cardListData!.creditCards![index].isCardInApplePay) &&
-                                                                                  cardListData.creditCards![index].getStatus)
-                                                                                  ? InkWell(
-                                                                                onTap:
-                                                                                    () {
-                                                                                  model.pushCardToAntelop(cardCode: (cardListData.creditCards?[index].cardCode ?? '').trim());
-                                                                                },
-                                                                                child:
-                                                                                Image.asset(
-                                                                                  AssetUtils.addAppleWalletIconPng,
-                                                                                  height: 32.h,
-                                                                                  width: 104.w,
-                                                                                ),
-                                                                              )
+                                                                                                  ///show add to apple wallet button
+                                                                                                  : (!(cardListData!.creditCards![index].isCardInApplePay) &&
+                                                                                                          cardListData.creditCards![index].getStatus)
+                                                                                                      ? InkWell(
+                                                                                                          onTap:
+                                                                                                              () {
+                                                                                                            model.pushCardToAntelop(cardCode: (cardListData.creditCards?[index].cardCode ?? '').trim());
+                                                                                                          },
+                                                                                                          child:
+                                                                                                              Image.asset(
+                                                                                                            AssetUtils.addAppleWalletIconPng,
+                                                                                                            height: 32.h,
+                                                                                                            width: 104.w,
+                                                                                                          ),
+                                                                                                        )
 
-                                                                              ///show added to apple wallet button
-                                                                                  : (cardListData.creditCards![index].isCardInApplePay)
+                                                                                                      ///show added to apple wallet button
+                                                                                                      : (cardListData.creditCards![index].isCardInApplePay)
                                                                                                           ? Row(
                                                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                                                               children: [
@@ -271,86 +274,69 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                                                                 ),
                                                                                                               ],
                                                                                                             )
-                                                                                                          : Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  S.of(context).addedTo,
-                                                                                                                  style: TextStyle(fontSize: 14.t, fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
-                                                                                                                ),
-                                                                                                                SizedBox(
-                                                                                                                  width: 9.w,
-                                                                                                                ),
-                                                                                                                InkWell(
-                                                                                                                  onTap: () {
-                                                                                                                    ///Pay
-                                                                                                                  },
-                                                                                                                  child: AppSvg.asset(AssetUtils.applePayButton),
-                                                                                                                ),
-                                                                                                              ],
-                                                                                                            )
+                                                                                                          : Container()
                                                                                               : Container()
-                                                                            ],
-                                                                          )
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                    separatorBuilder:
-                                                                        (context, int) {
-                                                                      return SizedBox(
-                                                                        height: 32.h,
-                                                                      );
-                                                                    },
-                                                                    itemCount: (cardListData
-                                                                        ?.creditCards ??
-                                                                        [])
-                                                                        .length),
-                                                                SizedBox(
-                                                                  height: 32.h,
-                                                                ),
-                                                              ],
-                                                            )
-                                                                : Container(),
-                                                            (cardListData?.debitCards ?? []).isNotEmpty
-                                                                ? Column(
-                                                              crossAxisAlignment:
-                                                              CrossAxisAlignment.start,
-                                                              children: [
-                                                                Text(
-                                                                  S.of(context).debitCards,
-                                                                  textAlign: TextAlign.center,
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                      StringUtils.appFont,
-                                                                      fontSize: 14.t,
-                                                                      fontWeight:
-                                                                      FontWeight.w600),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10.h,
-                                                                ),
-                                                                ListView.separated(
-                                                                    shrinkWrap: true,
-                                                                    physics:
-                                                                    NeverScrollableScrollPhysics(),
-                                                                    itemBuilder:
-                                                                        (context, index) {
-                                                                      return Row(
-                                                                        mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                        children: [
-                                                                          Container(
-                                                                            width: 124.w,
-                                                                            height: 190.h,
-                                                                            child: Image.asset(
-                                                                              AssetUtils
-                                                                                  .cardDebitPng,
-                                                                              height: 190.h,
-                                                                              width: 124.w,
+                                                                                        ],
+                                                                                      )
+                                                                                    ],
+                                                                                  );
+                                                                                },
+                                                                                separatorBuilder:
+                                                                                    (context, int) {
+                                                                                  return SizedBox(
+                                                                                    height: 32.h,
+                                                                                  );
+                                                                                },
+                                                                                itemCount: (cardListData
+                                                                                            ?.creditCards ??
+                                                                                        [])
+                                                                                    .length),
+                                                                            SizedBox(
+                                                                              height: 32.h,
                                                                             ),
-                                                                          ),
-                                                                          Column(
+                                                                          ],
+                                                                        )
+                                                                      : Container(),
+                                                                  (cardListData?.debitCards ?? []).isNotEmpty
+                                                                      ? Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              S.of(context).debitCards,
+                                                                              textAlign: TextAlign.center,
+                                                                              style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 14.t,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 10.h,
+                                                                            ),
+                                                                            ListView.separated(
+                                                                                shrinkWrap: true,
+                                                                                physics:
+                                                                                    NeverScrollableScrollPhysics(),
+                                                                                itemBuilder:
+                                                                                    (context, index) {
+                                                                                  return Row(
+                                                                                    mainAxisAlignment:
+                                                                                        MainAxisAlignment
+                                                                                            .spaceBetween,
+                                                                                    children: [
+                                                                                      Container(
+                                                                                        width: 124.w,
+                                                                                        height: 190.h,
+                                                                                        child: Image.asset(
+                                                                                          AssetUtils
+                                                                                              .cardDebitPng,
+                                                                                          height: 190.h,
+                                                                                          width: 124.w,
+                                                                                        ),
+                                                                                      ),
+                                                                                      Column(
                                                                                         crossAxisAlignment:
                                                                                             CrossAxisAlignment
                                                                                                 .start,
@@ -365,40 +351,40 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                                             style: TextStyle(
                                                                                                 fontFamily:
                                                                                                     StringUtils
-                                                                                        .appFont,
-                                                                                    fontSize:
-                                                                                    16.t,
-                                                                                    fontWeight:
-                                                                                    FontWeight
-                                                                                        .w600),
-                                                                              ),
-                                                                              SizedBox(
-                                                                                height: 16.h,
-                                                                              ),
-                                                                              (Platform.isIOS)
-                                                                                  ? (antelopStepCompleted ??
-                                                                                  true)
-                                                                                  ? Container()
+                                                                                                        .appFont,
+                                                                                                fontSize:
+                                                                                                    16.t,
+                                                                                                fontWeight:
+                                                                                                    FontWeight
+                                                                                                        .w600),
+                                                                                          ),
+                                                                                          SizedBox(
+                                                                                            height: 16.h,
+                                                                                          ),
+                                                                                          (Platform.isIOS)
+                                                                                              ? (antelopStepCompleted ??
+                                                                                                      true)
+                                                                                                  ? Container()
 
-                                                                              ///show add to apple wallet button
-                                                                                  : (!(cardListData!.debitCards![index].isCardInApplePay) &&
-                                                                                  cardListData.debitCards![index].getStatus)
-                                                                                  ? InkWell(
-                                                                                onTap:
-                                                                                    () {
-                                                                                  ///Add to apple wallet
-                                                                                  model.pushCardToAntelop(cardCode: (cardListData.debitCards?[index].code ?? '').trim());
-                                                                                },
-                                                                                child:
-                                                                                Image.asset(
-                                                                                  AssetUtils.addAppleWalletIconPng,
-                                                                                  height: 32.h,
-                                                                                  width: 104.w,
-                                                                                ),
-                                                                              )
+                                                                                                  ///show add to apple wallet button
+                                                                                                  : (!(cardListData!.debitCards![index].isCardInApplePay) &&
+                                                                                                          cardListData.debitCards![index].getStatus)
+                                                                                                      ? InkWell(
+                                                                                                          onTap:
+                                                                                                              () {
+                                                                                                            ///Add to apple wallet
+                                                                                                            model.pushCardToAntelop(cardCode: (cardListData.debitCards?[index].code ?? '').trim());
+                                                                                                          },
+                                                                                                          child:
+                                                                                                              Image.asset(
+                                                                                                            AssetUtils.addAppleWalletIconPng,
+                                                                                                            height: 32.h,
+                                                                                                            width: 104.w,
+                                                                                                          ),
+                                                                                                        )
 
-                                                                              ///show added to apple wallet button
-                                                                                  : (cardListData.debitCards![index].isCardInApplePay)
+                                                                                                      ///show added to apple wallet button
+                                                                                                      : (cardListData.debitCards![index].isCardInApplePay)
                                                                                                           ? Row(
                                                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                                                               children: [
@@ -417,44 +403,27 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                                                                 ),
                                                                                                               ],
                                                                                                             )
-                                                                                                          : Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  S.of(context).addedTo,
-                                                                                                                  style: TextStyle(fontSize: 14.t, fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
-                                                                                                                ),
-                                                                                                                SizedBox(
-                                                                                                                  width: 9.w,
-                                                                                                                ),
-                                                                                                                InkWell(
-                                                                                                                  onTap: () {
-                                                                                                                    ///Pay
-                                                                                                                  },
-                                                                                                                  child: AppSvg.asset(AssetUtils.applePayButton),
-                                                                                                                ),
-                                                                                                              ],
-                                                                                                            )
+                                                                                                          : Container()
                                                                                               : Container()
-                                                                            ],
-                                                                          )
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                    separatorBuilder:
-                                                                        (context, int) {
-                                                                      return SizedBox(
-                                                                        height: 32.h,
-                                                                      );
-                                                                    },
-                                                                    itemCount: (cardListData
-                                                                        ?.debitCards ??
-                                                                        [])
-                                                                        .length),
-                                                              ],
-                                                            )
-                                                                : Container(),
-                                                          ],
+                                                                                        ],
+                                                                                      )
+                                                                                    ],
+                                                                                  );
+                                                                                },
+                                                                                separatorBuilder:
+                                                                                    (context, int) {
+                                                                                  return SizedBox(
+                                                                                    height: 32.h,
+                                                                                  );
+                                                                                },
+                                                                                itemCount: (cardListData
+                                                                                            ?.debitCards ??
+                                                                                        [])
+                                                                                    .length),
+                                                                          ],
+                                                                        )
+                                                                      : Container(),
+                                                                ],
                                                               ),
                                                   ),
                                                 )),

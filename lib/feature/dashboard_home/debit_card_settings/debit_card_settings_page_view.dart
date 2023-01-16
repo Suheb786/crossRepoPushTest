@@ -150,27 +150,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                           ),
                                         ],
                                       )
-                                    : Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            S.of(context).addedTo,
-                                            style: TextStyle(
-                                                fontSize: 14.t,
-                                                fontFamily: StringUtils.appFont,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(
-                                            width: 9.w,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              ///Pay
-                                            },
-                                            child: AppSvg.asset(AssetUtils.applePayButton),
-                                          ),
-                                        ],
-                                      ),
+                                    : Container(),
                       );
                     })
                 : Container(),
@@ -184,9 +164,11 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     ///Navigate to success screen
                     Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
                         arguments: ApplePaySuccessAndErrorPageArguments(
+                            isSuccess: true,
                             successOrErrorIcon: AssetUtils.right,
-                            title: S.of(context).yourNowSetWithApplePay,
-                            titleDescription: S.of(context).yourAddOtherCardFromCardSettings));
+                            title: S.of(context).yourCardAddedToApplePay,
+                            titleDescription:
+                                "${S.of(context).yourCardAddedToApplePayDesc1}\n\n${S.of(context).yourCardAddedToApplePayDesc2}"));
                   }
                 },
                 dataBuilder: (context, pushCardSuccess) {
@@ -200,6 +182,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                           ///Navigate to error screen
                           Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
                               arguments: ApplePaySuccessAndErrorPageArguments(
+                                  isSuccess: false,
                                   successOrErrorIcon: AssetUtils.cancel,
                                   title: S.of(context).applePaySetFailed,
                                   titleDescription: S.of(context).errorSettingApplePay));

@@ -32,7 +32,11 @@ class ApplePaySuccessAndErrorPageArguments {
   final String? successOrErrorIcon;
   final String? title;
   final String? titleDescription;
+  final bool isSuccess;
 
   ApplePaySuccessAndErrorPageArguments(
-      {required this.successOrErrorIcon, required this.title, required this.titleDescription});
+      {required this.successOrErrorIcon,
+      required this.title,
+      required this.titleDescription,
+      this.isSuccess = false});
 }

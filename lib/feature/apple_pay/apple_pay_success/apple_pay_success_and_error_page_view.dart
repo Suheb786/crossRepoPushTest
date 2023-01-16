@@ -20,23 +20,6 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          // AddOtherCardToAppleWalletDialog.show(context,
-          //     image: AssetUtils.applePayIcon,
-          //     title: S.of(context).addOtherCardToAppleWallet,
-          //     descriptionWidget: Text(
-          //       S.of(context).addOtherCardToAppleWalletDialogDescription,
-          //       style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
-          //     ), onDismissed: () {
-          //   Navigator.pop(context);
-          // }, onSelected: () {
-          //   Navigator.pop(context);
-          //   Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
-          //       arguments: ApplePaySuccessAndErrorPageArguments(
-          //           title: S.of(context).applePaySetUpFailed,
-          //           titleDescription: S.of(context).errorSettingUpApplePay,
-          //           successOrErrorIcon: AssetUtils.cancel));
-          // });
-
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
           model.getAntelopCards();
         }
@@ -113,6 +96,30 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                                   color: Theme.of(context).accentColor),
                             ),
                           ),
+                          Visibility(
+                            visible: model.arguments.isSuccess,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 24.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(AssetUtils.wifiPay,
+                                        height: 60.h, color: Theme.of(context).accentColor),
+                                    SizedBox(
+                                      width: 26.w,
+                                    ),
+                                    Image.asset(
+                                      AssetUtils.applePayButtonS,
+                                      height: 60.h,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
