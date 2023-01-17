@@ -44,9 +44,9 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
 import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_request.dart';
-import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_response.dart';
 import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_request.dart';
-import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_response.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
 import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
@@ -864,6 +864,10 @@ abstract class ApiService {
   @POST("/BillPayment/ValidateBillerOtp")
   Future<HttpResponse<BaseResponse>> validateBillerOtp(
       @Body() ValidateBillerOtpRequest validateBillerOtpRequestEntity);
+
+  @POST("/BillPayment/RecentPrepaidPostpaidPayments")
+  Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
+      @Body() BillPaymentsTransactionRequest billPaymentsTransactionRequest);
 
   @POST("/transfer/TransferAPINoOtp")
   Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(

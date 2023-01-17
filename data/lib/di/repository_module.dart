@@ -33,6 +33,7 @@ import 'package:domain/repository/account_settings/account_settings_repository.d
 import 'package:domain/repository/activity/activity_repository.dart';
 import 'package:domain/repository/app_flyer_repository/app_flyer_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
+import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/card_processing/card_processing_repository.dart';
 import 'package:domain/repository/change_device/change_device_repository.dart';
@@ -55,7 +56,6 @@ import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/repository/utility/utility_repository.dart';
-import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 /// inject [UserRepository] provider
@@ -165,11 +165,8 @@ var appFlyerRepositoryProvider =
 
 /// inject [BillPaymentRepository] provider
 var billPaymentRepoProvider = Provider<BillPaymentRepository>(
-        (ref) => BillPaymentRepositoryImpl(
-        ref.read(billPaymentDSProvider),
-    ),
+      (ref) => BillPaymentRepositoryImpl(ref.read(billPaymentDSProvider)),
 );
-
 
 /// inject [RJRepository] provider
 var rjRepositoryProvider = Provider<RJRepository>((ref) => RJRepositoryImpl(ref.read(rjDataSourceProvider)));

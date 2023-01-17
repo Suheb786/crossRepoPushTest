@@ -69,14 +69,28 @@ class PostPaidBillCardWidget extends StatelessWidget {
                     padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 37.0.h),
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(S.of(context).myPostPaidBill,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 12.0.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColor.white)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(S.of(context).myPostPaidBill,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.0.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.white)),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
+                              },
+                              child: Text(S.of(context).viewHistory,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.brightBlue)),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 72.h,

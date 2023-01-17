@@ -4,6 +4,8 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
 import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_request.dart';
 import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
 import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
@@ -26,6 +28,7 @@ import 'package:data/network/api_service.dart';
 import 'package:data/source/bill_payment/bill_payment_data_source.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
 import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
@@ -244,6 +247,17 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
           isNewBiller: params.isNewBiller,
           getToken: true,
           baseData: baseData.toJson()),
+    );
+  }
+
+  @override
+  Future<HttpResponse<BillPaymentsTransactionResponse>> billPaymentsTransactionHistory(
+      {required BillPaymentsTransactionUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+    return _apiService.getBillPaymentsTransactions(
+      BillPaymentsTransactionRequest(
+          pageSize: params.pageSize, pageNo: params.pageNo, getToken: true, baseData: baseData.toJson()),
     );
   }
 }

@@ -1473,5 +1473,7 @@
   "amountShouldBeMoreThan": "المبلغ يجب ان يكون اكثر من",
   "amountShouldBeLessThanOrEqualTo": "المبلغ يجب ان يكون اقل او يساوي",
   "serviceIsNotavaliable": "الخدمة غير متوفرة حاليا",
+  "viewHistory": "عرض السجل",
+  "billsHistory": "Bills History",
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
 }

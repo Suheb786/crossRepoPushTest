@@ -28,6 +28,7 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/enter_otp_bill_payments/enter_otp_bill_payments_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
@@ -343,8 +344,17 @@ final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider
 ///enterOtpBillPaymentsViewModelProvider
 final enterOtpBillPaymentsViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOtpBillPaymentsViewModel>(
-  (ref) => EnterOtpBillPaymentsViewModel(ref.read(enterOtpBillPaymentsUseCaseProvider),
-      ref.read(transferUseCaseProvider), ref.read(transferVerifyUseCaseProvider)),
+  (ref) => EnterOtpBillPaymentsViewModel(
+    ref.read(enterOtpBillPaymentsUseCaseProvider),
+    ref.read(getPayPrePaidBillUseCaseProvider),
+    ref.read(payPostPaidBillUseCaseProvider),
+  ),
+);
+
+///enterOtpBillPaymentsViewModelProvider
+final billPaymentsTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BillPaymentsTransactionViewModel>(
+  (ref) => BillPaymentsTransactionViewModel(ref.read(billPaymentsTransactionUseCaseProvider)),
 );
 
 ///qr scanning screen view model provider

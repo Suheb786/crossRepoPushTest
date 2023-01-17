@@ -109,7 +109,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -225,11 +225,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
     }
-  }
-
-  ///checkAmountMoreThanHundred
-  bool checkAmountMoreThanHundred() {
-    return totalBillAmt >= 100.0 ? true : false;
   }
 
   @override

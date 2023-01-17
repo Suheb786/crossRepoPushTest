@@ -31,5 +31,5 @@ class ValidateBillerOtpRequest {
   factory ValidateBillerOtpRequest.fromJson(Map<String, dynamic> json) =>
       _$ValidateBillerOtpRequestFromJson(json);
 
-  Map<String?, dynamic> toJson() => _$ValidateBillerOtpRequestToJson(this);
+  Map<String, dynamic> toJson() => _$ValidateBillerOtpRequestToJson(this);
 }

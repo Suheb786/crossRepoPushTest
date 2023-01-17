@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
@@ -34,6 +35,7 @@ class AppViewModel extends BaseViewModel {
 
   void toggleLocale(LanguageEnum locale) {
     _currentLocale = Locale(locale.toString());
+    AppConstantsDomain.SELECTED_LANGUAGE = locale.toString().toUpperCase();
     notifyListeners();
   }
 

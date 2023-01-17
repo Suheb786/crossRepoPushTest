@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14976,6 +14975,26 @@ class S {
     return Intl.message(
       'Service is not available',
       name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get viewHistory {
+    return Intl.message(
+      'View History',
+      name: 'viewHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills History`
+  String get billsHistory {
+    return Intl.message(
+      'Bills History',
+      name: 'billsHistory',
       desc: '',
       args: [],
     );

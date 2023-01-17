@@ -256,11 +256,11 @@ class PaySelectedBillsPostPaidBillsPageView
                                             onHorizontalDragEnd: (details) {
                                               if (StringUtils.isDirectionRTL(context)) {
                                                 if (!details.primaryVelocity!.isNegative) {
-                                                  _navigate(model, context);
+                                                  model.payPostPaidBill(context);
                                                 }
                                               } else {
                                                 if (details.primaryVelocity!.isNegative) {
-                                                  _navigate(model, context);
+                                                  model.payPostPaidBill(context);
                                                 }
                                               }
                                             },
@@ -311,15 +311,5 @@ class PaySelectedBillsPostPaidBillsPageView
         );
       },
     );
-  }
-}
-
-void _navigate(PaySelectedBillsPostPaidBillsPageViewModel model, BuildContext context) {
-  if (model.checkAmountMoreThanHundred()) {
-    Future.delayed(Duration(milliseconds: 200)).then((value) {
-      Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
-    });
-  } else {
-    model.payPostPaidBill(context);
   }
 }

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/bill_payment/bill_payment_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transactions.dart';
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model.dart';
@@ -14,6 +15,7 @@ import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prep
 import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
 import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
@@ -198,6 +200,18 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       (r) {
         return Right(false);
       },
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, BillPaymentsTransactionModel>> billPaymentsTransactionHistory(
+      {required BillPaymentsTransactionUseCaseParams params}) async {
+    final result = await safeApiCall(
+      _remoteDS.billPaymentsTransactionHistory(params: params),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

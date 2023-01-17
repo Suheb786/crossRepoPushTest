@@ -322,4 +322,9 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       }
     }
   }
+
+  ///checkAmountMoreThanHundred
+  bool checkAmountMoreThanHundred() {
+    return double.parse(addAllBillAmt() ?? "0") >= 100.0 ? true : false;
+  }
 }

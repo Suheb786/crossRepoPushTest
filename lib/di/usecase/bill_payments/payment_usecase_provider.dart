@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
 import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_bill_categories_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
@@ -95,9 +96,14 @@ final removePrepaidBillerUseCaseProvider = Provider.autoDispose<RemovePrepaidBil
   ),
 );
 
-///[<EnterOtpUseCase>] provider
 final enterOtpBillPaymentsUseCaseProvider = Provider.autoDispose<EnterOtpBillPaymentsUseCase>(
   (ref) => EnterOtpBillPaymentsUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final billPaymentsTransactionUseCaseProvider = Provider.autoDispose<BillPaymentsTransactionUseCase>(
+  (ref) => BillPaymentsTransactionUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
