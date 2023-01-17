@@ -244,8 +244,7 @@ abstract class ApiService {
   }
 
   @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserName")
-  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
-      @Body() CheckUserEmailRequest request);
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(@Body() CheckUserEmailRequest request);
 
   @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserNameMobile")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
@@ -259,38 +258,30 @@ abstract class ApiService {
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
   @POST("/auth/VerifyMobileOtp")
-  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
-      @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
+  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(@Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
 
   @POST("/transfer/GetCountries")
-  Future<String> fetchCountryList(
-      @Body() FetchCountryListRequest fetchCountryListRequest);
+  Future<String> fetchCountryList(@Body() FetchCountryListRequest fetchCountryListRequest);
 
   @POST("/IdCard/set")
-  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
-      @Body() SaveIdInfoRequest saveIdInfoRequest);
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
 
   @POST("/Account/SelfeeCheckV1")
-  Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
-      @Body() SaveSelfieImageRequest saveSelfieImageRequest);
+  Future<HttpResponse<ResponseEntity>> uploadSelfieImage(@Body() SaveSelfieImageRequest saveSelfieImageRequest);
 
   @POST("/AddFeilds/SaveJobDetails")
-  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
-      @Body() SaveJobInfoRequest saveJobInfoRequest);
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(@Body() SaveJobInfoRequest saveJobInfoRequest);
 
   @POST("/AddFeilds/SaveProfileStatus")
   Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       @Body() SaveProfileInformationRequest saveProfileInformationRequest);
 
   @POST("/AddFeilds/SaveCountryResidenceInfo")
-  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation(
-          @Body()
-              SaveResidenceInformationRequest saveResidenceInformationRequest);
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation(
+      @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
   @POST("/kyc/getstatusV1")
-  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
-      @Body() KYCStatusRequest kycStatusRequest);
+  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(@Body() KYCStatusRequest kycStatusRequest);
 
   @POST("/idcard/CheckAhwalV3")
   Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
@@ -306,12 +297,10 @@ abstract class ApiService {
 
   @POST("/FatcaCrs/setFatcaV1")
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
-      @Body()
-          SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
+      @Body() SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
   @POST("/BankSmart/GetAccountV1")
-  Future<HttpResponse<GetAccountResponseEntity>> getAccount(
-      @Body() GetAccountRequestEntity getAccountRequestEntity);
+  Future<HttpResponse<GetAccountResponseEntity>> getAccount(@Body() GetAccountRequestEntity getAccountRequestEntity);
 
   @POST("/BankSmart/CreateAccountV1")
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
@@ -328,16 +317,12 @@ abstract class ApiService {
   ///check video call status
   @POST("/Account/CheckVideoCallStatus")
   Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
-      @Body()
-          CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
+      @Body() CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
 
   ///check other nationality status
   @POST("/Account/CheckOtherNationalityStatus")
-  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus(
-          @Body()
-              CheckOtherNationalityStatusRequestEntity
-                  checkOtherNationalityStatusRequestEntity);
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>> checkOtherNationalityStatus(
+      @Body() CheckOtherNationalityStatusRequestEntity checkOtherNationalityStatusRequestEntity);
 
   ///upload document
   @POST("/FileUpload/UploadDocuments")
@@ -351,39 +336,30 @@ abstract class ApiService {
 
   ///get confirm application data
   @POST("/AdditionalDoc/ConfirmApplicationDataGetV2")
-  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-      confirmApplicationDataGet(
-          @Body()
-              ConfirmApplicationDataGetRequestEntity
-                  confirmApplicationDataGetRequestEntity);
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet(
+      @Body() ConfirmApplicationDataGetRequestEntity confirmApplicationDataGetRequestEntity);
 
   ///doc status
   @POST("/account/DocsStatus")
-  Future<HttpResponse<DocStatusResponseEntity>> docStatus(
-      @Body() DocStatusRequestEntity docStatusRequestEntity);
+  Future<HttpResponse<DocStatusResponseEntity>> docStatus(@Body() DocStatusRequestEntity docStatusRequestEntity);
 
   ///register interest
-  @POST("/auth/RegisterInterest")
+  @POST("/auth/RegisterInterestV2")
   Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
       @Body() RegisterInterestRequestEntity registerInterestRequestEntity);
 
   ///logout
   @POST("/auth/logout")
-  Future<HttpResponse<LogoutResponseEntity>> logout(
-      @Body() LogoutRequestEntity logoutRequestEntity);
+  Future<HttpResponse<LogoutResponseEntity>> logout(@Body() LogoutRequestEntity logoutRequestEntity);
 
   ///confirm application data set
   @POST("/AdditionalDoc/ConfirmApplicationDataSave")
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-      confirmApplicationDataSet(
-          @Body()
-              ConfirmApplicationDataSetRequestEntity
-                  confirmApplicationDataSetRequestEntity);
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
+      @Body() ConfirmApplicationDataSetRequestEntity confirmApplicationDataSetRequestEntity);
 
   ///enable fingerprint
   @POST("/auth/enableFingerPrint")
-  Future<bool> enableFingerPrint(
-      @Body() EnableFingerPrintRequestEntity enableFingerPrintRequestEntity);
+  Future<bool> enableFingerPrint(@Body() EnableFingerPrintRequestEntity enableFingerPrintRequestEntity);
 
   ///disable fingerprint
   @POST("/auth/DisableFingerPrint")
@@ -396,16 +372,14 @@ abstract class ApiService {
       @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
 
   ///get country list
-  @POST("/transfer/GetCountriesV1")
+  @POST("/transfer/GetCountriesV2")
   Future<HttpResponse<CountryListResponseEntity>> getCountryList(
       @Body() CountryListRequestEntity countryListRequestEntity);
 
   ///get allowed country code list
   @POST("${NetworkProperties.BASE_ROUTER_URL}/Country/GetAllowedCode")
-  Future<HttpResponse<GetAllowedCountryResponseEntity>>
-      getAllowedCodeCountryList(
-          @Body()
-              GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
+  Future<HttpResponse<GetAllowedCountryResponseEntity>> getAllowedCodeCountryList(
+      @Body() GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
 
   ///generate key pair
   @POST("/auth/GenerateKeyPair")
@@ -433,40 +407,32 @@ abstract class ApiService {
       @Body() GetComboValuesRequestEntity getComboValuesRequestEntity);
 
   @POST("/CardTracking/CardIssuance")
-  Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(
-      @Body() BaseRequest request);
+  Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(@Body() BaseRequest request);
 
   @POST("/CardTracking/SetCardPin")
-  Future<HttpResponse<ResponseEntity>> setCardPin(
-      @Body() SetCardPinRequest setCardPinRequest);
+  Future<HttpResponse<ResponseEntity>> setCardPin(@Body() SetCardPinRequest setCardPinRequest);
 
   @POST("/CardTracking/ConfirmDelivery")
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
-      @Body() BaseRequest cardIssuanceRequest);
+  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(@Body() BaseRequest cardIssuanceRequest);
 
   @POST("/CardTracking/ConfirmCreditCardDelivery")
   Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
       @Body() ConfirmCreditCardDeliveryRequest cardIssuanceRequest);
 
   @POST("/auth/ChangeEmail")
-  Future<HttpResponse<ResponseEntity>> changeEmail(
-      @Body() ChangeEmailRequest changeEmailRequest);
+  Future<HttpResponse<ResponseEntity>> changeEmail(@Body() ChangeEmailRequest changeEmailRequest);
 
   @POST("/auth/ChangeMobile")
-  Future<HttpResponse<ResponseEntity>> changeMobile(
-      @Body() ChangeMobileRequest changeMobileRequest);
+  Future<HttpResponse<ResponseEntity>> changeMobile(@Body() ChangeMobileRequest changeMobileRequest);
 
   @POST("/CustomerDetails/GetProfileInfo")
-  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(@Body() BaseRequest baseRequest);
 
   @POST("/auth/ChangePassword")
-  Future<HttpResponse<ResponseEntity>> changePassword(
-      @Body() ChangePasswordRequest changePasswordRequest);
+  Future<HttpResponse<ResponseEntity>> changePassword(@Body() ChangePasswordRequest changePasswordRequest);
 
   @POST("/CustomerDetails/ChangeProfileImage")
-  Future<HttpResponse<ResponseEntity>> updateProfileImage(
-      @Body() UpdateProfileImageRequest updateProfileImageRequest);
+  Future<HttpResponse<ResponseEntity>> updateProfileImage(@Body() UpdateProfileImageRequest updateProfileImageRequest);
 
   @POST("/auth/VerifyChangeEmail")
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
@@ -477,20 +443,16 @@ abstract class ApiService {
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
   @POST("/beneficiary/GetBeneficiaries")
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(@Body() BaseRequest baseRequest);
 
   @POST("/beneficiary/AddBeneficiary")
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(
-      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
+  Future<HttpResponse<ResponseEntity>> addBeneficiary(@Body() AddBeneficiaryRequest addBeneficiaryRequest);
 
   @POST("/beneficiary/UpdateBeneficiary")
-  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
+  Future<HttpResponse<ResponseEntity>> updateBeneficiary(@Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
 
   @POST("/beneficiary/DeleteBeneficiary")
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
-      @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(@Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
 
   @POST("/beneficiary/VerifyBeneficiaryOTP")
   Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
@@ -501,8 +463,7 @@ abstract class ApiService {
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
   @POST("/Dashboard/GetDashboardDataV4")
-  Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
-      @Body() DashboardDataRequest dashboardDataRequest);
+  Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(@Body() DashboardDataRequest dashboardDataRequest);
 
   @POST("/MoneyThor/GetDebitCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
@@ -510,46 +471,36 @@ abstract class ApiService {
 
   @POST("/MoneyThor/GetCreditCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      @Body()
-          GetCreditCardTransactionListRequestEntity
-              getCreditCardTransactionListRequestEntity);
+      @Body() GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity);
 
   @POST("/BankSmart/GetAtms")
-  Future<HttpResponse<AtmsResponseEntity>> getAtms(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<AtmsResponseEntity>> getAtms(@Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/CreditCardReqV2")
-  Future<HttpResponse<ResponseEntity>> requestCreditCard(
-      @Body() RequestCardRequest requestCardRequest);
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(@Body() RequestCardRequest requestCardRequest);
 
   @POST("/CardTracking/GetCreditCardStatementV1")
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       @Body() CreditCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetDebitCardStatement")
-  Future<HttpResponse<AccountCardStatementResponseEntity>>
-      getDebitCardStatement(
-          @Body() DebitCardStatementRequest cardStatementRequest);
+  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
+      @Body() DebitCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetCreditYears")
-  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(@Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/GetDebitYears")
-  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(@Body() BaseRequest baseRequest);
 
   @POST("/DebitCard/DebitCardLimit")
-  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
-      @Body() DebitCardLimitRequestEntity baseRequest);
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(@Body() DebitCardLimitRequestEntity baseRequest);
 
   @POST("/RuleEngine/CancelCreditCard")
-  Future<HttpResponse<ResponseEntity>> cancelCreditCard(
-      @Body() CancelCreditCardRequest cancelCreditCardRequest);
+  Future<HttpResponse<ResponseEntity>> cancelCreditCard(@Body() CancelCreditCardRequest cancelCreditCardRequest);
 
   @POST("/RuleEngine/PinUnblock")
-  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(@Body() BaseRequest baseRequest);
 
   @POST("/RuleEngine/FreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
@@ -560,8 +511,7 @@ abstract class ApiService {
       @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
   @POST("/DebitCard/CancelCardV2")
-  Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      @Body() CancelDebitCardRequestEntity cancelDebitCardRequest);
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard(@Body() CancelDebitCardRequestEntity cancelDebitCardRequest);
 
   @POST("/DebitCard/FreezeCard")
   Future<HttpResponse<ResponseEntity>> freezeDebitCard(
@@ -572,201 +522,156 @@ abstract class ApiService {
       @Body() FreezeDebitCardRequestEntity unfreezeDebitCardRequestEntity);
 
   @POST("/DebitCard/ChangePin")
-  Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      @Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
+  Future<HttpResponse<ResponseEntity>> changeDebitCardPin(@Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
 
   @POST("/DebitCard/UnblockPin")
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       @Body() UnblockDebitCardPinRequest unblockDebitCardPinRequest);
 
   @POST("/transfer/GetAccountByAlisas")
-  Future<HttpResponse<GetAccountByAliasContentResponseEntity>>
-      getAccountByAlias(
-          @Body()
-              GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
+  Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
+      @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
   @POST("/transfer/CheckSendMoney")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
   @POST("/transfer/TransferAPIV2")
-  Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
-      @Body() TransferRequestEntity transferRequestEntity);
+  Future<HttpResponse<TransferSuccessResponseEntity>> transfer(@Body() TransferRequestEntity transferRequestEntity);
 
   @POST("/transfer/RequestToPayV1")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
   @POST("/transfer/TransferAPIVerify")
-  Future<HttpResponse<ResponseEntity>> transferVerify(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> transferVerify(@Body() BaseRequest baseRequest);
 
   @POST("/DebitCard/UpdateLimit")
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
-      @Body()
-          DebitCardSLimitsUpdateRequestEntity
-              debitCardSLimitsUpdateRequestEntity);
+      @Body() DebitCardSLimitsUpdateRequestEntity debitCardSLimitsUpdateRequestEntity);
 
   @POST("/CardTracking/UpdateLimit")
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
-      @Body()
-          CreditCardSLimitsUpdateRequestEntity
-              creditCardSLimitsUpdateRequestEntity);
+      @Body() CreditCardSLimitsUpdateRequestEntity creditCardSLimitsUpdateRequestEntity);
 
   @POST("/transfer/TransferPurpose")
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
-      @Body() PurposeRequestEntity purposeRequestEntity);
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(@Body() PurposeRequestEntity purposeRequestEntity);
 
   ///get states
   @POST("/Auth/GetStates")
-  Future<HttpResponse<StateListResponseEntity>> getStateList(
-      @Body() StateListRequestEntity stateListRequestEntity);
+  Future<HttpResponse<StateListResponseEntity>> getStateList(@Body() StateListRequestEntity stateListRequestEntity);
 
   ///get cities
   @POST("/Auth/GetCities")
-  Future<HttpResponse<CityListResponseEntity>> getCityList(
-      @Body() CityListRequestEntity cityListRequestEntity);
+  Future<HttpResponse<CityListResponseEntity>> getCityList(@Body() CityListRequestEntity cityListRequestEntity);
 
   ///get cities by country
   @POST("/Auth/GetCitiesByCountry")
-  Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
-      @Body() CityListRequestEntity cityListRequestEntity);
+  Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(@Body() CityListRequestEntity cityListRequestEntity);
 
   ///set fatca w8
   @POST("/FatcaCrs/SetW8V1")
-  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
-      @Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(@Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
 
   ///set fatca w9
   @POST("/FatcaCrs/SetW9V1")
-  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
-      @Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(@Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
 
   @POST("/Auth/CheckIssuer")
-  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(@Body() BaseRequest baseRequest);
 
   @POST("/Account/CheckCustomerStatus")
-  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(@Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/GetCardApplications")
-  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(@Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/GetLoanValuesV2")
   Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
       @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
 
   @POST("/CardTracking/ProccessLoanRequestV2")
-  Future<HttpResponse<ResponseEntity>> processLoanRequest(
-      @Body() ProcessLoanRequestEntity processLoanRequestEntity);
+  Future<HttpResponse<ResponseEntity>> processLoanRequest(@Body() ProcessLoanRequestEntity processLoanRequestEntity);
 
   @POST("/CardTracking/LinkCardStepV1")
-  Future<HttpResponse<ResponseEntity>> linkCardStep(
-      @Body() LinkCardStepRequestEntity linkCardStepRequestEntity);
+  Future<HttpResponse<ResponseEntity>> linkCardStep(@Body() LinkCardStepRequestEntity linkCardStepRequestEntity);
 
   @POST("/CustomerDetails/DeleteProfileImage")
-  Future<HttpResponse<ResponseEntity>> deleteProfileImage(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage(@Body() BaseRequest baseRequest);
 
   @POST("/CustomerDetails/GetCustomerDocId")
-  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(@Body() BaseRequest baseRequest);
 
   @POST("/CustomerDetails/GetCusDocs")
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
-      @Body()
-          GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
+      @Body() GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
 
-  @POST("/auth/GetCipherV1")
-  Future<HttpResponse<GetCipherResponseEntity>> getCipher(
-      @Body() GetCipherRequestEntity getCipherRequestEntity);
+  @POST("/auth/GetCipherV2")
+  Future<HttpResponse<GetCipherResponseEntity>> getCipher(@Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
-  Future<HttpResponse<ResponseEntity>> androidLogin(
-      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+  Future<HttpResponse<ResponseEntity>> androidLogin(@Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/CheckForgetPasswordCredV2")
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
-      @Body()
-          CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
+      @Body() CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
 
   @POST("/Auth/ForgetPassword")
   Future<HttpResponse<ForgetPasswordResponseEntity>> resetPassword(
       @Body() ForgetPasswordRequestEntity forgetPasswordRequestEntity);
 
   @POST("/Auth/VerifyForgetPasswordOtp")
-  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
-      verifyForgetPasswordOtp(
-          @Body()
-              VerifyForgetPasswordOtpRequestEntity
-                  verifyForgetPasswordOtpRequestEntity);
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>> verifyForgetPasswordOtp(
+      @Body() VerifyForgetPasswordOtpRequestEntity verifyForgetPasswordOtpRequestEntity);
 
   @POST("/transfer/PaymentActivityAPIV2")
   Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 
   @POST("/auth/iphonelogin")
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
-      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(@Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/ChangeMobileNumber")
-  Future<HttpResponse<ResponseEntity>> changeMyNumber(
-      @Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
+  Future<HttpResponse<ResponseEntity>> changeMyNumber(@Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
 
   @POST("/DebitCard/ChangePinVerify")
-  Future<HttpResponse<ResponseEntity>> changePinVerify(
-      @Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> changePinVerify(@Body() BaseRequest baseRequest);
 
   @POST("/video/checkexistingcall")
   Future<HttpResponse<CheckExistingCallResponseEntity>> checkExistingCall(
       @Body() CheckExistingVideoCallRequest request);
 
   @POST("/video/genderStatus")
-  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(
-      @Body() BaseRequest request);
+  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(@Body() BaseRequest request);
 
   @POST("/video/RequestCallV1")
-  Future<HttpResponse<RequestCallResponseEntity>> requestCall(
-      @Body() RequestVideoCallRequest request);
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(@Body() RequestVideoCallRequest request);
 
   @POST("/video/GetTimeSlots")
-  Future<HttpResponse<GetTimeSlotsResponseEntity>> getTimeSlots(
-      @Body() GetTimeSlotsRequest request);
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getTimeSlots(@Body() GetTimeSlotsRequest request);
 
   ///schedule video call time
   @POST("/video/AddCall")
   Future<HttpResponse<ResponseEntity>> saveCustomerVideoCallScheduleTime(
-      @Body()
-          SaveCustomerScheduleTimeRequestEntity
-              saveCustomerScheduleTimeRequestEntity);
+      @Body() SaveCustomerScheduleTimeRequestEntity saveCustomerScheduleTimeRequestEntity);
 
   @POST("/video/GetCallStatus")
-  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
-      @Body() GetCallStatusRequest request);
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(@Body() GetCallStatusRequest request);
 
   @POST("/DebitCard/RequestSuplementaryDebitCard")
   Future<HttpResponse<CardIssuanceResponseEntity>> applyDebitSupplementaryCard(
-      @Body()
-          ApplyDebitSupplementaryCardRequest
-              applyDebitSupplementaryCardRequest);
+      @Body() ApplyDebitSupplementaryCardRequest applyDebitSupplementaryCardRequest);
 
   @POST("/Account/AccountActivity")
-  Future<HttpResponse<ActivityResponseEntity>> getActivity(
-      @Body() ActivityRequestEntity activityRequestEntity);
+  Future<HttpResponse<ActivityResponseEntity>> getActivity(@Body() ActivityRequestEntity activityRequestEntity);
 
   @POST("/Auth/ResendOTP")
   Future<HttpResponse<ResponseEntity>> resendOtpDeviceChange(
-      @Body()
-          ResendOtpDeviceChangeRequestEntity
-              resendOtpDeviceChangeRequestEntity);
+      @Body() ResendOtpDeviceChangeRequestEntity resendOtpDeviceChangeRequestEntity);
 
   @POST("/auth/Sendotptoken")
   Future<HttpResponse<ResponseEntity>> sendOtpToken(
-      @Body()
-          SendOtpTokenDeviceChangeRequestEntity
-              sendOtpTokenDeviceChangeRequestEntity);
+      @Body() SendOtpTokenDeviceChangeRequestEntity sendOtpTokenDeviceChangeRequestEntity);
 
   @POST("/Auth/SendotptokenEmail")
   Future<HttpResponse<ResponseEntity>> sendOtpTokenEmail(
@@ -774,68 +679,57 @@ abstract class ApiService {
 
   @POST("/Auth/verifyDeviceChangeOtp")
   Future<HttpResponse<ResponseEntity>> verifyChangeDeviceOtp(
-      @Body()
-          VerifyDeviceChangeOtpRequestEntity
-              verifyDeviceChangeOtpRequestEntity);
+      @Body() VerifyDeviceChangeOtpRequestEntity verifyDeviceChangeOtpRequestEntity);
 
   @POST("/CardTracking/PayBackCreditCard")
   Future<HttpResponse<ResponseEntity>> payBackCreditCard(
       @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
 
   @POST("/AppVersion/currentversionPEV2")
-  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
-      @Body() CheckVersionUpdateRequest request);
+  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(@Body() CheckVersionUpdateRequest request);
 
   @POST("/CardTracking/GetSupCardApplications")
-  Future<HttpResponse<SupplementaryCreditCardApplicationResponseEntity>>
-      getSupplementaryCreditCardApplication(
-          @Body() GetSupplementaryCreditCardApplicationRequestEntity request);
+  Future<HttpResponse<SupplementaryCreditCardApplicationResponseEntity>> getSupplementaryCreditCardApplication(
+      @Body() GetSupplementaryCreditCardApplicationRequestEntity request);
 
   @POST("/CardTracking/CreditSupCardReq")
-  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>>
-      supplementaryCreditCardRequest(
-          @Body() SupplementaryCreditCardRequestEntity request);
+  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>> supplementaryCreditCardRequest(
+      @Body() SupplementaryCreditCardRequestEntity request);
 
   @POST("/CardTracking/SuppSteptwo")
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
       @Body() SupplementaryCreditCardStepTwoRequestEntity request);
 
-  @POST("/CardTracking/SuppStepthree")
+  @POST("/CardTracking/SuppStepthreeV2")
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepThree(
       @Body() SupplementaryCreditCardStepThreeRequestEntity request);
 
   @POST("/CardTracking/GetRelationShipList")
-  Future<HttpResponse<CreditCardRelationshipResponseEntity>>
-      getCreditCardRelationShipList(
-          @Body() GetCreditCardRelationshipRequestEntity request);
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
+      @Body() GetCreditCardRelationshipRequestEntity request);
 
   @POST("/DashBoard/CallStatusUpdate")
-  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
-      @Body() CreditCardCallStatusUpdateRequest request);
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate(@Body() CreditCardCallStatusUpdateRequest request);
 
   @POST("/DebitCard/ChangeMobileNumberVerify")
   Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumberVerify(
       @Body() DcChangeMobileNumberVerifyRequestEntity request);
 
   @POST("/DebitCard/ChangeMobileNumber")
-  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(
-      @Body() DcChangeMobileNumberRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(@Body() DcChangeMobileNumberRequestEntity request);
 
   @POST("/CardTracking/ChangeMobileNumberVerify")
   Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumberVerify(
       @Body() CcChangeMobileNumberVerifyRequestEntity request);
 
   @POST("/CardTracking/ChangeMobileNumber")
-  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
-      @Body() CcChangeMobileNumberRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(@Body() CcChangeMobileNumberRequestEntity request);
 
   @POST("/DashBoard/GetAdPlaceholder")
-  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(
-      @Body() GetPlaceholderRequestEntity request);
+  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(@Body() GetPlaceholderRequestEntity request);
 
   @POST("/CardTracking/UpdateSettlement")
-  Future<HttpResponse<ResponseEntity>> updateSettlement(
-      @Body() CcUpdateSettlementRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> updateSettlement(@Body() CcUpdateSettlementRequestEntity request);
 
   @POST("/CardTracking/GetLimit")
   Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
@@ -846,17 +740,12 @@ abstract class ApiService {
       @Body() ReportStolenCCRequestEntity reportStolenCCRequestEntity);
 
   @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
-  Future<HttpResponse<CardIssuanceResponseEntity>>
-      removeOrReApplySupplementaryDebitCardwithResponse(
-          @Body()
-              RemoveOrReApplySupplementaryDebitCardRequestEnity
-                  removeOrReApplySupplementaryDebitCardRequestEnity);
+  Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardwithResponse(
+      @Body() RemoveOrReApplySupplementaryDebitCardRequestEnity removeOrReApplySupplementaryDebitCardRequestEnity);
 
   @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
   Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
-      @Body()
-          RemoveOrReApplySupplementaryDebitCardRequestEnity
-              removeOrReApplySupplementaryDebitCardRequestEnity);
+      @Body() RemoveOrReApplySupplementaryDebitCardRequestEnity removeOrReApplySupplementaryDebitCardRequestEnity);
 
   @POST("/CardTracking/GetCardInProcess")
   Future<HttpResponse<ResponseEntity>> getCardInProcess(
@@ -864,23 +753,17 @@ abstract class ApiService {
 
   @POST("/DebitCard/RequestForPhysicalDebitCard")
   Future<HttpResponse<ResponseEntity>> requestPhysicalDebitCard(
-      @Body()
-          RequestPhysicalDebitCardRequestEntity
-              requestPhysicalDebitCardRequestEntity);
+      @Body() RequestPhysicalDebitCardRequestEntity requestPhysicalDebitCardRequestEntity);
 
   @POST("/CardTracking/ChangePinVerify")
   Future<HttpResponse<ResponseEntity>> changeCreditPinVerify(
-      @Body()
-          ChangeCreditCardPinVerifyRequestEntity
-              changeCreditCardPinVerifyRequestEntity);
+      @Body() ChangeCreditCardPinVerifyRequestEntity changeCreditCardPinVerifyRequestEntity);
 
   @POST("/CardTracking/ChangeCreditCardPin")
-  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(
-      @Body() ChangeCreditCardPinRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(@Body() ChangeCreditCardPinRequestEntity request);
 
   @POST("/CardTracking/UnblockCreditCardPin")
-  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
-      @Body() UnblockCreditCardPinRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(@Body() UnblockCreditCardPinRequestEntity request);
 
   ///---------------- bill payment ------------------
 
@@ -888,16 +771,13 @@ abstract class ApiService {
   Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(@Body() BaseRequest request);
 
   @POST("/BillPayment/AccountInquiry")
-  Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
-      getPostpaidBillerListData(@Body() BaseRequest request);
+  Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerListData(@Body() BaseRequest request);
 
   @POST("/BillPayment/GetSavePrePaidBillers")
-  Future<HttpResponse<GetPrepaidBillerListEntityResponse>>
-      getPrepaidBillerListData(@Body() BaseRequest request);
+  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListData(@Body() BaseRequest request);
 
   @POST("/BillPayment/PayPrepaidBill")
-  Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(
-      @Body() PayPrePaidRequest payPrePaidRequest);
+  Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
   @POST("/BillPayment/PayPostpaidBill")
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill(
@@ -941,8 +821,8 @@ abstract class ApiService {
 
   @POST("/BillPayment/RemoveCustomerBillingAPI")
   Future<HttpResponse<BaseResponse>> removeCustomerBilling(
-      @Body() RemoveCustomerBillingRequest removeCustomerBillingRequest,
-      );
+    @Body() RemoveCustomerBillingRequest removeCustomerBillingRequest,
+  );
 
   @POST("/transfer/TransferAPINoOtp")
   Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
@@ -950,26 +830,36 @@ abstract class ApiService {
 
   ///RJ
   @POST("/RJ/GetDestinations")
-  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
-      @Body() GetDestinationRequestEntity request);
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(@Body() GetDestinationRequestEntity request);
 
   @POST("/RJ/GetOneWayLink")
-  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
-      @Body() GetOneWayTripLinkRequestEntity request);
+  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(@Body() GetOneWayTripLinkRequestEntity request);
 
   @POST("/RJ/GetRoundTripLink")
-  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
-      @Body() GetTwoWayTripLinkRequestEntity request);
+  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(@Body() GetTwoWayTripLinkRequestEntity request);
 
   @POST("/RJ/MakeTicketPayment")
   Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
 
   @POST("/RJ/GetFlightDetails")
-  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(
-      @Body() GetFlightDetailsRequestEntity request);
+  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
 
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  @POST("/Cliq/CliqRegisterCustomer")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
+    @Body() BaseRequest request,
+  );
+  @POST("/Cliq/CliqRegisterAccount")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/AccountUpload")
+  Future<HttpResponse<ResponseEntity>> accountUpload(
+    @Body() BaseRequest request,
+  );
 
   ///QR
   @POST("/Transfer/GenerateQR")
@@ -979,6 +869,5 @@ abstract class ApiService {
   Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(@Body() VerifyQRRequestEntity verifyQRRequestEntity);
 
   @POST("/Transfer/TransferQR")
-  Future<HttpResponse<QRTransferResponseEntity>> transferQR(
-      @Body() TransferQRRequestEntity transferQRRequestEntity);
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(@Body() TransferQRRequestEntity transferQRRequestEntity);
 }

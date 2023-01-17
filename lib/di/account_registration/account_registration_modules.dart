@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
@@ -9,8 +10,7 @@ import 'package:neo_bank/feature/account_registration/createPassword/create_pass
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 
 ///account registration view model provider
-final accountRegistrationViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountRegistrationPageViewModel>(
+final accountRegistrationViewModelProvider = ChangeNotifierProvider.autoDispose<AccountRegistrationPageViewModel>(
   (ref) => AccountRegistrationPageViewModel(),
 );
 
@@ -21,21 +21,17 @@ final countrySelectionViewModelProvider = ChangeNotifierProvider.autoDispose<Cou
 );
 
 final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-  (ref) => AddNumberViewModel(
-      ref.read(registerNumberUseCaseProvider),
-      ref.read(fetchCountryByCodeUseCaseProvider),
-      ref.read(checkUserNameUseCaseProvider),
-      ref.read(checkUserNameMobileUseCaseProvider),
-      ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+  (ref) => AddNumberViewModel(ref.read(registerNumberUseCaseProvider), ref.read(fetchCountryByCodeUseCaseProvider),
+      ref.read(checkUserNameUseCaseProvider), ref.read(checkUserNameMobileUseCaseProvider), ref.read(getAllowedCodeCountriesListUseCaseProvider)),
 );
 
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
-      ref.read(changeMyNumberUseCaseProvider)),
+  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider), ref.read(changeMyNumberUseCaseProvider)),
 );
 
 ///[CreatePasswordViewModel] provider
-final createPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
-    CreatePasswordViewModel(
-        ref.read(createPasswordUseCaseProvider), ref.read(registerProspectUseCaseProvider)));
+final createPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) => CreatePasswordViewModel(
+      ref.read(createPasswordUseCaseProvider),
+      ref.read(registerProspectUseCaseProvider),
+    ));

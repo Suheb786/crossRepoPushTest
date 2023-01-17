@@ -31,26 +31,24 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
 
   BillPaymentRepositoryImpl(this._remoteDS);
 
-
   @override
   Future<Either<NetworkError, GetBillCategories>> getBillCategories() async {
     final result = await safeApiCall(_remoteDS.getBillCategories());
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, GetPostpaidBillerListModel>>
-  getPostpaidBillerList(
+  Future<Either<NetworkError, GetPostpaidBillerListModel>> getPostpaidBillerList(
       {required GetPostpaidBillerListUseCaseParams params}) async {
     final result = await safeApiCall(
       _remoteDS.getPostpaidBillerList(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -61,14 +59,13 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       _remoteDS.getPrepaidBillerList(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> addNewPostpaidBiller(
-      {required AddNewPostpaidBillerUseCaseParams params}) async {
+  Future<Either<NetworkError, bool>> addNewPostpaidBiller({required AddNewPostpaidBillerUseCaseParams params}) async {
     final result = await safeApiCall(
       _remoteDS.addNewPostpaidBiller(params: params),
     );
@@ -79,8 +76,7 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addNewPrepaidBiller(
-      {required AddNewPrepaidBillerUseCaseParams params}) async {
+  Future<Either<NetworkError, bool>> addNewPrepaidBiller({required AddNewPrepaidBillerUseCaseParams params}) async {
     final result = await safeApiCall(
       _remoteDS.addNewPrepaidBiller(params: params),
     );
@@ -97,44 +93,41 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       _remoteDS.getBillerLookuplist(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, PayPrePaid>> payPrepaidBill(
-      {PayPrePaidUseCaseParams? params}) async {
+  Future<Either<NetworkError, PayPrePaid>> payPrepaidBill({PayPrePaidUseCaseParams? params}) async {
     final result = await safeApiCall(
       _remoteDS.payPrepaidBillDs(params: params!),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill(
-      {required params}) async {
+  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill({required params}) async {
     final result = await safeApiCall(
       _remoteDS.payPostPaidBill(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, PostPaidBillInquiry>> postPaidBillInquiry(
-      {required params}) async {
+  Future<Either<NetworkError, PostPaidBillInquiry>> postPaidBillInquiry({required params}) async {
     final result = await safeApiCall(
       _remoteDS.postPaidBillInquiry(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -145,8 +138,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       _remoteDS.validatePrePaidBill(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -157,8 +150,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       _remoteDS.getPrePaidCategories(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -170,8 +163,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
       _remoteDS.removeCustomerBilling(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) {
+      (l) => Left(l),
+      (r) {
         /*if (r.data.status!.isSuccess!) {
           AppConstants.SUCCESS_MESSAGE_BOOL =
               r.data.status!.statusMessage ?? "";
@@ -180,20 +173,22 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
           AppConstants.ERROR_MESSAGE_BOOL = r.data.status!.statusMessage ?? "";
           return Right(false);
         }*/
-            return Right(r.isSuccessful());
+        return Right(r.isSuccessful());
       },
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> removePrepaidBiller({required RemovePrepaidBillerUseCaseParams params,}) async{
+  Future<Either<NetworkError, bool>> removePrepaidBiller({
+    required RemovePrepaidBillerUseCaseParams params,
+  }) async {
     final result = await safeApiCall(
       _remoteDS.removePrepaidBiller(params: params),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) {
-       /* if (r.data.status!.isSuccess!) {
+      (l) => Left(l),
+      (r) {
+        /* if (r.data.status!.isSuccess!) {
           AppConstants.SUCCESS_MESSAGE_BOOL =
               r.data.status!.statusMessage ?? "";
           return Right(r.isSuccessful());
@@ -201,8 +196,26 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
           AppConstants.ERROR_MESSAGE_BOOL = r.data.status!.statusMessage ?? "";
           return Right(false);
         }*/
-            return Right(false);
+        return Right(false);
       },
     );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> cliqRegisterCustomer() async {
+    final result = await safeApiCall(_remoteDS.cliqRegisterCustomer());
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> cliqRegisterAccount() async {
+    final result = await safeApiCall(_remoteDS.cliqRegisterAccount());
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> accountUpload() async {
+    final result = await safeApiCall(_remoteDS.accountUpload());
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }

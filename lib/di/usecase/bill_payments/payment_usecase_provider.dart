@@ -13,99 +13,103 @@ import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
 
+import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
+import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
 
-
-final getBillCategoriesUseCaseProvider =
-Provider.autoDispose<GetBillCategoriesUseCase>(
-      (ref) => GetBillCategoriesUseCase(
-    ref.read(billPaymentRepoProvider),
-  ),
-);
-
-final getPostpaidBillerUseCaseProvider =
-Provider.autoDispose<GetPostpaidBillerListUseCase>(
-      (ref) => GetPostpaidBillerListUseCase(
+final getBillCategoriesUseCaseProvider = Provider.autoDispose<GetBillCategoriesUseCase>(
+  (ref) => GetBillCategoriesUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final getPrepaidBillerUseCaseProvider =
-Provider.autoDispose<GetPrepaidBillerListUseCase>(
-      (ref) => GetPrepaidBillerListUseCase(
-    ref.read(billPaymentRepoProvider),
-  ),
-);
-final getPayPrePaidBillUseCaseProvider =
-Provider.autoDispose<PayPrePaidUseCase>(
-      (ref) => PayPrePaidUseCase(
-    ref.read(billPaymentRepoProvider),
-  ),
-);
-final validatePrePaidBillUseCaseProvider =
-Provider.autoDispose<ValidatePrePaidUseCase>(
-      (ref) => ValidatePrePaidUseCase(
-    ref.read(billPaymentRepoProvider),
-  ),
-);
-final postPaidBillEnquiryUseCaseProvider =
-Provider.autoDispose<PostPaidBillInquiryUseCase>(
-      (ref) => PostPaidBillInquiryUseCase(
+final getPostpaidBillerUseCaseProvider = Provider.autoDispose<GetPostpaidBillerListUseCase>(
+  (ref) => GetPostpaidBillerListUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final postPaidBillInquiryUseCaseProvider =
-Provider.autoDispose<PostPaidBillInquiryUseCase>(
-      (ref) => PostPaidBillInquiryUseCase(
+final getPrepaidBillerUseCaseProvider = Provider.autoDispose<GetPrepaidBillerListUseCase>(
+  (ref) => GetPrepaidBillerListUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final getPayPrePaidBillUseCaseProvider = Provider.autoDispose<PayPrePaidUseCase>(
+  (ref) => PayPrePaidUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final validatePrePaidBillUseCaseProvider = Provider.autoDispose<ValidatePrePaidUseCase>(
+  (ref) => ValidatePrePaidUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final postPaidBillEnquiryUseCaseProvider = Provider.autoDispose<PostPaidBillInquiryUseCase>(
+  (ref) => PostPaidBillInquiryUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final payPostPaidBillUseCaseProvider =
-Provider.autoDispose<PayPostPaidBillUseCase>(
-      (ref) => PayPostPaidBillUseCase(
+final postPaidBillInquiryUseCaseProvider = Provider.autoDispose<PostPaidBillInquiryUseCase>(
+  (ref) => PostPaidBillInquiryUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final addNewPostpaidBillerUseCaseProvider =
-Provider.autoDispose<AddNewPostpaidBillerUseCase>(
-      (ref) => AddNewPostpaidBillerUseCase(
+final payPostPaidBillUseCaseProvider = Provider.autoDispose<PayPostPaidBillUseCase>(
+  (ref) => PayPostPaidBillUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final addNewPrepaidBillerUseCaseProvider =
-Provider.autoDispose<AddNewPrepaidBillerUseCase>(
-      (ref) => AddNewPrepaidBillerUseCase(
+final addNewPostpaidBillerUseCaseProvider = Provider.autoDispose<AddNewPostpaidBillerUseCase>(
+  (ref) => AddNewPostpaidBillerUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final getBillerLookupListUseCaseProvider =
-Provider.autoDispose<GetBillerLookupUseCase>(
-      (ref) => GetBillerLookupUseCase(
-    ref.read(billPaymentRepoProvider),
-  ),
-);
-final getPrePaidCategoriesListUseCaseProvider =
-Provider.autoDispose<GetPrePaidCategoriesListUseCase>(
-      (ref) => GetPrePaidCategoriesListUseCase(
+final addNewPrepaidBillerUseCaseProvider = Provider.autoDispose<AddNewPrepaidBillerUseCase>(
+  (ref) => AddNewPrepaidBillerUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final removeCustomerBillingUseCaseProvider =
-Provider.autoDispose<RemoveCustomerBillingUseCase>(
-      (ref) => RemoveCustomerBillingUseCase(
+final getBillerLookupListUseCaseProvider = Provider.autoDispose<GetBillerLookupUseCase>(
+  (ref) => GetBillerLookupUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final getPrePaidCategoriesListUseCaseProvider = Provider.autoDispose<GetPrePaidCategoriesListUseCase>(
+  (ref) => GetPrePaidCategoriesListUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
 
-final removePrepaidBillerUseCaseProvider =
-Provider.autoDispose<RemovePrepaidBillerUseCase>(
-      (ref) => RemovePrepaidBillerUseCase(
+final removeCustomerBillingUseCaseProvider = Provider.autoDispose<RemoveCustomerBillingUseCase>(
+  (ref) => RemoveCustomerBillingUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final removePrepaidBillerUseCaseProvider = Provider.autoDispose<RemovePrepaidBillerUseCase>(
+  (ref) => RemovePrepaidBillerUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final registerCustomerUseCaseProvider = Provider.autoDispose<RegisterCustomerUseCase>(
+  (ref) => RegisterCustomerUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final registerAccountUseCaseProvider = Provider.autoDispose<RegisterAccountUseCase>(
+  (ref) => RegisterAccountUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final accountUploadUseCaseProvider = Provider.autoDispose<AccountUploadUseCase>(
+  (ref) => AccountUploadUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );

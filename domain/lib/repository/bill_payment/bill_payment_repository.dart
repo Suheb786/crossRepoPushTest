@@ -24,39 +24,30 @@ import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 
-
 abstract class BillPaymentRepository {
-
   ///get bill categories
   Future<Either<NetworkError, GetBillCategories>> getBillCategories();
 
-
   ///get bill categories
-  Future<Either<NetworkError, GetPostpaidBillerListModel>>
-  getPostpaidBillerList(
+  Future<Either<NetworkError, GetPostpaidBillerListModel>> getPostpaidBillerList(
       {required GetPostpaidBillerListUseCaseParams params});
 
   Future<Either<NetworkError, GetPrepaidBillerListModel>> getPrepaidBillerList(
       {required GetPrepaidBillerListUseCaseParams params});
 
   ///pay pre paid bill
-  Future<Either<NetworkError, PayPrePaid>> payPrepaidBill(
-      {PayPrePaidUseCaseParams params});
+  Future<Either<NetworkError, PayPrePaid>> payPrepaidBill({PayPrePaidUseCaseParams params});
 
-  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill(
-      {required PayPostPaidBillUseCaseParams params});
+  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill({required PayPostPaidBillUseCaseParams params});
 
-  Future<Either<NetworkError, ValidatePrePaidBill>> validatePrePaidBill(
-      {required ValidatePrePaidUseCaseParams params});
+  Future<Either<NetworkError, ValidatePrePaidBill>> validatePrePaidBill({required ValidatePrePaidUseCaseParams params});
 
   Future<Either<NetworkError, PostPaidBillInquiry>> postPaidBillInquiry(
       {required PostPaidBillInquiryUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> addNewPostpaidBiller(
-      {required AddNewPostpaidBillerUseCaseParams params});
+  Future<Either<NetworkError, bool>> addNewPostpaidBiller({required AddNewPostpaidBillerUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> addNewPrepaidBiller(
-      {required AddNewPrepaidBillerUseCaseParams params});
+  Future<Either<NetworkError, bool>> addNewPrepaidBiller({required AddNewPrepaidBillerUseCaseParams params});
 
   Future<Either<NetworkError, GetBillerLookUpList>> getBillerLookuplist({
     required GetBillerLookupUseCaseParams params,
@@ -73,4 +64,7 @@ abstract class BillPaymentRepository {
   Future<Either<NetworkError, bool>> removePrepaidBiller({
     required RemovePrepaidBillerUseCaseParams params,
   });
+  Future<Either<NetworkError, bool>> cliqRegisterCustomer();
+  Future<Either<NetworkError, bool>> cliqRegisterAccount();
+  Future<Either<NetworkError, bool>> accountUpload();
 }

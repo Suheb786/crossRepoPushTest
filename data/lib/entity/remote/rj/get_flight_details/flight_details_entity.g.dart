@@ -15,7 +15,9 @@ FlightDetailsEntity _$FlightDetailsEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$FlightDetailsEntityToJson(FlightDetailsEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$FlightDetailsEntityToJson(
+        FlightDetailsEntity instance) =>
+    <String, dynamic>{
       'FlightNumber': instance.flightNumber,
       'Origin': instance.origin,
       'Destination': instance.destination,
