@@ -363,6 +363,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           controller: model.amtController,
           textAlign: TextAlign.center,
           onChanged: (value) {
+            if (value.isEmpty) {
+              value = "0";
+            }
             model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, value, context);
             model.validate(value);
           },
@@ -634,9 +637,10 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePostPaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (model.checkAmountMoreThanHundred()) {
-      Future.delayed(Duration(milliseconds: 200)).then((value) {
-        Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
-      });
+      // Future.delayed(Duration(milliseconds: 200)).then((value) {
+      //   Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
+      // });
+      ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
     } else {
       model.payPostPaidBill();
     }
@@ -644,9 +648,10 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
   void _navigatePrePaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     if (model.checkAmountMoreThanHundred()) {
-      Future.delayed(Duration(milliseconds: 200)).then((value) {
-        Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
-      });
+      // Future.delayed(Duration(milliseconds: 200)).then((value) {
+      //   Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
+      // });
+      ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
     } else {
       model.payPrePaidBill();
     }

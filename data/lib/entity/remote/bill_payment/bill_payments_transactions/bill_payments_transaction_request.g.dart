@@ -10,6 +10,7 @@ BillPaymentsTransactionRequest _$BillPaymentsTransactionRequestFromJson(Map<Stri
   return BillPaymentsTransactionRequest(
     pageSize: json['PageSize'] as num?,
     pageNo: json['PageNo'] as num?,
+    type: json['type'] as String?,
     getToken: json['GetToken'] as bool?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
   );
@@ -19,6 +20,7 @@ Map<String, dynamic> _$BillPaymentsTransactionRequestToJson(BillPaymentsTransact
     <String, dynamic>{
       'PageSize': instance.pageSize,
       'PageNo': instance.pageNo,
+      'type': instance.type,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

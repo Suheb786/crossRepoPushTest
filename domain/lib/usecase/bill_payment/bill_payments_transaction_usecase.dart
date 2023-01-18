@@ -23,8 +23,9 @@ class BillPaymentsTransactionUseCase
 class BillPaymentsTransactionUseCaseParams extends Params {
   final num? pageSize;
   final num? pageNo;
+  final String? type;
 
-  BillPaymentsTransactionUseCaseParams({this.pageSize, this.pageNo});
+  BillPaymentsTransactionUseCaseParams({this.pageSize, this.pageNo, this.type});
 
   @override
   Either<AppError, bool> verify() {

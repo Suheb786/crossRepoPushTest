@@ -8,11 +8,14 @@ part 'bill_payments_transaction_data_entity.g.dart';
 @JsonSerializable()
 class BillPaymentsTransactionDataEntity
     extends BaseLayerDataTransformer<BillPaymentsTransactionDataEntity, BillPaymentsTransactionData> {
-  @JsonKey(name: "billList")
-  final List<BillPaymentsTransactionListEntity>? BillPaymentsTransactionList;
+  @JsonKey(name: "label")
+  final dynamic label;
+  @JsonKey(name: "transactionList")
+  final List<BillPaymentsTransactionListEntity>? billPaymentsTransactionList;
 
   BillPaymentsTransactionDataEntity({
-    this.BillPaymentsTransactionList,
+    this.label,
+    this.billPaymentsTransactionList,
   });
 
   factory BillPaymentsTransactionDataEntity.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +32,6 @@ class BillPaymentsTransactionDataEntity
   BillPaymentsTransactionData transform() {
     return BillPaymentsTransactionData(
         billPaymentsTransactionDataList:
-            this.BillPaymentsTransactionList?.map((e) => e.transform()).toList());
+            this.billPaymentsTransactionList?.map((e) => e.transform()).toList());
   }
 }

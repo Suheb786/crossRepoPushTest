@@ -65,6 +65,8 @@ class PrePaidBillCardWidget extends StatelessWidget {
                                   color: AppColor.white)),
                           GestureDetector(
                             onTap: () {
+                              AppConstantsUtils.PRE_PAID_FLOW = true;
+                              AppConstantsUtils.POST_PAID_FLOW = false;
                               Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
                             },
                             child: Text(S.of(context).viewHistory,

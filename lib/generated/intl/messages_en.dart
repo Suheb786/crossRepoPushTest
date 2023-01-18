@@ -73,12 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountNotFound":
             MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account No."),
-        "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
-            "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
+        "accountNumberOptional": MessageLookupByLibrary.simpleMessage("LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
             "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!"),
-        "accountOpeningPurpose":
-            MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
+        "accountOpeningPurpose": MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountPurposeNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some information relating to purpose of opening your account. Please check again and ensure all information is provided."),
         "accountReady": MessageLookupByLibrary.simpleMessage(
@@ -274,12 +272,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessRulesNotImplementedAgainstCompanyId": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
-        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage(
-            "Valid until 24 December 2022"),
-        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage(
-            "FIFA 22 Promo Pack Lorem Ipsum"),
-        "buyVoucherDetailTitle":
-            MessageLookupByLibrary.simpleMessage("FIFA 22"),
+        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage("Valid until 24 December 2022"),
+        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage("FIFA 22 Promo Pack Lorem Ipsum"),
+        "buyVoucherDetailTitle": MessageLookupByLibrary.simpleMessage("FIFA 22"),
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
@@ -1505,8 +1500,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
         "loanAccountListNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-098)"),
-        "loanNotActive":
-            MessageLookupByLibrary.simpleMessage("Loan Account Is Not Active"),
+        "loanNotActive": MessageLookupByLibrary.simpleMessage("Loan Account Is Not Active"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
@@ -1579,13 +1573,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
-        "monthlyIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "monthlyIncomeSmall": MessageLookupByLibrary.simpleMessage("Monthly Income"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
-        "motherNameHint":
-            MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
-        "mothersBirthplace":
-            MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
+        "motherNameHint": MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
+        "mothersBirthplace": MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
@@ -1853,12 +1844,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-303) "),
         "primaryLoanAccListNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "primaryNotComplete":
-            MessageLookupByLibrary.simpleMessage("primary not complete"),
+        "primaryNotComplete": MessageLookupByLibrary.simpleMessage("primary not complete"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "Proceed to the login page and use your\nnew password to login."),
-        "processLoanError": MessageLookupByLibrary.simpleMessage(
-            "ProcessLoanAPI PAYMENT API Error"),
+        "processLoanError": MessageLookupByLibrary.simpleMessage("ProcessLoanAPI PAYMENT API Error"),
         "processLoanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
@@ -2532,16 +2521,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
-        "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "What is Claim of Tax Treaty Benefits?"),
-        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
-            "What is your employment status?"),
-        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage(
-            "What is your relationship\nwith the cardholder?"),
-        "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "What’s your email and mobile number?"),
-        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
-            "Where do you \ncurrently live?"),
+        "whatIsTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("What is Claim of Tax Treaty Benefits?"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("What is your employment status?"),
+        "whatRelationshipWithCardHolder":
+            MessageLookupByLibrary.simpleMessage("What is your relationship\nwith the cardholder?"),
+        "whatYourEmailAndMobileNumber":
+            MessageLookupByLibrary.simpleMessage("What’s your email and mobile number?"),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("Where do you \ncurrently live?"),
         "whichTaxPayerAreYou":
             MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
         "whichTaxPayerAreYouSmall":

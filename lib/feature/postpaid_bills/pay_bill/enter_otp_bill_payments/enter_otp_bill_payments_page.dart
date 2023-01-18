@@ -22,7 +22,7 @@ class EnterOtpBillPaymentsPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Colors.transparent;
   }
 
   @override

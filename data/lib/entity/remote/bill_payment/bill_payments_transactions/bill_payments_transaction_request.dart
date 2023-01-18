@@ -10,6 +10,9 @@ class BillPaymentsTransactionRequest {
   @JsonKey(name: "PageNo")
   final num? pageNo;
 
+  @JsonKey(name: "type")
+  final String? type;
+
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")
@@ -18,6 +21,7 @@ class BillPaymentsTransactionRequest {
   BillPaymentsTransactionRequest({
     this.pageSize,
     this.pageNo,
+    this.type,
     this.getToken,
     required this.baseData,
   });

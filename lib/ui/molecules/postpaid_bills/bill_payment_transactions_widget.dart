@@ -1,4 +1,4 @@
-import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_list.dart';
+import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_data.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -7,26 +7,26 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class BillPaymentsTransactionWidget extends StatelessWidget {
-  final List<BillPaymentsTransactionList>? transactions;
+  final BillPaymentsTransactionData? billPaymentsTransactionData;
 
-  const BillPaymentsTransactionWidget({Key? key, this.transactions}) : super(key: key);
+  const BillPaymentsTransactionWidget({Key? key, this.billPaymentsTransactionData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Text(
-        //   transactions[0].paymentDate!.isNotEmpty
-        //       ? TimeUtils.getFormattedDate(transactions[0].paymentDate!)
-        //       : '-',
-        //   //transactions!.label!,
-        //   style: TextStyle(
-        //       fontFamily: StringUtils.appFont,
-        //       fontSize: 15.0.t,
-        //       fontWeight: FontWeight.w600,
-        //       color: Theme.of(context).primaryColorDark),
-        // ),
+        Text(
+          billPaymentsTransactionData!.label!.isNotEmpty
+              ? TimeUtils.getFormattedDate(billPaymentsTransactionData!.label!)
+              : '-',
+          //billPaymentsTransactionData!.label!,
+          style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              fontSize: 15.0.t,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).primaryColorDark),
+        ),
         Card(
           margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
           color: Theme.of(context).accentColor,
@@ -34,7 +34,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              var item = transactions?[index] ?? BillPaymentsTransactionList();
+              var item = billPaymentsTransactionData!.billPaymentsTransactionDataList![index];
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +98,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                         height: 4.0.h,
                       ),
                       Text(
-                        "Pay again",
+                        "",
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: AppColor.brightBlue,
@@ -111,7 +111,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
               );
             },
             shrinkWrap: true,
-            itemCount: transactions?.length ?? 0,
+            itemCount: billPaymentsTransactionData!.billPaymentsTransactionDataList!.length,
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0.h),

@@ -8,7 +8,8 @@ part of 'bill_payments_transaction_data_entity.dart';
 
 BillPaymentsTransactionDataEntity _$BillPaymentsTransactionDataEntityFromJson(Map<String, dynamic> json) {
   return BillPaymentsTransactionDataEntity(
-    BillPaymentsTransactionList: (json['billList'] as List<dynamic>?)
+    label: json['label'],
+    billPaymentsTransactionList: (json['transactionList'] as List<dynamic>?)
         ?.map((e) => BillPaymentsTransactionListEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
@@ -16,5 +17,6 @@ BillPaymentsTransactionDataEntity _$BillPaymentsTransactionDataEntityFromJson(Ma
 
 Map<String, dynamic> _$BillPaymentsTransactionDataEntityToJson(BillPaymentsTransactionDataEntity instance) =>
     <String, dynamic>{
-      'billList': instance.BillPaymentsTransactionList,
+      'label': instance.label,
+      'transactionList': instance.billPaymentsTransactionList,
     };

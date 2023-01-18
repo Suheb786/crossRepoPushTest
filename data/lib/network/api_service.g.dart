@@ -251,7 +251,8 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<GetFatcaQuestionsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/FatcaCrs/get', queryParameters: queryParameters, data: _data)
+                .compose(_dio.options, '/FatcaCrs/get',
+                queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetFatcaQuestionsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -2528,13 +2529,32 @@ class _ApiService implements ApiService {
   Future<HttpResponse<BaseResponse>> validateBillerOtp(validateBillerOtpRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _data = validateBillerOtpRequestEntity;
+    final _data = <String, dynamic>{};
+    _data.addAll(validateBillerOtpRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(
         Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(_dio.options, '/BillPayment/ValidateBillerOtp',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
+      billPaymentsTransactionRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(billPaymentsTransactionRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BillPaymentsTransactionResponse>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/BillPayment/RecentPrepaidPostpaidPayments',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BillPaymentsTransactionResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

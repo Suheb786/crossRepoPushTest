@@ -4,6 +4,7 @@ import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.da
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -67,8 +68,6 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          // _getDebitYearsRequest.safeAdd(GetDebitYearsUseCaseParams());
         }
       });
     });
@@ -172,7 +171,12 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
   }
 
   void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
-    _getTransactionsRequest.safeAdd(BillPaymentsTransactionUseCaseParams(pageNo: pageNo, pageSize: pageSize));
+    _getTransactionsRequest.safeAdd(BillPaymentsTransactionUseCaseParams(
+        pageNo: pageNo,
+        pageSize: pageSize,
+        type: AppConstantsUtils.POST_PAID_FLOW == true
+            ? AppConstantsUtils.POSTPAID_KEY.toLowerCase()
+            : AppConstantsUtils.PREPAID_KEY.toLowerCase()));
   }
 
   void getFilteredData(String value) {

@@ -257,7 +257,11 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
     return _apiService.getBillPaymentsTransactions(
       BillPaymentsTransactionRequest(
-          pageSize: params.pageSize, pageNo: params.pageNo, getToken: true, baseData: baseData.toJson()),
+          type: params.type,
+          pageSize: params.pageSize,
+          pageNo: params.pageNo,
+          getToken: true,
+          baseData: baseData.toJson()),
     );
   }
 }

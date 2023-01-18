@@ -66,15 +66,21 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _enterOtpBillPaymentsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
         }
       });
     });
+
+    payPostPaidBillListener();
+    payPrePaidBillListener();
   }
 
   void enterOtpBillPayments(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("validate_otp", {"validate_otp_clicked": true});
     var billerType = AppConstantsUtils.BILLER_TYPE;
     var amount = "0.000";
     var currencyCode = "JOD";
@@ -86,7 +92,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
       amount = confirmBillModel.amtController.text;
     } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       final confirmBillModel =
-          ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+      ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
       amount = confirmBillModel.totalAmountToPay();
     }
     _enterOtpBillPaymentsRequest.safeAdd(EnterOtpBillPaymentsUseCaseParams(
@@ -157,7 +163,6 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-          //to do
           updateLoader();
           _payPrePaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
