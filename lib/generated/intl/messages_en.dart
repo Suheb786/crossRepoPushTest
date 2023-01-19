@@ -57,10 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
-        "accountDetails":
-            MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
-        "accountHolderName":
-            MessageLookupByLibrary.simpleMessage("account holder name"),
+        "accountDetails": MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountHolderName": MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
@@ -285,8 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "callRecordNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "callScheduled":
-            MessageLookupByLibrary.simpleMessage("Call scheduled!"),
+        "callScheduled": MessageLookupByLibrary.simpleMessage("Call scheduled!"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
             "Your account will be processed after the video call is completed."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
@@ -1477,16 +1474,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-153)"),
-        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
-            "Let’s create your new\nCliQ ID"),
-        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
-            "Next, let’s create\nyour new password"),
-        "letsCreateYourAccount":
-            MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
-        "letsCreateYourProfile":
-            MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
-        "letsSet4DigitPin":
-            MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
+        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage("Let’s create your new\nCliQ ID"),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage("Next, let’s create\nyour new password"),
+        "letsCreateYourAccount": MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
+        "letsCreateYourProfile": MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
+        "letsSet4DigitPin": MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
         "linkBankAccountToYourNewId":
             MessageLookupByLibrary.simpleMessage("Link bank account to \nyour new ID"),
@@ -1581,14 +1573,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "myPostPaidBill": MessageLookupByLibrary.simpleMessage("My Postpaid Bill"),
         "myPrePaidBills": MessageLookupByLibrary.simpleMessage("My Prepaid Bills"),
-        "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
-            "Spotify Monthly Subscription"),
+        "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage("Spotify Monthly Subscription"),
         "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
         "nRT": MessageLookupByLibrary.simpleMessage("NRT"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
-        "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
-            "NAME AS PER INCOME TAX RETURN"),
+        "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage("NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("Name"),
         "nationalId":
@@ -1850,14 +1840,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "productSelectorHeader":
             MessageLookupByLibrary.simpleMessage("Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1": MessageLookupByLibrary.simpleMessage("Are you married?"),
-        "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(
-            "Are you a special need person?"),
-        "profileDetailsQ3":
-            MessageLookupByLibrary.simpleMessage("Are you employed?"),
-        "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
-            "Your profile picture has been updated successfully"),
-        "profileSettings":
-            MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
+        "profileDetailsQ2": MessageLookupByLibrary.simpleMessage("Are you a special need person?"),
+        "profileDetailsQ3": MessageLookupByLibrary.simpleMessage("Are you employed?"),
+        "profilePhotoUpdated":
+            MessageLookupByLibrary.simpleMessage("Your profile picture has been updated successfully"),
+        "profileSettings": MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
         "profileStatusNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-5200100."),
         "proofOfAddress":
@@ -2532,8 +2519,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can change the above details in the card settings "),
+            MessageLookupByLibrary.simpleMessage("You can change the above details in the card settings "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
