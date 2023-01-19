@@ -8,6 +8,7 @@ import 'package:data/entity/remote/bill_payment/get_prepaid_biller_list/get_prep
 import 'package:data/entity/remote/bill_payment/pay_post_paid_bill/pay_post_paid_bill_response.dart';
 import 'package:data/entity/remote/bill_payment/pay_prepaid_bill/pay_prepaid_bill_response.dart';
 import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_response.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
@@ -65,7 +66,7 @@ abstract class BillPaymentRemoteDS {
     required RemovePrepaidBillerUseCaseParams params,
   });
 
-  Future<HttpResponse<BaseResponse>> validateBillerOtp({
+  Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp({
     required EnterOtpBillPaymentsUseCaseParams params,
   });
 

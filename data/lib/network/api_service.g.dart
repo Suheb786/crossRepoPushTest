@@ -20,12 +20,11 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
-            method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(
-            _dio.options, 'https://10.6.13.1:2186/api/auth/CheckUserName',
-            queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'https://10.6.13.1:2186/api/auth/CheckUserName',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -57,9 +56,8 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<LoginResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/loginV3',
-                queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(_dio.options, '/auth/loginV3', queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -254,8 +252,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<GetFatcaQuestionsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/FatcaCrs/get',
-                queryParameters: queryParameters, data: _data)
+                .compose(_dio.options, '/FatcaCrs/get', queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetFatcaQuestionsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -2529,17 +2526,18 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<BaseResponse>> validateBillerOtp(validateBillerOtpRequestEntity) async {
+  Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp(validateBillerOtpRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(validateBillerOtpRequestEntity.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/BillPayment/ValidateBillerOtp',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BaseResponse.fromJson(_result.data!);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ValidateBillerOtpResponse>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/BillPayment/ValidateBillerOtp',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ValidateBillerOtpResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

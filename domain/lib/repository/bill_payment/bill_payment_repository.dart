@@ -9,6 +9,7 @@ import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_b
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
+import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_otp.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
@@ -69,7 +70,7 @@ abstract class BillPaymentRepository {
     required RemovePrepaidBillerUseCaseParams params,
   });
 
-  Future<Either<NetworkError, bool>> validateBillerOtp({
+  Future<Either<NetworkError, ValidateBillerOtp>> validateBillerOtp({
     required EnterOtpBillPaymentsUseCaseParams params,
   });
 

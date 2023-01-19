@@ -19,7 +19,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
       children: [
         Text(
           billPaymentsTransactionData?.label != null && billPaymentsTransactionData!.label!.isNotEmpty
-              ? TimeUtils.getFormattedDateForAccountTransaction(billPaymentsTransactionData!.label!)
+              ? TimeUtils.getFormattedDate(billPaymentsTransactionData!.label!)
               : '-',
           //billPaymentsTransactionData!.label!,
           style: TextStyle(

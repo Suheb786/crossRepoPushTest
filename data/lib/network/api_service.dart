@@ -63,6 +63,7 @@ import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid
 import 'package:data/entity/remote/bill_payment/remove_customer_billing/remove_customer_billing_request.dart';
 import 'package:data/entity/remote/bill_payment/remove_prepaid_biller/remove_prepaid_biller_request.dart';
 import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_request.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_request_entity.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
@@ -862,7 +863,7 @@ abstract class ApiService {
   );
 
   @POST("/BillPayment/ValidateBillerOtp")
-  Future<HttpResponse<BaseResponse>> validateBillerOtp(
+  Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp(
       @Body() ValidateBillerOtpRequest validateBillerOtpRequestEntity);
 
   @POST("/BillPayment/RecentPrepaidPostpaidPayments")

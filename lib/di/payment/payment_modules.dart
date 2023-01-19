@@ -290,6 +290,7 @@ final confirmBillPaymentAmountPageViewModelProvider =
     ref.read(getPayPrePaidBillUseCaseProvider),
     ref.read(postPaidBillInquiryUseCaseProvider),
     ref.read(payPostPaidBillUseCaseProvider),
+    ref.read(enterOtpBillPaymentsUseCaseProvider),
   ),
 );
 
