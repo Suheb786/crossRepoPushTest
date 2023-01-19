@@ -8,6 +8,7 @@
             "name": "neobank",
             "request": "launch",
             "type": "dart"
+            
         },
         {
             "name": "neobank (profile mode)",

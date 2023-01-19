@@ -72,7 +72,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                         children: [
                           Text(
                             S.of(context).sending,
-                            style: TextStyle(fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20.0.t),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20.0.t),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6.0.h),
@@ -98,8 +99,9 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                 ], */
                                                 onChanged: (value) {
                                                   if (value != ".") {
-                                                    ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue =
-                                                        model.editAmountController.text;
+                                                    ProviderScope.containerOf(context)
+                                                        .read(sendMoneyViewModelProvider)
+                                                        .currentPinValue = model.editAmountController.text;
                                                     print(
                                                         "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
                                                   }
@@ -121,8 +123,9 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                               ),
                                             )
                                           : Text(
-                                              double.parse(
-                                                      ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue)
+                                              double.parse(ProviderScope.containerOf(context)
+                                                      .read(sendMoneyViewModelProvider)
+                                                      .currentPinValue)
                                                   .toStringAsFixed(3),
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,

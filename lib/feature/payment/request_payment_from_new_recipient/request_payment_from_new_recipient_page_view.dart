@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -91,6 +92,9 @@ class RequestPaymentFromNewRecipientPageView
                                                     fontSize: 28.0.t,
                                                     fontWeight: FontWeight.w700,
                                                   ),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+                                                  ],
                                                   cursorColor: Theme.of(context).accentColor,
                                                   controller: model.editAmountController,
                                                   keyboardType: TextInputType.number,

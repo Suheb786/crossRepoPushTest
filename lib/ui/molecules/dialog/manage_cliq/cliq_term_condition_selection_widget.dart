@@ -66,7 +66,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
               color: AppColor.veryDarkGray2,
               fontFamily: StringUtils.appFont,
               fontSize: 12.t,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
