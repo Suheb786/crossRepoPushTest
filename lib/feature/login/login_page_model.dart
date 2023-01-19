@@ -181,7 +181,7 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _cliqRegisterCustomerResponse = PublishSubject();
   Stream<Resource<bool>> get cliqRegisterCustomerStream => _cliqRegisterCustomerResponse.stream;
 
-  void cliqRegisterCustomer() => _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams);
+  void cliqRegisterCustomer() => _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams());
 
   ///*---------------------- [Register Account] -------------------
 
@@ -189,15 +189,14 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<Resource<bool>> _registerAccountResponse = PublishSubject();
   Stream<Resource<bool>> get registerAccountStream => _registerAccountResponse.stream;
 
-  void registerAccount() => _registerAccountRequest.safeAdd(RegisterAccountUsecaseParams);
-
+  void registerAccount() => _registerAccountRequest.safeAdd(RegisterAccountUsecaseParams());
   ///*---------------------- [Account Upload] -------------------
 
   PublishSubject<AccountUploadUseCaseParams> _accountUploadrequest = PublishSubject();
   PublishSubject<Resource<bool>> _accountUploadResponse = PublishSubject();
   Stream<Resource<bool>> get accountUploadStream => _registerAccountResponse.stream;
 
-  void accountUpload() => _accountUploadrequest.safeAdd(AccountUploadUseCaseParams);
+  void accountUpload() => _accountUploadrequest.safeAdd(AccountUploadUseCaseParams());
 
   LoginViewModel(
     this._loginUseCase,
@@ -353,7 +352,6 @@ class LoginViewModel extends BasePageViewModel {
         RequestManager(value, createCall: () => _registerCustomerUseCase.execute(params: value)).asFlow().listen(
           (event) {
             _cliqRegisterCustomerResponse.safeAdd(event);
-            updateLoader();
           },
         );
       });
@@ -363,7 +361,6 @@ class LoginViewModel extends BasePageViewModel {
         RequestManager(value, createCall: () => _registerAccountUseCase.execute(params: value)).asFlow().listen(
           (event) {
             _registerAccountResponse.safeAdd(event);
-            updateLoader();
           },
         );
       });
@@ -373,7 +370,6 @@ class LoginViewModel extends BasePageViewModel {
         RequestManager(value, createCall: () => _accountUploadUseCase.execute(params: value)).asFlow().listen(
           (event) {
             _accountUploadResponse.safeAdd(event);
-            updateLoader();
           },
         );
       });
@@ -400,8 +396,8 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void validateEmail() {
-    _loginRequest.safeAdd(
-        LoginUseCaseParams(email: emailController.text, password: passwordController.text, languageEnum: _selectedLanguage.value.toString()));
+    _loginRequest.safeAdd(LoginUseCaseParams(
+        email: emailController.text, password: passwordController.text, languageEnum: _selectedLanguage.value.toString()));
   }
 
   void checkKycStatus() {

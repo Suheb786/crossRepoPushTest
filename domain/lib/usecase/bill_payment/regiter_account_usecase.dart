@@ -12,7 +12,7 @@ class RegisterAccountUseCase extends BaseUseCase<NetworkError, RegisterAccountUs
 
   @override
   Future<Either<NetworkError, bool>> execute({required RegisterAccountUsecaseParams params}) {
-    return billPaymentRepository.cliqRegisterCustomer();
+    return billPaymentRepository.cliqRegisterAccount();
   }
 }
 

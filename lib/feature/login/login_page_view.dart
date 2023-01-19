@@ -161,9 +161,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                 });
                               }
                             } else if (data.status == Status.SUCCESS) {
-                              model.cliqRegisterCustomer();
-                              model.registerAccount();
-                              model.accountUpload();
                               model.initInfobipMessagePlugin();
                               model.getCipher();
                             }
@@ -236,6 +233,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.mobileCode = data.data!.mobileCode!;
                                                                     model.applicationId = data.data!.applicationId!;
                                                                     model.saveUserData();
+                                                                    model.cliqRegisterCustomer();
+                                                                    model.accountUpload();
+                                                                    model.registerAccount();
 
                                                                     ///refresh token api
                                                                     // ProviderScope.containerOf(
