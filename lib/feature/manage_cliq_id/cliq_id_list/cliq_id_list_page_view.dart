@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
@@ -18,6 +20,7 @@ import 'package:neo_bank/ui/molecules/manage_cliq/alias_card_list_widget.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/manage_cliq_bottom_sheet_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/manage_cliq/update_cliq_info_bottom_sheet_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
@@ -31,12 +34,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
 
   void _shareFiles(
-    BuildContext context,
-    String s,
+    BuildContext context,{
+    required String s,
+    required String s2,
+  }
+
   ) async {
     // final box = context.findRenderObject() as RenderBox?;
     await Share.share(
-      S.of(context).hereMyCliqDetails + '${s}' + S.of(context).getYourBlinkAccountTodayBlinkNow,
+      S.of(context).hereMyCliqDetails + '${s}' + S.of(context).getYourBlinkAccountTodayBlinkNow + "\n$s2",
+
       subject: S.current.shareAccountInfo,
       // sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size
     );
@@ -321,9 +328,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                           ""));
                                                             }
                                                           }, onShareId: () {
-                                                            _shareFiles(context,
-                                                                "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}");
-                                                          }, onCancelled: () {
+                                                          Platform.isAndroid
+                                                                ? _shareFiles(context,
+                                                                    s:
+                                                                        "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}",
+                                                                    s2: "${AppConstantsUtils.PLAY_STORE_URL} ")
+                                                                : Platform.isIOS
+                                                                    ? _shareFiles(context,
+                                                                        s: "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}",
+                                                                        s2: "${AppConstantsUtils.APP_STORE_URL}")
+                                                                    : "";       }, onCancelled: () {
                                                             Navigator.pop(context);
                                                           }, onDeleteId: () {
                                                             Navigator.pop(context);

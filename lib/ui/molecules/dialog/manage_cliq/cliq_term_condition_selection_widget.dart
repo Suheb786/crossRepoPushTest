@@ -13,12 +13,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
   final bool? isSelected;
 
   const CliqTermConditionSelectionWidget(
-      {Key? key,
-      required this.subDescription,
-      this.markSelected,
-      this.unMarkSelected,
-      required this.isSelected,
-      required})
+      {Key? key, required this.subDescription, this.markSelected, this.unMarkSelected, required this.isSelected, required})
       : super(key: key);
 
   @override

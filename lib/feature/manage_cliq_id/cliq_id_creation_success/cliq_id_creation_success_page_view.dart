@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,6 +8,7 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -60,16 +63,12 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               padding: EdgeInsetsDirectional.only(top: 40.h, end: 24.w, start: 24.w),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      ProviderScope.containerOf(context)
-                                  .read(cliqIdTypeSelectionViewModelProvider)
-                                  .cliqIdTypeController
-                                  .text ==
+                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
                               S.of(context).alias
                           ? S.of(context).alias
                           : S.of(context).mobileNumber,
@@ -80,15 +79,9 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                       ),
                     ),
                     Text(
-                      ProviderScope.containerOf(context)
-                                  .read(cliqIdTypeSelectionViewModelProvider)
-                                  .cliqIdTypeController
-                                  .text ==
+                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
                               S.of(context).alias
-                          ? ProviderScope.containerOf(context)
-                              .read(cliqIdTypeSelectionViewModelProvider)
-                              .aliasController
-                              .text
+                          ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text
                           : ProviderScope.containerOf(context)
                               .read(cliqIdTypeSelectionViewModelProvider)
                               .mobileNumberController
@@ -107,16 +100,23 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               visible: true,
               child: GestureDetector(
                 onTap: () {
-                  model.shareFiles(context,
-                      "${S.of(context).cliqIdType} - ${model.arguments.cliqType} \n${S.of(context).cliqID} -  ${model.arguments.cliqName}");
+                  Platform.isAndroid
+                      ? model.shareFiles(context,
+                          s1:
+                              "${S.of(context).cliqIdType} - ${model.arguments.cliqType} \n${S.of(context).cliqID} -  ${model.arguments.cliqName}",
+                          s2: "${AppConstantsUtils.PLAY_STORE_URL} ")
+                      : Platform.isIOS
+                          ? model.shareFiles(context,
+                              s1: "${S.of(context).cliqIdType} - ${model.arguments.cliqType} \n${S.of(context).cliqID} -  ${model.arguments.cliqName}",
+                              s2: "${AppConstantsUtils.PLAY_STORE_URL} ")
+                          : "";
                 },
                 child: Padding(
                   padding: EdgeInsets.only(top: 23.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppSvg.asset(AssetUtils.share,
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 11.w),
                         child: Text(

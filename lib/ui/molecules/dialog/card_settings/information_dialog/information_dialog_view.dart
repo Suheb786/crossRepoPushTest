@@ -54,8 +54,7 @@ class InformationDialogView extends StatelessWidget {
                         child: Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w700),
                         ),
                       ),
                       SizedBox(height: 24.h),
@@ -72,9 +71,8 @@ class InformationDialogView extends StatelessWidget {
                           padding: EdgeInsets.all(16),
                           height: 57.h,
                           width: 57.w,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                          decoration:
+                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                           child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                         ),
                       ),

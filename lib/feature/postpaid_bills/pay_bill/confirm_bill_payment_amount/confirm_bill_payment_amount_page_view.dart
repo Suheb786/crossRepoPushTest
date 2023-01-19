@@ -57,23 +57,19 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                       model.postPaidBillInquiryData?[0] != null &&
                       model.postPaidBillInquiryData?[0].feesAmt != null &&
                       model.postPaidBillInquiryData![0].feesAmt!.isNotEmpty) {
-                    model.feeAmtController.text =
-                        double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
+                    model.feeAmtController.text = double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
                   } else {
                     model.feeAmtController.text = double.parse('0').toStringAsFixed(3);
                   }
 
-                  model.minRange =
-                      double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
-                  model.maxRange =
-                      double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
+                  model.minRange = double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
+                  model.maxRange = double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
                   model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
 
                   model.amtController.text = model.addAllBillAmt();
                   model.addNewBillDetailsData.amount = model.amtController.text;
 
-                  model.minMaxValidate(
-                      model.isPartial, model.minRange, model.maxRange, model.amtController.text, context);
+                  model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, model.amtController.text, context);
                   model.validate(model.amtController.text);
                 }
               },
@@ -97,10 +93,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           ));
                       var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
                       if (errorBillFail == "err-377") {
-                        model.showToastWithError(AppError(
-                            cause: Exception(),
-                            error: ErrorInfo(message: ''),
-                            type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                        model.showToastWithError(
+                            AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
                       }
                     }
                   },
@@ -114,15 +108,12 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                             AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = true;
                           }
                           Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
-                              arguments:
-                                  PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+                              arguments: PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
 
                           var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
                           if (errorBillFail == "err-377") {
-                            model.showToastWithError(AppError(
-                                cause: Exception(),
-                                error: ErrorInfo(message: ''),
-                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                            model.showToastWithError(
+                                AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
                           }
                         }
                       },
@@ -133,10 +124,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           onData: (value) {
                             if (value.status == Status.SUCCESS) {
                               model.feeAmtController.text = "0.0";
-                              model.feeAmtController.text =
-                                  double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
-                              model.amtController.text =
-                                  double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
+                              model.feeAmtController.text = double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
+                              model.amtController.text = double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
                               model.validate(model.amtController.text);
                               model.otpCode = value.data?.content?.validationCode ?? "";
                               model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
@@ -146,9 +135,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                     model.payPrePaidBill();
                                   } else {
                                     model.showToastWithError(AppError(
-                                        cause: Exception(),
-                                        error: ErrorInfo(message: ''),
-                                        type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                        cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                   }
                                 } else {
                                   model.validate(model.amtController.text);
@@ -164,10 +151,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                 model.addNewBillDetailsData = data;
 
                                 /// prepaid case where there is no denomination and amount is filled from amtcontroller form details screen
-                                if (model.addNewBillDetailsData.amount != null &&
-                                    model.addNewBillDetailsData.amount!.isNotEmpty) {
-                                  model.amtController.text =
-                                      double.parse(model.addNewBillDetailsData.amount!).toStringAsFixed(3);
+                                if (model.addNewBillDetailsData.amount != null && model.addNewBillDetailsData.amount!.isNotEmpty) {
+                                  model.amtController.text = double.parse(model.addNewBillDetailsData.amount!).toStringAsFixed(3);
                                   model.validate(model.amtController.text);
                                 }
                               },
@@ -191,9 +176,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                 FocusScope.of(context).unfocus();
                                                 if (StringUtils.isDirectionRTL(context)) {
                                                   if (details.primaryVelocity!.isNegative) {
-                                                    ProviderScope.containerOf(context)
-                                                        .read(payBillPageViewModelProvider)
-                                                        .previousPage();
+                                                    ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
                                                   } else {
                                                     if (AppConstantsUtils.POST_PAID_FLOW) {
                                                       if (isValid == true) {
@@ -205,9 +188,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                                       }
                                                     } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                      if (model.addNewBillDetailsData
-                                                              .isPrepaidCategoryListEmpty ==
-                                                          false) {
+                                                      if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == false) {
                                                         if (isValid == true) {
                                                           model.payPrePaidBill();
                                                         } else {
@@ -216,9 +197,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                               error: ErrorInfo(message: ''),
                                                               type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                                         }
-                                                      } else if (model.addNewBillDetailsData
-                                                              .isPrepaidCategoryListEmpty ==
-                                                          true) {
+                                                      } else if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
                                                         model.validatePrePaidBill();
                                                       }
                                                     }
@@ -235,9 +214,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                                       }
                                                     } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                      if (model.addNewBillDetailsData
-                                                              .isPrepaidCategoryListEmpty ==
-                                                          false) {
+                                                      if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == false) {
                                                         if (isValid == true) {
                                                           model.payPrePaidBill();
                                                         } else {
@@ -246,16 +223,12 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                               error: ErrorInfo(message: ''),
                                                               type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                                         }
-                                                      } else if (model.addNewBillDetailsData
-                                                              .isPrepaidCategoryListEmpty ==
-                                                          true) {
+                                                      } else if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
                                                         model.validatePrePaidBill();
                                                       }
                                                     }
                                                   } else {
-                                                    ProviderScope.containerOf(context)
-                                                        .read(payBillPageViewModelProvider)
-                                                        .previousPage();
+                                                    ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
                                                   }
                                                 }
                                               }
@@ -298,8 +271,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
     return SingleChildScrollView(
       child: Container(
           // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
+          decoration: BoxDecoration(border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
           child: Column(
             children: [
               _amountTitle(model, context),
@@ -315,8 +287,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               Container(
                 decoration: BoxDecoration(
                     color: AppColor.white_gray,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.w),
                   child: Row(
@@ -355,7 +326,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         AutoSizeTextField(
           wrapWords: false,
           fullwidth: false,
-          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+          ],
           keyboardType: TextInputType.numberWithOptions(
             decimal: true,
           ),
@@ -540,8 +513,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         color: AppColor.vividYellow,
       ),
       child: Image.asset(
-        GetBillPaymentsCategories.path(
-            ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon),
+        GetBillPaymentsCategories.path(ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon),
         matchTextDirection: false,
         width: 24.w,
         height: 24.h,

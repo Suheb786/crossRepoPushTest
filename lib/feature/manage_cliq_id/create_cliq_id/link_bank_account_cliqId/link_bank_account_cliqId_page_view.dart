@@ -60,16 +60,24 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                             accountNumber: model.linkBankAccountCliqIdList.isNotEmpty
                                 ? (model.linkBankAccountCliqIdList.first.accountNumber ?? '')
                                 : "",
-                            isAlias:
-                                ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
-                                    S.of(context).alias,
+                            isAlias: ProviderScope.containerOf(context)
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .cliqIdTypeController
+                                    .text ==
+                                S.of(context).alias,
                             aliasValue: (ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .cliqIdTypeController
                                         .text ==
                                     S.of(context).alias)
-                                ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text
-                                : ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text,
+                                ? ProviderScope.containerOf(context)
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .aliasController
+                                    .text
+                                : ProviderScope.containerOf(context)
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .mobileNumberController
+                                    .text,
                             getToken: true,
                           );
 
@@ -82,7 +90,10 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                             Expanded(
                               child: GestureDetector(
                                 onHorizontalDragEnd: (details) {
-                                  if (ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).appSwiperController.page ==
+                                  if (ProviderScope.containerOf(context)
+                                          .read(createCliqIdViewModelProvider)
+                                          .appSwiperController
+                                          .page ==
                                       1.0) {
                                     FocusScope.of(context).unfocus();
                                     if (StringUtils.isDirectionRTL(context)) {
@@ -168,11 +179,24 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                                           children: [
                                                                             Text(
-                                                                                '${data[index].accountType} ${S.current.account} ${index + 1}'),
+                                                                              '${data[index].accountType} ${S.current.account} ${index + 1}',
+                                                                              style: TextStyle(
+                                                                                  fontFamily: StringUtils.appFont,
+                                                                                  fontSize: 14.t,
+                                                                                  color: AppColor.black,
+                                                                                  fontWeight: FontWeight.w600),
+                                                                            ),
                                                                             Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
-                                                                                Text(data[index].accountNumber ?? ''),
+                                                                                Text(
+                                                                                  data[index].accountNumber ?? '',
+                                                                                  style: TextStyle(
+                                                                                      fontFamily: StringUtils.appFont,
+                                                                                      fontSize: 12.t,
+                                                                                      color: AppColor.black,
+                                                                                      fontWeight: FontWeight.w600),
+                                                                                ),
                                                                                 Icon(
                                                                                   Icons.more_horiz_outlined,
                                                                                   size: 25,
@@ -237,8 +261,12 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                               height: 40.0.w,
                                                                               child: Padding(
                                                                                 padding: EdgeInsetsDirectional.only(
-                                                                                    start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
-                                                                                child: AppSvg.asset(AssetUtils.tick, color: AppColor.black),
+                                                                                    start: 10.w,
+                                                                                    end: 10.w,
+                                                                                    bottom: 10.h,
+                                                                                    top: 10.h),
+                                                                                child: AppSvg.asset(AssetUtils.tick,
+                                                                                    color: AppColor.black),
                                                                               ),
                                                                               decoration: BoxDecoration(
                                                                                 color: AppColor.vividYellow,
@@ -256,7 +284,8 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                               height: 40.0.w,
                                                                               decoration: BoxDecoration(
                                                                                 border: Border.all(color: AppColor.gray1),
-                                                                                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                                                                                borderRadius:
+                                                                                    BorderRadius.all(Radius.circular(100.0)),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -269,7 +298,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                                             style: TextStyle(
                                                                               color: AppColor.veryDarkGray2,
                                                                               fontSize: 12.t,
-                                                                              fontWeight: FontWeight.w600,
+                                                                              fontWeight: FontWeight.w700,
                                                                             ),
                                                                           ),
                                                                         )
