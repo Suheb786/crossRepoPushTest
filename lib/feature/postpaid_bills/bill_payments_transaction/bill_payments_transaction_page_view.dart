@@ -75,7 +75,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 38.0.w),
+                            padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 24.0.w),
                             child: Row(
                               children: [
                                 Expanded(
@@ -173,7 +173,9 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                 return Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
-                                    child: transaction!.data!.billPaymentsTransactionData!.length > 0
+                                    child: transaction != null &&
+                                            transaction.data != null &&
+                                            transaction.data!.billPaymentsTransactionData!.length > 0
                                         ? ListView.builder(
                                             itemBuilder: (context, index) {
                                               return BillPaymentsTransactionWidget(

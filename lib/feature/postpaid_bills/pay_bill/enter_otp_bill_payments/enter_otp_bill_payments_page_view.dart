@@ -228,7 +228,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 16.0.t),
+                      padding: EdgeInsets.only(top: 16.0.t, bottom: 74.0),
                       child: AppStreamBuilder<bool>(
                           stream: model.showButtonStream,
                           initialData: false,

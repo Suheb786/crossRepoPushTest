@@ -1,9 +1,9 @@
+import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_data.dart';
+import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_list.dart';
 import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transactions.dart';
-import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -28,8 +28,6 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
   Resource<BillPaymentsTransactionModel>? searchTransactionResponse;
 
-  List<BillPaymentsTransactionModel> transactionList = [];
-
   List<String> _searchTextList = [];
 
   void updateSearchList(int index) {
@@ -47,15 +45,15 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  BehaviorSubject<List<TransactionItem>> _transactionListSubject = BehaviorSubject();
+  BehaviorSubject<List<BillPaymentsTransactionList>> _transactionListSubject = BehaviorSubject();
 
-  Stream<List<TransactionItem>> get transactionListStream => _transactionListSubject.stream;
+  Stream<List<BillPaymentsTransactionList>> get transactionListStream => _transactionListSubject.stream;
 
   BehaviorSubject<List<String>> _searchTextSubject = BehaviorSubject();
 
   Stream<List<String>> get searchTextStream => _searchTextSubject.stream;
 
-  List<TransactionContent> searchTransactionList = [];
+  List<BillPaymentsTransactionData> searchTransactionList = [];
 
   BillPaymentsTransactionViewModel(this._billPaymentsTransactionUseCase) {
     _getTransactionsRequest.listen((value) {
@@ -76,98 +74,106 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
   }
 
   onSearchTextChanged(String text, [bool? isUpdated = false]) async {
-    // if (text.isNotEmpty) {
-    //   print("here");
-    //   List<TransactionContent> tempList = [];
-    //   BillPaymentsTransactionModel getTransactionsResponse;
-    //   if (searchTransactionList.isEmpty || isUpdated!) {
-    //     transactionsResponse!.data!.billPaymentsTransactionData?.billPaymentsTransactionDataList?.forEach((element) {
-    //       int i;
-    //       List<Transactions> searchList = [];
-    //       TransactionContent searchContent;
-    //       BillPaymentsTransactionModel getTransactionsResponse;
-    //       for (i = 0; i < element.transactions!.length; i++) {
-    //         print("description: ${element.transactions![i].description}");
-    //         if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
-    //             (element.transactions![i].description
-    //                 .toString()
-    //                 .toLowerCase()
-    //                 .contains(text.toLowerCase()))) {
-    //           searchList.add(element.transactions![i]);
-    //           print("element found");
-    //           if (_searchTextList.isEmpty) {
-    //             _searchTextList.add(text);
-    //             _searchTextSubject.safeAdd(_searchTextList);
-    //           } else {
-    //             int flag = 0;
-    //             for (int i = 0; i < _searchTextList.length; i++) {
-    //               if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
-    //                 flag = 1;
-    //                 break;
-    //               }
-    //             }
-    //             if (flag == 0) {
-    //               _searchTextList.add(text);
-    //               _searchTextSubject.safeAdd(_searchTextList);
-    //             }
-    //           }
-    //         }
-    //       }
-    //       if (searchList.isNotEmpty) {
-    //         searchContent = TransactionContent(label: element.label!, transactions: searchList);
-    //         tempList.add(searchContent);
-    //       }
-    //     });
-    //   } else {
-    //     print("here");
-    //     searchTransactionList.forEach((element) {
-    //       int i;
-    //       print("search transaction : $searchTransactionList}");
-    //       List<Transactions> searchList = [];
-    //       TransactionContent searchContent;
-    //       GetTransactionsResponse getTransactionsResponse;
-    //       for (i = 0; i < element.transactions!.length; i++) {
-    //         if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
-    //             (element.transactions![i].description
-    //                 .toString()
-    //                 .toLowerCase()
-    //                 .contains(text.toLowerCase()))) {
-    //           print("got it");
-    //           searchList.add(element.transactions![i]);
-    //           if (_searchTextList.isEmpty) {
-    //             _searchTextList.add(text);
-    //             _searchTextSubject.safeAdd(_searchTextList);
-    //           } else {
-    //             int flag = 0;
-    //             for (int i = 0; i < _searchTextList.length; i++) {
-    //               if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
-    //                 flag = 1;
-    //                 break;
-    //               }
-    //             }
-    //             if (flag == 0) {
-    //               _searchTextList.add(text);
-    //               _searchTextSubject.safeAdd(_searchTextList);
-    //             }
-    //           }
-    //         }
-    //       }
-    //       if (searchList.isNotEmpty) {
-    //         searchContent = TransactionContent(label: element.label!, transactions: searchList);
-    //         tempList.add(searchContent);
-    //       }
-    //     });
-    //   }
-    //   if (tempList.isNotEmpty) {
-    //     getTransactionsResponse = GetTransactionsResponse(transactionResponse: tempList);
-    //     searchTransactionResponse = Resource.success(data: getTransactionsResponse);
-    //     _getTransactionsResponse.safeAdd(searchTransactionResponse);
-    //     searchTransactionList = [];
-    //     searchTransactionList.addAll(tempList);
-    //   } else {
-    //     _getTransactionsResponse.safeAdd(Resource.none<GetTransactionsResponse>());
-    //   }
-    // }
+    if (text.isNotEmpty) {
+      debugPrint("here");
+      List<BillPaymentsTransactionData> tempList = [];
+      BillPaymentsTransactionModel getTransactionsResponse;
+      if (searchTransactionList.isEmpty || isUpdated!) {
+        transactionsResponse!.data!.billPaymentsTransactionData?.forEach((element) {
+          int i;
+          List<BillPaymentsTransactionList> searchList = [];
+          BillPaymentsTransactionData searchContent;
+          BillPaymentsTransactionModel getTransactionsResponse;
+          for (i = 0; i < element.billPaymentsTransactionDataList!.length; i++) {
+            debugPrint("nickname: ${element.billPaymentsTransactionDataList![i].nickname}");
+            if ((element.billPaymentsTransactionDataList![i].amount
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase())) ||
+                (element.billPaymentsTransactionDataList![i].nickname
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase()))) {
+              searchList.add(element.billPaymentsTransactionDataList![i]);
+              debugPrint("element found");
+              if (_searchTextList.isEmpty) {
+                _searchTextList.add(text);
+                _searchTextSubject.safeAdd(_searchTextList);
+              } else {
+                int flag = 0;
+                for (int i = 0; i < _searchTextList.length; i++) {
+                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
+                    flag = 1;
+                    break;
+                  }
+                }
+                if (flag == 0) {
+                  _searchTextList.add(text);
+                  _searchTextSubject.safeAdd(_searchTextList);
+                }
+              }
+            }
+          }
+          if (searchList.isNotEmpty) {
+            searchContent = BillPaymentsTransactionData(
+                label: element.label!, billPaymentsTransactionDataList: searchList);
+            tempList.add(searchContent);
+          }
+        });
+      } else {
+        debugPrint("here");
+        searchTransactionList.forEach((element) {
+          int i;
+          debugPrint("search transaction : $searchTransactionList}");
+          List<BillPaymentsTransactionList> searchList = [];
+          BillPaymentsTransactionData searchContent;
+          BillPaymentsTransactionModel getTransactionsResponse;
+          for (i = 0; i < element.billPaymentsTransactionDataList!.length; i++) {
+            if ((element.billPaymentsTransactionDataList![i].amount
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase())) ||
+                (element.billPaymentsTransactionDataList![i].nickname
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase()))) {
+              debugPrint("got it");
+              searchList.add(element.billPaymentsTransactionDataList![i]);
+              if (_searchTextList.isEmpty) {
+                _searchTextList.add(text);
+                _searchTextSubject.safeAdd(_searchTextList);
+              } else {
+                int flag = 0;
+                for (int i = 0; i < _searchTextList.length; i++) {
+                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
+                    flag = 1;
+                    break;
+                  }
+                }
+                if (flag == 0) {
+                  _searchTextList.add(text);
+                  _searchTextSubject.safeAdd(_searchTextList);
+                }
+              }
+            }
+          }
+          if (searchList.isNotEmpty) {
+            searchContent = BillPaymentsTransactionData(
+                label: element.label!, billPaymentsTransactionDataList: searchList);
+            tempList.add(searchContent);
+          }
+        });
+      }
+      if (tempList.isNotEmpty) {
+        getTransactionsResponse = BillPaymentsTransactionModel(billPaymentsTransactionData: tempList);
+        searchTransactionResponse = Resource.success(data: getTransactionsResponse);
+        _getTransactionsResponse.safeAdd(searchTransactionResponse);
+        searchTransactionList = [];
+        searchTransactionList.addAll(tempList);
+      } else {
+        _getTransactionsResponse.safeAdd(Resource.none<BillPaymentsTransactionModel>());
+      }
+    }
   }
 
   void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
@@ -183,6 +189,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     // getTransactions(pageNo: 1, pageSize: 10);
   }
 
+/*
   int getFilterDays(String value) {
     switch (value) {
       case "Last 30 days":
@@ -201,9 +208,14 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
         return 180;
     }
   }
+*/
 
   @override
   void dispose() {
+    _searchTextSubject.close();
+    _transactionListSubject.close();
+    _getTransactionsResponse.close();
+    _getTransactionsRequest.close();
     _transactionListSubject.close();
     _searchTextSubject.close();
     super.dispose();
