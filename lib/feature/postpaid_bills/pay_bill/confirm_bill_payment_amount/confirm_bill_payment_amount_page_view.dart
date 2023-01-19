@@ -143,7 +143,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               if (AppConstantsUtils.PRE_PAID_FLOW == true) {
                                 if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
                                   if (model.isAmountMoreThanZero == true) {
-                                    model.payPrePaidBill();
+                                    _navigatePrePaid(model, context);
                                   } else {
                                     model.showToastWithError(AppError(
                                         cause: Exception(),
@@ -197,7 +197,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                   } else {
                                                     if (AppConstantsUtils.POST_PAID_FLOW) {
                                                       if (isValid == true) {
-                                                        model.payPostPaidBill();
+                                                        _navigatePostPaid(model, context);
                                                       } else {
                                                         model.showToastWithError(AppError(
                                                             cause: Exception(),
@@ -209,7 +209,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                               .isPrepaidCategoryListEmpty ==
                                                           false) {
                                                         if (isValid == true) {
-                                                          model.payPrePaidBill();
+                                                          _navigatePrePaid(model, context);
                                                         } else {
                                                           model.showToastWithError(AppError(
                                                               cause: Exception(),
@@ -227,7 +227,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                   if (details.primaryVelocity!.isNegative) {
                                                     if (AppConstantsUtils.POST_PAID_FLOW) {
                                                       if (isValid == true) {
-                                                        model.payPostPaidBill();
+                                                        _navigatePostPaid(model, context);
                                                       } else {
                                                         model.showToastWithError(AppError(
                                                             cause: Exception(),
@@ -239,7 +239,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                               .isPrepaidCategoryListEmpty ==
                                                           false) {
                                                         if (isValid == true) {
-                                                          model.payPrePaidBill();
+                                                          _navigatePrePaid(model, context);
                                                         } else {
                                                           model.showToastWithError(AppError(
                                                               cause: Exception(),
@@ -363,6 +363,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           controller: model.amtController,
           textAlign: TextAlign.center,
           onChanged: (value) {
+            if (value.isEmpty) {
+              value = "0";
+            }
             model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, value, context);
             model.validate(value);
           },
@@ -630,5 +633,27 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         ],
       ),
     );
+  }
+
+  void _navigatePostPaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    if (model.checkAmountMoreThanHundred()) {
+      // Future.delayed(Duration(milliseconds: 200)).then((value) {
+      //   Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
+      // });
+      ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
+    } else {
+      model.payPostPaidBill();
+    }
+  }
+
+  void _navigatePrePaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
+    if (model.checkAmountMoreThanHundred()) {
+      // Future.delayed(Duration(milliseconds: 200)).then((value) {
+      //   Navigator.pushNamed(context, RoutePaths.EnterOtpBillPaymentsPage);
+      // });
+      ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
+    } else {
+      model.payPrePaidBill();
+    }
   }
 }

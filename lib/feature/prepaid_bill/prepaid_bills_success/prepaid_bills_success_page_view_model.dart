@@ -1,7 +1,9 @@
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -16,13 +18,6 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
   AddNewPrepaidBillerUseCase addNewPrepaidBillerUseCase;
 
   PrePaidBillsSuccessPageViewModel(this.arguments, this.addNewPrepaidBillerUseCase) {
-    if (AppConstantsUtils.IS_NEW_PAYMENT == true && AppConstantsUtils.NICK_NAME.toString().isNotEmpty) {
-      if (AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL == true) {
-        AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = false;
-        Future.delayed(Duration(milliseconds: 10)).then((value) => addNewPrepaidBiller());
-      }
-    }
-
     _addNewPrepaidBillerListener();
   }
 
@@ -34,7 +29,7 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
 
   PublishSubject<AddNewPrepaidBillerUseCaseParams> _addNewPrepaidBillerRequest = PublishSubject();
 
-  void addNewPrepaidBiller() {
+  void addNewPrepaidBiller(BuildContext context) {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("add_new_pre_paid_biller", {"add_new_pre_paid_biller_call": true});
     _addNewPrepaidBillerRequest.safeAdd(
@@ -47,7 +42,12 @@ class PrePaidBillsSuccessPageViewModel extends BasePageViewModel {
           billerName: AppConstantsUtils.BILLER_NAME,
           billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
           nickname: AppConstantsUtils.NICK_NAME,
-          amount: AppConstantsUtils.ACCOUNT_NUMBER,
+          amount: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == true
+              ? ProviderScope.containerOf(context)
+                  .read(confirmBillPaymentAmountPageViewModelProvider)
+                  .amtController
+                  .text
+              : "",
           billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER_REQUIRED),
     );
   }

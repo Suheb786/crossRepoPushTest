@@ -137,6 +137,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     return totalBillAmt.toStringAsFixed(3);
   }
 
+  ///totalAmountToPay
   totalAmountToPay() {
     if (isPartial == true) {
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(amtController.text)) {
@@ -266,9 +267,9 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   bool isAmountMoreThanZero = false;
 
-  validate(String value) {
+  validate(String? value) {
     isAmountMoreThanZero = false;
-    if (double.parse(value) > 0.0) {
+    if (double.parse(value ?? "0") > 0.0) {
       isAmountMoreThanZero = true; // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
       if (isPartial == true && isAmountInRange == true) {
         // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
@@ -321,5 +322,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         isAmountInRange = true;
       }
     }
+  }
+
+  ///checkAmountMoreThanHundred
+  bool checkAmountMoreThanHundred() {
+    return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
   }
 }

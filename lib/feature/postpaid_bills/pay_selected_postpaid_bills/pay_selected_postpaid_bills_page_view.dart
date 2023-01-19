@@ -24,7 +24,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelectedBillsPostPaidBillsPageViewModel> {
+class PaySelectedBillsPostPaidBillsPageView
+    extends BasePageViewWidget<PaySelectedBillsPostPaidBillsPageViewModel> {
   PaySelectedBillsPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
@@ -34,7 +35,6 @@ class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelect
       initialData: model.postPaidBillInquiryData!,
       onData: (data) {
         model.postPaidBillInquiryData = data;
-
         model.addAllBillAmt(context);
       },
       dataBuilder: (BuildContext context, data) {
@@ -97,23 +97,23 @@ class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelect
                       dataBuilder: (BuildContext context, data) {
                         return RichText(
                             text: TextSpan(children: [
-                              TextSpan(
-                                text: data != null ? data.toStringAsFixed(3) : "0.0",
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 28.0.t),
-                              ),
-                              TextSpan(
-                                text: ' ${S.of(context).JOD}',
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.gray5,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14.0.t),
-                              ),
-                            ]));
+                          TextSpan(
+                            text: data != null ? data.toStringAsFixed(3) : "0.0",
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 28.0.t),
+                          ),
+                          TextSpan(
+                            text: ' ${S.of(context).JOD}',
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.gray5,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14.0.t),
+                          ),
+                        ]));
                       },
                     ),
                     SizedBox(
@@ -123,108 +123,108 @@ class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelect
                       child: Card(
                         child: model.postPaidBillInquiryData == null || model.postPaidBillInquiryData!.isEmpty
                             ? Center(
-                          child: Text(
-                            S.of(context).noDataFound,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Theme.of(context).primaryColorDark),
-                          ),
-                        )
-                            : FadingEdgeScrollView.fromSingleChildScrollView(
-                          child: SingleChildScrollView(
-                            controller: model.payingBillController,
-                            child: Column(
-                              children: [
-                                ListView.separated(
-                                    padding: EdgeInsets.zero,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) {
-                                      model.arguments.noOfSelectedBills[index].dueAmount =
-                                          model.arguments.postPaidBillInquiryData?[index].dueAmount;
-                                      return SelectedBillsToPaidWidget(
-                                        minMaxValidationMessage: model
-                                            .postPaidBillInquiryData?[index].minMaxValidationMessage,
-                                        minRange: double.parse(
-                                            model.postPaidBillInquiryData?[index].minValue ?? "0")
-                                            .toStringAsFixed(3),
-                                        maxRange: double.parse(
-                                            model.postPaidBillInquiryData?[index].maxValue ?? "0")
-                                            .toStringAsFixed(3),
-                                        allowPartialPay:
-                                        model.postPaidBillInquiryData?[index].isPartial ?? false,
-                                        billName: model.getValidBillerNickName(
-                                          model.arguments.postPaidBillInquiryData?[index].billingNo,
-                                          model.arguments.postPaidBillInquiryData?[index].serviceType,
-                                        ),
-                                        billType: model.getValidBillerNameEN(
-                                            model.arguments.postPaidBillInquiryData?[index].billingNo,
-                                            model.arguments.postPaidBillInquiryData?[index].serviceType,
-                                            context),
-                                        itemCount: (index + 1).toString(),
-                                        onFocusChanged: (hasChanged) {
-                                          if (!hasChanged) {
-                                            model.postpaidInquiryDataListener(
-                                                list: model.postPaidBillInquiryData!);
-                                          }
-                                        },
-                                        onChanged: (value) {
-                                          model.newAmtEnter(
-                                            index,
-                                            value,
-                                            model.postPaidBillInquiryData?[index].isPartial ?? false,
-                                            double.parse(
-                                                model.postPaidBillInquiryData?[index].minValue ??
-                                                    "0")
-                                                .toStringAsFixed(3),
-                                            double.parse(
-                                                model.postPaidBillInquiryData?[index].maxValue ??
-                                                    "0")
-                                                .toStringAsFixed(3),
-                                            context,
-                                          );
-                                        },
-                                        billAmtDue: model.getValidBillerDueAmount(
-                                          model.arguments.postPaidBillInquiryData?[index].billingNo,
-                                          model.arguments.postPaidBillInquiryData?[index].serviceType,
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder: (context, index) {
-                                      return AppDivider();
-                                    },
-                                    itemCount: model.arguments.postPaidBillInquiryData!.length),
-                                Padding(
-                                  padding:
-                                  EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
-                                  child: Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      S.of(context).selectAccount,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.veryDarkGray2,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14.0.t),
-                                    ),
-                                  ),
+                                child: Text(
+                                  S.of(context).noDataFound,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).primaryColorDark),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
-                                  child: AppTextField(
-                                    labelText: S.of(context).payFrom.toUpperCase(),
-                                    hintText: S.of(context).pleaseSelect,
-                                    controller: model.savingAccountController,
-                                    readOnly: true,
-                                    onPressed: () {
-                                      AccountsDialog.show(context, label: S.of(context).selectAccount,
-                                          onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            model.savingAccountController.text = value;
-                                            Navigator.pop(context);
+                              )
+                            : FadingEdgeScrollView.fromSingleChildScrollView(
+                                child: SingleChildScrollView(
+                                  controller: model.payingBillController,
+                                  child: Column(
+                                    children: [
+                                      ListView.separated(
+                                          padding: EdgeInsets.zero,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            model.arguments.noOfSelectedBills[index].dueAmount =
+                                                model.arguments.postPaidBillInquiryData?[index].dueAmount;
+                                            return SelectedBillsToPaidWidget(
+                                              minMaxValidationMessage: model
+                                                  .postPaidBillInquiryData?[index].minMaxValidationMessage,
+                                              minRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].minValue ?? "0")
+                                                  .toStringAsFixed(3),
+                                              maxRange: double.parse(
+                                                      model.postPaidBillInquiryData?[index].maxValue ?? "0")
+                                                  .toStringAsFixed(3),
+                                              allowPartialPay:
+                                                  model.postPaidBillInquiryData?[index].isPartial ?? false,
+                                              billName: model.getValidBillerNickName(
+                                                model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                              ),
+                                              billType: model.getValidBillerNameEN(
+                                                  model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                  model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                                  context),
+                                              itemCount: (index + 1).toString(),
+                                              onFocusChanged: (hasChanged) {
+                                                if (!hasChanged) {
+                                                  model.postpaidInquiryDataListener(
+                                                      list: model.postPaidBillInquiryData!);
+                                                }
+                                              },
+                                              onChanged: (value) {
+                                                model.newAmtEnter(
+                                                  index,
+                                                  value,
+                                                  model.postPaidBillInquiryData?[index].isPartial ?? false,
+                                                  double.parse(
+                                                          model.postPaidBillInquiryData?[index].minValue ??
+                                                              "0")
+                                                      .toStringAsFixed(3),
+                                                  double.parse(
+                                                          model.postPaidBillInquiryData?[index].maxValue ??
+                                                              "0")
+                                                      .toStringAsFixed(3),
+                                                  context,
+                                                );
+                                              },
+                                              billAmtDue: model.getValidBillerDueAmount(
+                                                model.arguments.postPaidBillInquiryData?[index].billingNo,
+                                                model.arguments.postPaidBillInquiryData?[index].serviceType,
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return AppDivider();
+                                          },
+                                          itemCount: model.arguments.postPaidBillInquiryData!.length),
+                                      Padding(
+                                        padding:
+                                            EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
+                                        child: Align(
+                                          alignment: AlignmentDirectional.topStart,
+                                          child: Text(
+                                            S.of(context).selectAccount,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.veryDarkGray2,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.0.t),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.only(start: 24.0.w, end: 24.0.w),
+                                        child: AppTextField(
+                                          labelText: S.of(context).payFrom.toUpperCase(),
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller: model.savingAccountController,
+                                          readOnly: true,
+                                          onPressed: () {
+                                            AccountsDialog.show(context, label: S.of(context).selectAccount,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              model.savingAccountController.text = value;
+                                              Navigator.pop(context);
                                               model.validate();
                                             }, accountsList: [
                                               ProviderScope.containerOf(context)
@@ -244,63 +244,63 @@ class PaySelectedBillsPostPaidBillsPageView extends BasePageViewWidget<PaySelect
                                           //           color: AppColor.dark_gray_1));
                                           // },
                                         ),
-                                ),
-                                SizedBox(
-                                  height: 40.h,
-                                ),
-                                AppStreamBuilder<double>(
-                                  initialData: model.arguments.amt,
-                                  stream: model.totalBillAmtDueStream,
-                                  dataBuilder: (BuildContext context, data) {
-                                    return GestureDetector(
-                                      onHorizontalDragEnd: (details) {
-                                        if (StringUtils.isDirectionRTL(context)) {
-                                          if (!details.primaryVelocity!.isNegative) {
-                                            model.payPostPaidBill(context);
-                                          }
-                                        } else {
-                                          if (details.primaryVelocity!.isNegative) {
-                                            model.payPostPaidBill(context);
-                                          }
-                                        }
-                                      },
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.showButtonStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return Visibility(
-                                              visible: isValid!,
-                                              child: AnimatedButton(
-                                                buttonText: S.of(context).swipeToProceed,
-                                              ),
-                                            );
-                                          }),
-                                    );
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 24.h,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    S.of(context).backToPayments,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: AppColor.brightBlue,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14.0.t),
+                                      ),
+                                      SizedBox(
+                                        height: 40.h,
+                                      ),
+                                      AppStreamBuilder<double>(
+                                        initialData: model.arguments.amt,
+                                        stream: model.totalBillAmtDueStream,
+                                        dataBuilder: (BuildContext context, data) {
+                                          return GestureDetector(
+                                            onHorizontalDragEnd: (details) {
+                                              if (StringUtils.isDirectionRTL(context)) {
+                                                if (!details.primaryVelocity!.isNegative) {
+                                                  model.payPostPaidBill(context);
+                                                }
+                                              } else {
+                                                if (details.primaryVelocity!.isNegative) {
+                                                  model.payPostPaidBill(context);
+                                                }
+                                              }
+                                            },
+                                            child: AppStreamBuilder<bool>(
+                                                stream: model.showButtonStream,
+                                                initialData: false,
+                                                dataBuilder: (context, isValid) {
+                                                  return Visibility(
+                                                    visible: isValid!,
+                                                    child: AnimatedButton(
+                                                      buttonText: S.of(context).swipeToProceed,
+                                                    ),
+                                                  );
+                                                }),
+                                          );
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 24.h,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          S.of(context).backToPayments,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.brightBlue,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.0.t),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 32.h,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 32.h,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                              ),
                       ),
                     )
                   ],
