@@ -5,6 +5,7 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/paid_bill_conent.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
+import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -85,15 +86,23 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                 stream: model.errorDetectorStream,
                 initialData: false,
                 dataBuilder: (context, isError) {
-                  return AppStreamBuilder<Resource<bool>>(
+                  return AppStreamBuilder<Resource<ValidateBillerOtp>>(
                     stream: model.enterOtpBillPaymentsResponseStream,
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
-                          model.payPrePaidBill(context);
-                        } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
-                          model.payPostPaidBill(context);
+                        if (data.data?.content?.isOtpRequired == true &&
+                            data.data?.content?.isOtpSend == true) {
+                          if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+                            model.payPrePaidBill(context);
+                          } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+                            model.payPostPaidBill(context);
+                          }
+                        } else if (data.data?.content?.isOtpSend == false) {
+                          model.showToastWithError(AppError(
+                              cause: Exception(),
+                              error: ErrorInfo(message: ''),
+                              type: ErrorType.SENDING_DEVICE_OTP_ERROR));
                         }
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
@@ -126,7 +135,23 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                                               cause: Exception());
                                           return;
                                         } else {
-                                          model.enterOtpBillPayments(context);
+                                          if (AppConstantsUtils.BILLER_TYPE ==
+                                              AppConstantsUtils.PREPAID_KEY) {
+                                            model.payPrePaidBill(context);
+                                          } else if (AppConstantsUtils.BILLER_TYPE ==
+                                              AppConstantsUtils.POSTPAID_KEY) {
+                                            model.payPostPaidBill(context);
+                                          }
+                                          // if(ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).isOtpSend == true &&
+                                          //     ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).isOtpRequired == true){
+                                          //   if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+                                          //     model.payPrePaidBill(context);
+                                          //   } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+                                          //     model.payPostPaidBill(context);
+                                          //   }
+                                          // }else{
+                                          //   model.enterOtpBillPayments(context);
+                                          // }
                                         }
                                       } else {
                                         ProviderScope.containerOf(context)
@@ -142,7 +167,23 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                                               cause: Exception());
                                           return;
                                         } else {
-                                          model.enterOtpBillPayments(context);
+                                          if (AppConstantsUtils.BILLER_TYPE ==
+                                              AppConstantsUtils.PREPAID_KEY) {
+                                            model.payPrePaidBill(context);
+                                          } else if (AppConstantsUtils.BILLER_TYPE ==
+                                              AppConstantsUtils.POSTPAID_KEY) {
+                                            model.payPostPaidBill(context);
+                                          }
+                                          // if(ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).isOtpSend == true &&
+                                          //     ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider).isOtpRequired == true){
+                                          //   if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+                                          //     model.payPrePaidBill(context);
+                                          //   } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+                                          //     model.payPostPaidBill(context);
+                                          //   }
+                                          // }else{
+                                          //   model.enterOtpBillPayments(context);
+                                          // }
                                         }
                                       } else {
                                         ProviderScope.containerOf(context)
@@ -208,7 +249,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                         return currentTimeRemaining == null
                             ? TextButton(
                                 onPressed: () {
-                                  model.updateTime();
+                                  model.updateTime(context);
                                 },
                                 child: Text(
                                   S.of(context).resendCode,

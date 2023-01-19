@@ -4,7 +4,9 @@ import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
+import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_otp.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
@@ -25,6 +27,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   final PayPrePaidUseCase payPrePaidUseCase;
   final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
   final PayPostPaidBillUseCase payPostPaidBillUseCase;
+  final EnterOtpBillPaymentsUseCase _enterOtpBillPaymentsUseCase;
+
   bool isPartial = false;
   String? minRange = "0";
   String? maxRange = "0";
@@ -32,12 +36,16 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
+  bool? isOtpRequired = false;
+  bool? isOtpSend = false;
+
   ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase, this.payPrePaidUseCase,
-      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase) {
+      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this._enterOtpBillPaymentsUseCase) {
     validatePrePaidBillListener();
     payPrePaidBillListener();
     postPaidBillInquiryListener();
     payPostPaidBillListener();
+    enterOtpBillPaymentsListener();
   }
 
   TextEditingController amtController = TextEditingController(text: "0.0");
@@ -263,6 +271,50 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         });
       },
     );
+  }
+
+  /// ----------------validate Otp Bill Payments Request-------------------------------- ///
+
+  PublishSubject<EnterOtpBillPaymentsUseCaseParams> _enterOtpBillPaymentsRequest = PublishSubject();
+
+  PublishSubject<Resource<ValidateBillerOtp>> _enterOtpBillPaymentsResponse = PublishSubject();
+
+  Stream<Resource<ValidateBillerOtp>> get enterOtpBillPaymentsResponseStream =>
+      _enterOtpBillPaymentsResponse.stream;
+
+  void enterOtpBillPaymentsListener() {
+    _enterOtpBillPaymentsRequest.listen((value) {
+      RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _enterOtpBillPaymentsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+  }
+
+  void enterOtpBillPayments(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("validate_otp", {"validate_otp_clicked": true});
+    var billerType = AppConstantsUtils.BILLER_TYPE;
+    var amount = "0.000";
+    var currencyCode = "JOD";
+    var accountNo = AppConstantsUtils.ACCOUNT_NUMBER;
+    var isNewBiller = true;
+    if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+      amount = amtController.text;
+    } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+      amount = totalAmountToPay();
+    }
+    _enterOtpBillPaymentsRequest.safeAdd(EnterOtpBillPaymentsUseCaseParams(
+        billerType: billerType,
+        amount: amount,
+        currencyCode: currencyCode,
+        accountNo: accountNo,
+        isNewBiller: isNewBiller));
   }
 
   bool isAmountMoreThanZero = false;
