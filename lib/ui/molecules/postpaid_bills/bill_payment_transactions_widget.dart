@@ -1,4 +1,5 @@
 import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_data.dart';
+import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_list.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -17,8 +18,8 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          billPaymentsTransactionData!.label!.isNotEmpty
-              ? TimeUtils.getFormattedDate(billPaymentsTransactionData!.label!)
+          billPaymentsTransactionData?.label != null && billPaymentsTransactionData!.label!.isNotEmpty
+              ? TimeUtils.getFormattedDateForAccountTransaction(billPaymentsTransactionData!.label!)
               : '-',
           //billPaymentsTransactionData!.label!,
           style: TextStyle(
@@ -34,7 +35,8 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              var item = billPaymentsTransactionData!.billPaymentsTransactionDataList![index];
+              var item = billPaymentsTransactionData?.billPaymentsTransactionDataList?[index] ??
+                  BillPaymentsTransactionList();
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +46,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.nickname!,
+                          item.nickname ?? "",
                           maxLines: 10,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
@@ -55,7 +57,9 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
-                            TimeUtils.getFormattedTimeForTransaction(item.paymentDate!.toString()),
+                            item.paymentDate != null && item.paymentDate!.isNotEmpty
+                                ? TimeUtils.getFormattedTimeForTransaction(item.paymentDate!.toString())
+                                : "",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
@@ -77,10 +81,10 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            double.parse(item.amount ?? "0").toStringAsFixed(3),
+                            "- ${double.parse(item.amount ?? "0").toStringAsFixed(3)}",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.darkModerateLimeGreen,
+                                color: AppColor.dark_brown,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14.0.t),
                           ),
@@ -111,7 +115,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
               );
             },
             shrinkWrap: true,
-            itemCount: billPaymentsTransactionData!.billPaymentsTransactionDataList!.length,
+            itemCount: billPaymentsTransactionData?.billPaymentsTransactionDataList?.length ?? 0,
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0.h),

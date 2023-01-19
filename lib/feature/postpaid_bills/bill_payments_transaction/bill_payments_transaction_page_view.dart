@@ -84,7 +84,12 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onFieldSubmitted: (text) => model.onSearchTextChanged(text),
+                                    onFieldSubmitted: (text) {
+                                      if (text.trim().isNotEmpty) {
+                                        if ((!model.searchTextList.contains(text.trim().toLowerCase())))
+                                          model.onSearchTransaction(searchText: text.trim());
+                                      }
+                                    },
                                     suffixIcon: (value, data) {
                                       return Padding(
                                           padding: EdgeInsetsDirectional.only(start: 19.0.w),
@@ -176,16 +181,21 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                     child: transaction != null &&
                                             transaction.data != null &&
                                             transaction.data!.billPaymentsTransactionData!.length > 0
-                                        ? ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              return BillPaymentsTransactionWidget(
-                                                billPaymentsTransactionData:
-                                                    transaction.data!.billPaymentsTransactionData![index],
-                                              );
-                                            },
-                                            shrinkWrap: true,
-                                            itemCount: transaction.data!.billPaymentsTransactionData!.length,
+                                        ? SingleChildScrollView(
+                                            controller: model.scrollController,
                                             physics: AlwaysScrollableScrollPhysics(),
+                                            child: ListView.builder(
+                                              itemBuilder: (context, index) {
+                                                return BillPaymentsTransactionWidget(
+                                                  billPaymentsTransactionData:
+                                                      transaction.data!.billPaymentsTransactionData![index],
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              itemCount:
+                                                  transaction.data!.billPaymentsTransactionData!.length,
+                                              physics: NeverScrollableScrollPhysics(),
+                                            ),
                                           )
                                         : Center(
                                             child: Text(S.of(context).noTransactionToDisplay),

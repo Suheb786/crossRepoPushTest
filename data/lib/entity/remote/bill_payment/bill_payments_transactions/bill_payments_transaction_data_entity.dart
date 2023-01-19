@@ -31,6 +31,7 @@ class BillPaymentsTransactionDataEntity
   @override
   BillPaymentsTransactionData transform() {
     return BillPaymentsTransactionData(
+        label: this.label?.toString(),
         billPaymentsTransactionDataList:
             this.billPaymentsTransactionList?.map((e) => e.transform()).toList());
   }

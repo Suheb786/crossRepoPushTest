@@ -14,12 +14,18 @@ import 'package:rxdart/rxdart.dart';
 class BillPaymentsTransactionViewModel extends BasePageViewModel {
   BillPaymentsTransactionUseCase _billPaymentsTransactionUseCase;
   TextEditingController searchController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+  bool hasMoreData = true;
+  int pageNo = 1;
+  int pageSize = 10;
 
   ///get transaction request
-  PublishSubject<BillPaymentsTransactionUseCaseParams> _getTransactionsRequest = PublishSubject();
+  BehaviorSubject<BillPaymentsTransactionUseCaseParams> _getTransactionsRequest = BehaviorSubject();
 
   ///get transaction response
-  PublishSubject<Resource<BillPaymentsTransactionModel>> _getTransactionsResponse = PublishSubject();
+  BehaviorSubject<Resource<BillPaymentsTransactionModel>> _getTransactionsResponse = BehaviorSubject();
+
+  List<BillPaymentsTransactionData>? allDataList = [];
 
   ///get transaction response stream
   Stream<Resource<BillPaymentsTransactionModel>> get getTransactionsStream => _getTransactionsResponse.stream;
@@ -28,20 +34,18 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
   Resource<BillPaymentsTransactionModel>? searchTransactionResponse;
 
-  List<String> _searchTextList = [];
+  List<String> searchTextList = [];
 
   void updateSearchList(int index) {
-    _searchTextList.removeAt(index);
-    if (_searchTextList.isEmpty) {
-      _searchTextList.clear();
-      _searchTextSubject.add(_searchTextList);
+    searchTextList.removeAt(index);
+    if (searchTextList.isEmpty) {
+      searchTextList.clear();
+      _searchTextSubject.add(searchTextList);
       searchController.clear();
+      searchTransactionResponse = transactionsResponse;
       _getTransactionsResponse.safeAdd(transactionsResponse);
     } else {
-      _searchTextSubject.add(_searchTextList);
-      _searchTextList.forEach((element) {
-        onSearchTextChanged(element, true);
-      });
+      onSearchTransaction();
     }
   }
 
@@ -56,127 +60,123 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
   List<BillPaymentsTransactionData> searchTransactionList = [];
 
   BillPaymentsTransactionViewModel(this._billPaymentsTransactionUseCase) {
+    ///getTransactionListener api call
+    getTransactionListener();
+
+    ///getTransactions api call
+    if (pageNo == 1) getTransactions(pageNo: pageNo, pageSize: pageSize);
+
+    ///searchController api call
+    if (searchController.text.isEmpty || searchTextList == null || searchTextList.isEmpty) {
+      debugPrint("getMoreScrollListener");
+      getMoreScrollListener();
+    }
+  }
+
+  onSearchTransaction({String? searchText}) {
+    searchController.clear();
+    List<BillPaymentsTransactionData> tempTransactionList = [];
+    List<String> tempSearchTextList = searchTextList;
+    if (searchText != null && searchText.isNotEmpty) {
+      tempSearchTextList.add(searchText.toLowerCase());
+      tempTransactionList = searchTransactionResponse?.data?.billPaymentsTransactionData ?? [];
+    } else {
+      tempTransactionList = transactionsResponse?.data?.billPaymentsTransactionData ?? [];
+    }
+
+    List<BillPaymentsTransactionData> filteredTransactionList = tempTransactionList;
+
+    tempSearchTextList.forEach((tag) {
+      List<BillPaymentsTransactionData> tempList = [];
+
+      filteredTransactionList.forEach((element) {
+        List<BillPaymentsTransactionList>? nestedFilteredTransaction =
+            element.billPaymentsTransactionDataList?.where((transaction) {
+          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) ||
+              ((transaction.nickname ?? '').toLowerCase().contains(tag.toLowerCase())));
+        }).toList();
+        if ((nestedFilteredTransaction ?? []).isNotEmpty) {
+          BillPaymentsTransactionData content = BillPaymentsTransactionData(
+              label: element.label, billPaymentsTransactionDataList: nestedFilteredTransaction);
+
+          tempList.add(content);
+        }
+      });
+      filteredTransactionList = tempList;
+    });
+
+    searchTextList = tempSearchTextList;
+    _searchTextSubject.add(searchTextList);
+    searchTransactionResponse = Resource.success(
+        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList));
+    _getTransactionsResponse.add(Resource.success(
+        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList)));
+  }
+
+  void getMoreScrollListener() {
+    scrollController.addListener(() {
+      // Don't call the API again
+      if (hasMoreData == false) return;
+
+      // If is scrolled till the end
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        // Increment the Page no. for more data
+        pageNo++;
+
+        // Call the API for getting more data with
+        // incremented Page no.
+        if (pageNo > 1 && searchController.text.isEmpty ||
+            pageNo > 1 && searchTextList == null ||
+            pageNo > 1 && searchTextList.isEmpty) {
+          getTransactions(pageNo: pageNo, pageSize: pageSize);
+        }
+      }
+    });
+  }
+
+  getTransactionListener() {
     _getTransactionsRequest.listen((value) {
       RequestManager(value, createCall: () => _billPaymentsTransactionUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _getTransactionsResponse.safeAdd(event);
-        transactionsResponse = event;
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          hasMoreData = false;
+          _getTransactionsResponse.safeAdd(
+              Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList)));
+          transactionsResponse =
+              Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
+        } else if (event.status == Status.SUCCESS) {
+          bool isContentNull = event.data?.billPaymentsTransactionData == null;
+
+          if (isContentNull) {
+            // Don't call the API again
+            hasMoreData = false;
+            // return;
+          }
+
+          var list = event.data?.billPaymentsTransactionData;
+          bool isListEmpty = list == null || list.isEmpty || list.length < pageSize;
+          if (isListEmpty) {
+            // Don't call the API again
+            hasMoreData = false;
+            // return;
+          }
+          allDataList?.addAll(list!);
+          allDataList = allDataList?.toSet().toList();
+          _getTransactionsResponse.safeAdd(
+              Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList)));
+          transactionsResponse =
+              Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
         }
       });
     });
-
-    getTransactions(pageNo: 1, pageSize: 10);
-  }
-
-  onSearchTextChanged(String text, [bool? isUpdated = false]) async {
-    if (text.isNotEmpty) {
-      debugPrint("here");
-      List<BillPaymentsTransactionData> tempList = [];
-      BillPaymentsTransactionModel getTransactionsResponse;
-      if (searchTransactionList.isEmpty || isUpdated!) {
-        transactionsResponse!.data!.billPaymentsTransactionData?.forEach((element) {
-          int i;
-          List<BillPaymentsTransactionList> searchList = [];
-          BillPaymentsTransactionData searchContent;
-          BillPaymentsTransactionModel getTransactionsResponse;
-          for (i = 0; i < element.billPaymentsTransactionDataList!.length; i++) {
-            debugPrint("nickname: ${element.billPaymentsTransactionDataList![i].nickname}");
-            if ((element.billPaymentsTransactionDataList![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
-                (element.billPaymentsTransactionDataList![i].nickname
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase()))) {
-              searchList.add(element.billPaymentsTransactionDataList![i]);
-              debugPrint("element found");
-              if (_searchTextList.isEmpty) {
-                _searchTextList.add(text);
-                _searchTextSubject.safeAdd(_searchTextList);
-              } else {
-                int flag = 0;
-                for (int i = 0; i < _searchTextList.length; i++) {
-                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
-                    flag = 1;
-                    break;
-                  }
-                }
-                if (flag == 0) {
-                  _searchTextList.add(text);
-                  _searchTextSubject.safeAdd(_searchTextList);
-                }
-              }
-            }
-          }
-          if (searchList.isNotEmpty) {
-            searchContent = BillPaymentsTransactionData(
-                label: element.label!, billPaymentsTransactionDataList: searchList);
-            tempList.add(searchContent);
-          }
-        });
-      } else {
-        debugPrint("here");
-        searchTransactionList.forEach((element) {
-          int i;
-          debugPrint("search transaction : $searchTransactionList}");
-          List<BillPaymentsTransactionList> searchList = [];
-          BillPaymentsTransactionData searchContent;
-          BillPaymentsTransactionModel getTransactionsResponse;
-          for (i = 0; i < element.billPaymentsTransactionDataList!.length; i++) {
-            if ((element.billPaymentsTransactionDataList![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
-                (element.billPaymentsTransactionDataList![i].nickname
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase()))) {
-              debugPrint("got it");
-              searchList.add(element.billPaymentsTransactionDataList![i]);
-              if (_searchTextList.isEmpty) {
-                _searchTextList.add(text);
-                _searchTextSubject.safeAdd(_searchTextList);
-              } else {
-                int flag = 0;
-                for (int i = 0; i < _searchTextList.length; i++) {
-                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
-                    flag = 1;
-                    break;
-                  }
-                }
-                if (flag == 0) {
-                  _searchTextList.add(text);
-                  _searchTextSubject.safeAdd(_searchTextList);
-                }
-              }
-            }
-          }
-          if (searchList.isNotEmpty) {
-            searchContent = BillPaymentsTransactionData(
-                label: element.label!, billPaymentsTransactionDataList: searchList);
-            tempList.add(searchContent);
-          }
-        });
-      }
-      if (tempList.isNotEmpty) {
-        getTransactionsResponse = BillPaymentsTransactionModel(billPaymentsTransactionData: tempList);
-        searchTransactionResponse = Resource.success(data: getTransactionsResponse);
-        _getTransactionsResponse.safeAdd(searchTransactionResponse);
-        searchTransactionList = [];
-        searchTransactionList.addAll(tempList);
-      } else {
-        _getTransactionsResponse.safeAdd(Resource.none<BillPaymentsTransactionModel>());
-      }
-    }
   }
 
   void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
+    debugPrint("getTransactions");
     _getTransactionsRequest.safeAdd(BillPaymentsTransactionUseCaseParams(
         pageNo: pageNo,
         pageSize: pageSize,
@@ -185,35 +185,8 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
             : AppConstantsUtils.PREPAID_KEY.toLowerCase()));
   }
 
-  void getFilteredData(String value) {
-    // getTransactions(pageNo: 1, pageSize: 10);
-  }
-
-/*
-  int getFilterDays(String value) {
-    switch (value) {
-      case "Last 30 days":
-        return 30;
-      case "Last 3 months":
-        return 90;
-      case "Last 6 months":
-        return 180;
-      case "آخر 30 يوم":
-        return 30;
-      case "آخر 3 اشهر":
-        return 90;
-      case "آخر 6 اشهر":
-        return 180;
-      default:
-        return 180;
-    }
-  }
-*/
-
   @override
   void dispose() {
-    _searchTextSubject.close();
-    _transactionListSubject.close();
     _getTransactionsResponse.close();
     _getTransactionsRequest.close();
     _transactionListSubject.close();
