@@ -212,7 +212,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
         "billerName": MessageLookupByLibrary.simpleMessage("اسم المفوتر"),
         "billsAndPayments": MessageLookupByLibrary.simpleMessage("الفواتير و الدفع"),
-        "billsHistory": MessageLookupByLibrary.simpleMessage("Bills History"),
+        "billsHistory": MessageLookupByLibrary.simpleMessage("الفواتير السجل"),
         "biometricLogin": MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل الدخول بالبصمة بنجاح"),
         "biometricLoginDeactivated":
