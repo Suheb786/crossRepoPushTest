@@ -124,7 +124,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              S.of(context).billName,
+                              S.of(context).billerName,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.black,

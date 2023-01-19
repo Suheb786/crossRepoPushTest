@@ -122,8 +122,8 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
       filteredTransactionList.forEach((element) {
         List<Transactions>? nestedFilteredTransaction = element.transactions?.where((transaction) {
-          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag)) ||
-              ((transaction.description ?? '').toLowerCase().contains(tag)));
+          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) ||
+              ((transaction.description ?? '').toLowerCase().contains(tag.toLowerCase())));
         }).toList();
         if ((nestedFilteredTransaction ?? []).isNotEmpty) {
           TransactionContent content =
@@ -173,6 +173,8 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _getTransactionsRequest.close();
+    _getTransactionsResponse.close();
     _transactionListSubject.close();
     _searchTextSubject.close();
     super.dispose();

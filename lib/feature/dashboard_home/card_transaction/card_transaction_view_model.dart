@@ -122,8 +122,8 @@ class CardTransactionViewModel extends BasePageViewModel {
 
       filteredTransactionList.forEach((element) {
         List<Transactions>? nestedFilteredTransaction = element.transactions?.where((transaction) {
-          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag)) ||
-              ((transaction.memo ?? '').toLowerCase().contains(tag)));
+          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) ||
+              ((transaction.memo ?? '').toLowerCase().contains(tag.toLowerCase())));
         }).toList();
         if ((nestedFilteredTransaction ?? []).isNotEmpty) {
           TransactionContent content =

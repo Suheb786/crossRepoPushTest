@@ -66,7 +66,9 @@ class EncryptDecryptHelper {
 
       /// encrypted key
       debugPrint("Request to encrypt " + jsonEncode(request));
+      debugPrint('data1 ==>');
       debugPrint('Encrypted key ' + dataPair.item1.toString());
+      debugPrint('data ==>');
       debugPrint('Encrypted request ' + dataPair.item2.toString());
     } catch (e) {
       //print("Error in encryptRequest " + e.toString());

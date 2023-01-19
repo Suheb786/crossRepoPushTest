@@ -169,6 +169,9 @@ PODS:
   - flutter_inappwebview/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 5.0)
+  - flutter_jailbreak_detection (1.0.0):
+    - DTTJailbreakDetection
+    - Flutter
   - flutter_secure_storage (3.3.1):
     - Flutter
   - flutter_sim_country_code (0.0.1):
@@ -282,9 +285,6 @@ PODS:
     - MTBBarcodeScanner
   - r_get_ip (0.0.1):
     - Flutter
-  - safe_device (1.0.0):
-    - DTTJailbreakDetection
-    - Flutter
   - SDWebImage (5.12.3):
     - SDWebImage/Core (= 5.12.3)
   - SDWebImage/Core (5.12.3)
@@ -318,6 +318,7 @@ DEPENDENCIES:
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -336,7 +337,6 @@ DEPENDENCIES:
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
-  - safe_device (from `.symlinks/plugins/safe_device/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
@@ -408,6 +408,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_inappwebview:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  flutter_jailbreak_detection:
+    :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_sim_country_code:
@@ -444,8 +446,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   r_get_ip:
     :path: ".symlinks/plugins/r_get_ip/ios"
-  safe_device:
-    :path: ".symlinks/plugins/safe_device/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_ios:
@@ -491,6 +491,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 39462033ba6fe7979eb49499f40f07feaa016b0a
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
+  flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
@@ -521,7 +522,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
-  safe_device: 4539eb6bdbeb4b61a763a51c4e73e6b37dea4e3d
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32

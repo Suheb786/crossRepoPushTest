@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
@@ -14,12 +15,14 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import 'confirm_bill_payment_amount/confirm_bill_payment_amount_page.dart';
+import 'enter_otp_bill_payments/enter_otp_bill_payments_page.dart';
 import 'pay_bill_page_view_model.dart';
 
 class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
   final pages = [
     PayBillDetailPage(),
     ConfirmBillPaymentAmountPage(),
+    EnterOtpBillPaymentsPage(),
   ];
 
   PayBillPageView(ProviderBase model) : super(model);
@@ -36,15 +39,15 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
               initialData: 0,
               stream: model.currentPageStream,
               dataBuilder: (context, currentPage) {
+                debugPrint("currentPage:$currentPage");
                 return DotsIndicator(
                   dotsCount: pages.length,
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize: Size(MediaQuery.of(context).size.width / 2.5, 5),
-                      size: Size(MediaQuery.of(context).size.width / 2.5, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
@@ -80,10 +83,13 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                         direction: Direction.vertical,
                         offset: 0.5,
                         child: Text(
-                          StepTextHelper.registrationTwoStepTextHelper(
+                          StepTextHelper.billPaymentsThreeStepTextHelper(
                             currentStep ?? 0,
                             S.of(context).enterBillDetails + "\n",
                             S.of(context).confirmYourPaymentAmtBelow,
+                            S.of(context).enterCode +
+                                "\n${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                           ),
                           maxLines: 2,
                           textAlign: TextAlign.center,
@@ -101,6 +107,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                         appSwiperController: model.appSwiperController,
                         pageController: model.pageController,
                         onIndexChanged: (index) {
+                          print('asidjasjd:$index');
                           model.changeCurrentPage(index);
                         },
                         currentStep: currentStep,

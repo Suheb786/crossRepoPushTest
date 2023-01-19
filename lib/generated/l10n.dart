@@ -13960,6 +13960,16 @@ class S {
     );
   }
 
+  /// `View and pay your due bills`
+  String get viewAndPayYourDueBills {
+    return Intl.message(
+      'View and pay your due bills',
+      name: 'viewAndPayYourDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `to Payments`
   String get toPayments {
     return Intl.message(
@@ -14055,6 +14065,26 @@ class S {
     return Intl.message(
       'Bill Name',
       name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller name`
+  String get billerName {
+    return Intl.message(
+      'Biller name',
+      name: 'billerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills & Payments`
+  String get billsAndPayments {
+    return Intl.message(
+      'Bills & Payments',
+      name: 'billsAndPayments',
       desc: '',
       args: [],
     );
@@ -14185,6 +14215,16 @@ class S {
     return Intl.message(
       'View my bills',
       name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage my bills`
+  String get manageMyBills {
+    return Intl.message(
+      'Manage my bills',
+      name: 'manageMyBills',
       desc: '',
       args: [],
     );
@@ -14790,6 +14830,16 @@ class S {
     );
   }
 
+  /// `Manage and pay my bills`
+  String get manageAndPayMyBills {
+    return Intl.message(
+      'Manage and pay my bills',
+      name: 'manageAndPayMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Insufficient funds bill cannot be paid`
   String get insufficientFundsBillCannotBePaid {
     return Intl.message(
@@ -14925,6 +14975,26 @@ class S {
     return Intl.message(
       'Service is not available',
       name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get viewHistory {
+    return Intl.message(
+      'View History',
+      name: 'viewHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills History`
+  String get billsHistory {
+    return Intl.message(
+      'Bills History',
+      name: 'billsHistory',
       desc: '',
       args: [],
     );

@@ -66,17 +66,33 @@ class PostPaidBillCardWidget extends StatelessWidget {
                 child: Container(
                   color: Theme.of(context).primaryColorDark,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 37.0.h),
+                    padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 34.0.h),
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(S.of(context).myPostPaidBill,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 12.0.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColor.white)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(S.of(context).myPostPaidBill,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.0.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.white)),
+                            GestureDetector(
+                              onTap: () {
+                                AppConstantsUtils.PRE_PAID_FLOW = false;
+                                AppConstantsUtils.POST_PAID_FLOW = true;
+                                Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
+                              },
+                              child: Text(S.of(context).viewHistory,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.brightBlue)),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 72.h,
@@ -118,7 +134,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(100)),
                             child: Center(
                               child: Text(
-                                S.of(context).viewMyBills,
+                                S.of(context).manageMyBills,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14.0.t,
@@ -148,7 +164,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                                 color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
                             child: Center(
                               child: Text(
-                                S.of(context).payAllBills,
+                                S.of(context).viewAndPayYourDueBills,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14.0.t,

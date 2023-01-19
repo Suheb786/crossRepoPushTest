@@ -1,5 +1,4 @@
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_entity.dart';
-import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_content_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';

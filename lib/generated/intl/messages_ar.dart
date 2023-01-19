@@ -210,6 +210,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("تم اضافة الفاتورة بنجاح"),
         "billerAlreadyExistsMessage":
             MessageLookupByLibrary.simpleMessage("يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
+        "billerName": MessageLookupByLibrary.simpleMessage("اسم المفوتر"),
+        "billsAndPayments": MessageLookupByLibrary.simpleMessage("الفواتير و الدفع"),
+        "billsHistory": MessageLookupByLibrary.simpleMessage("سِجِل الفواتير"),
         "biometricLogin": MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل الدخول بالبصمة بنجاح"),
         "biometricLoginDeactivated":
@@ -1144,11 +1147,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "makeSureYourFaceFitsTheFrame":
             MessageLookupByLibrary.simpleMessage("تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("موظف ذكر"),
+        "manageAndPayMyBills": MessageLookupByLibrary.simpleMessage("إدارة ودفع الفواتير"),
         "manageCardLimits": MessageLookupByLibrary.simpleMessage("إدارة سقوف البطاقات"),
         "manageCardPin": MessageLookupByLibrary.simpleMessage("إدارة الرمز السري PIN للبطاقة"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("إدارة CliQ"),
         "manageContacts": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
         "manageContactsSettings": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
+        "manageMyBills": MessageLookupByLibrary.simpleMessage("إدارة الفواتير"),
         "manageSettlement": MessageLookupByLibrary.simpleMessage("إدارة نسب السداد"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "وصلت للحد الأقصى من عدد الحسابات. للأسف ما رح تقدر تفتح حساب جديد."),
@@ -1875,8 +1880,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" صار وقت مكالمة مرئية (فيديو) للتحقق من شخصيتك "),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "تم تحديد موعد مكالمتك بتاريخ 15/11/2022 على الساعة 10 صباحاً"),
+        "viewAndPayYourDueBills": MessageLookupByLibrary.simpleMessage("عرض ودفع الفواتير المستحقة"),
         "viewCardSubSubscription": MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
         "viewCardSubscription": MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
+        "viewHistory": MessageLookupByLibrary.simpleMessage("عرض السجل"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("عرض الفواتير"),
         "visaPlatinumCard": MessageLookupByLibrary.simpleMessage("بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),
