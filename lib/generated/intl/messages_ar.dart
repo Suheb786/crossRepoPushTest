@@ -1048,28 +1048,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidRelationship": MessageLookupByLibrary.simpleMessage("اختار العلاقة"),
         "invalidRelationshipAPI": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-306) "),
-        "invalidRequestedAmount":
-            MessageLookupByLibrary.simpleMessage("المبلغ المطلوب خطأ"),
+        "invalidRequestedAmount": MessageLookupByLibrary.simpleMessage("المبلغ المطلوب خطأ"),
         "invalidRole": MessageLookupByLibrary.simpleMessage("أدخل الوظيفة"),
-        "invalidScheduleTime": MessageLookupByLibrary.simpleMessage(
-            "الوقت غير صحيح. حاول كمان مرة."),
+        "invalidScheduleTime": MessageLookupByLibrary.simpleMessage("الوقت غير صحيح. حاول كمان مرة."),
         "invalidSignatureNetwork": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-074)"),
-        "invalidSocialSecurityNumber":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم الضمان الاجتماعي"),
+        "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage("أدخل رقم الضمان الاجتماعي"),
         "invalidState": MessageLookupByLibrary.simpleMessage("الولاية"),
         "invalidSupplementaryCardId": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-158)"),
-        "invalidTaxCountry":
-            MessageLookupByLibrary.simpleMessage("اختار دولة الضريبة"),
-        "invalidTaxPayer":
-            MessageLookupByLibrary.simpleMessage("اختار نوع الملف الضريبي "),
-        "invalidTinNumber":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم تعريف ضريبي صحيح"),
-        "invalidTotalAdditionalIncome":
-            MessageLookupByLibrary.simpleMessage("أدخل إجمال الدخل الإضافي"),
-        "invalidTreatyClaimRate": MessageLookupByLibrary.simpleMessage(
-            "أدخل نوع الاتفاق الضريبي للمطالبة بالنسبة "),
+        "invalidTaxCountry": MessageLookupByLibrary.simpleMessage("اختار دولة الضريبة"),
+        "invalidTaxPayer": MessageLookupByLibrary.simpleMessage("اختار نوع الملف الضريبي "),
+        "invalidTinNumber": MessageLookupByLibrary.simpleMessage("أدخل رقم تعريف ضريبي صحيح"),
+        "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage("أدخل إجمال الدخل الإضافي"),
+        "invalidTreatyClaimRate":
+            MessageLookupByLibrary.simpleMessage("أدخل نوع الاتفاق الضريبي للمطالبة بالنسبة "),
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage("أدخل نوع الحركة"),
         "invalidUser": MessageLookupByLibrary.simpleMessage("خطأ في اسم المستخدم. حاول مرة ثانية."),
         "invalidUserName": MessageLookupByLibrary.simpleMessage("أدخل اسم مستخدم صحيح"),
