@@ -378,6 +378,9 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   ///checkAmountMoreThanHundred
   bool checkAmountMoreThanHundred() {
-    return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
+    if (AppConstantsUtils.POST_PAID_FLOW == true) {
+      return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
+    }
+    return double.parse(amtController.text) >= 100.0 ? true : false;
   }
 }

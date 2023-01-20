@@ -19,7 +19,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
       children: [
         Text(
           billPaymentsTransactionData?.label != null && billPaymentsTransactionData!.label!.isNotEmpty
-              ? TimeUtils.getFormattedDate(billPaymentsTransactionData!.label!)
+              ? TimeUtils.getFormattedDateForAccountTransaction(billPaymentsTransactionData!.label!)
               : '-',
           //billPaymentsTransactionData!.label!,
           style: TextStyle(
@@ -46,7 +46,11 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.nickname ?? "",
+                          (item.nickname != null && item.nickname!.length > 0)
+                              ? item.nickname ?? ""
+                              : (item.billerName != null && item.billerName!.length > 0)
+                                  ? item.billerName ?? ""
+                                  : "",
                           maxLines: 10,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,

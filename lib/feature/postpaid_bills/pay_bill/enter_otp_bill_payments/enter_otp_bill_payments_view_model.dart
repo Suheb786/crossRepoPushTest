@@ -151,7 +151,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
             : "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
-        otpCode: confirmBillModel.otpCode,
+        otpCode: otpController.text,
         isNewBiller: confirmBillModel.isNewBiller,
         prepaidCategoryCode: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
@@ -160,7 +160,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
         CardId: "",
