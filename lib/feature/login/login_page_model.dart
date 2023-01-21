@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
+
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
@@ -7,6 +7,9 @@ import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
+import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
+import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
@@ -31,8 +34,6 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
-import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
 
 class LoginViewModel extends BasePageViewModel {
   final RegisterCustomerUseCase _registerCustomerUseCase;
@@ -179,6 +180,7 @@ class LoginViewModel extends BasePageViewModel {
 
   PublishSubject<RegisterCustomerUsecaseParams> _cliqRegisterCustomerRequest = PublishSubject();
   PublishSubject<Resource<bool>> _cliqRegisterCustomerResponse = PublishSubject();
+
   Stream<Resource<bool>> get cliqRegisterCustomerStream => _cliqRegisterCustomerResponse.stream;
 
   void cliqRegisterCustomer() => _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams());
@@ -187,14 +189,17 @@ class LoginViewModel extends BasePageViewModel {
 
   PublishSubject<RegisterAccountUsecaseParams> _registerAccountRequest = PublishSubject();
   PublishSubject<Resource<bool>> _registerAccountResponse = PublishSubject();
+
   Stream<Resource<bool>> get registerAccountStream => _registerAccountResponse.stream;
 
   void registerAccount() => _registerAccountRequest.safeAdd(RegisterAccountUsecaseParams());
+
   ///*---------------------- [Account Upload] -------------------
 
   PublishSubject<AccountUploadUseCaseParams> _accountUploadrequest = PublishSubject();
   PublishSubject<Resource<bool>> _accountUploadResponse = PublishSubject();
-  Stream<Resource<bool>> get accountUploadStream => _registerAccountResponse.stream;
+
+  Stream<Resource<bool>> get accountUploadStream => _accountUploadResponse.stream;
 
   void accountUpload() => _accountUploadrequest.safeAdd(AccountUploadUseCaseParams());
 
@@ -221,7 +226,8 @@ class LoginViewModel extends BasePageViewModel {
         updateLoader();
         _loginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          if (event.appError!.type == ErrorType.EMPTY_EMAIL || event.appError!.type == ErrorType.INVALID_EMAIL) {
+          if (event.appError!.type == ErrorType.EMPTY_EMAIL ||
+              event.appError!.type == ErrorType.INVALID_EMAIL) {
             emailKey.currentState!.isValid = false;
           }
           if (event.appError!.type == ErrorType.EMPTY_PASSWORD) {
@@ -233,7 +239,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _kycStatusRequest.listen((value) {
-      RequestManager(value, createCall: () => _kycStatusUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _kycStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _kycStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -244,7 +252,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _getCipherRequest.listen((value) {
-      RequestManager(value, createCall: () => _getCipherUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _getCipherUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         //updateLoader();
         _getCipherResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -254,7 +264,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _androidLoginRequest.listen((value) {
-      RequestManager(value, createCall: () => _androidLoginUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _androidLoginUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _androidLoginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -264,7 +276,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _iphoneLoginRequest.listen((value) {
-      RequestManager(value, createCall: () => _iphoneLoginUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _iphoneLoginUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _iphoneLoginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -292,7 +306,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _sendOtpTokenEmailRequest.listen((value) {
-      RequestManager(value, createCall: () => _sendOtpTokenEmailOtpUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _sendOtpTokenEmailOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -303,7 +319,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _sendOtpTokenMobileRequest.listen((value) {
-      RequestManager(value, createCall: () => _sendOtpTokeDeviceChangeOtpUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _sendOtpTokeDeviceChangeOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _sendOtpTokenMobileResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -313,7 +331,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _checkVersionUpdateRequest.listen((value) {
-      RequestManager(value, createCall: () => _checkVersionUpdateUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _checkVersionUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         //updateLoader();
         _checkVersionUpdateResponse.safeAdd(event);
       });
@@ -328,7 +348,9 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _generateKeyPairRequest.listen((value) {
-      RequestManager(value, createCall: () => _generateKeyPairUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _generateKeyPairUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _generateKeyPairResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -349,18 +371,34 @@ class LoginViewModel extends BasePageViewModel {
     });
     {
       _cliqRegisterCustomerRequest.listen((value) {
-        RequestManager(value, createCall: () => _registerCustomerUseCase.execute(params: value)).asFlow().listen(
+        RequestManager(value, createCall: () => _registerCustomerUseCase.execute(params: value))
+            .asFlow()
+            .listen(
           (event) {
+            updateLoader();
             _cliqRegisterCustomerResponse.safeAdd(event);
+            if (event.status == Status.SUCCESS) {
+              registerAccount();
+            } else if (event.status == Status.ERROR) {
+              registerAccount();
+            }
           },
         );
       });
     }
     {
       _registerAccountRequest.listen((value) {
-        RequestManager(value, createCall: () => _registerAccountUseCase.execute(params: value)).asFlow().listen(
+        RequestManager(value, createCall: () => _registerAccountUseCase.execute(params: value))
+            .asFlow()
+            .listen(
           (event) {
+            updateLoader();
             _registerAccountResponse.safeAdd(event);
+            if (event.status == Status.SUCCESS) {
+              accountUpload();
+            } else if (event.status == Status.ERROR) {
+              accountUpload();
+            }
           },
         );
       });
@@ -369,6 +407,7 @@ class LoginViewModel extends BasePageViewModel {
       _accountUploadrequest.listen((value) {
         RequestManager(value, createCall: () => _accountUploadUseCase.execute(params: value)).asFlow().listen(
           (event) {
+            updateLoader();
             _accountUploadResponse.safeAdd(event);
           },
         );
@@ -397,7 +436,9 @@ class LoginViewModel extends BasePageViewModel {
 
   void validateEmail() {
     _loginRequest.safeAdd(LoginUseCaseParams(
-        email: emailController.text, password: passwordController.text, languageEnum: _selectedLanguage.value.toString()));
+        email: emailController.text,
+        password: passwordController.text,
+        languageEnum: _selectedLanguage.value.toString()));
   }
 
   void checkKycStatus() {
