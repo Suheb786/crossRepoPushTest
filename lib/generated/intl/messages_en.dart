@@ -260,17 +260,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToCategory": m8,
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("Back to Payments"),
-        "backToRegistration":
-            MessageLookupByLibrary.simpleMessage("Back to Registration"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("Back to Payments"),
+        "backToRegistration": MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
-        "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
-            "Beneficial owner is a resident of"),
+        "beneficialOwnerIsAResidenceOf":
+            MessageLookupByLibrary.simpleMessage("Beneficial owner is a resident of"),
         "beneficiaryNotFound":
             MessageLookupByLibrary.simpleMessage("Recipient not found. Please try another recipient."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
@@ -293,10 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
-        "blinkCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
-        "blockThisCountry":
-            MessageLookupByLibrary.simpleMessage("Block this country?"),
+        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockThisCountry": MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
@@ -1594,17 +1589,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "lookingFor":
             MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
-            "Looking for available agent.."),
-        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
-            "Enjoy loyalty rewards with great multiplier"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("Looking for available agent.."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage(
-                "Mailing address different from residence address?"),
-        "mailingAddressLine":
-            MessageLookupByLibrary.simpleMessage("MAILING address Line"),
-        "mainAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
+            MessageLookupByLibrary.simpleMessage("Mailing address different from residence address?"),
+        "mailingAddressLine": MessageLookupByLibrary.simpleMessage("MAILING address Line"),
+        "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainAnnualIncomeSmall": MessageLookupByLibrary.simpleMessage("Main Annual Income"),
         "mainSourceIncome": MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome": MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
@@ -1629,17 +1619,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "merchantPaymentValueExceeded":
             MessageLookupByLibrary.simpleMessage("Merchant payment limit exceeded."),
-        "merchantPayments":
-            MessageLookupByLibrary.simpleMessage("Merchant Payments"),
+        "merchantPayments": MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "minPrice": MessageLookupByLibrary.simpleMessage("Min. Price"),
-        "minimumSettlement":
-            MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
-        "minimumSettlements":
-            MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
-        "minorNotAllowed":
-            MessageLookupByLibrary.simpleMessage("minor not allowed"),
+        "minimumSettlement": MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
+        "minimumSettlements": MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
+        "minorNotAllowed": MessageLookupByLibrary.simpleMessage("minor not allowed"),
         "missedVideoCall": MessageLookupByLibrary.simpleMessage(
             "Sorry, you’ve missed your video call session. Please reschedule."),
         "mobileAlreadyExists": MessageLookupByLibrary.simpleMessage(
@@ -2639,8 +2625,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "w9Form": MessageLookupByLibrary.simpleMessage("W9 Form"),
         "w9FormDesc": MessageLookupByLibrary.simpleMessage(
             "If you already have a physical pre-filled W9 form please upload below."),
-        "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "Do you want to Claim of Tax Treaty Benefits?"),
+        "wantToClaimTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("Do you want to Claim of Tax Treaty Benefits?"),
         "waterAndElectricity":
             MessageLookupByLibrary.simpleMessage("Water and Electricity"),
         "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage(
