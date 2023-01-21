@@ -58,20 +58,23 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerList({required GetPostpaidBillerListUseCaseParams params}) async {
+  Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerList(
+      {required GetPostpaidBillerListUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getPostpaidBillerListData(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListResponse({required GetPrepaidBillerListUseCaseParams params}) async {
+  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListResponse(
+      {required GetPrepaidBillerListUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.getPrepaidBillerListData(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerList({required GetPrepaidBillerListUseCaseParams params}) async {
+  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerList(
+      {required GetPrepaidBillerListUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.getPrepaidBillerListData(BaseRequest(baseData: baseData.toJson()));
@@ -118,7 +121,8 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<BaseResponse>> addNewPostpaidBiller({required AddNewPostpaidBillerUseCaseParams params}) async {
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBiller(
+      {required AddNewPostpaidBillerUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.addNewPostpaidBillerData(
@@ -133,7 +137,8 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ValidatePrePaidBillResponse>> validatePrePaidBill({required ValidatePrePaidUseCaseParams params}) async {
+  Future<HttpResponse<ValidatePrePaidBillResponse>> validatePrePaidBill(
+      {required ValidatePrePaidUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.validatePrePaidBill(ValidatePrePaidBillRequestEntity(
@@ -151,12 +156,13 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   @override
   Future<HttpResponse<PostPaidBillInquiryResponse>> postPaidBillInquiry({required params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.postPaidBillInquiry(
-        PostPaidBillInquiryRequestEntity(postpaidBillInquiries: params.postpaidBillInquiries, getToken: true, baseData: baseData.toJson()));
+    return _apiService.postPaidBillInquiry(PostPaidBillInquiryRequestEntity(
+        postpaidBillInquiries: params.postpaidBillInquiries, getToken: true, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<BaseResponse>> addNewPrepaidBiller({required AddNewPrepaidBillerUseCaseParams params}) async {
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBiller(
+      {required AddNewPrepaidBillerUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.addNewPrepaidBillerData(
@@ -177,7 +183,8 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetBillerLookupListResponse>> getBillerLookuplist({required GetBillerLookupUseCaseParams params}) async {
+  Future<HttpResponse<GetBillerLookupListResponse>> getBillerLookuplist(
+      {required GetBillerLookupUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.getBillerLookupList(GetBillerLookupListRequest(
@@ -189,11 +196,15 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetPrePaidCategoriesResponse>> getPrePaidCategories({required GetPrePaidCategoriesListUseCaseParams params}) async {
+  Future<HttpResponse<GetPrePaidCategoriesResponse>> getPrePaidCategories(
+      {required GetPrePaidCategoriesListUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.getPrePaidCategory(GetPrePaidCategoriesRequestEntity(
-        billerCode: params.billerCode, serviceCode: params.serviceCode, getToken: true, baseData: baseData.toJson()));
+        billerCode: params.billerCode,
+        serviceCode: params.serviceCode,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override
@@ -204,7 +215,11 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
     return _apiService.removeCustomerBilling(
       RemoveCustomerBillingRequest(
-          billerCode: params.billerCode, billingNo: params.billingNo, serviceType: params.serviceType, getToken: true, baseData: baseData.toJson()),
+          billerCode: params.billerCode,
+          billingNo: params.billingNo,
+          serviceType: params.serviceType,
+          getToken: true,
+          baseData: baseData.toJson()),
     );
   }
 
@@ -215,7 +230,8 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
     return _apiService.removePrepaidBiller(
-      RemovePrepaidBillerRequest(registrationID: params.registrationID, getToken: true, baseData: baseData.toJson()),
+      RemovePrepaidBillerRequest(
+          registrationID: params.registrationID, getToken: true, baseData: baseData.toJson()),
     );
   }
 

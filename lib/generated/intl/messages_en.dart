@@ -271,22 +271,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
-        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
-            "Recipient not found. Please try another recipient."),
+        "beneficiaryNotFound":
+            MessageLookupByLibrary.simpleMessage("Recipient not found. Please try another recipient."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."),
-        "billerAddedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
-        "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
-            "Biller already exists with the same billing number"),
-        "biometricLogin":
-            MessageLookupByLibrary.simpleMessage("Biometric Login"),
-        "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
-            "Your biometric login has been activated successfully"),
-        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
-            "Biometric login is successfully deactivated"),
+        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
+        "billerAlreadyExistsMessage":
+            MessageLookupByLibrary.simpleMessage("Biller already exists with the same billing number"),
+        "billerName": MessageLookupByLibrary.simpleMessage("Biller name"),
+        "billsAndPayments": MessageLookupByLibrary.simpleMessage("Bills & Payments"),
+        "billsHistory": MessageLookupByLibrary.simpleMessage("Bills History"),
+        "biometricLogin": MessageLookupByLibrary.simpleMessage("Biometric Login"),
+        "biometricLoginActivated":
+            MessageLookupByLibrary.simpleMessage("Your biometric login has been activated successfully"),
+        "biometricLoginDeactivated":
+            MessageLookupByLibrary.simpleMessage("Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To Blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
@@ -1604,37 +1605,30 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
-        "mainAnnualIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Main Annual Income"),
-        "mainSourceIncome":
-            MessageLookupByLibrary.simpleMessage("Main Source of Income"),
-        "mainSourceOfIncome":
-            MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "mainAnnualIncomeSmall": MessageLookupByLibrary.simpleMessage("Main Annual Income"),
+        "mainSourceIncome": MessageLookupByLibrary.simpleMessage("Main Source of Income"),
+        "mainSourceOfIncome": MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " income? Make sure it’s not your monthly income to get your credit card right away."),
-        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
-            "Make sure your eyes are level\nand well-opened."),
+        "makeSureYourFaceFitsTheFrame":
+            MessageLookupByLibrary.simpleMessage("Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
-        "manageCardLimits":
-            MessageLookupByLibrary.simpleMessage("Manage card limits"),
-        "manageCardPin":
-            MessageLookupByLibrary.simpleMessage("Manage card PIN"),
+        "manageAndPayMyBills": MessageLookupByLibrary.simpleMessage("Manage and pay my bills"),
+        "manageCardLimits": MessageLookupByLibrary.simpleMessage("Manage card limits"),
+        "manageCardPin": MessageLookupByLibrary.simpleMessage("Manage card PIN"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("Manage CliQ ID"),
-        "manageContacts":
-            MessageLookupByLibrary.simpleMessage("Manage Contacts"),
-        "manageContactsSettings":
-            MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
-        "manageSettlement":
-            MessageLookupByLibrary.simpleMessage("Manage settlement"),
+        "manageContacts": MessageLookupByLibrary.simpleMessage("Manage Contacts"),
+        "manageContactsSettings": MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
+        "manageMyBills": MessageLookupByLibrary.simpleMessage("Manage my bills"),
+        "manageSettlement": MessageLookupByLibrary.simpleMessage("Manage settlement"),
         "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Price"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account."),
-        "maximumAgeOfUser":
-            MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
+        "maximumAgeOfUser": MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
         "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
-        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
-            "Merchant payment limit exceeded."),
+        "merchantPaymentValueExceeded":
+            MessageLookupByLibrary.simpleMessage("Merchant payment limit exceeded."),
         "merchantPayments":
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
@@ -2625,20 +2619,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
         "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
             "Please get ready to meet our Engagement Team, we will now connect you."),
-        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
-            "It’s time for a quick\nvideo call"),
+        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage("It’s time for a quick\nvideo call"),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "Your video call is scheduled for the 15th of October at 10:00AM."),
-        "viewCardSubSubscription":
-            MessageLookupByLibrary.simpleMessage("View card subscriptions"),
-        "viewCardSubscription":
-            MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewAndPayYourDueBills": MessageLookupByLibrary.simpleMessage("View and pay your due bills"),
+        "viewCardSubSubscription": MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewCardSubscription": MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewHistory": MessageLookupByLibrary.simpleMessage("View History"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
         "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
             "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),
-        "visaPlatinumCard":
-            MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
+        "visaPlatinumCard": MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),
         "voiceChat": MessageLookupByLibrary.simpleMessage("Voice Chat"),
         "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),

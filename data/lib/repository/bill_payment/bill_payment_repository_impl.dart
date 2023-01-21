@@ -67,7 +67,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addNewPostpaidBiller({required AddNewPostpaidBillerUseCaseParams params}) async {
+  Future<Either<NetworkError, bool>> addNewPostpaidBiller(
+      {required AddNewPostpaidBillerUseCaseParams params}) async {
     final result = await safeApiCall(
       _remoteDS.addNewPostpaidBiller(params: params),
     );
@@ -78,7 +79,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addNewPrepaidBiller({required AddNewPrepaidBillerUseCaseParams params}) async {
+  Future<Either<NetworkError, bool>> addNewPrepaidBiller(
+      {required AddNewPrepaidBillerUseCaseParams params}) async {
     final result = await safeApiCall(
       _remoteDS.addNewPrepaidBiller(params: params),
     );

@@ -40,14 +40,17 @@ abstract class BillPaymentRepository {
   ///pay pre paid bill
   Future<Either<NetworkError, PayPrePaid>> payPrepaidBill({PayPrePaidUseCaseParams params});
 
-  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill({required PayPostPaidBillUseCaseParams params});
+  Future<Either<NetworkError, PayPostPaidBill>> payPostPaidBill(
+      {required PayPostPaidBillUseCaseParams params});
 
-  Future<Either<NetworkError, ValidatePrePaidBill>> validatePrePaidBill({required ValidatePrePaidUseCaseParams params});
+  Future<Either<NetworkError, ValidatePrePaidBill>> validatePrePaidBill(
+      {required ValidatePrePaidUseCaseParams params});
 
   Future<Either<NetworkError, PostPaidBillInquiry>> postPaidBillInquiry(
       {required PostPaidBillInquiryUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> addNewPostpaidBiller({required AddNewPostpaidBillerUseCaseParams params});
+  Future<Either<NetworkError, bool>> addNewPostpaidBiller(
+      {required AddNewPostpaidBillerUseCaseParams params});
 
   Future<Either<NetworkError, bool>> addNewPrepaidBiller({required AddNewPrepaidBillerUseCaseParams params});
 
@@ -74,7 +77,10 @@ abstract class BillPaymentRepository {
   Future<Either<NetworkError, BillPaymentsTransactionModel>> billPaymentsTransactionHistory({
     required BillPaymentsTransactionUseCaseParams params,
   });
+
   Future<Either<NetworkError, bool>> cliqRegisterCustomer();
+
   Future<Either<NetworkError, bool>> cliqRegisterAccount();
+
   Future<Either<NetworkError, bool>> accountUpload();
 }
