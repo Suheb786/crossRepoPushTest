@@ -352,7 +352,7 @@ abstract class ApiService {
       @Body() DocStatusRequestEntity docStatusRequestEntity);
 
   ///register interest
-  @POST("/auth/RegisterInterest")
+  @POST("/auth/RegisterInterestV2")
   Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
       @Body() RegisterInterestRequestEntity registerInterestRequestEntity);
 
@@ -380,7 +380,7 @@ abstract class ApiService {
       @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
 
   ///get country list
-  @POST("/transfer/GetCountriesV1")
+  @POST("/transfer/GetCountriesV2")
   Future<HttpResponse<CountryListResponseEntity>> getCountryList(
       @Body() CountryListRequestEntity countryListRequestEntity);
 
@@ -628,7 +628,7 @@ abstract class ApiService {
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
       @Body() GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
 
-  @POST("/auth/GetCipherV1")
+  @POST("/auth/GetCipherV2")
   Future<HttpResponse<GetCipherResponseEntity>> getCipher(
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
@@ -729,7 +729,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
       @Body() SupplementaryCreditCardStepTwoRequestEntity request);
 
-  @POST("/CardTracking/SuppStepthree")
+  @POST("/CardTracking/SuppStepthreeV2")
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepThree(
       @Body() SupplementaryCreditCardStepThreeRequestEntity request);
 
@@ -870,6 +870,11 @@ abstract class ApiService {
   Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
       @Body() BillPaymentsTransactionRequest billPaymentsTransactionRequest);
 
+  @POST("/BillPayment/AccountUpload")
+  Future<HttpResponse<ResponseEntity>> accountUpload(
+    @Body() BaseRequest request,
+  );
+
   @POST("/transfer/TransferAPINoOtp")
   Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
       @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
@@ -896,6 +901,15 @@ abstract class ApiService {
 
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  @POST("/Cliq/CliqRegisterCustomer")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
+    @Body() BaseRequest request,
+  );
+  @POST("/Cliq/CliqRegisterAccount")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
+    @Body() BaseRequest request,
+  );
 
   ///QR
   @POST("/Transfer/GenerateQR")

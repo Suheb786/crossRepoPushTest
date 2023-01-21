@@ -77,4 +77,10 @@ abstract class BillPaymentRepository {
   Future<Either<NetworkError, BillPaymentsTransactionModel>> billPaymentsTransactionHistory({
     required BillPaymentsTransactionUseCaseParams params,
   });
+
+  Future<Either<NetworkError, bool>> cliqRegisterCustomer();
+
+  Future<Either<NetworkError, bool>> cliqRegisterAccount();
+
+  Future<Either<NetworkError, bool>> accountUpload();
 }

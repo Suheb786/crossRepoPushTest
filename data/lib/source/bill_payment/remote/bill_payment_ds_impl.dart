@@ -25,6 +25,7 @@ import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_bil
 import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_request_entity.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/bill_payment/bill_payment_data_source.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
@@ -232,6 +233,24 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
       RemovePrepaidBillerRequest(
           registrationID: params.registrationID, getToken: true, baseData: baseData.toJson()),
     );
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.cliqRegisterCustomer(BaseRequest(baseData: baseData.toJson(), getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.cliqRegisterAccount(BaseRequest(baseData: baseData.toJson(), getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> accountUpload() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.accountUpload(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 
   @override

@@ -10,6 +10,7 @@ import 'package:data/entity/remote/bill_payment/pay_prepaid_bill/pay_prepaid_bil
 import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
@@ -65,6 +66,12 @@ abstract class BillPaymentRemoteDS {
   Future<HttpResponse<BaseResponse>> removePrepaidBiller({
     required RemovePrepaidBillerUseCaseParams params,
   });
+
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer();
+
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount();
+
+  Future<HttpResponse<ResponseEntity>> accountUpload();
 
   Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp({
     required EnterOtpBillPaymentsUseCaseParams params,

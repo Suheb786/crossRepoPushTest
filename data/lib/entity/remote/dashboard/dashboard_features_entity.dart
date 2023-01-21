@@ -65,12 +65,12 @@ class DashboardFeaturesEntity
         isCreditCardFeatureEnabled: isCreditCardEnabled ?? true,
         isLoginFeatureEnabled: isLoginEnabled ?? true,
         isRegisterFeatureEnabled: isRegisterEnabled ?? true,
-        isRJFeatureEnabled: isGoRJEnabled ?? true,
+        isRJFeatureEnabled: isGoRJEnabled ?? false,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
-        blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? true,
-        appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? true,
-        appBillPaymentQrCode: this.paymentQRCode ?? true,
-        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? true);
+        blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
+        appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
+        appBillPaymentQrCode: this.paymentQRCode ?? false,
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false);
   }
 }

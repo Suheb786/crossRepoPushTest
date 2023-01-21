@@ -6,7 +6,8 @@ part of 'flight_details_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FlightDetailsContentEntity _$FlightDetailsContentEntityFromJson(Map<String, dynamic> json) {
+FlightDetailsContentEntity _$FlightDetailsContentEntityFromJson(
+    Map<String, dynamic> json) {
   return FlightDetailsContentEntity(
     flightType: json['flightType'] as String?,
     paymentRequestId: json['paymentRequestId'] as String?,
@@ -23,7 +24,8 @@ FlightDetailsContentEntity _$FlightDetailsContentEntityFromJson(Map<String, dyna
   );
 }
 
-Map<String, dynamic> _$FlightDetailsContentEntityToJson(FlightDetailsContentEntity instance) =>
+Map<String, dynamic> _$FlightDetailsContentEntityToJson(
+        FlightDetailsContentEntity instance) =>
     <String, dynamic>{
       'paymentAmount': instance.paymentAmount,
       'paymentCurrency': instance.paymentCurrency,

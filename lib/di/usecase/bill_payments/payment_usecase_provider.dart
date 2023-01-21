@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
@@ -11,6 +12,8 @@ import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart'
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
+import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
+import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
@@ -92,6 +95,22 @@ final removeCustomerBillingUseCaseProvider = Provider.autoDispose<RemoveCustomer
 
 final removePrepaidBillerUseCaseProvider = Provider.autoDispose<RemovePrepaidBillerUseCase>(
   (ref) => RemovePrepaidBillerUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final registerCustomerUseCaseProvider = Provider.autoDispose<RegisterCustomerUseCase>(
+  (ref) => RegisterCustomerUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final registerAccountUseCaseProvider = Provider.autoDispose<RegisterAccountUseCase>(
+  (ref) => RegisterAccountUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+final accountUploadUseCaseProvider = Provider.autoDispose<AccountUploadUseCase>(
+  (ref) => AccountUploadUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
