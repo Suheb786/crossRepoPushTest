@@ -1418,6 +1418,7 @@
   "searchBill": "Search bill",
   "pay": "Pay",
   "payAllBills": "Pay All Bills",
+  "viewAndPayYourDueBills": "View and pay your due bills",
   "toPayments": "to Payments",
   "waterAndElectricity": "Water and Electricity",
   "telecommunication": "Telecommunication",
@@ -1428,6 +1429,8 @@
   "travelAndTransportation": "Travel and Transportation",
   "newBill": "New Bill",
   "billName": "Bill Name",
+  "billerName": "Biller name",
+  "billsAndPayments": "Bills & Payments",
   "services": "Services",
   "referenceNo": "Reference No.",
   "tapAmtToEdit": "Tap amount to edit",
@@ -1441,6 +1444,7 @@
   "areYouSure": "Are you sure?",
   "myPostPaidBill": "My Postpaid Bill",
   "viewMyBills": "View my bills",
+  "manageMyBills": "Manage my bills",
   "paying": "Paying",
   "myPrePaidBills": "My Prepaid Bills",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
@@ -1501,6 +1505,7 @@
   "errorOnBillinquiry": "error on billinquiry",
   "errorWhileAddingCustomer": "error while adding customer",
   "payMyBill": "Pay My Bill",
+  "manageAndPayMyBills": "Manage and pay my bills",
   "insufficientFundsBillCannotBePaid": "Insufficient funds bill cannot be paid",
   "yourBillHasBeenRemoved": "Your bill has been removed.",
   "billerAddedSuccessfully": "Biller Added Successfully.",
@@ -1514,5 +1519,7 @@
   "amountShouldBeMoreThan": "Amount should be more than",
   "amountShouldBeLessThanOrEqualTo": "Amount should be less than or equal to",
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
-  "serviceIsNotavaliable": "Service is not available"
+  "serviceIsNotavaliable": "Service is not available",
+  "viewHistory": "View History",
+  "billsHistory": "Bills History"
 }

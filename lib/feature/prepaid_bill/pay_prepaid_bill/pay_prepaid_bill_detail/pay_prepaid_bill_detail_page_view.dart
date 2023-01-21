@@ -132,7 +132,7 @@
 //                                     ),
 //                                     AppTextField(
 //                                       labelText:
-//                                           S.of(context).billName.toUpperCase(),
+//                                           S.of(context).billerName.toUpperCase(),
 //                                       hintText: S.of(context).pleaseSelect,
 //                                       controller: model.billNameController,
 //                                       readOnly: true,
@@ -450,7 +450,7 @@
 //   void _showBillerNameDialog(List<BillerDetailsList>? billerDetailsList,
 //       PayPrePaidBillDetailPageViewModel model, BuildContext context) {
 //     PayBillDialog.show(context,
-//         title: S.of(context).billName,
+//         title: S.of(context).billerName,
 //         billerDetailsList: billerDetailsList ?? [], onDismissed: () {
 //       Navigator.pop(context);
 //     }, onSelected: (value) {

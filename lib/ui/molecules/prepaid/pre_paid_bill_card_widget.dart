@@ -54,14 +54,29 @@ class PrePaidBillCardWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 38.0.h),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(S.of(context).myPrePaidBills,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontSize: 12.0.t,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.white)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(S.of(context).myPrePaidBills,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 12.0.t,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.white)),
+                          GestureDetector(
+                            onTap: () {
+                              AppConstantsUtils.PRE_PAID_FLOW = true;
+                              AppConstantsUtils.POST_PAID_FLOW = false;
+                              Navigator.pushNamed(context, RoutePaths.BillPaymentsTransactionPage);
+                            },
+                            child: Text(S.of(context).viewHistory,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14.0.t,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.brightBlue)),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 72.h,
@@ -96,10 +111,11 @@ class PrePaidBillCardWidget extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                           decoration: BoxDecoration(
-                              color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
+                              border: Border.all(width: 1, color: AppColor.white_gray),
+                              borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Text(
-                              S.of(context).payMyBill,
+                              S.of(context).manageAndPayMyBills,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 14.0.t,

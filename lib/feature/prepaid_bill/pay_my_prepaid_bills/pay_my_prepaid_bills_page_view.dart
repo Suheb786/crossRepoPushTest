@@ -178,7 +178,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                                                   onPressed: (context1) => {
                                                                     InformationDialog.show(context,
                                                                         image: AssetUtils.deleteBlackIcon,
-                                                                        isSwipeToCancel: false,
+                                                                        isSwipeToCancel: true,
                                                                         title: S.of(context).areYouSure,
                                                                         descriptionWidget: Text(
                                                                           StringUtils.isDirectionRTL(context)

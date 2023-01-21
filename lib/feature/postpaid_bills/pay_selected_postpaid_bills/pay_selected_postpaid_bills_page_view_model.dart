@@ -38,9 +38,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   bool isTotalAmountZero = true;
+  double totalBillAmt = 0.0;
 
   addAllBillAmt(BuildContext context) {
-    double totalBillAmt = 0.0;
+    totalBillAmt = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
@@ -85,7 +86,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
             billingNumber: item.billingNo,
-            billerName: StringUtils.isDirectionRTL(context)
+            billerName: !StringUtils.isDirectionRTL(context)
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,
             serviceType: item.serviceType,
@@ -108,7 +109,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {

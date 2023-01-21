@@ -16,12 +16,10 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -140,7 +138,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     //           fontFamily: StringUtils.appFont,
                     //           fontSize: 12.0.t,
                     //           fontWeight: FontWeight.w600,
-                    //           color: AppColor.gray5,
+                    //           color: AppColor.brightBlue,
                     //         ),
                     //       ),
                     model.isPrepaidCategoryListEmpty == false
@@ -269,7 +267,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
-                                        model.savingAccountController.text = value;
+                                    model.savingAccountController.text = value;
                                     model.validate(model.amtController.text);
                                     Navigator.pop(context);
                                   }, accountsList: [
@@ -281,13 +279,13 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                         ''
                                   ]);
                                 },
-                                suffixIcon: (value, data) {
-                                  return Container(
-                                      height: 16.h,
-                                      width: 16.w,
-                                      padding: EdgeInsetsDirectional.only(end: 8.w),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                                },
+                                // suffixIcon: (value, data) {
+                                //   return Container(
+                                //       height: 16.h,
+                                //       width: 16.w,
+                                //       padding: EdgeInsetsDirectional.only(end: 8.w),
+                                //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                // },
                               ),
                               SizedBox(
                                 height: 110.h,
@@ -363,10 +361,10 @@ class HowMuchLikeToPayPrePaidBillsPageView
         child: AppTextField(
           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           labelText: S.of(context).amount.toUpperCase(),
+          inputType: TextInputType.numberWithOptions(decimal: true),
           controller: model.amtController,
           readOnly: !model.isPrepaidCategoryListEmpty,
           hintText: S.of(context).pleaseEnter,
-          inputType: TextInputType.number,
           onPressed: () {},
           onChanged: (val) {
             if (val != null && val.isNotEmpty) {

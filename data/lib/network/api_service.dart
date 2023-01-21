@@ -44,9 +44,9 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/base/base_response.dart';
 import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_request.dart';
-import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_response.dart';
 import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_request.dart';
-import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_response.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
 import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
@@ -62,6 +62,8 @@ import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid
 import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_response.dart';
 import 'package:data/entity/remote/bill_payment/remove_customer_billing/remove_customer_billing_request.dart';
 import 'package:data/entity/remote/bill_payment/remove_prepaid_biller/remove_prepaid_biller_request.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_request.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_request_entity.dart';
 import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
@@ -859,6 +861,14 @@ abstract class ApiService {
   Future<HttpResponse<BaseResponse>> removeCustomerBilling(
     @Body() RemoveCustomerBillingRequest removeCustomerBillingRequest,
   );
+
+  @POST("/BillPayment/ValidateBillerOtp")
+  Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp(
+      @Body() ValidateBillerOtpRequest validateBillerOtpRequestEntity);
+
+  @POST("/BillPayment/RecentPrepaidPostpaidPayments")
+  Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
+      @Body() BillPaymentsTransactionRequest billPaymentsTransactionRequest);
 
   @POST("/BillPayment/AccountUpload")
   Future<HttpResponse<ResponseEntity>> accountUpload(

@@ -1,11 +1,13 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/bill_payment/add_new_postpaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/add_new_prepaid_biller_usecase.dart';
+import 'package:domain/usecase/bill_payment/bill_payments_transaction_usecase.dart';
+import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
+import 'package:domain/usecase/bill_payment/get_bill_categories_usecase.dart';
 import 'package:domain/usecase/bill_payment/get_biller_lookup_list_usecase.dart';
+import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/get_prepaid_categories_usecase.dart';
-import 'package:domain/usecase/bill_payment/get_bill_categories_usecase.dart';
-import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
@@ -18,6 +20,8 @@ import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
 import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
 import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
 
+final getBillCategoriesUseCaseProvider = Provider.autoDispose<GetBillCategoriesUseCase>(
+  (ref) => GetBillCategoriesUseCase(
 final getBillCategoriesUseCaseProvider = Provider.autoDispose<GetBillCategoriesUseCase>(
   (ref) => GetBillCategoriesUseCase(
     ref.read(billPaymentRepoProvider),
@@ -110,6 +114,18 @@ final registerAccountUseCaseProvider = Provider.autoDispose<RegisterAccountUseCa
 );
 final accountUploadUseCaseProvider = Provider.autoDispose<AccountUploadUseCase>(
   (ref) => AccountUploadUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final enterOtpBillPaymentsUseCaseProvider = Provider.autoDispose<EnterOtpBillPaymentsUseCase>(
+  (ref) => EnterOtpBillPaymentsUseCase(
+    ref.read(billPaymentRepoProvider),
+  ),
+);
+
+final billPaymentsTransactionUseCaseProvider = Provider.autoDispose<BillPaymentsTransactionUseCase>(
+  (ref) => BillPaymentsTransactionUseCase(
     ref.read(billPaymentRepoProvider),
   ),
 );
