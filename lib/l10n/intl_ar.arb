@@ -1449,7 +1449,7 @@
   "qrInvalid": "QR does not exist",
   "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "howWouldLikeToPayYourBills": "كيف ترغب ان تقوم بتسديد فواتيرك",
-  "swipeUpToPayNewBill": "اسحب للاعلى لتسدد فاتورة جديدي",
+  "swipeUpToPayNewBill": "اسحب للاعلى لتسدد فاتورة جديدة",
   "howMuchWouldYouLikeToPay": "ما المبلغ الذي  تريد\nان تسدده",
   "noBillerFound": "لم نتمكن من العثور على الفاتورة",
   "noPrepaidCategoryFound": "لم نتمكن من العثور على فئة الدفع المسبق",
@@ -1475,5 +1475,7 @@
   "serviceIsNotavaliable": "الخدمة غير متوفرة حاليا",
   "viewHistory": "عرض السجل",
   "billsHistory": "سِجِل الفواتير",
-  "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"
+  "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة",
+  "payYourBillswithBlink": "Pay your bills with Blink!",
+  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "
 }

@@ -78,11 +78,11 @@ class JobAndIncomeUseCaseParams extends Params {
           AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OCCUPATION, cause: Exception()));
     }
     if (annualIncome!.isEmpty) {
-      return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_ANNUAL_INCOME, cause: Exception()));
+      return Left(AppError(
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_MONTHLY_INCOME, cause: Exception()));
     } else if (!(num.parse(annualIncome!) > 0)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''), type: ErrorType.INVALID_ANNUAL_INCOME_VALUE, cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_MONTHLY_INCOME_VALUE, cause: Exception()));
     } else if (employerName!.isEmpty) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMPLOYER_NAME, cause: Exception()));
