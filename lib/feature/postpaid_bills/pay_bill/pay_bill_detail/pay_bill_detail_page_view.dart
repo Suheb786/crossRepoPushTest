@@ -190,35 +190,41 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                     child: Card(
                                       //  clipBehavior: Clip.antiAlias,
                                       margin: EdgeInsets.zero,
-                                      child: FadingEdgeScrollView.fromSingleChildScrollView(
-                                        gradientFractionOnEnd: 0.2,
-                                        gradientFractionOnStart: 0.2,
-                                        child: SingleChildScrollView(
-                                          controller: model.controller,
-                                          child: AppStreamBuilder<bool>(
-                                            initialData: false,
-                                            stream: model.totalBillAmtDueStream,
-                                            dataBuilder: (BuildContext context, isSwitchActive) {
-                                              return Container(
-                                                padding:
-                                                    EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                                child: Column(children: [
-                                                  _billDetailsTitle(),
-                                                  _billerCategoryTitleWidget(),
-                                                  _billerNameAppTextField(),
-                                                  _servicesAppTextField(),
-                                                  _billingNumberTypeTextField(context),
-                                                  _ShowDenomination(),
-                                                  _showAmountForPrepaid(),
-                                                  // _refNoAppTextField(),
-                                                  _payFromAppTextField(),
-                                                  _addThisBillerSwitch(context, isSwitchActive),
-                                                  _nickNameAppTextField(context, isSwitchActive),
-                                                  _SwipeToProceedButton(),
-                                                  _backToPaymentsButton()
-                                                ]),
-                                              );
-                                            },
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        onPanDown: (_) {
+                                          FocusScope.of(context).requestFocus(FocusNode());
+                                        },
+                                        child: FadingEdgeScrollView.fromSingleChildScrollView(
+                                          gradientFractionOnEnd: 0.2,
+                                          gradientFractionOnStart: 0.2,
+                                          child: SingleChildScrollView(
+                                            controller: model.controller,
+                                            child: AppStreamBuilder<bool>(
+                                              initialData: false,
+                                              stream: model.totalBillAmtDueStream,
+                                              dataBuilder: (BuildContext context, isSwitchActive) {
+                                                return Container(
+                                                  padding:
+                                                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                                  child: Column(children: [
+                                                    _billDetailsTitle(),
+                                                    _billerCategoryTitleWidget(),
+                                                    _billerNameAppTextField(),
+                                                    _servicesAppTextField(),
+                                                    _billingNumberTypeTextField(context),
+                                                    _ShowDenomination(),
+                                                    _showAmountForPrepaid(),
+                                                    // _refNoAppTextField(),
+                                                    _payFromAppTextField(),
+                                                    _addThisBillerSwitch(context, isSwitchActive),
+                                                    _nickNameAppTextField(context, isSwitchActive),
+                                                    _SwipeToProceedButton(),
+                                                    _backToPaymentsButton()
+                                                  ]),
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ),

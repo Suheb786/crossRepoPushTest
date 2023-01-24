@@ -153,6 +153,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
         otpCode: otpController.text,
         isNewBiller: confirmBillModel.isNewBiller,
+        nickName: AppConstantsUtils.NICK_NAME,
         prepaidCategoryCode: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
             : "",
@@ -221,6 +222,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         isNewBiller: true,
         isCreditCardPayment: false,
         CardId: "",
+        nickName: AppConstantsUtils.NICK_NAME,
         otpCode: otpController.text));
   }
 

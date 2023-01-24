@@ -18,6 +18,7 @@ PayPrePaidRequest _$PayPrePaidRequestFromJson(Map<String, dynamic> json) {
     isNewBiller: json['isNewBiller'] as bool?,
     otpCode: json['otpCode'] as String?,
     CardId: json['CardId'] as String?,
+    nickName: json['NickName'] as String?,
     prepaidCategoryCode: json['prepaidCategoryCode'] as String?,
     prepaidCategoryType: json['prepaidCategoryType'] as String?,
     billingNumberRequired: json['billingNumberRequired'] as bool?,
@@ -43,6 +44,7 @@ Map<String, dynamic> _$PayPrePaidRequestToJson(PayPrePaidRequest instance) =>
       'billingNumberRequired': instance.billingNumberRequired,
       'isCreditCardPayment': instance.isCreditCardPayment,
       'CardId': instance.CardId,
+      'NickName': instance.nickName,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

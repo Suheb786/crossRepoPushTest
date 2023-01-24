@@ -121,8 +121,10 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
         currencyCode: "JOD",
         accountNo: savingAccountController.text,
-        otpCode: otpCode,
-        isNewBiller: isNewBiller,
+        otpCode: "",
+        isNewBiller: false,
+        nickName: "",
+        // only need to be added in case of new biller added request
         prepaidCategoryCode:
             isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
         prepaidCategoryType:
