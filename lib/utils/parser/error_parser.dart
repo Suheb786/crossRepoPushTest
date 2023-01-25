@@ -55,6 +55,8 @@ class ErrorParser {
         return localisedHelper.invalidMainSourceIncome;
       case ErrorType.INVALID_MONTHLY_INCOME:
         return localisedHelper.invalidMonthlyIncome;
+      case ErrorType.INVALID_MONTHLY_INCOME_VALUE:
+        return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
       case ErrorType.INVALID_ANNUAL_INCOME:
         return localisedHelper.invalidAnnualIncome;
       case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:

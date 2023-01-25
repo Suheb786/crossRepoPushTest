@@ -1521,5 +1521,7 @@
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
   "serviceIsNotavaliable": "Service is not available",
   "viewHistory": "View History",
-  "billsHistory": "Bills History"
+  "billsHistory": "Bills History",
+  "payYourBillswithBlink": "Pay your bills with Blink!",
+  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "
 }

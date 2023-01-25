@@ -14999,6 +14999,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Pay your bills with Blink!`
+  String get payYourBillswithBlink {
+    return Intl.message(
+      'Pay your bills with Blink!',
+      name: 'payYourBillswithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
+  String get youCanPayAllYourBillsNow {
+    return Intl.message(
+      'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
+      name: 'youCanPayAllYourBillsNow',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -245,48 +245,65 @@ class MessageLookup extends MessageLookupByLibrary {
         "authorization": MessageLookupByLibrary.simpleMessage("تفويض"),
         "authorize": MessageLookupByLibrary.simpleMessage(
             "أقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لبطاقات Blink الائتمانية"),
-        "availableAmount": MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
-        "availableBalance": MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
+        "availableAmount":
+            MessageLookupByLibrary.simpleMessage("المبلغ المتوفر"),
+        "availableBalance":
+            MessageLookupByLibrary.simpleMessage("الرصيد المتوفر"),
         "awesome": MessageLookupByLibrary.simpleMessage("ممتاز!"),
-        "backToCardSettings": MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
-        "backToDashboard": MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
-        "backToLogin": MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
-        "backToPayments": MessageLookupByLibrary.simpleMessage("العودة الى الفواتير"),
-        "backToRegistration": MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
+        "backToCardSettings":
+            MessageLookupByLibrary.simpleMessage("العودة لإعدادات البطاقة"),
+        "backToDashboard":
+            MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
+        "backToLogin":
+            MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "backToPayments":
+            MessageLookupByLibrary.simpleMessage("العودة الى الفواتير"),
+        "backToRegistration":
+            MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
         "banks": MessageLookupByLibrary.simpleMessage("البنوك"),
-        "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
-        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage("المستقبِل غير موجود. حاول مع حدا جديد."),
+        "beneficialOwnerIsAResidenceOf":
+            MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
+        "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
+            "المستقبِل غير موجود. حاول مع حدا جديد."),
         "billDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الفاتورة"),
         "billName": MessageLookupByLibrary.simpleMessage("اسم الفاتورة"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"),
-        "billerAddedSuccessfully": MessageLookupByLibrary.simpleMessage("تم اضافة الفاتورة بنجاح"),
-        "billerAlreadyExistsMessage":
-            MessageLookupByLibrary.simpleMessage("يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
+        "billerAddedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم اضافة الفاتورة بنجاح"),
+        "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
+            "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
         "billerName": MessageLookupByLibrary.simpleMessage("اسم المفوتر"),
-        "billsAndPayments": MessageLookupByLibrary.simpleMessage("الفواتير و الدفع"),
+        "billsAndPayments":
+            MessageLookupByLibrary.simpleMessage("الفواتير و الدفع"),
         "billsHistory": MessageLookupByLibrary.simpleMessage("سِجِل الفواتير"),
-        "biometricLogin": MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
-        "biometricLoginActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل الدخول بالبصمة بنجاح"),
-        "biometricLoginDeactivated":
-            MessageLookupByLibrary.simpleMessage("تم تعطيل تسجيل الدخول بالبصمة بنجاح."),
-        "biometricLoginDesc":
-            MessageLookupByLibrary.simpleMessage("لاستخدام Blink بسلاسة أكثر، فعّل خاصية التسجيل بالبصمة"),
+        "biometricLogin":
+            MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
+        "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
+            "تم تفعيل الدخول بالبصمة بنجاح"),
+        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
+            "تم تعطيل تسجيل الدخول بالبصمة بنجاح."),
+        "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
+            "لاستخدام Blink بسلاسة أكثر، فعّل خاصية التسجيل بالبصمة"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "ما تأجل مشترياتك! أصدر بطاقتك الائتمانية الافتراضية Rebellious Red فورا ومجانا\" "),
-        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage("بطاقة Rebellious Red الائتمانية"),
-        "blockThisCountry": MessageLookupByLibrary.simpleMessage("حظر هاي الدولة؟"),
+        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage(
+            "بطاقة Rebellious Red الائتمانية"),
+        "blockThisCountry":
+            MessageLookupByLibrary.simpleMessage("حظر هاي الدولة؟"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "إذا تم حظر دولة، فأي حركة بتعملها فيها رح يتم رفضها ولازم تفك الحظر عشان تقدر تكمّل دفعاتك."),
         "blockedCountries": MessageLookupByLibrary.simpleMessage("دول محظورة"),
         "bookFlight": MessageLookupByLibrary.simpleMessage("احجز الرحلة"),
-        "bookFligtWithUs": MessageLookupByLibrary.simpleMessage("احجز رحلتك معنا"),
+        "bookFligtWithUs":
+            MessageLookupByLibrary.simpleMessage("احجز رحلتك معنا"),
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "ستسافر قريبا ؟ تستطيع الان حجز رحلتك على الملكية الأردنية من خلال بلينك! بطريقة سلسة و امنة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الان"),
-        "bookingRefNo": MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
+        "bookingRefNo":
+            MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "brightPlace": MessageLookupByLibrary.simpleMessage("تأكد من إضاءة المكان اللي إنت فيه"),
         "buildingNameNo": MessageLookupByLibrary.simpleMessage("اسم/ رقم العمارة"),
@@ -1490,61 +1507,84 @@ class MessageLookup extends MessageLookupByLibrary {
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-138)"),
         "locateATM": MessageLookupByLibrary.simpleMessage("موقع الصراف الآلي"),
-        "locationRestricted":
-            MessageLookupByLibrary.simpleMessage(" تطبيق بلنك غير متاح في منطقتك الجغرافية."),
-        "locationServiceDisabled":
-            MessageLookupByLibrary.simpleMessage("خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
-        "loginNotAllowed":
-            MessageLookupByLibrary.simpleMessage("الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
-        "loginRegisterDisabled":
-            MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
+        "locationRestricted": MessageLookupByLibrary.simpleMessage(
+            " تطبيق بلنك غير متاح في منطقتك الجغرافية."),
+        "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
+            "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
+        "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
+        "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
+            "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-        "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage("تسجيل الخروج والاستمرار لاحقاً"),
-        "logoutError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage(
+            "تسجيل الخروج والاستمرار لاحقاً"),
+        "logoutError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "lookingFor": MessageLookupByLibrary.simpleMessage("على شو بتدوّر؟"),
-        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("البحث عن موظف متاح"),
-        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("استمتع بنقاط مكافآت أكتر"),
+        "lookingForAvailableAgent":
+            MessageLookupByLibrary.simpleMessage("البحث عن موظف متاح"),
+        "loyaltyRewards":
+            MessageLookupByLibrary.simpleMessage("استمتع بنقاط مكافآت أكتر"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage("العنوان البريدي مختلف على عنوان الإقامة"),
-        "mailingAddressLine": MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
-        "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
-        "mainAnnualIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
-        "mainSourceIncome": MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
-        "mainSourceOfIncome": MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
+            MessageLookupByLibrary.simpleMessage(
+                "العنوان البريدي مختلف على عنوان الإقامة"),
+        "mailingAddressLine":
+            MessageLookupByLibrary.simpleMessage("العنوان البريدي"),
+        "mainAnnualIncome":
+            MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
+        "mainAnnualIncomeSmall":
+            MessageLookupByLibrary.simpleMessage("الدخل السنوي الرئيسي"),
+        "mainSourceIncome":
+            MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
+        "mainSourceOfIncome":
+            MessageLookupByLibrary.simpleMessage("مصدر الدخل الرئيسي"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " تأكد إنك ما دخّلت الدخل الشهري بالغلط لتحصل على بطاقتك الائتمانية."),
-        "makeSureYourFaceFitsTheFrame":
-            MessageLookupByLibrary.simpleMessage("تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
+        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
+            "تأكد من إنك بتطلع على الكاميرا وفاتح عيونك منيح!"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("موظف ذكر"),
-        "manageAndPayMyBills": MessageLookupByLibrary.simpleMessage("إدارة ودفع الفواتير"),
-        "manageCardLimits": MessageLookupByLibrary.simpleMessage("إدارة سقوف البطاقات"),
-        "manageCardPin": MessageLookupByLibrary.simpleMessage("إدارة الرمز السري PIN للبطاقة"),
+        "manageAndPayMyBills":
+            MessageLookupByLibrary.simpleMessage("إدارة ودفع الفواتير"),
+        "manageCardLimits":
+            MessageLookupByLibrary.simpleMessage("إدارة سقوف البطاقات"),
+        "manageCardPin": MessageLookupByLibrary.simpleMessage(
+            "إدارة الرمز السري PIN للبطاقة"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("إدارة CliQ"),
         "manageContacts": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
-        "manageContactsSettings": MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
+        "manageContactsSettings":
+            MessageLookupByLibrary.simpleMessage("إدارة المعارف"),
         "manageMyBills": MessageLookupByLibrary.simpleMessage("إدارة الفواتير"),
-        "manageSettlement": MessageLookupByLibrary.simpleMessage("إدارة نسب السداد"),
+        "manageSettlement":
+            MessageLookupByLibrary.simpleMessage("إدارة نسب السداد"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "وصلت للحد الأقصى من عدد الحسابات. للأسف ما رح تقدر تفتح حساب جديد."),
-        "maximumAgeOfUser":
-            MessageLookupByLibrary.simpleMessage("الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
+        "maximumAgeOfUser": MessageLookupByLibrary.simpleMessage(
+            "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
         "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("خليها لبعدين"),
-        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الدفع في المتاجر"),
-        "merchantPayments": MessageLookupByLibrary.simpleMessage("دفعات المحلات"),
+        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
+            "تم تجاوز سقف الدفع في المتاجر"),
+        "merchantPayments":
+            MessageLookupByLibrary.simpleMessage("دفعات المحلات"),
         "minDue": MessageLookupByLibrary.simpleMessage("الحد الأدنى المستحق"),
-        "minDueBy": MessageLookupByLibrary.simpleMessage("الحد الأدنى للدفعة قبل تاريخ "),
-        "minimumSettlement": MessageLookupByLibrary.simpleMessage("الحد الأدنى للسداد "),
-        "minimumSettlements": MessageLookupByLibrary.simpleMessage("الحد الأدنى للسداد"),
-        "missedVideoCall":
-            MessageLookupByLibrary.simpleMessage("عفواً! راح موعد مكالمة الفيديو. الرجاء تحديد موعد جديد."),
+        "minDueBy": MessageLookupByLibrary.simpleMessage(
+            "الحد الأدنى للدفعة قبل تاريخ "),
+        "minimumSettlement":
+            MessageLookupByLibrary.simpleMessage("الحد الأدنى للسداد "),
+        "minimumSettlements":
+            MessageLookupByLibrary.simpleMessage("الحد الأدنى للسداد"),
+        "missedVideoCall": MessageLookupByLibrary.simpleMessage(
+            "عفواً! راح موعد مكالمة الفيديو. الرجاء تحديد موعد جديد."),
         "mobileAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "رقم الموبايل اللي أدخلته مستخدم من قبل. حاول تستخدم رقم جديد أو سجّل دخولك من خلال إيميلك وكلمة مرورك إذا كنت مسجّل من قبل."),
-        "mobileNoExist": MessageLookupByLibrary.simpleMessage("رقم الموبايل تم استخدامه سابقا\"ً"),
+        "mobileNoExist": MessageLookupByLibrary.simpleMessage(
+            "رقم الموبايل تم استخدامه سابقا\"ً"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
-        "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
-        "moneyThorError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "mobileNumberUpdated":
+            MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
+        "moneyThorError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
         "monthlyIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
         "motherName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
@@ -1727,6 +1767,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "الدفع من خلال رمز الاستجابة السريع"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "ضع رمز الاستجابة السريعة داخل الإطار وأكد عملية الدفع"),
+        "payYourBillswithBlink":
+            MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "paying": MessageLookupByLibrary.simpleMessage("تسديد الى"),
@@ -2246,7 +2288,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeUpToJoinOurCommunity":
             MessageLookupByLibrary.simpleMessage("اسحب لفوق لتنضم إلنا"),
         "swipeUpToPayNewBill": MessageLookupByLibrary.simpleMessage(
-            "اسحب للاعلى لتسدد فاتورة جديدي"),
+            "اسحب للاعلى لتسدد فاتورة جديدة"),
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("اسحب الشاشة لفوق للتسجيل"),
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
@@ -2432,66 +2474,82 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل حركة Vkey"),
         "verificationCallEnded":
             MessageLookupByLibrary.simpleMessage("انتهت مكالمة التحقق"),
-        "verificationCallEndedDesc":
-            MessageLookupByLibrary.simpleMessage("اكتملت المكالمة. رح نبلغك بحالة الطلب."),
-        "verifyBeneficiaryOtpError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyChangeEmailError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyChangeMobileNoError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyChangePinError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyDeviceChangeOtpError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyForgetPasswordError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyInformationDirectlyOrUsingThirdPartyAgentDesc": MessageLookupByLibrary.simpleMessage(
-            "أفوض Blink بالإفصاح عن أي معلومات تتعلق بحساباتي لإدارة الضرائب الأمريكية أو أي طرف ذي علاقة."),
-        "verifyNow": MessageLookupByLibrary.simpleMessage("ابدأ مكالمة الفيديو"),
-        "verifyOtpError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyOtpPasswordError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyTransferApiError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "verifyTransferApiV2Error":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verificationCallEndedDesc": MessageLookupByLibrary.simpleMessage(
+            "اكتملت المكالمة. رح نبلغك بحالة الطلب."),
+        "verifyBeneficiaryOtpError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyChangeEmailError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyChangeMobileNoError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyChangePinError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyDeviceChangeOtpError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyForgetPasswordError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "أفوض Blink بالإفصاح عن أي معلومات تتعلق بحساباتي لإدارة الضرائب الأمريكية أو أي طرف ذي علاقة."),
+        "verifyNow":
+            MessageLookupByLibrary.simpleMessage("ابدأ مكالمة الفيديو"),
+        "verifyOtpError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyOtpPasswordError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyTransferApiError": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
+            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
             " خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية.\nقد نطلب منك وثائق إضافية للتحقق من حالتك الوظيفية"),
         "videoCall": MessageLookupByLibrary.simpleMessage("مكالمة فيديو"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "صار وقت مكالمة الفيديو. اسحب الشاشة لتبدأ المكالمة لما تكون جاهز."),
-        "videoCallInfoDescription":
-            MessageLookupByLibrary.simpleMessage("خليك جاهز لمكالمة سريعة مع فريقنا، رح نتواصل معك هلأ."),
-        "videoCallInfoHeader":
-            MessageLookupByLibrary.simpleMessage(" صار وقت مكالمة مرئية (فيديو) للتحقق من شخصيتك "),
+        "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
+            "خليك جاهز لمكالمة سريعة مع فريقنا، رح نتواصل معك هلأ."),
+        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
+            " صار وقت مكالمة مرئية (فيديو) للتحقق من شخصيتك "),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "تم تحديد موعد مكالمتك بتاريخ 15/11/2022 على الساعة 10 صباحاً"),
-        "viewAndPayYourDueBills": MessageLookupByLibrary.simpleMessage("عرض ودفع الفواتير المستحقة"),
-        "viewCardSubSubscription": MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
-        "viewCardSubscription": MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
+        "viewAndPayYourDueBills":
+            MessageLookupByLibrary.simpleMessage("عرض ودفع الفواتير المستحقة"),
+        "viewCardSubSubscription":
+            MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
+        "viewCardSubscription":
+            MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
         "viewHistory": MessageLookupByLibrary.simpleMessage("عرض السجل"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("عرض الفواتير"),
-        "visaPlatinumCard": MessageLookupByLibrary.simpleMessage("بطاقة فيزا الائتمانية البلاتينية"),
+        "visaPlatinumCard": MessageLookupByLibrary.simpleMessage(
+            "بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),
         "voiceChat": MessageLookupByLibrary.simpleMessage("محادثة صوتية"),
         "w8Form": MessageLookupByLibrary.simpleMessage("نموذج W8"),
-        "w8FormDesc": MessageLookupByLibrary.simpleMessage("إذا عندك نموذج W8 جاهز حمّله من هون"),
+        "w8FormDesc": MessageLookupByLibrary.simpleMessage(
+            "إذا عندك نموذج W8 جاهز حمّله من هون"),
         "w9Form": MessageLookupByLibrary.simpleMessage("نموذج W9"),
-        "w9FormDesc": MessageLookupByLibrary.simpleMessage("إذا عندك نموذج W9 جاهز حمّله من هون"),
-        "wantToClaimTaxTreatyBenefits":
-            MessageLookupByLibrary.simpleMessage("بدك تطالب بمزايا اتفاق الضريبة؟"),
-        "waterAndElectricity": MessageLookupByLibrary.simpleMessage("المياه و الكهرباء"),
-        "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage("طرق إضافة أموال لحسابك"),
+        "w9FormDesc": MessageLookupByLibrary.simpleMessage(
+            "إذا عندك نموذج W9 جاهز حمّله من هون"),
+        "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
+            "بدك تطالب بمزايا اتفاق الضريبة؟"),
+        "waterAndElectricity":
+            MessageLookupByLibrary.simpleMessage("المياه و الكهرباء"),
+        "waysYocCanAddMoneyToAccount":
+            MessageLookupByLibrary.simpleMessage("طرق إضافة أموال لحسابك"),
         "weDoNotRecommendToUsePreviousTenPass":
-            MessageLookupByLibrary.simpleMessage("أدخلت كلمة مرور مستخدمة سابقاً. حاول تستخدم كلمة جديدة."),
-        "weNeedToMatchNamesONTaxReturn":
-            MessageLookupByLibrary.simpleMessage("لازم نطابق الأسماء على إقرارك الضريبي"),
-        "weWillConnectYou": MessageLookupByLibrary.simpleMessage("رح نتواصل معك خلال لحظات"),
-        "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage("رح نتواصل معك خلال لحظات"),
-        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage("رح نتواصل معك لما تكون جاهزة!"),
+            MessageLookupByLibrary.simpleMessage(
+                "أدخلت كلمة مرور مستخدمة سابقاً. حاول تستخدم كلمة جديدة."),
+        "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
+            "لازم نطابق الأسماء على إقرارك الضريبي"),
+        "weWillConnectYou":
+            MessageLookupByLibrary.simpleMessage("رح نتواصل معك خلال لحظات"),
+        "weWillConnectYouInBlink":
+            MessageLookupByLibrary.simpleMessage("رح نتواصل معك خلال لحظات"),
+        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
+            "رح نتواصل معك لما تكون جاهزة!"),
         "welcome": MessageLookupByLibrary.simpleMessage("أهلاً فيك"),
-        "welcomeToNeuBank": MessageLookupByLibrary.simpleMessage("أهلاً فيك بالبنك الرقمي"),
+        "welcomeToNeuBank":
+            MessageLookupByLibrary.simpleMessage("أهلاً فيك بالبنك الرقمي"),
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("مولود بأمريكا؟"),
@@ -2520,6 +2578,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
+        "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
+            "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
