@@ -71,76 +71,102 @@ class MessageLookup extends MessageLookupByLibrary {
             "فتح الحساب متوفر فقط للأردنيين حالياً. ما تقلق رح نتوسع قريباً لدول أخرى!"),
         "accountOpeningPurpose":
             MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
-        "accountPurposeNotFound": MessageLookupByLibrary.simpleMessage(
-            "المعلومات المطلوبة لسبب فتح الحساب ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
-        "accountReady": MessageLookupByLibrary.simpleMessage(
-            "حسابك صار جاهز! خلينا نجهّز بطاقة الدفع المباشر."),
-        "accountReadyMsg":
-            MessageLookupByLibrary.simpleMessage("حسابك صار جاهز!"),
-        "accountRegistration":
-            MessageLookupByLibrary.simpleMessage("تسجيل الحساب"),
-        "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
-            "احكيلنا ليش بدك تفتح الحساب؟"),
-        "acknowledgeBeforeFreezingCard": MessageLookupByLibrary.simpleMessage("عن تجميد بطاقتك"),
-        "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage("الخدمات الي جنبها 🔴  رح تتوفر قريباً"),
-        "activatingCreditCard": MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية"),
-        "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية التابعة"),
-        "activity": MessageLookupByLibrary.simpleMessage("حركة"),
-        "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-009)"),
-        "addBeneficiaryError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "addCallError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "addCountryRestriction": MessageLookupByLibrary.simpleMessage("إضافة تقييدات على مسنوى الدول "),
-        "addIncome": MessageLookupByLibrary.simpleMessage("إضافة دخل"),
-        "addIncome1": MessageLookupByLibrary.simpleMessage("إضافة دخل 1"),
-        "addIncome2": MessageLookupByLibrary.simpleMessage("إضافة دخل 2"),
-        "addLinkAccount": MessageLookupByLibrary.simpleMessage("أضف حساب مرتبط"),
-        "addMobileHeader": MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
-        "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
-        "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
-        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
-        "addOtherCardToAppleWalletDialogDescription": MessageLookupByLibrary.simpleMessage(
-            "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
-        "addRecipientToContact": MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
-        "addRequestMoney": MessageLookupByLibrary.simpleMessage(
-            "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
-        "addSendContact": MessageLookupByLibrary.simpleMessage(
-            "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
-        "addToApplePay": MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
-        "addedTo": MessageLookupByLibrary.simpleMessage("اضيفت الى"),
-        "addingContactsDesc": MessageLookupByLibrary.simpleMessage("رح تقدر تضيف المعارف لقائمتك قريباً."),
-        "additionIncomeSource": MessageLookupByLibrary.simpleMessage("دخل إضافي"),
-        "additionalIncome": MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
-        "additionalIncomeList": m0,
-        "additionalIncomePopUpDesc1": MessageLookupByLibrary.simpleMessage("تأكد من إنك دخّلت "),
-        "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
-            "الإضافي بدل الدخل الشهري لتحصل على بطاقتك الائتمانية الصحيحة."),
-        "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage("جواز سفر إضافي لجنسية أخرى"),
-        "additionalNationalityPassportDesc":
-            MessageLookupByLibrary.simpleMessage("الرجاء تزويدنا بجواز سفر جنسيتك الأخرى كإثبات"),
-        "additionalRequester": MessageLookupByLibrary.simpleMessage("مقدم طلب إضافي"),
-        "additionalSourceIncome": MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
-        "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
-        "additionalSourceOfIncome": MessageLookupByLibrary.simpleMessage("دخل إضافي"),
-        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
-        "addressInUnitedStates": MessageLookupByLibrary.simpleMessage("العنوان بأمريكا"),
-        "agentNotAvailable": MessageLookupByLibrary.simpleMessage("فريقنا غير متاح حالياً، حاول بعدين."),
-        "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
-            "نأسف ، فريقنا غير متاح حالياً، يرجى المحاولة لاحقًا. فريق التواصل المتخصص بطلبات البطاقات الائتمانية متاح 7 أيام في الأسبوع بين الساعة 10:00 صباحًا - 6:00 مساءً"),
-        "agentSelectionHeader": MessageLookupByLibrary.simpleMessage("اختار الموظف المفضل إلك لتحكي معه"),
-        "agreeData": MessageLookupByLibrary.simpleMessage("و "),
-        "agreeTermsCondition": MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
-        "ahwalError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-003)"),
-        "ahwalFailed": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-301)"),
-        "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
-            "الخدمة معطلة ، جرّب كمان مرة بعدين "),
-        "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
-        "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
-        "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
-        "allowBiometric":
+    "accountPurposeNotFound": MessageLookupByLibrary.simpleMessage(
+        "المعلومات المطلوبة لسبب فتح الحساب ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
+    "accountReady": MessageLookupByLibrary.simpleMessage(
+        "حسابك صار جاهز! خلينا نجهّز بطاقة الدفع المباشر."),
+    "accountReadyMsg":
+    MessageLookupByLibrary.simpleMessage("حسابك صار جاهز!"),
+    "accountRegistration":
+    MessageLookupByLibrary.simpleMessage("تسجيل الحساب"),
+    "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
+        "احكيلنا ليش بدك تفتح الحساب؟"),
+    "acknowledgeBeforeFreezingCard":
+    MessageLookupByLibrary.simpleMessage("عن تجميد بطاقتك"),
+    "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
+        "الخدمات الي جنبها 🔴  رح تتوفر قريباً"),
+    "activatingCreditCard":
+    MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية"),
+    "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
+        "تفعيل بطاقتك الائتمانية التابعة"),
+    "activity": MessageLookupByLibrary.simpleMessage("حركة"),
+    "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-009)"),
+    "addBeneficiaryError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "addCallError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "addCountryRestriction": MessageLookupByLibrary.simpleMessage(
+        "إضافة تقييدات على مسنوى الدول "),
+    "addIncome": MessageLookupByLibrary.simpleMessage("إضافة دخل"),
+    "addIncome1": MessageLookupByLibrary.simpleMessage("إضافة دخل 1"),
+    "addIncome2": MessageLookupByLibrary.simpleMessage("إضافة دخل 2"),
+    "addLinkAccount":
+    MessageLookupByLibrary.simpleMessage("أضف حساب مرتبط"),
+    "addMobileHeader":
+    MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
+    "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
+    "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
+    "addOtherCardToAppleWallet":
+    MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
+    "addOtherCardToAppleWalletDialogDescription":
+    MessageLookupByLibrary.simpleMessage(
+        "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
+    "addRecipientToContact":
+    MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
+    "addRequestMoney": MessageLookupByLibrary.simpleMessage(
+        "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
+    "addSendContact": MessageLookupByLibrary.simpleMessage(
+        "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
+    "addToApplePay":
+    MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
+    "addedTo": MessageLookupByLibrary.simpleMessage("اضيفت الى"),
+    "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
+        "رح تقدر تضيف المعارف لقائمتك قريباً."),
+    "additionIncomeSource":
+    MessageLookupByLibrary.simpleMessage("دخل إضافي"),
+    "additionalIncome":
+    MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
+    "additionalIncomeList": m0,
+    "additionalIncomePopUpDesc1":
+    MessageLookupByLibrary.simpleMessage("تأكد من إنك دخّلت "),
+    "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
+        "الإضافي بدل الدخل الشهري لتحصل على بطاقتك الائتمانية الصحيحة."),
+    "additionalNationalityPassport":
+    MessageLookupByLibrary.simpleMessage("جواز سفر إضافي لجنسية أخرى"),
+    "additionalNationalityPassportDesc":
+    MessageLookupByLibrary.simpleMessage(
+        "الرجاء تزويدنا بجواز سفر جنسيتك الأخرى كإثبات"),
+    "additionalRequester":
+    MessageLookupByLibrary.simpleMessage("مقدم طلب إضافي"),
+    "additionalSourceIncome":
+    MessageLookupByLibrary.simpleMessage("الدخل الإضافي"),
+    "additionalSourceIncomeQ1":
+    MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
+    "additionalSourceOfIncome":
+    MessageLookupByLibrary.simpleMessage("دخل إضافي"),
+    "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+    "addressInUnitedStates":
+    MessageLookupByLibrary.simpleMessage("العنوان بأمريكا"),
+    "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
+        "فريقنا غير متاح حالياً، حاول بعدين."),
+    "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
+        "نأسف ، فريقنا غير متاح حالياً، يرجى المحاولة لاحقًا. فريق التواصل المتخصص بطلبات البطاقات الائتمانية متاح 7 أيام في الأسبوع بين الساعة 10:00 صباحًا - 6:00 مساءً"),
+    "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
+        "اختار الموظف المفضل إلك لتحكي معه"),
+    "agreeData": MessageLookupByLibrary.simpleMessage("و "),
+    "agreeTermsCondition":
+    MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
+    "ahwalError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-003)"),
+    "ahwalFailed": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-301)"),
+    "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
+        "الخدمة معطلة ، جرّب كمان مرة بعدين "),
+    "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
+    "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
+    "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
+    "allowBiometric":
             MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
         "amount": MessageLookupByLibrary.simpleMessage("المبلغ"),
         "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
@@ -549,81 +575,103 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ في تحديث الشهادة"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
-        "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور اللي أدخلتها غير صحيحة. حاول كمان مرة."),
-        "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور الحالية غير صالحة وما حققت الحد الأدنى من المتطلبات."),
-        "currentSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("حساب التسوية الحالي"),
-        "currentSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("نسبة السداد الحالية"),
-        "customerNotEligible": MessageLookupByLibrary.simpleMessage(
-            "الخدمة غير متاحة إلك حالياً. الرجاء التواصل معنا على 5200100-06"),
-        "customerPreferenceNotFound": MessageLookupByLibrary.simpleMessage("خيارات العملاء غير موجودة"),
-        "customerService": MessageLookupByLibrary.simpleMessage("خدمة زبائن 24/7"),
-        "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
-        "dailyLimit": MessageLookupByLibrary.simpleMessage("السقف اليومي"),
-        "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
-        "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
-        "dateOfBirthSmall": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
-        "dcEnterOtpHeader": MessageLookupByLibrary.simpleMessage("أدخل كلمة مرور OTP المكونة من 6 أرقام"),
-        "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
-            "تم التحقق من رقم الموبايل الجديد بنجاح وربطه بحركات البطاقة."),
-        "debitCard": MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
-        "debitCardActivated": MessageLookupByLibrary.simpleMessage("تم تفعيل بطاقة الدفع المباشر"),
-        "debitCardDelivered": MessageLookupByLibrary.simpleMessage("وصلت بطاقة الدفع المباشر"),
-        "debitCardDeliveredDate": MessageLookupByLibrary.simpleMessage("تم تسليم بطاقة الدفع المباشر"),
-        "debitCardDeliveredQ": MessageLookupByLibrary.simpleMessage("وصلتك بطاقة الدفع المباشر؟"),
-        "debitCardReadyDesc": MessageLookupByLibrary.simpleMessage(
-            "رح يتواصلوا معك من أرامكس قريباً، ورح يوصلك الرمز السري PIN برسالة SMS. تواصل معنا إذا ما وصلتك البطاقة."),
-        "debitCardSettings": MessageLookupByLibrary.simpleMessage("إعدادات بطاقة الدفع المباشر"),
-        "debitCardStatementError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "debitCardTransactionListError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "debitCardVerified": MessageLookupByLibrary.simpleMessage("تم التحقق من بطاقة الدفع المباشر."),
-        "debitCards": MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
-        "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage("التصريح سليم وصحيح "),
-        "deleteBeneficiaryError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "deleteCliqId": MessageLookupByLibrary.simpleMessage("حذف حساب CliQ"),
-        "deleteProfileImageError":
-            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
-        "deliveryIssue": MessageLookupByLibrary.simpleMessage("عندي مشكلة بالتوصيل"),
-        "depositViaATM": MessageLookupByLibrary.simpleMessage("إيداع في صراف آلي"),
-        "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
-            "إيداع مباشر بحسابك على Blink من خلال صرافات كابيتال بنك، مع أو بدون بطاقة."),
-        "depositViaeFawateercom": MessageLookupByLibrary.simpleMessage("إيداع من خلال خدمة إي فواتيركم"),
-        "depositViaeFawateercomDesc": MessageLookupByLibrary.simpleMessage(
-            "إيداع فوري بحسابك من خلال اي وكيل لخدمة إي فواتيركم او من خلال تطبيق البنك الخاص بك بإستخدام رقم حسابك"),
-        "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-0005)"),
-        "deviceNotFound": MessageLookupByLibrary.simpleMessage("الجهاز غير موجود"),
-        "deviceNotSupported": MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز كشف الحماية"),
-        "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
-            "لحماية عملائنا ، قمنا بتعطيل Blink على الأجهزة عالية الخطورة. بتقدر تستخدم Blink على جهاز آخر أو تعمل إعادة ضبط لجهازك على إعداداته الأصلية."),
-        "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
-            "خلال تجميد البطاقة، ما رح تقدر تستفيد من عمليات الدفع المباشر المربوطة عليها. مثال: الدفع المباشر من Blink للنادي الرياضي أو شركة الاتصالات."),
-        "disableFingerPrintError":
-            MessageLookupByLibrary.simpleMessage("خطأ خلال تعطيل التسجيل بالبصمة. حاول كمان مرة بعدين."),
-        "dissatisfiedWithDigitalPlatform":
-            MessageLookupByLibrary.simpleMessage("أنا مش راضي عن المنصة الرقمية"),
-        "dissatisfiedWithOverallBankingExp":
-            MessageLookupByLibrary.simpleMessage("أنا مش راضي عن التجربة المصرفية بشكل عام"),
-        "district": MessageLookupByLibrary.simpleMessage("المنطقة"),
-        "doYouHaveAdditionalSourceOfIncome": MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
-        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
-        "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
-        "dob": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
-        "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
-        "documentsNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
-        "dontNeedMyCardAnymore":
-            MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
-        "downloadStatement":
-            MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
-        "dragMap": MessageLookupByLibrary.simpleMessage(
-            "اسحب وحرك الخريطة لتضبط الموقع"),
+    "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
+        "كلمة المرور اللي أدخلتها غير صحيحة. حاول كمان مرة."),
+    "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
+        "كلمة المرور الحالية غير صالحة وما حققت الحد الأدنى من المتطلبات."),
+    "currentSettlementAccount":
+    MessageLookupByLibrary.simpleMessage("حساب التسوية الحالي"),
+    "currentSettlementPercentage":
+    MessageLookupByLibrary.simpleMessage("نسبة السداد الحالية"),
+    "customerNotEligible": MessageLookupByLibrary.simpleMessage(
+        "الخدمة غير متاحة إلك حالياً. الرجاء التواصل معنا على 5200100-06"),
+    "customerPreferenceNotFound":
+    MessageLookupByLibrary.simpleMessage("خيارات العملاء غير موجودة"),
+    "customerService":
+    MessageLookupByLibrary.simpleMessage("خدمة زبائن 24/7"),
+    "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+    "dailyLimit": MessageLookupByLibrary.simpleMessage("السقف اليومي"),
+    "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+    "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "dateOfBirthSmall":
+    MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "dcEnterOtpHeader": MessageLookupByLibrary.simpleMessage(
+        "أدخل كلمة مرور OTP المكونة من 6 أرقام"),
+    "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
+        "تم التحقق من رقم الموبايل الجديد بنجاح وربطه بحركات البطاقة."),
+    "debitCard":
+    MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
+    "debitCardActivated": MessageLookupByLibrary.simpleMessage(
+        "تم تفعيل بطاقة الدفع المباشر"),
+    "debitCardDelivered":
+    MessageLookupByLibrary.simpleMessage("وصلت بطاقة الدفع المباشر"),
+    "debitCardDeliveredDate": MessageLookupByLibrary.simpleMessage(
+        "تم تسليم بطاقة الدفع المباشر"),
+    "debitCardDeliveredQ":
+    MessageLookupByLibrary.simpleMessage("وصلتك بطاقة الدفع المباشر؟"),
+    "debitCardReadyDesc": MessageLookupByLibrary.simpleMessage(
+        "رح يتواصلوا معك من أرامكس قريباً، ورح يوصلك الرمز السري PIN برسالة SMS. تواصل معنا إذا ما وصلتك البطاقة."),
+    "debitCardSettings":
+    MessageLookupByLibrary.simpleMessage("إعدادات بطاقة الدفع المباشر"),
+    "debitCardStatementError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "debitCardTransactionListError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "debitCardVerified": MessageLookupByLibrary.simpleMessage(
+        "تم التحقق من بطاقة الدفع المباشر."),
+    "debitCards":
+    MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
+    "declarationIsTrueAndCorrect":
+    MessageLookupByLibrary.simpleMessage("التصريح سليم وصحيح "),
+    "deleteBeneficiaryError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "deleteCliqId": MessageLookupByLibrary.simpleMessage("حذف حساب CliQ"),
+    "deleteProfileImageError": MessageLookupByLibrary.simpleMessage(
+        "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+    "deliveryIssue":
+    MessageLookupByLibrary.simpleMessage("عندي مشكلة بالتوصيل"),
+    "depositViaATM":
+    MessageLookupByLibrary.simpleMessage("إيداع في صراف آلي"),
+    "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
+        "إيداع مباشر بحسابك على Blink من خلال صرافات كابيتال بنك، مع أو بدون بطاقة."),
+    "depositViaeFawateercom": MessageLookupByLibrary.simpleMessage(
+        "إيداع من خلال خدمة إي فواتيركم"),
+    "depositViaeFawateercomDesc": MessageLookupByLibrary.simpleMessage(
+        "إيداع فوري بحسابك من خلال اي وكيل لخدمة إي فواتيركم او من خلال تطبيق البنك الخاص بك بإستخدام رقم حسابك"),
+    "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-0005)"),
+    "deviceNotFound":
+    MessageLookupByLibrary.simpleMessage("الجهاز غير موجود"),
+    "deviceNotSupported":
+    MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز كشف الحماية"),
+    "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
+        "لحماية عملائنا ، قمنا بتعطيل Blink على الأجهزة عالية الخطورة. بتقدر تستخدم Blink على جهاز آخر أو تعمل إعادة ضبط لجهازك على إعداداته الأصلية."),
+    "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
+        "خلال تجميد البطاقة، ما رح تقدر تستفيد من عمليات الدفع المباشر المربوطة عليها. مثال: الدفع المباشر من Blink للنادي الرياضي أو شركة الاتصالات."),
+    "disableFingerPrintError": MessageLookupByLibrary.simpleMessage(
+        "خطأ خلال تعطيل التسجيل بالبصمة. حاول كمان مرة بعدين."),
+    "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
+        "أنا مش راضي عن المنصة الرقمية"),
+    "dissatisfiedWithOverallBankingExp":
+    MessageLookupByLibrary.simpleMessage(
+        "أنا مش راضي عن التجربة المصرفية بشكل عام"),
+    "district": MessageLookupByLibrary.simpleMessage("المنطقة"),
+    "doYouHaveAdditionalSourceOfIncome":
+    MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
+    "doYouHaveAnyOtherNationality":
+    MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
+    "doYouHaveTinAvailable":
+    MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
+    "dob": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
+    "documentsNotFound": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
+    "dontNeedMyCardAnymore":
+    MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
+    "downloadStatement":
+    MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
+    "dragMap": MessageLookupByLibrary.simpleMessage(
+        "اسحب وحرك الخريطة لتضبط الموقع"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -1497,79 +1545,95 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بطاقتي الائتمانية"),
         "myDebitCard":
             MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
-        "myDocuments": MessageLookupByLibrary.simpleMessage("الوثائق"),
-        "name": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
-        "nameAsPerID": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
-        "nameAsPerIncomeTaxReturn":
-            MessageLookupByLibrary.simpleMessage("الاسم حسب الإقرار الضريبي"),
-        "nameHint": MessageLookupByLibrary.simpleMessage("اكتب اسمك"),
-        "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("الاسم"),
-        "nationalId": MessageLookupByLibrary.simpleMessage("الرقم الوطني"),
-        "nationality": MessageLookupByLibrary.simpleMessage("الجنسية"),
-        "nationalityHint": MessageLookupByLibrary.simpleMessage("اكتب جنسيتك"),
-        "nationalityRestricted":
-            MessageLookupByLibrary.simpleMessage("عفواً، المنتج مخصص لجنسيات معينة فقط."),
-        "nationalitySmall": MessageLookupByLibrary.simpleMessage("الجنسية"),
-        "natureOfSpecialNeed": MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
-        "natureSpecialNeeds": MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
-        "newDeviceDetected": MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
-        "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
-            "إنت عم بتحاول تسجّل دخولك من جهاز جديد. بدك تحوّل صلاحية الدخول للجهاز الجديد؟"),
-        "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
-            "تم تسجيل جهازك الجديد بنجاح. بتقدر تنتقل هلأ لشاشة التحكم."),
-        "newMobileNumber": MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
-        "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
-        "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
-        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
-        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
-        "niHandlerError": MessageLookupByLibrary.simpleMessage(
-            "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
-        "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
-        "no": MessageLookupByLibrary.simpleMessage("لا"),
-        "noATMData":
-            MessageLookupByLibrary.simpleMessage("مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
-        "noAccountFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-071)"),
-        "noActivityToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
-        "noCardsToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد بطاقات للعرض"),
-        "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
-            "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
-        "noCountriesFound": MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
-        "noDataFound": MessageLookupByLibrary.simpleMessage("لاتوجد بيانات"),
-        "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
-            "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
-        "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-090)"),
-        "noDueAmount": MessageLookupByLibrary.simpleMessage("لا يوجد مبلغ مستحق"),
-        "noInternetConnection": MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
-        "noMatchingYearFound": MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
-        "noPaymentActivityToDisplay": MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
-        "noPlaceholderFound":
-            MessageLookupByLibrary.simpleMessage("لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
-        "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-086)"),
-        "noSignatureFound": MessageLookupByLibrary.simpleMessage(
-            "توقيعك على نموذج FACTA غير موجود. تأكد من إنك تزودنا بالتوقيع أو تواصل معنا على 5200100-06"),
-        "noTransactionToDisplay": MessageLookupByLibrary.simpleMessage("لا توجد معاملة لعرضها"),
-        "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
-            "مصدر الهوية الشخصية غير متوفر حالياً. حاول مرة ثانية مع مصدر آخر."),
-        "notAllowedToLogin": MessageLookupByLibrary.simpleMessage("تسجيل الدخول غير مسموح إلك. تواصل معنا."),
-        "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
-            "ما رح تقدر تكمّل طلبك. تواصل معنا على 5200100-06 لتعرف أكتر."),
-        "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-059)"),
-        "notSetUpCountryRestrictionYet":
-            MessageLookupByLibrary.simpleMessage("لساتك ما اخترت تقييدات على مسنوى الدول"),
-        "notVerified": MessageLookupByLibrary.simpleMessage("لم يتم التحقق"),
-        "notifications": MessageLookupByLibrary.simpleMessage("إشعارارت"),
-        "notifyMe": MessageLookupByLibrary.simpleMessage("ذكرني"),
-        "notifyMeExC": MessageLookupByLibrary.simpleMessage("ذكرني"),
-        "nowConfirmPin":
-            MessageLookupByLibrary.simpleMessage("هلأ أكّد الرمز السري PIN"),
-        "nullId": MessageLookupByLibrary.simpleMessage("المعرف فارغ من Vkey"),
-        "numberOnCard":
-            MessageLookupByLibrary.simpleMessage("الأرقام على البطاقة"),
-        "occupation": MessageLookupByLibrary.simpleMessage("الوظيفة"),
+    "myDocuments": MessageLookupByLibrary.simpleMessage("الوثائق"),
+    "name": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
+    "nameAsPerID": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
+    "nameAsPerIncomeTaxReturn":
+    MessageLookupByLibrary.simpleMessage("الاسم حسب الإقرار الضريبي"),
+    "nameHint": MessageLookupByLibrary.simpleMessage("اكتب اسمك"),
+    "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "nationalId": MessageLookupByLibrary.simpleMessage("الرقم الوطني"),
+    "nationality": MessageLookupByLibrary.simpleMessage("الجنسية"),
+    "nationalityHint": MessageLookupByLibrary.simpleMessage("اكتب جنسيتك"),
+    "nationalityRestricted": MessageLookupByLibrary.simpleMessage(
+        "عفواً، المنتج مخصص لجنسيات معينة فقط."),
+    "nationalitySmall": MessageLookupByLibrary.simpleMessage("الجنسية"),
+    "natureOfSpecialNeed":
+    MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
+    "natureSpecialNeeds":
+    MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
+    "newDeviceDetected":
+    MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
+    "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
+        "إنت عم بتحاول تسجّل دخولك من جهاز جديد. بدك تحوّل صلاحية الدخول للجهاز الجديد؟"),
+    "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
+        "تم تسجيل جهازك الجديد بنجاح. بتقدر تنتقل هلأ لشاشة التحكم."),
+    "newMobileNumber":
+    MessageLookupByLibrary.simpleMessage("رقم موبايل جديد"),
+    "newPassword":
+    MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+    "newPin": MessageLookupByLibrary.simpleMessage("رمز سري PIN جديد"),
+    "newSettlementAccount":
+    MessageLookupByLibrary.simpleMessage("حساب التسوية الجديد"),
+    "newSettlementPercentage":
+    MessageLookupByLibrary.simpleMessage("نسبة السداد الجديدة"),
+    "niHandlerError": MessageLookupByLibrary.simpleMessage(
+        "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
+    "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
+    "no": MessageLookupByLibrary.simpleMessage("لا"),
+    "noATMData": MessageLookupByLibrary.simpleMessage(
+        "مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
+    "noAccountFound": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-071)"),
+    "noActivityToDisplay":
+    MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
+    "noCardsToDisplay":
+    MessageLookupByLibrary.simpleMessage("لا يوجد بطاقات للعرض"),
+    "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
+        "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
+    "noCountriesFound":
+    MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
+    "noDataFound": MessageLookupByLibrary.simpleMessage("لاتوجد بيانات"),
+    "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
+        "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
+    "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-090)"),
+    "noDueAmount":
+    MessageLookupByLibrary.simpleMessage("لا يوجد مبلغ مستحق"),
+    "noInternetConnection":
+    MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
+    "noMatchingYearFound":
+    MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
+    "noPaymentActivityToDisplay":
+    MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
+    "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
+        "لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
+    "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-086)"),
+    "noSignatureFound": MessageLookupByLibrary.simpleMessage(
+        "توقيعك على نموذج FACTA غير موجود. تأكد من إنك تزودنا بالتوقيع أو تواصل معنا على 5200100-06"),
+    "noTransactionToDisplay":
+    MessageLookupByLibrary.simpleMessage("لا توجد معاملة لعرضها"),
+    "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
+        "مصدر الهوية الشخصية غير متوفر حالياً. حاول مرة ثانية مع مصدر آخر."),
+    "notAllowedToLogin": MessageLookupByLibrary.simpleMessage(
+        "تسجيل الدخول غير مسموح إلك. تواصل معنا."),
+    "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
+        "ما رح تقدر تكمّل طلبك. تواصل معنا على 5200100-06 لتعرف أكتر."),
+    "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
+        "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-059)"),
+    "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
+        "لساتك ما اخترت تقييدات على مسنوى الدول"),
+    "notVerified": MessageLookupByLibrary.simpleMessage("لم يتم التحقق"),
+    "notifications": MessageLookupByLibrary.simpleMessage("إشعارارت"),
+    "notifyMe": MessageLookupByLibrary.simpleMessage("ذكرني"),
+    "notifyMeExC": MessageLookupByLibrary.simpleMessage("ذكرني"),
+    "nowConfirmPin":
+    MessageLookupByLibrary.simpleMessage("هلأ أكّد الرمز السري PIN"),
+    "nullId": MessageLookupByLibrary.simpleMessage("المعرف فارغ من Vkey"),
+    "numberOnCard":
+    MessageLookupByLibrary.simpleMessage("الأرقام على البطاقة"),
+    "occupation": MessageLookupByLibrary.simpleMessage("الوظيفة"),
         "occupationBusinessType":
             MessageLookupByLibrary.simpleMessage("نوع العمل/ الوظيفة"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("الوظيفة"),
@@ -2386,44 +2450,49 @@ class MessageLookup extends MessageLookupByLibrary {
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
                 "تم قبول طلب الأموال من خلال QR"),
-        "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
-            "بتقدر تودع الأموال بحسابك وتبدأ باستخدام بطاقة الدفع المباشر Yellow Sun مباشرة."),
-        "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
-        "youLocked": MessageLookupByLibrary.simpleMessage(
-            "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
-        "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
-        "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
-            "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
-        "youWillReceiveCardPinViaSms":
-            MessageLookupByLibrary.simpleMessage("ما وصلتك رسالة SMS؟ تواصل معنا."),
-        "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
-            "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
-        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
-        "yourApplicationInReviewNote":
-            MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة، رح نخبرك قريباً."),
-        "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage("تمت إضافة بطاقتك إلى Apple Wallet"),
-        "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(
-            "Apple Pay هي طريقة أسهل للدفع في المتاجر والتطبيقات وعبر الإنترنت باستخدام iPhone و Apple Watch و iPad و Mac"),
-        "yourCardAddedToApplePayDesc2":
-            MessageLookupByLibrary.simpleMessage("استخدم Apple Pay أينما ترى هذه الرموز"),
-        "yourCardHasBeenIssued":
-            MessageLookupByLibrary.simpleMessage("تم إصدار بطاقة الدفع المباشر Yellow Sun"),
-        "yourCardIsReady": MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة!"),
-        "yourCardIssued": MessageLookupByLibrary.simpleMessage("تم إصدار بطاقتك"),
-        "yourCardLimit": MessageLookupByLibrary.simpleMessage("سقف بطاقتك"),
-        "yourCardReady": MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة"),
-        "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
-            "رح يتواصلوا معك من أرامكس قريباً، حالياً بتقدر تستخدم بطاقتك الافتراضية فوراً."),
-        "yourContactDetailsUpdated":
-            MessageLookupByLibrary.simpleMessage("تم حفظ معلومات جهة الاتصال."),
-        "yourFreeVirtualDebitCardHasBeenIssued":
-            MessageLookupByLibrary.simpleMessage(
-                "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
-        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
-            "تم تفعيل بطاقتك على خدمة أبل باي"),
-        "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
+    "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
+        "بتقدر تودع الأموال بحسابك وتبدأ باستخدام بطاقة الدفع المباشر Yellow Sun مباشرة."),
+    "youCanChangeCardDetailsInSettings":
+    MessageLookupByLibrary.simpleMessage(
+        "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
+    "youLocked": MessageLookupByLibrary.simpleMessage(
+        "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
+    "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
+    "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
+        "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
+    "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
+        "ما وصلتك رسالة SMS؟ تواصل معنا."),
+    "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
+        "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
+    "yourApplicationInReview":
+    MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
+    "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
+        "طلبك قيد المراجعة، رح نخبرك قريباً."),
+    "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage(
+        "تمت إضافة بطاقتك إلى Apple Wallet"),
+    "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(
+        "Apple Pay هي طريقة أسهل للدفع في المتاجر والتطبيقات وعبر الإنترنت باستخدام iPhone و Apple Watch و iPad و Mac"),
+    "yourCardAddedToApplePayDesc2": MessageLookupByLibrary.simpleMessage(
+        "استخدم Apple Pay أينما ترى هذه الرموز"),
+    "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
+        "تم إصدار بطاقة الدفع المباشر Yellow Sun"),
+    "yourCardIsReady":
+    MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة!"),
+    "yourCardIssued":
+    MessageLookupByLibrary.simpleMessage("تم إصدار بطاقتك"),
+    "yourCardLimit": MessageLookupByLibrary.simpleMessage("سقف بطاقتك"),
+    "yourCardReady":
+    MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة"),
+    "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
+        "رح يتواصلوا معك من أرامكس قريباً، حالياً بتقدر تستخدم بطاقتك الافتراضية فوراً."),
+    "yourContactDetailsUpdated":
+    MessageLookupByLibrary.simpleMessage("تم حفظ معلومات جهة الاتصال."),
+    "yourFreeVirtualDebitCardHasBeenIssued":
+    MessageLookupByLibrary.simpleMessage(
+        "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+    "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
+        "تم تفعيل بطاقتك على خدمة أبل باي"),
+    "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun")
       };
