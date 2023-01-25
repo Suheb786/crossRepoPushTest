@@ -170,6 +170,8 @@ class LoginViewModel extends BasePageViewModel {
   /// selected language stream
   Stream<LanguageEnum> get selectedLanguageStream => _selectedLanguage.stream;
 
+  bool isBiometricDialogShown = false;
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,

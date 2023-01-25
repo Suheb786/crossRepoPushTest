@@ -196,6 +196,9 @@ class AppHomeViewModel extends BasePageViewModel {
           // showErrorState();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
+
+          ///show apple pay pop up button
+          showApplePayPopUp(true);
         } else if (event.status == Status.SUCCESS) {
           ///fetching antelop cards
           getAntelopCards();
@@ -205,6 +208,9 @@ class AppHomeViewModel extends BasePageViewModel {
           triggerRequestMoneyPopup();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
+
+          ///show apple pay pop up button
+          showApplePayPopUp(true);
         }
       });
     });
@@ -510,8 +516,8 @@ class AppHomeViewModel extends BasePageViewModel {
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
     sortTimeLineArgumentsList();
 
-    ///show apple pay pop up button
-    showApplePayPopUp(true);
+    // ///show apple pay pop up button
+    // showApplePayPopUp(true);
   }
 
   void addPages(List pagesList) {

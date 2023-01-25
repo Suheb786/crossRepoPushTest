@@ -444,7 +444,7 @@ class AntelopHelper {
         debugPrint("Flutter side antelopEmptyCardsList " + data.toString());
         List<GetAllCardData> newDataList = [];
         listOfCardFromAntelop.add(newDataList);
-        if (newDataList.isNotEmpty) {
+        if (newDataList.isEmpty) {
           isAllCardsInApplePay = false;
           antelopStepCompleted.add(false);
         }

@@ -210,6 +210,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       initialData: Resource.none(),
                                                       onData: (data) {
                                                         if (data.status == Status.SUCCESS) {
+                                                          model.isBiometricDialogShown = false;
+
                                                           ///apple pay initialize
                                                           // model.antelopSdkInitialize();
 
@@ -489,6 +491,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             visible: fingerPrintValue!,
                                                                                                             child: InkWell(
                                                                                                               onTap: () {
+                                                                                                                model.isBiometricDialogShown = true;
                                                                                                                 FocusScope.of(context).unfocus();
                                                                                                                 model.checkBiometric();
                                                                                                               },

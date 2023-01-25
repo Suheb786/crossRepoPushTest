@@ -25,7 +25,9 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      getViewModel().getCurrentUser();
+      if (!(getViewModel().isBiometricDialogShown)) {
+        getViewModel().getCurrentUser();
+      }
     }
     super.didChangeAppLifecycleState(state);
   }
