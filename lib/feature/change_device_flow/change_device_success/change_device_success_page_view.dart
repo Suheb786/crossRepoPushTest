@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -14,7 +13,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -53,9 +51,9 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                             ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
-              if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-                model.antelopSdkInitialize();
-              }
+              // if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+              //   model.antelopSdkInitialize();
+              // }
               Navigator.popAndPushNamed(context, RoutePaths.AppHome);
             }
           }

@@ -166,6 +166,7 @@ import 'package:data/entity/remote/user/confirm_application_data_set/confirm_app
 import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
@@ -597,7 +598,7 @@ abstract class ApiService {
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
-  Future<HttpResponse<ResponseEntity>> androidLogin(
+  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/CheckForgetPasswordCredV2")

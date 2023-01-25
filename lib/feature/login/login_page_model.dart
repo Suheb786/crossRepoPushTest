@@ -4,6 +4,7 @@ import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
+import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -86,9 +87,9 @@ class LoginViewModel extends BasePageViewModel {
   ///android login
   PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _androidLoginResponse = PublishSubject();
+  PublishSubject<Resource<AndroidLoginResponse>> _androidLoginResponse = PublishSubject();
 
-  Stream<Resource<bool>> get androidLoginStream => _androidLoginResponse.stream;
+  Stream<Resource<AndroidLoginResponse>> get androidLoginStream => _androidLoginResponse.stream;
 
   ///iphone login
   PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest = PublishSubject();

@@ -112,6 +112,7 @@ class OtpForChangeDeviceConfirmationPageView
                           if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                             AntelopHelper.walletLogout();
                             model.clearWallet();
+                            model.antelopSdkInitialize();
                           }
                           Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
                         } else if (data.status == Status.ERROR) {

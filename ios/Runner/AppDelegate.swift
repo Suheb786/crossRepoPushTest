@@ -147,7 +147,7 @@ import AntelopSDK
     
     func onAsyncRequestSuccess(asyncRequestType: AsyncRequestType) {
         print("onAsyncRequestSuccess")
-         walletManager = WalletManager(self)
+        walletManager = WalletManager(self)
         let walletIdDic: [String: Any] = [
             "status": "On Async Request Success",
         ]
@@ -181,20 +181,20 @@ import AntelopSDK
         print("wallet connect method called")
         walletManager.connect()
     }
-
+    
     public func walletLogout(){
-            print("wallet logout method called")
-
-            do { try
-                walletManager.delete()
-            } catch {
-                print(error)
-            }
+        print("wallet logout method called")
+        
+        do { try
+            walletManager.delete()
+        } catch {
+            print(error)
         }
+    }
     
     public func getCards(){
         print("enter get cards method")
-        var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+        var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: false)
         print("card list \(cards) end")
         if (cards?.values.count ?? 0) == 0 {
             self.callBackMethodsCardDetails(event: "emptyGetCards", dic: [[:]])
@@ -277,7 +277,7 @@ import AntelopSDK
     
     public func getAntelopCards(){
         print("enter Antelop get cards method")
-        var newCards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+        var newCards =  wallet?.getDigitalCards(includeNotProvisionedCards: false)
         print("antelopCardsList card list \(newCards) end")
         if (newCards?.values.count ?? 0) == 0 {
             self.callBackMethodsCardDetails(event: "antelopEmptyCardsList", dic: [[:]])
@@ -449,9 +449,9 @@ import AntelopSDK
                 
             case "walletConnect":
                 self?.walletConnect()
-
-                case "walletLogout":
-                                self?.walletLogout()
+                
+            case "walletLogout":
+                self?.walletLogout()
                 
             case "checkEligibility":
                 self?.callCheckEligibility()
