@@ -241,12 +241,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
-        "armexApiError":
-            MessageLookupByLibrary.simpleMessage("Error in aramex api"),
-        "assignTokenError": MessageLookupByLibrary.simpleMessage(
-            "Error while assigning token vkey"),
-        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
-            "Atm withdrawal limit exceeded."),
+        "armexApiError": MessageLookupByLibrary.simpleMessage("Error in aramex api"),
+        "assignTokenError": MessageLookupByLibrary.simpleMessage("Error while assigning token vkey"),
+        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage("Atm withdrawal limit exceeded."),
         "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
         "attention": MessageLookupByLibrary.simpleMessage("Attention"),
         "authorization": MessageLookupByLibrary.simpleMessage("authorization."),
@@ -311,12 +308,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
         "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
-        "bornBlink":
-            MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
-        "brightPlace": MessageLookupByLibrary.simpleMessage(
-            "Make sure you’re in bright place and surrounding"),
-        "browserByCatgy":
-            MessageLookupByLibrary.simpleMessage("Browse by Category"),
+        "bornBlink": MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
+        "brightPlace":
+            MessageLookupByLibrary.simpleMessage("Make sure you’re in bright place and surrounding"),
+        "browserByCatgy": MessageLookupByLibrary.simpleMessage("Browse by Category"),
         "buildingNameNo":
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "buildingNameOrNo":
@@ -1577,13 +1572,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "loanValueRequestProcessingError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
-        "loanValuesError": MessageLookupByLibrary.simpleMessage(
-            "Error while getting Loan Values"),
+        "loanValuesError": MessageLookupByLibrary.simpleMessage("Error while getting Loan Values"),
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
-        "locationRestricted": MessageLookupByLibrary.simpleMessage(
-            "Your location is restricted from using this app."),
+        "locationRestricted":
+            MessageLookupByLibrary.simpleMessage("Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -1667,13 +1661,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
-        "monthlyIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "monthlyIncomeSmall": MessageLookupByLibrary.simpleMessage("Monthly Income"),
         "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
-        "motherNameHint":
-            MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
-        "mothersBirthplace":
-            MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
+        "motherNameHint": MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
+        "mothersBirthplace": MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
@@ -2678,12 +2669,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
             "We will notify you once it\'s ready!"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
-        "welcomeToNeuBank":
-            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
+        "welcomeToNeuBank": MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
-        "wereBornInUS":
-            MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
+        "wereBornInUS": MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
         "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "What is Claim of Tax Treaty Benefits?"),

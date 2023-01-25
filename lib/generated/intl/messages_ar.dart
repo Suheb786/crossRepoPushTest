@@ -238,12 +238,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "areaSmall": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "armexApiError":
             MessageLookupByLibrary.simpleMessage("خطأ في API أرامكس"),
-        "assignTokenError": MessageLookupByLibrary.simpleMessage(
-            "خطأ أثناء تعيين الرمز المميز vkey"),
-        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
-            "تم تجاوز سقف السحب من الصراف الآلي"),
-        "atmWithDrawal":
-            MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
+        "assignTokenError": MessageLookupByLibrary.simpleMessage("خطأ أثناء تعيين الرمز المميز vkey"),
+        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف السحب من الصراف الآلي"),
+        "atmWithDrawal": MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
         "attention": MessageLookupByLibrary.simpleMessage("تنويه"),
         "authorization": MessageLookupByLibrary.simpleMessage("تفويض"),
         "authorize": MessageLookupByLibrary.simpleMessage(
@@ -308,16 +305,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingRefNo":
             MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
-        "brightPlace": MessageLookupByLibrary.simpleMessage(
-            "تأكد من إضاءة المكان اللي إنت فيه"),
-        "buildingNameNo":
-            MessageLookupByLibrary.simpleMessage("اسم/ رقم العمارة"),
-        "buildingNameOrNo":
-            MessageLookupByLibrary.simpleMessage("رقم/ اسم العمارة"),
-        "buildingNameOrNoHint":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم/ اسم العمارة"),
-        "businessNameOptional":
-            MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
+        "brightPlace": MessageLookupByLibrary.simpleMessage("تأكد من إضاءة المكان اللي إنت فيه"),
+        "buildingNameNo": MessageLookupByLibrary.simpleMessage("اسم/ رقم العمارة"),
+        "buildingNameOrNo": MessageLookupByLibrary.simpleMessage("رقم/ اسم العمارة"),
+        "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage("أدخل رقم/ اسم العمارة"),
+        "businessNameOptional": MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
         "businessRulesNotImplementedAgainstCompanyId":
             MessageLookupByLibrary.simpleMessage(
                 "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-028)"),
@@ -1170,21 +1162,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
         "homeAddressHint": MessageLookupByLibrary.simpleMessage("أدخل عنوانك"),
         "homeAddressSmall": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
-        "howMuchWouldYouLikeToPay": MessageLookupByLibrary.simpleMessage(
-            "ما المبلغ الذي  تريد\nان تسدده"),
+        "howMuchWouldYouLikeToPay": MessageLookupByLibrary.simpleMessage("ما المبلغ الذي  تريد\nان تسدده"),
         "howWouldLikeToPayPostPaidYourBills":
-            MessageLookupByLibrary.simpleMessage(
-                "كيف ترغب ان تقوم بتسديد فواتيرك"),
+            MessageLookupByLibrary.simpleMessage("كيف ترغب ان تقوم بتسديد فواتيرك"),
         "howWouldLikeToPayPrePaidYourBills":
-            MessageLookupByLibrary.simpleMessage(
-                "كيف تريد تسديد فواتيرك الدفع المسبقة"),
-        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage(
-            "كيف ترغب ان تقوم بتسديد فواتيرك"),
-        "howYouLikeToPayment":
-            MessageLookupByLibrary.simpleMessage("كيف تفضل ان تدفع"),
+            MessageLookupByLibrary.simpleMessage("كيف ترغب ان تقوم بتسديد فواتيرك المدفوعة مسبقا"),
+        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage("كيف ترغب ان تقوم بتسديد فواتيرك"),
+        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage("كيف تفضل ان تدفع"),
         "iConfirmThatAllInfoAccurateFatca":
-            MessageLookupByLibrary.simpleMessage(
-                "أؤكد على أن جميع المعلومات المزودة دقيقة."),
+            MessageLookupByLibrary.simpleMessage("أؤكد على أن جميع المعلومات المزودة دقيقة."),
         "iConfirmThatMy": MessageLookupByLibrary.simpleMessage("أوكد على"),
         "iDNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("عندي حساب"),
@@ -1517,8 +1503,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-132)"),
         "loanValueRequestProcessingError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-133)"),
-        "loanValuesError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال الحصول على قيم القروض"),
+        "loanValuesError": MessageLookupByLibrary.simpleMessage("خطأ خلال الحصول على قيم القروض"),
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-138)"),
         "locateATM": MessageLookupByLibrary.simpleMessage("موقع الصراف الآلي"),
@@ -1601,12 +1586,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
-        "monthlyIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
+        "monthlyIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
         "motherName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
         "motherNameHint": MessageLookupByLibrary.simpleMessage("أدخل اسم الأم"),
-        "mothersBirthplace":
-            MessageLookupByLibrary.simpleMessage("مكان ولادة الأم"),
+        "mothersBirthplace": MessageLookupByLibrary.simpleMessage("مكان ولادة الأم"),
         "mothersName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
         "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
         "myBills": MessageLookupByLibrary.simpleMessage("الفواتير"),
@@ -2571,12 +2554,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-014)"),
         "wereBornInUS": MessageLookupByLibrary.simpleMessage("مولود بأمريكا؟"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("شو يعني PEP؟"),
-        "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),
-        "whatIsYourEmploymentStatus":
-            MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
-        "whatRelationshipWithCardHolder":
-            MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
+        "whatIsTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
+        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
         "whatYourEmailAndMobileNumber":
             MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
         "whereDoYouCurrentlyLive":

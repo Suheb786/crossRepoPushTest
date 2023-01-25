@@ -32,6 +32,8 @@ class PayPrePaidRequest {
   final bool? isCreditCardPayment;
   @JsonKey(name: "CardId")
   final String? CardId;
+  @JsonKey(name: "NickName")
+  String? nickName;
 
   @JsonKey(name: "GetToken")
   final bool? getToken;
@@ -50,6 +52,7 @@ class PayPrePaidRequest {
       this.isNewBiller,
       this.otpCode,
       this.CardId,
+      this.nickName,
       this.prepaidCategoryCode,
       this.prepaidCategoryType,
       this.billingNumberRequired,

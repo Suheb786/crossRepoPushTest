@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/bill_payment/pay_post_paid_bill/biller_list_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'pay_post_paid_bill_request_entity.g.dart';
@@ -19,6 +18,8 @@ class PayPostPaidBillRequestEntity {
   bool? isCreditCardPayment;
   @JsonKey(name: "otpCode")
   String? otpCode;
+  @JsonKey(name: "NickName")
+  String? nickName;
   @JsonKey(name: "CardId")
   String? CardId;
   @JsonKey(name: "GetToken")
@@ -35,6 +36,7 @@ class PayPostPaidBillRequestEntity {
       this.isCreditCardPayment,
       this.isNewBiller,
       this.CardId,
+      this.nickName,
       this.getToken: true,
       required this.baseData});
 

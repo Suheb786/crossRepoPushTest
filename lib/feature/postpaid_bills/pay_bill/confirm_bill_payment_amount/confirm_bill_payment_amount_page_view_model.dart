@@ -134,6 +134,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         isNewBiller: false,
         isCreditCardPayment: false,
         CardId: "",
+        nickName: AppConstantsUtils.NICK_NAME,
         otpCode: ""));
   }
 
@@ -240,6 +241,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,
         isNewBiller: isNewBiller,
+        nickName: AppConstantsUtils.NICK_NAME,
         prepaidCategoryCode: addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
             : "",

@@ -17,6 +17,7 @@ PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(
     isCreditCardPayment: json['isCreditCardPayment'] as bool?,
     isNewBiller: json['isNewBiller'] as bool?,
     CardId: json['CardId'] as String?,
+    nickName: json['NickName'] as String?,
     getToken: json['GetToken'] as bool?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
   );
@@ -32,6 +33,7 @@ Map<String, dynamic> _$PayPostPaidBillRequestEntityToJson(
       'isNewBiller': instance.isNewBiller,
       'isCreditCardPayment': instance.isCreditCardPayment,
       'otpCode': instance.otpCode,
+      'NickName': instance.nickName,
       'CardId': instance.CardId,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

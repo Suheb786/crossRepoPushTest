@@ -104,6 +104,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         isNewBiller: false,
         isCreditCardPayment: false,
         CardId: "",
+        nickName: "",
+        // only need to be added in case of new biller added request
         otpCode: ""));
   }
 
