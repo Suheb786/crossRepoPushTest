@@ -202,18 +202,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    if (isTotalAmountZero == false) {
-      if (savingAccountController.text.isNotEmpty) {
-        _showButtonSubject.safeAdd(true);
-      }
+    if (isTotalAmountZero == false && savingAccountController.text.isNotEmpty && validData == true) {
+      _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
   }
 
+  bool validData = true;
+
   void minMaxValidate(
       bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
     if (isPartial == true) {
+      validData = false;
       if (value.isEmpty) {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
@@ -224,6 +225,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
       } else {
+        validData = true;
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
     }

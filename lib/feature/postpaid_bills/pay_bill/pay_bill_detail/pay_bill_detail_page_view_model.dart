@@ -122,14 +122,19 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       AppConstantsUtils.POST_PAID_FLOW = true;
       AppConstantsUtils.PRE_PAID_FLOW = false;
       AppConstantsUtils.IS_NEW_PAYMENT = true;
-
+      isValidated = false;
       if (billingNumberTextControl.text.trim() != "") {
         isValidated = true;
-        if (isAddThisBillerToSaveList) {
-          isValidated = false;
-          nickNameValidation();
-        }
+      } else {
+        _showButtonSubject.safeAdd(false);
+        return;
       }
+
+      if (isAddThisBillerToSaveList) {
+        isValidated = false;
+        nickNameValidation();
+      }
+
       if (!isValidated) {
         _showButtonSubject.safeAdd(false);
         return;
@@ -146,10 +151,14 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
           isValidated = false;
           if (billingNumberTextControl.text.trim() != "") {
             isValidated = true;
-            if (isAddThisBillerToSaveList) {
-              isValidated = false;
-              nickNameValidation();
-            }
+          } else {
+            _showButtonSubject.safeAdd(false);
+            return;
+          }
+
+          if (isAddThisBillerToSaveList) {
+            isValidated = false;
+            nickNameValidation();
           }
         } else {
           if (isAddThisBillerToSaveList) {

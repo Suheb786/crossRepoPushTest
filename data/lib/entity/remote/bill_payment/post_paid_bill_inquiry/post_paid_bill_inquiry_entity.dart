@@ -18,9 +18,9 @@ class PostPaidBillInquiryEntity
   @JsonKey(name: "serviceType")
   String? serviceType;
   @JsonKey(name: "dueAmount")
-  String? dueAmount;
+  dynamic dueAmount;
   @JsonKey(name: "feesAmt")
-  String? feesAmt;
+  dynamic feesAmt;
   @JsonKey(name: "success")
   bool? success;
   @JsonKey(name: "message")
@@ -64,9 +64,9 @@ class PostPaidBillInquiryEntity
         billerCode: this.billerCode != null && this.billerCode!.isNotEmpty ? this.billerCode : "0",
         billingNo: this.billingNo != null && this.billingNo!.isNotEmpty ? this.billingNo : "",
         billNo: this.billNo != null && this.billNo!.isNotEmpty ? this.billNo : "",
-        dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty ? this.dueAmount : "0",
+        dueAmount: this.dueAmount != null && this.dueAmount!.isNotEmpty ? this.dueAmount.toString() : "0",
         dueDate: this.dueDate != null && this.dueDate!.isNotEmpty ? this.dueDate : "0",
-        feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty ? this.feesAmt : "0",
+        feesAmt: this.feesAmt != null && this.feesAmt!.isNotEmpty ? this.feesAmt.toString() : "0",
         minValue:
             this.minValue != null && this.minValue!.toString().isNotEmpty ? this.minValue.toString() : "0",
         maxValue:
