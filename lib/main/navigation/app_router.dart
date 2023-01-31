@@ -1,3 +1,5 @@
+
+
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -74,6 +76,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_n
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
@@ -873,7 +876,10 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => LinkAccountPage(settings.arguments as LinkAccountPageArgument),
             settings: RouteSettings(name: RoutePaths.LinkAccountPage));
-
+      case RoutePaths.AddContactsIBANManageContactsPage:
+        return CupertinoPageRoute(
+            builder: (context) => AddContactsIBANManageContactsPage(),
+            settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),

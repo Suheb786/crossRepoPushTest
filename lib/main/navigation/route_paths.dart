@@ -146,4 +146,5 @@ class RoutePaths {
   static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
   static const String LinkAccountPage = "/linkAccountPage";
+  static const String AddContactsIBANManageContactsPage = "/addContactIBANManageContactPage";
 }
