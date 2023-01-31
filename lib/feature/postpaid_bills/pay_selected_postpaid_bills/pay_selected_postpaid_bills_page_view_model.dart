@@ -45,7 +45,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     totalBillAmt = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
-      if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
+      if (inquiryData.dueAmount == null || inquiryData.dueAmount!.isEmpty) {
         totalBillAmt = await totalBillAmt + double.parse("0.0");
       } else {
         totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
