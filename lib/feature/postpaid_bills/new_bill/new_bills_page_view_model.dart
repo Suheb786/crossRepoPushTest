@@ -77,8 +77,9 @@ class NewBillsPageViewModel extends BasePageViewModel {
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < billCategoryList!.length; i++) {
         GetBillCategoriesList item = billCategoryList[i];
-        if (item.categoryName != null) {
-          if (item.categoryName!.toLowerCase().contains(searchText.toLowerCase())) {
+        if (item.categoryName != null || item.categoryNameAr != null) {
+          if (item.categoryName!.toLowerCase().contains(searchText.toLowerCase()) ||
+              item.categoryNameAr!.toLowerCase().contains(searchText.toLowerCase())) {
             fList!.add(item);
           }
         }

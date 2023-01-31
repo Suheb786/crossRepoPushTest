@@ -39,15 +39,16 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   bool isTotalAmountZero = true;
   double totalBillAmt = 0.0;
+  int validRequestCounter = 0;
 
-  addAllBillAmt(BuildContext context) {
+  addAllBillAmt(BuildContext context) async {
     totalBillAmt = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
-        totalBillAmt = totalBillAmt + double.parse("0.0");
+        totalBillAmt = await totalBillAmt + double.parse("0.0");
       } else {
-        totalBillAmt = totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+        totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
       }
     }
     isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
@@ -55,7 +56,14 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       showToastWithError(AppError(
           cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
     }
-    return totalBillAmt;
+    validRequestCounter = 0;
+    for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
+      PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
+      if (inquiryData.minMaxValidationMessage != '') {
+        validRequestCounter++;
+      }
+    }
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
 
   /// ---------------- post paid data from allpostpaidbillsscreen -------------------------------- ///
@@ -95,11 +103,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
+    addAllBillAmt(context);
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
         // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
-        totalAmount: addAllBillAmt(context).toStringAsFixed(3),
+        totalAmount: totalBillAmt.toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
         isCreditCardPayment: false,
@@ -147,7 +156,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
     // totalAmt[index] = double.parse(value);
     // arguments.noOfSelectedBills[index].dueAmount = value;
-    _totalBillAmtDueSubject.safeAdd(addAllBillAmt(context));
+    // addAllBillAmt(context);
   }
 
   getValidBillerIcon(String? billingNumber, String? serviceType) {
@@ -202,19 +211,16 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    if (isTotalAmountZero == false && savingAccountController.text.isNotEmpty && validData == true) {
+    if (isTotalAmountZero == false && savingAccountController.text.isNotEmpty && validRequestCounter == 0) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
   }
 
-  bool validData = true;
-
   void minMaxValidate(
       bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
     if (isPartial == true) {
-      validData = false;
       if (value.isEmpty) {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
@@ -225,7 +231,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
       } else {
-        validData = true;
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
     }
