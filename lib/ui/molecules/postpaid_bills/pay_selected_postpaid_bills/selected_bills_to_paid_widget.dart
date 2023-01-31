@@ -16,6 +16,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? billType;
   final String? billName;
   final String? billAmtDue;
+  final String? billAmtFee;
   final String? minRange;
   final String? minMaxValidationMessage;
   final String? maxRange;
@@ -29,6 +30,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billType,
       required this.billName,
       required this.billAmtDue,
+      required this.billAmtFee,
       required this.minRange,
       required this.minMaxValidationMessage,
       required this.maxRange,
@@ -97,6 +99,16 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14.0.t),
                               ),
+                              this.billAmtFee != null && double.parse(this.billAmtFee ?? "0") > 0.0
+                                  ? Text(
+                                      S.of(context).fees,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.gray5,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12.0.t),
+                                    )
+                                  : Container(),
                               Text(
                                 this.billName != null && this.billName!.isNotEmpty ? this.billName ?? "" : "",
                                 style: TextStyle(
@@ -174,11 +186,21 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+                        this.billAmtFee != null && double.parse(this.billAmtFee ?? "0") > 0.0
+                            ? Text(
+                                double.parse(this.billAmtFee ?? "0").toStringAsFixed(3),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.gray5,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0.t),
+                              )
+                            : Container(),
                         Text(
                           this.allowPartialPay == true ? S.of(context).tapToEditAmt : "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: AppColor.gray5,
+                              color: AppColor.brightBlue,
                               fontWeight: FontWeight.w400,
                               fontSize: 12.0.t),
                         ),

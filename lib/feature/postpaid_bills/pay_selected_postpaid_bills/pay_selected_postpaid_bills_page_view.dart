@@ -225,6 +225,12 @@ class PaySelectedBillsPostPaidBillsPageView
                                                         model.arguments.postPaidBillInquiryData?[index]
                                                             .serviceType,
                                                       ),
+                                                      billAmtFee: model.getValidBillerFeeAmount(
+                                                        model.arguments.postPaidBillInquiryData?[index]
+                                                            .billingNo,
+                                                        model.arguments.postPaidBillInquiryData?[index]
+                                                            .serviceType,
+                                                      ),
                                                     );
                                                   },
                                                   separatorBuilder: (context, index) {

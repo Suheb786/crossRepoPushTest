@@ -1,7 +1,8 @@
 class PaidBill {
   final String? billName;
   final String? billerNameAR;
-  final dynamic totalAmount;
+  final String? totalAmount;
+  final String? fee;
   final String? refNo;
   final String? date;
   final String? statusDescription;
@@ -11,6 +12,7 @@ class PaidBill {
     this.billName,
     this.billerNameAR,
     this.totalAmount,
+    this.fee,
     this.refNo,
     this.date,
     this.statusDescription,

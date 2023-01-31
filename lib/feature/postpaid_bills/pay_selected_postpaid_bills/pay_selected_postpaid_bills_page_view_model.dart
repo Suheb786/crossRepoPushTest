@@ -19,8 +19,6 @@ import 'package:rxdart/rxdart.dart';
 
 class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   final PaySelectedBillsPostPaidBillsPageArguments arguments;
-  List<double> totalAmt = [];
-
   final ScrollController payingBillController = ScrollController();
   final TextEditingController savingAccountController = TextEditingController();
 
@@ -48,7 +46,15 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       if (inquiryData.dueAmount == null || inquiryData.dueAmount!.isEmpty) {
         totalBillAmt = await totalBillAmt + double.parse("0.0");
       } else {
-        totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+        if (inquiryData.isPartial == true &&
+            double.parse(inquiryData.dueAmount ?? "0") !=
+                double.parse(inquiryData.actualDueAmountFromApi ?? "0")) {
+          totalBillAmt = await totalBillAmt +
+              double.parse(inquiryData.dueAmount ?? "0.0") +
+              double.parse(inquiryData.feesAmt ?? "0.0");
+        } else {
+          totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+        }
       }
     }
     isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
@@ -107,7 +113,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
-        // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
         totalAmount: totalBillAmt.toStringAsFixed(3),
         currencyCode: "JOD",
         isNewBiller: false,
@@ -124,7 +129,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-          //to do
           updateLoader();
           _payPostPaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
@@ -153,10 +157,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (isPartial == true) {
       minMaxValidate(isPartial, minRange, maxRange, value, context, index);
     }
-
-    // totalAmt[index] = double.parse(value);
-    // arguments.noOfSelectedBills[index].dueAmount = value;
-    // addAllBillAmt(context);
   }
 
   getValidBillerIcon(String? billingNumber, String? serviceType) {
@@ -182,14 +182,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  /* getValidBillerServiceTypeDescEN(String? billingNumber) {
+  getValidBillerFeeAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
-        return item.serviceTypeDescEN != null &&
-                item.serviceTypeDescEN!.isNotEmpty
-            ? item.serviceTypeDescEN
-            : null;
-  }*/
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
+        return item.fees != null && item.fees!.isNotEmpty
+            ? double.parse(item.fees ?? "0").toStringAsFixed(3)
+            : "0.0";
+  }
 
   getValidBillerDueAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)

@@ -13,6 +13,7 @@ class PostPaidBillInquiryData {
     this.message,
     this.isPartial,
     this.minMaxValidationMessage,
+    this.actualDueAmountFromApi,
   });
 
   String? billerCode;
@@ -28,4 +29,5 @@ class PostPaidBillInquiryData {
   dynamic message;
   bool? isPartial;
   String? minMaxValidationMessage;
+  String? actualDueAmountFromApi;
 }
