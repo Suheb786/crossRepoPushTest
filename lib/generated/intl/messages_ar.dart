@@ -49,10 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
-        "accountDetails":
-            MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
-        "accountHolderName":
-            MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
+        "accountDetails": MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
+        "accountHolderName": MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
@@ -146,14 +144,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "annual": MessageLookupByLibrary.simpleMessage("الدخل سنوي ؟ "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
-        "annualIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
+        "annualIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل السنوي"),
         "anyAgent": MessageLookupByLibrary.simpleMessage("أي موظف"),
-        "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
-            "بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
+        "anyOtherCountryTaxResident":
+            MessageLookupByLibrary.simpleMessage("بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
-        "applePaySetFailed": MessageLookupByLibrary.simpleMessage(
-            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
+        "applePaySetFailed":
+            MessageLookupByLibrary.simpleMessage("نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "applePaySetUpFailed": MessageLookupByLibrary.simpleMessage(
             "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
@@ -520,17 +517,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من البطاقة الائتمانية"),
-        "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "creditDashboardDataError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("سقف الائتمان"),
-        "creditLimitChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "تم وضع سقف ائتماني جديد لبطاقتك الائتمانية"),
-        "creditLimitChangedSuccess":
-            MessageLookupByLibrary.simpleMessage("تم تحديث سقف الائتمان بنجاح"),
-        "creditLimitSettings":
-            MessageLookupByLibrary.simpleMessage("إعدادات سقف الائتمان"),
-        "creditSettlementPercentageChangedDesc":
-            MessageLookupByLibrary.simpleMessage(
+        "creditLimitChangedDesc":
+            MessageLookupByLibrary.simpleMessage("تم وضع سقف ائتماني جديد لبطاقتك الائتمانية"),
+        "creditLimitChangedSuccess": MessageLookupByLibrary.simpleMessage("تم تحديث سقف الائتمان بنجاح"),
+        "creditLimitSettings": MessageLookupByLibrary.simpleMessage("إعدادات سقف الائتمان"),
+        "creditSettlementPercentageChangedDesc": MessageLookupByLibrary.simpleMessage(
             "تم تحديث نسب السداد لبطاقتك الائتمانية  بالحساب الجديد اللي اخترته بنجاح"),
         "creditTc": MessageLookupByLibrary.simpleMessage("الشروط والأحكام "),
         "creditZeroBalanceRejDesc": MessageLookupByLibrary.simpleMessage(
@@ -616,17 +609,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "editTransactionPurpose": MessageLookupByLibrary.simpleMessage("تعديل تفاصيل التحويل "),
         "editYourAlias": MessageLookupByLibrary.simpleMessage("تعديل الاسم المستعار"),
         "editYourMobileNo": MessageLookupByLibrary.simpleMessage("تعديل رقم الموبايل"),
-        "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
-            "حدث خطأ أثناء حدوث خطأ في EDraw API"),
+        "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء حدوث خطأ في EDraw API"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 خانات"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("الإيميل"),
         "emailAddressSmall": MessageLookupByLibrary.simpleMessage("الإيميل"),
-        "emailAddressUpdated":
-            MessageLookupByLibrary.simpleMessage("تم تحديث إيميلك بنجاح"),
+        "emailAddressUpdated": MessageLookupByLibrary.simpleMessage("تم تحديث إيميلك بنجاح"),
         "emailAlreadyExist": MessageLookupByLibrary.simpleMessage(
             "الإيميل مستخدم من قبل، الرجاء إدخال إيميل جديد أو حاول تسجّل دخولك من خلال هاد الإيميل."),
-        "employerCity":
-            MessageLookupByLibrary.simpleMessage("عنوان الوظيفة- المدينة"),
+        "employerCity": MessageLookupByLibrary.simpleMessage("عنوان الوظيفة- المدينة"),
         "employerCitySmall":
             MessageLookupByLibrary.simpleMessage("مدينة المؤسسة"),
         "employerContact":
@@ -1461,13 +1451,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "رقم الموبايل تم استخدامه سابقا\"ً"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
-        "mobileNumberUpdated":
-            MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
-        "moneyThorError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
+        "moneyThorError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
-        "monthlyIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
+        "monthlyIncomeSmall": MessageLookupByLibrary.simpleMessage("الدخل الشهري"),
         "motherName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
         "motherNameHint": MessageLookupByLibrary.simpleMessage("أدخل اسم الأم"),
         "mothersBirthplace": MessageLookupByLibrary.simpleMessage("مكان ولادة الأم"),
@@ -1553,16 +1540,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneNumber": MessageLookupByLibrary.simpleMessage("رقم"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("رمز"),
         "oneUpperCaseLetter": MessageLookupByLibrary.simpleMessage("1 حرف كبير"),
-        "onlinePurchase":
-            MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
-        "onlinePurchaseExceeded":
-            MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
+        "onlinePurchase": MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
+        "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
-        "orContinueWith":
-            MessageLookupByLibrary.simpleMessage("أو تابع من خلال"),
+        "orContinueWith": MessageLookupByLibrary.simpleMessage("أو تابع من خلال"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("أو بتقدر تحمّل"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("معلومات أخرى"),
@@ -2337,16 +2321,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("شو يعني PEP؟"),
         "whatIsTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "شو يعني المطالبة بمزايا الاتفاق الضريبي؟"),
-        "whatIsYourEmploymentStatus":
-            MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
-        "whatRelationshipWithCardHolder":
-            MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
-        "whatYourEmailAndMobileNumber":
-            MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
-        "whereDoYouCurrentlyLive":
-            MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
-        "whichTaxPayerAreYou":
-            MessageLookupByLibrary.simpleMessage("شو نوع ضريبتك؟"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage("شو وضعك الوظيفي؟"),
+        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage("شو علاقتك مع حامل البطاقة؟"),
+        "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage("شو إيميلك ورقم موبايلك؟"),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
+        "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("شو نوع ضريبتك؟"),
         "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("شو نوع الملف الضريبي؟"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6510,10 +6511,10 @@ class S {
     );
   }
 
-  /// `Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.`
+  /// `Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service.`
   String get cancelCardDesc {
     return Intl.message(
-      'Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.',
+      'Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service.',
       name: 'cancelCardDesc',
       desc: '',
       args: [],
@@ -12740,10 +12741,10 @@ class S {
     );
   }
 
-  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  /// `Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service.`
   String get reportStolenLostCardDesc {
     return Intl.message(
-      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      'Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service.',
       name: 'reportStolenLostCardDesc',
       desc: '',
       args: [],

@@ -42,10 +42,11 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 36,
+                    height: 32.h,
                   ),
                   image != null
                       ? Container(
+                      margin: EdgeInsets.only(bottom: 16.h),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -57,7 +58,6 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
                             image ?? AssetUtils.applePayIcon,
                           ))
                       : Container(),
-                  SizedBox(height: 25.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                     child: Text(

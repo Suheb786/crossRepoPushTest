@@ -43,16 +43,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "You don’t have any CliQ ID.\nCreate your first one via Blink."),
-        "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
-            "Accepted worldwide with no hidden charges"),
+        "acceptedWorldWide":
+            MessageLookupByLibrary.simpleMessage("Accepted worldwide with no hidden charges"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "accountBalance":
-            MessageLookupByLibrary.simpleMessage("Account balance"),
+        "accountBalance": MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "accountCreated": MessageLookupByLibrary.simpleMessage(
-            "Account has been created successfully."),
+        "accountCreated": MessageLookupByLibrary.simpleMessage("Account has been created successfully."),
         "accountDetails": MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
         "accountHolderName": MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -167,12 +165,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "applePaySetUpFailed": MessageLookupByLibrary.simpleMessage("Apple Pay\nset up failed"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
-        "applicationInProcess": MessageLookupByLibrary.simpleMessage(
-            "Your Application Is In Process"),
+        "applicationInProcess": MessageLookupByLibrary.simpleMessage("Your Application Is In Process"),
         "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
             "The Blink mobile application is not available in your region!"),
-        "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately, your application was rejected."),
+        "applicationNotSuccessful":
+            MessageLookupByLibrary.simpleMessage("Unfortunately, your application was rejected."),
         "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
             "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."),
         "applicationSubmitted":
@@ -301,20 +298,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "callRecordNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "callScheduled":
-            MessageLookupByLibrary.simpleMessage("Call scheduled!"),
+        "callScheduled": MessageLookupByLibrary.simpleMessage("Call scheduled!"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
             "Your account will be processed after the video call is completed."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
-            "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
+            "Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "cancelTheCard":
-            MessageLookupByLibrary.simpleMessage("Cancel this card?"),
-        "cancelThisCard":
-            MessageLookupByLibrary.simpleMessage("Cancel this card"),
+        "cancelTheCard": MessageLookupByLibrary.simpleMessage("Cancel this card?"),
+        "cancelThisCard": MessageLookupByLibrary.simpleMessage("Cancel this card"),
         "cannotApplyCCInsufficientFunds": MessageLookupByLibrary.simpleMessage(
             "You can not apply for credit card due to insufficient funds"),
         "cannotProceedNoAhwalDataFound": MessageLookupByLibrary.simpleMessage(
@@ -523,15 +517,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditBureauAuthorizationDesc": MessageLookupByLibrary.simpleMessage(
             "I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it."),
         "creditCard": MessageLookupByLibrary.simpleMessage("Credit Card"),
-        "creditCardActivated":
-            MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
-        "creditCardApplicationUnderReviewDesc":
-            MessageLookupByLibrary.simpleMessage(
-                "Your application is being reviewed. You’ll be notified soon."),
+        "creditCardActivated": MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
+        "creditCardApplicationUnderReviewDesc": MessageLookupByLibrary.simpleMessage(
+            "Your application is being reviewed. You’ll be notified soon."),
         "creditCardDataNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "creditCardDelivered":
-            MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
+        "creditCardDelivered": MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
         "creditCardDeliveredQ": MessageLookupByLibrary.simpleMessage("Credit card\ndelivered?"),
         "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
@@ -666,17 +657,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "employerContact": MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
         "employerContactSmall": MessageLookupByLibrary.simpleMessage("Employer Contact"),
         "employerCountry": MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
-        "employerCountrySmall":
-            MessageLookupByLibrary.simpleMessage("Employer Country"),
-        "employerIdNumber": MessageLookupByLibrary.simpleMessage(
-            "EMPLOYER IDENTIFICATION NUMBER"),
+        "employerCountrySmall": MessageLookupByLibrary.simpleMessage("Employer Country"),
+        "employerIdNumber": MessageLookupByLibrary.simpleMessage("EMPLOYER IDENTIFICATION NUMBER"),
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
-        "employerNameSmall":
-            MessageLookupByLibrary.simpleMessage("Employer Name"),
-        "employerPhoneNo":
-            MessageLookupByLibrary.simpleMessage("Employer Phone Number "),
-        "employmentStatus":
-            MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
+        "employerNameSmall": MessageLookupByLibrary.simpleMessage("Employer Name"),
+        "employerPhoneNo": MessageLookupByLibrary.simpleMessage("Employer Phone Number "),
+        "employmentStatus": MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
         "employmentStatusSmall":
             MessageLookupByLibrary.simpleMessage("Employment Status"),
         "emptyAddressDocument": MessageLookupByLibrary.simpleMessage(
@@ -1498,17 +1484,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
         "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
-        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
-            "Merchant payment limit exceeded."),
-        "merchantPayments":
-            MessageLookupByLibrary.simpleMessage("Merchant Payments"),
+        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage("Merchant payment limit exceeded."),
+        "merchantPayments": MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "minPrice": MessageLookupByLibrary.simpleMessage("Min. Price"),
-        "minimumSettlement":
-            MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
-        "minimumSettlements":
-            MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
+        "minimumSettlement": MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
+        "minimumSettlements": MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
         "minorNotAllowed": MessageLookupByLibrary.simpleMessage("minor not allowed"),
         "missedVideoCall": MessageLookupByLibrary.simpleMessage(
             "Sorry, you’ve missed your video call session. Please reschedule."),
@@ -1638,10 +1620,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
-        "passwordDialogHeader":
-            MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
-            "The passwords you entered do not match. Please try again."),
+        "passwordDialogHeader": MessageLookupByLibrary.simpleMessage("Create Password"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("The passwords you entered do not match. Please try again."),
         "passwordMismatchError": MessageLookupByLibrary.simpleMessage(
             "The passwords you entered do not match. Please check and try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
@@ -1743,12 +1724,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "primaryCreditCardHoldIdNotMatchGroom":
             MessageLookupByLibrary.simpleMessage(
                 "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-307) "),
-        "primaryDebitCardIdNotMatchWithMotherFather":
-            MessageLookupByLibrary.simpleMessage(
-                "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-305)"),
-        "primaryDebitCreditCardHolderNotMatchMotherFather":
-            MessageLookupByLibrary.simpleMessage(
-                "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) "),
+        "primaryDebitCardIdNotMatchWithMotherFather": MessageLookupByLibrary.simpleMessage(
+            "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-305)"),
+        "primaryDebitCreditCardHolderNotMatchMotherFather": MessageLookupByLibrary.simpleMessage(
+            "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) "),
         "primaryIdNotMatchWithGroom": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-303) "),
         "primaryLoanAccListNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1856,7 +1835,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
             "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
+            "Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
@@ -1887,10 +1866,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestViaQR": MessageLookupByLibrary.simpleMessage("Request via QR"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
-        "requestedMoneyVia":
-            MessageLookupByLibrary.simpleMessage("Request money via"),
-        "requesterName":
-            MessageLookupByLibrary.simpleMessage("requester’s name"),
+        "requestedMoneyVia": MessageLookupByLibrary.simpleMessage("Request money via"),
+        "requesterName": MessageLookupByLibrary.simpleMessage("requester’s name"),
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),

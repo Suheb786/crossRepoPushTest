@@ -233,7 +233,7 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _antelopGetCardsRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -722,6 +722,18 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///--------------------Apple Pay PopUp -------------------///
 
+  ///--------------------Add Another card To Apple Pay PopUp -------------------///
+
+  PublishSubject<bool> _showAddAnotherCardToApplePayPopUpRequest = PublishSubject();
+
+  Stream<bool> get showAddAnotherCardToApplePayPopUpStream =>
+      _showAddAnotherCardToApplePayPopUpRequest.stream;
+
+  void showAnotherAppToApplePayPupUp(bool value) {
+    _showAddAnotherCardToApplePayPopUpRequest.safeAdd(value);
+  }
+
+  ///--------------------Add Another card To Apple Pay PopUp -------------------///
   @override
   void dispose() {
     _currentStep.close();
