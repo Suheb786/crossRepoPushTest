@@ -19,7 +19,7 @@ class DashboardRemoteDsImpl extends DashboardRemoteDs {
   @override
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getDashboardData(DashboardDataRequest(baseData: baseData.toJson()));
+    return _apiService.getDashboardData(DashboardDataRequest(getToken: false, baseData: baseData.toJson()));
   }
 
   @override

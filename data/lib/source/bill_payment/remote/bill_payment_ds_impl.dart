@@ -240,19 +240,19 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.cliqRegisterCustomer(BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.cliqRegisterCustomer(BaseRequest(baseData: baseData.toJson(), getToken: false));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> cliqRegisterAccount() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.cliqRegisterAccount(BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.cliqRegisterAccount(BaseRequest(baseData: baseData.toJson(), getToken: false));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> accountUpload() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.accountUpload(BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.accountUpload(BaseRequest(baseData: baseData.toJson(), getToken: false));
   }
 
   @override

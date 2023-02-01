@@ -244,9 +244,37 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.mobileNumber = data.data!.mobile!;
                                                                     model.mobileCode = data.data!.mobileCode!;
                                                                     model.applicationId =
-                                                                        data.data!.applicationId!;
+                                                                    data.data!.applicationId!;
                                                                     model.saveUserData();
-                                                                    model.cliqRegisterCustomer();
+                                                                    model.registerCliqEfawateer();
+
+                                                                    if (data.data!.newDevice!) {
+                                                                      InformationDialog.show(context,
+                                                                          image: AssetUtils.mobile,
+                                                                          title:
+                                                                          S
+                                                                              .of(context)
+                                                                              .newDeviceDetected,
+                                                                          descriptionWidget: Text(
+                                                                            S
+                                                                                .of(context)
+                                                                                .newDeviceDetectedDesc,
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                StringUtils.appFont,
+                                                                                fontSize: 14.0.t,
+                                                                                fontWeight: FontWeight.w400),
+                                                                          ),
+                                                                          onDismissed: () {
+                                                                            Navigator.pop(context);
+                                                                          },
+                                                                          onSelected: () {
+                                                                            model.sendOtpTokenMobile();
+                                                                          });
+                                                                    } else {
+                                                                      model.checkKycStatus();
+                                                                    }
+
                                                                     //model.accountUpload();
                                                                     //model.registerAccount();
 
@@ -275,6 +303,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //       arguments:
                                                                     //           RegisterPageParams());
                                                                     // });
+
                                                                   } else if (data.status == Status.ERROR) {
                                                                     model.emailKey.currentState!.isValid =
                                                                         false;
@@ -285,36 +314,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                   return AppStreamBuilder<Resource<bool>>(
                                                                       stream: model.accountUploadStream,
                                                                       initialData: Resource.none(),
-                                                                      onData: (data) {
-                                                                        if (data.status == Status.ERROR ||
-                                                                            data.status == Status.SUCCESS) {
-                                                                          if (loginData?.data?.newDevice ??
-                                                                              false) {
-                                                                            InformationDialog.show(context,
-                                                                                image: AssetUtils.mobile,
-                                                                                title: S
-                                                                                    .of(context)
-                                                                                    .newDeviceDetected,
-                                                                                descriptionWidget: Text(
-                                                                                  S
-                                                                                      .of(context)
-                                                                                      .newDeviceDetectedDesc,
-                                                                                  style: TextStyle(
-                                                                                      fontFamily:
-                                                                                          StringUtils.appFont,
-                                                                                      fontSize: 14.0.t,
-                                                                                      fontWeight:
-                                                                                          FontWeight.w400),
-                                                                                ), onDismissed: () {
-                                                                              Navigator.pop(context);
-                                                                            }, onSelected: () {
-                                                                              model.sendOtpTokenMobile();
-                                                                            });
-                                                                          } else {
-                                                                            model.checkKycStatus();
-                                                                          }
-                                                                        }
-                                                                      },
+                                                                      onData: (data) {},
                                                                       dataBuilder: (context, snapshot) {
                                                                         return AppStreamBuilder<
                                                                             Resource<CheckKycResponse>>(
@@ -324,7 +324,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             if (data.status ==
                                                                                 Status.SUCCESS) {
                                                                               CheckKYCData kycData = data
-                                                                                      .data?.content?.kycData
+                                                                                  .data?.content?.kycData
                                                                                       ?.firstWhere(
                                                                                           (element) =>
                                                                                               element
