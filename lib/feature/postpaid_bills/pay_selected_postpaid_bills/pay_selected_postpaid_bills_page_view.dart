@@ -203,23 +203,15 @@ class PaySelectedBillsPostPaidBillsPageView
                                                         }
                                                       },
                                                       onChanged: (value) {
-                                                        model.newAmtEnter(
-                                                          index,
-                                                          value,
-                                                          model.postPaidBillInquiryData?[index].isPartial ??
-                                                              false,
-                                                          double.parse(model.postPaidBillInquiryData?[index]
-                                                                      .minValue ??
-                                                                  "0")
-                                                              .toStringAsFixed(3),
-                                                          double.parse(model.postPaidBillInquiryData?[index]
-                                                                      .maxValue ??
-                                                                  "0")
-                                                              .toStringAsFixed(3),
-                                                          context,
-                                                        );
+                                                        onChangedCalled(model, index, value, context);
                                                       },
                                                       billAmtDue: model.getValidBillerDueAmount(
+                                                        model.arguments.postPaidBillInquiryData?[index]
+                                                            .billingNo,
+                                                        model.arguments.postPaidBillInquiryData?[index]
+                                                            .serviceType,
+                                                      ),
+                                                      billAmtFee: model.getValidBillerFeeAmount(
                                                         model.arguments.postPaidBillInquiryData?[index]
                                                             .billingNo,
                                                         model.arguments.postPaidBillInquiryData?[index]
@@ -335,6 +327,20 @@ class PaySelectedBillsPostPaidBillsPageView
           },
         );
       },
+    );
+  }
+
+  void onChangedCalled(
+      PaySelectedBillsPostPaidBillsPageViewModel model, int index, String value, BuildContext context) {
+    model.newAmtEnter(
+      index,
+      value,
+      double.parse(model.postPaidBillInquiryData?[index].actualDueAmountFromApi ?? "0").toStringAsFixed(3),
+      double.parse(model.postPaidBillInquiryData?[index].feesAmt ?? "0").toStringAsFixed(3),
+      model.postPaidBillInquiryData?[index].isPartial ?? false,
+      double.parse(model.postPaidBillInquiryData?[index].minValue ?? "0").toStringAsFixed(3),
+      double.parse(model.postPaidBillInquiryData?[index].maxValue ?? "0").toStringAsFixed(3),
+      context,
     );
   }
 }

@@ -49,6 +49,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   TextEditingController amtController = TextEditingController(text: "0.0");
+  String? dueAmtController = "0";
   TextEditingController feeAmtController = TextEditingController(text: "0.0");
 
   ///get new details bill payments model
@@ -149,8 +150,9 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   ///totalAmountToPay
   totalAmountToPay() {
     if (isPartial == true) {
-      if (double.parse(addAllBillAmt() ?? "0") != double.parse(amtController.text)) {
-        return double.parse(amtController.text).toStringAsFixed(3);
+      if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
+        return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text))
+            .toStringAsFixed(3);
       }
       return addAllBillAmt();
     }
@@ -362,6 +364,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
     if (isPartial == true) {
       isAmountInRange = false;
+      if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
+        value =
+            (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text)).toStringAsFixed(3);
+      }
       if (value.isEmpty) {
         _editAmountFieldSubject.safeAdd(
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
@@ -383,6 +389,6 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     if (AppConstantsUtils.POST_PAID_FLOW == true) {
       return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
     }
-    return double.parse(amtController.text) >= 100.0 ? true : false;
+    return double.parse(dueAmtController ?? "0") >= 100.0 ? true : false;
   }
 }

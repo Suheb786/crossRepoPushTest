@@ -1,5 +1,6 @@
 class AddNewDetailsBillPaymentsModel {
    String? amount;
+  String? actualAmountFromApi;
   String? nickName;
   String? billerName;
   String? service;
@@ -9,6 +10,7 @@ class AddNewDetailsBillPaymentsModel {
 
   AddNewDetailsBillPaymentsModel({
     this.amount,
+    this.actualAmountFromApi,
     this.nickName,
     this.billerName,
     this.service,

@@ -45,8 +45,9 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page_view_model.dart';
-import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
+
+// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
+// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
@@ -313,7 +314,7 @@ final selectServiceDialogViewModelProvider = ChangeNotifierProvider.autoDispose<
 ///payMyPrePaidBillsPageViewModelProvider
 final payMyPrePaidBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
-          (ref) => PayMyPrePaidBillsPageViewModel(
+  (ref) => PayMyPrePaidBillsPageViewModel(
     ref.read(getPrepaidBillerUseCaseProvider),
     ref.read(getPrePaidCategoriesListUseCaseProvider),
     ref.read(removePrepaidBillerUseCaseProvider),
@@ -322,10 +323,10 @@ final payMyPrePaidBillsPageViewModelProvider =
 );
 
 ///payingPrePaidBillsPageViewModelProvider
-final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<PayingPrePaidBillsPageViewModel, PayingPrePaidBillsPageArgument>(
-  (ref, args) => PayingPrePaidBillsPageViewModel(args),
-);
+// final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+//     .family<PayingPrePaidBillsPageViewModel, PayingPrePaidBillsPageArgument>(
+//   (ref, args) => PayingPrePaidBillsPageViewModel(args),
+// );
 
 ///prePaidBillsSuccessPageViewModelProvider
 final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

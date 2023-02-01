@@ -45,6 +45,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
             Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                 arguments: PaidBillsSuccessPageArguments(
                   data.data?.content?.billerList?[0].totalAmount ?? "0.0",
+                  data.data?.content?.billerList?[0].fee ?? "0.0",
                   data.data?.content?.billerList?[0].billerName ?? "",
                   data.data?.content?.billerList?[0].billerNameAR ?? "",
                   AppConstantsUtils.NICK_NAME,

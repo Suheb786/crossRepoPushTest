@@ -14,6 +14,8 @@ class PaidBillEntity extends BaseLayerDataTransformer<PaidBillEntity, PaidBill> 
 
   @JsonKey(name: "totalAmount")
   final String? totalAmount;
+  @JsonKey(name: "fee")
+  final String? fee;
 
   @JsonKey(name: "refNo")
   final String? refNo;
@@ -31,6 +33,7 @@ class PaidBillEntity extends BaseLayerDataTransformer<PaidBillEntity, PaidBill> 
       {this.billName,
       this.billerNameAR,
       this.totalAmount,
+      this.fee,
       this.refNo,
       this.date,
       this.statusDescription,
@@ -50,7 +53,9 @@ class PaidBillEntity extends BaseLayerDataTransformer<PaidBillEntity, PaidBill> 
     return PaidBill(
         billName: this.billName != null && this.billName!.isNotEmpty ? this.billName : "",
         billerNameAR: this.billerNameAR != null && this.billerNameAR!.isNotEmpty ? this.billerNameAR : "",
-        totalAmount: this.totalAmount != null && this.totalAmount!.isNotEmpty ? this.totalAmount : "0",
+        totalAmount:
+            this.totalAmount != null && this.totalAmount!.isNotEmpty ? this.totalAmount!.toString() : "0",
+        fee: this.fee != null && this.fee!.isNotEmpty ? this.fee!.toString() : "0",
         refNo: this.refNo != null && this.refNo!.isNotEmpty ? this.refNo : "",
         date: this.date != null && this.date!.isNotEmpty ? this.date : "",
         statusDescription: this.statusDescription != null && this.statusDescription!.isNotEmpty

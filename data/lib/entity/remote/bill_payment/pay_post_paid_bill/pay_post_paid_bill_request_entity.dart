@@ -10,6 +10,8 @@ class PayPostPaidBillRequestEntity {
   String? accountNo;
   @JsonKey(name: "totalAmount")
   String? totalAmount;
+  @JsonKey(name: "fee")
+  String? fee;
   @JsonKey(name: "currencyCode")
   String? currencyCode;
   @JsonKey(name: "isNewBiller")
@@ -31,6 +33,7 @@ class PayPostPaidBillRequestEntity {
       {this.billerList,
       this.accountNo,
       this.totalAmount,
+      this.fee,
       this.currencyCode,
       this.otpCode,
       this.isCreditCardPayment,
