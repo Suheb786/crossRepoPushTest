@@ -197,48 +197,49 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
                       decoration: BoxDecoration(
                           color: AppColor.lightGray, borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      child: Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AppSvg.asset(AssetUtils.infoFee, height: 16.h, width: 16.w),
-                            SizedBox(width: 8.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                this.billAmtFee != null &&
-                                        this.billAmtFee!.isNotEmpty &&
-                                        double.parse(this.billAmtFee ?? "0.0") > 0.0
-                                    ? Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 4.0.h),
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "${S.of(context).fees} ",
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.gray5,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12.0.t),
-                                            ),
-                                            Text(
-                                              this.billAmtFee != null && this.billAmtFee!.isNotEmpty
-                                                  ? double.parse(this.billAmtFee ?? "0.0").toStringAsFixed(3)
-                                                  : "0.0",
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.very_dark_gray1,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 12.0.t),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : Container(),
-                                this.allowPartialPay == true
-                                    ? Row(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.infoFee, height: 16.h, width: 16.w),
+                          SizedBox(width: 8.w),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              this.billAmtFee != null &&
+                                      this.billAmtFee!.isNotEmpty &&
+                                      double.parse(this.billAmtFee ?? "0.0") > 0.0
+                                  ? Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${S.of(context).fees} ",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.gray5,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          ),
+                                          Text(
+                                            this.billAmtFee != null && this.billAmtFee!.isNotEmpty
+                                                ? double.parse(this.billAmtFee ?? "0.0").toStringAsFixed(3)
+                                                : "0.0",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.very_dark_gray1,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12.0.t),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                              this.allowPartialPay == true
+                                  ? Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                      child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
@@ -274,12 +275,12 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                                                 fontSize: 12.0.t),
                                           ),
                                         ],
-                                      )
-                                    : Container(),
-                              ],
-                            ),
-                          ],
-                        ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ],
                       ),
                     )
                   : Container(),

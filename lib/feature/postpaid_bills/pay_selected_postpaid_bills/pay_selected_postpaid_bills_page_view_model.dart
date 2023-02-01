@@ -144,6 +144,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void newAmtEnter(
     int index,
     String value,
+    String actualDueAmountFromApi,
+    String feeAmt,
     bool isPartial,
     String? minRange,
     String? maxRange,
@@ -155,7 +157,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     arguments.postPaidBillInquiryData?[index].dueAmount = value;
     arguments.noOfSelectedBills[index].dueAmount = value;
     if (isPartial == true) {
-      minMaxValidate(isPartial, minRange, maxRange, value, context, index);
+      minMaxValidate(isPartial, minRange, maxRange, value, actualDueAmountFromApi, feeAmt, context, index);
     }
   }
 
@@ -217,9 +219,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  void minMaxValidate(
-      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
+  void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value,
+      String actualDueAmountFromApi, String feeAmt, BuildContext context, int index) {
     if (isPartial == true) {
+      if (double.parse(value) != double.parse(actualDueAmountFromApi)) {
+        value = (double.parse(value) + double.parse(feeAmt)).toStringAsFixed(3);
+      }
       if (value.isEmpty) {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
