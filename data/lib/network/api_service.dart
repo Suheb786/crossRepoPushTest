@@ -252,7 +252,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV3")
+  @POST("/auth/loginV4")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("/auth/RegisterV5")
@@ -477,11 +477,11 @@ abstract class ApiService {
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
-  @POST("/MoneyThor/GetDebitCardTransactionsList")
+  @POST("/TransactionHistory/GetDebitCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
       @Body() GetDebitCardTransactionRequest debitCardTransactionRequest);
 
-  @POST("/MoneyThor/GetCreditCardTransactionsList")
+  @POST("/TransactionHistory/GetCreditCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       @Body() GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity);
 

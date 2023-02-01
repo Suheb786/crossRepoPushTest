@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
@@ -375,7 +376,7 @@ class LoginViewModel extends BasePageViewModel {
             .asFlow()
             .listen(
           (event) {
-            updateLoader();
+            //updateLoader();
             _cliqRegisterCustomerResponse.safeAdd(event);
             if (event.status == Status.SUCCESS) {
               registerAccount();
@@ -392,7 +393,7 @@ class LoginViewModel extends BasePageViewModel {
             .asFlow()
             .listen(
           (event) {
-            updateLoader();
+            //updateLoader();
             _registerAccountResponse.safeAdd(event);
             if (event.status == Status.SUCCESS) {
               accountUpload();
@@ -407,7 +408,7 @@ class LoginViewModel extends BasePageViewModel {
       _accountUploadrequest.listen((value) {
         RequestManager(value, createCall: () => _accountUploadUseCase.execute(params: value)).asFlow().listen(
           (event) {
-            updateLoader();
+            //updateLoader();
             _accountUploadResponse.safeAdd(event);
           },
         );
@@ -510,6 +511,37 @@ class LoginViewModel extends BasePageViewModel {
   setLanguageToStorage(LanguageEnum languageEnum) async {
     await SecureStorageHelper.instance.saveUserSelectedLanguageToStorage(language: languageEnum.toString());
   }
+
+  ///--------------------Efawateercom/Cliq Registration API-----------------///
+
+  // isolates
+  late ReceivePort receivePort;
+  Isolate? isolate;
+
+  void registerCliqEfawateer() async {
+    debugPrint("Entered in registration------->");
+    if (isolate != null) {
+      debugPrint("Isolate not null");
+      return;
+    }
+    try {
+      receivePort = ReceivePort();
+      isolate = await Isolate.spawn(_getTokenCallBack, receivePort.sendPort);
+      receivePort.listen(_handleMessage, onDone: () {});
+    } on Exception catch (e) {
+      debugPrint("isolate catch section-------> " + e.toString());
+    }
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    sendPort.send('Send');
+  }
+
+  void _handleMessage(message) {
+    _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams());
+  }
+
+  ///--------------------Efawateercom/Cliq Registration API-----------------///
 
   @override
   void dispose() {
