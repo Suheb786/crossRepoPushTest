@@ -591,7 +591,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   ),
                 ),
                 Text(
-                  '${model.totalAmountToPay()} ${S.of(context).JOD}',
+                  '${AppConstantsUtils.POST_PAID_FLOW == true ? model.totalAmountToPay() : double.parse(model.dueAmtController ?? "0").toStringAsFixed(3)} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
