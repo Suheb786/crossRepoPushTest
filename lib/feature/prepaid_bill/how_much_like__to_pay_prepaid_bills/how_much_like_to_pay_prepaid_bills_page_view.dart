@@ -16,10 +16,12 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -233,6 +235,55 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       ],
                                     );
                                   }),
+                              model.feesAmt != null &&
+                                      model.feesAmt!.isNotEmpty &&
+                                      double.parse(model.feesAmt ?? "0.0") >= 0.0
+                                  ? Container(
+                                      margin: EdgeInsetsDirectional.only(top: 8.0.h),
+                                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+                                      decoration: BoxDecoration(
+                                          color: AppColor.lightGray,
+                                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                                      child: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            AppSvg.asset(AssetUtils.infoFee, height: 16.h, width: 16.w),
+                                            SizedBox(width: 8.w),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "${S.of(context).fees} ",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: AppColor.gray5,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 12.0.t),
+                                                  ),
+                                                  Text(
+                                                    model.feesAmt != null && model.feesAmt!.isNotEmpty
+                                                        ? double.parse(model.feesAmt ?? "0.0")
+                                                            .toStringAsFixed(3)
+                                                        : "0.0",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: AppColor.very_dark_gray1,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 12.0.t),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                               SizedBox(
                                 height: 32.h,
                               ),

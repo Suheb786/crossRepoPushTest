@@ -282,4 +282,5 @@ class AssetUtils {
 
   ///billPaymentsImages
   static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
+  static const String infoFee = svg + "info_fee.svg";
 }

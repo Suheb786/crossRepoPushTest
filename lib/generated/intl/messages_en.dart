@@ -224,13 +224,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
-        "areYouBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
-            "Are you the beneficial owner of the account?"),
+        "areYouBeneficialOwnerAccount":
+            MessageLookupByLibrary.simpleMessage("Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
-        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you entered your "),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
         "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
@@ -249,16 +248,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "availableAmount": MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
         "availableBalance": MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
-        "backToCardSettings":
-            MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
+        "backToCardSettings": MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToCategory": m8,
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("Back to Payments"),
-        "backToRegistration":
-            MessageLookupByLibrary.simpleMessage("Back to Registration"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("Back to Payments"),
+        "backToRegistration": MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
@@ -288,10 +283,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
-        "blinkCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
-        "blockThisCountry":
-            MessageLookupByLibrary.simpleMessage("Block this country?"),
+        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockThisCountry": MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries": MessageLookupByLibrary.simpleMessage("Blocked Countries"),
@@ -312,12 +305,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessRulesNotImplementedAgainstCompanyId": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
-        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage(
-            "Valid until 24 December 2022"),
-        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage(
-            "FIFA 22 Promo Pack Lorem Ipsum"),
-        "buyVoucherDetailTitle":
-            MessageLookupByLibrary.simpleMessage("FIFA 22"),
+        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage("Valid until 24 December 2022"),
+        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage("FIFA 22 Promo Pack Lorem Ipsum"),
+        "buyVoucherDetailTitle": MessageLookupByLibrary.simpleMessage("FIFA 22"),
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
@@ -1543,12 +1533,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
-        "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
-            "Link bank account to \nyour new ID"),
+        "linkBankAccountToYourNewId":
+            MessageLookupByLibrary.simpleMessage("Link bank account to \nyour new ID"),
         "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
             "Linked account is debited\nwhenever transaction made\nusing this card"),
-        "linkedAccountNumber":
-            MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
+        "linkedAccountNumber": MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
         "loanAccountListNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-098)"),
@@ -1575,15 +1564,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "logoutError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "lookingFor":
-            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
-            "Looking for available agent.."),
-        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
-            "Enjoy loyalty rewards with great multiplier"),
+        "lookingFor": MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("Looking for available agent.."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage(
-                "Mailing address different from residence address?"),
+            MessageLookupByLibrary.simpleMessage("Mailing address different from residence address?"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
         "mainAnnualIncome":
@@ -1628,12 +1613,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "minPrice": MessageLookupByLibrary.simpleMessage("Min. Price"),
-        "minimumSettlement":
-            MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
-        "minimumSettlements":
-            MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
-        "minorNotAllowed":
-            MessageLookupByLibrary.simpleMessage("minor not allowed"),
+        "minimumSettlement": MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
+        "minimumSettlements": MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
+        "minorNotAllowed": MessageLookupByLibrary.simpleMessage("minor not allowed"),
         "missedVideoCall": MessageLookupByLibrary.simpleMessage(
             "Sorry, you’ve missed your video call session. Please reschedule."),
         "mobileAlreadyExists": MessageLookupByLibrary.simpleMessage(
@@ -1658,14 +1640,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "myPostPaidBill": MessageLookupByLibrary.simpleMessage("My Postpaid Bill"),
         "myPrePaidBills": MessageLookupByLibrary.simpleMessage("My Prepaid Bills"),
-        "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
-            "Spotify Monthly Subscription"),
+        "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage("Spotify Monthly Subscription"),
         "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
         "nRT": MessageLookupByLibrary.simpleMessage("NRT"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
-        "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
-            "NAME AS PER INCOME TAX RETURN"),
+        "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage("NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("Name"),
         "nationalId":
@@ -2634,14 +2614,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "w9Form": MessageLookupByLibrary.simpleMessage("W9 Form"),
         "w9FormDesc": MessageLookupByLibrary.simpleMessage(
             "If you already have a physical pre-filled W9 form please upload below."),
-        "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
-            "Do you want to Claim of Tax Treaty Benefits?"),
-        "waterAndElectricity":
-            MessageLookupByLibrary.simpleMessage("Water and Electricity"),
-        "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage(
-            "Ways to add\nmoney into your account"),
-        "weDoNotRecommendToUsePreviousTenPass":
-            MessageLookupByLibrary.simpleMessage(
+        "wantToClaimTaxTreatyBenefits":
+            MessageLookupByLibrary.simpleMessage("Do you want to Claim of Tax Treaty Benefits?"),
+        "waterAndElectricity": MessageLookupByLibrary.simpleMessage("Water and Electricity"),
+        "waysYocCanAddMoneyToAccount":
+            MessageLookupByLibrary.simpleMessage("Ways to add\nmoney into your account"),
+        "weDoNotRecommendToUsePreviousTenPass": MessageLookupByLibrary.simpleMessage(
             "You have entered one of the previous 10 passwords used. Please try a new password."),
         "weNeedToMatchNamesONTaxReturn":
             MessageLookupByLibrary.simpleMessage("We need to match the names on your tax return"),
@@ -2662,17 +2640,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "whatYourEmailAndMobileNumber":
             MessageLookupByLibrary.simpleMessage("What’s your email and mobile number?"),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage("Where do you \ncurrently live?"),
-        "whichTaxPayerAreYou":
-            MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
-        "whichTaxPayerAreYouSmall":
-            MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
+        "whichTaxPayerAreYou": MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
+        "whichTaxPayerAreYouSmall": MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youAreAcceptingMoneyRequestViaQr":
-            MessageLookupByLibrary.simpleMessage(
-                "You are accepting a money\nrequest via QR"),
+            MessageLookupByLibrary.simpleMessage("You are accepting a money\nrequest via QR"),
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
