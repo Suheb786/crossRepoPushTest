@@ -173,10 +173,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                       if (model.isAmountMoreThanZero == true) {
                                         _navigatePrePaid(model, context);
                                       } else {
-                                        model.showToastWithError(AppError(
-                                            cause: Exception(),
-                                            error: ErrorInfo(message: ''),
-                                            type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                        model.amountGreaterThanZeroMessage(model);
                                       }
                                     } else {
                                       model.validate(model.dueAmtController);
@@ -231,10 +228,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                           if (isValid == true) {
                                                             _navigatePostPaid(model, context);
                                                           } else {
-                                                            model.showToastWithError(AppError(
-                                                                cause: Exception(),
-                                                                error: ErrorInfo(message: ''),
-                                                                type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                                            model.amountGreaterThanZeroMessage(model);
                                                           }
                                                         } else if (AppConstantsUtils.PRE_PAID_FLOW) {
                                                           if (model.addNewBillDetailsData
@@ -243,10 +237,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             if (isValid == true) {
                                                               _navigatePrePaid(model, context);
                                                             } else {
-                                                              model.showToastWithError(AppError(
-                                                                  cause: Exception(),
-                                                                  error: ErrorInfo(message: ''),
-                                                                  type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                                              model.amountGreaterThanZeroMessage(model);
                                                             }
                                                           } else if (model.addNewBillDetailsData
                                                                   .isPrepaidCategoryListEmpty ==
@@ -261,10 +252,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                           if (isValid == true) {
                                                             _navigatePostPaid(model, context);
                                                           } else {
-                                                            model.showToastWithError(AppError(
-                                                                cause: Exception(),
-                                                                error: ErrorInfo(message: ''),
-                                                                type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                                            model.amountGreaterThanZeroMessage(model);
                                                           }
                                                         } else if (AppConstantsUtils.PRE_PAID_FLOW) {
                                                           if (model.addNewBillDetailsData
@@ -273,10 +261,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             if (isValid == true) {
                                                               _navigatePrePaid(model, context);
                                                             } else {
-                                                              model.showToastWithError(AppError(
-                                                                  cause: Exception(),
-                                                                  error: ErrorInfo(message: ''),
-                                                                  type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                                              model.amountGreaterThanZeroMessage(model);
                                                             }
                                                           } else if (model.addNewBillDetailsData
                                                                   .isPrepaidCategoryListEmpty ==
@@ -400,8 +385,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           onChanged: (value) {
             if (value.isEmpty) {
               value = "0";
-              model.dueAmtController = double.parse(value).toStringAsFixed(3);
             }
+            model.dueAmtController = double.parse(value).toStringAsFixed(3);
             model.minMaxValidate(model.isPartial, model.minRange, model.maxRange, value, context);
             model.validate(value);
           },
@@ -591,7 +576,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   ),
                 ),
                 Text(
-                  '${AppConstantsUtils.POST_PAID_FLOW == true ? model.totalAmountToPay() : double.parse(model.dueAmtController ?? "0").toStringAsFixed(3)} ${S.of(context).JOD}',
+                  '${AppConstantsUtils.POST_PAID_FLOW == true ? model.totalAmountToPay(isDisplay: true) : double.parse(model.dueAmtController ?? "0").toStringAsFixed(3)} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,

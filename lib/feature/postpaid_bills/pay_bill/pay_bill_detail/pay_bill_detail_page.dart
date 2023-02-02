@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view_model.dart';
@@ -33,6 +34,17 @@ class PayBillDetailPageState extends BaseStatefulPage<PayBillDetailPageViewModel
   @override
   Widget buildView(BuildContext context, PayBillDetailPageViewModel model) {
     return PayBillDetailPageView(provideBase());
+  }
+
+  @override
+  void onModelReady(PayBillDetailPageViewModel model) {
+    model.payFromController.text = ProviderScope.containerOf(context)
+            .read(appHomeViewModelProvider)
+            .dashboardDataContent
+            .account
+            ?.accountNo ??
+        "";
+    super.onModelReady(model);
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
@@ -37,6 +38,13 @@ class PaySelectedBillsPostPaidBillsPageState
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
     Future.delayed(Duration(milliseconds: 10))
         .then((value) => model.postpaidInquiryDataListener(list: model.arguments.postPaidBillInquiryData!));
+
+    model.savingAccountController.text = ProviderScope.containerOf(context)
+            .read(appHomeViewModelProvider)
+            .dashboardDataContent
+            .account
+            ?.accountNo ??
+        '';
     super.onModelReady(model);
   }
 }

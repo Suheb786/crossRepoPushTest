@@ -256,7 +256,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                     ? TextInputType.text
                     : TextInputType.number,
                 onPressed: () {
-                  FocusScope.of(context).unfocus();
+                  // FocusScope.of(context).unfocus();
                 },
                 onChanged: (value) {
                   model.validateData(context);
@@ -387,7 +387,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         onChanged: (val) {
           model.validateData(context);
         },
-        onPressed: () {
+        /*onPressed: () {
           AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
             Navigator.pop(context);
           }, onSelected: (value) {
@@ -402,7 +402,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                     ?.accountNo ??
                 ''
           ]);
-        },
+        },*/
         // suffixIcon: (value, data) {
         //   return Container(
         //       height: 16.h,
@@ -466,7 +466,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
           hintText: S.of(context).pleaseEnter,
           controller: model.nicknameTextControl,
           onPressed: () {
-            FocusScope.of(context).unfocus();
+            // FocusScope.of(context).unfocus();
           },
           onChanged: (val) {
             model.validateData(context);
@@ -616,7 +616,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                   model.validateData(context);
                 },
                 onPressed: () {
-                  FocusScope.of(context).unfocus();
+                  // FocusScope.of(context).unfocus();
                 },
               ),
             ),

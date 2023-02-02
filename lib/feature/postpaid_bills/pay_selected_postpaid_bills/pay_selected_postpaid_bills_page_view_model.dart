@@ -39,7 +39,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   double totalBillAmt = 0.0;
   int validRequestCounter = 0;
 
-  addAllBillAmt(BuildContext context) async {
+  addAllBillAmt(BuildContext context, {isApi: false}) async {
     totalBillAmt = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
@@ -49,9 +49,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         if (inquiryData.isPartial == true &&
             double.parse(inquiryData.dueAmount ?? "0") !=
                 double.parse(inquiryData.actualDueAmountFromApi ?? "0")) {
-          totalBillAmt = await totalBillAmt +
-              double.parse(inquiryData.dueAmount ?? "0.0") +
-              double.parse(inquiryData.feesAmt ?? "0.0");
+          if (isApi == false) {
+            totalBillAmt = await totalBillAmt +
+                double.parse(inquiryData.dueAmount ?? "0.0") +
+                double.parse(inquiryData.feesAmt ?? "0.0");
+          } else {
+            totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+          }
         } else {
           totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
         }
@@ -109,7 +113,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
-    addAllBillAmt(context);
+    addAllBillAmt(context, isApi: true);
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: savingAccountController.text,
@@ -154,9 +158,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (value.length <= 0) {
       value = "0";
     }
+
     arguments.postPaidBillInquiryData?[index].dueAmount = value;
     arguments.noOfSelectedBills[index].dueAmount = value;
     if (isPartial == true) {
+      if (double.parse(value) != double.parse(actualDueAmountFromApi)) {
+        value = (double.parse(value) + double.parse(feeAmt)).toStringAsFixed(3);
+      }
       minMaxValidate(isPartial, minRange, maxRange, value, actualDueAmountFromApi, feeAmt, context, index);
     }
   }
@@ -182,14 +190,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       if (item.billingNo == billingNumber && item.serviceType == serviceType)
         return item.nickName != null && item.nickName!.isNotEmpty ? item.nickName : "";
     }
-  }
-
-  getValidBillerFeeAmount(String? billingNumber, String? serviceType) {
-    for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber && item.serviceType == serviceType)
-        return item.fees != null && item.fees!.isNotEmpty
-            ? double.parse(item.fees ?? "0").toStringAsFixed(3)
-            : "0.0";
   }
 
   getValidBillerDueAmount(String? billingNumber, String? serviceType) {
@@ -222,9 +222,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value,
       String actualDueAmountFromApi, String feeAmt, BuildContext context, int index) {
     if (isPartial == true) {
-      if (double.parse(value) != double.parse(actualDueAmountFromApi)) {
-        value = (double.parse(value) + double.parse(feeAmt)).toStringAsFixed(3);
-      }
       if (value.isEmpty) {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}";
