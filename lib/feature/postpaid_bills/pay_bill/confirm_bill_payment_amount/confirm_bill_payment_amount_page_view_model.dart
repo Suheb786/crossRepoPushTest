@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
@@ -91,7 +94,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -148,11 +151,15 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   ///totalAmountToPay
-  totalAmountToPay() {
+  totalAmountToPay({bool isDisplay: false}) {
     if (isPartial == true) {
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
-        return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text))
-            .toStringAsFixed(3);
+        if (isDisplay == true) {
+          return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text))
+              .toStringAsFixed(3);
+        } else {
+          return (double.parse(dueAmtController ?? "0")).toStringAsFixed(3);
+        }
       }
       return addAllBillAmt();
     }
@@ -161,7 +168,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -197,14 +204,14 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -251,7 +258,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
         CardId: "",
@@ -260,7 +267,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -360,8 +367,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
   bool isAmountInRange = false;
 
-  void minMaxValidate(
-      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+  void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
     if (isPartial == true) {
       isAmountInRange = false;
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
@@ -390,5 +396,19 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
     }
     return double.parse(dueAmtController ?? "0") >= 100.0 ? true : false;
+  }
+
+  void amountGreaterThanZeroMessage(ConfirmBillPaymentAmountPageViewModel model) {
+    if (AppConstantsUtils.POST_PAID_FLOW == true) {
+      if (double.parse(model.totalAmountToPay() ?? "0") <= 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+      }
+    } else {
+      if (double.parse(model.dueAmtController ?? "0") <= 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+      }
+    }
   }
 }

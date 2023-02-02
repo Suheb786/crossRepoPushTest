@@ -207,7 +207,9 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           } else if (event.status == Status.SUCCESS) {
             postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
-            postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
+            if (payPostPaidBillsDataList != null && payPostPaidBillsDataList.length > 0) {
+              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
+            }
           }
         });
       },

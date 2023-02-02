@@ -197,12 +197,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
-        "applicationInProcess": MessageLookupByLibrary.simpleMessage(
-            "Your Application Is In Process"),
+        "applicationInProcess": MessageLookupByLibrary.simpleMessage("Your Application Is In Process"),
         "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
             "The Blink mobile application is not available in your region!"),
-        "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "Unfortunately, your application was rejected."),
+        "applicationNotSuccessful":
+            MessageLookupByLibrary.simpleMessage("Unfortunately, your application was rejected."),
         "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
             "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."),
         "applicationSubmitted": MessageLookupByLibrary.simpleMessage("Application submitted"),
@@ -1493,15 +1492,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
         "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "Issuing your supplementary credit card"),
-        "issuingYourCreditCard":
-            MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
+        "issuingYourCreditCard": MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "japan": MessageLookupByLibrary.simpleMessage("Japan"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some of the required employment information. Please check again and ensure all information is provided."),
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
-        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
-            "Bear with us, just a few more questions about your income"),
+        "jobIncomeMsg":
+            MessageLookupByLibrary.simpleMessage("Bear with us, just a few more questions about your income"),
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "joinedBlink": MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
         "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),
@@ -1631,12 +1629,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
-        "newMobileNumber":
-            MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
+        "newMobileNumber": MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
-        "newSettlementAccount":
-            MessageLookupByLibrary.simpleMessage("New settlement account"),
+        "newSettlementAccount": MessageLookupByLibrary.simpleMessage("New settlement account"),
         "newSettlementPercentage":
             MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
@@ -2553,8 +2549,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
         "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
             "Please get ready to meet our Engagement Team, we will now connect you."),
-        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
-            "It’s time for a quick\nvideo call"),
+        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage("It’s time for a quick\nvideo call"),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "Your video call is scheduled for the 15th of October at 10:00AM."),
         "viewAndPayYourDueBills": MessageLookupByLibrary.simpleMessage("View and pay your due bills"),
@@ -2624,14 +2619,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage("Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
-        "yourBillHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
-        "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
-            "Your Yellow Sun debit card \n has been issued!"),
-        "yourCardIsReady":
-            MessageLookupByLibrary.simpleMessage("Your card is ready!"),
-        "yourCardIssued":
-            MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
+        "yourBillHasBeenRemoved": MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
+        "yourCardHasBeenIssued":
+            MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card \n has been issued!"),
+        "yourCardIsReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardIssued": MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardLimit":
             MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
         "yourCardReady":

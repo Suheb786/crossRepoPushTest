@@ -7,14 +7,12 @@ import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -211,12 +209,10 @@ class PaySelectedBillsPostPaidBillsPageView
                                                         model.arguments.postPaidBillInquiryData?[index]
                                                             .serviceType,
                                                       ),
-                                                      billAmtFee: model.getValidBillerFeeAmount(
-                                                        model.arguments.postPaidBillInquiryData?[index]
-                                                            .billingNo,
-                                                        model.arguments.postPaidBillInquiryData?[index]
-                                                            .serviceType,
-                                                      ),
+                                                      billAmtFee: double.parse(
+                                                              model.postPaidBillInquiryData?[index].feesAmt ??
+                                                                  "0")
+                                                          .toStringAsFixed(3),
                                                     );
                                                   },
                                                   separatorBuilder: (context, index) {
@@ -246,7 +242,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                                   hintText: S.of(context).pleaseSelect,
                                                   controller: model.savingAccountController,
                                                   readOnly: true,
-                                                  onPressed: () {
+                                                  /*onPressed: () {
                                                     AccountsDialog.show(context,
                                                         label: S.of(context).selectAccount, onDismissed: () {
                                                       Navigator.pop(context);
@@ -262,7 +258,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                                               ?.accountNo ??
                                                           ''
                                                     ]);
-                                                  },
+                                                  },*/
                                                   // suffixIcon: (value, data) {
                                                   //   return Container(
                                                   //       height: 16.h,
