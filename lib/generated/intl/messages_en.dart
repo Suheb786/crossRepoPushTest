@@ -189,8 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "annual": MessageLookupByLibrary.simpleMessage("ANNUAL "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
-        "annualIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Annual Income"),
+        "annualIncomeSmall": MessageLookupByLibrary.simpleMessage("Annual Income"),
         "anyAgent": MessageLookupByLibrary.simpleMessage("Any Agent"),
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
@@ -1490,8 +1489,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-087)"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
-        "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
-            "Issuing your supplementary credit card"),
+        "issuingSuppCreditCard":
+            MessageLookupByLibrary.simpleMessage("Issuing your supplementary credit card"),
         "issuingYourCreditCard": MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "japan": MessageLookupByLibrary.simpleMessage("Japan"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
@@ -1633,17 +1632,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "newSettlementAccount": MessageLookupByLibrary.simpleMessage("New settlement account"),
-        "newSettlementPercentage":
-            MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
+        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage(
-                "Nick name can only contain alphanumerics"),
+            MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData": MessageLookupByLibrary.simpleMessage(
-            "ATM data cannot be retrieved. Please try again later."),
+        "noATMData":
+            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
         "noActivityToDisplay":
@@ -2624,17 +2621,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardIssued": MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
-        "yourCardLimit":
-            MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
-        "yourCardReady":
-            MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardLimit": MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
+        "yourCardReady": MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
-        "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage(
-            "Your contact details have been saved."),
-        "yourFreeVirtualDebitCardHasBeenIssued":
-            MessageLookupByLibrary.simpleMessage(
-                "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourContactDetailsUpdated":
+            MessageLookupByLibrary.simpleMessage("Your contact details have been saved."),
+        "yourFreeVirtualDebitCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
+            "Your free virtual debit card has been issued, and the physical one is on its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "Your Yellow Sun debit card has been issued!")

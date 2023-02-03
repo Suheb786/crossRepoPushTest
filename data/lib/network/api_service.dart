@@ -205,7 +205,6 @@ import 'package:data/entity/remote/user/enable_biometric/android_login_request_e
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
-import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
@@ -262,9 +261,6 @@ abstract class ApiService {
   @POST("/auth/VerifyMobileOtp")
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
-
-  @POST("/transfer/GetCountries")
-  Future<String> fetchCountryList(@Body() FetchCountryListRequest fetchCountryListRequest);
 
   @POST("/IdCard/set")
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
@@ -380,7 +376,7 @@ abstract class ApiService {
       @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
 
   ///get country list
-  @POST("/transfer/GetCountriesV2")
+  @POST("/transfer/GetCountriesV1")
   Future<HttpResponse<CountryListResponseEntity>> getCountryList(
       @Body() CountryListRequestEntity countryListRequestEntity);
 

@@ -10,9 +10,7 @@ BillPaymentsTransactionDataEntity _$BillPaymentsTransactionDataEntityFromJson(Ma
   return BillPaymentsTransactionDataEntity(
     label: json['label'],
     billPaymentsTransactionList: (json['transactionList'] as List<dynamic>?)
-        ?.map((e) =>
-        BillPaymentsTransactionListEntity.fromJson(
-            e as Map<String, dynamic>))
+        ?.map((e) => BillPaymentsTransactionListEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
