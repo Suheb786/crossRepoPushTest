@@ -8,7 +8,7 @@ import 'package:neo_bank/base/base_page.dart';
 
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/new_contact_added/new_contact_added_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
@@ -26,7 +26,6 @@ class AddContactsIBANManageContactsPageView
   final List<Widget> pages = [
     AddContactsIBANFormPage(),
     AddContactIBANotpPage(),
-    NewContactAddedPage(),
   ];
 
   @override
@@ -47,14 +46,15 @@ class AddContactsIBANManageContactsPageView
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
-                      size: Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      activeSize: Size(MediaQuery.of(context).size.width / 2.4, 5),
+                      size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
                       color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               }),
+          SizedBox(height: 36.0.h),
           Expanded(
               child: AppStreamBuilder<int>(
                   initialData: 0,
@@ -63,13 +63,14 @@ class AddContactsIBANManageContactsPageView
                     return Column(
                       children: [
                         Text(
-                          "Add Contact".toUpperCase(),
+                          S.current.addContact.toUpperCase(),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontSize: 10,
                               fontWeight: FontWeight.w600),
                         ),
+                        SizedBox(height: 8.0.h),
                         ShowUpAnimation(
                           key: ValueKey(currentPage),
                           delayStart: Duration(milliseconds: 50),
@@ -80,9 +81,8 @@ class AddContactsIBANManageContactsPageView
                           child: Text(
                             StepTextHelper.addContact_IBAN(
                               currentPage ?? 0,
-                              "Please Enter your Contact Details",
-                              "step2",
-                              "step3,",
+                              S.current.pleaseEnterYourContactDetails,
+                              S.current.pleaseEnterYourContactDetails,
                             ),
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -92,6 +92,7 @@ class AddContactsIBANManageContactsPageView
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
+                        SizedBox(height: 20.0.h),
                         Expanded(
                           child: AppSwiper(
                             pages: pages,
@@ -102,6 +103,9 @@ class AddContactsIBANManageContactsPageView
                             },
                             currentStep: currentPage,
                           ),
+                        ),
+                        SizedBox(
+                          height: 50.h,
                         )
                       ],
                     );

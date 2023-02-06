@@ -154,14 +154,17 @@ class StepTextHelper {
     }
   }
 
-  static String addContact_IBAN(int index, String step1, String step2, String step3) {
+  static String addContact_IBAN(
+    int index,
+    String step1,
+    String step2,
+  ) {
     switch (index) {
       case 0:
         return step1;
       case 1:
         return step2;
-      case 2:
-        return step3;
+
       default:
         return step1;
     }

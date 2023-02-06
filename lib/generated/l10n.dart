@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16043,6 +16045,36 @@ class S {
     return Intl.message(
       '00962000000000',
       name: 'mobileNoAliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\ncontact details`
+  String get pleaseEnterYourContactDetails {
+    return Intl.message(
+      'Please enter your\ncontact details',
+      name: 'pleaseEnterYourContactDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get ibanORaccountORmobileORalias {
+    return Intl.message(
+      'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'ibanORaccountORmobileORalias',
       desc: '',
       args: [],
     );

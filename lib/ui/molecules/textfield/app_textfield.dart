@@ -13,7 +13,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction? inputAction;
   final TextInputType? inputType;
   final String labelText;
-  final String hintText;
+  final String? hintText;
   final String? initialValue;
   final bool? autoFocus;
   final FormFieldValidator<String>? validator;
@@ -61,7 +61,7 @@ class AppTextField extends StatefulWidget {
     this.inputAction: TextInputAction.done,
     this.inputType,
     required this.labelText,
-    required this.hintText,
+    this.hintText,
     this.initialValue,
     this.autoFocus: false,
     this.validator,

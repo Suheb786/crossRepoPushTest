@@ -146,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "addCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "addContact": MessageLookupByLibrary.simpleMessage("Add Contact"),
         "addCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Add Country Restrictions"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
@@ -1404,6 +1405,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("IBAN is\nnot in Blink"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "ibanORaccountORmobileORalias": MessageLookupByLibrary.simpleMessage(
+            "IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
         "ibanOrMobile":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
         "ibanOrMobileOrAccount":
@@ -2091,6 +2094,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
+        "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\ncontact details"),
         "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter your mobile number"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(

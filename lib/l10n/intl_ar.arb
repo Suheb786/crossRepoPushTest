@@ -1580,5 +1580,8 @@
   "hasBeenDeleted": "{String} has been deleted",
   "cliqAliasUpdate": "CliQ ID Alias has been updated",
   "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
-  "mobileNoAliasHint": "00962000000000"
+  "mobileNoAliasHint": "00962000000000",
+  "addContact": "Add Contact",
+  "pleaseEnterYourContactDetails": "Please enter your\ncontact details",
+  "ibanORaccountORmobileORalias": "IBAN / ACCOUNT NO. / Mobile No. / ALIAS"
 }

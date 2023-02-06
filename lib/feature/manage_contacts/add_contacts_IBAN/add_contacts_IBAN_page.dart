@@ -14,7 +14,9 @@ class AddContactsIBANManageContactsPage extends BasePage<AddContactsIBANManageCo
 }
 
 class AddContactsIBANManageContactsPageState
-    extends BaseStatefulPage<AddContactsIBANManageContactsPageViewModel, AddContactsIBANManageContactsPage> {
+    extends BaseStatefulPage<AddContactsIBANManageContactsPageViewModel, AddContactsIBANManageContactsPage>
+    with AutomaticKeepAliveClientMixin {
+  AddContactsIBANManageContactsPageState() : super(subscribeVisibilityEvents: true);
   @override
   Widget buildView(BuildContext context, AddContactsIBANManageContactsPageViewModel model) {
     return AddContactsIBANManageContactsPageView(provideBase());
@@ -22,6 +24,15 @@ class AddContactsIBANManageContactsPageState
 
   @override
   ProviderBase provideBase() {
-    return addContactIBANViewModelProvideer;
+    return addContactIBANViewModelProvider;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

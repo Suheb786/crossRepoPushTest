@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
@@ -25,5 +26,16 @@ class AddContactIBANformPageState
   @override
   Widget buildView(BuildContext context, AddContactsIBANformPageViewModel model) {
     return AddContactsIBANformPageView(provideBase());
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Colors.transparent;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
   }
 }

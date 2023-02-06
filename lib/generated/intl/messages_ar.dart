@@ -144,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "addCallError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "addContact": MessageLookupByLibrary.simpleMessage("Add Contact"),
         "addCountryRestriction": MessageLookupByLibrary.simpleMessage(
             "إضافة تقييدات على مسنوى الدول "),
         "addIncome": MessageLookupByLibrary.simpleMessage("إضافة دخل"),
@@ -1349,6 +1350,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "رقم IBAN غير موجود على Blink"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "ibanORaccountORmobileORalias": MessageLookupByLibrary.simpleMessage(
+            "IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
         "ibanOrMobile": MessageLookupByLibrary.simpleMessage(
             "IBAN/ رقم موبايل/ اسم مستعار"),
         "ibanOrMobileOrAccount":
@@ -2020,6 +2023,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
+        "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\ncontact details"),
         "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter your mobile number"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
