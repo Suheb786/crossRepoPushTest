@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:isolate';
 
 import 'package:card_swiper/card_swiper.dart';
@@ -30,6 +31,7 @@ import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -94,7 +96,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///dashboard card data response
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
-      BehaviorSubject.seeded(GetDashboardDataContent());
+  BehaviorSubject.seeded(GetDashboardDataContent());
 
   ///dashboard card data response stream
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
@@ -154,8 +156,7 @@ class AppHomeViewModel extends BasePageViewModel {
   List<DebitCard> debitCards = [];
   List<CreditCard> creditCards = [];
 
-  AppHomeViewModel(
-      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -189,7 +190,7 @@ class AppHomeViewModel extends BasePageViewModel {
           triggerRequestMoneyPopup();
 
           ///fetching antelop cards
-          getAntelopCards();
+          //getAntelopCards();
           // showApplePayPopUp(true);
 
           ///fetching antelop cards
@@ -201,7 +202,7 @@ class AppHomeViewModel extends BasePageViewModel {
           showApplePayPopUp(true);
         } else if (event.status == Status.SUCCESS) {
           ///fetching antelop cards
-          getAntelopCards();
+          //getAntelopCards();
           // showApplePayPopUp(true);
 
           ///fetching antelop cards
@@ -221,8 +222,7 @@ class AppHomeViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getRequestMoneyPlaceHolderResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-        } else if (event.status == Status.SUCCESS) {
+        if (event.status == Status.ERROR) {} else if (event.status == Status.SUCCESS) {
           showRequestMoneyPopUp(false);
           if (event.data!.data!.status ?? false) {
             requestMoneyPlaceholderData = event.data!.data!;
@@ -233,7 +233,7 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _antelopGetCardsRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -345,8 +345,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 cardTypeList.add(
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
-                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
-                } else {
+                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {} else {
                   switch (creditCard.callStatus) {
                     case CreditCardCallStatusEnum.APPROVED:
                       pages.add(GetCreditCardNowWidget(
@@ -476,8 +475,8 @@ class AppHomeViewModel extends BasePageViewModel {
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard,
                     isDebitCardRequestPhysicalCardEnabled:
-                        dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
-                            false));
+                    dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                        false));
 
                 ///time line list arguments set
                 timeLineListArguments.add(TimeLineListArguments(
@@ -516,8 +515,10 @@ class AppHomeViewModel extends BasePageViewModel {
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
     sortTimeLineArgumentsList();
 
-    // ///show apple pay pop up button
-    // showApplePayPopUp(true);
+    /// get Antelop Cards
+    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+      getAntelopCards();
+    }
   }
 
   void addPages(List pagesList) {

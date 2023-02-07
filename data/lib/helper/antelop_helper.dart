@@ -309,40 +309,38 @@ class AntelopHelper {
               if (unEnrolledDataList.isNotEmpty) {
                 AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
 
-                Future.delayed(Duration(seconds: 0), () {
-                  _apiService
-                      .enrollCards(EnrollCardRequestEntity(
-                          baseData: baseData.toJson(),
-                          walletId: antelopWalletId,
-                          getToken: false,
-                          cardType: "",
-                          cardId: ""))
-                      .then((value) async {
-                    if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-                      AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+                _apiService
+                    .enrollCards(EnrollCardRequestEntity(
+                        baseData: baseData.toJson(),
+                        walletId: antelopWalletId,
+                        getToken: false,
+                        cardType: "",
+                        cardId: ""))
+                    .then((value) async {
+                  if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+                    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
 
-                      ///getting list from api
-                      var cards = value.data.transform().enrollCardList;
-                      List<Map<String, dynamic>> params = [];
-                      for (int i = 0; i < (cards ?? []).length; i++) {
-                        for (int j = 0; j < unEnrolledDataList.length; j++) {
-                          if (unEnrolledDataList[j] == cards![i].cardId) {
-                            debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId} ---> " +
-                                cards[i].enrollmentData.toString());
-                            params.add({
-                              "cardId": cards[i].cardId,
-                              "enrollmentData": cards[i].enrollmentData,
-                              "isEnrolled": false
-                            });
-                          }
+                    ///getting list from api
+                    var cards = value.data.transform().enrollCardList;
+                    List<Map<String, dynamic>> params = [];
+                    for (int i = 0; i < (cards ?? []).length; i++) {
+                      for (int j = 0; j < unEnrolledDataList.length; j++) {
+                        if (unEnrolledDataList[j] == cards![i].cardId) {
+                          debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId} ---> " +
+                              cards[i].enrollmentData.toString());
+                          params.add({
+                            "cardId": cards[i].cardId,
+                            "enrollmentData": cards[i].enrollmentData,
+                            "isEnrolled": false
+                          });
                         }
                       }
-                      var data = await platform.invokeMethod('enrollCard', params);
                     }
-                  }, onError: (error) async {
-                    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
-                    debugPrint("MainError------> ${error.toString()}");
-                  });
+                    var data = await platform.invokeMethod('enrollCard', params);
+                  }
+                }, onError: (error) async {
+                  AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+                  debugPrint("MainError------> ${error.toString()}");
                 });
               }
             }
@@ -362,38 +360,36 @@ class AntelopHelper {
 
         ///Test purpose
 
-        Future.delayed(Duration(seconds: 0), () {
-          _apiService
-              .enrollCards(EnrollCardRequestEntity(
-                  baseData: baseData.toJson(),
-                  walletId: antelopWalletId,
-                  getToken: false,
-                  cardType: "",
-                  cardId: ""))
-              .then((value) async {
-            if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-              AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
-
-              ///getting list from api
-              var cards = value.data.transform().enrollCardList;
-              List<Map<String, dynamic>> params = [];
-              for (int i = 0; i < cards!.length; i++) {
-                debugPrint("enroll card api response data card id ********** ${cards[i].cardId} **********");
-                debugPrint(
-                    "enroll card api response data enrollment data ********** ${cards[i].enrollmentData} **********");
-                //   var parameter = {"enrollmentData": value.data.content!.cards![i].enrollmentData!.toString()};
-                params.add({
-                  "cardId": cards[i].cardId,
-                  "enrollmentData": cards[i].enrollmentData,
-                  "isEnrolled": false
-                });
-              }
-              var data = await platform.invokeMethod('enrollCard', params);
-            }
-          }, onError: (error) async {
+        _apiService
+            .enrollCards(EnrollCardRequestEntity(
+                baseData: baseData.toJson(),
+                walletId: antelopWalletId,
+                getToken: false,
+                cardType: "",
+                cardId: ""))
+            .then((value) async {
+          if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
             AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
-            debugPrint("MainError------> ${error.toString()}");
-          });
+
+            ///getting list from api
+            var cards = value.data.transform().enrollCardList;
+            List<Map<String, dynamic>> params = [];
+            for (int i = 0; i < cards!.length; i++) {
+              debugPrint("enroll card api response data card id ********** ${cards[i].cardId} **********");
+              debugPrint(
+                  "enroll card api response data enrollment data ********** ${cards[i].enrollmentData} **********");
+              //   var parameter = {"enrollmentData": value.data.content!.cards![i].enrollmentData!.toString()};
+              params.add({
+                "cardId": cards[i].cardId,
+                "enrollmentData": cards[i].enrollmentData,
+                "isEnrolled": false
+              });
+            }
+            var data = await platform.invokeMethod('enrollCard', params);
+          }
+        }, onError: (error) async {
+          AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+          debugPrint("MainError------> ${error.toString()}");
         });
 
         break;

@@ -55,6 +55,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                     stream: model.applePayPopUpStream,
                     initialData: false,
                     onData: (value) {
+                      debugPrint('Apple Pay Pop up----->$value');
+                      debugPrint('Platform IOS----->${Platform.isIOS}');
+                      debugPrint(
+                          'Apple Pay Feature Enabled----->${AppConstantsUtils.isApplePayFeatureEnabled}');
+                      debugPrint('isAllCardInApplePay----->$isAllCardsInApplePay');
+
                       if (value &&
                           Platform.isIOS &&
                           AppConstantsUtils.isApplePayFeatureEnabled &&
@@ -65,10 +71,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           Navigator.pop(context);
                           Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
                               arguments: SelectedCardsForApplePayPageArguments(
-                                  debitCards: model.debitCards, creditCards: model.creditCards));
-                        }, onDismissed: () {
-                          Navigator.pop(context);
-                        },
+                                      debitCards: model.debitCards, creditCards: model.creditCards));
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            },
                             descriptionWidget: Text(
                               S.of(context).blinkWithApplePayLandingDialogDescription,
                               style: TextStyle(
