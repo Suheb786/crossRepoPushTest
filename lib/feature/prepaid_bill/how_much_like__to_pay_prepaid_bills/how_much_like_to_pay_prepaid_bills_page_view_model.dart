@@ -61,8 +61,11 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse = BehaviorSubject();
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
+  String? userEnteredPrePaidAmount = "0";
 
   void validatePrePaidBill() {
+    userEnteredPrePaidAmount = amtController.text;
+
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
@@ -73,9 +76,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         prepaidCategoryCode:
             isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
         prepaidCategoryType:
-            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
         billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+            argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
             ? true
             : false));
   }
@@ -118,7 +121,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
+        amount: isPrepaidCategoryListEmpty == true
+            ? double.parse(userEnteredPrePaidAmount ?? "0").toStringAsFixed(3)
+            : "",
         currencyCode: "JOD",
         accountNo: savingAccountController.text,
         otpCode: "",

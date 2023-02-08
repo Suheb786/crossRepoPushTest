@@ -749,6 +749,9 @@ class NetworkError extends BaseError {
           case "err-377":
             return AppError(cause: cause, error: error, type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE);
 
+          case "err-379":
+            return AppError(cause: cause, error: error, type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

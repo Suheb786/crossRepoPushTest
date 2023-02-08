@@ -43,6 +43,9 @@ class BillPaymentsTransactionListEntity
   @JsonKey(name: "iconCode")
   final String? iconCode;
 
+  @JsonKey(name: "status")
+  final bool? isPaid;
+
   BillPaymentsTransactionListEntity({
     this.nickname,
     this.billingNumber,
@@ -56,6 +59,7 @@ class BillPaymentsTransactionListEntity
     this.serviceType,
     this.categoryName,
     this.iconCode,
+    this.isPaid,
   });
 
   factory BillPaymentsTransactionListEntity.fromJson(Map<String, dynamic> json) =>
@@ -83,6 +87,7 @@ class BillPaymentsTransactionListEntity
       serviceType: this.serviceType ?? "",
       categoryName: this.categoryName ?? "",
       iconCode: this.iconCode ?? "",
+      isPaid: this.isPaid ?? false,
     );
   }
 }

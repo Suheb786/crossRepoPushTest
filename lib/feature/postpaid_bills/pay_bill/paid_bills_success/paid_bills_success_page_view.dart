@@ -77,9 +77,10 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                               shape: BoxShape.circle,
                               color: Theme.of(context).canvasColor,
                             ),
-                            child: model.arguments?.isPaid == true
-                                ? Center(child: AppSvg.asset(AssetUtils.right))
-                                : Center(child: AppSvg.asset(AssetUtils.fail, color: AppColor.black)),
+                            child: Center(child: AppSvg.asset(AssetUtils.right)),
+                            // child: model.arguments?.isPaid == true
+                            //     ? Center(child: AppSvg.asset(AssetUtils.right))
+                            //     : Center(child: AppSvg.asset(AssetUtils.fail, color: AppColor.black)),
                           ),
                         ),
                       ],
@@ -135,9 +136,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                StringUtils.isDirectionRTL(context)
-                                    ? model.arguments?.billNameAr ?? ""
-                                    : model.arguments?.billName ?? "",
+                                model.arguments?.billName ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -196,30 +195,30 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                   ],
                                 )
                               : Container(),
-                          model.arguments?.isPaid == true ? SizedBox(height: 16.h) : Container(),
-                          model.arguments?.isPaid == true
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      S.of(context).refNo,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.0.t),
-                                    ),
-                                    Text(
-                                      model.arguments?.refNo ?? "",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.0.t),
-                                    )
-                                  ],
-                                )
-                              : Container(),
+                          // model.arguments?.isPaid == true ? SizedBox(height: 16.h) : Container(),
+                          // model.arguments?.isPaid == true
+                          //     ? Row(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //         children: [
+                          //           Text(
+                          //             S.of(context).refNo,
+                          //             style: TextStyle(
+                          //                 fontFamily: StringUtils.appFont,
+                          //                 color: AppColor.black,
+                          //                 fontWeight: FontWeight.w400,
+                          //                 fontSize: 12.0.t),
+                          //           ),
+                          //           Text(
+                          //             model.arguments?.refNo ?? "",
+                          //             style: TextStyle(
+                          //                 fontFamily: StringUtils.appFont,
+                          //                 color: AppColor.black,
+                          //                 fontWeight: FontWeight.w600,
+                          //                 fontSize: 12.0.t),
+                          //           )
+                          //         ],
+                          //       )
+                          //     : Container(),
                           SizedBox(
                             height: 16.h,
                           ),
@@ -234,16 +233,16 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12.0.t),
                               ),
-                              Text(
-                                model.arguments?.isPaid == true
-                                    ? S.of(context).successS
-                                    : S.of(context).failed,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: model.arguments?.isPaid == true ? Colors.green : Colors.red,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.0.t),
-                              )
+                              // Text(
+                              //   model.arguments?.isPaid == true
+                              //       ? S.of(context).successS
+                              //       : S.of(context).failed,
+                              //   style: TextStyle(
+                              //       fontFamily: StringUtils.appFont,
+                              //       color: model.arguments?.isPaid == true ? Colors.green : Colors.red,
+                              //       fontWeight: FontWeight.w600,
+                              //       fontSize: 12.0.t),
+                              // )
                             ],
                           )
                         ],
@@ -256,26 +255,26 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                       onTap: () {
                         _shareDetails(context, model);
                       },
-                      child: model.arguments?.isPaid == true
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
-                                SizedBox(
-                                  width: 8.w,
-                                ),
-                                Text(
-                                  S.of(context).shareMyReceipt,
-                                  style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.light_acccent_blue,
-                                    fontSize: 14.t,
-                                  ),
-                                )
-                              ],
-                            )
-                          : Container(),
+                      child: /*model.arguments?.isPaid == true
+                          ? */
+                          Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Text(
+                            S.of(context).shareMyReceipt,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.light_acccent_blue,
+                              fontSize: 14.t,
+                            ),
+                          )
+                        ],
+                      ) /*: Container()*/,
                     ),
                   ),
                   SizedBox(
@@ -325,10 +324,8 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
     Share.share(
       ShareInfo.newPostPaidSuccess(
         context,
-        refNo: model.arguments?.refNo ?? "",
-        billerName: StringUtils.isDirectionRTL(context)
-            ? model.arguments?.billNameAr ?? ""
-            : model.arguments?.billName ?? "",
+        refNo: /*model.arguments?.refNo ??*/ "",
+        billerName: model.arguments?.billName ?? "",
         amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,
       ),

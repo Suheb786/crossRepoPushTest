@@ -68,6 +68,12 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     error: ErrorInfo(message: ''),
                     type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
               }
+              if (errorBillFail == "err-379") {
+                model.showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+              }
             } else {
               model.showToastWithError(value.appError!);
             }

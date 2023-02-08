@@ -44,13 +44,19 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
             }
             Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                 arguments: PaidBillsSuccessPageArguments(
-                  data.data?.content?.billerList?[0].totalAmount ?? "0.0",
-                  data.data?.content?.billerList?[0].fee ?? "0.0",
-                  data.data?.content?.billerList?[0].billerName ?? "",
-                  data.data?.content?.billerList?[0].billerNameAR ?? "",
-                  AppConstantsUtils.NICK_NAME,
-                  data.data?.content?.billerList?[0].refNo ?? "",
-                  data.data?.content?.billerList?[0].isPaid ?? false,
+                  amt: ProviderScope.containerOf(context)
+                      .read(confirmBillPaymentAmountPageViewModelProvider)
+                      .totalAmountToPay(isDisplay: true),
+                  fee: ProviderScope.containerOf(context)
+                      .read(confirmBillPaymentAmountPageViewModelProvider)
+                      .postPaidBillInquiryData?[0]
+                      .feesAmt,
+                  billName: AppConstantsUtils.BILLER_NAME,
+                  nickName: AppConstantsUtils.NICK_NAME,
+                  serviceType: ProviderScope.containerOf(context)
+                      .read(confirmBillPaymentAmountPageViewModelProvider)
+                      .postPaidBillInquiryData?[0]
+                      .serviceType,
                 ));
             var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
             if (errorBillFail == "err-377") {
@@ -58,6 +64,12 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+            }
+            if (errorBillFail == "err-379") {
+              model.showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
             }
           }
         },
@@ -79,6 +91,12 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                       cause: Exception(),
                       error: ErrorInfo(message: ''),
                       type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                }
+                if (errorBillFail == "err-379") {
+                  model.showToastWithError(AppError(
+                      cause: Exception(),
+                      error: ErrorInfo(message: ''),
+                      type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
                 }
               }
             },

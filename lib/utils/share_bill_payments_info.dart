@@ -1,4 +1,4 @@
-import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_success.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -31,7 +31,7 @@ class ShareInfo {
 
   static String savedMultipleBillsPostPaidSuccess(
     BuildContext context, {
-    required List<BillerList>? paidBillsList,
+    required List<BillerSuccessDetails>? paidBillsList,
   }) {
     var allBillsString = "";
     final newLine = "\n\n";
@@ -50,22 +50,22 @@ class ShareInfo {
             billNameText = "";
           }
 
-          if (item.totalAmount != null && item.totalAmount!.isNotEmpty) {
+          if (item.dueAmount != null && item.dueAmount!.isNotEmpty) {
             amountText = S.of(context).amount +
                 ": " +
-                double.parse(item.totalAmount ?? "0").toStringAsFixed(3) +
+                double.parse(item.dueAmount ?? "0").toStringAsFixed(3) +
                 newLine;
           } else {
             amountText = "";
           }
-          if (item.refNo != null && item.refNo!.isNotEmpty) {
-            refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
-          } else {
-            refNoText = "";
-          }
-          if (item.isPaid == true) {
-            allBillsString = allBillsString + newLine + billNameText + amountText + refNoText;
-          }
+          // if (item.refNo != null && item.refNo!.isNotEmpty) {
+          //   refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
+          // } else {
+          //   refNoText = "";
+          // }
+          // if (item.isPaid == true) {
+          allBillsString = allBillsString + newLine + billNameText + amountText + refNoText;
+          // }
         }
       }
     }
@@ -76,6 +76,6 @@ class ShareInfo {
   }
 }
 
-String getBillerName(BuildContext context, BillerList item) {
+String getBillerName(BuildContext context, BillerSuccessDetails item) {
   return StringUtils.isDirectionRTL(context) ? item.billerNameAR ?? "" : item.billerName ?? "";
 }

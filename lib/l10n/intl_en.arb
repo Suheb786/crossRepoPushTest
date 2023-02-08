@@ -1519,6 +1519,7 @@
   "amountShouldBeMoreThan": "Amount should be more than",
   "amountShouldBeLessThanOrEqualTo": "Amount should be less than or equal to",
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
+  "rejectedDueToExpiryDate": "Your payment is rejected due to expiry date of the bill",
   "serviceIsNotavaliable": "Service is not available",
   "viewHistory": "View History",
   "billsHistory": "Bills History",

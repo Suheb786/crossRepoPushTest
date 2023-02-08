@@ -1130,6 +1130,8 @@ class ErrorParser {
         return localisedHelper.billerAlreadyExistsMessage;
       case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
         return localisedHelper.billPaymentSorryMessage;
+      case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
+        return localisedHelper.rejectedDueToExpiryDate;
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
       case ErrorType.SERVICE_NOT_AVAILABLE:

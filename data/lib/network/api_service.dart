@@ -813,7 +813,7 @@ abstract class ApiService {
   @POST("/BillPayment/PayPrepaidBill")
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
-  @POST("/BillPayment/PayPostpaidBill")
+  @POST("/BillPayment/PayPostPaidBillV1")
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill(
     @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
   );
@@ -902,6 +902,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
     @Body() BaseRequest request,
   );
+
   @POST("/Cliq/CliqRegisterAccount")
   Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
     @Body() BaseRequest request,

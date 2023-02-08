@@ -14970,6 +14970,16 @@ class S {
     );
   }
 
+  /// `Your payment is rejected due to expiry date of the bill`
+  String get rejectedDueToExpiryDate {
+    return Intl.message(
+      'Your payment is rejected due to expiry date of the bill',
+      name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Service is not available`
   String get serviceIsNotavaliable {
     return Intl.message(

@@ -140,15 +140,19 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.getBillerName(context, model.arguments.billerList![index]),
+                                      model.getBillerName(
+                                          context, model.arguments.billerSuccessDetailsList![index]),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14.0.t),
                                     ),
-                                    (model.arguments.billerList?[index].fee != null &&
-                                            double.parse(model.arguments.billerList?[index].fee ?? "0") > 0.0)
+                                    (model.arguments.billerSuccessDetailsList?[index].fee != null &&
+                                            double.parse(
+                                                    model.arguments.billerSuccessDetailsList?[index].fee ??
+                                                        "0") >
+                                                0.0)
                                         ? Text(S.of(context).fees,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
@@ -156,7 +160,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.0.t))
                                         : Container(),
-                                    model.arguments.billerList?[index].isPaid == true
+                                    /* model.arguments.billerSuccessDetailsList?[index].isPaid == true
                                         ? Text(
                                             S.of(context).refTitle,
                                             style: TextStyle(
@@ -165,7 +169,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 12.0.t),
                                           )
-                                        : Container(),
+                                        : Container(),*/
                                     Text(
                                       S.of(context).status,
                                       style: TextStyle(
@@ -186,7 +190,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '${double.parse(model.arguments.billerList?[index].totalAmount ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                    '${double.parse(model.arguments.billerSuccessDetailsList?[index].dueAmount ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: AppColor.black,
@@ -194,35 +198,35 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                         fontSize: 12.0.t),
                                   ),
                                   Text(
-                                    '${double.parse(model.arguments.billerList?[index].fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                    '${double.parse(model.arguments.billerSuccessDetailsList?[index].fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: AppColor.black,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12.0.t),
                                   ),
-                                  model.arguments.billerList?[index].isPaid == true
+                                  /* model.arguments.billerSuccessDetailsList?[index].isPaid == true
                                       ? Text(
-                                          model.arguments.billerList?[index].refNo ?? "",
+                                          model.arguments.billerSuccessDetailsList?[index].refNo ?? "",
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: AppColor.gray5,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 12.0.t),
                                         )
-                                      : Container(),
-                                  Text(
-                                    model.arguments.billerList?[index].isPaid == true
+                                      : Container(),*/
+                                  /* Text(
+                                    model.arguments.billerSuccessDetailsList?[index].isPaid == true
                                         ? S.of(context).successS
                                         : S.of(context).failed,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: model.arguments.billerList?[index].isPaid == true
+                                        color: model.arguments.billerSuccessDetailsList?[index].isPaid == true
                                             ? Colors.green
                                             : Colors.red,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.0.t),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),
@@ -233,7 +237,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     separatorBuilder: (context, index) {
                       return AppDivider();
                     },
-                    itemCount: model.arguments.billerList!.length),
+                    itemCount: model.arguments.billerSuccessDetailsList!.length),
               ),
             ),
             Padding(
@@ -300,7 +304,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
     Share.share(
       ShareInfo.savedMultipleBillsPostPaidSuccess(
         context,
-        paidBillsList: model.arguments.billerList ?? [],
+        paidBillsList: model.arguments.billerSuccessDetailsList ?? [],
       ),
       subject: S.of(context).billDetails,
     );

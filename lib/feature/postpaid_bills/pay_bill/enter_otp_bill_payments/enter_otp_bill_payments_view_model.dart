@@ -1,6 +1,3 @@
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
@@ -59,13 +56,11 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
   void updateTime(BuildContext context) {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
-    if (otpController.text.length < 6) {
-      AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception());
-      return;
-    } else {
-      enterOtpBillPayments(context);
-    }
-
+    enterOtpBillPayments(context);
+    // if (otpController.text.length < 6) {
+    //   AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception());
+    //   return;
+    // }
     listenForSmsCode();
   }
 
@@ -147,7 +142,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? confirmBillModel.amtController.text
+            ? confirmBillModel.userEnteredPrePaidAmount
             : "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
