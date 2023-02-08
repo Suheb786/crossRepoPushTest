@@ -70,25 +70,31 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                           child: Column(
                             children: [
                               AppTextField(
-                                labelText: S.current.nameOfBeneficiary.toUpperCase(),
-                                hintText: S.current.pleaseEnter,
-                                controller: model.nameController,
-                                key: model.nameKey,
-                              ),
+                                  labelText: S.current.nameOfBeneficiary.toUpperCase(),
+                                  hintText: S.current.pleaseEnter,
+                                  controller: model.nameController,
+                                  key: model.nameKey,
+                                  onChanged: (value) {
+                                    model.validate();
+                                  }),
                               SizedBox(height: 16.0.h),
                               AppTextField(
-                                labelText: S.current.emailAddress.toUpperCase(),
-                                hintText: S.current.pleaseEnter,
-                                controller: model.emailController,
-                                key: model.emailKey,
-                              ),
+                                  labelText: S.current.emailAddress.toUpperCase(),
+                                  hintText: S.current.pleaseEnter,
+                                  controller: model.emailController,
+                                  key: model.emailKey,
+                                  onChanged: (value) {
+                                    model.validate();
+                                  }),
                               SizedBox(height: 16.0.h),
                               AppTextField(
                                 labelText: S.current.ibanORaccountORmobileORalias.toUpperCase(),
                                 hintText: 'Please enter',
-                                //Todo : + add exclamation icon
                                 controller: model.ibanORaccountORmobileORaliasController,
                                 key: model.ibanORaccountORmobileORaliasKey,
+                                onChanged: (value) {
+                                  model.validate();
+                                },
                                 labelIcon: () {
                                   return InkWell(
                                     onTap: () {},
