@@ -87,10 +87,6 @@ class DashboardFeaturesEntity
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
         appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
         appBillPaymentQrCode: this.paymentQRCode ?? false,
-        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false,
-        blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
-        blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,
-        blinkRetailAppCliqRTP: blinkRetailAppRTP ?? false,
-        blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? false);
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false);
   }
 }

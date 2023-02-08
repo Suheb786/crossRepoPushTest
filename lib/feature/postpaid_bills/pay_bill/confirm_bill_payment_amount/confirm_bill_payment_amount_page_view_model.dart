@@ -1,10 +1,15 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/add_new_postpaid_biller/add_new_details_bill_paymemts_model.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
+import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_otp.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/post_paid_bill_inquiry_usecase.dart';
@@ -25,6 +30,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   final PayPrePaidUseCase payPrePaidUseCase;
   final PostPaidBillInquiryUseCase postPaidBillInquiryUseCase;
   final PayPostPaidBillUseCase payPostPaidBillUseCase;
+  final EnterOtpBillPaymentsUseCase _enterOtpBillPaymentsUseCase;
+
   bool isPartial = false;
   String? minRange = "0";
   String? maxRange = "0";
@@ -32,15 +39,20 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? otpCode = "";
   bool? isNewBiller = false;
 
+  bool? isOtpRequired = false;
+  bool? isOtpSend = false;
+
   ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase, this.payPrePaidUseCase,
-      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase) {
+      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this._enterOtpBillPaymentsUseCase) {
     validatePrePaidBillListener();
     payPrePaidBillListener();
     postPaidBillInquiryListener();
     payPostPaidBillListener();
+    enterOtpBillPaymentsListener();
   }
 
   TextEditingController amtController = TextEditingController(text: "0.0");
+  String? dueAmtController = "0";
   TextEditingController feeAmtController = TextEditingController(text: "0.0");
 
   ///get new details bill payments model
@@ -82,7 +94,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -126,6 +138,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         isNewBiller: false,
         isCreditCardPayment: false,
         CardId: "",
+        nickName: AppConstantsUtils.NICK_NAME,
         otpCode: ""));
   }
 
@@ -137,10 +150,16 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     return totalBillAmt.toStringAsFixed(3);
   }
 
-  totalAmountToPay() {
+  ///totalAmountToPay
+  totalAmountToPay({bool isDisplay: false}) {
     if (isPartial == true) {
-      if (double.parse(addAllBillAmt() ?? "0") != double.parse(amtController.text)) {
-        return double.parse(amtController.text).toStringAsFixed(3);
+      if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
+        if (isDisplay == true) {
+          return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text))
+              .toStringAsFixed(3);
+        } else {
+          return (double.parse(dueAmtController ?? "0")).toStringAsFixed(3);
+        }
       }
       return addAllBillAmt();
     }
@@ -149,7 +168,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -185,14 +204,14 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false));
   }
 
   void validatePrePaidBillListener() {
     _validatePrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => validatePrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -231,6 +250,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,
         isNewBiller: isNewBiller,
+        nickName: AppConstantsUtils.NICK_NAME,
         prepaidCategoryCode: addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_CODE
             : "",
@@ -238,7 +258,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
         CardId: "",
@@ -247,7 +267,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -264,11 +284,55 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     );
   }
 
+  /// ----------------validate Otp Bill Payments Request-------------------------------- ///
+
+  PublishSubject<EnterOtpBillPaymentsUseCaseParams> _enterOtpBillPaymentsRequest = PublishSubject();
+
+  PublishSubject<Resource<ValidateBillerOtp>> _enterOtpBillPaymentsResponse = PublishSubject();
+
+  Stream<Resource<ValidateBillerOtp>> get enterOtpBillPaymentsResponseStream =>
+      _enterOtpBillPaymentsResponse.stream;
+
+  void enterOtpBillPaymentsListener() {
+    _enterOtpBillPaymentsRequest.listen((value) {
+      RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _enterOtpBillPaymentsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+  }
+
+  void enterOtpBillPayments(BuildContext context) {
+    ///LOG EVENT TO FIREBASE
+    FireBaseLogUtil.fireBaseLog("validate_otp", {"validate_otp_clicked": true});
+    var billerType = AppConstantsUtils.BILLER_TYPE;
+    var amount = "0.000";
+    var currencyCode = "JOD";
+    var accountNo = AppConstantsUtils.ACCOUNT_NUMBER;
+    var isNewBiller = true;
+    if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
+      amount = amtController.text;
+    } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
+      amount = totalAmountToPay();
+    }
+    _enterOtpBillPaymentsRequest.safeAdd(EnterOtpBillPaymentsUseCaseParams(
+        billerType: billerType,
+        amount: amount,
+        currencyCode: currencyCode,
+        accountNo: accountNo,
+        isNewBiller: isNewBiller));
+  }
+
   bool isAmountMoreThanZero = false;
 
-  validate(String value) {
+  validate(String? value) {
     isAmountMoreThanZero = false;
-    if (double.parse(value) > 0.0) {
+    if (double.parse(value ?? "0") > 0.0) {
       isAmountMoreThanZero = true; // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
       if (isPartial == true && isAmountInRange == true) {
         // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
@@ -303,10 +367,13 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
   bool isAmountInRange = false;
 
-  void minMaxValidate(
-      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+  void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
     if (isPartial == true) {
       isAmountInRange = false;
+      if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
+        value =
+            (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text)).toStringAsFixed(3);
+      }
       if (value.isEmpty) {
         _editAmountFieldSubject.safeAdd(
             "${S.of(context).amountShouldBetween} ${minRange} ${S.of(context).JOD} ${S.of(context).to} ${maxRange} ${S.of(context).JOD}");
@@ -319,6 +386,28 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       } else {
         _editAmountFieldSubject.safeAdd("");
         isAmountInRange = true;
+      }
+    }
+  }
+
+  ///checkAmountMoreThanHundred
+  bool checkAmountMoreThanHundred() {
+    if (AppConstantsUtils.POST_PAID_FLOW == true) {
+      return double.parse(totalAmountToPay() ?? "0") >= 100.0 ? true : false;
+    }
+    return double.parse(dueAmtController ?? "0") >= 100.0 ? true : false;
+  }
+
+  void amountGreaterThanZeroMessage(ConfirmBillPaymentAmountPageViewModel model) {
+    if (AppConstantsUtils.POST_PAID_FLOW == true) {
+      if (double.parse(model.totalAmountToPay() ?? "0") <= 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+      }
+    } else {
+      if (double.parse(model.dueAmtController ?? "0") <= 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
       }
     }
   }

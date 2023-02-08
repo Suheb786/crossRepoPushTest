@@ -6,6 +6,7 @@ class AssetUtils {
   static const String drawable = "assets/drawable/";
   static const String flags = "assets/flags/";
   static const String _animation = "assets/animation/";
+  static const String billPaymentsImages = "assets/images/bill_payments_catagories/";
 
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
@@ -295,4 +296,7 @@ class AssetUtils {
   static const String requestMoneyIcon = svg + "requestMoney.svg";
 
   static const String sendMoneyIcon = svg + "sendMoney.svg";
+  ///billPaymentsImages
+  static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
+  static const String infoFee = svg + "info_fee.svg";
 }

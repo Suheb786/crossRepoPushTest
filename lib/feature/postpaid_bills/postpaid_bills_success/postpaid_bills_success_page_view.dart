@@ -147,6 +147,15 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14.0.t),
                                     ),
+                                    (model.arguments.billerList?[index].fee != null &&
+                                            double.parse(model.arguments.billerList?[index].fee ?? "0") > 0.0)
+                                        ? Text(S.of(context).fees,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.black,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.0.t))
+                                        : Container(),
                                     model.arguments.billerList?[index].isPaid == true
                                         ? Text(
                                             S.of(context).refTitle,
@@ -178,6 +187,14 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                 children: [
                                   Text(
                                     '${double.parse(model.arguments.billerList?[index].totalAmount ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t),
+                                  ),
+                                  Text(
+                                    '${double.parse(model.arguments.billerList?[index].fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: AppColor.black,
@@ -227,25 +244,23 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                 },
                 child: model.addAllBillAmt() > 0.0
                     ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-                    Text(
-                      S
-                          .of(context)
-                          .shareMyReceipt,
-                      style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.light_acccent_blue,
-                        fontSize: 14.t,
-                      ),
-                    )
-                  ],
-                )
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Text(
+                            S.of(context).shareMyReceipt,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.light_acccent_blue,
+                              fontSize: 14.t,
+                            ),
+                          )
+                        ],
+                      )
                     : Container(),
               ),
             ),

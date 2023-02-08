@@ -20,6 +20,7 @@ class User {
   String? applicationId;
   String? selectedLanguage;
   bool? isRJPopUPClicked;
+  bool? isEfawateerPopUPClicked;
 
   User(
       {this.token,
@@ -42,7 +43,8 @@ class User {
       this.isBiometricEnabled: false,
       this.applicationId: "",
       this.selectedLanguage: 'en',
-      this.isRJPopUPClicked});
+      this.isRJPopUPClicked,
+      this.isEfawateerPopUPClicked});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
@@ -68,6 +70,7 @@ class User {
         applicationId: json["applicationId"],
         selectedLanguage: json["selectedLanguage"],
         isRJPopUPClicked: json["isRJPopUPClicked"],
+        isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -91,6 +94,7 @@ class User {
         "isBiometricEnabled": isBiometricEnabled,
         "applicationId": applicationId,
         "selectedLanguage": selectedLanguage,
-        "isRJPopUPClicked": isRJPopUPClicked
+        "isRJPopUPClicked": isRJPopUPClicked,
+        "isEfawateerPopUPClicked": isEfawateerPopUPClicked
       };
 }

@@ -12,13 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -48,6 +46,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
           model.billingNumber = value.data?.content?.billingNo ?? "";
           model.otpCode = value.data?.content?.validationCode ?? "";
           model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
+          model.validate(model.amtController.text);
           if (model.isPrepaidCategoryListEmpty == true) {
             Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
           }
@@ -76,8 +75,26 @@ class HowMuchLikeToPayPrePaidBillsPageView
           dataBuilder: (context, snapshot) {
             return GestureDetector(
               onHorizontalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {
-                  Navigator.pop(context);
+                if (StringUtils.isDirectionRTL(context)) {
+                  if (!details.primaryVelocity!.isNegative) {
+                    if (model.isPrepaidCategoryListEmpty == false) {
+                      model.payPrePaidBill(context);
+                    } else if (model.isPrepaidCategoryListEmpty == true) {
+                      model.validatePrePaidBill();
+                    }
+                  } else {
+                    Navigator.pop(context);
+                  }
+                } else {
+                  if (details.primaryVelocity!.isNegative) {
+                    if (model.isPrepaidCategoryListEmpty == false) {
+                      model.payPrePaidBill(context);
+                    } else if (model.isPrepaidCategoryListEmpty == true) {
+                      model.validatePrePaidBill();
+                    }
+                  } else {
+                    Navigator.pop(context);
+                  }
                 }
               },
               child: Padding(
@@ -140,7 +157,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     //           fontFamily: StringUtils.appFont,
                     //           fontSize: 12.0.t,
                     //           fontWeight: FontWeight.w600,
-                    //           color: AppColor.gray5,
+                    //           color: AppColor.brightBlue,
                     //         ),
                     //       ),
                     model.isPrepaidCategoryListEmpty == false
@@ -235,6 +252,53 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       ],
                                     );
                                   }),
+                              model.feesAmt != null &&
+                                      model.feesAmt!.isNotEmpty &&
+                                  double.parse(model.feesAmt ?? "0.0") > 0.0
+                                  ? Container(
+                                margin: EdgeInsetsDirectional.only(top: 8.0.h),
+                                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+                                      decoration: BoxDecoration(
+                                          color: AppColor.lightGray,
+                                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          AppSvg.asset(AssetUtils.infoFee, height: 16.h, width: 16.w),
+                                          SizedBox(width: 8.w),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                            child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "${S.of(context).fees} ",
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: AppColor.gray5,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 12.0.t),
+                                                ),
+                                                Text(
+                                                  model.feesAmt != null && model.feesAmt!.isNotEmpty
+                                                      ? double.parse(model.feesAmt ?? "0.0")
+                                                          .toStringAsFixed(3)
+                                                      : "0.0",
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: AppColor.very_dark_gray1,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12.0.t),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
                               SizedBox(
                                 height: 32.h,
                               ),
@@ -264,12 +328,16 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                 hintText: S.of(context).savingAccount(''),
                                 controller: model.savingAccountController,
                                 readOnly: true,
-                                onPressed: () {
+                                onChanged: (val) {
+                                  model.validate(model.amtController.text);
+                                },
+
+                                /*onPressed: () {
                                   AccountsDialog.show(context, label: S.of(context).selectAccount,
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
-                                        model.savingAccountController.text = value;
+                                    model.savingAccountController.text = value;
                                     model.validate(model.amtController.text);
                                     Navigator.pop(context);
                                   }, accountsList: [
@@ -280,14 +348,14 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                             ?.accountNo ??
                                         ''
                                   ]);
-                                },
-                                suffixIcon: (value, data) {
-                                  return Container(
-                                      height: 16.h,
-                                      width: 16.w,
-                                      padding: EdgeInsetsDirectional.only(end: 8.w),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                                },
+                                },*/
+                                // suffixIcon: (value, data) {
+                                //   return Container(
+                                //       height: 16.h,
+                                //       width: 16.w,
+                                //       padding: EdgeInsetsDirectional.only(end: 8.w),
+                                //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                // },
                               ),
                               SizedBox(
                                 height: 110.h,
@@ -301,6 +369,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
+                                    } else {
+                                      Navigator.pop(context);
                                     }
                                   } else {
                                     if (details.primaryVelocity!.isNegative) {
@@ -309,6 +379,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
+                                    } else {
+                                      Navigator.pop(context);
                                     }
                                   }
                                 },
@@ -363,10 +435,10 @@ class HowMuchLikeToPayPrePaidBillsPageView
         child: AppTextField(
           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
           labelText: S.of(context).amount.toUpperCase(),
+          inputType: TextInputType.numberWithOptions(decimal: true),
           controller: model.amtController,
           readOnly: !model.isPrepaidCategoryListEmpty,
           hintText: S.of(context).pleaseEnter,
-          inputType: TextInputType.number,
           onPressed: () {},
           onChanged: (val) {
             if (val != null && val.isNotEmpty) {

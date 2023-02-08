@@ -90,9 +90,6 @@ abstract class UserRepository {
       String? placeOfBirth,
       String? doi});
 
-  /// fetch country list
-  Future<Either<NetworkError, String>> fetchCountryList({bool? getToken});
-
   /// save residence information
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>> saveResidenceInformation({
     String? residentCountry,

@@ -130,7 +130,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                             onPressed: (context1) => {
                                                               InformationDialog.show(context,
                                                                   image: AssetUtils.deleteBlackIcon,
-                                                                  isSwipeToCancel: false,
+                                                                  isSwipeToCancel: true,
                                                                   title: S.of(context).areYouSure,
                                                                   descriptionWidget: Text(
                                                                     "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
@@ -238,6 +238,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                         true) {
                                                   item.dueAmount =
                                                       payPostPaidBillsDataListItem.actualdueAmountFromApi;
+                                                  item.actualdueAmountFromApi =
+                                                      payPostPaidBillsDataListItem.actualdueAmountFromApi;
                                                 }
                                                 tempSelectedPostPaidBillsList.add(item);
                                               }
@@ -259,6 +261,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   0.0 /*|| dueAmt == 0.0 && item.isPartial == true*/) {
                                                 ///resetting dueAmount back to actual api dueAmount
                                                 item.dueAmount = dueAmt.toStringAsFixed(3);
+                                                item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
                                                 item.minMaxValidationMessage = "";
 
                                                 temPostPaidBillInquiryData.add(item);

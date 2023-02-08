@@ -13970,6 +13970,16 @@ class S {
     );
   }
 
+  /// `View and pay your due bills`
+  String get viewAndPayYourDueBills {
+    return Intl.message(
+      'View and pay your due bills',
+      name: 'viewAndPayYourDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `to Payments`
   String get toPayments {
     return Intl.message(
@@ -14065,6 +14075,26 @@ class S {
     return Intl.message(
       'Bill Name',
       name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller name`
+  String get billerName {
+    return Intl.message(
+      'Biller name',
+      name: 'billerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills & Payments`
+  String get billsAndPayments {
+    return Intl.message(
+      'Bills & Payments',
+      name: 'billsAndPayments',
       desc: '',
       args: [],
     );
@@ -14205,6 +14235,16 @@ class S {
     return Intl.message(
       'View my bills',
       name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage my bills`
+  String get manageMyBills {
+    return Intl.message(
+      'Manage my bills',
+      name: 'manageMyBills',
       desc: '',
       args: [],
     );
@@ -15790,6 +15830,16 @@ class S {
     );
   }
 
+  /// `Manage and pay my bills`
+  String get manageAndPayMyBills {
+    return Intl.message(
+      'Manage and pay my bills',
+      name: 'manageAndPayMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Insufficient funds bill cannot be paid`
   String get insufficientFundsBillCannotBePaid {
     return Intl.message(
@@ -16075,6 +16125,46 @@ class S {
     return Intl.message(
       'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
       name: 'ibanORaccountORmobileORalias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get viewHistory {
+    return Intl.message(
+      'View History',
+      name: 'viewHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills History`
+  String get billsHistory {
+    return Intl.message(
+      'Bills History',
+      name: 'billsHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay your bills with Blink!`
+  String get payYourBillswithBlink {
+    return Intl.message(
+      'Pay your bills with Blink!',
+      name: 'payYourBillswithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
+  String get youCanPayAllYourBillsNow {
+    return Intl.message(
+      'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
+      name: 'youCanPayAllYourBillsNow',
       desc: '',
       args: [],
     );

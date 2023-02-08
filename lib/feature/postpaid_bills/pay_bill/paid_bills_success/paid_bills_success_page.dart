@@ -34,6 +34,7 @@ class PaidBillsSuccessPageState
 
 class PaidBillsSuccessPageArguments {
   final String amt;
+  final String fee;
   final String billName;
   final String billNameAr;
   final String nickName;
@@ -41,5 +42,5 @@ class PaidBillsSuccessPageArguments {
   final bool? isPaid;
 
   PaidBillsSuccessPageArguments(
-      this.amt, this.billName, this.billNameAr, this.nickName, this.refNo, this.isPaid);
+      this.amt, this.fee, this.billName, this.billNameAr, this.nickName, this.refNo, this.isPaid);
 }
