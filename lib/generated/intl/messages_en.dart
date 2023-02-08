@@ -179,10 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amount Should be Greater then or equal to minimum Amount"),
         "amountShouldBeLessThanOrEqualTo": MessageLookupByLibrary.simpleMessage(
             "Amount should be less than or equal to"),
-        "amountShouldBeMoreThan":
-            MessageLookupByLibrary.simpleMessage("Amount should be more than"),
-        "amountShouldBetween":
-            MessageLookupByLibrary.simpleMessage("Amount should be between"),
+        "amountShouldBeMoreThan": MessageLookupByLibrary.simpleMessage("Amount should be more than"),
+        "amountShouldBetween": MessageLookupByLibrary.simpleMessage("Amount should be between"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "amt": MessageLookupByLibrary.simpleMessage("3,540"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
@@ -1479,8 +1477,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid username or password. Please try again."),
         "ipAddressCallInternalServerError":
-            MessageLookupByLibrary.simpleMessage(
-                "IP Address Call Internal Server Error"),
+            MessageLookupByLibrary.simpleMessage("IP Address Call Internal Server Error"),
         "iphoneLoginError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
@@ -1643,14 +1640,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
-        "noActivityToDisplay":
-            MessageLookupByLibrary.simpleMessage("No Activity to Display"),
-        "noBillerFound":
-            MessageLookupByLibrary.simpleMessage("No Biller Found"),
+        "noActivityToDisplay": MessageLookupByLibrary.simpleMessage("No Activity to Display"),
+        "noBillerFound": MessageLookupByLibrary.simpleMessage("No Biller Found"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
-        "noCountriesFound":
-            MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "noCountriesFound": MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("No Data Found"),
         "noDataFoundInFI": MessageLookupByLibrary.simpleMessage(
             "No data Found in Financial Institutions"),
@@ -2630,7 +2624,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "Your free virtual debit card has been issued, and the physical one is on its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
-        "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
-            "Your Yellow Sun debit card has been issued!")
+        "yourYellowSunDebitCardIssued":
+            MessageLookupByLibrary.simpleMessage("Your Yellow Sun debit card has been issued!")
       };
 }
