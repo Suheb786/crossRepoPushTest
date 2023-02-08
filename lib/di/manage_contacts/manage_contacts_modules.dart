@@ -5,6 +5,7 @@ import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/otp_for_manage_contact/otp_for_manage_contact_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
@@ -21,4 +22,9 @@ final manageContactDetailsViewModelProvider =
       ref.read(deleteBeneficiaryUseCaseProvider),
       ref.read(uploadBeneficiaryProfileImageUseCaseProvider),
       ref.read(getPurposeUseCaseProvider)),
+);
+
+final otpForManageContactPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<OtpForManageContactPageViewModel>(
+  (ref) => OtpForManageContactPageViewModel(),
 );
