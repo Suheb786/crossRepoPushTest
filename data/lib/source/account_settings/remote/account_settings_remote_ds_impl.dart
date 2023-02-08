@@ -25,26 +25,22 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   AccountSettingsRemoteDsImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeEmail(
-      {required String email}) async {
+  Future<HttpResponse<ResponseEntity>> changeEmail({required String email}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeEmail(
-        ChangeEmailRequest(baseData: baseData.toJson(), email: email));
+    return _apiService.changeEmail(ChangeEmailRequest(baseData: baseData.toJson(), email: email));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> changeMobile(
       {required String mobile, required String mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeMobile(ChangeMobileRequest(
-        baseData: baseData.toJson(), mobile: mobile, mobileCode: mobileCode));
+    return _apiService.changeMobile(
+        ChangeMobileRequest(baseData: baseData.toJson(), mobile: mobile, mobileCode: mobileCode));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> changePassword(
-      {required String oldPassword,
-      required String newPassword,
-      required String confirmNewPassword}) async {
+      {required String oldPassword, required String newPassword, required String confirmNewPassword}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.changePassword(ChangePasswordRequest(
         baseData: baseData.toJson(),
@@ -57,34 +53,26 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   @override
   Future<HttpResponse<ProfileDetailsResponseEntity>> getAccountDetails() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .getProfileDetails(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getProfileDetails(BaseRequest(baseData: baseData.toJson(), getToken: false));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateProfileImage(
-      {required String filePath}) async {
+  Future<HttpResponse<ResponseEntity>> updateProfileImage({required String filePath}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateProfileImage(UpdateProfileImageRequest(
-        baseData: baseData.toJson(),
-        image: ImageUtils.convertToBase64(filePath)));
+    return _apiService.updateProfileImage(
+        UpdateProfileImageRequest(baseData: baseData.toJson(), image: ImageUtils.convertToBase64(filePath)));
   }
 
   @override
-  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
-      {required String otp}) async {
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail({required String otp}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyChangeEmail(VerifyChangeEmailRequest(
-        baseData: baseData.toJson(),
-        otp: otp,
-        uniqueId: DateTime.now().microsecondsSinceEpoch.toString()));
+        baseData: baseData.toJson(), otp: otp, uniqueId: DateTime.now().microsecondsSinceEpoch.toString()));
   }
 
   @override
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      {required String otp,
-      required String mobileNo,
-      required String mobileCode}) async {
+      {required String otp, required String mobileNo, required String mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyChangeMobile(VerifyChangeMobileRequestEntity(
         baseData: baseData.toJson(),
@@ -97,23 +85,19 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   @override
   Future<HttpResponse<ResponseEntity>> deleteProfileImage() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .deleteProfileImage(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.deleteProfileImage(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<GetCustomerDocIdResponseEntity>>
-      getCustomerDocId() async {
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .getCustomerDocId(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getCustomerDocId(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
-      {String? docId}) async {
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument({String? docId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getCustomerDocument(GetCustomerDocumentRequestEntity(
-        baseData: baseData.toJson(), docId: docId!, getToken: true));
+    return _apiService.getCustomerDocument(
+        GetCustomerDocumentRequestEntity(baseData: baseData.toJson(), docId: docId!, getToken: true));
   }
 }

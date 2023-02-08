@@ -283,8 +283,10 @@ class AntelopHelper {
 
           List<String> tempAntelopIssuerCardId = [];
           for (int i = 0; i < antelopIssuerCardList.length; i++) {
-            tempAntelopIssuerCardId.add(antelopIssuerCardList[i].getIssuerCardId!);
+            tempAntelopIssuerCardId.add(antelopIssuerCardList[i].getIssuerCardId!.trim());
           }
+
+          debugPrint('TempAntelopIssuerCardId ---->${tempAntelopIssuerCardId}');
 
           List<String> unEnrolledDataList = [];
           BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
@@ -293,20 +295,23 @@ class AntelopHelper {
             if (value.data.transform().dashboardDataContent != null) {
               var dashBoardData = value.data.transform().dashboardDataContent;
               for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
-                if (!(tempAntelopIssuerCardId.contains(dashBoardData!.creditCard![i].cardCode))) {
-                  unEnrolledDataList.add(dashBoardData.creditCard![i].cardCode ?? "");
+                debugPrint('Credit Card Code from list  ---->${dashBoardData!.creditCard![i].cardCode}');
+                if (!(tempAntelopIssuerCardId.contains(dashBoardData.creditCard![i].cardCode!.trim()))) {
+                  unEnrolledDataList.add((dashBoardData.creditCard![i].cardCode ?? "").trim());
                 }
               }
 
               for (int i = 0; i < (dashBoardData?.debitCard ?? []).length; i++) {
-                if (!(tempAntelopIssuerCardId.contains(dashBoardData!.debitCard![i].cardCode))) {
-                  unEnrolledDataList.add(dashBoardData.debitCard![i].cardCode ?? "");
+                debugPrint('Debit Card Code from list  ---->${dashBoardData!.debitCard![i].cardCode}');
+                if (!(tempAntelopIssuerCardId.contains(dashBoardData.debitCard![i].cardCode!.trim()))) {
+                  unEnrolledDataList.add((dashBoardData.debitCard![i].cardCode ?? "").trim());
                 }
               }
 
               debugPrint("Antelop Wallet id *********** ${antelopWalletId} ***********");
 
               if (unEnrolledDataList.isNotEmpty) {
+                debugPrint('UnEnrolledCardList ---->${unEnrolledDataList}');
                 AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
 
                 _apiService
@@ -325,7 +330,7 @@ class AntelopHelper {
                     List<Map<String, dynamic>> params = [];
                     for (int i = 0; i < (cards ?? []).length; i++) {
                       for (int j = 0; j < unEnrolledDataList.length; j++) {
-                        if (unEnrolledDataList[j] == cards![i].cardId) {
+                        if (unEnrolledDataList[j] == cards![i].cardId!.trim()) {
                           debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId} ---> " +
                               cards[i].enrollmentData.toString());
                           params.add({
@@ -353,7 +358,7 @@ class AntelopHelper {
         AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
         BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
-        isAllCardsInApplePay = false;
+        isAllCardsInApplePay = true;
 
         // ///Test purpose
         // _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson()));
@@ -396,7 +401,7 @@ class AntelopHelper {
 
       case "enrollCardSuccess":
         debugPrint("Flutter side enrollCardSuccess " + data.toString());
-        var cardsData = await platform.invokeMethod('getAntelopCards');
+        var cardsData = await platform.invokeMethod('getAllCards');
         break;
 
       case "enrollCardError":
@@ -441,7 +446,7 @@ class AntelopHelper {
         List<GetAllCardData> newDataList = [];
         listOfCardFromAntelop.add(newDataList);
         if (newDataList.isEmpty) {
-          isAllCardsInApplePay = false;
+          isAllCardsInApplePay = true;
           antelopStepCompleted.add(false);
         }
         break;

@@ -517,7 +517,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
     /// get Antelop Cards
     if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-      getAntelopCards();
+      ///TODO: check for function
+      //getAntelopCards();
     }
   }
 

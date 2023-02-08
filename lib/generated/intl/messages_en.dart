@@ -178,12 +178,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "applicationUnderReview":
             MessageLookupByLibrary.simpleMessage("Your application is under review. Please bear with us."),
         "applyCreditCard": MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
-        "applyCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
-        "applyDebitCard":
-            MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
-        "applyForCreditCard":
-            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyCreditCardTitle": MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyDebitCard": MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
+        "applyForCreditCard": MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyNow": MessageLookupByLibrary.simpleMessage("Apply now"),
         "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. "),
@@ -278,12 +275,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
-        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage(
-            "Valid until 24 December 2022"),
-        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage(
-            "FIFA 22 Promo Pack Lorem Ipsum"),
-        "buyVoucherDetailTitle":
-            MessageLookupByLibrary.simpleMessage("FIFA 22"),
+        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage("Valid until 24 December 2022"),
+        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage("FIFA 22 Promo Pack Lorem Ipsum"),
+        "buyVoucherDetailTitle": MessageLookupByLibrary.simpleMessage("FIFA 22"),
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
@@ -314,17 +308,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
         "cardDelivered": MessageLookupByLibrary.simpleMessage("Card delivered?"),
         "cardDelivery": MessageLookupByLibrary.simpleMessage("to Card Delivery"),
-        "cardDetailUpdated": MessageLookupByLibrary.simpleMessage(
-            "Card details updated\nsuccessfully"),
-        "cardDetailsUpdated": MessageLookupByLibrary.simpleMessage(
-            "Card details updated successfully"),
+        "cardDetailUpdated": MessageLookupByLibrary.simpleMessage("Card details updated\nsuccessfully"),
+        "cardDetailsUpdated": MessageLookupByLibrary.simpleMessage("Card details updated successfully"),
         "cardDetailsUpdatedDesc": MessageLookupByLibrary.simpleMessage(
             "Your credit card settlement account has been updated with your new selected account"),
         "cardFrozen": MessageLookupByLibrary.simpleMessage("Card frozen"),
         "cardHasBeenDelivered": MessageLookupByLibrary.simpleMessage(
             "Check that the numbers on the back of your card match the numbers above."),
-        "cardInfoError":
-            MessageLookupByLibrary.simpleMessage("Card Info Error"),
+        "cardInfoError": MessageLookupByLibrary.simpleMessage("Card Info Error"),
         "cardIssuanceError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "cardLater":
@@ -494,14 +485,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour password"),
-        "createPasswordSuccess": MessageLookupByLibrary.simpleMessage(
-            "Your new password has\nbeen set."),
-        "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
-            "Please enter your new password"),
+        "createPasswordSuccess": MessageLookupByLibrary.simpleMessage("Your new password has\nbeen set."),
+        "createYourLoginPassword": MessageLookupByLibrary.simpleMessage("Please enter your new password"),
         "creatingAccountError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-022)"),
-        "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
-            "Creating your credit card limit"),
+        "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage("Creating your credit card limit"),
         "creatingShippmentError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "creatingSuppCreditLimit":
@@ -665,15 +653,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyBusiness": MessageLookupByLibrary.simpleMessage("Specify Business"),
         "emptyCardNo": MessageLookupByLibrary.simpleMessage("Empty Card No"),
         "emptyCity": MessageLookupByLibrary.simpleMessage("Enter City"),
-        "emptyCliqIdType":
-            MessageLookupByLibrary.simpleMessage("Please Select cliq Id Type"),
-        "emptyConfirmPin":
-            MessageLookupByLibrary.simpleMessage("Enter pin again"),
+        "emptyCliqIdType": MessageLookupByLibrary.simpleMessage("Please Select cliq Id Type"),
+        "emptyConfirmPin": MessageLookupByLibrary.simpleMessage("Enter pin again"),
         "emptyDistrict": MessageLookupByLibrary.simpleMessage("Enter district"),
-        "emptyDob": MessageLookupByLibrary.simpleMessage(
-            "Date of birth field cannot be empty"),
-        "emptyDocument":
-            MessageLookupByLibrary.simpleMessage("Upload valid document"),
+        "emptyDob": MessageLookupByLibrary.simpleMessage("Date of birth field cannot be empty"),
+        "emptyDocument": MessageLookupByLibrary.simpleMessage("Upload valid document"),
         "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address"),
         "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
@@ -1453,16 +1437,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " income? Make sure it’s not your monthly income to get your credit card right away."),
-        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
-            "Make sure your eyes are level\nand well-opened."),
+        "makeSureYourFaceFitsTheFrame":
+            MessageLookupByLibrary.simpleMessage("Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
-        "manageCardLimits":
-            MessageLookupByLibrary.simpleMessage("Manage card limits"),
-        "manageCardPin":
-            MessageLookupByLibrary.simpleMessage("Manage card PIN"),
+        "manageCardLimits": MessageLookupByLibrary.simpleMessage("Manage card limits"),
+        "manageCardPin": MessageLookupByLibrary.simpleMessage("Manage card PIN"),
         "manageCliqId": MessageLookupByLibrary.simpleMessage("Manage CliQ ID"),
-        "manageContacts":
-            MessageLookupByLibrary.simpleMessage("Manage Contacts"),
+        "manageContacts": MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings": MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "manageSettlement": MessageLookupByLibrary.simpleMessage("Manage settlement"),
         "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Price"),
@@ -1622,8 +1603,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "paymentActivity":
-            MessageLookupByLibrary.simpleMessage("Payment activity"),
+        "paymentActivity": MessageLookupByLibrary.simpleMessage("Payment activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
@@ -1691,16 +1671,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Try Again"),
         "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
             "You’re done! Just upload\nyour documents"),
-        "politicallyExposedPerson":
-            MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
+        "politicallyExposedPerson": MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
-        "preferredAgent": MessageLookupByLibrary.simpleMessage(
-            "You may select your preferred agent to chat with"),
+        "preferredAgent":
+            MessageLookupByLibrary.simpleMessage("You may select your preferred agent to chat with"),
         "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
-        "preferredDateSmall":
-            MessageLookupByLibrary.simpleMessage("Preferred Date"),
-        "preferredRegion":
-            MessageLookupByLibrary.simpleMessage("Preferred Region"),
+        "preferredDateSmall": MessageLookupByLibrary.simpleMessage("Preferred Date"),
+        "preferredRegion": MessageLookupByLibrary.simpleMessage("Preferred Region"),
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall": MessageLookupByLibrary.simpleMessage("Preferred Time"),
         "preparingYourCard": MessageLookupByLibrary.simpleMessage("Preparing your card..."),
@@ -1862,8 +1839,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "residenceCountryNotFound": MessageLookupByLibrary.simpleMessage(
             "Residence country not found. Please choose another country or contact our Engagement Team for help 06-5200100."),
         "residentCity": MessageLookupByLibrary.simpleMessage("Resident City"),
-        "residentCountry":
-            MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
+        "residentCountry": MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
             "Please Enter Resident Country"),
         "residentCountryRestricted": MessageLookupByLibrary.simpleMessage(
