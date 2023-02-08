@@ -291,8 +291,8 @@ class AssetUtils {
   static const String rejectIcon = svg + "rejectRequest.svg";
 
   ///Manage Contact
-  static const String viewHistoryIcon = svg + "historyIcon.svg";
-  static const String requestMoneyIcon = svg + "requestMoneyIcon.svg";
+  static const String viewHistoryIcon = svg + "viewHistory.svg";
+  static const String requestMoneyIcon = svg + "requestMoney.svg";
 
-  static const String sendMoneyIcon = svg + "sendMoneyIcon.svg";
+  static const String sendMoneyIcon = svg + "sendMoney.svg";
 }

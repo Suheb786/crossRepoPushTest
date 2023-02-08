@@ -54,57 +54,57 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                                 ),
                               ),
                               //Todo : + add CountDownWidget
-                              // Column(
-                              //   children: [
-                              //     CountdownTimer(
-                              //       controller: model.countDownController,
-                              //       onEnd: () {},
-                              //       endTime: model.endTime,
-                              //       textStyle: TextStyle(
-                              //           fontFamily: StringUtils.appFont,
-                              //           fontSize: 16.t,
-                              //           color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                              //       widgetBuilder: (context, currentTimeRemaining) {
-                              //         return currentTimeRemaining == null
-                              //             ? TextButton(
-                              //                 onPressed: () {},
-                              //                 child: Text(
-                              //                   S.of(context).resendCode,
-                              //                   style: TextStyle(
-                              //                       fontFamily: StringUtils.appFont,
-                              //                       fontSize: 14.t,
-                              //                       fontWeight: FontWeight.w600,
-                              //                       color:
-                              //                           Theme.of(context).accentTextTheme.bodyText1!.color!),
-                              //                 ))
-                              //             : Text(
-                              //                 S.of(context).resendIn(
-                              //                     '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                              //                 style: TextStyle(
-                              //                     fontFamily: StringUtils.appFont,
-                              //                     fontSize: 14.t,
-                              //                     fontWeight: FontWeight.w600,
-                              //                     color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                              //               );
-                              //       },
-                              //     ),
-                              //     Padding(
-                              //       padding: EdgeInsets.only(top: 16.0.h),
-                              //       child: AppStreamBuilder<bool>(
-                              //           stream: model.showStreamButom,
-                              //           initialData: true,
-                              //           dataBuilder: (context, isValid) {
-                              //             return Visibility(
-                              //               visible: isValid!,
-                              //               child: AnimatedButton(
-                              //                 buttonHeight: 50.h,
-                              //                 buttonText: S.of(context).swipeToProceed,
-                              //               ),
-                              //             );
-                              //           }),
-                              //     ),
-                              //   ],
-                              // ),
+                              Column(
+                                children: [
+                                  CountdownTimer(
+                                    controller: model.countDownController,
+                                    onEnd: () {},
+                                    endTime: model.endTime,
+                                    textStyle: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 16.t,
+                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                    widgetBuilder: (context, currentTimeRemaining) {
+                                      return currentTimeRemaining == null
+                                          ? TextButton(
+                                              onPressed: () {},
+                                              child: Text(
+                                                S.of(context).resendCode,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w600,
+                                                    color:
+                                                        Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                              ))
+                                          : Text(
+                                              S.of(context).resendIn(
+                                                  '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.t,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                            );
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 16.0.h),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.showStreamButom,
+                                        initialData: true,
+                                        dataBuilder: (context, isValid) {
+                                          return Visibility(
+                                            visible: isValid!,
+                                            child: AnimatedButton(
+                                              buttonHeight: 50.h,
+                                              buttonText: S.of(context).swipeToProceed,
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                ],
+                              ),
                             ],
                           )),
                     );

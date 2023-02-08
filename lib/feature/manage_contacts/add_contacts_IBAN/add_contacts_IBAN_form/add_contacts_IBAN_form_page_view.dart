@@ -89,6 +89,23 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                 //Todo : + add exclamation icon
                                 controller: model.ibanORaccountORmobileORaliasController,
                                 key: model.ibanORaccountORmobileORaliasKey,
+                                labelIcon: () {
+                                  return InkWell(
+                                    onTap: () {},
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 5.0.w),
+                                      child: Container(
+                                          height: 14.h,
+                                          width: 14.w,
+                                          child: AppSvg.asset(AssetUtils.info,
+                                              color: Theme.of(context)
+                                                  .inputDecorationTheme
+                                                  .focusedBorder!
+                                                  .borderSide
+                                                  .color)),
+                                    ),
+                                  );
+                                },
                               ),
                               SizedBox(height: 16.0.h),
                               Column(

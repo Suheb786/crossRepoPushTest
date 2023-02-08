@@ -48,7 +48,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-              Navigator.pushReplacementNamed(context, RoutePaths.NewContactAddedPage);
+              Navigator.pushReplacementNamed(context, RoutePaths.AddContactsIBANManageContactsPage);
             }
           },
           dataBuilder: (context, data) {

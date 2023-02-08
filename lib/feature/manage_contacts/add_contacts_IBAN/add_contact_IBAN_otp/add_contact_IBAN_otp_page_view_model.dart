@@ -14,4 +14,10 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get enterOtpForCliqIdValidationStream => _enterOtpForCliqIdValidationResponse.stream;
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
   late CountdownTimerController countDownController;
+
+  @override
+  void dispose() {
+    countDownController.dispose();
+    super.dispose();
+  }
 }
