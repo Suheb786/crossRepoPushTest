@@ -327,7 +327,7 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
 
   void _shareDetails(BuildContext context, PrePaidBillsSuccessPageViewModel model) {
     Share.share(
-      ShareInfo.newPostPaidSuccess(
+      ShareInfo.newPrePaidSuccess(
         context,
         refNo: model.arguments.paidBillContent.paidBill?[0].refNo ?? "",
         billerName: model.getBillerName(context, model.arguments.paidBillContent.paidBill![0]),

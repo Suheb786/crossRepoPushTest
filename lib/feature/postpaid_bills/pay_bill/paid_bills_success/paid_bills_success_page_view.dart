@@ -109,7 +109,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                     ),
                   ])),
                   Text(
-                    S.of(context).paidTo,
+                    S.of(context).submittedFor,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: AppColor.white,
@@ -137,6 +137,28 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                               ),
                               Text(
                                 model.arguments?.billName ?? "",
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12.0.t),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 16.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                S.of(context).services,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0.t),
+                              ),
+                              Text(
+                                model.arguments?.serviceType ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -219,32 +241,32 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                           //         ],
                           //       )
                           //     : Container(),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                S.of(context).status,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12.0.t),
-                              ),
-                              // Text(
-                              //   model.arguments?.isPaid == true
-                              //       ? S.of(context).successS
-                              //       : S.of(context).failed,
-                              //   style: TextStyle(
-                              //       fontFamily: StringUtils.appFont,
-                              //       color: model.arguments?.isPaid == true ? Colors.green : Colors.red,
-                              //       fontWeight: FontWeight.w600,
-                              //       fontSize: 12.0.t),
-                              // )
-                            ],
-                          )
+                          // SizedBox(
+                          //   height: 16.h,
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     Text(
+                          //       S.of(context).status,
+                          //       style: TextStyle(
+                          //           fontFamily: StringUtils.appFont,
+                          //           color: AppColor.black,
+                          //           fontWeight: FontWeight.w400,
+                          //           fontSize: 12.0.t),
+                          //     ),
+                          //     Text(
+                          //       model.arguments?.isPaid == true
+                          //           ? S.of(context).successS
+                          //           : S.of(context).failed,
+                          //       style: TextStyle(
+                          //           fontFamily: StringUtils.appFont,
+                          //           color: model.arguments?.isPaid == true ? Colors.green : Colors.red,
+                          //           fontWeight: FontWeight.w600,
+                          //           fontSize: 12.0.t),
+                          //     )
+                          //   ],
+                          // )
                         ],
                       ),
                     )),
@@ -324,7 +346,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
     Share.share(
       ShareInfo.newPostPaidSuccess(
         context,
-        refNo: /*model.arguments?.refNo ??*/ "",
+        serviceType: model.arguments?.serviceType ?? "",
         billerName: model.arguments?.billName ?? "",
         amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,

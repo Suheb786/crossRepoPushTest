@@ -91,7 +91,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
               ),
             ])),
             Text(
-              S.of(context).paidTo,
+              S.of(context).submittedFor,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: AppColor.white,
@@ -170,14 +170,14 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                                 fontSize: 12.0.t),
                                           )
                                         : Container(),*/
-                                    Text(
-                                      S.of(context).status,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.veryDarkGray2,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.0.t),
-                                    )
+                                    // Text(
+                                    //   S.of(context).status,
+                                    //   style: TextStyle(
+                                    //       fontFamily: StringUtils.appFont,
+                                    //       color: AppColor.veryDarkGray2,
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 12.0.t),
+                                    // )
                                   ],
                                 ),
                               ],
@@ -197,14 +197,19 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12.0.t),
                                   ),
-                                  Text(
-                                    '${double.parse(model.arguments.billerSuccessDetailsList?[index].fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12.0.t),
-                                  ),
+                                  (model.arguments.billerSuccessDetailsList?[index].fee != null &&
+                                          double.parse(model.arguments.billerSuccessDetailsList?[index].fee ??
+                                                  "0") >
+                                              0.0)
+                                      ? Text(
+                                          '${double.parse(model.arguments.billerSuccessDetailsList?[index].fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD} ',
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.black,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12.0.t),
+                                        )
+                                      : Container(),
                                   /* model.arguments.billerSuccessDetailsList?[index].isPaid == true
                                       ? Text(
                                           model.arguments.billerSuccessDetailsList?[index].refNo ?? "",

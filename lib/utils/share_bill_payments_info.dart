@@ -11,6 +11,29 @@ class ShareInfo {
     required String billerName,
     required String nickName,
     required String? amount,
+    required String serviceType,
+  }) {
+    final newLine = "\n\n";
+    final newLineX2 = "\n\n\n";
+
+    final title = S.of(context).billDetails + ":" + newLineX2;
+
+    final billNameText = S.of(context).billerName + ": " + billerName + newLine;
+
+    final nickText = nickName.isNotEmpty ? S.of(context).nickName + ": " + nickName + newLine : "";
+
+    final amountText = S.of(context).amount + ": " + double.parse(amount ?? "0").toStringAsFixed(3) + newLine;
+
+    final services = S.of(context).services + ": " + serviceType + newLine;
+
+    return title + billNameText + services + nickText + amountText;
+  }
+
+  static String newPrePaidSuccess(
+    BuildContext context, {
+    required String billerName,
+    required String nickName,
+    required String? amount,
     required String refNo,
   }) {
     final newLine = "\n\n";
@@ -41,7 +64,7 @@ class ShareInfo {
       for (var item in paidBillsList) {
         var billNameText = "";
         var amountText = "";
-        var refNoText = "";
+        // var refNoText = "";
 
         if (item != null) {
           if (getBillerName(context, item) != null && getBillerName(context, item).isNotEmpty) {
@@ -64,7 +87,7 @@ class ShareInfo {
           //   refNoText = "";
           // }
           // if (item.isPaid == true) {
-          allBillsString = allBillsString + newLine + billNameText + amountText + refNoText;
+          allBillsString = allBillsString + newLine + billNameText + amountText /*+ refNoText*/;
           // }
         }
       }

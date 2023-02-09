@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -15015,6 +15016,16 @@ class S {
     return Intl.message(
       'Pay your bills with Blink!',
       name: 'payYourBillswithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submitted for`
+  String get submittedFor {
+    return Intl.message(
+      'Submitted for',
+      name: 'submittedFor',
       desc: '',
       args: [],
     );
