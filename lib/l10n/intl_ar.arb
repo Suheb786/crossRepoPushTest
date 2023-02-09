@@ -1479,5 +1479,7 @@
   "rejectedDueToExpiryDate": "تم رفض العملية بسبب تاريخ صلاحية الفاتورة",
   "payYourBillswithBlink": "Pay your bills with Blink!",
   "submittedFor": "تم تقديمها للتالي",
+  "thereAreNoDueBillsToBePaidAtTheMoment": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
+  "swipeAnyBillerToTheLeftToRemove": "اسحب اي فاتورة لليسار لتقوم بحذفها",
   "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "
 }

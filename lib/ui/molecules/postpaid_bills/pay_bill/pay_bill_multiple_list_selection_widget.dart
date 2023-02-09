@@ -42,9 +42,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                 height: 50.h,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColor.vividYellow,
-                ),
+                    border: Border.all(width: 1, color: AppColor.gray_2),
+                    borderRadius: BorderRadius.circular(100)),
                 child: Image.asset(
                   GetBillPaymentsCategories.path(icon),
                   matchTextDirection: false,
@@ -140,16 +139,16 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColor.vividYellow,
                     borderRadius: BorderRadius.circular(100),
-            ),
-          )
+                  ),
+                )
               : Container(
-            width: 40.0.w,
-            height: 40.0.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(100.0)),
-              border: Border.all(color: AppColor.gray1),
-            ),
-          ),
+                  width: 40.0.w,
+                  height: 40.0.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                    border: Border.all(color: AppColor.gray1),
+                  ),
+                ),
         ],
       ),
     );

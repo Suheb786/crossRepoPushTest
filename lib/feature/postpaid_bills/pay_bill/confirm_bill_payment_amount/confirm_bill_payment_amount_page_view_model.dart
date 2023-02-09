@@ -168,7 +168,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -387,8 +387,12 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         _editAmountFieldSubject
             .safeAdd("${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}");
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        _editAmountFieldSubject
-            .safeAdd("${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}");
+        if (double.parse(maxRange ?? "0") > 0.0) {
+          _editAmountFieldSubject
+              .safeAdd("${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}");
+        } else {
+          _editAmountFieldSubject.safeAdd("${S.of(context).thereAreNoDueBillsToBePaidAtTheMoment}");
+        }
       } else {
         _editAmountFieldSubject.safeAdd("");
         isAmountInRange = true;

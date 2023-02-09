@@ -697,36 +697,23 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.PAYMENT_NOT_DONE);
 
           case "err-338":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
+            return AppError(cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
 
           case "err-358":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.NO_BILLER_FOUND);
+            return AppError(cause: cause, error: error, type: ErrorType.NO_BILLER_FOUND);
 
           case "err-359":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.NO_PREPAID_CATEGORY_FOUND);
+            return AppError(cause: cause, error: error, type: ErrorType.NO_PREPAID_CATEGORY_FOUND);
 
           case "err-360":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_ON_BILL_ENQUIRY);
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_BILL_ENQUIRY);
 
           case "err-361":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_ADDING_CUSTOMER);
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_ADDING_CUSTOMER);
 
           case "err-362":
             return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
+                cause: cause, error: error, type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
 
           case "err-363":
             return AppError(cause: cause, error: error, type: ErrorType.QR_EXPIRED);
@@ -751,6 +738,10 @@ class NetworkError extends BaseError {
 
           case "err-379":
             return AppError(cause: cause, error: error, type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE);
+
+          case "err-380":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT);
 
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -919,476 +910,264 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.UPLOAD_BENEFICIARY_ERROR);
 
           case "ex-054":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_PROFILE_INFO_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_PROFILE_INFO_ERROR);
 
           case "ex-055":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.DELETE_PROFILE_IMAGE_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.DELETE_PROFILE_IMAGE_ERROR);
 
           case "ex-056":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.Get_CUSTOMER_DOCUMENT_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.Get_CUSTOMER_DOCUMENT_ERROR);
 
           case "ex-057":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.Get_CUSTOMER_DOCUMENT_ID_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.Get_CUSTOMER_DOCUMENT_ID_ERROR);
 
           case "ex-058":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHANGE_PROFILE_IMAGE_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHANGE_PROFILE_IMAGE_ERROR);
 
           case "ex-059":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.CHANGE_EMAIL_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHANGE_EMAIL_ERROR);
 
           case "ex-060":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_CHANGE_EMAIL_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_CHANGE_EMAIL_ERROR);
 
           case "ex-061":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHANGE_MOBILE_NO_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHANGE_MOBILE_NO_ERROR);
 
           case "ex-062":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_CHANGE_MOBILE_NO_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_CHANGE_MOBILE_NO_ERROR);
 
           case "ex-063":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHANGE_PASSWORD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHANGE_PASSWORD_ERROR);
 
           case "ex-064":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_OTP_PASSWORD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_OTP_PASSWORD_ERROR);
 
           case "ex-065":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.REQUEST_TO_PAY_STATUS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.REQUEST_TO_PAY_STATUS_ERROR);
 
           case "ex-066":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CARD_ISSUANCE_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CARD_ISSUANCE_ERROR);
 
           case "ex-067":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.SET_CARD_PIN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.SET_CARD_PIN_ERROR);
 
           case "ex-068":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CONFIRM_DELIVERY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CONFIRM_DELIVERY_ERROR);
 
           case "ex-069":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_DASHBOARD_DATA_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_DASHBOARD_DATA_ERROR);
 
           case "ex-070":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.MONEY_THOR_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.MONEY_THOR_ERROR);
 
           case "ex-071":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.DEBIT_CARD_TRANSACTION_LIST_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.DEBIT_CARD_TRANSACTION_LIST_ERROR);
 
           case "ex-072":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ACCOUNT_ACTIVITY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_ACTIVITY_ERROR);
 
           case "ex-073":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CONFIRM_CREDIT_CARD_DELIVERY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CONFIRM_CREDIT_CARD_DELIVERY_ERROR);
 
           case "ex-074":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CREDIT_DASHBOARD_DATA_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CREDIT_DASHBOARD_DATA_ERROR);
 
           case "ex-075":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CREDIT_CARD_REQ_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CREDIT_CARD_REQ_ERROR);
 
           case "ex-076":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CREDIT_CARD_TRANSACTION_LIST_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CREDIT_CARD_TRANSACTION_LIST_ERROR);
 
           case "ex-077":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_CREDIT_YEARS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_CREDIT_YEARS_ERROR);
 
           case "ex-078":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CREDIT_CARD_STATEMENT_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CREDIT_CARD_STATEMENT_ERROR);
 
           case "ex-079":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_DEBIT_YEARS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_DEBIT_YEARS_ERROR);
 
           case "ex-080":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.DEBIT_CARD_STATEMENT_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.DEBIT_CARD_STATEMENT_ERROR);
 
           case "ex-081":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.UPDATE_LIMIT_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.UPDATE_LIMIT_ERROR);
 
           case "ex-082":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.FREEZE_DEBIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.FREEZE_DEBIT_CARD_ERROR);
 
           case "ex-083":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.UNFREEZE_DEBIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.UNFREEZE_DEBIT_CARD_ERROR);
 
           case "ex-084":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CANCEL_DEBIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CANCEL_DEBIT_CARD_ERROR);
 
           case "ex-085":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_CHANGE_PIN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_CHANGE_PIN_ERROR);
 
           case "ex-086":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.CHANGE_PIN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHANGE_PIN_ERROR);
 
           case "ex-087":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.UNBLOCK_DEBIT_CARD_PIN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.UNBLOCK_DEBIT_CARD_PIN_ERROR);
 
           case "ex-088":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_DEBIT_CARD_LIMIT_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_DEBIT_CARD_LIMIT_ERROR);
 
           case "ex-089":
             return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.REQUEST_SUPPLEMENTARY_DEBIT_CARD_ERROR);
+                cause: cause, error: error, type: ErrorType.REQUEST_SUPPLEMENTARY_DEBIT_CARD_ERROR);
 
           case "ex-090":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.FREEZE_CREDIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.FREEZE_CREDIT_CARD_ERROR);
 
           case "ex-091":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.UNFREEZE_CREDIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.UNFREEZE_CREDIT_CARD_ERROR);
 
           case "ex-092":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.UNBLOCK_CREDIT_CARD_PIN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.UNBLOCK_CREDIT_CARD_PIN_ERROR);
 
           case "ex-093":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_ACCOUNT_BY_ALIAS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_ACCOUNT_BY_ALIAS_ERROR);
 
           case "ex-094":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.REQUEST_TO_PAY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.REQUEST_TO_PAY_ERROR);
 
           case "ex-095":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHECK_SEND_MONEY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHECK_SEND_MONEY_ERROR);
 
           case "ex-096":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_TRANSFER_API_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_TRANSFER_API_ERROR);
 
           case "ex-097":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_TRANSFER_API_V2_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_TRANSFER_API_V2_ERROR);
 
           case "ex-098":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_TRANSFER_PURPOSE_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_TRANSFER_PURPOSE_ERROR);
 
           case "ex-099":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.PAYMENT_ACTIVITY_API_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.PAYMENT_ACTIVITY_API_ERROR);
 
           case "ex-100":
             return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHECK_CREDENTIALS_FOR_FORGET_PASSWORD_ERROR);
+                cause: cause, error: error, type: ErrorType.CHECK_CREDENTIALS_FOR_FORGET_PASSWORD_ERROR);
 
           case "ex-101":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.FORGET_PASSWORD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.FORGET_PASSWORD_ERROR);
 
           case "ex-102":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_FORGET_PASSWORD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_FORGET_PASSWORD_ERROR);
 
           case "ex-103":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.SEND_OTP_TOKEN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.SEND_OTP_TOKEN_ERROR);
 
           case "ex-104":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VERIFY_DEIVICE_CHANGE_OTP_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.VERIFY_DEIVICE_CHANGE_OTP_ERROR);
 
           case "ex-105":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.RESEND_OTP_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.RESEND_OTP_ERROR);
 
           case "ex-106":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.CHECK_EXISTING_CALL_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.CHECK_EXISTING_CALL_ERROR);
 
           case "ex-107":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.REQUEST_CALL_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.REQUEST_CALL_ERROR);
 
           case "ex-108":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_GENDER_STATUS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_GENDER_STATUS_ERROR);
 
           case "ex-109":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_TIME_SLOTS_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_TIME_SLOTS_ERROR);
 
           case "ex-110":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.ADD_CALL_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.ADD_CALL_ERROR);
 
           case "ex-111":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.CHECK_CALL_STATUS);
+            return AppError(cause: cause, error: error, type: ErrorType.CHECK_CALL_STATUS);
 
           case "ex-112":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_CARD_APPLICATION_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_CARD_APPLICATION_ERROR);
 
           case "ex-113":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_LOAN_VALUES_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_LOAN_VALUES_ERROR);
 
           case "ex-114":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.PROCESS_LOAN_VALUES_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.PROCESS_LOAN_VALUES_ERROR);
 
           case "ex-115":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.PAYBACK_CREDIT_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.PAYBACK_CREDIT_CARD_ERROR);
 
           case "ex-116":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.SUPPLEMENTARY_CARD_APPLICATION_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.SUPPLEMENTARY_CARD_APPLICATION_ERROR);
 
           case "ex-117":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.REQUEST_SUPPLEMENTARY_CARD_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.REQUEST_SUPPLEMENTARY_CARD_ERROR);
 
           case "ex-118":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.SUPPLEMENTARY_CARD_STEP_2_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.SUPPLEMENTARY_CARD_STEP_2_ERROR);
 
           case "ex-119":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.SUPPLEMENTARY_CARD_STEP_3_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.SUPPLEMENTARY_CARD_STEP_3_ERROR);
 
           case "ex-120":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.RELATIONSHIP_LIST_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.RELATIONSHIP_LIST_ERROR);
 
           case "ex-121":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.GET_CURRENT_VALUES_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.GET_CURRENT_VALUES_ERROR);
 
           case "err-vkey-1":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.REGISTERING_USER_TO_VKEY_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.REGISTERING_USER_TO_VKEY_ERROR);
 
           case "err-vkey-2":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.NULL_ID);
+            return AppError(cause: cause, error: error, type: ErrorType.NULL_ID);
 
           case "err-vkey-3":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.ASSIGN_TOKEN_ERROR);
+            return AppError(cause: cause, error: error, type: ErrorType.ASSIGN_TOKEN_ERROR);
 
           case "err-vkey-4":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.TOKEN_SERIAL_APN_EMPTY);
+            return AppError(cause: cause, error: error, type: ErrorType.TOKEN_SERIAL_APN_EMPTY);
 
           case "err-vkey-5":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.PIN_REQUIRED);
+            return AppError(cause: cause, error: error, type: ErrorType.PIN_REQUIRED);
 
           case "err-vkey-6":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.INVALID_MESSAGE_ID);
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_MESSAGE_ID);
 
           case "err-vkey-7":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VKEY_TRANSACTION_FAILED);
+            return AppError(cause: cause, error: error, type: ErrorType.VKEY_TRANSACTION_FAILED);
 
           case "err-vkey-8":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.VKEY_MESSAGE_ID_REQUIRED);
+            return AppError(cause: cause, error: error, type: ErrorType.VKEY_MESSAGE_ID_REQUIRED);
 
           case "err-vkey-9":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.LOGIN_NOT_ALLOWED);
+            return AppError(cause: cause, error: error, type: ErrorType.LOGIN_NOT_ALLOWED);
 
           case "err-0001":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.ENTER_DETAILS);
+            return AppError(cause: cause, error: error, type: ErrorType.ENTER_DETAILS);
 
           case "err-0002":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.IMAGE_NULL);
+            return AppError(cause: cause, error: error, type: ErrorType.IMAGE_NULL);
 
           case "err-0003":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.PROOF_REQUIRED);
+            return AppError(cause: cause, error: error, type: ErrorType.PROOF_REQUIRED);
 
           case "err-0004":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.OTP_NULL);
+            return AppError(cause: cause, error: error, type: ErrorType.OTP_NULL);
 
           case "err-0005":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.DEVICE_IS_REQUIRED);
+            return AppError(cause: cause, error: error, type: ErrorType.DEVICE_IS_REQUIRED);
 
           case "err-0007":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.PLACEHOLDER_ID_NULL);
+            return AppError(cause: cause, error: error, type: ErrorType.PLACEHOLDER_ID_NULL);
 
           case "err-0008":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.RELATION_NULL);
+            return AppError(cause: cause, error: error, type: ErrorType.RELATION_NULL);
 
           case "err-0009":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
+            return AppError(cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
 
           default:
-            return AppError(
-                cause: cause, error: error, type: ErrorType.NETWORK);
+            return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }
     }
   }

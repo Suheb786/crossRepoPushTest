@@ -15031,6 +15031,26 @@ class S {
     );
   }
 
+  /// `There are no due bills to be paid at the moment`
+  String get thereAreNoDueBillsToBePaidAtTheMoment {
+    return Intl.message(
+      'There are no due bills to be paid at the moment',
+      name: 'thereAreNoDueBillsToBePaidAtTheMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe any biller to the left to remove`
+  String get swipeAnyBillerToTheLeftToRemove {
+    return Intl.message(
+      'Swipe any biller to the left to remove',
+      name: 'swipeAnyBillerToTheLeftToRemove',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
   String get youCanPayAllYourBillsNow {
     return Intl.message(

@@ -64,9 +64,11 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     listenForSmsCode();
   }
 
-  EnterOtpBillPaymentsViewModel(this._enterOtpBillPaymentsUseCase,
-      this.payPrePaidUseCase,
-      this.payPostPaidBillUseCase,) {
+  EnterOtpBillPaymentsViewModel(
+    this._enterOtpBillPaymentsUseCase,
+    this.payPrePaidUseCase,
+    this.payPostPaidBillUseCase,
+  ) {
     _enterOtpBillPaymentsRequest.listen((value) {
       RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
           .asFlow()
@@ -93,8 +95,8 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     var isNewBiller = true;
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
       final confirmBillModel =
-      ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
-      amount = confirmBillModel.amtController.text;
+          ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+      amount = double.parse(confirmBillModel.userEnteredPrePaidAmount ?? "0").toStringAsFixed(3);
     } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       final confirmBillModel =
           ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
@@ -132,7 +134,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
   ///already saved flow.
   void payPrePaidBill(BuildContext context) {
     final confirmBillModel =
-    ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+        ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
 
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_pre_paid", {"pay_pre_paid_clicked": true});
@@ -190,7 +192,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
 
   void payPostPaidBill(BuildContext context) {
     final confirmBillModel =
-    ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+        ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
 
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_post_paid", {"pay_post_paid_clicked": true});

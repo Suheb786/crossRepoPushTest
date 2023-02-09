@@ -108,6 +108,34 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         },
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 50.0, end: 50.0, top: 16.0),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+                                        decoration: BoxDecoration(
+                                            color: AppColor.lightGray,
+                                            borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            AppSvg.asset(AssetUtils.bulbIcon, height: 16.h, width: 16.w),
+                                            SizedBox(width: 8.w),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                              child: Text(
+                                                S.of(context).swipeAnyBillerToTheLeftToRemove,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    color: AppColor.very_dark_gray1,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.0.t),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),

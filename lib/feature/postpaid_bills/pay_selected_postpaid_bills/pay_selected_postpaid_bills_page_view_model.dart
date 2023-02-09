@@ -243,8 +243,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}";
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
-            "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+        if (double.parse(maxRange ?? "0") > 0.0) {
+          arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+              "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+        } else {
+          arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+              "${S.of(context).thereAreNoDueBillsToBePaidAtTheMoment}";
+        }
       } else {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
