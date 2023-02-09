@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -129,7 +130,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
                 padding: EdgeInsetsDirectional.only(top: 14.h, bottom: 14.h, start: 26.w, end: 34.w),
@@ -326,7 +327,26 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
-                    Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
+                    if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
+                      model.showToastWithError(data.appError!);
+                    } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {
+          
+                      Navigator.pushNamed(
+                        context,
+                        RoutePaths.SendMoneyFailure,
+                        arguments: SendMoneyFailurePageArgument(
+                            title: S.of(context).sendMoneyNotSuccessful,
+                            content: S.of(context).dailyLimitExceededorTryLater),
+                      );
+                    } else {
+                      Navigator.pushNamed(
+                        context,
+                        RoutePaths.SendMoneyFailure,
+                        arguments: SendMoneyFailurePageArgument(
+                            title: S.of(context).sendMoneyNotSuccessful,
+                            content: S.of(context).tryAgainLater),
+                      );
+                    }
                   }
                 },
                 dataBuilder: (context, snapshot) {

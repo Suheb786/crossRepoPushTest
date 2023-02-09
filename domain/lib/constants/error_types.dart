@@ -606,6 +606,9 @@ enum ErrorType {
   EMPTY_CLIQ_ID_TYPE,
   EMPTY_ALIAS,
 
+//Manage contact
+  DAILY_LIMIT_EXCEDED,
+
   ///EVouchers
   SELECT_REGION,
   SELECT_AMOUNT,

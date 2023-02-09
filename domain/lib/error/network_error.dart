@@ -1165,7 +1165,10 @@ class NetworkError extends BaseError {
 
           case "err-0009":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
-
+          case "Invalid OTP":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_OTP_NETWORK);
+          case "err-382":
+            return AppError(cause: cause, error: error, type: ErrorType.DAILY_LIMIT_EXCEDED);
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

@@ -26,6 +26,7 @@ import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/requ
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
+import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_view_model.dart';
@@ -115,8 +116,9 @@ final requestMoneyFailureViewModelProvider = ChangeNotifierProvider.autoDispose<
   (ref) => RequestMoneyFailureViewModel(ref.read(requestMoneyFailureUseCaseProvider)),
 );
 
-final sendMoneyFailureViewModelProvider = ChangeNotifierProvider.autoDispose<SendMoneyFailureViewModel>(
-  (ref) => SendMoneyFailureViewModel(ref.read(sendMoneyFailureUseCaseProvider)),
+final sendMoneyFailureViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<SendMoneyFailureViewModel, SendMoneyFailurePageArgument>(
+  (ref, arg) => SendMoneyFailureViewModel(ref.read(sendMoneyFailureUseCaseProvider), arg),
 );
 
 final sendMoneyViewModelProvider = ChangeNotifierProvider.autoDispose<SendMoneyViewModel>(

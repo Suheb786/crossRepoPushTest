@@ -1481,5 +1481,7 @@
   "thereAreNoDueBillsToBePaidAtTheMoment": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
   "swipeAnyBillerToTheLeftToRemove": "اسحب اي فاتورة لليسار لتقوم بحذفها",
   "payYourBillswithBlink": "أدفع فواتيرك مع بلينك!",
-  "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"
+  "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!",
+  "dailyLimitExceededorTryLater": " .في مشكلة بدفعتك، يمكن تكون تجاوزت حد التحويل اليومي. حاول كمان مرة. إذا بدك مساعدة تواصل معنا",
+  "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي"
 }
