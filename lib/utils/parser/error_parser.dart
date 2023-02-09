@@ -1136,6 +1136,8 @@ class ErrorParser {
         return localisedHelper.serviceIsNotavaliable;
       case ErrorType.IS_PAID_FAILED:
         return "";
+      case ErrorType.DAILY_LIMIT_EXCEDED:
+        return localisedHelper.dailyNarrationLimitexceed;
 
       default:
         return "";

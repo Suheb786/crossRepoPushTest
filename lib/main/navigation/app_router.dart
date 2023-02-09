@@ -342,8 +342,10 @@ class AppRouter {
 
       case RoutePaths.SendMoneyFailure:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyFailurePage(),
-            settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
+            builder: (context) => SendMoneyFailurePage(settings.arguments as SendMoneyFailurePageArgument),
+            settings: RouteSettings(
+              name: RoutePaths.SendMoneyFailure,
+            ));
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(

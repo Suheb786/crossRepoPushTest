@@ -1523,5 +1523,7 @@
   "viewHistory": "View History",
   "billsHistory": "Bills History",
   "payYourBillswithBlink": "Pay your bills with Blink!",
-  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "
+  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
+  "dailyLimitExceededorTryLater": " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ",
+  "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
 }

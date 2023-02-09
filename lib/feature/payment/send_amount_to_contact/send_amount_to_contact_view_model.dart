@@ -79,7 +79,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         _transferResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-          showToastWithError(event.appError!);
+          // showToastWithError(event.appError!);
         }
       });
     });

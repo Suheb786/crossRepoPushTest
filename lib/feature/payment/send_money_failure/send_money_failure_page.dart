@@ -6,6 +6,9 @@ import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_p
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 
 class SendMoneyFailurePage extends BasePage<SendMoneyFailureViewModel> {
+  final SendMoneyFailurePageArgument sendMoneyFailurePageArgument;
+
+  SendMoneyFailurePage(this.sendMoneyFailurePageArgument);
   @override
   SendMoneyFailurePageState createState() => SendMoneyFailurePageState();
 }
@@ -13,7 +16,7 @@ class SendMoneyFailurePage extends BasePage<SendMoneyFailureViewModel> {
 class SendMoneyFailurePageState extends BaseStatefulPage<SendMoneyFailureViewModel, SendMoneyFailurePage> {
   @override
   ProviderBase provideBase() {
-    return sendMoneyFailureViewModelProvider;
+    return sendMoneyFailureViewModelProvider.call(widget.sendMoneyFailurePageArgument);
   }
 
   @override
@@ -25,4 +28,11 @@ class SendMoneyFailurePageState extends BaseStatefulPage<SendMoneyFailureViewMod
   Widget buildView(BuildContext context, SendMoneyFailureViewModel model) {
     return SendMoneyFailurePageView(provideBase());
   }
+}
+
+class SendMoneyFailurePageArgument {
+  final String title;
+  final String content;
+
+  SendMoneyFailurePageArgument({required this.title, required this.content});
 }
