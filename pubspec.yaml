@@ -66,7 +66,7 @@ dependencies:
   #  card_swiper: ^1.0.4
   lottie: ^1.2.1
   focus_detector: ^2.0.0
-  camera: ^0.9.4+5
+  camera: any
   flip_card: ^0.6.0
   image_cropper: ^1.4.1
   #  steel_crypt: ^3.0.0+1
@@ -113,6 +113,11 @@ dependency_overrides:
   firebase_analytics_platform_interface: 3.0.5
   geolocator: 7.7.0
   flutter_inappwebview: 5.4.3+7
+  camera_android:
+    git:
+      url: https://github.com/bottlepay/plugins.git
+      path: packages/camera/camera_android
+      ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
 
 
 dev_dependencies:

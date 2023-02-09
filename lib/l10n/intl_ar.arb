@@ -1481,5 +1481,7 @@
   "submittedFor": "تم تقديمها للتالي",
   "thereAreNoDueBillsToBePaidAtTheMoment": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
   "swipeAnyBillerToTheLeftToRemove": "اسحب اي فاتورة لليسار لتقوم بحذفها",
-  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "
+  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
+  "payYourBillswithBlink": "أدفع فواتيرك مع بلينك!",
+  "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"
 }
