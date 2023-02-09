@@ -45,21 +45,47 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          (item.nickname != null && item.nickname!.length > 0)
-                              ? item.nickname ?? ""
-                              : (item.billerName != null && item.billerName!.length > 0)
-                                  ? item.billerName ?? ""
-                                  : "",
-                          maxLines: 10,
-                          style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 12.0.t,
-                            fontWeight: FontWeight.w600,
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10.0),
+                          height: 25.0.h,
+                          width: 70.0.w,
+                          decoration: BoxDecoration(
+                            color:
+                                item.isPaid ?? false ? AppColor.darkModerateLimeGreen : AppColor.dark_brown,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 2.0),
+                              child: Text(
+                                item.isPaid ?? false ? S.of(context).successS : S.of(context).failed,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.white,
+                                    fontSize: 14.t,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0.h),
+                          padding: EdgeInsetsDirectional.only(start: 4.0.w),
+                          child: Text(
+                            (item.nickname != null && item.nickname!.length > 0)
+                                ? item.nickname ?? ""
+                                : (item.billerName != null && item.billerName!.length > 0)
+                                    ? item.billerName ?? ""
+                                    : "",
+                            maxLines: 10,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12.0.t,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
                           child: Text(
                             item.paymentDate != null && item.paymentDate!.isNotEmpty
                                 ? TimeUtils.getFormattedTimeForTransaction(item.paymentDate!.toString())
@@ -88,7 +114,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                             "- ${double.parse(item.amount ?? "0").toStringAsFixed(3)}",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.dark_brown,
+                                color: item.isPaid ?? false ? AppColor.dark_brown : AppColor.gray5,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14.0.t),
                           ),

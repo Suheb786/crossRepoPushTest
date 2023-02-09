@@ -1,6 +1,3 @@
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
@@ -59,24 +56,23 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
   void updateTime(BuildContext context) {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
-    if (otpController.text.length < 6) {
-      AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception());
-      return;
-    } else {
-      enterOtpBillPayments(context);
-    }
-
+    enterOtpBillPayments(context);
+    // if (otpController.text.length < 6) {
+    //   AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception());
+    //   return;
+    // }
     listenForSmsCode();
   }
 
-  EnterOtpBillPaymentsViewModel(this._enterOtpBillPaymentsUseCase,
-      this.payPrePaidUseCase,
-      this.payPostPaidBillUseCase,) {
+  EnterOtpBillPaymentsViewModel(
+    this._enterOtpBillPaymentsUseCase,
+    this.payPrePaidUseCase,
+    this.payPostPaidBillUseCase,
+  ) {
     _enterOtpBillPaymentsRequest.listen((value) {
       RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
         _enterOtpBillPaymentsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -98,8 +94,8 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     var isNewBiller = true;
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
       final confirmBillModel =
-      ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
-      amount = confirmBillModel.amtController.text;
+          ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+      amount = double.parse(confirmBillModel.userEnteredPrePaidAmount ?? "0").toStringAsFixed(3);
     } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       final confirmBillModel =
           ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
@@ -137,7 +133,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
   ///already saved flow.
   void payPrePaidBill(BuildContext context) {
     final confirmBillModel =
-    ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+        ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
 
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_pre_paid", {"pay_pre_paid_clicked": true});
@@ -147,7 +143,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? confirmBillModel.amtController.text
+            ? confirmBillModel.userEnteredPrePaidAmount
             : "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
@@ -195,7 +191,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
 
   void payPostPaidBill(BuildContext context) {
     final confirmBillModel =
-    ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
+        ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
 
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_post_paid", {"pay_post_paid_clicked": true});

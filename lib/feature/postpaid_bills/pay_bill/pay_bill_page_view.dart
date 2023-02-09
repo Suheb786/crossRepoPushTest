@@ -107,7 +107,6 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                         appSwiperController: model.appSwiperController,
                         pageController: model.pageController,
                         onIndexChanged: (index) {
-                          print('asidjasjd:$index');
                           model.changeCurrentPage(index);
                         },
                         currentStep: currentStep,

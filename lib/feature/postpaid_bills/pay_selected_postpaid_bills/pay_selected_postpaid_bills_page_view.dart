@@ -1,6 +1,7 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
@@ -43,24 +44,25 @@ class PaySelectedBillsPostPaidBillsPageView
             if (data.status == Status.SUCCESS) {
               Future.delayed(Duration(milliseconds: 200)).then((value) {
                 Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
-                    arguments: PostPaidBillsSuccessPageArguments(data.data?.content?.billerList));
+                    arguments: PostPaidBillsSuccessPageArguments(
+                        model.billerSuccessDetailsList, model.totalBillAmt));
               });
 
-              var isAnyBillFail = false;
-              var errorBillFail = "";
-
-              for (var item in data.data!.content!.billerList!) {
-                errorBillFail = item.statusDescription ?? "";
-                if (errorBillFail == "err-377") {
-                  isAnyBillFail = true;
-                }
-              }
-              if (isAnyBillFail == true) {
-                model.showToastWithError(AppError(
-                    cause: Exception(),
-                    error: ErrorInfo(message: ''),
-                    type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
-              }
+              // var isAnyBillFail = false;
+              // var errorBillFail = "";
+              //
+              // for (var item in data.data!.content!.billerList!) {
+              //   errorBillFail = item.statusDescription ?? "";
+              //   if (errorBillFail == "err-377") {
+              //     isAnyBillFail = true;
+              //   }
+              // }
+              // if (isAnyBillFail == true) {
+              //   model.showToastWithError(AppError(
+              //       cause: Exception(),
+              //       error: ErrorInfo(message: ''),
+              //       type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+              // }
             }
           },
           dataBuilder: (BuildContext context, data) {

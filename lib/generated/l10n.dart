@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14970,6 +14971,16 @@ class S {
     );
   }
 
+  /// `Your payment is rejected due to expiry date of the bill`
+  String get rejectedDueToExpiryDate {
+    return Intl.message(
+      'Your payment is rejected due to expiry date of the bill',
+      name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Service is not available`
   String get serviceIsNotavaliable {
     return Intl.message(
@@ -15010,11 +15021,61 @@ class S {
     );
   }
 
+  /// `Submitted for`
+  String get submittedFor {
+    return Intl.message(
+      'Submitted for',
+      name: 'submittedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills to be paid at the moment`
+  String get thereAreNoDueBillsToBePaidAtTheMoment {
+    return Intl.message(
+      'There are no due bills to be paid at the moment',
+      name: 'thereAreNoDueBillsToBePaidAtTheMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe any biller to the left to remove`
+  String get swipeAnyBillerToTheLeftToRemove {
+    return Intl.message(
+      'Swipe any biller to the left to remove',
+      name: 'swipeAnyBillerToTheLeftToRemove',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
   String get youCanPayAllYourBillsNow {
     return Intl.message(
       'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
       name: 'youCanPayAllYourBillsNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help `
+  String get dailyLimitExceededorTryLater {
+    return Intl.message(
+      ' There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ',
+      name: 'dailyLimitExceededorTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Narration Amount Exceed`
+  String get dailyNarrationLimitexceed {
+    return Intl.message(
+      'Daily Narration Amount Exceed',
+      name: 'dailyNarrationLimitexceed',
       desc: '',
       args: [],
     );

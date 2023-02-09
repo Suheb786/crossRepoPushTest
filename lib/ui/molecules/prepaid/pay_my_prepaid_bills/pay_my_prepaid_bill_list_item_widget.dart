@@ -40,9 +40,8 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
             height: 50.h,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColor.vividYellow,
-            ),
+                border: Border.all(width: 1, color: AppColor.gray_2),
+                borderRadius: BorderRadius.circular(100)),
             child: Image.asset(
               GetBillPaymentsCategories.path(icon),
               matchTextDirection: false,

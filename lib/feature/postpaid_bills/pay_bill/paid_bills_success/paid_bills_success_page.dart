@@ -33,14 +33,12 @@ class PaidBillsSuccessPageState
 }
 
 class PaidBillsSuccessPageArguments {
-  final String amt;
-  final String fee;
-  final String billName;
-  final String billNameAr;
+  final String? amt;
+  final String? fee;
+  final String? billName;
   final String nickName;
-  final String refNo;
-  final bool? isPaid;
+  final String? serviceType;
 
   PaidBillsSuccessPageArguments(
-      this.amt, this.fee, this.billName, this.billNameAr, this.nickName, this.refNo, this.isPaid);
+      {this.amt, this.fee, this.billName, required this.nickName, this.serviceType});
 }

@@ -110,23 +110,22 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           if (AppConstantsUtils.NICK_NAME.toString().trim().isNotEmpty) {
                             AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = true;
                           }
+
                           Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                               arguments: PaidBillsSuccessPageArguments(
-                                data.data?.content?.billerList?[0].totalAmount ?? "0.0",
-                                data.data?.content?.billerList?[0].fee ?? "0.0",
-                                data.data?.content?.billerList?[0].billerName ?? "",
-                                data.data?.content?.billerList?[0].billerNameAR ?? "",
-                                AppConstantsUtils.NICK_NAME,
-                                data.data?.content?.billerList?[0].refNo ?? "",
-                                data.data?.content?.billerList?[0].isPaid ?? false,
+                                amt: model.totalAmountToPay(isDisplay: true),
+                                fee: model.postPaidBillInquiryData?[0].feesAmt,
+                                billName: AppConstantsUtils.BILLER_NAME,
+                                nickName: AppConstantsUtils.NICK_NAME,
+                                serviceType: model.postPaidBillInquiryData?[0].serviceType,
                               ));
-                          var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
-                          if (errorBillFail == "err-377") {
-                            model.showToastWithError(AppError(
-                                cause: Exception(),
-                                error: ErrorInfo(message: ''),
-                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
-                          }
+                          // var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
+                          // if (errorBillFail == "err-377") {
+                          //   model.showToastWithError(AppError(
+                          //       cause: Exception(),
+                          //       error: ErrorInfo(message: ''),
+                          //       type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                          // }
                         }
                       },
                       dataBuilder: (BuildContext context, data) {
@@ -148,6 +147,12 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                     cause: Exception(),
                                     error: ErrorInfo(message: ''),
                                     type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                              }
+                              if (errorBillFail == "err-379") {
+                                model.showToastWithError(AppError(
+                                    cause: Exception(),
+                                    error: ErrorInfo(message: ''),
+                                    type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
                               }
                             }
                           },

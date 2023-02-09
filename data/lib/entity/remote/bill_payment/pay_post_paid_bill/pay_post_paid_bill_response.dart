@@ -7,16 +7,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'pay_post_paid_bill_response.g.dart';
 
 @JsonSerializable()
-class PayPostPaidBillResponse
-    extends BaseLayerDataTransformer<PayPostPaidBillResponse, PayPostPaidBill> {
+class PayPostPaidBillResponse extends BaseLayerDataTransformer<PayPostPaidBillResponse, PayPostPaidBill> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   PayPostPaidBillResponse({
     this.response,
   });
-
-
 
   factory PayPostPaidBillResponse.fromJson(Map<String, dynamic> json) =>
       _$PayPostPaidBillResponseFromJson(json);
@@ -30,10 +27,10 @@ class PayPostPaidBillResponse
         this.response?.content ?? Map(),
       ).transform(),
       /*statusModel: StatusEntity.fromJson(
-        this.status ?? Map(),
-      ).transform(),
-      requestDateTime: this.requestDateTime,
-      logId: this.logId,*/
+      this.status ?? Map(),
+    ).transform(),
+    requestDateTime: this.requestDateTime,
+    logId: this.logId,*/
     );
   }
 }

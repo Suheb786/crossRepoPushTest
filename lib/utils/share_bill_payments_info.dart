@@ -1,4 +1,4 @@
-import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_success.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -7,6 +7,29 @@ class ShareInfo {
   ShareInfo._();
 
   static String newPostPaidSuccess(
+    BuildContext context, {
+    required String billerName,
+    required String nickName,
+    required String? amount,
+    required String serviceType,
+  }) {
+    final newLine = "\n\n";
+    final newLineX2 = "\n\n\n";
+
+    final title = S.of(context).billDetails + ":" + newLineX2;
+
+    final billNameText = S.of(context).billerName + ": " + billerName + newLine;
+
+    final nickText = nickName.isNotEmpty ? S.of(context).nickName + ": " + nickName + newLine : "";
+
+    final amountText = S.of(context).amount + ": " + double.parse(amount ?? "0").toStringAsFixed(3) + newLine;
+
+    final services = S.of(context).services + ": " + serviceType + newLine;
+
+    return title + billNameText + services + nickText + amountText;
+  }
+
+  static String newPrePaidSuccess(
     BuildContext context, {
     required String billerName,
     required String nickName,
@@ -31,7 +54,7 @@ class ShareInfo {
 
   static String savedMultipleBillsPostPaidSuccess(
     BuildContext context, {
-    required List<BillerList>? paidBillsList,
+    required List<BillerSuccessDetails>? paidBillsList,
   }) {
     var allBillsString = "";
     final newLine = "\n\n";
@@ -41,7 +64,7 @@ class ShareInfo {
       for (var item in paidBillsList) {
         var billNameText = "";
         var amountText = "";
-        var refNoText = "";
+        // var refNoText = "";
 
         if (item != null) {
           if (getBillerName(context, item) != null && getBillerName(context, item).isNotEmpty) {
@@ -50,22 +73,22 @@ class ShareInfo {
             billNameText = "";
           }
 
-          if (item.totalAmount != null && item.totalAmount!.isNotEmpty) {
+          if (item.dueAmount != null && item.dueAmount!.isNotEmpty) {
             amountText = S.of(context).amount +
                 ": " +
-                double.parse(item.totalAmount ?? "0").toStringAsFixed(3) +
+                double.parse(item.dueAmount ?? "0").toStringAsFixed(3) +
                 newLine;
           } else {
             amountText = "";
           }
-          if (item.refNo != null && item.refNo!.isNotEmpty) {
-            refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
-          } else {
-            refNoText = "";
-          }
-          if (item.isPaid == true) {
-            allBillsString = allBillsString + newLine + billNameText + amountText + refNoText;
-          }
+          // if (item.refNo != null && item.refNo!.isNotEmpty) {
+          //   refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
+          // } else {
+          //   refNoText = "";
+          // }
+          // if (item.isPaid == true) {
+          allBillsString = allBillsString + newLine + billNameText + amountText /*+ refNoText*/;
+          // }
         }
       }
     }
@@ -76,6 +99,6 @@ class ShareInfo {
   }
 }
 
-String getBillerName(BuildContext context, BillerList item) {
+String getBillerName(BuildContext context, BillerSuccessDetails item) {
   return StringUtils.isDirectionRTL(context) ? item.billerNameAR ?? "" : item.billerName ?? "";
 }

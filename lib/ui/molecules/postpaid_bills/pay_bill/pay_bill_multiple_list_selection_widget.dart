@@ -14,6 +14,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String biller;
   final String nickName;
   final String billAmtDue;
+  final String fees;
   final bool isSelected;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
 
@@ -23,6 +24,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
       required this.biller,
       required this.nickName,
       required this.billAmtDue,
+      required this.fees,
       required this.isSelected,
       required this.paidBillsPayTypeOptionEnum})
       : super(key: key);
@@ -42,9 +44,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                 height: 50.h,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColor.vividYellow,
-                ),
+                    border: Border.all(width: 1, color: AppColor.gray_2),
+                    borderRadius: BorderRadius.circular(100)),
                 child: Image.asset(
                   GetBillPaymentsCategories.path(icon),
                   matchTextDirection: false,
@@ -123,7 +124,34 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.0.t)),
                               ])),
-                        )
+                        ),
+                  Visibility(
+                    visible: double.parse(fees) > 0.0,
+                    child: RichText(
+                        text: TextSpan(
+                            text: S.of(context).fees + " ",
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.veryDarkGray2,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12.0.t),
+                            children: [
+                          TextSpan(
+                              text: fees,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.0.t)),
+                          TextSpan(
+                              text: ' ' + S.of(context).JOD,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.0.t)),
+                        ])),
+                  )
                 ],
               ),
               // Spacer(),
@@ -140,16 +168,16 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColor.vividYellow,
                     borderRadius: BorderRadius.circular(100),
-            ),
-          )
+                  ),
+                )
               : Container(
-            width: 40.0.w,
-            height: 40.0.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(100.0)),
-              border: Border.all(color: AppColor.gray1),
-            ),
-          ),
+                  width: 40.0.w,
+                  height: 40.0.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                    border: Border.all(color: AppColor.gray1),
+                  ),
+                ),
         ],
       ),
     );

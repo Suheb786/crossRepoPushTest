@@ -94,7 +94,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -168,7 +168,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -189,7 +189,11 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
+  String? userEnteredPrePaidAmount = "0";
+
   void validatePrePaidBill() {
+    userEnteredPrePaidAmount = amtController.text;
+
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
@@ -245,7 +249,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        amount:
+            addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? userEnteredPrePaidAmount ?? "" : "",
         currencyCode: "JOD",
         accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,
@@ -367,7 +372,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   Stream<String> get minMaxErrorFieldStream => _editAmountFieldSubject.stream;
   bool isAmountInRange = false;
 
-  void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
+  void minMaxValidate(
+      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context) {
     if (isPartial == true) {
       isAmountInRange = false;
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
@@ -381,8 +387,12 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         _editAmountFieldSubject
             .safeAdd("${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}");
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        _editAmountFieldSubject
-            .safeAdd("${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}");
+        if (double.parse(maxRange ?? "0") > 0.0) {
+          _editAmountFieldSubject
+              .safeAdd("${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}");
+        } else {
+          _editAmountFieldSubject.safeAdd("${S.of(context).thereAreNoDueBillsToBePaidAtTheMoment}");
+        }
       } else {
         _editAmountFieldSubject.safeAdd("");
         isAmountInRange = true;

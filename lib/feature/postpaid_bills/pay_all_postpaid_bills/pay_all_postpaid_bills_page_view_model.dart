@@ -226,7 +226,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       PostPaidBillInquiryData inquiryElement = inquiryData![i];
       for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
         GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
-        debugPrint("item.billingNo: ${item.billingNo}");
         if (item.billingNo == inquiryElement.billingNo && item.serviceType == inquiryElement.serviceType) {
           if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
             payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
