@@ -3,6 +3,7 @@ import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
@@ -25,6 +26,13 @@ class ApiInterceptor extends InterceptorsWrapper {
       authToken = (await SecureStorageHelper.instance.getToken()) ?? '';
     }
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
+
+    if (options.uri.path.toLowerCase().contains("login")) {
+      authToken = "";
+      AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+    }
+
+    options.headers.putIfAbsent("suspendToken", () => AppConstants.IS_BACKGROUND_API_IN_PROGRESS);
     print('authToken--->$authToken');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA

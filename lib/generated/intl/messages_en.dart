@@ -186,12 +186,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
-        "areYouBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
-            "Are you the beneficial owner of the account?"),
+        "areYouBeneficialOwnerAccount":
+            MessageLookupByLibrary.simpleMessage("Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
-        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you entered your "),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
         "areYouUSCitizen":
@@ -265,15 +264,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Browse by Category"),
         "buildingNameNo":
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
-        "buildingNameOrNo":
-            MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
-        "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage(
-            "Please Enter Building Name/Number."),
-        "businessNameOptional":
-            MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
-        "businessRulesNotImplementedAgainstCompanyId":
-            MessageLookupByLibrary.simpleMessage(
-                "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
+        "buildingNameOrNo": MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
+        "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage("Please Enter Building Name/Number."),
+        "businessNameOptional": MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
+        "businessRulesNotImplementedAgainstCompanyId": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
         "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage("Valid until 24 December 2022"),
         "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage("FIFA 22 Promo Pack Lorem Ipsum"),
@@ -318,15 +313,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardInfoError": MessageLookupByLibrary.simpleMessage("Card Info Error"),
         "cardIssuanceError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "cardLater":
-            MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
+        "cardLater": MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
         "cardLoanAccNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
-        "cardNumberCopied":
-            MessageLookupByLibrary.simpleMessage("Card Number Copied"),
-        "cardPersonalization":
-            MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "cardNumberCopied": MessageLookupByLibrary.simpleMessage("Card Number Copied"),
+        "cardPersonalization": MessageLookupByLibrary.simpleMessage("to card personalization"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
             "You need to visit any ATM to activate your new PIN"),
         "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -474,17 +466,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "convertPurchaseToInstallments": MessageLookupByLibrary.simpleMessage(
             "Convert purchases to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
-        "countryOfCitizenship":
-            MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
+        "countryOfCitizenship": MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "createCliqId": MessageLookupByLibrary.simpleMessage("Create CliQ ID"),
-        "createNewCliqId":
-            MessageLookupByLibrary.simpleMessage("CREATE NEW cliq ID"),
-        "createPassword":
-            MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
-        "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
-            "Next, let’s create\nyour password"),
+        "createNewCliqId": MessageLookupByLibrary.simpleMessage("CREATE NEW cliq ID"),
+        "createPassword": MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
+        "createPasswordHeader": MessageLookupByLibrary.simpleMessage("Next, let’s create\nyour password"),
         "createPasswordSuccess": MessageLookupByLibrary.simpleMessage("Your new password has\nbeen set."),
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage("Please enter your new password"),
         "creatingAccountError": MessageLookupByLibrary.simpleMessage(
@@ -658,16 +646,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyDistrict": MessageLookupByLibrary.simpleMessage("Enter district"),
         "emptyDob": MessageLookupByLibrary.simpleMessage("Date of birth field cannot be empty"),
         "emptyDocument": MessageLookupByLibrary.simpleMessage("Upload valid document"),
-        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
-            "Please enter your email address"),
-        "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
-            "Expiry date field cannot be empty"),
-        "emptyGender": MessageLookupByLibrary.simpleMessage(
-            "Gender field cannot be empty"),
-        "emptyHomeAddress": MessageLookupByLibrary.simpleMessage(
-            "Home address field cannot be empty"),
-        "emptyIbanOrMobile": MessageLookupByLibrary.simpleMessage(
-            "IBAN / Mobie / Alias should not be empty"),
+        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage("Please enter your email address"),
+        "emptyExpiryDate": MessageLookupByLibrary.simpleMessage("Expiry date field cannot be empty"),
+        "emptyGender": MessageLookupByLibrary.simpleMessage("Gender field cannot be empty"),
+        "emptyHomeAddress": MessageLookupByLibrary.simpleMessage("Home address field cannot be empty"),
+        "emptyIbanOrMobile": MessageLookupByLibrary.simpleMessage("IBAN / Mobie / Alias should not be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
         "emptyIncome":
@@ -1427,14 +1410,10 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Mailing address different from residence address?"),
         "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
-        "mainAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
-        "mainAnnualIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Main Annual Income"),
-        "mainSourceIncome":
-            MessageLookupByLibrary.simpleMessage("Main Source of Income"),
-        "mainSourceOfIncome":
-            MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
+        "mainAnnualIncomeSmall": MessageLookupByLibrary.simpleMessage("Main Annual Income"),
+        "mainSourceIncome": MessageLookupByLibrary.simpleMessage("Main Source of Income"),
+        "mainSourceOfIncome": MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
             " income? Make sure it’s not your monthly income to get your credit card right away."),
         "makeSureYourFaceFitsTheFrame":
@@ -1613,8 +1592,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
-        "permanentAddress":
-            MessageLookupByLibrary.simpleMessage("Permanent address"),
+        "permanentAddress": MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
         "permanentCountry":
             MessageLookupByLibrary.simpleMessage("Permanent Country"),
@@ -1660,17 +1638,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
-            MessageLookupByLibrary.simpleMessage(
-                "Schedule your call\nfor later"),
-        "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage(
-            "Please select the cancellation reason"),
-        "pleaseSelectYourAction":
-            MessageLookupByLibrary.simpleMessage("Please select your action"),
+            MessageLookupByLibrary.simpleMessage("Schedule your call\nfor later"),
+        "pleaseSelectTheReason":
+            MessageLookupByLibrary.simpleMessage("Please select the cancellation reason"),
+        "pleaseSelectYourAction": MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
-        "pleaseTryAgain":
-            MessageLookupByLibrary.simpleMessage("Please Try Again"),
-        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
-            "You’re done! Just upload\nyour documents"),
+        "pleaseTryAgain": MessageLookupByLibrary.simpleMessage("Please Try Again"),
+        "pleaseUploadNecessaryInfo":
+            MessageLookupByLibrary.simpleMessage("You’re done! Just upload\nyour documents"),
         "politicallyExposedPerson": MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "preferredAgent":
@@ -1840,12 +1815,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Residence country not found. Please choose another country or contact our Engagement Team for help 06-5200100."),
         "residentCity": MessageLookupByLibrary.simpleMessage("Resident City"),
         "residentCountry": MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
-        "residentCountryHint": MessageLookupByLibrary.simpleMessage(
-            "Please Enter Resident Country"),
+        "residentCountryHint": MessageLookupByLibrary.simpleMessage("Please Enter Resident Country"),
         "residentCountryRestricted": MessageLookupByLibrary.simpleMessage(
             "Sorry, this product is restricted to specific resident countries only."),
-        "residentCountrySmall":
-            MessageLookupByLibrary.simpleMessage("Resident Country"),
+        "residentCountrySmall": MessageLookupByLibrary.simpleMessage("Resident Country"),
         "residentInfoNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-012)"),
         "response1Required": MessageLookupByLibrary.simpleMessage(

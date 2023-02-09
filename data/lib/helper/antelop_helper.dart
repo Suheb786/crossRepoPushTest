@@ -289,10 +289,12 @@ class AntelopHelper {
           debugPrint('TempAntelopIssuerCardId ---->${tempAntelopIssuerCardId}');
 
           List<String> unEnrolledDataList = [];
+          AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
           BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
           _apiService.getAllCardList(BaseRequest(getToken: false, baseData: baseData.toJson())).then((value) {
             if (value.data.transform().dashboardDataContent != null) {
+              AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
               var dashBoardData = value.data.transform().dashboardDataContent;
               for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
                 debugPrint('Credit Card Code from list  ---->${dashBoardData!.creditCard![i].cardCode}');
@@ -316,11 +318,11 @@ class AntelopHelper {
 
                 _apiService
                     .enrollCards(EnrollCardRequestEntity(
-                        baseData: baseData.toJson(),
-                        walletId: antelopWalletId,
-                        getToken: false,
-                        cardType: "",
-                        cardId: ""))
+                    baseData: baseData.toJson(),
+                    walletId: antelopWalletId,
+                    getToken: false,
+                    cardType: "",
+                    cardId: ""))
                     .then((value) async {
                   if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
                     AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
