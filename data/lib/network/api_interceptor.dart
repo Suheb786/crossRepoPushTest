@@ -34,6 +34,7 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     options.headers.putIfAbsent("suspendToken", () => AppConstants.IS_BACKGROUND_API_IN_PROGRESS);
     print('authToken--->$authToken');
+    print('suspended Token  --->${AppConstants.IS_BACKGROUND_API_IN_PROGRESS}');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
     options.data = _encryptRequest(options.data);

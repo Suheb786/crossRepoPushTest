@@ -84,7 +84,7 @@ import AntelopSDK
     }
     
     func onConnectionError(error: AntelopError) {
-        print("onConnectionError")
+        print("-------onConnectionError--------------")
         let walletIdDic: [String: Any] = [
             "status": error.localizedDescription,
         ]
@@ -92,7 +92,7 @@ import AntelopSDK
     }
     
     func onProvisioningRequired() {
-        print("onProvisioningRequired")
+        print("----------------onProvisioningRequired-------------------")
         let provisioningDic: [String: Any] = [
             "status": "On Provisioning Required",
         ]
@@ -100,8 +100,9 @@ import AntelopSDK
     }
     
     func onCredentialsRequired(reason: CustomerCredentialsRequiredReason) {
-        print("onCredentialsRequired")
+        print("--------------onCredentialsRequired-----------------")
         print(reason)
+        print("--------------onCredentialsRequired-----------------")
         let walletIdDic: [String: Any] = [
             "status": "On Credentials Required",
         ]
@@ -109,8 +110,9 @@ import AntelopSDK
     }
     
     func onConnectionSuccess(wallet: Wallet) {
-        print("onConnectionSuccess")
+        print("-----------onConnectionSuccess-------------")
         print(wallet)
+        print("-----------onConnectionSuccess-------------")
         self.wallet = wallet
         print(wallet.getId() ?? "")
         let walletIdDic: [String: Any] = [
@@ -189,6 +191,18 @@ import AntelopSDK
             walletManager.delete()
         } catch {
             print(error)
+        }
+    }
+    
+    public func walletDisconnect(){
+        print("-----wallet disconnect method called------")
+        
+        do { try
+            walletManager.disconnect()
+        } catch {
+            print("-----wallet disconnect error------")
+            print(error)
+            print("-----wallet disconnect error------")
         }
     }
     
@@ -452,6 +466,9 @@ import AntelopSDK
                 
             case "walletLogout":
                 self?.walletLogout()
+                
+            case "walletDisconnect":
+                self?.walletDisconnect()
                 
             case "checkEligibility":
                 self?.callCheckEligibility()

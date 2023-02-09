@@ -87,6 +87,15 @@ class AntelopHelper {
     } on PlatformException catch (e) {}
   }
 
+  static Future<void> walletDisconnect() async {
+    try {
+      debugPrint("-- Wallet Disconnect Called --");
+      var data = await platform.invokeMethod('walletDisconnect');
+    } on PlatformException catch (e) {
+      debugPrint("-- Wallet Disconnect Exception --");
+    }
+  }
+
   Future<bool> onInitializationFromNative() async {
     try {
       getWalletId();
@@ -318,11 +327,11 @@ class AntelopHelper {
 
                 _apiService
                     .enrollCards(EnrollCardRequestEntity(
-                    baseData: baseData.toJson(),
-                    walletId: antelopWalletId,
-                    getToken: false,
-                    cardType: "",
-                    cardId: ""))
+                        baseData: baseData.toJson(),
+                        walletId: antelopWalletId,
+                        getToken: false,
+                        cardType: "",
+                        cardId: ""))
                     .then((value) async {
                   if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
                     AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;

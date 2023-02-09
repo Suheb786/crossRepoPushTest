@@ -96,7 +96,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///dashboard card data response
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
-  BehaviorSubject.seeded(GetDashboardDataContent());
+      BehaviorSubject.seeded(GetDashboardDataContent());
 
   ///dashboard card data response stream
   Stream<GetDashboardDataContent> get getDashboardCardDataStream => _dashboardCardResponse.stream;
@@ -156,7 +156,8 @@ class AppHomeViewModel extends BasePageViewModel {
   List<DebitCard> debitCards = [];
   List<CreditCard> creditCards = [];
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(
+      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -222,7 +223,8 @@ class AppHomeViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getRequestMoneyPlaceHolderResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {} else if (event.status == Status.SUCCESS) {
+        if (event.status == Status.ERROR) {
+        } else if (event.status == Status.SUCCESS) {
           showRequestMoneyPopUp(false);
           if (event.data!.data!.status ?? false) {
             requestMoneyPlaceholderData = event.data!.data!;
@@ -345,7 +347,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 cardTypeList.add(
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
-                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {} else {
+                if (creditCard.primarySecondaryCard == PrimarySecondaryCardEnum.SECONDARY) {
+                } else {
                   switch (creditCard.callStatus) {
                     case CreditCardCallStatusEnum.APPROVED:
                       pages.add(GetCreditCardNowWidget(
@@ -475,8 +478,8 @@ class AppHomeViewModel extends BasePageViewModel {
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard,
                     isDebitCardRequestPhysicalCardEnabled:
-                    dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
-                        false));
+                        dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                            false));
 
                 ///time line list arguments set
                 timeLineListArguments.add(TimeLineListArguments(
@@ -517,8 +520,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
     /// get Antelop Cards
     if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-      ///TODO: check for function
-      //getAntelopCards();
+      getAntelopCards();
     }
   }
 

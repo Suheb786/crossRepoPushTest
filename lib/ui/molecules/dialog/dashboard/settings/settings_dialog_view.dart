@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -258,6 +259,7 @@ class SettingsDialogView extends StatelessWidget {
                               initialData: Resource.none(),
                               onData: (response) {
                                 if (response.status == Status.SUCCESS) {
+                                  AntelopHelper.walletDisconnect();
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                                 }

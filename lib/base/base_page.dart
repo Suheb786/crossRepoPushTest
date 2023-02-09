@@ -1,3 +1,4 @@
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -18,11 +19,10 @@ abstract class BasePage<VM extends BasePageViewModel> extends StatefulWidget {
   BasePage({Key? key}) : super(key: key);
 }
 
-abstract class BasePageState<VM extends BasePageViewModel,
-    T extends BasePage<VM>> extends State<T> {}
+abstract class BasePageState<VM extends BasePageViewModel, T extends BasePage<VM>> extends State<T> {}
 
-abstract class BaseStatefulPage<VM extends BasePageViewModel,
-    B extends BasePage<VM>> extends BasePageState<VM, B> {
+abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>>
+    extends BasePageState<VM, B> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool subscribeVisibilityEvents = false;
@@ -62,14 +62,14 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   Widget stateBuild(BuildContext context) {
     return subscribeVisibilityEvents
         ? FocusDetector(
-            onFocusLost: () => onFocusLost(),
-            onFocusGained: () => onFocusGained(),
-            onVisibilityLost: () => onVisibilityLost(),
-            onVisibilityGained: () => onVisibilityGained(),
-            onForegroundLost: () => onForegroundLost(),
-            onForegroundGained: () => onForegroundGained(),
-            child: _getLayout(),
-          )
+      onFocusLost: () => onFocusLost(),
+      onFocusGained: () => onFocusGained(),
+      onVisibilityLost: () => onVisibilityLost(),
+      onVisibilityGained: () => onVisibilityGained(),
+      onForegroundLost: () => onForegroundLost(),
+      onForegroundGained: () => onForegroundGained(),
+      child: _getLayout(),
+    )
         : _getLayout();
   }
 
@@ -78,10 +78,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
     return attached
         ? _viewModel!
         : throw AppError(
-            cause: Exception("View model is not attached"),
-            error: ErrorInfo(message: "View Model is not attached"),
-            type: ErrorType.UI,
-          );
+      cause: Exception("View model is not attached"),
+      error: ErrorInfo(message: "View Model is not attached"),
+      type: ErrorType.UI,
+    );
   }
 
   GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
@@ -101,8 +101,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
               floatingActionButton: buildFloatingActionButton(),
               extendBodyBehindAppBar: extendBodyBehindAppBar(),
               body: _buildScaffoldBody(context, model!),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
               drawer: buildDrawer(),
               drawerEnableOpenDragGesture: drawerEnableOpenDragGesture(),
               bottomNavigationBar: buildBottomNavigationBar(),
@@ -171,8 +170,9 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
             error: event,
             localisedHelper: S.of(context),
           ));
-          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-              ModalRoute.withName(RoutePaths.Splash));
+          AntelopHelper.walletDisconnect();
+          Navigator.pushNamedAndRemoveUntil(
+              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {
           //   ProviderScope.containerOf(context)
           //       .read(appViewModel)
@@ -239,16 +239,13 @@ abstract class BasePageViewWidget<T extends BasePageViewModel> extends Widget {
   Widget build(BuildContext context, T model);
 
   @override
-  DataProviderElement<T> createElement() =>
-      DataProviderElement<T>(this, this.providerBase);
+  DataProviderElement<T> createElement() => DataProviderElement<T>(this, this.providerBase);
 }
 
-class DataProviderElement<T extends BasePageViewModel>
-    extends ComponentElement {
+class DataProviderElement<T extends BasePageViewModel> extends ComponentElement {
   final ProviderBase providerBase;
 
-  DataProviderElement(BasePageViewWidget widget, this.providerBase)
-      : super(widget);
+  DataProviderElement(BasePageViewWidget widget, this.providerBase) : super(widget);
 
   @override
   BasePageViewWidget get widget => super.widget as BasePageViewWidget;
