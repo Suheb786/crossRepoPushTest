@@ -155,8 +155,8 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.only(start: 50.0, end: 50.0, top: 16.0),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 50.0, end: 50.0, top: 16.0, bottom: 16.0),
                                             child: Container(
                                               padding:
                                                   EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
@@ -185,10 +185,10 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                               ),
                                             ),
                                           ),
+                                          AppDivider(),
                                           Expanded(
                                             child: Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.only(top: 24.0.h, bottom: 24.0.h),
+                                              padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 24.0.h),
                                               child: model.getPrepaidBillData != null &&
                                                       model.getPrepaidBillData!.length > 0
                                                   ? ListView.separated(
