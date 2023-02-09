@@ -73,7 +73,6 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _enterOtpBillPaymentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
         _enterOtpBillPaymentsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
