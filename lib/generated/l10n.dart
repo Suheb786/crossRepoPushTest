@@ -15060,6 +15060,26 @@ class S {
       args: [],
     );
   }
+
+  /// ` There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help `
+  String get dailyLimitExceededorTryLater {
+    return Intl.message(
+      ' There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ',
+      name: 'dailyLimitExceededorTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Narration Amount Exceed`
+  String get dailyNarrationLimitexceed {
+    return Intl.message(
+      'Daily Narration Amount Exceed',
+      name: 'dailyNarrationLimitexceed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
