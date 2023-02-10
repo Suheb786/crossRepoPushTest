@@ -69,13 +69,9 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.only(start: 4.0.w),
+                          padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 4.0.w),
                           child: Text(
-                            (item.nickname != null && item.nickname!.length > 0)
-                                ? item.nickname ?? ""
-                                : (item.billerName != null && item.billerName!.length > 0)
-                                    ? item.billerName ?? ""
-                                    : "",
+                            "${getNickNameOrBillerName(item, context)}",
                             maxLines: 10,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
@@ -84,6 +80,21 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                             ),
                           ),
                         ),
+                        item.refNo != null && item.refNo!.isNotEmpty
+                            ? Padding(
+                                padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
+                                child: Text(
+                                  item.refNo ?? "",
+                                  maxLines: 10,
+                                  style: TextStyle(
+                                    color: AppColor.veryDarkGray2,
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.0.t,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              )
+                            : Container(),
                         Padding(
                           padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
                           child: Text(
@@ -159,5 +170,22 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String getNickNameOrBillerName(BillPaymentsTransactionList item, BuildContext context) {
+    if ((item.nickname != null && item.nickname!.length > 0)) {
+      return item.nickname ?? "";
+    } else {
+      if (StringUtils.isDirectionRTL(context)) {
+        if ((item.billerNameAr != null && item.billerNameAr!.length > 0)) {
+          return item.billerNameAr ?? "";
+        }
+      } else {
+        if ((item.billerName != null && item.billerName!.length > 0)) {
+          return item.billerName ?? "";
+        }
+      }
+    }
+    return "";
   }
 }

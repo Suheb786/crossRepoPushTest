@@ -48,7 +48,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
               padding: EdgeInsets.only(bottom: 47.0.h),
               child: AppStreamBuilder<int>(
                 stream: model.currentStep,
-                initialData: navigationType == NavigationType.DASHBOARD ? 0 : 1,
+                initialData: model.getInitialNavigation(navigationType!, context),
                 dataBuilder: (context, currentStep) {
                   print("current step : $currentStep");
                   return GestureDetector(

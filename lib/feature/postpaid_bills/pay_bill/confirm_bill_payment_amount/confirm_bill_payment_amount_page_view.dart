@@ -117,7 +117,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                 fee: model.postPaidBillInquiryData?[0].feesAmt,
                                 billName: AppConstantsUtils.BILLER_NAME,
                                 nickName: AppConstantsUtils.NICK_NAME,
-                                serviceType: model.postPaidBillInquiryData?[0].serviceType,
+                                service: model.addNewBillDetailsData.service,
                               ));
                           // var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
                           // if (errorBillFail == "err-377") {

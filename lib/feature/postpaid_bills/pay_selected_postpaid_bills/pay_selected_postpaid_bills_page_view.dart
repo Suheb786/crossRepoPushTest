@@ -1,7 +1,3 @@
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
@@ -41,11 +37,12 @@ class PaySelectedBillsPostPaidBillsPageView
           stream: model.payPostPaidStream,
           initialData: Resource.none(),
           onData: (data) {
+            model.addAllBillAmt(context);
             if (data.status == Status.SUCCESS) {
               Future.delayed(Duration(milliseconds: 200)).then((value) {
                 Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
                     arguments: PostPaidBillsSuccessPageArguments(
-                        model.billerSuccessDetailsList, model.totalBillAmt));
+                        model.billerSuccessDetailsList, model.totalBillAmtSuccess));
               });
 
               // var isAnyBillFail = false;
@@ -77,6 +74,7 @@ class PaySelectedBillsPostPaidBillsPageView
                         if (StringUtils.isDirectionRTL(context)) {
                           if (!details.primaryVelocity!.isNegative) {
                             if (isValid == true) {
+                              // model.addAllBillAmt(context);
                               model.payPostPaidBill(context);
                             }
                           } else {
@@ -85,6 +83,7 @@ class PaySelectedBillsPostPaidBillsPageView
                         } else {
                           if (details.primaryVelocity!.isNegative) {
                             if (isValid == true) {
+                              // model.addAllBillAmt(context);
                               model.payPostPaidBill(context);
                             }
                           } else {
@@ -110,6 +109,8 @@ class PaySelectedBillsPostPaidBillsPageView
                             stream: model.totalBillAmtDueStream,
                             onData: (amount) {
                               // model.totalAmount = amount.toString();
+                              model.totalBillAmtSuccess = amount;
+                              model.totalBillAmt = amount;
                               model.validate();
                             },
                             dataBuilder: (BuildContext context, data) {

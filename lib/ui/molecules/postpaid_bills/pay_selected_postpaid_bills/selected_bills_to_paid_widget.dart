@@ -194,7 +194,8 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
               this.allowPartialPay == true
                   ? Container(
                       margin: EdgeInsetsDirectional.only(top: 8.0.h),
-                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: StringUtils.isDirectionRTL(context) ? 4.0.w : 16.0.w, vertical: 8.0.h),
                       decoration: BoxDecoration(
                           color: AppColor.lightGray, borderRadius: BorderRadius.all(Radius.circular(8.0))),
                       child: Row(

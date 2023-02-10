@@ -54,10 +54,10 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                       .feesAmt,
                   billName: AppConstantsUtils.BILLER_NAME,
                   nickName: AppConstantsUtils.NICK_NAME,
-                  serviceType: ProviderScope.containerOf(context)
+                  service: ProviderScope.containerOf(context)
                       .read(confirmBillPaymentAmountPageViewModelProvider)
-                      .postPaidBillInquiryData?[0]
-                      .serviceType,
+                      .addNewBillDetailsData
+                      .service,
                 ));
             var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
             if (errorBillFail == "err-377") {

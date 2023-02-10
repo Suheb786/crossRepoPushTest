@@ -205,6 +205,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
             billingNumber: item.billingNo,
             billerName: AppConstantsUtils.BILLER_NAME,
             serviceType: item.serviceType,
+            nickName: AppConstantsUtils.NICK_NAME,
             amount: confirmBillModel.totalAmountToPay(),
             fees: item.feesAmt ?? "0.0"));
       }

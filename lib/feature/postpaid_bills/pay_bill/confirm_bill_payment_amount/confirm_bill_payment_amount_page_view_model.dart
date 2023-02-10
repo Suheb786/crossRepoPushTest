@@ -86,7 +86,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     postPaidRequestListJson.add(PostpaidBillInquiry(
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER));
+        billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
+        nickName: AppConstantsUtils.NICK_NAME));
 
     _postPaidBillEnquiryRequest
         .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postPaidRequestListJson));
@@ -125,6 +126,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             billingNumber: item.billingNo,
             billerName: AppConstantsUtils.BILLER_NAME,
             serviceType: item.serviceType,
+            nickName: AppConstantsUtils.NICK_NAME,
             amount: totalAmountToPay(),
             fees: item.feesAmt ?? "0.0"));
       }

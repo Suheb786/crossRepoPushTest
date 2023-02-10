@@ -40,10 +40,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   bool isTotalAmountZero = true;
   double totalBillAmt = 0.0;
+  double totalBillAmtSuccess = 0.0;
   int validRequestCounter = 0;
 
   addAllBillAmt(BuildContext context, {isApi: false}) async {
     totalBillAmt = 0.0;
+    totalBillAmtSuccess = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.dueAmount == null || inquiryData.dueAmount!.isEmpty) {
@@ -64,7 +66,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         }
       }
     }
-    isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
+    isTotalAmountZero = await totalBillAmt > 0.0 ? false : true;
     if (isTotalAmountZero) {
       showToastWithError(AppError(
           cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
@@ -73,9 +75,12 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
       if (inquiryData.minMaxValidationMessage != '') {
-        validRequestCounter++;
+        await validRequestCounter++;
       }
     }
+    print("askdjas:${totalBillAmt}");
+    print("askdjas:${totalBillAmt}");
+    totalBillAmtSuccess = await totalBillAmt;
     _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
 
@@ -112,6 +117,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,
             serviceType: item.serviceType,
+            nickName: getValidBillerNickName(item.billingNo, item.serviceType),
             amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
             fees: item.feesAmt ?? "0.0"));
       }
@@ -128,17 +134,18 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
     addAllBillAmt(context, isApi: true);
-    _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
-        billerList: tempPostpaidBillInquiryRequestList,
-        accountNo: savingAccountController.text,
-        totalAmount: totalBillAmt.toStringAsFixed(3),
-        currencyCode: "JOD",
-        isNewBiller: false,
-        isCreditCardPayment: false,
-        CardId: "",
-        nickName: "",
-        // only need to be added in case of new biller added request
-        otpCode: ""));
+    Future.delayed(Duration(milliseconds: 200))
+        .then((value) => _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
+            billerList: tempPostpaidBillInquiryRequestList,
+            accountNo: savingAccountController.text,
+            totalAmount: totalBillAmt.toStringAsFixed(3),
+            currencyCode: "JOD",
+            isNewBiller: false,
+            isCreditCardPayment: false,
+            CardId: "",
+            nickName: "",
+            // only need to be added in case of new biller added request
+            otpCode: "")));
   }
 
   void payPostPaidBillListener() {
