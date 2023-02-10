@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
@@ -11,6 +13,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/base_page_extensions.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 
@@ -21,8 +24,7 @@ abstract class BasePage<VM extends BasePageViewModel> extends StatefulWidget {
 
 abstract class BasePageState<VM extends BasePageViewModel, T extends BasePage<VM>> extends State<T> {}
 
-abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>>
-    extends BasePageState<VM, B> {
+abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>> extends BasePageState<VM, B> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool subscribeVisibilityEvents = false;
@@ -62,14 +64,14 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
   Widget stateBuild(BuildContext context) {
     return subscribeVisibilityEvents
         ? FocusDetector(
-      onFocusLost: () => onFocusLost(),
-      onFocusGained: () => onFocusGained(),
-      onVisibilityLost: () => onVisibilityLost(),
-      onVisibilityGained: () => onVisibilityGained(),
-      onForegroundLost: () => onForegroundLost(),
-      onForegroundGained: () => onForegroundGained(),
-      child: _getLayout(),
-    )
+            onFocusLost: () => onFocusLost(),
+            onFocusGained: () => onFocusGained(),
+            onVisibilityLost: () => onVisibilityLost(),
+            onVisibilityGained: () => onVisibilityGained(),
+            onForegroundLost: () => onForegroundLost(),
+            onForegroundGained: () => onForegroundGained(),
+            child: _getLayout(),
+          )
         : _getLayout();
   }
 
@@ -78,10 +80,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
     return attached
         ? _viewModel!
         : throw AppError(
-      cause: Exception("View model is not attached"),
-      error: ErrorInfo(message: "View Model is not attached"),
-      type: ErrorType.UI,
-    );
+            cause: Exception("View model is not attached"),
+            error: ErrorInfo(message: "View Model is not attached"),
+            type: ErrorType.UI,
+          );
   }
 
   GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
@@ -170,7 +172,9 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             error: event,
             localisedHelper: S.of(context),
           ));
-          AntelopHelper.walletDisconnect();
+          if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+            AntelopHelper.walletDisconnect();
+          }
           Navigator.pushNamedAndRemoveUntil(
               context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {

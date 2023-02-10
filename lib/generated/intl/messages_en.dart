@@ -193,12 +193,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
-        "areYouUSCitizen":
-            MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
-        "areYouUSTaxResident":
-            MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
-        "areYouUSTaxResidentHint":
-            MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
+        "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
+        "areYouUSTaxResident": MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
+        "areYouUSTaxResidentHint": MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
         "armexApiError":
@@ -254,16 +251,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
-        "blockedCountries":
-            MessageLookupByLibrary.simpleMessage("Blocked Countries"),
-        "bornBlink":
-            MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
-        "brightPlace": MessageLookupByLibrary.simpleMessage(
-            "Make sure you’re in bright place and surrounding"),
-        "browserByCatgy":
-            MessageLookupByLibrary.simpleMessage("Browse by Category"),
-        "buildingNameNo":
-            MessageLookupByLibrary.simpleMessage("Building Name / No"),
+        "blockedCountries": MessageLookupByLibrary.simpleMessage("Blocked Countries"),
+        "bornBlink": MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
+        "brightPlace":
+            MessageLookupByLibrary.simpleMessage("Make sure you’re in bright place and surrounding"),
+        "browserByCatgy": MessageLookupByLibrary.simpleMessage("Browse by Category"),
+        "buildingNameNo": MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "buildingNameOrNo": MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
         "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage("Please Enter Building Name/Number."),
         "businessNameOptional": MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
@@ -319,16 +312,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardNumberCopied": MessageLookupByLibrary.simpleMessage("Card Number Copied"),
         "cardPersonalization": MessageLookupByLibrary.simpleMessage("to card personalization"),
-        "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "You need to visit any ATM to activate your new PIN"),
-        "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
-            "You have successfully changed your card\'s PIN"),
-        "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
-            "You have successfully unblocked your card\'s PIN"),
+        "cardPinChangedDesc":
+            MessageLookupByLibrary.simpleMessage("You need to visit any ATM to activate your new PIN"),
+        "cardPinChangedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("You have successfully changed your card\'s PIN"),
+        "cardPinSucccesFullyUnblocked":
+            MessageLookupByLibrary.simpleMessage("You have successfully unblocked your card\'s PIN"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
             "Your first transaction will be declined, don\'t worry the second one will work."),
-        "cardRequiresActivation": MessageLookupByLibrary.simpleMessage(
-            "Your card is out for delivery"),
+        "cardRequiresActivation": MessageLookupByLibrary.simpleMessage("Your card is out for delivery"),
         "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
             "Once your card is delivered, you will be able to activate it and enjoy its benefits."),
         "cardSettingsDisabled":
@@ -459,12 +451,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-095)"),
-        "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
-            "I\'m trying to control my expenses in other ways"),
-        "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
-            "Convert purchases to instalments"),
-        "convertPurchaseToInstallments": MessageLookupByLibrary.simpleMessage(
-            "Convert purchases to instalments"),
+        "controlMyExpensesInOtherWays":
+            MessageLookupByLibrary.simpleMessage("I\'m trying to control my expenses in other ways"),
+        "convertBalanceToInstalments":
+            MessageLookupByLibrary.simpleMessage("Convert purchases to instalments"),
+        "convertPurchaseToInstallments":
+            MessageLookupByLibrary.simpleMessage("Convert purchases to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
         "countryOfCitizenship": MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
@@ -651,16 +643,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyGender": MessageLookupByLibrary.simpleMessage("Gender field cannot be empty"),
         "emptyHomeAddress": MessageLookupByLibrary.simpleMessage("Home address field cannot be empty"),
         "emptyIbanOrMobile": MessageLookupByLibrary.simpleMessage("IBAN / Mobie / Alias should not be empty"),
-        "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
-            "Id Number field cannot be empty"),
-        "emptyIncome":
-            MessageLookupByLibrary.simpleMessage("Enter total annual income"),
-        "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
-            "Please upload income document"),
-        "emptyMinimumSettlement": MessageLookupByLibrary.simpleMessage(
-            "Please select minimum settlement value"),
-        "emptyMotherName": MessageLookupByLibrary.simpleMessage(
-            "Mother\'s name field cannot be empty"),
+        "emptyIdNumber": MessageLookupByLibrary.simpleMessage("Id Number field cannot be empty"),
+        "emptyIncome": MessageLookupByLibrary.simpleMessage("Enter total annual income"),
+        "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage("Please upload income document"),
+        "emptyMinimumSettlement":
+            MessageLookupByLibrary.simpleMessage("Please select minimum settlement value"),
+        "emptyMotherName": MessageLookupByLibrary.simpleMessage("Mother\'s name field cannot be empty"),
         "emptyName":
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
@@ -1399,17 +1387,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "logoutError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "lookingFor":
-            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
-            "Looking for available agent.."),
-        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
-            "Enjoy loyalty rewards with great multiplier"),
+        "lookingFor": MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage("Looking for available agent.."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage("Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
-            MessageLookupByLibrary.simpleMessage(
-                "Mailing address different from residence address?"),
-        "mailingAddressLine":
-            MessageLookupByLibrary.simpleMessage("MAILING address Line"),
+            MessageLookupByLibrary.simpleMessage("Mailing address different from residence address?"),
+        "mailingAddressLine": MessageLookupByLibrary.simpleMessage("MAILING address Line"),
         "mainAnnualIncome": MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainAnnualIncomeSmall": MessageLookupByLibrary.simpleMessage("Main Annual Income"),
         "mainSourceIncome": MessageLookupByLibrary.simpleMessage("Main Source of Income"),
@@ -1594,14 +1577,10 @@ class MessageLookup extends MessageLookupByLibrary {
             " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
         "permanentAddress": MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
-        "permanentCountry":
-            MessageLookupByLibrary.simpleMessage("Permanent Country"),
-        "permanentHomeAddress":
-            MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
-        "permanentResidence":
-            MessageLookupByLibrary.simpleMessage("Permanent residence"),
-        "permanentResidentAddressLine":
-            MessageLookupByLibrary.simpleMessage("Permanent residence address"),
+        "permanentCountry": MessageLookupByLibrary.simpleMessage("Permanent Country"),
+        "permanentHomeAddress": MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
+        "permanentResidence": MessageLookupByLibrary.simpleMessage("Permanent residence"),
+        "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage("Permanent residence address"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
         "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":
@@ -1632,10 +1611,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
-            MessageLookupByLibrary.simpleMessage(
-                "Please provide information below, if applies to you"),
-        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage(
-            "Please provide selfie to proceed further."),
+            MessageLookupByLibrary.simpleMessage("Please provide information below, if applies to you"),
+        "pleaseProvideSelfie":
+            MessageLookupByLibrary.simpleMessage("Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage("Schedule your call\nfor later"),

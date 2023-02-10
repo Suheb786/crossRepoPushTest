@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
@@ -15,6 +17,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -52,9 +55,9 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick!
                                 ? () {
-                                    Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                        arguments: NavigationType.DASHBOARD);
-                                  }
+                              Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                  arguments: NavigationType.DASHBOARD);
+                            }
                                 : () {},
                             child: Container(
                               height: 174.0.h,
@@ -98,8 +101,8 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick
                                 ? () {
-                                    Navigator.pushNamed(context, RoutePaths.ActivityHome);
-                                  }
+                              Navigator.pushNamed(context, RoutePaths.ActivityHome);
+                            }
                                 : () {},
                             child: Container(
                               height: 174.0.h,
@@ -143,8 +146,8 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick
                                 ? () {
-                                    Navigator.pushNamed(context, RoutePaths.ManageContactsList);
-                                  }
+                              Navigator.pushNamed(context, RoutePaths.ManageContactsList);
+                            }
                                 : () {},
                             child: Container(
                               height: 174.0.h,
@@ -188,8 +191,8 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                               onTap: onClick
                                   ? () {
-                                      Navigator.pushNamed(context, RoutePaths.AccountSetting);
-                                    }
+                                Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                              }
                                   : () {},
                               child: Container(
                                 height: 174.0.h,
@@ -212,34 +215,34 @@ class SettingsDialogView extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: (profileData?.data?.content?.profileImage == null ||
-                                                profileData?.data?.content?.profileImage.isEmpty)
+                                            profileData?.data?.content?.profileImage.isEmpty)
                                             ? Center(
-                                                child: Container(
-                                                  child: AppStreamBuilder<String>(
-                                                      stream: model.textStream,
-                                                      initialData: "",
-                                                      dataBuilder: (context, text) {
-                                                        print("got text in stream: $text");
-                                                        return Text(
-                                                          StringUtils.getFirstInitials(text),
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontWeight: FontWeight.w700,
-                                                              fontSize: 18.0.t,
-                                                              color: currentStep == 3
-                                                                  ? Theme.of(context).accentColor
-                                                                  : Theme.of(context).primaryColorDark),
-                                                        );
-                                                      }),
-                                                ),
-                                              )
+                                          child: Container(
+                                            child: AppStreamBuilder<String>(
+                                                stream: model.textStream,
+                                                initialData: "",
+                                                dataBuilder: (context, text) {
+                                                  print("got text in stream: $text");
+                                                  return Text(
+                                                    StringUtils.getFirstInitials(text),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w700,
+                                                        fontSize: 18.0.t,
+                                                        color: currentStep == 3
+                                                            ? Theme.of(context).accentColor
+                                                            : Theme.of(context).primaryColorDark),
+                                                  );
+                                                }),
+                                          ),
+                                        )
                                             : CircleAvatar(
-                                                radius: 48,
-                                                backgroundImage: Image.memory(
-                                                  profileData?.data!.content!.profileImage!,
-                                                  fit: BoxFit.cover,
-                                                ).image,
-                                              )),
+                                          radius: 48,
+                                          backgroundImage: Image.memory(
+                                            profileData?.data!.content!.profileImage!,
+                                            fit: BoxFit.cover,
+                                          ).image,
+                                        )),
                                     Text(
                                       S.of(context).profileSettings,
                                       textAlign: TextAlign.center,
@@ -259,7 +262,9 @@ class SettingsDialogView extends StatelessWidget {
                               initialData: Resource.none(),
                               onData: (response) {
                                 if (response.status == Status.SUCCESS) {
-                                  AntelopHelper.walletDisconnect();
+                                  if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                    AntelopHelper.walletDisconnect();
+                                  }
                                   Navigator.pushNamedAndRemoveUntil(
                                       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                                 }
@@ -268,8 +273,8 @@ class SettingsDialogView extends StatelessWidget {
                                 return InkWell(
                                   onTap: onClick
                                       ? () {
-                                          model.logout();
-                                        }
+                                    model.logout();
+                                  }
                                       : () {},
                                   child: Container(
                                     height: 174.0.h,
@@ -287,7 +292,7 @@ class SettingsDialogView extends StatelessWidget {
                                             height: 64.0.h,
                                             width: 64.0.w,
                                             padding:
-                                                EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                            EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
                                             margin: EdgeInsets.only(bottom: 16.0.h),
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
@@ -330,13 +335,13 @@ class SettingsDialogView extends StatelessWidget {
                                     carouselController: model.controller,
                                     itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
                                         Padding(
-                                      padding: EdgeInsets.only(bottom: 5.0.h),
-                                      child: AppTiltCard(
-                                          pageViewIndex: pageViewIndex,
-                                          degree: 8,
-                                          currentPage: currentStep,
-                                          child: pages[itemIndex]),
-                                    ),
+                                          padding: EdgeInsets.only(bottom: 5.0.h),
+                                          child: AppTiltCard(
+                                              pageViewIndex: pageViewIndex,
+                                              degree: 8,
+                                              currentPage: currentStep,
+                                              child: pages[itemIndex]),
+                                        ),
                                     options: CarouselOptions(
                                       height: 180.0.h,
                                       pageSnapping: true,

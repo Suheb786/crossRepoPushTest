@@ -97,6 +97,7 @@ class AntelopHelper {
   }
 
   Future<bool> onInitializationFromNative() async {
+    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
     try {
       getWalletId();
       var data = await platform.invokeMethod('initialize');
@@ -112,6 +113,7 @@ class AntelopHelper {
       var data = await platform.invokeMethod('getAntelopCards');
       return true;
     } on PlatformException catch (e) {
+      AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
       debugPrint('Failed : ${e.message}');
       return false;
     }
@@ -144,6 +146,7 @@ class AntelopHelper {
         break;
 
       case "onInitializationError":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         Map newData = jsonDecode(data);
         debugPrint("Flutter onInitializationError" + newData.toString());
         break;
@@ -180,11 +183,13 @@ class AntelopHelper {
         break;
 
       case "onCheckEligibilityError":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         Map newData = jsonDecode(data);
         debugPrint("On device eligibility error------>${newData.toString()}");
         break;
 
       case "onDeviceNotEligible":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         Map newData = jsonDecode(data);
         debugPrint("onDeviceNotEligible ------>${newData.toString()}");
         break;
@@ -193,11 +198,6 @@ class AntelopHelper {
         Map newData = jsonDecode(data);
         debugPrint("Flutter onProvisioningSuccess " + newData.toString());
         var walletConnect = await platform.invokeMethod('walletConnect');
-        break;
-
-      case "onProvisioningError":
-        Map newData = jsonDecode(data);
-        debugPrint("Flutter onProvisioningError " + newData.toString());
         break;
 
       case "onProvisioningError":
@@ -228,6 +228,7 @@ class AntelopHelper {
         break;
 
       case "onConnectionError":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         Map newData = jsonDecode(data);
         debugPrint("Flutter onConnectionError " + newData.toString());
         break;
@@ -243,6 +244,7 @@ class AntelopHelper {
         break;
 
       case "onAsyncRequestError":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         Map newData = jsonDecode(data);
         debugPrint(newData.toString());
         break;
@@ -298,12 +300,12 @@ class AntelopHelper {
           debugPrint('TempAntelopIssuerCardId ---->${tempAntelopIssuerCardId}');
 
           List<String> unEnrolledDataList = [];
-          AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
+          //AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
           BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
           _apiService.getAllCardList(BaseRequest(getToken: false, baseData: baseData.toJson())).then((value) {
             if (value.data.transform().dashboardDataContent != null) {
-              AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+              // AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
               var dashBoardData = value.data.transform().dashboardDataContent;
               for (int i = 0; i < (dashBoardData?.creditCard ?? []).length; i++) {
                 debugPrint('Credit Card Code from list  ---->${dashBoardData!.creditCard![i].cardCode}');
@@ -323,7 +325,7 @@ class AntelopHelper {
 
               if (unEnrolledDataList.isNotEmpty) {
                 debugPrint('UnEnrolledCardList ---->${unEnrolledDataList}');
-                AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
+                // AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
 
                 _apiService
                     .enrollCards(EnrollCardRequestEntity(
@@ -334,7 +336,7 @@ class AntelopHelper {
                         cardId: ""))
                     .then((value) async {
                   if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-                    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+                    //AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
 
                     ///getting list from api
                     var cards = value.data.transform().enrollCardList;
@@ -353,11 +355,15 @@ class AntelopHelper {
                       }
                     }
                     var data = await platform.invokeMethod('enrollCard', params);
+                  } else {
+                    AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
                   }
                 }, onError: (error) async {
                   AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
                   debugPrint("MainError------> ${error.toString()}");
                 });
+              } else {
+                AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
               }
             }
           });
@@ -366,7 +372,7 @@ class AntelopHelper {
 
       case "emptyGetCards":
         debugPrint("Flutter side Empty Get Cards ");
-        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
+        //AppConstants.IS_BACKGROUND_API_IN_PROGRESS = true;
         BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
         isAllCardsInApplePay = true;
@@ -385,7 +391,7 @@ class AntelopHelper {
                 cardId: ""))
             .then((value) async {
           if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-            AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
+            //AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
 
             ///getting list from api
             var cards = value.data.transform().enrollCardList;
@@ -402,6 +408,8 @@ class AntelopHelper {
               });
             }
             var data = await platform.invokeMethod('enrollCard', params);
+          } else {
+            AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
           }
         }, onError: (error) async {
           AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
@@ -416,10 +424,12 @@ class AntelopHelper {
         break;
 
       case "enrollCardError":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         debugPrint("Flutter side enrollCardError " + data.toString());
         break;
 
       case "enrollCardCatch":
+        AppConstants.IS_BACKGROUND_API_IN_PROGRESS = false;
         debugPrint("Flutter side enrollCardCatch " + data.toString());
         break;
 
