@@ -76,9 +76,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         prepaidCategoryCode:
             isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
         prepaidCategoryType:
-        isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
         billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-            argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
             ? true
             : false));
   }
@@ -128,7 +128,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         accountNo: savingAccountController.text,
         otpCode: "",
         isNewBiller: false,
-        nickName: "",
+        nickName: argument.payMyPrePaidBillsPageDataList[0].nickname ?? "",
         // only need to be added in case of new biller added request
         prepaidCategoryCode:
             isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",

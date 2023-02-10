@@ -6,6 +6,7 @@ class PostpaidBillInquiry {
     this.billerName,
     this.amount,
     this.fees,
+    this.nickName,
   });
 
   String? billerCode;
@@ -14,23 +15,26 @@ class PostpaidBillInquiry {
   String? billerName;
   String? amount;
   String? fees;
+  String? nickName;
 
-  factory PostpaidBillInquiry.fromJson(Map<String, dynamic> json) =>
-      PostpaidBillInquiry(
+  factory PostpaidBillInquiry.fromJson(Map<String, dynamic> json) => PostpaidBillInquiry(
         billerCode: json["billerCode"],
         serviceType: json["serviceType"],
         billingNumber: json["billingNumber"],
         billerName: json["billerName"],
         amount: json["amount"],
         fees: json["fees"],
+        nickName: json["nickName"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "billerCode": billerCode,
         "serviceType": serviceType,
         "billingNumber": billingNumber,
         "billerName": billerName,
         "amount": amount,
         "fees": fees,
+        "nickName": nickName,
       };
 }

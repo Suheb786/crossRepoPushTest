@@ -37,8 +37,7 @@ class PaidBillsSuccessPageArguments {
   final String? fee;
   final String? billName;
   final String nickName;
-  final String? serviceType;
+  final String? service;
 
-  PaidBillsSuccessPageArguments(
-      {this.amt, this.fee, this.billName, required this.nickName, this.serviceType});
+  PaidBillsSuccessPageArguments({this.amt, this.fee, this.billName, required this.nickName, this.service});
 }

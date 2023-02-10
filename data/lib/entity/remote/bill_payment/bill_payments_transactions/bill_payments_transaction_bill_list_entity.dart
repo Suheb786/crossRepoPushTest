@@ -16,6 +16,9 @@ class BillPaymentsTransactionListEntity
   @JsonKey(name: "billerName")
   final String? billerName;
 
+  @JsonKey(name: "billerNameAr")
+  final String? billerNameAr;
+
   @JsonKey(name: "billerCode")
   final String? billerCode;
 
@@ -43,6 +46,9 @@ class BillPaymentsTransactionListEntity
   @JsonKey(name: "iconCode")
   final String? iconCode;
 
+  @JsonKey(name: "transactionRefrenceNo")
+  final String? refNo;
+
   @JsonKey(name: "status")
   final bool? isPaid;
 
@@ -50,6 +56,7 @@ class BillPaymentsTransactionListEntity
     this.nickname,
     this.billingNumber,
     this.billerName,
+    this.billerNameAr,
     this.billerCode,
     this.billNo,
     this.amount,
@@ -59,6 +66,7 @@ class BillPaymentsTransactionListEntity
     this.serviceType,
     this.categoryName,
     this.iconCode,
+    this.refNo,
     this.isPaid,
   });
 
@@ -78,15 +86,17 @@ class BillPaymentsTransactionListEntity
       nickname: this.nickname ?? "",
       billingNumber: this.billingNumber ?? "",
       billerName: this.billerName ?? "",
+      billerNameAr: this.billerNameAr ?? "",
       billerCode: this.billerCode ?? "",
       billNo: this.billNo ?? "0",
-      amount: this.amount ?? "0",
-      fees: this.fees ?? "0",
+      amount: this.amount != null && this.amount!.isNotEmpty ? this.amount.toString() : "0",
+      fees: this.fees != null && this.fees!.isNotEmpty ? this.fees.toString() : "0",
       paymentDate: this.paymentDate ?? "",
       serviceCode: this.serviceCode ?? "",
       serviceType: this.serviceType ?? "",
       categoryName: this.categoryName ?? "",
       iconCode: this.iconCode ?? "",
+      refNo: this.refNo ?? "",
       isPaid: this.isPaid ?? false,
     );
   }

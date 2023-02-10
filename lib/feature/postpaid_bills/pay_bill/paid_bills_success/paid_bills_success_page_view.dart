@@ -158,7 +158,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                     fontSize: 12.0.t),
                               ),
                               Text(
-                                model.arguments?.serviceType ?? "",
+                                model.arguments?.service ?? "",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -346,7 +346,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
     Share.share(
       ShareInfo.newPostPaidSuccess(
         context,
-        serviceType: model.arguments?.serviceType ?? "",
+        serviceType: model.arguments?.service ?? "",
         billerName: model.arguments?.billName ?? "",
         amount: '${double.parse(model.arguments?.amt ?? "0").toStringAsFixed(3)}',
         nickName: AppConstantsUtils.NICK_NAME,

@@ -53,10 +53,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(loginUserRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LoginResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/loginV4', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LoginResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/loginV4', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -455,10 +454,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(logoutRequestEntity.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LogoutResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/logout', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LogoutResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/logout', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LogoutResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -667,10 +665,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(setCardPinRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/CardTracking/SetCardPin', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/CardTracking/SetCardPin', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -715,10 +712,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeEmailRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/ChangeEmail', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/ChangeEmail', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -731,10 +727,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeMobileRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/ChangeMobile', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/ChangeMobile', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -797,9 +792,9 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(verifyChangeEmailRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/VerifyChangeEmail', queryParameters: queryParameters, data: _data)
+        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(Options(
+                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/VerifyChangeEmail', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProfileChangedSuccessResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -814,9 +809,9 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(verifyChangeMobileRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/VerifyChangeMobile', queryParameters: queryParameters, data: _data)
+        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(Options(
+                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/VerifyChangeMobile', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProfileChangedSuccessResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -1110,10 +1105,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/RuleEngine/PinUnblock', queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/RuleEngine/PinUnblock', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -1967,8 +1961,7 @@ class _ApiService implements ApiService {
                 .compose(_dio.options, '/CardTracking/GetSupCardApplications',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SupplementaryCreditCardApplicationResponseEntity.fromJson(
-        _result.data!);
+    final value = SupplementaryCreditCardApplicationResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2209,10 +2202,9 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeOrReApplySupplementaryDebitCardRequestEnity.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/DebitCard/RemoveOrReApplySuppDebitCard',
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/DebitCard/RemoveOrReApplySuppDebitCard',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);

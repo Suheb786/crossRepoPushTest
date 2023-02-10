@@ -76,6 +76,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           billerCode: payPostPaidBillsDataList[index].billerCode,
           serviceType: payPostPaidBillsDataList[index].serviceType,
           billingNumber: payPostPaidBillsDataList[index].billingNo,
+          nickName: payPostPaidBillsDataList[index].nickName,
         ));
         debugPrint("payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
@@ -116,6 +117,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           billerCode: item.billerCode,
           serviceType: item.serviceType,
           billingNumber: item.billingNo,
+          nickName: item.nickName,
         ));
         selectedPostPaidBillsList.add(item);
       }
@@ -230,6 +232,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
             payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
           }
+          payPostPaidBillsDataList[j].fees = inquiryElement.feesAmt;
           payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
           payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
           selectedPostPaidBillsList.add(item);

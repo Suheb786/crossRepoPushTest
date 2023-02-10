@@ -27,6 +27,7 @@ import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -100,7 +101,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Navigator.pop(context);
                                 data.data?.isEfawateerPopUPClicked = true;
                                 model.saveCurrentUserData(user: data.data!);
-                                SettingsDialog.show(context);
+                                // SettingsDialog.show(context);
+                                Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                    arguments: NavigationType.PAYMENTS);
                               });
                         }
                       }
