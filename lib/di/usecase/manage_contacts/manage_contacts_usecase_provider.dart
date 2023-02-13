@@ -2,6 +2,7 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
+import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
 import 'package:domain/usecase/manage_contacts/verify_beneficiary_otp_usecase.dart';
@@ -36,4 +37,9 @@ final uploadBeneficiaryProfileImageUseCaseProvider =
 ///[VerifyBeneficiaryOtpUseCase] provider
 final verifyBeneficiaryOtpUseCaseProvider = Provider.autoDispose<VerifyBeneficiaryOtpUseCase>(
   (ref) => VerifyBeneficiaryOtpUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
+///[ManageContactOtpValidationUseCase] provider
+final manageContactOtpValidationUseCaseProvider = Provider.autoDispose<ManageContactOtpValidationUseCase>(
+  (ref) => ManageContactOtpValidationUseCase(),
 );

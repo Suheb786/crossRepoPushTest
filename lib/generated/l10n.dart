@@ -26,9 +26,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -15015,6 +15013,66 @@ class S {
     return Intl.message(
       'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
       name: 'youCanPayAllYourBillsNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite Contacts`
+  String get favouriteContacts {
+    return Intl.message(
+      'Favourite Contacts',
+      name: 'favouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Contacts`
+  String get recentContacts {
+    return Intl.message(
+      'Recent Contacts',
+      name: 'recentContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Contacts`
+  String get otherContacts {
+    return Intl.message(
+      'Other Contacts',
+      name: 'otherContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `edit Contact`
+  String get editContact {
+    return Intl.message(
+      'edit Contact',
+      name: 'editContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any contacts yet.\nAdd your first one now.`
+  String get youDontHaveAnyContactAddYourFirstNow {
+    return Intl.message(
+      'You don’t have any contacts yet.\nAdd your first one now.',
+      name: 'youDontHaveAnyContactAddYourFirstNow',
       desc: '',
       args: [],
     );
