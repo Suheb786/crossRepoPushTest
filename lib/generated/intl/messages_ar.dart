@@ -37,8 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("دينار أردني"),
         "NoCliqContactYet":
             MessageLookupByLibrary.simpleMessage("ما عندك رقم CliQ. أنشئ حسابك الأول من خلال Blink"),
