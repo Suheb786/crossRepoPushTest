@@ -11,40 +11,25 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
   return DashboardFeaturesEntity(
     blinkRetailAppBillPayment: json['blink-retail-app-bill-payment'] as bool?,
     blinkRetailAppBillPaymentPayPostpaid:
-<<<<<<< HEAD
-    json['blink-retail-app-bill-payment-pay-postpaid'] as bool?,
-    paymentQRCode: json['blink-retail-app-payments-qrcode'] as bool?,
-    isCreditCardEnabled:
-    json['blink-retail-app-creditCard-application'] as bool?,
-=======
         json['blink-retail-app-bill-payment-pay-postpaid'] as bool?,
     paymentQRCode: json['blink-retail-app-payments-qrcode'] as bool?,
     isCreditCardEnabled:
         json['blink-retail-app-creditCard-application'] as bool?,
->>>>>>> Manage_Contacts_R2-UI
     isGoRJEnabled: json['blink-retail-app-gorj'] as bool?,
     isLoginEnabled: json['blink-retail-app-login'] as bool?,
     isRegisterEnabled: json['blink-retail-app-register'] as bool?,
     isCreditCardPinChangeEnabled:
-<<<<<<< HEAD
-    json['blink-retail-app-creditCards-pinchange'] as bool?,
-    isDebitCardPhysicalCardRequestEnabled:
-    json['blink-retail-app-debit-card-physical-card-request'] as bool?,
-    blinkRetailAppBillPaymentPayPrepaid:
-    json['blink-retail-app-bill-payment-pay-prepaid'] as bool?,
-    blinkRetailAppAliasManagement:
-    json['blink-retail-app-cliq-alias-management'] as bool?,
-    blinkRetailAppCliq: json['blink-retail-app-cliq'] as bool?,
-    blinkRetailAppCliqSendPayment:
-    json['blink-retail-app-cliq-send-payment'] as bool?,
-    blinkRetailAppRTP: json['blink-retail-app-cliq-rtp'] as bool?,
-=======
         json['blink-retail-app-creditCards-pinchange'] as bool?,
     isDebitCardPhysicalCardRequestEnabled:
         json['blink-retail-app-debit-card-physical-card-request'] as bool?,
     blinkRetailAppBillPaymentPayPrepaid:
         json['blink-retail-app-bill-payment-pay-prepaid'] as bool?,
->>>>>>> Manage_Contacts_R2-UI
+    blinkRetailAppAliasManagement:
+        json['blink-retail-app-cliq-alias-management'] as bool?,
+    blinkRetailAppCliq: json['blink-retail-app-cliq'] as bool?,
+    blinkRetailAppCliqSendPayment:
+        json['blink-retail-app-cliq-send-payment'] as bool?,
+    blinkRetailAppRTP: json['blink-retail-app-cliq-rtp'] as bool?,
   );
 }
 
@@ -56,16 +41,6 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
       'blink-retail-app-register': instance.isRegisterEnabled,
       'blink-retail-app-gorj': instance.isGoRJEnabled,
       'blink-retail-app-creditCards-pinchange':
-<<<<<<< HEAD
-      instance.isCreditCardPinChangeEnabled,
-      'blink-retail-app-debit-card-physical-card-request':
-      instance.isDebitCardPhysicalCardRequestEnabled,
-      'blink-retail-app-bill-payment': instance.blinkRetailAppBillPayment,
-      'blink-retail-app-bill-payment-pay-postpaid':
-      instance.blinkRetailAppBillPaymentPayPostpaid,
-      'blink-retail-app-bill-payment-pay-prepaid':
-      instance.blinkRetailAppBillPaymentPayPrepaid,
-=======
           instance.isCreditCardPinChangeEnabled,
       'blink-retail-app-debit-card-physical-card-request':
           instance.isDebitCardPhysicalCardRequestEnabled,
@@ -74,12 +49,11 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
           instance.blinkRetailAppBillPaymentPayPostpaid,
       'blink-retail-app-bill-payment-pay-prepaid':
           instance.blinkRetailAppBillPaymentPayPrepaid,
->>>>>>> Manage_Contacts_R2-UI
       'blink-retail-app-payments-qrcode': instance.paymentQRCode,
       'blink-retail-app-cliq': instance.blinkRetailAppCliq,
       'blink-retail-app-cliq-alias-management':
-      instance.blinkRetailAppAliasManagement,
+          instance.blinkRetailAppAliasManagement,
       'blink-retail-app-cliq-rtp': instance.blinkRetailAppRTP,
       'blink-retail-app-cliq-send-payment':
-      instance.blinkRetailAppCliqSendPayment,
+          instance.blinkRetailAppCliqSendPayment,
     };

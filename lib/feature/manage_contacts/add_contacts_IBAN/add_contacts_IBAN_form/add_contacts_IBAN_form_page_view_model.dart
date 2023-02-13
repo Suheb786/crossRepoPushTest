@@ -1,11 +1,18 @@
+import 'dart:developer';
+
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/manage_contacts/add_contact_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactsIBANformPageViewModel extends BasePageViewModel {
+  final AddContactIBANuseCase addContactIBANuseCase;
   final TextEditingController nameController = TextEditingController();
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
 
@@ -17,12 +24,32 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
       GlobalKey(debugLabel: "ibanORaccountORmobileORalias");
 
   PublishSubject<bool> showbuttom = PublishSubject();
+
+  AddContactsIBANformPageViewModel(this.addContactIBANuseCase) {
+    addcontactIBANuseCaseRequest.listen(
+      (value) {
+        RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
+          (event) {
+            addcontactIBANuseCaseResponse.safeAdd(event);
+            if (event.status == Status.ERROR) {
+              getError(event);
+              showErrorState();
+              log("error......");
+            }
+          },
+        );
+      },
+    );
+  }
   Stream<bool> get showStreamButom => showbuttom.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   PublishSubject<AddContactIBANuseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
+  PublishSubject<Resource<bool>> addcontactIBANuseCaseResponse = PublishSubject();
+
+  Stream<Resource<bool>> get addcontactIBANStream => addcontactIBANuseCaseResponse.stream;
 
   validate() {
     if (nameController.text.isNotEmpty) {
@@ -41,5 +68,24 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
         IBANACCOUNTNOMobileNoALIAS: ibanORaccountORmobileORaliasController.text,
         emailAddress: emailController.text,
         name: nameController.text));
+  }
+
+  void getError(Resource<bool> event) {
+    switch (event.appError?.type) {
+      case ErrorType.INVALID_NAME:
+        nameKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.INVALID_EMAIL:
+        emailKey.currentState!.isValid = false;
+        break;
+
+      case ErrorType.INVALID_IBAN:
+        ibanORaccountORmobileORaliasKey.currentState!.isValid = false;
+        break;
+
+      default:
+        break;
+    }
   }
 }

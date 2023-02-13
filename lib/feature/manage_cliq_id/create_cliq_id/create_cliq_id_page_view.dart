@@ -44,7 +44,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: Theme.of(context).accentColor,
+                      activeColor: Theme.of(context).colorScheme.secondary,
                       color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
@@ -63,7 +63,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                       S.of(context).createNewCliqId.toUpperCase(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
@@ -91,7 +91,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               );
@@ -116,7 +116,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),
                             ),

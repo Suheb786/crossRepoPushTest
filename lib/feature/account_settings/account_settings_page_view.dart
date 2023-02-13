@@ -82,7 +82,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                           stream: model.uploadProfilePhotoStream,
                                           initialData: '',
                                           onData: (data) {
-                                            if (data != null && data.isNotEmpty) {
+                                            if (data.isNotEmpty) {
                                               model.selectedProfile = data;
                                               //model.addImage(data);
                                               _cropImage(data, model, context);
@@ -138,8 +138,9 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                           fontFamily: StringUtils.appFont,
                                                                           fontWeight: FontWeight.w700,
                                                                           fontSize: 18.t,
-                                                                          color:
-                                                                              Theme.of(context).accentColor),
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .secondary),
                                                                     ),
                                                                   ))
                                                             : CircleAvatar(

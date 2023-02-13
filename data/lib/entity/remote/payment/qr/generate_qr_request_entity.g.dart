@@ -15,12 +15,8 @@ GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(
   );
 }
 
-<<<<<<< HEAD
-Map<String, dynamic> _$GenerateQRRequestEntityToJson(GenerateQRRequestEntity instance) =>
-=======
 Map<String, dynamic> _$GenerateQRRequestEntityToJson(
         GenerateQRRequestEntity instance) =>
->>>>>>> Manage_Contacts_R2-UI
     <String, dynamic>{
       'Amount': instance.amount,
       'GetToken': instance.getToken,

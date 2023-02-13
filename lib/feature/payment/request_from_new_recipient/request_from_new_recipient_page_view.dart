@@ -201,8 +201,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   readOnly: true,
                                                   controller: model.purposeController,
                                                   onPressed: () {
-                                                    if (model.purposeList != null &&
-                                                        model.purposeList.isNotEmpty) {
+                                                    if (model.purposeList.isNotEmpty) {
                                                       PurposeDialog.show(context,
                                                           purposeList: model.purposeList,
                                                           onSelected: (value) {
@@ -232,8 +231,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   readOnly: true,
                                                   controller: model.purposeDetailController,
                                                   onPressed: () {
-                                                    if (model.purposeDetailList != null &&
-                                                        model.purposeDetailList.isNotEmpty) {
+                                                    if (model.purposeDetailList.isNotEmpty) {
                                                       PurposeDetailDialog.show(context,
                                                           purposeDetailList: model.purposeDetailList,
                                                           onSelected: (value) {
@@ -275,7 +273,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                               stream: model.uploadProfilePhotoStream,
                                                               initialData: '',
                                                               onData: (data) {
-                                                                if (data != null && data.isNotEmpty) {
+                                                                if (data.isNotEmpty) {
                                                                   model.selectedProfile = data;
                                                                   // model.addImage(
                                                                   //     data);

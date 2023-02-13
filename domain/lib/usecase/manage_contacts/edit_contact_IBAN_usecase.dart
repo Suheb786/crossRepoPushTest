@@ -7,19 +7,20 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class AddContactIBANuseCase extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, bool> {
+
+class EditContactIBANuseCase extends BaseUseCase<BaseError, EditContactIBANuseCaseParams, bool> {
   @override
-  Future<Either<BaseError, bool>> execute({required AddContactIBANuseCaseParams params}) {
+  Future<Either<BaseError, bool>> execute({required EditContactIBANuseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
 
-class AddContactIBANuseCaseParams extends Params {
+class EditContactIBANuseCaseParams extends Params {
   final String name;
   final String emailAddress;
   final String IBANACCOUNTNOMobileNoALIAS;
 
-  AddContactIBANuseCaseParams({
+  EditContactIBANuseCaseParams({
     required this.name,
     required this.emailAddress,
     required this.IBANACCOUNTNOMobileNoALIAS,

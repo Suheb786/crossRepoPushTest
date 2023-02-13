@@ -150,4 +150,7 @@ class RoutePaths {
   static const String LinkAccountPage = "/linkAccountPage";
   static const String AddContactsIBANManageContactsPage = "/addContactIBANManageContactPage";
   static const String NewContactAddedPage = "/newContactAddedPage";
+  static const String UserContactDetailsPage = "/editManageContact";
+  static const String EditContactOTPpage = "/editContactOTPpage";
+  static const String PaymentActivityPage = "/paymentActivityPage";
 }

@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -50,7 +51,7 @@ class AddContactsIBANManageContactsPageView
                       size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: Theme.of(context).accentColor,
+                      activeColor: AppColor.white,
                       color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               }),
@@ -66,7 +67,7 @@ class AddContactsIBANManageContactsPageView
                           S.current.addContact.toUpperCase(),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 10,
                               fontWeight: FontWeight.w600),
                         ),
@@ -87,7 +88,7 @@ class AddContactsIBANManageContactsPageView
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -97,6 +98,7 @@ class AddContactsIBANManageContactsPageView
                           child: AppSwiper(
                             pages: pages,
                             appSwiperController: model.appSwiperController,
+                            
                             pageController: model.pageController,
                             onIndexChanged: (index) {
                               model.updatePage(index);

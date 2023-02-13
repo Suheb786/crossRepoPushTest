@@ -16169,6 +16169,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit Contact`
+  String get editContact {
+    return Intl.message(
+      'Edit Contact',
+      name: 'editContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Contact`
+  String get backToContact {
+    return Intl.message(
+      'Back to Contact',
+      name: 'backToContact',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

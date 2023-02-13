@@ -294,8 +294,10 @@ class AssetUtils {
   ///Manage Contact
   static const String viewHistoryIcon = svg + "viewHistory.svg";
   static const String requestMoneyIcon = svg + "requestMoney.svg";
+  static const String back = svg + "back.svg";
 
   static const String sendMoneyIcon = svg + "sendMoney.svg";
+
   ///billPaymentsImages
   static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
   static const String infoFee = svg + "info_fee.svg";

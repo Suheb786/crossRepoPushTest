@@ -6,13 +6,15 @@ part of 'validate_biller_otp_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValidateBillerOtpContentEntity _$ValidateBillerOtpContentEntityFromJson(Map<String, dynamic> json) {
+ValidateBillerOtpContentEntity _$ValidateBillerOtpContentEntityFromJson(
+    Map<String, dynamic> json) {
   return ValidateBillerOtpContentEntity(
     content: json['content'],
   );
 }
 
-Map<String, dynamic> _$ValidateBillerOtpContentEntityToJson(ValidateBillerOtpContentEntity instance) =>
+Map<String, dynamic> _$ValidateBillerOtpContentEntityToJson(
+        ValidateBillerOtpContentEntity instance) =>
     <String, dynamic>{
       'content': instance.content,
     };

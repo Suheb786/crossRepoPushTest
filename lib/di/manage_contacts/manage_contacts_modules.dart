@@ -7,10 +7,11 @@ import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_I
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_form/add_contacts_IBAN_form_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/new_contact_added/new_contact_added_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
@@ -35,11 +36,15 @@ final addContactIBANViewModelProvider =
 
 final addContactIBANformPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddContactsIBANformPageViewModel>(
-        (ref) => AddContactsIBANformPageViewModel());
+        (ref) => AddContactsIBANformPageViewModel(ref.read(addContactIBANuseCaseProvider)));
 
 final addcontactIBANotpPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddContactIBANotpPageViewModel>(
-        (ref) => AddContactIBANotpPageViewModel());
+        (ref) => AddContactIBANotpPageViewModel(ref.read(addContactIbanOTPuseCaseProvider)));
 
-final newContactAddedPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<NewContactAddedPageViewModel>((ref) => NewContactAddedPageViewModel());
+final editContactAddedPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<UserContactDetailsPageViewModel>(
+        (ref) => UserContactDetailsPageViewModel());
+
+final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
+    (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
