@@ -145,7 +145,7 @@ class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContact
                                               return currentTimeRemaining == null
                                                   ? TextButton(
                                                       onPressed: () {
-                                                        // model.resendOtp();
+                                                        model.updateTime();
                                                       },
                                                       child: Text(
                                                         S.of(context).resendCode,

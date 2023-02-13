@@ -65,6 +65,12 @@ class OtpForManageContactPageViewModel extends BasePageViewModel {
     }
   }
 
+  void updateTime() {
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    notifyListeners();
+    listenForSmsCode();
+  }
+
   @override
   void dispose() {
     _validatedOtpRequest.close();
