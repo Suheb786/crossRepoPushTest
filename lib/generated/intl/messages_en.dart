@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
@@ -588,6 +589,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "eVouchersAreHere": MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
+        "editContact": MessageLookupByLibrary.simpleMessage("edit Contact"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
         "editInformation": MessageLookupByLibrary.simpleMessage("Edit Information"),
         "editTransactionPurpose": MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),

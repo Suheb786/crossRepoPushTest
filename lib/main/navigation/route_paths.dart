@@ -145,4 +145,5 @@ class RoutePaths {
   static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
   static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
+  static const String OtpForManageContact = "/otpForManageContact";
 }

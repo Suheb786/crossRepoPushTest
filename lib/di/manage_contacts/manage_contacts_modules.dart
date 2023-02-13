@@ -26,5 +26,5 @@ final manageContactDetailsViewModelProvider =
 
 final otpForManageContactPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<OtpForManageContactPageViewModel>(
-  (ref) => OtpForManageContactPageViewModel(),
+  (ref) => OtpForManageContactPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
 );

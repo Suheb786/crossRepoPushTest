@@ -6,18 +6,18 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class OtpForManageContactUseCase extends BaseUseCase<BaseError, OtpForManageContactUseCaseParams, bool> {
+class ManageContactOtpValidationUseCase
+    extends BaseUseCase<BaseError, ManageContactOtpValidationUseCaseParams, bool> {
   @override
-  Future<Either<BaseError, bool>> execute({required OtpForManageContactUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required ManageContactOtpValidationUseCaseParams params}) async {
     return Future.value(Right(true));
   }
 }
 
-class OtpForManageContactUseCaseParams extends Params {
+class ManageContactOtpValidationUseCaseParams extends Params {
   final String otp;
-  final String firebaseToken;
 
-  OtpForManageContactUseCaseParams({required this.otp, required this.firebaseToken});
+  ManageContactOtpValidationUseCaseParams({required this.otp});
 
   @override
   Either<AppError, bool> verify() {

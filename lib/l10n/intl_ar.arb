@@ -1482,6 +1482,7 @@
   "favouriteContacts": "Favourite Contacts",
   "recentContacts": "Recent Contacts",
   "otherContacts": "Other Contacts",
+  "editContact": "edit Contact",
   "addContact": "Add Contact",
   "youDontHaveAnyContactAddYourFirstNow": "You don’t have any contacts yet.\nAdd your first one now."
 }

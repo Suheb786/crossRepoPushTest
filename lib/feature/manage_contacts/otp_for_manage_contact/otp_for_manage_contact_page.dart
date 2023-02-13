@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
@@ -30,7 +31,9 @@ class OtpForManageContactPageState
 
   @override
   void onModelReady(OtpForManageContactPageViewModel model) {
-    //  model.countDownController = CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
+
+    super.onModelReady(model);
   }
 
   @override
