@@ -217,7 +217,7 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                                 child: Text(S.of(context).addContact,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontSize: 12,
+                                        fontSize: 12.t,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).accentColor)),
                               )
