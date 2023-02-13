@@ -30,31 +30,32 @@ class ManageContactListPageState
             Navigator.pop(context);
           },
           behavior: HitTestBehavior.translucent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                  child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true, color: Theme.of(context).accentColor),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 35.h, top: 50.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(start: 24.0.w),
+                    child: AppSvg.asset(AssetUtils.leftArrow,
+                        matchTextDirection: true, color: Theme.of(context).accentColor),
+                  ),
                 ),
-              ),
-              Text(
-                S.of(context).manageContacts,
-                style: TextStyle(
-                    fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(end: 18.0.w),
-                child: Container(
-                  width: 28.w,
+                Text(
+                  S.of(context).manageContacts,
+                  style: TextStyle(
+                      fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsetsDirectional.only(end: 24.0.w),
+                  child: Icon(Icons.add, color: Theme.of(context).accentColor),
+                )
+              ],
+            ),
           )),
     );
   }

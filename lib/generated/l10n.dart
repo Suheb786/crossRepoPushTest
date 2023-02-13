@@ -16170,10 +16170,10 @@ class S {
     );
   }
 
-  /// `Edit Contact`
+  /// `edit Contact`
   String get editContact {
     return Intl.message(
-      'Edit Contact',
+      'edit Contact',
       name: 'editContact',
       desc: '',
       args: [],
@@ -16185,6 +16185,46 @@ class S {
     return Intl.message(
       'Back to Contact',
       name: 'backToContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite Contacts`
+  String get favouriteContacts {
+    return Intl.message(
+      'Favourite Contacts',
+      name: 'favouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Contacts`
+  String get recentContacts {
+    return Intl.message(
+      'Recent Contacts',
+      name: 'recentContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Contacts`
+  String get otherContacts {
+    return Intl.message(
+      'Other Contacts',
+      name: 'otherContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any contacts yet.\nAdd your first one now.`
+  String get youDontHaveAnyContactAddYourFirstNow {
+    return Intl.message(
+      'You don’t have any contacts yet.\nAdd your first one now.',
+      name: 'youDontHaveAnyContactAddYourFirstNow',
       desc: '',
       args: [],
     );

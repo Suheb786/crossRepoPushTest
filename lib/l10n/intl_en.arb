@@ -1641,5 +1641,11 @@
   "payYourBillswithBlink": "Pay your bills with Blink!",
   "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
   "editContact": "Edit Contact",
-  "backToContact": "Back to Contact"
+  "backToContact": "Back to Contact",
+  "favouriteContacts": "Favourite Contacts",
+  "recentContacts": "Recent Contacts",
+  "otherContacts": "Other Contacts",
+  "addContact": "Add Contact",
+  "editContact": "edit Contact",
+  "youDontHaveAnyContactAddYourFirstNow": "You don’t have any contacts yet.\nAdd your first one now."
 }

@@ -803,7 +803,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dummyMobileNo": MessageLookupByLibrary.simpleMessage("+962 3320 8080"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
-        "editContact": MessageLookupByLibrary.simpleMessage("Edit Contact"),
+        "editContact": MessageLookupByLibrary.simpleMessage("edit Contact"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("تعديل المعلومات"),
@@ -1181,6 +1181,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatcaDetailNotFound": MessageLookupByLibrary.simpleMessage(
             "معلومات FACTA ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
+        "favouriteContacts":
+            MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "بعتقد إنه سقف البطاقة الائتمانية قليل"),
         "fees": MessageLookupByLibrary.simpleMessage("العمولات"),
@@ -1929,6 +1931,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أو تابع من خلال"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("أو بتقدر تحمّل"),
+        "otherContacts": MessageLookupByLibrary.simpleMessage("Other Contacts"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("معلومات أخرى"),
         "otherIncome": MessageLookupByLibrary.simpleMessage("دخل آخر"),
         "otherNationality": MessageLookupByLibrary.simpleMessage("جنسية ثانية"),
@@ -2174,6 +2177,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "شارك معلومات حسابك لتقدر تستقبل الأموال"),
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
             "رح توصلك كلمة مرور OTP على موبايلك للحركات المستقبلية"),
+        "recentContacts":
+            MessageLookupByLibrary.simpleMessage("Recent Contacts"),
         "recipientAddress":
             MessageLookupByLibrary.simpleMessage("عنوان المستلم"),
         "recipientName": MessageLookupByLibrary.simpleMessage("اسم المستلم"),
@@ -2815,7 +2820,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
-            "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
+            "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
+        "youDontHaveAnyContactAddYourFirstNow":
+            MessageLookupByLibrary.simpleMessage(
+                "You don’t have any contacts yet.\nAdd your first one now."),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),

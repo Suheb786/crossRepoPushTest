@@ -3,6 +3,7 @@ import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/add_contact_usecase.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
+import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
 import 'package:domain/usecase/manage_contacts/verify_beneficiary_otp_usecase.dart';
@@ -60,4 +61,9 @@ final editContactIBANformuseCaseProvider = Provider.autoDispose<EditContactIBANu
 ///[editContactIbanOTPuseCase] provider
 final editContactIbanOTPuseCaseProvider = Provider.autoDispose<EditContactOTPuseCase>(
   (ref) => EditContactOTPuseCase(),
+);
+
+///[ManageContactOtpValidationUseCase] provider
+final manageContactOtpValidationUseCaseProvider = Provider.autoDispose<ManageContactOtpValidationUseCase>(
+  (ref) => ManageContactOtpValidationUseCase(),
 );

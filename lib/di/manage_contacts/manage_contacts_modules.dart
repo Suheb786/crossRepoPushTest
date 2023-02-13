@@ -12,6 +12,7 @@ import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_c
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/otp_for_manage_contact/otp_for_manage_contact_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
@@ -48,3 +49,7 @@ final editContactAddedPageViewModelProvider =
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
+final otpForManageContactPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<OtpForManageContactPageViewModel>(
+  (ref) => OtpForManageContactPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
+);

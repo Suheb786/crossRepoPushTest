@@ -1596,5 +1596,12 @@
   "payYourBillswithBlink": "أدفع فواتيرك مع بلينك!",
   "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!",
   "editContact": "Edit Contact",
-  "backToContact": "Back to Contact"
+  "backToContact": "Back to Contact",
+  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
+  "favouriteContacts": "Favourite Contacts",
+  "recentContacts": "Recent Contacts",
+  "otherContacts": "Other Contacts",
+  "editContact": "edit Contact",
+  "addContact": "Add Contact",
+  "youDontHaveAnyContactAddYourFirstNow": "You don’t have any contacts yet.\nAdd your first one now."
 }

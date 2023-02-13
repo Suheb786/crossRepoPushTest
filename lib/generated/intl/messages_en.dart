@@ -838,7 +838,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
-        "editContact": MessageLookupByLibrary.simpleMessage("Edit Contact"),
+        "editContact": MessageLookupByLibrary.simpleMessage("edit Contact"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
@@ -1227,6 +1227,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Favourite Brand"),
         "favouriteBrandItemDescription": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet conspec"),
+        "favouriteContacts":
+            MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "I feel the credit limit is low"),
         "fees": MessageLookupByLibrary.simpleMessage("Fees"),
@@ -2000,6 +2002,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("or you can upload"),
+        "otherContacts": MessageLookupByLibrary.simpleMessage("Other Contacts"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("OTHER DETAILS"),
         "otherIncome": MessageLookupByLibrary.simpleMessage("Other Income"),
         "otherNationality":
@@ -2262,6 +2265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Share your account info to be able to receive money."),
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
             "You will receive OTP to your\nnew number for future\ntransactions."),
+        "recentContacts":
+            MessageLookupByLibrary.simpleMessage("Recent Contacts"),
         "recipientAddress":
             MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
         "recipientName": MessageLookupByLibrary.simpleMessage("RECIPIENT NAME"),
@@ -2928,6 +2933,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You can change the above details in the card settings "),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
+        "youDontHaveAnyContactAddYourFirstNow":
+            MessageLookupByLibrary.simpleMessage(
+                "You don’t have any contacts yet.\nAdd your first one now."),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),

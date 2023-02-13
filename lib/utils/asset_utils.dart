@@ -171,6 +171,7 @@ class AssetUtils {
   static const String card_activation = svg + "card_activation.svg";
   static const String videocallAgent = svg + "videocall_agent.svg";
   static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
+  static const String blueStar = svg + "blue_star.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
