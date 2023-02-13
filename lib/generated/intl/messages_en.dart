@@ -142,13 +142,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Additional Requester"),
         "additionalSourceIncome":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
-        "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage(
-            "Do you have additional source of income"),
-        "additionalSourceOfIncome":
-            MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage("Do you have additional source of income"),
+        "additionalSourceOfIncome": MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
-        "addressInUnitedStates":
-            MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
+        "addressInUnitedStates": MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
             "Engagement team is currently not available, please try later"),
         "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
@@ -563,11 +560,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "New credit limit has been set for your credit card."),
         "creditLimitChangedSuccess": MessageLookupByLibrary.simpleMessage(
             "Credit limit is successfully updated"),
-        "creditLimitSettings":
-            MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
-        "creditSettlementPercentageChangedDesc":
-            MessageLookupByLibrary.simpleMessage(
-                "Your credit card settlement percentages has been updated with your new selected account"),
+        "creditLimitSettings": MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
+        "creditSettlementPercentageChangedDesc": MessageLookupByLibrary.simpleMessage(
+            "Your credit card settlement percentages has been updated with your new selected account"),
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "creditZeroBalanceRejDesc": MessageLookupByLibrary.simpleMessage(
             "Please fund your account in order to apply for a credit card."),
@@ -604,12 +599,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitCardActivated": MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
         "debitCardDelivered": MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
         "debitCardDeliveredDate": MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
-        "debitCardDeliveredQ":
-            MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered?"),
+        "debitCardDeliveredQ": MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered?"),
         "debitCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
-        "debitCardSettings":
-            MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
+        "debitCardSettings": MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
         "debitCardStatementError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "debitCardTransactionListError": MessageLookupByLibrary.simpleMessage(
@@ -1426,16 +1419,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
             "Select Reason of Unavailability"),
-        "invalidReferenceNumber":
-            MessageLookupByLibrary.simpleMessage("Enter reference number"),
+        "invalidReferenceNumber": MessageLookupByLibrary.simpleMessage("Enter reference number"),
         "invalidRelation": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship! Please ensure that the supplemntary cardholder is your spouse, child or parent.(Err-302)"),
-        "invalidRelationship":
-            MessageLookupByLibrary.simpleMessage("Select relationship"),
+        "invalidRelationship": MessageLookupByLibrary.simpleMessage("Select relationship"),
         "invalidRelationshipAPI": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-306) "),
-        "invalidRequestedAmount":
-            MessageLookupByLibrary.simpleMessage("Invalid requested amount"),
+        "invalidRequestedAmount": MessageLookupByLibrary.simpleMessage("Invalid requested amount"),
         "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
         "invalidScheduleTime":
             MessageLookupByLibrary.simpleMessage("Please select a valid date in the future"),
@@ -1654,8 +1644,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
-        "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
-            "You have not set up any country restrictions yet"),
+        "notSetUpCountryRestrictionYet":
+            MessageLookupByLibrary.simpleMessage("You have not set up any country restrictions yet"),
         "notVerified": MessageLookupByLibrary.simpleMessage("Not Verified"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
@@ -1928,16 +1918,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrNotScanned": MessageLookupByLibrary.simpleMessage(
             "QR Not Scanned or Re Read the qr code/link"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("QR PAYMENTS"),
-        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
-            "QR code will be valid\nfor 30 mins"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "Best if your surrounding is quiet and private"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "qrValidForOneHour": MessageLookupByLibrary.simpleMessage("QR code will be valid\nfor 30 mins"),
+        "quietSurrounding":
+            MessageLookupByLibrary.simpleMessage("Best if your surrounding is quiet and private"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "receiveMoneyFromOthers": MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc":
             MessageLookupByLibrary.simpleMessage("Share your account info to be able to receive money."),
@@ -1988,10 +1974,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
-        "requestMoneyFrom":
-            MessageLookupByLibrary.simpleMessage("Request money from"),
-        "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
-            "Request money from another bank account"),
+        "requestMoneyFrom": MessageLookupByLibrary.simpleMessage("Request money from"),
+        "requestMoneyFromOtherBank":
+            MessageLookupByLibrary.simpleMessage("Request money from another bank account"),
         "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
             "If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account"),
         "requestNewCardImmediately": MessageLookupByLibrary.simpleMessage(
@@ -2269,20 +2254,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage("Swipe up to view transactions"),
         "switchDevice": MessageLookupByLibrary.simpleMessage("SWITCH DEVICE"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
-        "tapAmtToEdit":
-            MessageLookupByLibrary.simpleMessage("Tap amount to edit"),
+        "tapAmtToEdit": MessageLookupByLibrary.simpleMessage("Tap amount to edit"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
-        "tapToEditPhoto":
-            MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
+        "tapToEditPhoto": MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
         "taxAmount": MessageLookupByLibrary.simpleMessage("Tax Amount"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
-        "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
-            "Complete your tax report information below"),
+        "taxReportInfoDesc":
+            MessageLookupByLibrary.simpleMessage("Complete your tax report information below"),
         "taxationDeclaration": MessageLookupByLibrary.simpleMessage(
             "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
-        "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage("By law, you are needed to declare your taxation details"),
+        "taxationDetailsDescription":
+            MessageLookupByLibrary.simpleMessage("By law, you are needed to declare your taxation details"),
         "telecommunication": MessageLookupByLibrary.simpleMessage("Telecommunication"),
         "tellUsAboutImportantInformations":
             MessageLookupByLibrary.simpleMessage("Next, please tell us about these important informations"),
@@ -2326,16 +2310,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAdditionalIncome": MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall": MessageLookupByLibrary.simpleMessage("Total Additional Income"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
-        "totalAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
+        "totalAnnualIncome": MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),
         "totalDue": MessageLookupByLibrary.simpleMessage("Total Due"),
-        "totalUsedAmount":
-            MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
-        "totalUsedLimit":
-            MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
-        "transactionHistory":
-            MessageLookupByLibrary.simpleMessage("Transaction History"),
+        "totalUsedAmount": MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
+        "totalUsedLimit": MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionHistory": MessageLookupByLibrary.simpleMessage("Transaction History"),
         "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
             "Your Trasaction is not Allowed"),
         "transactionPeriod":

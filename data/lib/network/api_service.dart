@@ -814,6 +814,11 @@ abstract class ApiService {
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
 
   @POST("/BillPayment/PayPostPaidBillV1")
+  Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBillV1(
+    @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
+  );
+
+  @POST("/BillPayment/PayPostPaidBill")
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill(
     @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
   );

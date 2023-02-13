@@ -235,6 +235,9 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].fees = inquiryElement.feesAmt;
           payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
           payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
+          payPostPaidBillsDataList[j].isPartial = inquiryElement.isPartial;
+          payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
+          payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
           selectedPostPaidBillsList.add(item);
         }
       }

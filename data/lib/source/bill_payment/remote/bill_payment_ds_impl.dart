@@ -108,7 +108,22 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill({required params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
-    return _apiService.payPostPaidBill(PayPostPaidBillRequestEntity(
+    if (params.isNewBiller == true) {
+      return _apiService.payPostPaidBill(PayPostPaidBillRequestEntity(
+          accountNo: params.accountNo,
+          billerList: params.billerList,
+          currencyCode: params.currencyCode,
+          isNewBiller: params.isNewBiller,
+          otpCode: params.otpCode,
+          CardId: params.CardId,
+          nickName: params.nickName,
+          isCreditCardPayment: params.isCreditCardPayment,
+          totalAmount: params.totalAmount,
+          getToken: true,
+          baseData: baseData.toJson()));
+    }
+
+    return _apiService.payPostPaidBillV1(PayPostPaidBillRequestEntity(
         accountNo: params.accountNo,
         billerList: params.billerList,
         currencyCode: params.currencyCode,

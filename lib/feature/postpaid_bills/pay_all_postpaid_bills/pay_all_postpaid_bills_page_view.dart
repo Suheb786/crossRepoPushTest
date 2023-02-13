@@ -255,7 +255,15 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
                                     child: InkWell(
                                       onTap: () {
-                                        if (amt! > 0.0) {
+                                        bool isAnyBillPartial = false;
+                                        for (var item1 in model.postPaidBillInquiryData ?? []) {
+                                          if (item1.isPartial == true) {
+                                            isAnyBillPartial = true;
+                                            break;
+                                          }
+                                        }
+
+                                        if (amt! > 0.0 || amt <= 0.0 && isAnyBillPartial == true) {
                                           List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
                                           List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
                                               [];
@@ -263,7 +271,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           for (var payPostPaidBillsDataListItem
                                               in model.payPostPaidBillsDataList) {
                                             for (var item in model.selectedPostPaidBillsList) {
-                                              if (double.parse(item.actualdueAmountFromApi ?? "0") > 0.0) {
+                                              if (double.parse(item.actualdueAmountFromApi ?? "0") > 0.0 ||
+                                                  double.parse(item.actualdueAmountFromApi ?? "0") == 0.0 &&
+                                                      item.isPartial == true &&
+                                                      double.parse(item.maxValue ?? "0") > 0.0) {
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
                                                     item.serviceType ==
@@ -291,8 +302,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                         "0");
                                               }
 
-                                              if (dueAmt >
-                                                  0.0 /*|| dueAmt == 0.0 && item.isPartial == true*/) {
+                                              if (dueAmt > 0.0 ||
+                                                  dueAmt == 0.0 &&
+                                                      item.isPartial == true &&
+                                                      double.parse(item.maxValue ?? "0") > 0.0) {
                                                 ///resetting dueAmount back to actual api dueAmount
                                                 item.dueAmount = dueAmt.toStringAsFixed(3);
                                                 item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
