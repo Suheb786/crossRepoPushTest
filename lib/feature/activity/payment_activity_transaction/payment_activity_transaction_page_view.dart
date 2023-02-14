@@ -41,9 +41,13 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                 padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                 child: Center(
                   child: Text(
-                    S.of(context).paymentActivity,
+                    // S.of(context).paymentActivity,
+                    model.paymentActivityTransactionPageArgument.title,
                     style: TextStyle(
-                        fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                        color: model.paymentActivityTransactionPageArgument.titleColor,
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0.t),
                   ),
                 ),
               ),
@@ -53,7 +57,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(

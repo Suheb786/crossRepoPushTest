@@ -6,51 +6,49 @@ import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class UserContactDetailsPageViewModel extends BasePageViewModel {
+  ///--------------------------public-instance-valiables-------------------------------------///
+
+  final UploadProfileImageUseCase _uploadProfileImageUseCase;
+
+  ///---------------------------textEditing-controller----------------------------///
+
   TextEditingController editNameController = TextEditingController();
   TextEditingController editEmailController = TextEditingController();
-
   TextEditingController editIbanController = TextEditingController();
 
-  ///upload profile
+  ///-----------------------------upload profile---------------------------------///
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
-
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
   Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
-  ///delete profile image usecase
+  ///--------------------------delete profile image usecase---------------------------///
   PublishSubject<DeleteProfileImageUseCaseParams> _deleteProfileImageRequest = PublishSubject();
-
   PublishSubject<Resource<bool>> _deleteProfileImageResponse = PublishSubject();
-
   Stream<Resource<bool>> get deleteProfileImageStream => _deleteProfileImageResponse.stream;
 
-  ///upload profile image
+  ///----------------------------upload profile image------------------------------///
   PublishSubject<UploadProfileImageUseCaseParams> _uploadProfileImageRequest = PublishSubject();
-
   PublishSubject<Resource<bool>> _uploadProfileImageResponse = PublishSubject();
-
   Stream<Resource<bool>> get uploadProfileImageStream => _uploadProfileImageResponse.stream;
 
-  ///selected image subject
+  ///---------------------------selected image subject----------------------------///
   final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
-
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
-  /// get profile info  request
+  ///-----------------------------get profile info-------------------------------///
   PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest = PublishSubject();
-
-  /// get profile info response
   PublishSubject<Resource<bool>> _getProfileInfoResponse = PublishSubject();
-
-  /// get profile info response stream
   Stream<Resource<bool>> get getProfileInfoStream => _getProfileInfoResponse.stream;
-
   String selectedProfile = '';
+
+  ///--------------------------public-other-methods-------------------------------------///
 
   bool visibleSaveButton() {
     if (editNameController.text != editEmailController.text ||
@@ -82,5 +80,22 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
 
   void getProfileDetails() {
     _getProfileInfoRequest.safeAdd(GetProfileInfoUseCaseParams());
+  }
+
+  ///--------------------------public-constructor-------------------------------------///
+
+  UserContactDetailsPageViewModel(this._uploadProfileImageUseCase) {
+    _uploadProfileImageRequest.listen((value) {
+      RequestManager(value, createCall: () => _uploadProfileImageUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _uploadProfileImageResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 }

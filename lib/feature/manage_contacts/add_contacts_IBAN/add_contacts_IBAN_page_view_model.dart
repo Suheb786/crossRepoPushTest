@@ -5,15 +5,23 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AddContactsIBANManageContactsPageViewModel extends BasePageViewModel {
-  PageController appSwiperController = PageController(viewportFraction: 0.90);
-  PublishSubject<int> _currentStep = PublishSubject();
-  PublishSubject<int> _currentPageSubject = PublishSubject();
+  ///--------------------------controllers-------------------------------------///
 
-  ///current page index stream
-  Stream<int> get currentPageStream => _currentPageSubject.stream;
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
   final SwiperController pageController = SwiperController();
 
+  ///--------------------------current-page-subject-------------------------------------///
+
+  PublishSubject<int> _currentPageSubject = PublishSubject();
+  Stream<int> get currentPageStream => _currentPageSubject.stream;
+
+  ///--------------------------current-step-subject-------------------------------------///
+
+  PublishSubject<int> _currentStep = PublishSubject();
   Stream<int> get currentStep => _currentStep.stream;
+
+  ///--------------------------public-other-methods-------------------------------------///
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }

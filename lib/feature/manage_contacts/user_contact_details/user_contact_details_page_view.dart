@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -100,7 +101,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
                                               Navigator.pop(context);
-                                              model.getProfileDetails();
+                                              // model.getProfileDetails();
                                               model.showSuccessToast('Profile Image deleted.');
                                               model.selectedProfile = '';
                                               model.addImage(model.selectedProfile);
@@ -181,6 +182,8 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                               descriptionWidget:
                                                   Text(S.current.sendAndRequestFavouriteContacts),
                                               image: AssetUtils.favContactIcon,
+                                              imageHight: 155.h,
+                                              imageWidth: 96.w,
                                               isSwipeToCancel: true, onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: () {
@@ -293,9 +296,16 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                             onTap: () {
                                               if (!model.visibleSaveButton()) {
                                                 Navigator.push(
-                                                    context,
-                                                    CustomRoute.createRoute(
-                                                        PaymentActivityTransactionPage()));
+                                                  context,
+                                                  CustomRoute.createRoute(
+                                                    PaymentActivityTransactionPage(
+                                                      PaymentActivityTransactionPageArgument(
+                                                          backgroundColor: AppColor.vividRed,
+                                                          title: "Transiction History",
+                                                          titleColor: AppColor.brightRed),
+                                                    ),
+                                                  ),
+                                                );
                                               }
                                             },
                                             child: Container(
@@ -340,8 +350,30 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           GestureDetector(
                                             onTap: () {
                                               if (!model.visibleSaveButton()) {
-                                                log("request Money is enable");
-                                                Navigator.pushNamed(context, RoutePaths.RequestMoney);
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  RoutePaths.RequestAmountFromContact,
+                                                  arguments: Beneficiary(
+                                                    accountHolderName: "Test User Account",
+                                                    accountNo: "",
+                                                    bankName: "ABC Bank",
+                                                    beneType: "",
+                                                    beneficiaryAddress: "",
+                                                    detCustomerType: "",
+                                                    fullName: "Test User",
+                                                    iban: "98237328739",
+                                                    id: "",
+                                                    imageUrl: "",
+                                                    limit: 3,
+                                                    mobileNumber: "",
+                                                    nickName: "test",
+                                                    purpose: "personal",
+                                                    purposeDetails: "Test Details",
+                                                    purposeParent: "testparent",
+                                                    purposeParentDetails: "",
+                                                    purposeType: "",
+                                                  ),
+                                                );
                                               }
                                             },
                                             child: Container(
@@ -387,8 +419,30 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           GestureDetector(
                                             onTap: () {
                                               if (model.visibleSaveButton() == false) {
-                                                log("send money is enable");
-                                                Navigator.pushNamed(context, RoutePaths.SendMoney);
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  RoutePaths.SendAmountToContact,
+                                                  arguments: Beneficiary(
+                                                    accountHolderName: "Test User Account",
+                                                    accountNo: "",
+                                                    bankName: "ABC Bank",
+                                                    beneType: "",
+                                                    beneficiaryAddress: "",
+                                                    detCustomerType: "",
+                                                    fullName: "Test User",
+                                                    iban: "98237328739",
+                                                    id: "",
+                                                    imageUrl: "",
+                                                    limit: 3,
+                                                    mobileNumber: "",
+                                                    nickName: "test",
+                                                    purpose: "personal",
+                                                    purposeDetails: "Test Details",
+                                                    purposeParent: "testparent",
+                                                    purposeParentDetails: "",
+                                                    purposeType: "",
+                                                  ),
+                                                );
                                               }
                                             },
                                             child: Container(

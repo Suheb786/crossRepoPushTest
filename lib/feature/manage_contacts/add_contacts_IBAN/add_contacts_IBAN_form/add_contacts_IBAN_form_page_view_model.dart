@@ -12,51 +12,40 @@ import 'package:rxdart/subjects.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactsIBANformPageViewModel extends BasePageViewModel {
-  final AddContactIBANuseCase addContactIBANuseCase;
-  final TextEditingController nameController = TextEditingController();
+  ///--------------------------keys-valiables-------------------------------------///
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
-
-  final TextEditingController emailController = TextEditingController();
+  final AddContactIBANuseCase addContactIBANuseCase;
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
-
-  final TextEditingController ibanORaccountORmobileORaliasController = TextEditingController();
   final GlobalKey<AppTextFieldState> ibanORaccountORmobileORaliasKey =
       GlobalKey(debugLabel: "ibanORaccountORmobileORalias");
 
-  PublishSubject<bool> showbuttom = PublishSubject();
+  ///--------------------------textEditing-controllers-------------------------------------///
 
-  AddContactsIBANformPageViewModel(this.addContactIBANuseCase) {
-    addcontactIBANuseCaseRequest.listen(
-      (value) {
-        RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
-          (event) {
-            addcontactIBANuseCaseResponse.safeAdd(event);
-            if (event.status == Status.ERROR) {
-              getError(event);
-              showErrorState();
-              showToastWithError(event.appError!);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController ibanORaccountORmobileORaliasController = TextEditingController();
 
-              log("error......");
-            }
-          },
-        );
-      },
-    );
-  }
+  ///--------------------------formField-subject-------------------------------------///
 
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   BehaviorSubject<String> formFieldSubject = BehaviorSubject.seeded("");
+
+  ///--------------------------animated-button-subject-------------------------------------///
+  ///
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
+
+  ///--------------------------addContact-subject-------------------------------------///
 
   PublishSubject<AddContactIBANuseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
   PublishSubject<Resource<bool>> addcontactIBANuseCaseResponse = PublishSubject();
-
   Stream<Resource<bool>> get addcontactIBANStream => addcontactIBANuseCaseResponse.stream;
 
+  ///--------------------------public-other-methods-------------------------------------///
+
   validate(String data) {
+    formFieldSubject.safeAdd(data);
     if (nameController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
-      formFieldSubject.safeAdd(data);
     }
     if (emailController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
@@ -94,5 +83,26 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
       default:
         break;
     }
+  }
+
+  ///--------------------------public-constructor-------------------------------------///
+
+  AddContactsIBANformPageViewModel(this.addContactIBANuseCase) {
+    addcontactIBANuseCaseRequest.listen(
+      (value) {
+        RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
+          (event) {
+            addcontactIBANuseCaseResponse.safeAdd(event);
+            if (event.status == Status.ERROR) {
+              getError(event);
+              showErrorState();
+              showToastWithError(event.appError!);
+
+              log("error......");
+            }
+          },
+        );
+      },
+    );
   }
 }

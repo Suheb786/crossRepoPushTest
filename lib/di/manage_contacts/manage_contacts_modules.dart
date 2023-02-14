@@ -1,5 +1,6 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_contacts/manage_contacts_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -45,7 +46,7 @@ final addcontactIBANotpPageViewModelProvider =
 
 final editContactAddedPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UserContactDetailsPageViewModel>(
-        (ref) => UserContactDetailsPageViewModel());
+        (ref) => UserContactDetailsPageViewModel(ref.read(uploadProfileImageUseCaseProvider)));
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));

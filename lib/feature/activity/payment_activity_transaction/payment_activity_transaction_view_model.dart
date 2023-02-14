@@ -6,6 +6,7 @@ import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -13,6 +14,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaymentActivityTransactionViewModel extends BasePageViewModel {
+  final PaymentActivityTransactionPageArgument paymentActivityTransactionPageArgument;
+
   ///*--------------------[accept-request-money-activity]---------------------->>>>>>>
 
   PublishSubject<ApproveRTPRequestUseCaseParam> _approveRTPRequest = PublishSubject();
@@ -51,8 +54,12 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
 
   PaymentActivityTransactionUseCase _useCase;
 
-  PaymentActivityTransactionViewModel(this._useCase, this._requestMoneyActivityUseCase,
-      this._approveRTPRequestUseCase, this._requestToPayResultUseCase) {
+  PaymentActivityTransactionViewModel(
+      this._useCase,
+      this._requestMoneyActivityUseCase,
+      this._approveRTPRequestUseCase,
+      this._requestToPayResultUseCase,
+      this.paymentActivityTransactionPageArgument) {
     _requestMoneyActivityRequest.listen(
       (value) {
         RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))

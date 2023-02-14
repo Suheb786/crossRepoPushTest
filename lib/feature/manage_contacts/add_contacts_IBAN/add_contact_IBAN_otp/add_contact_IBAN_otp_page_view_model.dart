@@ -12,12 +12,75 @@ import 'package:domain/usecase/manage_contacts/add_contact_OTP_usecase.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactIBANotpPageViewModel extends BasePageViewModel {
-  final AddContactIbanOTPuseCase addContactIbanOTPuseCase;
+  ///--------------------------public-instance-valiables-------------------------------------///
+
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+
+  ///--------------------------late-valiables-------------------------------------///
 
   late CountdownTimerController countDownController;
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-  TextEditingController otpController = TextEditingController();
+
+  ///--------------------------final-valiables-------------------------------------///
+
   final GlobalKey<AppTextFieldState> otpKey = GlobalKey();
+  final AddContactIbanOTPuseCase addContactIbanOTPuseCase;
+
+  ///--------------------------controllers-------------------------------------///
+
+  TextEditingController otpController = TextEditingController();
+
+  ///-----------------add-contact-iban-otp-subjects-------------------------------------///
+
+  PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
+  PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
+  Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
+
+  ///--------------------------otp-subject-------------------------------------///
+
+  BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
+
+  ///--------------------------animated-button-subject-------------------------------------///
+
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
+
+  ///--------------------------public-override-methods-------------------------------------///
+
+  @override
+  void dispose() {
+    countDownController.disposeTimer();
+    _showButtonSubject.close();
+    _otpSubject.close();
+    addcontactIbanOTPuseCaseRequest.close();
+    addcontactIbanOTPuseCaseResponse.close();
+
+    super.dispose();
+  }
+
+  ///--------------------------public-other-methods-------------------------------------///
+
+  void validateOTP() {
+    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIbanOTPuseCaseParams(otp: _otpSubject.value));
+  }
+
+  void validate(String val) {
+    _otpSubject.safeAdd(val);
+    if (otpController.text.isNotEmpty && otpController.text.length == 6) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
+  void getError(Resource<bool> event) {
+    switch (event.appError?.type) {
+      case ErrorType.INVALID_OTP:
+        break;
+      default:
+    }
+  }
+
+  ///--------------------------public-constructor-------------------------------------///
 
   AddContactIBANotpPageViewModel(this.addContactIbanOTPuseCase) {
     addcontactIbanOTPuseCaseRequest.listen((value) {
@@ -32,46 +95,5 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {}
       });
     });
-  }
-
-  validateOTP() {
-    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIbanOTPuseCaseParams(otp: _otpSubject.value));
-  }
-
-  void validate(String val) {
-    if (otpController.text.isNotEmpty && otpController.text.length == 6) {
-      _showButtonSubject.safeAdd(true);
-      _otpSubject.safeAdd(val);
-    } else {
-      _showButtonSubject.safeAdd(false);
-    }
-  }
-
-  void getError(Resource<bool> event) {
-    switch (event.appError?.type) {
-      case ErrorType.INVALID_OTP:
-        break;
-      default:
-    }
-  }
-
-  PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
-  Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
-
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
-  BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
-  Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
-
-  @override
-  void dispose() {
-    countDownController.disposeTimer();
-
-    _showButtonSubject.close();
-    _otpSubject.close();
-    addcontactIbanOTPuseCaseRequest.close();
-    addcontactIbanOTPuseCaseResponse.close();
-
-    super.dispose();
   }
 }

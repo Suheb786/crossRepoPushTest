@@ -18,18 +18,22 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ManageContactDetailsPageViewModel extends BasePageViewModel {
+  ///--------------------------public-instance-valiables-------------------------------------///
+
+  List<Purpose> purposeList = [];
+  List<PurposeDetail> purposeDetailList = [];
+  Purpose? purpose;
+  PurposeDetail? purposeDetail;
+
   final UploadDocumentUseCase _uploadDocumentUseCase;
   final GetPurposeUseCase _getPurposeUseCase;
-
   final Beneficiary beneficiary;
-
   final UpdateBeneficiaryUseCase _updateBeneficiaryUseCase;
-
   final DeleteBeneficiaryUseCase _deleteBeneficiaryUseCase;
-
   final UploadBeneficiaryProfileImageUseCase _uploadBeneficiaryProfileImageUseCase;
 
-  ///controllers and keys
+  ///---------------------------textEditing-controller----------------------------///
+
   TextEditingController nickNameController = new TextEditingController();
   TextEditingController ibanController = new TextEditingController();
   TextEditingController accountHolderNameController = new TextEditingController();
@@ -37,136 +41,62 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   TextEditingController purposeController = new TextEditingController();
   TextEditingController purposeDetailsController = new TextEditingController();
 
-  ///selected image subject
+  ///-----------------------selected image subject---------------------------///
+
   final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
-
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
-
   String selectedProfile = '';
 
-  ///update beneficiary
+  ///-----------------------update-beneficiary---------------------------///
+  ///
   PublishSubject<UpdateBeneficiaryUseCaseParams> _updateBeneficiaryRequest = PublishSubject();
-
   PublishSubject<Resource<bool>> _updateBeneficiaryResponse = PublishSubject();
-
   Stream<Resource<bool>> get updateBeneficiaryStream => _updateBeneficiaryResponse.stream;
 
-  ///get profile photo
+  ///-----------------------get-profile-photo---------------------------///
+
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
-
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
-
   Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
-  /// show save button visibility
-  BehaviorSubject<bool> _showSaveButtonSubject = BehaviorSubject.seeded(false);
+  ///-----------------------show-save-button-visibility---------------------------///
 
+  BehaviorSubject<bool> _showSaveButtonSubject = BehaviorSubject.seeded(false);
   Stream<bool> get showSaveButtonStream => _showSaveButtonSubject.stream;
 
-  ///delete beneficiary
+  ///----------------------------delete-beneficiary-------------------------///
+
   PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
-
   PublishSubject<Resource<bool>> _deleteBeneficiaryResponse = PublishSubject();
-
   Stream<Resource<bool>> get deleteBeneficiaryStream => _deleteBeneficiaryResponse.stream;
 
-  ///upload beneficiary profile image
+  ///-----------------------upload-beneficiary-profile-image-----------------///
+
   PublishSubject<UploadBeneficiaryProfileImageUseCaseParams> _uploadBeneficiaryProfileImageRequest =
       PublishSubject();
-
   PublishSubject<Resource<bool>> _uploadBeneficiaryProfileImageResponse = PublishSubject();
-
   Stream<Resource<bool>> get uploadBeneficiaryProfileImageStream =>
       _uploadBeneficiaryProfileImageResponse.stream;
-
   UpdateType updateType = UpdateType.none;
 
-  ///get purpose
+  ///---------------------------get-purpose---------------------------///
+  ///
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
-
   PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
-
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
-  List<Purpose> purposeList = [];
+  ///--------------------------public-override-methods-------------------------------------///
 
-  List<PurposeDetail> purposeDetailList = [];
-
-  Purpose? purpose;
-
-  PurposeDetail? purposeDetail;
-
-  ManageContactDetailsPageViewModel(
-      this._uploadDocumentUseCase,
-      this.beneficiary,
-      this._updateBeneficiaryUseCase,
-      this._deleteBeneficiaryUseCase,
-      this._uploadBeneficiaryProfileImageUseCase,
-      this._getPurposeUseCase) {
-    _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _uploadProfilePhotoResponse.safeAdd(event.data!);
-      });
-    });
-
-    _updateBeneficiaryRequest.listen((value) {
-      RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _updateBeneficiaryResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _deleteBeneficiaryRequest.listen((value) {
-      RequestManager(value, createCall: () => _deleteBeneficiaryUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _deleteBeneficiaryResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _uploadBeneficiaryProfileImageRequest.listen((value) {
-      RequestManager(value, createCall: () => _uploadBeneficiaryProfileImageUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _uploadBeneficiaryProfileImageResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _getPurposeRequest.listen((value) {
-      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _getPurposeResponse.safeAdd(event);
-        purposeList.clear();
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
-        }
-      });
-    });
+  @override
+  void dispose() {
+    _selectedImageSubject.close();
+    _uploadProfilePhotoRequest.close();
+    _uploadProfilePhotoResponse.close();
+    _showSaveButtonSubject.close();
+    super.dispose();
   }
+
+  ///--------------------------public-other-methods-------------------------------------///
 
   void getPurpose(String toAccount, String transferType) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
@@ -244,14 +174,80 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     _showSaveButtonSubject.safeAdd(show);
   }
 
-  @override
-  void dispose() {
-    _selectedImageSubject.close();
-    _uploadProfilePhotoRequest.close();
-    _uploadProfilePhotoResponse.close();
-    _showSaveButtonSubject.close();
-    super.dispose();
+  ///--------------------------public-constructor-------------------------------------///
+
+  ManageContactDetailsPageViewModel(
+      this._uploadDocumentUseCase,
+      this.beneficiary,
+      this._updateBeneficiaryUseCase,
+      this._deleteBeneficiaryUseCase,
+      this._uploadBeneficiaryProfileImageUseCase,
+      this._getPurposeUseCase) {
+    _uploadProfilePhotoRequest.listen((value) {
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _uploadProfilePhotoResponse.safeAdd(event.data!);
+      });
+    });
+
+    _updateBeneficiaryRequest.listen((value) {
+      RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _updateBeneficiaryResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _deleteBeneficiaryRequest.listen((value) {
+      RequestManager(value, createCall: () => _deleteBeneficiaryUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _deleteBeneficiaryResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _uploadBeneficiaryProfileImageRequest.listen((value) {
+      RequestManager(value, createCall: () => _uploadBeneficiaryProfileImageUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _uploadBeneficiaryProfileImageResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getPurposeRequest.listen((value) {
+      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPurposeResponse.safeAdd(event);
+        purposeList.clear();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        }
+      });
+    });
   }
 }
 
+///------------------------------update-Enum-----------------------///
 enum UpdateType { image, details, none }
