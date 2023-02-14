@@ -9,8 +9,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class OtpForManageContactPageViewModel extends BasePageViewModel {
-  final ManageContactOtpValidationUseCase _manageContactOtpValidationUseCase;
+class DeleteContactOTPPageViewModel extends BasePageViewModel {
+  final DeleteContactOtpValidationUsecase _manageContactOtpValidationUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -33,7 +33,7 @@ class OtpForManageContactPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  OtpForManageContactPageViewModel(this._manageContactOtpValidationUseCase) {
+  DeleteContactOTPPageViewModel(this._manageContactOtpValidationUseCase) {
     _validatedOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _manageContactOtpValidationUseCase.execute(params: value))
           .asFlow()
@@ -42,7 +42,9 @@ class OtpForManageContactPageViewModel extends BasePageViewModel {
         _validatedOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {}
+        } else if (event.status == Status.SUCCESS) {
+        
+        }
       });
     });
   }

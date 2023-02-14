@@ -21,7 +21,7 @@ class AddContactIbanOTPuseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (Validator.isEmpty(otp)) {
+    if (otp.isEmpty || otp.length < 6) {
       return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_OTP));
     }
 

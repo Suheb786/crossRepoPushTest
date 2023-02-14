@@ -34,6 +34,8 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
             if (event.status == Status.ERROR) {
               getError(event);
               showErrorState();
+              showToastWithError(event.appError!);
+
               log("error......");
             }
           },
@@ -41,9 +43,9 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
       },
     );
   }
-  Stream<bool> get showStreamButom => showbuttom.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<String> formFieldSubject = BehaviorSubject.seeded("");
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   PublishSubject<AddContactIBANuseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
@@ -51,13 +53,18 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get addcontactIBANStream => addcontactIBANuseCaseResponse.stream;
 
-  validate() {
+  validate(String data) {
     if (nameController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
-    } else if (emailController.text.isNotEmpty) {
+      formFieldSubject.safeAdd(data);
+    }
+    if (emailController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
-    } else if (ibanORaccountORmobileORaliasController.text.isNotEmpty) {
+      formFieldSubject.safeAdd(data);
+    }
+    if (ibanORaccountORmobileORaliasController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
+      formFieldSubject.safeAdd(data);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -72,7 +79,7 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
 
   void getError(Resource<bool> event) {
     switch (event.appError?.type) {
-      case ErrorType.INVALID_NAME:
+      case ErrorType.PLEASE_ENTER_CONTACT_NAME:
         nameKey.currentState!.isValid = false;
         break;
 

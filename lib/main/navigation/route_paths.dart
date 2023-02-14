@@ -154,4 +154,5 @@ class RoutePaths {
   static const String EditContactOTPpage = "/editContactOTPpage";
   static const String PaymentActivityPage = "/paymentActivityPage";
   static const String OtpForManageContact = "/otpForManageContact";
+  static const String AddContactIBANotpPage = "/addContactIbanOTPPage";
 }

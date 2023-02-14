@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -17,15 +20,15 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import 'otp_for_manage_contact_page_view_model.dart';
+import 'delete_contact_otp_for_manage_contact_page_view_model.dart';
 
-class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContactPageViewModel> {
-  OtpForManageContactPageView(ProviderBase model) : super(model);
+class DeleteContactOTPPageView extends BasePageViewWidget<DeleteContactOTPPageViewModel> {
+  DeleteContactOTPPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
+      padding: EdgeInsetsDirectional.only(start: 24.w, top: 96.h, end: 24.w, bottom: 30.h),
       child: AppKeyBoardHide(
         child: Column(
           children: [
@@ -33,7 +36,7 @@ class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContact
               S.of(context).editContact.toUpperCase(),
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 10.t,
                   fontWeight: FontWeight.w600),
             ),
@@ -51,7 +54,7 @@ class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContact
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 20.t,
                       fontWeight: FontWeight.w600),
                 ),
@@ -72,7 +75,7 @@ class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContact
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 20.t,
                         fontWeight: FontWeight.w600),
                   ),
@@ -94,11 +97,8 @@ class OtpForManageContactPageView extends BasePageViewWidget<OtpForManageContact
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          //   model.depersonalizeUserData();
-                          //   model.saveUserData();
-                          //   Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
-                          // } else if (data.status == Status.ERROR) {
-                          //   model.showToastWithError(data.appError!);
+                          // Navigator.pushReplacementNamed(context, RoutePaths.UserContactDetailsPage);
+                          log("message");
                         }
                       },
                       dataBuilder: (context, isOtpVerified) {

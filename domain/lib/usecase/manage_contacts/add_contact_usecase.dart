@@ -28,11 +28,15 @@ class AddContactIBANuseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(name)) {
-      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_NAME));
+      return Left(AppError(
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.PLEASE_ENTER_CONTACT_NAME));
     } else if (Validator.isEmpty(emailAddress)) {
       return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_EMAIL));
     } else if (Validator.isEmpty(IBANACCOUNTNOMobileNoALIAS)) {
-      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_IBAN));
+      return Left(AppError(
+          cause: Exception(),
+          error: ErrorInfo(message: ""),
+          type: ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS));
     }
 
     return Right(true);

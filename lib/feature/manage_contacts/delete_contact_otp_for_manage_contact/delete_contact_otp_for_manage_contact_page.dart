@@ -5,16 +5,16 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import 'otp_for_manage_contact_page_view.dart';
-import 'otp_for_manage_contact_page_view_model.dart';
+import 'delete_contact_otp_for_manage_contact_page_view.dart';
+import 'delete_contact_otp_for_manage_contact_page_view_model.dart';
 
-class OtpForManageContactPage extends BasePage<OtpForManageContactPageViewModel> {
+class DeleteContactOTPPage extends BasePage<DeleteContactOTPPageViewModel> {
   @override
   OtpForManageContactPageState createState() => OtpForManageContactPageState();
 }
 
 class OtpForManageContactPageState
-    extends BaseStatefulPage<OtpForManageContactPageViewModel, OtpForManageContactPage>
+    extends BaseStatefulPage<DeleteContactOTPPageViewModel, DeleteContactOTPPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   OtpForManageContactPageState() : super(subscribeVisibilityEvents: true);
 
@@ -30,7 +30,7 @@ class OtpForManageContactPageState
   }
 
   @override
-  void onModelReady(OtpForManageContactPageViewModel model) {
+  void onModelReady(DeleteContactOTPPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
 
     super.onModelReady(model);
@@ -42,8 +42,8 @@ class OtpForManageContactPageState
   }
 
   @override
-  Widget buildView(BuildContext context, OtpForManageContactPageViewModel model) {
-    return OtpForManageContactPageView(provideBase());
+  Widget buildView(BuildContext context, DeleteContactOTPPageViewModel model) {
+    return DeleteContactOTPPageView(provideBase());
   }
 
   @override

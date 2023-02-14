@@ -6,7 +6,7 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ManageContactOtpValidationUseCase
+class DeleteContactOtpValidationUsecase
     extends BaseUseCase<BaseError, ManageContactOtpValidationUseCaseParams, bool> {
   @override
   Future<Either<BaseError, bool>> execute({required ManageContactOtpValidationUseCaseParams params}) async {

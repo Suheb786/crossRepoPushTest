@@ -7,7 +7,9 @@ import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
+import 'package:neo_bank/ui/molecules/payment/number_formatting_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -91,7 +93,7 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                         controller: model.nameController,
                                         key: model.nameKey,
                                         onChanged: (value) {
-                                          model.validate();
+                                          model.validate(value);
                                         }),
                                     SizedBox(height: 16.0.h),
                                     AppTextField(
@@ -100,20 +102,54 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                         controller: model.emailController,
                                         key: model.emailKey,
                                         onChanged: (value) {
-                                          model.validate();
+                                          model.validate(value);
                                         }),
                                     SizedBox(height: 16.0.h),
                                     AppTextField(
                                       labelText: S.current.ibanORaccountORmobileORalias.toUpperCase(),
-                                      hintText: 'Please enter',
+                                      hintText: S.current.pleaseEnter,
                                       controller: model.ibanORaccountORmobileORaliasController,
                                       key: model.ibanORaccountORmobileORaliasKey,
                                       onChanged: (value) {
-                                        model.validate();
+                                        model.validate(value);
                                       },
                                       labelIcon: () {
                                         return InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            InformationDialog.show(context,
+                                                isSwipeToCancel: false,
+                                                title: S.of(context).mobileNoRegisteredWithBlink,
+                                                descriptionWidget: Column(
+                                                  children: [
+                                                    Text(
+                                                      S.of(context).samplesOfNoFormatting,
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 14.t,
+                                                          fontWeight: FontWeight.w400),
+                                                    ),
+                                                    NumberFormattingWidget(
+                                                      title: S.of(context).iban,
+                                                      desc: S.of(context).dummyIBAN,
+                                                    ),
+                                                    NumberFormattingWidget(
+                                                      title: S.of(context).accountNumber,
+                                                      desc: S.of(context).dummyAccountNo,
+                                                    ),
+                                                    NumberFormattingWidget(
+                                                      title: S.of(context).mobileNo,
+                                                      desc: S.of(context).dummyMobileNo,
+                                                    ),
+                                                    NumberFormattingWidget(
+                                                      title: S.of(context).alias,
+                                                      desc: S.of(context).dummyAlias,
+                                                    )
+                                                  ],
+                                                ),
+                                                onDismissed: () {}, onSelected: () {
+                                              Navigator.pop(context);
+                                            });
+                                          },
                                           child: Padding(
                                             padding: EdgeInsetsDirectional.only(start: 5.0.w),
                                             child: Container(
@@ -138,8 +174,8 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                   Padding(
                                     padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                     child: AppStreamBuilder<bool>(
-                                        stream: model.showStreamButom,
-                                        initialData: true,
+                                        stream: model.showButtonSubjectStream,
+                                        initialData: false,
                                         dataBuilder: (context, isValid) {
                                           return Visibility(
                                             visible: isValid!,
@@ -162,7 +198,7 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                           color: AppColor.brightBlue,
                                           fontSize: 14.t,
                                           letterSpacing: 1.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),

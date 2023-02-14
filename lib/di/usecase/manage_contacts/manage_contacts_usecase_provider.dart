@@ -63,7 +63,7 @@ final editContactIbanOTPuseCaseProvider = Provider.autoDispose<EditContactOTPuse
   (ref) => EditContactOTPuseCase(),
 );
 
-///[ManageContactOtpValidationUseCase] provider
-final manageContactOtpValidationUseCaseProvider = Provider.autoDispose<ManageContactOtpValidationUseCase>(
-  (ref) => ManageContactOtpValidationUseCase(),
+///[DeleteContactOtpValidationUsecase] provider
+final manageContactOtpValidationUseCaseProvider = Provider.autoDispose<DeleteContactOtpValidationUsecase>(
+  (ref) => DeleteContactOtpValidationUsecase(),
 );

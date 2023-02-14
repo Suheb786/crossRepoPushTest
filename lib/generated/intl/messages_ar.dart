@@ -281,6 +281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "هل انت متأكد من انك تريد ايقاف حساب كليك"),
         "areYouSureToUnlinkAccount": MessageLookupByLibrary.simpleMessage(
             "هل انت متأكد انك تريد الغاء ربط الحساب مع حساب كليك؟"),
+        "areYouSureToremoveContact": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this contact? Your action can’t be undone."),
         "areYouSureWantToDelete":
             MessageLookupByLibrary.simpleMessage("هل انت متأكد انك تريد حذف  "),
         "areYouSureYouEnteredYour":
@@ -1181,6 +1183,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatcaDetailNotFound": MessageLookupByLibrary.simpleMessage(
             "معلومات FACTA ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
+        "favouriteContact":
+            MessageLookupByLibrary.simpleMessage("Favourite contact"),
         "favouriteContacts":
             MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
@@ -1825,6 +1829,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
         "newBill": MessageLookupByLibrary.simpleMessage("فاتورة جديدة"),
+        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage(
+            "New contact has been added to the list"),
         "newDeviceDetected":
             MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
@@ -2036,6 +2042,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow":
             MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
+        "pleaseEnterAValidaccountMobileNoAlias":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
+        "pleaseEnterContactName":
+            MessageLookupByLibrary.simpleMessage("Please enter contact name"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
         "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage(
@@ -2214,6 +2225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العلاقة مع PEP"),
         "relativeIdError": MessageLookupByLibrary.simpleMessage(
             "تأكد من إنك مسحت هوية حامل البطاقة التابعة، مش هويتك."),
+        "removeContact": MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removeDebitLockError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "removeFromContact":
@@ -2396,6 +2408,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
+        "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
+            "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "محاولتك لإرسال الأموال غير ناجحة"),

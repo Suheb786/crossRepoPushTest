@@ -284,6 +284,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want to suspend your CliQ ID?"),
         "areYouSureToUnlinkAccount": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to unlink the account with your CliQ ID?"),
+        "areYouSureToremoveContact": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this contact? Your action can’t be undone."),
         "areYouSureWantToDelete": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete "),
         "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
@@ -1227,6 +1229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Favourite Brand"),
         "favouriteBrandItemDescription": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet conspec"),
+        "favouriteContact":
+            MessageLookupByLibrary.simpleMessage("Favourite contact"),
         "favouriteContacts":
             MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
@@ -1893,6 +1897,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
+        "newContacthasBeenAdded": MessageLookupByLibrary.simpleMessage(
+            "New contact has been added to the list"),
         "newDeviceDetected":
             MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
@@ -2108,6 +2114,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseEnterAValidaccountMobileNoAlias":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
+        "pleaseEnterContactName":
+            MessageLookupByLibrary.simpleMessage("Please enter contact name"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
         "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage(
@@ -2304,6 +2315,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "relativeIdError": MessageLookupByLibrary.simpleMessage(
             "Please make sure you scan the supplemenary cardholder ID instead of your ID."),
+        "removeContact": MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removeDebitLockError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "removeFromContact":
@@ -2494,6 +2506,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
+            "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),

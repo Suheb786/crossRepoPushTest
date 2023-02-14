@@ -1,18 +1,23 @@
+import 'dart:developer';
+
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -31,8 +36,15 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.enterOtpForCliqIdValidationStream,
+                  stream: model.addcontactIbanOTPValidationStream,
                   initialData: Resource.none(),
+                  onData: (value) {
+                    if (value.status == Status.SUCCESS) {
+                      Navigator.pushReplacementNamed(context, RoutePaths.UserContactDetailsPage);
+                      model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
+                          title: S.current.success, description: S.current.newContacthasBeenAdded));
+                    }
+                  },
                   dataBuilder: (context, enterOTP) {
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
@@ -44,7 +56,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                           FocusScope.of(context).unfocus();
                           if (StringUtils.isDirectionRTL(context)) {
                             if (!details.primaryVelocity!.isNegative) {
-                              model.validate();
+                              model.validateOTP();
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(addContactIBANViewModelProvider)
@@ -52,7 +64,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                             }
                           } else {
                             if (details.primaryVelocity!.isNegative) {
-                              model.validate();
+                              model.validateOTP();
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(addContactIBANViewModelProvider)
@@ -76,7 +88,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                                         controller: model.otpController,
                                         key: model.otpKey,
                                         onChanged: (val) {
-                                          model.validate();
+                                          model.validate(val);
                                         },
                                       ),
                                     ],
@@ -119,8 +131,8 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                                     Padding(
                                       padding: EdgeInsets.only(top: 16.0.h),
                                       child: AppStreamBuilder<bool>(
-                                          stream: model.showStreamButom,
-                                          initialData: true,
+                                          stream: model.showButtonSubjectStream,
+                                          initialData: false,
                                           dataBuilder: (context, isValid) {
                                             return Visibility(
                                               visible: isValid!,

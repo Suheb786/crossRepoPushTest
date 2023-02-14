@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -24,9 +27,9 @@ class EditUserDetailsOtpForManageContactPageView extends BasePageViewWidget<Edit
 
   @override
   Widget build(BuildContext context, model) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
-      child: AppKeyBoardHide(
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(start: 24.w, top: 96.h, end: 24.w, bottom: 30.h),
         child: Column(
           children: [
             Text(
@@ -94,11 +97,8 @@ class EditUserDetailsOtpForManageContactPageView extends BasePageViewWidget<Edit
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          //   model.depersonalizeUserData();
-                          //   model.saveUserData();
-                          //   Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
-                          // } else if (data.status == Status.ERROR) {
-                          //   model.showToastWithError(data.appError!);
+                          // Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
+                          log("Navigated to manage contact list");
                         }
                       },
                       dataBuilder: (context, isOtpVerified) {
@@ -107,6 +107,7 @@ class EditUserDetailsOtpForManageContactPageView extends BasePageViewWidget<Edit
                             if (details.primaryVelocity!.isNegative) {
                               model.validateOtp();
                             }
+                            // Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
                           },
                           child: Card(
                             margin: EdgeInsets.zero,

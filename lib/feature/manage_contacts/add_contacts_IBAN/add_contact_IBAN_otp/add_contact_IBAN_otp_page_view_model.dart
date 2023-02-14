@@ -1,3 +1,4 @@
+import 'package:animated_widgets/generated/i18n.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -12,16 +13,11 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactIBANotpPageViewModel extends BasePageViewModel {
   final AddContactIbanOTPuseCase addContactIbanOTPuseCase;
-  PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
+
   late CountdownTimerController countDownController;
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
   TextEditingController otpController = TextEditingController();
   final GlobalKey<AppTextFieldState> otpKey = GlobalKey();
-  PublishSubject<bool> showbuttom = PublishSubject();
-
-  PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   AddContactIBANotpPageViewModel(this.addContactIbanOTPuseCase) {
     addcontactIbanOTPuseCaseRequest.listen((value) {
@@ -29,17 +25,23 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         addcontactIbanOTPuseCaseResponse.safeAdd(event);
-        if (event.status == Status.SUCCESS) {
-          showErrorState();
+        if (event.status == Status.ERROR) {
           getError(event);
-        }
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
       });
     });
   }
 
-  void validate() {
-    if (otpController.text.isNotEmpty) {
+  validateOTP() {
+    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIbanOTPuseCaseParams(otp: _otpSubject.value));
+  }
+
+  void validate(String val) {
+    if (otpController.text.isNotEmpty && otpController.text.length == 6) {
       _showButtonSubject.safeAdd(true);
+      _otpSubject.safeAdd(val);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -53,17 +55,23 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
     }
   }
 
-  Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
-
-  Stream<bool> get showStreamButom => showbuttom.stream;
-
-  Stream<Resource<bool>> get enterOtpForCliqIdValidationStream => _enterOtpForCliqIdValidationResponse.stream;
-
+  PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
+  PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
   Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
+
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
+  Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   @override
   void dispose() {
-    countDownController.dispose();
+    countDownController.disposeTimer();
+
+    _showButtonSubject.close();
+    _otpSubject.close();
+    addcontactIbanOTPuseCaseRequest.close();
+    addcontactIbanOTPuseCaseResponse.close();
+
     super.dispose();
   }
 }

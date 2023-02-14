@@ -8,13 +8,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
+import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
+import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
+import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_bottom_sheet_widget.dart';
+import 'package:neo_bank/ui/molecules/payment/number_formatting_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -45,8 +52,23 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.back, height: 20)),
-                    InkWell(onTap: () {}, child: AppSvg.asset(AssetUtils.delete, height: 20)),
+                    InkWell(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
+                        },
+                        child: AppSvg.asset(AssetUtils.back, height: 20)),
+                    InkWell(
+                        onTap: () {
+                          InformationDialog.show(context,
+                              image: AssetUtils.removeContact, isSwipeToCancel: true, onDismissed: () {
+                            Navigator.pop(context);
+                          }, onSelected: () {
+                            Navigator.pushReplacementNamed(context, RoutePaths.OtpForManageContact);
+                          },
+                              title: S.current.removeContact,
+                              descriptionWidget: Text(S.current.areYouSureToremoveContact));
+                        },
+                        child: AppSvg.asset(AssetUtils.delete, height: 20)),
                   ],
                 ),
               ),
@@ -152,9 +174,25 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           }),
 
                                       // SizedBox(width: 69),
-                                      Icon(
-                                        Icons.star_border_outlined,
-                                        color: AppColor.sky_blue_mid,
+                                      GestureDetector(
+                                        onTap: () {
+                                          InformationDialog.show(context,
+                                              title: S.current.favouriteContact,
+                                              descriptionWidget:
+                                                  Text(S.current.sendAndRequestFavouriteContacts),
+                                              image: AssetUtils.favContactIcon,
+                                              isSwipeToCancel: true, onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: () {
+                                            Navigator.pop(context);
+                                            Navigator.pushReplacementNamed(
+                                                context, RoutePaths.ManageContactsList);
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.star_border_outlined,
+                                          color: AppColor.sky_blue_mid,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -195,6 +233,41 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                     controller: model.editIbanController,
                                     labelIcon: () {
                                       return InkWell(
+                                        onTap: () {
+                                          InformationDialog.show(context,
+                                              isSwipeToCancel: false,
+                                              title: S.of(context).mobileNoRegisteredWithBlink,
+                                              descriptionWidget: Column(
+                                                children: [
+                                                  Text(
+                                                    S.of(context).samplesOfNoFormatting,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.t,
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                  NumberFormattingWidget(
+                                                    title: S.of(context).iban,
+                                                    desc: S.of(context).dummyIBAN,
+                                                  ),
+                                                  NumberFormattingWidget(
+                                                    title: S.of(context).accountNumber,
+                                                    desc: S.of(context).dummyAccountNo,
+                                                  ),
+                                                  NumberFormattingWidget(
+                                                    title: S.of(context).mobileNo,
+                                                    desc: S.of(context).dummyMobileNo,
+                                                  ),
+                                                  NumberFormattingWidget(
+                                                    title: S.of(context).alias,
+                                                    desc: S.of(context).dummyAlias,
+                                                  )
+                                                ],
+                                              ),
+                                              onDismissed: () {}, onSelected: () {
+                                            Navigator.pop(context);
+                                          });
+                                        },
                                         child: Padding(
                                           padding: EdgeInsetsDirectional.only(start: 5.0.w),
                                           child: Container(
@@ -219,7 +292,10 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           GestureDetector(
                                             onTap: () {
                                               if (!model.visibleSaveButton()) {
-                                                Navigator.pushNamed(context, RoutePaths.PaymentActivityPage);
+                                                Navigator.push(
+                                                    context,
+                                                    CustomRoute.createRoute(
+                                                        PaymentActivityTransactionPage()));
                                               }
                                             },
                                             child: Container(
@@ -265,6 +341,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                             onTap: () {
                                               if (!model.visibleSaveButton()) {
                                                 log("request Money is enable");
+                                                Navigator.pushNamed(context, RoutePaths.RequestMoney);
                                               }
                                             },
                                             child: Container(
@@ -311,6 +388,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                             onTap: () {
                                               if (model.visibleSaveButton() == false) {
                                                 log("send money is enable");
+                                                Navigator.pushNamed(context, RoutePaths.SendMoney);
                                               }
                                             },
                                             child: Container(
@@ -360,26 +438,31 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                           Visibility(
                             visible: !isKeyboard && model.visibleSaveButton(),
                             // visible: true,
-                            child: Container(
-                              height: 56.h,
-                              width: double.infinity,
-                              margin: EdgeInsetsDirectional.only(
-                                top: 10,
-                              ),
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                    color: AppColor.white.withOpacity(0.9),
-                                    spreadRadius: 15,
-                                    blurRadius: 50,
-                                    offset: Offset(0, -55))
-                              ], color: AppColor.sky_blue_mid, borderRadius: BorderRadius.circular(100)),
-                              child: Center(
-                                child: Text(
-                                  S.current.saveChanges,
-                                  style: TextStyle(
-                                    fontSize: 14.t,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.EditContactOTPpage);
+                              },
+                              child: Container(
+                                height: 56.h,
+                                width: double.infinity,
+                                margin: EdgeInsetsDirectional.only(
+                                  top: 10,
+                                ),
+                                decoration: BoxDecoration(boxShadow: [
+                                  BoxShadow(
+                                      color: AppColor.white.withOpacity(0.9),
+                                      spreadRadius: 22,
+                                      blurRadius: 40,
+                                      offset: Offset(0, -50))
+                                ], color: AppColor.sky_blue_mid, borderRadius: BorderRadius.circular(100)),
+                                child: Center(
+                                  child: Text(
+                                    S.current.saveChanges,
+                                    style: TextStyle(
+                                      fontSize: 14.t,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.white,
+                                    ),
                                   ),
                                 ),
                               ),

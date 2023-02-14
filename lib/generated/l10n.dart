@@ -16229,6 +16229,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Remove contact`
+  String get removeContact {
+    return Intl.message(
+      'Remove contact',
+      name: 'removeContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this contact? Your action can’t be undone.`
+  String get areYouSureToremoveContact {
+    return Intl.message(
+      'Are you sure you want to remove this contact? Your action can’t be undone.',
+      name: 'areYouSureToremoveContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite contact`
+  String get favouriteContact {
+    return Intl.message(
+      'Favourite contact',
+      name: 'favouriteContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?`
+  String get sendAndRequestFavouriteContacts {
+    return Intl.message(
+      'Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?',
+      name: 'sendAndRequestFavouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter contact name`
+  String get pleaseEnterContactName {
+    return Intl.message(
+      'Please enter contact name',
+      name: 'pleaseEnterContactName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get pleaseEnterAValidaccountMobileNoAlias {
+    return Intl.message(
+      'Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'pleaseEnterAValidaccountMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New contact has been added to the list`
+  String get newContacthasBeenAdded {
+    return Intl.message(
+      'New contact has been added to the list',
+      name: 'newContacthasBeenAdded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
