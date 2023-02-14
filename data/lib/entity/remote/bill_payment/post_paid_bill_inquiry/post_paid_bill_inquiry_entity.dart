@@ -31,6 +31,8 @@ class PostPaidBillInquiryEntity
   dynamic minValue;
   @JsonKey(name: "maxValue")
   dynamic maxValue;
+  @JsonKey(name: "inqRefNo")
+  dynamic inqRefNo;
 
   PostPaidBillInquiryEntity({
     this.serviceType,
@@ -45,6 +47,7 @@ class PostPaidBillInquiryEntity
     this.isPartial,
     this.minValue,
     this.maxValue,
+    this.inqRefNo,
   });
 
   factory PostPaidBillInquiryEntity.fromJson(Map<String, dynamic> json) =>
@@ -61,6 +64,7 @@ class PostPaidBillInquiryEntity
   PostPaidBillInquiryData transform() {
     return PostPaidBillInquiryData(
         message: this.message != null && this.message!.isNotEmpty ? this.message : "",
+        inqRefNo: this.inqRefNo != null && this.inqRefNo!.isNotEmpty ? this.inqRefNo : "",
         billerCode: this.billerCode != null && this.billerCode!.isNotEmpty ? this.billerCode : "0",
         billingNo: this.billingNo != null && this.billingNo!.isNotEmpty ? this.billingNo : "",
         billNo: this.billNo != null && this.billNo!.isNotEmpty ? this.billNo : "",

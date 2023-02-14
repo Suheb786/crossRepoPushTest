@@ -245,34 +245,34 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     itemCount: model.arguments.billerSuccessDetailsList!.length),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(top: 25.0.h),
-              child: GestureDetector(
-                onTap: () {
-                  _shareDetails(context, model);
-                },
-                child: model.addAllBillAmt() > 0.0
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
-                          SizedBox(
-                            width: 8.w,
-                          ),
-                          Text(
-                            S.of(context).shareMyReceipt,
-                            style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.light_acccent_blue,
-                              fontSize: 14.t,
-                            ),
-                          )
-                        ],
-                      )
-                    : Container(),
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsetsDirectional.only(top: 25.0.h),
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       _shareDetails(context, model);
+            //     },
+            //     child: model.addAllBillAmt() > 0.0
+            //         ? Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
+            //               SizedBox(
+            //                 width: 8.w,
+            //               ),
+            //               Text(
+            //                 S.of(context).shareMyReceipt,
+            //                 style: TextStyle(
+            //                   fontFamily: StringUtils.appFont,
+            //                   fontWeight: FontWeight.w600,
+            //                   color: AppColor.light_acccent_blue,
+            //                   fontSize: 14.t,
+            //                 ),
+            //               )
+            //             ],
+            //           )
+            //         : Container(),
+            //   ),
+            // ),
             SizedBox(
               height: 85.h,
             ),

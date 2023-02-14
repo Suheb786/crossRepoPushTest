@@ -71,6 +71,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         debugPrint('multiple selected $totalBillAmt');
       } else {
         payPostPaidBillsDataList[index].isChecked = true;
+        if (payPostPaidBillsDataList[index].isPartial == true &&
+            double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+            double.parse(payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0) {
+          payPostPaidBillsDataList[index].isChecked = false;
+        }
         postPaidRequestListJson = [];
         postPaidRequestListJson.add(PostpaidBillInquiry(
           billerCode: payPostPaidBillsDataList[index].billerCode,
@@ -113,6 +118,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     if (arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
       for (var item in payPostPaidBillsDataList) {
         item.isChecked = true;
+        if (item.isPartial == true &&
+            double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 &&
+            double.parse(item.maxValue ?? "0") <= 0.0) {
+          item.isChecked = false;
+        }
         postPaidRequestListJson.add(PostpaidBillInquiry(
           billerCode: item.billerCode,
           serviceType: item.serviceType,

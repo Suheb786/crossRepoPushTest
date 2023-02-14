@@ -92,15 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.4+5"
-  camera_android:
-    dependency: "direct overridden"
-    description:
-      path: "packages/camera/camera_android"
-      ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
-      resolved-ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
-      url: "https://github.com/bottlepay/plugins.git"
-    source: git
-    version: "0.10.0+1"
   camera_platform_interface:
     dependency: transitive
     description:

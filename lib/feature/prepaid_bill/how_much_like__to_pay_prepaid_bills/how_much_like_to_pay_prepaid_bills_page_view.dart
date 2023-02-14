@@ -45,6 +45,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
           model.billerCode = value.data?.content?.billerCode ?? "";
           model.billingNumber = value.data?.content?.billingNo ?? "";
           model.otpCode = value.data?.content?.validationCode ?? "";
+          model.validationCode = value.data?.content?.validationCode ?? "";
           model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
           model.validate(model.amtController.text);
           if (model.isPrepaidCategoryListEmpty == true) {

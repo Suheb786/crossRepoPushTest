@@ -15,7 +15,10 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String nickName;
   final String billAmtDue;
   final String fees;
+  final String maxValue;
   final bool isSelected;
+  final bool isDisabled;
+  final bool isPartial;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
 
   const PayBillsMultipleListSelectionWidget(
@@ -25,7 +28,10 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
       required this.nickName,
       required this.billAmtDue,
       required this.fees,
+      required this.maxValue,
       required this.isSelected,
+      required this.isPartial,
+      required this.isDisabled,
       required this.paidBillsPayTypeOptionEnum})
       : super(key: key);
 
@@ -157,7 +163,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               // Spacer(),
             ],
           ),
-          isSelected
+          isSelected && !isDisabled
               ? Container(
                   height: 40.h,
                   width: 40.w,
@@ -175,7 +181,9 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   height: 40.0.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                    border: Border.all(color: AppColor.gray1),
+                    border: isDisabled
+                        ? Border.all(color: AppColor.gray1.withOpacity(0.5))
+                        : Border.all(color: AppColor.gray1),
                   ),
                 ),
         ],

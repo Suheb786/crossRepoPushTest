@@ -94,6 +94,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         accountNo: params?.accountNo,
         isNewBiller: params?.isNewBiller,
         otpCode: params?.otpCode,
+        validationCode: params?.validationCode,
         CardId: params?.CardId,
         nickName: params?.nickName,
         prepaidCategoryCode: params?.prepaidCategoryCode,

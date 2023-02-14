@@ -92,7 +92,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
                       model.maxRange =
                           double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
-                      model.isPartial = /*model.postPaidBillInquiryData?[0].isPartial ??*/ true;
+                      model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
                       model.amtController.text = model.addAllBillAmt() ?? "0";
                       model.dueAmtController = model.addAllBillAmt() ?? "0";
                       model.addNewBillDetailsData.amount = model.dueAmtController;
@@ -113,19 +113,27 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
 
                           Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                               arguments: PaidBillsSuccessPageArguments(
-                                amt: model.totalAmountToPay(isDisplay: true),
-                                fee: model.postPaidBillInquiryData?[0].feesAmt,
-                                billName: AppConstantsUtils.BILLER_NAME,
-                                nickName: AppConstantsUtils.NICK_NAME,
-                                service: model.addNewBillDetailsData.service,
+                                data.data?.content?.billerList?[0].totalAmount ?? "0.0",
+                                data.data?.content?.billerList?[0].fee ?? "0.0",
+                                data.data?.content?.billerList?[0].billerName ?? "",
+                                data.data?.content?.billerList?[0].billerNameAR ?? "",
+                                AppConstantsUtils.NICK_NAME,
+                                data.data?.content?.billerList?[0].refNo ?? "",
+                                data.data?.content?.billerList?[0].isPaid ?? false,
                               ));
-                          // var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
-                          // if (errorBillFail == "err-377") {
-                          //   model.showToastWithError(AppError(
-                          //       cause: Exception(),
-                          //       error: ErrorInfo(message: ''),
-                          //       type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
-                          // }
+                          var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
+                          if (errorBillFail == "err-377") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                          }
+                          if (errorBillFail == "err-379") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+                          }
                         }
                       },
                       dataBuilder: (BuildContext context, data) {
@@ -171,6 +179,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                       double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
                                   model.validate(model.dueAmtController);
                                   model.otpCode = value.data?.content?.validationCode ?? "";
+                                  model.validationCode = value.data?.content?.validationCode ?? "";
                                   model.isNewBiller =
                                       value.data?.content?.validationCode == "" ? false : true;
                                   if (AppConstantsUtils.PRE_PAID_FLOW == true) {
@@ -384,7 +393,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
           keyboardType: TextInputType.numberWithOptions(
             decimal: true,
           ),
-          readOnly: model.isPartial == false,
+          readOnly: model.isPartial == false ||
+              model.isPartial == true && double.parse(model.maxRange ?? "0") <= 0.0,
           controller: model.amtController,
           textAlign: TextAlign.center,
           onChanged: (value) {

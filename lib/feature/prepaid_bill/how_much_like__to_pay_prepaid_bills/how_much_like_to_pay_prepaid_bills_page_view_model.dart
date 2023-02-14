@@ -33,6 +33,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   String? currencyCode = "JOD";
   String? accountNo = "";
   String? otpCode = "";
+  String? validationCode = "";
   bool? isNewBiller = false;
   String? prepaidCategoryCode = "";
   String? prepaidCategoryType = "";
@@ -61,11 +62,8 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<ValidatePrePaidBill>> _validatePrePaidResponse = BehaviorSubject();
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
-  String? userEnteredPrePaidAmount = "0";
 
   void validatePrePaidBill() {
-    userEnteredPrePaidAmount = amtController.text;
-
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
@@ -121,9 +119,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: isPrepaidCategoryListEmpty == true
-            ? double.parse(userEnteredPrePaidAmount ?? "0").toStringAsFixed(3)
-            : "",
+        amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
+        fees: isPrepaidCategoryListEmpty == true ? double.parse(feesAmt ?? "0").toStringAsFixed(3) : "",
+        validationCode: validationCode ?? "",
         currencyCode: "JOD",
         accountNo: savingAccountController.text,
         otpCode: "",

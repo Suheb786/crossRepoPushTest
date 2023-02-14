@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/transaction_status_bills_enum.dart';
+
 class BillPaymentsTransactionList {
   String? nickname;
   String? billingNumber;
@@ -13,7 +15,7 @@ class BillPaymentsTransactionList {
   String? categoryName;
   String? iconCode;
   String? refNo;
-  bool? isPaid;
+  TransactionStatusBillsEnum? status;
 
   BillPaymentsTransactionList({
     this.nickname,
@@ -30,6 +32,6 @@ class BillPaymentsTransactionList {
     this.iconCode,
     this.refNo,
     this.categoryName,
-    this.isPaid,
+    this.status,
   });
 }

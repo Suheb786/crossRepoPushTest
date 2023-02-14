@@ -1524,10 +1524,11 @@
   "viewHistory": "View History",
   "billsHistory": "Bills History",
   "payYourBillswithBlink": "Pay your bills with Blink!",
-  "submittedFor": "Submitted for",
+  "submittedFor": "We are processing your request and we will notify you once ready",
   "thereAreNoDueBillsToBePaidAtTheMoment": "There are no due bills to be paid at the moment",
   "swipeAnyBillerToTheLeftToRemove": "Swipe any biller to the left to remove",
   "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
   "dailyLimitExceededorTryLater": " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ",
+  "processing": "Processing",
   "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
 }

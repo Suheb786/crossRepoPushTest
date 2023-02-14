@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -108,39 +109,52 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         },
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                          start: 50.0, end: 50.0, top: 16.0, bottom: 16.0),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
-                                        decoration: BoxDecoration(
-                                            color: AppColor.lightGray,
-                                            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            AppSvg.asset(AssetUtils.bulbIcon, height: 16.h, width: 16.w),
-                                            SizedBox(width: 8.w),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional.only(top: 4.0.h),
-                                              child: Text(
-                                                S.of(context).swipeAnyBillerToTheLeftToRemove,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: AppColor.very_dark_gray1,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12.0.t),
+                                    model.arguments.paidBillsPayTypeOptionEnum ==
+                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                        ? Container()
+                                        : Padding(
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 50.0, end: 50.0, top: 16.0, bottom: 16.0),
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
+                                              decoration: BoxDecoration(
+                                                  color: AppColor.lightGray,
+                                                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  AppSvg.asset(AssetUtils.bulbIcon,
+                                                      height: 16.h, width: 16.w),
+                                                  SizedBox(width: 8.w),
+                                                  Padding(
+                                                    padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                                    child: Text(
+                                                      S.of(context).swipeAnyBillerToTheLeftToRemove,
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          color: AppColor.very_dark_gray1,
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 12.0.t),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    AppDivider(),
+                                          ),
+                                    model.arguments.paidBillsPayTypeOptionEnum ==
+                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                        ? Container()
+                                        : AppDivider(),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 24.0.h),
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: model.arguments.paidBillsPayTypeOptionEnum ==
+                                                    PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                                ? 24.0.h
+                                                : 8.0.h,
+                                            bottom: 24.0.h),
                                         child: model.payPostPaidBillsDataList.length > 0
                                             ? ListView.separated(
                                                 shrinkWrap: true,
@@ -150,77 +164,165 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                     onTap: () {
                                                       model.selectedItem(index);
                                                     },
-                                                    child: Slidable(
-                                                      endActionPane: ActionPane(
-                                                        extentRatio: 0.25,
-                                                        motion: DrawerMotion(),
-                                                        children: [
-                                                          SlidableAction(
-                                                            // An action can be bigger than the others.
-                                                            onPressed: (context1) => {
-                                                              InformationDialog.show(context,
-                                                                  image: AssetUtils.deleteBlackIcon,
-                                                                  isSwipeToCancel: true,
-                                                                  title: S.of(context).areYouSure,
-                                                                  descriptionWidget: Text(
-                                                                    "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
-                                                                    style: TextStyle(
-                                                                        fontFamily: StringUtils.appFont,
-                                                                        fontSize: 14.t,
-                                                                        fontWeight: FontWeight.w400),
-                                                                  ), onDismissed: () {
-                                                                Navigator.pop(context);
-                                                              }, onSelected: () {
-                                                                Navigator.pop(context);
-                                                                var billerCode = model
-                                                                    .payPostPaidBillsDataList[index]
-                                                                    .billerCode;
-                                                                var billingNo = model
-                                                                    .payPostPaidBillsDataList[index]
-                                                                    .billingNo;
-                                                                var serviceType = model
-                                                                    .payPostPaidBillsDataList[index]
-                                                                    .serviceType;
-                                                                model.removeCustomerBilling(
-                                                                    billerCode, billingNo, serviceType);
-                                                              })
-                                                            },
-                                                            backgroundColor: AppColor.dark_brown,
-                                                            foregroundColor: Colors.white,
-                                                            icon: Icons.delete,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      child: PayBillsMultipleListSelectionWidget(
-                                                        icon:
-                                                            model.payPostPaidBillsDataList[index].iconCode ??
+                                                    child: model.arguments.paidBillsPayTypeOptionEnum ==
+                                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                                        ? PayBillsMultipleListSelectionWidget(
+                                                            icon: model.payPostPaidBillsDataList[index]
+                                                                    .iconCode ??
                                                                 "",
-                                                        biller: StringUtils.isDirectionRTL(context)
-                                                            ? model.payPostPaidBillsDataList[index]
-                                                                    .billerNameAR ??
-                                                                ""
-                                                            : model.payPostPaidBillsDataList[index]
-                                                                    .billerNameEN ??
-                                                                "",
-                                                        billAmtDue: double.parse(model
-                                                                    .payPostPaidBillsDataList[index]
-                                                                    .actualdueAmountFromApi ??
-                                                                "0")
-                                                            .toStringAsFixed(3),
-                                                        fees: double.parse(
-                                                                model.payPostPaidBillsDataList[index].fees ??
-                                                                    "0")
-                                                            .toStringAsFixed(3),
-                                                        isSelected:
-                                                            model.payPostPaidBillsDataList[index].isChecked ??
+                                                            isPartial: model.payPostPaidBillsDataList[index]
+                                                                    .isPartial ??
                                                                 false,
-                                                        nickName:
-                                                            model.payPostPaidBillsDataList[index].nickName ??
+                                                            isDisabled: double.parse(model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .actualdueAmountFromApi ??
+                                                                            "0") <=
+                                                                        0.0 &&
+                                                                    model.payPostPaidBillsDataList[index].isPartial ==
+                                                                        false ||
+                                                                double.parse(model
+                                                                                .payPostPaidBillsDataList[
+                                                                                    index]
+                                                                                .actualdueAmountFromApi ??
+                                                                            "0") <=
+                                                                        0.0 &&
+                                                                    model.payPostPaidBillsDataList[index]
+                                                                            .isPartial ==
+                                                                        true &&
+                                                                    double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <=
+                                                                        0.0,
+                                                            maxValue: double.parse(model
+                                                                        .payPostPaidBillsDataList[index]
+                                                                        .maxValue ??
+                                                                    "0")
+                                                                .toStringAsFixed(3),
+                                                            biller: StringUtils.isDirectionRTL(context)
+                                                                ? model.payPostPaidBillsDataList[index]
+                                                                        .billerNameAR ??
+                                                                    ""
+                                                                : model.payPostPaidBillsDataList[index]
+                                                                        .billerNameEN ??
+                                                                    "",
+                                                            billAmtDue: double.parse(model
+                                                                        .payPostPaidBillsDataList[index]
+                                                                        .actualdueAmountFromApi ??
+                                                                    "0")
+                                                                .toStringAsFixed(3),
+                                                            fees: double.parse(model
+                                                                        .payPostPaidBillsDataList[index]
+                                                                        .fees ??
+                                                                    "0")
+                                                                .toStringAsFixed(3),
+                                                            isSelected: model.payPostPaidBillsDataList[index]
+                                                                    .isChecked ??
+                                                                false,
+                                                            nickName: model.payPostPaidBillsDataList[index]
+                                                                    .nickName ??
                                                                 "",
-                                                        paidBillsPayTypeOptionEnum:
-                                                            model.arguments.paidBillsPayTypeOptionEnum,
-                                                      ),
-                                                    ),
+                                                            paidBillsPayTypeOptionEnum:
+                                                                model.arguments.paidBillsPayTypeOptionEnum,
+                                                          )
+                                                        : Slidable(
+                                                            endActionPane: ActionPane(
+                                                              extentRatio: 0.25,
+                                                              motion: DrawerMotion(),
+                                                              children: [
+                                                                SlidableAction(
+                                                                  // An action can be bigger than the others.
+                                                                  onPressed: (context1) => {
+                                                                    InformationDialog.show(context,
+                                                                        image: AssetUtils.deleteBlackIcon,
+                                                                        isSwipeToCancel: true,
+                                                                        title: S.of(context).areYouSure,
+                                                                        descriptionWidget: Text(
+                                                                          "${S.of(context).doYouReallyWantToDelete} ${StringUtils.isDirectionRTL(context) ? model.payPostPaidBillsDataList[index].billerNameAR : model.payPostPaidBillsDataList[index].billerNameEN} ${S.of(context).fromSavedBills}",
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 14.t,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ), onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, onSelected: () {
+                                                                      Navigator.pop(context);
+                                                                      var billerCode = model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .billerCode;
+                                                                      var billingNo = model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .billingNo;
+                                                                      var serviceType = model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .serviceType;
+                                                                      model.removeCustomerBilling(
+                                                                          billerCode, billingNo, serviceType);
+                                                                    })
+                                                                  },
+                                                                  backgroundColor: AppColor.dark_brown,
+                                                                  foregroundColor: Colors.white,
+                                                                  icon: Icons.delete,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            child: PayBillsMultipleListSelectionWidget(
+                                                              icon: model.payPostPaidBillsDataList[index]
+                                                                      .iconCode ??
+                                                                  "",
+                                                              isPartial: model.payPostPaidBillsDataList[index]
+                                                                      .isPartial ??
+                                                                  false,
+                                                              isDisabled: double.parse(model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .actualdueAmountFromApi ??
+                                                                              "0") <=
+                                                                          0.0 &&
+                                                                      model.payPostPaidBillsDataList[index]
+                                                                              .isPartial ==
+                                                                          false ||
+                                                                  double.parse(model
+                                                                                  .payPostPaidBillsDataList[
+                                                                                      index]
+                                                                                  .actualdueAmountFromApi ??
+                                                                              "0") <=
+                                                                          0.0 &&
+                                                                      model.payPostPaidBillsDataList[index]
+                                                                              .isPartial ==
+                                                                          true &&
+                                                                      double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0,
+                                                              maxValue: double.parse(model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .maxValue ??
+                                                                      "0")
+                                                                  .toStringAsFixed(3),
+                                                              biller: StringUtils.isDirectionRTL(context)
+                                                                  ? model.payPostPaidBillsDataList[index]
+                                                                          .billerNameAR ??
+                                                                      ""
+                                                                  : model.payPostPaidBillsDataList[index]
+                                                                          .billerNameEN ??
+                                                                      "",
+                                                              billAmtDue: double.parse(model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .actualdueAmountFromApi ??
+                                                                      "0")
+                                                                  .toStringAsFixed(3),
+                                                              fees: double.parse(model
+                                                                          .payPostPaidBillsDataList[index]
+                                                                          .fees ??
+                                                                      "0")
+                                                                  .toStringAsFixed(3),
+                                                              isSelected: model
+                                                                      .payPostPaidBillsDataList[index]
+                                                                      .isChecked ??
+                                                                  false,
+                                                              nickName: model.payPostPaidBillsDataList[index]
+                                                                      .nickName ??
+                                                                  "",
+                                                              paidBillsPayTypeOptionEnum:
+                                                                  model.arguments.paidBillsPayTypeOptionEnum,
+                                                            ),
+                                                          ),
                                                   );
                                                 },
                                                 separatorBuilder: (context, index) {

@@ -37,6 +37,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   String? maxRange = "0";
 
   String? otpCode = "";
+  String? validationCode = "";
   bool? isNewBiller = false;
 
   bool? isOtpRequired = false;
@@ -122,13 +123,17 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
       if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
         tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
-            billerCode: item.billerCode,
-            billingNumber: item.billingNo,
-            billerName: AppConstantsUtils.BILLER_NAME,
-            serviceType: item.serviceType,
-            nickName: AppConstantsUtils.NICK_NAME,
-            amount: totalAmountToPay(),
-            fees: item.feesAmt ?? "0.0"));
+          billerCode: item.billerCode,
+          billingNumber: item.billingNo,
+          billerName: AppConstantsUtils.BILLER_NAME,
+          serviceType: item.serviceType,
+          nickName: AppConstantsUtils.NICK_NAME,
+          amount: totalAmountToPay(),
+          dueAmount: totalDueBillAmtFromApiPostPaid(),
+          fees: item.feesAmt ?? "0.0",
+          inqRefNo: item.inqRefNo ?? "",
+          isPartialAllowed: item.isPartial ?? false,
+        ));
       }
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList.toSet().toList();
@@ -150,6 +155,15 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
       totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
     });
     return totalBillAmt.toStringAsFixed(3);
+  }
+
+  totalDueBillAmtFromApiPostPaid() {
+    var totalBillAmtFromApiPostPaid = 0.0;
+    postPaidBillInquiryData!.forEach((element) {
+      totalBillAmtFromApiPostPaid =
+          double.parse(element.actualDueAmountFromApi ?? "0.0") + totalBillAmtFromApiPostPaid;
+    });
+    return totalBillAmtFromApiPostPaid.toStringAsFixed(3);
   }
 
   ///totalAmountToPay
@@ -191,11 +205,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
-  String? userEnteredPrePaidAmount = "0";
 
   void validatePrePaidBill() {
-    userEnteredPrePaidAmount = amtController.text;
-
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
@@ -251,8 +262,11 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount:
-            addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? userEnteredPrePaidAmount ?? "" : "",
+        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? amtController.text : "",
+        fees: addNewBillDetailsData.isPrepaidCategoryListEmpty == true
+            ? double.parse(feeAmtController.text).toStringAsFixed(3)
+            : "",
+        validationCode: validationCode ?? "",
         currencyCode: "JOD",
         accountNo: addNewBillDetailsData.accountNumber,
         otpCode: otpCode,

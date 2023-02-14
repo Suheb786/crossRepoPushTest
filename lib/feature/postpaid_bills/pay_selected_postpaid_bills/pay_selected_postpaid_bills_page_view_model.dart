@@ -78,8 +78,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         await validRequestCounter++;
       }
     }
-    print("askdjas:${totalBillAmt}");
-    print("askdjas:${totalBillAmt}");
     totalBillAmtSuccess = await totalBillAmt;
     _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
@@ -119,7 +117,10 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             serviceType: item.serviceType,
             nickName: getValidBillerNickName(item.billingNo, item.serviceType),
             amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
-            fees: item.feesAmt ?? "0.0"));
+            dueAmount: double.parse(item.actualDueAmountFromApi ?? "0").toStringAsFixed(3),
+            fees: item.feesAmt ?? "0.0",
+            inqRefNo: item.inqRefNo ?? "",
+            isPartialAllowed: item.isPartial ?? false));
       }
       billerSuccessDetailsList?.add(BillerSuccessDetails(
         billerName: !StringUtils.isDirectionRTL(context)
