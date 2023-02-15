@@ -1,8 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
-import 'package:domain/model/user/content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
