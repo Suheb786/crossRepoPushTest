@@ -45,6 +45,7 @@ class AppViewModel extends BaseViewModel {
         _themeData = _themeData.copyWith(
           brightness: Brightness.dark,
           scaffoldBackgroundColor: AppColor.black,
+          accentColor: AppColor.white,
           primaryColor: AppColor.white,
           appBarTheme: AppBarTheme(
               color: Colors.transparent,
@@ -87,6 +88,8 @@ class AppViewModel extends BaseViewModel {
               fontFamily: StringUtils.appFont,
               bodyColor: AppColor.brightBlue,
               displayColor: AppColor.brightBlue),
+          accentTextTheme: _themeData.textTheme.apply(
+              fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
           primaryTextTheme: _themeData.textTheme.apply(
               fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
           iconTheme: IconThemeData(
@@ -107,6 +110,7 @@ class AppViewModel extends BaseViewModel {
             primaryColor: AppColor.brightRed,
             primaryColorDark: AppColor.black,
             primaryColorLight: AppColor.verySoftRed,
+            accentColor: AppColor.white,
             backgroundColor: AppColor.lightGray,
             cardTheme: CardTheme(
                 color: AppColor.veryLightGray,
@@ -163,6 +167,10 @@ class AppViewModel extends BaseViewModel {
                 fontFamily: StringUtils.appFont,
                 bodyColor: AppColor.veryDarkGray2,
                 displayColor: AppColor.veryDarkGray2),
+            accentTextTheme: _themeData.textTheme.apply(
+                fontFamily: StringUtils.appFont,
+                bodyColor: AppColor.brightBlue,
+                displayColor: AppColor.brightBlue),
             primaryTextTheme: _themeData.textTheme.apply(
                 fontFamily: StringUtils.appFont,
                 bodyColor: AppColor.very_dark_gray_black,

@@ -46,7 +46,7 @@ final addcontactIBANotpPageViewModelProvider =
 
 final editContactAddedPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UserContactDetailsPageViewModel>(
-        (ref) => UserContactDetailsPageViewModel(ref.read(uploadProfileImageUseCaseProvider)));
+        (ref) => UserContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider)));
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));

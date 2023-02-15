@@ -96,81 +96,61 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                   Stack(
                                     alignment: Alignment.topRight,
                                     children: [
-                                      AppStreamBuilder<Resource<bool>>(
-                                          stream: model.deleteProfileImageStream,
+                                      AppStreamBuilder<String>(
+                                          stream: model.uploadProfilePhotoStream,
+                                          initialData: "",
                                           onData: (data) {
-                                            if (data.status == Status.SUCCESS) {
-                                              Navigator.pop(context);
-                                              // model.getProfileDetails();
-                                              model.showSuccessToast('Profile Image deleted.');
-                                              model.selectedProfile = '';
-                                              model.addImage(model.selectedProfile);
+                                            if (data != null && data.isNotEmpty) {
+                                              _cropImage(data, model, context);
                                             }
                                           },
-                                          initialData: Resource.none(),
-                                          dataBuilder: (context, snapshot) {
-                                            return AppStreamBuilder<Resource<bool>>(
-                                                stream: model.uploadProfileImageStream,
-                                                initialData: Resource.none(),
+                                          dataBuilder: (context, data) {
+                                            return AppStreamBuilder<String>(
+                                                initialData: "",
+                                                stream: model.selectedImageValue,
                                                 onData: (data) {
-                                                  if (data.status == Status.SUCCESS) {
-                                                    model.addImage(model.selectedProfile);
-                                                    model.showSuccessToast(S.of(context).profilePhotoUpdated);
-                                                    model.getProfileDetails();
+                                                  if (data.isNotEmpty) {
+                                                    model.selectedProfile = data;
                                                   }
                                                 },
-                                                dataBuilder: (context, profilePhotoUpload) {
-                                                  return AppStreamBuilder<String>(
-                                                      stream: model.uploadProfilePhotoStream,
-                                                      initialData: "",
-                                                      dataBuilder: (context, data) {
-                                                        return AppStreamBuilder<String>(
-                                                            initialData: "",
-                                                            stream: model.selectedImageValue,
-                                                            onData: (data) {
-                                                              if (data.isNotEmpty) {
-                                                                model.selectedProfile = data;
-
-                                                                _cropImage(data, model, context);
-                                                              }
-                                                            },
-                                                            dataBuilder: (context, image) {
-                                                              return GestureDetector(
-                                                                onTap: () {
-                                                                  EditProfilePicBottomSheetSelectionWidget
-                                                                      .show(context,
-                                                                          onCancel: () {
-                                                                            Navigator.pop(context);
-                                                                          },
-                                                                          onRemovePhoto: () {},
-                                                                          onSelectFromLibrary: () {
-                                                                            model.uploadProfilePhoto(
-                                                                                DocumentTypeEnum.PICK_IMAGE);
-                                                                          },
-                                                                          onTakePhoto: () {
-                                                                            model.uploadProfilePhoto(
-                                                                                DocumentTypeEnum.CAMERA);
-                                                                          },
-                                                                          title: S.current
-                                                                              .pleaseSelectYourAction);
-                                                                },
-                                                                child: CircleAvatar(
-                                                                  backgroundColor:
-                                                                      Theme.of(context).primaryColor,
-                                                                  minRadius: 48,
-                                                                  child: Text(
-                                                                    StringUtils.getFirstInitials(
-                                                                        "Abdullah Ali"),
-                                                                    style: TextStyle(
-                                                                      color: AppColor.white,
-                                                                      fontSize: 22.t,
-                                                                      fontWeight: FontWeight.w700,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            });
-                                                      });
+                                                dataBuilder: (context, image) {
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      EditProfilePicBottomSheetSelectionWidget.show(context,
+                                                          onCancel: () {
+                                                            Navigator.pop(context);
+                                                          },
+                                                          onRemovePhoto: () {},
+                                                          onSelectFromLibrary: () {
+                                                            model.uploadProfilePhoto(
+                                                                DocumentTypeEnum.PICK_IMAGE);
+                                                          },
+                                                          onTakePhoto: () {
+                                                            model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                                          },
+                                                          title: S.current.pleaseSelectYourAction);
+                                                    },
+                                                    child: image!.isEmpty
+                                                        ? CircleAvatar(
+                                                            backgroundColor: Theme.of(context).primaryColor,
+                                                            minRadius: 48,
+                                                            child: Text(
+                                                              StringUtils.getFirstInitials("Abdullah Ali"),
+                                                              style: TextStyle(
+                                                                color: AppColor.white,
+                                                                fontSize: 22.t,
+                                                                fontWeight: FontWeight.w700,
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : CircleAvatar(
+                                                            radius: 48.w,
+                                                            backgroundImage: Image.file(
+                                                              File(image),
+                                                              fit: BoxFit.cover,
+                                                            ).image,
+                                                          ),
+                                                  );
                                                 });
                                           }),
 
@@ -549,8 +529,7 @@ void _cropImage(String data, UserContactDetailsPageViewModel model, BuildContext
       aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
   if (cropped != null) {
     model.selectedProfile = cropped.path;
-    model.uploadProfileImage();
-    // model.addImage(cropped.path);
+    model.addImage(cropped.path);
     // model.showSuccessToast(S.of(context).profilePhotoUpdated);
   }
 }
