@@ -6,6 +6,10 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page_view_model.dart';
 
 class CliqIdCreationSuccessPage extends BasePage<CliqIdCreationSuccessPageViewModel> {
+  final CliqIdCreationSuccessPageArguments arguments;
+
+  CliqIdCreationSuccessPage(this.arguments);
+
   @override
   CliqIdCreationSuccessPageState createState() => CliqIdCreationSuccessPageState();
 }
@@ -14,7 +18,7 @@ class CliqIdCreationSuccessPageState
     extends BaseStatefulPage<CliqIdCreationSuccessPageViewModel, CliqIdCreationSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return cliqIdCreationSuccessViewModelProvider;
+    return cliqIdCreationSuccessViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -26,4 +30,11 @@ class CliqIdCreationSuccessPageState
   Widget buildView(BuildContext context, CliqIdCreationSuccessPageViewModel model) {
     return CliqIdCreationSuccessPageView(provideBase());
   }
+}
+
+class CliqIdCreationSuccessPageArguments {
+  final String cliqType;
+  final String cliqName;
+
+  CliqIdCreationSuccessPageArguments({required this.cliqType, required this.cliqName});
 }

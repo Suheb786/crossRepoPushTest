@@ -12,8 +12,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class RequestAmountFromContactSuccessPageView
-    extends BasePageViewWidget<RequestAmountFromContactSuccessViewModel> {
+class RequestAmountFromContactSuccessPageView extends BasePageViewWidget<RequestAmountFromContactSuccessViewModel> {
   RequestAmountFromContactSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -46,8 +45,7 @@ class RequestAmountFromContactSuccessPageView
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      child:
-                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                      child: Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                     ),
                   ),
                 ],
@@ -58,10 +56,9 @@ class RequestAmountFromContactSuccessPageView
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      model.successValues[0],
+                      double.parse(model.successValues[0]).toStringAsFixed(3),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28.0.t),
+                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28.0.t),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 5.0.w),
@@ -83,8 +80,7 @@ class RequestAmountFromContactSuccessPageView
                   S.of(context).requestedFrom,
                   maxLines: 3,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24.0.t),
+                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24.0.t),
                 ),
               ),
               Padding(
@@ -92,8 +88,7 @@ class RequestAmountFromContactSuccessPageView
                 child: Text(
                   model.successValues[1],
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
                 ),
               ),
               Padding(

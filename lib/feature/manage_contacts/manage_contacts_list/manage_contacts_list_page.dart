@@ -5,6 +5,7 @@ import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -42,17 +43,23 @@ class ManageContactListPageState
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(start: 24.0.w),
                     child: AppSvg.asset(AssetUtils.leftArrow,
-                        matchTextDirection: true, color: Theme.of(context).accentColor),
+                        matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 Text(
                   S.of(context).manageContacts,
                   style: TextStyle(
-                      fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(end: 24.0.w),
-                  child: Icon(Icons.add, color: Theme.of(context).accentColor),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, RoutePaths.AddContactsIBANManageContactsPage);
+                      },
+                      child: Icon(Icons.add, color: Theme.of(context).colorScheme.secondary)),
                 )
               ],
             ),

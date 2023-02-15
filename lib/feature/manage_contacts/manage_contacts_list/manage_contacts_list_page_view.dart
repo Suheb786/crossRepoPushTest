@@ -25,7 +25,7 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
@@ -207,19 +207,25 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                                     color: AppColor.black,
                                     fontWeight: FontWeight.w600),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: 16.h),
-                                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.AddContactsIBANManageContactsPage);
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 16.h),
+                                  padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                  ),
+                                  child: Text(S.of(context).addContact,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).colorScheme.secondary)),
                                 ),
-                                child: Text(S.of(context).addContact,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.t,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context).accentColor)),
                               )
                             ],
                           ),

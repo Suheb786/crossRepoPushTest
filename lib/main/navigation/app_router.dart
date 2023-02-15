@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mo
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity/payment_activity_page.dart';
 import 'package:neo_bank/feature/apply_credit_card_home/apply_credit_card_home_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
@@ -70,10 +71,18 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
+import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page.dart';
+import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
+
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
-import 'package:neo_bank/feature/manage_contacts/otp_for_manage_contact/otp_for_manage_contact_page.dart';
+import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
@@ -619,12 +628,14 @@ class AppRouter {
 
       case RoutePaths.CliqIdCreationSuccess:
         return CupertinoPageRoute(
-            builder: (context) => CliqIdCreationSuccessPage(),
+            builder: (context) =>
+                CliqIdCreationSuccessPage(settings.arguments as CliqIdCreationSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.CliqIdCreationSuccess));
 
       case RoutePaths.EditAlias:
         return CupertinoPageRoute(
-            builder: (context) => EditAliasPage(), settings: RouteSettings(name: RoutePaths.EditAlias));
+            builder: (context) => EditAliasPage(settings.arguments as EditAliasPageArguments),
+            settings: RouteSettings(name: RoutePaths.EditAlias));
 
       case RoutePaths.EditMobileNoCliq:
         return CupertinoPageRoute(
@@ -754,6 +765,10 @@ class AppRouter {
                 PayAllPostPaidBillsPage(settings.arguments as PayAllPostPaidBillsPageArguments),
             settings: RouteSettings(name: RoutePaths.PayAllPostPaidBillsPage));
 
+      // case RoutePaths.LauncherPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) => LauncherPage(), settings: RouteSettings(name: RoutePaths.LauncherPage));
+
       case RoutePaths.PostPaidBillsSuccessPage:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -782,6 +797,18 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaidBillsSuccessPage(settings.arguments as PaidBillsSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.PaidBillsSuccessPage));
+
+      case RoutePaths.EditCliqIDMobileNoPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                EditCliqIDMobileNoPage(settings.arguments as EditCliqIDMobileNoPageArguments),
+            settings: RouteSettings(name: RoutePaths.EditCliqIDMobileNoPage));
+
+      case RoutePaths.OtpForEditAliasAndMobileNoPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                OtpForEditAliasAndMobileNoPage(settings.arguments as OtpForEditAliasAndMobileNoPageArguments),
+            settings: RouteSettings(name: RoutePaths.OtpForEditAliasAndMobileNoPage));
 
       case RoutePaths.PayMyPrePaidBillsPage:
         return CupertinoPageRoute(
@@ -861,10 +888,38 @@ class AppRouter {
                 RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
+      case RoutePaths.LinkAccountPage:
+        return CupertinoPageRoute(
+            builder: (context) => LinkAccountPage(settings.arguments as LinkAccountPageArgument),
+            settings: RouteSettings(name: RoutePaths.LinkAccountPage));
+
+      /// [Manage Contact]
+      case RoutePaths.AddContactsIBANManageContactsPage:
+        return CupertinoPageRoute(
+            builder: (context) => AddContactsIBANManageContactsPage(),
+            settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
+
+      case RoutePaths.UserContactDetailsPage:
+        return CupertinoPageRoute(
+            builder: (context) => UserContactDetailsPage(),
+            settings: RouteSettings(name: RoutePaths.UserContactDetailsPage));
+      case RoutePaths.EditContactOTPpage:
+        return CupertinoPageRoute(
+            builder: (context) => EditUserContactPage(),
+            settings: RouteSettings(name: RoutePaths.EditContactOTPpage));
+      case RoutePaths.PaymentActivityPage:
+        return CupertinoPageRoute(
+            builder: (context) => PaymentActivityPage(),
+            settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
       case RoutePaths.OtpForManageContact:
         return CupertinoPageRoute(
-            builder: (context) => OtpForManageContactPage(),
+            builder: (context) => DeleteContactOTPPage(),
             settings: RouteSettings(name: RoutePaths.OtpForManageContact));
+
+      case RoutePaths.AddContactIBANotpPage:
+        return CupertinoPageRoute(
+            builder: (context) => AddContactIBANotpPage(),
+            settings: RouteSettings(name: RoutePaths.AddContactIBANotpPage));
 
       default:
         return CupertinoPageRoute(

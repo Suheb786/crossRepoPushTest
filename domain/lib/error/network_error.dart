@@ -385,7 +385,7 @@ class NetworkError extends BaseError {
 
           case "err-101":
           case "err-102":
-            return AppError(cause: cause, error: error, type: ErrorType.ERROR_GETTING_CARD_INFO_NET);
+          return AppError(cause: cause, error: error, type: ErrorType.ERROR_GETTING_CARD_INFO_NET);
 
           case "err-103":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_UPDATING_LIMITS);
@@ -748,6 +748,68 @@ class NetworkError extends BaseError {
 
           case "err-377":
             return AppError(cause: cause, error: error, type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE);
+
+          case "err-341":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ALIAS);
+
+          case "err-342":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_ALIAS);
+
+          case "err-343":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_CREATING_AN_ALIAS);
+
+          case "err-344":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_LINKING_ACCOUNT);
+
+          case "err-345":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_EDITING_AN_ALIAS);
+          case "err-346":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_TRYING_TO_SUSPEND_AN_ALIAS);
+          case "err-347":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_RE_ACTIVATING_AN_ALIAS);
+          case "err-348":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_DELETING_AN_ALIAS);
+          case "err-349":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_CHANGING_TO_DEFAULT_ACCOUNT);
+          case "err-351":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_UN_LINKING_ACCOUNT);
+          case "err-352":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_REQUESTING_MONEY);
+          case "err-353":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY);
+          case "err-354":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_UPDATING_RTP_REQUEST);
+          case "err-355":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_SENDING_MONEY_TO_CLIQ_IBAN);
+          case "err-366":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID);
+          case "err-367":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_SUBMITTING_OUTWARD_PAYMENT);
+          case "err-368":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_APPROVE_RTP_REQUEST);
+          case "err-369":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT);
+          case "err-370":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT);
+          case "err-371":
+            return AppError(cause: cause, error: error, type: ErrorType.CUSTOMER_OF_INVALID_ALIAS);
+          case "err-372":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_IBAN);
+          case "err-373":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS);
+          case "err-374":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_MOBILE_NUMBER);
+          case "err-376":
+            return AppError(cause: cause, error: error, type: ErrorType.SERVICE_NOT_AVAILABLE);
 
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -1382,6 +1444,38 @@ class NetworkError extends BaseError {
           case "err-0009":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
+
+          case "err-366":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID);
+
+          case "err-367":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_SUBMITTING_OUTWARD_PAYMENT);
+
+          case "err-368":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_APPROVE_RTP_REQUEST);
+
+          case "err-369":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ACCOUNT_IS_LINKED_TO_THE_ALIAS_BUT_UNABLE_TO_SET_IT_TO_DEFAULT);
+
+          case "err-370":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_REQUEST_TO_PAY_RESULT);
+
+          case "err-371":
+            return AppError(cause: cause, error: error, type: ErrorType.CUSTOMER_OF_INVALID_ALIAS);
+
+          case "err-372":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_IBAN);
+
+          case "err-373":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS);
+
+          case "err-374":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS_VALUE);
 
           default:
             return AppError(

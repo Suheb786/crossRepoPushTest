@@ -112,6 +112,35 @@ import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_reques
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
+import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
+import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
+import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
+import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_money_activity/response/request_money_activity_response_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
+import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
+import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
+import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
+import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
+import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -179,7 +208,6 @@ import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
 import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
-import 'package:data/entity/remote/rj/get_flight_details/flight_details_response_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
@@ -544,11 +572,11 @@ abstract class ApiService {
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
       @Body() GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
 
-  @POST("/transfer/CheckSendMoney")
+  @POST("/transfer/CheckSendMoneyV2")
   Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
-  @POST("/transfer/TransferAPIV2")
+  @POST("/transfer/TransferAPIV3")
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
@@ -892,11 +920,112 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
 
   @POST("/RJ/GetFlightDetails")
-  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(
-      @Body() GetFlightDetailsRequestEntity request);
+  Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
 
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  @POST("/Cliq/ConfirmEditCliqID")
+  Future<HttpResponse<EditCliqResponseEntity>> editCliqID(@Body() EditCliqIdRequestEntity request);
+
+  @POST("/Cliq/EditCliqIDOtp")
+  Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp(
+    @Body() EditCliqOtpRequestEntity request,
+  );
+
+  @POST("/Cliq/SuspendCliqId")
+  Future<HttpResponse<ResponseEntity>> suspendCliqId(@Body() SuspendCliqIdRequestEntity request);
+
+  @POST("/Cliq/ReActivateCliqId")
+  Future<HttpResponse<ResponseEntity>> reActivateCliqId(@Body() ReActivateCliqIdRequestEntity request);
+
+  @POST("/Cliq/DeleteCliqId")
+  Future<HttpResponse<ResponseEntity>> deleteCliqId(@Body() DeleteCliqIdRequestEntity request);
+
+  @POST("/Cliq/UpdateRTPRequest")
+  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
+
+  @POST("/Cliq/SendMoneytoCliqIBAN")
+  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(@Body() SendMoneyToCliqIbanRequestEntity request);
+
+  @POST("/Cliq/QRCode")
+  Future<HttpResponse<ResponseEntity>> qRCliqCode(@Body() QrCodeCliqRequestEntity request);
+
+  @POST("/Cliq/SendQRPayment")
+  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
+
+  @POST("/Cliq/GetAlias")
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
+
+  @POST("/Cliq/GetCliqAccountByAlias")
+  Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
+    @Body() GetCliqAccountByAliasEntity request,
+  );
+
+  @POST("/Cliq/ConfirmCreateCLidID")
+  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
+    @Body() ConfirmCreateCliqIdRequestEntity request,
+  );
+
+  @POST("/Cliq/CreateCliqIdOtp")
+  Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp(
+    @Body() CreateCliqIdOtpRequestEntity request,
+  );
+
+  @POST("/Cliq/AddLinkAccount")
+  Future<HttpResponse<ResponseEntity>> addLinkAccount(
+    @Body() AddLinkAccountRequestEntity request,
+  );
+
+  @POST("/Cliq/ConfirmChangeDefaultAccount")
+  Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
+    @Body() ConfirmChangeDefaultAccountRequestEntity request,
+  );
+
+  @POST("/Cliq/UnLinkAccountFromCliq")
+  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq(
+    @Body() UnLinkAccountFromCliqRequestEntity request,
+  );
+
+  @POST("/Cliq/RequestMoney")
+  Future<HttpResponse<ResponseEntity>> requestMoney(
+    @Body() RequestMoneyRequestEntity request,
+  );
+
+  @POST("/Cliq/RequestMoneyActivity")
+  Future<HttpResponse<PaymentActivityResponseEntity>> requestMoneyActivity(
+    @Body() RequestMoneyActivityRequestEntity request,
+  );
+
+  @POST("/Cliq/GetCustomerByAccount")
+  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
+    @Body() GetCustomByAccountRequestEntity request,
+  );
+
+  @POST("/Cliq/RequestToPayResult")
+  Future<HttpResponse<ResponseEntity>> requestToPayResult(
+    @Body() RequestToPayResultRequestEntity request,
+  );
+
+  @POST("/Cliq/GetAccountByCustomerID")
+  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/ChangeDefaultAccountOtp")
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/ApproveRTPRequest")
+  Future<HttpResponse<ResponseEntity>> approveRTPRequest(
+    @Body() ApproveRTPRequestReqestEntity request,
+  );
+
+  @POST("/Cliq/SubmitOutwardPayment")
+  Future<HttpResponse<ResponseEntity>> submitOutwardPayment(
+    @Body() SubmitOutwardPaymentRequestEntity request,
+  );
 
   @POST("/Cliq/CliqRegisterCustomer")
   Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(

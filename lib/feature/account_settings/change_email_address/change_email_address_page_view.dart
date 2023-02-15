@@ -18,8 +18,13 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import 'enter_code_for_change_email_address/enter_code_for_change_email_address_page.dart';
 
-class ChangeEmailAddressPageView extends BasePageViewWidget<ChangeEmailAddressPageViewModel> {
-  final pages = [AddNewEmailAddressPage(), EnterCodeForChangeEmailAddressPage(), BaseCardPage()];
+class ChangeEmailAddressPageView
+    extends BasePageViewWidget<ChangeEmailAddressPageViewModel> {
+  final pages = [
+    AddNewEmailAddressPage(),
+    EnterCodeForChangeEmailAddressPage(),
+    BaseCardPage()
+  ];
 
   ChangeEmailAddressPageView(ProviderBase model) : super(model);
 
@@ -45,7 +50,8 @@ class ChangeEmailAddressPageView extends BasePageViewWidget<ChangeEmailAddressPa
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(start: 24.0.w),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          matchTextDirection: true, color: Theme.of(context).accentColor),
+                          matchTextDirection: true,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -65,7 +71,10 @@ class ChangeEmailAddressPageView extends BasePageViewWidget<ChangeEmailAddressPa
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(
-                                top: 8.0.h, bottom: currentStep == 1 ? 0 : 32.h, start: 24.w, end: 24.w),
+                                top: 8.0.h,
+                                bottom: currentStep == 1 ? 0 : 32.h,
+                                start: 24.w,
+                                end: 24.w),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),

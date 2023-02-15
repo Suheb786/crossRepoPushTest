@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/ui/molecules/bottom_sheet/manage_cliq/update_cliq_info_bottom_sheet/update_cliq_info_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
@@ -5,23 +6,29 @@ import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
 class UpdateCliqInfoBottomSheet {
   UpdateCliqInfoBottomSheet._();
 
-  static show(
-    BuildContext context, {
-    String? title,
-    Function()? onEditId,
-    Function()? onShareId,
-    Function()? onSuspendId,
-    Function()? onDeleteId,
-    Function()? onCancel,
-  }) async {
+  static show(BuildContext context,
+      {String? title,
+      CliqAliasIdStatusEnum cliqAliasIdStatusEnum = CliqAliasIdStatusEnum.NONE,
+      Function()? onEditId,
+      Function()? onLinkId,
+      Function()? onShareId,
+      Function()? onSuspendId,
+      Function()? onDeleteId,
+      Function()? onActivateId,
+      Function()? onCancel,
+      required bool showLinkAccount}) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return UpdateCliqInfoBottomSheetView(
           onDeleteId: onDeleteId,
           onEditId: onEditId,
+          onLinkId: onLinkId,
           onShareId: onShareId,
           onSuspendId: onSuspendId,
+          cliqAliasIdStatusEnum: cliqAliasIdStatusEnum,
           onCancel: onCancel,
-          title: title);
+          onActivateId: onActivateId,
+          title: title,
+          showLinkAccount: showLinkAccount);
     });
   }
 }

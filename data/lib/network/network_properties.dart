@@ -11,6 +11,9 @@ class NetworkProperties {
   static const String BASE_CHANNEL_URL = "http://10.6.13.2:2186/api";
   static const String BASE_ROUTER_URL = "https://10.6.13.1:2186/api";
 
+//VAPT CONFIGURATION
+// static const String BASE_CHANNEL_URL = "https://mba-neprp.theblink.com:443/api";
+// static const String BASE_ROUTER_URL = "https://rout-neprp.theblink.com:443/api";
 //VAPT CONFIGURATION [OLD]
 //   static const String BASE_CHANNEL_URL = "https://mba-neprp.theblink.com:443/api";
 //   static const String BASE_ROUTER_URL = "https://rout-neprp.theblink.com:443/api";

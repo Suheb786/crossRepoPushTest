@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCliqBottomSheetWidget extends StatelessWidget {
@@ -7,14 +8,16 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
   final Function()? unlinkAccount;
   final Function()? onCancelTap;
   final String? title;
+  final bool showSetAsDefault;
 
-  const ManageCliqBottomSheetWidget({
-    Key? key,
-    this.setAsDefault,
-    this.unlinkAccount,
-    this.onCancelTap,
-    this.title,
-  }) : super(key: key);
+  const ManageCliqBottomSheetWidget(
+      {Key? key,
+      this.setAsDefault,
+      this.unlinkAccount,
+      this.onCancelTap,
+      this.title,
+      this.showSetAsDefault = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,42 +28,48 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
           children: <Widget>[
             Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 12),
+                padding: EdgeInsets.only(top: 12.h),
                 child: Text(
                   title ?? "",
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColorDark.withOpacity(0.4)),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Container(
-                height: 1,
-                color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+            Visibility(
+              visible: showSetAsDefault,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: Container(
+                  height: 1,
+                  color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                setAsDefault?.call();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  S.of(context).setAsDefault,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
+            Visibility(
+              visible: showSetAsDefault,
+              child: InkWell(
+                onTap: () {
+                  setAsDefault?.call();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: Text(
+                    S.of(context).setAsDefault,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 14.t,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
                 height: 1,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
@@ -83,7 +92,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
                 height: 1,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
@@ -95,14 +104,17 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
               },
               child: Center(
                   child: Padding(
-                padding: EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  S.of(context).cancel,
-                  style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                padding: EdgeInsets.only(bottom: 24.0.h),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 24.h),
+                  child: Text(
+                    S.of(context).cancel,
+                    style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    ),
                   ),
                 ),
               )),

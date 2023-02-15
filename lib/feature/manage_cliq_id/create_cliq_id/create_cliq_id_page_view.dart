@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page.dart';
@@ -43,7 +44,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: Theme.of(context).accentColor,
+                      activeColor: Theme.of(context).colorScheme.secondary,
                       color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
@@ -62,7 +63,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                       S.of(context).createNewCliqId.toUpperCase(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
@@ -76,20 +77,25 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                         curve: Curves.easeInOut,
                         direction: Direction.vertical,
                         offset: 0.5,
-                        child: Text(
-                          StepTextHelper.accountRegistrationTextHelper(
-                            currentStep ?? 0,
-                            S.of(context).letsCreateNewCliqId,
-                            S.of(context).linkBankAccountToYourNewId,
-                            S.of(context).enterOtpHeader,
-                          ),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        child: AppStreamBuilder<String>(
+                            initialData: S.of(context).letsCreateNewCliqId,
+                            stream: model.changeHeaderWhileEnteringText,
+                            dataBuilder: (context, header) {
+                              return Text(
+                                StepTextHelper.accountRegistrationTextHelper(
+                                  currentStep ?? 0,
+                                  header!,
+                                  S.of(context).linkBankAccountToYourNewId,
+                                  S.of(context).enterOtpHeader,
+                                ),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).colorScheme.secondary,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600),
+                              );
+                            }),
                       ),
                     ),
                     Visibility(
@@ -105,11 +111,12 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                           child: Directionality(
                             textDirection: TextDirection.ltr,
                             child: Text(
-                              "+962 79 322 8080",
+                              "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),
                             ),

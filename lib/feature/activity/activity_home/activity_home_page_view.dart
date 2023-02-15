@@ -1,4 +1,4 @@
-import 'package:domain/model/payment/payment_activity_data.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -27,10 +27,10 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
       onVerticalDragEnd: (details) {},
       child: Padding(
         padding: EdgeInsetsDirectional.only(bottom: 47.0.h),
-        child: AppStreamBuilder<Resource<List<PaymentActivityData>>>(
+        child: AppStreamBuilder<Resource<List<RequestMoneyActivityList>>>(
             stream: model.paymentActivityListStream,
             initialData: Resource.none(),
-            dataBuilder: (context, paymentListData) {
+            dataBuilder: (context, paymentActivity) {
               return AppStreamBuilder<int>(
                 stream: model.currentStep,
                 initialData: 0,
@@ -38,8 +38,18 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        if (currentStep == 1 && paymentListData!.data!.length > 4) {
-                          Navigator.push(context, CustomRoute.createRoute(PaymentActivityTransactionPage()));
+                        if (currentStep == 1 && (paymentActivity?.data ?? []).length > 4) {
+                          Navigator.push(
+                              context,
+                              CustomRoute.createRoute(
+                                PaymentActivityTransactionPage(
+                                  PaymentActivityTransactionPageArgument(
+                                    backgroundColor: Theme.of(context).canvasColor,
+                                    title: S.of(context).paymentActivity,
+                                    titleColor: AppColor.black,
+                                  ),
+                                ),
+                              ));
                         }
                       } else {
                         if (details.primaryVelocity! > 0.5) {
@@ -90,7 +100,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                             ),
                                           ),
                                           Visibility(
-                                            visible: currentStep == 1 && paymentListData!.data!.length > 4,
+                                            visible:
+                                                currentStep == 1 && (paymentActivity?.data ?? []).length > 4,
                                             child: Positioned(
                                               bottom: 0,
                                               child: Column(

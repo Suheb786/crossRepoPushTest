@@ -8,8 +8,10 @@ class ManageCliqBottomSheetView extends StatefulWidget {
   final Function()? unlinkAccount;
   final Function()? onCancel;
   final String? title;
+  final bool showSetAsDefault;
 
-  const ManageCliqBottomSheetView({this.setAsDefault, this.unlinkAccount, this.title, this.onCancel});
+  const ManageCliqBottomSheetView(
+      {this.setAsDefault, this.unlinkAccount, this.title, this.onCancel, this.showSetAsDefault = true});
 
   @override
   _ManageCliqBottomSheetViewState createState() => _ManageCliqBottomSheetViewState();
@@ -28,16 +30,19 @@ class _ManageCliqBottomSheetViewState extends State<ManageCliqBottomSheetView> {
             color: AppColor.black.withOpacity(0.4)),
       ),
       actions: [
-        CupertinoActionSheetAction(
-          child: Text(S.of(context).setAsDefault,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColor.pure_blue)),
-          onPressed: () {
-            widget.setAsDefault?.call();
-          },
+        Visibility(
+          visible: widget.showSetAsDefault,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).setAsDefault,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: AppColor.pure_blue)),
+            onPressed: () {
+              widget.setAsDefault?.call();
+            },
+          ),
         ),
         CupertinoActionSheetAction(
           child: Text(S.of(context).unlinkAccount,

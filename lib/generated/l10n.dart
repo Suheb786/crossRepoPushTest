@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -12278,6 +12280,16 @@ class S {
     );
   }
 
+  /// `Default`
+  String get Default {
+    return Intl.message(
+      'Default',
+      name: 'Default',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unlink Account`
   String get unlinkAccount {
     return Intl.message(
@@ -14198,6 +14210,16 @@ class S {
     );
   }
 
+  /// `Back to Manage CliQ`
+  String get backToManageCliq {
+    return Intl.message(
+      'Back to Manage CliQ',
+      name: 'backToManageCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Postpaid Bill`
   String get myPostPaidBill {
     return Intl.message(
@@ -14748,6 +14770,986 @@ class S {
     );
   }
 
+  /// `Linked Account`
+  String get linkedAccount {
+    return Intl.message(
+      'Linked Account',
+      name: 'linkedAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change default account`
+  String get changeDefaultAccount {
+    return Intl.message(
+      'Change default account',
+      name: 'changeDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.`
+  String get whenAcceptingCreationOfYourCliqId {
+    return Intl.message(
+      'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.',
+      name: 'whenAcceptingCreationOfYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.`
+  String get areYourToChangeDefaultAccountOfYourCliqId {
+    return Intl.message(
+      'Are you sure you want to change the default account for your CliQ ID? Please provide your consent to complete the request.',
+      name: 'areYourToChangeDefaultAccountOfYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is successfully linked with CliQ ID`
+  String get accountSuccessfullyLinked {
+    return Intl.message(
+      'Account is successfully linked with CliQ ID',
+      name: 'accountSuccessfullyLinked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to unlink the account with your CliQ ID?`
+  String get areYouSureToUnlinkAccount {
+    return Intl.message(
+      'Are you sure you want to unlink the account with your CliQ ID?',
+      name: 'areYouSureToUnlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlink account with CliQ ID`
+  String get unLinkAccountWithCliqId {
+    return Intl.message(
+      'Unlink account with CliQ ID',
+      name: 'unLinkAccountWithCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Delete?`
+  String get confirmDelete {
+    return Intl.message(
+      'Confirm Delete?',
+      name: 'confirmDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete `
+  String get areYouSureWantToDelete {
+    return Intl.message(
+      'Are you sure you want to delete ',
+      name: 'areYouSureWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from your CliQ ID list?`
+  String get fromYourCliqIdList {
+    return Intl.message(
+      ' from your CliQ ID list?',
+      name: 'fromYourCliqIdList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspend CliQ ID`
+  String get suspandClidId {
+    return Intl.message(
+      'Suspend CliQ ID',
+      name: 'suspandClidId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to suspend your CliQ ID?`
+  String get areYouSureToSuspandCliqId {
+    return Intl.message(
+      'Are you sure you want to suspend your CliQ ID?',
+      name: 'areYouSureToSuspandCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reactivate CliQ ID`
+  String get reactivateCliqId {
+    return Intl.message(
+      'Reactivate CliQ ID',
+      name: 'reactivateCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account successfully unlinked`
+  String get accountSuccessfullyUnlinked {
+    return Intl.message(
+      'Account successfully unlinked',
+      name: 'accountSuccessfullyUnlinked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate ID`
+  String get activateId {
+    return Intl.message(
+      'Activate ID',
+      name: 'activateId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Here are my Blink account details: `
+  String get helloHereMyBlinkAccount {
+    return Intl.message(
+      'Hello! Here are my Blink account details: ',
+      name: 'helloHereMyBlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\n\nGet your blink account today.`
+  String get getYourBlinkAccountTodayBlinkNow {
+    return Intl.message(
+      '\n\nGet your blink account today.',
+      name: 'getYourBlinkAccountTodayBlinkNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Unlinked from CliqID Successfully`
+  String get accountUnlinkedSuccessfully {
+    return Intl.message(
+      'Account Unlinked from CliqID Successfully',
+      name: 'accountUnlinkedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Linked Successfully`
+  String get accountLinkedSuccessfully {
+    return Intl.message(
+      'Account Linked Successfully',
+      name: 'accountLinkedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Deleted Successfully `
+  String get accountDeletedSuccessfully {
+    return Intl.message(
+      'Account Deleted Successfully ',
+      name: 'accountDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Activated Successfully`
+  String get accountActivatedSuccessfully {
+    return Intl.message(
+      'Account Activated Successfully',
+      name: 'accountActivatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Suspended Successfully`
+  String get accountSuspendedSuccessfully {
+    return Intl.message(
+      'Account Suspended Successfully',
+      name: 'accountSuspendedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage\nCliQ ID`
+  String get manageCliqIdRoute {
+    return Intl.message(
+      'Manage\nCliQ ID',
+      name: 'manageCliqIdRoute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Getting Account By Customer ID`
+  String get errorWhileGettingAccountByCustomerId {
+    return Intl.message(
+      'Error while Getting Account By Customer ID',
+      name: 'errorWhileGettingAccountByCustomerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Submitting Outward Payment`
+  String get errorWhileSubmittingOutwardPayment {
+    return Intl.message(
+      'Error while Submitting Outward Payment',
+      name: 'errorWhileSubmittingOutwardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Approve RTP Request`
+  String get errorOnApproveRtpRequest {
+    return Intl.message(
+      'Error on Approve RTP Request',
+      name: 'errorOnApproveRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is linked to the alias, but unable to set it to default`
+  String get accountIsLinkedToTheAliasButUnableToSetItToDefault {
+    return Intl.message(
+      'Account is linked to the alias, but unable to set it to default',
+      name: 'accountIsLinkedToTheAliasButUnableToSetItToDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Request To Pay Result`
+  String get errorOnRequestToPayResult {
+    return Intl.message(
+      'Error on Request To Pay Result',
+      name: 'errorOnRequestToPayResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer of invalid Alias`
+  String get customerOfInvalidAlias {
+    return Intl.message(
+      'Customer of invalid Alias',
+      name: 'customerOfInvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Iban`
+  String get invalidIban {
+    return Intl.message(
+      'Invalid Iban',
+      name: 'invalidIban',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias`
+  String get invalidAlias {
+    return Intl.message(
+      'Invalid Alias',
+      name: 'invalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias Value`
+  String get invalidAliasValue {
+    return Intl.message(
+      'Invalid Alias Value',
+      name: 'invalidAliasValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliqID Updated Successfully`
+  String get cliqIdUpdatedSuccessfully {
+    return Intl.message(
+      'CliqID Updated Successfully',
+      name: 'cliqIdUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Add Link Account`
+  String get pleaseAddLinkAccount {
+    return Intl.message(
+      'Please Add Link Account',
+      name: 'pleaseAddLinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RECIPIENT NAME`
+  String get recipientName {
+    return Intl.message(
+      'RECIPIENT NAME',
+      name: 'recipientName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RECIPIENT ADDRESS`
+  String get recipientAddress {
+    return Intl.message(
+      'RECIPIENT ADDRESS',
+      name: 'recipientAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get accountMobileNoAlias {
+    return Intl.message(
+      'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'accountMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number registered with blink`
+  String get mobileNoRegisteredWithBlink {
+    return Intl.message(
+      'Mobile number registered with blink',
+      name: 'mobileNoRegisteredWithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.`
+  String get mobileNoRegisteredWithBlinkDesc {
+    return Intl.message(
+      'We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.',
+      name: 'mobileNoRegisteredWithBlinkDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number formatting`
+  String get numberFormatting {
+    return Intl.message(
+      'Number formatting',
+      name: 'numberFormatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ABC000012341234123819241213`
+  String get dummyIBAN {
+    return Intl.message(
+      'ABC000012341234123819241213',
+      name: 'dummyIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `9911 1407 61`
+  String get dummyAccountNo {
+    return Intl.message(
+      '9911 1407 61',
+      name: 'dummyAccountNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No.`
+  String get mobileNo {
+    return Intl.message(
+      'Mobile No.',
+      name: 'mobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+962 3320 8080`
+  String get dummyMobileNo {
+    return Intl.message(
+      '+962 3320 8080',
+      name: 'dummyMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `username1`
+  String get dummyAlias {
+    return Intl.message(
+      'username1',
+      name: 'dummyAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here are samples of the number formatting :\n`
+  String get samplesOfNoFormatting {
+    return Intl.message(
+      'Here are samples of the number formatting :\n',
+      name: 'samplesOfNoFormatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Recipient Name`
+  String get emptyRecipientName {
+    return Intl.message(
+      'Enter Recipient Name',
+      name: 'emptyRecipientName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Recipient Address`
+  String get emptyRecipientAddress {
+    return Intl.message(
+      'Enter Recipient Address',
+      name: 'emptyRecipientAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` requested `
+  String get requested {
+    return Intl.message(
+      ' requested ',
+      name: 'requested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you`
+  String get you {
+    return Intl.message(
+      'you',
+      name: 'you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message(
+      'Reject',
+      name: 'reject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is Requesting`
+  String get isRequesting {
+    return Intl.message(
+      ' is Requesting',
+      name: 'isRequesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from you. Would you like to accept?`
+  String get fromYouWouldYouLikeToAcceptIt {
+    return Intl.message(
+      ' from you. Would you like to accept?',
+      name: 'fromYouWouldYouLikeToAcceptIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` as per his request. Confirm this action?`
+  String get asperhisrequestconfirmthisaction {
+    return Intl.message(
+      ' as per his request. Confirm this action?',
+      name: 'asperhisrequestconfirmthisaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to send `
+  String get youareabouttosend {
+    return Intl.message(
+      'You are about to send ',
+      name: 'youareabouttosend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept Request`
+  String get acceptRequest {
+    return Intl.message(
+      'Accept Request',
+      name: 'acceptRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject Request`
+  String get rejectRequest {
+    return Intl.message(
+      'Reject Request',
+      name: 'rejectRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about to reject `
+  String get youareabouttoreject {
+    return Intl.message(
+      'You are about to reject ',
+      name: 'youareabouttoreject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Request Form `
+  String get requestFrom {
+    return Intl.message(
+      ' Request Form ',
+      name: 'requestFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` to `
+  String get towithspace {
+    return Intl.message(
+      ' to ',
+      name: 'towithspace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting alias`
+  String get errorWhileGettingAlias {
+    return Intl.message(
+      'Error while getting alias',
+      name: 'errorWhileGettingAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting account by alias`
+  String get errorWhileGettingAccountByAlias {
+    return Intl.message(
+      'Error while getting account by alias',
+      name: 'errorWhileGettingAccountByAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while creating an alias`
+  String get errorWhileCreatingAnAlias {
+    return Intl.message(
+      'Error while creating an alias',
+      name: 'errorWhileCreatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking account`
+  String get errorWhileLinkingAccount {
+    return Intl.message(
+      'Error while linking account',
+      name: 'errorWhileLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while editing an alias`
+  String get errorWhileEditingAnAlias {
+    return Intl.message(
+      'Error while editing an alias',
+      name: 'errorWhileEditingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while trying to suspend an alias`
+  String get errorWhileTryingTosuspandAnAlias {
+    return Intl.message(
+      'Error while trying to suspend an alias',
+      name: 'errorWhileTryingTosuspandAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while re-activating an alias`
+  String get errorWhileReActivatingAnAlias {
+    return Intl.message(
+      'Error while re-activating an alias',
+      name: 'errorWhileReActivatingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while deleting an alias`
+  String get errorWhileDeletingAnAlias {
+    return Intl.message(
+      'Error while deleting an alias',
+      name: 'errorWhileDeletingAnAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while changing to default account`
+  String get errorWhileChangingToDefaultAccount {
+    return Intl.message(
+      'Error while changing to default account',
+      name: 'errorWhileChangingToDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while un-linking account`
+  String get errorWhileUnLinkingAccount {
+    return Intl.message(
+      'Error while un-linking account',
+      name: 'errorWhileUnLinkingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money`
+  String get errorWhileRequestingMoney {
+    return Intl.message(
+      'Error while requesting money',
+      name: 'errorWhileRequestingMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting money activity`
+  String get errorWhileRequestingMoneyActivity {
+    return Intl.message(
+      'Error while requesting money activity',
+      name: 'errorWhileRequestingMoneyActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating RTP request`
+  String get errorWhileUpdatingRTPRequest {
+    return Intl.message(
+      'Error while updating RTP request',
+      name: 'errorWhileUpdatingRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while sending money to cliq iban`
+  String get errorWhileSendingMoneyToCliqIBAN {
+    return Intl.message(
+      'Error while sending money to cliq iban',
+      name: 'errorWhileSendingMoneyToCliqIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Getting Account By Customer ID`
+  String get errorWhileGettingAccountByCustomerID {
+    return Intl.message(
+      'Error while Getting Account By Customer ID',
+      name: 'errorWhileGettingAccountByCustomerID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Submitting Outward Payment`
+  String get errorWhileSubmmitingOutwardPayment {
+    return Intl.message(
+      'Error while Submitting Outward Payment',
+      name: 'errorWhileSubmmitingOutwardPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Approve RTP Request`
+  String get errorOnApproveRTPRequest {
+    return Intl.message(
+      'Error on Approve RTP Request',
+      name: 'errorOnApproveRTPRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is linked to the alias, but unable to set it to default`
+  String get AccountIsLinkedToTheAlias {
+    return Intl.message(
+      'Account is linked to the alias, but unable to set it to default',
+      name: 'AccountIsLinkedToTheAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error on Request To Pay Result`
+  String get ErrorOnRequestToPayResult {
+    return Intl.message(
+      'Error on Request To Pay Result',
+      name: 'ErrorOnRequestToPayResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer of invalid Alias`
+  String get CustomerOfInvalidAlias {
+    return Intl.message(
+      'Customer of invalid Alias',
+      name: 'CustomerOfInvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Iban`
+  String get invalidIBAN {
+    return Intl.message(
+      'Invalid Iban',
+      name: 'invalidIBAN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Alias`
+  String get InvalidAlias {
+    return Intl.message(
+      'Invalid Alias',
+      name: 'InvalidAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Mobile Number`
+  String get InvalidMobileNo {
+    return Intl.message(
+      'Invalid Mobile Number',
+      name: 'InvalidMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is not available`
+  String get serviceIsNotavaliable {
+    return Intl.message(
+      'Service is not available',
+      name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link Account`
+  String get linkAccount {
+    return Intl.message(
+      'Link Account',
+      name: 'linkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated`
+  String get cliqMobileNumberUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated',
+      name: 'cliqMobileNumberUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Savings Account {String}`
+  String savingAccountList(Object String) {
+    return Intl.message(
+      'Savings Account $String',
+      name: 'savingAccountList',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Default`
+  String get defaultWord {
+    return Intl.message(
+      'Default',
+      name: 'defaultWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Here’s my blink CliQ details:\n\n`
+  String get hereMyCliqDetails {
+    return Intl.message(
+      'Hello! Here’s my blink CliQ details:\n\n',
+      name: 'hereMyCliqDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ Type`
+  String get cliqType {
+    return Intl.message(
+      'CLIQ Type',
+      name: 'cliqType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID`
+  String get cliqID {
+    return Intl.message(
+      'CLIQ ID',
+      name: 'cliqID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default account has been updated`
+  String get defaultAccountUpdated {
+    return Intl.message(
+      'Default account has been updated',
+      name: 'defaultAccountUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias must be a maximum of 10 alphanumeric characters`
+  String get aliasHint {
+    return Intl.message(
+      'Alias must be a maximum of 10 alphanumeric characters',
+      name: 'aliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number must start with 00962`
+  String get aliasMobileNoHint {
+    return Intl.message(
+      'Mobile number must start with 00962',
+      name: 'aliasMobileNoHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias nickname hint: `
+  String get aliasNickNameHint {
+    return Intl.message(
+      'Alias nickname hint: ',
+      name: 'aliasNickNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias mobile hint: `
+  String get aliasMobileHint {
+    return Intl.message(
+      'Alias mobile hint: ',
+      name: 'aliasMobileHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are currently no requests to display`
+  String get noRTPActivityToDisplay {
+    return Intl.message(
+      'There are currently no requests to display',
+      name: 'noRTPActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `QR Not Scanned or Re Read the qr code/link`
   String get qrNotScanned {
     return Intl.message(
@@ -14918,6 +15920,76 @@ class S {
     );
   }
 
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s give a name\n to your new CliQ ID`
+  String get letsGiveANameToYourCliqId {
+    return Intl.message(
+      'Let’s give a name\n to your new CliQ ID',
+      name: 'letsGiveANameToYourCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your mobile number`
+  String get pleaseEnterYourMobileNumber {
+    return Intl.message(
+      'Please enter your mobile number',
+      name: 'pleaseEnterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspended`
+  String get suspended {
+    return Intl.message(
+      'Suspended',
+      name: 'suspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message(
+      'Active',
+      name: 'active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CLIQ ID UPDATE`
+  String get cliqIdUpdate {
+    return Intl.message(
+      'CLIQ ID UPDATE',
+      name: 'cliqIdUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Mobile Number has been updated`
+  String get cliqIDmobileNOUpdated {
+    return Intl.message(
+      'CliQ ID Mobile Number has been updated',
+      name: 'cliqIDmobileNOUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Payment amount can be`
   String get paymentAmountCanBe {
     return Intl.message(
@@ -14968,11 +16040,91 @@ class S {
     );
   }
 
-  /// `Service is not available`
-  String get serviceIsNotavaliable {
+  /// `{String} has been suspended`
+  String hasbeenSuspended(Object String) {
     return Intl.message(
-      'Service is not available',
-      name: 'serviceIsNotavaliable',
+      '$String has been suspended',
+      name: 'hasbeenSuspended',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been activated`
+  String hasBeenActivated(Object String) {
+    return Intl.message(
+      '$String has been activated',
+      name: 'hasBeenActivated',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `{String} has been deleted`
+  String hasBeenDeleted(Object String) {
+    return Intl.message(
+      '$String has been deleted',
+      name: 'hasBeenDeleted',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `CliQ ID Alias has been updated`
+  String get cliqAliasUpdate {
+    return Intl.message(
+      'CliQ ID Alias has been updated',
+      name: 'cliqAliasUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Mobile Number has been updated`
+  String get cliqAliasMobileNoUpdate {
+    return Intl.message(
+      'CliQ ID Mobile Number has been updated',
+      name: 'cliqAliasMobileNoUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `00962000000000`
+  String get mobileNoAliasHint {
+    return Intl.message(
+      '00962000000000',
+      name: 'mobileNoAliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\ncontact details`
+  String get pleaseEnterYourContactDetails {
+    return Intl.message(
+      'Please enter your\ncontact details',
+      name: 'pleaseEnterYourContactDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get ibanORaccountORmobileORalias {
+    return Intl.message(
+      'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'ibanORaccountORmobileORalias',
       desc: '',
       args: [],
     );
@@ -15018,6 +16170,26 @@ class S {
     );
   }
 
+  /// `edit Contact`
+  String get editContact {
+    return Intl.message(
+      'edit Contact',
+      name: 'editContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Contact`
+  String get backToContact {
+    return Intl.message(
+      'Back to Contact',
+      name: 'backToContact',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Favourite Contacts`
   String get favouriteContacts {
     return Intl.message(
@@ -15048,31 +16220,131 @@ class S {
     );
   }
 
-  /// `Add Contact`
-  String get addContact {
-    return Intl.message(
-      'Add Contact',
-      name: 'addContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `edit Contact`
-  String get editContact {
-    return Intl.message(
-      'edit Contact',
-      name: 'editContact',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `You don’t have any contacts yet.\nAdd your first one now.`
   String get youDontHaveAnyContactAddYourFirstNow {
     return Intl.message(
       'You don’t have any contacts yet.\nAdd your first one now.',
       name: 'youDontHaveAnyContactAddYourFirstNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove contact`
+  String get removeContact {
+    return Intl.message(
+      'Remove contact',
+      name: 'removeContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this contact? Your action can’t be undone.`
+  String get areYouSureToremoveContact {
+    return Intl.message(
+      'Are you sure you want to remove this contact? Your action can’t be undone.',
+      name: 'areYouSureToremoveContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite contact`
+  String get favouriteContact {
+    return Intl.message(
+      'Favourite contact',
+      name: 'favouriteContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?`
+  String get sendAndRequestFavouriteContacts {
+    return Intl.message(
+      'Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?',
+      name: 'sendAndRequestFavouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter contact name`
+  String get pleaseEnterContactName {
+    return Intl.message(
+      'Please enter contact name',
+      name: 'pleaseEnterContactName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get pleaseEnterAValidaccountMobileNoAlias {
+    return Intl.message(
+      'Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'pleaseEnterAValidaccountMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New contact has been added to the list`
+  String get newContacthasBeenAdded {
+    return Intl.message(
+      'New contact has been added to the list',
+      name: 'newContacthasBeenAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to\n{mobile}`
+  String enterThe6DigitCodewithExtraString(Object mobile) {
+    return Intl.message(
+      'Enter the 6-digit code sent to\n$mobile',
+      name: 'enterThe6DigitCodewithExtraString',
+      desc: '',
+      args: [mobile],
+    );
+  }
+
+  /// `Your contact has been removed`
+  String get yourContactHasBeenRemoved {
+    return Intl.message(
+      'Your contact has been removed',
+      name: 'yourContactHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact has been added to favourite`
+  String get yourContactisFavourite {
+    return Intl.message(
+      'Your contact has been added to favourite',
+      name: 'yourContactisFavourite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact details have been saved`
+  String get yourContactDetailsHavebeenSaved {
+    return Intl.message(
+      'Your contact details have been saved',
+      name: 'yourContactDetailsHavebeenSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transiction History`
+  String get transictionHistory {
+    return Intl.message(
+      'Transiction History',
+      name: 'transictionHistory',
       desc: '',
       args: [],
     );

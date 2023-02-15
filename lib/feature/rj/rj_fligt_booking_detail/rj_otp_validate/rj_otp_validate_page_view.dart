@@ -33,11 +33,8 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                      arguments: RjBookingPurchasePageArgument(
-                          flightDetailResponse: ProviderScope.containerOf(context)
-                              .read(rjFlightBookingDetailViewModelProvider)
-                              .flightDetailResponse));
+                  Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                      arguments: RjBookingPurchasePageArgument('1111111'));
                 }
               },
               dataBuilder: (context, data) {
@@ -63,7 +60,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                           } else {
                             model.makeTicketPayment(
                               accountNo: ProviderScope.containerOf(context)
-                                      .read(rjFlightBookingDetailViewModelProvider)
+                                      .read(rjMakePaymentViewModelProvider)
                                       .selectedCard
                                       ?.cardNo ??
                                   '',
@@ -73,20 +70,18 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       .arguments
                                       ?.referenceNumber ??
                                   '',
-                              amount: (ProviderScope.containerOf(context)
-                                          .read(rjFlightBookingDetailViewModelProvider)
-                                          .flightDetailResponse
-                                          .flightDetailContent
-                                          ?.paymentAmount ??
-                                      '')
-                                  .toString(),
+                              amount: ProviderScope.containerOf(context)
+                                      .read(rjMakePaymentViewModelProvider)
+                                      .selectedCard
+                                      ?.amt ??
+                                  '',
                             );
                           }
                         } else {
                           if (details.primaryVelocity!.isNegative) {
                             model.makeTicketPayment(
                               accountNo: ProviderScope.containerOf(context)
-                                      .read(rjFlightBookingDetailViewModelProvider)
+                                      .read(rjMakePaymentViewModelProvider)
                                       .selectedCard
                                       ?.cardNo ??
                                   '',
@@ -96,13 +91,11 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                       .arguments
                                       ?.referenceNumber ??
                                   '',
-                              amount: (ProviderScope.containerOf(context)
-                                          .read(rjFlightBookingDetailViewModelProvider)
-                                          .flightDetailResponse
-                                          .flightDetailContent
-                                          ?.paymentAmount ??
-                                      '')
-                                  .toString(),
+                              amount: ProviderScope.containerOf(context)
+                                      .read(rjMakePaymentViewModelProvider)
+                                      .selectedCard
+                                      ?.amt ??
+                                  '',
                             );
                           } else {
                             ProviderScope.containerOf(context)

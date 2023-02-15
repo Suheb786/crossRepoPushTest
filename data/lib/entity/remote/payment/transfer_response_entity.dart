@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -20,6 +21,8 @@ class TransferResponseEntity implements BaseLayerDataTransformer<TransferRespons
   final String? toAccount;
   @JsonKey(name: "name")
   final String? name;
+  @JsonKey(name: "message")
+  final String? message;
 
   TransferResponseEntity(
       {this.beneficiaryId,
@@ -28,7 +31,8 @@ class TransferResponseEntity implements BaseLayerDataTransformer<TransferRespons
       this.toAmount,
       this.localEq,
       this.toAccount,
-      this.name: ""});
+      this.name: "",
+      this.message: ''});
 
   factory TransferResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferResponseEntityFromJson(json);
@@ -49,6 +53,7 @@ class TransferResponseEntity implements BaseLayerDataTransformer<TransferRespons
         toAccount: this.toAccount,
         toAmount: this.toAmount,
         transferType: this.transferType,
-        name: this.name);
+        name: this.name,
+        messageEnum: this.message?.fromCheckSendMoneyMessageValue());
   }
 }

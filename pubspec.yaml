@@ -17,7 +17,6 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.7.0+2302031
 
-
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -66,7 +65,8 @@ dependencies:
   #  card_swiper: ^1.0.4
   lottie: ^1.2.1
   focus_detector: ^2.0.0
-  camera: any
+  camera: ^0.10.0+1
+
   flip_card: ^0.6.0
   image_cropper: ^1.4.1
   #  steel_crypt: ^3.0.0+1
@@ -107,18 +107,21 @@ dependencies:
   qr_code_scanner: ^0.7.0
   qr_flutter: ^4.0.0
 
-
 dependency_overrides:
   firebase_crashlytics_platform_interface: 3.1.13
   firebase_analytics_platform_interface: 3.0.5
   geolocator: 7.7.0
   flutter_inappwebview: 5.4.3+7
-  camera_android:
-    git:
-      url: https://github.com/bottlepay/plugins.git
-      path: packages/camera/camera_android
-      ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
+  # camera_android:
+  #   git:
+  #     url: https://github.com/bottlepay/plugins.git
+  #     path: packages/camera/camera_android
+  #     ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
 
+  # camera:
+  #   git:
+  #     url: https://github.com/bottlepay/plugins.git
+  #     path: packages/camera/camera
 
 dev_dependencies:
   flutter_test:

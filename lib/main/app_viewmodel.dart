@@ -100,6 +100,7 @@ class AppViewModel extends BaseViewModel {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             textTheme: ButtonTextTheme.normal,
           ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColor.white),
         );
         break;
       case AppTheme.light:
@@ -186,7 +187,8 @@ class AppViewModel extends BaseViewModel {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             dividerColor: AppColor.lightGrayishBlue,
-            canvasColor: AppColor.vividYellow);
+            canvasColor: AppColor.vividYellow,
+            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColor.white));
         break;
     }
 

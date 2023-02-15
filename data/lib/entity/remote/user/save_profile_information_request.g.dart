@@ -17,6 +17,7 @@ SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(
     additionalNationality: json['AdditionalNationality'] as String?,
     isAdditionalNational: json['IsAdditionalNational'] as bool?,
     isEmployed: json['IsEmployed'] as bool?,
+    isBeneficialOwner: json['IsBeneficialOwner'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
@@ -31,6 +32,7 @@ Map<String, dynamic> _$SaveProfileInformationRequestToJson(
       'NatureSP': instance.natureSP,
       'IsAdditionalNational': instance.isAdditionalNational,
       'IsEmployed': instance.isEmployed,
+      'IsBeneficialOwner': instance.isBeneficialOwner,
       'AdditionalNationality': instance.additionalNationality,
       'baseClass': instance.baseData,
     };

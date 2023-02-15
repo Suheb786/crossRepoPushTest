@@ -14,6 +14,8 @@ class InformationDialogView extends StatelessWidget {
   final String? image;
   final String title;
   final Widget descriptionWidget;
+  final double? imageHight;
+  final double? imageWidth;
 
   const InformationDialogView(
       {this.onDismissed,
@@ -21,7 +23,9 @@ class InformationDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel: true});
+      this.isSwipeToCancel: true,
+      this.imageHight = 40,
+      this.imageWidth = 40});
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +47,30 @@ class InformationDialogView extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 32.h),
-                      image != null ? AppSvg.asset(image!, height: 50.h, width: 50.w) : Container(),
-                      SizedBox(height: 25.h),
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                      image != null
+                          ? Padding(
+                              padding: EdgeInsets.only(bottom: 25.0.h),
+                              child: AppSvg.asset(
+                                image!,
+                                height: imageHight?.h,
+                                width: imageWidth?.w,
+                              ),
+                            )
+                          : Container(),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 28.0, end: 28.0),
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w700),
+                        ),
                       ),
-                      SizedBox(height: 31.h),
-                      descriptionWidget,
+                      SizedBox(height: 24.h),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15),
+                        child: descriptionWidget,
+                      ),
                       SizedBox(height: 30.h),
                       InkWell(
                         onTap: () {
@@ -65,7 +83,8 @@ class InformationDialogView extends StatelessWidget {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                          child:
+                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(

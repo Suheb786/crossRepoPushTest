@@ -14,7 +14,7 @@ PaymentActivityContentEntity _$PaymentActivityContentEntityFromJson(
         : DateTime.parse(json['rtpDate'] as String),
     data: (json['data'] as List<dynamic>?)
         ?.map((e) =>
-            PaymentActivityDataEntity.fromJson(e as Map<String, dynamic>))
+            RequestMoneyActivityListEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

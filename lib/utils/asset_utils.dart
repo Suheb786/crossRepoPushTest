@@ -170,6 +170,7 @@ class AssetUtils {
   static const String dashboardSwiggle = svg + "dashboard_swiggle.svg";
   static const String card_activation = svg + "card_activation.svg";
   static const String videocallAgent = svg + "videocall_agent.svg";
+  static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
   static const String blueStar = svg + "blue_star.svg";
 
   /// DRAWABLES
@@ -280,6 +281,24 @@ class AssetUtils {
   static const String RjCardLogo = svg + "rj_card_logo.svg";
   static const String GoRjLogo = svg + "go_rj_logo.svg";
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+
+  ///Cliq
+  static const String walletIcon = svg + "wallet.svg";
+  static const String warningIcon = svg + "warning.svg";
+  static const String unlinkIcon = svg + "unlinkIcon.svg";
+  static const String suspandIcon = svg + "suspandIcon.svg";
+  static const String reactivateIcon = svg + "reactivate.svg";
+  static const String deleteIcon = svg + "deleteIcon.svg";
+  static const String acceptIcon = svg + "acceptRequest.svg";
+  static const String rejectIcon = svg + "rejectRequest.svg";
+
+  ///Manage Contact
+  static const String viewHistoryIcon = svg + "viewHistory.svg";
+  static const String requestMoneyIcon = svg + "requestMoney.svg";
+  static const String back = svg + "back.svg";
+  static const String removeContact = svg + "removeContact.svg";
+  static const String sendMoneyIcon = svg + "sendMoney.svg";
+  static const String favContactIcon = svg + "favContactIcon.svg";
 
   ///billPaymentsImages
   static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";

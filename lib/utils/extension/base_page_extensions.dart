@@ -112,4 +112,51 @@ extension PageExtensions on BaseStatefulPage {
         hideOutAnimationDuration: Duration(milliseconds: 200),
         showOutAnimationDuration: Duration(milliseconds: 500));
   }
+
+  showSuccessToastWithTitleAndDescription(String title, String description) {
+    showTopSnackBar(
+        context,
+        Material(
+          color: AppColor.white.withOpacity(0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              padding: EdgeInsetsDirectional.all(16),
+              decoration: BoxDecoration(
+                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
+                          child: Text(description,
+                              style: TextStyle(
+                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        displayDuration: Duration(milliseconds: 1000),
+        hideOutAnimationDuration: Duration(milliseconds: 200),
+        showOutAnimationDuration: Duration(milliseconds: 500));
+  }
 }

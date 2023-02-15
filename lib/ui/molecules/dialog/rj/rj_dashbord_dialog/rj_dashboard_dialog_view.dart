@@ -4,7 +4,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RjDialogView extends StatelessWidget {
@@ -26,13 +25,13 @@ class RjDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(18.0.w),
-          bottomRight: Radius.circular(18.0.w),
-          topLeft: Radius.circular(18.0.w),
-          topRight: Radius.circular(18.0.w),
+          bottomLeft: Radius.circular(18.0),
+          bottomRight: Radius.circular(18.0),
+          topLeft: Radius.circular(18.0),
+          topRight: Radius.circular(18.0),
         )),
         child: WillPopScope(
           onWillPop: () async => false,
@@ -49,7 +48,7 @@ class RjDialogView extends StatelessWidget {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 166.h,
+                    height: 166,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(0.0),
@@ -61,52 +60,52 @@ class RjDialogView extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 25),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Text(
                       title,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          fontSize: 20.t,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: AppColor.very_dark_gray),
                     ),
                   ),
-                  SizedBox(height: 31.h),
+                  SizedBox(height: 31),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: descriptionWidget,
                   ),
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      onDismissed?.call();
+                      onSelected!.call();
                     },
                     child: Container(
-                      padding: EdgeInsetsDirectional.all(16.w),
-                      height: 57.w,
-                      width: 57.w,
+                      padding: EdgeInsetsDirectional.all(16),
+                      height: 57,
+                      width: 57,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                       child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 16.h),
+                    padding: const EdgeInsetsDirectional.only(top: 8.0, bottom: 16),
                     child: Visibility(
                       visible: isSwipeToCancel ?? true,
                       child: InkWell(
                         onTap: () {
-                          onDismissed?.call();
+                          onDismissed!.call();
                         },
                         child: Center(
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 10.t,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w400,
                                 color: AppColor.dark_gray_1),
                           ),

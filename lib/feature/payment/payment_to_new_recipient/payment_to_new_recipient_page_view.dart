@@ -37,10 +37,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
               if (details.primaryVelocity!.isNegative) {
                 print("got current step : $currentStep");
               } else {
-                ProviderScope.containerOf(context)
-                    .read(paymentToNewRecipientViewModelProvider)
-                    .pageController
-                    .previous();
+                ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).pageController.previous();
               }
             },
             child: Column(
@@ -76,9 +73,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                           Text(
                             S.of(context).sending,
                             style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
-                                fontSize: 20.0.t),
+                                fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20.0.t),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6.0.h),
@@ -97,8 +92,11 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                 autofocus: true,
                                                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                                                 inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                                                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
                                                 ],
+                                                /* inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                                                ], */
                                                 onChanged: (value) {
                                                   if (value != ".") {
                                                     ProviderScope.containerOf(context)
@@ -159,9 +157,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                   return InkWell(
                                     onTap: () {
                                       if (!value!) {
-                                        model.editAmountController.text = ProviderScope.containerOf(context)
-                                            .read(sendMoneyViewModelProvider)
-                                            .currentPinValue;
+                                        model.editAmountController.text =
+                                            ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue;
                                         model.updateEditAmount(true);
                                       }
                                     },

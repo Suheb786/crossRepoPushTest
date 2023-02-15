@@ -122,10 +122,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               ));
                           var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
                           if (errorBillFail == "err-377") {
-                            model.showToastWithError(AppError(
-                                cause: Exception(),
-                                error: ErrorInfo(message: ''),
-                                type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
+                            model.showToastWithError(
+                                AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
                           }
                         }
                       },
@@ -317,8 +315,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
     return SingleChildScrollView(
       child: Container(
           // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
+          decoration: BoxDecoration(border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
           child: Column(
             children: [
               _amountTitle(model, context),
@@ -335,8 +332,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
               Container(
                 decoration: BoxDecoration(
                     color: AppColor.white_gray,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.w),
                   child: Row(
@@ -375,7 +371,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         AutoSizeTextField(
           wrapWords: false,
           fullwidth: false,
-          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+          ],
           keyboardType: TextInputType.numberWithOptions(
             decimal: true,
           ),
@@ -600,8 +598,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
         color: AppColor.vividYellow,
       ),
       child: Image.asset(
-        GetBillPaymentsCategories.path(
-            ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon),
+        GetBillPaymentsCategories.path(ProviderScope.containerOf(context).read(newBillsPageViewModelProvider).titleIcon),
         matchTextDirection: false,
         width: 24.w,
         height: 24.h,

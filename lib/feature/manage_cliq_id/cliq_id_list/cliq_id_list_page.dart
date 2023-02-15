@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_v
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 
 class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   @override
@@ -14,45 +15,47 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
 
 class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
-  ProviderBase provideBase() {
-    return cliqIdListViewModelProvider;
-  }
-
-  @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85),
-      child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            Navigator.pop(context);
-          },
-          behavior: HitTestBehavior.translucent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: 18.0),
-                child: Container(
-                  width: 28,
-                ),
-              ),
-              Text(
-                S.of(context).manageCliqId,
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-                },
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 24.0),
-                  child: Icon(Icons.add, color: Theme.of(context).accentColor),
-                ),
-              ),
-            ],
-          )),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 18.0),
+            child: Container(
+              width: 28,
+            ),
+          ),
+          Text(
+            S.of(context).manageCliqId,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+
+              ///LOG EVENT TO FIREBASE
+              await FireBaseLogUtil.fireBaseLog(
+                  "navigation_alias_creation", {"navigated_alias_creation": true});
+            },
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(end: 24.0),
+              child: Icon(Icons.add, color: Theme.of(context).accentColor),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  @override
+  Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
+    return CliqIdListPageView(provideBase());
   }
 
   @override
@@ -61,12 +64,18 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
   }
 
   @override
-  Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+  void onModelReady(CliqIdListPageViewModel model) {
+    //  model.getAlias(true);
+    super.onModelReady(model);
   }
 
   @override
-  Widget buildView(BuildContext context, CliqIdListPageViewModel model) {
-    return CliqIdListPageView(provideBase());
+  ProviderBase provideBase() {
+    return cliqIdListViewModelProvider;
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
   }
 }

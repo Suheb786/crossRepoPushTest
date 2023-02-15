@@ -18,17 +18,19 @@ abstract class PaymentRepository {
 
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String beneficiaryId,
-      String? otpCode,
-      String transferType,
-      String beneficiaryImage,
-      bool isFriend,
-      num toAmount,
-      num localEq,
-      String memo,
-      String toAccount,
-      String nickName,
-      String? detCustomerType,
-      String? type});
+        String? otpCode,
+        String transferType,
+        String beneficiaryImage,
+        bool isFriend,
+        num toAmount,
+        num localEq,
+        String memo,
+        String toAccount,
+        String nickName,
+        String? detCustomerType,
+        String? type,
+        String? recipientName,
+        String? recipientAddress});
 
   Future<Either<NetworkError, bool>> transferVerify();
 

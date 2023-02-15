@@ -1,4 +1,3 @@
-import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:domain/usecase/rj/get_flight_details_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -13,15 +12,13 @@ class RjConfirmFlightDetailViewModel extends BasePageViewModel {
   ///---------------Get Flight Details----------------------///
   PublishSubject<GetFlightDetailsUseCaseParams> _getFlightDetailsRequest = PublishSubject();
 
-  PublishSubject<Resource<FlightDetailResponse>> _getFlightDetailsResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _getFlightDetailsResponse = PublishSubject();
 
-  Stream<Resource<FlightDetailResponse>> get getFlightDetailsStream => _getFlightDetailsResponse.stream;
+  Stream<Resource<bool>> get getFlightDetailsStream => _getFlightDetailsResponse.stream;
 
   void getFlightDetails({required String referenceNumber}) {
     _getFlightDetailsRequest.safeAdd(GetFlightDetailsUseCaseParams(referenceNumber: referenceNumber));
   }
-
-  FlightDetailResponse flightDetailResponse = FlightDetailResponse();
 
   ///---------------Get Flight Details----------------------///
 
