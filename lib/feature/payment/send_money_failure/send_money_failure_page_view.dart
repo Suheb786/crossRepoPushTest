@@ -32,8 +32,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        Image.asset(AssetUtils.line,
-                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                        Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
                         Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -59,7 +58,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                               fontFamily: StringUtils.appFont,
                               fontSize: 24.t,
                               fontWeight: FontWeight.w500,
-                              color: Theme.of(context).colorScheme.secondary),
+                              color: Theme.of(context).accentColor),
                         )),
                     Padding(
                       padding: EdgeInsetsDirectional.only(top: 51.h, start: 24.w, end: 24.w),
@@ -71,7 +70,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w400,
                             fontSize: 14.t,
-                            color: Theme.of(context).colorScheme.secondary),
+                            color: Theme.of(context).accentColor),
                       ),
                     ),
                   ],
@@ -84,8 +83,8 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                   padding: EdgeInsets.only(top: 10.h),
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).colorScheme.secondary,
-                    textColor: Theme.of(context).colorScheme.secondary,
+                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).accentColor,
                   ),
                 ),
                 InkWell(
@@ -98,7 +97,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                         fontFamily: StringUtils.appFont,
                         fontSize: 12.t,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).accentColor,
                       ),
                     ),
                   ),
