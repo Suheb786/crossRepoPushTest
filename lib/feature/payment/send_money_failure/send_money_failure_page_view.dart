@@ -53,7 +53,6 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                         child: Text(
                           model.sendMoneyFailurePageArgument.title,
                           textAlign: TextAlign.center,
-                          maxLines: 2,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontSize: 24.t,
@@ -65,7 +64,6 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                       child: Text(
                         model.sendMoneyFailurePageArgument.content,
                         textAlign: TextAlign.center,
-                        maxLines: 2,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w400,
