@@ -141,7 +141,7 @@ extension PageExtensions on BaseStatefulPage {
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(description,
                               style: TextStyle(
-                                  color: AppColor.white, fontWeight: FontWeight.w700, fontSize: 12)),
+                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
                         ),
                       ],
                     ),

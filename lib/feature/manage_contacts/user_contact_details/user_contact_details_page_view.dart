@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
@@ -32,6 +33,7 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
+import 'package:show_up_animation/show_up_animation.dart';
 
 class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPageViewModel> {
   UserContactDetailsPageView(ProviderBase model) : super(model);
@@ -94,13 +96,16 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                               child: Column(
                                 children: [
                                   Stack(
-                                    alignment: Alignment.topRight,
+                                    alignment: Alignment.center,
                                     children: [
+                                      Container(
+                                        width: MediaQuery.of(context).size.width,
+                                      ),
                                       AppStreamBuilder<String>(
                                           stream: model.uploadProfilePhotoStream,
                                           initialData: "",
                                           onData: (data) {
-                                            if (data != null && data.isNotEmpty) {
+                                            if (data.isNotEmpty) {
                                               _cropImage(data, model, context);
                                             }
                                           },
@@ -124,16 +129,18 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                                           onSelectFromLibrary: () {
                                                             model.uploadProfilePhoto(
                                                                 DocumentTypeEnum.PICK_IMAGE);
+                                                            Navigator.pop(context);
                                                           },
                                                           onTakePhoto: () {
                                                             model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                                            Navigator.pop(context);
                                                           },
                                                           title: S.current.pleaseSelectYourAction);
                                                     },
                                                     child: image!.isEmpty
                                                         ? CircleAvatar(
                                                             backgroundColor: Theme.of(context).primaryColor,
-                                                            minRadius: 48,
+                                                            radius: 48.w,
                                                             child: Text(
                                                               StringUtils.getFirstInitials("Abdullah Ali"),
                                                               style: TextStyle(
@@ -147,7 +154,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                                             radius: 48.w,
                                                             backgroundImage: Image.file(
                                                               File(image),
-                                                              fit: BoxFit.cover,
+                                                              fit: BoxFit.contain,
                                                             ).image,
                                                           ),
                                                   );
@@ -155,26 +162,36 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                           }),
 
                                       // SizedBox(width: 69),
-                                      GestureDetector(
-                                        onTap: () {
-                                          InformationDialog.show(context,
-                                              title: S.current.favouriteContact,
-                                              descriptionWidget:
-                                                  Text(S.current.sendAndRequestFavouriteContacts),
-                                              image: AssetUtils.favContactIcon,
-                                              imageHight: 155.h,
-                                              imageWidth: 96.w,
-                                              isSwipeToCancel: true, onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: () {
-                                            Navigator.pop(context);
-                                            Navigator.pushReplacementNamed(
-                                                context, RoutePaths.ManageContactsList);
-                                          });
-                                        },
-                                        child: Icon(
-                                          Icons.star_border_outlined,
-                                          color: AppColor.sky_blue_mid,
+                                      Positioned(
+                                        right: 0,
+                                        top: 0,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            InformationDialog.show(context,
+                                                title: S.current.favouriteContact,
+                                                descriptionWidget:
+                                                    Text(S.current.sendAndRequestFavouriteContacts),
+                                                image: AssetUtils.favContactIcon,
+                                                imageHight: 155.h,
+                                                imageWidth: 96.w,
+                                                isSwipeToCancel: true, onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: () {
+                                              Navigator.pop(context);
+                                              model.showSuccessTitleandDescriptionToast(
+                                                ToastwithTitleandDescription(
+                                                  title: S.current.success,
+                                                  description: S.current.yourContactisFavourite,
+                                                ),
+                                              );
+                                              Navigator.pushReplacementNamed(
+                                                  context, RoutePaths.ManageContactsList);
+                                            });
+                                          },
+                                          child: Icon(
+                                            Icons.star_border_outlined,
+                                            color: AppColor.sky_blue_mid,
+                                          ),
                                         ),
                                       )
                                     ],
@@ -190,7 +207,22 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                   ),
                                   SizedBox(height: 4.h),
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      EditProfilePicBottomSheetSelectionWidget.show(context,
+                                          onCancel: () {
+                                            Navigator.pop(context);
+                                          },
+                                          onRemovePhoto: () {},
+                                          onSelectFromLibrary: () {
+                                            model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                            Navigator.pop(context);
+                                          },
+                                          onTakePhoto: () {
+                                            model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                            Navigator.pop(context);
+                                          },
+                                          title: S.current.pleaseSelectYourAction);
+                                    },
                                     child: Text(
                                       S.current.tapToEditPhoto,
                                       style: TextStyle(
@@ -281,8 +313,8 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                                     PaymentActivityTransactionPage(
                                                       PaymentActivityTransactionPageArgument(
                                                           backgroundColor: AppColor.vividRed,
-                                                          title: "Transiction History",
-                                                          titleColor: AppColor.brightRed),
+                                                          title: S.of(context).transactionHistory,
+                                                          titleColor: AppColor.white),
                                                     ),
                                                   ),
                                                 );
@@ -472,30 +504,37 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                           Visibility(
                             visible: !isKeyboard && model.visibleSaveButton(),
                             // visible: true,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, RoutePaths.EditContactOTPpage);
-                              },
-                              child: Container(
-                                height: 56.h,
-                                width: double.infinity,
-                                margin: EdgeInsetsDirectional.only(
-                                  top: 10,
-                                ),
-                                decoration: BoxDecoration(boxShadow: [
-                                  BoxShadow(
-                                      color: AppColor.white.withOpacity(0.9),
-                                      spreadRadius: 22,
-                                      blurRadius: 40,
-                                      offset: Offset(0, -50))
-                                ], color: AppColor.sky_blue_mid, borderRadius: BorderRadius.circular(100)),
-                                child: Center(
-                                  child: Text(
-                                    S.current.saveChanges,
-                                    style: TextStyle(
-                                      fontSize: 14.t,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.white,
+                            child: ShowUpAnimation(
+                              delayStart: Duration(milliseconds: 0),
+                              animationDuration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                              direction: Direction.vertical,
+                              offset: 0.5,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, RoutePaths.EditContactOTPpage);
+                                },
+                                child: Container(
+                                  height: 56.h,
+                                  width: double.infinity,
+                                  margin: EdgeInsetsDirectional.only(
+                                    top: 10,
+                                  ),
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: AppColor.white.withOpacity(0.7),
+                                        spreadRadius: 22,
+                                        blurRadius: 40,
+                                        offset: Offset(0, -50))
+                                  ], color: AppColor.sky_blue_mid, borderRadius: BorderRadius.circular(100)),
+                                  child: Center(
+                                    child: Text(
+                                      S.current.saveChanges,
+                                      style: TextStyle(
+                                        fontSize: 14.t,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.white,
+                                      ),
                                     ),
                                   ),
                                 ),

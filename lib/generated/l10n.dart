@@ -16299,6 +16299,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter the 6-digit code sent to\n{mobile}`
+  String enterThe6DigitCodewithExtraString(Object mobile) {
+    return Intl.message(
+      'Enter the 6-digit code sent to\n$mobile',
+      name: 'enterThe6DigitCodewithExtraString',
+      desc: '',
+      args: [mobile],
+    );
+  }
+
+  /// `Your contact has been removed`
+  String get yourContactHasBeenRemoved {
+    return Intl.message(
+      'Your contact has been removed',
+      name: 'yourContactHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact has been added to favourite`
+  String get yourContactisFavourite {
+    return Intl.message(
+      'Your contact has been added to favourite',
+      name: 'yourContactisFavourite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact details have been saved`
+  String get yourContactDetailsHavebeenSaved {
+    return Intl.message(
+      'Your contact details have been saved',
+      name: 'yourContactDetailsHavebeenSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transiction History`
+  String get transictionHistory {
+    return Intl.message(
+      'Transiction History',
+      name: 'transictionHistory',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

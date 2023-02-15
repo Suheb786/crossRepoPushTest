@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -97,8 +98,13 @@ class EditUserDetailsOtpForManageContactPageView extends BasePageViewWidget<Edit
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          // Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
-                          log("Navigated to manage contact list");
+                          model.showSuccessTitleandDescriptionToast(
+                            ToastwithTitleandDescription(
+                              title: S.current.success,
+                              description: S.current.yourContactDetailsHavebeenSaved,
+                            ),
+                          );
+                          Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
                         }
                       },
                       dataBuilder: (context, isOtpVerified) {

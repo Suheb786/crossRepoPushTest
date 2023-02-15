@@ -56,9 +56,10 @@ class EditUserContactotpViewModel extends BasePageViewModel {
   }
 
   void validate(String value) {
+    _otpSubject.safeAdd(value);
+
     if (value.isNotEmpty && value.length == 6) {
       _showButtonSubject.safeAdd(true);
-      _otpSubject.safeAdd(value);
     } else {
       _showButtonSubject.safeAdd(false);
     }

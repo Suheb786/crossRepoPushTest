@@ -83,7 +83,7 @@ class AddContactsIBANManageContactsPageView
                             StepTextHelper.addContact_IBAN(
                               currentPage ?? 0,
                               S.current.pleaseEnterYourContactDetails,
-                              S.current.pleaseEnterYourContactDetails,
+                              S.current.enterThe6DigitCodewithExtraString("+912 843 32989"),
                             ),
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -98,7 +98,6 @@ class AddContactsIBANManageContactsPageView
                           child: AppSwiper(
                             pages: pages,
                             appSwiperController: model.appSwiperController,
-                            
                             pageController: model.pageController,
                             onIndexChanged: (index) {
                               model.updatePage(index);

@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -27,9 +28,9 @@ class DeleteContactOTPPageView extends BasePageViewWidget<DeleteContactOTPPageVi
 
   @override
   Widget build(BuildContext context, model) {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(start: 24.w, top: 96.h, end: 24.w, bottom: 30.h),
-      child: AppKeyBoardHide(
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(start: 24.w, top: 96.h, end: 24.w, bottom: 30.h),
         child: Column(
           children: [
             Text(
@@ -97,8 +98,13 @@ class DeleteContactOTPPageView extends BasePageViewWidget<DeleteContactOTPPageVi
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          // Navigator.pushReplacementNamed(context, RoutePaths.UserContactDetailsPage);
-                          log("message");
+                          model.showSuccessTitleandDescriptionToast(
+                            ToastwithTitleandDescription(
+                              title: S.current.success,
+                              description: S.current.yourContactHasBeenRemoved,
+                            ),
+                          );
+                          Navigator.pushReplacementNamed(context, RoutePaths.UserContactDetailsPage);
                         }
                       },
                       dataBuilder: (context, isOtpVerified) {
