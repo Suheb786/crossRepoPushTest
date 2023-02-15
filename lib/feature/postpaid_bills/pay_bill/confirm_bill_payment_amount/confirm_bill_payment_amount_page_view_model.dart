@@ -125,6 +125,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
           billerCode: item.billerCode,
           billingNumber: item.billingNo,
+          billingNo: item.billingNo,
           billerName: AppConstantsUtils.BILLER_NAME,
           serviceType: item.serviceType,
           nickName: AppConstantsUtils.NICK_NAME,
@@ -144,7 +145,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         currencyCode: "JOD",
         isNewBiller: false,
         isCreditCardPayment: false,
-        CardId: "",
+        CardId: "NewPostPaid",
         nickName: AppConstantsUtils.NICK_NAME,
         otpCode: ""));
   }
@@ -205,7 +206,6 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
-
   void validatePrePaidBill() {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
@@ -262,10 +262,8 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount: addNewBillDetailsData.isPrepaidCategoryListEmpty == true ? amtController.text : "",
-        fees: addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? double.parse(feeAmtController.text).toStringAsFixed(3)
-            : "",
+        amount: double.parse(amtController.text).toStringAsFixed(3),
+        fees: double.parse(feeAmtController.text).toStringAsFixed(3),
         validationCode: validationCode ?? "",
         currencyCode: "JOD",
         accountNo: addNewBillDetailsData.accountNumber,

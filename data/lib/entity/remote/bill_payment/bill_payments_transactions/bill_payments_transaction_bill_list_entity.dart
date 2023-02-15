@@ -1,7 +1,7 @@
+import 'package:domain/constants/enum/transaction_status_bills_enum.dart';
 import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_list.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/constants/enum/transaction_status_bills_enum.dart';
 
 part 'bill_payments_transaction_bill_list_entity.g.dart';
 
@@ -51,7 +51,7 @@ class BillPaymentsTransactionListEntity
   final String? refNo;
 
   @JsonKey(name: "status")
-  final String? status;
+  final int? status;
 
   BillPaymentsTransactionListEntity({
     this.nickname,

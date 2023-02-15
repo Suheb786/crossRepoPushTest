@@ -90,6 +90,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         billingNumber: params?.billingNumber,
         serviceType: params?.serviceType,
         amount: params?.amount,
+        fees: params?.fees,
         currencyCode: params?.currencyCode,
         accountNo: params?.accountNo,
         isNewBiller: params?.isNewBiller,
@@ -109,14 +110,14 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill({required params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
-    if (params.isNewBiller == true) {
+    if (params.CardId == "NewPostPaid") {
       return _apiService.payPostPaidBill(PayPostPaidBillRequestEntity(
           accountNo: params.accountNo,
           billerList: params.billerList,
           currencyCode: params.currencyCode,
           isNewBiller: params.isNewBiller,
           otpCode: params.otpCode,
-          CardId: params.CardId,
+          CardId: "",
           nickName: params.nickName,
           isCreditCardPayment: params.isCreditCardPayment,
           totalAmount: params.totalAmount,
@@ -130,7 +131,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         currencyCode: params.currencyCode,
         isNewBiller: params.isNewBiller,
         otpCode: params.otpCode,
-        CardId: params.CardId,
+        CardId: "",
         nickName: params.nickName,
         isCreditCardPayment: params.isCreditCardPayment,
         totalAmount: params.totalAmount,

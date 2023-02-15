@@ -78,6 +78,32 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                     } else if (data.status == Status.SUCCESS) {
                       model.postPaidBillInquiryData = data.data?.content?.postPaidBillInquiryData;
 
+                      if (model.postPaidBillInquiryData?[0].success == false) {
+                        if (model.postPaidBillInquiryData != null &&
+                            model.postPaidBillInquiryData?[0] != null &&
+                            model.postPaidBillInquiryData?[0].message != null &&
+                            model.postPaidBillInquiryData![0].message!.toString().isNotEmpty) {
+                          if (model.postPaidBillInquiryData?[0].message == "err-379") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+                          }
+                          if (model.postPaidBillInquiryData?[0].message == "err-381") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
+                          }
+                          if (model.postPaidBillInquiryData?[0].message == "err-383") {
+                            model.showToastWithError(AppError(
+                                cause: Exception(),
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+                          }
+                        }
+                      }
+
                       if (model.postPaidBillInquiryData != null &&
                           model.postPaidBillInquiryData?[0] != null &&
                           model.postPaidBillInquiryData?[0].feesAmt != null &&
@@ -94,6 +120,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                           double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
                       model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
                       model.amtController.text = model.addAllBillAmt() ?? "0";
+                      model.postPaidBillInquiryData?[0].actualDueAmountFromApi =
+                          model.postPaidBillInquiryData?[0].dueAmount ?? '0';
                       model.dueAmtController = model.addAllBillAmt() ?? "0";
                       model.addNewBillDetailsData.amount = model.dueAmtController;
                       model.minMaxValidate(

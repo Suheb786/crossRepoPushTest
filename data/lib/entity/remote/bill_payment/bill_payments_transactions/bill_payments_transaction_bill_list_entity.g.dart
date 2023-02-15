@@ -22,7 +22,7 @@ BillPaymentsTransactionListEntity _$BillPaymentsTransactionListEntityFromJson(Ma
     categoryName: json['categoryName'] as String?,
     iconCode: json['iconCode'] as String?,
     refNo: json['transactionRefrenceNo'] as String?,
-    status: json['status'] as String?,
+    status: json['status'] as int?,
   );
 }
 

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14971,11 +14970,31 @@ class S {
     );
   }
 
-  /// `Your payment is rejected due to expiry date of the bill`
+  /// `You cannot proceed to complete the payment because the bill is expired`
   String get rejectedDueToExpiryDate {
     return Intl.message(
-      'Your payment is rejected due to expiry date of the bill',
+      'You cannot proceed to complete the payment because the bill is expired',
       name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is not yet issued`
+  String get openDateIssuedMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is not yet issued',
+      name: 'openDateIssuedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is expired`
+  String get closeDateIssueMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is expired',
+      name: 'closeDateIssueMessage',
       desc: '',
       args: [],
     );

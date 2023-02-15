@@ -110,7 +110,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                       ),
                                     ),
                                     model.arguments.paidBillsPayTypeOptionEnum ==
-                                            PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                                                PostPaidBillsPayTypeOptionEnum.PAYALLBILLS ||
+                                            model.payPostPaidBillsDataList != null &&
+                                                model.payPostPaidBillsDataList.length <= 0
                                         ? Container()
                                         : Padding(
                                             padding: EdgeInsetsDirectional.only(

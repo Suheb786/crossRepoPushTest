@@ -111,6 +111,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
             billingNumber: item.billingNo,
+            billingNo: item.billingNo,
             billerName: !StringUtils.isDirectionRTL(context)
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,

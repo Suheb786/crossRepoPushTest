@@ -1,4 +1,7 @@
 import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
@@ -252,6 +255,36 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
       }
     }
+    if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+      if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
+        if (postPaidBillInquiryData?[0].success == false) {
+          if (postPaidBillInquiryData != null &&
+              postPaidBillInquiryData?[0] != null &&
+              postPaidBillInquiryData?[0].message != null &&
+              postPaidBillInquiryData![0].message!.toString().isNotEmpty) {
+            if (postPaidBillInquiryData?[0].message == "err-379") {
+              showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+            }
+            if (postPaidBillInquiryData?[0].message == "err-381") {
+              showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
+            }
+            if (postPaidBillInquiryData?[0].message == "err-383") {
+              showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+            }
+          }
+        }
+      }
+    }
+
     _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
     addAllBillAmt();
   }

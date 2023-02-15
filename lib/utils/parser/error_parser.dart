@@ -1132,6 +1132,10 @@ class ErrorParser {
         return localisedHelper.billPaymentSorryMessage;
       case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
         return localisedHelper.rejectedDueToExpiryDate;
+      case ErrorType.OPEN_DATE_ISSUE_MESSAGE:
+        return localisedHelper.openDateIssuedMessage;
+      case ErrorType.CLOSE_DATE_ISSUE_MESSAGE:
+        return localisedHelper.closeDateIssueMessage;
       case ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT:
         return localisedHelper.thereAreNoDueBillsToBePaidAtTheMoment;
       case ErrorType.DATE_COMPARISON:

@@ -142,12 +142,8 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? confirmBillModel.amtController.text
-            : "",
-        fees: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? double.parse(confirmBillModel.feeAmtController.text).toStringAsFixed(3)
-            : "",
+        amount: confirmBillModel.amtController.text,
+        fees: double.parse(confirmBillModel.feeAmtController.text).toStringAsFixed(3),
         validationCode: confirmBillModel.validationCode ?? "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
@@ -164,7 +160,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
                 AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
-        CardId: "",
+        CardId: "NewPostPaid",
         isCreditCardPayment: false));
   }
 
@@ -207,6 +203,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
           billerCode: item.billerCode,
           billingNumber: item.billingNo,
+          billingNo: item.billingNo,
           billerName: AppConstantsUtils.BILLER_NAME,
           serviceType: item.serviceType,
           nickName: AppConstantsUtils.NICK_NAME,
