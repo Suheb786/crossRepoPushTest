@@ -45,19 +45,13 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
             }
             Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                 arguments: PaidBillsSuccessPageArguments(
-                  amt: ProviderScope.containerOf(context)
-                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                      .totalAmountToPay(isDisplay: true),
-                  fee: ProviderScope.containerOf(context)
-                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                      .postPaidBillInquiryData?[0]
-                      .feesAmt,
-                  billName: AppConstantsUtils.BILLER_NAME,
-                  nickName: AppConstantsUtils.NICK_NAME,
-                  service: ProviderScope.containerOf(context)
-                      .read(confirmBillPaymentAmountPageViewModelProvider)
-                      .addNewBillDetailsData
-                      .service,
+                  data.data?.content?.billerList?[0].totalAmount ?? "0.0",
+                  data.data?.content?.billerList?[0].fee ?? "0.0",
+                  data.data?.content?.billerList?[0].billerName ?? "",
+                  data.data?.content?.billerList?[0].billerNameAR ?? "",
+                  AppConstantsUtils.NICK_NAME,
+                  data.data?.content?.billerList?[0].refNo ?? "",
+                  data.data?.content?.billerList?[0].isPaid ?? false,
                 ));
             var errorBillFail = data.data?.content?.billerList?[0].statusDescription ?? "";
             if (errorBillFail == "err-377") {

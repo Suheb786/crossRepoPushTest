@@ -23,9 +23,11 @@ class PayPrePaidUseCaseParams extends Params {
   final String? billingNumber;
   final String? serviceType;
   final String? amount;
+  final String? fees;
   final String? currencyCode;
   final String? accountNo;
   final String? otpCode;
+  final String? validationCode;
   final String? nickName;
   final bool? isNewBiller;
   final String? prepaidCategoryCode;
@@ -40,11 +42,13 @@ class PayPrePaidUseCaseParams extends Params {
       this.billingNumber,
       this.serviceType,
       this.amount,
+      this.fees,
       this.currencyCode,
       this.CardId,
       this.nickName,
       this.accountNo,
       this.otpCode,
+      this.validationCode,
       this.isNewBiller,
       this.prepaidCategoryCode,
       this.prepaidCategoryType,

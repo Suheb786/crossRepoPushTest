@@ -21,6 +21,7 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
     isPartial: json['isPartial'] as bool?,
     minValue: json['minValue'],
     maxValue: json['maxValue'],
+    inqRefNo: json['inqRefNo'],
   );
 }
 
@@ -39,4 +40,5 @@ Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
       'isPartial': instance.isPartial,
       'minValue': instance.minValue,
       'maxValue': instance.maxValue,
+      'inqRefNo': instance.inqRefNo,
     };

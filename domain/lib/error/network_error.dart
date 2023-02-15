@@ -743,6 +743,12 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT);
 
+          case "err-381":
+            return AppError(cause: cause, error: error, type: ErrorType.OPEN_DATE_ISSUE_MESSAGE);
+
+          case "err-383":
+            return AppError(cause: cause, error: error, type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

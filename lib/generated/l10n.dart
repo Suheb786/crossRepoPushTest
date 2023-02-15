@@ -14970,11 +14970,31 @@ class S {
     );
   }
 
-  /// `Your payment is rejected due to expiry date of the bill`
+  /// `You cannot proceed to complete the payment because the bill is expired`
   String get rejectedDueToExpiryDate {
     return Intl.message(
-      'Your payment is rejected due to expiry date of the bill',
+      'You cannot proceed to complete the payment because the bill is expired',
       name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is not yet issued`
+  String get openDateIssuedMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is not yet issued',
+      name: 'openDateIssuedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is expired`
+  String get closeDateIssueMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is expired',
+      name: 'closeDateIssueMessage',
       desc: '',
       args: [],
     );
@@ -15020,10 +15040,10 @@ class S {
     );
   }
 
-  /// `Submitted for`
+  /// `We are processing your request and we will notify you once ready`
   String get submittedFor {
     return Intl.message(
-      'Submitted for',
+      'We are processing your request and we will notify you once ready',
       name: 'submittedFor',
       desc: '',
       args: [],
@@ -15065,6 +15085,16 @@ class S {
     return Intl.message(
       ' There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ',
       name: 'dailyLimitExceededorTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processing {
+    return Intl.message(
+      'Processing',
+      name: 'processing',
       desc: '',
       args: [],
     );

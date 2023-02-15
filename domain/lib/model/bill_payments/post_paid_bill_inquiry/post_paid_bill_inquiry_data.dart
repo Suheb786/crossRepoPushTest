@@ -11,6 +11,7 @@ class PostPaidBillInquiryData {
     this.maxValue,
     this.success,
     this.message,
+    this.inqRefNo,
     this.isPartial,
     this.minMaxValidationMessage,
     this.actualDueAmountFromApi,
@@ -27,6 +28,7 @@ class PostPaidBillInquiryData {
   String? minValue;
   bool? success;
   dynamic message;
+  String? inqRefNo;
   bool? isPartial;
   String? minMaxValidationMessage;
   String? actualDueAmountFromApi;

@@ -96,6 +96,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
               ((transaction.nickname ?? '').toLowerCase().contains(tag.toLowerCase())) ||
               ((transaction.refNo ?? '').toLowerCase().contains(tag.toLowerCase())) ||
               ((transaction.billerNameAr ?? '').toLowerCase().contains(tag.toLowerCase())) ||
+              ((transaction.billingNumber ?? '').toLowerCase().contains(tag.toLowerCase())) ||
               ((transaction.billerName ?? '').toLowerCase().contains(tag.toLowerCase())));
         }).toList();
         if ((nestedFilteredTransaction ?? []).isNotEmpty) {

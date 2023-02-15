@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/transaction_status_bills_enum.dart';
 import 'package:domain/model/bill_payments/bill_payments_transaction/bill_payments_transaction_list.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -50,7 +51,7 @@ class BillPaymentsTransactionListEntity
   final String? refNo;
 
   @JsonKey(name: "status")
-  final bool? isPaid;
+  final int? status;
 
   BillPaymentsTransactionListEntity({
     this.nickname,
@@ -67,7 +68,7 @@ class BillPaymentsTransactionListEntity
     this.categoryName,
     this.iconCode,
     this.refNo,
-    this.isPaid,
+    this.status,
   });
 
   factory BillPaymentsTransactionListEntity.fromJson(Map<String, dynamic> json) =>
@@ -97,7 +98,9 @@ class BillPaymentsTransactionListEntity
       categoryName: this.categoryName ?? "",
       iconCode: this.iconCode ?? "",
       refNo: this.refNo ?? "",
-      isPaid: this.isPaid ?? false,
+      status: this.status != null
+          ? this.status!.fromTransactionStatusBillsValue()
+          : TransactionStatusBillsEnum.PENDING,
     );
   }
 }

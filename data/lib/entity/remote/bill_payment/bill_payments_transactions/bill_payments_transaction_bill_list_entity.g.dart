@@ -22,7 +22,7 @@ BillPaymentsTransactionListEntity _$BillPaymentsTransactionListEntityFromJson(Ma
     categoryName: json['categoryName'] as String?,
     iconCode: json['iconCode'] as String?,
     refNo: json['transactionRefrenceNo'] as String?,
-    isPaid: json['status'] as bool?,
+    status: json['status'] as int?,
   );
 }
 
@@ -42,5 +42,5 @@ Map<String, dynamic> _$BillPaymentsTransactionListEntityToJson(BillPaymentsTrans
       'categoryName': instance.categoryName,
       'iconCode': instance.iconCode,
       'transactionRefrenceNo': instance.refNo,
-      'status': instance.isPaid,
+      'status': instance.status,
     };

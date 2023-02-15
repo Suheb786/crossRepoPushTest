@@ -95,7 +95,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.PREPAID_KEY) {
       final confirmBillModel =
           ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
-      amount = double.parse(confirmBillModel.userEnteredPrePaidAmount ?? "0").toStringAsFixed(3);
+      amount = double.parse(confirmBillModel.amtController.text).toStringAsFixed(3);
     } else if (AppConstantsUtils.BILLER_TYPE == AppConstantsUtils.POSTPAID_KEY) {
       final confirmBillModel =
           ProviderScope.containerOf(context).read(confirmBillPaymentAmountPageViewModelProvider);
@@ -142,9 +142,9 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         billerCode: AppConstantsUtils.SELECTED_BILLER_CODE,
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
-        amount: confirmBillModel.addNewBillDetailsData.isPrepaidCategoryListEmpty == true
-            ? confirmBillModel.userEnteredPrePaidAmount
-            : "",
+        amount: confirmBillModel.amtController.text,
+        fees: double.parse(confirmBillModel.feeAmtController.text).toStringAsFixed(3),
+        validationCode: confirmBillModel.validationCode ?? "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
         otpCode: otpController.text,
@@ -160,7 +160,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
                 AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
-        CardId: "",
+        CardId: "NewPostPaid",
         isCreditCardPayment: false));
   }
 
@@ -201,13 +201,18 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
       PostPaidBillInquiryData item = confirmBillModel.postPaidBillInquiryData![i];
       if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
         tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
-            billerCode: item.billerCode,
-            billingNumber: item.billingNo,
-            billerName: AppConstantsUtils.BILLER_NAME,
-            serviceType: item.serviceType,
-            nickName: AppConstantsUtils.NICK_NAME,
-            amount: confirmBillModel.totalAmountToPay(),
-            fees: item.feesAmt ?? "0.0"));
+          billerCode: item.billerCode,
+          billingNumber: item.billingNo,
+          billingNo: item.billingNo,
+          billerName: AppConstantsUtils.BILLER_NAME,
+          serviceType: item.serviceType,
+          nickName: AppConstantsUtils.NICK_NAME,
+          amount: confirmBillModel.totalAmountToPay(),
+          dueAmount: confirmBillModel.totalDueBillAmtFromApiPostPaid(),
+          fees: item.feesAmt ?? "0.0",
+          inqRefNo: item.inqRefNo ?? "",
+          isPartialAllowed: item.isPartial ?? false,
+        ));
       }
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList.toSet().toList();

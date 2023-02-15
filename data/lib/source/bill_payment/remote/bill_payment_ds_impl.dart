@@ -90,10 +90,12 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         billingNumber: params?.billingNumber,
         serviceType: params?.serviceType,
         amount: params?.amount,
+        fees: params?.fees,
         currencyCode: params?.currencyCode,
         accountNo: params?.accountNo,
         isNewBiller: params?.isNewBiller,
         otpCode: params?.otpCode,
+        validationCode: params?.validationCode,
         CardId: params?.CardId,
         nickName: params?.nickName,
         prepaidCategoryCode: params?.prepaidCategoryCode,
@@ -108,13 +110,28 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill({required params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
 
-    return _apiService.payPostPaidBill(PayPostPaidBillRequestEntity(
+    if (params.CardId == "NewPostPaid") {
+      return _apiService.payPostPaidBill(PayPostPaidBillRequestEntity(
+          accountNo: params.accountNo,
+          billerList: params.billerList,
+          currencyCode: params.currencyCode,
+          isNewBiller: params.isNewBiller,
+          otpCode: params.otpCode,
+          CardId: "",
+          nickName: params.nickName,
+          isCreditCardPayment: params.isCreditCardPayment,
+          totalAmount: params.totalAmount,
+          getToken: true,
+          baseData: baseData.toJson()));
+    }
+
+    return _apiService.payPostPaidBillV1(PayPostPaidBillRequestEntity(
         accountNo: params.accountNo,
         billerList: params.billerList,
         currencyCode: params.currencyCode,
         isNewBiller: params.isNewBiller,
         otpCode: params.otpCode,
-        CardId: params.CardId,
+        CardId: "",
         nickName: params.nickName,
         isCreditCardPayment: params.isCreditCardPayment,
         totalAmount: params.totalAmount,
