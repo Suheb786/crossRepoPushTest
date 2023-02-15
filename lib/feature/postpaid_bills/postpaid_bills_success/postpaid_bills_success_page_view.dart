@@ -94,6 +94,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
               padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.0.w),
               child: Text(
                 S.of(context).submittedFor,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,

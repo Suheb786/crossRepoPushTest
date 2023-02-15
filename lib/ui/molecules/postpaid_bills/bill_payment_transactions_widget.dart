@@ -46,7 +46,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                   Container(
                     margin: EdgeInsetsDirectional.only(start: 52.0, bottom: 10.0),
                     height: 25.0.h,
-                    width: 70.0.w,
+                    width: 80.0.w,
                     decoration: BoxDecoration(
                       color: getStatus(item.status ?? TransactionStatusBillsEnum.PENDING) == "success"
                           ? AppColor.darkModerateLimeGreen
@@ -249,7 +249,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
   getStatusTitle(BuildContext context, TransactionStatusBillsEnum status) {
     switch (status) {
       case TransactionStatusBillsEnum.SUCCESS:
-        return S.of(context).success;
+        return S.of(context).successS;
       case TransactionStatusBillsEnum.FAIL:
         return S.of(context).failed;
 
