@@ -143,7 +143,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount: confirmBillModel.amtController.text,
-        fees: double.parse(confirmBillModel.feeAmtController.text).toStringAsFixed(3),
+        fees: double.parse(confirmBillModel.feeAmtValue ?? "0").toStringAsFixed(3),
         validationCode: confirmBillModel.validationCode ?? "",
         currencyCode: "JOD",
         accountNo: confirmBillModel.addNewBillDetailsData.accountNumber,
@@ -160,7 +160,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
                 AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false,
-        CardId: "NewPostPaid",
+        CardId: "",
         isCreditCardPayment: false));
   }
 
@@ -223,7 +223,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
         currencyCode: "JOD",
         isNewBiller: true,
         isCreditCardPayment: false,
-        CardId: "",
+        CardId: "NewPostPaid",
         nickName: AppConstantsUtils.NICK_NAME,
         otpCode: otpController.text));
   }

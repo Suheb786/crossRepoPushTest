@@ -164,21 +164,21 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                                     ),
                                   )
                                 : Container(),
-                            item.billingNumber != null && item.billingNumber!.isNotEmpty
-                                ? Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
-                                    child: Text(
-                                      item.billingNumber ?? "",
-                                      maxLines: 10,
-                                      style: TextStyle(
-                                        color: AppColor.veryDarkGray2,
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.0.t,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  )
-                                : Container(),
+                            // item.billingNumber != null && item.billingNumber!.isNotEmpty
+                            //     ? Padding(
+                            //         padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
+                            //         child: Text(
+                            //           item.billingNumber ?? "",
+                            //           maxLines: 10,
+                            //           style: TextStyle(
+                            //             color: AppColor.veryDarkGray2,
+                            //             fontFamily: StringUtils.appFont,
+                            //             fontSize: 12.0.t,
+                            //             fontWeight: FontWeight.w400,
+                            //           ),
+                            //         ),
+                            //       )
+                            //     : Container(),
                             Padding(
                               padding: EdgeInsetsDirectional.only(top: 4.0.h, start: 4.0.w),
                               child: Text(
