@@ -123,7 +123,10 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
-      if (double.parse(item.dueAmount ?? "0.0") > 0.0) {
+      if (double.parse(item.dueAmount ?? "0.0") > 0.0 ||
+          double.parse(item.dueAmount ?? "0.0") <= 0.0 &&
+              item.isPartial == true &&
+              double.parse(item.maxValue ?? "0.0") > 0.0) {
         tempPostpaidBillInquiryRequestList.add(PostpaidBillInquiry(
           billerCode: item.billerCode,
           billingNumber: item.billingNo,
