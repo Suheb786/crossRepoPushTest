@@ -9,6 +9,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class BillPaymentsTransactionViewModel extends BasePageViewModel {
@@ -161,15 +162,33 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
             // return;
           }
 
-          var list = event.data?.billPaymentsTransactionData;
-          bool isListEmpty = list == null || list.isEmpty || list.length < pageSize;
+          var list = event.data?.billPaymentsTransactionData ?? [];
+          var listLength = 0;
+
+          for (var item in list) {
+            listLength = listLength + item.billPaymentsTransactionDataList!.length;
+          }
+
+          bool isListEmpty = list == null || list.isEmpty || listLength < pageSize;
           if (isListEmpty) {
             // Don't call the API again
             hasMoreData = false;
             // return;
           }
-          allDataList?.addAll(list!);
+
+          if (allDataList == null || allDataList!.isEmpty) {
+            allDataList?.addAll(list);
+          } else {
+            if (TimeUtils.getFormattedDateForAccountTransaction(allDataList?.last.label ?? "") ==
+                TimeUtils.getFormattedDateForAccountTransaction(list.first.label ?? "-")) {
+              allDataList?.last.billPaymentsTransactionDataList
+                  ?.addAll(list.first.billPaymentsTransactionDataList ?? []);
+            } else {
+              allDataList?.addAll(list);
+            }
+          }
           allDataList = allDataList?.toSet().toList();
+
           _getTransactionsResponse.safeAdd(
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList)));
           transactionsResponse =
