@@ -28,7 +28,7 @@ PODS:
   - blinkid_flutter (5.14.0):
     - Flutter
     - PPBlinkID (~> 5.14.0)
-  - camera (0.0.1):
+  - camera_avfoundation (0.0.1):
     - Flutter
   - CryptoSwift (1.4.3)
   - device_info (0.0.1):
@@ -308,7 +308,7 @@ DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
-  - camera (from `.symlinks/plugins/camera/ios`)
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -388,8 +388,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/appsflyer_sdk/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
-  camera:
-    :path: ".symlinks/plugins/camera/ios"
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   file_picker:
@@ -467,7 +467,7 @@ SPEC CHECKSUMS:
   appsflyer_sdk: 6d03341418c1acf261fdfde2eb27fdeaf04fa2c2
   AppsFlyerFramework: a8de532f81b1d3c1dfc451f0ecded91ebb6a0e47
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
-  camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
+  camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
   CryptoSwift: a0799ee936271bd2253a006f1e4523df21845000
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d

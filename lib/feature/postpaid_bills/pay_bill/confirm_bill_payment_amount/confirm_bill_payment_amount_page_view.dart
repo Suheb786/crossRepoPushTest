@@ -77,12 +77,37 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                       model.showToastWithError(data.appError!);
                     } else if (data.status == Status.SUCCESS) {
                       model.postPaidBillInquiryData = data.data?.content?.postPaidBillInquiryData;
+                      if (model.postPaidBillInquiryData != null &&
+                          model.postPaidBillInquiryData?[0] != null &&
+                          model.postPaidBillInquiryData?[0].feesAmt != null &&
+                          model.postPaidBillInquiryData![0].feesAmt!.isNotEmpty) {
+                        model.feeAmtController.text =
+                            double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
+
+                        model.feeAmtValue =
+                            double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
+                      } else {
+                        model.feeAmtController.text = double.parse('0').toStringAsFixed(3);
+                        model.feeAmtValue = double.parse('0').toStringAsFixed(3);
+                      }
+
+                      model.minRange =
+                          double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
+                      model.maxRange =
+                          double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
+                      model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
+                      model.amtController.text = model.addAllBillAmt() ?? "0";
+                      model.postPaidBillInquiryData?[0].actualDueAmountFromApi =
+                          model.postPaidBillInquiryData?[0].dueAmount ?? '0';
+                      model.dueAmtController = model.addAllBillAmt() ?? "0";
+                      model.addNewBillDetailsData.amount = model.dueAmtController;
 
                       if (model.postPaidBillInquiryData?[0].success == false) {
                         if (model.postPaidBillInquiryData != null &&
                             model.postPaidBillInquiryData?[0] != null &&
                             model.postPaidBillInquiryData?[0].message != null &&
                             model.postPaidBillInquiryData![0].message!.toString().isNotEmpty) {
+                          model.isDateOk = model.postPaidBillInquiryData?[0].success ?? true;
                           if (model.postPaidBillInquiryData?[0].message == "err-379") {
                             model.showToastWithError(AppError(
                                 cause: Exception(),
@@ -104,26 +129,6 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                         }
                       }
 
-                      if (model.postPaidBillInquiryData != null &&
-                          model.postPaidBillInquiryData?[0] != null &&
-                          model.postPaidBillInquiryData?[0].feesAmt != null &&
-                          model.postPaidBillInquiryData![0].feesAmt!.isNotEmpty) {
-                        model.feeAmtController.text =
-                            double.parse(model.postPaidBillInquiryData?[0].feesAmt ?? '0').toStringAsFixed(3);
-                      } else {
-                        model.feeAmtController.text = double.parse('0').toStringAsFixed(3);
-                      }
-
-                      model.minRange =
-                          double.parse(model.postPaidBillInquiryData?[0].minValue ?? '0').toStringAsFixed(3);
-                      model.maxRange =
-                          double.parse(model.postPaidBillInquiryData?[0].maxValue ?? '0').toStringAsFixed(3);
-                      model.isPartial = model.postPaidBillInquiryData?[0].isPartial ?? false;
-                      model.amtController.text = model.addAllBillAmt() ?? "0";
-                      model.postPaidBillInquiryData?[0].actualDueAmountFromApi =
-                          model.postPaidBillInquiryData?[0].dueAmount ?? '0';
-                      model.dueAmtController = model.addAllBillAmt() ?? "0";
-                      model.addNewBillDetailsData.amount = model.dueAmtController;
                       model.minMaxValidate(
                           model.isPartial, model.minRange, model.maxRange, model.dueAmtController!, context);
                       model.validate(model.dueAmtController);
@@ -200,6 +205,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                 if (value.status == Status.SUCCESS) {
                                   model.feeAmtController.text = "0.0";
                                   model.feeAmtController.text =
+                                      double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
+                                  model.feeAmtValue =
                                       double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
                                   model.amtController.text =
                                       double.parse(value.data?.content?.dueAmount ?? "0").toStringAsFixed(3);
@@ -564,7 +571,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   }
 
   _feeAmountWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return model.feeAmtController.text.isNotEmpty && double.parse(model.feeAmtController.text) > 0.0
+    return model.feeAmtController != null &&
+            model.feeAmtController.text.isNotEmpty &&
+            double.parse(model.feeAmtController.text) > 0.0
         ? Padding(
             padding: EdgeInsetsDirectional.only(
               top: 8.0.h,
@@ -599,7 +608,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   }
 
   _totalAmountViewWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    return model.feeAmtController.text.isNotEmpty && double.parse(model.feeAmtController.text) > 0.0
+    return model.feeAmtController != null &&
+            model.feeAmtController.text.isNotEmpty &&
+            double.parse(model.feeAmtController.text) > 0.0
         ? Padding(
             padding: EdgeInsetsDirectional.only(
               top: 8.0.h,

@@ -79,6 +79,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             double.parse(payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0) {
           payPostPaidBillsDataList[index].isChecked = false;
         }
+
+        /// expired/open/close date bill
+        if (payPostPaidBillsDataList[index].status == false) {
+          payPostPaidBillsDataList[index].isChecked = false;
+        }
         postPaidRequestListJson = [];
         postPaidRequestListJson.add(PostpaidBillInquiry(
           billerCode: payPostPaidBillsDataList[index].billerCode,
@@ -124,6 +129,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         if (item.isPartial == true &&
             double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 &&
             double.parse(item.maxValue ?? "0") <= 0.0) {
+          item.isChecked = false;
+        }
+
+        /// expired/open/close date bill
+        if (item.status == false) {
           item.isChecked = false;
         }
         postPaidRequestListJson.add(PostpaidBillInquiry(

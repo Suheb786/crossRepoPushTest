@@ -42,6 +42,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   bool? isOtpRequired = false;
   bool? isOtpSend = false;
+  var isDateOk = true;
 
   ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase, this.payPrePaidUseCase,
       this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this._enterOtpBillPaymentsUseCase) {
@@ -55,6 +56,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   TextEditingController amtController = TextEditingController(text: "0.0");
   String? dueAmtController = "0";
   TextEditingController feeAmtController = TextEditingController(text: "0.0");
+  String? feeAmtValue = "0";
 
   ///get new details bill payments model
   PublishSubject<AddNewDetailsBillPaymentsModel> _addNewDetailsBillPaymentsModelResponse = PublishSubject();
@@ -172,7 +174,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     if (isPartial == true) {
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
         if (isDisplay == true) {
-          return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text))
+          return (double.parse(dueAmtController ?? "0") + double.parse(feeAmtValue ?? "0"))
               .toStringAsFixed(3);
         } else {
           return (double.parse(dueAmtController ?? "0")).toStringAsFixed(3);
@@ -263,7 +265,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billingNumber: AppConstantsUtils.SELECTED_BILLING_NUMBER,
         serviceType: AppConstantsUtils.SELECTED_SERVICE_TYPE,
         amount: double.parse(amtController.text).toStringAsFixed(3),
-        fees: double.parse(feeAmtController.text).toStringAsFixed(3),
+        fees: double.parse(feeAmtValue ?? "0").toStringAsFixed(3),
         validationCode: validationCode ?? "",
         currencyCode: "JOD",
         accountNo: addNewBillDetailsData.accountNumber,
@@ -350,14 +352,18 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   bool isAmountMoreThanZero = false;
 
   validate(String? value) {
-    isAmountMoreThanZero = false;
-    if (double.parse(value ?? "0") > 0.0) {
-      isAmountMoreThanZero = true; // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
-      if (isPartial == true && isAmountInRange == true) {
-        // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
-        _showButtonSubject.safeAdd(true);
-      } else if (isPartial == false && isAmountInRange == false) {
-        _showButtonSubject.safeAdd(true);
+    if (isDateOk == true) {
+      isAmountMoreThanZero = false;
+      if (double.parse(value ?? "0") > 0.0) {
+        isAmountMoreThanZero = true; // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
+        if (isPartial == true && isAmountInRange == true) {
+          // if true :isAmountMoreThanZero key is to proceed with payPrepaid bill
+          _showButtonSubject.safeAdd(true);
+        } else if (isPartial == false && isAmountInRange == false) {
+          _showButtonSubject.safeAdd(true);
+        } else {
+          _showButtonSubject.safeAdd(false);
+        }
       } else {
         _showButtonSubject.safeAdd(false);
       }
@@ -391,8 +397,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     if (isPartial == true) {
       isAmountInRange = false;
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
-        value =
-            (double.parse(dueAmtController ?? "0") + double.parse(feeAmtController.text)).toStringAsFixed(3);
+        value = (double.parse(dueAmtController ?? "0") + double.parse(feeAmtValue ?? "0")).toStringAsFixed(3);
       }
       if (value.isEmpty) {
         _editAmountFieldSubject.safeAdd(
