@@ -7,6 +7,8 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_v
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   @override
@@ -17,22 +19,25 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-      preferredSize: Size(double.maxFinite, 85),
+      preferredSize: Size(double.maxFinite, 85.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 18.0),
+            padding: EdgeInsetsDirectional.only(start: 18.0.w),
             child: Container(
-              width: 28,
+              width: 28.w,
             ),
           ),
           Text(
             S.of(context).manageCliqId,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 14.t,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).accentColor,
+              color: Theme
+                  .of(context)
+                  .accentColor,
+              fontFamily: StringUtils.appFont,
             ),
           ),
           InkWell(
@@ -44,8 +49,10 @@ class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, Cliq
                   "navigation_alias_creation", {"navigated_alias_creation": true});
             },
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 24.0),
-              child: Icon(Icons.add, color: Theme.of(context).accentColor),
+              padding: EdgeInsetsDirectional.only(end: 24.0.w),
+              child: Icon(Icons.add, color: Theme
+                  .of(context)
+                  .accentColor),
             ),
           ),
         ],
