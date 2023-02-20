@@ -71,18 +71,18 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                     .text ==
                                 S.of(context).alias,
                             aliasValue: (ProviderScope.containerOf(context)
-                                .read(cliqIdTypeSelectionViewModelProvider)
-                                .cliqIdTypeController
-                                .text ==
-                                S.of(context).alias)
+                                        .read(cliqIdTypeSelectionViewModelProvider)
+                                        .cliqIdTypeController
+                                        .text ==
+                                    S.of(context).alias)
                                 ? ProviderScope.containerOf(context)
-                                .read(cliqIdTypeSelectionViewModelProvider)
-                                .aliasController
-                                .text
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .aliasController
+                                    .text
                                 : ProviderScope.containerOf(context)
-                                .read(cliqIdTypeSelectionViewModelProvider)
-                                .mobileNumberController
-                                .text,
+                                    .read(cliqIdTypeSelectionViewModelProvider)
+                                    .mobileNumberController
+                                    .text,
                             getToken: true,
                           );
 
