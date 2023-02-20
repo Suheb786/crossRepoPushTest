@@ -127,21 +127,14 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             height: 16.h,
                                                           ),
                                                           AppTextField(
-                                                              labelText: S
-                                                                  .of(context)
-                                                                  .alias
-                                                                  .toUpperCase(),
-                                                              hintText: S
-                                                                  .of(context)
-                                                                  .pleaseEnter,
+                                                              labelText: S.of(context).alias.toUpperCase(),
+                                                              hintText: S.of(context).pleaseEnter,
                                                               inputType: TextInputType.text,
-                                                              textCapitalization:
-                                                              TextCapitalization.characters,
-                                                              /*inputFormatters: [
+                                                              inputFormatters: [
                                                                 LengthLimitingTextInputFormatter(10),
                                                                 FilteringTextInputFormatter.allow(
                                                                     RegExp(r"[a-zA-Z0-9]")),
-                                                              ],*/
+                                                              ],
                                                               inputAction: TextInputAction.done,
                                                               controller: model.aliasController,
                                                               key: model.aliasKey,
@@ -150,11 +143,11 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                     .read(createCliqIdViewModelProvider)
                                                                     .changeHeader(
                                                                         S.current.letsGiveANameToYourCliqId);
-                                                                model.aliasController.value =
+                                                                /*  model.aliasController.value =
                                                                     TextEditingValue(
                                                                         text: value.toUpperCase(),
                                                                         selection:
-                                                                            model.aliasController.selection);
+                                                                            model.aliasController.selection);*/
                                                                 model.validate();
                                                               }),
                                                           SizedBox(

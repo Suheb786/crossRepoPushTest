@@ -32,9 +32,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               image: AssetUtils.mobile,
               title: S.of(context).deviceNotSupported,
               descriptionWidget: Text(
-                S
-                    .of(context)
-                    .deviceNotSupportedNote,
+                S.of(context).deviceNotSupportedNote,
                 style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
               ), onDismissed: () {
             exit(0);
@@ -50,8 +48,8 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-              Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-              //  Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
+              // Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
             }
           },
           dataBuilder: (context, data) {
