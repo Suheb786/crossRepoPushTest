@@ -64,27 +64,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       if (value &&
                           Platform.isIOS &&
                           AppConstantsUtils.isApplePayFeatureEnabled &&
-                          (isAllCardsInApplePay &&
-                              (model.debitCards.length > 0) &&
-                              (model.creditCards.length > 0))) {
+                          isAllCardsInApplePay) {
                         ApplePayDialog.show(context,
                             image: AssetUtils.applePayLogo,
-                            title: S
-                                .of(context)
-                                .blinkWithApplePay,
-                            onSelected: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
-                                  arguments: SelectedCardsForApplePayPageArguments(
-                                      debitCards: model.debitCards, creditCards: model.creditCards));
-                            },
-                            onDismissed: () {
-                              Navigator.pop(context);
-                            },
+                            title: S.of(context).blinkWithApplePay, onSelected: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(context, RoutePaths.SelectedCardForApplePayPage,
+                              arguments: SelectedCardsForApplePayPageArguments(
+                                  debitCards: model.debitCards, creditCards: model.creditCards));
+                        }, onDismissed: () {
+                          Navigator.pop(context);
+                        },
                             descriptionWidget: Text(
-                              S
-                                  .of(context)
-                                  .blinkWithApplePayLandingDialogDescription,
+                              S.of(context).blinkWithApplePayLandingDialogDescription,
                               style: TextStyle(
                                   color: AppColor.veryDarkGray2,
                                   fontFamily: StringUtils.appFont,

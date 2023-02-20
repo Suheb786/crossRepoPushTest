@@ -6,13 +6,12 @@ class DashboardFeatures {
   final bool? isPinChangeEnabled;
   final bool? isDebitCardRequestPhysicalCardEnabled;
 
-  DashboardFeatures(
-      {this.isCreditCardFeatureEnabled,
-      this.isRJFeatureEnabled,
-      this.isLoginFeatureEnabled,
-      this.isRegisterFeatureEnabled,
-      this.isPinChangeEnabled,
-      this.isDebitCardRequestPhysicalCardEnabled,
-
-      });
+  DashboardFeatures({
+    this.isCreditCardFeatureEnabled,
+    this.isRJFeatureEnabled,
+    this.isLoginFeatureEnabled,
+    this.isRegisterFeatureEnabled,
+    this.isPinChangeEnabled,
+    this.isDebitCardRequestPhysicalCardEnabled,
+  });
 }
