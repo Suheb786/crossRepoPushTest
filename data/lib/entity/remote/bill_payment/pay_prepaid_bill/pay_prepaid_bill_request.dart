@@ -14,6 +14,8 @@ class PayPrePaidRequest {
   final String? serviceType;
   @JsonKey(name: "amount")
   String? amount;
+  @JsonKey(name: "fees")
+  String? fees;
   @JsonKey(name: "currencyCode")
   final String? currencyCode;
   @JsonKey(name: "accountNo")
@@ -22,6 +24,8 @@ class PayPrePaidRequest {
   final bool? isNewBiller;
   @JsonKey(name: "otpCode")
   final String? otpCode;
+  @JsonKey(name: "validationCode")
+  final String? validationCode;
   @JsonKey(name: "prepaidCategoryCode")
   final String? prepaidCategoryCode;
   @JsonKey(name: "prepaidCategoryType")
@@ -32,6 +36,8 @@ class PayPrePaidRequest {
   final bool? isCreditCardPayment;
   @JsonKey(name: "CardId")
   final String? CardId;
+  @JsonKey(name: "NickName")
+  String? nickName;
 
   @JsonKey(name: "GetToken")
   final bool? getToken;
@@ -45,11 +51,14 @@ class PayPrePaidRequest {
       this.serviceType,
       // this.categoryCode,
       this.amount,
+      this.fees,
       this.currencyCode,
       this.accountNo,
       this.isNewBiller,
       this.otpCode,
+      this.validationCode,
       this.CardId,
+      this.nickName,
       this.prepaidCategoryCode,
       this.prepaidCategoryType,
       this.billingNumberRequired,

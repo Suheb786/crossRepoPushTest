@@ -345,6 +345,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Biller Added Successfully."),
         "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
             "Biller already exists with the same billing number"),
+        "billerName": MessageLookupByLibrary.simpleMessage("Biller name"),
+        "billsAndPayments":
+            MessageLookupByLibrary.simpleMessage("Bills & Payments"),
+        "billsHistory": MessageLookupByLibrary.simpleMessage("Bills History"),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
@@ -573,6 +577,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
             "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
+        "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
+            "You cannot proceed to complete the payment because the bill is expired"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -717,6 +723,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
         "dailyLimit": MessageLookupByLibrary.simpleMessage("Daily Limit"),
+        "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
+            " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help "),
+        "dailyNarrationLimitexceed": MessageLookupByLibrary.simpleMessage(
+            "Daily Narration Amount Exceed"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateComparison": MessageLookupByLibrary.simpleMessage(
             "Depart on date should not be greater than return date"),
@@ -1784,6 +1794,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
+        "manageAndPayMyBills":
+            MessageLookupByLibrary.simpleMessage("Manage and pay my bills"),
         "manageCardLimits":
             MessageLookupByLibrary.simpleMessage("Manage card limits"),
         "manageCardPin":
@@ -1795,6 +1807,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings":
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
+        "manageMyBills":
+            MessageLookupByLibrary.simpleMessage("Manage my bills"),
         "manageSettlement":
             MessageLookupByLibrary.simpleMessage("Manage settlement"),
         "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Price"),
@@ -1980,6 +1994,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
+            "You cannot proceed to complete the payment because the bill is not yet issued"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
@@ -2031,6 +2047,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "Place the QR code within the frame and proceed with payment"),
+        "payYourBillswithBlink":
+            MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paying": MessageLookupByLibrary.simpleMessage("Paying"),
@@ -2153,6 +2171,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "processingVoucher":
             MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
@@ -2268,6 +2287,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
+        "rejectedDueToExpiryDate": MessageLookupByLibrary.simpleMessage(
+            "You cannot proceed to complete the payment because the bill is expired"),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -2552,6 +2573,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
+        "submittedFor": MessageLookupByLibrary.simpleMessage(
+            "We are processing your request and we will notify you once ready"),
         "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
         "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
             "Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details."),
@@ -2576,6 +2599,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Suspend CliQ ID"),
         "suspendId": MessageLookupByLibrary.simpleMessage("Suspend ID"),
         "suspended": MessageLookupByLibrary.simpleMessage("Suspended"),
+        "swipeAnyBillerToTheLeftToRemove": MessageLookupByLibrary.simpleMessage(
+            "Swipe any biller to the left to remove"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(
@@ -2651,6 +2676,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
+        "thereAreNoDueBillsToBePaidAtTheMoment":
+            MessageLookupByLibrary.simpleMessage(
+                "There are no due bills to be paid at the moment"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
@@ -2833,10 +2861,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "It’s time for a quick\nvideo call"),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "Your video call is scheduled for the 15th of October at 10:00AM."),
+        "viewAndPayYourDueBills":
+            MessageLookupByLibrary.simpleMessage("View and pay your due bills"),
         "viewCardSubSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewHistory": MessageLookupByLibrary.simpleMessage("View History"),
         "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
         "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
@@ -2905,6 +2936,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can change the above details in the card settings "),
+        "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
+            "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),

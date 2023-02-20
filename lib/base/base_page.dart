@@ -184,6 +184,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
         }
       }
     });
+
+    model.errorStringStream.listen((event) {
+      if (mounted) {
+        showTopError(event);
+      }
+    });
+
     model.toast.listen((message) {
       showShortToast(message);
     });

@@ -1,4 +1,3 @@
-
 class GetPostpaidBillerListModelData {
   String? joebppsNo;
   String? customerId;
@@ -21,6 +20,9 @@ class GetPostpaidBillerListModelData {
   String? iconCode;
   bool? isAmountUpdatedFromApi; //
   String? actualdueAmountFromApi;
+  bool? isPartial;
+  String? maxValue;
+  String? minValue;
 
   GetPostpaidBillerListModelData({
     this.joebppsNo,
@@ -42,7 +44,10 @@ class GetPostpaidBillerListModelData {
     this.status,
     this.iconCode,
     this.isChecked = false,
+    this.isPartial = false,
     this.isAmountUpdatedFromApi = false,
     this.actualdueAmountFromApi = "0.000",
+    this.maxValue = "0.000",
+    this.minValue = "0.000",
   });
 }

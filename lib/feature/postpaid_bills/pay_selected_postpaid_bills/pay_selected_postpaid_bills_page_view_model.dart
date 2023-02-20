@@ -2,6 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_success.dart';
 import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
@@ -19,8 +20,6 @@ import 'package:rxdart/rxdart.dart';
 
 class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   final PaySelectedBillsPostPaidBillsPageArguments arguments;
-  List<double> totalAmt = [];
-
   final ScrollController payingBillController = ScrollController();
   final TextEditingController savingAccountController = TextEditingController();
 
@@ -33,28 +32,54 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
+  List<BillerSuccessDetails>? billerSuccessDetailsList = [];
+
   PaySelectedBillsPostPaidBillsPageViewModel(this.payPostPaidBillUseCase, this.arguments) {
     payPostPaidBillListener();
   }
 
   bool isTotalAmountZero = true;
+  double totalBillAmt = 0.0;
+  double totalBillAmtSuccess = 0.0;
+  int validRequestCounter = 0;
 
-  addAllBillAmt(BuildContext context) {
-    double totalBillAmt = 0.0;
+  addAllBillAmt(BuildContext context, {isApi: false}) async {
+    totalBillAmt = 0.0;
+    totalBillAmtSuccess = 0.0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
       PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
-      if (inquiryData.dueAmount == null || inquiryData.dueDate!.isEmpty) {
-        totalBillAmt = totalBillAmt + double.parse("0.0");
+      if (inquiryData.dueAmount == null || inquiryData.dueAmount!.isEmpty) {
+        totalBillAmt = await totalBillAmt + double.parse("0.0");
       } else {
-        totalBillAmt = totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+        if (inquiryData.isPartial == true &&
+            double.parse(inquiryData.dueAmount ?? "0") !=
+                double.parse(inquiryData.actualDueAmountFromApi ?? "0")) {
+          if (isApi == false) {
+            totalBillAmt = await totalBillAmt +
+                double.parse(inquiryData.dueAmount ?? "0.0") +
+                double.parse(inquiryData.feesAmt ?? "0.0");
+          } else {
+            totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+          }
+        } else {
+          totalBillAmt = await totalBillAmt + double.parse(inquiryData.dueAmount ?? "0.0");
+        }
       }
     }
-    isTotalAmountZero = totalBillAmt > 0.0 ? false : true;
+    isTotalAmountZero = await totalBillAmt > 0.0 ? false : true;
     if (isTotalAmountZero) {
       showToastWithError(AppError(
           cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
     }
-    return totalBillAmt;
+    validRequestCounter = 0;
+    for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
+      PostPaidBillInquiryData inquiryData = postPaidBillInquiryData![index];
+      if (inquiryData.minMaxValidationMessage != '') {
+        await validRequestCounter++;
+      }
+    }
+    totalBillAmtSuccess = await totalBillAmt;
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
 
   /// ---------------- post paid data from allpostpaidbillsscreen -------------------------------- ///
@@ -78,6 +103,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_post_paid_saved_bill", {"pay_post_paid_saved_bill_call": true});
     tempPostpaidBillInquiryRequestList = [];
+    billerSuccessDetailsList = [];
     for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
       PostPaidBillInquiryData item = postPaidBillInquiryData![i];
 
@@ -85,34 +111,51 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         tempPostpaidBillInquiryRequestList?.add(PostpaidBillInquiry(
             billerCode: item.billerCode,
             billingNumber: item.billingNo,
-            billerName: StringUtils.isDirectionRTL(context)
+            billingNo: item.billingNo,
+            billerName: !StringUtils.isDirectionRTL(context)
                 ? arguments.noOfSelectedBills[i].billerNameEN
                 : arguments.noOfSelectedBills[i].billerNameAR,
             serviceType: item.serviceType,
+            nickName: getValidBillerNickName(item.billingNo, item.serviceType),
             amount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
-            fees: item.feesAmt ?? "0.0"));
+            dueAmount: double.parse(item.actualDueAmountFromApi ?? "0").toStringAsFixed(3),
+            fees: item.feesAmt ?? "0.0",
+            inqRefNo: item.inqRefNo ?? "",
+            isPartialAllowed: item.isPartial ?? false));
       }
+      billerSuccessDetailsList?.add(BillerSuccessDetails(
+        billerName: !StringUtils.isDirectionRTL(context)
+            ? arguments.noOfSelectedBills[i].billerNameEN
+            : arguments.noOfSelectedBills[i].billerNameAR,
+        dueAmount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
+        fee: item.feesAmt ?? "0.0",
+        serviceType: !StringUtils.isDirectionRTL(context)
+            ? arguments.noOfSelectedBills[i].serviceType
+            : arguments.noOfSelectedBills[i].serviceTypeAR,
+      ));
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
-    _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
-        billerList: tempPostpaidBillInquiryRequestList,
-        accountNo: savingAccountController.text,
-        // need to confirm with mohit totalAmount must be taken and recalculate and shown from PostpaidBillInquiry data; as its showing from new bill page calculation
-        totalAmount: addAllBillAmt(context).toStringAsFixed(3),
-        currencyCode: "JOD",
-        isNewBiller: false,
-        isCreditCardPayment: false,
-        CardId: "",
-        otpCode: ""));
+    addAllBillAmt(context, isApi: true);
+    Future.delayed(Duration(milliseconds: 200))
+        .then((value) => _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
+            billerList: tempPostpaidBillInquiryRequestList,
+            accountNo: savingAccountController.text,
+            totalAmount: totalBillAmt.toStringAsFixed(3),
+            currencyCode: "JOD",
+            isNewBiller: false,
+            isCreditCardPayment: false,
+            CardId: "",
+            nickName: "",
+            // only need to be added in case of new biller added request
+            otpCode: "")));
   }
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
-          //to do
           updateLoader();
           _payPostPaidResponse.safeAdd(event);
           if (event.status == Status.ERROR) {
@@ -128,6 +171,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void newAmtEnter(
     int index,
     String value,
+    String actualDueAmountFromApi,
+    String feeAmt,
     bool isPartial,
     String? minRange,
     String? maxRange,
@@ -136,15 +181,15 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     if (value.length <= 0) {
       value = "0";
     }
+
     arguments.postPaidBillInquiryData?[index].dueAmount = value;
     arguments.noOfSelectedBills[index].dueAmount = value;
     if (isPartial == true) {
-      minMaxValidate(isPartial, minRange, maxRange, value, context, index);
+      if (double.parse(value) != double.parse(actualDueAmountFromApi)) {
+        value = (double.parse(value) + double.parse(feeAmt)).toStringAsFixed(3);
+      }
+      minMaxValidate(isPartial, minRange, maxRange, value, actualDueAmountFromApi, feeAmt, context, index);
     }
-
-    // totalAmt[index] = double.parse(value);
-    // arguments.noOfSelectedBills[index].dueAmount = value;
-    _totalBillAmtDueSubject.safeAdd(addAllBillAmt(context));
   }
 
   getValidBillerIcon(String? billingNumber, String? serviceType) {
@@ -170,15 +215,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
   }
 
-  /* getValidBillerServiceTypeDescEN(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
-        return item.serviceTypeDescEN != null &&
-                item.serviceTypeDescEN!.isNotEmpty
-            ? item.serviceTypeDescEN
-            : null;
-  }*/
-
   getValidBillerDueAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
       if (item.billingNo == billingNumber && item.serviceType == serviceType)
@@ -199,17 +235,15 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate() {
-    if (isTotalAmountZero == false) {
-      if (savingAccountController.text.isNotEmpty) {
-        _showButtonSubject.safeAdd(true);
-      }
+    if (isTotalAmountZero == false && savingAccountController.text.isNotEmpty && validRequestCounter == 0) {
+      _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
   }
 
-  void minMaxValidate(
-      bool isPartial, String? minRange, String? maxRange, String value, BuildContext context, int index) {
+  void minMaxValidate(bool isPartial, String? minRange, String? maxRange, String value,
+      String actualDueAmountFromApi, String feeAmt, BuildContext context, int index) {
     if (isPartial == true) {
       if (value.isEmpty) {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
@@ -218,8 +252,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
             "${S.of(context).amountShouldBeMoreThan} ${minRange} ${S.of(context).JOD}";
       } else if (double.parse(value) > double.parse(maxRange ?? "0")) {
-        arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
-            "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+        if (double.parse(maxRange ?? "0") > 0.0) {
+          arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+              "${S.of(context).amountShouldBeLessThanOrEqualTo} ${maxRange} ${S.of(context).JOD}";
+        } else {
+          arguments.postPaidBillInquiryData?[index].minMaxValidationMessage =
+              "${S.of(context).thereAreNoDueBillsToBePaidAtTheMoment}";
+        }
       } else {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }

@@ -37,8 +37,6 @@ abstract class UserRemoteDS {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
 
-  Future<String> fetchCountryList({bool? getToken});
-
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       {String? countryName,
       String? email,

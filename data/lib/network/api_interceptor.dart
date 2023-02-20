@@ -2,6 +2,7 @@ import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/repository/user/user_repository.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
@@ -22,6 +23,10 @@ class ApiInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
+    // if (options.uri.path.contains("GetBillerLookupList")) {
+    options.headers.putIfAbsent("Lang", () => AppConstantsDomain.SELECTED_LANGUAGE);
+    print('Lang--->${AppConstantsDomain.SELECTED_LANGUAGE}');
+    // }
     print('authToken--->$authToken');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA

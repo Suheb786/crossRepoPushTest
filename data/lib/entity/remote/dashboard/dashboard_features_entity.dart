@@ -78,9 +78,9 @@ class DashboardFeaturesEntity
   @override
   DashboardFeatures transform() {
     return DashboardFeatures(
-        isCreditCardFeatureEnabled: isCreditCardEnabled ?? true,
-        isLoginFeatureEnabled: isLoginEnabled ?? true,
-        isRegisterFeatureEnabled: isRegisterEnabled ?? true,
+        isCreditCardFeatureEnabled: isCreditCardEnabled ?? false,
+        isLoginFeatureEnabled: isLoginEnabled ?? false,
+        isRegisterFeatureEnabled: isRegisterEnabled ?? false,
         isRJFeatureEnabled: isGoRJEnabled ?? false,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,

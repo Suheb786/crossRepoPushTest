@@ -127,7 +127,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                S.of(context).billName,
+                                S.of(context).billerName,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.black,
@@ -146,6 +146,32 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                               )
                             ],
                           ),
+                          (model.arguments!.fee != null && double.parse(model.arguments?.fee ?? "0") > 0.0)
+                              ? SizedBox(height: 16.h)
+                              : Container(),
+                          (model.arguments!.fee != null && double.parse(model.arguments?.fee ?? "0") > 0.0)
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).fees,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12.0.t),
+                                    ),
+                                    Text(
+                                      '${double.parse(model.arguments?.fee ?? "0").toStringAsFixed(3)} ${S.of(context).JOD}',
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12.0.t),
+                                    )
+                                  ],
+                                )
+                              : Container(),
                           model.arguments!.nickName.isNotEmpty ? SizedBox(height: 16.h) : Container(),
                           model.arguments!.nickName.isNotEmpty
                               ? Row(
@@ -297,7 +323,7 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
 
   void _shareDetails(BuildContext context, PaidBillsSuccessPageViewModel model) {
     Share.share(
-      ShareInfo.newPostPaidSuccess(
+      ShareInfo.newPrePaidSuccess(
         context,
         refNo: model.arguments?.refNo ?? "",
         billerName: StringUtils.isDirectionRTL(context)

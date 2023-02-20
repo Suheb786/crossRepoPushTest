@@ -51,9 +51,8 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                     Padding(
                         padding: EdgeInsetsDirectional.only(top: 47.h, start: 24.w, end: 24.w),
                         child: Text(
-                          S.of(context).sendMoneyNotSuccessful,
+                          model.sendMoneyFailurePageArgument.title,
                           textAlign: TextAlign.center,
-                          maxLines: 2,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontSize: 24.t,
@@ -63,9 +62,8 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                     Padding(
                       padding: EdgeInsetsDirectional.only(top: 51.h, start: 24.w, end: 24.w),
                       child: Text(
-                        S.of(context).tryAgainLater,
+                        model.sendMoneyFailurePageArgument.content,
                         textAlign: TextAlign.center,
-                        maxLines: 2,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w400,

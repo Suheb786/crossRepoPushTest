@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
+import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -70,7 +72,26 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog(
                         "send_money_to_new_contact_payment_failure", {"is_money_sent": false});
-                    Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
+
+                    if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
+                      model.showToastWithError(data.appError!);
+                    } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {
+                      Navigator.pushNamed(
+                        context,
+                        RoutePaths.SendMoneyFailure,
+                        arguments: SendMoneyFailurePageArgument(
+                            title: S.of(context).sendMoneyNotSuccessful,
+                            content: S.of(context).dailyLimitExceededorTryLater),
+                      );
+                    } else {
+                      Navigator.pushNamed(
+                        context,
+                        RoutePaths.SendMoneyFailure,
+                        arguments: SendMoneyFailurePageArgument(
+                            title: S.of(context).sendMoneyNotSuccessful,
+                            content: S.of(context).tryAgainLater),
+                      );
+                    }
                   }
                 },
                 dataBuilder: (context, transferResponse) {

@@ -57,6 +57,8 @@ class ErrorParser {
         return localisedHelper.invalidMainSourceIncome;
       case ErrorType.INVALID_MONTHLY_INCOME:
         return localisedHelper.invalidMonthlyIncome;
+      case ErrorType.INVALID_MONTHLY_INCOME_VALUE:
+        return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
       case ErrorType.INVALID_ANNUAL_INCOME:
         return localisedHelper.invalidAnnualIncome;
       case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
@@ -1130,12 +1132,22 @@ class ErrorParser {
         return localisedHelper.billerAlreadyExistsMessage;
       case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
         return localisedHelper.billPaymentSorryMessage;
+      case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
+        return localisedHelper.rejectedDueToExpiryDate;
+      case ErrorType.OPEN_DATE_ISSUE_MESSAGE:
+        return localisedHelper.openDateIssuedMessage;
+      case ErrorType.CLOSE_DATE_ISSUE_MESSAGE:
+        return localisedHelper.closeDateIssueMessage;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT:
+        return localisedHelper.thereAreNoDueBillsToBePaidAtTheMoment;
       case ErrorType.DATE_COMPARISON:
         return localisedHelper.dateComparison;
       case ErrorType.SERVICE_NOT_AVAILABLE:
         return localisedHelper.serviceIsNotavaliable;
       case ErrorType.IS_PAID_FAILED:
         return "";
+      case ErrorType.DAILY_LIMIT_EXCEDED:
+        return localisedHelper.dailyNarrationLimitexceed;
 
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;

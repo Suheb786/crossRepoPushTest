@@ -13970,6 +13970,16 @@ class S {
     );
   }
 
+  /// `View and pay your due bills`
+  String get viewAndPayYourDueBills {
+    return Intl.message(
+      'View and pay your due bills',
+      name: 'viewAndPayYourDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `to Payments`
   String get toPayments {
     return Intl.message(
@@ -14065,6 +14075,26 @@ class S {
     return Intl.message(
       'Bill Name',
       name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller name`
+  String get billerName {
+    return Intl.message(
+      'Biller name',
+      name: 'billerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills & Payments`
+  String get billsAndPayments {
+    return Intl.message(
+      'Bills & Payments',
+      name: 'billsAndPayments',
       desc: '',
       args: [],
     );
@@ -14205,6 +14235,16 @@ class S {
     return Intl.message(
       'View my bills',
       name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage my bills`
+  String get manageMyBills {
+    return Intl.message(
+      'Manage my bills',
+      name: 'manageMyBills',
       desc: '',
       args: [],
     );
@@ -15790,6 +15830,16 @@ class S {
     );
   }
 
+  /// `Manage and pay my bills`
+  String get manageAndPayMyBills {
+    return Intl.message(
+      'Manage and pay my bills',
+      name: 'manageAndPayMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Insufficient funds bill cannot be paid`
   String get insufficientFundsBillCannotBePaid {
     return Intl.message(
@@ -16045,6 +16095,136 @@ class S {
     return Intl.message(
       '00962000000000',
       name: 'mobileNoAliasHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is expired`
+  String get rejectedDueToExpiryDate {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is expired',
+      name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is not yet issued`
+  String get openDateIssuedMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is not yet issued',
+      name: 'openDateIssuedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot proceed to complete the payment because the bill is expired`
+  String get closeDateIssueMessage {
+    return Intl.message(
+      'You cannot proceed to complete the payment because the bill is expired',
+      name: 'closeDateIssueMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get viewHistory {
+    return Intl.message(
+      'View History',
+      name: 'viewHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills History`
+  String get billsHistory {
+    return Intl.message(
+      'Bills History',
+      name: 'billsHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay your bills with Blink!`
+  String get payYourBillswithBlink {
+    return Intl.message(
+      'Pay your bills with Blink!',
+      name: 'payYourBillswithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are processing your request and we will notify you once ready`
+  String get submittedFor {
+    return Intl.message(
+      'We are processing your request and we will notify you once ready',
+      name: 'submittedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills to be paid at the moment`
+  String get thereAreNoDueBillsToBePaidAtTheMoment {
+    return Intl.message(
+      'There are no due bills to be paid at the moment',
+      name: 'thereAreNoDueBillsToBePaidAtTheMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe any biller to the left to remove`
+  String get swipeAnyBillerToTheLeftToRemove {
+    return Intl.message(
+      'Swipe any biller to the left to remove',
+      name: 'swipeAnyBillerToTheLeftToRemove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
+  String get youCanPayAllYourBillsNow {
+    return Intl.message(
+      'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
+      name: 'youCanPayAllYourBillsNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help `
+  String get dailyLimitExceededorTryLater {
+    return Intl.message(
+      ' There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ',
+      name: 'dailyLimitExceededorTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processing {
+    return Intl.message(
+      'Processing',
+      name: 'processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Narration Amount Exceed`
+  String get dailyNarrationLimitexceed {
+    return Intl.message(
+      'Daily Narration Amount Exceed',
+      name: 'dailyNarrationLimitexceed',
       desc: '',
       args: [],
     );

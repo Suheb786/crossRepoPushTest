@@ -119,7 +119,12 @@ class CardTransactionPageView extends BasePageViewWidget<CardTransactionViewMode
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onFieldSubmitted: (text) => model.onSearchTextChanged(text),
+                                    onFieldSubmitted: (text) {
+                                      if (text.trim().isNotEmpty) {
+                                        if ((!model.searchTextList.contains(text.trim().toLowerCase())))
+                                          model.onSearchTransaction(searchText: text.trim());
+                                      }
+                                    },
                                     suffixIcon: (value, data) {
                                       return Padding(
                                           padding: EdgeInsetsDirectional.only(start: 19.0.w),
