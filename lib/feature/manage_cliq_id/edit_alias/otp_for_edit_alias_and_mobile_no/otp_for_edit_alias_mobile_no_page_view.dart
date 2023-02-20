@@ -154,21 +154,20 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
                                                           onPressed: () {
+                                                            print('hhhh');
                                                             model.makeOtpRequest(
-                                                              accountNumber: ProviderScope.containerOf(
+                                                              /*accountNumber: ProviderScope.containerOf(
                                                                           context)
                                                                       .read(
                                                                           linkBankAccountCliqIdViewModelProvider)
                                                                       .linkBankAccountCliqIdList
                                                                       .first
                                                                       .accountNumber ??
-                                                                  '',
+                                                                  '',*/
                                                               isAlias: model.arguments.isAlias,
                                                               aliasValue: model.arguments.aliasValue,
                                                               aliasId: model.arguments.aliasId,
                                                             );
-
-                                                            model.updateTime();
                                                           },
                                                           child: Text(
                                                             S.of(context).resendCode,
@@ -183,7 +182,15 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                           ))
                                                       : Text(
                                                     S.of(context).resendIn(
-                                                              '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                        '${currentTimeRemaining.min != null
+                                                            ? (currentTimeRemaining.min! < 10
+                                                            ? "0${currentTimeRemaining.min}"
+                                                            : currentTimeRemaining.min)
+                                                            : "00"}:${currentTimeRemaining.sec != null
+                                                            ? (currentTimeRemaining.sec! < 10
+                                                            ? "0${currentTimeRemaining.sec}"
+                                                            : currentTimeRemaining.sec)
+                                                            : "00"}'),
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,

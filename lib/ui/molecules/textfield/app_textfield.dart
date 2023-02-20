@@ -24,6 +24,7 @@ class AppTextField extends StatefulWidget {
   final int? maxLength;
   final bool? obscureText;
   final String obscuringCharacter;
+  final TextCapitalization textCapitalization;
   final Widget Function(bool enabled, String value)? suffixIcon;
   final Widget Function()? prefixIcon;
   final Key? key;
@@ -71,6 +72,7 @@ class AppTextField extends StatefulWidget {
     this.key,
     this.obscureText: false,
     this.obscuringCharacter: '•',
+    this.textCapitalization: TextCapitalization.none,
     this.suffixIcon,
     this.prefixIcon,
     this.prefix,
@@ -185,8 +187,11 @@ class AppTextFieldState extends State<AppTextField> {
                         focusNode: _focusNode,
                         maxLength: widget.maxLength,
                         textAlign: widget.textAlign,
+                        textCapitalization: widget.textCapitalization,
                         style: TextStyle(
-                          color: widget.textColor ?? Theme.of(context).primaryColorDark,
+                          color: widget.textColor ?? Theme
+                              .of(context)
+                              .primaryColorDark,
                           fontSize: widget.fontSize ?? 14.0.t,
                           fontWeight: FontWeight.w600,
                           fontFamily: StringUtils.appFont,

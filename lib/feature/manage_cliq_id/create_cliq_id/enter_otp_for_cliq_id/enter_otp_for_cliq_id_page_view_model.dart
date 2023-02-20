@@ -57,6 +57,8 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          updateTime();
         }
       });
     });
@@ -107,6 +109,7 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
       required String aliasValue,
       required bool isAlias,
       required String accountNumber}) {
+    otpController.clear();
     _createCliqIdOtpRequest.safeAdd(CreateCliqIdOtpParams(
         getToken: getToken, aliasValue: aliasValue, isAlias: isAlias, accountNumber: accountNumber));
   }

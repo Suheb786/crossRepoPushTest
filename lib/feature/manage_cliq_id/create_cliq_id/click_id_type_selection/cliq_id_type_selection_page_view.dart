@@ -133,7 +133,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                               inputFormatters: [
                                                                 LengthLimitingTextInputFormatter(10),
                                                                 FilteringTextInputFormatter.allow(
-                                                                    RegExp("[a-zA-Z0-9]")),
+                                                                    RegExp(r"[a-zA-Z0-9]")),
                                                               ],
                                                               inputAction: TextInputAction.done,
                                                               controller: model.aliasController,
@@ -143,11 +143,11 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                     .read(createCliqIdViewModelProvider)
                                                                     .changeHeader(
                                                                         S.current.letsGiveANameToYourCliqId);
-                                                                model.aliasController.value =
+                                                                /*  model.aliasController.value =
                                                                     TextEditingValue(
                                                                         text: value.toUpperCase(),
                                                                         selection:
-                                                                            model.aliasController.selection);
+                                                                            model.aliasController.selection);*/
                                                                 model.validate();
                                                               }),
                                                           SizedBox(
@@ -259,7 +259,8 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                 color: AppColor.brightBlue,
                                                 fontSize: 14.t,
                                                 letterSpacing: 1.0,
-                                                fontWeight: FontWeight.w500,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                           ),
