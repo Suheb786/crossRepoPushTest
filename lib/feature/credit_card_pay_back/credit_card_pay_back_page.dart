@@ -28,8 +28,8 @@ class CreditCardPayBackPageState extends BaseStatefulPage<CreditCardPayBackPageM
 
 class CreditCardPayBackArguments {
   final String accountHolderName;
-  final String minDuePayBackAmount;
-  final String totalMinDueAmount;
+  String minDuePayBackAmount;
+  String totalMinDueAmount;
   final String secureCode;
   final String accountBalance;
 

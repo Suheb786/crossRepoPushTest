@@ -20,12 +20,14 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/efawateer_landing_page_dialog/efawateer_landing_page_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_dashbord_dialog/rj_dashboard_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -81,6 +83,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     color: AppColor.veryDarkGray2,
                                     fontSize: 14),
                               ));
+                        }
+                        if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
+                            (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??
+                                true)) {
+                          EfawateerLandingDialog.show(context,
+                              title: S.current.payYourBillswithBlink,
+                              descriptionWidget: Text(S.current.youCanPayAllYourBillsNow),
+                              isSwipeToCancel: true,
+                              onDismissed: () {
+                                Navigator.pop(context);
+                                data.data?.isEfawateerPopUPClicked = true;
+                                model.saveCurrentUserData(user: data.data!);
+                              },
+                              image: AssetUtils.PAYYOURBILLSWITHBLINK,
+                              onSelected: () {
+                                Navigator.pop(context);
+                                data.data?.isEfawateerPopUPClicked = true;
+                                model.saveCurrentUserData(user: data.data!);
+                                // SettingsDialog.show(context);
+                                Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                    arguments: NavigationType.PAYMENTS);
+                              });
                         }
                       }
                     },

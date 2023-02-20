@@ -26,6 +26,7 @@ class PayPostPaidBillUseCaseParams extends Params {
   String? currencyCode;
   bool? isNewBiller;
   String? otpCode;
+  String? nickName;
   String? CardId;
   bool? isCreditCardPayment = false;
 
@@ -36,6 +37,7 @@ class PayPostPaidBillUseCaseParams extends Params {
     this.currencyCode,
     this.isNewBiller,
     this.otpCode,
+    this.nickName,
     this.CardId,
     this.isCreditCardPayment,
   });

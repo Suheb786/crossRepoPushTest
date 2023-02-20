@@ -53,8 +53,11 @@ class ValidatePrePaidBillEntity extends BaseLayerDataTransformer<
         billingNo: this.billingNo != null && this.billingNo!.toString().isNotEmpty ? this.billingNo : "",
         customerName:
             this.customerName != null && this.customerName!.toString().isNotEmpty ? this.customerName : "",
-        dueAmount: this.dueAmount != null && this.dueAmount!.toString().isNotEmpty ? this.dueAmount : "0",
-        feesAmount: this.feesAmount != null && this.feesAmount!.toString().isNotEmpty ? this.feesAmount : "0",
+        dueAmount:
+            this.dueAmount != null && this.dueAmount!.toString().isNotEmpty ? this.dueAmount.toString() : "0",
+        feesAmount: this.feesAmount != null && this.feesAmount!.toString().isNotEmpty
+            ? this.feesAmount.toString()
+            : "0",
         validationCode: this.validationCode != null && this.validationCode!.toString().isNotEmpty
             ? this.validationCode
             : "");

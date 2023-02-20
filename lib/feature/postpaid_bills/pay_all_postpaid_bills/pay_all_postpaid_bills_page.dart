@@ -56,7 +56,7 @@ class PayAllPostPaidBillsPageState
             Expanded(
               child: Text(
                 widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                    ? S.of(context).payAllBills
+                    ? S.of(context).viewAndPayYourDueBills
                     : S.of(context).myBills,
                 textAlign: TextAlign.center,
                 style: TextStyle(

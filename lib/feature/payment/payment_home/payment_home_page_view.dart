@@ -48,7 +48,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
               padding: EdgeInsets.only(bottom: 47.0.h),
               child: AppStreamBuilder<int>(
                 stream: model.currentStep,
-                initialData: navigationType == NavigationType.DASHBOARD ? 0 : 1,
+                initialData: model.getInitialNavigation(navigationType!, context),
                 dataBuilder: (context, currentStep) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
@@ -164,7 +164,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       Padding(
                                         padding: EdgeInsets.only(top: 9.0.h),
                                         child: Text(
-                                          S.of(context).payments,
+                                          S.of(context).billsAndPayments,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w400,
@@ -233,7 +233,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       Padding(
                                         padding: EdgeInsets.only(top: 9.0.h),
                                         child: Text(
-                                          S.of(context).payments,
+                                          S.of(context).billsAndPayments,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w400,
@@ -276,7 +276,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 9.0.h),
                                   child: Text(
-                                    S.of(context).payments,
+                                    S.of(context).billsAndPayments,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w400,

@@ -12,6 +12,7 @@ QRContentEntity _$QRContentEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$QRContentEntityToJson(QRContentEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$QRContentEntityToJson(QRContentEntity instance) =>
+    <String, dynamic>{
       'requestId': instance.requestId,
     };

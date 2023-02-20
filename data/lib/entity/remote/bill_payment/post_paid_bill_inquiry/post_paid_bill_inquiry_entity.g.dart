@@ -15,12 +15,13 @@ PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
     success: json['success'] as bool?,
     billingNo: json['billingNo'] as String?,
     billNo: json['billNo'] as String?,
-    dueAmount: json['dueAmount'] as String?,
+    dueAmount: json['dueAmount'],
     dueDate: json['dueDate'] as String?,
-    feesAmt: json['feesAmt'] as String?,
+    feesAmt: json['feesAmt'],
     isPartial: json['isPartial'] as bool?,
     minValue: json['minValue'],
     maxValue: json['maxValue'],
+    inqRefNo: json['inqRefNo'],
   );
 }
 
@@ -39,4 +40,5 @@ Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
       'isPartial': instance.isPartial,
       'minValue': instance.minValue,
       'maxValue': instance.maxValue,
+      'inqRefNo': instance.inqRefNo,
     };

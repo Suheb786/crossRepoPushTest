@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget_model.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -16,6 +18,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String? billType;
   final String? billName;
   final String? billAmtDue;
+  final String? billAmtFee;
   final String? minRange;
   final String? minMaxValidationMessage;
   final String? maxRange;
@@ -29,6 +32,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billType,
       required this.billName,
       required this.billAmtDue,
+      required this.billAmtFee,
       required this.minRange,
       required this.minMaxValidationMessage,
       required this.maxRange,
@@ -178,7 +182,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                           this.allowPartialPay == true ? S.of(context).tapToEditAmt : "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: AppColor.gray5,
+                              color: AppColor.brightBlue,
                               fontWeight: FontWeight.w400,
                               fontSize: 12.0.t),
                         ),
@@ -188,28 +192,112 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                 ],
               ),
               this.allowPartialPay == true
+                  ? Container(
+                      margin: EdgeInsetsDirectional.only(top: 8.0.h),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: StringUtils.isDirectionRTL(context) ? 4.0.w : 16.0.w, vertical: 8.0.h),
+                      decoration: BoxDecoration(
+                          color: AppColor.lightGray, borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AppSvg.asset(AssetUtils.infoFee, height: 16.h, width: 16.w),
+                          SizedBox(width: 8.w),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              this.billAmtFee != null &&
+                                      this.billAmtFee!.isNotEmpty &&
+                                      double.parse(this.billAmtFee ?? "0.0") > 0.0
+                                  ? Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${S.of(context).fees} ",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.gray5,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          ),
+                                          Text(
+                                            this.billAmtFee != null && this.billAmtFee!.isNotEmpty
+                                                ? double.parse(this.billAmtFee ?? "0.0").toStringAsFixed(3)
+                                                : "0.0",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.very_dark_gray1,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12.0.t),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                              this.allowPartialPay == true
+                                  ? Padding(
+                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${S.of(context).pay} ${S.of(context).fromSingleLine.toLowerCase()} ",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.gray5,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          ),
+                                          Text(
+                                            "${minRange} ${S.of(context).JOD} ",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.very_dark_gray1,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12.0.t),
+                                          ),
+                                          Text(
+                                            "${S.of(context).to.toLowerCase()} ",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.gray5,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.0.t),
+                                          ),
+                                          Text(
+                                            "${maxRange} ${S.of(context).JOD}",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.very_dark_gray1,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12.0.t),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  : Container(),
+              this.allowPartialPay == true
                   ? Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0.h),
+                      padding: const EdgeInsetsDirectional.only(top: 4.0),
                       child: Text(
-                        '${S.of(context).pay} ${S.of(context).fromSingleLine.toLowerCase()} ${minRange} ${S.of(context).JOD} ${S.of(context).to.toLowerCase()} ${maxRange} ${S.of(context).JOD}',
+                        minMaxValidationMessage ?? "",
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: AppColor.gray5,
+                            color: AppColor.soft_red,
                             fontWeight: FontWeight.w400,
                             fontSize: 12.0.t),
                       ),
                     )
                   : Container(),
-              this.allowPartialPay == true
-                  ? Text(
-                      minMaxValidationMessage ?? "",
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.soft_red,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0.t),
-                    )
-                  : Container()
             ],
           ),
         );

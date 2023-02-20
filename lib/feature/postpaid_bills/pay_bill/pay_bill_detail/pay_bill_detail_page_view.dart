@@ -190,35 +190,41 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                     child: Card(
                                       //  clipBehavior: Clip.antiAlias,
                                       margin: EdgeInsets.zero,
-                                      child: FadingEdgeScrollView.fromSingleChildScrollView(
-                                        gradientFractionOnEnd: 0.2,
-                                        gradientFractionOnStart: 0.2,
-                                        child: SingleChildScrollView(
-                                          controller: model.controller,
-                                          child: AppStreamBuilder<bool>(
-                                            initialData: false,
-                                            stream: model.totalBillAmtDueStream,
-                                            dataBuilder: (BuildContext context, isSwitchActive) {
-                                              return Container(
-                                                padding:
-                                                    EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                                child: Column(children: [
-                                                  _billDetailsTitle(),
-                                                  _billerCategoryTitleWidget(),
-                                                  _billerNameAppTextField(),
-                                                  _servicesAppTextField(),
-                                                  _billingNumberTypeTextField(context),
-                                                  _ShowDenomination(),
-                                                  _showAmountForPrepaid(),
-                                                  // _refNoAppTextField(),
-                                                  _payFromAppTextField(),
-                                                  _addThisBillerSwitch(context, isSwitchActive),
-                                                  _nickNameAppTextField(context, isSwitchActive),
-                                                  _SwipeToProceedButton(),
-                                                  _backToPaymentsButton()
-                                                ]),
-                                              );
-                                            },
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        onPanDown: (_) {
+                                          FocusScope.of(context).requestFocus(FocusNode());
+                                        },
+                                        child: FadingEdgeScrollView.fromSingleChildScrollView(
+                                          gradientFractionOnEnd: 0.2,
+                                          gradientFractionOnStart: 0.2,
+                                          child: SingleChildScrollView(
+                                            controller: model.controller,
+                                            child: AppStreamBuilder<bool>(
+                                              initialData: false,
+                                              stream: model.totalBillAmtDueStream,
+                                              dataBuilder: (BuildContext context, isSwitchActive) {
+                                                return Container(
+                                                  padding:
+                                                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                                  child: Column(children: [
+                                                    _billDetailsTitle(),
+                                                    _billerCategoryTitleWidget(),
+                                                    _billerNameAppTextField(),
+                                                    _servicesAppTextField(),
+                                                    _billingNumberTypeTextField(context),
+                                                    _ShowDenomination(),
+                                                    _showAmountForPrepaid(),
+                                                    // _refNoAppTextField(),
+                                                    _payFromAppTextField(),
+                                                    _addThisBillerSwitch(context, isSwitchActive),
+                                                    _nickNameAppTextField(context, isSwitchActive),
+                                                    _SwipeToProceedButton(),
+                                                    _backToPaymentsButton()
+                                                  ]),
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -250,7 +256,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                     ? TextInputType.text
                     : TextInputType.number,
                 onPressed: () {
-                  FocusScope.of(context).unfocus();
+                  // FocusScope.of(context).unfocus();
                 },
                 onChanged: (value) {
                   model.validateData(context);
@@ -288,7 +294,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
 
   _billerNameAppTextField() {
     return AppTextField(
-      labelText: S.of(context).billName.toUpperCase(),
+      labelText: S.of(context).billerName.toUpperCase(),
       hintText: S.of(context).pleaseSelect,
       controller: model.billerNameTextController,
       readOnly: true,
@@ -381,7 +387,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         onChanged: (val) {
           model.validateData(context);
         },
-        onPressed: () {
+        /*onPressed: () {
           AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
             Navigator.pop(context);
           }, onSelected: (value) {
@@ -396,14 +402,14 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                     ?.accountNo ??
                 ''
           ]);
-        },
-        suffixIcon: (value, data) {
-          return Container(
-              height: 16.h,
-              width: 16.w,
-              padding: EdgeInsetsDirectional.only(end: 8.w),
-              child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-        },
+        },*/
+        // suffixIcon: (value, data) {
+        //   return Container(
+        //       height: 16.h,
+        //       width: 16.w,
+        //       padding: EdgeInsetsDirectional.only(end: 8.w),
+        //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+        // },
       ),
     );
   }
@@ -460,7 +466,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
           hintText: S.of(context).pleaseEnter,
           controller: model.nicknameTextControl,
           onPressed: () {
-            FocusScope.of(context).unfocus();
+            // FocusScope.of(context).unfocus();
           },
           onChanged: (val) {
             model.validateData(context);
@@ -610,7 +616,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                   model.validateData(context);
                 },
                 onPressed: () {
-                  FocusScope.of(context).unfocus();
+                  // FocusScope.of(context).unfocus();
                 },
               ),
             ),
@@ -637,11 +643,11 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
   }
 
   void _showBillerNameDialog(List<BillerDetailsList>? billerDetailsList) {
-    PayBillDialog.show(context, title: S.of(context).billName, billerDetailsList: billerDetailsList ?? [],
+    PayBillDialog.show(context, title: S.of(context).billerName, billerDetailsList: billerDetailsList ?? [],
         onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (billerDetails) {
-          resetIfSelectedOtherBillerName(billerDetails.billerCode, model);
+      resetIfSelectedOtherBillerName(billerDetails.billerCode, model);
       model.updateIsPrepaidCategoryListEmptyResponse(true);
       model.billerNameTextController.text =
           !StringUtils.isDirectionRTL(context) ? billerDetails.billerNameEn! : billerDetails.billerNameAr!;

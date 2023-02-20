@@ -74,7 +74,16 @@ class CreditCardPayBackPageModel extends BasePageViewModel {
     } else if (myList.isEmpty) {
       currentPinValue = "0";
     }
-    print("got myList : $myList");
+    notifyListeners();
+  }
+
+  void changeMidDueValue() {
+    currentPinValue = payBackArguments.minDuePayBackAmount;
+    notifyListeners();
+  }
+
+  void changeTotalDueValue() {
+    currentPinValue = payBackArguments.totalMinDueAmount;
     notifyListeners();
   }
 

@@ -115,7 +115,12 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onFieldSubmitted: (text) => model.onSearchTextChanged(text),
+                                    onFieldSubmitted: (text) {
+                                      if (text.trim().isNotEmpty) {
+                                        if ((!model.searchTextList.contains(text.trim().toLowerCase())))
+                                          model.onSearchTransaction(searchText: text.trim());
+                                      }
+                                    },
                                     suffixIcon: (value, data) {
                                       return Padding(
                                           padding: EdgeInsetsDirectional.only(start: 19.0.w),
@@ -132,7 +137,6 @@ class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionVi
                                           context,
                                           onDismissed: () => Navigator.pop(context),
                                           onSelected: (value) {
-                                            print("value: $value");
                                             Navigator.pop(context);
                                             model.getFilteredData(value);
                                           },

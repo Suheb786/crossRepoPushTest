@@ -96,9 +96,11 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_c
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/confirm_bill_payment_amount/confirm_bill_payment_amount_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/enter_otp_bill_payments/enter_otp_bill_payments_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_page.dart';
@@ -106,7 +108,7 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
+// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
@@ -343,8 +345,10 @@ class AppRouter {
 
       case RoutePaths.SendMoneyFailure:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyFailurePage(),
-            settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
+            builder: (context) => SendMoneyFailurePage(settings.arguments as SendMoneyFailurePageArgument),
+            settings: RouteSettings(
+              name: RoutePaths.SendMoneyFailure,
+            ));
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(
@@ -806,11 +810,11 @@ class AppRouter {
             builder: (context) => PayMyPrePaidBillsPage(),
             settings: RouteSettings(name: RoutePaths.PayMyPrePaidBillsPage));
 
-      case RoutePaths.PayingPrePaidBillsPage:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                PayingPrePaidBillsPage(settings.arguments as PayingPrePaidBillsPageArgument),
-            settings: RouteSettings(name: RoutePaths.PayingPrePaidBillsPage));
+      // case RoutePaths.PayingPrePaidBillsPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) =>
+      //           PayingPrePaidBillsPage(settings.arguments as PayingPrePaidBillsPageArgument),
+      //       settings: RouteSettings(name: RoutePaths.PayingPrePaidBillsPage));
 
       case RoutePaths.PrePaidBillsSuccessPage:
         return CupertinoPageRoute(
@@ -823,6 +827,16 @@ class AppRouter {
             builder: (context) => HowMuchLikeToPayPrePaidBillsPage(
                 settings.arguments as HowMuchLikeToPayPrePaidBillsPageArgument),
             settings: RouteSettings(name: RoutePaths.HowMuchLikeToPayPrePaidBillsPage));
+
+      case RoutePaths.EnterOtpBillPaymentsPage:
+        return CupertinoPageRoute(
+            builder: (context) => EnterOtpBillPaymentsPage(),
+            settings: RouteSettings(name: RoutePaths.EnterOtpBillPaymentsPage));
+
+      case RoutePaths.BillPaymentsTransactionPage:
+        return CupertinoPageRoute(
+            builder: (context) => BillPaymentsTransactionPage(),
+            settings: RouteSettings(name: RoutePaths.BillPaymentsTransactionPage));
 
       // case RoutePaths.PayPrePaidBillPage:
       //   return CupertinoPageRoute(

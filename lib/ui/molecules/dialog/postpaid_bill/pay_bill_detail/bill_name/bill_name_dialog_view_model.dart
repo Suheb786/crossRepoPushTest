@@ -36,7 +36,8 @@ class PayBillDialogViewModel extends BasePageViewModel {
     searchList.clear();
     if (searchText.isNotEmpty) {
       billerDetailsList.forEach((element) {
-        if (element.billerNameEn!.toLowerCase().contains(searchText.toLowerCase())) {
+        if (element.billerNameEn!.toLowerCase().contains(searchText.toLowerCase()) ||
+            element.billerNameAr!.toLowerCase().contains(searchText.toLowerCase())) {
           searchList.add(element);
         }
       });

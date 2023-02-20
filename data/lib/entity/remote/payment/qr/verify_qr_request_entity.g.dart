@@ -6,7 +6,8 @@ part of 'verify_qr_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyQRRequestEntity _$VerifyQRRequestEntityFromJson(Map<String, dynamic> json) {
+VerifyQRRequestEntity _$VerifyQRRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return VerifyQRRequestEntity(
     source: json['Source'] as String?,
     qrRequestId: json['QrRequestId'] as String?,
@@ -15,7 +16,9 @@ VerifyQRRequestEntity _$VerifyQRRequestEntityFromJson(Map<String, dynamic> json)
   );
 }
 
-Map<String, dynamic> _$VerifyQRRequestEntityToJson(VerifyQRRequestEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$VerifyQRRequestEntityToJson(
+        VerifyQRRequestEntity instance) =>
+    <String, dynamic>{
       'QrRequestId': instance.qrRequestId,
       'Source': instance.source,
       'GetToken': instance.getToken,

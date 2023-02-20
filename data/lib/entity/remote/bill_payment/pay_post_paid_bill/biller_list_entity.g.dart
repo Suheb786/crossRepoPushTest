@@ -15,7 +15,7 @@ BillerListEntity _$BillerListEntityFromJson(Map<String, dynamic> json) {
     date: json['date'] as String?,
     isPaid: json['isPaid'] as bool?,
     statusDescription: json['statusDescription'] as String?,
-  );
+  )..fee = json['fee'] as String?;
 }
 
 Map<String, dynamic> _$BillerListEntityToJson(BillerListEntity instance) =>
@@ -23,6 +23,7 @@ Map<String, dynamic> _$BillerListEntityToJson(BillerListEntity instance) =>
       'billerName': instance.billerName,
       'billerNameAR': instance.billerNameAR,
       'totalAmount': instance.totalAmount,
+      'fee': instance.fee,
       'refNo': instance.refNo,
       'date': instance.date,
       'isPaid': instance.isPaid,

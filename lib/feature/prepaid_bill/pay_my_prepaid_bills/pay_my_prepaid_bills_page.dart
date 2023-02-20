@@ -47,7 +47,7 @@ class PayMyPrePaidBillsPageState
               ),
             ),
             Text(
-              S.of(context).payMyBill,
+              S.of(context).manageAndPayMyBills,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontSize: 14.t,

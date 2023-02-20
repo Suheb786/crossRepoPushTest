@@ -1,4 +1,4 @@
-import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_list.dart';
+import 'package:domain/model/bill_payments/pay_post_paid_bill/biller_success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -34,9 +34,8 @@ class PostPaidBillsSuccessPageState
 }
 
 class PostPaidBillsSuccessPageArguments {
-  final List<BillerList>? billerList;
+  List<BillerSuccessDetails>? billerSuccessDetailsList = [];
+  double? totalBillAmt = 0.0;
 
-  PostPaidBillsSuccessPageArguments(
-    this.billerList,
-  );
+  PostPaidBillsSuccessPageArguments(this.billerSuccessDetailsList, this.totalBillAmt);
 }
