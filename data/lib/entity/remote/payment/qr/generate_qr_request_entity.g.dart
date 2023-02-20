@@ -6,7 +6,8 @@ part of 'generate_qr_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(Map<String, dynamic> json) {
+GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return GenerateQRRequestEntity(
     amount: json['Amount'] as String?,
     getToken: json['GetToken'] as bool?,
@@ -14,7 +15,8 @@ GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$GenerateQRRequestEntityToJson(GenerateQRRequestEntity instance) =>
+Map<String, dynamic> _$GenerateQRRequestEntityToJson(
+        GenerateQRRequestEntity instance) =>
     <String, dynamic>{
       'Amount': instance.amount,
       'GetToken': instance.getToken,
