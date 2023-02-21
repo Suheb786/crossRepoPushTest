@@ -65,11 +65,15 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     getTransactionListener();
 
     ///getTransactions api call
-    if (pageNo == 1) getTransactions(pageNo: pageNo, pageSize: pageSize);
+    if (pageNo == 1) {
+      debugPrint('Entered here-------->');
+      getTransactions(pageNo: pageNo, pageSize: pageSize);
+    }
+    ;
 
     ///searchController api call
-    if (searchController.text.isEmpty || searchTextList == null || searchTextList.isEmpty) {
-      debugPrint("getMoreScrollListener");
+    if (searchController.text.isEmpty || searchTextList.isEmpty) {
+      debugPrint("------getMoreScrollListener-------");
       getMoreScrollListener();
     }
   }
@@ -130,9 +134,8 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
         // Call the API for getting more data with
         // incremented Page no.
-        if (pageNo > 1 && searchController.text.isEmpty ||
-            pageNo > 1 && searchTextList == null ||
-            pageNo > 1 && searchTextList.isEmpty) {
+        if (pageNo > 1 && searchController.text.isEmpty || pageNo > 1 && searchTextList.isEmpty) {
+          debugPrint('Entered here--------> too');
           getTransactions(pageNo: pageNo, pageSize: pageSize);
         }
       }
@@ -153,6 +156,8 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList)));
           transactionsResponse =
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
+          searchTransactionResponse = transactionsResponse;
+          onSearchTransaction();
         } else if (event.status == Status.SUCCESS) {
           bool isContentNull = event.data?.billPaymentsTransactionData == null;
 
@@ -169,7 +174,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
             listLength = listLength + item.billPaymentsTransactionDataList!.length;
           }
 
-          bool isListEmpty = list == null || list.isEmpty || listLength < pageSize;
+          bool isListEmpty = list.isEmpty || listLength < pageSize;
           if (isListEmpty) {
             // Don't call the API again
             hasMoreData = false;
@@ -193,6 +198,8 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList)));
           transactionsResponse =
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
+          searchTransactionResponse = transactionsResponse;
+          onSearchTransaction();
         }
       });
     });
