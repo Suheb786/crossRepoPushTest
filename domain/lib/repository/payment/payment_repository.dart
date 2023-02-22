@@ -30,7 +30,7 @@ abstract class PaymentRepository {
       String? detCustomerType,
       String? type});
 
-  Future<Either<NetworkError, bool>> transferVerify();
+  Future<Either<NetworkError, bool>> transferVerify({required String amount});
 
   Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
       String ctgyPurp,

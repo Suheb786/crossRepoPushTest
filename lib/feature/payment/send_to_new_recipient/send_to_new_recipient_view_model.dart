@@ -248,9 +248,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     _selectedImageSubject.value = "";
   }
 
-  void verifyTransfer() {
-    print('isFrient--->$isFriend');
-    _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams());
+  void verifyTransfer({required String amount}) {
+    _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams(amount: amount));
   }
 
   void validateAddress() {}

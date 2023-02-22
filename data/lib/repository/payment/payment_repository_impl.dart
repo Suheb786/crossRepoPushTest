@@ -104,9 +104,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> transferVerify() async {
+  Future<Either<NetworkError, bool>> transferVerify({required String amount}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.transferVerify(),
+      paymentRemoteDs.transferVerify(amount: amount),
     );
     return result!.fold(
       (l) => Left(l),

@@ -47,7 +47,7 @@ abstract class PaymentRemoteDs {
       String? addressCity,
       String? addressCountry);
 
-  Future<HttpResponse<ResponseEntity>> transferVerify();
+  Future<HttpResponse<ResponseEntity>> transferVerify({required String amount});
 
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(
       String toAccount, String transferType, String detCustomerType, String type);

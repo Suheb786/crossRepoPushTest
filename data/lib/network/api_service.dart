@@ -170,6 +170,7 @@ import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
@@ -557,7 +558,8 @@ abstract class ApiService {
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
   @POST("/transfer/TransferAPIVerify")
-  Future<HttpResponse<ResponseEntity>> transferVerify(@Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> transferVerify(
+      @Body() TransferApiVerifyRequestEntity transferApiVerifyRequestEntity);
 
   @POST("/DebitCard/UpdateLimit")
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(

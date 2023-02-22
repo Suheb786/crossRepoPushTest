@@ -185,7 +185,10 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                             return currentTimeRemaining == null
                                                 ? TextButton(
                                                     onPressed: () {
-                                                      model.updateTime();
+                                                      model.updateTime(
+                                                          amount: ProviderScope.containerOf(context)
+                                                              .read(sendMoneyViewModelProvider)
+                                                              .currentPinValue);
                                                     },
                                                     child: Text(
                                                       S.of(context).resendCode,

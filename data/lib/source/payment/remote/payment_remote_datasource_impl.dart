@@ -15,6 +15,7 @@ import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
@@ -121,9 +122,10 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> transferVerify() async {
+  Future<HttpResponse<ResponseEntity>> transferVerify({required String amount}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.transferVerify(BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.transferVerify(
+        TransferApiVerifyRequestEntity(amount: amount, baseData: baseData.toJson(), getToken: true));
   }
 
   @override
