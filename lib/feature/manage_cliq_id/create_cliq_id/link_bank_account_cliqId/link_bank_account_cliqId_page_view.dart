@@ -60,6 +60,8 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                           print(
                               'mobile value: ${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text}');
                           print('alias translation-${S.of(context).alias}');
+                          print(
+                              'status-${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text == S.of(context).alias}');
                           // ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
                           model.makeOtpRequest(
                             accountNumber: model.linkBankAccountCliqIdList.isNotEmpty

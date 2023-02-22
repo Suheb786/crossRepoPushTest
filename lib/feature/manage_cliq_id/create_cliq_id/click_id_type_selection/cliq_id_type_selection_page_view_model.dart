@@ -59,7 +59,7 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   }
 
   List<String> cliqIDTypeListEn = ['Alias', 'Mobile Number'];
-  List<String> cliqIDTypeListAr = ['الاسم المستعار', 'رقم الموبايل'];
+  List<String> cliqIDTypeListAr = ['اسم مستعار', 'رقم الموبايل'];
 
   void validate() {
     if (cliqIdTypeController.text.isNotEmpty &&
