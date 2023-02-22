@@ -6,7 +6,8 @@ part of 'validate_biller_otp_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValidateBillerOtpEntity _$ValidateBillerOtpEntityFromJson(Map<String, dynamic> json) {
+ValidateBillerOtpEntity _$ValidateBillerOtpEntityFromJson(
+    Map<String, dynamic> json) {
   return ValidateBillerOtpEntity(
     mobileNumber: json['mobileNumber'] as String?,
     isOtpRequired: json['isOtpRequired'] as bool?,
@@ -14,7 +15,9 @@ ValidateBillerOtpEntity _$ValidateBillerOtpEntityFromJson(Map<String, dynamic> j
   );
 }
 
-Map<String, dynamic> _$ValidateBillerOtpEntityToJson(ValidateBillerOtpEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$ValidateBillerOtpEntityToJson(
+        ValidateBillerOtpEntity instance) =>
+    <String, dynamic>{
       'mobileNumber': instance.mobileNumber,
       'isOtpRequired': instance.isOtpRequired,
       'isOtpSend': instance.isOtpSend,

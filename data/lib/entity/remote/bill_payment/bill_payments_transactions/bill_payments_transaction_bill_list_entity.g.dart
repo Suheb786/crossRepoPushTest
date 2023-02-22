@@ -6,7 +6,8 @@ part of 'bill_payments_transaction_bill_list_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BillPaymentsTransactionListEntity _$BillPaymentsTransactionListEntityFromJson(Map<String, dynamic> json) {
+BillPaymentsTransactionListEntity _$BillPaymentsTransactionListEntityFromJson(
+    Map<String, dynamic> json) {
   return BillPaymentsTransactionListEntity(
     nickname: json['nickname'] as String?,
     billingNumber: json['billingNumber'] as String?,
@@ -26,7 +27,8 @@ BillPaymentsTransactionListEntity _$BillPaymentsTransactionListEntityFromJson(Ma
   );
 }
 
-Map<String, dynamic> _$BillPaymentsTransactionListEntityToJson(BillPaymentsTransactionListEntity instance) =>
+Map<String, dynamic> _$BillPaymentsTransactionListEntityToJson(
+        BillPaymentsTransactionListEntity instance) =>
     <String, dynamic>{
       'nickname': instance.nickname,
       'billingNumber': instance.billingNumber,
