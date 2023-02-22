@@ -23,6 +23,7 @@ class GetPostpaidBillerListModelData {
   bool? isPartial;
   String? maxValue;
   String? minValue;
+  bool? expDateStatus;
 
   GetPostpaidBillerListModelData({
     this.joebppsNo,

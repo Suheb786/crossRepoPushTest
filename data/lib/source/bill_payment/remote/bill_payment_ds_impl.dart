@@ -280,6 +280,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
     return _apiService.validateBillerOtp(
       ValidateBillerOtpRequest(
           billerType: params.billerType,
+          billerName: params.billerName,
           amount: params.amount,
           currencyCode: params.currencyCode,
           accountNo: params.accountNo,

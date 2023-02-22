@@ -22,13 +22,14 @@ class EnterOtpBillPaymentsUseCase
 
 class EnterOtpBillPaymentsUseCaseParams extends Params {
   final String? billerType;
+  final String? billerName;
   final String? amount;
   final String? currencyCode;
   final String? accountNo;
   final bool? isNewBiller;
 
   EnterOtpBillPaymentsUseCaseParams(
-      {this.billerType, this.amount, this.currencyCode, this.accountNo, this.isNewBiller});
+      {this.billerType, this.billerName, this.amount, this.currencyCode, this.accountNo, this.isNewBiller});
 
   @override
   Either<AppError, bool> verify() {
