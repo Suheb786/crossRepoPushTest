@@ -48,9 +48,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                     height: 25.0.h,
                     width: 80.0.w,
                     decoration: BoxDecoration(
-                      color: getStatus(item.status ?? TransactionStatusBillsEnum.PENDING) == "success"
-                          ? AppColor.darkModerateLimeGreen
-                          : AppColor.dark_brown,
+                      color: getStatusColor(item.status ?? TransactionStatusBillsEnum.PENDING),
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Center(
@@ -61,8 +59,8 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.white,
-                              fontSize: 14.t,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 10.t,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
@@ -120,7 +118,7 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                                                         "success"
                                                     ? AppColor.dark_brown
                                                     : AppColor.gray5,
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 14.0.t),
                                           ),
                                           Text(
@@ -243,6 +241,20 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
 
       default:
         return "pending";
+    }
+  }
+
+  Color getStatusColor(TransactionStatusBillsEnum status) {
+    switch (status) {
+      case TransactionStatusBillsEnum.SUCCESS:
+        return AppColor.darkModerateLimeGreen;
+      case TransactionStatusBillsEnum.FAIL:
+        return AppColor.dark_brown;
+      case TransactionStatusBillsEnum.PENDING:
+        return AppColor.dark_orange;
+
+      default:
+        return AppColor.darkModerateLimeGreen;
     }
   }
 

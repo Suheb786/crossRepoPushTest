@@ -180,7 +180,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               }
                               Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
                                   arguments: PrePaidBillsSuccessPageArguments(
-                                      value.data!.content ?? PaidBillContent()));
+                                      value.data!.content ?? PaidBillContent(), PrePaidRoute.PAY_NEW_BILL));
 
                               var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
                               if (errorBillFail == "err-377") {

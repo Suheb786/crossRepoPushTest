@@ -78,7 +78,8 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                   AppConstantsUtils.IS_NEW_BILL_ADD_API_CALL = true;
                 }
                 Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
-                    arguments: PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+                    arguments: PrePaidBillsSuccessPageArguments(
+                        value.data!.content ?? PaidBillContent(), PrePaidRoute.PAY_NEW_BILL));
 
                 var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
                 if (errorBillFail == "err-377") {
