@@ -134,7 +134,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
         // Call the API for getting more data with
         // incremented Page no.
-        if (pageNo > 1 && searchController.text.isEmpty || pageNo > 1 && searchTextList.isEmpty) {
+        if (pageNo > 1 && searchTextList.isEmpty) {
           debugPrint('Entered here--------> too');
           getTransactions(pageNo: pageNo, pageSize: pageSize);
         }

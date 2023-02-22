@@ -183,7 +183,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                             transaction.data!.billPaymentsTransactionData!.length > 0
                                         ? SingleChildScrollView(
                                             controller: model.scrollController,
-                                            //physics: AlwaysScrollableScrollPhysics(),
+                                            physics: AlwaysScrollableScrollPhysics(),
                                             child: ListView.builder(
                                               itemBuilder: (context, index) {
                                                 return BillPaymentsTransactionWidget(
