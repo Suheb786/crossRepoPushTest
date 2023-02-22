@@ -9,6 +9,7 @@ part of 'validate_biller_otp_request.dart';
 ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(Map<String, dynamic> json) {
   return ValidateBillerOtpRequest(
     billerType: json['BillerType'] as String?,
+    billerName: json['BillerName'] as String?,
     amount: json['Amount'] as String?,
     currencyCode: json['CurrencyCode'] as String?,
     accountNo: json['AccountNo'] as String?,
@@ -20,6 +21,7 @@ ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(Map<String, dynamic>
 
 Map<String, dynamic> _$ValidateBillerOtpRequestToJson(ValidateBillerOtpRequest instance) => <String, dynamic>{
       'BillerType': instance.billerType,
+      'BillerName': instance.billerName,
       'Amount': instance.amount,
       'CurrencyCode': instance.currencyCode,
       'AccountNo': instance.accountNo,

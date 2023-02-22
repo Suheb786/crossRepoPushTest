@@ -175,25 +175,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                             isPartial: model.payPostPaidBillsDataList[index]
                                                                     .isPartial ??
                                                                 false,
-                                                            isDisabled: double.parse(model
-                                                                                .payPostPaidBillsDataList[
-                                                                                    index]
-                                                                                .actualdueAmountFromApi ??
-                                                                            "0") <=
-                                                                        0.0 &&
-                                                                    model.payPostPaidBillsDataList[index].isPartial ==
-                                                                        false ||
-                                                                double.parse(model
-                                                                                .payPostPaidBillsDataList[
-                                                                                    index]
-                                                                                .actualdueAmountFromApi ??
-                                                                            "0") <=
-                                                                        0.0 &&
-                                                                    model.payPostPaidBillsDataList[index]
-                                                                            .isPartial ==
-                                                                        true &&
-                                                                    double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <=
-                                                                        0.0,
+                                                            isDisabled:
+                                                                isDisabledConditions(context, model, index),
                                                             maxValue: double.parse(model
                                                                         .payPostPaidBillsDataList[index]
                                                                         .maxValue ??
@@ -532,5 +515,14 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
         displayDuration: Duration(milliseconds: 1000),
         hideOutAnimationDuration: Duration(milliseconds: 200),
         showOutAnimationDuration: Duration(milliseconds: 500));
+  }
+
+  isDisabledConditions(BuildContext context, PayAllPostPaidBillsPageViewModel model, int index) {
+    return (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+            model.payPostPaidBillsDataList[index].isPartial == false) ||
+        (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+            model.payPostPaidBillsDataList[index].isPartial == true &&
+            double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0) ||
+        (model.payPostPaidBillsDataList[index].expDateStatus == false);
   }
 }

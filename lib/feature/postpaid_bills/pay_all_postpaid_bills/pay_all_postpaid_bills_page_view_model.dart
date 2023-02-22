@@ -261,6 +261,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].isPartial = inquiryElement.isPartial;
           payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
           payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
+          payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
           selectedPostPaidBillsList.add(item);
         }
       }

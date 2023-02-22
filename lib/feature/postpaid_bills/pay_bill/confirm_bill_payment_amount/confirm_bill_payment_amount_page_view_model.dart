@@ -335,6 +335,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_otp", {"validate_otp_clicked": true});
     var billerType = AppConstantsUtils.BILLER_TYPE;
+    var billerName = AppConstantsUtils.BILLER_NAME;
     var amount = "0.000";
     var currencyCode = "JOD";
     var accountNo = AppConstantsUtils.ACCOUNT_NUMBER;
@@ -348,6 +349,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         billerType: billerType,
         amount: amount,
         currencyCode: currencyCode,
+        billerName: billerName,
         accountNo: accountNo,
         isNewBiller: isNewBiller));
   }
