@@ -16,6 +16,14 @@
 
  cd ..
 
+ cd infobip_rtc_flutter
+
+ /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
+
+ /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
+
+ cd ..
+
  /Users/apple/Documents/flutter-2.8.1/bin/flutter clean
 
  /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
