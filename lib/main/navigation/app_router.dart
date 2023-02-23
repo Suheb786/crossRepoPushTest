@@ -43,7 +43,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_page.dart';
@@ -105,6 +104,7 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
+
 // import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
@@ -203,14 +203,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-        // return CupertinoPageRoute(
-        //     builder: (context) => AddMoneyOptionSelectorPage(),
-        //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
         return CustomRoute.createRoute(AddMoneyOptionSelectorPage(), reverse: true);
-
-      case RoutePaths.LocateATM:
-        return CupertinoPageRoute(
-            builder: (context) => LocateATMPage(), settings: RouteSettings(name: RoutePaths.LocateATM));
 
       case RoutePaths.AppHome:
         return CupertinoPageRoute(
@@ -816,26 +809,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => BillPaymentsTransactionPage(),
             settings: RouteSettings(name: RoutePaths.BillPaymentsTransactionPage));
-
-      // case RoutePaths.PayPrePaidBillPage:
-      //   return CupertinoPageRoute(
-      //       builder: (context) => PayPrePaidBillPage(),
-      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillPage));
-      //
-      // case RoutePaths.NewPrePaidBillsPage:
-      //   return CupertinoPageRoute(
-      //       builder: (context) => NewPrePaidBillsPage(),
-      //       settings: RouteSettings(name: RoutePaths.NewPrePaidBillsPage));
-      //
-      // case RoutePaths.PayPrePaidBillDetailPage:
-      //   return CupertinoPageRoute(
-      //       builder: (context) => PayPrePaidBillDetailPage(),
-      //       settings: RouteSettings(name: RoutePaths.PayPrePaidBillDetailPage));
-      //
-      // case RoutePaths.ConfirmPrePaidBillPaymentAmountPage:
-      //   return CupertinoPageRoute(
-      //       builder: (context) => ConfirmPrePaidBillPaymentAmountPage(),
-      //       settings: RouteSettings(name: RoutePaths.ConfirmPrePaidBillPaymentAmountPage));
 
       case RoutePaths.QRScanningScreen:
         return CupertinoPageRoute(
