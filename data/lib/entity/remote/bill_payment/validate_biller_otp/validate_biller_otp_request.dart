@@ -6,6 +6,8 @@ part "validate_biller_otp_request.g.dart";
 class ValidateBillerOtpRequest {
   @JsonKey(name: "BillerType")
   final String? billerType;
+  @JsonKey(name: "BillerName")
+  final String? billerName;
   @JsonKey(name: "Amount")
   final String? amount;
   @JsonKey(name: "CurrencyCode")
@@ -21,6 +23,7 @@ class ValidateBillerOtpRequest {
 
   ValidateBillerOtpRequest(
       {this.billerType,
+      this.billerName,
       this.amount,
       this.currencyCode,
       this.accountNo,

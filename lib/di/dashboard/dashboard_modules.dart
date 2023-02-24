@@ -29,7 +29,6 @@ import 'package:neo_bank/feature/dashboard_home/download_transaction/download_tr
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
@@ -131,11 +130,6 @@ final debitCardTimeLineViewModelProvider =
 final addMoneyOptionSelectorViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
   (ref) => AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
-);
-
-///locate pin page view model
-final locatePinViewModelProvider = ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
-  (ref) => LocateATMPageViewModel(ref.read(getAtmUseCaseProvider)),
 );
 
 ///settings dialog view model

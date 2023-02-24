@@ -12,11 +12,15 @@ class TransferVerifyUseCase extends BaseUseCase<NetworkError, TransferVerifyUseC
 
   @override
   Future<Either<NetworkError, bool>> execute({required TransferVerifyUseCaseParams params}) {
-    return _repository.transferVerify();
+    return _repository.transferVerify(amount: params.amount);
   }
 }
 
 class TransferVerifyUseCaseParams extends Params {
+  final String amount;
+
+  TransferVerifyUseCaseParams({required this.amount});
+
   @override
   Either<AppError, bool> verify() {
     return Right(true);

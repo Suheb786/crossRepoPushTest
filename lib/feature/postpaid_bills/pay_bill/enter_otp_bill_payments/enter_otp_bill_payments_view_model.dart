@@ -88,6 +88,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_otp", {"validate_otp_clicked": true});
     var billerType = AppConstantsUtils.BILLER_TYPE;
+    var billerName = AppConstantsUtils.BILLER_NAME;
     var amount = "0.000";
     var currencyCode = "JOD";
     var accountNo = AppConstantsUtils.ACCOUNT_NUMBER;
@@ -103,6 +104,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
     }
     _enterOtpBillPaymentsRequest.safeAdd(EnterOtpBillPaymentsUseCaseParams(
         billerType: billerType,
+        billerName: billerName,
         amount: amount,
         currencyCode: currencyCode,
         accountNo: accountNo,

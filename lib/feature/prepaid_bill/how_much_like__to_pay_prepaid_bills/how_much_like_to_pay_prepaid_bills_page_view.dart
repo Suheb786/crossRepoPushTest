@@ -60,7 +60,8 @@ class HowMuchLikeToPayPrePaidBillsPageView
           onData: (value) {
             if (value.status == Status.SUCCESS) {
               Navigator.pushNamed(context, RoutePaths.PrePaidBillsSuccessPage,
-                  arguments: PrePaidBillsSuccessPageArguments(value.data!.content ?? PaidBillContent()));
+                  arguments: PrePaidBillsSuccessPageArguments(
+                      value.data!.content ?? PaidBillContent(), PrePaidRoute.MANAGE_PAY_BILL));
 
               var errorBillFail = value.data?.content?.paidBill?[0].statusDescription ?? "";
               if (errorBillFail == "err-377") {
@@ -261,9 +262,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   }),
                               model.feesAmt != null &&
                                       model.feesAmt!.isNotEmpty &&
-                                  double.parse(model.feesAmt ?? "0.0") > 0.0
+                                      double.parse(model.feesAmt ?? "0.0") > 0.0
                                   ? Container(
-                                margin: EdgeInsetsDirectional.only(top: 8.0.h),
+                                      margin: EdgeInsetsDirectional.only(top: 8.0.h),
                                       padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.h),
                                       decoration: BoxDecoration(
                                           color: AppColor.lightGray,
