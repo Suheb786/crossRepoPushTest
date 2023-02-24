@@ -2365,18 +2365,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForContacting": MessageLookupByLibrary.simpleMessage(
             "شكراً لاتصالك مع فريق Blink. ما تتردد بالاتصال فينا بأي وقت."),
         "thankYouForInterestWillSendUpdate":
-            MessageLookupByLibrary.simpleMessage(
-                "شكراً على اهتمامك! رح نبعثلك ايميل بمجرد توفره "),
-        "thankYouForWaiting": MessageLookupByLibrary.simpleMessage(
-            "شكراً على الانتظار، مكالمتك الصوتية رح تبدأ تلقائياً"),
+            MessageLookupByLibrary.simpleMessage("شكراً على اهتمامك! رح نبعثلك ايميل بمجرد توفره "),
+        "thankYouForWaiting":
+            MessageLookupByLibrary.simpleMessage("شكراً على الانتظار، مكالمتك الصوتية رح تبدأ تلقائياً"),
         "thankYouForWaitingCallWillStartAutomatically":
-            MessageLookupByLibrary.simpleMessage(
-                "شكرا للانتظار، المكالمة رح تبدأ تلقائياً"),
+            MessageLookupByLibrary.simpleMessage("شكرا للانتظار، المكالمة رح تبدأ تلقائياً"),
+        "thereAreNoDueBills":
+            MessageLookupByLibrary.simpleMessage("لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "thereAreNoDueBillsButYouCanMakePartialPayments": MessageLookupByLibrary.simpleMessage(
+            "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
-            MessageLookupByLibrary.simpleMessage(
-                "لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
-        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
-            "صار الوقت لمكالمة فيديو  سريعة"),
+            MessageLookupByLibrary.simpleMessage("لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage("صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),
         "toBookingSummary": MessageLookupByLibrary.simpleMessage("تغادر"),

@@ -1481,6 +1481,8 @@
   "closeDateIssueMessage": "لا يمكنك أتمام عملية الدفع بسبب أنتهاء صلاحية الفاتورة",
   "submittedFor": "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح",
   "thereAreNoDueBillsToBePaidAtTheMoment": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
+  "thereAreNoDueBillsButYouCanMakePartialPayments": "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً",
+  "thereAreNoDueBills": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
   "swipeAnyBillerToTheLeftToRemove": "اسحب اي فاتورة لليسار لتقوم بحذفها",
   "payYourBillswithBlink": "أدفع فواتيرك مع بلينك!",
   "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!",
