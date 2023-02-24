@@ -1420,11 +1420,12 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> transferVerify(baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> transferVerify(
+      transferApiVerifyRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
+    _data.addAll(transferApiVerifyRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
