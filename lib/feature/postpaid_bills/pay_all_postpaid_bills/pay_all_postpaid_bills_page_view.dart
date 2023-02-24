@@ -361,7 +361,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               if (double.parse(item.actualdueAmountFromApi ?? "0") > 0.0 ||
                                                   double.parse(item.actualdueAmountFromApi ?? "0") == 0.0 &&
                                                       item.isPartial == true &&
-                                                      double.parse(item.maxValue ?? "0") > 0.0) {
+                                                      double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                  item.expDateStatus == true) {
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
                                                     item.serviceType ==
@@ -392,7 +393,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               if (dueAmt > 0.0 ||
                                                   dueAmt == 0.0 &&
                                                       item.isPartial == true &&
-                                                      double.parse(item.maxValue ?? "0") > 0.0) {
+                                                      double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                  item.success == true) {
                                                 ///resetting dueAmount back to actual api dueAmount
                                                 item.dueAmount = dueAmt.toStringAsFixed(3);
                                                 item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
