@@ -226,7 +226,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false));
   }
@@ -435,13 +435,20 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   void amountGreaterThanZeroMessage(ConfirmBillPaymentAmountPageViewModel model) {
     if (AppConstantsUtils.POST_PAID_FLOW == true) {
       if (double.parse(model.totalAmountToPay() ?? "0") <= 0.0) {
-        model.showToastWithError(AppError(
-            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+        if (model.isPartial == false) {
+          model.showToastWithError(AppError(
+              cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
+        } else {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+        }
       }
     } else {
       if (double.parse(model.dueAmtController ?? "0") <= 0.0) {
         model.showToastWithError(AppError(
-            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
       }
     }
   }

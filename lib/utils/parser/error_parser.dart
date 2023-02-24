@@ -1146,6 +1146,10 @@ class ErrorParser {
         return "";
       case ErrorType.DAILY_LIMIT_EXCEDED:
         return localisedHelper.dailyNarrationLimitexceed;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS:
+        return localisedHelper.thereAreNoDueBills;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS:
+        return localisedHelper.thereAreNoDueBillsButYouCanMakePartialPayments;
 
       default:
         return "";

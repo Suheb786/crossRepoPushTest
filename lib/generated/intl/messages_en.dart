@@ -2464,26 +2464,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department."),
         "termsAndConditionsSetting":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
-        "termsConditions":
-            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "termsConditions": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "thankYouForContacting": MessageLookupByLibrary.simpleMessage(
             "Thank you for contacting\nBlink Engagement Team.\nFeel free to contact us anytime."),
         "thankYouForInterestWillSendUpdate": MessageLookupByLibrary.simpleMessage(
             "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available."),
         "thankYouForWaiting": MessageLookupByLibrary.simpleMessage(
             "Thank you for waiting, the voice call\nwill start automatically"),
-        "thankYouForWaitingCallWillStartAutomatically":
-            MessageLookupByLibrary.simpleMessage(
-                "Thank you for waiting, the video call will start automatically"),
+        "thankYouForWaitingCallWillStartAutomatically": MessageLookupByLibrary.simpleMessage(
+            "Thank you for waiting, the video call will start automatically"),
+        "thereAreNoDueBills": MessageLookupByLibrary.simpleMessage("There are no due bills"),
+        "thereAreNoDueBillsButYouCanMakePartialPayments":
+            MessageLookupByLibrary.simpleMessage("There are no due bills, but you can make partial payments"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
-            MessageLookupByLibrary.simpleMessage(
-                "There are no due bills to be paid at the moment"),
-        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
-            "It’s time for a quick\nvideo call"),
+            MessageLookupByLibrary.simpleMessage("There are no due bills to be paid at the moment"),
+        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage("It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "to": MessageLookupByLibrary.simpleMessage("to"),
-        "toBookingSummary":
-            MessageLookupByLibrary.simpleMessage("to Booking Summary"),
+        "toBookingSummary": MessageLookupByLibrary.simpleMessage("to Booking Summary"),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),

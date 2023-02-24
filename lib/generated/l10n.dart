@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -15055,6 +15056,26 @@ class S {
     return Intl.message(
       'There are no due bills to be paid at the moment',
       name: 'thereAreNoDueBillsToBePaidAtTheMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills, but you can make partial payments`
+  String get thereAreNoDueBillsButYouCanMakePartialPayments {
+    return Intl.message(
+      'There are no due bills, but you can make partial payments',
+      name: 'thereAreNoDueBillsButYouCanMakePartialPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills`
+  String get thereAreNoDueBills {
+    return Intl.message(
+      'There are no due bills',
+      name: 'thereAreNoDueBills',
       desc: '',
       args: [],
     );
