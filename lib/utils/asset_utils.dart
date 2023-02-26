@@ -300,6 +300,7 @@ class AssetUtils {
 
   ///billPaymentsImages
   static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
+  static const String efawateerPopUpImage = drawable + "efawateer_popup_image.png";
   static const String infoFee = svg + "info_fee.svg";
   static const String bulbIcon = svg + "bulb_icon.svg";
 }

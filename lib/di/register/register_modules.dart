@@ -58,7 +58,6 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
@@ -349,10 +348,6 @@ final scheduleVideoCallPageViewModelProvider =
     ref.read(customerStatusUseCaseProvider),
   ),
 );
-
-///get home address dialog view model provider
-final homeAddressDialogViwModelProvider = ChangeNotifierProvider.autoDispose<HomeAddressDialogViewModel>(
-    (ref) => HomeAddressDialogViewModel(ref.read(homeAddressDialogUseCaseProvider)));
 
 ///video call info view model provider
 final videoCallInfoViewModelProvider = ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(

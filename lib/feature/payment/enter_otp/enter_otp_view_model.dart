@@ -46,10 +46,10 @@ class EnterOtpViewModel extends BasePageViewModel {
   ///transfer verify response stream
   Stream<Resource<bool>> get transferVerifyStream => _transferVerifyResponse.stream;
 
-  void updateTime() {
+  void updateTime({required String amount}) {
     // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     // notifyListeners();
-    verifyTransfer();
+    verifyTransfer(amount: amount);
   }
 
   ///transfer request
@@ -149,8 +149,8 @@ class EnterOtpViewModel extends BasePageViewModel {
     }
   }
 
-  void verifyTransfer() {
-    _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams());
+  void verifyTransfer({required String amount}) {
+    _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams(amount: amount));
   }
 
   @override

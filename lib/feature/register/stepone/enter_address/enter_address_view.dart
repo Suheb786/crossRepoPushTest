@@ -15,7 +15,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -160,14 +159,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 suffixIcon: (isValid, value) => Visibility(
                                                   visible: false,
                                                   child: InkWell(
-                                                      onTap: () => HomeAddressDialog.show(context,
-                                                              onSelected: (value) {
-                                                            Navigator.of(context).pop();
-                                                            model.buildingNameOrNumberController.text = value;
-                                                            model.validateAddress();
-                                                          }, onDismissed: () {
-                                                            Navigator.pop(context);
-                                                          }),
                                                       child: Container(
                                                         height: 20,
                                                         width: 16,

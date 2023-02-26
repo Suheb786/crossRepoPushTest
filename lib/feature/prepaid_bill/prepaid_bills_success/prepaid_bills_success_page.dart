@@ -49,6 +49,9 @@ class PrePaidBillsSuccessPageState
 
 class PrePaidBillsSuccessPageArguments {
   PaidBillContent paidBillContent;
+  PrePaidRoute paidRoute;
 
-  PrePaidBillsSuccessPageArguments(this.paidBillContent);
+  PrePaidBillsSuccessPageArguments(this.paidBillContent, this.paidRoute);
 }
+
+enum PrePaidRoute { MANAGE_PAY_BILL, PAY_NEW_BILL }

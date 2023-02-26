@@ -103,7 +103,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).nextPage();
                                       // .next();
                                     } else {
-                                      model.verifyTransfer();
+                                      model.verifyTransfer(
+                                          amount: ProviderScope.containerOf(context)
+                                              .read(sendMoneyViewModelProvider)
+                                              .currentPinValue);
                                     }
                                   } else if (data.status == Status.ERROR) {
                                     if (data.appError!.type == ErrorType.EMPTY_IBAN_MOBILE) {

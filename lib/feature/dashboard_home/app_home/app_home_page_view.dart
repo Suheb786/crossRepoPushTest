@@ -96,7 +96,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 data.data?.isEfawateerPopUPClicked = true;
                                 model.saveCurrentUserData(user: data.data!);
                               },
-                              image: AssetUtils.PAYYOURBILLSWITHBLINK,
+                              image: AssetUtils.efawateerPopUpImage,
                               onSelected: () {
                                 Navigator.pop(context);
                                 data.data?.isEfawateerPopUPClicked = true;
