@@ -159,88 +159,96 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                           }
                                         },
                                         dataBuilder: (context, data) {
-                                          return AppTextField(
-                                            labelText: S.of(context).mobileNumber.toUpperCase(),
-                                            hintText: S.of(context).mobileNumberHint,
-                                            inputType: TextInputType.phone,
-                                            inputAction: TextInputAction.done,
-                                            inputFormatters: [
-                                              LengthLimitingTextInputFormatter(model.countryData.mobileMax),
-                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                            ],
-                                            controller: model.mobileNumberController,
-                                            key: model.mobileNumberKey,
-                                            onChanged: (value) {
+                                          debugPrint(
+                                              'model.countryData.mobileMax--${model.countryData.mobileMax}');
+                                          return Focus(
+                                            onFocusChange: (hasFocus) {
+                                              debugPrint('hasFocus--> ${hasFocus}');
                                               model.validateMobile();
-                                              model.validate();
                                             },
-                                            prefixIcon: () {
-                                              return InkWell(
-                                                onTap: () {
-                                                  MobileNumberDialog.show(context,
-                                                      title: S.of(context).mobileNumber,
-                                                      selectedCountryData: model.countryData,
-                                                      onSelected: (data) {
-                                                    Navigator.pop(context);
-                                                    model.countryData = data;
-                                                    model.setSelectedCountry(data);
-                                                    print('selectedData---->${data.phoneCode}');
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
+                                            child: AppTextField(
+                                              labelText: S.of(context).mobileNumber.toUpperCase(),
+                                              hintText: S.of(context).mobileNumberHint,
+                                              inputType: TextInputType.phone,
+                                              inputAction: TextInputAction.done,
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                              ],
+                                              controller: model.mobileNumberController,
+                                              key: model.mobileNumberKey,
+                                              onChanged: (value) {
+                                                model.validate();
+                                              },
+                                              prefixIcon: () {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    MobileNumberDialog.show(context,
+                                                        title: S.of(context).mobileNumber,
+                                                        selectedCountryData: model.countryData,
+                                                        onSelected: (data) {
+                                                      Navigator.pop(context);
+                                                      model.countryData = data;
+                                                      model.setSelectedCountry(data);
+                                                      print('selectedData---->${data.phoneCode}');
+                                                    }, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                        countryDataList:
+                                                            country!.data!.contentData!.countryData);
                                                   },
-                                                      countryDataList:
-                                                          country!.data!.contentData!.countryData);
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(top: 8.0.h),
-                                                  child: Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: <Widget>[
-                                                      Container(
-                                                        height: 16.h,
-                                                        width: 16.w,
-                                                        decoration: BoxDecoration(
-                                                          color: Theme.of(context).primaryColorDark,
-                                                          shape: BoxShape.circle,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(top: 8.0.h),
+                                                    child: Row(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: <Widget>[
+                                                        Container(
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          decoration: BoxDecoration(
+                                                            color: Theme.of(context).primaryColorDark,
+                                                            shape: BoxShape.circle,
+                                                          ),
+                                                          child: AppSvg.asset(selectedCountry!.isoCode3 !=
+                                                                  null
+                                                              ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                              : "assets/flags/jor.svg"),
                                                         ),
-                                                        child: AppSvg.asset(selectedCountry!.isoCode3 != null
-                                                            ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
-                                                            : "assets/flags/jor.svg"),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                                                        child: Directionality(
-                                                          textDirection: TextDirection.ltr,
-                                                          child: Text(
-                                                            selectedCountry.phoneCode!.isNotEmpty
-                                                                ? '+${selectedCountry.phoneCode!}'
-                                                                : "",
-                                                            style: TextStyle(
-                                                              color: Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyText1!
-                                                                  .color,
-                                                              fontSize: 14.t,
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontWeight: FontWeight.w600,
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                                                          child: Directionality(
+                                                            textDirection: TextDirection.ltr,
+                                                            child: Text(
+                                                              selectedCountry.phoneCode!.isNotEmpty
+                                                                  ? '+${selectedCountry.phoneCode!}'
+                                                                  : "",
+                                                              style: TextStyle(
+                                                                color: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyText1!
+                                                                    .color,
+                                                                fontSize: 14.t,
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Container(
-                                                          height: 16.h,
-                                                          width: 16.w,
-                                                          margin: EdgeInsetsDirectional.only(end: 8.w),
-                                                          child: AppSvg.asset(AssetUtils.downArrow,
-                                                              color: Theme.of(context)
-                                                                  .primaryTextTheme
-                                                                  .bodyText1!
-                                                                  .color))
-                                                    ],
+                                                        Container(
+                                                            height: 16.h,
+                                                            width: 16.w,
+                                                            margin: EdgeInsetsDirectional.only(end: 8.w),
+                                                            child: AppSvg.asset(AssetUtils.downArrow,
+                                                                color: Theme.of(context)
+                                                                    .primaryTextTheme
+                                                                    .bodyText1!
+                                                                    .color))
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
+                                                );
+                                              },
+                                            ),
                                           );
                                         },
                                       );
