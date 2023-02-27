@@ -254,17 +254,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card "),
         "availableAmount":
             MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
-        "availableBalance":
-            MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
+        "availableBalance": MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
-        "backToCardSettings":
-            MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
+        "backToCardSettings": MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToCategory": m8,
-        "backToDashboard":
-            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToDashboard": MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
-        "backToPayments":
-            MessageLookupByLibrary.simpleMessage("Back to Payments"),
+        "backToPayments": MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "backToRegistration": MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "banks": MessageLookupByLibrary.simpleMessage("Banks"),
@@ -297,10 +293,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
-        "blinkCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
-        "blockThisCountry":
-            MessageLookupByLibrary.simpleMessage("Block this country?"),
+        "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockThisCountry": MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
@@ -509,14 +503,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage("Please confirm your\ndetails below"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General "),
-        "confirmNewPin":
-            MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
-        "confirmPassword":
-            MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
-        "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
-            "Confirm password should be same as new password"),
-        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
-            "Confirm to the terms and conditions."),
+        "confirmNewPin": MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
+        "confirmPasswordNotMatch":
+            MessageLookupByLibrary.simpleMessage("Confirm password should be same as new password"),
+        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage("Confirm to the terms and conditions."),
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
@@ -1319,14 +1310,12 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Insufficient funds bill cannot be paid"),
         "invalidAccount": MessageLookupByLibrary.simpleMessage(
             "Invalid account. Please try another account"),
-        "invalidAccountBalance": MessageLookupByLibrary.simpleMessage(
-            "Account Balance is less than pay balance."),
-        "invalidAccountID": MessageLookupByLibrary.simpleMessage(
-            "Invalid account. Please try another account"),
-        "invalidAccountLimit": MessageLookupByLibrary.simpleMessage(
-            "The account limit has been exceeded."),
-        "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
-            "Select Additional Source Income"),
+        "invalidAccountBalance": MessageLookupByLibrary.simpleMessage("Account Balance is less than pay balance."),
+        "invalidAccountID":
+            MessageLookupByLibrary.simpleMessage("Invalid account. Please try another account"),
+        "invalidAccountLimit": MessageLookupByLibrary.simpleMessage("The account limit has been exceeded."),
+        "invalidAdditionSourceIncome":
+            MessageLookupByLibrary.simpleMessage("Select Additional Source Income"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAmount": MessageLookupByLibrary.simpleMessage(
             "The amount you\'ve entered exceeds your account balance. Please add money to your account or choose another amount."),
@@ -1349,10 +1338,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password you entered is incorrect. Please try again or click on \"Forgot password?\" to change your password."),
         "invalidCustomerId": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "invalidDOB":
-            MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
-        "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
-            "Confirm to the terms and condition to proceed."),
+        "invalidDOB": MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
+        "invalidDeclarationSelection":
+            MessageLookupByLibrary.simpleMessage("Confirm to the terms and condition to proceed."),
         "invalidDocument": MessageLookupByLibrary.simpleMessage(
             "The document is invalid. Please try another document or contact our Engagement Team on 06-5200100."),
         "invalidDocumentNo":
@@ -1434,17 +1422,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "It seems the mobile number you provided in the FATCA form is incorrect. Please check again and ensure the number is correct."),
         "invalidMobileNo": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid mobile number."),
-        "invalidMonthlyIncome":
-            MessageLookupByLibrary.simpleMessage("Enter monthly income"),
+        "invalidMonthlyIncome": MessageLookupByLibrary.simpleMessage("Enter monthly income"),
         "invalidName": MessageLookupByLibrary.simpleMessage("Enter name"),
-        "invalidNameAsPerTaxReturn": MessageLookupByLibrary.simpleMessage(
-            "Enter name as per tax return"),
+        "invalidNameAsPerTaxReturn": MessageLookupByLibrary.simpleMessage("Enter name as per tax return"),
         "invalidNationalIdCard": MessageLookupByLibrary.simpleMessage(
             "We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100."),
         "invalidNationality": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-154)"),
-        "invalidOccupation":
-            MessageLookupByLibrary.simpleMessage("Enter Occupation"),
+        "invalidOccupation": MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp":
             MessageLookupByLibrary.simpleMessage("The code you entered is incorrect, please try again."),
         "invalidOtpCodeNetwork":
@@ -1462,16 +1447,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPinLength": MessageLookupByLibrary.simpleMessage("Length of pin cannot be less than 4"),
         "invalidPostCode": MessageLookupByLibrary.simpleMessage("Enter Post Code"),
         "invalidPreferredDate": MessageLookupByLibrary.simpleMessage("Select date"),
-        "invalidPreferredTime":
-            MessageLookupByLibrary.simpleMessage("Select time"),
+        "invalidPreferredTime": MessageLookupByLibrary.simpleMessage("Select time"),
         "invalidPrimaryId": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "invalidProductId": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-011)"),
         "invalidProductShortCode": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-015)"),
-        "invalidProvisionClaim": MessageLookupByLibrary.simpleMessage(
-            "Enter provision claim article and paragraph"),
+        "invalidProvisionClaim":
+            MessageLookupByLibrary.simpleMessage("Enter provision claim article and paragraph"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
@@ -1784,14 +1768,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "nullId": MessageLookupByLibrary.simpleMessage("Id is null from Vkey"),
         "numberOnCard": MessageLookupByLibrary.simpleMessage("NUMBERS ON CARD"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
-        "occupationBusinessType":
-            MessageLookupByLibrary.simpleMessage("Occupation/Business Type"),
+        "occupationBusinessType": MessageLookupByLibrary.simpleMessage("Occupation/Business Type"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
-        "onIdFit": MessageLookupByLibrary.simpleMessage(
-            "Once fit, your ID will be scanned automatically"),
-        "oneFinalStop":
-            MessageLookupByLibrary.simpleMessage("One final stop..."),
+        "onIdFit": MessageLookupByLibrary.simpleMessage("Once fit, your ID will be scanned automatically"),
+        "oneFinalStop": MessageLookupByLibrary.simpleMessage("One final stop..."),
         "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter": MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
@@ -1812,12 +1793,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your OTP code is expired, please request for a new OTP code"),
         "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
             "The code you have entered is expired. Please re-send code and try again."),
-        "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
-            "Otp Limit Exceeds, Please Try again Later"),
+        "otpLimitExceed": MessageLookupByLibrary.simpleMessage("Otp Limit Exceeds, Please Try again Later"),
         "otpLimitExceedNetwork": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to request a code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "otpNull":
-            MessageLookupByLibrary.simpleMessage("Please enter valid code."),
+        "otpNull": MessageLookupByLibrary.simpleMessage("Please enter valid code."),
         "otpRequestedManyTime": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
@@ -2064,10 +2043,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
-        "referenceNumber":
-            MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
-        "referenceNumberSmall":
-            MessageLookupByLibrary.simpleMessage("Reference Number"),
+        "referenceNumber": MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
+        "referenceNumberSmall": MessageLookupByLibrary.simpleMessage("Reference Number"),
         "refno": MessageLookupByLibrary.simpleMessage("Ref No."),
         "region": MessageLookupByLibrary.simpleMessage("REGION"),
         "registerInterestError": MessageLookupByLibrary.simpleMessage(
@@ -2092,13 +2069,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please make sure you scan the supplemenary cardholder ID instead of your ID."),
         "removeDebitLockError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "removeFromContact":
-            MessageLookupByLibrary.simpleMessage("Remove contact"),
+        "removeFromContact": MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
-        "renewNewCreditCard":
-            MessageLookupByLibrary.simpleMessage("RENEW CREDIT CARD"),
-        "replaceDamageCard":
-            MessageLookupByLibrary.simpleMessage("Replace damaged card"),
+        "renewNewCreditCard": MessageLookupByLibrary.simpleMessage("RENEW CREDIT CARD"),
+        "replaceDamageCard": MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "replaceDamagedCard":
             MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "reportCardIssue":
@@ -2424,17 +2398,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Complete your tax report information below"),
         "taxationDeclaration": MessageLookupByLibrary.simpleMessage(
             "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
-        "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
-            "By law, you are needed to declare your taxation details"),
-        "telecommunication":
-            MessageLookupByLibrary.simpleMessage("Telecommunication"),
+        "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage("By law, you are needed to declare your taxation details"),
+        "telecommunication": MessageLookupByLibrary.simpleMessage("Telecommunication"),
         "tellUsAboutImportantInformations":
-            MessageLookupByLibrary.simpleMessage(
-                "Next, please tell us about these important informations"),
-        "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage(
-            "Next, tell us about\nyour job"),
-        "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
-            "Tell us a bit \nabout yourself"),
+            MessageLookupByLibrary.simpleMessage("Next, please tell us about these important informations"),
+        "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage("Next, tell us about\nyour job"),
+        "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage("Tell us a bit \nabout yourself"),
         "tellUsHowDoMakeLiving":
             MessageLookupByLibrary.simpleMessage("Bear with us, just a few more questions about your income"),
         "termAndCondition": MessageLookupByLibrary.simpleMessage("Terms and Conditions "),
@@ -2468,17 +2437,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "toPayments": MessageLookupByLibrary.simpleMessage("to Payments"),
         "toViewSubscription": MessageLookupByLibrary.simpleMessage("to View Subscriptionss"),
         "toViewVoucher": MessageLookupByLibrary.simpleMessage("to View Voucher"),
-        "toWelcomePage":
-            MessageLookupByLibrary.simpleMessage("to Welcome Page"),
-        "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(
-            "TokenSerial / Apin is empty from Vkey"),
-        "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(
-            "There are too many recurrent declined transactions"),
+        "toWelcomePage": MessageLookupByLibrary.simpleMessage("to Welcome Page"),
+        "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage("TokenSerial / Apin is empty from Vkey"),
+        "tooManyRecurrentDeclined":
+            MessageLookupByLibrary.simpleMessage("There are too many recurrent declined transactions"),
         "topBrand": MessageLookupByLibrary.simpleMessage("Top Brands"),
-        "totalAdditionalIncome":
-            MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
-        "totalAdditionalIncomeSmall":
-            MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "totalAdditionalIncome": MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
+        "totalAdditionalIncomeSmall": MessageLookupByLibrary.simpleMessage("Total Additional Income"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
