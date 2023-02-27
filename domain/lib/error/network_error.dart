@@ -1176,7 +1176,7 @@ class NetworkError extends BaseError {
           case "err-382":
             return AppError(cause: cause, error: error, type: ErrorType.DAILY_LIMIT_EXCEDED);
 
-          /// EFW: e
+          /// EFW:efawateercom -err-codes
           case "EFW-408":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_BILLING_NUMBER);
           case "EFW-401":

@@ -179,21 +179,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColor.vividYellow,
                     borderRadius: BorderRadius.circular(100),
-                  ),
-                )
-              /*: !isDisabled
-                  ? Container(
-                      height: 40.w,
-                      width: 40.w,
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
-                        child: AppSvg.asset(AssetUtils.fail, color: AppColor.black),
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColor.gray1.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    )*/
+                  ))
               : Container(
                   width: 40.0.w,
                   height: 40.0.w,
