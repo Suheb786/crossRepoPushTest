@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14971,30 +14970,30 @@ class S {
     );
   }
 
-  /// `You cannot proceed to complete the payment because the bill is expired`
+  /// `Payment cannot be completed because the bill is expired.`
   String get rejectedDueToExpiryDate {
     return Intl.message(
-      'You cannot proceed to complete the payment because the bill is expired',
+      'Payment cannot be completed because the bill is expired.',
       name: 'rejectedDueToExpiryDate',
       desc: '',
       args: [],
     );
   }
 
-  /// `You cannot proceed to complete the payment because the bill is not yet issued`
+  /// `Payment cannot be completed because the bill date is not reached Yet`
   String get openDateIssuedMessage {
     return Intl.message(
-      'You cannot proceed to complete the payment because the bill is not yet issued',
+      'Payment cannot be completed because the bill date is not reached Yet',
       name: 'openDateIssuedMessage',
       desc: '',
       args: [],
     );
   }
 
-  /// `You cannot proceed to complete the payment because the bill is expired`
+  /// `Payment cannot be completed because the bill is closed.`
   String get closeDateIssueMessage {
     return Intl.message(
-      'You cannot proceed to complete the payment because the bill is expired',
+      'Payment cannot be completed because the bill is closed.',
       name: 'closeDateIssueMessage',
       desc: '',
       args: [],
@@ -15116,6 +15115,56 @@ class S {
     return Intl.message(
       'Processing',
       name: 'processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Billing Number`
+  String get invalidBillingNumber {
+    return Intl.message(
+      'Invalid Billing Number',
+      name: 'invalidBillingNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill Not Found`
+  String get billNotFound {
+    return Intl.message(
+      'Bill Not Found',
+      name: 'billNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Paid Amount`
+  String get invalidPaidAmount {
+    return Intl.message(
+      'Invalid Paid Amount',
+      name: 'invalidPaidAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Amt`
+  String get billingNumberReachedItsMaxAmt {
+    return Intl.message(
+      'Billing Number Reached Its Max Amt',
+      name: 'billingNumberReachedItsMaxAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Trx`
+  String get billingNumberReachedItsMaxTrx {
+    return Intl.message(
+      'Billing Number Reached Its Max Trx',
+      name: 'billingNumberReachedItsMaxTrx',
       desc: '',
       args: [],
     );

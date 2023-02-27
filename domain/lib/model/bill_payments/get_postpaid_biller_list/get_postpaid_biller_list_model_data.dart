@@ -24,6 +24,7 @@ class GetPostpaidBillerListModelData {
   String? maxValue;
   String? minValue;
   bool? expDateStatus;
+  String? expDateMessage;
 
   GetPostpaidBillerListModelData({
     this.joebppsNo,
@@ -50,5 +51,7 @@ class GetPostpaidBillerListModelData {
     this.actualdueAmountFromApi = "0.000",
     this.maxValue = "0.000",
     this.minValue = "0.000",
+    this.expDateStatus,
+    this.expDateMessage,
   });
 }
