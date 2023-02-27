@@ -164,6 +164,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                 itemBuilder: (context, index) {
                                                   return InkWell(
                                                     onTap: () {
+                                                      if (isDisabledConditions(context, model, index)) {
+                                                        showErrorMethod(context, model, index);
+                                                      }
                                                       model.selectedItem(index);
                                                     },
                                                     child: model.arguments.paidBillsPayTypeOptionEnum ==
@@ -256,25 +259,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                               isPartial: model.payPostPaidBillsDataList[index]
                                                                       .isPartial ??
                                                                   false,
-                                                              isDisabled: double.parse(model
-                                                                                  .payPostPaidBillsDataList[
-                                                                                      index]
-                                                                                  .actualdueAmountFromApi ??
-                                                                              "0") <=
-                                                                          0.0 &&
-                                                                      model.payPostPaidBillsDataList[index]
-                                                                              .isPartial ==
-                                                                          false ||
-                                                                  double.parse(model
-                                                                                  .payPostPaidBillsDataList[
-                                                                                      index]
-                                                                                  .actualdueAmountFromApi ??
-                                                                              "0") <=
-                                                                          0.0 &&
-                                                                      model.payPostPaidBillsDataList[index]
-                                                                              .isPartial ==
-                                                                          true &&
-                                                                      double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0,
+                                                              isDisabled:
+                                                                  isDisabledConditions(context, model, index),
                                                               maxValue: double.parse(model
                                                                           .payPostPaidBillsDataList[index]
                                                                           .maxValue ??
@@ -414,6 +400,15 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
+
+                                            if (item.expDateStatus == false) {
+                                              temPostPaidBillInquiryData.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
+                                              tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
+                                            }
                                           }
                                           tempSelectedPostPaidBillsList =
                                               tempSelectedPostPaidBillsList.toSet().toList();
@@ -526,5 +521,29 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
             model.payPostPaidBillsDataList[index].isPartial == true &&
             double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0) ||
         (model.payPostPaidBillsDataList[index].expDateStatus == false);
+  }
+
+  void showErrorMethod(BuildContext context, PayAllPostPaidBillsPageViewModel model, int index) {
+    if (model.payPostPaidBillsDataList[index].expDateStatus == false) {
+      if (model.payPostPaidBillsDataList != null &&
+          model.payPostPaidBillsDataList[index] != null &&
+          model.payPostPaidBillsDataList[index].expDateMessage != null &&
+          model.payPostPaidBillsDataList[index].expDateMessage!.toString().isNotEmpty) {
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-379") {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+        }
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-381") {
+          model.showToastWithError(AppError(
+              cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
+        }
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-383") {
+          model.showToastWithError(AppError(
+              cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+        }
+      }
+    }
   }
 }

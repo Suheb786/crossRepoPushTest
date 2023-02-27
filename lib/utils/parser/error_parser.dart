@@ -1150,6 +1150,16 @@ class ErrorParser {
         return localisedHelper.thereAreNoDueBills;
       case ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS:
         return localisedHelper.thereAreNoDueBillsButYouCanMakePartialPayments;
+      case ErrorType.INVALID_BILLING_NUMBER:
+        return localisedHelper.invalidBillingNumber;
+      case ErrorType.BILL_NOT_FOUND:
+        return localisedHelper.billNotFound;
+      case ErrorType.INVALID_PAID_AMOUNT:
+        return localisedHelper.invalidPaidAmount;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT:
+        return localisedHelper.billingNumberReachedItsMaxAmt;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX:
+        return localisedHelper.billingNumberReachedItsMaxTrx;
 
       default:
         return "";

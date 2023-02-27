@@ -1519,9 +1519,9 @@
   "amountShouldBeMoreThan": "Amount should be more than",
   "amountShouldBeLessThanOrEqualTo": "Amount should be less than or equal to",
   "billPaymentSorryMessage": "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.",
-  "rejectedDueToExpiryDate": "You cannot proceed to complete the payment because the bill is expired",
-  "openDateIssuedMessage": "You cannot proceed to complete the payment because the bill is not yet issued",
-  "closeDateIssueMessage": "You cannot proceed to complete the payment because the bill is expired",
+  "rejectedDueToExpiryDate": "Payment cannot be completed because the bill is expired.",
+  "openDateIssuedMessage": "Payment cannot be completed because the bill date is not reached Yet",
+  "closeDateIssueMessage": "Payment cannot be completed because the bill is closed.",
   "serviceIsNotavaliable": "Service is not available",
   "viewHistory": "View History",
   "billsHistory": "Bills History",
@@ -1534,5 +1534,10 @@
   "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
   "dailyLimitExceededorTryLater": " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ",
   "processing": "Processing",
+  "invalidBillingNumber": "Invalid Billing Number",
+  "billNotFound": "Bill Not Found",
+  "invalidPaidAmount": "Invalid Paid Amount",
+  "billingNumberReachedItsMaxAmt": "Billing Number Reached Its Max Amt",
+  "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
   "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
 }

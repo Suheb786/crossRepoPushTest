@@ -81,7 +81,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// expired/open/close date bill
-        if (payPostPaidBillsDataList[index].status == false) {
+        if (payPostPaidBillsDataList[index].expDateStatus == false) {
           payPostPaidBillsDataList[index].isChecked = false;
         }
         postPaidRequestListJson = [];
@@ -133,7 +133,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// expired/open/close date bill
-        if (item.status == false) {
+        if (item.expDateStatus == false) {
           item.isChecked = false;
         }
         postPaidRequestListJson.add(PostpaidBillInquiry(
@@ -262,6 +262,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
           payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
           payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
+          if (payPostPaidBillsDataList[j].expDateStatus == false) {
+            payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? false;
+            payPostPaidBillsDataList[j].isChecked = false;
+          }
           selectedPostPaidBillsList.add(item);
         }
       }

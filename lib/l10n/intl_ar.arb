@@ -1476,9 +1476,9 @@
   "viewHistory": "عرض السجل",
   "billsHistory": "سِجِل الفواتير",
   "billPaymentSorryMessage": "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة",
-  "rejectedDueToExpiryDate": "لا يمكنك أتمام عملية الدفع بسبب أنتهاء صلاحية الفاتورة",
-  "openDateIssuedMessage": "لا يمكنك أتمام عملية الدفع لأن الفاتورة لم تصدر بعد",
-  "closeDateIssueMessage": "لا يمكنك أتمام عملية الدفع بسبب أنتهاء صلاحية الفاتورة",
+  "rejectedDueToExpiryDate": "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة",
+  "openDateIssuedMessage": "تم رفض دفع الفاتوره بسبب عدم استحقاقها",
+  "closeDateIssueMessage": "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة",
   "submittedFor": "جاري معاجة طلبك لدفع فواتيرك, منخبرك بمجرد ما تمت عملية الدفع بنجاح",
   "thereAreNoDueBillsToBePaidAtTheMoment": "لا توجد فواتير مستحقة للدفع في الوقت الحالي",
   "thereAreNoDueBillsButYouCanMakePartialPayments": "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً",
@@ -1488,5 +1488,10 @@
   "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!",
   "dailyLimitExceededorTryLater": " .في مشكلة بدفعتك، يمكن تكون تجاوزت حد التحويل اليومي. حاول كمان مرة. إذا بدك مساعدة تواصل معنا",
   "processing": "المعالجة",
+  "invalidBillingNumber": "رقم الفاتورة غير صحيح",
+  "billNotFound": "رقم الفاتورة غير موجود",
+  "invalidPaidAmount": "المبلغ الذي تم دفعه غير صحيح",
+  "billingNumberReachedItsMaxAmt": "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة",
+  "billingNumberReachedItsMaxTrx": "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي"
 }
