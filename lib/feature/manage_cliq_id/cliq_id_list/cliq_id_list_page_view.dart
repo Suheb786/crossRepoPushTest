@@ -335,7 +335,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     .of(context)
                                                                     .whenAcceptingCreationOfYourCliqId,
                                                                 onSelected: () {
-                                                                  Navigator.pop(context);
+                                                              Navigator.pop(context);
 
                                                               // Navigator.pushNamed(
                                                               //     context, RoutePaths.OtpForCliqIdListPage,
