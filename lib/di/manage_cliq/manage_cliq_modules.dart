@@ -4,6 +4,8 @@ import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_edit_alias_mobile_no_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_edit_alias_mobile_no_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page_view_model.dart';
@@ -23,7 +25,7 @@ import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
 final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
-      (ref) => CliqIdListPageViewModel(
+        (ref) => CliqIdListPageViewModel(
     ref.read(getAliasUseCaseProvider),
     ref.read(deleteCliqIdUseCaseProvider),
     ref.read(unLinkAccountFromCliqUseCaseProvider),
@@ -115,4 +117,10 @@ final linkAccountPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<LinkAccountPageViewModel, LinkAccountPageArgument>(
   (ref, arg) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
       ref.read(getAccountByCustomerID), ref.read(addLinkAccountUseCaseProvider), arg),
+);
+
+final otpForCliqIdListPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<OtpForCliqIdListPageViewModel, OtpForCliqIdListPageArguments>(
+  (ref, args) => OtpForCliqIdListPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider),
+      ref.read(editCliqIdUseCaseProvider), args, ref.read(editCliqOtpUseCaseProvider)),
 );

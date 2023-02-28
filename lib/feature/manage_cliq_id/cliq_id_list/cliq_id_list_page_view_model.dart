@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
+import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/delete_cliq_id_usecase.dart';
@@ -211,5 +212,20 @@ class CliqIdListPageViewModel extends BasePageViewModel {
       accountId: accountId,
       getToken: getToken,
     ));
+  }
+}
+
+extension CliqAliasTypeStringExt on CliqAliasTypeEnum {
+  String fromCliqAliasString() {
+    switch (this) {
+      case CliqAliasTypeEnum.ALIAS:
+        return S.current.alias;
+      case CliqAliasTypeEnum.MOBL:
+        return S.current.mobileNumber;
+
+      default:
+        return S.current.alias;
+        ;
+    }
   }
 }
