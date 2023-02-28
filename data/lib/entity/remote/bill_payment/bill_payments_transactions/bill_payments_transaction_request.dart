@@ -13,6 +13,9 @@ class BillPaymentsTransactionRequest {
   @JsonKey(name: "type")
   final String? type;
 
+  @JsonKey(name: "searchText")
+  final String? searchText;
+
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")
@@ -22,6 +25,7 @@ class BillPaymentsTransactionRequest {
     this.pageSize,
     this.pageNo,
     this.type,
+    this.searchText,
     this.getToken,
     required this.baseData,
   });

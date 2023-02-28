@@ -281,7 +281,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
-                  type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+                  type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
             }
             if (postPaidBillInquiryData?[0].message == "err-381") {
               showToastWithError(AppError(
@@ -293,7 +293,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
-                  type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+                  type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
             }
           }
         }

@@ -360,7 +360,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   item.actualdueAmountFromApi =
                                                       payPostPaidBillsDataListItem.actualdueAmountFromApi;
                                                 }
-                                                tempSelectedPostPaidBillsList.add(item);
+                                                if (item.billingNo != null &&
+                                                    item.billingNo!.isNotEmpty &&
+                                                    item.serviceType != null &&
+                                                    item.serviceType!.isNotEmpty) {
+                                                  tempSelectedPostPaidBillsList.add(item);
+                                                }
                                               }
                                             }
                                             for (var item in model.postPaidBillInquiryData!) {
@@ -386,7 +391,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                 item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
                                                 item.minMaxValidationMessage = "";
 
-                                                temPostPaidBillInquiryData.add(item);
+                                                if (item.billingNo != null &&
+                                                    item.billingNo!.isNotEmpty &&
+                                                    item.serviceType != null &&
+                                                    item.serviceType!.isNotEmpty) {
+                                                  temPostPaidBillInquiryData.add(item);
+                                                }
                                               }
                                             }
                                           }
@@ -533,7 +543,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
           model.showToastWithError(AppError(
               cause: Exception(),
               error: ErrorInfo(message: ''),
-              type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+              type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
         }
         if (model.payPostPaidBillsDataList[index].expDateMessage == "err-381") {
           model.showToastWithError(AppError(
@@ -541,7 +551,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
         }
         if (model.payPostPaidBillsDataList[index].expDateMessage == "err-383") {
           model.showToastWithError(AppError(
-              cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
         }
       }
     }

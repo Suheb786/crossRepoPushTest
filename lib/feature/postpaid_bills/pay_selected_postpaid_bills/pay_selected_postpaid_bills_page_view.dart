@@ -168,7 +168,10 @@ class PaySelectedBillsPostPaidBillsPageView
                                                   shrinkWrap: true,
                                                   itemBuilder: (context, index) {
                                                     model.arguments.noOfSelectedBills[index].dueAmount = model
-                                                        .arguments.postPaidBillInquiryData?[index].dueAmount;
+                                                            .arguments
+                                                            .postPaidBillInquiryData?[index]
+                                                            .dueAmount ??
+                                                        "0";
                                                     return SelectedBillsToPaidWidget(
                                                       minMaxValidationMessage: model
                                                           .postPaidBillInquiryData?[index]

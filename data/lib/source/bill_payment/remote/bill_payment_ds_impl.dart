@@ -300,6 +300,7 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
           type: params.type,
           pageSize: params.pageSize,
           pageNo: params.pageNo,
+          searchText: params.searchText,
           getToken: true,
           baseData: baseData.toJson()),
     );
