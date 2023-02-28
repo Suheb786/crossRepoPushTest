@@ -61,7 +61,7 @@ extension PageExtensions on BaseStatefulPage {
             ),
           ),
         ),
-        displayDuration: Duration(milliseconds: 3000),
+        displayDuration: Duration(milliseconds: 5000),
         hideOutAnimationDuration: Duration(milliseconds: 500),
         showOutAnimationDuration: Duration(milliseconds: 700));
   }

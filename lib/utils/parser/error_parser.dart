@@ -1132,6 +1132,10 @@ class ErrorParser {
         return localisedHelper.billPaymentSorryMessage;
       case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
         return localisedHelper.rejectedDueToExpiryDate;
+      case ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToClosedBill;
+      case ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToExpiredBill;
       case ErrorType.OPEN_DATE_ISSUE_MESSAGE:
         return localisedHelper.openDateIssuedMessage;
       case ErrorType.CLOSE_DATE_ISSUE_MESSAGE:

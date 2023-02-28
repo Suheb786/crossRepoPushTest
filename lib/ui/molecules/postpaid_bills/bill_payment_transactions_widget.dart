@@ -95,12 +95,14 @@ class BillPaymentsTransactionWidget extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "${getNickNameOrBillerName(item, context)}",
-                                    style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontSize: 14.0.t,
-                                      fontWeight: FontWeight.w700,
+                                  Flexible(
+                                    child: Text(
+                                      "${getNickNameOrBillerName(item, context)}",
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.0.t,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
                                   ),
                                   Column(

@@ -134,6 +134,8 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                       model.minMaxValidate(
                           model.isPartial, model.minRange, model.maxRange, model.dueAmtController!, context);
                       model.validate(model.dueAmtController);
+
+                      model.amountGreaterThanZeroMessage(model);
                     }
                   },
                   dataBuilder: (BuildContext context, data) {

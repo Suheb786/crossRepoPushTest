@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -14975,6 +14976,26 @@ class S {
     return Intl.message(
       'Payment cannot be completed because the bill is expired.',
       name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is expired.`
+  String get billCannotBeCheckedDueToExpiredBill {
+    return Intl.message(
+      'Bill cannot be checked because it is expired.',
+      name: 'billCannotBeCheckedDueToExpiredBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is closed.`
+  String get billCannotBeCheckedDueToClosedBill {
+    return Intl.message(
+      'Bill cannot be checked because it is closed.',
+      name: 'billCannotBeCheckedDueToClosedBill',
       desc: '',
       args: [],
     );
