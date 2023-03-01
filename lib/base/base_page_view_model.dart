@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:isolate';
 
 import 'package:domain/error/app_error.dart';
@@ -64,7 +65,8 @@ class BasePageViewModel extends BaseViewModel {
 
   ///------------------Isolate for apple pay initialization-----------///
 
-  late ReceivePort receivePort;
+  late ReceivePort receiveDataPort;
+
   Isolate? isolate;
 
   PublishSubject<InitializeAntelopUseCaseParams> _antelopInitializeRequest = PublishSubject();
@@ -75,13 +77,19 @@ class BasePageViewModel extends BaseViewModel {
 
   /// ISOLATE
   void antelopSdkInitialize() async {
+    debugPrint('Antelop SDK Called from base---');
+    debugPrint('Value of Isolate --->${isolate}');
     if (isolate != null) {
-      return;
+      debugPrint('Antelop not null ');
+      isolate?.kill();
+      isolate = null;
     }
     try {
-      receivePort = ReceivePort();
-      isolate = await Isolate.spawn(_getTokenCallBack, receivePort.sendPort);
-      receivePort.listen(_handleMessage, onDone: () {});
+      receiveDataPort = ReceivePort();
+      var stream = receiveDataPort.asBroadcastStream();
+      debugPrint('Called------>');
+      isolate = await Isolate.spawn(_getTokenCallBack, receiveDataPort.sendPort);
+      stream.listen(_handleMessage, onDone: () {});
     } on Exception catch (e) {
       debugPrint("Error from ISOLATE " + e.toString());
     }
@@ -92,7 +100,8 @@ class BasePageViewModel extends BaseViewModel {
   }
 
   static void _getTokenCallBack(SendPort sendPort) async {
-    sendPort.send('Send');
+    debugPrint('data received from sendport--->');
+    sendPort.send('Send data from base');
   }
 
   ///------------------Isolate for apple pay initialization-----------///
@@ -186,6 +195,8 @@ class BasePageViewModel extends BaseViewModel {
     _isFlippedSubject.close();
     _successSubject.close();
     _loading.close();
+    _antelopInitializeRequest.close();
+    _antelopInitializeResponse.close();
     super.dispose();
   }
 }

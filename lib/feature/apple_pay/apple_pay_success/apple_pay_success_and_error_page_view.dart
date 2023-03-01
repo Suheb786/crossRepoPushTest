@@ -22,7 +22,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          model.getAntelopCards();
+          model.getAntelopCardsList();
           if (model.arguments.isSuccess) {
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)

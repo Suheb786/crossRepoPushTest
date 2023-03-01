@@ -36,10 +36,13 @@ class ApplePaySuccessAndErrorPageViewModel extends BasePageViewModel {
   late ReceivePort receivePort;
   Isolate? isolate;
 
-  void getAntelopCards() async {
+  void getAntelopCardsList() async {
+    debugPrint('Card List Called---->');
     if (isolate != null) {
       debugPrint("Isolate not null");
-      return;
+      receivePort = ReceivePort();
+      isolate?.kill();
+      isolate = null;
     }
     try {
       receivePort = ReceivePort();
@@ -51,7 +54,7 @@ class ApplePaySuccessAndErrorPageViewModel extends BasePageViewModel {
   }
 
   static void _getTokenCallBack(SendPort sendPort) async {
-    sendPort.send('Send');
+    sendPort.send('Send card list data');
   }
 
   void _handleMessage(message) {

@@ -525,7 +525,9 @@ class LoginViewModel extends BasePageViewModel {
     debugPrint("Entered in registration------->");
     if (isolate != null) {
       debugPrint("Isolate not null");
-      return;
+      receivePort.close();
+      isolate?.kill();
+      isolate = null;
     }
     try {
       receivePort = ReceivePort();
@@ -553,6 +555,8 @@ class LoginViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _kycStatusRequest.close();
     _kycStatusResponse.close();
+    _cliqRegisterCustomerRequest.close();
+    _cliqRegisterCustomerResponse.close();
     super.dispose();
   }
 }

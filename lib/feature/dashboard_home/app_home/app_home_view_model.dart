@@ -218,8 +218,14 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///---------------Verify QR----------------------///
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase,
-      this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,this._getAntelopCardsListUseCase) {
+  AppHomeViewModel(
+      this._getDashboardDataUseCase,
+      this._getPlaceholderUseCase,
+      this._initDynamicLinkUseCase,
+      this._getCurrentUserUseCase,
+      this._saveUserDataUseCase,
+      this._verifyQRUseCase,
+      this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -815,6 +821,7 @@ class AppHomeViewModel extends BasePageViewModel {
     debugPrint("Enter in get antelop card from dashboard method");
     if (isolate != null) {
       debugPrint("Isolate not null");
+      receivePort.close();
       isolate?.kill();
       isolate = null;
     }
@@ -828,7 +835,7 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   static void _getTokenCallBack(SendPort sendPort) async {
-    sendPort.send('Send');
+    sendPort.send('Send Dashboard data');
   }
 
   void _handleMessage(message) {

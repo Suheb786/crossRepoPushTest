@@ -55,13 +55,15 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                nickname,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.0.t),
+              Flexible(
+                child: Text(
+                  nickname,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.0.t),
+                ),
               ),
               Text(
                 billName,
