@@ -212,7 +212,12 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     });
   }
 
-  void getTransactions({num? pageNo: 1, num? pageSize: 10, String? searchText: ""}) {
+  void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
+    searchTextList = searchTextList.toSet().toList();
+    searchText = searchTextList.join(',');
+    if (searchText.isNotEmpty && !searchText.contains(",")) {
+      searchText = searchText + ",";
+    }
     debugPrint("getTransactions");
     _getTransactionsRequest.safeAdd(BillPaymentsTransactionUseCaseParams(
         pageNo: pageNo,

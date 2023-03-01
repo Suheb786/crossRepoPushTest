@@ -1382,8 +1382,7 @@
   "addedTo": "اضيفت الى",
   "yourCardAddedToApplePay": "تمت إضافة بطاقتك إلى Apple Wallet",
   "yourCardAddedToApplePayDesc1": "Apple Pay هي طريقة أسهل للدفع في المتاجر والتطبيقات وعبر الإنترنت باستخدام iPhone و Apple Watch و iPad و Mac",
-  "yourCardAddedToApplePayDesc2": "استخدم Apple Pay أينما ترى هذه الرموز"
-  "loginRegisterDisabled": "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً",
+  "yourCardAddedToApplePayDesc2": "استخدم Apple Pay أينما ترى هذه الرموز",
   "idVerificationFailed": "فشل التحقق من الهوية",
   "payBills": "تسديد {noOfBills} فاتورة",
   "tapToEditAmt": "اضغط للتعديل",

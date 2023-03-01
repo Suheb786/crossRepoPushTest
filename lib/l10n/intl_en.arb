@@ -1432,8 +1432,7 @@
   "addedTo": "Added to",
   "yourCardAddedToApplePay": "Your card has been added\nto Apple Wallet.",
   "yourCardAddedToApplePayDesc1": "Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.",
-  "yourCardAddedToApplePayDesc2": "Use Apple Pay wherever you see \nthese symbols."
-  "loginRegisterDisabled": "We're currently offline and will be back shortly!",
+  "yourCardAddedToApplePayDesc2": "Use Apple Pay wherever you see \nthese symbols.",
   "idVerificationFailed": "ID Verification Failed",
   "payBills": "Paying {noOfBills} bills",
   "saveBills": "Saved Bills",

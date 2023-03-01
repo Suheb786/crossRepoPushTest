@@ -5790,6 +5790,16 @@ class S {
     );
   }
 
+  /// `Tap to edit`
+  String get tapToEditAmt {
+    return Intl.message(
+      'Tap to edit',
+      name: 'tapToEditAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Your mobile number has been updated successfully`
   String get mobileNumberUpdated {
     return Intl.message(
@@ -8095,6 +8105,16 @@ class S {
     return Intl.message(
       '\nfrom',
       name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from`
+  String get fromSingleLine {
+    return Intl.message(
+      'from',
+      name: 'fromSingleLine',
       desc: '',
       args: [],
     );
@@ -12070,10 +12090,10 @@ class S {
     );
   }
 
-  /// `QR code will be valid\nfor 1 hour`
+  /// `QR code will be valid\nfor 30 mins`
   String get qrValidForOneHour {
     return Intl.message(
-      'QR code will be valid\nfor 1 hour',
+      'QR code will be valid\nfor 30 mins',
       name: 'qrValidForOneHour',
       desc: '',
       args: [],
@@ -13070,6 +13090,36 @@ class S {
     );
   }
 
+  /// `How would you like to\npay your bills?`
+  String get howWouldLikeToPayYourBills {
+    return Intl.message(
+      'How would you like to\npay your bills?',
+      name: 'howWouldLikeToPayYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\npay your prepaid bills?`
+  String get howWouldLikeToPayPrePaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your prepaid bills?',
+      name: 'howWouldLikeToPayPrePaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\npay your postpaid bills?`
+  String get howWouldLikeToPayPostPaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your postpaid bills?',
+      name: 'howWouldLikeToPayPostPaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `REGION`
   String get region {
     return Intl.message(
@@ -14055,6 +14105,1306 @@ class S {
     return Intl.message(
       'Use Apple Pay wherever you see \nthese symbols.',
       name: 'yourCardAddedToApplePayDesc2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Verification Failed`
+  String get idVerificationFailed {
+    return Intl.message(
+      'ID Verification Failed',
+      name: 'idVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paying {noOfBills} bills`
+  String payBills(Object noOfBills) {
+    return Intl.message(
+      'Paying $noOfBills bills',
+      name: 'payBills',
+      desc: '',
+      args: [noOfBills],
+    );
+  }
+
+  /// `Saved Bills`
+  String get saveBills {
+    return Intl.message(
+      'Saved Bills',
+      name: 'saveBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search bill`
+  String get searchBill {
+    return Intl.message(
+      'Search bill',
+      name: 'searchBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay`
+  String get pay {
+    return Intl.message(
+      'Pay',
+      name: 'pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay All Bills`
+  String get payAllBills {
+    return Intl.message(
+      'Pay All Bills',
+      name: 'payAllBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View and pay your due bills`
+  String get viewAndPayYourDueBills {
+    return Intl.message(
+      'View and pay your due bills',
+      name: 'viewAndPayYourDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Payments`
+  String get toPayments {
+    return Intl.message(
+      'to Payments',
+      name: 'toPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water and Electricity`
+  String get waterAndElectricity {
+    return Intl.message(
+      'Water and Electricity',
+      name: 'waterAndElectricity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telecommunication`
+  String get telecommunication {
+    return Intl.message(
+      'Telecommunication',
+      name: 'telecommunication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Government Service`
+  String get governmentService {
+    return Intl.message(
+      'Government Service',
+      name: 'governmentService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Banks`
+  String get banks {
+    return Intl.message(
+      'Banks',
+      name: 'banks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financial Services`
+  String get financialServices {
+    return Intl.message(
+      'Financial Services',
+      name: 'financialServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel and Gas`
+  String get fuelAndGas {
+    return Intl.message(
+      'Fuel and Gas',
+      name: 'fuelAndGas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travel and Transportation`
+  String get travelAndTransportation {
+    return Intl.message(
+      'Travel and Transportation',
+      name: 'travelAndTransportation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Bill`
+  String get newBill {
+    return Intl.message(
+      'New Bill',
+      name: 'newBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill Name`
+  String get billName {
+    return Intl.message(
+      'Bill Name',
+      name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller name`
+  String get billerName {
+    return Intl.message(
+      'Biller name',
+      name: 'billerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills & Payments`
+  String get billsAndPayments {
+    return Intl.message(
+      'Bills & Payments',
+      name: 'billsAndPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services`
+  String get services {
+    return Intl.message(
+      'Services',
+      name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reference No.`
+  String get referenceNo {
+    return Intl.message(
+      'Reference No.',
+      name: 'referenceNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap amount to edit`
+  String get tapAmtToEdit {
+    return Intl.message(
+      'Tap amount to edit',
+      name: 'tapAmtToEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due Amount`
+  String get dueAmt {
+    return Intl.message(
+      'Due Amount',
+      name: 'dueAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fees`
+  String get fees {
+    return Intl.message(
+      'Fees',
+      name: 'fees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due`
+  String get due {
+    return Intl.message(
+      'Due',
+      name: 'due',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Bills`
+  String get myBills {
+    return Intl.message(
+      'My Bills',
+      name: 'myBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PAY BILL`
+  String get payBill {
+    return Intl.message(
+      'PAY BILL',
+      name: 'payBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill details`
+  String get billDetails {
+    return Intl.message(
+      'Bill details',
+      name: 'billDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter bill details`
+  String get enterBillDetails {
+    return Intl.message(
+      'Enter bill details',
+      name: 'enterBillDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get areYouSure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Postpaid Bill`
+  String get myPostPaidBill {
+    return Intl.message(
+      'My Postpaid Bill',
+      name: 'myPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View my bills`
+  String get viewMyBills {
+    return Intl.message(
+      'View my bills',
+      name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage my bills`
+  String get manageMyBills {
+    return Intl.message(
+      'Manage my bills',
+      name: 'manageMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paying`
+  String get paying {
+    return Intl.message(
+      'Paying',
+      name: 'paying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Prepaid Bills`
+  String get myPrePaidBills {
+    return Intl.message(
+      'My Prepaid Bills',
+      name: 'myPrePaidBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to pay new bill`
+  String get swipeUpToPayNewBill {
+    return Intl.message(
+      'Swipe up to pay new bill',
+      name: 'swipeUpToPayNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your payment\namount below`
+  String get confirmYourPaymentAmtBelow {
+    return Intl.message(
+      'Confirm your payment\namount below',
+      name: 'confirmYourPaymentAmtBelow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add this bill to your saved list`
+  String get addThisBillToSaveList {
+    return Intl.message(
+      'Add this bill to your saved list',
+      name: 'addThisBillToSaveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete`
+  String get doYouReallyWantToDelete {
+    return Intl.message(
+      'Do you really want to delete',
+      name: 'doYouReallyWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from Saved Bills?`
+  String get fromSavedBills {
+    return Intl.message(
+      'from Saved Bills?',
+      name: 'fromSavedBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much would you\nlike to pay?`
+  String get howMuchWouldYouLikeToPay {
+    return Intl.message(
+      'How much would you\nlike to pay?',
+      name: 'howMuchWouldYouLikeToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay via QR`
+  String get payViaQR {
+    return Intl.message(
+      'Pay via QR',
+      name: 'payViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.`
+  String get payAndRequestMoneyViaQR {
+    return Intl.message(
+      'Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.',
+      name: 'payAndRequestMoneyViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the QR code within the frame and proceed with payment`
+  String get payViaQRDesc {
+    return Intl.message(
+      'Place the QR code within the frame and proceed with payment',
+      name: 'payViaQRDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to`
+  String get to {
+    return Intl.message(
+      'to',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Expired`
+  String get qrExpired {
+    return Intl.message(
+      'QR Expired',
+      name: 'qrExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR does not exist`
+  String get qrInvalid {
+    return Intl.message(
+      'QR does not exist',
+      name: 'qrInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book flight with us!`
+  String get bookFligtWithUs {
+    return Intl.message(
+      'Book flight with us!',
+      name: 'bookFligtWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get bookNow {
+    return Intl.message(
+      'Book Now',
+      name: 'bookNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FROM`
+  String get rjFrom {
+    return Intl.message(
+      'FROM',
+      name: 'rjFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEPART ON`
+  String get departOn {
+    return Intl.message(
+      'DEPART ON',
+      name: 'departOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RETURN ON`
+  String get returnOn {
+    return Intl.message(
+      'RETURN ON',
+      name: 'returnOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passengers`
+  String get passengers {
+    return Intl.message(
+      'Passengers',
+      name: 'passengers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cabin Class`
+  String get cabinClass {
+    return Intl.message(
+      'Cabin Class',
+      name: 'cabinClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase for`
+  String get purchaseFor {
+    return Intl.message(
+      'Purchase for',
+      name: 'purchaseFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM`
+  String get aMM {
+    return Intl.message(
+      'AMM',
+      name: 'aMM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NRT`
+  String get nRT {
+    return Intl.message(
+      'NRT',
+      name: 'nRT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jordan`
+  String get jordan {
+    return Intl.message(
+      'Jordan',
+      name: 'jordan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Japan`
+  String get japan {
+    return Intl.message(
+      'Japan',
+      name: 'japan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart On`
+  String get departOnForPurchasePage {
+    return Intl.message(
+      'Depart On',
+      name: 'departOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return On`
+  String get returnOnForPurchasePage {
+    return Intl.message(
+      'Return On',
+      name: 'returnOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Date`
+  String get purchaseDate {
+    return Intl.message(
+      'Purchase Date',
+      name: 'purchaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `31 Jul 2022 `
+  String get purchaseDummyDate {
+    return Intl.message(
+      '31 Jul 2022 ',
+      name: 'purchaseDummyDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `- 3:30PM`
+  String get purchaseDummyTime {
+    return Intl.message(
+      '- 3:30PM',
+      name: 'purchaseDummyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `984893922`
+  String get refNoDummyData {
+    return Intl.message(
+      '984893922',
+      name: 'refNoDummyData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Booking Summary`
+  String get toBookingSummary {
+    return Intl.message(
+      'to Booking Summary',
+      name: 'toBookingSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Amount`
+  String get totalAmount {
+    return Intl.message(
+      'Total Amount',
+      name: 'totalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `659.570`
+  String get dummyAmount {
+    return Intl.message(
+      '659.570',
+      name: 'dummyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart`
+  String get depart {
+    return Intl.message(
+      'Depart',
+      name: 'depart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get returnTitle {
+    return Intl.message(
+      'Return',
+      name: 'returnTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Amount`
+  String get taxAmount {
+    return Intl.message(
+      'Tax Amount',
+      name: 'taxAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\nflight details`
+  String get pleaseConfirmFlightDetail {
+    return Intl.message(
+      'Please confirm your\nflight details',
+      name: 'pleaseConfirmFlightDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howYouLikeToPayment {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howYouLikeToPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Ref No.`
+  String get bookingRefNo {
+    return Intl.message(
+      'Booking Ref No.',
+      name: 'bookingRefNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BOOK FLIGHT`
+  String get bookFlight {
+    return Intl.message(
+      'BOOK FLIGHT',
+      name: 'bookFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Booking`
+  String get cancelBooking {
+    return Intl.message(
+      'Cancel Booking',
+      name: 'cancelBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.`
+  String get cancelBookingDetail {
+    return Intl.message(
+      'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
+      name: 'cancelBookingDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
+  String get departDescription {
+    return Intl.message(
+      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
+      name: 'departDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of the country. Your destination will appear on the list.`
+  String get rjFlightBookingToDialogBoxDescription {
+    return Intl.message(
+      'Enter the name of the country. Your destination will appear on the list.',
+      name: 'rjFlightBookingToDialogBoxDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM - Amman Queen..`
+  String get fromLabelForRJFlightBooking {
+    return Intl.message(
+      'AMM - Amman Queen..',
+      name: 'fromLabelForRJFlightBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.`
+  String get bookFligtWithUsDescrption {
+    return Intl.message(
+      'Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.',
+      name: 'bookFligtWithUsDescrption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Card`
+  String get accountCard {
+    return Intl.message(
+      'Account Card',
+      name: 'accountCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `payment not done`
+  String get paymentNotDone {
+    return Intl.message(
+      'payment not done',
+      name: 'paymentNotDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No tickets found`
+  String get noTicketsFound {
+    return Intl.message(
+      'No tickets found',
+      name: 'noTicketsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart on date should not be greater than return date`
+  String get dateComparison {
+    return Intl.message(
+      'Depart on date should not be greater than return date',
+      name: 'dateComparison',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Not Scanned or Re Read the qr code/link`
+  String get qrNotScanned {
+    return Intl.message(
+      'QR Not Scanned or Re Read the qr code/link',
+      name: 'qrNotScanned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search category`
+  String get searchCategory {
+    return Intl.message(
+      'Search category',
+      name: 'searchCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Biller Found`
+  String get noBillerFound {
+    return Intl.message(
+      'No Biller Found',
+      name: 'noBillerFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Prepaid Category Found`
+  String get noPrepaidCategoryFound {
+    return Intl.message(
+      'No Prepaid Category Found',
+      name: 'noPrepaidCategoryFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Denomination`
+  String get denomination {
+    return Intl.message(
+      'Denomination',
+      name: 'denomination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error on billinquiry`
+  String get errorOnBillinquiry {
+    return Intl.message(
+      'error on billinquiry',
+      name: 'errorOnBillinquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while adding customer`
+  String get errorWhileAddingCustomer {
+    return Intl.message(
+      'error while adding customer',
+      name: 'errorWhileAddingCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay My Bill`
+  String get payMyBill {
+    return Intl.message(
+      'Pay My Bill',
+      name: 'payMyBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage and pay my bills`
+  String get manageAndPayMyBills {
+    return Intl.message(
+      'Manage and pay my bills',
+      name: 'manageAndPayMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient funds bill cannot be paid`
+  String get insufficientFundsBillCannotBePaid {
+    return Intl.message(
+      'Insufficient funds bill cannot be paid',
+      name: 'insufficientFundsBillCannotBePaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your bill has been removed.`
+  String get yourBillHasBeenRemoved {
+    return Intl.message(
+      'Your bill has been removed.',
+      name: 'yourBillHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller Added Successfully.`
+  String get billerAddedSuccessfully {
+    return Intl.message(
+      'Biller Added Successfully.',
+      name: 'billerAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status`
+  String get status {
+    return Intl.message(
+      'Status',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get successS {
+    return Intl.message(
+      'Success',
+      name: 'successS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biller already exists with the same billing number`
+  String get billerAlreadyExistsMessage {
+    return Intl.message(
+      'Biller already exists with the same billing number',
+      name: 'billerAlreadyExistsMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nick name can only contain alphanumerics`
+  String get nickNameCanOnlyContainAlphanumerics {
+    return Intl.message(
+      'Nick name can only contain alphanumerics',
+      name: 'nickNameCanOnlyContainAlphanumerics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment amount can be`
+  String get paymentAmountCanBe {
+    return Intl.message(
+      'Payment amount can be',
+      name: 'paymentAmountCanBe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be between`
+  String get amountShouldBetween {
+    return Intl.message(
+      'Amount should be between',
+      name: 'amountShouldBetween',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be more than`
+  String get amountShouldBeMoreThan {
+    return Intl.message(
+      'Amount should be more than',
+      name: 'amountShouldBeMoreThan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount should be less than or equal to`
+  String get amountShouldBeLessThanOrEqualTo {
+    return Intl.message(
+      'Amount should be less than or equal to',
+      name: 'amountShouldBeLessThanOrEqualTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.`
+  String get billPaymentSorryMessage {
+    return Intl.message(
+      'We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support.',
+      name: 'billPaymentSorryMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cannot be completed because the bill is expired.`
+  String get rejectedDueToExpiryDate {
+    return Intl.message(
+      'Payment cannot be completed because the bill is expired.',
+      name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is expired.`
+  String get billCannotBeCheckedDueToExpiredBill {
+    return Intl.message(
+      'Bill cannot be checked because it is expired.',
+      name: 'billCannotBeCheckedDueToExpiredBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is closed.`
+  String get billCannotBeCheckedDueToClosedBill {
+    return Intl.message(
+      'Bill cannot be checked because it is closed.',
+      name: 'billCannotBeCheckedDueToClosedBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cannot be completed because the bill date is not reached Yet`
+  String get openDateIssuedMessage {
+    return Intl.message(
+      'Payment cannot be completed because the bill date is not reached Yet',
+      name: 'openDateIssuedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cannot be completed because the bill is closed.`
+  String get closeDateIssueMessage {
+    return Intl.message(
+      'Payment cannot be completed because the bill is closed.',
+      name: 'closeDateIssueMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is not available`
+  String get serviceIsNotavaliable {
+    return Intl.message(
+      'Service is not available',
+      name: 'serviceIsNotavaliable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get viewHistory {
+    return Intl.message(
+      'View History',
+      name: 'viewHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills History`
+  String get billsHistory {
+    return Intl.message(
+      'Bills History',
+      name: 'billsHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay your bills with Blink!`
+  String get payYourBillswithBlink {
+    return Intl.message(
+      'Pay your bills with Blink!',
+      name: 'payYourBillswithBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are processing your request and we will notify you once ready`
+  String get submittedFor {
+    return Intl.message(
+      'We are processing your request and we will notify you once ready',
+      name: 'submittedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills to be paid at the moment`
+  String get thereAreNoDueBillsToBePaidAtTheMoment {
+    return Intl.message(
+      'There are no due bills to be paid at the moment',
+      name: 'thereAreNoDueBillsToBePaidAtTheMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills, but you can make partial payments`
+  String get thereAreNoDueBillsButYouCanMakePartialPayments {
+    return Intl.message(
+      'There are no due bills, but you can make partial payments',
+      name: 'thereAreNoDueBillsButYouCanMakePartialPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills`
+  String get thereAreNoDueBills {
+    return Intl.message(
+      'There are no due bills',
+      name: 'thereAreNoDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe any biller to the left to remove`
+  String get swipeAnyBillerToTheLeftToRemove {
+    return Intl.message(
+      'Swipe any biller to the left to remove',
+      name: 'swipeAnyBillerToTheLeftToRemove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! `
+  String get youCanPayAllYourBillsNow {
+    return Intl.message(
+      'You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ',
+      name: 'youCanPayAllYourBillsNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help `
+  String get dailyLimitExceededorTryLater {
+    return Intl.message(
+      ' There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ',
+      name: 'dailyLimitExceededorTryLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processing {
+    return Intl.message(
+      'Processing',
+      name: 'processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Billing Number`
+  String get invalidBillingNumber {
+    return Intl.message(
+      'Invalid Billing Number',
+      name: 'invalidBillingNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill Not Found`
+  String get billNotFound {
+    return Intl.message(
+      'Bill Not Found',
+      name: 'billNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Paid Amount`
+  String get invalidPaidAmount {
+    return Intl.message(
+      'Invalid Paid Amount',
+      name: 'invalidPaidAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Amt`
+  String get billingNumberReachedItsMaxAmt {
+    return Intl.message(
+      'Billing Number Reached Its Max Amt',
+      name: 'billingNumberReachedItsMaxAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Trx`
+  String get billingNumberReachedItsMaxTrx {
+    return Intl.message(
+      'Billing Number Reached Its Max Trx',
+      name: 'billingNumberReachedItsMaxTrx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Narration Amount Exceed`
+  String get dailyNarrationLimitexceed {
+    return Intl.message(
+      'Daily Narration Amount Exceed',
+      name: 'dailyNarrationLimitexceed',
       desc: '',
       args: [],
     );

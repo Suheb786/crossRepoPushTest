@@ -129,10 +129,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                 if (model.searchText.isNotEmpty && !model.searchText.contains(",")) {
                                   model.searchText = model.searchText + ",";
                                 }
-                                model.getTransactions(
-                                    searchText: model.searchText,
-                                    pageNo: model.pageNo,
-                                    pageSize: model.pageSize);
+                                model.getTransactions(pageNo: model.pageNo, pageSize: model.pageSize);
                               },
                               dataBuilder: (context, textList) {
                                 return Visibility(
