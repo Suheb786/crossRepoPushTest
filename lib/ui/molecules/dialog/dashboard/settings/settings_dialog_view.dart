@@ -5,6 +5,7 @@ import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +55,10 @@ class SettingsDialogView extends StatelessWidget {
                         pages = [
                           InkWell(
                             onTap: onClick!
-                                ? () {
+                                ? () async {
+                                    ///LOG EVENT TO FIREBASE
+                                    await FirebaseAnalytics.instance.logEvent(
+                                        name: "payments_opened", parameters: {"is_payment_opened": true});
                                     Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                         arguments: NavigationType.DASHBOARD);
                                   }
@@ -84,7 +88,7 @@ class SettingsDialogView extends StatelessWidget {
                                               ? Theme.of(context).accentColor
                                               : Theme.of(context).primaryColorDark)),
                                   Text(
-                                    S.of(context).payments,
+                                    S.of(context).billsAndPayments,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
@@ -262,6 +266,7 @@ class SettingsDialogView extends StatelessWidget {
                               initialData: Resource.none(),
                               onData: (response) {
                                 if (response.status == Status.SUCCESS) {
+                                  AppConstantsUtils.resetCacheLists();
                                   if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                                     AppConstantsUtils.isApplePayPopUpShown = false;
                                     AntelopHelper.walletDisconnect();

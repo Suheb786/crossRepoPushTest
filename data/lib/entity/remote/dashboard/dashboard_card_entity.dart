@@ -8,8 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "dashboard_card_entity.g.dart";
 
 @JsonSerializable()
-class DashboardCardEntity
-    implements BaseLayerDataTransformer<DashboardCardEntity, CreditCard> {
+class DashboardCardEntity implements BaseLayerDataTransformer<DashboardCardEntity, CreditCard> {
   @JsonKey(name: "name")
   final String? name;
   @JsonKey(name: "availableBalance")
@@ -91,8 +90,7 @@ class DashboardCardEntity
       this.isCallPending: false,
       this.parentId: ""});
 
-  factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
-      _$DashboardCardEntityFromJson(json);
+  factory DashboardCardEntity.fromJson(Map<String, dynamic> json) => _$DashboardCardEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$DashboardCardEntityToJson(this);
 
@@ -125,10 +123,8 @@ class DashboardCardEntity
         usedBalance: this.usedBalance ?? '',
         cardCode: this.cardCode ?? '',
         isCompleted: this.isCompleted ?? false,
-        paymentDueAmount:
-            this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
-        nextPaymentDate:
-            this.nextPaymentDate != null ? this.nextPaymentDate : '',
+        paymentDueAmount: this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
+        nextPaymentDate: this.nextPaymentDate != null ? this.nextPaymentDate : '',
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
         minimumSettlement: this.minimumSettlement ?? 0,
         callStatus: this.callStatus!.fromCreditCardCallStatusValue(),

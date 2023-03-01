@@ -7,22 +7,18 @@ import 'package:json_annotation/json_annotation.dart';
 part 'logout_response_entity.g.dart';
 
 @JsonSerializable()
-class LogoutResponseEntity
-    extends BaseLayerDataTransformer<LogoutResponseEntity, LogoutResponse> {
+class LogoutResponseEntity extends BaseLayerDataTransformer<LogoutResponseEntity, LogoutResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   LogoutResponseEntity(this.response);
 
-  factory LogoutResponseEntity.fromJson(Map<String, dynamic> json) =>
-      _$LogoutResponseEntityFromJson(json);
+  factory LogoutResponseEntity.fromJson(Map<String, dynamic> json) => _$LogoutResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$LogoutResponseEntityToJson(this);
 
   @override
   LogoutResponse transform() {
-    return LogoutResponse(
-        logoutContent:
-        LogoutContentEntity.fromJson(this.response!.content).transform());
+    return LogoutResponse(logoutContent: LogoutContentEntity.fromJson(this.response!.content).transform());
   }
 }

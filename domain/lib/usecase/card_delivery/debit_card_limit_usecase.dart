@@ -6,8 +6,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DebitCardLimitUseCase extends BaseUseCase<NetworkError,
-    DebitCardLimitUseCaseParams, DebitCardLimitResponse> {
+class DebitCardLimitUseCase
+    extends BaseUseCase<NetworkError, DebitCardLimitUseCaseParams, DebitCardLimitResponse> {
   final CardRepository _repository;
 
   DebitCardLimitUseCase(this._repository);

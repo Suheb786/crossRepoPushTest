@@ -37,5 +37,8 @@ class DebitCardSettingsArguments {
   final bool isPrimaryDebitCard;
   final bool debitCardRequestPhysicalCardEnabled;
 
-  DebitCardSettingsArguments({required this.debitCard, required this.isPrimaryDebitCard,  this.debitCardRequestPhysicalCardEnabled:false});
+  DebitCardSettingsArguments(
+      {required this.debitCard,
+      required this.isPrimaryDebitCard,
+      this.debitCardRequestPhysicalCardEnabled: false});
 }

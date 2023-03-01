@@ -5,16 +5,13 @@ import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_view_model.
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_view_model.dart';
 
-final blinkCreditCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<BlinkCreditCardViewModel>(
-  (ref) => BlinkCreditCardViewModel(ref.read(blinkCreditCardUseCaseProvider),
-      ref.read(getCardApplicationUseCaseProvider)),
+final blinkCreditCardViewModelProvider = ChangeNotifierProvider.autoDispose<BlinkCreditCardViewModel>(
+  (ref) => BlinkCreditCardViewModel(
+      ref.read(blinkCreditCardUseCaseProvider), ref.read(getCardApplicationUseCaseProvider)),
 );
 
-final creditCardApplicationFailureViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        CreditCardApplicationFailureViewModel,
-        CreditCardApplicationFailureArguments>(
-  (ref, args) => CreditCardApplicationFailureViewModel(
-      ref.read(creditCardApplicationFailureUseCaseProvider), args),
+final creditCardApplicationFailureViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardApplicationFailureViewModel, CreditCardApplicationFailureArguments>(
+  (ref, args) =>
+      CreditCardApplicationFailureViewModel(ref.read(creditCardApplicationFailureUseCaseProvider), args),
 );

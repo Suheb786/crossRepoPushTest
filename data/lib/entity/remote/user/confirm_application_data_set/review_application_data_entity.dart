@@ -15,11 +15,8 @@ class ReviewApplicationDataEntity {
   @JsonKey(name: "fatcaCrs")
   final Map<String, dynamic>? fatcaCrs;
 
-  ReviewApplicationDataEntity({this.countryResidence,
-    this.accountPurpose,
-    this.fatcaCrs,
-    this.profileStatus,
-    this.jobDetail});
+  ReviewApplicationDataEntity(
+      {this.countryResidence, this.accountPurpose, this.fatcaCrs, this.profileStatus, this.jobDetail});
 
   factory ReviewApplicationDataEntity.fromJson(Map<String, dynamic> json) =>
       _$ReviewApplicationDataEntityFromJson(json);

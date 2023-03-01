@@ -6,9 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part "get_combo_values_content_entity.g.dart";
 
 @JsonSerializable()
-class GetComboValuesContentEntity extends BaseLayerDataTransformer<
-    GetComboValuesContentEntity,
-    GetComboValuesContent> {
+class GetComboValuesContentEntity
+    extends BaseLayerDataTransformer<GetComboValuesContentEntity, GetComboValuesContent> {
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "data")
@@ -23,8 +22,6 @@ class GetComboValuesContentEntity extends BaseLayerDataTransformer<
 
   @override
   GetComboValuesContent transform() {
-    return GetComboValuesContent(
-        token: this.token,
-        getComboValuesContentData: this.contentData!.transform());
+    return GetComboValuesContent(token: this.token, getComboValuesContentData: this.contentData!.transform());
   }
 }

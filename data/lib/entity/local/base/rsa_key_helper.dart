@@ -15,8 +15,7 @@ class RsaKeyHelper {
   ///
   /// Returns a [AsymmetricKeyPair] based on the [RSAKeyGenerator] with custom parameters,
   /// including a [SecureRandom]
-  Future<AsymmetricKeyPair<PublicKey, PrivateKey>> computeRSAKeyPair(
-      SecureRandom secureRandom) async {
+  Future<AsymmetricKeyPair<PublicKey, PrivateKey>> computeRSAKeyPair(SecureRandom secureRandom) async {
     return await compute(getRsaKeyPair, secureRandom);
   }
 
@@ -74,8 +73,7 @@ class RsaKeyHelper {
       exponent = publicKeySeq.elements[1] as ASN1Integer;
     }
 
-    RSAPublicKey rsaPublicKey =
-    RSAPublicKey(modulus.valueAsBigInteger, exponent.valueAsBigInteger);
+    RSAPublicKey rsaPublicKey = RSAPublicKey(modulus.valueAsBigInteger, exponent.valueAsBigInteger);
 
     return rsaPublicKey;
   }
@@ -87,10 +85,7 @@ class RsaKeyHelper {
   String sign(String plainText, RSAPrivateKey privateKey) {
     var signer = RSASigner(SHA256Digest(), "0609608648016503040201");
     signer.init(true, PrivateKeyParameter<RSAPrivateKey>(privateKey));
-    return base64Encode(
-        signer
-            .generateSignature(createUint8ListFromString(plainText))
-            .bytes);
+    return base64Encode(signer.generateSignature(createUint8ListFromString(plainText)).bytes);
   }
 
   /// Creates a [Uint8List] from a string to be signed
@@ -127,11 +122,8 @@ class RsaKeyHelper {
       q = topLevelSeq.elements[5] as ASN1Integer;
     }
 
-    RSAPrivateKey rsaPrivateKey = RSAPrivateKey(
-        modulus.valueAsBigInteger,
-        privateExponent.valueAsBigInteger,
-        p.valueAsBigInteger,
-        q.valueAsBigInteger);
+    RSAPrivateKey rsaPrivateKey = RSAPrivateKey(modulus.valueAsBigInteger, privateExponent.valueAsBigInteger,
+        p.valueAsBigInteger, q.valueAsBigInteger);
 
     return rsaPrivateKey;
   }
@@ -235,8 +227,7 @@ class RsaKeyHelper {
 
 /// Encrypting String
 String encrypt(String plaintext, RSAPublicKey publicKey) {
-  var cipher = new RSAEngine()
-    ..init(true, new PublicKeyParameter<RSAPublicKey>(publicKey));
+  var cipher = new RSAEngine()..init(true, new PublicKeyParameter<RSAPublicKey>(publicKey));
   var cipherText = cipher.process(new Uint8List.fromList(plaintext.codeUnits));
 
   return new String.fromCharCodes(cipherText);
@@ -244,8 +235,7 @@ String encrypt(String plaintext, RSAPublicKey publicKey) {
 
 /// Decrypting String
 String decrypt(String ciphertext, RSAPrivateKey privateKey) {
-  var cipher = new RSAEngine()
-    ..init(false, new PrivateKeyParameter<RSAPrivateKey>(privateKey));
+  var cipher = new RSAEngine()..init(false, new PrivateKeyParameter<RSAPrivateKey>(privateKey));
   var decrypted = cipher.process(new Uint8List.fromList(ciphertext.codeUnits));
 
   return new String.fromCharCodes(decrypted);
@@ -255,8 +245,7 @@ String decrypt(String ciphertext, RSAPrivateKey privateKey) {
 ///
 /// Returns a [AsymmetricKeyPair] based on the [RSAKeyGenerator] with custom parameters,
 /// including a [SecureRandom]
-AsymmetricKeyPair<PublicKey, PrivateKey> getRsaKeyPair(
-    SecureRandom secureRandom) {
+AsymmetricKeyPair<PublicKey, PrivateKey> getRsaKeyPair(SecureRandom secureRandom) {
   /// Set BitStrength to [1024, 2048 or 4096]
   var rsapars = new RSAKeyGeneratorParameters(BigInt.from(65537), 4096, 5);
   var params = new ParametersWithRandom(rsapars, secureRandom);

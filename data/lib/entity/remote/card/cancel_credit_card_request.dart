@@ -11,8 +11,7 @@ class CancelCreditCardRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CancelCreditCardRequest(
-      {required this.baseData, this.getToken: true, this.reason: ""});
+  CancelCreditCardRequest({required this.baseData, this.getToken: true, this.reason: ""});
 
   factory CancelCreditCardRequest.fromJson(Map<String, dynamic> json) =>
       _$CancelCreditCardRequestFromJson(json);

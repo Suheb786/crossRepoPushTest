@@ -6,15 +6,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckUserNameUseCase extends BaseUseCase<NetworkError,
-    CheckUserNameUseCaseParams, CheckUsername> {
+class CheckUserNameUseCase extends BaseUseCase<NetworkError, CheckUserNameUseCaseParams, CheckUsername> {
   final UserRepository _repository;
 
   CheckUserNameUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, CheckUsername>> execute(
-      {required CheckUserNameUseCaseParams params}) {
+  Future<Either<NetworkError, CheckUsername>> execute({required CheckUserNameUseCaseParams params}) {
     return _repository.checkUserName(email: params.email);
   }
 }

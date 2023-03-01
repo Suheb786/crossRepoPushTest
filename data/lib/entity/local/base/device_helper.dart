@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:device_info/device_info.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:package_info/package_info.dart';
@@ -18,13 +19,13 @@ class DeviceInfoHelper {
   Future<BaseClassEntity> getDeviceInfo() async {
     Map<String, dynamic> deviceData = await initPlatformState();
     final PackageInfo info = await PackageInfo.fromPlatform();
-    print('Device Data ' + deviceData.toString());
-    print('Package Info Data ' + ' ' + info.version + ' ' + info.buildNumber);
+    debugPrint('Device Data ' + deviceData.toString());
+    debugPrint('Package Info Data ' + ' ' + info.version + ' ' + info.buildNumber);
     String externalIp = "";
     try {
       externalIp = (await RGetIp.externalIP)!;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       externalIp = "";
     }
 
@@ -32,11 +33,8 @@ class DeviceInfoHelper {
       appVersion: info.version,
       //appVersion: info.version + ' ' + info.buildNumber,
       ip: externalIp,
-      deviceID: Platform.isAndroid
-          ? deviceData['androidId']
-          : deviceData['identifierForVendor'],
-      mobileModel:
-          Platform.isAndroid ? deviceData['model'] : deviceData['model'],
+      deviceID: Platform.isAndroid ? deviceData['androidId'] : deviceData['identifierForVendor'],
+      mobileModel: Platform.isAndroid ? deviceData['model'] : deviceData['model'],
     );
   }
 
@@ -50,9 +48,7 @@ class DeviceInfoHelper {
         deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
       }
     } on PlatformException {
-      deviceData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
+      deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
     }
     return deviceData;
   }
@@ -113,8 +109,7 @@ class DeviceInfoHelper {
       // } else if (Platform.isIOS) {
       //   return await FlutterJailbreakDetection.jailbroken;
       // }
-      print(
-          '-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
+      debugPrint('-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
       return await FlutterJailbreakDetection.jailbroken;
     } on PlatformException {
       return true;

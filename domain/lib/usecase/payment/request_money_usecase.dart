@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RequestMoneyUseCase
-    extends BaseUseCase<NetworkError, RequestMoneyUseCaseParams, bool> {
+class RequestMoneyUseCase extends BaseUseCase<NetworkError, RequestMoneyUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required RequestMoneyUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required RequestMoneyUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -23,10 +21,7 @@ class RequestMoneyUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (double.parse(amount!) <= 0) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.ZERO_AMOUNT,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.ZERO_AMOUNT, cause: Exception()));
     }
     return Right(true);
   }

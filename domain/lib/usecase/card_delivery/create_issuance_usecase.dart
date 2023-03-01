@@ -6,16 +6,13 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CardIssuanceUseCase extends BaseUseCase<NetworkError,
-    CardIssuanceUseCaseParams,
-    CardIssuanceDetails> {
+class CardIssuanceUseCase extends BaseUseCase<NetworkError, CardIssuanceUseCaseParams, CardIssuanceDetails> {
   final CardRepository _repository;
 
   CardIssuanceUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, CardIssuanceDetails>> execute(
-      {required CardIssuanceUseCaseParams params}) {
+  Future<Either<NetworkError, CardIssuanceDetails>> execute({required CardIssuanceUseCaseParams params}) {
     return _repository.getCardIssuanceDetails();
   }
 }

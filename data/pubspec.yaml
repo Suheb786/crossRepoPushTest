@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.17.0
   package_info: ^2.0.0
   file_picker: ^4.1.4
-  image_picker: ^0.8.4
+  image_picker: 0.8.4+8
   geocoding: ^2.0.1
   r_get_ip: ^0.1.1
   blinkid_flutter: 5.14.0
@@ -50,6 +50,7 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   appsflyer_sdk: ^6.8.2
   eventify: ^1.0.1
+  firebase_dynamic_links: ^3.0.2
 
 dev_dependencies:
   flutter_test:

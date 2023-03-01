@@ -17,13 +17,11 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
   Stream<int> get currentPageStream => _currentPageSubject.stream;
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void changeCurrentPage(int index) {
@@ -44,8 +42,7 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
   BehaviorSubject<MobileNumberParams> _mobileNumberSubject = BehaviorSubject();
 
   ///mobile number stream
-  Stream<MobileNumberParams> get mobileNumberStream =>
-      _mobileNumberSubject.stream;
+  Stream<MobileNumberParams> get mobileNumberStream => _mobileNumberSubject.stream;
 
   void updateMobileNumber(MobileNumberParams mobileNumberParams) {
     _mobileNumberSubject.safeAdd(mobileNumberParams);

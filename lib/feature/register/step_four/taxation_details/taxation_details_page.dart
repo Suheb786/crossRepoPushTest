@@ -10,8 +10,7 @@ class TaxationDetailsPage extends BasePage<TaxationDetailsPageViewModel> {
   TaxationDetailsPageState createState() => TaxationDetailsPageState();
 }
 
-class TaxationDetailsPageState
-    extends BaseStatefulPage<TaxationDetailsPageViewModel, TaxationDetailsPage>
+class TaxationDetailsPageState extends BaseStatefulPage<TaxationDetailsPageViewModel, TaxationDetailsPage>
     with AutomaticKeepAliveClientMixin {
   TaxationDetailsPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,9 +31,7 @@ class TaxationDetailsPageState
 
   @override
   void onModelReady(TaxationDetailsPageViewModel model) {
-    if (!ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .isGetFatca) {
+    if (!ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).isGetFatca) {
       model.getFatcaQuestions();
     }
     super.onModelReady(model);

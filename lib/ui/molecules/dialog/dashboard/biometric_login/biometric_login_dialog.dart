@@ -5,12 +5,10 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric
 class BiometricLoginDialog {
   BiometricLoginDialog._();
 
-  static show(BuildContext mContext,
-      {Function? mayBeLater, Function? enableBioMetric}) {
+  static show(BuildContext mContext, {Function? mayBeLater, Function? enableBioMetric}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) =>
-            BiometricLoginDialogView(
+        builder: (context) => BiometricLoginDialogView(
               mayBeLater: mayBeLater,
               enableBioMetric: enableBioMetric,
             ));

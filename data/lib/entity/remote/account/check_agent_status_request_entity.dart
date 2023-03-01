@@ -14,6 +14,5 @@ class CheckAgentStatusRequestEntity {
   factory CheckAgentStatusRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckAgentStatusRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckAgentStatusRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckAgentStatusRequestEntityToJson(this);
 }

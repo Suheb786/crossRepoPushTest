@@ -55,6 +55,8 @@ class ErrorParser {
         return localisedHelper.invalidMainSourceIncome;
       case ErrorType.INVALID_MONTHLY_INCOME:
         return localisedHelper.invalidMonthlyIncome;
+      case ErrorType.INVALID_MONTHLY_INCOME_VALUE:
+        return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
       case ErrorType.INVALID_ANNUAL_INCOME:
         return localisedHelper.invalidAnnualIncome;
       case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
@@ -1101,6 +1103,67 @@ class ErrorParser {
         return localisedHelper.errorCCUnBlockNI;
       case ErrorType.LOGIN_REGISTER_DISABLED:
         return localisedHelper.loginRegisterDisabled;
+      case ErrorType.ID_VERIFICATION_FAILED:
+        return localisedHelper.idVerificationFailed;
+      case ErrorType.PAYMENT_NOT_DONE:
+        return localisedHelper.paymentNotDone;
+      case ErrorType.NO_TICKETS_FOUND:
+        return localisedHelper.noTicketsFound;
+      case ErrorType.NO_BILLER_FOUND:
+      case ErrorType.NO_BILLER_FOUND:
+        return localisedHelper.noTicketsFound;
+      case ErrorType.NO_PREPAID_CATEGORY_FOUND:
+        return localisedHelper.noPrepaidCategoryFound;
+      case ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED:
+        return localisedHelper.insufficientFundsBillCannotBePaid;
+      case ErrorType.QR_INVALID:
+        return localisedHelper.qrInvalid;
+      case ErrorType.QR_EXPIRED:
+        return localisedHelper.qrExpired;
+      case ErrorType.ENTER_BILL_DETAILS:
+        return localisedHelper.enterBillDetails;
+      case ErrorType.INVALID_NICK_NAME:
+        return localisedHelper.nickNameCanOnlyContainAlphanumerics;
+      case ErrorType.QR_NOT_SCANNED:
+        return localisedHelper.qrNotScanned;
+      case ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO:
+        return localisedHelper.billerAlreadyExistsMessage;
+      case ErrorType.BILL_PAYMENT_SORRY_MESSAGE:
+        return localisedHelper.billPaymentSorryMessage;
+      case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
+        return localisedHelper.rejectedDueToExpiryDate;
+      case ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToClosedBill;
+      case ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToExpiredBill;
+      case ErrorType.OPEN_DATE_ISSUE_MESSAGE:
+        return localisedHelper.openDateIssuedMessage;
+      case ErrorType.CLOSE_DATE_ISSUE_MESSAGE:
+        return localisedHelper.closeDateIssueMessage;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT:
+        return localisedHelper.thereAreNoDueBillsToBePaidAtTheMoment;
+      case ErrorType.DATE_COMPARISON:
+        return localisedHelper.dateComparison;
+      case ErrorType.SERVICE_NOT_AVAILABLE:
+        return localisedHelper.serviceIsNotavaliable;
+      case ErrorType.IS_PAID_FAILED:
+        return "";
+      case ErrorType.DAILY_LIMIT_EXCEDED:
+        return localisedHelper.dailyNarrationLimitexceed;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS:
+        return localisedHelper.thereAreNoDueBills;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS:
+        return localisedHelper.thereAreNoDueBillsButYouCanMakePartialPayments;
+      case ErrorType.INVALID_BILLING_NUMBER:
+        return localisedHelper.invalidBillingNumber;
+      case ErrorType.BILL_NOT_FOUND:
+        return localisedHelper.billNotFound;
+      case ErrorType.INVALID_PAID_AMOUNT:
+        return localisedHelper.invalidPaidAmount;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT:
+        return localisedHelper.billingNumberReachedItsMaxAmt;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX:
+        return localisedHelper.billingNumberReachedItsMaxTrx;
 
       default:
         return "";

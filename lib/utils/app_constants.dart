@@ -1,3 +1,6 @@
+import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories_list.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
+
 class AppConstantsUtils {
   AppConstantsUtils._();
 
@@ -21,4 +24,50 @@ class AppConstantsUtils {
   static bool isApplePayFeatureEnabled = false;
 
   static bool isApplePayPopUpShown = false;
+
+  static String RJRouteLink = '/RJFlightConfirmation/Index';
+
+  static String SELECTED_BILLER_CODE = "";
+  static String BILLER_NAME = "";
+  static String SELECTED_BILLER_CATEGORY_CODE = "";
+  static String SELECTED_BILLER_CATEGORY_TYPE = "";
+  static bool SELECTED_BILLING_NUMBER_REQUIRED = true;
+  static String SELECTED_SERVICE_CODE = "";
+  static String BILLER_CATEGORY = "eCommerce";
+  static String BILLER_CATEGORY_ARABIC = "";
+  static String BILLER_CATEGORY_API_VALUE = "eCommerce";
+  static String BILLER_CATEGORY_ICON_CODE = "101";
+  static String SELECTED_AMOUNT = "";
+  static String PREPAID_CATEGORY_CODE = "";
+  static String PREPAID_CATEGORY_DESCRIPTION = "";
+  static String PREPAID_CATEGORY_TYPE = "";
+  static String BILLER_TYPE = "";
+  static bool IS_NEW_PAYMENT = false;
+  static bool IS_NEW_BILL_ADD_API_CALL = false;
+  static String SELECTED_BILLING_NUMBER = "";
+  static String SELECTED_SERVICE_TYPE = "";
+  static String SELECTED_SERVICE_DESCRIPTION_EN = "";
+  static String NICK_NAME = "";
+  static String ACCOUNT_NUMBER = "";
+  static String PREPAID_KEY = "Prepaid";
+  static String POSTPAID_KEY = "Postpaid";
+  static bool PRE_PAID_FLOW = false;
+  static bool POST_PAID_FLOW = false;
+  static bool IS_PRE_PAID_CATEGORY_LIST_EMPTY = true;
+
+  /// bill payments
+  ///billCategoriesList
+  static List<GetBillCategoriesList>? billCategoriesCacheList = [];
+
+  ///billerDetailsList
+  static Map<String, List<BillerDetailsList>?> billerDetailsCacheList =
+      Map<String, List<BillerDetailsList>?>();
+
+  static String billerDetailsCacheListKey = "";
+
+  /// reset lists
+  static void resetCacheLists() {
+    billCategoriesCacheList = [];
+    billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
+  }
 }

@@ -9,31 +9,27 @@ part 'get_confirm_application_data_response_entity.g.dart';
 @JsonSerializable()
 class GetConfirmApplicationDataResponseEntity
     implements
-        BaseLayerDataTransformer<GetConfirmApplicationDataResponseEntity,
-            GetConfirmApplicationDataResponse> {
+        BaseLayerDataTransformer<GetConfirmApplicationDataResponseEntity, GetConfirmApplicationDataResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetConfirmApplicationDataResponseEntity({this.response});
 
-  factory GetConfirmApplicationDataResponseEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory GetConfirmApplicationDataResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetConfirmApplicationDataResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetConfirmApplicationDataResponseEntityToJson(this);
 
   @override
-  GetConfirmApplicationDataResponseEntity restore(
-      GetConfirmApplicationDataResponse response) {
+  GetConfirmApplicationDataResponseEntity restore(GetConfirmApplicationDataResponse response) {
     return GetConfirmApplicationDataResponseEntity();
   }
 
   @override
   GetConfirmApplicationDataResponse transform() {
     return GetConfirmApplicationDataResponse(
-        getApplicationData: GetConfirmApplicationDataEntity.fromJson(
-            this.response!.content as Map<String, dynamic>)
-            .transform());
+        getApplicationData:
+            GetConfirmApplicationDataEntity.fromJson(this.response!.content as Map<String, dynamic>)
+                .transform());
   }
 }

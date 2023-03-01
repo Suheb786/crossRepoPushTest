@@ -8,9 +8,7 @@ part 'get_allowed_issuer_response_entity.g.dart';
 
 @JsonSerializable()
 class GetAllowedIssuerResponseEntity
-    implements
-        BaseLayerDataTransformer<GetAllowedIssuerResponseEntity,
-            List<AllowedIssuerCountry>> {
+    implements BaseLayerDataTransformer<GetAllowedIssuerResponseEntity, List<AllowedIssuerCountry>> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

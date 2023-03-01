@@ -8,15 +8,13 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class TransferUseCase extends BaseUseCase<NetworkError, TransferUseCaseParams,
-    TransferSuccessResponse> {
+class TransferUseCase extends BaseUseCase<NetworkError, TransferUseCaseParams, TransferSuccessResponse> {
   final PaymentRepository _repository;
 
   TransferUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, TransferSuccessResponse>> execute(
-      {required TransferUseCaseParams params}) {
+  Future<Either<NetworkError, TransferSuccessResponse>> execute({required TransferUseCaseParams params}) {
     return _repository.transfer(
         transferType: params.transferType!,
         toAmount: params.toAmount!,
@@ -65,23 +63,15 @@ class TransferUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    print("Limit : ${limit}");
     if (memo == null || memo == "") {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PURPOSE_DETAIL,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE_DETAIL, cause: Exception()));
     }
     if (limit == null) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.NETWORK,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
     } else if (limit! < toAmount!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.LIMIT_EXCEEDED,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.LIMIT_EXCEEDED, cause: Exception()));
     }
     return Right(true);
   }

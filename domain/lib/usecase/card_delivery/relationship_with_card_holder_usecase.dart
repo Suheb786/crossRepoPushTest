@@ -7,11 +7,10 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class RelationshipWithCardholderUseCase extends BaseUseCase<NetworkError,
-    RelationshipWithCardholderUseCaseParams, bool> {
+class RelationshipWithCardholderUseCase
+    extends BaseUseCase<NetworkError, RelationshipWithCardholderUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required RelationshipWithCardholderUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required RelationshipWithCardholderUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -24,10 +23,8 @@ class RelationshipWithCardholderUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(relationship)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_RELATIONSHIP,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_RELATIONSHIP, cause: Exception()));
     }
     return Right(true);
   }

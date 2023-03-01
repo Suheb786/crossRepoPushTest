@@ -4,8 +4,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AppScrollableListViewWidget extends StatelessWidget {
   final Widget child;
 
-  const AppScrollableListViewWidget({Key? key, required this.child})
-      : super(key: key);
+  const AppScrollableListViewWidget({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

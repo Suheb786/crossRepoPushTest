@@ -10,8 +10,7 @@ class EnterAddressPage extends BasePage<EnterAddressViewModel> {
   EnterAddressPageState createState() => EnterAddressPageState();
 }
 
-class EnterAddressPageState
-    extends BaseStatefulPage<EnterAddressViewModel, EnterAddressPage> {
+class EnterAddressPageState extends BaseStatefulPage<EnterAddressViewModel, EnterAddressPage> {
   @override
   ProviderBase provideBase() {
     return enterAddressViewModelProvider;

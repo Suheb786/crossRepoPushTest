@@ -124,7 +124,8 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 14.t,
                                             fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_violet_4),
+                                            color: Theme.of(context)
+                                                .primaryColorDark),
                                       ),
                                     )),
                           GestureDetector(

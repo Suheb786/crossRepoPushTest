@@ -9,12 +9,10 @@ class ManageCliqBottomSheetView extends StatefulWidget {
   final Function()? onCancel;
   final String? title;
 
-  const ManageCliqBottomSheetView(
-      {this.setAsDefault, this.unlinkAccount, this.title, this.onCancel});
+  const ManageCliqBottomSheetView({this.setAsDefault, this.unlinkAccount, this.title, this.onCancel});
 
   @override
-  _ManageCliqBottomSheetViewState createState() =>
-      _ManageCliqBottomSheetViewState();
+  _ManageCliqBottomSheetViewState createState() => _ManageCliqBottomSheetViewState();
 }
 
 class _ManageCliqBottomSheetViewState extends State<ManageCliqBottomSheetView> {

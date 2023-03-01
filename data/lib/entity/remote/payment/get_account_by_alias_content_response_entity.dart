@@ -9,23 +9,19 @@ part "get_account_by_alias_content_response_entity.g.dart";
 @JsonSerializable()
 class GetAccountByAliasContentResponseEntity
     implements
-        BaseLayerDataTransformer<GetAccountByAliasContentResponseEntity,
-            GetAccountByAliasContentResponse> {
+        BaseLayerDataTransformer<GetAccountByAliasContentResponseEntity, GetAccountByAliasContentResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetAccountByAliasContentResponseEntity({this.response});
 
-  factory GetAccountByAliasContentResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetAccountByAliasContentResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAccountByAliasContentResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetAccountByAliasContentResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetAccountByAliasContentResponseEntityToJson(this);
 
   @override
-  GetAccountByAliasContentResponseEntity restore(
-      GetAccountByAliasContentResponse response) {
+  GetAccountByAliasContentResponseEntity restore(GetAccountByAliasContentResponse response) {
     return GetAccountByAliasContentResponseEntity();
   }
 
@@ -33,7 +29,6 @@ class GetAccountByAliasContentResponseEntity
   GetAccountByAliasContentResponse transform() {
     return GetAccountByAliasContentResponse(
         getAccountByAliasContent:
-            GetAccountByAliasContentEntity.fromJson(this.response!.content)
-                .transform());
+            GetAccountByAliasContentEntity.fromJson(this.response!.content).transform());
   }
 }

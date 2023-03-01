@@ -6,16 +6,13 @@ import 'package:domain/repository/upload_document/upload_document_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class FileUploadUseCase extends BaseUseCase<NetworkError,
-    FileUploadUseCaseParams,
-    FileUploadResponse> {
+class FileUploadUseCase extends BaseUseCase<NetworkError, FileUploadUseCaseParams, FileUploadResponse> {
   final UploadDocumentRepository _repository;
 
   FileUploadUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, FileUploadResponse>> execute(
-      {FileUploadUseCaseParams? params}) {
+  Future<Either<NetworkError, FileUploadResponse>> execute({FileUploadUseCaseParams? params}) {
     return _repository.uploadDocument(path: params!.path);
   }
 }

@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class FatcaUSRelevantW8UseCase
-    extends BaseUseCase<LocalError, FatcaUSRelevantW8UseCaseParams, bool> {
+class FatcaUSRelevantW8UseCase extends BaseUseCase<LocalError, FatcaUSRelevantW8UseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required FatcaUSRelevantW8UseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required FatcaUSRelevantW8UseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -21,23 +19,17 @@ class FatcaUSRelevantW8UseCaseParams extends Params {
   final String? country;
 
   FatcaUSRelevantW8UseCaseParams({this.name, this.dob, this.country});
+
   @override
   Either<AppError, bool> verify() {
     if (name!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_NAME_AS_PER_TAX_RETURN,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_NAME_AS_PER_TAX_RETURN, cause: Exception()));
     } else if (dob!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DOB,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_DOB, cause: Exception()));
     } else if (country!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_CITIZENSHIP,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_CITIZENSHIP, cause: Exception()));
     }
     return Right(true);
   }

@@ -12,15 +12,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ReviewApplicationUseCase
-    extends BaseUseCase<NetworkError, ReviewApplicationUseCaseParams, bool> {
+class ReviewApplicationUseCase extends BaseUseCase<NetworkError, ReviewApplicationUseCaseParams, bool> {
   final UserRepository _repository;
 
   ReviewApplicationUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ReviewApplicationUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ReviewApplicationUseCaseParams params}) {
     return _repository.confirmApplicationDataSet(
         countryResidenceInfo: params.countryResidenceInfo,
         profileStatusInfo: params.profileStatusInfo,
@@ -38,20 +36,19 @@ class ReviewApplicationUseCaseParams extends Params {
   final FatcaCrsInfo fatcaCrsInfo;
   final AccountPurposeInfo accountPurposeInfo;
 
-  ReviewApplicationUseCaseParams({required this.declarationSelected,
-    required this.countryResidenceInfo,
-    required this.profileStatusInfo,
-    required this.jobDetailInfo,
-    required this.fatcaCrsInfo,
-    required this.accountPurposeInfo});
+  ReviewApplicationUseCaseParams(
+      {required this.declarationSelected,
+      required this.countryResidenceInfo,
+      required this.profileStatusInfo,
+      required this.jobDetailInfo,
+      required this.fatcaCrsInfo,
+      required this.accountPurposeInfo});
 
   @override
   Either<AppError, bool> verify() {
     if (!declarationSelected) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_DECLARATION_SELECTION, cause: Exception()));
     }
     return Right(true);
   }

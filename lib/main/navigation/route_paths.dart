@@ -12,7 +12,6 @@ class RoutePaths {
   static const String Dashboard = '/dashboard';
   static const String TermsAndCondition = '/termsAndCondition';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
-  static const String LocateATM = '/locateATM';
   static const String AppHome = "/appHome";
   static const String Capture = '/capture';
   static const String FatcaCertification = '/fatcaCertification';
@@ -125,4 +124,27 @@ class RoutePaths {
   static const String SelectedCardForApplePayPage = "/selectedCardForApplePayPage";
   static const String ApplePaySuccessAndErrorPage = "/applePaySuccessAndErrorPage";
   static const String applePayLauncherPage = "/ApplePayLauncherPage";
+  static const String PaySelectedBillsPostPaidBillsPage = "/paySelectedBillsPostPaidBillsPage";
+  static const String PayAllPostPaidBillsPage = "/payAllPostPaidBillsPage";
+  static const String LauncherPage = "/launcherPage";
+  static const String PostPaidBillsSuccessPage = "/postPaidBillsSuccessPage";
+  static const String NewBillsPage = "/newBillsPage";
+  static const String PayBillPage = "/payBillPage";
+  static const String PayBillDetailPage = "/payBillDetailPage";
+  static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
+  static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
+  static const String PayMyPrePaidBillsPage = "/payMyPrePaidBillsPage";
+  static const String PayingPrePaidBillsPage = "/payingPrePaidBillsPage";
+  static const String PrePaidBillsSuccessPage = "/prePaidBillsSuccessPage";
+  static const String HowMuchLikeToPayPrePaidBillsPage = "/howMuchLikeToPayPrePaidBillsPage";
+  static const String ConfirmPrePaidBillPaymentAmountPage = "/confirmPrePaidBillPaymentAmountPage";
+  static const String PayPrePaidBillDetailPage = "/payPrePaidBillDetailPage";
+  static const String PayPrePaidBillPage = "/payPrePaidBillPage";
+  static const String NewPrePaidBillsPage = "/newPrePaidBillsPage";
+  static const String EnterOtpBillPaymentsPage = "/enterOtpBillPaymentsPage";
+  static const String BillPaymentsTransactionPage = "/billPaymentsTransactionPage";
+  static const String QRScanningScreen = "/QRScanningScreen";
+  static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
+  static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
+  static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
 }

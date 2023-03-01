@@ -143,6 +143,16 @@ class BasePageViewModel extends BaseViewModel {
     _successSubject.sink.add(success);
   }
 
+  ///Top Error String
+
+  PublishSubject<String> _errorString = PublishSubject<String>();
+
+  Stream<String> get errorStringStream => _errorString.stream;
+
+  void showToastWithErrorString(String error) {
+    _errorString.sink.add(error);
+  }
+
   void notify() {
     notifyListeners();
   }

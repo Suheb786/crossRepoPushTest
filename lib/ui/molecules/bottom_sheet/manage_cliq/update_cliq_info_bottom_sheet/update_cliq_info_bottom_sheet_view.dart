@@ -12,22 +12,14 @@ class UpdateCliqInfoBottomSheetView extends StatefulWidget {
   final String? title;
 
   const UpdateCliqInfoBottomSheetView(
-      {Key? key,
-      this.onEditId,
-      this.onShareId,
-      this.onSuspendId,
-      this.onDeleteId,
-      this.onCancel,
-      this.title})
+      {Key? key, this.onEditId, this.onShareId, this.onSuspendId, this.onDeleteId, this.onCancel, this.title})
       : super(key: key);
 
   @override
-  _UpdateCliqInfoBottomSheetViewState createState() =>
-      _UpdateCliqInfoBottomSheetViewState();
+  _UpdateCliqInfoBottomSheetViewState createState() => _UpdateCliqInfoBottomSheetViewState();
 }
 
-class _UpdateCliqInfoBottomSheetViewState
-    extends State<UpdateCliqInfoBottomSheetView> {
+class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomSheetView> {
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(

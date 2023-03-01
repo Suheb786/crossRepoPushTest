@@ -5,15 +5,13 @@ import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class InfobipMessagePluginUseCase
-    extends BaseUseCase<BaseError, InfobipMessagePluginUseCaseParams, bool> {
+class InfobipMessagePluginUseCase extends BaseUseCase<BaseError, InfobipMessagePluginUseCaseParams, bool> {
   final InfobipMessageRepository _infobipMessageRepository;
 
   InfobipMessagePluginUseCase(this._infobipMessageRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required InfobipMessagePluginUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required InfobipMessagePluginUseCaseParams params}) async {
     return await _infobipMessageRepository.initInfobipMessage();
   }
 }

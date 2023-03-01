@@ -46,7 +46,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_page.dart';
@@ -96,6 +95,21 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_c
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/bill_payments_transaction/bill_payments_transaction_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/confirm_bill_payment_amount/confirm_bill_payment_amount_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/enter_otp_bill_payments/enter_otp_bill_payments_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
+
+// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
@@ -108,6 +122,10 @@ import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
+import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
+import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
+import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
@@ -188,14 +206,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-        // return CupertinoPageRoute(
-        //     builder: (context) => AddMoneyOptionSelectorPage(),
-        //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
         return CustomRoute.createRoute(AddMoneyOptionSelectorPage(), reverse: true);
-
-      case RoutePaths.LocateATM:
-        return CupertinoPageRoute(
-            builder: (context) => LocateATMPage(), settings: RouteSettings(name: RoutePaths.LocateATM));
 
       case RoutePaths.AppHome:
         return CupertinoPageRoute(
@@ -327,8 +338,10 @@ class AppRouter {
 
       case RoutePaths.SendMoneyFailure:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyFailurePage(),
-            settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
+            builder: (context) => SendMoneyFailurePage(settings.arguments as SendMoneyFailurePageArgument),
+            settings: RouteSettings(
+              name: RoutePaths.SendMoneyFailure,
+            ));
 
       case RoutePaths.RequestAmountFromContact:
         return CustomRoute.createRoute(
@@ -574,20 +587,23 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
       case RoutePaths.RequestMoneyQrGeneration:
-        return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
+        return CustomRoute.createRoute(
+            RequestMoneyQrGenerationPage(settings.arguments as RequestMoneyQrGenerationPageArguments));
 
       case RoutePaths.QRScreen:
         return CupertinoPageRoute(
-            builder: (context) => QrScreenPage(), settings: RouteSettings(name: RoutePaths.QRScreen));
+            builder: (context) => QrScreenPage(settings.arguments as QrScreenPageArguments),
+            settings: RouteSettings(name: RoutePaths.QRScreen));
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyQrScanningPage(),
+            builder: (context) => SendMoneyQrScanningPage(settings.arguments as SendMoneyQRScanningArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
 
       case RoutePaths.SendMoneyQrScanningSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyViaQrSuccessPage(),
+            builder: (context) =>
+                SendMoneyViaQrSuccessPage(settings.arguments as SendMoneyViaQRSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
 
       case RoutePaths.CliqIdList:
@@ -740,6 +756,105 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ApplePayLauncherPage(),
             settings: RouteSettings(name: RoutePaths.applePayLauncherPage));
+
+      case RoutePaths.PaySelectedBillsPostPaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => PaySelectedBillsPostPaidBillsPage(
+                settings.arguments as PaySelectedBillsPostPaidBillsPageArguments),
+            settings: RouteSettings(name: RoutePaths.PaySelectedBillsPostPaidBillsPage));
+
+      case RoutePaths.PayAllPostPaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PayAllPostPaidBillsPage(settings.arguments as PayAllPostPaidBillsPageArguments),
+            settings: RouteSettings(name: RoutePaths.PayAllPostPaidBillsPage));
+
+      case RoutePaths.PostPaidBillsSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PostPaidBillsSuccessPage(settings.arguments as PostPaidBillsSuccessPageArguments),
+            settings: RouteSettings(name: RoutePaths.PostPaidBillsSuccessPage));
+
+      case RoutePaths.NewBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => NewBillsPage(), settings: RouteSettings(name: RoutePaths.NewBillsPage));
+
+      case RoutePaths.PayBillPage:
+        return CupertinoPageRoute(
+            builder: (context) => PayBillPage(), settings: RouteSettings(name: RoutePaths.PayBillPage));
+
+      case RoutePaths.PayBillDetailPage:
+        return CupertinoPageRoute(
+            builder: (context) => PayBillDetailPage(),
+            settings: RouteSettings(name: RoutePaths.PayBillDetailPage));
+
+      case RoutePaths.ConfirmBillPaymentAmountPage:
+        return CupertinoPageRoute(
+            builder: (context) => ConfirmBillPaymentAmountPage(),
+            settings: RouteSettings(name: RoutePaths.ConfirmBillPaymentAmountPage));
+
+      case RoutePaths.PaidBillsSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) => PaidBillsSuccessPage(settings.arguments as PaidBillsSuccessPageArguments),
+            settings: RouteSettings(name: RoutePaths.PaidBillsSuccessPage));
+
+      case RoutePaths.PayMyPrePaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => PayMyPrePaidBillsPage(),
+            settings: RouteSettings(name: RoutePaths.PayMyPrePaidBillsPage));
+
+      // case RoutePaths.PayingPrePaidBillsPage:
+      //   return CupertinoPageRoute(
+      //       builder: (context) =>
+      //           PayingPrePaidBillsPage(settings.arguments as PayingPrePaidBillsPageArgument),
+      //       settings: RouteSettings(name: RoutePaths.PayingPrePaidBillsPage));
+
+      case RoutePaths.PrePaidBillsSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PrePaidBillsSuccessPage(settings.arguments as PrePaidBillsSuccessPageArguments),
+            settings: RouteSettings(name: RoutePaths.PrePaidBillsSuccessPage));
+
+      case RoutePaths.HowMuchLikeToPayPrePaidBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => HowMuchLikeToPayPrePaidBillsPage(
+                settings.arguments as HowMuchLikeToPayPrePaidBillsPageArgument),
+            settings: RouteSettings(name: RoutePaths.HowMuchLikeToPayPrePaidBillsPage));
+
+      case RoutePaths.EnterOtpBillPaymentsPage:
+        return CupertinoPageRoute(
+            builder: (context) => EnterOtpBillPaymentsPage(),
+            settings: RouteSettings(name: RoutePaths.EnterOtpBillPaymentsPage));
+
+      case RoutePaths.BillPaymentsTransactionPage:
+        return CupertinoPageRoute(
+            builder: (context) => BillPaymentsTransactionPage(),
+            settings: RouteSettings(name: RoutePaths.BillPaymentsTransactionPage));
+
+      case RoutePaths.QRScanningScreen:
+        return CupertinoPageRoute(
+            builder: (context) => QrScanningScreenPage(),
+            settings: RouteSettings(name: RoutePaths.QRScanningScreen));
+
+      /// for web view for RJ Flight Booking
+      case RoutePaths.RjBookingInAppWebView:
+        return CupertinoPageRoute(
+            builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
+            settings: RouteSettings(name: RoutePaths.RjBookingInAppWebView));
+
+      /// Rj Flight Booking PurchasePage
+      case RoutePaths.RjFlightBookingPurchasePage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                RjBookingPurchasePage(arguments: settings.arguments as RjBookingPurchasePageArgument),
+            settings: RouteSettings(name: RoutePaths.RjFlightBookingPurchasePage));
+
+      /// Rj Flight Booking Detail Page
+      case RoutePaths.RjFlightBookingDetailPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                RjFlightBookingDetailPage(settings.arguments as RJFlightDetailsPageArguments),
+            settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
 
       default:
         return CupertinoPageRoute(

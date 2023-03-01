@@ -9,8 +9,7 @@ class CardProcessingRepositoryImpl with CardProcessingRepository {
   CardProcessingRepositoryImpl(this._cardProcessingLocalDS);
 
   @override
-  Future<Either<LocalError, String>> decryptCard(
-      {required String cardNo}) async {
+  Future<Either<LocalError, String>> decryptCard({required String cardNo}) async {
     final value = _cardProcessingLocalDS.decryptCard(cardNo: cardNo);
 
     if (value.trim().isNotEmpty) {
@@ -26,12 +25,11 @@ class CardProcessingRepositoryImpl with CardProcessingRepository {
   @override
   Future<Either<LocalError, String>> generateBlockPin(
       {required String cardNo, required String pinCode}) async {
-    final value = _cardProcessingLocalDS.generateBlockPin(
-        cardNo: cardNo, pinCode: pinCode);
+    final value = _cardProcessingLocalDS.generateBlockPin(cardNo: cardNo, pinCode: pinCode);
 
     if (value.trim().isNotEmpty) {
       return Right(value);
-    } 
+    }
 
     return Left(LocalError(
         message: "Error generating Pin under LMK",

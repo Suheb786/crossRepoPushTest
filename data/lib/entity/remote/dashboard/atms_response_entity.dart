@@ -7,15 +7,13 @@ import 'package:json_annotation/json_annotation.dart';
 part "atms_response_entity.g.dart";
 
 @JsonSerializable()
-class AtmsResponseEntity
-    implements BaseLayerDataTransformer<AtmsResponseEntity, GetATMResponse> {
+class AtmsResponseEntity implements BaseLayerDataTransformer<AtmsResponseEntity, GetATMResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   AtmsResponseEntity({this.response});
 
-  factory AtmsResponseEntity.fromJson(Map<String, dynamic> json) =>
-      _$AtmsResponseEntityFromJson(json);
+  factory AtmsResponseEntity.fromJson(Map<String, dynamic> json) => _$AtmsResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AtmsResponseEntityToJson(this);
 

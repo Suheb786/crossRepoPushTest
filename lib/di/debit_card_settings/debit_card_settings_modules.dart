@@ -4,13 +4,11 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/cancellation_reason_d
 import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog_view_model.dart';
 
 final cancelCardDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CardCancelDialogViewModel>(
-        (ref) => CardCancelDialogViewModel());
+    ChangeNotifierProvider.autoDispose<CardCancelDialogViewModel>((ref) => CardCancelDialogViewModel());
 
 final cancelReasonCardDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<CancellationReasonDialogModel>(
         (ref) => CancellationReasonDialogModel());
 
 final blockCountryDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<BlockCountryDialogModel>(
-        (ref) => BlockCountryDialogModel());
+    ChangeNotifierProvider.autoDispose<BlockCountryDialogModel>((ref) => BlockCountryDialogModel());

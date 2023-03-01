@@ -104,9 +104,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       title: S.of(context).depositViaATM,
                       desc: S.of(context).depositViaATMDesc,
                       buttonText: S.of(context).locateATM,
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.LocateATM);
-                      },
+                      onTap: () {},
                       isVisible: false,
                     ),
                     SizedBox(
@@ -117,59 +115,9 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       title: S.of(context).depositViaeFawateercom,
                       desc: S.of(context).depositViaeFawateercomDesc,
                       buttonText: S.of(context).locateATM,
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.LocateATM);
-                      },
+                      onTap: () {},
                       isVisible: false,
                     ),
-                    // Container(
-                    //   padding:
-                    //       EdgeInsets.symmetric(horizontal: 26, vertical: 32),
-                    //   decoration: BoxDecoration(
-                    //       color: Theme.of(context).primaryColor,
-                    //       borderRadius: BorderRadius.circular(16),
-                    //       image: DecorationImage(
-                    //           image: AssetImage(
-                    //         AssetUtils.swigglePng,
-                    //       ))),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       Image.asset(
-                    //         AssetUtils.blink,
-                    //         height: 28,
-                    //         width: 60,
-                    //       ),
-                    //       InkWell(
-                    //         onTap: () {
-                    //           Navigator.pushNamed(
-                    //               context, RoutePaths.BlinkCreditCard);
-                    //         },
-                    //         child: Container(
-                    //           padding: EdgeInsets.symmetric(
-                    //               horizontal: 14, vertical: 8),
-                    //           height: 36,
-                    //           decoration: BoxDecoration(
-                    //               color: Theme.of(context)
-                    //                   .accentTextTheme
-                    //                   .bodyText1!
-                    //                   .color,
-                    //               borderRadius: BorderRadius.circular(100)),
-                    //           child: Center(
-                    //             child: Text(
-                    //               S.of(context).getMyCreditCard,
-                    //               textAlign: TextAlign.center,
-                    //               style: TextStyle(
-                    //                   fontSize: 12,
-                    //                   fontWeight: FontWeight.w600,
-                    //                   color: Theme.of(context).accentColor),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
                     AppStreamBuilder<Resource<GetPlaceholderResponse>>(
                         stream: model.getPlaceHolderStream,
                         initialData: Resource.none(),

@@ -5,9 +5,10 @@ import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart'
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class GetBeneficiaryUseCase extends BaseUseCase<NetworkError,
-    GetBeneficiaryUseCaseParams, GetBeneficiaryListResponse> {
+class GetBeneficiaryUseCase
+    extends BaseUseCase<NetworkError, GetBeneficiaryUseCaseParams, GetBeneficiaryListResponse> {
   final ManageContactRepository _repository;
 
   GetBeneficiaryUseCase(this._repository);
@@ -20,6 +21,10 @@ class GetBeneficiaryUseCase extends BaseUseCase<NetworkError,
 }
 
 class GetBeneficiaryUseCaseParams extends Params {
+  final BuildContext? context;
+
+  GetBeneficiaryUseCaseParams({this.context});
+
   @override
   Either<AppError, bool> verify() {
     return Right(true);

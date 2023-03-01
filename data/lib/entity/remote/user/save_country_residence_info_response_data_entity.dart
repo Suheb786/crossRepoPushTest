@@ -23,23 +23,15 @@ class SaveCountryResidenceInfoResponseDataEntity
   final dynamic? id;
 
   SaveCountryResidenceInfoResponseDataEntity(
-      {this.code,
-      this.content,
-      this.exceptionMessage,
-      this.message,
-      this.token,
-      this.id});
+      {this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
 
-  factory SaveCountryResidenceInfoResponseDataEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory SaveCountryResidenceInfoResponseDataEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveCountryResidenceInfoResponseDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveCountryResidenceInfoResponseDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveCountryResidenceInfoResponseDataEntityToJson(this);
 
   @override
-  SaveCountryResidenceInfoResponseDataEntity restore(
-      SaveCountryResidenceInfoResponseData response) {
+  SaveCountryResidenceInfoResponseDataEntity restore(SaveCountryResidenceInfoResponseData response) {
     return SaveCountryResidenceInfoResponseDataEntity();
   }
 

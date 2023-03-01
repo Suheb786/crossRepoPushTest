@@ -11,8 +11,7 @@ class RegisterStepFourPage extends BasePage<RegisterStepFourViewModel> {
   RegisterStepFourPageState createState() => RegisterStepFourPageState();
 }
 
-class RegisterStepFourPageState
-    extends BaseStatefulPage<RegisterStepFourViewModel, RegisterStepFourPage> {
+class RegisterStepFourPageState extends BaseStatefulPage<RegisterStepFourViewModel, RegisterStepFourPage> {
   @override
   ProviderBase provideBase() {
     return registerStepFourViewModelProvider;
@@ -26,25 +25,16 @@ class RegisterStepFourPageState
   @override
   void onModelReady(RegisterStepFourViewModel model) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (ProviderScope.containerOf(context)
-              .read(registerViewModelProvider)
-              .fatcaEnum !=
-          null) {
-        switch (ProviderScope.containerOf(context)
-            .read(registerViewModelProvider)
-            .fatcaEnum) {
+      if (ProviderScope.containerOf(context).read(registerViewModelProvider).fatcaEnum != null) {
+        switch (ProviderScope.containerOf(context).read(registerViewModelProvider).fatcaEnum) {
           case FatcaEnum.w8:
             Future.delayed(Duration(microseconds: 100), () {
-              ProviderScope.containerOf(context)
-                  .read(registerStepFourViewModelProvider)
-                  .moveToPage(1);
+              ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).moveToPage(1);
             });
             break;
           case FatcaEnum.w9:
             Future.delayed(Duration(microseconds: 100), () {
-              ProviderScope.containerOf(context)
-                  .read(registerStepFourViewModelProvider)
-                  .moveToPage(4);
+              ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).moveToPage(4);
             });
         }
       }

@@ -11,19 +11,15 @@ import 'package:rxdart/rxdart.dart';
 class BiometricLoginDialogViewModel extends BasePageViewModel {
   final EnableFingerPrintUseCase _enableFingerPrintUseCase;
 
-  PublishSubject<EnableFingerPrintUseCaseParams> _enableFingerPrintRequest =
-  PublishSubject();
+  PublishSubject<EnableFingerPrintUseCaseParams> _enableFingerPrintRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _enableFingerPrintResponse = PublishSubject();
 
-  Stream<Resource<bool>> get enableFingerPrintStream =>
-      _enableFingerPrintResponse.stream;
+  Stream<Resource<bool>> get enableFingerPrintStream => _enableFingerPrintResponse.stream;
 
   BiometricLoginDialogViewModel(this._enableFingerPrintUseCase) {
     _enableFingerPrintRequest.listen((value) {
-      RequestManager(value,
-          createCall: () =>
-              _enableFingerPrintUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enableFingerPrintUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _enableFingerPrintResponse.safeAdd(event);
@@ -36,8 +32,7 @@ class BiometricLoginDialogViewModel extends BasePageViewModel {
   }
 
   void enableFingerPrint(String cipher) {
-    _enableFingerPrintRequest
-        .safeAdd(EnableFingerPrintUseCaseParams(cipher: cipher));
+    _enableFingerPrintRequest.safeAdd(EnableFingerPrintUseCaseParams(cipher: cipher));
   }
 
   @override

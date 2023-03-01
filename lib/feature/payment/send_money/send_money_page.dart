@@ -10,8 +10,7 @@ class SendMoneyPage extends BasePage<SendMoneyViewModel> {
   SendMoneyPageState createState() => SendMoneyPageState();
 }
 
-class SendMoneyPageState
-    extends BaseStatefulPage<SendMoneyViewModel, SendMoneyPage> {
+class SendMoneyPageState extends BaseStatefulPage<SendMoneyViewModel, SendMoneyPage> {
   @override
   ProviderBase provideBase() {
     return sendMoneyViewModelProvider;

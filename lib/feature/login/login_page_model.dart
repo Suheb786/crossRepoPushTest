@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
@@ -8,6 +9,9 @@ import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/bill_payment/account_upload_usecase.dart';
+import 'package:domain/usecase/bill_payment/register_customer_usecase.dart';
+import 'package:domain/usecase/bill_payment/regiter_account_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
@@ -34,6 +38,9 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginViewModel extends BasePageViewModel {
+  final RegisterCustomerUseCase _registerCustomerUseCase;
+  final RegisterAccountUseCase _registerAccountUseCase;
+  final AccountUploadUseCase _accountUploadUseCase;
   final LoginUseCase _loginUseCase;
   final CheckKYCStatusUseCase _kycStatusUseCase;
   final GetCipherUseCase _getCipherUseCase;
@@ -48,8 +55,8 @@ class LoginViewModel extends BasePageViewModel {
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
-  final TextEditingController emailController = TextEditingController(/*text: 'testrob146@g.com'*/);
-  final TextEditingController passwordController = TextEditingController(/*text: 'Asdf@12345'*/);
+  final TextEditingController emailController = TextEditingController(/*text: 'Wahaj98@g.com'*/);
+  final TextEditingController passwordController = TextEditingController(/*text: 'Wahaj@123'*/);
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "login_password");
@@ -173,20 +180,51 @@ class LoginViewModel extends BasePageViewModel {
 
   bool isBiometricDialogShown = false;
 
+  ///*-------------------- [Register Customer] ---------------------
+
+  PublishSubject<RegisterCustomerUsecaseParams> _cliqRegisterCustomerRequest = PublishSubject();
+  PublishSubject<Resource<bool>> _cliqRegisterCustomerResponse = PublishSubject();
+
+  Stream<Resource<bool>> get cliqRegisterCustomerStream => _cliqRegisterCustomerResponse.stream;
+
+  void cliqRegisterCustomer() => _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams());
+
+  ///*---------------------- [Register Account] -------------------
+
+  PublishSubject<RegisterAccountUsecaseParams> _registerAccountRequest = PublishSubject();
+  PublishSubject<Resource<bool>> _registerAccountResponse = PublishSubject();
+
+  Stream<Resource<bool>> get registerAccountStream => _registerAccountResponse.stream;
+
+  void registerAccount() => _registerAccountRequest.safeAdd(RegisterAccountUsecaseParams());
+
+  ///*---------------------- [Account Upload] -------------------
+
+  PublishSubject<AccountUploadUseCaseParams> _accountUploadrequest = PublishSubject();
+  PublishSubject<Resource<bool>> _accountUploadResponse = PublishSubject();
+
+  Stream<Resource<bool>> get accountUploadStream => _accountUploadResponse.stream;
+
+  void accountUpload() => _accountUploadrequest.safeAdd(AccountUploadUseCaseParams());
+
   LoginViewModel(
-      this._loginUseCase,
-      this._kycStatusUseCase,
-      this._getCipherUseCase,
-      this._androidLoginUseCase,
-      this._iphoneLoginUseCase,
-      this._checkBioMetricSupportUseCase,
-      this._authenticateBioMetricUseCase,
-      this._sendOtpTokenEmailOtpUseCase,
-      this._sendOtpTokeDeviceChangeOtpUseCase,
-      this._checkVersionUpdateUseCase,
-      this._getCurrentUserUseCase,
-      this._generateKeyPairUseCase,
-      this._infobipMessagePluginUseCase) {
+    this._loginUseCase,
+    this._kycStatusUseCase,
+    this._getCipherUseCase,
+    this._androidLoginUseCase,
+    this._iphoneLoginUseCase,
+    this._checkBioMetricSupportUseCase,
+    this._authenticateBioMetricUseCase,
+    this._sendOtpTokenEmailOtpUseCase,
+    this._sendOtpTokeDeviceChangeOtpUseCase,
+    this._checkVersionUpdateUseCase,
+    this._getCurrentUserUseCase,
+    this._generateKeyPairUseCase,
+    this._infobipMessagePluginUseCase,
+    this._registerCustomerUseCase,
+    this._registerAccountUseCase,
+    this._accountUploadUseCase,
+  ) {
     _loginRequest.listen((value) {
       RequestManager(value, createCall: () => _loginUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
@@ -335,6 +373,50 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
+    {
+      _cliqRegisterCustomerRequest.listen((value) {
+        RequestManager(value, createCall: () => _registerCustomerUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            //updateLoader();
+            _cliqRegisterCustomerResponse.safeAdd(event);
+            if (event.status == Status.SUCCESS) {
+              registerAccount();
+            } else if (event.status == Status.ERROR) {
+              registerAccount();
+            }
+          },
+        );
+      });
+    }
+    {
+      _registerAccountRequest.listen((value) {
+        RequestManager(value, createCall: () => _registerAccountUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            //updateLoader();
+            _registerAccountResponse.safeAdd(event);
+            if (event.status == Status.SUCCESS) {
+              accountUpload();
+            } else if (event.status == Status.ERROR) {
+              accountUpload();
+            }
+          },
+        );
+      });
+    }
+    {
+      _accountUploadrequest.listen((value) {
+        RequestManager(value, createCall: () => _accountUploadUseCase.execute(params: value)).asFlow().listen(
+          (event) {
+            //updateLoader();
+            _accountUploadResponse.safeAdd(event);
+          },
+        );
+      });
+    }
 
     //getCipher();
   }
@@ -432,6 +514,37 @@ class LoginViewModel extends BasePageViewModel {
   setLanguageToStorage(LanguageEnum languageEnum) async {
     await SecureStorageHelper.instance.saveUserSelectedLanguageToStorage(language: languageEnum.toString());
   }
+
+  ///--------------------Efawateercom/Cliq Registration API-----------------///
+
+  // isolates
+  late ReceivePort receivePort;
+  Isolate? isolate;
+
+  void registerCliqEfawateer() async {
+    debugPrint("Entered in registration------->");
+    if (isolate != null) {
+      debugPrint("Isolate not null");
+      return;
+    }
+    try {
+      receivePort = ReceivePort();
+      isolate = await Isolate.spawn(_getTokenCallBack, receivePort.sendPort);
+      receivePort.listen(_handleMessage, onDone: () {});
+    } on Exception catch (e) {
+      debugPrint("isolate catch section-------> " + e.toString());
+    }
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    sendPort.send('Send');
+  }
+
+  void _handleMessage(message) {
+    _cliqRegisterCustomerRequest.safeAdd(RegisterCustomerUsecaseParams());
+  }
+
+  ///--------------------Efawateercom/Cliq Registration API-----------------///
 
   @override
   void dispose() {

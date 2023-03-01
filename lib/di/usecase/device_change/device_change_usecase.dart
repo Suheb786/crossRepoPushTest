@@ -6,29 +6,21 @@ import 'package:domain/usecase/device_change/verify_device_change_otp_usecase.da
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[ResendOtpDeviceChangeUseCase] provider
-final resendOtpDeviceChangeUseCaseProvider =
-    Provider.autoDispose<ResendOtpDeviceChangeUseCase>(
-  (ref) =>
-      ResendOtpDeviceChangeUseCase(ref.read(deviceChangeRepositoryProvider)),
+final resendOtpDeviceChangeUseCaseProvider = Provider.autoDispose<ResendOtpDeviceChangeUseCase>(
+  (ref) => ResendOtpDeviceChangeUseCase(ref.read(deviceChangeRepositoryProvider)),
 );
 
 ///[SendOtpTokenEmailOtpUseCase] provider
-final sendOtpTokenEmailOtpUseCaseProvider =
-    Provider.autoDispose<SendOtpTokenEmailOtpUseCase>(
-  (ref) =>
-      SendOtpTokenEmailOtpUseCase(ref.read(deviceChangeRepositoryProvider)),
+final sendOtpTokenEmailOtpUseCaseProvider = Provider.autoDispose<SendOtpTokenEmailOtpUseCase>(
+  (ref) => SendOtpTokenEmailOtpUseCase(ref.read(deviceChangeRepositoryProvider)),
 );
 
 ///[SendOtpTokeDeviceChangeOtpUseCase] provider
-final sendOtpTokenDeviceChangeUseCaseProvider =
-    Provider.autoDispose<SendOtpTokeDeviceChangeOtpUseCase>(
-  (ref) => SendOtpTokeDeviceChangeOtpUseCase(
-      ref.read(deviceChangeRepositoryProvider)),
+final sendOtpTokenDeviceChangeUseCaseProvider = Provider.autoDispose<SendOtpTokeDeviceChangeOtpUseCase>(
+  (ref) => SendOtpTokeDeviceChangeOtpUseCase(ref.read(deviceChangeRepositoryProvider)),
 );
 
 ///[VerifyDeviceChangeOtpUseCase] provider
-final verifyDeviceChangeOtpUseCaseProvider =
-    Provider.autoDispose<VerifyDeviceChangeOtpUseCase>(
-  (ref) =>
-      VerifyDeviceChangeOtpUseCase(ref.read(deviceChangeRepositoryProvider)),
+final verifyDeviceChangeOtpUseCaseProvider = Provider.autoDispose<VerifyDeviceChangeOtpUseCase>(
+  (ref) => VerifyDeviceChangeOtpUseCase(ref.read(deviceChangeRepositoryProvider)),
 );

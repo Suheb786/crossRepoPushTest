@@ -8,25 +8,20 @@ import 'package:neo_bank/feature/forgot_password/forgot_password_page_view_model
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_view_model.dart';
 
 final forgotPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ForgotPasswordPageViewModel>(
-        (ref) => ForgotPasswordPageViewModel());
+    ChangeNotifierProvider.autoDispose<ForgotPasswordPageViewModel>((ref) => ForgotPasswordPageViewModel());
 
 final resetPasswordSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<ResetPasswordSuccessViewModel>(
         (ref) => ResetPasswordSuccessViewModel());
 
-final addIdNumberForResetPasswordViewModelProvider = ChangeNotifierProvider
-    .autoDispose<AddIDNumberForResetPasswordPageViewModel>((ref) =>
-        AddIDNumberForResetPasswordPageViewModel(
-            ref.read(checkForgetPasswordUseCaseProvider)));
+final addIdNumberForResetPasswordViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AddIDNumberForResetPasswordPageViewModel>(
+        (ref) => AddIDNumberForResetPasswordPageViewModel(ref.read(checkForgetPasswordUseCaseProvider)));
 
 final enterOtpForResetPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterOTPForResetPasswordPageViewModel>(
-        (ref) => EnterOTPForResetPasswordPageViewModel(
-            ref.read(enterOtpForResetPasswordUseCaseProvider),
-            ref.read(createNewPasswordUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<EnterOTPForResetPasswordPageViewModel>((ref) =>
+        EnterOTPForResetPasswordPageViewModel(
+            ref.read(enterOtpForResetPasswordUseCaseProvider), ref.read(createNewPasswordUseCaseProvider)));
 
-final createNewPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreateNewPasswordPageViewModel>((ref) =>
-        CreateNewPasswordPageViewModel(
-            ref.read(createNewPasswordUseCaseProvider)));
+final createNewPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<CreateNewPasswordPageViewModel>(
+    (ref) => CreateNewPasswordPageViewModel(ref.read(createNewPasswordUseCaseProvider)));

@@ -7,9 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'doc_status_response_entity.g.dart';
 
 @JsonSerializable()
-class DocStatusResponseEntity extends BaseLayerDataTransformer<
-    DocStatusResponseEntity,
-    DocStatusResponse> {
+class DocStatusResponseEntity extends BaseLayerDataTransformer<DocStatusResponseEntity, DocStatusResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -23,8 +21,6 @@ class DocStatusResponseEntity extends BaseLayerDataTransformer<
   @override
   DocStatusResponse transform() {
     return DocStatusResponse(
-        docStatusContent:
-        DocStatusContentEntity.fromJson(this.response!.content)
-            .transform());
+        docStatusContent: DocStatusContentEntity.fromJson(this.response!.content).transform());
   }
 }

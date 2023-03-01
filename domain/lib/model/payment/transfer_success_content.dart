@@ -5,6 +5,5 @@ class TransferSuccessContent {
   final DateTime? transferDate;
   final String? referenceNo;
 
-  TransferSuccessContent(
-      {this.amount, this.name, this.iban, this.transferDate, this.referenceNo});
+  TransferSuccessContent({this.amount, this.name, this.iban, this.transferDate, this.referenceNo});
 }

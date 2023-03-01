@@ -14,22 +14,17 @@ class ManageContactListPageViewModel extends BasePageViewModel {
   final TextEditingController contactSearchController = TextEditingController();
 
   ///get beneficiary list
-  PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest =
-      PublishSubject();
+  PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBeneficiaryListResponse>>
-      _getBeneficiaryListResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryListResponse = BehaviorSubject();
 
-  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream =>
-      _searchBeneficiaryListResponse.stream;
+  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream => _searchBeneficiaryListResponse.stream;
 
-  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
 
   ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getBeneficiaryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -38,8 +33,7 @@ class ManageContactListPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          _searchBeneficiaryListResponse
-              .safeAdd(Resource.success(data: event.data!.beneficiaryList));
+          _searchBeneficiaryListResponse.safeAdd(Resource.success(data: event.data!.beneficiaryList));
         }
       });
     });
@@ -55,24 +49,20 @@ class ManageContactListPageViewModel extends BasePageViewModel {
 
   void searchBeneficiary(String? searchText) {
     searchResult!.clear();
-    List<Beneficiary>? beneficiaryList =
-        _getBeneficiaryListResponse.value.data!.beneficiaryList;
+    List<Beneficiary>? beneficiaryList = _getBeneficiaryListResponse.value.data!.beneficiaryList;
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < beneficiaryList!.length; i++) {
         Beneficiary beneficiary = beneficiaryList[i];
         if (beneficiary.nickName != null) {
-          if (beneficiary.nickName!
-              .toLowerCase()
-              .contains(searchText.toLowerCase())) {
+          if (beneficiary.nickName!.toLowerCase().contains(searchText.toLowerCase())) {
             searchResult!.add(beneficiary);
           }
         }
       }
-      _searchBeneficiaryListResponse
-          .safeAdd(Resource.success(data: searchResult));
+      _searchBeneficiaryListResponse.safeAdd(Resource.success(data: searchResult));
     } else {
-      _searchBeneficiaryListResponse.safeAdd(Resource.success(
-          data: _getBeneficiaryListResponse.value.data!.beneficiaryList));
+      _searchBeneficiaryListResponse
+          .safeAdd(Resource.success(data: _getBeneficiaryListResponse.value.data!.beneficiaryList));
     }
   }
 

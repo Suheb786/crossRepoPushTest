@@ -8,9 +8,7 @@ part "debit_card_limit_response_entity.g.dart";
 
 @JsonSerializable()
 class DebitCardLimitResponseEntity
-    implements
-        BaseLayerDataTransformer<DebitCardLimitResponseEntity,
-            DebitCardLimitResponse> {
+    implements BaseLayerDataTransformer<DebitCardLimitResponseEntity, DebitCardLimitResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class DebitCardLimitResponseEntity
   @override
   DebitCardLimitResponse transform() {
     return DebitCardLimitResponse(
-        debitCardLimitContent:
-            DebitCardLimitContentEntity.fromJson(response!.content)
-                .transform());
+        debitCardLimitContent: DebitCardLimitContentEntity.fromJson(response!.content).transform());
   }
 }

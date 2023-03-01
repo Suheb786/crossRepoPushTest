@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:isolate';
 
+import 'dart:async';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
@@ -14,8 +16,14 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_res
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
+import 'package:domain/model/qr/verify_qr_response.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
+import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
+import 'package:domain/usecase/payment/verify_qr_usecase.dart';
+import 'package:domain/usecase/user/get_current_user_usecase.dart';
+import 'package:domain/usecase/user/save_user_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
@@ -29,7 +37,10 @@ import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
+import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -41,10 +52,20 @@ import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
-
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final SaveUserDataUseCase _saveUserDataUseCase;
+  final VerifyQRUseCase _verifyQRUseCase;
+  Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
   final GetAntelopCardsListUseCase _getAntelopCardsListUseCase;
+
+  final InitDynamicLinkUseCase _initDynamicLinkUseCase;
+  PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
+
+  PublishSubject<Resource<Uri>> _initDynamicLinkRequestResponse = PublishSubject();
+
+  Stream<Resource<Uri>> get initDynamicLinkRequestStream => _initDynamicLinkRequestResponse.stream;
 
   final SwiperController pageController = SwiperController();
   ScrollController scrollController = ScrollController();
@@ -156,8 +177,49 @@ class AppHomeViewModel extends BasePageViewModel {
   List<DebitCard> debitCards = [];
   List<CreditCard> creditCards = [];
 
-  AppHomeViewModel(
-      this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._getAntelopCardsListUseCase) {
+  ///--------Get current user ---------///
+
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
+
+  final PublishSubject<Resource<User>> _currentUserResponseSubject = PublishSubject();
+
+  Stream<Resource<User>> get currentUser => _currentUserResponseSubject.stream;
+
+  void getCurrentUser() {
+    _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
+  }
+
+  ///--------Get current user ---------///
+
+  ///--------Save current user ---------///
+
+  final PublishSubject<SaveUserDataUseCaseParams> _saveCurrentUserRequestSubject = PublishSubject();
+
+  final PublishSubject<Resource<User>> _saveCurrentUserResponseSubject = PublishSubject();
+
+  Stream<Resource<User>> get saveCurrentUser => _saveCurrentUserResponseSubject.stream;
+
+  void saveCurrentUserData({required User user}) {
+    _saveCurrentUserRequestSubject.add(SaveUserDataUseCaseParams(user: user));
+  }
+
+  ///--------Save current user ---------///
+
+  ///---------------Verify QR----------------------///
+  PublishSubject<VerifyQRUseCaseParams> _verifyQRRequest = PublishSubject();
+
+  PublishSubject<Resource<VerifyQrResponse>> _verifyQRResponse = PublishSubject();
+
+  Stream<Resource<VerifyQrResponse>> get verifyQRStream => _verifyQRResponse.stream;
+
+  void verifyQR({required String requestId}) {
+    _verifyQRRequest.safeAdd(VerifyQRUseCaseParams(requestId: requestId, source: 'L'));
+  }
+
+  ///---------------Verify QR----------------------///
+
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase,
+      this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase,this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -196,6 +258,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
           ///fetching antelop cards
           // showErrorState();
+          initDynamicLink();
+          getCurrentUser();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
 
@@ -211,6 +275,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
           ///fetching antelop cards
           triggerRequestMoneyPopup();
+          initDynamicLink();
+          getCurrentUser();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
 
@@ -257,6 +323,45 @@ class AppHomeViewModel extends BasePageViewModel {
 
     _requestMoneyRequest.listen((value) {
       _requestMoneyPopUpResponse.safeAdd(value);
+    });
+
+    _initDynamicLinkRequestRequest.listen((value) {
+      RequestManager(value, createCall: () => _initDynamicLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.SUCCESS) {
+          _initDynamicLinkRequestResponse.safeAdd(event);
+        }
+      });
+    });
+
+    _currentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _getCurrentUserUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        _currentUserResponseSubject.add(event);
+      });
+    });
+
+    _saveCurrentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserDataUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        updateLoader();
+        _saveCurrentUserResponseSubject.add(event);
+      });
+    });
+
+    _verifyQRRequest.listen((value) {
+      RequestManager(value, createCall: () => _verifyQRUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _verifyQRResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
     });
 
     getDashboardData();
@@ -518,6 +623,13 @@ class AppHomeViewModel extends BasePageViewModel {
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
+
+      /// adding rj card pages
+      if ((dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
+        pages.add(RjCardWidget());
+
+        cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      }
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);
@@ -686,6 +798,10 @@ class AppHomeViewModel extends BasePageViewModel {
     _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
+  initDynamicLink() {
+    _initDynamicLinkRequestRequest.safeAdd(InitDynamicLinkUseCaseParams());
+  }
+
   ///--------------------Antelop Cards List-----------------///
   PublishSubject<GetAntelopCardsListUseCaseParams> _antelopGetCardsRequest = PublishSubject();
 
@@ -755,6 +871,10 @@ class AppHomeViewModel extends BasePageViewModel {
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
     _showRequestMoneyPopUpSubject.close();
+    if (timer != null) {
+      timer?.cancel();
+    }
+
     super.dispose();
   }
 }

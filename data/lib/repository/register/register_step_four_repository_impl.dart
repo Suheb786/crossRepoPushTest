@@ -14,5 +14,4 @@ class RegisterStepFourRepositoryImpl with RegisterStepFourRepository {
     final result = await _registerRemoteDS.getReviewApplicationDetails();
     return Right(result);
   }
-
 }

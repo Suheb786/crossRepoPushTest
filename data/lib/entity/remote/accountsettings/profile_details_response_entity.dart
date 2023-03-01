@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'profile_details_response_entity.g.dart';
 
 @JsonSerializable()
-class ProfileDetailsResponseEntity extends BaseLayerDataTransformer<
-    ProfileDetailsResponseEntity, ProfileInfoResponse> {
+class ProfileDetailsResponseEntity
+    extends BaseLayerDataTransformer<ProfileDetailsResponseEntity, ProfileInfoResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 
@@ -26,7 +26,6 @@ class ProfileDetailsResponseEntity extends BaseLayerDataTransformer<
 
   @override
   ProfileInfoResponse transform() {
-    return ProfileInfoResponse(
-        content: ProfileEntity.fromJson(responseEntity!.content).transform());
+    return ProfileInfoResponse(content: ProfileEntity.fromJson(responseEntity!.content).transform());
   }
 }

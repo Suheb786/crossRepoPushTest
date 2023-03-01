@@ -45,7 +45,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
           children: [
             Expanded(
               child: GestureDetector(
-                onHorizontalDragEnd: (details) {
+                onHorizontalDragEnd: (details) async {
                   // FirebaseCrashlytics.instance.crash();
 
                   FocusScope.of(context).unfocus();
@@ -260,6 +260,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.applicationId =
                                                                         data.data!.applicationId!;
                                                                     model.saveUserData();
+    model.registerCliqEfawateer();
                                                                     AppConstantsUtils
                                                                             .isApplePayFeatureEnabled =
                                                                         data.data?.applePay ?? false;
@@ -306,6 +307,20 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                       model.checkKycStatus();
                                                                     }
 
+                                                                    //model.accountUpload();
+                                                                    //model.registerAccount();
+
+                                                                    ///refresh token api
+                                                                    // ProviderScope.containerOf(
+                                                                    //         context)
+                                                                    //     .read(
+                                                                    //         appViewModel)
+                                                                    //     .getToken();
+                                                                    // model
+                                                                    //     .checkKycStatus();
+
+                                                                    ///new device flow check
+
                                                                     // Future.delayed(
                                                                     //     Duration(
                                                                     //         milliseconds:
@@ -320,6 +335,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //       arguments:
                                                                     //           RegisterPageParams());
                                                                     // });
+
                                                                   } else if (data.status == Status.ERROR) {
                                                                     model.emailKey.currentState!.isValid =
                                                                         false;
@@ -327,121 +343,104 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                   }
                                                                 },
                                                                 dataBuilder: (context, loginData) {
-                                                                  return AppStreamBuilder<
-                                                                      Resource<CheckKycResponse>>(
-                                                                    stream: model.kycStatusStream,
-                                                                    initialData: Resource.none(),
-                                                                    onData: (data) {
-                                                                      if (data.status == Status.SUCCESS) {
-                                                                        CheckKYCData kycData = data
-                                                                                .data?.content?.kycData
-                                                                                ?.firstWhere(
-                                                                                    (element) =>
-                                                                                        element.status ??
-                                                                                        false,
-                                                                                    orElse: () =>
-                                                                                        CheckKYCData()) ??
-                                                                            CheckKYCData();
+                                                                  return AppStreamBuilder<Resource<bool>>(
+                                                                      stream: model.accountUploadStream,
+                                                                      initialData: Resource.none(),
+                                                                      onData: (data) {},
+                                                                      dataBuilder: (context, snapshot) {
+                                                                        return AppStreamBuilder<
+                                                                            Resource<CheckKycResponse>>(
+                                                                          stream: model.kycStatusStream,
+                                                                          initialData: Resource.none(),
+                                                                          onData: (data) {
+                                                                            if (data.status ==
+                                                                                Status.SUCCESS) {
+                                                                              CheckKYCData kycData = data
+                                                                                      .data?.content?.kycData
+                                                                                      ?.firstWhere(
+                                                                                          (element) =>
+                                                                                              element
+                                                                                                  .status ??
+                                                                                              false,
+                                                                                          orElse: () =>
+                                                                                              CheckKYCData()) ??
+                                                                                  CheckKYCData();
 
-                                                                        if (kycData.type?.isNotEmpty ??
-                                                                            false) {
-                                                                          if (kycData.type == 'MobileOTP') {
-                                                                            Navigator.popAndPushNamed(
-                                                                                context,
-                                                                                RoutePaths
-                                                                                    .AccountRegistration,
-                                                                                arguments:
-                                                                                    AccountRegistrationParams(
+                                                                              if (kycData.type?.isNotEmpty ??
+                                                                                  false) {
+                                                                                if (kycData.type ==
+                                                                                    'MobileOTP') {
+                                                                                  Navigator.popAndPushNamed(
+                                                                                      context,
+                                                                                      RoutePaths
+                                                                                          .AccountRegistration,
+                                                                                      arguments: AccountRegistrationParams(
+                                                                                          kycData: kycData,
+                                                                                          mobileCode:
+                                                                                              loginData!.data!
+                                                                                                  .mobileCode!,
+                                                                                          mobileNumber:
+                                                                                              loginData.data!
+                                                                                                  .mobile!));
+                                                                                } else {
+                                                                                  Navigator.popAndPushNamed(
+                                                                                      context,
+                                                                                      RoutePaths.Registration,
+                                                                                      arguments:
+                                                                                          RegisterPageParams(
+                                                                                        applicationId: model
+                                                                                            .applicationId,
                                                                                         kycData: kycData,
-                                                                                        mobileCode: loginData!
-                                                                                            .data!
-                                                                                            .mobileCode!,
-                                                                                        mobileNumber:
-                                                                                            loginData.data!
-                                                                                                .mobile!));
-                                                                          } else {
-                                                                            Navigator.popAndPushNamed(context,
-                                                                                RoutePaths.Registration,
-                                                                                arguments: RegisterPageParams(
-                                                                                  applicationId:
-                                                                                      model.applicationId,
-                                                                                  kycData: kycData,
-                                                                                ));
-                                                                          }
-                                                                        } else {
-                                                                          // if (Platform.isIOS &&
-                                                                          //     AppConstantsUtils
-                                                                          //         .isApplePayFeatureEnabled) {
-                                                                          //   model.antelopSdkInitialize();
-                                                                          // }
-                                                                          Navigator.popAndPushNamed(
-                                                                              context, RoutePaths.AppHome);
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    dataBuilder: (context, kycResponse) {
-                                                                      return Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            left: 40.0.w,
-                                                                            right: 40.0.w,
-                                                                            top: 25.0.h),
-                                                                        child: Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.stretch,
-                                                                          children: [
-                                                                            AppTextField(
-                                                                                textFieldBorderColor:
-                                                                                    AppColor.whiteGray,
-                                                                                textFieldFocusBorderColor:
-                                                                                    Theme.of(context)
-                                                                                        .primaryColorDark,
-                                                                                labelText: S
-                                                                                    .of(context)
-                                                                                    .emailAddress,
-                                                                                hintText:
-                                                                                    S.of(context).pleaseEnter,
-                                                                                key: model.emailKey,
-                                                                                controller:
-                                                                                    model.emailController,
-                                                                                inputType: TextInputType
-                                                                                    .emailAddress,
-                                                                                inputAction:
-                                                                                    TextInputAction.next,
-                                                                                onSaved: (value) {
-                                                                                  model.validateEmail();
-                                                                                },
-                                                                                suffixIcon: (_, __) {
-                                                                                  return AppStreamBuilder<
-                                                                                          Resource<bool>>(
-                                                                                      stream: model
-                                                                                          .checkBioMetricStream,
-                                                                                      initialData:
-                                                                                          Resource.none(),
-                                                                                      onData: (data) {
-                                                                                        if (data.status ==
-                                                                                            Status.SUCCESS) {
-                                                                                          model.authenticateBioMetric(
-                                                                                              title: S
-                                                                                                  .of(context)
-                                                                                                  .biometricLogin,
-                                                                                              localisedReason: Platform
-                                                                                                      .isAndroid
-                                                                                                  ? S
-                                                                                                      .of(
-                                                                                                          context)
-                                                                                                      .enableBiometricLoginDescriptionAndroid
-                                                                                                  : S
-                                                                                                      .of(context)
-                                                                                                      .enableBiometricLoginDescriptionIos);
-                                                                                        }
+                                                                                      ));
+                                                                                }
+                                                                              } else {
+                                                                                Navigator.popAndPushNamed(
+                                                                                    context,
+                                                                                    RoutePaths.AppHome);
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          dataBuilder:
+                                                                              (context, kycResponse) {
+                                                                            return Padding(
+                                                                              padding: EdgeInsets.only(
+                                                                                  left: 40.0.w,
+                                                                                  right: 40.0.w,
+                                                                                  top: 25.0.h),
+                                                                              child: Column(
+                                                                                crossAxisAlignment:
+                                                                                    CrossAxisAlignment
+                                                                                        .stretch,
+                                                                                children: [
+                                                                                  AppTextField(
+                                                                                      textFieldBorderColor:
+                                                                                          AppColor.whiteGray,
+                                                                                      textFieldFocusBorderColor:
+                                                                                          Theme.of(context)
+                                                                                              .primaryColorDark,
+                                                                                      labelText: S
+                                                                                          .of(context)
+                                                                                          .emailAddress,
+                                                                                      hintText: S
+                                                                                          .of(context)
+                                                                                          .pleaseEnter,
+                                                                                      key: model.emailKey,
+                                                                                      controller: model
+                                                                                          .emailController,
+                                                                                      inputType: TextInputType
+                                                                                          .emailAddress,
+                                                                                      inputAction:
+                                                                                          TextInputAction
+                                                                                              .next,
+                                                                                      onSaved: (value) {
+                                                                                        model.validateEmail();
                                                                                       },
-                                                                                      dataBuilder: (context,
-                                                                                          checkBioMetric) {
+                                                                                      suffixIcon: (_, __) {
                                                                                         return AppStreamBuilder<
                                                                                                 Resource<
                                                                                                     bool>>(
                                                                                             stream: model
-                                                                                                .authenticateBioMetricStream,
+                                                                                                .checkBioMetricStream,
                                                                                             initialData:
                                                                                                 Resource
                                                                                                     .none(),
@@ -449,25 +448,26 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                               if (data.status ==
                                                                                                   Status
                                                                                                       .SUCCESS) {
-                                                                                                if (data
-                                                                                                    .data!) {
-                                                                                                  model.androidLogin(
-                                                                                                      cipher: cipher!
-                                                                                                          .data!
-                                                                                                          .getCipherContent!
-                                                                                                          .cipher!);
-                                                                                                }
-                                                                                                // model.getCurrentUser();
-                                                                                                //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                model.authenticateBioMetric(
+                                                                                                    title: S
+                                                                                                        .of(
+                                                                                                            context)
+                                                                                                        .biometricLogin,
+                                                                                                    localisedReason: Platform
+                                                                                                            .isAndroid
+                                                                                                        ? S
+                                                                                                            .of(context)
+                                                                                                            .enableBiometricLoginDescriptionAndroid
+                                                                                                        : S.of(context).enableBiometricLoginDescriptionIos);
                                                                                               }
                                                                                             },
                                                                                             dataBuilder: (context,
-                                                                                                authenticBiometric) {
+                                                                                                checkBioMetric) {
                                                                                               return AppStreamBuilder<
                                                                                                       Resource<
-                                                                                                          User>>(
+                                                                                                          bool>>(
                                                                                                   stream: model
-                                                                                                      .currentUser,
+                                                                                                      .authenticateBioMetricStream,
                                                                                                   initialData:
                                                                                                       Resource
                                                                                                           .none(),
@@ -476,177 +476,201 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     if (data.status ==
                                                                                                         Status
                                                                                                             .SUCCESS) {
-                                                                                                      model.checkVersionUpdate(
-                                                                                                          clear:
-                                                                                                              "false");
-                                                                                                    } else if (data
-                                                                                                            .status ==
-                                                                                                        Status
-                                                                                                            .ERROR) {
-                                                                                                      if (data.appError!.type ==
-                                                                                                          ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                        model.checkVersionUpdate(
-                                                                                                            clear: "true");
+                                                                                                      if (data
+                                                                                                          .data!) {
+                                                                                                        model.androidLogin(
+                                                                                                            cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                                       }
+                                                                                                      // model.getCurrentUser();
+                                                                                                      //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                                     }
                                                                                                   },
                                                                                                   dataBuilder:
                                                                                                       (context,
-                                                                                                          progress) {
+                                                                                                          authenticBiometric) {
                                                                                                     return AppStreamBuilder<
-                                                                                                            bool>(
+                                                                                                            Resource<
+                                                                                                                User>>(
                                                                                                         stream: model
-                                                                                                            .fingerPrintShowStream,
-                                                                                                        initialData:
-                                                                                                            false,
+                                                                                                            .currentUser,
+                                                                                                        initialData: Resource
+                                                                                                            .none(),
+                                                                                                        onData:
+                                                                                                            (data) {
+                                                                                                          if (data.status ==
+                                                                                                              Status.SUCCESS) {
+                                                                                                            model.checkVersionUpdate(clear: "false");
+                                                                                                          } else if (data.status ==
+                                                                                                              Status.ERROR) {
+                                                                                                            if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
+                                                                                                              model.checkVersionUpdate(clear: "true");
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
                                                                                                         dataBuilder:
-                                                                                                            (context, fingerPrintValue) {
-                                                                                                          return Visibility(
-                                                                                                            visible: fingerPrintValue!,
-                                                                                                            child: InkWell(
-                                                                                                              onTap: () {
-                                                                                                                model.isBiometricDialogShown = true;
-                                                                                                                FocusScope.of(context).unfocus();
-                                                                                                                model.checkBiometric();
-                                                                                                              },
-                                                                                                              child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                                            ),
-                                                                                                          );
+                                                                                                            (context, progress) {
+                                                                                                          return AppStreamBuilder<bool>(
+                                                                                                              stream: model.fingerPrintShowStream,
+                                                                                                              initialData: false,
+                                                                                                              dataBuilder: (context, fingerPrintValue) {
+                                                                                                                return Visibility(
+                                                                                                                  visible: fingerPrintValue!,
+                                                                                                                  child: InkWell(
+                                                                                                                    onTap: () {
+                                                                                                                      model.isBiometricDialogShown = true;
+                                                                                                                      FocusScope.of(context).unfocus();
+                                                                                                                      model.checkBiometric();
+                                                                                                                    },
+                                                                                                                    child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                                                  ),
+                                                                                                                );
+                                                                                                              });
                                                                                                         });
                                                                                                   });
                                                                                             });
-                                                                                      });
-                                                                                },
-                                                                                suffixIconSize: 24,
-                                                                                onChanged: (value) =>
-                                                                                    model.validate()),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.only(
-                                                                                  top: 16.0.h),
-                                                                              child: AppTextField(
-                                                                                textFieldBorderColor:
-                                                                                    AppColor.whiteGray,
-                                                                                textFieldFocusBorderColor:
-                                                                                    Theme.of(context)
-                                                                                        .primaryColorDark,
-                                                                                labelText:
-                                                                                    S.of(context).password,
-                                                                                hintText:
-                                                                                    S.of(context).pleaseEnter,
-                                                                                key: model.passwordKey,
-                                                                                controller:
-                                                                                    model.passwordController,
-                                                                                inputAction:
-                                                                                    TextInputAction.done,
-                                                                                onSaved: (value) {
-                                                                                  model.validateEmail();
-                                                                                },
-                                                                                onChanged: (value) =>
-                                                                                    model.validate(),
-                                                                                obscureText: true,
-                                                                                suffixIcon:
-                                                                                    (isChecked, value) {
-                                                                                  return InkWell(
-                                                                                    onTap: () {
-                                                                                      model
-                                                                                              .passwordKey
-                                                                                              .currentState!
-                                                                                              .secureText =
-                                                                                          !model
-                                                                                              .passwordKey
-                                                                                              .currentState!
-                                                                                              .secureText;
-                                                                                    },
-                                                                                    child: model
-                                                                                            .passwordKey
-                                                                                            .currentState!
-                                                                                            .secureText
-                                                                                        ? Container(
-                                                                                            width: 16.0.w,
-                                                                                            height: 16.0.h,
-                                                                                            padding:
-                                                                                                EdgeInsets
-                                                                                                    .all(4),
-                                                                                            child: AppSvg.asset(
-                                                                                                AssetUtils
-                                                                                                    .eye,
-                                                                                                color: Theme.of(
-                                                                                                        context)
-                                                                                                    .inputDecorationTheme
-                                                                                                    .labelStyle!
-                                                                                                    .color),
-                                                                                          )
-                                                                                        : Icon(
-                                                                                            Icons
-                                                                                                .visibility_off,
+                                                                                      },
+                                                                                      suffixIconSize: 24,
+                                                                                      onChanged: (value) =>
+                                                                                          model.validate()),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsets.only(
+                                                                                        top: 16.0.h),
+                                                                                    child: AppTextField(
+                                                                                      textFieldBorderColor:
+                                                                                          AppColor.whiteGray,
+                                                                                      textFieldFocusBorderColor:
+                                                                                          Theme.of(context)
+                                                                                              .primaryColorDark,
+                                                                                      labelText: S
+                                                                                          .of(context)
+                                                                                          .password,
+                                                                                      hintText: S
+                                                                                          .of(context)
+                                                                                          .pleaseEnter,
+                                                                                      key: model.passwordKey,
+                                                                                      controller: model
+                                                                                          .passwordController,
+                                                                                      inputAction:
+                                                                                          TextInputAction
+                                                                                              .done,
+                                                                                      onSaved: (value) {
+                                                                                        model.validateEmail();
+                                                                                      },
+                                                                                      onChanged: (value) =>
+                                                                                          model.validate(),
+                                                                                      obscureText: true,
+                                                                                      suffixIcon:
+                                                                                          (isChecked, value) {
+                                                                                        return InkWell(
+                                                                                          onTap: () {
+                                                                                            model
+                                                                                                    .passwordKey
+                                                                                                    .currentState!
+                                                                                                    .secureText =
+                                                                                                !model
+                                                                                                    .passwordKey
+                                                                                                    .currentState!
+                                                                                                    .secureText;
+                                                                                          },
+                                                                                          child: model
+                                                                                                  .passwordKey
+                                                                                                  .currentState!
+                                                                                                  .secureText
+                                                                                              ? Container(
+                                                                                                  width:
+                                                                                                      16.0.w,
+                                                                                                  height:
+                                                                                                      16.0.h,
+                                                                                                  padding:
+                                                                                                      EdgeInsets
+                                                                                                          .all(4),
+                                                                                                  child: AppSvg.asset(
+                                                                                                      AssetUtils
+                                                                                                          .eye,
+                                                                                                      color: Theme.of(context)
+                                                                                                          .inputDecorationTheme
+                                                                                                          .labelStyle!
+                                                                                                          .color),
+                                                                                                )
+                                                                                              : Icon(
+                                                                                                  Icons
+                                                                                                      .visibility_off,
+                                                                                                  color: Theme.of(
+                                                                                                          context)
+                                                                                                      .inputDecorationTheme
+                                                                                                      .labelStyle!
+                                                                                                      .color,
+                                                                                                ),
+                                                                                        );
+                                                                                      },
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsets.only(
+                                                                                        top: 24.0.h),
+                                                                                    child: InkWell(
+                                                                                      onTap: () =>
+                                                                                          Navigator.pushNamed(
+                                                                                              context,
+                                                                                              RoutePaths
+                                                                                                  .ForgotPassword),
+                                                                                      child: Text(
+                                                                                        S
+                                                                                            .of(context)
+                                                                                            .forgotPassword,
+                                                                                        textAlign:
+                                                                                            TextAlign.center,
+                                                                                        style: TextStyle(
+                                                                                            fontFamily:
+                                                                                                StringUtils
+                                                                                                    .appFont,
+                                                                                            fontSize: 14.0.t,
+                                                                                            fontWeight:
+                                                                                                FontWeight
+                                                                                                    .w500,
                                                                                             color: Theme.of(
                                                                                                     context)
-                                                                                                .inputDecorationTheme
-                                                                                                .labelStyle!
-                                                                                                .color,
-                                                                                          ),
-                                                                                  );
-                                                                                },
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.only(
-                                                                                  top: 24.0.h),
-                                                                              child: InkWell(
-                                                                                onTap: () =>
-                                                                                    Navigator.pushNamed(
-                                                                                        context,
-                                                                                        RoutePaths
-                                                                                            .ForgotPassword),
-                                                                                child: Text(
-                                                                                  S
-                                                                                      .of(context)
-                                                                                      .forgotPassword,
-                                                                                  textAlign: TextAlign.center,
-                                                                                  style: TextStyle(
-                                                                                      fontFamily:
-                                                                                          StringUtils.appFont,
-                                                                                      fontSize: 14.0.t,
-                                                                                      fontWeight:
-                                                                                          FontWeight.w500,
-                                                                                      color: Theme.of(context)
-                                                                                          .accentColor),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Center(
-                                                                              child: AppStreamBuilder<bool>(
-                                                                                  stream:
-                                                                                      model.showButtonStream,
-                                                                                  initialData: false,
-                                                                                  dataBuilder:
-                                                                                      (context, isValid) {
-                                                                                    return Visibility(
-                                                                                      visible: isValid!,
-                                                                                      child: Padding(
-                                                                                        padding:
-                                                                                            EdgeInsets.only(
-                                                                                                top: 24.0.h),
-                                                                                        child: AnimatedButton(
-                                                                                          buttonText: S
-                                                                                              .of(context)
-                                                                                              .swipeToProceed,
-                                                                                          borderColor: Theme
-                                                                                                  .of(context)
-                                                                                              .accentColor,
-                                                                                          textColor: Theme.of(
-                                                                                                  context)
-                                                                                              .accentColor,
-                                                                                        ),
+                                                                                                .accentColor),
                                                                                       ),
-                                                                                    );
-                                                                                  }),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  );
+                                                                                    ),
+                                                                                  ),
+                                                                                  Center(
+                                                                                    child: AppStreamBuilder<
+                                                                                            bool>(
+                                                                                        stream: model
+                                                                                            .showButtonStream,
+                                                                                        initialData: false,
+                                                                                        dataBuilder: (context,
+                                                                                            isValid) {
+                                                                                          return Visibility(
+                                                                                            visible: isValid!,
+                                                                                            child: Padding(
+                                                                                              padding: EdgeInsets
+                                                                                                  .only(
+                                                                                                      top: 24.0
+                                                                                                          .h),
+                                                                                              child:
+                                                                                                  AnimatedButton(
+                                                                                                buttonText: S
+                                                                                                    .of(context)
+                                                                                                    .swipeToProceed,
+                                                                                                borderColor: Theme.of(
+                                                                                                        context)
+                                                                                                    .accentColor,
+                                                                                                textColor: Theme.of(
+                                                                                                        context)
+                                                                                                    .accentColor,
+                                                                                              ),
+                                                                                            ),
+                                                                                          );
+                                                                                        }),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      });
                                                                 },
                                                               );
                                                             });

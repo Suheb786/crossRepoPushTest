@@ -13,8 +13,7 @@ class RelationshipWithCardholderDebitPageViewModel extends BasePageViewModel {
 
   TextEditingController relationshipController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> relationshipKey =
-      GlobalKey(debugLabel: "relationship");
+  final GlobalKey<AppTextFieldState> relationshipKey = GlobalKey(debugLabel: "relationship");
 
   List<String> relationship = [
     "Parent",
@@ -23,12 +22,11 @@ class RelationshipWithCardholderDebitPageViewModel extends BasePageViewModel {
   ];
 
   /// relationship with card holder request subject holder
-  PublishSubject<RelationshipWithCardholderUseCaseParams>
-      _relationshipWithCardHolderRequest = PublishSubject();
+  PublishSubject<RelationshipWithCardholderUseCaseParams> _relationshipWithCardHolderRequest =
+      PublishSubject();
 
   /// relationship with card holder response subject holder
-  PublishSubject<Resource<bool>> _relationshipWithCardHolderResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _relationshipWithCardHolderResponse = PublishSubject();
 
   Stream<Resource<bool>> get relationshipWithCardHolderResponseStream =>
       _relationshipWithCardHolderResponse.stream;
@@ -38,12 +36,9 @@ class RelationshipWithCardholderDebitPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  RelationshipWithCardholderDebitPageViewModel(
-      this._relationshipWithCardHolderUseCase) {
+  RelationshipWithCardholderDebitPageViewModel(this._relationshipWithCardHolderUseCase) {
     _relationshipWithCardHolderRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _relationshipWithCardHolderUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _relationshipWithCardHolderUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -56,9 +51,8 @@ class RelationshipWithCardholderDebitPageViewModel extends BasePageViewModel {
   }
 
   void relationshipWithCardHolder() {
-    _relationshipWithCardHolderRequest.safeAdd(
-        RelationshipWithCardholderUseCaseParams(
-            relationship: relationshipController.text));
+    _relationshipWithCardHolderRequest
+        .safeAdd(RelationshipWithCardholderUseCaseParams(relationship: relationshipController.text));
   }
 
   void validate() {

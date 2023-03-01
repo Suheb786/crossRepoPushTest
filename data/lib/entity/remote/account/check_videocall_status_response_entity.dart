@@ -7,27 +7,22 @@ import 'package:json_annotation/json_annotation.dart';
 part 'check_videocall_status_response_entity.g.dart';
 
 @JsonSerializable()
-class CheckVideoCallStatusResponseEntity extends BaseLayerDataTransformer<
-    CheckVideoCallStatusResponseEntity,
-    CheckVideoCallResponse> {
+class CheckVideoCallStatusResponseEntity
+    extends BaseLayerDataTransformer<CheckVideoCallStatusResponseEntity, CheckVideoCallResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   CheckVideoCallStatusResponseEntity(this.response);
 
-  factory CheckVideoCallStatusResponseEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory CheckVideoCallStatusResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckVideoCallStatusResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckVideoCallStatusResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CheckVideoCallStatusResponseEntityToJson(this);
 
   @override
   CheckVideoCallResponse transform() {
     return CheckVideoCallResponse(
         checkVideoCallResponseContent:
-        CheckVideoCallStatusResponseContentEntity.fromJson(
-            this.response!.content)
-            .transform());
+            CheckVideoCallStatusResponseContentEntity.fromJson(this.response!.content).transform());
   }
 }

@@ -43,25 +43,19 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
 
-  GlobalKey<AppTextFieldState> nationalityKey =
-      GlobalKey(debugLabel: "nationality");
+  GlobalKey<AppTextFieldState> nationalityKey = GlobalKey(debugLabel: "nationality");
 
-  GlobalKey<AppTextFieldState> expiryDateKey =
-      GlobalKey(debugLabel: "expiryDate");
+  GlobalKey<AppTextFieldState> expiryDateKey = GlobalKey(debugLabel: "expiryDate");
 
   GlobalKey<AppTextFieldState> genderKey = GlobalKey(debugLabel: "gender");
 
-  GlobalKey<AppTextFieldState> motherNameKey =
-      GlobalKey(debugLabel: "mother's name");
+  GlobalKey<AppTextFieldState> motherNameKey = GlobalKey(debugLabel: "mother's name");
 
-  GlobalKey<AppTextFieldState> legalDocumentKey =
-      GlobalKey(debugLabel: "legalDocument");
+  GlobalKey<AppTextFieldState> legalDocumentKey = GlobalKey(debugLabel: "legalDocument");
 
-  GlobalKey<AppTextFieldState> issuingDateKey =
-      GlobalKey(debugLabel: "issuingDate");
+  GlobalKey<AppTextFieldState> issuingDateKey = GlobalKey(debugLabel: "issuingDate");
 
-  GlobalKey<AppTextFieldState> issuingPlaceKey =
-      GlobalKey(debugLabel: "issuingPlace");
+  GlobalKey<AppTextFieldState> issuingPlaceKey = GlobalKey(debugLabel: "issuingPlace");
 
   String selectedDobDate = DateTime.now().toLocal().toString();
 
@@ -76,39 +70,31 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   bool firstLoad = true;
 
   ///scan document request holder
-  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-      PublishSubject();
+  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest = PublishSubject();
 
   ///scan document response holder
-  final PublishSubject<Resource<ScannedDocumentInformation>>
-      _scanUserDocumentResponse = PublishSubject();
+  final PublishSubject<Resource<ScannedDocumentInformation>> _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
-  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
-      _scanUserDocumentResponse.stream;
+  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream => _scanUserDocumentResponse.stream;
 
   /// declaration selected subject holder
-  BehaviorSubject<bool> _declarationSelectedSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _declarationSelectedSubject = BehaviorSubject.seeded(false);
 
   /// declaration selected response stream
-  Stream<bool> get declarationSelectedStream =>
-      _declarationSelectedSubject.stream;
+  Stream<bool> get declarationSelectedStream => _declarationSelectedSubject.stream;
 
   void updateDeclarationValue(bool value) {
     _declarationSelectedSubject.safeAdd(value);
   }
 
   /// confirm detail request subject holder
-  PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
-      PublishSubject();
+  PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest = PublishSubject();
 
   /// confirm detail response subject holder
-  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
-      PublishSubject();
+  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse = PublishSubject();
 
-  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
-      _confirmDetailResponse.stream;
+  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream => _confirmDetailResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -116,49 +102,35 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///get ahwal details subject holder
-  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
-      PublishSubject();
+  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest = PublishSubject();
 
   ///get ahwal details subject response holder
-  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
-      PublishSubject();
+  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse = PublishSubject();
 
   ///get ahwal details response stream
-  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
-      _getAhwalDetailsResponse.stream;
+  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream => _getAhwalDetailsResponse.stream;
 
   ///get allowed issuers subject
-  final PublishSubject<FetchAllowedIssuersUseCaseParams>
-      _getAllowedIssuersRequest = PublishSubject();
+  final PublishSubject<FetchAllowedIssuersUseCaseParams> _getAllowedIssuersRequest = PublishSubject();
 
   ///get allowed issuers subject response
-  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
-      _getAllowedIssuersResponse = BehaviorSubject();
+  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>> _getAllowedIssuersResponse = BehaviorSubject();
 
   ///get country list request holder
-  PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest =
-      PublishSubject();
+  PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest = PublishSubject();
 
   ///get country list response holder
-  BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse = BehaviorSubject();
 
   ///get country list response stream
-  Stream<Resource<CountryListContentData>> get getCountryListStream =>
-      _getCountryListResponse.stream;
+  Stream<Resource<CountryListContentData>> get getCountryListStream => _getCountryListResponse.stream;
 
-  ScannedDocumentInformation scannedDocumentResult =
-      ScannedDocumentInformation();
+  ScannedDocumentInformation scannedDocumentResult = ScannedDocumentInformation();
 
-  ConfirmDetailViewModel(
-      this._confirmDetailUseCase,
-      this._scanUserDocumentUseCase,
-      this._getAhwalDetailsUseCase,
-      this._fetchAllowedIssuersUseCase,
-      this._getCountriesListUseCase) {
+  ConfirmDetailViewModel(this._confirmDetailUseCase, this._scanUserDocumentUseCase,
+      this._getAhwalDetailsUseCase, this._fetchAllowedIssuersUseCase, this._getCountriesListUseCase) {
     _confirmDetailRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _confirmDetailUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -169,12 +141,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
       });
     });
 
-    _scanUserDocumentRequest
-        .debounceTime(Duration(milliseconds: 800))
-        .distinct()
-        .listen((value) {
-      RequestManager(value,
-              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+    _scanUserDocumentRequest.debounceTime(Duration(milliseconds: 800)).distinct().listen((value) {
+      RequestManager(value, createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _scanUserDocumentResponse.safeAdd(event);
@@ -185,8 +153,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     });
 
     _getAhwalDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -199,9 +166,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     });
 
     _getAllowedIssuersRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _fetchAllowedIssuersUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fetchAllowedIssuersUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -213,8 +178,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     });
 
     _getCountryListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCountriesListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCountriesListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -223,8 +187,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           CountryData? countryData = event.data!.content!.countryData
-              ?.firstWhere((element) =>
-                  element.isoCode3 == scannedDocumentResult.issuingPlaceISo3);
+              ?.firstWhere((element) => element.isoCode3 == scannedDocumentResult.issuingPlaceISo3);
 
           issuingPlaceController.text = countryData!.countryName!;
           if (firstLoad) {
@@ -260,21 +223,18 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: nameController.text,
         idNumber: idNumberController.text,
-        dateOfBirth: scannedDocumentResult.dob!.year == 0
-            ? selectedDobDate
-            : scannedDocumentResult.dob.toString(),
+        dateOfBirth:
+            scannedDocumentResult.dob!.year == 0 ? selectedDobDate : scannedDocumentResult.dob.toString(),
         nationality: selectedPlaceOfBirth.isoCode3,
-        expiryDate: scannedDocumentResult.doe!.year == 0
-            ? selectedExpiryDate
-            : scannedDocumentResult.doe!.toString(),
+        expiryDate:
+            scannedDocumentResult.doe!.year == 0 ? selectedExpiryDate : scannedDocumentResult.doe!.toString(),
         gender: genderController.text,
         motherName: motherNameController.text,
         legalDocumentNo: legalDocumentController.text,
         issuingDate: scannedDocumentResult.issuingDate!.year == 0
             ? selectedIssuingDate
             : scannedDocumentResult.issuingDate.toString(),
-        issuingPlace: (selectedIssuingPlace.isoCode3 != null &&
-                selectedIssuingPlace.isoCode3!.isNotEmpty)
+        issuingPlace: (selectedIssuingPlace.isoCode3 != null && selectedIssuingPlace.isoCode3!.isNotEmpty)
             ? selectedIssuingPlace.isoCode3
             : scannedDocumentResult.issuingPlaceISo3,
         declarationSelected: _declarationSelectedSubject.value,
@@ -300,8 +260,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   }
 
   void getAhwalResponse(String id) {
-    if (_getAllowedIssuersResponse.value.data!.any((element) =>
-        element.countryIsoCode3 == scannedDocumentResult.issuingPlaceISo3)) {
+    if (_getAllowedIssuersResponse.value.data!
+        .any((element) => element.countryIsoCode3 == scannedDocumentResult.issuingPlaceISo3)) {
       _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
     } else {
       _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
@@ -325,18 +285,13 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     scannedDocumentResult = data!;
     nameController.text = data.fullName!;
     idNumberController.text = data.idNumber!;
-    dobController.text = data.dob!.year != 0
-        ? TimeUtils.getFormattedDOB(data.dob!.toString())
-        : '';
+    dobController.text = data.dob!.year != 0 ? TimeUtils.getFormattedDOB(data.dob!.toString()) : '';
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;
-    issuingDateController.text = data.issuingDate!.year != 0
-        ? TimeUtils.getFormattedDOB(data.issuingDate!.toString())
-        : '';
-    expiryDateController.text = data.doe!.year != 0
-        ? TimeUtils.getFormattedDOB(data.doe!.toString())
-        : '';
+    issuingDateController.text =
+        data.issuingDate!.year != 0 ? TimeUtils.getFormattedDOB(data.issuingDate!.toString()) : '';
+    expiryDateController.text = data.doe!.year != 0 ? TimeUtils.getFormattedDOB(data.doe!.toString()) : '';
     issuingPlaceController.text = data.currentIssuingPlace!;
     setVisibility();
   }

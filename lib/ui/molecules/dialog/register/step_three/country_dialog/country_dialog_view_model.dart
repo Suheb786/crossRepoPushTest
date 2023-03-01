@@ -36,28 +36,22 @@ class CountryDialogViewModel extends BasePageViewModel {
   }
 
   ///get country list request holder
-  PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest =
-      PublishSubject();
+  PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest = PublishSubject();
 
   ///get country list response holder
-  BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse = BehaviorSubject();
 
   ///get country list response stream
-  Stream<Resource<List<CountryData>>> get getCountryListStream =>
-      _searchCountryResponse.stream;
+  Stream<Resource<List<CountryData>>> get getCountryListStream => _searchCountryResponse.stream;
 
   ///search country response holder
-  BehaviorSubject<Resource<List<CountryData>>> _searchCountryResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<CountryData>>> _searchCountryResponse = BehaviorSubject();
 
   bool isDataAvailable = false;
 
-  CountryDialogViewModel(
-      this._fetchCountriesUseCase, this._getCountriesListUseCase) {
+  CountryDialogViewModel(this._fetchCountriesUseCase, this._getCountriesListUseCase) {
     _getCountryListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCountriesListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCountriesListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -66,12 +60,9 @@ class CountryDialogViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           event.data!.content!.countryData!.sort((a, b) {
-            return a.countryName!
-                .toLowerCase()
-                .compareTo(b.countryName!.toLowerCase());
+            return a.countryName!.toLowerCase().compareTo(b.countryName!.toLowerCase());
           });
-          _searchCountryResponse.safeAdd(
-              Resource.success(data: event.data!.content!.countryData!));
+          _searchCountryResponse.safeAdd(Resource.success(data: event.data!.content!.countryData!));
 
           selectedCountry = event.data!.content!.countryData!.firstWhere(
               (element) => element.isoCode3 == 'JOR',
@@ -86,10 +77,8 @@ class CountryDialogViewModel extends BasePageViewModel {
           // });
           initialSelectedCountry = selectedCountry;
           scrollController = FixedExtentScrollController(
-              initialItem:
-              event.data!.content!.countryData!.indexOf(selectedCountry!));
-          selectCountry(
-              event.data!.content!.countryData!.indexOf(selectedCountry!));
+              initialItem: event.data!.content!.countryData!.indexOf(selectedCountry!));
+          selectCountry(event.data!.content!.countryData!.indexOf(selectedCountry!));
           isDataAvailable = true;
         }
       });
@@ -117,14 +106,11 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   void searchCountry(String? searchText) {
     searchResult!.clear();
-    List<CountryData>? countryList =
-        _getCountryListResponse.value.data!.content!.countryData;
+    List<CountryData>? countryList = _getCountryListResponse.value.data!.content!.countryData;
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < countryList!.length; i++) {
         CountryData country = countryList[i];
-        if (country.countryName!
-            .toLowerCase()
-            .contains(searchText.toLowerCase())) {
+        if (country.countryName!.toLowerCase().contains(searchText.toLowerCase())) {
           searchResult!.add(country);
         }
       }
@@ -132,13 +118,13 @@ class CountryDialogViewModel extends BasePageViewModel {
       scrollController = FixedExtentScrollController(initialItem: 0);
       selectCountry(0);
     } else {
-      _searchCountryResponse.safeAdd(Resource.success(
-          data: _getCountryListResponse.value.data!.content!.countryData));
+      _searchCountryResponse
+          .safeAdd(Resource.success(data: _getCountryListResponse.value.data!.content!.countryData));
       scrollController = FixedExtentScrollController(
-          initialItem: _getCountryListResponse.value.data!.content!.countryData!
-              .indexOf(initialSelectedCountry!));
-      selectCountry(_getCountryListResponse.value.data!.content!.countryData!
-          .indexOf(initialSelectedCountry!));
+          initialItem:
+              _getCountryListResponse.value.data!.content!.countryData!.indexOf(initialSelectedCountry!));
+      selectCountry(
+          _getCountryListResponse.value.data!.content!.countryData!.indexOf(initialSelectedCountry!));
     }
   }
 

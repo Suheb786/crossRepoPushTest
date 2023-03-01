@@ -11,14 +11,13 @@ class IdCardRepositoryImpl extends IdCardRepository {
   IdCardRepositoryImpl(this._idCardRemoteDS);
 
   @override
-  Future<Either<NetworkError, AhwalDetailResponse>> getAhwalDetails(
-      {required String idNo}) async {
+  Future<Either<NetworkError, AhwalDetailResponse>> getAhwalDetails({required String idNo}) async {
     final result = await safeApiCall(
       _idCardRemoteDS.getAhwalDetails(idNo: idNo),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

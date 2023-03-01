@@ -116,12 +116,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> fetchCountryList({bool? getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.fetchCountryList(FetchCountryListRequest(baseData: baseData, getToken: getToken));
-  }
-
-  @override
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       {String? countryName,
       String? email,

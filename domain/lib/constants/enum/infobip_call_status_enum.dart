@@ -8,18 +8,12 @@ class InfobipCallStatusEnum {
     return _value.toString();
   }
 
-  static const InfobipCallStatusEnum ON_RINGING =
-      InfobipCallStatusEnum._("onRinging");
-  static const InfobipCallStatusEnum ON_UPDATED =
-      InfobipCallStatusEnum._("onUpdated");
-  static const InfobipCallStatusEnum ON_EARLY_MEDIA =
-      InfobipCallStatusEnum._("onEarlyMedia");
-  static const InfobipCallStatusEnum ON_ESTABLISHED =
-      InfobipCallStatusEnum._("onEstablished");
-  static const InfobipCallStatusEnum ON_HANGUP =
-      InfobipCallStatusEnum._("onHangup");
-  static const InfobipCallStatusEnum ON_ERROR =
-      InfobipCallStatusEnum._("onError");
+  static const InfobipCallStatusEnum ON_RINGING = InfobipCallStatusEnum._("onRinging");
+  static const InfobipCallStatusEnum ON_UPDATED = InfobipCallStatusEnum._("onUpdated");
+  static const InfobipCallStatusEnum ON_EARLY_MEDIA = InfobipCallStatusEnum._("onEarlyMedia");
+  static const InfobipCallStatusEnum ON_ESTABLISHED = InfobipCallStatusEnum._("onEstablished");
+  static const InfobipCallStatusEnum ON_HANGUP = InfobipCallStatusEnum._("onHangup");
+  static const InfobipCallStatusEnum ON_ERROR = InfobipCallStatusEnum._("onError");
 }
 
 extension InfobipCallStatusEnumExt on String {

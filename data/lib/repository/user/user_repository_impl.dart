@@ -107,17 +107,6 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> fetchCountryList({bool? getToken}) async {
-    final result = await safeApiCall(
-      _remoteDS.fetchCountryList(getToken: getToken),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, User>> registerProspectUser(
       {String? countryName,
       String? email,

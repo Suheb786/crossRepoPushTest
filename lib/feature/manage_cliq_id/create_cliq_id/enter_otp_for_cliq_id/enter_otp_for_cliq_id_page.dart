@@ -12,8 +12,8 @@ class EnterOtpForCliqIdPage extends BasePage<EnterOtpForCliqIdPageViewModel> {
   EnterOtpForCliqIdPageState createState() => EnterOtpForCliqIdPageState();
 }
 
-class EnterOtpForCliqIdPageState extends BaseStatefulPage<
-        EnterOtpForCliqIdPageViewModel, EnterOtpForCliqIdPage>
+class EnterOtpForCliqIdPageState
+    extends BaseStatefulPage<EnterOtpForCliqIdPageViewModel, EnterOtpForCliqIdPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   EnterOtpForCliqIdPageState() : super(subscribeVisibilityEvents: true);
 
@@ -30,8 +30,7 @@ class EnterOtpForCliqIdPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(EnterOtpForCliqIdPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override

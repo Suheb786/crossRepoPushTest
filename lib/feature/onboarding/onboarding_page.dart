@@ -10,8 +10,7 @@ class OnBoardingPage extends BasePage<OnBoardingViewModel> {
   OnBoardingPageState createState() => OnBoardingPageState();
 }
 
-class OnBoardingPageState
-    extends BaseStatefulPage<OnBoardingViewModel, OnBoardingPage> {
+class OnBoardingPageState extends BaseStatefulPage<OnBoardingViewModel, OnBoardingPage> {
   @override
   ProviderBase provideBase() {
     return onBoardingViewModelProvider;

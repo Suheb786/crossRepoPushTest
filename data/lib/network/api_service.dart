@@ -45,6 +45,30 @@ import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_respons
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/base/base_response.dart';
+import 'package:data/entity/remote/bill_payment/add_new_postpaid_biller/add_new_postpaid_biller_entity_request.dart';
+import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_prepaid_biller_entity_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
+import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
+import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
+import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
+import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
+import 'package:data/entity/remote/bill_payment/get_postpaid_biller_list/get_postpaid_biller_list_entity_response.dart';
+import 'package:data/entity/remote/bill_payment/get_pre_paid_categories/get_pre_paid_categories_response.dart';
+import 'package:data/entity/remote/bill_payment/get_pre_paid_categories/get_prepaid_categories_request_entity.dart';
+import 'package:data/entity/remote/bill_payment/get_prepaid_biller_list/get_prepaid_biller_list_entity_response.dart';
+import 'package:data/entity/remote/bill_payment/pay_post_paid_bill/pay_post_paid_bill_request_entity.dart';
+import 'package:data/entity/remote/bill_payment/pay_post_paid_bill/pay_post_paid_bill_response.dart';
+import 'package:data/entity/remote/bill_payment/pay_prepaid_bill/pay_prepaid_bill_request.dart';
+import 'package:data/entity/remote/bill_payment/pay_prepaid_bill/pay_prepaid_bill_response.dart';
+import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_request_entity.dart';
+import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_response.dart';
+import 'package:data/entity/remote/bill_payment/remove_customer_billing/remove_customer_billing_request.dart';
+import 'package:data/entity/remote/bill_payment/remove_prepaid_biller/remove_prepaid_biller_request.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_request.dart';
+import 'package:data/entity/remote/bill_payment/validate_biller_otp/validate_biller_otp_response.dart';
+import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_request_entity.dart';
+import 'package:data/entity/remote/bill_payment/validate_prepaid_biller/validate_pre_paid_bill_response.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
 import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
@@ -143,12 +167,28 @@ import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.d
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
+import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
+import 'package:data/entity/remote/payment/qr/verify_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_verify_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_response_entity.dart';
+import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
+import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
+import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
+import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/flight_details_response_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
+import 'package:data/entity/remote/rj/get_flight_details/make_ticket_payment_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -170,7 +210,6 @@ import 'package:data/entity/remote/user/enable_biometric/android_login_response_
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
-import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
@@ -217,7 +256,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV2")
+  @POST("/auth/loginV4")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("/auth/RegisterV5")
@@ -228,13 +267,10 @@ abstract class ApiService {
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
 
-  @POST("/transfer/GetCountries")
-  Future<String> fetchCountryList(@Body() FetchCountryListRequest fetchCountryListRequest);
-
   @POST("/IdCard/set")
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
 
-  @POST("/Account/SelfeeCheck")
+  @POST("/Account/SelfeeCheckV1")
   Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
       @Body() SaveSelfieImageRequest saveSelfieImageRequest);
 
@@ -317,7 +353,7 @@ abstract class ApiService {
       @Body() DocStatusRequestEntity docStatusRequestEntity);
 
   ///register interest
-  @POST("/auth/RegisterInterest")
+  @POST("/auth/RegisterInterestV2")
   Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
       @Body() RegisterInterestRequestEntity registerInterestRequestEntity);
 
@@ -442,11 +478,11 @@ abstract class ApiService {
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
-  @POST("/MoneyThor/GetDebitCardTransactionsList")
+  @POST("/TransactionHistory/GetDebitCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
       @Body() GetDebitCardTransactionRequest debitCardTransactionRequest);
 
-  @POST("/MoneyThor/GetCreditCardTransactionsList")
+  @POST("/TransactionHistory/GetCreditCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       @Body() GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity);
 
@@ -526,7 +562,8 @@ abstract class ApiService {
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
   @POST("/transfer/TransferAPIVerify")
-  Future<HttpResponse<ResponseEntity>> transferVerify(@Body() BaseRequest baseRequest);
+  Future<HttpResponse<ResponseEntity>> transferVerify(
+      @Body() TransferApiVerifyRequestEntity transferApiVerifyRequestEntity);
 
   @POST("/DebitCard/UpdateLimit")
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
@@ -593,7 +630,7 @@ abstract class ApiService {
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
       @Body() GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
 
-  @POST("/auth/GetCipherV1")
+  @POST("/auth/GetCipherV2")
   Future<HttpResponse<GetCipherResponseEntity>> getCipher(
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
@@ -694,7 +731,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
       @Body() SupplementaryCreditCardStepTwoRequestEntity request);
 
-  @POST("/CardTracking/SuppStepthree")
+  @POST("/CardTracking/SuppStepthreeV2")
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepThree(
       @Body() SupplementaryCreditCardStepThreeRequestEntity request);
 
@@ -779,4 +816,131 @@ abstract class ApiService {
 
   @POST("/Applepay/EnrollCards")
   Future<HttpResponse<EnrollCardResponseEntity>> enrollCards(@Body() EnrollCardRequestEntity request);
+
+  ///---------------- bill payment ------------------
+
+  @POST("/BillPayment/GetBillerCategories")
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(@Body() BaseRequest request);
+
+  @POST("/BillPayment/AccountInquiry")
+  Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerListData(
+      @Body() BaseRequest request);
+
+  @POST("/BillPayment/GetSavePrePaidBillers")
+  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListData(
+      @Body() BaseRequest request);
+
+  @POST("/BillPayment/PayPrepaidBill")
+  Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(@Body() PayPrePaidRequest payPrePaidRequest);
+
+  @POST("/BillPayment/PayPostPaidBillV1")
+  Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBillV1(
+    @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
+  );
+
+  @POST("/BillPayment/PayPostPaidBill")
+  Future<HttpResponse<PayPostPaidBillResponse>> payPostPaidBill(
+    @Body() PayPostPaidBillRequestEntity ecGetRegisterRequest,
+  );
+
+  @POST("/BillPayment/ValidatePRePaidBill")
+  Future<HttpResponse<ValidatePrePaidBillResponse>> validatePrePaidBill(
+    @Body() ValidatePrePaidBillRequestEntity ecGetRegisterRequest,
+  );
+
+  @POST("/BillPayment/BillInquiryPostpaid")
+  Future<HttpResponse<PostPaidBillInquiryResponse>> postPaidBillInquiry(
+    @Body() PostPaidBillInquiryRequestEntity postPaidBillInquiryRequestEntity,
+  );
+
+  @POST("/BillPayment/AddNewPostpaidBiller")
+  Future<HttpResponse<BaseResponse>> addNewPostpaidBillerData(
+    @Body() AddNewPostpaidBillerEntityRequest addNewPostpaidBillerEntityRequest,
+  );
+
+  @POST("/BillPayment/AddNewPrepaidBiller")
+  Future<HttpResponse<BaseResponse>> addNewPrepaidBillerData(
+    @Body() AddNewPrepaidBillerEntityRequest addNewPrepaidBillerEntityRequest,
+  );
+
+  @POST("/BillPayment/GetBillerLookupList")
+  Future<HttpResponse<GetBillerLookupListResponse>> getBillerLookupList(
+    @Body() GetBillerLookupListRequest getBillerLookupListRequest,
+  );
+
+  @POST("/BillPayment/GetPrepaidCategories")
+  Future<HttpResponse<GetPrePaidCategoriesResponse>> getPrePaidCategory(
+    @Body() GetPrePaidCategoriesRequestEntity getPrePaidCategoriesRequestEntity,
+  );
+
+  @POST("/BillPayment/RemovePrepaidBiller")
+  Future<HttpResponse<BaseResponse>> removePrepaidBiller(
+    @Body() RemovePrepaidBillerRequest removePrepaidBillerRequest,
+  );
+
+  @POST("/BillPayment/RemoveCustomerBillingAPI")
+  Future<HttpResponse<BaseResponse>> removeCustomerBilling(
+    @Body() RemoveCustomerBillingRequest removeCustomerBillingRequest,
+  );
+
+  @POST("/BillPayment/ValidateBillerOtp")
+  Future<HttpResponse<ValidateBillerOtpResponse>> validateBillerOtp(
+      @Body() ValidateBillerOtpRequest validateBillerOtpRequestEntity);
+
+  @POST("/BillPayment/RecentPrepaidPostpaidPayments")
+  Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
+      @Body() BillPaymentsTransactionRequest billPaymentsTransactionRequest);
+
+  @POST("/BillPayment/AccountUpload")
+  Future<HttpResponse<ResponseEntity>> accountUpload(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/transfer/TransferAPINoOtp")
+  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
+      @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
+
+  ///RJ
+  @POST("/RJ/GetDestinations")
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
+      @Body() GetDestinationRequestEntity request);
+
+  @POST("/RJ/GetOneWayLink")
+  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
+      @Body() GetOneWayTripLinkRequestEntity request);
+
+  @POST("/RJ/GetRoundTripLink")
+  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
+      @Body() GetTwoWayTripLinkRequestEntity request);
+
+  @POST("/RJ/MakeTicketPayment")
+  Future<HttpResponse<ResponseEntity>> makeTicketPayment(@Body() MakeTicketPaymentRequestEntity request);
+
+  @POST("/RJ/GetFlightDetails")
+  Future<HttpResponse<FlightDetailsResponseEntity>> getFlightDetails(
+      @Body() GetFlightDetailsRequestEntity request);
+
+  @POST("/RJ/MakeTicketPaymentOtp")
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
+
+  @POST("/Cliq/CliqRegisterCustomer")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/CliqRegisterAccount")
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
+    @Body() BaseRequest request,
+  );
+
+  ///QR
+  @POST("/Transfer/GenerateQR")
+  Future<HttpResponse<QRResponseEntity>> generateQR(@Body() GenerateQRRequestEntity generateQRRequestEntity);
+
+  @POST("/Transfer/VerifyQR")
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(@Body() VerifyQRRequestEntity verifyQRRequestEntity);
+
+  @POST("/Transfer/TransferQR")
+  Future<HttpResponse<QRTransferResponseEntity>> transferQR(
+      @Body() TransferQRRequestEntity transferQRRequestEntity);
 }

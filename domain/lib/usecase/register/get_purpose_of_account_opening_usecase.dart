@@ -5,8 +5,8 @@ import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetPurposeOfAccountOpeningUseCase extends BaseUseCase<LocalError,
-    GetPurposeOfAccountOpeningUseCaseParams, List<String>> {
+class GetPurposeOfAccountOpeningUseCase
+    extends BaseUseCase<LocalError, GetPurposeOfAccountOpeningUseCaseParams, List<String>> {
   final RegisterRepository _registerRepository;
 
   GetPurposeOfAccountOpeningUseCase(this._registerRepository);

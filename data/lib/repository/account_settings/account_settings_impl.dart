@@ -14,8 +14,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   AccountSettingsRepositoryImpl(this._accountSettingsRemoteDs);
 
   @override
-  Future<Either<NetworkError, bool>> changeEmail(
-      {required String email}) async {
+  Future<Either<NetworkError, bool>> changeEmail({required String email}) async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.changeEmail(email: email),
     );
@@ -29,8 +28,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   Future<Either<NetworkError, bool>> changeMobile(
       {required String mobile, required String mobileCode}) async {
     final result = await safeApiCall(
-      _accountSettingsRemoteDs.changeMobile(
-          mobile: mobile, mobileCode: mobileCode),
+      _accountSettingsRemoteDs.changeMobile(mobile: mobile, mobileCode: mobileCode),
     );
     return result!.fold(
       (l) => Left(l),
@@ -40,14 +38,10 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
 
   @override
   Future<Either<NetworkError, bool>> changePassword(
-      {required String oldPassword,
-      required String newPassword,
-      required String confirmNewPassword}) async {
+      {required String oldPassword, required String newPassword, required String confirmNewPassword}) async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.changePassword(
-          oldPassword: oldPassword,
-          newPassword: newPassword,
-          confirmNewPassword: confirmNewPassword),
+          oldPassword: oldPassword, newPassword: newPassword, confirmNewPassword: confirmNewPassword),
     );
     return result!.fold(
       (l) => Left(l),
@@ -67,8 +61,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateProfileImage(
-      {required String filePath}) async {
+  Future<Either<NetworkError, bool>> updateProfileImage({required String filePath}) async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.updateProfileImage(filePath: filePath),
     );
@@ -79,8 +72,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   }
 
   @override
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeEmail(
-      {required String otp}) async {
+  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeEmail({required String otp}) async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.verifyChangeEmail(otp: otp),
     );
@@ -91,14 +83,10 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   }
 
   @override
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>>
-      verifyChangeMobile(
-          {required String otp,
-          required String mobileNo,
-          required String mobileCode}) async {
+  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeMobile(
+      {required String otp, required String mobileNo, required String mobileCode}) async {
     final result = await safeApiCall(
-      _accountSettingsRemoteDs.verifyChangeMobile(
-          otp: otp, mobileCode: mobileCode, mobileNo: mobileNo),
+      _accountSettingsRemoteDs.verifyChangeMobile(otp: otp, mobileCode: mobileCode, mobileNo: mobileNo),
     );
     return result!.fold(
       (l) => Left(l),
@@ -118,8 +106,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetCustomerDocIdResponse>>
-      getCustomerDocId() async {
+  Future<Either<NetworkError, GetCustomerDocIdResponse>> getCustomerDocId() async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.getCustomerDocId(),
     );

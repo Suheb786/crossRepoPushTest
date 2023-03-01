@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'customer_status_entity.g.dart';
 
 @JsonSerializable()
-class CustomerStatusEntity
-    implements BaseLayerDataTransformer<CustomerStatusEntity, CustomerStatus> {
+class CustomerStatusEntity implements BaseLayerDataTransformer<CustomerStatusEntity, CustomerStatus> {
   @JsonKey(name: "nextScreen")
   final String? nextScreen;
   @JsonKey(name: "secondNextScreen")
@@ -15,11 +14,9 @@ class CustomerStatusEntity
   @JsonKey(name: "applicationId")
   final String? applicationId;
 
-  CustomerStatusEntity(
-      {this.nextScreen, this.secondNextScreen, this.applicationId});
+  CustomerStatusEntity({this.nextScreen, this.secondNextScreen, this.applicationId});
 
-  factory CustomerStatusEntity.fromJson(Map<String, dynamic> json) =>
-      _$CustomerStatusEntityFromJson(json);
+  factory CustomerStatusEntity.fromJson(Map<String, dynamic> json) => _$CustomerStatusEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerStatusEntityToJson(this);
 
@@ -33,7 +30,6 @@ class CustomerStatusEntity
     return CustomerStatus(
         applicationId: this.applicationId,
         nextPage: (this.nextScreen ?? "").fromCustomerStatusValue(),
-        secondNextPage:
-            (this.secondNextScreen ?? "").fromCustomerStatusValue());
+        secondNextPage: (this.secondNextScreen ?? "").fromCustomerStatusValue());
   }
 }

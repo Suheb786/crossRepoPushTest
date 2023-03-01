@@ -5,10 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 part "supplementary_credit_card_application_content_entity.g.dart";
 
 @JsonSerializable()
-class SupplementaryCreditCardApplicationContentEntity
-    extends BaseLayerDataTransformer<
-        SupplementaryCreditCardApplicationContentEntity,
-        SupplementaryCreditCardApplicationContent> {
+class SupplementaryCreditCardApplicationContentEntity extends BaseLayerDataTransformer<
+    SupplementaryCreditCardApplicationContentEntity, SupplementaryCreditCardApplicationContent> {
   @JsonKey(name: "createdDate")
   final String? createdDate;
   @JsonKey(name: "primaryCardId")
@@ -39,12 +37,10 @@ class SupplementaryCreditCardApplicationContentEntity
       this.contactLessError: 0,
       this.aramexError: 0});
 
-  factory SupplementaryCreditCardApplicationContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory SupplementaryCreditCardApplicationContentEntity.fromJson(Map<String, dynamic> json) =>
       _$SupplementaryCreditCardApplicationContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SupplementaryCreditCardApplicationContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SupplementaryCreditCardApplicationContentEntityToJson(this);
 
   @override
   SupplementaryCreditCardApplicationContent transform() {

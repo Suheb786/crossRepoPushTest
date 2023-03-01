@@ -5,9 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 abstract class ForgetPasswordRemoteDs {
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
-      {required String? email,
-      required String? expiryDate,
-      required String? nationalId});
+      {required String? email, required String? expiryDate, required String? nationalId});
 
   Future<HttpResponse<ForgetPasswordResponseEntity>> resetPassword(
       {required String? email,
@@ -16,12 +14,11 @@ abstract class ForgetPasswordRemoteDs {
       required String? createPassword,
       required String? confirmPassword});
 
-  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
-      verifyForgetPasswordOtp(
-          {required String? email,
-          required String? expiryDate,
-          required String? nationalId,
-          required String? createPassword,
-          required String? confirmPassword,
-          required String? otp});
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>> verifyForgetPasswordOtp(
+      {required String? email,
+      required String? expiryDate,
+      required String? nationalId,
+      required String? createPassword,
+      required String? confirmPassword,
+      required String? otp});
 }

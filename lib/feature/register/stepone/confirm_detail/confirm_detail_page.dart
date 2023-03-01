@@ -10,8 +10,7 @@ class ConfirmDetailPage extends BasePage<ConfirmDetailViewModel> {
   ConfirmDetailPageState createState() => ConfirmDetailPageState();
 }
 
-class ConfirmDetailPageState
-    extends BaseStatefulPage<ConfirmDetailViewModel, ConfirmDetailPage> {
+class ConfirmDetailPageState extends BaseStatefulPage<ConfirmDetailViewModel, ConfirmDetailPage> {
   @override
   ProviderBase provideBase() {
     return confirmDetailViewModelProvider;
@@ -19,9 +18,7 @@ class ConfirmDetailPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

@@ -11,9 +11,10 @@ class GetConfirmApplicationDataContent {
   final AccountPurposeInfo? accountPurposeInfo;
   final FatcaCrsInfo? fatcaCrsInfo;
 
-  GetConfirmApplicationDataContent({this.countryResidenceInfo,
-    this.profileStatusInfo,
-    this.jobDetailInfo,
-    this.accountPurposeInfo,
-    this.fatcaCrsInfo});
+  GetConfirmApplicationDataContent(
+      {this.countryResidenceInfo,
+      this.profileStatusInfo,
+      this.jobDetailInfo,
+      this.accountPurposeInfo,
+      this.fatcaCrsInfo});
 }

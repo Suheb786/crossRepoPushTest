@@ -92,6 +92,9 @@ class SecureStorageHelper {
         secureUser.selectedLanguage = user.selectedLanguage ?? secureUser.selectedLanguage;
         secureUser.allCardsAddedToAppleWallet =
             user.allCardsAddedToAppleWallet ?? secureUser.allCardsAddedToAppleWallet;
+        secureUser.isRJPopUPClicked = user.isRJPopUPClicked ?? secureUser.isRJPopUPClicked;
+        secureUser.isEfawateerPopUPClicked =
+            user.isEfawateerPopUPClicked ?? secureUser.isEfawateerPopUPClicked;
 
         await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {

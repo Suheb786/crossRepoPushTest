@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'customer_status_response_entity.g.dart';
 
 @JsonSerializable()
-class CustomerStatusResponseEntity extends BaseLayerDataTransformer<
-    CustomerStatusResponseEntity, CustomerStatus> {
+class CustomerStatusResponseEntity
+    extends BaseLayerDataTransformer<CustomerStatusResponseEntity, CustomerStatus> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

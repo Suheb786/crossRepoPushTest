@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,6 +20,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Padding(
@@ -43,18 +45,18 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(top: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "20.00",
+                    num.parse(model.arguments.amount).toStringAsFixed(3),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w700,
-                        fontSize: 28),
+                        fontSize: 32),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
@@ -83,9 +85,9 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 25.0),
+              padding: EdgeInsets.only(top: 24.0),
               child: Text(
-                "Zein Malhas",
+                model.arguments.user,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
@@ -112,7 +114,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                       ),
                     ),
                     Text(
-                      "984893922",
+                      model.arguments.referenceNo,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontSize: 12,
@@ -153,7 +155,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               textColor: Theme.of(context).accentColor,
             ),
             Padding(
-              padding: EdgeInsets.only(top: 9, bottom: 16),
+              padding: EdgeInsets.only(top: 9, bottom: 24),
               child: Text(
                 S.of(context).toDashboard,
                 style: TextStyle(

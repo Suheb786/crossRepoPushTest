@@ -6,9 +6,7 @@ part "get_account_by_alias_content_entity.g.dart";
 
 @JsonSerializable()
 class GetAccountByAliasContentEntity
-    implements
-        BaseLayerDataTransformer<GetAccountByAliasContentEntity,
-            GetAccountByAliasContent> {
+    implements BaseLayerDataTransformer<GetAccountByAliasContentEntity, GetAccountByAliasContent> {
   @JsonKey(name: "acciban")
   final String? acciban;
   @JsonKey(name: "bic")

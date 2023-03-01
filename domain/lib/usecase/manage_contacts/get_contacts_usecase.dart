@@ -5,15 +5,13 @@ import 'package:domain/repository/manage_contact/manage_contact_repository.dart'
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetContactsUseCase
-    extends BaseUseCase<NetworkError, GetContactsUseCaseParams, bool> {
+class GetContactsUseCase extends BaseUseCase<NetworkError, GetContactsUseCaseParams, bool> {
   final ManageContactRepository _repository;
 
   GetContactsUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required GetContactsUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required GetContactsUseCaseParams params}) {
     //return _repository.getContacts();
     return Future.value(Right(true));
   }

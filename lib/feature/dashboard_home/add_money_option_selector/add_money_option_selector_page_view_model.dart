@@ -13,21 +13,17 @@ class AddMoneyOptionSelectorViewModel extends BasePageViewModel {
 
   /// get placeholder request
 
-  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest =
-      PublishSubject();
+  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse = BehaviorSubject();
 
-  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream =>
-      _getPlaceHolderResponse.stream;
+  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream => _getPlaceHolderResponse.stream;
 
   PlaceholderData dashboardPlaceholderData = PlaceholderData();
 
   AddMoneyOptionSelectorViewModel(this._getPlaceholderUseCase) {
     _getPlaceHolderRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPlaceholderUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -44,7 +40,6 @@ class AddMoneyOptionSelectorViewModel extends BasePageViewModel {
 
   ///dashboard placeholder
   void getPlaceholder() {
-    _getPlaceHolderRequest
-        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 6));
+    _getPlaceHolderRequest.safeAdd(GetPlaceholderUseCaseParams(placeholderId: 6));
   }
 }

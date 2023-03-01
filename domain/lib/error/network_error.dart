@@ -690,6 +690,65 @@ class NetworkError extends BaseError {
           case "err-332":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_FOR_PIN_CHANGE_NI);
 
+          case "err-333":
+            return AppError(cause: cause, error: error, type: ErrorType.ID_VERIFICATION_FAILED);
+
+          case "err-337":
+            return AppError(cause: cause, error: error, type: ErrorType.PAYMENT_NOT_DONE);
+
+          case "err-338":
+            return AppError(cause: cause, error: error, type: ErrorType.NO_TICKETS_FOUND);
+
+          case "err-358":
+            return AppError(cause: cause, error: error, type: ErrorType.NO_BILLER_FOUND);
+
+          case "err-359":
+            return AppError(cause: cause, error: error, type: ErrorType.NO_PREPAID_CATEGORY_FOUND);
+
+          case "err-360":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_ON_BILL_ENQUIRY);
+
+          case "err-361":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_ADDING_CUSTOMER);
+
+          case "err-362":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED);
+
+          case "err-363":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_EXPIRED);
+
+          case "err-364":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_NOT_SCANNED);
+
+          case "err-365":
+            return AppError(cause: cause, error: error, type: ErrorType.QR_INVALID);
+
+          case "err-375":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.BILLER_IS_ALREADY_EXIST_WITHIN_THE_SAME_BILLING_NO);
+
+          case "err-376":
+            return AppError(cause: cause, error: error, type: ErrorType.SERVICE_NOT_AVAILABLE);
+
+          case "err-377":
+            return AppError(cause: cause, error: error, type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE);
+
+          case "err-379":
+            return AppError(cause: cause, error: error, type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE);
+
+          case "err-380":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.THERE_ARE_NO_DUE_BILLS_TO_BE_PAID_AT_THE_MOMENT);
+
+          case "err-381":
+            return AppError(cause: cause, error: error, type: ErrorType.OPEN_DATE_ISSUE_MESSAGE);
+
+          case "err-383":
+            return AppError(cause: cause, error: error, type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 
@@ -1112,6 +1171,24 @@ class NetworkError extends BaseError {
 
           case "err-0009":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
+          case "Invalid OTP":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_OTP_NETWORK);
+          case "err-382":
+            return AppError(cause: cause, error: error, type: ErrorType.DAILY_LIMIT_EXCEDED);
+
+          /// EFW:efawateercom -err-codes
+          case "EFW-408":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_BILLING_NUMBER);
+          case "EFW-401":
+            return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
+          case "EFW-367":
+            return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
+          case "EFW-325":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_PAID_AMOUNT);
+          case "EFW-397":
+            return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT);
+          case "EFW-398":
+            return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX);
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

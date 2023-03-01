@@ -3,7 +3,9 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -74,16 +76,47 @@ class PaymentHomeViewModel extends BasePageViewModel {
             }
           });
           Future.delayed(Duration(milliseconds: 50), () {
-            appSwiperController.jumpToPage(navigationType == NavigationType.DASHBOARD ? 0 : 1);
+            appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
           });
         }
       });
     });
-    getBeneficiaries();
   }
 
-  void getBeneficiaries() {
-    _getBeneficiaryRequest.safeAdd(GetBeneficiaryUseCaseParams());
+  void getBeneficiaries(BuildContext context) {
+    _getBeneficiaryRequest.safeAdd(GetBeneficiaryUseCaseParams(context: context));
+  }
+
+  int getInitialNavigation(NavigationType navigationType, BuildContext context) {
+    switch (navigationType) {
+      case NavigationType.DASHBOARD:
+        return 0;
+      case NavigationType.ADD_MONEY:
+        return 1;
+      case NavigationType.PAYMENTS:
+        if (ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .dashboardFeatures
+                ?.blinkRetailAppBillPayment ??
+            true) {
+          if ((ProviderScope.containerOf(context)
+                      .read(appHomeViewModelProvider)
+                      .dashboardDataContent
+                      .dashboardFeatures
+                      ?.appBillPaymentPostpaid ??
+                  true) ||
+              (ProviderScope.containerOf(context)
+                      .read(appHomeViewModelProvider)
+                      .dashboardDataContent
+                      .dashboardFeatures
+                      ?.appBillPaymentPrepaid ??
+                  true)) {
+            return 2;
+          }
+        }
+        return 0;
+    }
   }
 
   @override

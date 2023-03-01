@@ -5,6 +5,7 @@ import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
 import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page_view_model.dart';
@@ -29,7 +30,6 @@ import 'package:neo_bank/feature/dashboard_home/download_transaction/download_tr
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
@@ -66,8 +66,15 @@ final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<Placehol
 );
 
 final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider),
-      ref.read(getPlaceHolderUseCaseProvider), ref.read(getAntelopCardListUseCaseProvider)),
+  (ref) => AppHomeViewModel(
+      ref.read(getDashboardDataUseCaseProvider),
+      ref.read(getPlaceHolderUseCaseProvider),
+      ref.read(initDynamicLinkUseCaseProvider),
+      ref.read(currentUserUseCaseProvider),
+      ref.read(saveDataUserUseCaseProvider),
+      ref.read(verifyQRUseCaseProvider),
+      ref.read(getAntelopCardListUseCaseProvider)
+  ),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -126,11 +133,6 @@ final debitCardTimeLineViewModelProvider =
 final addMoneyOptionSelectorViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
   (ref) => AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
-);
-
-///locate pin page view model
-final locatePinViewModelProvider = ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
-  (ref) => LocateATMPageViewModel(ref.read(getAtmUseCaseProvider)),
 );
 
 ///settings dialog view model

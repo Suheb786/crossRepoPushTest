@@ -7,9 +7,7 @@ part "debit_card_limit_content_entity.g.dart";
 
 @JsonSerializable()
 class DebitCardLimitContentEntity
-    implements
-        BaseLayerDataTransformer<DebitCardLimitContentEntity,
-            DebitCardLimitContent> {
+    implements BaseLayerDataTransformer<DebitCardLimitContentEntity, DebitCardLimitContent> {
   @JsonKey(name: "limits")
   List<DebitCardLimitEntity>? limits;
 
@@ -27,7 +25,6 @@ class DebitCardLimitContentEntity
 
   @override
   DebitCardLimitContent transform() {
-    return DebitCardLimitContent(
-        limits: this.limits!.map((e) => e.transform()).toList());
+    return DebitCardLimitContent(limits: this.limits!.map((e) => e.transform()).toList());
   }
 }

@@ -23,22 +23,18 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get blinkResponseStream => _blinkResponse.stream;
 
   ///get application request
-  PublishSubject<GetCardApplicationUseCaseParams> _getApplicationRequest =
-      PublishSubject();
+  PublishSubject<GetCardApplicationUseCaseParams> _getApplicationRequest = PublishSubject();
 
   ///get application response
-  PublishSubject<Resource<GetCardApplicationResponse>> _getApplicationResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetCardApplicationResponse>> _getApplicationResponse = PublishSubject();
 
   ///get application response stream
-  Stream<Resource<GetCardApplicationResponse>>
-      get getApplicationResponseStream => _getApplicationResponse.stream;
+  Stream<Resource<GetCardApplicationResponse>> get getApplicationResponseStream =>
+      _getApplicationResponse.stream;
 
-  BlinkCreditCardViewModel(
-      this._blinkCreditCardUseCase, this._applicationUseCase) {
+  BlinkCreditCardViewModel(this._blinkCreditCardUseCase, this._applicationUseCase) {
     _blinkRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _blinkCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _blinkCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -51,8 +47,7 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
     });
 
     _getApplicationRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _applicationUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _applicationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -70,8 +65,7 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
   }
 
   void submit() {
-    _blinkRequest.safeAdd(
-        BlinkCreditCardUseCaseParams(isChecked: _isCheckedSubject.value));
+    _blinkRequest.safeAdd(BlinkCreditCardUseCaseParams(isChecked: _isCheckedSubject.value));
   }
 
   void getApplication() {

@@ -8,8 +8,8 @@ import 'package:domain/repository/forget_password/forget_password_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EnterOtpForResetPasswordUseCase extends BaseUseCase<NetworkError,
-    EnterOtpForResetPasswordUseCaseParams, VerifyForgetPasswordOtpResponse> {
+class EnterOtpForResetPasswordUseCase extends BaseUseCase<NetworkError, EnterOtpForResetPasswordUseCaseParams,
+    VerifyForgetPasswordOtpResponse> {
   final ForgetPasswordRepository _repository;
 
   EnterOtpForResetPasswordUseCase(this._repository);
@@ -46,10 +46,7 @@ class EnterOtpForResetPasswordUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (otp.isEmpty || otp.length < 6) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OTP,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception()));
     }
     return Right(true);
   }

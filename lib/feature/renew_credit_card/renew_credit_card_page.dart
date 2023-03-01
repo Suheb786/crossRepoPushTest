@@ -10,8 +10,7 @@ class RenewCreditCardPage extends BasePage<RenewCreditCardPageViewModel> {
   RenewCreditCardPageState createState() => RenewCreditCardPageState();
 }
 
-class RenewCreditCardPageState extends BaseStatefulPage<
-    RenewCreditCardPageViewModel, RenewCreditCardPage> {
+class RenewCreditCardPageState extends BaseStatefulPage<RenewCreditCardPageViewModel, RenewCreditCardPage> {
   @override
   ProviderBase provideBase() {
     return renewCreditCardPageViewModelProvider;

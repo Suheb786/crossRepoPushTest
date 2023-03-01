@@ -8,9 +8,7 @@ part "check_send_money_response_entity.g.dart";
 
 @JsonSerializable()
 class CheckSendMoneyResponseEntity
-    implements
-        BaseLayerDataTransformer<CheckSendMoneyResponseEntity,
-            CheckSendMoneyResponse> {
+    implements BaseLayerDataTransformer<CheckSendMoneyResponseEntity, CheckSendMoneyResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class CheckSendMoneyResponseEntity
   @override
   CheckSendMoneyResponse transform() {
     return CheckSendMoneyResponse(
-        checkSendMoneyContent:
-            CheckSendMoneyContentEntity.fromJson(this.response!.content)
-                .transform());
+        checkSendMoneyContent: CheckSendMoneyContentEntity.fromJson(this.response!.content).transform());
   }
 }

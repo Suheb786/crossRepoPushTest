@@ -22,8 +22,7 @@ class ChangePasswordRequest {
       this.getToken: true,
       required this.baseData});
 
-  factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
-      _$ChangePasswordRequestFromJson(json);
+  factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 }

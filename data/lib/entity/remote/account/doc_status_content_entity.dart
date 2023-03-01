@@ -5,9 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'doc_status_content_entity.g.dart';
 
 @JsonSerializable()
-class DocStatusContentEntity
-    implements
-        BaseLayerDataTransformer<DocStatusContentEntity, DocStatusContent> {
+class DocStatusContentEntity implements BaseLayerDataTransformer<DocStatusContentEntity, DocStatusContent> {
   @JsonKey(name: "showDoc")
   final bool? showDoc;
   @JsonKey(name: "docs")

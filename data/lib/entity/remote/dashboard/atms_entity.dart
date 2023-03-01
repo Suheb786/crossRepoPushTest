@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "atms_entity.g.dart";
 
 @JsonSerializable()
-class AtmsEntity
-    implements BaseLayerDataTransformer<AtmsEntity, AtmContentData> {
+class AtmsEntity implements BaseLayerDataTransformer<AtmsEntity, AtmContentData> {
   @JsonKey(name: "bankName")
   final String? bankName;
   @JsonKey(name: "bankAddress")
@@ -20,16 +19,9 @@ class AtmsEntity
   @JsonKey(name: "latitude")
   final String? latitude;
 
-  AtmsEntity(
-      {this.bankName,
-      this.bankAddress,
-      this.country,
-      this.city,
-      this.longitude,
-      this.latitude});
+  AtmsEntity({this.bankName, this.bankAddress, this.country, this.city, this.longitude, this.latitude});
 
-  factory AtmsEntity.fromJson(Map<String, dynamic> json) =>
-      _$AtmsEntityFromJson(json);
+  factory AtmsEntity.fromJson(Map<String, dynamic> json) => _$AtmsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AtmsEntityToJson(this);
 

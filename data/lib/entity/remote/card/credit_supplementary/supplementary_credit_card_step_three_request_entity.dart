@@ -17,15 +17,13 @@ class SupplementaryCreditCardStepThreeRequestEntity {
 
   SupplementaryCreditCardStepThreeRequestEntity(
       {this.primaryCardId,
-        this.secondaryCardId,
-        this.accountNumber,
-        this.getToken: false,
-        required this.baseData});
+      this.secondaryCardId,
+      this.accountNumber,
+      this.getToken: false,
+      required this.baseData});
 
-  factory SupplementaryCreditCardStepThreeRequestEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory SupplementaryCreditCardStepThreeRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SupplementaryCreditCardStepThreeRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SupplementaryCreditCardStepThreeRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SupplementaryCreditCardStepThreeRequestEntityToJson(this);
 }

@@ -172,6 +172,8 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             error: event,
             localisedHelper: S.of(context),
           ));
+          AppConstantsUtils.resetCacheLists();
+
           if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
             AntelopHelper.walletDisconnect();
           }
@@ -190,6 +192,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
         }
       }
     });
+
+    model.errorStringStream.listen((event) {
+      if (mounted) {
+        showTopError(event);
+      }
+    });
+
     model.toast.listen((message) {
       showShortToast(message);
     });

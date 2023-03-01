@@ -7,9 +7,7 @@ part "payment_activity_content_entity.g.dart";
 
 @JsonSerializable()
 class PaymentActivityContentEntity
-    implements
-        BaseLayerDataTransformer<PaymentActivityContentEntity,
-            PaymentActivityContent> {
+    implements BaseLayerDataTransformer<PaymentActivityContentEntity, PaymentActivityContent> {
   @JsonKey(name: "rtpDate")
   DateTime? rtpDate;
   @JsonKey(name: "data")
@@ -29,8 +27,6 @@ class PaymentActivityContentEntity
 
   @override
   PaymentActivityContent transform() {
-    return PaymentActivityContent(
-        rtpDate: this.rtpDate,
-        data: this.data!.map((e) => e.transform()).toList());
+    return PaymentActivityContent(rtpDate: this.rtpDate, data: this.data!.map((e) => e.transform()).toList());
   }
 }

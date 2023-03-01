@@ -14,5 +14,10 @@
 	<array>
 		<string>group.com.blinkapp.cbt</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:blinkcbt.page.link</string>
+		<string>activitycontinuation:blinkcbt.page.link</string>
+	</array>
 </dict>
 </plist>

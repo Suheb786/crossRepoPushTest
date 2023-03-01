@@ -6,8 +6,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCardApplicationUseCase extends BaseUseCase<NetworkError,
-    GetCardApplicationUseCaseParams, GetCardApplicationResponse> {
+class GetCardApplicationUseCase
+    extends BaseUseCase<NetworkError, GetCardApplicationUseCaseParams, GetCardApplicationResponse> {
   final CardRepository _cardRepository;
 
   GetCardApplicationUseCase(this._cardRepository);

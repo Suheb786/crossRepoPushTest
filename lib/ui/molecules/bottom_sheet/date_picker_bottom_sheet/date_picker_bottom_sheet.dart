@@ -6,18 +6,18 @@ import 'date_picker_bottom_sheet_view.dart';
 class DatePickerBottomSheet {
   DatePickerBottomSheet._();
 
-  static show(
-    BuildContext context, {
-    String? title,
-    Function(DateTime)? onDateSelected,
-    Function()? onCancel,
-    required DateTime initialDate,
-  }) async {
+  static show(BuildContext context,
+      {String? title,
+      Function(DateTime)? onDateSelected,
+      Function()? onCancel,
+      required DateTime initialDate,
+      DateTime? firstDate}) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return DatePickerBottomSheetView(
           onDateSelected: (_) => onDateSelected?.call(_),
           title: title,
           initialDate: initialDate,
+          firstDate: firstDate,
           onCancel: () => onCancel?.call());
     });
   }

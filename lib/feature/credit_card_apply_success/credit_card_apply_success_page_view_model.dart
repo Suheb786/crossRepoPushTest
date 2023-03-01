@@ -27,8 +27,7 @@ class CreditCardApplySuccessPageViewModel extends BasePageViewModel {
     }
   }
 
-  String description(
-      BuildContext context, CreditSuccessState creditSuccessState) {
+  String description(BuildContext context, CreditSuccessState creditSuccessState) {
     switch (creditSuccessState) {
       case CreditSuccessState.Applied_Success:
         return S.of(context).cardApplyMsg;

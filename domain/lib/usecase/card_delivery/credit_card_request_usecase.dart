@@ -5,15 +5,13 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CreditCardRequestUseCase
-    extends BaseUseCase<NetworkError, CreditCardRequestUseCaseParams, bool> {
+class CreditCardRequestUseCase extends BaseUseCase<NetworkError, CreditCardRequestUseCaseParams, bool> {
   final CardRepository _repository;
 
   CreditCardRequestUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CreditCardRequestUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CreditCardRequestUseCaseParams params}) {
     return _repository.requestCreditCard(cardId: params.cardId);
   }
 }

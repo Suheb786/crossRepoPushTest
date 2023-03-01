@@ -25,13 +25,29 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-debit-card-physical-card-request")
   final bool? isDebitCardPhysicalCardRequestEnabled;
 
+  @JsonKey(name: "blink-retail-app-bill-payment")
+  final bool? blinkRetailAppBillPayment;
+
+  @JsonKey(name: "blink-retail-app-bill-payment-pay-postpaid")
+  final bool? blinkRetailAppBillPaymentPayPostpaid;
+
+  @JsonKey(name: "blink-retail-app-bill-payment-pay-prepaid")
+  final bool? blinkRetailAppBillPaymentPayPrepaid;
+
+  @JsonKey(name: "blink-retail-app-payments-qrcode")
+  final bool? paymentQRCode;
+
   DashboardFeaturesEntity(
-      {this.isCreditCardEnabled,
+      {this.blinkRetailAppBillPayment,
+      this.blinkRetailAppBillPaymentPayPostpaid,
+      this.paymentQRCode,
+      this.isCreditCardEnabled,
       this.isGoRJEnabled,
       this.isLoginEnabled,
       this.isRegisterEnabled,
       this.isCreditCardPinChangeEnabled,
-      this.isDebitCardPhysicalCardRequestEnabled});
+      this.isDebitCardPhysicalCardRequestEnabled,
+      this.blinkRetailAppBillPaymentPayPrepaid});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -51,6 +67,10 @@ class DashboardFeaturesEntity
         isRegisterFeatureEnabled: isRegisterEnabled ?? false,
         isRJFeatureEnabled: isGoRJEnabled ?? false,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
-        isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false);
+        isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
+        blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
+        appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
+        appBillPaymentQrCode: this.paymentQRCode ?? false,
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false);
   }
 }

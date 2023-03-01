@@ -10,8 +10,7 @@ class ForgotPasswordPage extends BasePage<ForgotPasswordPageViewModel> {
   ForgotPasswordPageState createState() => ForgotPasswordPageState();
 }
 
-class ForgotPasswordPageState
-    extends BaseStatefulPage<ForgotPasswordPageViewModel, ForgotPasswordPage> {
+class ForgotPasswordPageState extends BaseStatefulPage<ForgotPasswordPageViewModel, ForgotPasswordPage> {
   @override
   ProviderBase provideBase() {
     return forgotPasswordViewModelProvider;

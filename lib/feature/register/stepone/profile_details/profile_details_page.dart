@@ -10,8 +10,7 @@ class ProfileDetailsPage extends BasePage<ProfileDetailsPageViewModel> {
   ProfileDetailsPageState createState() => ProfileDetailsPageState();
 }
 
-class ProfileDetailsPageState
-    extends BaseStatefulPage<ProfileDetailsPageViewModel, ProfileDetailsPage> {
+class ProfileDetailsPageState extends BaseStatefulPage<ProfileDetailsPageViewModel, ProfileDetailsPage> {
   @override
   ProviderBase provideBase() {
     return profileDetailsPageViewModelProvider;

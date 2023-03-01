@@ -5,6 +5,8 @@ import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/constants/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:domain/constants/app_constants_domain.dart';
+import 'package:domain/repository/user/user_repository.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
   final Dio _previousDio;
@@ -33,6 +35,9 @@ class ApiInterceptor extends InterceptorsWrapper {
     }
 
     options.headers.putIfAbsent("suspendToken", () => AppConstants.IS_BACKGROUND_API_IN_PROGRESS);
+    options.headers.putIfAbsent("Lang", () => AppConstantsDomain.SELECTED_LANGUAGE);
+    print('Lang--->${AppConstantsDomain.SELECTED_LANGUAGE}');
+
     print('authToken--->$authToken');
     print('suspended Token  --->${AppConstants.IS_BACKGROUND_API_IN_PROGRESS}');
 

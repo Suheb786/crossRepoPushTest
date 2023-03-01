@@ -11,8 +11,7 @@ class RegisterInterestRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  RegisterInterestRequestEntity(
-      {this.uniqueId, required this.email, required this.baseData});
+  RegisterInterestRequestEntity({this.uniqueId, required this.email, required this.baseData});
 
   factory RegisterInterestRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RegisterInterestRequestEntityFromJson(json);

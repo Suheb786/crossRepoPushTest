@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'verify_otp_response_entity.g.dart';
 
 @JsonSerializable()
-class VerifyOtpResponseEntity
-    implements BaseLayerDataTransformer<VerifyOtpResponseEntity, bool> {
+class VerifyOtpResponseEntity implements BaseLayerDataTransformer<VerifyOtpResponseEntity, bool> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 

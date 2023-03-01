@@ -13,8 +13,7 @@ final dcSettingCardDeliveryViewModelProvider =
 );
 
 ///dc setting visa card view model provider
-final dcSettingVisaCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DcSettingVisaCardPageViewModel>(
+final dcSettingVisaCardViewModelProvider = ChangeNotifierProvider.autoDispose<DcSettingVisaCardPageViewModel>(
   (ref) => DcSettingVisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
 );
 
@@ -27,12 +26,10 @@ final dcSettingCreatePinViewModelProvider =
 ///dc setting confirm pin view model provider
 final dcSettingConfirmPinViewModelProvider =
     ChangeNotifierProvider.autoDispose<DcSettingConfirmPinPageViewModel>(
-  (ref) =>
-      DcSettingConfirmPinPageViewModel(ref.read(confirmPinUseCaseProvider)),
+  (ref) => DcSettingConfirmPinPageViewModel(ref.read(confirmPinUseCaseProvider)),
 );
 
 ///dc setting card ready success view model provider
-final dcSettingCardReadyViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DcSettingCardReadyViewModel>(
+final dcSettingCardReadyViewModelProvider = ChangeNotifierProvider.autoDispose<DcSettingCardReadyViewModel>(
   (ref) => DcSettingCardReadyViewModel(),
 );

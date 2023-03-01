@@ -5,20 +5,16 @@ import 'package:domain/usecase/forgot_password/enter_otp_for_reset_password_usec
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddIdNumberForResetPasswordUseCase] provider
-final addIdNoForResetPasswordUseCaseProvider =
-Provider.autoDispose<AddIdNumberForResetPasswordUseCase>(
-        (ref) => AddIdNumberForResetPasswordUseCase(),
+final addIdNoForResetPasswordUseCaseProvider = Provider.autoDispose<AddIdNumberForResetPasswordUseCase>(
+  (ref) => AddIdNumberForResetPasswordUseCase(),
 );
 
 ///[EnterOtpForResetPasswordUseCase] provider
-final enterOtpForResetPasswordUseCaseProvider =
-Provider.autoDispose<EnterOtpForResetPasswordUseCase>(
-        (ref) => EnterOtpForResetPasswordUseCase(
-      ref.read(forgetPasswordRepositoryProvider)),
+final enterOtpForResetPasswordUseCaseProvider = Provider.autoDispose<EnterOtpForResetPasswordUseCase>(
+  (ref) => EnterOtpForResetPasswordUseCase(ref.read(forgetPasswordRepositoryProvider)),
 );
 
 ///[CreateNewPasswordUseCase] provider
-final createNewPasswordUseCaseProvider =
-Provider.autoDispose<CreateNewPasswordUseCase>(
-        (ref) => CreateNewPasswordUseCase(ref.read(forgetPasswordRepositoryProvider)),
+final createNewPasswordUseCaseProvider = Provider.autoDispose<CreateNewPasswordUseCase>(
+  (ref) => CreateNewPasswordUseCase(ref.read(forgetPasswordRepositoryProvider)),
 );

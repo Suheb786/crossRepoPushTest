@@ -6,15 +6,13 @@ import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class InfobipAudioPluginUseCase
-    extends BaseUseCase<BaseError, InfobipAudioPluginUseCaseParams, bool> {
+class InfobipAudioPluginUseCase extends BaseUseCase<BaseError, InfobipAudioPluginUseCaseParams, bool> {
   final HelpCenterRepository _helpCenterRepository;
 
   InfobipAudioPluginUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required InfobipAudioPluginUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required InfobipAudioPluginUseCaseParams params}) async {
     return _helpCenterRepository.initInfobip(params.callback);
   }
 }

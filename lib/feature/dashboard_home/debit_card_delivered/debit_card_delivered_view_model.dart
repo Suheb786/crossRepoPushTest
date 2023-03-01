@@ -14,23 +14,17 @@ class DebitCardDeliveredViewModel extends BasePageViewModel {
   ConfirmCardDeliveryUseCase _confirmCardDeliveryUseCase;
 
   ///confirm debit card delivery request
-  PublishSubject<ConfirmCardDeliveryUseCaseParams>
-      _confirmDebitCardDeliveryRequest = PublishSubject();
+  PublishSubject<ConfirmCardDeliveryUseCaseParams> _confirmDebitCardDeliveryRequest = PublishSubject();
 
   ///confirm debit card delivery response
-  PublishSubject<Resource<bool>> _confirmDebitCardDeliveryResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _confirmDebitCardDeliveryResponse = PublishSubject();
 
   ///confirm debit card delivery response stream
-  Stream<Resource<bool>> get confirmDebitCardDeliveryStream =>
-      _confirmDebitCardDeliveryResponse.stream;
+  Stream<Resource<bool>> get confirmDebitCardDeliveryStream => _confirmDebitCardDeliveryResponse.stream;
 
-  DebitCardDeliveredViewModel(
-      this._confirmCardDeliveryUseCase, this.debitCard) {
+  DebitCardDeliveredViewModel(this._confirmCardDeliveryUseCase, this.debitCard) {
     _confirmDebitCardDeliveryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _confirmCardDeliveryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmCardDeliveryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -44,7 +38,6 @@ class DebitCardDeliveredViewModel extends BasePageViewModel {
   }
 
   void confirmDebitCardDelivery() {
-    _confirmDebitCardDeliveryRequest
-        .safeAdd(ConfirmCardDeliveryUseCaseParams());
+    _confirmDebitCardDeliveryRequest.safeAdd(ConfirmCardDeliveryUseCaseParams());
   }
 }

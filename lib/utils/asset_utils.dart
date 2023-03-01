@@ -6,6 +6,7 @@ class AssetUtils {
   static const String drawable = "assets/drawable/";
   static const String flags = "assets/flags/";
   static const String _animation = "assets/animation/";
+  static const String billPaymentsImages = "assets/images/bill_payments_catagories/";
 
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
@@ -59,6 +60,7 @@ class AssetUtils {
   static const String transactionHistory = svg + "transaction_history.svg";
   static const String right = svg + "right.svg";
   static const String cancel = svg + "cancel.svg";
+  static const String fail = svg + "fail.svg";
   static const String copy = svg + "copy.svg";
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";
@@ -189,6 +191,7 @@ class AssetUtils {
   static const String blink = drawable + "blink.png";
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
+  static const String line_gray = drawable + "line_gray.png";
   static const String line_black_white = drawable + "line_black_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";
@@ -234,14 +237,14 @@ class AssetUtils {
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
-//Evoucher png
+  ///Evoucher png
   static const String apple_music = drawable + "apple_music.png";
   static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
   static const String favourite_brand = drawable + "favourite_brand.png";
   static const String top_brand_adidas = drawable + "top_brand_adidas.png";
   static const String playStationIcon = drawable + "play_station.png";
 
-//Evoucher svg
+  ///Evoucher svg
 
   static const String filterMenu = svg + "filter_menu.svg";
   static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
@@ -262,4 +265,41 @@ class AssetUtils {
   static const String cardDebitPng = drawable + "cardDebit.png";
   static const String wifiPay = drawable + "wifi_pay.png";
   static const String applePayButtonS = drawable + "apple_pay_button.png";
+
+  ///Postpaid svg
+
+  static const String plusIcon = svg + "plus_icon.svg";
+  static const String electricityIcon = svg + "electricity_icon.svg";
+  static const String governmentServiceIcon = svg + "government_service.svg";
+  static const String financialService = svg + "financial_service.svg";
+  static const String gasfuelIcon = svg + "gas_fuel.svg";
+  static const String flightIcon = svg + "flight_icon.svg";
+  static const String deleteBlackIcon = svg + "delete_black_icon.svg";
+  static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
+  static const String logoeFawateerRed = svg + "logo_eFawateer_red.svg";
+  static const String logoeFawateerYellow = svg + "logo_eFawateer_yellow.svg";
+
+  static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
+  static const String requestViaQrIcon = svg + "request_via_qr.svg";
+  static const String payRequestViaQRBlackIcon = svg + "pay_request_via_qr_black.svg";
+
+  ///Rj PNG Images
+
+  static const String flight = drawable + "flight.png";
+  static const String RjCardBg = drawable + "rj_card_bg.png";
+  static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
+  static const String EconomySeat = drawable + "economy_seat.png";
+  static const String BusinessSeat = drawable + "business_icon.png";
+  static const String BigSearchIcon = drawable + "big_search_icon.png";
+
+  ///Rj svg
+  static const String RjCardLogo = svg + "rj_card_logo.svg";
+  static const String GoRjLogo = svg + "go_rj_logo.svg";
+  static const String cancelFlightIcon = svg + "cancel_flight.svg";
+
+  ///billPaymentsImages
+  static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
+  static const String efawateerPopUpImage = drawable + "efawateer_popup_image.png";
+  static const String infoFee = svg + "info_fee.svg";
+  static const String bulbIcon = svg + "bulb_icon.svg";
 }

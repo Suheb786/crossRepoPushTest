@@ -6,15 +6,13 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCallStatusUseCase extends BaseUseCase<NetworkError,
-    GetCallStatusUseCaseParams, VideoKycStatus> {
+class GetCallStatusUseCase extends BaseUseCase<NetworkError, GetCallStatusUseCaseParams, VideoKycStatus> {
   final AccountRepository _accountRepository;
 
   GetCallStatusUseCase(this._accountRepository);
 
   @override
-  Future<Either<NetworkError, VideoKycStatus>> execute(
-      {required GetCallStatusUseCaseParams params}) {
+  Future<Either<NetworkError, VideoKycStatus>> execute({required GetCallStatusUseCaseParams params}) {
     return _accountRepository.getCallStatus(params.session);
   }
 }

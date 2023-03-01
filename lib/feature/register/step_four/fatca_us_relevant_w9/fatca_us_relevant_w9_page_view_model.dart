@@ -16,25 +16,20 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
   final FatcaUSRelevantW9UseCase _fatcaUSRelevantW8UseCase;
 
   ///controllers and keys
-  final TextEditingController nameAsPerTaxReturnController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> nameAsPerTaxReturnKey =
-      GlobalKey(debugLabel: "nameAsPerTaxReturn");
+  final TextEditingController nameAsPerTaxReturnController = TextEditingController();
+  final GlobalKey<AppTextFieldState> nameAsPerTaxReturnKey = GlobalKey(debugLabel: "nameAsPerTaxReturn");
 
   final TextEditingController businessNameController = TextEditingController();
-  final GlobalKey<AppTextFieldState> businessNameKey =
-      GlobalKey(debugLabel: "businessName");
+  final GlobalKey<AppTextFieldState> businessNameKey = GlobalKey(debugLabel: "businessName");
 
   ///fatca us relevant request subject holder
-  PublishSubject<FatcaUSRelevantW9UseCaseParams> _fatcaUSRelevantW8Request =
-      PublishSubject();
+  PublishSubject<FatcaUSRelevantW9UseCaseParams> _fatcaUSRelevantW8Request = PublishSubject();
 
   ///fatca us relevant response holder
   PublishSubject<Resource<bool>> _fatcaUSRelevantW8Response = PublishSubject();
 
   ///fatca us relevant stream
-  Stream<Resource<bool>> get fatcaUSRelevantW8Stream =>
-      _fatcaUSRelevantW8Response.stream;
+  Stream<Resource<bool>> get fatcaUSRelevantW8Stream => _fatcaUSRelevantW8Response.stream;
 
   ///all field validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -53,9 +48,7 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
 
   FatcaUSRelevantW9PageViewModel(this._fatcaUSRelevantW8UseCase) {
     _fatcaUSRelevantW8Request.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _fatcaUSRelevantW8UseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,20 +73,16 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
 
   void validateFatcaUSRelevantW9Details() {
     _fatcaUSRelevantW8Request.safeAdd(FatcaUSRelevantW9UseCaseParams(
-        nameAsPerTax: nameAsPerTaxReturnController.text,
-        businessName: businessNameController.text));
+        nameAsPerTax: nameAsPerTaxReturnController.text, businessName: businessNameController.text));
   }
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaW9Data fatcaSetData = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW9Data;
+    FatcaW9Data fatcaSetData =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW9Data;
     fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;
     fatcaSetData.businessName = businessNameController.text;
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW9(fatcaSetData);
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW9(fatcaSetData);
   }
 
   @override

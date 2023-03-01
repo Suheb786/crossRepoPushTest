@@ -33,27 +33,22 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   Stream<String> get purposeDetailStream => _purposeDetailSubject.stream;
 
   ///check send money request
-  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest =
-      PublishSubject();
+  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest = PublishSubject();
 
   ///check send money response
-  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse =
-      PublishSubject();
+  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse = PublishSubject();
 
   ///check send money response stream
-  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream =>
-      _checkSendMoneyResponse.stream;
+  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream => _checkSendMoneyResponse.stream;
 
   ///transfer request
   PublishSubject<TransferUseCaseParams> _transferRequest = PublishSubject();
 
   ///transfer response
-  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse =
-      PublishSubject();
+  PublishSubject<Resource<TransferSuccessResponse>> _transferResponse = PublishSubject();
 
   ///transfer response stream
-  Stream<Resource<TransferSuccessResponse>> get transferStream =>
-      _transferResponse.stream;
+  Stream<Resource<TransferSuccessResponse>> get transferStream => _transferResponse.stream;
 
   Purpose? purpose;
 
@@ -61,15 +56,10 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   List<Purpose>? purposeList = [];
 
-  SendAmountToContactViewModel(
-      this._useCase,
-      this.beneficiary,
-      this._checkSendMoneyUseCase,
-      this._transferUseCase,
-      this._getPurposeUseCase) {
+  SendAmountToContactViewModel(this._useCase, this.beneficiary, this._checkSendMoneyUseCase,
+      this._transferUseCase, this._getPurposeUseCase) {
     _checkSendMoneyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _checkSendMoneyUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -82,15 +72,14 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     });
 
     _transferRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _transferUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _transferUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _transferResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-          showToastWithError(event.appError!);
+          // showToastWithError(event.appError!);
         }
       });
     });
@@ -154,13 +143,12 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   void checkSendMoney() {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: beneficiary.accountNo!,
-        toAmount: double.parse(currentPinValue)));
+        toAccount: beneficiary.accountNo!, toAmount: double.parse(currentPinValue)));
   }
 
   void transfer(TransferResponse transferResponse) {
     _transferRequest.safeAdd(TransferUseCaseParams(
-      otpCode: '576824',
+        otpCode: '576824',
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
         limit: purposeDetail == null ? beneficiary.limit : purposeDetail!.limit,

@@ -35,4 +35,11 @@ class Validator {
   static bool isNotEmptyNull(String? data) {
     return ((data != null) && (data.isNotEmpty));
   }
+
+  static bool nickName(String val) {
+    if (val.trim().contains(RegExp("^[a-zA-Z0-9\u0621-\u064A ]+\$"))) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -43,19 +43,15 @@ class DcEnterOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get dcEnterOtpStream => _dcEnterOtpResponse.stream;
 
-  PublishSubject<DcEnterNewMobileNumberUseCaseParams> _enterMobileRequest =
-      PublishSubject();
+  PublishSubject<DcEnterNewMobileNumberUseCaseParams> _enterMobileRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _enterMobileResponse = PublishSubject();
 
   Stream<Resource<bool>> get enterMobileStream => _enterMobileResponse.stream;
 
-  DcEnterOtpViewModel(
-      this._dcEnterOtpUseCase, this._dcEnterNewMobileNumberUseCase) {
+  DcEnterOtpViewModel(this._dcEnterOtpUseCase, this._dcEnterNewMobileNumberUseCase) {
     _enterMobileRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _dcEnterNewMobileNumberUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _dcEnterNewMobileNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -71,8 +67,7 @@ class DcEnterOtpViewModel extends BasePageViewModel {
     });
 
     _dcEnterOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _dcEnterOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _dcEnterOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -85,8 +80,7 @@ class DcEnterOtpViewModel extends BasePageViewModel {
     });
   }
 
-  void enterOtp(String? tokenizedPan, String? mobileNumber, String? mobileCode,
-      CardType cardType) {
+  void enterOtp(String? tokenizedPan, String? mobileNumber, String? mobileCode, CardType cardType) {
     _dcEnterOtpRequest.safeAdd(DcEnterOtpUseCaseParams(
         otpCode: _otpSubject.value,
         tokenizedPan: tokenizedPan,

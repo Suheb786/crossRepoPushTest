@@ -10,17 +10,15 @@ class ChangeMobileNumberPage extends BasePage<ChangeMobileNumberPageViewModel> {
   ChangeMobileNumberPageState createState() => ChangeMobileNumberPageState();
 }
 
-class ChangeMobileNumberPageState extends BaseStatefulPage<
-    ChangeMobileNumberPageViewModel,
-    ChangeMobileNumberPage> {
+class ChangeMobileNumberPageState
+    extends BaseStatefulPage<ChangeMobileNumberPageViewModel, ChangeMobileNumberPage> {
   @override
   ProviderBase provideBase() {
     return changeMobileNumberViewModelProvider;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      ChangeMobileNumberPageViewModel model) {
+  Widget buildView(BuildContext context, ChangeMobileNumberPageViewModel model) {
     return ChangeMobileNumberPageView(provideBase());
   }
 }

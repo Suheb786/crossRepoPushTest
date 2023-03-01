@@ -100,7 +100,7 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
     // model.appSwiperController = PageController(
     //     initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1, viewportFraction: 0.8);
     model.navigationType = widget.navigationType ?? NavigationType.DASHBOARD;
-
+    model.getBeneficiaries(context);
     super.onModelReady(model);
   }
 

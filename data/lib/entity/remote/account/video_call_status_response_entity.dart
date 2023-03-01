@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'video_call_status_response_entity.g.dart';
 
 @JsonSerializable()
-class VideoCallStatusResponseEntity extends BaseLayerDataTransformer<
-    VideoCallStatusResponseEntity, VideoKycStatus> {
+class VideoCallStatusResponseEntity
+    extends BaseLayerDataTransformer<VideoCallStatusResponseEntity, VideoKycStatus> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -21,7 +21,6 @@ class VideoCallStatusResponseEntity extends BaseLayerDataTransformer<
 
   @override
   VideoKycStatus transform() {
-    return VideoKycStatus(
-        status: (this.response!.content as String).fromStatusValue());
+    return VideoKycStatus(status: (this.response!.content as String).fromStatusValue());
   }
 }

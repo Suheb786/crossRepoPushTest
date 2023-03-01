@@ -27,8 +27,9 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
   Widget build(BuildContext context, CreditCardPayBackPageModel model) {
     return Scaffold(
       body: GestureDetector(
-        onHorizontalDragUpdate: (details) {
-          if (details.primaryDelta!.isNegative) {
+        onVerticalDragEnd: (details) {
+          int sensitivity = 8;
+          if (details.primaryVelocity! > sensitivity) {
             Navigator.pop(context);
           }
         },
@@ -127,7 +128,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                           width: 4.w,
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(bottom: 8.0.h),
+                                          padding: EdgeInsetsDirectional.only(bottom: 10.0.h, start: 4.0.w),
                                           child: Text(S.of(context).JOD,
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
@@ -145,7 +146,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                 flex: 1,
                                 child: GestureDetector(
                                     onTap: () {
-                                      model.updateValue();
+                                      model.clearValue();
                                     },
                                     child: Icon(
                                       Icons.backspace,
@@ -161,56 +162,62 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                         ),
                         Row(
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.45,
-                              padding: EdgeInsets.symmetric(vertical: 15.h),
-                              margin: EdgeInsetsDirectional.only(
-                                  start: MediaQuery.of(context).size.width / 13.5, end: 10),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.blue),
-                                  borderRadius: BorderRadius.circular(20.w)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(S.of(context).minDue,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 10.t,
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.verLightGray4)),
-                                  Text(model.payBackArguments.minDuePayBackAmount,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.t,
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black))
-                                ],
+                            GestureDetector(
+                              onTap: () => model.changeMidDueValue(),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.45,
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                margin: EdgeInsetsDirectional.only(
+                                    start: MediaQuery.of(context).size.width / 13.5, end: 10),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.blue),
+                                    borderRadius: BorderRadius.circular(20.w)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(S.of(context).minDue,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.t,
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.verLightGray4)),
+                                    Text(model.payBackArguments.minDuePayBackAmount,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.t,
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.black))
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.45,
-                              padding: EdgeInsets.symmetric(vertical: 15.h),
-                              margin:
-                                  EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.blue),
-                                  borderRadius: BorderRadius.circular(20.w)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(S.of(context).totalDue,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 10.t,
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.verLightGray4)),
-                                  Text(model.payBackArguments.totalMinDueAmount,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14.t,
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black))
-                                ],
+                            GestureDetector(
+                              onTap: () => model.changeTotalDueValue(),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.45,
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                margin:
+                                    EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.blue),
+                                    borderRadius: BorderRadius.circular(20.w)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(S.of(context).totalDue,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.t,
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.verLightGray4)),
+                                    Text(model.payBackArguments.totalMinDueAmount,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.t,
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.black))
+                                  ],
+                                ),
                               ),
                             ),
                           ],

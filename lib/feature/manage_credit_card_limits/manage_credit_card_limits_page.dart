@@ -5,28 +5,24 @@ import 'package:neo_bank/di/manage_card_limits/manage_card_limits_modules.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page_view.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page_view_model.dart';
 
-class ManageCreditCardLimitsPage
-    extends BasePage<ManageCreditCardLimitsPageViewModel> {
+class ManageCreditCardLimitsPage extends BasePage<ManageCreditCardLimitsPageViewModel> {
   final ManageCreditCardLimitsArguments _cardLimitsArguments;
 
   ManageCreditCardLimitsPage(this._cardLimitsArguments);
 
   @override
-  ManageCreditCardLimitsPageState createState() =>
-      ManageCreditCardLimitsPageState();
+  ManageCreditCardLimitsPageState createState() => ManageCreditCardLimitsPageState();
 }
 
-class ManageCreditCardLimitsPageState extends BaseStatefulPage<
-    ManageCreditCardLimitsPageViewModel, ManageCreditCardLimitsPage> {
+class ManageCreditCardLimitsPageState
+    extends BaseStatefulPage<ManageCreditCardLimitsPageViewModel, ManageCreditCardLimitsPage> {
   @override
   ProviderBase provideBase() {
-    return manageCreditCardLimitsViewModelProvider
-        .call(widget._cardLimitsArguments);
+    return manageCreditCardLimitsViewModelProvider.call(widget._cardLimitsArguments);
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ManageCreditCardLimitsPageViewModel model) {
+  Widget buildView(BuildContext context, ManageCreditCardLimitsPageViewModel model) {
     return ManageCreditCardLimitsPageView(provideBase());
   }
 
@@ -40,6 +36,5 @@ class ManageCreditCardLimitsArguments {
   final String secureCode;
   final dynamic creditDeliveredDatetime;
 
-  ManageCreditCardLimitsArguments(
-      {this.secureCode: '', this.creditDeliveredDatetime});
+  ManageCreditCardLimitsArguments({this.secureCode: '', this.creditDeliveredDatetime});
 }

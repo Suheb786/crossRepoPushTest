@@ -9,6 +9,5 @@ abstract class DashboardRepository {
 
   Future<Either<NetworkError, GetATMResponse>> getAtms();
 
-  Future<Either<NetworkError, GetPlaceholderResponse>> getPlaceholder(
-      {int? placeholderId});
+  Future<Either<NetworkError, GetPlaceholderResponse>> getPlaceholder({int? placeholderId});
 }

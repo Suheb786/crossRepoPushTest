@@ -8,14 +8,12 @@ import 'package:domain/usecase/manage_contacts/verify_beneficiary_otp_usecase.da
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddBeneficiaryUseCase] provider
-final checkKycStatusUseCaseProvider =
-    Provider.autoDispose<AddBeneficiaryUseCase>(
+final checkKycStatusUseCaseProvider = Provider.autoDispose<AddBeneficiaryUseCase>(
   (ref) => AddBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[DeleteBeneficiaryUseCase] provider
-final deleteBeneficiaryUseCaseProvider =
-    Provider.autoDispose<DeleteBeneficiaryUseCase>(
+final deleteBeneficiaryUseCaseProvider = Provider.autoDispose<DeleteBeneficiaryUseCase>(
   (ref) => DeleteBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
@@ -25,21 +23,17 @@ final getContactsUseCaseProvider = Provider.autoDispose<GetContactsUseCase>(
 );
 
 ///[UpdateBeneficiaryUseCase] provider
-final updateBeneficiaryUseCaseProvider =
-    Provider.autoDispose<UpdateBeneficiaryUseCase>(
+final updateBeneficiaryUseCaseProvider = Provider.autoDispose<UpdateBeneficiaryUseCase>(
   (ref) => UpdateBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[UploadBeneficiaryProfileImageUseCase] provider
 final uploadBeneficiaryProfileImageUseCaseProvider =
     Provider.autoDispose<UploadBeneficiaryProfileImageUseCase>(
-  (ref) => UploadBeneficiaryProfileImageUseCase(
-      ref.read(manageContactRepositoryProvider)),
+  (ref) => UploadBeneficiaryProfileImageUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[VerifyBeneficiaryOtpUseCase] provider
-final verifyBeneficiaryOtpUseCaseProvider =
-    Provider.autoDispose<VerifyBeneficiaryOtpUseCase>(
-  (ref) =>
-      VerifyBeneficiaryOtpUseCase(ref.read(manageContactRepositoryProvider)),
+final verifyBeneficiaryOtpUseCaseProvider = Provider.autoDispose<VerifyBeneficiaryOtpUseCase>(
+  (ref) => VerifyBeneficiaryOtpUseCase(ref.read(manageContactRepositoryProvider)),
 );

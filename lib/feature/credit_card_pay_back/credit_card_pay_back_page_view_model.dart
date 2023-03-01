@@ -15,20 +15,15 @@ class CreditCardPayBackPageModel extends BasePageViewModel {
   String currentPinValue = '0';
 
   ///pay back credit card handlers
-  PublishSubject<PayBackCreditCardUseCaseParams> _payBackCreditCardRequest =
-      PublishSubject();
+  PublishSubject<PayBackCreditCardUseCaseParams> _payBackCreditCardRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _payBackCreditCardResponse = PublishSubject();
 
-  Stream<Resource<bool>> get payBackCreditCardStream =>
-      _payBackCreditCardResponse.stream;
+  Stream<Resource<bool>> get payBackCreditCardStream => _payBackCreditCardResponse.stream;
 
-  CreditCardPayBackPageModel(
-      this._payBackCreditCardUseCase, this.payBackArguments) {
+  CreditCardPayBackPageModel(this._payBackCreditCardUseCase, this.payBackArguments) {
     _payBackCreditCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _payBackCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _payBackCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -79,13 +74,21 @@ class CreditCardPayBackPageModel extends BasePageViewModel {
     } else if (myList.isEmpty) {
       currentPinValue = "0";
     }
-    print("got myList : $myList");
+    notifyListeners();
+  }
+
+  void changeMidDueValue() {
+    currentPinValue = payBackArguments.minDuePayBackAmount;
+    notifyListeners();
+  }
+
+  void changeTotalDueValue() {
+    currentPinValue = payBackArguments.totalMinDueAmount;
     notifyListeners();
   }
 
   void payBackCreditCard() {
     _payBackCreditCardRequest.safeAdd(PayBackCreditCardUseCaseParams(
-        secureCode: payBackArguments.secureCode,
-        payBackAmount: currentPinValue));
+        secureCode: payBackArguments.secureCode, payBackAmount: currentPinValue));
   }
 }

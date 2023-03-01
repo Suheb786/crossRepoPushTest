@@ -6,9 +6,7 @@ part 'check_existing_call_status_entity.g.dart';
 
 @JsonSerializable()
 class CheckExistingCallStatusEntity
-    implements
-        BaseLayerDataTransformer<CheckExistingCallStatusEntity,
-            CheckExistingCallStatus> {
+    implements BaseLayerDataTransformer<CheckExistingCallStatusEntity, CheckExistingCallStatus> {
   @JsonKey(name: "isExist")
   final bool? isExist;
   @JsonKey(name: "isExpire")
@@ -18,8 +16,7 @@ class CheckExistingCallStatusEntity
   @JsonKey(name: "scheduledTime")
   final String? scheduledTime;
 
-  CheckExistingCallStatusEntity(
-      {this.isExist, this.isExpire, this.scheduledDate, this.scheduledTime});
+  CheckExistingCallStatusEntity({this.isExist, this.isExpire, this.scheduledDate, this.scheduledTime});
 
   factory CheckExistingCallStatusEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckExistingCallStatusEntityFromJson(json);

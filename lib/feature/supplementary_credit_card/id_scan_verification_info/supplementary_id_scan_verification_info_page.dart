@@ -13,8 +13,7 @@ class SupplementaryIdScanVerificationInfoPage
 }
 
 class SupplementaryIdScanVerificationInfoPageState extends BaseStatefulPage<
-    SupplementaryIdScanVerificationInfoPageViewModel,
-    SupplementaryIdScanVerificationInfoPage> {
+    SupplementaryIdScanVerificationInfoPageViewModel, SupplementaryIdScanVerificationInfoPage> {
   @override
   ProviderBase provideBase() {
     return supplementaryIdScanInfoViewModelProvider;
@@ -26,8 +25,7 @@ class SupplementaryIdScanVerificationInfoPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(BuildContext context,
-      SupplementaryIdScanVerificationInfoPageViewModel model) {
+  Widget buildView(BuildContext context, SupplementaryIdScanVerificationInfoPageViewModel model) {
     return SupplementaryIdScanVerificationInfoPageView(provideBase());
   }
 }

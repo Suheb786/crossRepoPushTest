@@ -6,6 +6,5 @@ mixin CardProcessingRepository {
   Future<Either<LocalError, String>> decryptCard({required String cardNo});
 
   /// Decrypt Generate Block Pin
-  Future<Either<LocalError, String>> generateBlockPin(
-      {required String cardNo, required String pinCode});
+  Future<Either<LocalError, String>> generateBlockPin({required String cardNo, required String pinCode});
 }

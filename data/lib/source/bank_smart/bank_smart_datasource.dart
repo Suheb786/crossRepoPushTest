@@ -10,23 +10,20 @@ import 'package:retrofit/retrofit.dart';
 abstract class BankSmartRemoteDS {
   Future<HttpResponse<PurposeOfAccountOpeningResponseEntity>> addAccountPurpose(
       {required bool getToken,
-        String? purpose,
-        bool? isCashDeposit,
-        bool? isTransfer,
-        bool? isBillPayment,
-        bool? isOther,
-        double? monthlyTransaction,
-        double? annualTransaction});
+      String? purpose,
+      bool? isCashDeposit,
+      bool? isTransfer,
+      bool? isBillPayment,
+      bool? isOther,
+      double? monthlyTransaction,
+      double? annualTransaction});
 
   Future<HttpResponse<GetAccountResponseEntity>> getAccount({bool getToken});
 
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
-      {bool getToken,
-        CustomerInformation? customerInformation,
-        CustomerAccountDetails? accountDetails});
+      {bool getToken, CustomerInformation? customerInformation, CustomerAccountDetails? accountDetails});
 
-  Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails(
-      {bool getToken});
+  Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails({bool getToken});
 
   Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock();
 }

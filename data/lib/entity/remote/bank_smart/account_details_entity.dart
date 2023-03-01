@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'account_details_entity.g.dart';
 
 @JsonSerializable()
-class AccountDetailsEntity extends BaseLayerDataTransformer<
-    AccountDetailsEntity, CustomerAccountDetails> {
+class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity, CustomerAccountDetails> {
   @JsonKey(name: "createBy")
   final String? createBy;
   @JsonKey(name: "ourBranchID")
@@ -94,14 +93,14 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "idType")
   final dynamic? idType;
 
-  factory AccountDetailsEntity.fromJson(Map<String, dynamic> json) =>
-      _$AccountDetailsEntityFromJson(json);
+  factory AccountDetailsEntity.fromJson(Map<String, dynamic> json) => _$AccountDetailsEntityFromJson(json);
 
-  AccountDetailsEntity({this.createBy,
-    this.ourBranchID,
-    this.clientID,
-    this.productID,
-    this.name,
+  AccountDetailsEntity(
+      {this.createBy,
+      this.ourBranchID,
+      this.clientID,
+      this.productID,
+      this.name,
       this.address,
       this.countryID,
       this.stateID,
@@ -110,36 +109,36 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
       this.holdMail: 0,
       this.zakatExemption: 0,
       this.introducerAccountNo,
-    this.introducedBy,
-    this.introducerAddress,
-    this.introducerCityID,
-    this.introducerStateID,
-    this.introducerCountryID,
-    this.modeOfOperation,
-    this.reminder,
-    this.notes,
-    this.natureID,
-    this.relationshipCode,
-    this.dontAllowDebitTran: 0,
-    this.dontAllowCreditTran: 0,
-    this.creditNeedsSupervision: 0,
-    this.debitNeedsSupervision: 0,
-    this.notServiceCharges: 0,
-    this.notStopPaymentCharges: 0,
-    this.notChequeBookCharges: 0,
-    this.turnOver,
-    this.noOfDrTrx: 0,
-    this.noOfCrTrx: 0,
-    this.drThresholdLimit: 0,
-    this.crThresholdLimit: 0,
-    this.productCash: 0,
-    this.productClearing: 0,
-    this.productCollection: 0,
-    this.productRemittance: 0,
-    this.productCross: 0,
-    this.productOthers: 0,
-    this.productOthersDesc,
-    this.idType});
+      this.introducedBy,
+      this.introducerAddress,
+      this.introducerCityID,
+      this.introducerStateID,
+      this.introducerCountryID,
+      this.modeOfOperation,
+      this.reminder,
+      this.notes,
+      this.natureID,
+      this.relationshipCode,
+      this.dontAllowDebitTran: 0,
+      this.dontAllowCreditTran: 0,
+      this.creditNeedsSupervision: 0,
+      this.debitNeedsSupervision: 0,
+      this.notServiceCharges: 0,
+      this.notStopPaymentCharges: 0,
+      this.notChequeBookCharges: 0,
+      this.turnOver,
+      this.noOfDrTrx: 0,
+      this.noOfCrTrx: 0,
+      this.drThresholdLimit: 0,
+      this.crThresholdLimit: 0,
+      this.productCash: 0,
+      this.productClearing: 0,
+      this.productCollection: 0,
+      this.productRemittance: 0,
+      this.productCross: 0,
+      this.productOthers: 0,
+      this.productOthersDesc,
+      this.idType});
 
   Map<String, dynamic> toJson() => _$AccountDetailsEntityToJson(this);
 

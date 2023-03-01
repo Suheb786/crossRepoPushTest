@@ -7,14 +7,10 @@ class PurposeDialog {
   PurposeDialog._();
 
   static show(BuildContext mContext,
-      {Function? onDismissed,
-      Function(Purpose)? onSelected,
-      List<Purpose>? purposeList}) {
+      {Function? onDismissed, Function(Purpose)? onSelected, List<Purpose>? purposeList}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => PurposeDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            purposeList: purposeList));
+        builder: (context) =>
+            PurposeDialogView(onDismissed: onDismissed, onSelected: onSelected, purposeList: purposeList));
   }
 }

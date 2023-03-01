@@ -16,16 +16,10 @@ class DcChangeMobileNumberVerifyRequestEntity {
   final Map<String, dynamic> baseData;
 
   DcChangeMobileNumberVerifyRequestEntity(
-      {required this.baseData,
-      this.getToken: true,
-      this.mobileCode,
-      this.mobileNumber,
-      this.tokenizedPan});
+      {required this.baseData, this.getToken: true, this.mobileCode, this.mobileNumber, this.tokenizedPan});
 
-  factory DcChangeMobileNumberVerifyRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory DcChangeMobileNumberVerifyRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DcChangeMobileNumberVerifyRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$DcChangeMobileNumberVerifyRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$DcChangeMobileNumberVerifyRequestEntityToJson(this);
 }

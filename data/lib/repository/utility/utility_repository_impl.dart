@@ -15,8 +15,7 @@ class UtilityRepositoryImpl extends UtilityRepository {
     if (!compatible) {
       return Right(true);
     } else {
-      return Left(
-          LocalError(cause: Exception(), localError: 1212, message: ''));
+      return Left(LocalError(cause: Exception(), localError: 1212, message: ''));
     }
   }
 }
