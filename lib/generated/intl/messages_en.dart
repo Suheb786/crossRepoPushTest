@@ -1605,8 +1605,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
-        "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
-        "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
+        "myCreditCard":
+            MessageLookupByLibrary.simpleMessage("My Visa Credit Card"),
+        "myDebitCard":
+            MessageLookupByLibrary.simpleMessage("My Visa Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
             "Spotify Monthly Subscription"),

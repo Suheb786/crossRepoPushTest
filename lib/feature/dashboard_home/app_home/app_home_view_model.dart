@@ -200,7 +200,10 @@ class AppHomeViewModel extends BasePageViewModel {
           timeLineArguments.placeholderData = timelinePlaceholderData;
 
           ///show apple pay pop up button
-          showApplePayPopUp(true);
+          if (!AppConstantsUtils.isApplePayPopUpShown) {
+            showApplePayPopUp(true);
+            AppConstantsUtils.isApplePayPopUpShown = true;
+          }
         } else if (event.status == Status.SUCCESS) {
           ///fetching antelop cards
           //getAntelopCards();
@@ -212,7 +215,10 @@ class AppHomeViewModel extends BasePageViewModel {
           timeLineArguments.placeholderData = event.data!.data;
 
           ///show apple pay pop up button
-          showApplePayPopUp(true);
+          if (!AppConstantsUtils.isApplePayPopUpShown) {
+            showApplePayPopUp(true);
+            AppConstantsUtils.isApplePayPopUpShown = true;
+          }
         }
       });
     });
@@ -235,7 +241,7 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     _antelopGetCardsRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -553,7 +559,7 @@ class AppHomeViewModel extends BasePageViewModel {
   checkIfDebitCardThere(List<DebitCard>? debitCards) {
     if (debitCards!.isNotEmpty) {
       DebitCard debitCard = debitCards.firstWhere(
-              (debit) => debit.primarySecondaryCard == PrimarySecondaryEnum.PRIMARY,
+          (debit) => debit.primarySecondaryCard == PrimarySecondaryEnum.PRIMARY,
           orElse: () => DebitCard());
       if (debitCard.cardNumber != null) {
         isPrimaryDebitCard = true;
@@ -693,7 +699,8 @@ class AppHomeViewModel extends BasePageViewModel {
     debugPrint("Enter in get antelop card from dashboard method");
     if (isolate != null) {
       debugPrint("Isolate not null");
-      return;
+      isolate?.kill();
+      isolate = null;
     }
     try {
       receivePort = ReceivePort();
@@ -734,7 +741,9 @@ class AppHomeViewModel extends BasePageViewModel {
       _showAddAnotherCardToApplePayPopUpRequest.stream;
 
   void showAnotherAppToApplePayPupUp(bool value) {
-    _showAddAnotherCardToApplePayPopUpRequest.safeAdd(value);
+    Future.delayed(Duration(milliseconds: 500), () {
+      _showAddAnotherCardToApplePayPopUpRequest.safeAdd(value);
+    });
   }
 
   ///--------------------Add Another card To Apple Pay PopUp -------------------///

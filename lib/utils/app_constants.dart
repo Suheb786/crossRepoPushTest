@@ -19,4 +19,6 @@ class AppConstantsUtils {
   static bool isInfobipRegistered = false;
 
   static bool isApplePayFeatureEnabled = false;
+
+  static bool isApplePayPopUpShown = false;
 }

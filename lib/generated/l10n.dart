@@ -4100,10 +4100,10 @@ class S {
     );
   }
 
-  /// `My Debit Card`
+  /// `My Visa Debit Card`
   String get myDebitCard {
     return Intl.message(
-      'My Debit Card',
+      'My Visa Debit Card',
       name: 'myDebitCard',
       desc: '',
       args: [],
@@ -8360,10 +8360,10 @@ class S {
     );
   }
 
-  /// `My Credit Card`
+  /// `My Visa Credit Card`
   String get myCreditCard {
     return Intl.message(
-      'My Credit Card',
+      'My Visa Credit Card',
       name: 'myCreditCard',
       desc: '',
       args: [],

@@ -64,7 +64,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       if (value &&
                           Platform.isIOS &&
                           AppConstantsUtils.isApplePayFeatureEnabled &&
-                          isAllCardsInApplePay) {
+                          isAllCardsInApplePay &&
+                          (model.debitCards.isNotEmpty || model.creditCards.isNotEmpty)) {
                         ApplePayDialog.show(context,
                             image: AssetUtils.applePayLogo,
                             title: S.of(context).blinkWithApplePay, onSelected: () {

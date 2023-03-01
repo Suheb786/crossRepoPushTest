@@ -75,7 +75,9 @@ class SelectedCardForApplePayPageViewModel extends BasePageViewModel {
   Isolate? isolate;
 
   void getAntelopCards() async {
+    debugPrint('Antelop Card called----->');
     if (isolate != null) {
+      debugPrint('Isolate not null----->');
       return;
     }
     try {

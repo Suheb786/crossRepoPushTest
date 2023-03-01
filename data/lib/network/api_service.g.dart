@@ -61,7 +61,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<LoginResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/loginV2',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -1775,7 +1775,8 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin(androidLoginRequestEntity) async {
+  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin(
+      androidLoginRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -1784,7 +1785,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<AndroidLoginResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/AndroidLogin',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AndroidLoginResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -2547,7 +2548,8 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(request) async {
+  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(
+      request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -2556,7 +2558,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<DashboardDataResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Applepay/GetAllCardList',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = DashboardDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
