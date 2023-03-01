@@ -53,7 +53,7 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   @override
   Future<HttpResponse<ProfileDetailsResponseEntity>> getAccountDetails() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getProfileDetails(BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.getProfileDetails(BaseRequest(baseData: baseData.toJson(), getToken: false));
   }
 
   @override
