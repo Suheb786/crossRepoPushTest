@@ -12,17 +12,20 @@ class ReActivateCliqIdUseCase extends BaseUseCase<NetworkError, ReActivateCliqId
 
   @override
   Future<Either<NetworkError, bool>> execute({required ReActivateCliqIdUseCaseParams params}) {
-    return _cliqRepository.reActivateCliqId(aliasId: params.aliasId, getToken: params.getToken);
+    return _cliqRepository.reActivateCliqId(
+        aliasId: params.aliasId, otpCode: params.otpCode, getToken: params.getToken);
   }
 }
 
 class ReActivateCliqIdUseCaseParams extends Params {
   ReActivateCliqIdUseCaseParams({
     required this.aliasId,
+    required this.otpCode,
     required this.getToken,
   });
 
   final String aliasId;
+  final String otpCode;
   final bool getToken;
 
   @override

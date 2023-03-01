@@ -6,8 +6,6 @@ import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
-import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
-import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 
 abstract class CliqRepository {
@@ -48,9 +46,18 @@ abstract class CliqRepository {
   });
 
   Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
-      {required String acc, required String aliasId});
+      {required String acc, required String aliasId, required String otpCode});
+
+  Future<Either<NetworkError, bool>> changeDefaultAccountOtp({required String acc, required String aliasId});
 
   Future<Either<NetworkError, bool>> unLinkAccountFromCliq({
+    required String aliasId,
+    required String accountId,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> unLinkAccountFromCliqOtp({
     required String aliasId,
     required String accountId,
     required bool getToken,
@@ -89,15 +96,33 @@ abstract class CliqRepository {
 
   Future<Either<NetworkError, bool>> suspendCliqId({
     required String aliasId,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> suspendCliqIdOtp({
+    required String aliasId,
     required bool getToken,
   });
 
   Future<Either<NetworkError, bool>> reActivateCliqId({
     required String aliasId,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> reActivateCliqIdOtp({
+    required String aliasId,
     required bool getToken,
   });
 
   Future<Either<NetworkError, bool>> deleteCliqId({
+    required String aliasId,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> deleteCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });
@@ -210,12 +235,7 @@ abstract class CliqRepository {
     required String RejectADdInfo,
   });
 
-  Future<Either<NetworkError, List<GetAccountByCustomerId>>>
-      getAccountByCustomerID();
-
-  Future<Either<NetworkError, bool>> changeDefaultAccountOtp({
-    required bool GetToken,
-  });
+  Future<Either<NetworkError, List<GetAccountByCustomerId>>> getAccountByCustomerID();
 
   Future<Either<NetworkError, bool>> approveRTPRequest(
       {required String custID,

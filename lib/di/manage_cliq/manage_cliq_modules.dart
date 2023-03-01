@@ -27,11 +27,11 @@ import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/lin
 final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
   (ref) => CliqIdListPageViewModel(
     ref.read(getAliasUseCaseProvider),
-    ref.read(deleteCliqIdUseCaseProvider),
-    ref.read(unLinkAccountFromCliqUseCaseProvider),
-    ref.read(confirmChangeDefaultAccountUseCaseProvider),
-    ref.read(suspendCliqIdUseCaseProvider),
-    ref.read(reActivateCliqIdUseCaseProvider),
+    ref.read(deleteCliqIdOtpUseCaseProvider),
+    ref.read(unlinkAccountFromCliqOtpUseCaseProvider),
+    ref.read(changeDefaultAccountOtp),
+    ref.read(suspendCliqIdOtpUseCaseProvider),
+    ref.read(reActivateCliqIdOtpUseCaseProvider),
   ),
 );
 

@@ -10,8 +10,9 @@ DeleteCliqIdRequestEntity _$DeleteCliqIdRequestEntityFromJson(
     Map<String, dynamic> json) {
   return DeleteCliqIdRequestEntity(
     aliasId: json['aliasId'] as String?,
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
+    otpCode: json['OtpCode'] as String?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -19,6 +20,7 @@ Map<String, dynamic> _$DeleteCliqIdRequestEntityToJson(
         DeleteCliqIdRequestEntity instance) =>
     <String, dynamic>{
       'aliasId': instance.aliasId,
-      'getToken': instance.getToken,
-      'baseClass': instance.baseData,
+      'OtpCode': instance.otpCode,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };
