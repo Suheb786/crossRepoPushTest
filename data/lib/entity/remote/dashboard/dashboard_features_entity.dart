@@ -10,7 +10,7 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-login")
   final bool? isLoginEnabled;
 
-  @JsonKey(name: "blink-retail-app-creditCard-application")
+  @JsonKey(name: "blink-retail-app-creditCards-application")
   final bool? isCreditCardEnabled;
 
   @JsonKey(name: "blink-retail-app-register")
