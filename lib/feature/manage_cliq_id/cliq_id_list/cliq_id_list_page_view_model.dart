@@ -30,12 +30,14 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   ///-----------------------[ Named-Constructors ]-----------------------///
 
-  CliqIdListPageViewModel(this._getAliasUsecase,
-      this._deleteCliqIdOtpUseCase,
-      this._unlinkAccountFromCliqOtpUseCase,
-      this._changeDefaultAccountOtpUseCase,
-      this._suspendCliqIdOtpUseCase,
-      this._reActivateCliqIdOtpUseCase,) {
+  CliqIdListPageViewModel(
+    this._getAliasUsecase,
+    this._deleteCliqIdOtpUseCase,
+    this._unlinkAccountFromCliqOtpUseCase,
+    this._changeDefaultAccountOtpUseCase,
+    this._suspendCliqIdOtpUseCase,
+    this._reActivateCliqIdOtpUseCase,
+  ) {
     _getAliasRequest.listen((value) {
       RequestManager(value, createCall: () => _getAliasUsecase.execute(params: value))
           .asFlow()
