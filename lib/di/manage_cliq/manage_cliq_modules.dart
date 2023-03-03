@@ -121,6 +121,18 @@ final linkAccountPageViewModelProvider =
 
 final otpForCliqIdListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<OtpForCliqIdListPageViewModel, OtpForCliqIdListPageArguments>(
-  (ref, args) => OtpForCliqIdListPageViewModel(ref.read(enterOtpForCliqIdUseCaseProvider),
-      ref.read(editCliqIdUseCaseProvider), args, ref.read(editCliqOtpUseCaseProvider)),
+  (ref, args) => OtpForCliqIdListPageViewModel(
+    ref.read(enterOtpForCliqIdUseCaseProvider),
+    args,
+    ref.read(suspendCliqIdUseCaseProvider),
+    ref.read(unLinkAccountFromCliqUseCaseProvider),
+    ref.read(reActivateCliqIdUseCaseProvider),
+    ref.read(deleteCliqIdUseCaseProvider),
+    ref.read(confirmChangeDefaultAccountUseCaseProvider),
+    ref.read(suspendCliqIdOtpUseCaseProvider),
+    ref.read(reActivateCliqIdOtpUseCaseProvider),
+    ref.read(deleteCliqIdOtpUseCaseProvider),
+    ref.read(unlinkAccountFromCliqOtpUseCaseProvider),
+    ref.read(changeDefaultAccountOtp),
+  ),
 );

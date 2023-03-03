@@ -1,6 +1,7 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
@@ -130,9 +131,30 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required String accountNumber,
       required bool isAlias,
       required String aliasValue,
+      required String otpCode,
       required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addLinkAccount(AddLinkAccountRequestEntity(
+        aliasId: aliasId,
+        linkType: linkType,
+        accountNumber: accountNumber,
+        isAlias: isAlias,
+        aliasValue: aliasValue,
+        otpCode: otpCode,
+        getToken: getToken,
+        baseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp(
+      {required String aliasId,
+      required String linkType,
+      required String accountNumber,
+      required bool isAlias,
+      required String aliasValue,
+      required bool getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.addLinkAccountOtp(AddLinkAccountOtpRequestEntity(
         aliasId: aliasId,
         linkType: linkType,
         accountNumber: accountNumber,

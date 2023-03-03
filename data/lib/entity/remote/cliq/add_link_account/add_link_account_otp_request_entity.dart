@@ -2,10 +2,10 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'add_link_account_request_entity.g.dart';
+part 'add_link_account_otp_request_entity.g.dart';
 
 @JsonSerializable()
-class AddLinkAccountRequestEntity {
+class AddLinkAccountOtpRequestEntity {
   @JsonKey(name: "AliasId")
   final String aliasId;
   @JsonKey(name: "LinkType")
@@ -17,26 +17,22 @@ class AddLinkAccountRequestEntity {
   @JsonKey(name: "AliasValue")
   final String aliasValue;
 
-  @JsonKey(name: "OtpCode")
-  final String otpCode;
-
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseClass;
 
-  AddLinkAccountRequestEntity(
+  AddLinkAccountOtpRequestEntity(
       {required this.aliasId,
       required this.linkType,
       required this.accountNumber,
       required this.isAlias,
       required this.aliasValue,
-      required this.otpCode,
       required this.getToken,
       required this.baseClass});
 
-  Map<String, dynamic> toJson() => _$AddLinkAccountRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$AddLinkAccountOtpRequestEntityToJson(this);
 
-  factory AddLinkAccountRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$AddLinkAccountRequestEntityFromJson(json);
+  factory AddLinkAccountOtpRequestEntity.fromJson(Map<String, dynamic> json) =>
+      _$AddLinkAccountOtpRequestEntityFromJson(json);
 }

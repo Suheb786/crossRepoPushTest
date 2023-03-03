@@ -82,8 +82,29 @@ class CliqRepositoryImpl extends CliqRepository {
       required String accountNumber,
       required bool isAlias,
       required String aliasValue,
+      required String otpCode,
       required bool getToken}) async {
     final result = await safeApiCall(_cliqDataSource.addLinkAccount(
+        aliasId: aliasId,
+        linkType: linkType,
+        accountNumber: accountNumber,
+        isAlias: isAlias,
+        aliasValue: aliasValue,
+        otpCode: otpCode,
+        getToken: getToken));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> addLinkAccountOtp(
+      {required String aliasId,
+      required String linkType,
+      required String accountNumber,
+      required bool isAlias,
+      required String aliasValue,
+      required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.addLinkAccountOtp(
         aliasId: aliasId,
         linkType: linkType,
         accountNumber: accountNumber,

@@ -1,4 +1,5 @@
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
+import 'package:domain/usecase/manage_cliq/add_link_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
@@ -15,12 +16,12 @@ import 'link_account_page.dart';
 class LinkAccountPageViewModel extends BasePageViewModel {
   final LinkBankAccountCliqIdValidationUseCase _linkBankAccountCliqIdValidationUseCase;
   final LinkAccountPageArgument argument;
-  final AddLInkAccountUseCase _addLInkAccountUseCase;
+  final AddLInkAccountOtpUseCase _addLinkAccountOtpUseCase;
 
   final GetAccountByCustomerIDUseCase _getAccountByCustomerIDUseCase;
 
   LinkAccountPageViewModel(this._linkBankAccountCliqIdValidationUseCase, this._getAccountByCustomerIDUseCase,
-      this._addLInkAccountUseCase, this.argument) {
+      this._addLinkAccountOtpUseCase, this.argument) {
     ///validation request
     _linkBankAccountCliqIdValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _linkBankAccountCliqIdValidationUseCase.execute(params: value))
@@ -47,17 +48,29 @@ class LinkAccountPageViewModel extends BasePageViewModel {
       });
     });
 
-    _linkCliqIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _addLInkAccountUseCase.execute(params: value))
+    _linkCliqIdOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _addLinkAccountOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _linkCliqIdResponse.safeAdd(event);
+        _linkCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
       });
     });
+
+    // _linkCliqIdRequest.listen((value) {
+    //   RequestManager(value, createCall: () => _addLInkAccountUseCase.execute(params: value))
+    //       .asFlow()
+    //       .listen((event) {
+    //     updateLoader();
+    //     _linkCliqIdResponse.safeAdd(event);
+    //     if (event.status == Status.ERROR) {
+    //       showToastWithError(event.appError!);
+    //     }
+    //   });
+    // });
   }
 
   void updateLinkAccount(GetAccountByCustomerId data) {
@@ -153,6 +166,7 @@ class LinkAccountPageViewModel extends BasePageViewModel {
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
+    required String otpCode,
   }) {
     _linkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
         linkType: linkType,
@@ -160,6 +174,33 @@ class LinkAccountPageViewModel extends BasePageViewModel {
         accountNumber: accountNumber,
         isAlias: isAlias,
         aliasId: aliasId,
-        aliasValue: aliasValue));
+        aliasValue: aliasValue,
+        otpCode: otpCode));
+  }
+
+  ///--------------------------------
+
+  PublishSubject<AddLInkAccountOtpUseCaseParams> _linkCliqIdOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _linkCliqIdOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get linkCliqIdOtpStream => _linkCliqIdResponse.stream;
+
+  void linkCliqIdOtp({
+    required bool getToken,
+    required String aliasId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+  }) {
+    _linkCliqIdOtpRequest.safeAdd(AddLInkAccountOtpUseCaseParams(
+      linkType: linkType,
+      getToken: getToken,
+      accountNumber: accountNumber,
+      isAlias: isAlias,
+      aliasId: aliasId,
+      aliasValue: aliasValue,
+    ));
   }
 }

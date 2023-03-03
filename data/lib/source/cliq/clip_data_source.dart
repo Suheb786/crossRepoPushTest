@@ -41,6 +41,16 @@ abstract class CliqDataSource {
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp({
+    required String aliasId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
     required bool getToken,
   });
 

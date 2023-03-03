@@ -112,6 +112,7 @@ import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_reques
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
@@ -1016,6 +1017,11 @@ abstract class ApiService {
   @POST("/Cliq/AddLinkAccount")
   Future<HttpResponse<ResponseEntity>> addLinkAccount(
     @Body() AddLinkAccountRequestEntity request,
+  );
+
+  @POST("/Cliq/AddLinkAccountOtp")
+  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp(
+    @Body() AddLinkAccountOtpRequestEntity request,
   );
 
   @POST("/Cliq/ConfirmChangeDefaultAccount")

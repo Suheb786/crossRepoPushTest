@@ -42,6 +42,16 @@ abstract class CliqRepository {
     required String accountNumber,
     required bool isAlias,
     required String aliasValue,
+    required String otpCode,
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> addLinkAccountOtp({
+    required String aliasId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
     required bool getToken,
   });
 
