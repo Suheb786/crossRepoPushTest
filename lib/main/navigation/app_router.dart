@@ -67,7 +67,7 @@ import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
-import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_edit_alias_mobile_no_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';

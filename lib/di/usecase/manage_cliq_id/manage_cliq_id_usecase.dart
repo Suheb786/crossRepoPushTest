@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/manage_cliq/add_link_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/add_new_mobile_number_cliq_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
@@ -111,9 +112,14 @@ final confirmCreateCliqIdUseCaseProvider = Provider.autoDispose<ConfirmCreateCli
   (ref) => ConfirmCreateCliqIdUseCase(ref.read(cliqRepositoryProvider)),
 );
 
-///[addLinkAccountUseCase] provider
+///[AddLinkAccountUseCase] provider
 final addLinkAccountUseCaseProvider = Provider.autoDispose<AddLInkAccountUseCase>(
   (ref) => AddLInkAccountUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[AddLInkAccountOtpUseCase] provider
+final addLInkAccountOtpUseCaseProvider = Provider.autoDispose<AddLInkAccountOtpUseCase>(
+  (ref) => AddLInkAccountOtpUseCase(ref.read(cliqRepositoryProvider)),
 );
 
 ///[ChangeDefaultAccountOtpUsecase] provider

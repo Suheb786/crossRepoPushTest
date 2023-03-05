@@ -6,8 +6,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import 'otp_for_edit_alias_mobile_no_page_view.dart';
-import 'otp_for_edit_alias_mobile_no_page_view_model.dart';
+import 'otp_for_cliq_id_page_view.dart';
+import 'otp_for_cliq_id_page_view_model.dart';
 
 class OtpForCliqIdListPage extends BasePage<OtpForCliqIdListPageViewModel> {
   final OtpForCliqIdListPageArguments _arguments;

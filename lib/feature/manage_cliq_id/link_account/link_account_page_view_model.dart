@@ -1,6 +1,6 @@
+import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/manage_cliq/add_link_account_otp_usecase.dart';
-import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +14,8 @@ import 'package:rxdart/rxdart.dart';
 import 'link_account_page.dart';
 
 class LinkAccountPageViewModel extends BasePageViewModel {
+  String accountNumber = '';
+
   final LinkBankAccountCliqIdValidationUseCase _linkBankAccountCliqIdValidationUseCase;
   final LinkAccountPageArgument argument;
   final AddLInkAccountOtpUseCase _addLinkAccountOtpUseCase;
@@ -59,18 +61,6 @@ class LinkAccountPageViewModel extends BasePageViewModel {
         }
       });
     });
-
-    // _linkCliqIdRequest.listen((value) {
-    //   RequestManager(value, createCall: () => _addLInkAccountUseCase.execute(params: value))
-    //       .asFlow()
-    //       .listen((event) {
-    //     updateLoader();
-    //     _linkCliqIdResponse.safeAdd(event);
-    //     if (event.status == Status.ERROR) {
-    //       showToastWithError(event.appError!);
-    //     }
-    //   });
-    // });
   }
 
   void updateLinkAccount(GetAccountByCustomerId data) {
@@ -87,7 +77,9 @@ class LinkAccountPageViewModel extends BasePageViewModel {
 
   void validate() {
     _linkBankAccountCliqIdValidationRequest.safeAdd(LinkBankAccountCliqIdValidationUseCaseParams(
-        isSelected: _isSelectedRequest.value, listOfCustomerAccount: linkBankAccountCliqIdList));
+        isSelected: _isSelectedRequest.value,
+        listOfCustomerAccount: linkBankAccountCliqIdList,
+        cliqListActionTypeEnum: CliqListActionTypeEnum.LINKACCOUNT));
   }
 
   void showBtn() {
@@ -115,7 +107,7 @@ class LinkAccountPageViewModel extends BasePageViewModel {
 
   ///-----------for validation subject
   PublishSubject<LinkBankAccountCliqIdValidationUseCaseParams> _linkBankAccountCliqIdValidationRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<bool>> _linkBankAccountCliqIdValidationResponse = PublishSubject();
 
@@ -151,40 +143,13 @@ class LinkAccountPageViewModel extends BasePageViewModel {
     _getAccountByCustomerIdRequest.safeAdd(GetAccountByCustomerIDUseCaseParams());
   }
 
-  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _linkCliqIdResponse = PublishSubject();
-
-  Stream<Resource<bool>> get linkCliqIdStream => _linkCliqIdResponse.stream;
-
-  String accountNumber = '';
-
-  void linkCliqId({
-    required bool getToken,
-    required String aliasId,
-    required String linkType,
-    required String accountNumber,
-    required bool isAlias,
-    required String aliasValue,
-    required String otpCode,
-  }) {
-    _linkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
-        linkType: linkType,
-        getToken: getToken,
-        accountNumber: accountNumber,
-        isAlias: isAlias,
-        aliasId: aliasId,
-        aliasValue: aliasValue,
-        otpCode: otpCode));
-  }
-
-  ///--------------------------------
+  ///-------------------------------- Link Account Otp ------------------------------------
 
   PublishSubject<AddLInkAccountOtpUseCaseParams> _linkCliqIdOtpRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _linkCliqIdOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get linkCliqIdOtpStream => _linkCliqIdResponse.stream;
+  Stream<Resource<bool>> get linkCliqIdOtpStream => _linkCliqIdOtpResponse.stream;
 
   void linkCliqIdOtp({
     required bool getToken,

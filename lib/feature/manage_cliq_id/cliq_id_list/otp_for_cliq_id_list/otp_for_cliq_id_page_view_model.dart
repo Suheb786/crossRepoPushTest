@@ -1,3 +1,5 @@
+import 'package:domain/usecase/manage_cliq/add_link_account_otp_usecase.dart';
+import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/change_default_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/delete_cliq_id_otp_usecase.dart';
@@ -19,7 +21,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import 'otp_for_edit_alias_mobile_no_page.dart';
+import 'otp_for_cliq_id_page.dart';
 
 class OtpForCliqIdListPageViewModel extends BasePageViewModel {
   final EnterOtpForCliqIdValidationUseCase _enterOtpForCliqIdValidationUseCase;
@@ -36,21 +38,25 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
   final DeleteCliqIdOtpUseCase _deleteCliqIdOtpUseCase;
   final UnlinkAccountFromCliqOtpUseCase _unlinkAccountFromCliqOtpUseCase;
   final ChangeDefaultAccountOtpUseCase _changeDefaultAccountOtpUseCase;
+  final AddLInkAccountOtpUseCase _addLinkAccountOtpUseCase;
+
+  final AddLInkAccountUseCase _addLInkAccountUseCase;
 
   OtpForCliqIdListPageViewModel(
-    this._enterOtpForCliqIdValidationUseCase,
-    this.arguments,
-    this._suspendCliqIdUseCase,
-    this._unlinkAccountFromCliqUseCase,
-    this._reActivateCliqIdUseCase,
-    this._deleteCliqIdUseCase,
-    this._confirmChangeDefaultAccountUseCase,
-    this._suspendCliqIdOtpUseCase,
-    this._reActivateCliqIdOtpUseCase,
-    this._deleteCliqIdOtpUseCase,
-    this._unlinkAccountFromCliqOtpUseCase,
-    this._changeDefaultAccountOtpUseCase,
-  ) {
+      this._enterOtpForCliqIdValidationUseCase,
+      this.arguments,
+      this._suspendCliqIdUseCase,
+      this._unlinkAccountFromCliqUseCase,
+      this._reActivateCliqIdUseCase,
+      this._deleteCliqIdUseCase,
+      this._confirmChangeDefaultAccountUseCase,
+      this._suspendCliqIdOtpUseCase,
+      this._reActivateCliqIdOtpUseCase,
+      this._deleteCliqIdOtpUseCase,
+      this._unlinkAccountFromCliqOtpUseCase,
+      this._changeDefaultAccountOtpUseCase,
+      this._addLInkAccountUseCase,
+      this._addLinkAccountOtpUseCase) {
     ///validation request
     _enterOtpForCliqIdValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _enterOtpForCliqIdValidationUseCase.execute(params: value))
@@ -71,6 +77,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _suspandCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -83,6 +90,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _reactivateCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -95,6 +103,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _deleteCliqIdResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -107,6 +116,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _unlinkCliqIdResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -119,6 +129,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _changeDefaultCliqIDResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -133,6 +144,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _suspandCliqIDOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           updateTime();
@@ -147,6 +159,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _reactivateCliqIDOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           updateTime();
@@ -161,6 +174,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _deleteCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           updateTime();
@@ -175,6 +189,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _unlinkCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           updateTime();
@@ -189,6 +204,35 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
         updateLoader();
         _changeDefaultCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          updateTime();
+        }
+      });
+    });
+
+    _linkCliqIdRequest.listen((value) {
+      RequestManager(value, createCall: () => _addLInkAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _linkCliqIdResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _linkCliqIdOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _addLinkAccountOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _linkCliqIdOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           updateTime();
@@ -259,7 +303,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
 
   ///========================================== otp request validation==============================///
   PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();
 
@@ -340,6 +384,33 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
     ));
   }
 
+  ///--------------------------------Link Account-----------------------------------
+
+  PublishSubject<AddLinkAccountUseCaseParams> _linkCliqIdRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _linkCliqIdResponse = PublishSubject();
+
+  Stream<Resource<bool>> get linkCliqIdStream => _linkCliqIdResponse.stream;
+
+  void linkCliqId({
+    required bool getToken,
+    required String aliasId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+    required String otpCode,
+  }) {
+    _linkCliqIdRequest.safeAdd(AddLinkAccountUseCaseParams(
+        linkType: linkType,
+        getToken: getToken,
+        accountNumber: accountNumber,
+        isAlias: isAlias,
+        aliasId: aliasId,
+        aliasValue: aliasValue,
+        otpCode: otpCode));
+  }
+
   ///==============================Resend Otp Apis===================================================///
 
   //*----------------Change Default Cliq Id otp--------------///
@@ -415,6 +486,33 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
       aliasId: aliasId,
       accountId: accountId,
       getToken: getToken,
+    ));
+  }
+
+  ///-------------------------------- Link Account Otp ------------------------------------
+
+  PublishSubject<AddLInkAccountOtpUseCaseParams> _linkCliqIdOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _linkCliqIdOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get linkCliqIdOtpStream => _linkCliqIdOtpResponse.stream;
+
+  void linkCliqIdOtp({
+    required bool getToken,
+    required String aliasId,
+    required String linkType,
+    required String accountNumber,
+    required bool isAlias,
+    required String aliasValue,
+  }) {
+    otpController.clear();
+    _linkCliqIdOtpRequest.safeAdd(AddLInkAccountOtpUseCaseParams(
+      linkType: linkType,
+      getToken: getToken,
+      accountNumber: accountNumber,
+      isAlias: isAlias,
+      aliasId: aliasId,
+      aliasValue: aliasValue,
     ));
   }
 

@@ -30,7 +30,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
-import 'otp_for_cliq_id_list/otp_for_edit_alias_mobile_no_page.dart';
+import 'otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
 
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);

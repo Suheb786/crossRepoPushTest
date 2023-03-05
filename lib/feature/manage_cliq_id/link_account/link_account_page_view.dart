@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog.dart';
@@ -68,22 +69,18 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                       shakeAngle: Rotation.deg(z: 1),
                       curve: Curves.easeInOutSine,
                       child: AppStreamBuilder<Resource<bool>>(
-                          stream: model.linkCliqIdStream,
+                          stream: model.linkCliqIdOtpStream,
                           initialData: Resource.none(),
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
-                              model.showSuccessTitleandDescriptionToast(
-                                ToastwithTitleandDescription(
-                                  title: S.current.cliqIdUpdate,
-                                  description: S.current.accountSuccessfullyLinked,
-                                ),
-                              );
-                              // model.showToastWithString(S.of(context).accountSuccessfullyLinked);
-                              ProviderScope.containerOf(context)
-                                  .read(cliqIdListViewModelProvider)
-                                  .getAlias(true);
-
-                              Navigator.pop(context);
+                              Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                  arguments: OtpForCliqIdListPageArguments(
+                                      cliqListActionTypeEnum: CliqListActionTypeEnum.LINKACCOUNT,
+                                      aliasId: model.argument.aliasId,
+                                      linkType: model.argument.linkType,
+                                      accountId: model.accountNumber,
+                                      isAlias: model.argument.isAlias,
+                                      aliasName: model.argument.aliasValue));
                             }
                           },
                           dataBuilder: (context, snapshot) {
@@ -92,15 +89,14 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                                 initialData: Resource.none(),
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    // model.linkCliqId(
-                                    //     getToken: model.argument.getToken,
-                                    //     aliasId: model.argument.aliasId,
-                                    //     linkType: model.argument.linkType,
-                                    //     accountNumber: model.accountNumber,
-                                    //     isAlias: model.argument.isAlias,
-                                    //     aliasValue: model.argument.aliasValue,
-                                    //     otpCode: model.controller.
-                                    // );
+                                    model.linkCliqIdOtp(
+                                      getToken: model.argument.getToken,
+                                      aliasId: model.argument.aliasId,
+                                      linkType: model.argument.linkType,
+                                      accountNumber: model.accountNumber,
+                                      isAlias: model.argument.isAlias,
+                                      aliasValue: model.argument.aliasValue,
+                                    );
                                   }
                                 },
                                 dataBuilder: (context, snapshot) {
