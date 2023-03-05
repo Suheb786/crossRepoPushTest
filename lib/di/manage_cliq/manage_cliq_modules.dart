@@ -115,7 +115,7 @@ final cliqInformationDialogViewModelProvider =
 
 final linkAccountPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<LinkAccountPageViewModel, LinkAccountPageArgument>(
-            (ref, arg) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
+  (ref, arg) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
       ref.read(getAccountByCustomerID), ref.read(addLInkAccountOtpUseCaseProvider), arg),
 );
 

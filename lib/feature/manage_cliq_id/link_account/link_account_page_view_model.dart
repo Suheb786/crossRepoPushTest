@@ -107,7 +107,7 @@ class LinkAccountPageViewModel extends BasePageViewModel {
 
   ///-----------for validation subject
   PublishSubject<LinkBankAccountCliqIdValidationUseCaseParams> _linkBankAccountCliqIdValidationRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<bool>> _linkBankAccountCliqIdValidationResponse = PublishSubject();
 

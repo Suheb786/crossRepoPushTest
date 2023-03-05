@@ -303,7 +303,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
 
   ///========================================== otp request validation==============================///
   PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();
 

@@ -76,10 +76,11 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
         cliqListActionTypeEnum: CliqListActionTypeEnum.CREATECLIQ));
   }
 
-  void makeOtpRequest({required bool getToken,
-    required String aliasValue,
-    required bool isAlias,
-    required String accountNumber}) {
+  void makeOtpRequest(
+      {required bool getToken,
+      required String aliasValue,
+      required bool isAlias,
+      required String accountNumber}) {
     _createCliqIdOtpRequest.safeAdd(CreateCliqIdOtpParams(
         getToken: getToken, aliasValue: aliasValue, isAlias: isAlias, accountNumber: accountNumber));
   }
