@@ -121,7 +121,7 @@ final linkAccountPageViewModelProvider =
 
 final otpForCliqIdListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<OtpForCliqIdListPageViewModel, OtpForCliqIdListPageArguments>(
-            (ref, args) => OtpForCliqIdListPageViewModel(
+  (ref, args) => OtpForCliqIdListPageViewModel(
       ref.read(enterOtpForCliqIdUseCaseProvider),
       args,
       ref.read(suspendCliqIdUseCaseProvider),
