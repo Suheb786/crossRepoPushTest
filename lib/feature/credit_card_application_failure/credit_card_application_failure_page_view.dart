@@ -23,7 +23,9 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
           if (model.creditCardApplicationFailureArguments.creditFailureState ==
                   CreditFailureState.InEligible ||
               model.creditCardApplicationFailureArguments.creditFailureState ==
-                  CreditFailureState.ZERO_BALANCE) {
+                  CreditFailureState.ZERO_BALANCE ||
+              model.creditCardApplicationFailureArguments.creditFailureState ==
+                  CreditFailureState.AccountDormant) {
             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
             ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
@@ -112,6 +114,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
   String getTitle(BuildContext context, CreditFailureState creditFailureState) {
     switch (creditFailureState) {
       case CreditFailureState.InEligible:
+      case CreditFailureState.AccountDormant:
       case CreditFailureState.EngagementTeamRejection:
         return S.of(context).applicationNotSuccessful;
 
@@ -126,6 +129,8 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
         return S.of(context).applicationFailureMsg;
       case CreditFailureState.EngagementTeamRejection:
         return S.of(context).applicationRejectedByEngagementTeam;
+      case CreditFailureState.AccountDormant:
+        return S.of(context).accountDormantDesc;
 
       case CreditFailureState.ZERO_BALANCE:
         return S.of(context).creditZeroBalanceRejDesc;

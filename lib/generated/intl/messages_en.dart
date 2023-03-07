@@ -84,6 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "You cannot apply for a credit card; your account is dormant, please call us to activate it."),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -726,7 +730,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help "),
         "dailyNarrationLimitexceed": MessageLookupByLibrary.simpleMessage(
-            "Daily Narration Amount Exceed"),
+            "Daily Narration AmountExceed"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateComparison": MessageLookupByLibrary.simpleMessage(
             "Depart on date should not be greater than return date"),

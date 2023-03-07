@@ -1600,5 +1600,7 @@
   "hasBeenDeleted": "{String} has been deleted",
   "cliqAliasUpdate": "CliQ ID Alias has been updated",
   "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
-  "mobileNoAliasHint": "00962000000000"
+  "mobileNoAliasHint": "00962000000000",
+  "accountDormant": "Account is Dormant",
+  "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "
 }

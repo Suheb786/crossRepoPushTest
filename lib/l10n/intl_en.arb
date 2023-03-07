@@ -1645,5 +1645,7 @@
   "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
   "dailyLimitExceededorTryLater": " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help ",
   "processing": "Processing",
-  "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
+  "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
+  "accountDormant": "Account is Dormant",
+  "accountDormantDesc": "You cannot apply for a credit card; your account is dormant, please call us to activate it."
 }
