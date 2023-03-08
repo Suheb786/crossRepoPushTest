@@ -6,8 +6,8 @@ part of 'unlink_account_from_cliq_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnLinkAccountFromCliqOtpRequestEntity _$UnLinkAccountFromCliqOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
+UnLinkAccountFromCliqOtpRequestEntity
+    _$UnLinkAccountFromCliqOtpRequestEntityFromJson(Map<String, dynamic> json) {
   return UnLinkAccountFromCliqOtpRequestEntity(
     aliasId: json['AliasId'] as String?,
     accountId: json['AccountId'] as String?,

@@ -337,8 +337,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Beneficial owner is a resident of"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
             "Recipient not found. Please try another recipient."),
+        "billCannotBeCheckedDueToClosedBill":
+            MessageLookupByLibrary.simpleMessage(
+                "Bill cannot be checked because it is closed."),
+        "billCannotBeCheckedDueToExpiredBill":
+            MessageLookupByLibrary.simpleMessage(
+                "Bill cannot be checked because it is expired."),
         "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
         "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
+        "billNotFound": MessageLookupByLibrary.simpleMessage("Bill Not Found"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "We are sorry. We were unable to complete your payment. Please refer to your Blink account statement and your Biller account statement to check the status of your payment. You can reach out to our Engagement team for support."),
         "billerAddedSuccessfully":
@@ -346,6 +353,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
             "Biller already exists with the same billing number"),
         "billerName": MessageLookupByLibrary.simpleMessage("Biller name"),
+        "billingNumberReachedItsMaxAmt": MessageLookupByLibrary.simpleMessage(
+            "Billing Number Reached Its Max Amt"),
+        "billingNumberReachedItsMaxTrx": MessageLookupByLibrary.simpleMessage(
+            "Billing Number Reached Its Max Trx"),
         "billsAndPayments":
             MessageLookupByLibrary.simpleMessage("Bills & Payments"),
         "billsHistory": MessageLookupByLibrary.simpleMessage("Bills History"),
@@ -578,7 +589,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
-            "You cannot proceed to complete the payment because the bill is expired"),
+            "Payment cannot be completed because the bill is closed."),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -726,7 +737,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help "),
         "dailyNarrationLimitexceed": MessageLookupByLibrary.simpleMessage(
-            "Daily Narration Amount Exceed"),
+            "Daily Narration AmountExceed"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateComparison": MessageLookupByLibrary.simpleMessage(
             "Depart on date should not be greater than return date"),
@@ -1502,6 +1513,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We\'re sorry, you must be the beneficial owner of the account to proceed."),
         "invalidBeneficiary":
             MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
+        "invalidBillingNumber":
+            MessageLookupByLibrary.simpleMessage("Invalid Billing Number"),
         "invalidBusinessType":
             MessageLookupByLibrary.simpleMessage("Select Business Type"),
         "invalidCardId": MessageLookupByLibrary.simpleMessage(
@@ -1625,6 +1638,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have entered an invalid code. Please try again."),
         "invalidOtpReq": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid code. Please try again."),
+        "invalidPaidAmount":
+            MessageLookupByLibrary.simpleMessage("Invalid Paid Amount"),
         "invalidPayBackAmount": MessageLookupByLibrary.simpleMessage(
             "The Pay Back amount you\'ve entered exceeds your account balance. Please add money to your acount or choose another amount."),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
@@ -1995,7 +2010,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
-            "You cannot proceed to complete the payment because the bill is not yet issued"),
+            "Payment cannot be completed because the bill date is not reached Yet"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
@@ -2288,7 +2303,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("Reject Request"),
         "rejectedDueToExpiryDate": MessageLookupByLibrary.simpleMessage(
-            "You cannot proceed to complete the payment because the bill is expired"),
+            "Payment cannot be completed because the bill is expired."),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -2676,6 +2691,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
+        "thereAreNoDueBills":
+            MessageLookupByLibrary.simpleMessage("There are no due bills"),
+        "thereAreNoDueBillsButYouCanMakePartialPayments":
+            MessageLookupByLibrary.simpleMessage(
+                "There are no due bills, but you can make partial payments"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "There are no due bills to be paid at the moment"),

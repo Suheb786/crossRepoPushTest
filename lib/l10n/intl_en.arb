@@ -1637,10 +1637,6 @@
   "cliqAliasUpdate": "CliQ ID Alias has been updated",
   "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
   "mobileNoAliasHint": "00962000000000",
-  "rejectedDueToExpiryDate": "You cannot proceed to complete the payment because the bill is expired",
-  "openDateIssuedMessage": "You cannot proceed to complete the payment because the bill is not yet issued",
-  "closeDateIssueMessage": "You cannot proceed to complete the payment because the bill is expired",
-  "serviceIsNotavaliable": "Service is not available",
   "viewHistory": "View History",
   "billsHistory": "Bills History",
   "payYourBillswithBlink": "Pay your bills with Blink!",
@@ -1657,5 +1653,5 @@
   "invalidPaidAmount": "Invalid Paid Amount",
   "billingNumberReachedItsMaxAmt": "Billing Number Reached Its Max Amt",
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
-  "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
+  "dailyNarrationLimitexceed": "Daily Narration AmountExceed"
 }

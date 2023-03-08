@@ -16040,6 +16040,56 @@ class S {
     );
   }
 
+  /// `Payment cannot be completed because the bill is expired.`
+  String get rejectedDueToExpiryDate {
+    return Intl.message(
+      'Payment cannot be completed because the bill is expired.',
+      name: 'rejectedDueToExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is expired.`
+  String get billCannotBeCheckedDueToExpiredBill {
+    return Intl.message(
+      'Bill cannot be checked because it is expired.',
+      name: 'billCannotBeCheckedDueToExpiredBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill cannot be checked because it is closed.`
+  String get billCannotBeCheckedDueToClosedBill {
+    return Intl.message(
+      'Bill cannot be checked because it is closed.',
+      name: 'billCannotBeCheckedDueToClosedBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cannot be completed because the bill date is not reached Yet`
+  String get openDateIssuedMessage {
+    return Intl.message(
+      'Payment cannot be completed because the bill date is not reached Yet',
+      name: 'openDateIssuedMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cannot be completed because the bill is closed.`
+  String get closeDateIssueMessage {
+    return Intl.message(
+      'Payment cannot be completed because the bill is closed.',
+      name: 'closeDateIssueMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{String} has been suspended`
   String hasbeenSuspended(Object String) {
     return Intl.message(
@@ -16100,36 +16150,6 @@ class S {
     );
   }
 
-  /// `You cannot proceed to complete the payment because the bill is expired`
-  String get rejectedDueToExpiryDate {
-    return Intl.message(
-      'You cannot proceed to complete the payment because the bill is expired',
-      name: 'rejectedDueToExpiryDate',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You cannot proceed to complete the payment because the bill is not yet issued`
-  String get openDateIssuedMessage {
-    return Intl.message(
-      'You cannot proceed to complete the payment because the bill is not yet issued',
-      name: 'openDateIssuedMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You cannot proceed to complete the payment because the bill is expired`
-  String get closeDateIssueMessage {
-    return Intl.message(
-      'You cannot proceed to complete the payment because the bill is expired',
-      name: 'closeDateIssueMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `View History`
   String get viewHistory {
     return Intl.message(
@@ -16180,6 +16200,26 @@ class S {
     );
   }
 
+  /// `There are no due bills, but you can make partial payments`
+  String get thereAreNoDueBillsButYouCanMakePartialPayments {
+    return Intl.message(
+      'There are no due bills, but you can make partial payments',
+      name: 'thereAreNoDueBillsButYouCanMakePartialPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no due bills`
+  String get thereAreNoDueBills {
+    return Intl.message(
+      'There are no due bills',
+      name: 'thereAreNoDueBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Swipe any biller to the left to remove`
   String get swipeAnyBillerToTheLeftToRemove {
     return Intl.message(
@@ -16220,10 +16260,60 @@ class S {
     );
   }
 
-  /// `Daily Narration Amount Exceed`
+  /// `Invalid Billing Number`
+  String get invalidBillingNumber {
+    return Intl.message(
+      'Invalid Billing Number',
+      name: 'invalidBillingNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill Not Found`
+  String get billNotFound {
+    return Intl.message(
+      'Bill Not Found',
+      name: 'billNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Paid Amount`
+  String get invalidPaidAmount {
+    return Intl.message(
+      'Invalid Paid Amount',
+      name: 'invalidPaidAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Amt`
+  String get billingNumberReachedItsMaxAmt {
+    return Intl.message(
+      'Billing Number Reached Its Max Amt',
+      name: 'billingNumberReachedItsMaxAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Billing Number Reached Its Max Trx`
+  String get billingNumberReachedItsMaxTrx {
+    return Intl.message(
+      'Billing Number Reached Its Max Trx',
+      name: 'billingNumberReachedItsMaxTrx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Narration AmountExceed`
   String get dailyNarrationLimitexceed {
     return Intl.message(
-      'Daily Narration Amount Exceed',
+      'Daily Narration AmountExceed',
       name: 'dailyNarrationLimitexceed',
       desc: '',
       args: [],

@@ -6,8 +6,9 @@ part of 'confirm_change_default_account_otp_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmChangeDefaultAccountOtpRequestEntity _$ConfirmChangeDefaultAccountOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
+ConfirmChangeDefaultAccountOtpRequestEntity
+    _$ConfirmChangeDefaultAccountOtpRequestEntityFromJson(
+        Map<String, dynamic> json) {
   return ConfirmChangeDefaultAccountOtpRequestEntity(
     aliasId: json['AliasId'] as String,
     acc: json['Acc'] as String,

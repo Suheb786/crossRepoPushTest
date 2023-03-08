@@ -84,6 +84,7 @@ class DashboardFeaturesEntity
         isRJFeatureEnabled: isGoRJEnabled ?? false,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
+        ///TODO: Uncomment once feature is merged
         blinkRetailAppBillPayment: false/*this.blinkRetailAppBillPayment ?? false*/,
         appBillPaymentPostpaid:false /*this.blinkRetailAppBillPaymentPayPostpaid ?? false*/,
         appBillPaymentQrCode: this.paymentQRCode ?? false,
