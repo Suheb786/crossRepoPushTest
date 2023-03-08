@@ -6,13 +6,15 @@ part "re_activate_cliq_id_request_entity.g.dart";
 class ReActivateCliqIdRequestEntity {
   @JsonKey(name: "aliasId")
   final String? aliasId;
-
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
+  @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  ReActivateCliqIdRequestEntity({required this.aliasId, required this.getToken, required this.baseData});
+  ReActivateCliqIdRequestEntity(
+      {required this.aliasId, required this.otpCode, required this.getToken, required this.baseData});
 
   factory ReActivateCliqIdRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ReActivateCliqIdRequestEntityFromJson(json);

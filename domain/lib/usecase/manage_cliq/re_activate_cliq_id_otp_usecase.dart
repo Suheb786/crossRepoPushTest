@@ -5,27 +5,24 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SuspendCliqIdUseCase extends BaseUseCase<NetworkError, SuspendCliqIdUseCaseParams, bool> {
+class ReActivateCliqIdOtpUseCase extends BaseUseCase<NetworkError, ReActivateCliqIdOtpUseCaseParams, bool> {
   final CliqRepository _cliqRepository;
 
-  SuspendCliqIdUseCase(this._cliqRepository);
+  ReActivateCliqIdOtpUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required SuspendCliqIdUseCaseParams params}) {
-    return _cliqRepository.suspendCliqId(
-        aliasId: params.aliasId, otpCode: params.otpCode, getToken: params.getToken);
+  Future<Either<NetworkError, bool>> execute({required ReActivateCliqIdOtpUseCaseParams params}) {
+    return _cliqRepository.reActivateCliqIdOtp(aliasId: params.aliasId, getToken: params.getToken);
   }
 }
 
-class SuspendCliqIdUseCaseParams extends Params {
+class ReActivateCliqIdOtpUseCaseParams extends Params {
   final String aliasId;
-  final String otpCode;
 
   final bool getToken;
 
-  SuspendCliqIdUseCaseParams({
+  ReActivateCliqIdOtpUseCaseParams({
     required this.aliasId,
-    required this.otpCode,
     required this.getToken,
   });
 

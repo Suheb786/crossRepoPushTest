@@ -55,14 +55,6 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          print(
-                              'alias value: ${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text}');
-                          print(
-                              'mobile value: ${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).mobileNumberController.text}');
-                          print('alias translation-${S.of(context).alias}');
-                          print(
-                              'status-${ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text == S.of(context).alias}');
-                          // ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
                           model.makeOtpRequest(
                             accountNumber: model.linkBankAccountCliqIdList.isNotEmpty
                                 ? (model.linkBankAccountCliqIdList.first.accountNumber ?? '')

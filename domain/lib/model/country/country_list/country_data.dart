@@ -14,7 +14,7 @@ class CountryData {
       this.isMobileAllowed,
       this.crossAllowed,
       this.crossIdAllowed,
-      this.mobileMax: 10,
+      this.mobileMax: 14,
       this.mobileMin: 9,
       this.idForensic,
       this.passportScan,

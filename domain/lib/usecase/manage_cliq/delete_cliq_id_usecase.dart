@@ -5,27 +5,27 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DeleteCliqIdUseCase
-    extends BaseUseCase<NetworkError, DeleteCliqIdUseCaseParams, bool> {
+class DeleteCliqIdUseCase extends BaseUseCase<NetworkError, DeleteCliqIdUseCaseParams, bool> {
   final CliqRepository _cliqRepository;
 
   DeleteCliqIdUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required DeleteCliqIdUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required DeleteCliqIdUseCaseParams params}) {
     return _cliqRepository.deleteCliqId(
-        aliasId: params.aliasId, getToken: params.getToken);
+        aliasId: params.aliasId, otpCode: params.otpCode, getToken: params.getToken);
   }
 }
 
 class DeleteCliqIdUseCaseParams extends Params {
   final String aliasId;
+  final String otpCode;
 
   final bool getToken;
 
   DeleteCliqIdUseCaseParams({
     required this.aliasId,
+    required this.otpCode,
     required this.getToken,
   });
 

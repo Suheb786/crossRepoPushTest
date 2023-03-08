@@ -13,16 +13,21 @@ class UnlinkAccountFromCliqUseCase extends BaseUseCase<NetworkError, UnlinkAccou
   @override
   Future<Either<NetworkError, bool>> execute({required UnlinkAccountFromCliqParams params}) {
     return _cliqRepository.unLinkAccountFromCliq(
-        aliasId: params.aliasId, accountId: params.accountId, getToken: params.getToken);
+        aliasId: params.aliasId,
+        accountId: params.accountId,
+        otpCode: params.otpCode,
+        getToken: params.getToken);
   }
 }
 
 class UnlinkAccountFromCliqParams extends Params {
   final String aliasId;
   final String accountId;
+  final String otpCode;
   final bool getToken;
 
-  UnlinkAccountFromCliqParams({required this.aliasId, required this.accountId, required this.getToken});
+  UnlinkAccountFromCliqParams(
+      {required this.aliasId, required this.accountId, required this.otpCode, required this.getToken});
 
   @override
   Either<AppError, bool> verify() {

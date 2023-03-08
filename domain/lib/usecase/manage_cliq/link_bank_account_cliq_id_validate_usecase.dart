@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
@@ -6,10 +7,13 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:flutter/cupertino.dart';
 
-class LinkBankAccountCliqIdValidationUseCase extends BaseUseCase<BaseError, LinkBankAccountCliqIdValidationUseCaseParams, bool> {
+class LinkBankAccountCliqIdValidationUseCase
+    extends BaseUseCase<BaseError, LinkBankAccountCliqIdValidationUseCaseParams, bool> {
   @override
-  Future<Either<BaseError, bool>> execute({required LinkBankAccountCliqIdValidationUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute(
+      {required LinkBankAccountCliqIdValidationUseCaseParams params}) async {
     return Future.value(Right(true));
   }
 }
@@ -17,17 +21,34 @@ class LinkBankAccountCliqIdValidationUseCase extends BaseUseCase<BaseError, Link
 class LinkBankAccountCliqIdValidationUseCaseParams extends Params {
   final bool isSelected;
   final List<GetAccountByCustomerId> listOfCustomerAccount;
+  final CliqListActionTypeEnum cliqListActionTypeEnum;
 
-  LinkBankAccountCliqIdValidationUseCaseParams({required this.isSelected, required this.listOfCustomerAccount});
+  LinkBankAccountCliqIdValidationUseCaseParams(
+      {required this.isSelected, required this.listOfCustomerAccount, required this.cliqListActionTypeEnum});
 
   @override
   Either<AppError, bool> verify() {
-    // if (listOfCustomerAccount.isEmpty) {
-    //   return Left(AppError(
-    //       error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
-    // } else
-    if (isSelected == false) {
-      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION, cause: Exception()));
+    switch (cliqListActionTypeEnum) {
+      case CliqListActionTypeEnum.LINKACCOUNT:
+        debugPrint('LINKACCOUNT');
+        if (listOfCustomerAccount.isEmpty) {
+          return Left(AppError(
+              error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
+        } else if (isSelected == false) {
+          return Left(AppError(
+              error: ErrorInfo(message: ''),
+              type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION,
+              cause: Exception()));
+        }
+        break;
+      default:
+        debugPrint('CREATECLIQ');
+        if (isSelected == false) {
+          return Left(AppError(
+              error: ErrorInfo(message: ''),
+              type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION,
+              cause: Exception()));
+        }
     }
     return Right(true);
   }

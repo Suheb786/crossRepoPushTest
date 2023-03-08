@@ -5,40 +5,38 @@ import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddLInkAccountUseCase extends BaseUseCase<NetworkError, AddLinkAccountUseCaseParams, bool> {
+class AddLInkAccountOtpUseCase extends BaseUseCase<NetworkError, AddLInkAccountOtpUseCaseParams, bool> {
   final CliqRepository _cliqRepository;
 
-  AddLInkAccountUseCase(this._cliqRepository);
+  AddLInkAccountOtpUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required AddLinkAccountUseCaseParams params}) {
-    return _cliqRepository.addLinkAccount(
+  Future<Either<NetworkError, bool>> execute({required AddLInkAccountOtpUseCaseParams params}) {
+    return _cliqRepository.addLinkAccountOtp(
         aliasId: params.aliasId,
         linkType: params.linkType,
         accountNumber: params.accountNumber,
         isAlias: params.isAlias,
         aliasValue: params.aliasValue,
-        otpCode: params.otpCode,
         getToken: params.getToken);
   }
 }
 
-class AddLinkAccountUseCaseParams extends Params {
+class AddLInkAccountOtpUseCaseParams extends Params {
   final String aliasId;
   final String linkType;
   final String accountNumber;
   final bool isAlias;
   final String aliasValue;
-  final String otpCode;
+
   final bool getToken;
 
-  AddLinkAccountUseCaseParams(
+  AddLInkAccountOtpUseCaseParams(
       {required this.aliasId,
       required this.linkType,
       required this.accountNumber,
       required this.isAlias,
       required this.aliasValue,
-      required this.otpCode,
       required this.getToken});
 
   @override
