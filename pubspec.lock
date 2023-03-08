@@ -361,7 +361,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.4"
+    version: "4.6.1"
   firebase:
     dependency: transitive
     description:
@@ -478,7 +478,7 @@ packages:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.3+7"
+    version: "5.4.3+8"
   flutter_jailbreak_detection:
     dependency: transitive
     description:
@@ -1466,7 +1466,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.5.2"
   xdg_directories:
     dependency: transitive
     description:
@@ -1482,5 +1482,5 @@ packages:
     source: hosted
     version: "5.1.2"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.8.0"
