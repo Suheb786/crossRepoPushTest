@@ -185,13 +185,18 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                                           fontWeight: FontWeight.w400,
                                           fontSize: 12.0.t),
                                     ),
-                                    Text(
-                                      model.arguments?.nickName ?? "",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.black,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.0.t),
+                                    Spacer(),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Text(
+                                        model.arguments?.nickName ?? "",
+                                        textAlign: TextAlign.end,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.black,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12.0.t),
+                                      ),
                                     )
                                   ],
                                 )

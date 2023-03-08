@@ -17,7 +17,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -25,7 +24,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/card/postpaid_setting_title_widget.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/denomintion_dialog/denomination_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/bill_name/bill_name_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/service/select_service_dialog.dart';
@@ -462,6 +460,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
       child: Padding(
         padding: EdgeInsetsDirectional.only(top: 16.0.h),
         child: AppTextField(
+          maxLength: 50,
           labelText: S.of(context).nickName.toUpperCase(),
           hintText: S.of(context).pleaseEnter,
           controller: model.nicknameTextControl,

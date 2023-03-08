@@ -81,7 +81,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// expired/open/close date bill
-        if (payPostPaidBillsDataList[index].status == false) {
+        if (payPostPaidBillsDataList[index].expDateStatus == false) {
           payPostPaidBillsDataList[index].isChecked = false;
         }
         postPaidRequestListJson = [];
@@ -133,7 +133,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// expired/open/close date bill
-        if (item.status == false) {
+        if (item.expDateStatus == false) {
           item.isChecked = false;
         }
         postPaidRequestListJson.add(PostpaidBillInquiry(
@@ -262,6 +262,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
           payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
           payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
+          if (payPostPaidBillsDataList[j].expDateStatus == false) {
+            payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? false;
+            payPostPaidBillsDataList[j].isChecked = false;
+          }
           selectedPostPaidBillsList.add(item);
         }
       }
@@ -277,7 +281,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
-                  type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
+                  type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
             }
             if (postPaidBillInquiryData?[0].message == "err-381") {
               showToastWithError(AppError(
@@ -289,7 +293,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
-                  type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+                  type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
             }
           }
         }
