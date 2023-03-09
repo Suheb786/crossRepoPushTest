@@ -111,7 +111,7 @@ dependencies:
 dependency_overrides:
   firebase_crashlytics_platform_interface: 3.1.13
   firebase_analytics_platform_interface: 3.0.5
-  flutter_inappwebview: 5.4.3+7
+  flutter_inappwebview: 5.5.0
   camera_android:
     git:
       url: https://github.com/bottlepay/plugins.git

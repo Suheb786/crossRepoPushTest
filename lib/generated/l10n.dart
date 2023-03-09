@@ -15400,11 +15400,31 @@ class S {
     );
   }
 
-  /// `Daily Narration Amount Exceed`
+  /// `Daily Narration AmountExceed`
   String get dailyNarrationLimitexceed {
     return Intl.message(
-      'Daily Narration Amount Exceed',
+      'Daily Narration AmountExceed',
       name: 'dailyNarrationLimitexceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter amount`
+  String get enterAmount {
+    return Intl.message(
+      'Enter amount',
+      name: 'enterAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Atleast One Bill`
+  String get selectAtleastOneBill {
+    return Intl.message(
+      'Select Atleast One Bill',
+      name: 'selectAtleastOneBill',
       desc: '',
       args: [],
     );

@@ -672,7 +672,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dailyLimitExceededorTryLater": MessageLookupByLibrary.simpleMessage(
             " There was an issue with your payment. You may have exceeded the transfer daily limit. Please try again later, or contact Blink engagement team if you need any help "),
         "dailyNarrationLimitexceed": MessageLookupByLibrary.simpleMessage(
-            "Daily Narration Amount Exceed"),
+            "Daily Narration AmountExceed"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateComparison": MessageLookupByLibrary.simpleMessage(
             "Depart on date should not be greater than return date"),
@@ -909,6 +909,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Our Engagement Team\nis getting ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
+        "enterAmount": MessageLookupByLibrary.simpleMessage("Enter amount"),
         "enterBillDetails":
             MessageLookupByLibrary.simpleMessage("Enter bill details"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
@@ -2314,6 +2315,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Additional Income"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
+        "selectAtleastOneBill":
+            MessageLookupByLibrary.simpleMessage("Select Atleast One Bill"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(

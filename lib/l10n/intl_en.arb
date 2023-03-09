@@ -1562,5 +1562,7 @@
   "invalidPaidAmount": "Invalid Paid Amount",
   "billingNumberReachedItsMaxAmt": "Billing Number Reached Its Max Amt",
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
-  "dailyNarrationLimitexceed": "Daily Narration Amount Exceed"
+  "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
+  "enterAmount": "Enter amount",
+  "selectAtleastOneBill": "Select Atleast One Bill"
 }

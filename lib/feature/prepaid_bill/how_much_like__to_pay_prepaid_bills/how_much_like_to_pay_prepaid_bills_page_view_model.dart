@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model_data.dart';
 import 'package:domain/model/bill_payments/pay_prepaid_bill/pay_prepaid.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
@@ -5,6 +6,7 @@ import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/firebase_log_util.dart';
@@ -23,6 +25,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   bool isPrepaidCategoryListEmpty = false;
 
   TextEditingController amtController = TextEditingController(text: "0.0");
+  final GlobalKey<AppTextFieldState> amtKey = GlobalKey(debugLabel: "amtKey");
   TextEditingController savingAccountController = TextEditingController();
 
   String? serviceDescriptionEn = "";
@@ -68,7 +71,9 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
     FireBaseLogUtil.fireBaseLog("new_pre_paid_inquire_bill", {"new_pre_paid_inquire_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
         billerCode: argument.payMyPrePaidBillsPageDataList[0].billerCode,
-        amount: isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",
+        amount: isPrepaidCategoryListEmpty == true
+            ? (amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '')
+            : "",
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
         billingNumber: argument.payMyPrePaidBillsPageDataList[0].billingNumber,
         prepaidCategoryCode:
@@ -91,6 +96,10 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
           _validatePrePaidResponse.safeAdd(event);
 
           if (event.status == Status.ERROR) {
+            if (event.appError!.type == ErrorType.ENTER_AMOUNT) {
+              amtKey.currentState!.isValid = false;
+            }
+
             ///LOG EVENT TO FIREBASE
             FireBaseLogUtil.fireBaseLog(
                 "new_pre_paid_inquire_bill_fail_call", {"new_pre_paid_inquire_bill_fail": true});
@@ -119,7 +128,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
         billerCode: billerCode,
         billingNumber: billingNumber,
         serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: double.parse(amtController.text).toStringAsFixed(3),
+        amount: amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '',
         /* isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",*/
         fees: double.parse(feesAmt ?? "0").toStringAsFixed(3),
         /*isPrepaidCategoryListEmpty == true ? double.parse(feesAmt ?? "0").toStringAsFixed(3) : "",*/

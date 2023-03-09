@@ -402,6 +402,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           }
 
                                           for (var item in model.payPostPaidBillsDataList) {
+                                            print('checked item----->${item.isChecked}');
+                                            print('item name---->${item.nickName}');
                                             if (item.isChecked == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
                                                   element.billingNo == item.billingNo &&
@@ -419,19 +421,32 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
+
+                                            if (item.isChecked == false) {
+                                              temPostPaidBillInquiryData.remove(item);
+                                              tempSelectedPostPaidBillsList.remove(item);
+                                            }
                                           }
                                           tempSelectedPostPaidBillsList =
                                               tempSelectedPostPaidBillsList.toSet().toList();
                                           temPostPaidBillInquiryData =
                                               temPostPaidBillInquiryData.toSet().toList();
-                                          Navigator.pushNamed(
-                                              context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                              arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                                  model.postPaidBillInquiryData!.length.toString(),
-                                                  amt,
-                                                  tempSelectedPostPaidBillsList,
-                                                  // model.postPaidRequestListJson,
-                                                  temPostPaidBillInquiryData));
+                                          if( model.payPostPaidBillsDataList.any((element) => element.isChecked??false)){
+                                            Navigator.pushNamed(
+                                                context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                                arguments: PaySelectedBillsPostPaidBillsPageArguments(
+                                                    model.postPaidBillInquiryData!.length.toString(),
+                                                    amt,
+                                                    tempSelectedPostPaidBillsList,
+                                                    // model.postPaidRequestListJson,
+                                                    temPostPaidBillInquiryData));
+                                          }else{
+                                            model.showToastWithError(AppError(
+                                                cause: Exception(),
+                                                error: ErrorInfo(message: ""),
+                                                type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                          }
+
                                         } else {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),

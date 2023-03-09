@@ -1164,6 +1164,10 @@ class ErrorParser {
         return localisedHelper.billingNumberReachedItsMaxAmt;
       case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX:
         return localisedHelper.billingNumberReachedItsMaxTrx;
+      case ErrorType.ENTER_AMOUNT:
+        return localisedHelper.enterAmount;
+      case ErrorType.SELECT_ATLEAST_ONE_BILL:
+        return localisedHelper.selectAtleastOneBill;
 
       default:
         return "";

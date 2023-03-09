@@ -132,6 +132,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           item.isChecked = false;
         }
 
+        if (item.isPartial == false && double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0) {
+          item.isChecked = false;
+        }
+
         /// expired/open/close date bill
         if (item.expDateStatus == false) {
           item.isChecked = false;

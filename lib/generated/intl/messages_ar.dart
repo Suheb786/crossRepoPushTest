@@ -871,6 +871,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فريقنا مستعد لخدمتك"),
         "enterAddressHeader":
             MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
+        "enterAmount": MessageLookupByLibrary.simpleMessage("Enter amount"),
         "enterBillDetails":
             MessageLookupByLibrary.simpleMessage("ادخل تفاصيل الفاتورة"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
@@ -2218,6 +2219,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار الدخل الإضافي"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("اختار أي خيار"),
+        "selectAtleastOneBill":
+            MessageLookupByLibrary.simpleMessage("Select Atleast One Bill"),
         "selectCountryHeader":
             MessageLookupByLibrary.simpleMessage("مرحبا! إنت من أي دولة؟"),
         "selectCreditLimitSettings":
