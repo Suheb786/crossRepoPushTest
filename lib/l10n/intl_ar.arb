@@ -1516,5 +1516,9 @@
   "invalidPaidAmount": "المبلغ الذي تم دفعه غير صحيح",
   "billingNumberReachedItsMaxAmt": "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة",
   "billingNumberReachedItsMaxTrx": "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة",
-  "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي"
+  "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
+  "pleaseEnterAmount": "يرجى إدخال المبلغ",
+  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
+  "accountDormant": "Account is Dormant",
+    "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "
 }

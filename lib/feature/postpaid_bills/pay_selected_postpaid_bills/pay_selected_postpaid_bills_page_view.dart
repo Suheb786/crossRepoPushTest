@@ -174,8 +174,9 @@ class PaySelectedBillsPostPaidBillsPageView
                                                         "0";
                                                     return SelectedBillsToPaidWidget(
                                                       minMaxValidationMessage: model
-                                                          .postPaidBillInquiryData?[index]
-                                                          .minMaxValidationMessage,
+                                                              .postPaidBillInquiryData?[index]
+                                                              .minMaxValidationMessage ??
+                                                          "",
                                                       minRange: double.parse(model
                                                                   .postPaidBillInquiryData?[index].minValue ??
                                                               "0")

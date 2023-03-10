@@ -90,8 +90,6 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     } else if (model.isPrepaidCategoryListEmpty == true) {
                       model.validatePrePaidBill();
                     }
-                  } else {
-                    Navigator.pop(context);
                   }
                 } else {
                   if (details.primaryVelocity!.isNegative) {
@@ -100,8 +98,6 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     } else if (model.isPrepaidCategoryListEmpty == true) {
                       model.validatePrePaidBill();
                     }
-                  } else {
-                    Navigator.pop(context);
                   }
                 }
               },
@@ -377,8 +373,6 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
-                                    } else {
-                                      Navigator.pop(context);
                                     }
                                   } else {
                                     if (details.primaryVelocity!.isNegative) {
@@ -387,8 +381,6 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
                                         model.validatePrePaidBill();
                                       }
-                                    } else {
-                                      Navigator.pop(context);
                                     }
                                   }
                                 },
@@ -445,13 +437,12 @@ class HowMuchLikeToPayPrePaidBillsPageView
           labelText: S.of(context).amount.toUpperCase(),
           inputType: TextInputType.numberWithOptions(decimal: true),
           controller: model.amtController,
+          key: model.amtKey,
           readOnly: !model.isPrepaidCategoryListEmpty,
           hintText: S.of(context).pleaseEnter,
           onPressed: () {},
           onChanged: (val) {
-            if (val != null && val.isNotEmpty) {
-              model.validate(val);
-            }
+            model.validate(val);
           },
         ));
   }

@@ -65,15 +65,13 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: Text(
-                          nickName,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.0.t),
-                        ),
+                      Text(
+                        nickName,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.0.t),
                       ),
                       Text(
                         biller,

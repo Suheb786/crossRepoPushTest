@@ -15400,11 +15400,51 @@ class S {
     );
   }
 
-  /// `Daily Narration Amount Exceed`
+  /// `Daily Narration AmountExceed`
   String get dailyNarrationLimitexceed {
     return Intl.message(
-      'Daily Narration Amount Exceed',
+      'Daily Narration AmountExceed',
       name: 'dailyNarrationLimitexceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter amount`
+  String get pleaseEnterAmount {
+    return Intl.message(
+      'Please enter amount',
+      name: 'pleaseEnterAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select at least one bill`
+  String get selectAtLeastOneBill {
+    return Intl.message(
+      'Select at least one bill',
+      name: 'selectAtLeastOneBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is Dormant`
+  String get accountDormant {
+    return Intl.message(
+      'Account is Dormant',
+      name: 'accountDormant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot apply for a credit card; your account is dormant, please call us to activate it.`
+  String get accountDormantDesc {
+    return Intl.message(
+      'You cannot apply for a credit card; your account is dormant, please call us to activate it.',
+      name: 'accountDormantDesc',
       desc: '',
       args: [],
     );

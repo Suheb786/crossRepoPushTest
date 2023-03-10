@@ -52,11 +52,11 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
           SizedBox(
             width: 8.w,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                child: Text(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   nickname,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
@@ -64,18 +64,20 @@ class PayMyPrepPaidBillListItemWidget extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       fontSize: 14.0.t),
                 ),
-              ),
-              Text(
-                billName,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.veryDarkGray2,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0.t),
-              ),
-            ],
+                Text(
+                  billName,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.veryDarkGray2,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.0.t),
+                ),
+              ],
+            ),
           ),
-          Spacer(),
+          SizedBox(
+            width: 8.w,
+          ),
           AppSvg.asset(AssetUtils.rightChevron, matchTextDirection: true)
         ],
       ),
