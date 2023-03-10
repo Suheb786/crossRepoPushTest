@@ -1518,5 +1518,7 @@
   "billingNumberReachedItsMaxTrx": "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
-  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل"
+  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
+  "accountDormant": "Account is Dormant",
+    "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "
 }

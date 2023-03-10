@@ -1168,6 +1168,8 @@ class ErrorParser {
         return localisedHelper.pleaseEnterAmount;
       case ErrorType.SELECT_AT_LEAST_ONE_BILL:
         return localisedHelper.selectAtLeastOneBill;
+      case ErrorType.DORMANT_ACCOUNT:
+        return localisedHelper.accountDormant;
 
       default:
         return "";
