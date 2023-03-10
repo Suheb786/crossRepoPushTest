@@ -749,6 +749,9 @@ class NetworkError extends BaseError {
           case "err-383":
             return AppError(cause: cause, error: error, type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE);
 
+          case "err-384":
+            return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

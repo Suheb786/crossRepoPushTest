@@ -59,6 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account has been created successfully."),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "You cannot apply for a credit card; your account is dormant, please call us to activate it."),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -1958,21 +1962,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "playStation": MessageLookupByLibrary.simpleMessage("PlayStation"),
         "pleaseAgreeToTheTermAndCondition":
-            MessageLookupByLibrary.simpleMessage("Please agree to the term and condition"),
-        "pleaseConfirmFlightDetail":
-            MessageLookupByLibrary.simpleMessage("Please confirm your\nflight details"),
-        "pleaseConfirmYourIDDetailsBelow":
-            MessageLookupByLibrary.simpleMessage("Now let\'s confirm your\nID details"),
+            MessageLookupByLibrary.simpleMessage(
+                "Please agree to the term and condition"),
+        "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your\nflight details"),
+        "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
+            "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
-        "pleaseEnterAmount": MessageLookupByLibrary.simpleMessage("Please enter amount"),
+        "pleaseEnterAmount":
+            MessageLookupByLibrary.simpleMessage("Please enter amount"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
-            MessageLookupByLibrary.simpleMessage("Please provide information below, if applies to you"),
-        "pleaseProvideSelfie":
-            MessageLookupByLibrary.simpleMessage("Please provide selfie to proceed further."),
+            MessageLookupByLibrary.simpleMessage(
+                "Please provide information below, if applies to you"),
+        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage(
+            "Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
@@ -2303,19 +2310,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
         "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
-        "seeAllContacts": MessageLookupByLibrary.simpleMessage("See all contacts"),
+        "seeAllContacts":
+            MessageLookupByLibrary.simpleMessage("See all contacts"),
         "selectAMount": MessageLookupByLibrary.simpleMessage("Select Amount"),
         "selectAccount": MessageLookupByLibrary.simpleMessage("Select Account"),
-        "selectAccountToPayCreditCard":
-            MessageLookupByLibrary.simpleMessage("Select account to pay your credit card"),
-        "selectAdditionalIncome": MessageLookupByLibrary.simpleMessage("Select Additional Income"),
-        "selectAnyOption": MessageLookupByLibrary.simpleMessage("Select any Option"),
-        "selectAtLeastOneBill": MessageLookupByLibrary.simpleMessage("Select at least one bill"),
-        "selectCountryHeader": MessageLookupByLibrary.simpleMessage("Hello! Which country\nare you from?"),
-        "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage("Select Credit Limit Settings"),
-        "selectExpectedTransaction": MessageLookupByLibrary.simpleMessage("Select expected transaction"),
-        "selectFromLibrary": MessageLookupByLibrary.simpleMessage("Select from Library"),
-        "selectFutureDate": MessageLookupByLibrary.simpleMessage("Please select future date"),
+        "selectAccountToPayCreditCard": MessageLookupByLibrary.simpleMessage(
+            "Select account to pay your credit card"),
+        "selectAdditionalIncome":
+            MessageLookupByLibrary.simpleMessage("Select Additional Income"),
+        "selectAnyOption":
+            MessageLookupByLibrary.simpleMessage("Select any Option"),
+        "selectAtLeastOneBill":
+            MessageLookupByLibrary.simpleMessage("Select at least one bill"),
+        "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
+            "Hello! Which country\nare you from?"),
+        "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
+            "Select Credit Limit Settings"),
+        "selectExpectedTransaction":
+            MessageLookupByLibrary.simpleMessage("Select expected transaction"),
+        "selectFromLibrary":
+            MessageLookupByLibrary.simpleMessage("Select from Library"),
+        "selectFutureDate":
+            MessageLookupByLibrary.simpleMessage("Please select future date"),
         "selectMinimumSettlement":
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
