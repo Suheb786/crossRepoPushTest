@@ -1563,6 +1563,6 @@
   "billingNumberReachedItsMaxAmt": "Billing Number Reached Its Max Amt",
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
   "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
-  "enterAmount": "Enter amount",
-  "selectAtleastOneBill": "Select Atleast One Bill"
+  "pleaseEnterAmount": "Please enter amount",
+  "selectAtLeastOneBill": "Select at least one bill"
 }

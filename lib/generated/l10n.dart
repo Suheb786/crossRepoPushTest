@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -15410,21 +15411,21 @@ class S {
     );
   }
 
-  /// `Enter amount`
-  String get enterAmount {
+  /// `Please enter amount`
+  String get pleaseEnterAmount {
     return Intl.message(
-      'Enter amount',
-      name: 'enterAmount',
+      'Please enter amount',
+      name: 'pleaseEnterAmount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select Atleast One Bill`
-  String get selectAtleastOneBill {
+  /// `Select at least one bill`
+  String get selectAtLeastOneBill {
     return Intl.message(
-      'Select Atleast One Bill',
-      name: 'selectAtleastOneBill',
+      'Select at least one bill',
+      name: 'selectAtLeastOneBill',
       desc: '',
       args: [],
     );

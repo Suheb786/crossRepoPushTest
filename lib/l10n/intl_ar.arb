@@ -1517,6 +1517,6 @@
   "billingNumberReachedItsMaxAmt": "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة",
   "billingNumberReachedItsMaxTrx": "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
-  "enterAmount": "Enter amount",
-  "selectAtleastOneBill": "Select Atleast One Bill"
+  "pleaseEnterAmount": "يرجى إدخال المبلغ",
+  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل"
 }

@@ -81,7 +81,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         /// expired/open/close date bill
-        if (payPostPaidBillsDataList[index].expDateStatus == false) {
+        else if (payPostPaidBillsDataList[index].expDateStatus == false) {
           payPostPaidBillsDataList[index].isChecked = false;
         }
         postPaidRequestListJson = [];
@@ -132,12 +132,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           item.isChecked = false;
         }
 
-        if (item.isPartial == false && double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0) {
-          item.isChecked = false;
-        }
-
         /// expired/open/close date bill
-        if (item.expDateStatus == false) {
+        else if (item.expDateStatus == false) {
           item.isChecked = false;
         }
         postPaidRequestListJson.add(PostpaidBillInquiry(
@@ -266,10 +262,22 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
           payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
           payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
+          payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
           if (payPostPaidBillsDataList[j].expDateStatus == false) {
-            payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? false;
             payPostPaidBillsDataList[j].isChecked = false;
           }
+          if (payPostPaidBillsDataList[j].isPartial == true &&
+              double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0 &&
+              double.parse(payPostPaidBillsDataList[j].maxValue ?? "0") <= 0.0) {
+            payPostPaidBillsDataList[j].isChecked = false;
+            payPostPaidBillsDataList[j].expDateStatus = false;
+          }
+          if (payPostPaidBillsDataList[j].isPartial == false &&
+              double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0) {
+            payPostPaidBillsDataList[j].isChecked = false;
+            payPostPaidBillsDataList[j].expDateStatus = false;
+          }
+
           selectedPostPaidBillsList.add(item);
         }
       }
