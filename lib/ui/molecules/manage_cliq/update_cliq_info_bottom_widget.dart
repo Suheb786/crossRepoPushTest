@@ -58,41 +58,16 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
             ),
 
             ///on edit
-            InkWell(
-              onTap: () {
-                onEditId?.call();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  S.of(context).editId,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Container(
-                height: 1,
-                color: Theme.of(context).primaryColorDark.withOpacity(0.3),
-              ),
-            ),
-
-            ///onLink
             Visibility(
-              visible: showLinkAccount,
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
               child: InkWell(
                 onTap: () {
-                  onLinkId?.call();
+                  onEditId?.call();
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    S.of(context).linkAccount,
+                    S.of(context).editId,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontSize: 14,
@@ -103,12 +78,49 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: showLinkAccount,
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),
                 child: Container(
                   height: 1,
                   color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                ),
+              ),
+            ),
+
+            ///onLink
+            Visibility(
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
+              child: Visibility(
+                visible: showLinkAccount,
+                child: InkWell(
+                  onTap: () {
+                    onLinkId?.call();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      S.of(context).linkAccount,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
+              child: Visibility(
+                visible: showLinkAccount,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Container(
+                    height: 1,
+                    color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                  ),
                 ),
               ),
             ),

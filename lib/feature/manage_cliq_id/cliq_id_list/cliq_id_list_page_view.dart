@@ -173,68 +173,73 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             context),
                                                         // "${getAliasSnapshot.data?.aliases?[index].status}",
                                                         onTapAccount: (accountData) {
-                                                          ManageCliqBottomSheetSelectionWidget.show(context,
-                                                              showSetAsDefault: !(accountData.isDefault ??
-                                                                  true), setAsDefault: () {
-                                                            Navigator.pop(context);
-                                                            CliqInformationDialog.show(context,
-                                                                image: AssetUtils.walletIcon,
-                                                                title: S.of(context).changeDefaultAccount,
-                                                                description: S
-                                                                    .of(context)
-                                                                    .areYourToChangeDefaultAccountOfYourCliqId,
-                                                                subDescription: S
-                                                                    .of(context)
-                                                                    .whenAcceptingCreationOfYourCliqId,
-                                                                onSelected: () {
-                                                              model.aliasId = (getAliasSnapshot
-                                                                      .data?.aliases?[index].aliasID) ??
-                                                                  "";
-                                                              model.accountId = (accountData.recordId) ?? "";
-                                                              model.aliasName = '';
+                                                          ///for active cliq bottom sheet
+                                                          if (getAliasSnapshot.data?.aliases?[index].status ==
+                                                              CliqAliasIdStatusEnum.ACTIVE) {
+                                                            ManageCliqBottomSheetSelectionWidget.show(context,
+                                                                showSetAsDefault: !(accountData.isDefault ??
+                                                                    true), setAsDefault: () {
                                                               Navigator.pop(context);
-                                                              model.confirmChangeDefaultCliqIdOtp(
-                                                                aliasId: model.aliasId,
-                                                                acc: model.accountId,
-                                                              );
-                                                            }, onDismissed: () {
+                                                              CliqInformationDialog.show(context,
+                                                                  image: AssetUtils.walletIcon,
+                                                                  title: S.of(context).changeDefaultAccount,
+                                                                  description: S
+                                                                      .of(context)
+                                                                      .areYourToChangeDefaultAccountOfYourCliqId,
+                                                                  subDescription: S
+                                                                      .of(context)
+                                                                      .whenAcceptingCreationOfYourCliqId,
+                                                                  onSelected: () {
+                                                                model.aliasId = (getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasID) ??
+                                                                    "";
+                                                                model.accountId =
+                                                                    (accountData.recordId) ?? "";
+                                                                model.aliasName = '';
+                                                                Navigator.pop(context);
+                                                                model.confirmChangeDefaultCliqIdOtp(
+                                                                  aliasId: model.aliasId,
+                                                                  acc: model.accountId,
+                                                                );
+                                                              }, onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              });
+                                                            }, unlinkAccount: () {
                                                               Navigator.pop(context);
-                                                            });
-                                                          }, unlinkAccount: () {
-                                                            Navigator.pop(context);
-                                                            InformationDialog.show(context,
-                                                                image: AssetUtils.unlinkIcon,
-                                                                title: S.current.unLinkAccountWithCliqId,
-                                                                descriptionWidget: Text(
-                                                                  S.current.areYouSureToUnlinkAccount,
-                                                                  style: TextStyle(
-                                                                      fontFamily: StringUtils.appFont,
-                                                                      fontSize: 14.t,
-                                                                      color: AppColor.veryDarkGray1,
-                                                                      fontWeight: FontWeight.w400),
-                                                                ),
-                                                                onSelected: () {
-                                                                  model.aliasId = (getAliasSnapshot
-                                                                          .data?.aliases?[index].aliasID) ??
-                                                                      "";
-                                                                  model.accountId =
-                                                                      (accountData.recordId) ?? "";
+                                                              InformationDialog.show(context,
+                                                                  image: AssetUtils.unlinkIcon,
+                                                                  title: S.current.unLinkAccountWithCliqId,
+                                                                  descriptionWidget: Text(
+                                                                    S.current.areYouSureToUnlinkAccount,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontSize: 14.t,
+                                                                        color: AppColor.veryDarkGray1,
+                                                                        fontWeight: FontWeight.w400),
+                                                                  ),
+                                                                  onSelected: () {
+                                                                    model.aliasId = (getAliasSnapshot
+                                                                            .data?.aliases?[index].aliasID) ??
+                                                                        "";
+                                                                    model.accountId =
+                                                                        (accountData.recordId) ?? "";
 
-                                                                  model.aliasName = '';
-                                                                  Navigator.pop(context);
-                                                                  model.unlinkCliqIdOtp(
-                                                                    getToken: true,
-                                                                    aliasId: model.aliasId,
-                                                                    accountId: model.accountId,
-                                                                  );
-                                                                },
-                                                                isSwipeToCancel: true,
-                                                                onDismissed: () {
-                                                                  Navigator.pop(context);
-                                                                });
-                                                          }, onCancelled: () {
-                                                            Navigator.pop(context);
-                                                          }, title: S.of(context).pleaseSelectYourAction);
+                                                                    model.aliasName = '';
+                                                                    Navigator.pop(context);
+                                                                    model.unlinkCliqIdOtp(
+                                                                      getToken: true,
+                                                                      aliasId: model.aliasId,
+                                                                      accountId: model.accountId,
+                                                                    );
+                                                                  },
+                                                                  isSwipeToCancel: true,
+                                                                  onDismissed: () {
+                                                                    Navigator.pop(context);
+                                                                  });
+                                                            }, onCancelled: () {
+                                                              Navigator.pop(context);
+                                                            }, title: S.of(context).pleaseSelectYourAction);
+                                                          }
                                                         },
                                                         onTapAlias: () {
                                                           UpdateCliqInfoBottomSheetSelectionWidget.show(
