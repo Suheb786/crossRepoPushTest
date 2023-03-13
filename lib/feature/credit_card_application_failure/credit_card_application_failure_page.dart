@@ -32,7 +32,7 @@ class CreditCardApplicationFailurePageState
   }
 }
 
-enum CreditFailureState { InEligible, EngagementTeamRejection, ZERO_BALANCE }
+enum CreditFailureState { InEligible, EngagementTeamRejection, ZERO_BALANCE, AccountDormant }
 
 class CreditCardApplicationFailureArguments {
   final CreditFailureState creditFailureState;

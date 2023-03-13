@@ -82,6 +82,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(

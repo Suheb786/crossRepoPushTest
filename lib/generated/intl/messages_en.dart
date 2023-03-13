@@ -84,6 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "You cannot apply for a credit card; your account is dormant, please call us to activate it."),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(

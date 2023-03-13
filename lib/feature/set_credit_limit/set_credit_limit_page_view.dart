@@ -45,6 +45,10 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                       Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                           arguments: CreditCardApplicationFailureArguments(
                               creditFailureState: CreditFailureState.ZERO_BALANCE));
+                    } else if (data.appError!.type == ErrorType.DORMANT_ACCOUNT) {
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
+                          arguments: CreditCardApplicationFailureArguments(
+                              creditFailureState: CreditFailureState.AccountDormant));
                     } else {
                       model.showToastWithError(data.appError!);
                     }

@@ -385,7 +385,7 @@ class NetworkError extends BaseError {
 
           case "err-101":
           case "err-102":
-          return AppError(cause: cause, error: error, type: ErrorType.ERROR_GETTING_CARD_INFO_NET);
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_GETTING_CARD_INFO_NET);
 
           case "err-103":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_UPDATING_LIMITS);
@@ -810,6 +810,9 @@ class NetworkError extends BaseError {
 
           case "err-383":
             return AppError(cause: cause, error: error, type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE);
+
+          case "err-384":
+            return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT);
 
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -1237,7 +1240,7 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_OTP_NETWORK);
           case "err-382":
             return AppError(cause: cause, error: error, type: ErrorType.DAILY_LIMIT_EXCEDED);
-             case "err-366":
+          case "err-366":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID);
 

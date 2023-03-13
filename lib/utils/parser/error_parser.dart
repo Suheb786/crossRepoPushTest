@@ -1254,6 +1254,9 @@ class ErrorParser {
       case ErrorType.EMPTY_RECIPIENT_ADDRESS:
         return localisedHelper.emptyRecipientAddress;
 
+      case ErrorType.DORMANT_ACCOUNT:
+        return localisedHelper.accountDormant;
+
       default:
         return "";
     }
