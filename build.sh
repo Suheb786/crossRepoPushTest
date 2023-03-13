@@ -28,9 +28,9 @@
 
  /Users/apple/Documents/flutter-2.8.1/bin/flutter pub get
 
-# /Users/apple/Documents/flutter-2.8.1/bin/flutter run --debug
+ /Users/apple/Documents/flutter-2.8.1/bin/flutter run --debug
 
- /Users/apple/Documents/flutter-2.8.1/bin/flutter build apk --release
+# /Users/apple/Documents/flutter-2.8.1/bin/flutter build apk --release
 
 
 

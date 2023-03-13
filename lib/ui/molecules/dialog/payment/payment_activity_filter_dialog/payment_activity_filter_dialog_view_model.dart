@@ -7,7 +7,9 @@ import 'package:rxdart/rxdart.dart';
 class PaymentActivityFilterDialogViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
-  List<String>? transactionTypeList = ["All Transactions", "From Me", "From Others"];
+  List<String>? transactionTypeListEn = ["All Transactions", "From Me", "From Others"];
+
+  List<String>? transactionTypeListAr = ["كل الحركات", "لي", "من الآخرين"];
 
   List<String>? transactionPeriodList = ["Last 30 days", "Last 3 months", "Last 6 months"];
 
@@ -16,7 +18,7 @@ class PaymentActivityFilterDialogViewModel extends BasePageViewModel {
   List<String>? getTransactionList(FilterType type, BuildContext context) {
     switch (type) {
       case FilterType.type:
-        return transactionTypeList;
+        return StringUtils.isDirectionRTL(context) ? transactionTypeListAr : transactionTypeListEn;
 
       case FilterType.period:
         return StringUtils.isDirectionRTL(context) ? transactionPeriodListAr : transactionPeriodList;

@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -318,19 +319,29 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             AppStreamBuilder<Resource<TransferSuccessResponse>>(
                 stream: model.transferStream,
                 initialData: Resource.none(),
-                onData: (data) {
+                onData: (data) async {
                   if (data.status == Status.SUCCESS) {
                     ///LOGGING EVENT TO APP FLYER
                     model.logEventsForAppFlyer(
                         eventName: 'send_money_to_contact',
                         eventValue: {"money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
+
+                    ///LOG EVENT TO FIREBASE
+                    await FireBaseLogUtil.fireBaseLog("send_money_to_saved_beneficiary_success", {
+                      "is_money_sent": true,
+                      "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
+                    });
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
+                    ///LOG EVENT TO FIREBASE
+                    await FireBaseLogUtil.fireBaseLog(
+                        "send_money_to_saved_beneficiary_failure", {"is_money_sent": false});
+                    //Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
                     if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                       model.showToastWithError(data.appError!);
                     } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {
-          
+
                       Navigator.pushNamed(
                         context,
                         RoutePaths.SendMoneyFailure,
@@ -355,7 +366,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          print("check send money success");
                           model.transfer(data.data!.checkSendMoneyContent!.transferResponse!);
                         }
                       },

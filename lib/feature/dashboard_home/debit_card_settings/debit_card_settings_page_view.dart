@@ -194,7 +194,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                 }),
             Expanded(
                 child: Container(
-              decoration: BoxDecoration(
+                  decoration: BoxDecoration(
                   color: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
@@ -248,7 +248,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         ),
                                       ],
                                     ), onSelected: () {
-                                  Navigator.pop(context);
+                                      Navigator.pop(context);
                                   model.freezeCard(
                                       status: 'WM',
                                       tokenizedPan: model.debitCardSettingsArguments.debitCard.code!);

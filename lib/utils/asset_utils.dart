@@ -110,12 +110,14 @@ class AssetUtils {
   static const String personCircle = svg + "person_circle.svg";
   static const String cardFreeze = svg + "card_freeze.svg";
   static const String cardCancelIcon = svg + "cancel_card_icon.svg";
-  static const String supplementaryCardIcon = svg + "supplementary_card_icon.svg";
+  static const String supplementaryCardIcon =
+      svg + "supplementary_card_icon.svg";
   static const String processingVoucherSvg = svg + "processing_voucher_svg.svg";
   static const String reportIssueIcon = svg + "report_issue_icon.svg";
   static const String freezeIcon = svg + "freeze_icon.svg";
   static const String changeMobileNoIcon = svg + "change_mobile_no_icon.svg";
-  static const String changeLinkedAccountIcon = svg + "change_linked_account_icon.svg";
+  static const String changeLinkedAccountIcon =
+      svg + "change_linked_account_icon.svg";
   static const String cardPinIcon = svg + "card_pin_icon.svg";
   static const String cardLimitsIcon = svg + "card_limits_icon.svg";
   static const String cancelIcon = svg + "cancel_icon.svg";
@@ -171,6 +173,7 @@ class AssetUtils {
   static const String card_activation = svg + "card_activation.svg";
   static const String videocallAgent = svg + "videocall_agent.svg";
   static const String applePayButton = svg + "apple_pay_button.svg";
+  static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -206,7 +209,8 @@ class AssetUtils {
   static const String debitCard = drawable + "debit_card.png";
   static const String refresh = drawable + "refresh.png";
   static const String requestedOffer = drawable + "requested_offer.png";
-  static const String creditCardNotDelivered = drawable + "card_not_delivered_bg.png";
+  static const String creditCardNotDelivered =
+      drawable + "card_not_delivered_bg.png";
 
   //static const String sentOffer = drawable + "sent_offer.png";
   static const String placeholder = drawable + "placeholder.png";
@@ -239,7 +243,8 @@ class AssetUtils {
 
   ///Evoucher png
   static const String apple_music = drawable + "apple_music.png";
-  static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
+  static const String buy_evoucher_banner =
+      drawable + "buy_evoucher_banner.png";
   static const String favourite_brand = drawable + "favourite_brand.png";
   static const String top_brand_adidas = drawable + "top_brand_adidas.png";
   static const String playStationIcon = drawable + "play_station.png";
@@ -247,7 +252,8 @@ class AssetUtils {
   ///Evoucher svg
 
   static const String filterMenu = svg + "filter_menu.svg";
-  static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
+  static const String processing_voucher_icon =
+      svg + "processing_voucher_icon.svg";
   static const String view_voucher_icon = svg + "view_voucher.svg";
 
   ///Apple Pay png
@@ -281,13 +287,15 @@ class AssetUtils {
 
   static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
   static const String requestViaQrIcon = svg + "request_via_qr.svg";
-  static const String payRequestViaQRBlackIcon = svg + "pay_request_via_qr_black.svg";
+  static const String payRequestViaQRBlackIcon =
+      svg + "pay_request_via_qr_black.svg";
 
   ///Rj PNG Images
 
   static const String flight = drawable + "flight.png";
   static const String RjCardBg = drawable + "rj_card_bg.png";
-  static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
+  static const String RjCardDescriptionLogo =
+      drawable + "rj_card_description_logo.png";
   static const String EconomySeat = drawable + "economy_seat.png";
   static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
@@ -296,6 +304,16 @@ class AssetUtils {
   static const String RjCardLogo = svg + "rj_card_logo.svg";
   static const String GoRjLogo = svg + "go_rj_logo.svg";
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+
+  ///Cliq
+  static const String walletIcon = svg + "wallet.svg";
+  static const String warningIcon = svg + "warning.svg";
+  static const String unlinkIcon = svg + "unlinkIcon.svg";
+  static const String suspandIcon = svg + "suspandIcon.svg";
+  static const String reactivateIcon = svg + "reactivate.svg";
+  static const String deleteIcon = svg + "deleteIcon.svg";
+  static const String acceptIcon = svg + "acceptRequest.svg";
+  static const String rejectIcon = svg + "rejectRequest.svg";
 
   ///billPaymentsImages
   static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";

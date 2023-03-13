@@ -1,4 +1,6 @@
+import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/purpose/purpose.dart';
@@ -37,6 +39,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
   TextEditingController addNickNameController = TextEditingController();
+  TextEditingController recipientAddressController = TextEditingController();
+  TextEditingController recipientNameController = TextEditingController();
 
   bool? dropDownEnabled = true;
   String selectedProfile = '';
@@ -50,6 +54,21 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   PurposeDetail? purposeDetail;
 
   String? addNickNameVal = "Add nickname";
+
+  ///---------------Check send money recipient Details Visibility----------///
+
+  PublishSubject<bool> _checkSendMoneyRecipientDetailsVisibilitySubject = PublishSubject();
+
+  Stream<bool> get checkSendMoneyRecipientDetailsVisibilityStream =>
+      _checkSendMoneyRecipientDetailsVisibilitySubject.stream;
+
+  void showCheckSendMoneyRecipientDetailsVisibility(bool show) {
+    _checkSendMoneyRecipientDetailsVisibilitySubject.safeAdd(show);
+  }
+
+  ///---------------Check send money recipient Details Visibility----------///
+
+  CheckSendMoneyMessageEnum checkSendMoneyMessageEnum = CheckSendMoneyMessageEnum.NONE;
 
   PublishSubject<bool> _addNickNameSubject = PublishSubject();
 
@@ -79,9 +98,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
   final GlobalKey<AppTextFieldState> ibanOrMobileKey = GlobalKey(debugLabel: "ibanOrMobileNo");
-
+  final GlobalKey<AppTextFieldState> recipientAddressKey = GlobalKey(debugLabel: "recipientAddress");
+  final GlobalKey<AppTextFieldState> recipientNameKey = GlobalKey(debugLabel: "recipientName");
   final GlobalKey<AppTextFieldState> purposeKey = GlobalKey(debugLabel: "purpose");
-
   final GlobalKey<AppTextFieldState> purposeDetailKey = GlobalKey(debugLabel: "purposeDetails");
 
   PublishSubject<SendToNewRecipientUseCaseParams> _sendToNewRecipientRequest = PublishSubject();
@@ -109,6 +128,10 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   Stream<bool> get showNameVisibilityStream => _showNameVisibilityRequest.stream;
 
+  void showNameVisibility(bool value) {
+    _showNameVisibilityRequest.safeAdd(value);
+  }
+
   PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
 
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
@@ -133,6 +156,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         _sendToNewRecipientResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          getError(event);
         }
       });
     });
@@ -156,7 +180,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
-          _showNameVisibilityRequest.safeAdd(true);
+          // _showNameVisibilityRequest.safeAdd(true);
           getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI");
         }
       });
@@ -221,8 +245,14 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         isFriend: isFriend,
         purposeDetail: purposeDetailController.text,
         amount:
-            double.parse(ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue),
-        limit: limit));
+        double.parse(ProviderScope
+            .containerOf(context)
+            .read(sendMoneyViewModelProvider)
+            .currentPinValue),
+        limit: limit,
+        messageEnum: checkSendMoneyMessageEnum,
+        recipientName: recipientNameController.text,
+        recipientAddress: recipientAddressController.text));
   }
 
   void addImage(String image) {
@@ -252,7 +282,27 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams(amount: amount));
   }
 
-  void validateAddress() {}
+  void getError(Resource<bool> event) {
+    switch (event.appError!.type) {
+      case ErrorType.EMPTY_IBAN_MOBILE:
+        ibanOrMobileKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_RECIPIENT_NAME:
+        recipientNameKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_RECIPIENT_ADDRESS:
+        recipientAddressKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_PURPOSE:
+        purposeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_PURPOSE_DETAIL:
+        purposeDetailKey.currentState!.isValid = false;
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   void dispose() {

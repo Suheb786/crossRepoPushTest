@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/app_constants.dart';
 
 import '../../../main/navigation/route_paths.dart';
 import 'rj_booking_page_view_model.dart';
@@ -18,14 +16,14 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
     return Stack(
       children: [
         InAppWebView(
-          initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url)),
+          initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url ?? '')),
           onWebViewCreated: (controller) {
             model.webViewController = controller;
           },
-          onPageCommitVisible: (con, uri) async {
+          onPageCommitVisible: (con, uri) {
             debugPrint("url ${uri.toString()}");
-            // await Future.delayed(Duration(seconds:50 ));
-            // model.loadNewUrl();
+            // Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
+            //  con.goBack();
           },
           onProgressChanged: (controller, progress) {
             model.setIndicatorProgressValue(progress / 100);
@@ -49,19 +47,16 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           onLoadStart: (controller, url) {
             debugPrint('-----onload start ---->${url}');
           },
-          onLoadStop: (controller, url) async {
+          onLoadStop: (controller, url) {
             debugPrint('-----onload stop ---->${url}');
             debugPrint('-----onload path ---->${url?.path}');
-            if (model.rjBookingPageArguments.webViewRoute == WebViewRoute.bookingDialog) {
-              if ((url?.path ?? '').contains(AppConstantsUtils.RJRouteLink)) {
-                debugPrint('------RJ DETAILS----');
-                debugPrint('-----onload path ---->${url}');
-                String referenceNumber = url?.queryParameters['customerReferece'] ?? '';
-                //await Future.delayed(Duration(seconds: 40));
-                Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                    arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
-                debugPrint('------RJ DETAILS----');
-              }
+            if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
+              debugPrint('------RJ DETAILS----');
+              debugPrint('-----onload path ---->${url}');
+              String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+              Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                  arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+              debugPrint('------RJ DETAILS----');
             }
           },
         ),

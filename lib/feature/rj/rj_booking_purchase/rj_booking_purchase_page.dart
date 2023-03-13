@@ -1,4 +1,3 @@
-import 'package:domain/model/rj/get_flight_detail/flight_detail_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -15,7 +14,8 @@ class RjBookingPurchasePage extends BasePage<RjBookingPurchasePageViewModel> {
   RjBookingPurchasePageState createState() => RjBookingPurchasePageState();
 }
 
-class RjBookingPurchasePageState extends BaseStatefulPage<RjBookingPurchasePageViewModel, RjBookingPurchasePage> {
+class RjBookingPurchasePageState
+    extends BaseStatefulPage<RjBookingPurchasePageViewModel, RjBookingPurchasePage> {
   @override
   ProviderBase provideBase() {
     return rjBookingPurchasePageViewModelProvider.call(widget.arguments);
@@ -33,7 +33,6 @@ class RjBookingPurchasePageState extends BaseStatefulPage<RjBookingPurchasePageV
 }
 
 class RjBookingPurchasePageArgument {
-  final FlightDetailResponse flightDetailResponse;
-
-  RjBookingPurchasePageArgument({required this.flightDetailResponse});
+  String amount;
+  RjBookingPurchasePageArgument(this.amount);
 }

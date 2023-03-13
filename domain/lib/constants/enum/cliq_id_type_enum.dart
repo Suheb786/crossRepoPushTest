@@ -20,6 +20,10 @@ extension CliqIdTypeEnumExt on String {
         return CliqIdTypeEnum.ALIAS;
       case "Mobile Number":
         return CliqIdTypeEnum.MOBILE_NO;
+      case 'اسم مستعار':
+        return CliqIdTypeEnum.ALIAS;
+      case 'رقم الموبايل':
+        return CliqIdTypeEnum.MOBILE_NO;
       case "None":
         return CliqIdTypeEnum.NONE;
       default:

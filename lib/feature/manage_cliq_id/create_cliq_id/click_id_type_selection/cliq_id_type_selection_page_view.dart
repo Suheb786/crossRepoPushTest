@@ -16,7 +16,9 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_car
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -37,7 +39,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                 curve: Curves.easeInOutSine,
                 child: AppStreamBuilder<Resource<bool>>(
                     initialData: Resource.none(),
-                    stream: model.cliqIdTypeSelectionResponseStream,
+                    stream: model.cliqIdTypeSelectionValidationStream,
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         if (data.data!) {
@@ -56,11 +58,11 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                             FocusScope.of(context).unfocus();
                             if (StringUtils.isDirectionRTL(context)) {
                               if (!details.primaryVelocity!.isNegative) {
-                                model.addIdNumberForResetPassword();
+                                model.validateUserInput();
                               }
                             } else {
                               if (details.primaryVelocity!.isNegative) {
-                                model.addIdNumberForResetPassword();
+                                model.validateUserInput();
                               }
                             }
                           }
@@ -73,7 +75,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                     ? 0
                                     : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -91,8 +93,10 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               onPressed: () {
                                                 RelationshipWithCardHolderDialog.show(context,
                                                     title: S.of(context).cliqIdType,
-                                                    relationSHipWithCardHolder: ['Alias', 'Mobile Number'],
-                                                    onDismissed: () {
+                                                    relationSHipWithCardHolder:
+                                                        StringUtils.isDirectionRTL(context)
+                                                            ? model.cliqIDTypeListAr
+                                                            : model.cliqIDTypeListEn, onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);
@@ -103,9 +107,9 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                               },
                                               suffixIcon: (isValid, value) {
                                                 return Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding: EdgeInsets.symmetric(horizontal: 7),
+                                                    height: 16.h,
+                                                    width: 16.w,
+                                                    padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                     child: AppSvg.asset(AssetUtils.downArrow,
                                                         color: Theme.of(context).primaryColorDark));
                                               },
@@ -117,36 +121,75 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                   switch (cliqIdType) {
                                                     case CliqIdTypeEnum.ALIAS:
                                                       return Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                               labelText: S.of(context).alias.toUpperCase(),
                                                               hintText: S.of(context).pleaseEnter,
                                                               inputType: TextInputType.text,
+                                                              inputFormatters: [
+                                                                LengthLimitingTextInputFormatter(10),
+                                                                FilteringTextInputFormatter.allow(
+                                                                    RegExp(r"[a-zA-Z0-9]")),
+                                                              ],
                                                               inputAction: TextInputAction.done,
                                                               controller: model.aliasController,
                                                               key: model.aliasKey,
                                                               onChanged: (value) {
+                                                                ProviderScope.containerOf(context)
+                                                                    .read(createCliqIdViewModelProvider)
+                                                                    .changeHeader(
+                                                                        S.current.letsGiveANameToYourCliqId);
+                                                                /*  model.aliasController.value =
+                                                                    TextEditingValue(
+                                                                        text: value.toUpperCase(),
+                                                                        selection:
+                                                                            model.aliasController.selection);*/
                                                                 model.validate();
                                                               }),
+                                                          SizedBox(
+                                                            height: 16.h,
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              // Text(
+                                                              //   S.of(context).aliasNickNameHint,
+                                                              //   style: TextStyle(
+                                                              //       fontWeight: FontWeight.w600,
+                                                              //       fontSize: 12.t,
+                                                              //       fontFamily: StringUtils.appFont),
+                                                              // ),
+                                                              Text(
+                                                                S.of(context).aliasHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.t,
+                                                                    color: AppColor.dark_gray_1,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              )
+                                                            ],
+                                                          )
                                                         ],
                                                       );
                                                     case CliqIdTypeEnum.MOBILE_NO:
                                                       return Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText:
                                                                 S.of(context).mobileNumber.toUpperCase(),
-                                                            hintText: S.of(context).mobileNumberHint,
+                                                            hintText: S.of(context).mobileNoAliasHint,
                                                             inputType: TextInputType.phone,
                                                             inputAction: TextInputAction.done,
                                                             inputFormatters: [
-                                                              LengthLimitingTextInputFormatter(10),
+                                                              LengthLimitingTextInputFormatter(14),
                                                               FilteringTextInputFormatter.allow(
                                                                   RegExp(r'[0-9]')),
                                                             ],
@@ -155,58 +198,30 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             onChanged: (value) {
                                                               model.validate();
                                                             },
-                                                            prefixIcon: () {
-                                                              return InkWell(
-                                                                onTap: () {},
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.only(top: 8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize: MainAxisSize.min,
-                                                                    children: <Widget>[
-                                                                      Container(
-                                                                        height: 16,
-                                                                        width: 16,
-                                                                        decoration: BoxDecoration(
-                                                                          color: Theme.of(context)
-                                                                              .primaryColorDark,
-                                                                          shape: BoxShape.circle,
-                                                                        ),
-                                                                        child: AppSvg.asset(
-                                                                            AssetUtils.jordan_flag),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsets.symmetric(
-                                                                            horizontal: 8.0),
-                                                                        child: Text(
-                                                                          "+962",
-                                                                          style: TextStyle(
-                                                                            fontFamily: StringUtils.appFont,
-                                                                            color: Theme.of(context)
-                                                                                .textTheme
-                                                                                .bodyText1!
-                                                                                .color,
-                                                                            fontSize: 14,
-                                                                            fontWeight: FontWeight.w600,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                          height: 16,
-                                                                          width: 16,
-                                                                          margin: EdgeInsetsDirectional.only(
-                                                                              end: 8),
-                                                                          child: AppSvg.asset(
-                                                                              AssetUtils.downArrow,
-                                                                              color: Theme.of(context)
-                                                                                  .primaryTextTheme
-                                                                                  .bodyText1!
-                                                                                  .color))
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
                                                           ),
+                                                          SizedBox(
+                                                            height: 16.h,
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              // Text(
+                                                              //   S.of(context).aliasMobileHint,
+                                                              //   style: TextStyle(
+                                                              //       fontWeight: FontWeight.w600,
+                                                              //       fontSize: 12.t,
+                                                              //       fontFamily: StringUtils.appFont),
+                                                              // ),
+                                                              Text(
+                                                                S.of(context).aliasMobileNoHint,
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.t,
+                                                                    color: AppColor.dark_gray_1,
+                                                                    fontFamily: StringUtils.appFont),
+                                                              )
+                                                            ],
+                                                          )
                                                         ],
                                                       );
                                                     default:
@@ -220,7 +235,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                     Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                                          padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
@@ -233,21 +248,23 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                 );
                                               }),
                                         ),
-                                        // Center(
-                                        //   child: InkWell(
-                                        //     onTap: () {
-                                        //       Navigator.pop(context);
-                                        //     },
-                                        //     child: Text(
-                                        //       S.of(context).backToLogin,
-                                        //       style: TextStyle(
-                                        //         color: AppColor.brightBlue,
-                                        //         fontSize: 14,
-                                        //         fontWeight: FontWeight.w500,
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // ),
+                                        Center(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              S.of(context).backToManageCliq,
+                                              style: TextStyle(
+                                                color: AppColor.brightBlue,
+                                                fontSize: 14.t,
+                                                letterSpacing: 1.0,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],

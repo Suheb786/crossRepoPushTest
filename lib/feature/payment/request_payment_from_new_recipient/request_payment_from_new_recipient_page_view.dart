@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -29,7 +30,6 @@ class RequestPaymentFromNewRecipientPageView
         stream: model.currentStep,
         initialData: 0,
         dataBuilder: (context, currentStep) {
-          print("got current step : $currentStep");
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
@@ -47,8 +47,8 @@ class RequestPaymentFromNewRecipientPageView
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        activeSize: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
-                        size: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
+                        activeSize: Size(MediaQuery.of(context).size.width / 1.2, 4),
+                        size: Size(MediaQuery.of(context).size.width / 1.2, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
                         activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeColor: Theme.of(context).primaryColorDark,
@@ -92,6 +92,9 @@ class RequestPaymentFromNewRecipientPageView
                                                     fontSize: 28.0.t,
                                                     fontWeight: FontWeight.w700,
                                                   ),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+                                                  ],
                                                   cursorColor: Theme.of(context).accentColor,
                                                   controller: model.editAmountController,
                                                   keyboardType: TextInputType.number,

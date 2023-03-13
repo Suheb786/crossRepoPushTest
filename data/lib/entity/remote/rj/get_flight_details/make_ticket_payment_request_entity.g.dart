@@ -14,7 +14,7 @@ MakeTicketPaymentRequestEntity _$MakeTicketPaymentRequestEntityFromJson(
     referenceNumber: json['ReferenceNumber'] as String?,
     amount: json['Amount'] as String?,
     accountNo: json['AccountNo'] as String?,
-    otpCode: json['Otp'] as String?,
+    otpCode: json['OtpCode'] as String?,
   );
 }
 
@@ -24,7 +24,7 @@ Map<String, dynamic> _$MakeTicketPaymentRequestEntityToJson(
       'AccountNo': instance.accountNo,
       'Amount': instance.amount,
       'ReferenceNumber': instance.referenceNumber,
-      'Otp': instance.otpCode,
+      'OtpCode': instance.otpCode,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,
     };

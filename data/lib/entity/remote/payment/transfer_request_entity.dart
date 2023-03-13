@@ -30,6 +30,10 @@ class TransferRequestEntity {
   final bool getToken;
   @JsonKey(name: "NickName")
   final String? nickName;
+  @JsonKey(name: "RecipientName")
+  final String? recipientName;
+  @JsonKey(name: "RecipientAddress")
+  final String? recipientAddress;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
@@ -47,7 +51,9 @@ class TransferRequestEntity {
       this.type: "",
       this.detCustomerType: "",
       this.getToken: true,
-      this.otpCode: ""}) {
+      this.otpCode: "",
+      this.recipientName,
+      this.recipientAddress}) {
     print("this constructor called");
   }
 

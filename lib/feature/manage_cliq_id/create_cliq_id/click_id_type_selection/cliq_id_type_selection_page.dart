@@ -17,7 +17,7 @@ class CliqIdTypeSelectionPageState
 
   @override
   ProviderBase provideBase() {
-    return CliqIdTypeSelectionViewModelProvider;
+    return cliqIdTypeSelectionViewModelProvider;
   }
 
   @override

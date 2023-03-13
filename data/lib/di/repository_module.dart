@@ -9,6 +9,7 @@ import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/bill_payment/bill_payment_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
+import 'package:data/repository/cliq/cliq_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/device_change/device_change_repository_impl.dart';
@@ -39,6 +40,7 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/card_processing/card_processing_repository.dart';
 import 'package:domain/repository/change_device/change_device_repository.dart';
+import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
@@ -178,3 +180,7 @@ var rjRepositoryProvider = Provider<RJRepository>((ref) => RJRepositoryImpl(ref.
 
 var dynamicLinkRepositoryProvider = Provider<DynamicLinkRepository>(
     (ref) => DynamicLinkRepositoryImpl(ref.read(dynamicLinkDataSourceImplProvider)));
+
+/// inject [CliqRepository] provider
+var cliqRepositoryProvider =
+    Provider<CliqRepository>((ref) => CliqRepositoryImpl(ref.read(cliqDataSourceProvider)));

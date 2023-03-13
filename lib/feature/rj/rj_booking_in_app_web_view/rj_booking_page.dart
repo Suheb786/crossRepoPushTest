@@ -40,11 +40,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.pop(
-                      context,
-                      getViewModel().rjBookingPageArguments.webViewRoute == WebViewRoute.confirmationScreen
-                          ? true
-                          : null);
+                  Navigator.pop(context);
                 },
                 child: Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24.0),
@@ -63,10 +59,9 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
 }
 
 class RjBookingPageArguments {
-  final String url;
-  final WebViewRoute webViewRoute;
+  final String? url;
 
-  RjBookingPageArguments({required this.url, required this.webViewRoute});
+  RjBookingPageArguments({
+    this.url,
+  });
 }
-
-enum WebViewRoute { confirmationScreen, bookingDialog }

@@ -57,8 +57,16 @@ class BasePageViewModel extends BaseViewModel {
   Stream<Resource<bool>> get logAppFlyerSDKEventsStream => _logAppFlyerSDKEventsResponseSubject.stream;
 
   void logEventsForAppFlyer({required String eventName, required Map eventValue}) async {
-    _logAppFlyerSDKEventsRequestSubject
-        .safeAdd(LogAppFlyerSDKEventsUseCaseParams(eventName: eventName, eventValue: eventValue));
+    _logAppFlyerSDKEventsRequestSubject.safeAdd(LogAppFlyerSDKEventsUseCaseParams(eventName: eventName, eventValue: eventValue));
+  }
+
+  ///*---------------Success Toast with Title and description------------------///
+
+  PublishSubject<ToastwithTitleandDescription> _toastWithTitleandDescriptionSubject = PublishSubject();
+  Stream<ToastwithTitleandDescription> get sucessTitleToastStream => _toastWithTitleandDescriptionSubject.stream;
+
+  void showSuccessTitleandDescriptionToast(ToastwithTitleandDescription successToast) {
+    _toastWithTitleandDescriptionSubject.sink.add(successToast);
   }
 
   ///---------------log app flyers events------------------///
@@ -199,4 +207,14 @@ class BasePageViewModel extends BaseViewModel {
     _antelopInitializeResponse.close();
     super.dispose();
   }
+}
+
+class ToastwithTitleandDescription {
+  final String title;
+  final String description;
+
+  ToastwithTitleandDescription({
+    required this.title,
+    required this.description,
+  });
 }

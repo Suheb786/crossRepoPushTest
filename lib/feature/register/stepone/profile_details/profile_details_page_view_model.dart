@@ -82,7 +82,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   }
 
   /// show beneficial Owner Account Error visibility Subject holder
-  BehaviorSubject<bool> _beneficialOwnerAccountErrorVisibilitySubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _beneficialOwnerAccountErrorVisibilitySubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get beneficialOwnerAccountErrorVisibilityStream =>
       _beneficialOwnerAccountErrorVisibilitySubject.stream;

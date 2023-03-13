@@ -133,6 +133,8 @@ class RoutePaths {
   static const String PayBillDetailPage = "/payBillDetailPage";
   static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
   static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
+  static const String EditCliqIDMobileNoPage = "/editCliqIDMobileNoPage";
+  static const String OtpForEditAliasAndMobileNoPage = "/otpForEditAliasAndMobileNoPage";
   static const String PayMyPrePaidBillsPage = "/payMyPrePaidBillsPage";
   static const String PayingPrePaidBillsPage = "/payingPrePaidBillsPage";
   static const String PrePaidBillsSuccessPage = "/prePaidBillsSuccessPage";
@@ -147,4 +149,6 @@ class RoutePaths {
   static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
   static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
+  static const String LinkAccountPage = "/linkAccountPage";
+  static const String OtpForCliqIdListPage = "/otpForCliqIdListPage";
 }

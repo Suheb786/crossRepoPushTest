@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -38,7 +39,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
             child: AppStreamBuilder<Resource<TransferSuccessResponse>>(
                 stream: model.transferStream,
                 initialData: Resource.none(),
-                onData: (data) {
+                onData: (data) async {
                   print('status---->${data.status}');
                   if (data.status == Status.SUCCESS) {
                     print('success');
@@ -47,11 +48,30 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     model.logEventsForAppFlyer(
                         eventName: 'send_money_to_new_contact',
                         eventValue: {"money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
+
+                    if (ProviderScope.containerOf(context)
+                        .read(sendToNewRecipientViewModelProvider)
+                        .isFriend) {
+                      ///LOG EVENT TO FIREBASE
+                      await FireBaseLogUtil.fireBaseLog(
+                          "send_money_to_new_contact_saved_beneficiary_payment_success", {
+                        "is_money_sent": true,
+                        "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
+                      });
+                    } else {
+                      ///LOG EVENT TO FIREBASE
+                      await FireBaseLogUtil.fireBaseLog("send_money_to_new_contact_payment_success", {
+                        "is_money_sent": true,
+                        "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
+                      });
+                    }
+
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
-                    print('error');
-                    print('error code-->${data.appError!.type}');
+                    ///LOG EVENT TO FIREBASE
+                    await FireBaseLogUtil.fireBaseLog(
+                        "send_money_to_new_contact_payment_failure", {"is_money_sent": false});
 
                     if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                       model.showToastWithError(data.appError!);
@@ -80,7 +100,6 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        print('i am here');
                         model.transfer(
                             nickName: ProviderScope.containerOf(context)
                                     .read(sendToNewRecipientViewModelProvider)
@@ -110,7 +129,15 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                 .limit!,
                             amount: ProviderScope.containerOf(context)
                                 .read(sendMoneyViewModelProvider)
-                                .currentPinValue);
+                                .currentPinValue,
+                            recipientName: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .recipientNameController
+                                .text,
+                            recipientAddress: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .recipientAddressController
+                                .text);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

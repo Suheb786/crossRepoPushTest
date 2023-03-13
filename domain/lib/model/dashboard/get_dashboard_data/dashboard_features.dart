@@ -9,6 +9,10 @@ class DashboardFeatures {
   final bool? appBillPaymentPrepaid;
   final bool? appBillPaymentQrCode;
   final bool? blinkRetailAppBillPayment;
+  final bool? blinkRetailAppCliq;
+  final bool? blinkRetailAppCliqAliasManagement;
+  final bool? blinkRetailAppCliqRTP;
+  final bool? blinkRetailAppCliqSendPayment;
 
   DashboardFeatures(
       {this.appBillPaymentPostpaid,
@@ -20,5 +24,9 @@ class DashboardFeatures {
       this.isPinChangeEnabled,
       this.isDebitCardRequestPhysicalCardEnabled,
       this.blinkRetailAppBillPayment,
-      this.appBillPaymentPrepaid});
+      this.appBillPaymentPrepaid,
+      this.blinkRetailAppCliqSendPayment,
+      this.blinkRetailAppCliq,
+      this.blinkRetailAppCliqAliasManagement,
+      this.blinkRetailAppCliqRTP});
 }

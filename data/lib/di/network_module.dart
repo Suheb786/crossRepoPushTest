@@ -17,6 +17,8 @@ import 'package:data/source/bill_payment/bill_payment_data_source.dart';
 import 'package:data/source/bill_payment/remote/bill_payment_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:data/source/card/remote/card_remote_ds_impl.dart';
+import 'package:data/source/cliq/clip_data_source.dart';
+import 'package:data/source/cliq/remote/cliq_data_source_impl.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:data/source/contact/remote/contact_remote_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
@@ -55,21 +57,20 @@ import 'package:riverpod/riverpod.dart';
 final baseOptions = Provider<BaseOptions>((ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
-      (ref) =>
-      PrettyDioLogger(
-        request: true,
-        requestBody: true,
-        requestHeader: true,
-        responseBody: true,
-        responseHeader: true,
-        logPrint: (log) {
-          return debugPrint(log as String);
-        },
-      ),
+  (ref) => PrettyDioLogger(
+    request: true,
+    requestBody: true,
+    requestHeader: true,
+    responseBody: true,
+    responseHeader: true,
+    logPrint: (log) {
+      return debugPrint(log as String);
+    },
+  ),
 );
 
 final dioProvider = Provider<Dio>(
-      (ref) {
+  (ref) {
     Dio dio = Dio(ref.read(baseOptions));
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
@@ -84,23 +85,22 @@ final apiServiceProvider = Provider<ApiService>(
 );
 
 /// User remoteDS provider
-final userRemoteDSProvider = Provider<UserRemoteDS>((ref) =>
-    UserRemoteDSImpl(
+final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
       ref.read(apiServiceProvider),
       ref.read(deviceInfoHelperProvider),
       ref.read(userLocalDSProvider),
     ));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
-      (ref) => RegisterRemoteDataSourceImpl(),
+  (ref) => RegisterRemoteDataSourceImpl(),
 );
 
 final registerStepThreeRemoteDS = Provider<RegisterStepThreeRemoteDataSource>(
-      (ref) => RegisterStepThreeRemoteDataSourceImpl(),
+  (ref) => RegisterStepThreeRemoteDataSourceImpl(),
 );
 
 final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
-      (ref) => RegisterStepFourRemoteDataSourceImpl(),
+  (ref) => RegisterStepFourRemoteDataSourceImpl(),
 );
 
 ///kyc remote data source
@@ -181,6 +181,9 @@ final billPaymentDSProvider = Provider<BillPaymentRemoteDS>(
 );
 
 ///RJ remote DS
-var rjDataSourceProvider = Provider<RJRemoteDS>((ref) =>
-    RJRemoteDSImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var rjDataSourceProvider = Provider<RJRemoteDS>(
+    (ref) => RJRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Cliq remote DS
+var cliqDataSourceProvider = Provider<CliqDataSource>(
+    (ref) => CliqRemoteDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
