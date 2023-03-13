@@ -32,31 +32,47 @@ class AccountSelectionWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: widgetColor),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              labelTitle == null || labelTitle == ""
-                  ? S.of(context).savingAccount('${currentIndex + 1}')
-                  : '$labelTitle ${currentIndex + 1}',
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: textColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
-            ),
-            SizedBox(
-              height: 4,
-            ),
+            /***
+             *  un-commented the label title to show
+             * could be a future use.
+             *  ***/
+
+            labelTitle != null || labelTitle != ""
+                ? !labelTitle!.contains(S.of(context).denomination)
+                    ? Text(
+                        labelTitle == null || labelTitle == ""
+                            ? S.of(context).savingAccount('${currentIndex + 1}')
+                            : '$labelTitle ${currentIndex + 1}',
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: textColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      )
+                    : Container()
+                : Container(),
+            labelTitle != null || labelTitle != ""
+                ? !labelTitle!.contains(S.of(context).denomination)
+                    ? SizedBox(
+                        height: 4,
+                      )
+                    : Container()
+                : Container(),
             Text(
               label,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: textColor,
-                  fontSize: 10,
+                  fontSize: labelTitle != null || labelTitle != ""
+                      ? labelTitle!.contains(S.of(context).denomination)
+                          ? 14
+                          : 10
+                      : 10,
                   fontWeight: FontWeight.w400),
             ),
           ],
