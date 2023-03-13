@@ -1,11 +1,12 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
+import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
-import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
-import 'package:domain/usecase/manage_cliq/delete_cliq_id_usecase.dart';
+import 'package:domain/usecase/manage_cliq/change_default_account_otp_usecase.dart';
+import 'package:domain/usecase/manage_cliq/delete_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
-import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
-import 'package:domain/usecase/manage_cliq/suspend_cliq_id_usecase.dart';
-import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_usecase.dart';
+import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_otp_usecase.dart';
+import 'package:domain/usecase/manage_cliq/suspend_cliq_id_otp_usecase.dart';
+import 'package:domain/usecase/manage_cliq/unlink_account_from_cliq_otp_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -16,15 +17,26 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
+  String accountId = '';
+  String aliasId = '';
+  String aliasName = '';
+
+  final SuspendCliqIdOtpUseCase _suspendCliqIdOtpUseCase;
+  final ReActivateCliqIdOtpUseCase _reActivateCliqIdOtpUseCase;
+  final DeleteCliqIdOtpUseCase _deleteCliqIdOtpUseCase;
+  final UnlinkAccountFromCliqOtpUseCase _unlinkAccountFromCliqOtpUseCase;
+  final ChangeDefaultAccountOtpUseCase _changeDefaultAccountOtpUseCase;
+  final GetAliasUsecase _getAliasUsecase;
+
   ///-----------------------[ Named-Constructors ]-----------------------///
 
   CliqIdListPageViewModel(
     this._getAliasUsecase,
-    this._deleteCliqIdUseCase,
-    this._unlinkAccountFromCliqUseCase,
-    this._changeDefaultAccountUseCase,
-    this._suspendCliqIdUseCase,
-    this._reActivateCliqIdUseCase,
+    this._deleteCliqIdOtpUseCase,
+    this._unlinkAccountFromCliqOtpUseCase,
+    this._changeDefaultAccountOtpUseCase,
+    this._suspendCliqIdOtpUseCase,
+    this._reActivateCliqIdOtpUseCase,
   ) {
     _getAliasRequest.listen((value) {
       RequestManager(value, createCall: () => _getAliasUsecase.execute(params: value))
@@ -38,65 +50,61 @@ class CliqIdListPageViewModel extends BasePageViewModel {
       });
     });
 
-    _suspandCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _suspendCliqIdUseCase.execute(params: value))
+    _suspandCliqIDOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _suspendCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _suspandCliqIDResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          suspendedCliq = '';
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _reactivateCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _reActivateCliqIdUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _reactivateCliqIDResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          activatedCliq = '';
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-
-    _deleteCliqIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _deleteCliqIdUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _deleteCliqIdResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          deletedCliq = '';
-          showToastWithError(event.appError!);
-        }
-      });
-    });
-    //Todo call deleteCliqId();
-
-    _unlinkCliqIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _unlinkAccountFromCliqUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _unlinkCliqIdResponse.safeAdd(event);
+        _suspandCliqIDOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
       });
     });
-    //Todo call unlinkCliqId();
 
-    _changeDefaultCliqIDRequest.listen((value) {
-      RequestManager(value, createCall: () => _changeDefaultAccountUseCase.execute(params: value))
+    _reactivateCliqIDOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _reActivateCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _changeDefaultCliqIDResponse.safeAdd(event);
+        _reactivateCliqIDOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _deleteCliqIdOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _deleteCliqIdOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _deleteCliqIdOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          //  deletedCliq = '';
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _unlinkCliqIdOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _unlinkAccountFromCliqOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _unlinkCliqIdOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _changeDefaultCliqIdOtpRequest.listen((value) {
+      RequestManager(value, createCall: () => _changeDefaultAccountOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _changeDefaultCliqIdOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -106,55 +114,11 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     getAlias(true);
   }
 
-  String suspendedCliq = "";
-  String deletedCliq = "";
-  String activatedCliq = "";
-
-  ///-----------------------[ Private-Instance-Variables ]-----------------------///
-
-  //*----------------Change Default Cliq Id--------------///
-  final ConfirmChangeDefaultAccountUseCase _changeDefaultAccountUseCase;
-  PublishSubject<ChangeDefaultAccountParams> _changeDefaultCliqIDRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _changeDefaultCliqIDResponse = PublishSubject();
-
-  //*----------------Delete Cliq Id--------------///
-
-  PublishSubject<DeleteCliqIdUseCaseParams> _deleteCliqIdRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _deleteCliqIdResponse = PublishSubject();
-  final DeleteCliqIdUseCase _deleteCliqIdUseCase;
-
   //*----------------Get Alias--------------///
 
   PublishSubject<GetAliasUseCaseParams> _getAliasRequest = PublishSubject();
 
   PublishSubject<Resource<GetAlias>> _getAliasResponse = PublishSubject();
-  final GetAliasUsecase _getAliasUsecase;
-
-  //*----------------reactivate Cliq ID--------------///
-
-  final ReActivateCliqIdUseCase _reActivateCliqIdUseCase;
-  PublishSubject<ReActivateCliqIdUseCaseParams> _reactivateCliqIDRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _reactivateCliqIDResponse = PublishSubject();
-
-  //*----------------Suspand Cliq ID--------------///
-
-  PublishSubject<SuspendCliqIdUseCaseParams> _suspandCliqIDRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _suspandCliqIDResponse = PublishSubject();
-  final SuspendCliqIdUseCase _suspendCliqIdUseCase;
-
-  //*----------------unlick Cliq Id--------------///
-
-  final UnlinkAccountFromCliqUseCase _unlinkAccountFromCliqUseCase;
-
-  PublishSubject<UnlinkAccountFromCliqParams> _unlinkCliqIdRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _unlinkCliqIdResponse = PublishSubject();
-
-  ///-----------------------[ Public-Other-Methods ]-----------------------///
 
   Stream<Resource<GetAlias>> get getAliasStream => _getAliasResponse.stream;
 
@@ -162,33 +126,74 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     _getAliasRequest.safeAdd(GetAliasUseCaseParams(getToken: getToken));
   }
 
-  Stream<Resource<bool>> get suspandCliqIDStream => _suspandCliqIDResponse.stream;
+  //*----------------Change Default Cliq Id otp--------------///
 
-  void suspandCliqID({required bool getToken, required String aliasId}) {
-    _suspandCliqIDRequest.safeAdd(SuspendCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  PublishSubject<ChangeDefaultAccountOtpUseCaseParams> _changeDefaultCliqIdOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _changeDefaultCliqIdOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get changeDefaultCliqIdOtpStream => _changeDefaultCliqIdOtpResponse.stream;
+
+  void confirmChangeDefaultCliqIdOtp({required String acc, required String aliasId}) {
+    _changeDefaultCliqIdOtpRequest.safeAdd(ChangeDefaultAccountOtpUseCaseParams(aliasId: aliasId, acc: acc));
   }
 
-  Stream<Resource<bool>> get reactivateCliqIDStream => _reactivateCliqIDResponse.stream;
+  //*----------------Delete Cliq Id Otp--------------///
 
-  void reactivatetCliqID({required bool getToken, required String aliasId}) {
-    _reactivateCliqIDRequest.safeAdd(ReActivateCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  PublishSubject<DeleteCliqIdOtpUseCaseParams> _deleteCliqIdOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _deleteCliqIdOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get deleteCliqIdOtpStream => _deleteCliqIdOtpResponse.stream;
+
+  void deleteCliqIdOtp(bool getToken, String aliasId) {
+    _deleteCliqIdOtpRequest.safeAdd(DeleteCliqIdOtpUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get deleteCliqIdStream => _deleteCliqIdResponse.stream;
+  //*----------------reactivate Cliq ID Otp--------------///
 
-  void deleteCliqId(bool getToken, String aliasId) {
-    _deleteCliqIdRequest.safeAdd(DeleteCliqIdUseCaseParams(aliasId: aliasId, getToken: getToken));
+  PublishSubject<ReActivateCliqIdOtpUseCaseParams> _reactivateCliqIDOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _reactivateCliqIDOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get reactivateCliqIDOtpStream => _reactivateCliqIDOtpResponse.stream;
+
+  void reactivatetCliqIDOtp({required bool getToken, required String aliasId}) {
+    _reactivateCliqIDOtpRequest
+        .safeAdd(ReActivateCliqIdOtpUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get changeDefaultCliqIdStream => _changeDefaultCliqIDResponse.stream;
+  //*----------------Suspand Cliq ID Otp--------------///
 
-  void confirmChangeDefaultCliqId({required String acc, required String aliasId}) {
-    _changeDefaultCliqIDRequest.safeAdd(
-      ChangeDefaultAccountParams(aliasId: aliasId, acc: acc),
-    );
+  PublishSubject<SuspendCliqIdOtpUseCaseParams> _suspandCliqIDOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _suspandCliqIDOtpResponse = PublishSubject();
+
+  Stream<Resource<bool>> get suspandCliqIdOtpStream => _suspandCliqIDOtpResponse.stream;
+
+  void suspandCliqIDOtp({required bool getToken, required String aliasId}) {
+    _suspandCliqIDOtpRequest.safeAdd(SuspendCliqIdOtpUseCaseParams(aliasId: aliasId, getToken: getToken));
   }
 
-  Stream<Resource<bool>> get unlinkCliqIdStream => _unlinkCliqIdResponse.stream;
+  //*----------------unlick Cliq Id otp--------------///
+
+  Stream<Resource<bool>> get unlinkCliqIdOtpStream => _unlinkCliqIdOtpResponse.stream;
+
+  PublishSubject<UnlinkAccountFromCliqOtpParams> _unlinkCliqIdOtpRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _unlinkCliqIdOtpResponse = PublishSubject();
+
+  unlinkCliqIdOtp({
+    required bool getToken,
+    required String aliasId,
+    required String accountId,
+  }) {
+    _unlinkCliqIdOtpRequest.safeAdd(UnlinkAccountFromCliqOtpParams(
+      aliasId: aliasId,
+      accountId: accountId,
+      getToken: getToken,
+    ));
+  }
 
   String getStatus(CliqAliasIdStatusEnum? statusType, BuildContext context) {
     switch (statusType) {
@@ -201,15 +206,35 @@ class CliqIdListPageViewModel extends BasePageViewModel {
     }
   }
 
-  unlinkCliqId({
-    required bool getToken,
-    required String aliasId,
-    required String accountId,
-  }) {
-    _unlinkCliqIdRequest.safeAdd(UnlinkAccountFromCliqParams(
-      aliasId: aliasId,
-      accountId: accountId,
-      getToken: getToken,
-    ));
+  @override
+  void dispose() {
+    _getAliasRequest.close();
+    _getAliasResponse.close();
+    _suspandCliqIDOtpRequest.close();
+    _suspandCliqIDOtpResponse.close();
+    _reactivateCliqIDOtpRequest.close();
+    _reactivateCliqIDOtpResponse.close();
+    _deleteCliqIdOtpRequest.close();
+    _deleteCliqIdOtpResponse.close();
+    _unlinkCliqIdOtpRequest.close();
+    _unlinkCliqIdOtpResponse.close();
+    _changeDefaultCliqIdOtpRequest.close();
+    _changeDefaultCliqIdOtpResponse.close();
+    super.dispose();
+  }
+}
+
+extension CliqAliasTypeStringExt on CliqAliasTypeEnum {
+  String fromCliqAliasString() {
+    switch (this) {
+      case CliqAliasTypeEnum.ALIAS:
+        return S.current.alias;
+      case CliqAliasTypeEnum.MOBL:
+        return S.current.mobileNumber;
+
+      default:
+        return S.current.alias;
+        ;
+    }
   }
 }

@@ -4,6 +4,8 @@ import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page_view_model.dart';
@@ -23,13 +25,13 @@ import 'package:neo_bank/ui/molecules/dialog/manage_cliq/cliq_information_dialog
 import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog_view_model.dart';
 
 final cliqIdListViewModelProvider = ChangeNotifierProvider.autoDispose<CliqIdListPageViewModel>(
-      (ref) => CliqIdListPageViewModel(
+  (ref) => CliqIdListPageViewModel(
     ref.read(getAliasUseCaseProvider),
-    ref.read(deleteCliqIdUseCaseProvider),
-    ref.read(unLinkAccountFromCliqUseCaseProvider),
-    ref.read(confirmChangeDefaultAccountUseCaseProvider),
-    ref.read(suspendCliqIdUseCaseProvider),
-    ref.read(reActivateCliqIdUseCaseProvider),
+    ref.read(deleteCliqIdOtpUseCaseProvider),
+    ref.read(unlinkAccountFromCliqOtpUseCaseProvider),
+    ref.read(changeDefaultAccountOtp),
+    ref.read(suspendCliqIdOtpUseCaseProvider),
+    ref.read(reActivateCliqIdOtpUseCaseProvider),
   ),
 );
 
@@ -114,5 +116,24 @@ final cliqInformationDialogViewModelProvider =
 final linkAccountPageViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<LinkAccountPageViewModel, LinkAccountPageArgument>(
   (ref, arg) => LinkAccountPageViewModel(ref.read(linkBankAccountCliqIdValidationUseCaseProvider),
-      ref.read(getAccountByCustomerID), ref.read(addLinkAccountUseCaseProvider), arg),
+      ref.read(getAccountByCustomerID), ref.read(addLInkAccountOtpUseCaseProvider), arg),
+);
+
+final otpForCliqIdListPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<OtpForCliqIdListPageViewModel, OtpForCliqIdListPageArguments>(
+  (ref, args) => OtpForCliqIdListPageViewModel(
+      ref.read(enterOtpForCliqIdUseCaseProvider),
+      args,
+      ref.read(suspendCliqIdUseCaseProvider),
+      ref.read(unLinkAccountFromCliqUseCaseProvider),
+      ref.read(reActivateCliqIdUseCaseProvider),
+      ref.read(deleteCliqIdUseCaseProvider),
+      ref.read(confirmChangeDefaultAccountUseCaseProvider),
+      ref.read(suspendCliqIdOtpUseCaseProvider),
+      ref.read(reActivateCliqIdOtpUseCaseProvider),
+      ref.read(deleteCliqIdOtpUseCaseProvider),
+      ref.read(unlinkAccountFromCliqOtpUseCaseProvider),
+      ref.read(changeDefaultAccountOtp),
+      ref.read(addLinkAccountUseCaseProvider),
+      ref.read(addLInkAccountOtpUseCaseProvider)),
 );

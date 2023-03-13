@@ -164,6 +164,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                 itemBuilder: (context, index) {
                                                   return InkWell(
                                                     onTap: () {
+                                                      if (isDisabledConditions(context, model, index)) {
+                                                        showErrorMethod(context, model, index);
+                                                      }
                                                       model.selectedItem(index);
                                                     },
                                                     child: model.arguments.paidBillsPayTypeOptionEnum ==
@@ -256,25 +259,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                               isPartial: model.payPostPaidBillsDataList[index]
                                                                       .isPartial ??
                                                                   false,
-                                                              isDisabled: double.parse(model
-                                                                                  .payPostPaidBillsDataList[
-                                                                                      index]
-                                                                                  .actualdueAmountFromApi ??
-                                                                              "0") <=
-                                                                          0.0 &&
-                                                                      model.payPostPaidBillsDataList[index]
-                                                                              .isPartial ==
-                                                                          false ||
-                                                                  double.parse(model
-                                                                                  .payPostPaidBillsDataList[
-                                                                                      index]
-                                                                                  .actualdueAmountFromApi ??
-                                                                              "0") <=
-                                                                          0.0 &&
-                                                                      model.payPostPaidBillsDataList[index]
-                                                                              .isPartial ==
-                                                                          true &&
-                                                                      double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0,
+                                                              isDisabled:
+                                                                  isDisabledConditions(context, model, index),
                                                               maxValue: double.parse(model
                                                                           .payPostPaidBillsDataList[index]
                                                                           .maxValue ??
@@ -361,7 +347,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               if (double.parse(item.actualdueAmountFromApi ?? "0") > 0.0 ||
                                                   double.parse(item.actualdueAmountFromApi ?? "0") == 0.0 &&
                                                       item.isPartial == true &&
-                                                      double.parse(item.maxValue ?? "0") > 0.0) {
+                                                      double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                  item.expDateStatus == true) {
                                                 if (item.billingNo ==
                                                         payPostPaidBillsDataListItem.billingNo &&
                                                     item.serviceType ==
@@ -373,7 +360,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   item.actualdueAmountFromApi =
                                                       payPostPaidBillsDataListItem.actualdueAmountFromApi;
                                                 }
-                                                tempSelectedPostPaidBillsList.add(item);
+                                                if (item.billingNo != null &&
+                                                    item.billingNo!.isNotEmpty &&
+                                                    item.serviceType != null &&
+                                                    item.serviceType!.isNotEmpty) {
+                                                  tempSelectedPostPaidBillsList.add(item);
+                                                }
                                               }
                                             }
                                             for (var item in model.postPaidBillInquiryData!) {
@@ -392,19 +384,34 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               if (dueAmt > 0.0 ||
                                                   dueAmt == 0.0 &&
                                                       item.isPartial == true &&
-                                                      double.parse(item.maxValue ?? "0") > 0.0) {
+                                                      double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                  item.success == true) {
                                                 ///resetting dueAmount back to actual api dueAmount
                                                 item.dueAmount = dueAmt.toStringAsFixed(3);
                                                 item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
                                                 item.minMaxValidationMessage = "";
 
-                                                temPostPaidBillInquiryData.add(item);
+                                                if (item.billingNo != null &&
+                                                    item.billingNo!.isNotEmpty &&
+                                                    item.serviceType != null &&
+                                                    item.serviceType!.isNotEmpty) {
+                                                  temPostPaidBillInquiryData.add(item);
+                                                }
                                               }
                                             }
                                           }
 
                                           for (var item in model.payPostPaidBillsDataList) {
                                             if (item.isChecked == false) {
+                                              temPostPaidBillInquiryData.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
+                                              tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                  element.billingNo == item.billingNo &&
+                                                  element.serviceType == item.serviceType);
+                                            }
+
+                                            if (item.expDateStatus == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
                                                   element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
@@ -524,5 +531,31 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
             model.payPostPaidBillsDataList[index].isPartial == true &&
             double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") <= 0.0) ||
         (model.payPostPaidBillsDataList[index].expDateStatus == false);
+  }
+
+  void showErrorMethod(BuildContext context, PayAllPostPaidBillsPageViewModel model, int index) {
+    if (model.payPostPaidBillsDataList[index].expDateStatus == false) {
+      if (model.payPostPaidBillsDataList != null &&
+          model.payPostPaidBillsDataList[index] != null &&
+          model.payPostPaidBillsDataList[index].expDateMessage != null &&
+          model.payPostPaidBillsDataList[index].expDateMessage!.toString().isNotEmpty) {
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-379") {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
+        }
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-381") {
+          model.showToastWithError(AppError(
+              cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
+        }
+        if (model.payPostPaidBillsDataList[index].expDateMessage == "err-383") {
+          model.showToastWithError(AppError(
+              cause: Exception(),
+              error: ErrorInfo(message: ''),
+              type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
+        }
+      }
+    }
   }
 }

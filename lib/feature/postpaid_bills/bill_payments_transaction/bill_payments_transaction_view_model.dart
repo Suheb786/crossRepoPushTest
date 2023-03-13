@@ -19,6 +19,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
   bool hasMoreData = true;
   int pageNo = 1;
   int pageSize = 10;
+  var searchText = "";
 
   ///get transaction request
   BehaviorSubject<BillPaymentsTransactionUseCaseParams> _getTransactionsRequest = BehaviorSubject();
@@ -43,8 +44,8 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
       searchTextList.clear();
       _searchTextSubject.add(searchTextList);
       searchController.clear();
-      searchTransactionResponse = transactionsResponse;
-      _getTransactionsResponse.safeAdd(transactionsResponse);
+      // searchTransactionResponse = transactionsResponse;
+      // _getTransactionsResponse.safeAdd(transactionsResponse);
     } else {
       onSearchTransaction();
     }
@@ -69,10 +70,9 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
       debugPrint('Entered here-------->');
       getTransactions(pageNo: pageNo, pageSize: pageSize);
     }
-    ;
 
     ///searchController api call
-    if (searchController.text.isEmpty || searchTextList.isEmpty) {
+    if (searchController.text.isEmpty /*|| searchTextList.isEmpty*/) {
       debugPrint("------getMoreScrollListener-------");
       getMoreScrollListener();
     }
@@ -80,16 +80,23 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
   onSearchTransaction({String? searchText}) {
     searchController.clear();
-    List<BillPaymentsTransactionData> tempTransactionList = [];
+    // List<BillPaymentsTransactionData> tempTransactionList = [];
     List<String> tempSearchTextList = searchTextList;
     if (searchText != null && searchText.isNotEmpty) {
       tempSearchTextList.add(searchText.toLowerCase());
-      tempTransactionList = searchTransactionResponse?.data?.billPaymentsTransactionData ?? [];
+
+      // tempTransactionList = searchTransactionResponse?.data?.billPaymentsTransactionData ?? [];
     } else {
-      tempTransactionList = transactionsResponse?.data?.billPaymentsTransactionData ?? [];
+      // searchText = "";
+      // print("JDAJSFHJKLASFLKJ1: $searchText");
+
+      // tempTransactionList = transactionsResponse?.data?.billPaymentsTransactionData ?? [];
     }
 
-    List<BillPaymentsTransactionData> filteredTransactionList = tempTransactionList;
+    searchTextList = tempSearchTextList;
+    _searchTextSubject.add(searchTextList);
+
+    /*List<BillPaymentsTransactionData> filteredTransactionList = tempTransactionList;
 
     tempSearchTextList.forEach((tag) {
       List<BillPaymentsTransactionData> tempList = [];
@@ -119,7 +126,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     searchTransactionResponse = Resource.success(
         data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList));
     _getTransactionsResponse.add(Resource.success(
-        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList)));
+        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList)));*/
   }
 
   void getMoreScrollListener() {
@@ -134,7 +141,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
         // Call the API for getting more data with
         // incremented Page no.
-        if (pageNo > 1 && searchTextList.isEmpty) {
+        if (pageNo > 1 /*&& searchTextList.isEmpty*/) {
           debugPrint('Entered here--------> too');
           getTransactions(pageNo: pageNo, pageSize: pageSize);
         }
@@ -157,7 +164,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
           transactionsResponse =
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
           searchTransactionResponse = transactionsResponse;
-          onSearchTransaction();
+          // onSearchTransaction();
         } else if (event.status == Status.SUCCESS) {
           bool isContentNull = event.data?.billPaymentsTransactionData == null;
 
@@ -199,17 +206,18 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
           transactionsResponse =
               Resource.success(data: BillPaymentsTransactionModel(billPaymentsTransactionData: allDataList));
           searchTransactionResponse = transactionsResponse;
-          onSearchTransaction();
+          // onSearchTransaction();
         }
       });
     });
   }
 
-  void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
+  void getTransactions({num? pageNo: 1, num? pageSize: 10, String? searchText: ""}) {
     debugPrint("getTransactions");
     _getTransactionsRequest.safeAdd(BillPaymentsTransactionUseCaseParams(
         pageNo: pageNo,
         pageSize: pageSize,
+        searchText: searchText,
         type: AppConstantsUtils.POST_PAID_FLOW == true
             ? AppConstantsUtils.POSTPAID_KEY.toLowerCase()
             : AppConstantsUtils.PREPAID_KEY.toLowerCase()));

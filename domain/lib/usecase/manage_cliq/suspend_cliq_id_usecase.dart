@@ -12,17 +12,20 @@ class SuspendCliqIdUseCase extends BaseUseCase<NetworkError, SuspendCliqIdUseCas
 
   @override
   Future<Either<NetworkError, bool>> execute({required SuspendCliqIdUseCaseParams params}) {
-    return _cliqRepository.suspendCliqId(aliasId: params.aliasId, getToken: params.getToken);
+    return _cliqRepository.suspendCliqId(
+        aliasId: params.aliasId, otpCode: params.otpCode, getToken: params.getToken);
   }
 }
 
 class SuspendCliqIdUseCaseParams extends Params {
   final String aliasId;
+  final String otpCode;
 
   final bool getToken;
 
   SuspendCliqIdUseCaseParams({
     required this.aliasId,
+    required this.otpCode,
     required this.getToken,
   });
 

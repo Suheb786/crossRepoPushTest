@@ -1134,6 +1134,10 @@ class ErrorParser {
         return localisedHelper.billPaymentSorryMessage;
       case ErrorType.REJECTED_DUE_TO_EXPIRY_DATE:
         return localisedHelper.rejectedDueToExpiryDate;
+      case ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToClosedBill;
+      case ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE:
+        return localisedHelper.billCannotBeCheckedDueToExpiredBill;
       case ErrorType.OPEN_DATE_ISSUE_MESSAGE:
         return localisedHelper.openDateIssuedMessage;
       case ErrorType.CLOSE_DATE_ISSUE_MESSAGE:
@@ -1148,6 +1152,20 @@ class ErrorParser {
         return "";
       case ErrorType.DAILY_LIMIT_EXCEDED:
         return localisedHelper.dailyNarrationLimitexceed;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS:
+        return localisedHelper.thereAreNoDueBills;
+      case ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS:
+        return localisedHelper.thereAreNoDueBillsButYouCanMakePartialPayments;
+      case ErrorType.INVALID_BILLING_NUMBER:
+        return localisedHelper.invalidBillingNumber;
+      case ErrorType.BILL_NOT_FOUND:
+        return localisedHelper.billNotFound;
+      case ErrorType.INVALID_PAID_AMOUNT:
+        return localisedHelper.invalidPaidAmount;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT:
+        return localisedHelper.billingNumberReachedItsMaxAmt;
+      case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX:
+        return localisedHelper.billingNumberReachedItsMaxTrx;
 
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;

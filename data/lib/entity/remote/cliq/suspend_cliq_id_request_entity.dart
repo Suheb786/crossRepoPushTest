@@ -7,12 +7,16 @@ class SuspendCliqIdRequestEntity {
   @JsonKey(name: "aliasId")
   final String? aliasId;
 
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
+
+  @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  SuspendCliqIdRequestEntity({required this.aliasId, required this.getToken, required this.baseData});
+  SuspendCliqIdRequestEntity(
+      {required this.aliasId, required this.otpCode, required this.getToken, required this.baseData});
 
   factory SuspendCliqIdRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SuspendCliqIdRequestEntityFromJson(json);

@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/manage_cliq/create_cliq_id_otp_usecase.dart';
@@ -12,20 +13,17 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
-  final LinkBankAccountCliqIdValidationUseCase
-      _linkBankAccountCliqIdValidationUseCase;
+  final LinkBankAccountCliqIdValidationUseCase _linkBankAccountCliqIdValidationUseCase;
   final CreateCliqIdOtpUseCase _createCliqIdOtpUseCase;
   final GetAccountByCustomerIDUseCase _getAccountByCustomerIDUseCase;
 
-  LinkBankAccountCliqIdPageViewModel(
-      this._linkBankAccountCliqIdValidationUseCase,
-      this._createCliqIdOtpUseCase,
-      this._getAccountByCustomerIDUseCase) {
+  LinkBankAccountCliqIdPageViewModel(this._linkBankAccountCliqIdValidationUseCase,
+      this._createCliqIdOtpUseCase, this._getAccountByCustomerIDUseCase) {
     ///validation request
     _linkBankAccountCliqIdValidationRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _linkBankAccountCliqIdValidationUseCase.execute(
-              params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _linkBankAccountCliqIdValidationUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         _linkBankAccountCliqIdValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -36,8 +34,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
     /// api calling for otp
     _createCliqIdOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createCliqIdOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createCliqIdOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -50,9 +47,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
     });
 
     _getAccountByCustomerIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getAccountByCustomerIDUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountByCustomerIDUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -75,10 +70,10 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   }
 
   void validate() {
-    _linkBankAccountCliqIdValidationRequest.safeAdd(
-        LinkBankAccountCliqIdValidationUseCaseParams(
-            isSelected: _isSelectedRequest.value,
-            listOfCustomerAccount: linkBankAccountCliqIdList));
+    _linkBankAccountCliqIdValidationRequest.safeAdd(LinkBankAccountCliqIdValidationUseCaseParams(
+        isSelected: _isSelectedRequest.value,
+        listOfCustomerAccount: linkBankAccountCliqIdList,
+        cliqListActionTypeEnum: CliqListActionTypeEnum.CREATECLIQ));
   }
 
   void makeOtpRequest(
@@ -87,10 +82,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
       required bool isAlias,
       required String accountNumber}) {
     _createCliqIdOtpRequest.safeAdd(CreateCliqIdOtpParams(
-        getToken: getToken,
-        aliasValue: aliasValue,
-        isAlias: isAlias,
-        accountNumber: accountNumber));
+        getToken: getToken, aliasValue: aliasValue, isAlias: isAlias, accountNumber: accountNumber));
   }
 
   @override
@@ -114,27 +106,22 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   ///---------for otp subject-----------------------------------
 
-  PublishSubject<CreateCliqIdOtpParams> _createCliqIdOtpRequest =
-      PublishSubject();
+  PublishSubject<CreateCliqIdOtpParams> _createCliqIdOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<CreateCliqOtp>> _createCliqIdOtpResponse =
-      PublishSubject();
+  PublishSubject<Resource<CreateCliqOtp>> _createCliqIdOtpResponse = PublishSubject();
 
-  Stream<Resource<CreateCliqOtp>> get createCliqIdOtpStream =>
-      _createCliqIdOtpResponse.stream;
+  Stream<Resource<CreateCliqOtp>> get createCliqIdOtpStream => _createCliqIdOtpResponse.stream;
 
   ///-----------for validation subject
-  PublishSubject<LinkBankAccountCliqIdValidationUseCaseParams>
-      _linkBankAccountCliqIdValidationRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _linkBankAccountCliqIdValidationResponse =
+  PublishSubject<LinkBankAccountCliqIdValidationUseCaseParams> _linkBankAccountCliqIdValidationRequest =
       PublishSubject();
+
+  PublishSubject<Resource<bool>> _linkBankAccountCliqIdValidationResponse = PublishSubject();
 
   Stream<Resource<bool>> get linkBankAccountCliqIdValidationStream =>
       _linkBankAccountCliqIdValidationResponse.stream;
 
-  PublishSubject<List<GetAccountByCustomerId>>
-      _linkBankAccountCliqIdListRequest = PublishSubject();
+  PublishSubject<List<GetAccountByCustomerId>> _linkBankAccountCliqIdListRequest = PublishSubject();
 
   Stream<List<GetAccountByCustomerId>> get linkBankAccountCliqIdListStream =>
       _linkBankAccountCliqIdListRequest.stream;
@@ -146,19 +133,15 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   ///-------------------Get Account By Customer ID----------------///
 
-  PublishSubject<GetAccountByCustomerIDUseCaseParams>
-      _getAccountByCustomerIdRequest = PublishSubject();
+  PublishSubject<GetAccountByCustomerIDUseCaseParams> _getAccountByCustomerIdRequest = PublishSubject();
 
-  PublishSubject<Resource<List<GetAccountByCustomerId>>>
-      _getAccountByCustomerIdResponse = PublishSubject();
+  PublishSubject<Resource<List<GetAccountByCustomerId>>> _getAccountByCustomerIdResponse = PublishSubject();
 
-  Stream<Resource<List<GetAccountByCustomerId>>>
-      get getAccountByCustomerIdStream =>
-          _getAccountByCustomerIdResponse.stream;
+  Stream<Resource<List<GetAccountByCustomerId>>> get getAccountByCustomerIdStream =>
+      _getAccountByCustomerIdResponse.stream;
 
   void getAccountByCustomerId() {
-    _getAccountByCustomerIdRequest
-        .safeAdd(GetAccountByCustomerIDUseCaseParams());
+    _getAccountByCustomerIdRequest.safeAdd(GetAccountByCustomerIDUseCaseParams());
   }
 
   ///-------------------Get Account By Customer ID----------------///

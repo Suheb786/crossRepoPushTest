@@ -25,11 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
 
-  static String m2(String) => "${String} has been activated";
+  static String m2(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
 
-  static String m3(String) => "${String} has been deleted";
+  static String m3(String) => "${String} تم حذف خدمة كليك على الاسم المستعار";
 
-  static String m4(String) => "${String} has been suspended";
+  static String m4(String) => "${String} تم إيقاف خدمة كليك على الاسم المستعار";
 
   static String m5(maximumLimit) => "أقصى ${maximumLimit} دينار";
 
@@ -140,7 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفعيل بطاقتك الائتمانية"),
         "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
             "تفعيل بطاقتك الائتمانية التابعة"),
-        "active": MessageLookupByLibrary.simpleMessage("Active"),
+        "active": MessageLookupByLibrary.simpleMessage("فعال"),
         "activity": MessageLookupByLibrary.simpleMessage("حركة"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-009)"),
@@ -339,8 +339,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
             "المستقبِل غير موجود. حاول مع حدا جديد."),
+        "billCannotBeCheckedDueToClosedBill":
+            MessageLookupByLibrary.simpleMessage(
+                "لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
+        "billCannotBeCheckedDueToExpiredBill":
+            MessageLookupByLibrary.simpleMessage(
+                "لا يمكن اختيار هذه الفاتورة بسبب انتهاء صلاحيتها"),
         "billDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الفاتورة"),
         "billName": MessageLookupByLibrary.simpleMessage("اسم الفاتورة"),
+        "billNotFound":
+            MessageLookupByLibrary.simpleMessage("رقم الفاتورة غير موجود"),
         "billPaymentSorryMessage": MessageLookupByLibrary.simpleMessage(
             "متأسفين. لم نتمكن من اتمام العملية. يرجى العودة إلى كشف حركات حسابك في بلينك وعند المفوتر لمعرفة حالة العملية. فريقنا موجود لمساعدتك عند الحاجة"),
         "billerAddedSuccessfully":
@@ -348,6 +356,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "billerAlreadyExistsMessage": MessageLookupByLibrary.simpleMessage(
             "يوجد لديك فاتورة مخزنة بنفس الرقم المرجعي"),
         "billerName": MessageLookupByLibrary.simpleMessage("اسم المفوتر"),
+        "billingNumberReachedItsMaxAmt": MessageLookupByLibrary.simpleMessage(
+            "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة"),
+        "billingNumberReachedItsMaxTrx": MessageLookupByLibrary.simpleMessage(
+            "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة"),
         "billsAndPayments":
             MessageLookupByLibrary.simpleMessage("الفواتير و الدفع"),
         "billsHistory": MessageLookupByLibrary.simpleMessage("سِجِل الفواتير"),
@@ -549,21 +561,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasMobileNoUpdate": MessageLookupByLibrary.simpleMessage(
             "CliQ ID Mobile Number has been updated"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
-            "CliQ ID Alias has been updated"),
+            "تم تحديث  الاسم المستعار لخدمة كليك"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
-            "CliQ ID Mobile Number has been updated"),
+            "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqIdCreateSuccessFully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("نوع حساب CliQ"),
-        "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("CLIQ ID UPDATE"),
+        "cliqIdUpdate":
+            MessageLookupByLibrary.simpleMessage("تحديث الاسم المستعار"),
         "cliqIdUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث CliqID بنجاح"),
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
             "تعديل حساب كليك\nتم تحديث رقم الهاتف المحمول الخاص بمعرف CliQ"),
         "cliqType": MessageLookupByLibrary.simpleMessage("نوع CLIQ"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
-            "لا يمكنك أتمام عملية الدفع بسبب أنتهاء صلاحية الفاتورة"),
+            "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "أكمل معلومات تقريرك الضريبي التالية:"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -1452,6 +1465,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفوا، للاستمرار لازم تكون إنت المالك المستفيد من الحساب "),
         "invalidBeneficiary":
             MessageLookupByLibrary.simpleMessage("المستفيد خطأ"),
+        "invalidBillingNumber":
+            MessageLookupByLibrary.simpleMessage("رقم الفاتورة غير صحيح"),
         "invalidBusinessType":
             MessageLookupByLibrary.simpleMessage("اختار نوع العمل"),
         "invalidCardId": MessageLookupByLibrary.simpleMessage(
@@ -1569,6 +1584,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "رمز غير صحيح. حاول كمان مرة."),
         "invalidOtpReq": MessageLookupByLibrary.simpleMessage(
             "رمز غير صحيح. حاول كمان مرة."),
+        "invalidPaidAmount": MessageLookupByLibrary.simpleMessage(
+            "المبلغ الذي تم دفعه غير صحيح"),
         "invalidPayBackAmount": MessageLookupByLibrary.simpleMessage(
             "مبلغ السداد بيتجاوز رصيد الحساب. الرجاء إيداع المبلغ بالحساب أو اختيار حساب آخر."),
         "invalidPermanentAddress":
@@ -1673,7 +1690,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "letsCreateYourProfile":
             MessageLookupByLibrary.simpleMessage("خلينا نعمل ملفك الشخصي"),
         "letsGiveANameToYourCliqId": MessageLookupByLibrary.simpleMessage(
-            "Let’s give a name\n to your new CliQ ID"),
+            "خلينا نختار اسم مستعار لحسابك في كليك"),
         "letsSet4DigitPin": MessageLookupByLibrary.simpleMessage(
             "خلينا نعمل الرمز السري PIN مكون من 4 أرقام"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز السقف"),
@@ -1784,8 +1801,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNoRegisteredWithBlinkDesc": MessageLookupByLibrary.simpleMessage(
             "لقد وجدنا أن رقم الهاتف المحمول الذي أدخلته مسجل في blink. إذا تابعت ، فسيتم إرسال الأموال إلى حساب المستلم الوامض. إذا كنت تنوي المتابعة مع حساب مصرفي آخر ، فيمكنك استخدام رقم الحساب المصرفي الدولي (IBAN) أو الاسم المستعار."),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
-        "mobileNumberHint":
-            MessageLookupByLibrary.simpleMessage("00962 000 0000"),
+        "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "mobileNumberUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم موبايلك بنجاح"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
@@ -1928,7 +1944,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
-            "لا يمكنك أتمام عملية الدفع لأن الفاتورة لم تصدر بعد"),
+            "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "orContinueWith":
@@ -2041,8 +2057,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
-        "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
-            "Please enter your mobile number"),
+        "pleaseEnterYourMobileNumber":
+            MessageLookupByLibrary.simpleMessage("ادخل رقم موبايلك"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "ساعدنا لنطوّر خدماتنا: مساحة لادخال أي نص (اذا بالإمكان تطبيقها) "),
         "pleaseProvideInformationIfAppliesToYou":
@@ -2202,7 +2218,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reject": MessageLookupByLibrary.simpleMessage("الطلب قيد التنفيذ"),
         "rejectRequest": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
         "rejectedDueToExpiryDate": MessageLookupByLibrary.simpleMessage(
-            "لا يمكنك أتمام عملية الدفع بسبب أنتهاء صلاحية الفاتورة"),
+            "تم رفض دفع الفاتوره بسبب انتهاء صلاحية الفاتورة"),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة! يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو ابنك أو والدك (Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -2501,7 +2517,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "suspandClidId":
             MessageLookupByLibrary.simpleMessage("ايقاف حساب كليك"),
         "suspendId": MessageLookupByLibrary.simpleMessage("حساب موقوف"),
-        "suspended": MessageLookupByLibrary.simpleMessage("Suspended"),
+        "suspended": MessageLookupByLibrary.simpleMessage("معلق"),
         "swipeAnyBillerToTheLeftToRemove": MessageLookupByLibrary.simpleMessage(
             "اسحب اي فاتورة لليسار لتقوم بحذفها"),
         "swipeDownToCancel":
@@ -2579,6 +2595,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "شكرا للانتظار، المكالمة رح تبدأ تلقائياً"),
+        "thereAreNoDueBills": MessageLookupByLibrary.simpleMessage(
+            "لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "thereAreNoDueBillsButYouCanMakePartialPayments":
+            MessageLookupByLibrary.simpleMessage(
+                "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "لا توجد فواتير مستحقة للدفع في الوقت الحالي"),

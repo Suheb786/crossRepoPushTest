@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
+import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
@@ -30,16 +30,16 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
+import 'otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
+
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
 
   void _shareFiles(
-    BuildContext context,{
+    BuildContext context, {
     required String s,
     required String s2,
-  }
-
-  ) async {
+  }) async {
     // final box = context.findRenderObject() as RenderBox?;
     await Share.share(
       S.of(context).hereMyCliqDetails + '${s}' + S.of(context).getYourBlinkAccountTodayBlinkNow + "\n$s2",
@@ -81,84 +81,72 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
               stream: model.getAliasStream,
               dataBuilder: (context, getAliasSnapshot) {
                 return AppStreamBuilder<Resource<bool>>(
-                    stream: model.changeDefaultCliqIdStream,
+                    stream: model.changeDefaultCliqIdOtpStream,
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        model.showSuccessTitleandDescriptionToast(
-                          ToastwithTitleandDescription(
-                            title: S.current.cliqIdUpdate,
-                            description: S.current.defaultAccountUpdated,
-                          ),
-                        );
-                        // model.showSuccessToast(S.current.defaultAccountUpdated);
-                        model.getAlias(true);
+                        Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                            arguments: OtpForCliqIdListPageArguments(
+                                cliqListActionTypeEnum: CliqListActionTypeEnum.DEFAULT,
+                                aliasId: model.aliasId,
+                                accountId: model.accountId,
+                                aliasName: model.aliasName));
                       }
                     },
                     dataBuilder: (context, snapshot) {
                       return AppStreamBuilder<Resource<bool>>(
                         initialData: Resource.none(),
-                        stream: model.reactivateCliqIDStream,
+                        stream: model.reactivateCliqIDOtpStream,
                         onData: (value) {
                           if (value.status == Status.SUCCESS) {
-                            model.showSuccessTitleandDescriptionToast(
-                              ToastwithTitleandDescription(
-                                title: S.current.cliqIdUpdate,
-                                description: S.current.hasBeenActivated(model.activatedCliq),
-                              ),
-                            );
-                            model.activatedCliq = '';
-                            model.getAlias(true);
+                            Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                arguments: OtpForCliqIdListPageArguments(
+                                    cliqListActionTypeEnum: CliqListActionTypeEnum.REACTIVATED,
+                                    aliasId: model.aliasId,
+                                    accountId: model.accountId,
+                                    aliasName: model.aliasName));
                           }
                         },
                         dataBuilder: (context, reactivateSnapshot) {
                           return AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
-                            stream: model.suspandCliqIDStream,
+                            stream: model.suspandCliqIdOtpStream,
                             onData: (value) {
                               if (value.status == Status.SUCCESS) {
-                                model.showSuccessTitleandDescriptionToast(
-                                  ToastwithTitleandDescription(
-                                    title: S.current.cliqIdUpdate,
-                                    description: S.current.hasbeenSuspended(model.suspendedCliq),
-                                  ),
-                                );
-                                model.suspendedCliq = '';
-                                model.getAlias(true);
+                                Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                    arguments: OtpForCliqIdListPageArguments(
+                                        cliqListActionTypeEnum: CliqListActionTypeEnum.SUSPENDEDCLIQ,
+                                        aliasId: model.aliasId,
+                                        accountId: model.accountId,
+                                        aliasName: model.aliasName));
                               }
                             },
                             dataBuilder: (context, suspnadSnapshot) {
                               return AppStreamBuilder<Resource<bool>>(
                                 initialData: Resource.none(),
-                                stream: model.deleteCliqIdStream,
+                                stream: model.deleteCliqIdOtpStream,
                                 onData: (value) {
                                   if (value.status == Status.SUCCESS) {
-                                    model.showSuccessTitleandDescriptionToast(
-                                      ToastwithTitleandDescription(
-                                        title: S.current.cliqIdUpdate,
-                                        description: S.current.hasBeenDeleted(model.deletedCliq),
-                                      ),
-                                    );
-                                    model.deletedCliq = '';
-                                    model.getAlias(true);
+                                    Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                        arguments: OtpForCliqIdListPageArguments(
+                                            cliqListActionTypeEnum: CliqListActionTypeEnum.DELETECLIQ,
+                                            aliasId: model.aliasId,
+                                            accountId: model.accountId,
+                                            aliasName: model.aliasName));
                                   }
                                 },
                                 dataBuilder: (context, deleteSnapshot) {
                                   return AppStreamBuilder<Resource<bool>>(
                                     initialData: Resource.none(),
-                                    stream: model.unlinkCliqIdStream,
+                                    stream: model.unlinkCliqIdOtpStream,
                                     onData: (unlinkData) {
                                       if (unlinkData.status == Status.SUCCESS) {
-                                        model.showSuccessTitleandDescriptionToast(
-                                          ToastwithTitleandDescription(
-                                            title: S.current.cliqIdUpdate,
-                                            description: S.current.accountSuccessfullyUnlinked,
-                                          ),
-                                        );
-                                        // model.showSuccessToast(
-                                        //   (S.of(context).accountSuccessfullyUnlinked),
-                                        // );
-                                        model.getAlias(true);
+                                        Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                            arguments: OtpForCliqIdListPageArguments(
+                                                cliqListActionTypeEnum: CliqListActionTypeEnum.UNLINKCLIQ,
+                                                aliasId: model.aliasId,
+                                                accountId: model.accountId,
+                                                aliasName: model.aliasName));
                                       }
                                     },
                                     dataBuilder: (context, data) {
@@ -199,12 +187,15 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     .of(context)
                                                                     .whenAcceptingCreationOfYourCliqId,
                                                                 onSelected: () {
+                                                              model.aliasId = (getAliasSnapshot
+                                                                      .data?.aliases?[index].aliasID) ??
+                                                                  "";
+                                                              model.accountId = (accountData.recordId) ?? "";
+                                                              model.aliasName = '';
                                                               Navigator.pop(context);
-                                                              model.confirmChangeDefaultCliqId(
-                                                                aliasId: (getAliasSnapshot
-                                                                        .data?.aliases?[index].aliasID) ??
-                                                                    "",
-                                                                acc: (accountData.recordId) ?? "",
+                                                              model.confirmChangeDefaultCliqIdOtp(
+                                                                aliasId: model.aliasId,
+                                                                acc: model.accountId,
                                                               );
                                                             }, onDismissed: () {
                                                               Navigator.pop(context);
@@ -223,13 +214,18 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                       fontWeight: FontWeight.w400),
                                                                 ),
                                                                 onSelected: () {
+                                                                  model.aliasId = (getAliasSnapshot
+                                                                          .data?.aliases?[index].aliasID) ??
+                                                                      "";
+                                                                  model.accountId =
+                                                                      (accountData.recordId) ?? "";
+
+                                                                  model.aliasName = '';
                                                                   Navigator.pop(context);
-                                                                  model.unlinkCliqId(
+                                                                  model.unlinkCliqIdOtp(
                                                                     getToken: true,
-                                                                    aliasId: (getAliasSnapshot
-                                                                            .data?.aliases?[index].aliasID) ??
-                                                                        "",
-                                                                    accountId: (accountData.recordId) ?? "",
+                                                                    aliasId: model.aliasId,
+                                                                    accountId: model.accountId,
                                                                   );
                                                                 },
                                                                 isSwipeToCancel: true,
@@ -288,10 +284,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                     .whenAcceptingCreationOfYourCliqId,
                                                                 onSelected: () {
                                                               Navigator.pop(context);
-                                                              model.activatedCliq = getAliasSnapshot
+                                                              model.aliasName = getAliasSnapshot
                                                                       .data?.aliases?[index].aliasName ??
                                                                   '';
-                                                              model.reactivatetCliqID(
+                                                              model.aliasId = (getAliasSnapshot
+                                                                      .data?.aliases?[index].aliasID) ??
+                                                                  "";
+                                                              model.accountId = '';
+                                                              model.reactivatetCliqIDOtp(
                                                                 aliasId: (getAliasSnapshot
                                                                         .data?.aliases?[index].aliasID) ??
                                                                     "",
@@ -328,16 +328,18 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                           ""));
                                                             }
                                                           }, onShareId: () {
-                                                          Platform.isAndroid
+                                                            Platform.isAndroid
                                                                 ? _shareFiles(context,
                                                                     s:
                                                                         "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}",
-                                                                    s2: "${AppConstantsUtils.PLAY_STORE_URL} ")
+                                                                    s2:
+                                                                        "${AppConstantsUtils.PLAY_STORE_URL} ")
                                                                 : Platform.isIOS
                                                                     ? _shareFiles(context,
                                                                         s: "${S.of(context).cliqIdType} - ${getAliasSnapshot.data?.aliases?[index].aliasType?.fromCliqAliasString()} \n${S.of(context).cliqID} - ${getAliasSnapshot.data?.aliases?[index].aliasID}",
                                                                         s2: "${AppConstantsUtils.APP_STORE_URL}")
-                                                                    : "";       }, onCancelled: () {
+                                                                    : "";
+                                                          }, onCancelled: () {
                                                             Navigator.pop(context);
                                                           }, onDeleteId: () {
                                                             Navigator.pop(context);
@@ -381,10 +383,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                   ])),
                                                               onSelected: () {
                                                                 Navigator.pop(context);
-                                                                model.deletedCliq = getAliasSnapshot
+                                                                model.aliasName = getAliasSnapshot
                                                                         .data?.aliases?[index].aliasName ??
                                                                     "";
-                                                                model.deleteCliqId(
+                                                                model.aliasId = (getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasID) ??
+                                                                    "";
+                                                                model.accountId = '';
+                                                                model.deleteCliqIdOtp(
                                                                     true,
                                                                     (getAliasSnapshot
                                                                             .data?.aliases?[index].aliasID) ??
@@ -410,14 +416,16 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
 
                                                               onSelected: () {
                                                                 Navigator.pop(context);
-                                                                model.suspendedCliq = getAliasSnapshot
+                                                                model.aliasName = getAliasSnapshot
                                                                         .data?.aliases?[index].aliasName ??
                                                                     '';
-                                                                model.suspandCliqID(
-                                                                    getToken: true,
-                                                                    aliasId: (getAliasSnapshot
-                                                                            .data?.aliases?[index].aliasID) ??
-                                                                        "");
+                                                                model.aliasId = (getAliasSnapshot
+                                                                        .data?.aliases?[index].aliasID) ??
+                                                                    "";
+                                                                model.accountId = '';
+
+                                                                model.suspandCliqIDOtp(
+                                                                    getToken: true, aliasId: model.aliasId);
                                                               },
                                                               //  image: ,
                                                               isSwipeToCancel: true,

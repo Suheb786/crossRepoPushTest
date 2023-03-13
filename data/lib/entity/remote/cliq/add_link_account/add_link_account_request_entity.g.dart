@@ -14,6 +14,7 @@ AddLinkAccountRequestEntity _$AddLinkAccountRequestEntityFromJson(
     accountNumber: json['AccountNumber'] as String,
     isAlias: json['isAlias'] as bool,
     aliasValue: json['AliasValue'] as String,
+    otpCode: json['OtpCode'] as String,
     getToken: json['GetToken'] as bool,
     baseClass: json['BaseClass'] as Map<String, dynamic>,
   );
@@ -27,6 +28,7 @@ Map<String, dynamic> _$AddLinkAccountRequestEntityToJson(
       'AccountNumber': instance.accountNumber,
       'isAlias': instance.isAlias,
       'AliasValue': instance.aliasValue,
+      'OtpCode': instance.otpCode,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseClass,
     };

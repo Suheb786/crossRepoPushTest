@@ -7,12 +7,16 @@ class DeleteCliqIdRequestEntity {
   @JsonKey(name: "aliasId")
   final String? aliasId;
 
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
+
+  @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  DeleteCliqIdRequestEntity({required this.aliasId, required this.getToken, required this.baseData});
+  DeleteCliqIdRequestEntity(
+      {required this.aliasId, required this.otpCode, required this.getToken, required this.baseData});
 
   factory DeleteCliqIdRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DeleteCliqIdRequestEntityFromJson(json);

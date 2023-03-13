@@ -1272,6 +1272,21 @@ class NetworkError extends BaseError {
           case "err-374":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS_VALUE);
 
+
+          /// EFW:efawateercom -err-codes
+          case "EFW-408":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_BILLING_NUMBER);
+          case "EFW-401":
+            return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
+          case "EFW-367":
+            return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
+          case "EFW-325":
+            return AppError(cause: cause, error: error, type: ErrorType.INVALID_PAID_AMOUNT);
+          case "EFW-397":
+            return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT);
+          case "EFW-398":
+            return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX);
+
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

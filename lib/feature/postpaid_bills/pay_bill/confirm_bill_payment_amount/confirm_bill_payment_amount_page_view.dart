@@ -127,11 +127,15 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                 type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
                           }
                         }
+                      } else {
+                        model.isDateOk = true;
                       }
 
                       model.minMaxValidate(
                           model.isPartial, model.minRange, model.maxRange, model.dueAmtController!, context);
                       model.validate(model.dueAmtController);
+
+                      model.amountGreaterThanZeroMessage(model);
                     }
                   },
                   dataBuilder: (BuildContext context, data) {

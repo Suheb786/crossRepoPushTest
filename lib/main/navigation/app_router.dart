@@ -67,6 +67,7 @@ import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
@@ -107,7 +108,6 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
-
 // import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
@@ -860,6 +860,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => LinkAccountPage(settings.arguments as LinkAccountPageArgument),
             settings: RouteSettings(name: RoutePaths.LinkAccountPage));
+
+      case RoutePaths.OtpForCliqIdListPage:
+        return CupertinoPageRoute(
+            builder: (context) => OtpForCliqIdListPage(settings.arguments as OtpForCliqIdListPageArguments),
+            settings: RouteSettings(name: RoutePaths.OtpForCliqIdListPage));
 
       default:
         return CupertinoPageRoute(

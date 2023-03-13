@@ -18,6 +18,7 @@ class AddLInkAccountUseCase extends BaseUseCase<NetworkError, AddLinkAccountUseC
         accountNumber: params.accountNumber,
         isAlias: params.isAlias,
         aliasValue: params.aliasValue,
+        otpCode: params.otpCode,
         getToken: params.getToken);
   }
 }
@@ -28,6 +29,7 @@ class AddLinkAccountUseCaseParams extends Params {
   final String accountNumber;
   final bool isAlias;
   final String aliasValue;
+  final String otpCode;
   final bool getToken;
 
   AddLinkAccountUseCaseParams(
@@ -36,6 +38,7 @@ class AddLinkAccountUseCaseParams extends Params {
       required this.accountNumber,
       required this.isAlias,
       required this.aliasValue,
+      required this.otpCode,
       required this.getToken});
 
   @override

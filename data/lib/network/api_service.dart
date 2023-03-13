@@ -112,14 +112,17 @@ import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_reques
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
+import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/delete_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
@@ -130,6 +133,7 @@ import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart'
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
+import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
@@ -138,7 +142,9 @@ import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_res
 import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
 import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
+import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
@@ -953,11 +959,30 @@ abstract class ApiService {
   @POST("/Cliq/SuspendCliqId")
   Future<HttpResponse<ResponseEntity>> suspendCliqId(@Body() SuspendCliqIdRequestEntity request);
 
+  @POST("/Cliq/SuspendCliqIdOtp")
+  Future<HttpResponse<ResponseEntity>> suspendCliqIdOtp(@Body() SuspendCliqIdOtpRequestEntity request);
+
   @POST("/Cliq/ReActivateCliqId")
   Future<HttpResponse<ResponseEntity>> reActivateCliqId(@Body() ReActivateCliqIdRequestEntity request);
 
+  @POST("/Cliq/ReActivateCliqIdOtp")
+  Future<HttpResponse<ResponseEntity>> reActivateCliqIdOtp(@Body() ReActivateCliqIdOtpRequestEntity request);
+
   @POST("/Cliq/DeleteCliqId")
   Future<HttpResponse<ResponseEntity>> deleteCliqId(@Body() DeleteCliqIdRequestEntity request);
+
+  @POST("/Cliq/DeleteCliqIdOtp")
+  Future<HttpResponse<ResponseEntity>> deleteCliqIdOtp(@Body() DeleteCliqIdOtpRequestEntity request);
+
+  @POST("/Cliq/UnLinkAccountFromCliq")
+  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq(
+    @Body() UnLinkAccountFromCliqRequestEntity request,
+  );
+
+  @POST("/Cliq/UnLinkAccountFromCliqOtp")
+  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliqOtp(
+    @Body() UnLinkAccountFromCliqOtpRequestEntity request,
+  );
 
   @POST("/Cliq/UpdateRTPRequest")
   Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
@@ -994,14 +1019,19 @@ abstract class ApiService {
     @Body() AddLinkAccountRequestEntity request,
   );
 
+  @POST("/Cliq/AddLinkAccountOtp")
+  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp(
+    @Body() AddLinkAccountOtpRequestEntity request,
+  );
+
   @POST("/Cliq/ConfirmChangeDefaultAccount")
   Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
     @Body() ConfirmChangeDefaultAccountRequestEntity request,
   );
 
-  @POST("/Cliq/UnLinkAccountFromCliq")
-  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliq(
-    @Body() UnLinkAccountFromCliqRequestEntity request,
+  @POST("/Cliq/ChangeDefaultAccountOtp")
+  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp(
+    @Body() ConfirmChangeDefaultAccountOtpRequestEntity request,
   );
 
   @POST("/Cliq/RequestMoney")
@@ -1026,11 +1056,6 @@ abstract class ApiService {
 
   @POST("/Cliq/GetAccountByCustomerID")
   Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID(
-    @Body() BaseRequest request,
-  );
-
-  @POST("/Cliq/ChangeDefaultAccountOtp")
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp(
     @Body() BaseRequest request,
   );
 

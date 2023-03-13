@@ -154,7 +154,6 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
                                                           onPressed: () {
-                                                            print('hhhh');
                                                             model.makeOtpRequest(
                                                               /*accountNumber: ProviderScope.containerOf(
                                                                           context)
@@ -181,16 +180,8 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                                     .color!),
                                                           ))
                                                       : Text(
-                                                    S.of(context).resendIn(
-                                                        '${currentTimeRemaining.min != null
-                                                            ? (currentTimeRemaining.min! < 10
-                                                            ? "0${currentTimeRemaining.min}"
-                                                            : currentTimeRemaining.min)
-                                                            : "00"}:${currentTimeRemaining.sec != null
-                                                            ? (currentTimeRemaining.sec! < 10
-                                                            ? "0${currentTimeRemaining.sec}"
-                                                            : currentTimeRemaining.sec)
-                                                            : "00"}'),
+                                                          S.of(context).resendIn(
+                                                              '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,

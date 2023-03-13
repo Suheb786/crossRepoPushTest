@@ -13,14 +13,15 @@ class ChangeDefaultAccountOtpUseCase
 
   @override
   Future<Either<NetworkError, bool>> execute({required ChangeDefaultAccountOtpUseCaseParams params}) {
-    return _cliqRepository.changeDefaultAccountOtp(GetToken: params.GetToken);
+    return _cliqRepository.changeDefaultAccountOtp(acc: params.acc, aliasId: params.aliasId);
   }
 }
 
 class ChangeDefaultAccountOtpUseCaseParams extends Params {
-  final bool GetToken;
+  final String acc;
+  final String aliasId;
 
-  ChangeDefaultAccountOtpUseCaseParams(this.GetToken);
+  ChangeDefaultAccountOtpUseCaseParams({required this.acc, required this.aliasId});
 
   @override
   Either<AppError, bool> verify() {

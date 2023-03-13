@@ -85,9 +85,12 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                     controller: model.searchController,
                                     onPressed: () {},
                                     onFieldSubmitted: (text) {
+                                      model.allDataList = [];
+                                      model.pageNo = 1;
+                                      model.hasMoreData = true;
                                       if (text.trim().isNotEmpty) {
-                                        if ((!model.searchTextList.contains(text.trim().toLowerCase())))
-                                          model.onSearchTransaction(searchText: text.trim());
+                                        // if ((!model.searchTextList.contains(text.trim().toLowerCase())))
+                                        model.onSearchTransaction(searchText: text.trim());
                                       }
                                     },
                                     suffixIcon: (value, data) {
@@ -120,6 +123,17 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                           AppStreamBuilder<List<String>>(
                               stream: model.searchTextStream,
                               initialData: [],
+                              onData: (value) {
+                                value = value.toSet().toList();
+                                model.searchText = value.join(',');
+                                if (model.searchText.isNotEmpty && !model.searchText.contains(",")) {
+                                  model.searchText = model.searchText + ",";
+                                }
+                                model.getTransactions(
+                                    searchText: model.searchText,
+                                    pageNo: model.pageNo,
+                                    pageSize: model.pageSize);
+                              },
                               dataBuilder: (context, textList) {
                                 return Visibility(
                                   visible: textList!.length > 0,
@@ -155,6 +169,9 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                                     padding: EdgeInsetsDirectional.only(start: 9.0.w),
                                                     child: InkWell(
                                                       onTap: () {
+                                                        model.allDataList = [];
+                                                        model.pageNo = 1;
+                                                        model.hasMoreData = true;
                                                         model.updateSearchList(index);
                                                       },
                                                       child: AppSvg.asset(AssetUtils.close,

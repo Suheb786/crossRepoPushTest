@@ -308,7 +308,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.0"
+    version: "4.6.1"
   firebase_core:
     dependency: transitive
     description:
@@ -967,7 +967,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.6"
+    version: "2.5.2"
   xdg_directories:
     dependency: transitive
     description:
@@ -983,5 +983,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.5.0"
