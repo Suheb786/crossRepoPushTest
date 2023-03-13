@@ -327,6 +327,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.1"
+  eventify:
+    dependency: transitive
+    description:
+      name: eventify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   fading_edge_scrollview:
     dependency: "direct main"
     description:
@@ -478,7 +485,7 @@ packages:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.3+8"
+    version: "5.5.0"
   flutter_jailbreak_detection:
     dependency: transitive
     description:

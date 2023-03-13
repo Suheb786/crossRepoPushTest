@@ -57,7 +57,7 @@ class SettingsDialogView extends StatelessWidget {
                                 .dashboardDataContent
                                 .dashboardFeatures
                                 ?.blinkRetailAppCliqAliasManagement ??
-                            true)) {
+                            false)) {
                           pages = [
                             InkWell(
                               onTap: onClick!

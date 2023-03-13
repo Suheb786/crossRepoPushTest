@@ -10,7 +10,7 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-login")
   final bool? isLoginEnabled;
 
-  @JsonKey(name: "blink-retail-app-creditCard-application")
+  @JsonKey(name: "blink-retail-app-creditCards-application")
   final bool? isCreditCardEnabled;
 
   @JsonKey(name: "blink-retail-app-register")
@@ -84,11 +84,10 @@ class DashboardFeaturesEntity
         isRJFeatureEnabled: isGoRJEnabled ?? false,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
-        ///TODO: Uncomment once feature is merged
-        blinkRetailAppBillPayment: false/*this.blinkRetailAppBillPayment ?? false*/,
-        appBillPaymentPostpaid:false /*this.blinkRetailAppBillPaymentPayPostpaid ?? false*/,
+        blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,
+        appBillPaymentPostpaid: this.blinkRetailAppBillPaymentPayPostpaid ?? false,
         appBillPaymentQrCode: this.paymentQRCode ?? false,
-        appBillPaymentPrepaid:false /*this.blinkRetailAppBillPaymentPayPrepaid ?? false*/,
+        appBillPaymentPrepaid: this.blinkRetailAppBillPaymentPayPrepaid ?? false,
         blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
         blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,
         blinkRetailAppCliqRTP: blinkRetailAppRTP ?? false,

@@ -1272,7 +1272,6 @@ class NetworkError extends BaseError {
           case "err-374":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS_VALUE);
 
-
           /// EFW:efawateercom -err-codes
           case "EFW-408":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_BILLING_NUMBER);

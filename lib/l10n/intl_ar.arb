@@ -1622,18 +1622,15 @@
   "invalidPaidAmount": "المبلغ الذي تم دفعه غير صحيح",
   "billingNumberReachedItsMaxAmt": "لقد وصلت للحد الأعلى ل للدفع على رقم الفاتورة",
   "billingNumberReachedItsMaxTrx": "لقد وصلت للحد الأعلى للدفع على رقم الفاتورة",
-  "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "hasbeenSuspended": "{String} تم إيقاف خدمة كليك على الاسم المستعار",
   "hasBeenActivated": "{String} تم تفعيل خدمة كليك على الاسم المستعار",
   "hasBeenDeleted": "{String} تم حذف خدمة كليك على الاسم المستعار",
-  "cliqAliasUpdate": "تم تحديث  الاسم المستعار لخدمة كليك",
-  "cliqAliasMobileNoUpdate": "CliQ ID Mobile Number has been updated",
+  "cliqAliasUpdate": "تم تحديث الاسم المستعار لخدمة كليك",
+  "cliqAliasMobileNoUpdate": "تم تحديث رقم الموبايل المربوط بخدمة كليك",
   "mobileNoAliasHint": "00962000000000",
   "accountDormant": "Account is Dormant",
-  "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "
+  "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله ",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
-  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
-  "accountDormant": "Account is Dormant",
-    "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "
+  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل"
 }
