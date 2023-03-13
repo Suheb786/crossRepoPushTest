@@ -1653,7 +1653,6 @@
   "invalidPaidAmount": "Invalid Paid Amount",
   "billingNumberReachedItsMaxAmt": "Billing Number Reached Its Max Amt",
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
-  "dailyNarrationLimitexceed": "Daily Narration AmountExceed"
   "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
   "accountDormant": "Account is Dormant",
   "accountDormantDesc": "You cannot apply for a credit card; your account is dormant, please call us to activate it."
