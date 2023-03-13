@@ -30,6 +30,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   final billingNumberTextControl = TextEditingController();
   final nicknameTextControl = TextEditingController();
   final amountTextControl = TextEditingController();
+  String? amountText = "0";
   final serviceDescriptionEn = TextEditingController();
   bool isShowBillingNumberSizeBox = false;
   bool isShowDemominationSizeBox = false;
@@ -145,7 +146,9 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
       AppConstantsUtils.IS_NEW_PAYMENT = true;
 
       isValidated = false;
-      if (amountTextControl.text.trim() != "" || denominationTextController.text.trim() != "") {
+      if (double.parse(amountText ?? "0") > 0.0 ||
+          amountTextControl.text.trim() != "" ||
+          denominationTextController.text.trim() != "") {
         isValidated = true;
         if (isShowBillingNumberSizeBox) {
           isValidated = false;

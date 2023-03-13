@@ -40,8 +40,14 @@ class ValidatePrePaidUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (amount!.isEmpty || amount == "0.000") {
-      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.ENTER_AMOUNT));
+    if (prepaidCategoryCode != null &&
+        prepaidCategoryCode!.isEmpty &&
+        prepaidCategoryType != null &&
+        prepaidCategoryType!.isEmpty) {
+      if (amount!.isEmpty || amount == "0.000") {
+        return Left(
+            AppError(cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.ENTER_AMOUNT));
+      }
     }
     return Right(true);
   }
