@@ -1,7 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -68,7 +71,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                     child: Text(
                       S.of(context).JOD,
                       style: TextStyle(
-                          fontFamily: StringUtils.appFont, color: AppColor.very_light_red, fontWeight: FontWeight.w700, fontSize: 14.0.t),
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.very_light_red,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14.0.t),
                     ),
                   ),
                 ],
@@ -81,7 +87,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 maxLines: 3,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24.0.t),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).accentColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24.0.t),
               ),
             ),
             Padding(
@@ -90,23 +99,34 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 model.arguments.name ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).accentColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.0.t),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 4.0.h),
               child: Text(
-                model.arguments.iban ?? '',
+                // model.arguments.iban ?? '',
+                ProviderScope.containerOf(context)
+                    .read(sendToNewRecipientViewModelProvider)
+                    .ibanOrMobileController
+                    .text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: StringUtils.appFont, color: AppColor.very_light_red, fontWeight: FontWeight.w600, fontSize: 12.0.t),
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.very_light_red,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.0.t),
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(top: 43.0.h, end: 24.0.w, start: 24.0.w),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
-                decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   children: [
                     Row(
@@ -146,7 +166,8 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                           Text.rich(
                             TextSpan(children: [
                               TextSpan(
-                                text: "${TimeUtils.getFormattedDateForCreditCard(model.arguments.transferDate.toString())} - ",
+                                text:
+                                    "${TimeUtils.getFormattedDateForCreditCard(model.arguments.transferDate.toString())} - ",
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontSize: 12.0.t,
@@ -154,7 +175,8 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                                 ),
                               ),
                               TextSpan(
-                                text: "${TimeUtils.getFormattedTimeForTransaction(model.arguments.transferDate.toString())}",
+                                text:
+                                    "${TimeUtils.getFormattedTimeForTransaction(model.arguments.transferDate.toString())}",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 12.0.t,
@@ -209,7 +231,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 child: Text(
                   S.of(context).toDashboard,
                   style: TextStyle(
-                      fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 12.0.t, fontWeight: FontWeight.w600),
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).accentColor,
+                      fontSize: 12.0.t,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),

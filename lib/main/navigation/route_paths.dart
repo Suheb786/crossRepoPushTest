@@ -151,4 +151,5 @@ class RoutePaths {
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
   static const String LinkAccountPage = "/linkAccountPage";
   static const String OtpForCliqIdListPage = "/otpForCliqIdListPage";
+  static const String temp = "/temp";
 }

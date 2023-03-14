@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +20,19 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final Function? onAccepted;
   final Function? onDismiss;
   final Function? onRejected;
+  final Widget listOfDetails;
+  final Widget description;
+  final bool showDescription;
+  final Widget actionWidget;
 
   const RTPConfirmationDialogView(
-      {
-      this.onDismiss,
+      {this.onDismiss,
       this.onAccepted,
       this.onRejected,
+      required this.actionWidget,
+      required this.description,
+      required this.listOfDetails,
+      required this.showDescription,
       required this.cdtrName,
       required this.cdtrDpText,
       required this.amount,
@@ -32,10 +41,8 @@ class RTPConfirmationDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding:
-            EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: WillPopScope(
           onWillPop: () async => false,
           child: GestureDetector(
@@ -52,15 +59,13 @@ class RTPConfirmationDialogView extends StatelessWidget {
                     children: [
                       SizedBox(height: 32.h),
                       Container(
-                          height: 50.0.h,
-                          width: 50.0.w,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).primaryColor),
+                          height: 64.0.h,
+                          width: 64.0.h,
+                          decoration:
+                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                           child: Center(
                             child: Text(
                               cdtrDpText,
-                             
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentColor,
@@ -69,117 +74,53 @@ class RTPConfirmationDialogView extends StatelessWidget {
                             ),
                           )),
                       SizedBox(height: 16.0.h),
-                      Text(
-                        cdtrName,
-                   
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 20.t,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        cdtrAcct,
-                      
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 12.t,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(height: 31.h),
                       RichText(
                         text: TextSpan(
+                          text: amount,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 24.t,
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.black),
                           children: [
+                            TextSpan(text: " "),
                             TextSpan(
-                              text: cdtrName,
-                          
+                              text: S.of(context).JOD,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).primaryColorDark),
-                            ),
-                            TextSpan(
-                              text: S.current.isRequesting,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w400,
-                                  color: Theme.of(context).primaryColorDark),
-                            ),
-                            TextSpan(
-                              text: amount,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w400,
-                                  color: Theme.of(context).primaryColorDark),
-                            ),
-                            TextSpan(
-                              text: S.current.fromYouWouldYouLikeToAcceptIt,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14.0.t,
-                                  fontWeight: FontWeight.w400,
-                                  color: Theme.of(context).primaryColorDark),
-                            ),
+                                  fontSize: 12.t,
+                                  color: AppColor.light_gray,
+                                  fontWeight: FontWeight.w700),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: 30.h),
+                      SizedBox(height: 8.0.h),
+                      Text(
+                        cdtrName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        cdtrAcct,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(height: 31.h),
+                      Visibility(
+                          visible: showDescription,
+                          child: showDescription == true ? description : Container()),
                       Column(
                         children: [
-                          InkWell(
-                            onTap: () {
-                              onAccepted?.call();
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(16),
-                              height: 48.h,
-                              // width: 57.w,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color!),
-                              child: Center(
-                                child: Text(S.current.accept,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.t,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.white)),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 8.h),
-                          InkWell(
-                            onTap: () {
-                              onRejected?.call();
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(16),
-                              height: 48.h,
-                              // width: 57.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                border: Border.all(color: AppColor.white_gray),
-                              ),
-                              child: Center(
-                                child: Text(S.current.reject,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.t,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.sky_blue_mid)),
-                              ),
-                            ),
-                          ),
+                          listOfDetails,
                         ],
+                      ),
+                      SizedBox(height: 32.h),
+                      actionWidget,
+                      SizedBox(
+                        height: 30.h,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 16.h),

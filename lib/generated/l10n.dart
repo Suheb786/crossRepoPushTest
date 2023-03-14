@@ -16569,6 +16569,46 @@ class S {
       args: [],
     );
   }
+
+  /// ` sent`
+  String get sent {
+    return Intl.message(
+      ' sent',
+      name: 'sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` to you`
+  String get toYou {
+    return Intl.message(
+      ' to you',
+      name: 'toYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return Payment`
+  String get returnPayment {
+    return Intl.message(
+      'Return Payment',
+      name: 'returnPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the reason to return`
+  String get selectTheReasonToReturn {
+    return Intl.message(
+      'Select the reason to return',
+      name: 'selectTheReasonToReturn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

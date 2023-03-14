@@ -1632,5 +1632,9 @@
   "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله ",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
-  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل"
+  "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
+  "sent": " sent",
+  "toYou": " to you",
+  "returnPayment": "Return Payment",
+  "selectTheReasonToReturn": "Select the reason to return"
 }

@@ -2456,6 +2456,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
         "returnOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Return On"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
@@ -2543,6 +2544,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select your preferred\nregion and amount"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
+        "selectTheReasonToReturn":
+            MessageLookupByLibrary.simpleMessage("Select the reason to return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -2557,6 +2560,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "An error has occurred in sending the code. Please try again later or contact our Engagement Team on 06-5200100."),
+        "sent": MessageLookupByLibrary.simpleMessage(" sent"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "Server is under maintenance. Please try again in sometime."),
@@ -2757,6 +2761,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("to View Voucher"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
+        "toYou": MessageLookupByLibrary.simpleMessage(" to you"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(
             "TokenSerial / Apin is empty from Vkey"),
         "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(

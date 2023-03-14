@@ -1678,5 +1678,9 @@
   "accountDormant": "Account is Dormant",
   "accountDormantDesc": "You cannot apply for a credit card; your account is dormant, please call us to activate it.",
   "pleaseEnterAmount": "Please enter amount",
-  "selectAtLeastOneBill": "Select at least one bill"
+  "selectAtLeastOneBill": "Select at least one bill",
+  "sent": " sent",
+  "toYou": " to you",
+  "returnPayment": "Return Payment",
+  "selectTheReasonToReturn": "Select the reason to return"
 }

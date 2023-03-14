@@ -150,6 +150,7 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 class AppRouter {
@@ -886,6 +887,9 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => OtpForCliqIdListPage(settings.arguments as OtpForCliqIdListPageArguments),
             settings: RouteSettings(name: RoutePaths.OtpForCliqIdListPage));
+
+      case RoutePaths.temp:
+        return CupertinoPageRoute(builder: (context) => TempReturnButton());
 
       default:
         return CupertinoPageRoute(

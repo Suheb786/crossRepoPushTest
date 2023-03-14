@@ -2362,6 +2362,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
@@ -2445,6 +2446,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
+        "selectTheReasonToReturn":
+            MessageLookupByLibrary.simpleMessage("Select the reason to return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
@@ -2459,6 +2462,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),
+        "sent": MessageLookupByLibrary.simpleMessage(" sent"),
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "السيرفر تحت الصيانة، حاول بعدين."),
@@ -2653,6 +2657,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لاستعراض الاشتراكات"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("إلى الصفحة الرئيسية"),
+        "toYou": MessageLookupByLibrary.simpleMessage(" to you"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(
             "TokenSerial / Apin فارغ من Vkey"),
         "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(
