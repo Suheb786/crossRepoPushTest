@@ -52,29 +52,35 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
             color: AppColor.black.withOpacity(0.4)),
       ),
       actions: [
-        CupertinoActionSheetAction(
-          child: Text(S.of(context).editId,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: AppColor.pure_blue)),
-          onPressed: () {
-            widget.onEditId?.call();
-          },
-        ),
         Visibility(
-          visible: widget.showLinkAccount,
+          visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
           child: CupertinoActionSheetAction(
-            child: Text(S.of(context).linkAccount,
+            child: Text(S.of(context).editId,
                 style: TextStyle(
                     fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w400,
                     fontSize: 20,
                     color: AppColor.pure_blue)),
             onPressed: () {
-              widget.onLinkId?.call();
+              widget.onEditId?.call();
             },
+          ),
+        ),
+        Visibility(
+          visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
+          child: Visibility(
+            visible: widget.showLinkAccount,
+            child: CupertinoActionSheetAction(
+              child: Text(S.of(context).linkAccount,
+                  style: TextStyle(
+                      fontFamily: 'SF Pro Display',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      color: AppColor.pure_blue)),
+              onPressed: () {
+                widget.onLinkId?.call();
+              },
+            ),
           ),
         ),
         CupertinoActionSheetAction(
