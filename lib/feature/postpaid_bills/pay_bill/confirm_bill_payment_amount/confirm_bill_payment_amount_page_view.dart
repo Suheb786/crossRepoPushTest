@@ -113,18 +113,23 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                 cause: Exception(),
                                 error: ErrorInfo(message: ''),
                                 type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE));
-                          }
-                          if (model.postPaidBillInquiryData?[0].message == "err-381") {
+                          } else if (model.postPaidBillInquiryData?[0].message == "err-381") {
                             model.showToastWithError(AppError(
                                 cause: Exception(),
                                 error: ErrorInfo(message: ''),
                                 type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
-                          }
-                          if (model.postPaidBillInquiryData?[0].message == "err-383") {
+                          } else if (model.postPaidBillInquiryData?[0].message == "err-383") {
                             model.showToastWithError(AppError(
                                 cause: Exception(),
                                 error: ErrorInfo(message: ''),
                                 type: ErrorType.CLOSE_DATE_ISSUE_MESSAGE));
+                          } else {
+                            if (double.parse(model.postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
+                              model.showToastWithError(AppError(
+                                  error: ErrorInfo(message: ''),
+                                  type: ErrorType.NETWORK,
+                                  cause: Exception()));
+                            }
                           }
                         }
                       } else {

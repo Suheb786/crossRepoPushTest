@@ -297,18 +297,21 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
-            }
-            if (postPaidBillInquiryData?[0].message == "err-381") {
+            } else if (postPaidBillInquiryData?[0].message == "err-381") {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
-            }
-            if (postPaidBillInquiryData?[0].message == "err-383") {
+            } else if (postPaidBillInquiryData?[0].message == "err-383") {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
+            } else {
+              if (double.parse(payPostPaidBillsDataList[0].dueAmount ?? "0") <= 0.0) {
+                showToastWithError(
+                    AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+              }
             }
           }
         }
