@@ -336,7 +336,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                             model.payPostPaidBillsDataList.isEmpty) return;
 
                                         bool isAnyChecked = false;
-                                        for (var item1 in model.payPostPaidBillsDataList ?? []) {
+                                        for (var item1 in model.payPostPaidBillsDataList) {
                                           if (item1.isChecked == true) {
                                             isAnyChecked = true;
                                             break;
@@ -426,19 +426,19 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           for (var item in model.payPostPaidBillsDataList) {
                                             if (item.isChecked == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
-                                              element.billingNo == item.billingNo &&
+                                                  element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                               tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                              element.billingNo == item.billingNo &&
+                                                  element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
 
                                             if (item.expDateStatus == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
-                                              element.billingNo == item.billingNo &&
+                                                  element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                               tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                              element.billingNo == item.billingNo &&
+                                                  element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
                                             if (item.isChecked == null || item.isChecked == false) {

@@ -105,7 +105,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
             Padding(
               padding: EdgeInsets.only(top: 4.0.h),
               child: Text(
-                model.arguments.paymentMadeTo ?? '',
+                model.arguments.paymentMadeTo,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
