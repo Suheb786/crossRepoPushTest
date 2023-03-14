@@ -9,10 +9,12 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class RequestAmountFromContactSuccessPageView extends BasePageViewWidget<RequestAmountFromContactSuccessViewModel> {
+class RequestAmountFromContactSuccessPageView
+    extends BasePageViewWidget<RequestAmountFromContactSuccessViewModel> {
   RequestAmountFromContactSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -45,7 +47,8 @@ class RequestAmountFromContactSuccessPageView extends BasePageViewWidget<Request
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      child: Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                      child:
+                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                     ),
                   ),
                 ],
@@ -58,7 +61,8 @@ class RequestAmountFromContactSuccessPageView extends BasePageViewWidget<Request
                     Text(
                       double.parse(model.successValues[0]).toStringAsFixed(3),
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28.0.t),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28.0.t),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 5.0.w),
@@ -80,38 +84,46 @@ class RequestAmountFromContactSuccessPageView extends BasePageViewWidget<Request
                   S.of(context).requestedFrom,
                   maxLines: 3,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24.0.t),
+                  style: TextStyle(
+                      color: AppColor.very_dark_gray_black,
+                      fontFamily: StringUtils.appFont,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24.0.t),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 16.0.h),
+                padding: EdgeInsets.only(top: 24.0.h),
                 child: Text(
                   model.successValues[1],
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                  style: TextStyle(
+                      color: AppColor.very_dark_gray_black,
+                      fontFamily: StringUtils.appFont,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.0.t),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4.0.h),
+                padding: EdgeInsets.only(top: 2.0.h),
                 child: Text(
                   model.successValues[2],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      color: AppColor.very_dark_gray_black.withOpacity(0.5),
                       fontWeight: FontWeight.w600,
                       fontSize: 12.0.t),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 64.0.h),
+                padding: EdgeInsets.only(top: 56.0.h),
                 child: Text(
                   S.of(context).youWillBeNotified,
                   maxLines: 3,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      color: AppColor.very_dark_gray_black,
                       fontWeight: FontWeight.w400,
                       fontSize: 14.t),
                 ),

@@ -15340,10 +15340,10 @@ class S {
     );
   }
 
-  /// `IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  /// `IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS`
   String get accountMobileNoAlias {
     return Intl.message(
-      'IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      'IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS',
       name: 'accountMobileNoAlias',
       desc: '',
       args: [],
@@ -16565,6 +16565,16 @@ class S {
     return Intl.message(
       'Select at least one bill',
       name: 'selectAtLeastOneBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname cannot be more than 50 characters long. `
+  String get nickNameValueExceeds {
+    return Intl.message(
+      'Nickname cannot be more than 50 characters long. ',
+      name: 'nickNameValueExceeds',
       desc: '',
       args: [],
     );

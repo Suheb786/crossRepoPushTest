@@ -59,17 +59,17 @@ class GetAccountByAliasContentEntity
   @override
   GetAccountByAliasContent transform() {
     return GetAccountByAliasContent(
-        acciban: this.acciban,
-        bic: this.bic,
-        currency: this.currency,
-        name: this.name,
-        type: this.type,
-        address: this.address,
-        addressCity: this.addressCity,
-        addressCountry: this.addressCountry,
-        addressSpr: this.addressSPR,
-        detCustomerType: this.detCustomerType,
-        nickName: this.nickName,
-        surname: this.surname);
+        acciban: this.acciban ?? '',
+        bic: this.bic ?? '',
+        currency: this.currency ?? '',
+        name: this.name ?? '',
+        type: this.type ?? '',
+        address: this.address ?? '',
+        addressCity: this.addressCity ?? '',
+        addressCountry: this.addressCountry ?? '',
+        addressSpr: this.addressSPR ?? '',
+        detCustomerType: this.detCustomerType ?? '',
+        nickName: this.nickName ?? '',
+        surname: this.surname ?? '');
   }
 }

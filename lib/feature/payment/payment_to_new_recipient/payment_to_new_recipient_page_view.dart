@@ -31,13 +31,14 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
         stream: model.currentStep,
         initialData: 0,
         dataBuilder: (context, currentStep) {
-          print("got current step : $currentStep");
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
-                print("got current step : $currentStep");
               } else {
-                ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).pageController.previous();
+                ProviderScope.containerOf(context)
+                    .read(paymentToNewRecipientViewModelProvider)
+                    .pageController
+                    .previous();
               }
             },
             child: Column(
@@ -73,7 +74,9 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                           Text(
                             S.of(context).sending,
                             style: TextStyle(
-                                fontFamily: StringUtils.appFont, color: Theme.of(context).accentColor, fontSize: 20.0.t),
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).accentColor,
+                                fontSize: 20.0.t),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6.0.h),
@@ -92,7 +95,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                 autofocus: true,
                                                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                                                 inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
+                                                  FilteringTextInputFormatter.allow(
+                                                      RegExp(r'^\d+\.?\d{0,3}')),
                                                 ],
                                                 /* inputFormatters: [
                                                   FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
@@ -102,8 +106,6 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                     ProviderScope.containerOf(context)
                                                         .read(sendMoneyViewModelProvider)
                                                         .currentPinValue = model.editAmountController.text;
-                                                    print(
-                                                        "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
                                                   }
                                                 },
                                                 onFieldSubmitted: (value) {
@@ -157,8 +159,9 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                   return InkWell(
                                     onTap: () {
                                       if (!value!) {
-                                        model.editAmountController.text =
-                                            ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue;
+                                        model.editAmountController.text = ProviderScope.containerOf(context)
+                                            .read(sendMoneyViewModelProvider)
+                                            .currentPinValue;
                                         model.updateEditAmount(true);
                                       }
                                     },

@@ -1556,7 +1556,7 @@
   "pleaseAddLinkAccount": "Please Add Link Account",
   "recipientName": "RECIPIENT NAME",
   "recipientAddress": "RECIPIENT ADDRESS",
-  "accountMobileNoAlias": "IBAN / ACCOUNT NO. / Mobile No. / ALIAS",
+  "accountMobileNoAlias": "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS",
   "mobileNoRegisteredWithBlink": "Mobile number registered with blink",
   "mobileNoRegisteredWithBlinkDesc": "We’ve found that the mobile number you entered is registered with blink. If you continue, the money will be sent to the recipient’s blink account. If you intend to proceed with another bank account, you can use IBAN or Alias.",
   "numberFormatting": "Number formatting",
@@ -1678,5 +1678,6 @@
   "accountDormant": "Account is Dormant",
   "accountDormantDesc": "You cannot apply for a credit card; your account is dormant, please call us to activate it.",
   "pleaseEnterAmount": "Please enter amount",
-  "selectAtLeastOneBill": "Select at least one bill"
+  "selectAtLeastOneBill": "Select at least one bill",
+  "nickNameValueExceeds": "Nickname cannot be more than 50 characters long. "
 }

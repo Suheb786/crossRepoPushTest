@@ -195,8 +195,6 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   void requestFromNewRecipient(BuildContext context) {
-    print("got the limit : $limit");
-
     _requestFromNewRecipientRequest.safeAdd(RequestFromNewRecipientUseCaseParams(
         ibanOrMobile: ibanOrMobileController.text,
         purpose: purposeController.text,

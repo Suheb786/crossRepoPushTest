@@ -50,7 +50,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
               Navigator.pushNamed(context, RoutePaths.RequestAmountFromContactSuccess, arguments: [
                 model.currentPinValue,
                 data.data!.requestToPayContent!.dbtrName!,
-                data.data!.requestToPayContent!.dbtrMcc!,
+                model.beneficiary?.iban ?? '',
               ]);
             }
           },
@@ -207,7 +207,6 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                             EditTransactionPurposeDialog.show(context, onDismissed: () {
                                               Navigator.pop(context);
                                             }, onSelected: (value1, value2) {
-                                              print("got value: $value1");
                                               model.updatePurpose(value1);
                                               model.updatePurposeDetail(value2);
                                               Navigator.pop(context);

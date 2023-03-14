@@ -53,7 +53,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).nextPage();
+                          ProviderScope.containerOf(context)
+                              .read(paymentToNewRecipientViewModelProvider)
+                              .nextPage();
                           // .next();
                         }
                       },
@@ -66,7 +68,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                 model.purposeDetailController.clear();
 
                                 model.checkSendMoneyMessageEnum =
-                                    data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ?? CheckSendMoneyMessageEnum.NONE;
+                                    data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ??
+                                        CheckSendMoneyMessageEnum.NONE;
                                 if (data.data?.checkSendMoneyContent?.transferResponse?.messageEnum ==
                                     CheckSendMoneyMessageEnum.IBAN_FROM_CliQ) {
                                   model.showCheckSendMoneyRecipientDetailsVisibility(true);
@@ -83,7 +86,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       title: S.of(context).mobileNoRegisteredWithBlink,
                                       descriptionWidget: Text(
                                         S.of(context).mobileNoRegisteredWithBlinkDesc,
-                                        style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w400),
                                       ),
                                       onDismissed: () {}, onSelected: () {
                                     Navigator.pop(context);
@@ -98,9 +104,14 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                 initialData: Resource.none(),
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    if (checkSendMoneyResponse!.data!.checkSendMoneyContent!.transferResponse!.beneficiaryId != null &&
-                                        checkSendMoneyResponse.data!.checkSendMoneyContent!.transferResponse!.beneficiaryId!.isNotEmpty) {
-                                      ProviderScope.containerOf(context).read(paymentToNewRecipientViewModelProvider).nextPage();
+                                    if (checkSendMoneyResponse!.data!.checkSendMoneyContent!.transferResponse!
+                                                .beneficiaryId !=
+                                            null &&
+                                        checkSendMoneyResponse.data!.checkSendMoneyContent!.transferResponse!
+                                            .beneficiaryId!.isNotEmpty) {
+                                      ProviderScope.containerOf(context)
+                                          .read(paymentToNewRecipientViewModelProvider)
+                                          .nextPage();
                                       // .next();
                                     } else {
                                       model.verifyTransfer(
@@ -137,13 +148,6 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       } else {
                                         if (details.primaryVelocity!.isNegative) {
                                           model.sendToNewRecipient(context);
-                                        } else {
-                                          // ProviderScope
-                                          //     .containerOf(context)
-                                          //     .read(
-                                          //     paymentToNewRecipientViewModelProvider)
-                                          //     .pageController
-                                          //     .previous();
                                         }
                                       }
                                     },
@@ -151,7 +155,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                       elevation: 2,
-                                      color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+                                      color:
+                                          Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                                       margin: EdgeInsets.zero,
                                       shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                                       child: Padding(
@@ -160,7 +165,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                 ? 0
                                                 : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
                                         child: Container(
-                                          padding: EdgeInsetsDirectional.only(top: 32.0.h, start: 24.0.w, end: 24.0.w),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 32.0.h, start: 24.0.w, end: 24.0.w),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -173,7 +179,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                       Text(
                                                         S.of(context).sendMoneyTo,
                                                         style: TextStyle(
-                                                            fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600),
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.0.t,
+                                                            fontWeight: FontWeight.w600),
                                                       ),
                                                       Padding(
                                                         padding: EdgeInsets.only(top: 16.0.h),
@@ -185,13 +193,18 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S.of(context).mobileNoRegisteredWithBlink,
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .mobileNoRegisteredWithBlink,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(
-                                                                            S.of(context).samplesOfNoFormatting,
+                                                                            S
+                                                                                .of(context)
+                                                                                .samplesOfNoFormatting,
                                                                             style: TextStyle(
-                                                                                fontFamily: StringUtils.appFont,
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
                                                                                 fontSize: 14.t,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
@@ -200,8 +213,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                             desc: S.of(context).dummyIBAN,
                                                                           ),
                                                                           NumberFormattingWidget(
-                                                                            title: S.of(context).accountNumber,
-                                                                            desc: S.of(context).dummyAccountNo,
+                                                                            title:
+                                                                                S.of(context).accountNumber,
+                                                                            desc:
+                                                                                S.of(context).dummyAccountNo,
                                                                           ),
                                                                           NumberFormattingWidget(
                                                                             title: S.of(context).mobileNo,
@@ -218,7 +233,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                   });
                                                                 },
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional.only(start: 5.0.w),
+                                                                  padding: EdgeInsetsDirectional.only(
+                                                                      start: 5.0.w),
                                                                   child: Container(
                                                                       height: 14.h,
                                                                       width: 14.w,
@@ -238,7 +254,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           ),
                                                           onFocusChange: (hasFocus) {
                                                             if (!hasFocus) {
-                                                              if (model.ibanOrMobileController.text.isNotEmpty) {
+                                                              if (model
+                                                                  .ibanOrMobileController.text.isNotEmpty) {
                                                                 model.checkSendMoney(
                                                                     amount: ProviderScope.containerOf(context)
                                                                         .read(sendMoneyViewModelProvider)
@@ -250,7 +267,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         ),
                                                       ),
                                                       AppStreamBuilder<bool>(
-                                                          stream: model.checkSendMoneyRecipientDetailsVisibilityStream,
+                                                          stream: model
+                                                              .checkSendMoneyRecipientDetailsVisibilityStream,
                                                           initialData: false,
                                                           dataBuilder: (context, visible) {
                                                             return Visibility(
@@ -264,17 +282,19 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                       labelText: S.of(context).recipientName,
                                                                       hintText: S.of(context).pleaseEnter,
                                                                       key: model.recipientNameKey,
-                                                                      controller: model.recipientNameController,
+                                                                      controller:
+                                                                          model.recipientNameController,
                                                                     ),
                                                                     SizedBox(
                                                                       height: 16.h,
                                                                     ),
                                                                     AppTextField(
-                                                                      labelText: S.of(context).recipientAddress,
+                                                                      labelText:
+                                                                          S.of(context).recipientAddress,
                                                                       hintText: S.of(context).pleaseEnter,
                                                                       key: model.recipientAddressKey,
-                                                                      controller: model.recipientAddressController,
-                                                                      
+                                                                      controller:
+                                                                          model.recipientAddressController,
                                                                     ),
                                                                   ],
                                                                 ));
@@ -288,8 +308,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                               child: Padding(
                                                                   padding: EdgeInsets.only(top: 16.0.h),
                                                                   child: Row(
-                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment.spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment.start,
                                                                     children: [
                                                                       Expanded(
                                                                         child: Text(
@@ -303,11 +325,14 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                       ),
                                                                       Expanded(
                                                                         child: Text(
-                                                                          (model.transferResponse.name != null &&
-                                                                                  model.transferResponse.name!.isNotEmpty)
+                                                                          (model.transferResponse.name !=
+                                                                                      null &&
+                                                                                  model.transferResponse.name!
+                                                                                      .isNotEmpty)
                                                                               ? model.transferResponse.name!
                                                                               : '-',
                                                                           maxLines: 2,
+                                                                          textAlign: TextAlign.end,
                                                                           style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
                                                                             fontSize: 12.0.t,
@@ -338,11 +363,14 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           key: model.purposeKey,
                                                           controller: model.purposeController,
                                                           onPressed: () {
-                                                            if (model.purposeList != null && model.purposeList.isNotEmpty) {
-                                                              PurposeDialog.show(context, purposeList: model.purposeList,
+                                                            if (model.purposeList != null &&
+                                                                model.purposeList.isNotEmpty) {
+                                                              PurposeDialog.show(context,
+                                                                  purposeList: model.purposeList,
                                                                   onSelected: (value) {
                                                                 model.updatePurpose(value);
-                                                                model.updatePurposeDetaiList(value.purposeDetails!);
+                                                                model.updatePurposeDetaiList(
+                                                                    value.purposeDetails!);
                                                                 Navigator.pop(context);
                                                               }, onDismissed: () {
                                                                 Navigator.pop(context);
@@ -353,8 +381,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             return Container(
                                                                 height: 16.0.h,
                                                                 width: 16.0.w,
-                                                                padding: EdgeInsetsDirectional.only(end: 8.0.w),
-                                                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                                                padding:
+                                                                    EdgeInsetsDirectional.only(end: 8.0.w),
+                                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                                    color: AppColor.dark_gray_1));
                                                           },
                                                         ),
                                                       ),
@@ -367,8 +397,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           controller: model.purposeDetailController,
                                                           key: model.purposeDetailKey,
                                                           onPressed: () {
-                                                            if (model.purposeDetaiList != null && model.purposeDetaiList.isNotEmpty) {
-                                                              PurposeDetailDialog.show(context, purposeDetailList: model.purposeDetaiList,
+                                                            if (model.purposeDetaiList != null &&
+                                                                model.purposeDetaiList.isNotEmpty) {
+                                                              PurposeDetailDialog.show(context,
+                                                                  purposeDetailList: model.purposeDetaiList,
                                                                   onSelected: (value) {
                                                                 model.updatePurposeDetail(value);
                                                                 Navigator.pop(context);
@@ -381,8 +413,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             return Container(
                                                                 height: 16.0.h,
                                                                 width: 16.0.w,
-                                                                padding: EdgeInsetsDirectional.only(end: 8.0.w),
-                                                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                                                padding:
+                                                                    EdgeInsetsDirectional.only(end: 8.0.w),
+                                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                                    color: AppColor.dark_gray_1));
                                                           },
                                                         ),
                                                       ),
@@ -395,18 +429,22 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                               child: Column(
                                                                 children: [
                                                                   AppSwitchLabelWidget(
-                                                                    label: S.of(context).addRecipientToContact,
-                                                                    inActiveText: S.of(context).no.toUpperCase(),
-                                                                    activeText: S.of(context).yes.toUpperCase(),
+                                                                    label:
+                                                                        S.of(context).addRecipientToContact,
+                                                                    inActiveText:
+                                                                        S.of(context).no.toUpperCase(),
+                                                                    activeText:
+                                                                        S.of(context).yes.toUpperCase(),
                                                                     onToggle: (value) {
                                                                       model.isFriend = value;
                                                                       model.addNickNameController.clear();
                                                                       model.updateSwitchValue(value);
                                                                       if (value) {
-                                                                        print("hello world");
-                                                                        if (model.scrollController.hasClients) {
+                                                                        if (model
+                                                                            .scrollController.hasClients) {
                                                                           model.scrollController.animateTo(
-                                                                            model.scrollController.position.maxScrollExtent,
+                                                                            model.scrollController.position
+                                                                                .maxScrollExtent,
                                                                             duration: Duration(seconds: 1),
                                                                             curve: Curves.fastOutSlowIn,
                                                                           );
@@ -422,52 +460,75 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                       child: Row(
                                                                         children: [
                                                                           AppStreamBuilder<String>(
-                                                                            stream: model.uploadProfilePhotoStream,
+                                                                            stream: model
+                                                                                .uploadProfilePhotoStream,
                                                                             initialData: '',
                                                                             onData: (data) {
-                                                                              if (data != null && data.isNotEmpty) {
+                                                                              if (data != null &&
+                                                                                  data.isNotEmpty) {
                                                                                 model.selectedProfile = data;
                                                                                 // model.addImage(
                                                                                 //     data);
-                                                                                _cropImage(data, model, context);
+                                                                                _cropImage(
+                                                                                    data, model, context);
                                                                                 // model.showSuccessToast(
                                                                                 //     S.of(context).profilePhotoUpdated);
                                                                               }
                                                                             },
                                                                             dataBuilder: (context, data) {
                                                                               return AppStreamBuilder<String>(
-                                                                                stream: model.selectedImageValue,
+                                                                                stream:
+                                                                                    model.selectedImageValue,
                                                                                 initialData: '',
-                                                                                dataBuilder: (context, image) {
+                                                                                dataBuilder:
+                                                                                    (context, image) {
                                                                                   return InkWell(
                                                                                     onTap: () {
-                                                                                      ChooseProfileWidget.show(context, onCameraTap: () {
-                                                                                        Navigator.pop(context);
-                                                                                        model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                                                                      }, onGalleryTap: () {
-                                                                                        Navigator.pop(context);
+                                                                                      ChooseProfileWidget.show(
+                                                                                          context,
+                                                                                          onCameraTap: () {
+                                                                                        Navigator.pop(
+                                                                                            context);
                                                                                         model.uploadProfilePhoto(
-                                                                                            DocumentTypeEnum.PICK_IMAGE);
+                                                                                            DocumentTypeEnum
+                                                                                                .CAMERA);
+                                                                                      }, onGalleryTap: () {
+                                                                                        Navigator.pop(
+                                                                                            context);
+                                                                                        model.uploadProfilePhoto(
+                                                                                            DocumentTypeEnum
+                                                                                                .PICK_IMAGE);
                                                                                       }, onRemoveTap: () {
                                                                                         model.removeImage();
-                                                                                        Navigator.pop(context);
+                                                                                        Navigator.pop(
+                                                                                            context);
                                                                                       }, onCancelled: () {
-                                                                                        Navigator.pop(context);
-                                                                                      }, title: S.of(context).pleaseSelectYourAction);
+                                                                                        Navigator.pop(
+                                                                                            context);
+                                                                                      },
+                                                                                          title: S
+                                                                                              .of(context)
+                                                                                              .pleaseSelectYourAction);
                                                                                     },
                                                                                     child: Container(
                                                                                       height: 50.0.h,
                                                                                       width: 50.0.w,
-                                                                                      decoration: BoxDecoration(shape: BoxShape.circle),
+                                                                                      decoration:
+                                                                                          BoxDecoration(
+                                                                                              shape: BoxShape
+                                                                                                  .circle),
                                                                                       child: ClipOval(
                                                                                         child: image!.isEmpty
                                                                                             ? AppSvg.asset(
-                                                                                                AssetUtils.personCircle,
-                                                                                                fit: BoxFit.fill,
+                                                                                                AssetUtils
+                                                                                                    .personCircle,
+                                                                                                fit: BoxFit
+                                                                                                    .fill,
                                                                                               )
                                                                                             : Image.file(
                                                                                                 File(image),
-                                                                                                fit: BoxFit.fill,
+                                                                                                fit: BoxFit
+                                                                                                    .fill,
                                                                                               ),
                                                                                       ),
                                                                                     ),
@@ -478,48 +539,79 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                           ),
                                                                           Expanded(
                                                                             child: Padding(
-                                                                              padding: EdgeInsetsDirectional.only(start: 14.0.w),
+                                                                              padding:
+                                                                                  EdgeInsetsDirectional.only(
+                                                                                      start: 14.0.w),
                                                                               child: AppStreamBuilder<bool>(
-                                                                                  stream: model.addNickNameStream,
+                                                                                  stream:
+                                                                                      model.addNickNameStream,
                                                                                   initialData: false,
-                                                                                  dataBuilder: (context, val) {
+                                                                                  dataBuilder:
+                                                                                      (context, val) {
                                                                                     return FocusScope(
-                                                                                      onFocusChange: (hasFocus) {
-                                                                                        model.updateNickName(hasFocus);
+                                                                                      onFocusChange:
+                                                                                          (hasFocus) {
+                                                                                        model.updateNickName(
+                                                                                            hasFocus);
                                                                                       },
                                                                                       child: Container(
                                                                                         height: 28.0.h,
                                                                                         child: TextField(
                                                                                           style: TextStyle(
-                                                                                              fontFamily: StringUtils.appFont,
-                                                                                              fontSize: 14.0.t,
-                                                                                              fontWeight: FontWeight.w600,
-                                                                                              color: Theme.of(context)
+                                                                                              fontFamily:
+                                                                                                  StringUtils
+                                                                                                      .appFont,
+                                                                                              fontSize:
+                                                                                                  14.0.t,
+                                                                                              fontWeight:
+                                                                                                  FontWeight
+                                                                                                      .w600,
+                                                                                              color: Theme.of(
+                                                                                                      context)
                                                                                                   .accentTextTheme
                                                                                                   .bodyText1!
                                                                                                   .color),
-                                                                                          cursorColor: Theme.of(context)
+                                                                                          cursorColor: Theme
+                                                                                                  .of(context)
                                                                                               .accentTextTheme
                                                                                               .bodyText1!
                                                                                               .color,
-                                                                                          controller: model.addNickNameController,
-                                                                                          decoration: InputDecoration(
-                                                                                            hintText: S.of(context).addNickName,
+                                                                                          controller: model
+                                                                                              .addNickNameController,
+                                                                                          decoration:
+                                                                                              InputDecoration(
+                                                                                            hintText: S
+                                                                                                .of(context)
+                                                                                                .addNickName,
                                                                                             hintStyle: TextStyle(
-                                                                                                fontFamily: StringUtils.appFont,
-                                                                                                fontSize: 14.0.t,
-                                                                                                fontWeight: FontWeight.w600,
+                                                                                                fontFamily:
+                                                                                                    StringUtils
+                                                                                                        .appFont,
+                                                                                                fontSize:
+                                                                                                    14.0.t,
+                                                                                                fontWeight:
+                                                                                                    FontWeight
+                                                                                                        .w600,
                                                                                                 color: val!
-                                                                                                    ? Colors.transparent
-                                                                                                    : Theme.of(context)
+                                                                                                    ? Colors
+                                                                                                        .transparent
+                                                                                                    : Theme.of(
+                                                                                                            context)
                                                                                                         .accentTextTheme
                                                                                                         .bodyText1!
                                                                                                         .color),
-                                                                                            border: InputBorder.none,
-                                                                                            contentPadding: EdgeInsets.only(bottom: 18.0.h),
+                                                                                            border:
+                                                                                                InputBorder
+                                                                                                    .none,
+                                                                                            contentPadding:
+                                                                                                EdgeInsets.only(
+                                                                                                    bottom:
+                                                                                                        18.0.h),
                                                                                           ),
-                                                                                          onSubmitted: (value) {
-                                                                                            model.addNickNameVal = value;
+                                                                                          onSubmitted:
+                                                                                              (value) {
+                                                                                            model.addNickNameVal =
+                                                                                                value;
                                                                                             // model.updateNickName(false);
                                                                                           },
                                                                                         ),
@@ -601,7 +693,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
         sourcePath: data,
         cropStyle: CropStyle.circle,
         iosUiSettings: IOSUiSettings(
-            resetButtonHidden: true, rotateButtonsHidden: true, aspectRatioPickerButtonHidden: true, doneButtonTitle: 'Choose'),
+            resetButtonHidden: true,
+            rotateButtonsHidden: true,
+            aspectRatioPickerButtonHidden: true,
+            doneButtonTitle: 'Choose'),
         androidUiSettings: AndroidUiSettings(hideBottomControls: true),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {

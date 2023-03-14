@@ -117,14 +117,17 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                 ),
               ),
             ),
-            Text(
-              (model.beneficiary.nickName != null && model.beneficiary.nickName!.isNotEmpty)
-                  ? model.beneficiary.nickName!
-                  : model.beneficiary.fullName!,
-              style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.t,
+            Padding(
+              padding: EdgeInsetsDirectional.only(end: 24.w, start: 24.w),
+              child: Text(
+                (model.beneficiary.nickName != null && model.beneficiary.nickName!.isNotEmpty)
+                    ? model.beneficiary.nickName!
+                    : model.beneficiary.fullName!,
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.t,
+                ),
               ),
             ),
             Padding(
@@ -173,7 +176,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                 EditTransactionPurposeDialog.show(context, onDismissed: () {
                                   Navigator.pop(context);
                                 }, onSelected: (value1, value2) {
-                                  print("got value: $value1");
                                   model.updatePurpose(value1);
                                   model.updatePurposeDetail(value2);
                                   Navigator.pop(context);
@@ -331,6 +333,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       "is_money_sent": true,
                       "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
                     });
+                    data.data!.transferSuccessContent?.paymentMadeTo = model.beneficiary.iban ?? '';
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
@@ -341,7 +344,6 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                       model.showToastWithError(data.appError!);
                     } else if (data.appError!.type == ErrorType.DAILY_LIMIT_EXCEDED) {
-
                       Navigator.pushNamed(
                         context,
                         RoutePaths.SendMoneyFailure,
