@@ -90,23 +90,27 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         end: 24.0.w,
                                         start: 24.0.w,
                                       ),
-                                      child: AppTextField(
-                                        labelText: '',
-                                        hintText: S.of(context).searchBill,
-                                        controller: model.searchBillController,
-                                        readOnly: false,
-                                        onPressed: () {},
-                                        onChanged: (val) {
-                                          model.searchPostPaidBillerList(val);
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.w,
-                                              padding: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(AssetUtils.search,
-                                                  color: AppColor.dark_gray_1));
-                                        },
+                                      child: Visibility(
+                                        visible: model.payPostPaidBillsDataList != null &&
+                                            model.payPostPaidBillsDataList.isNotEmpty,
+                                        child: AppTextField(
+                                          labelText: '',
+                                          hintText: S.of(context).searchBill,
+                                          controller: model.searchBillController,
+                                          readOnly: false,
+                                          onPressed: () {},
+                                          onChanged: (val) {
+                                            model.searchPostPaidBillerList(val);
+                                          },
+                                          suffixIcon: (value, data) {
+                                            return Container(
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                child: AppSvg.asset(AssetUtils.search,
+                                                    color: AppColor.dark_gray_1));
+                                          },
+                                        ),
                                       ),
                                     ),
                                     model.arguments.paidBillsPayTypeOptionEnum ==
@@ -316,8 +320,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                 )),
                           ),
                           Visibility(
-                            visible:
-                                true /* model.payPostPaidBillsDataList.any((item) => item.isChecked == true)*/,
+                            visible: true,
                             child: AppStreamBuilder<double>(
                               initialData: 0.0,
                               stream: model.totalBillAmtDueStream,
@@ -329,6 +332,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
                                     child: InkWell(
                                       onTap: () {
+                                        if (model.payPostPaidBillsDataList == null ||
+                                            model.payPostPaidBillsDataList.isEmpty) return;
+
                                         bool isAnyBillPartial = false;
                                         for (var item1 in model.postPaidBillInquiryData ?? []) {
                                           if (item1.isPartial == true) {
@@ -340,21 +346,21 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         if (amt! > 0.0 || amt <= 0.0 && isAnyBillPartial == true) {
                                           List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
                                           List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
-                                              [];
+                                          [];
 
                                           for (var payPostPaidBillsDataListItem
-                                              in model.payPostPaidBillsDataList) {
+                                          in model.payPostPaidBillsDataList) {
                                             if (double.parse(
-                                                        payPostPaidBillsDataListItem.actualdueAmountFromApi ??
-                                                            "0") >
-                                                    0.0 ||
+                                                payPostPaidBillsDataListItem.actualdueAmountFromApi ??
+                                                    "0") >
+                                                0.0 ||
                                                 double.parse(payPostPaidBillsDataListItem
-                                                                .actualdueAmountFromApi ??
-                                                            "0") ==
-                                                        0.0 &&
+                                                    .actualdueAmountFromApi ??
+                                                    "0") ==
+                                                    0.0 &&
                                                     payPostPaidBillsDataListItem.isPartial == true &&
                                                     double.parse(
-                                                            payPostPaidBillsDataListItem.maxValue ?? "0") >
+                                                        payPostPaidBillsDataListItem.maxValue ?? "0") >
                                                         0.0 ||
                                                 payPostPaidBillsDataListItem.expDateStatus == true) {
                                               payPostPaidBillsDataListItem.dueAmount =
@@ -397,7 +403,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                     item.serviceType != null &&
                                                     item.serviceType!.isNotEmpty) {
                                                   if (payPostPaidBillsDataListItem.billingNo ==
-                                                          item.billingNo &&
+                                                      item.billingNo &&
                                                       payPostPaidBillsDataListItem.serviceType ==
                                                           item.serviceType &&
                                                       payPostPaidBillsDataListItem.isChecked == true) {
@@ -411,19 +417,19 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           for (var item in model.payPostPaidBillsDataList) {
                                             if (item.isChecked == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
+                                              element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                               tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
+                                              element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
 
                                             if (item.expDateStatus == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
+                                              element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                               tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
+                                              element.billingNo == item.billingNo &&
                                                   element.serviceType == item.serviceType);
                                             }
                                             if (item.isChecked == null || item.isChecked == false) {
@@ -466,7 +472,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         height: 56.h,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100.0),
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          color: model.payPostPaidBillsDataList == null ||
+                                                  model.payPostPaidBillsDataList.isEmpty
+                                              ? AppColor.very_dark_gray1.withOpacity(0.5)
+                                              : Theme.of(context).accentTextTheme.bodyText1!.color!,
                                         ),
                                         child: Center(
                                           child: Text(
