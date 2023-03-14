@@ -335,6 +335,15 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         if (model.payPostPaidBillsDataList == null ||
                                             model.payPostPaidBillsDataList.isEmpty) return;
 
+                                        bool isAnyChecked = false;
+                                        for (var item1 in model.payPostPaidBillsDataList ?? []) {
+                                          if (item1.isChecked == true) {
+                                            isAnyChecked = true;
+                                            break;
+                                          }
+                                        }
+                                        if (isAnyChecked == false) return;
+
                                         bool isAnyBillPartial = false;
                                         for (var item1 in model.postPaidBillInquiryData ?? []) {
                                           if (item1.isPartial == true) {
@@ -346,21 +355,21 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         if (amt! > 0.0 || amt <= 0.0 && isAnyBillPartial == true) {
                                           List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
                                           List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
-                                          [];
+                                              [];
 
                                           for (var payPostPaidBillsDataListItem
-                                          in model.payPostPaidBillsDataList) {
+                                              in model.payPostPaidBillsDataList) {
                                             if (double.parse(
-                                                payPostPaidBillsDataListItem.actualdueAmountFromApi ??
-                                                    "0") >
-                                                0.0 ||
+                                                        payPostPaidBillsDataListItem.actualdueAmountFromApi ??
+                                                            "0") >
+                                                    0.0 ||
                                                 double.parse(payPostPaidBillsDataListItem
-                                                    .actualdueAmountFromApi ??
-                                                    "0") ==
-                                                    0.0 &&
+                                                                .actualdueAmountFromApi ??
+                                                            "0") ==
+                                                        0.0 &&
                                                     payPostPaidBillsDataListItem.isPartial == true &&
                                                     double.parse(
-                                                        payPostPaidBillsDataListItem.maxValue ?? "0") >
+                                                            payPostPaidBillsDataListItem.maxValue ?? "0") >
                                                         0.0 ||
                                                 payPostPaidBillsDataListItem.expDateStatus == true) {
                                               payPostPaidBillsDataListItem.dueAmount =
@@ -403,7 +412,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                     item.serviceType != null &&
                                                     item.serviceType!.isNotEmpty) {
                                                   if (payPostPaidBillsDataListItem.billingNo ==
-                                                      item.billingNo &&
+                                                          item.billingNo &&
                                                       payPostPaidBillsDataListItem.serviceType ==
                                                           item.serviceType &&
                                                       payPostPaidBillsDataListItem.isChecked == true) {
@@ -475,7 +484,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           color: model.payPostPaidBillsDataList == null ||
                                                   model.payPostPaidBillsDataList.isEmpty
                                               ? AppColor.very_dark_gray1.withOpacity(0.5)
-                                              : Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                              : model.payPostPaidBillsDataList
+                                                      .any((item) => item.isChecked == true)
+                                                  ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                                                  : AppColor.very_dark_gray1.withOpacity(0.5),
                                         ),
                                         child: Center(
                                           child: Text(
@@ -585,15 +597,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
               type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
         } else {
           if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0) {
-            if (model.payPostPaidBillsDataList[index].isPartial == false) {
-              model.showToastWithError(AppError(
-                  cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
-            } else {
-              model.showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
-            }
+            model.showToastWithError(
+                AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
           }
         }
       }
