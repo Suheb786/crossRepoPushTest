@@ -44,7 +44,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Container(
-                  height: 1,
+                  height: 1.h,
                   color: Theme.of(context).primaryColorDark.withOpacity(0.3),
                 ),
               ),
@@ -71,7 +71,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
-                height: 1,
+                height: 1.h,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
               ),
             ),
@@ -80,12 +80,12 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 unlinkAccount?.call();
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Text(
                   S.of(context).unlinkAccount,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).errorColor),
                 ),
@@ -94,7 +94,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
-                height: 1,
+                height: 1.h,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
               ),
             ),
@@ -106,12 +106,12 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                   child: Padding(
                 padding: EdgeInsets.only(bottom: 24.0.h),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 24.h),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: Text(
                     S.of(context).cancel,
                     style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).accentTextTheme.bodyText1!.color,
                     ),
