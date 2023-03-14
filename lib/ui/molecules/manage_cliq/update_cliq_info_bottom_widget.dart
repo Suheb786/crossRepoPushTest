@@ -213,7 +213,7 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
               },
               child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 24.0.h),
+                padding: EdgeInsets.only(bottom: 24.0.h),
                 child: Text(
                   S.of(context).cancel,
                   style: TextStyle(
