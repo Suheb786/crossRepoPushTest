@@ -5,6 +5,7 @@ import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
@@ -144,7 +145,7 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<GetCipherResponseEntity>> getCipher();
 
-  Future<HttpResponse<ResponseEntity>> androidLogin({required String cipher});
+  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin({required String cipher});
 
   Future<HttpResponse<LoginResponseEntity>> iphoneLogin({required String cipher});
 
@@ -165,4 +166,6 @@ abstract class UserLocalDS {
   Future<bool> checkBioMetricSupport();
 
   Future<bool> authenticateBioMetric(String title, String localisedReason);
+
+  Future<bool> clearWalletId();
 }

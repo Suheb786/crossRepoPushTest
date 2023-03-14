@@ -166,4 +166,9 @@ class UserLocalDSImpl extends UserLocalDS {
       );
     }
   }
+
+  @override
+  Future<bool> clearWalletId() async {
+    return await _secureStorageHelper.clearWalletId();
+  }
 }

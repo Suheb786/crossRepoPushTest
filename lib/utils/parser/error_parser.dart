@@ -1166,6 +1166,12 @@ class ErrorParser {
         return localisedHelper.billingNumberReachedItsMaxAmt;
       case ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX:
         return localisedHelper.billingNumberReachedItsMaxTrx;
+      case ErrorType.ENTER_AMOUNT:
+        return localisedHelper.pleaseEnterAmount;
+      case ErrorType.SELECT_AT_LEAST_ONE_BILL:
+        return localisedHelper.selectAtLeastOneBill;
+      case ErrorType.DORMANT_ACCOUNT:
+        return localisedHelper.accountDormant;
 
       case ErrorType.ERROR_WHILE_GETTING_ALIAS:
         return localisedHelper.errorWhileGettingAlias;
@@ -1253,6 +1259,9 @@ class ErrorParser {
 
       case ErrorType.EMPTY_RECIPIENT_ADDRESS:
         return localisedHelper.emptyRecipientAddress;
+
+      case ErrorType.DORMANT_ACCOUNT:
+        return localisedHelper.accountDormant;
 
       default:
         return "";

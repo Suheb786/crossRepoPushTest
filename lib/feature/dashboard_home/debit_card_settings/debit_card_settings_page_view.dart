@@ -1,13 +1,18 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
 import 'package:domain/error/app_error.dart';
+import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
@@ -18,6 +23,7 @@ import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
@@ -82,6 +88,110 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     color: AppColor.dark_gray_1),
               ),
             ),
+            Platform.isIOS
+                ? AppStreamBuilder<bool>(
+                    stream: antelopStepCompletedStream,
+                    initialData: true,
+                    onData: (value) {
+                      if (!value) {
+                        List<GetAllCardData> antelopIssuerCardList = listOfCardFromAntelop.value;
+
+                        for (int j = 0; j < antelopIssuerCardList.length; j++) {
+                          if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
+                              model.debitCardSettingsArguments.debitCard.code?.trim()) {
+                            //isCardInApplePay = true;
+                            model.debitCardSettingsArguments.debitCard.isCardInApplePay =
+                                antelopIssuerCardList[j].isCardInApplePay ?? false;
+                            model.debitCardSettingsArguments.debitCard.getStatus =
+                                antelopIssuerCardList[j].getStatus ?? false;
+                          }
+                        }
+                      }
+                    },
+                    dataBuilder: (context, antelopStepCompleted) {
+                      return Padding(
+                        padding: EdgeInsetsDirectional.only(top: 24.h),
+                        child: (antelopStepCompleted ?? true)
+                            ? Container()
+                            : (!(model.debitCardSettingsArguments.debitCard.isCardInApplePay) &&
+                                    model.debitCardSettingsArguments.debitCard.getStatus)
+                                ? InkWell(
+                                    onTap: () async {
+                                      ///Add to apple wallet
+                                      model.pushCardToAntelop(
+                                          cardCode:
+                                              (model.debitCardSettingsArguments.debitCard.code ?? '').trim());
+                                    },
+                                    child: Image.asset(
+                                      AssetUtils.addAppleWalletIconPng,
+                                      height: 32.h,
+                                      width: 104.w,
+                                    ),
+                                  )
+                                : (model.debitCardSettingsArguments.debitCard.isCardInApplePay)
+                                    ? Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            S.of(context).addedTo,
+                                            style: TextStyle(
+                                                fontSize: 14.t,
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            width: 9.w,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              ///Pay
+                                            },
+                                            child: AppSvg.asset(AssetUtils.applePayButton),
+                                          ),
+                                        ],
+                                      )
+                                    : Container(),
+                      );
+                    })
+                : Container(),
+            AppStreamBuilder<bool>(
+                stream: pushCardSuccessStream,
+                initialData: false,
+                onData: (value) {
+                  if (value) {
+                    pushCardSuccess.add(false);
+
+                    ///Navigate to success screen
+                    Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
+                        arguments: ApplePaySuccessAndErrorPageArguments(
+                            isSuccess: true,
+                            successOrErrorIcon: AssetUtils.right,
+                            title: S.of(context).yourCardAddedToApplePay,
+                            titleDescription:
+                                "${S.of(context).yourCardAddedToApplePayDesc1}\n\n${S.of(context).yourCardAddedToApplePayDesc2}"));
+                  }
+                },
+                dataBuilder: (context, pushCardSuccess) {
+                  return AppStreamBuilder<bool>(
+                      stream: pushCardErrorStream,
+                      initialData: false,
+                      onData: (value) {
+                        if (value) {
+                          pushCardError.add(false);
+
+                          ///Navigate to error screen
+                          Navigator.pushNamed(context, RoutePaths.ApplePaySuccessAndErrorPage,
+                              arguments: ApplePaySuccessAndErrorPageArguments(
+                                  isSuccess: false,
+                                  successOrErrorIcon: AssetUtils.cancel,
+                                  title: S.of(context).applePaySetFailed,
+                                  titleDescription: S.of(context).errorSettingApplePay));
+                        }
+                      },
+                      dataBuilder: (context, pushCardError) {
+                        return Container();
+                      });
+                }),
             Expanded(
                 child: Container(
                   decoration: BoxDecoration(

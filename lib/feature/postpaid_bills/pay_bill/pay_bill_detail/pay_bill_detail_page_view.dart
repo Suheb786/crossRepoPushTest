@@ -328,6 +328,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         onPressed: () {
           model.updateIsPrepaidCategoryListEmptyResponse(true);
           model.amountTextControl.text = "";
+          model.amountText = "0";
           AppConstantsUtils.SELECTED_AMOUNT = "";
           AppConstantsUtils.PREPAID_CATEGORY_CODE = "";
           AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";
@@ -609,10 +610,17 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                 ),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
                 onChanged: (text) {
-                  model.amountTextControl.text = text;
-                  model.amountTextControl.selection =
-                      TextSelection.fromPosition(TextPosition(offset: model.amountTextControl.text.length));
-                  model.validateData(context);
+                  if (text.isNotEmpty) {
+                    model.amountText = text;
+                    model.amountTextControl.text = text;
+                    model.amountTextControl.selection =
+                        TextSelection.fromPosition(TextPosition(offset: model.amountTextControl.text.length));
+                    model.validateData(context);
+                  } else {
+                    model.amountText = "0";
+                    model.amountTextControl.text = "";
+                    model.validateData(context);
+                  }
                 },
                 onPressed: () {
                   // FocusScope.of(context).unfocus();
@@ -665,6 +673,7 @@ void resetIfSelectedOtherBillerName(billerCode, PayBillDetailPageViewModel model
   if (billerCode != AppConstantsUtils.SELECTED_BILLER_CODE) {
     model.updateIsPrepaidCategoryListEmptyResponse(true);
     model.amountTextControl.text = "";
+    model.amountText = "0";
     AppConstantsUtils.SELECTED_AMOUNT = "";
     AppConstantsUtils.PREPAID_CATEGORY_CODE = "";
     AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";

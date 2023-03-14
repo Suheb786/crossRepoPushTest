@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
@@ -54,7 +57,7 @@ class SettingsDialogView extends StatelessWidget {
                                 .dashboardDataContent
                                 .dashboardFeatures
                                 ?.blinkRetailAppCliqAliasManagement ??
-                            true)) {
+                            false)) {
                           pages = [
                             InkWell(
                               onTap: onClick!
@@ -91,7 +94,7 @@ class SettingsDialogView extends StatelessWidget {
                                                 ? Theme.of(context).accentColor
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
-                                      S.of(context).payments,
+                                      S.of(context).billsAndPayments,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -269,6 +272,10 @@ class SettingsDialogView extends StatelessWidget {
                                 onData: (response) {
                                   if (response.status == Status.SUCCESS) {
                                     AppConstantsUtils.resetCacheLists();
+                                    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                      AppConstantsUtils.isApplePayPopUpShown = false;
+                                      AntelopHelper.walletDisconnect();
+                                    }
                                     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
                                         ModalRoute.withName(RoutePaths.Splash));
                                   }
@@ -359,7 +366,7 @@ class SettingsDialogView extends StatelessWidget {
                                                 ? Theme.of(context).accentColor
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
-                                      S.of(context).payments,
+                                      S.of(context).billsAndPayments,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -585,6 +592,10 @@ class SettingsDialogView extends StatelessWidget {
                                 onData: (response) {
                                   if (response.status == Status.SUCCESS) {
                                     AppConstantsUtils.resetCacheLists();
+                                    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                      AppConstantsUtils.isApplePayPopUpShown = false;
+                                      AntelopHelper.walletDisconnect();
+                                    }
                                     Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
                                         ModalRoute.withName(RoutePaths.Splash));
                                   }

@@ -1,5 +1,6 @@
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_content.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
+import 'package:domain/usecase/apple_pay/push_antelop_cards_usecase.dart';
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
@@ -20,6 +21,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final CancelCreditCardUseCase _cancelCreditCardUseCase;
   final GetSupplementaryCreditCardApplicationUseCase _getSupplementaryCreditCardApplicationUseCase;
   final ReportLostStolenCCUseCase _reportLostStolenCCUseCase;
+  final PushAntelopCardsUseCase _pushAntelopCardsUseCase;
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
@@ -92,13 +94,28 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
     "ثرة الحركات المرفوضة"
   ];
 
+  ///---------------push antelop cards-----------------------///
+
+  PublishSubject<PushAntelopCardsUseCaseParams> _pushAntelopCardsRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _pushAntelopCardsResponse = PublishSubject();
+
+  Stream<Resource<bool>> get pushAntelopCardsStream => _pushAntelopCardsResponse.stream;
+
+  void pushCardToAntelop({required String cardCode}) {
+    _pushAntelopCardsRequest.safeAdd(PushAntelopCardsUseCaseParams(cardId: cardCode));
+  }
+
+  ///---------------push antelop cards-----------------------///
+
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
       this._unFreezeCreditCardUseCase,
       this._cancelCreditCardUseCase,
       this.creditCardSettingsArguments,
       this._getSupplementaryCreditCardApplicationUseCase,
-      this._reportLostStolenCCUseCase) {
+      this._reportLostStolenCCUseCase,
+      this._pushAntelopCardsUseCase) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value, createCall: () => _freezeCreditCardUseCase.execute(params: value))
           .asFlow()
@@ -181,6 +198,15 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
+      });
+    });
+
+    _pushAntelopCardsRequest.listen((value) {
+      RequestManager(value, createCall: () {
+        return _pushAntelopCardsUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        // updateLoader();
+        _pushAntelopCardsResponse.safeAdd(event);
       });
     });
   }

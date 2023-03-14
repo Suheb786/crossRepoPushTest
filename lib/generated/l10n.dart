@@ -4100,10 +4100,10 @@ class S {
     );
   }
 
-  /// `My Debit Card`
+  /// `My Visa Debit Card`
   String get myDebitCard {
     return Intl.message(
-      'My Debit Card',
+      'My Visa Debit Card',
       name: 'myDebitCard',
       desc: '',
       args: [],
@@ -6520,10 +6520,10 @@ class S {
     );
   }
 
-  /// `Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.`
+  /// `Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service.`
   String get cancelCardDesc {
     return Intl.message(
-      'Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.',
+      'Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service.',
       name: 'cancelCardDesc',
       desc: '',
       args: [],
@@ -8380,10 +8380,10 @@ class S {
     );
   }
 
-  /// `My Credit Card`
+  /// `My Visa Credit Card`
   String get myCreditCard {
     return Intl.message(
-      'My Credit Card',
+      'My Visa Credit Card',
       name: 'myCreditCard',
       desc: '',
       args: [],
@@ -12770,10 +12770,10 @@ class S {
     );
   }
 
-  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  /// `Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service.`
   String get reportStolenLostCardDesc {
     return Intl.message(
-      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      'Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service.',
       name: 'reportStolenLostCardDesc',
       desc: '',
       args: [],
@@ -13905,6 +13905,216 @@ class S {
     return Intl.message(
       'We\'re currently offline and will be back shortly!',
       name: 'loginRegisterDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blink with Apple Pay`
+  String get blinkWithApplePay {
+    return Intl.message(
+      'Blink with Apple Pay',
+      name: 'blinkWithApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADD TO APPLE PAY`
+  String get addToApplePay {
+    return Intl.message(
+      'ADD TO APPLE PAY',
+      name: 'addToApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is now set up with Apple Pay.`
+  String get yourNowSetWithApplePay {
+    return Intl.message(
+      'Your card is now set up with Apple Pay.',
+      name: 'yourNowSetWithApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay\nset up failed`
+  String get applePaySetFailed {
+    return Intl.message(
+      'Apple Pay\nset up failed',
+      name: 'applePaySetFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while setting up\nApple Pay. Please try again later.`
+  String get errorSettingApplePay {
+    return Intl.message(
+      'An error occurred while setting up\nApple Pay. Please try again later.',
+      name: 'errorSettingApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add your other cards from\nCard Settings.`
+  String get yourAddOtherCardFromCardSettings {
+    return Intl.message(
+      'You can add your other cards from\nCard Settings.',
+      name: 'yourAddOtherCardFromCardSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rebellious Red\nVisa Credit Card`
+  String get rebelliousRedCreditCard {
+    return Intl.message(
+      'Rebellious Red\nVisa Credit Card',
+      name: 'rebelliousRedCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Card`
+  String get creditCard {
+    return Intl.message(
+      'Credit Card',
+      name: 'creditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yellow Sun\nVisa Debit Card`
+  String get yellowSunDebitCard {
+    return Intl.message(
+      'Yellow Sun\nVisa Debit Card',
+      name: 'yellowSunDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay\nset up failed`
+  String get applePaySetUpFailed {
+    return Intl.message(
+      'Apple Pay\nset up failed',
+      name: 'applePaySetUpFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add other card to\nApple Wallet?`
+  String get addOtherCardToAppleWallet {
+    return Intl.message(
+      'Add other card to\nApple Wallet?',
+      name: 'addOtherCardToAppleWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while setting up\nApple Pay. Please try again later.`
+  String get errorSettingUpApplePay {
+    return Intl.message(
+      'An error occurred while setting up\nApple Pay. Please try again later.',
+      name: 'errorSettingUpApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like.`
+  String get addOtherCardToAppleWalletDialogDescription {
+    return Intl.message(
+      'Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like.',
+      name: 'addOtherCardToAppleWalletDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select one card that you want to add to Apple Pay`
+  String get selectOneCardToAddApplePay {
+    return Intl.message(
+      'Select one card that you want to add to Apple Pay',
+      name: 'selectOneCardToAddApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.`
+  String get blinkWithApplePayLandingDialogDescription {
+    return Intl.message(
+      'You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.',
+      name: 'blinkWithApplePayLandingDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card`
+  String get debitCards {
+    return Intl.message(
+      'Debit Card',
+      name: 'debitCards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No cards to display`
+  String get noCardsToDisplay {
+    return Intl.message(
+      'No cards to display',
+      name: 'noCardsToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added to`
+  String get addedTo {
+    return Intl.message(
+      'Added to',
+      name: 'addedTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card has been added\nto Apple Wallet.`
+  String get yourCardAddedToApplePay {
+    return Intl.message(
+      'Your card has been added\nto Apple Wallet.',
+      name: 'yourCardAddedToApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.`
+  String get yourCardAddedToApplePayDesc1 {
+    return Intl.message(
+      'Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac.',
+      name: 'yourCardAddedToApplePayDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Apple Pay wherever you see \nthese symbols.`
+  String get yourCardAddedToApplePayDesc2 {
+    return Intl.message(
+      'Use Apple Pay wherever you see \nthese symbols.',
+      name: 'yourCardAddedToApplePayDesc2',
       desc: '',
       args: [],
     );
@@ -16315,6 +16525,46 @@ class S {
     return Intl.message(
       'Daily Narration AmountExceed',
       name: 'dailyNarrationLimitexceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account is Dormant`
+  String get accountDormant {
+    return Intl.message(
+      'Account is Dormant',
+      name: 'accountDormant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot apply for a credit card; your account is dormant, please call us to activate it.`
+  String get accountDormantDesc {
+    return Intl.message(
+      'You cannot apply for a credit card; your account is dormant, please call us to activate it.',
+      name: 'accountDormantDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter amount`
+  String get pleaseEnterAmount {
+    return Intl.message(
+      'Please enter amount',
+      name: 'pleaseEnterAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select at least one bill`
+  String get selectAtLeastOneBill {
+    return Intl.message(
+      'Select at least one bill',
+      name: 'selectAtLeastOneBill',
       desc: '',
       args: [],
     );

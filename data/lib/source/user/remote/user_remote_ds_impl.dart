@@ -25,6 +25,7 @@ import 'package:data/entity/remote/user/confirm_application_data_set/review_appl
 import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
@@ -410,7 +411,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> androidLogin({required String cipher}) async {
+  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin({required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     String userId = '';

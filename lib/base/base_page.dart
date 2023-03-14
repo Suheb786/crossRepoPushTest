@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -170,7 +173,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             localisedHelper: S.of(context),
           ));
           AppConstantsUtils.resetCacheLists();
-          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+
+          if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+            AppConstantsUtils.isApplePayPopUpShown = false;
+            AntelopHelper.walletDisconnect();
+          }
+          Navigator.pushNamedAndRemoveUntil(
+              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {
           //   ProviderScope.containerOf(context)
           //       .read(appViewModel)

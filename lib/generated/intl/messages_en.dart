@@ -84,6 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account Deleted Successfully "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "You cannot apply for a credit card; your account is dormant, please call us to activate it."),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -157,6 +161,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
         "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
+        "addOtherCardToAppleWallet": MessageLookupByLibrary.simpleMessage(
+            "Add other card to\nApple Wallet?"),
+        "addOtherCardToAppleWalletDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like."),
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
             "Add this recipient to your Blink contacts"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
@@ -165,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
         "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
             "Add this bill to your saved list"),
+        "addToApplePay":
+            MessageLookupByLibrary.simpleMessage("ADD TO APPLE PAY"),
+        "addedTo": MessageLookupByLibrary.simpleMessage("Added to"),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
             "You will be able to add contacts to your list soon."),
         "additionIncomeSource":
@@ -245,6 +257,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
+        "applePaySetFailed":
+            MessageLookupByLibrary.simpleMessage("Apple Pay\nset up failed"),
+        "applePaySetUpFailed":
+            MessageLookupByLibrary.simpleMessage("Apple Pay\nset up failed"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
         "applicationInProcess": MessageLookupByLibrary.simpleMessage(
@@ -373,6 +389,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blinkWithApplePay":
+            MessageLookupByLibrary.simpleMessage("Blink with Apple Pay"),
+        "blinkWithApplePayLandingDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps."),
         "blockThisCountry":
             MessageLookupByLibrary.simpleMessage("Block this country?"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
@@ -433,7 +454,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancelBookingDetail": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to cancel your booking? You’ll have to start over again if you cancel."),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
-            "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
+            "Canceling this card will permanently deactivate the card and will be removed from your card list and Apple Pay services. if you proceed and wish to issue a new card, we will deliver the new card to your address, and you will have to add it to Apple Pay if you wish to use the service."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "cancelTheCard":
@@ -668,6 +689,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit Bureau Authorization"),
         "creditBureauAuthorizationDesc": MessageLookupByLibrary.simpleMessage(
             "I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it."),
+        "creditCard": MessageLookupByLibrary.simpleMessage("Credit Card"),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
         "creditCardApplicationUnderReviewDesc":
@@ -769,6 +791,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "Debit card\nhas been verified."),
+        "debitCards": MessageLookupByLibrary.simpleMessage("Debit Card"),
         "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
             "declaration is true and correct."),
         "defaultAccountUpdated": MessageLookupByLibrary.simpleMessage(
@@ -1078,8 +1101,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
+        "errorSettingApplePay": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while setting up\nApple Pay. Please try again later."),
         "errorSettingPinEuronet": MessageLookupByLibrary.simpleMessage(
             "Error while setting your Pin, please try again"),
+        "errorSettingUpApplePay": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while setting up\nApple Pay. Please try again later."),
         "errorUpdatingAccount": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-073)"),
         "errorUpdatingCardStatusRuleEngine": MessageLookupByLibrary.simpleMessage(
@@ -1876,8 +1903,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
-        "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
-        "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
+        "myCreditCard":
+            MessageLookupByLibrary.simpleMessage("My Visa Credit Card"),
+        "myDebitCard":
+            MessageLookupByLibrary.simpleMessage("My Visa Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "myPostPaidBill":
             MessageLookupByLibrary.simpleMessage("My Postpaid Bill"),
@@ -1935,6 +1964,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No Activity to Display"),
         "noBillerFound":
             MessageLookupByLibrary.simpleMessage("No Biller Found"),
+        "noCardsToDisplay":
+            MessageLookupByLibrary.simpleMessage("No cards to display"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":
@@ -2122,6 +2153,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseEnterAmount":
+            MessageLookupByLibrary.simpleMessage("Please enter amount"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
         "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
@@ -2272,6 +2305,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
+            "Rebellious Red\nVisa Credit Card"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
@@ -2335,7 +2370,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
             "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
+            "Are you sure you would like to proceed? this will cancel your card but don’t worry, we will immediately issue a new one. You will have to add your new card to Apple Pay if you wish to use the service."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestFrom": MessageLookupByLibrary.simpleMessage(" Request Form "),
@@ -2483,6 +2518,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Additional Income"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
+        "selectAtLeastOneBill":
+            MessageLookupByLibrary.simpleMessage("Select at least one bill"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
@@ -2497,6 +2534,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "Select new settlement percentage for your next payment cycle"),
+        "selectOneCardToAddApplePay": MessageLookupByLibrary.simpleMessage(
+            "Select one card that you want to add to Apple Pay"),
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage(
                 "Select your preferred instalment duration"),
@@ -2946,6 +2985,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
+        "yellowSunDebitCard":
+            MessageLookupByLibrary.simpleMessage("Yellow Sun\nVisa Debit Card"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "you": MessageLookupByLibrary.simpleMessage("you"),
         "youAreAcceptingMoneyRequestViaQr":
@@ -2969,12 +3010,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You are about to reject "),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("You are about to send "),
+        "yourAddOtherCardFromCardSettings":
+            MessageLookupByLibrary.simpleMessage(
+                "You can add your other cards from\nCard Settings."),
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "Your application is under review,\nwe will notify you soon."),
         "yourBillHasBeenRemoved":
             MessageLookupByLibrary.simpleMessage("Your bill has been removed."),
+        "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage(
+            "Your card has been added\nto Apple Wallet."),
+        "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(
+            "Apple Pay is an easier way to pay in shops, in apps, and online with your iPhone, Apple Watch, iPad and Mac."),
+        "yourCardAddedToApplePayDesc2": MessageLookupByLibrary.simpleMessage(
+            "Use Apple Pay wherever you see \nthese symbols."),
         "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
@@ -2992,6 +3042,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
+            "Your card is now set up with Apple Pay."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "Your Yellow Sun debit card has been issued!")

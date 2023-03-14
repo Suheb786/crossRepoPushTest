@@ -35,6 +35,8 @@ class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebi
   final bool? isPINSet;
   @JsonKey(name: "isPhysicalDebitCardRequested")
   final bool? isPhysicalDebitCardRequested;
+  @JsonKey(name: "cardCode")
+  final String? cardCode;
 
   DashboardDebitCardEntity(
       {this.accountTitle: "",
@@ -49,7 +51,8 @@ class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebi
       this.code,
       this.primarySecondaryCard: '',
       this.isPINSet: true,
-      this.isPhysicalDebitCardRequested = false});
+      this.isPhysicalDebitCardRequested = false,
+      this.cardCode});
 
   factory DashboardDebitCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDebitCardEntityFromJson(json);
@@ -80,6 +83,7 @@ class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebi
         isDebitDelivered: this.isDebitDelivered ?? false,
         isPINSet: this.isPINSet ?? true,
         isPhysicalDebitCardRequested: this.isPhysicalDebitCardRequested ?? false,
-        primarySecondaryCard: this.primarySecondaryCard!.fromPrimarySecondaryCardValue());
+        primarySecondaryCard: this.primarySecondaryCard!.fromPrimarySecondaryCardValue(),
+        cardCode: this.cardCode ?? '');
   }
 }

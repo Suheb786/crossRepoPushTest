@@ -19,6 +19,8 @@ class User {
   String? accountNumber;
   String? applicationId;
   String? selectedLanguage;
+  bool? applePay;
+  bool? allCardsAddedToAppleWallet;
   bool? isRJPopUPClicked;
   bool? isEfawateerPopUPClicked;
 
@@ -43,35 +45,38 @@ class User {
       this.isBiometricEnabled: false,
       this.applicationId: "",
       this.selectedLanguage: 'en',
-      this.isRJPopUPClicked,
-      this.isEfawateerPopUPClicked});
+      this.applePay,
+      this.allCardsAddedToAppleWallet,this.isRJPopUPClicked,
+        this.isEfawateerPopUPClicked});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        token: json["token"],
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        email: json["email"],
-        mobile: json["mobile"],
-        mobileCode: json["mobileCode"],
-        isCurrent: json["isCurrent"],
-        refreshToken: json["refreshToken"],
-        tokenType: json["tokenType"],
-        expiredIn: json["expiredIn"],
-        isExisting: json["isExisting"],
-        publicPEM: json["publicPEM"],
-        privatePEM: json["privatePEM"],
-        cifNumber: json["cifNumber"],
-        accountNumber: json["accountNumber"],
-        newDevice: json["newDevice"],
-        isBiometricEnabled: json["isBiometricEnabled"],
-        applicationId: json["applicationId"],
-        selectedLanguage: json["selectedLanguage"],
-        isRJPopUPClicked: json["isRJPopUPClicked"],
-        isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
-      );
+      token: json["token"],
+      id: json["id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      email: json["email"],
+      mobile: json["mobile"],
+      mobileCode: json["mobileCode"],
+      isCurrent: json["isCurrent"],
+      refreshToken: json["refreshToken"],
+      tokenType: json["tokenType"],
+      expiredIn: json["expiredIn"],
+      isExisting: json["isExisting"],
+      publicPEM: json["publicPEM"],
+      privatePEM: json["privatePEM"],
+      cifNumber: json["cifNumber"],
+      accountNumber: json["accountNumber"],
+      newDevice: json["newDevice"],
+      isBiometricEnabled: json["isBiometricEnabled"],
+      applicationId: json["applicationId"],
+      allCardsAddedToAppleWallet: json["allCardsAddedToAppleWallet"],
+      selectedLanguage: json["selectedLanguage"],
+    isRJPopUPClicked: json["isRJPopUPClicked"],
+    isEfawateerPopUPClicked: json["isEfawateerPopUPClicked"],
+
+  );
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -94,6 +99,7 @@ class User {
         "isBiometricEnabled": isBiometricEnabled,
         "applicationId": applicationId,
         "selectedLanguage": selectedLanguage,
+        "allCardsAddedToAppleWallet": allCardsAddedToAppleWallet,
         "isRJPopUPClicked": isRJPopUPClicked,
         "isEfawateerPopUPClicked": isEfawateerPopUPClicked
       };

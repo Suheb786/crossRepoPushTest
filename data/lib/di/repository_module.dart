@@ -4,6 +4,7 @@ import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/activity/activity_repository_impl.dart';
 import 'package:data/repository/app_flyer_repo/app_flyer_repository_impl.dart';
+import 'package:data/repository/apple_pay/apple_pay_repository_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/bill_payment/bill_payment_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
@@ -33,6 +34,7 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/activity/activity_repository.dart';
 import 'package:domain/repository/app_flyer_repository/app_flyer_repository.dart';
+import 'package:domain/repository/apple_pay/apple_pay_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
@@ -65,7 +67,6 @@ var userRepoProvider = Provider<UserRepository>(
   (ref) => UserRepositoryImpl(
     ref.read(userRemoteDSProvider),
     ref.read(userLocalDSProvider),
-    ref.read(dioProvider),
   ),
 );
 
@@ -164,6 +165,10 @@ var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
 /// inject [ChangeDeviceRepository] provider
 var appFlyerRepositoryProvider =
     Provider<AppFlyerRepository>((ref) => AppFlyerRepositoryImpl(ref.read(appFlyerSdkDatasourceProvider)));
+
+/// inject [ApplePayRepository] provider
+var applePayRepositoryProvider =
+    Provider<ApplePayRepository>((ref) => ApplePayRepositoryImpl(ref.read(applePayRemoteDSProvider)));
 
 /// inject [BillPaymentRepository] provider
 var billPaymentRepoProvider = Provider<BillPaymentRepository>(

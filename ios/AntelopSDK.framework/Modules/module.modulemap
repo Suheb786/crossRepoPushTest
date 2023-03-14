@@ -1,0 +1,4 @@
+framework module AntelopSDK {
+  header "AntelopSDK-Swift.h"
+  requires objc
+}

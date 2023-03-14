@@ -4,16 +4,15 @@ import 'package:data/db/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
-import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
-import 'package:dio/dio.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/current_version/current_version_response.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
@@ -39,15 +38,11 @@ import 'package:domain/repository/user/user_repository.dart';
 class UserRepositoryImpl extends UserRepository {
   final UserRemoteDS _remoteDS;
   final UserLocalDS _localDS;
-  final Dio _dio;
 
   UserRepositoryImpl(
     this._remoteDS,
     this._localDS,
-    this._dio,
-  ) {
-    _dio.interceptors.add(ApiInterceptor(this, _dio));
-  }
+  );
 
   @override
   Future<Either<DatabaseError, User>> getCurrentUser() async {
@@ -556,13 +551,13 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> androidLogin({required String cipher}) async {
+  Future<Either<NetworkError, AndroidLoginResponse>> androidLogin({required String cipher}) async {
     final result = await safeApiCall(
       _remoteDS.androidLogin(cipher: cipher),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -602,5 +597,11 @@ class UserRepositoryImpl extends UserRepository {
       }
       return Right(r.isSuccessful());
     });
+  }
+
+  @override
+  Future<Either<DatabaseError, bool>> clearWalletId() async {
+    final cleared = await safeDbCall(_localDS.clearWalletId());
+    return cleared.fold((l) => Left(l), (r) => Right(r));
   }
 }

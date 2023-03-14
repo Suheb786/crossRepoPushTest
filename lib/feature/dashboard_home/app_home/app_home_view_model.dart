@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:isolate';
+
 import 'dart:async';
 
 import 'package:card_swiper/card_swiper.dart';
@@ -12,6 +15,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_con
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
+import 'package:domain/usecase/apple_pay/get_antelop_cards_list_usecase.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
@@ -36,6 +40,7 @@ import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -50,6 +55,8 @@ class AppHomeViewModel extends BasePageViewModel {
   final VerifyQRUseCase _verifyQRUseCase;
   Timer? timer;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
+
+  final GetAntelopCardsListUseCase _getAntelopCardsListUseCase;
 
   final InitDynamicLinkUseCase _initDynamicLinkUseCase;
   PublishSubject<InitDynamicLinkUseCaseParams> _initDynamicLinkRequestRequest = PublishSubject();
@@ -164,6 +171,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
   PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
 
+  ///Completed debit and credit cards
+  List<DebitCard> debitCards = [];
+  List<CreditCard> creditCards = [];
+
   ///--------Get current user ---------///
 
   final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
@@ -205,8 +216,14 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///---------------Verify QR----------------------///
 
-  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase, this._initDynamicLinkUseCase,
-      this._getCurrentUserUseCase, this._saveUserDataUseCase, this._verifyQRUseCase) {
+  AppHomeViewModel(
+      this._getDashboardDataUseCase,
+      this._getPlaceholderUseCase,
+      this._initDynamicLinkUseCase,
+      this._getCurrentUserUseCase,
+      this._saveUserDataUseCase,
+      this._verifyQRUseCase,
+      this._getAntelopCardsListUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value, createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -238,17 +255,40 @@ class AppHomeViewModel extends BasePageViewModel {
         _getPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           triggerRequestMoneyPopup();
+
+          ///fetching antelop cards
+          //getAntelopCards();
+          // showApplePayPopUp(true);
+
+          ///fetching antelop cards
           // showErrorState();
           initDynamicLink();
           getCurrentUser();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
+
+          ///show apple pay pop up button
+          if (!AppConstantsUtils.isApplePayPopUpShown) {
+            showApplePayPopUp(true);
+            AppConstantsUtils.isApplePayPopUpShown = true;
+          }
         } else if (event.status == Status.SUCCESS) {
+          ///fetching antelop cards
+          //getAntelopCards();
+          // showApplePayPopUp(true);
+
+          ///fetching antelop cards
           triggerRequestMoneyPopup();
           initDynamicLink();
           getCurrentUser();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
+
+          ///show apple pay pop up button
+          if (!AppConstantsUtils.isApplePayPopUpShown) {
+            showApplePayPopUp(true);
+            AppConstantsUtils.isApplePayPopUpShown = true;
+          }
         }
       });
     });
@@ -269,6 +309,16 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _antelopGetCardsRequest.listen(
+      (params) {
+        RequestManager(params, createCall: () => _getAntelopCardsListUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
+          _antelopGetCardResponse.safeAdd(event);
+        });
+      },
+    );
 
     ///talabat placeholder
     // _sentMoneyRequest.listen((value) {
@@ -325,6 +375,8 @@ class AppHomeViewModel extends BasePageViewModel {
     pages.clear();
     timeLineListArguments.clear();
     blinkTimeLineListArguments.clear();
+    debitCards.clear();
+    creditCards.clear();
     cardTypeList.clear();
     bool isSmallDevices = deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
@@ -375,6 +427,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 ///adding cardType
                 cardTypeList.add(
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+                creditCards.add(creditCard);
               } else {
                 pages.add(CreditCardNotDeliveredWidget(
                   isSmallDevice: isSmallDevices,
@@ -399,7 +452,7 @@ class AppHomeViewModel extends BasePageViewModel {
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             } else {
-              if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? true)) {
+              if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
                 pages.add(CreditCardIssuanceFailureWidget(
                   isSmallDevices: isSmallDevices,
                   type: IssuanceType.service_unavailable,
@@ -459,7 +512,7 @@ class AppHomeViewModel extends BasePageViewModel {
             }
           });
         } else {
-          if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? true)) {
+          if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? false)) {
             pages.add(CreditCardIssuanceFailureWidget(
               isSmallDevices: isSmallDevices,
               type: IssuanceType.service_unavailable,
@@ -556,6 +609,8 @@ class AppHomeViewModel extends BasePageViewModel {
                 ///adding cardType
                 cardTypeList
                     .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+
+                debitCards.add(debitCard);
               }
             }
           });
@@ -584,6 +639,11 @@ class AppHomeViewModel extends BasePageViewModel {
     blinkTimeLineListArguments.addAll(timeLineListArguments);
     timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
     sortTimeLineArgumentsList();
+
+    /// get Antelop Cards
+    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+      getAntelopCards();
+    }
   }
 
   void addPages(List pagesList) {
@@ -746,6 +806,68 @@ class AppHomeViewModel extends BasePageViewModel {
     _initDynamicLinkRequestRequest.safeAdd(InitDynamicLinkUseCaseParams());
   }
 
+  ///--------------------Antelop Cards List-----------------///
+  PublishSubject<GetAntelopCardsListUseCaseParams> _antelopGetCardsRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _antelopGetCardResponse = PublishSubject();
+
+  // isolates
+  late ReceivePort receivePort;
+  Isolate? isolate;
+
+  void getAntelopCards() async {
+    debugPrint("Enter in get antelop card from dashboard method");
+    if (isolate != null) {
+      debugPrint("Isolate not null");
+      receivePort.close();
+      isolate?.kill();
+      isolate = null;
+    }
+    try {
+      receivePort = ReceivePort();
+      isolate = await Isolate.spawn(_getTokenCallBack, receivePort.sendPort);
+      receivePort.listen(_handleMessage, onDone: () {});
+    } on Exception catch (e) {
+      debugPrint("isolate catch section " + e.toString());
+    }
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    sendPort.send('Send Dashboard data');
+  }
+
+  void _handleMessage(message) {
+    _antelopGetCardsRequest.safeAdd(GetAntelopCardsListUseCaseParams());
+  }
+
+  ///--------------------Antelop Cards List-----------------///
+
+  ///--------------------Apple Pay PopUp -------------------///
+
+  PublishSubject<bool> _showApplePayPopUpRequest = PublishSubject();
+
+  Stream<bool> get applePayPopUpStream => _showApplePayPopUpRequest.stream;
+
+  void showApplePayPopUp(bool value) {
+    _showApplePayPopUpRequest.safeAdd(value);
+  }
+
+  ///--------------------Apple Pay PopUp -------------------///
+
+  ///--------------------Add Another card To Apple Pay PopUp -------------------///
+
+  PublishSubject<bool> _showAddAnotherCardToApplePayPopUpRequest = PublishSubject();
+
+  Stream<bool> get showAddAnotherCardToApplePayPopUpStream =>
+      _showAddAnotherCardToApplePayPopUpRequest.stream;
+
+  void showAnotherAppToApplePayPupUp(bool value) {
+    Future.delayed(Duration(milliseconds: 500), () {
+      _showAddAnotherCardToApplePayPopUpRequest.safeAdd(value);
+    });
+  }
+
+  ///--------------------Add Another card To Apple Pay PopUp -------------------///
   @override
   void dispose() {
     _currentStep.close();

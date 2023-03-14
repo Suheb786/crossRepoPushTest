@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -12,6 +15,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -105,6 +109,11 @@ class OtpForChangeDeviceConfirmationPageView
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
                           model.saveUserData();
+                          if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                            AntelopHelper.walletLogout();
+                            model.clearWallet();
+                            model.antelopSdkInitialize();
+                          }
                           Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);

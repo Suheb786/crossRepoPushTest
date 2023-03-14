@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_content.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageHelper {
@@ -13,6 +14,8 @@ class SecureStorageHelper {
   static const String KEY_PAIR = "keyPair";
   static const String LANGUAGE = "language";
   static const String USER = "user";
+  static const String WALLET_ID = "walletId";
+  static const String TOKEN = "token";
 
   SecureStorageHelper._privateConstructor();
 
@@ -87,6 +90,8 @@ class SecureStorageHelper {
         secureUser.accountNumber = user.accountNumber ?? secureUser.accountNumber;
         secureUser.applicationId = user.applicationId ?? secureUser.applicationId;
         secureUser.selectedLanguage = user.selectedLanguage ?? secureUser.selectedLanguage;
+        secureUser.allCardsAddedToAppleWallet =
+            user.allCardsAddedToAppleWallet ?? secureUser.allCardsAddedToAppleWallet;
         secureUser.isRJPopUPClicked = user.isRJPopUPClicked ?? secureUser.isRJPopUPClicked;
         secureUser.isEfawateerPopUPClicked =
             user.isEfawateerPopUPClicked ?? secureUser.isEfawateerPopUPClicked;
@@ -116,6 +121,39 @@ class SecureStorageHelper {
   ///clear user data
   Future<bool> clearUserData() async {
     await _storage.delete(key: USER);
+    return true;
+  }
+
+  ///wallet id set
+  Future<void> saveWalletId({String? walletId}) async {
+    return _storage.write(key: WALLET_ID, value: walletId);
+  }
+
+  ///get wallet id
+  Future<String?> getWalletId() async {
+    return _storage.read(key: WALLET_ID);
+  }
+
+  ///clear wallet id
+  Future<bool> clearWalletId() async {
+    await _storage.delete(key: WALLET_ID);
+    debugPrint('Wallet ID Cleared------:');
+    return true;
+  }
+
+  ///store token
+  Future<void> storeTokenId({String? token}) async {
+    return _storage.write(key: TOKEN, value: token);
+  }
+
+  ///get Token
+  Future<String?> getToken() async {
+    return _storage.read(key: TOKEN);
+  }
+
+  ///clear token
+  Future<bool> clearToken() async {
+    await _storage.delete(key: TOKEN);
     return true;
   }
 }

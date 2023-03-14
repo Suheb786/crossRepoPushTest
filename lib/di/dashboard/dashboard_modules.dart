@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
@@ -71,7 +72,9 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
       ref.read(initDynamicLinkUseCaseProvider),
       ref.read(currentUserUseCaseProvider),
       ref.read(saveDataUserUseCaseProvider),
-      ref.read(verifyQRUseCaseProvider)),
+      ref.read(verifyQRUseCaseProvider),
+      ref.read(getAntelopCardListUseCaseProvider)
+  ),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -167,7 +170,8 @@ final debitCardSettingsViewModelProvider =
       args,
       ref.read(removeOrReapplySuppDebitUseCaseProvider),
       ref.read(removeOrReapplySuppDebitWithResponseUseCaseProvider),
-      ref.read(requestPhysicalDebitCardUseCaseProvider)),
+      ref.read(requestPhysicalDebitCardUseCaseProvider),
+      ref.read(pushAntelopCardUseCaseProvider)),
 );
 
 /// Credit CArd Settings
@@ -179,7 +183,8 @@ final creditCardSettingsViewModelProvider =
       ref.read(cancelCreditCardUseCaseProvider),
       args,
       ref.read(getSupplementaryCreditCardApplicationUseCaseProvider),
-      ref.read(reportLostStolenCCUseCaseProvider)),
+      ref.read(reportLostStolenCCUseCaseProvider),
+      ref.read(pushAntelopCardUseCaseProvider)),
 );
 
 /// check rescheduled video call

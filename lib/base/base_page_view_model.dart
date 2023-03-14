@@ -1,9 +1,15 @@
+import 'dart:async';
+import 'dart:isolate';
+
 import 'package:domain/error/app_error.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
+import 'package:domain/usecase/apple_pay/initialize_antelop_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
 import 'package:neo_bank/di/usecase/app_flyer/app_flyer_usecase-provider.dart';
+import 'package:neo_bank/di/usecase/apple_pay/apple_pay_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/help_center/help_center_usecase_provider.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -13,6 +19,7 @@ import 'package:rxdart/rxdart.dart';
 class BasePageViewModel extends BaseViewModel {
   late SaveUserUseCase saveUserUseCase;
   late LogAppFlyerSDKEventsUseCase appFlyerSDKEventsUseCase;
+  late InitializeAntelopUseCase initializeAntelopUseCase;
   PublishSubject<AppError> _error = PublishSubject<AppError>();
   PublishSubject<String> _toast = PublishSubject<String>();
 
@@ -64,6 +71,49 @@ class BasePageViewModel extends BaseViewModel {
 
   ///---------------log app flyers events------------------///
 
+  ///------------------Isolate for apple pay initialization-----------///
+
+  late ReceivePort receiveDataPort;
+
+  Isolate? isolate;
+
+  PublishSubject<InitializeAntelopUseCaseParams> _antelopInitializeRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _antelopInitializeResponse = PublishSubject();
+
+  Stream<Resource<bool>> get antelopInitializeStream => _antelopInitializeResponse.stream;
+
+  /// ISOLATE
+  void antelopSdkInitialize() async {
+    debugPrint('Antelop SDK Called from base---');
+    debugPrint('Value of Isolate --->${isolate}');
+    if (isolate != null) {
+      debugPrint('Antelop not null ');
+      isolate?.kill();
+      isolate = null;
+    }
+    try {
+      receiveDataPort = ReceivePort();
+      var stream = receiveDataPort.asBroadcastStream();
+      debugPrint('Called------>');
+      isolate = await Isolate.spawn(_getTokenCallBack, receiveDataPort.sendPort);
+      stream.listen(_handleMessage, onDone: () {});
+    } on Exception catch (e) {
+      debugPrint("Error from ISOLATE " + e.toString());
+    }
+  }
+
+  void _handleMessage(message) {
+    _antelopInitializeRequest.safeAdd(InitializeAntelopUseCaseParams());
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    debugPrint('data received from sendport--->');
+    sendPort.send('Send data from base');
+  }
+
+  ///------------------Isolate for apple pay initialization-----------///
+
   BasePageViewModel() {
     _saveUserRequestSubject.listen((params) {
       saveUserUseCase = ProviderContainer().read(saveUserUseCaseProvider);
@@ -80,6 +130,17 @@ class BasePageViewModel extends BaseViewModel {
         _logAppFlyerSDKEventsResponseSubject.safeAdd(event);
       });
     });
+
+    _antelopInitializeRequest.listen(
+      (params) {
+        initializeAntelopUseCase = ProviderContainer().read(initializeAntelopSDKUseCaseProvider);
+        RequestManager(params, createCall: () => initializeAntelopUseCase.execute(params: params))
+            .asFlow()
+            .listen((event) {
+          _antelopInitializeResponse.safeAdd(event);
+        });
+      },
+    );
   }
 
   void showToastWithError(AppError error) {
@@ -142,6 +203,8 @@ class BasePageViewModel extends BaseViewModel {
     _isFlippedSubject.close();
     _successSubject.close();
     _loading.close();
+    _antelopInitializeRequest.close();
+    _antelopInitializeResponse.close();
     super.dispose();
   }
 }

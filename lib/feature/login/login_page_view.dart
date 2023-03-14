@@ -5,6 +5,7 @@ import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
+import 'package:domain/model/user/biometric_login/android_login_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
@@ -205,11 +206,26 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                   }
                                                 },
                                                 dataBuilder: (context, snapshot) {
-                                                  return AppStreamBuilder<Resource<bool>>(
+                                                  return AppStreamBuilder<Resource<AndroidLoginResponse>>(
                                                       stream: model.androidLoginStream,
                                                       initialData: Resource.none(),
                                                       onData: (data) {
                                                         if (data.status == Status.SUCCESS) {
+                                                          AppConstantsUtils.isApplePayFeatureEnabled =
+                                                              data.data?.androidLoginContent.applepay ??
+                                                                  false;
+                                                          model.isBiometricDialogShown = false;
+
+                                                          if (Platform.isIOS &&
+                                                              AppConstantsUtils.isApplePayFeatureEnabled) {
+                                                            model.antelopSdkInitialize();
+                                                          }
+
+                                                          model.registerCliqEfawateer();
+
+                                                          ///apple pay initialize
+                                                          // model.antelopSdkInitialize();
+
                                                           ///refresh token api
                                                           // ProviderScope
                                                           //         .containerOf(
@@ -247,6 +263,23 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         data.data!.applicationId!;
                                                                     model.saveUserData();
                                                                     model.registerCliqEfawateer();
+                                                                    AppConstantsUtils
+                                                                            .isApplePayFeatureEnabled =
+                                                                        data.data?.applePay ?? false;
+
+                                                                    ///refresh token api
+                                                                    // ProviderScope.containerOf(
+                                                                    //         context)
+                                                                    //     .read(
+                                                                    //         appViewModel)
+                                                                    //     .getToken();
+                                                                    // model
+                                                                    //     .checkKycStatus();
+
+                                                                    ///apple pay initialize
+                                                                    // model.antelopSdkInitialize();
+
+                                                                    ///new device flow check
 
                                                                     if (data.data!.newDevice!) {
                                                                       InformationDialog.show(context,
@@ -268,6 +301,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         model.sendOtpTokenMobile();
                                                                       });
                                                                     } else {
+                                                                      if (Platform.isIOS &&
+                                                                          AppConstantsUtils
+                                                                              .isApplePayFeatureEnabled) {
+                                                                        model.antelopSdkInitialize();
+                                                                      }
                                                                       model.checkKycStatus();
                                                                     }
 
@@ -481,6 +519,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                                   visible: fingerPrintValue!,
                                                                                                                   child: InkWell(
                                                                                                                     onTap: () {
+                                                                                                                      model.isBiometricDialogShown = true;
                                                                                                                       FocusScope.of(context).unfocus();
                                                                                                                       model.checkBiometric();
                                                                                                                     },

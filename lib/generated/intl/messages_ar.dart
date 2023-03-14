@@ -82,6 +82,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح "),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
+        "accountDormant":
+            MessageLookupByLibrary.simpleMessage("Account is Dormant"),
+        "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
+            "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "),
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +159,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
         "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
         "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
+        "addOtherCardToAppleWallet":
+            MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
+        "addOtherCardToAppleWalletDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
         "addRecipientToContact":
             MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
@@ -163,6 +172,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
         "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
             "اضافة الفاتورة للفواتير المخزنة"),
+        "addToApplePay":
+            MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
+        "addedTo": MessageLookupByLibrary.simpleMessage("اضيفت الى"),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
             "رح تقدر تضيف المعارف لقائمتك قريباً."),
         "additionIncomeSource":
@@ -242,6 +254,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
+        "applePaySetFailed": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
+        "applePaySetUpFailed": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "لقد تم تقيم طلبك بناءً على معلوماتك الشخصية والائتمانية وللأسف لم يتم الموافقه غليها. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),
         "applicationInProcess":
@@ -372,6 +388,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما تأجل مشترياتك! أصدر بطاقتك الائتمانية الافتراضية Rebellious Red فورا ومجانا\" "),
         "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage(
             "بطاقة Rebellious Red الائتمانية"),
+        "blinkWithApplePay": MessageLookupByLibrary.simpleMessage(
+            "ادفع مع بطاقات بلينك وخدمة أبل باي"),
+        "blinkWithApplePayLandingDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "دايما في اكثر مع بلينك! تألق بالدفع باستعمال أبل باي! ما عليك سوى إضافة بطاقة الائتمان أو الدفع المباشر الخاصة بك إلى محفظة أبل التابعة لك في بضع خطوات آمنة فقط."),
         "blockThisCountry":
             MessageLookupByLibrary.simpleMessage("حظر هاي الدولة؟"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
@@ -421,7 +442,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancelBookingDetail": MessageLookupByLibrary.simpleMessage(
             "هل انت متأكد من الغاء الحجز ؟ اذا قمت بألغاء الحجز ستضطر الى إعادة العملية من البداية"),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
-            "إلغاء البطاقة رح يعطلها بشكل دائم ورح يتم شطبها من قائمة بطاقاتك. إذا بدك تستمر، رح توصلك بطاقة جديدة على عنوانك."),
+            ".إلغاء البطاقة راح يعطلها بشكل دائم ورح يتم شطبها من قائمة بطاقاتك ومن خدمة أبل باي.  إذا بدك تستمر, رح توصلك بطاقة جديده على عنوانك"),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "cancelTheCard": MessageLookupByLibrary.simpleMessage("إلغاء البطاقة؟"),
@@ -555,9 +576,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "clickToEditSomeMayBeDisabled": MessageLookupByLibrary.simpleMessage(
             "اضغط لتعديل الخانات، ممكن يتم تعطيل بعضها."),
         "cliqAliasMobileNoUpdate": MessageLookupByLibrary.simpleMessage(
-            "CliQ ID Mobile Number has been updated"),
+            "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
-            "تم تحديث  الاسم المستعار لخدمة كليك"),
+            "تم تحديث الاسم المستعار لخدمة كليك"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
@@ -646,6 +667,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفويض وحدة الائتمان"),
         "creditBureauAuthorizationDesc": MessageLookupByLibrary.simpleMessage(
             "أفوض Blink بشكل غير قابل للنقض بالحصول على بياناتي الائتمانية والاستفسار عن جميع التسهيلات الائتمانية الممنوحة لي من قبل البنوك والمؤسسات المالية الأخرى، بما في ذلك على سبيل المثال لا الحصر جميع الشروط والأحكام والضمانات والجداول الزمنية للسداد وأي تغييرات تطرأ عليها من وقت لآخر من أي جهة ائتمانية مرخصة رسمياً وفقاً لقانون المعلومات الائتمانية لعام 2010، وذلك لغرض (أ) منحي سقفاً لبطاقتي الائتمانية إلى جانب أي زيادة مستقبلية للحد الأقصى أو إعادة هيكلة أو تغييرات في شروط وأحكام البطاقة الائتمانية. أو (ب) الاستفسار عن أسباب أي تأخير أو تقصير في السداد. أحتفظ بالحق في الاطلاع على معلوماتي الائتمانية أو تصحيح أي معلومات خاطئة أو الاعتراض عليها."),
+        "creditCard": MessageLookupByLibrary.simpleMessage("البطاقةالائتمانية"),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("تم تفعيل البطاقة الائتمانية"),
         "creditCardApplicationUnderReviewDesc":
@@ -746,6 +768,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من بطاقة الدفع المباشر."),
+        "debitCards":
+            MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
         "declarationIsTrueAndCorrect":
             MessageLookupByLibrary.simpleMessage("التصريح سليم وصحيح "),
         "defaultAccountUpdated":
@@ -1039,8 +1063,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال حفظ الهوية"),
         "errorSavingStatus":
             MessageLookupByLibrary.simpleMessage("خطأ خلال الحفظ"),
+        "errorSettingApplePay": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "errorSettingPinEuronet": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إعداد الرمز السري PIN. حاول كمان مرة بعدين."),
+        "errorSettingUpApplePay": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "errorUpdatingAccount": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-073)"),
         "errorUpdatingCardStatusRuleEngine": MessageLookupByLibrary.simpleMessage(
@@ -1869,6 +1897,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
         "noBillerFound": MessageLookupByLibrary.simpleMessage(
             "لم نتمكن من العثور على الفاتورة"),
+        "noCardsToDisplay":
+            MessageLookupByLibrary.simpleMessage("لا يوجد بطاقات للعرض"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
         "noCountriesFound":
@@ -2051,6 +2081,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow":
             MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
+        "pleaseEnterAmount":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال المبلغ"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
         "pleaseEnterYourMobileNumber":
@@ -2185,6 +2217,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
+            "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
@@ -2246,7 +2280,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
             "متأكد من الاستمرار؟ رح يتم إلغاء بطاقتك، بس ما تقلق رح نصدرلك بطاقة جديدة فوراً."),
         "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(
-            "متأكد من الاستمرار؟ رح يتم إلغاء بطاقتك، بس ما تقلق رح نصدرلك بطاقة جديدة فوراً."),
+            ".متأكد من ألإستمرار ؟ رح يتم إلغاء بطاقتك. بس ما تقلق راح نصدرلك بطاقة جديده فوراً \n.لازم تضيف بطاقتك على خدمة أبل باي إذا كنت ترغب في استخدام الخدمة"),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "requestFrom": MessageLookupByLibrary.simpleMessage("الطلب من"),
@@ -2390,6 +2424,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار الدخل الإضافي"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("اختار أي خيار"),
+        "selectAtLeastOneBill":
+            MessageLookupByLibrary.simpleMessage("حدد فاتورة واحدة على الأقل"),
         "selectCountryHeader":
             MessageLookupByLibrary.simpleMessage("مرحبا! إنت من أي دولة؟"),
         "selectCreditLimitSettings":
@@ -2404,6 +2440,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اختار الحد الأدنى لنسبة السداد "),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "اختار نسبة تسوية جديدة لدورة الدفع الجاية"),
+        "selectOneCardToAddApplePay": MessageLookupByLibrary.simpleMessage(
+            "أختار احدى البطاقات لاضافتها على أبل باي"),
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
@@ -2835,6 +2873,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),
         "yearly": MessageLookupByLibrary.simpleMessage("الدخل السنوي "),
+        "yellowSunDebitCard": MessageLookupByLibrary.simpleMessage(
+            "بطاقة الدفع المباشر الصفراء\nبطاقة الدفع المباشر"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "you": MessageLookupByLibrary.simpleMessage("انت"),
         "youAreAcceptingMoneyRequestViaQr":
@@ -2858,12 +2898,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("انت على وشك ان ترسل"),
+        "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
+            "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
         "yourApplicationInReview":
             MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
             "طلبك قيد المراجعة، رح نخبرك قريباً."),
         "yourBillHasBeenRemoved":
             MessageLookupByLibrary.simpleMessage("نم حذف الفاتورة"),
+        "yourCardAddedToApplePay": MessageLookupByLibrary.simpleMessage(
+            "تمت إضافة بطاقتك إلى Apple Wallet"),
+        "yourCardAddedToApplePayDesc1": MessageLookupByLibrary.simpleMessage(
+            "Apple Pay هي طريقة أسهل للدفع في المتاجر والتطبيقات وعبر الإنترنت باستخدام iPhone و Apple Watch و iPad و Mac"),
+        "yourCardAddedToApplePayDesc2": MessageLookupByLibrary.simpleMessage(
+            "استخدم Apple Pay أينما ترى هذه الرموز"),
         "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun"),
         "yourCardIsReady":
@@ -2880,6 +2928,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
+            "تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun")

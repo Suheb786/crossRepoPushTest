@@ -31,6 +31,9 @@ import 'package:data/entity/remote/activity/activity_request_entity.dart';
 import 'package:data/entity/remote/activity/activity_response_entity.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
+import 'package:data/entity/remote/apple_pay/add_user_wallet_detail_request_entity.dart';
+import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
+import 'package:data/entity/remote/apple_pay/enroll_card_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/create_account_response_entity.dart';
@@ -237,6 +240,7 @@ import 'package:data/entity/remote/user/confirm_application_data_set/confirm_app
 import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
@@ -665,7 +669,7 @@ abstract class ApiService {
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
-  Future<HttpResponse<ResponseEntity>> androidLogin(
+  Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/CheckForgetPasswordCredV2")
@@ -832,6 +836,20 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+  ///Apple Pay
+
+  @POST("/Applepay/GetAllCardList")
+  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(@Body() BaseRequest request);
+
+  @POST("/Applepay/AddUserWalletDetail")
+  Future<HttpResponse<ResponseEntity>> addUserWalletDetail(@Body() AddUserWalletDetailRequestEntity request);
+
+  @POST("/Applepay/GetUserWalletDetail")
+  Future<HttpResponse<ResponseEntity>> getUserWalletDetail(@Body() BaseRequest request);
+
+  @POST("/Applepay/EnrollCards")
+  Future<HttpResponse<EnrollCardResponseEntity>> enrollCards(@Body() EnrollCardRequestEntity request);
 
   ///---------------- bill payment ------------------
 

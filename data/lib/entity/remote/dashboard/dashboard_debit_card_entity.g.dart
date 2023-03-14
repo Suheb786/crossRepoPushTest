@@ -24,6 +24,7 @@ DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
     primarySecondaryCard: json['primarySecondaryCard'] as String?,
     isPINSet: json['isPINSet'] as bool?,
     isPhysicalDebitCardRequested: json['isPhysicalDebitCardRequested'] as bool?,
+    cardCode: json['cardCode'] as String?,
   );
 }
 
@@ -43,4 +44,5 @@ Map<String, dynamic> _$DashboardDebitCardEntityToJson(
       'primarySecondaryCard': instance.primarySecondaryCard,
       'isPINSet': instance.isPINSet,
       'isPhysicalDebitCardRequested': instance.isPhysicalDebitCardRequested,
+      'cardCode': instance.cardCode,
     };

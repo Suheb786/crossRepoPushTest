@@ -1,4 +1,6 @@
 import 'package:data/di/local_module.dart';
+import 'package:data/helper/antelop_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/account/account_datasource.dart';
@@ -7,6 +9,8 @@ import 'package:data/source/account_settings/account_settings_datasource.dart';
 import 'package:data/source/account_settings/remote/account_settings_remote_ds_impl.dart';
 import 'package:data/source/activity/activity_datasource.dart';
 import 'package:data/source/activity/remote/activity_remote_datasource_impl.dart';
+import 'package:data/source/apple_pay/apple_pay_datasource.dart';
+import 'package:data/source/apple_pay/remote/apple_pay_remote_datasource_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/bill_payment/bill_payment_data_source.dart';
@@ -71,6 +75,7 @@ final dioProvider = Provider<Dio>(
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
     );
+    dio.interceptors.add(ApiInterceptor(dio));
     return dio;
   },
 );
@@ -158,6 +163,14 @@ var activityDataSourceProvider = Provider<ActivityRemoteDs>(
 
 var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>(
     (ref) => ChangeDeviceRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Antelop helper
+var antelopHelperProvider = Provider<AntelopHelper>(
+    (ref) => AntelopHelper(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///apple pay ds provider
+var applePayRemoteDSProvider = Provider<ApplePayRemoteDataSource>((ref) => AppPayRemoteDSImpl(
+    ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider), ref.read(antelopHelperProvider)));
 
 /// Bill payment DS provider
 final billPaymentDSProvider = Provider<BillPaymentRemoteDS>(
