@@ -695,6 +695,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من البطاقة الائتمانية"),
+        "creditConfirmation":
+            MessageLookupByLibrary.simpleMessage("Credit Confirmation"),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("سقف الائتمان"),

@@ -44,7 +44,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
       },
       dataBuilder: (context, data) {
         return AppStreamBuilder<double>(
-          stream: model.splashProgressStream, 
+          stream: model.splashProgressStream,
           initialData: 0,
           onData: (data) async {
             if (data == 1) {

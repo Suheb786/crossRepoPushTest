@@ -3,6 +3,8 @@ import 'package:domain/usecase/activity/notification_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/activity/return_payment_transaction_usecase.dart';
+import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
 
 ///[NotificationUseCase] provider
 final notificationUseCaseProvider = Provider.autoDispose<NotificationUseCase>(
@@ -15,3 +17,11 @@ final paymentActivityUseCaseProvider =
 ///[PaymentActivityTransactionUseCase] provider
 final paymentActivityTransactionUseCaseProvider = Provider.autoDispose<PaymentActivityTransactionUseCase>(
     (ref) => PaymentActivityTransactionUseCase(ref.read(paymentRepositoryProvider)));
+
+///[ReturnPaymentActivityTransactionUseCase] provider
+final returnPaymentActivityTransactionUseCaseProvider =
+    Provider.autoDispose<ReturnPaymentTransactionUsecase>((ref) => ReturnPaymentTransactionUsecase());
+
+///[ReturnPaymentActivityOTPUseCase] provider
+final returnPaymentActivityOTPUseCaseProvider =
+    Provider.autoDispose<ReturnPaymentOTPUseCase>((ref) => ReturnPaymentOTPUseCase());

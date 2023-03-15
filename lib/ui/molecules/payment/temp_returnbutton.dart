@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/app.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -38,20 +40,156 @@ class TempReturnButton extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      Container(
-                          height: 50.0.h,
-                          width: 50.0.w,
-                          decoration:
-                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
-                          child: Center(
-                              child: Text(
-                            StringUtils.getFirstInitials("Shakila"),
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14.0.t),
-                          ))),
+                      GestureDetector(
+                        onTap: () {
+                          RTPConfirmationDialog.show(
+                            context,
+                            amount: "- 10.000",
+                            cdtrAcct: "EFBKI000012341234123819241213|",
+                            cdtrDpText: StringUtils.getFirstInitials("Ahmed Lutfi"),
+                            cdtrName: "Ahmed Lutfi",
+                            description: Container(),
+                            showDescription: false,
+                            actionWidget: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: AppColor.white,
+                                border: Border.all(color: AppColor.white_gray),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.0.w,
+                                  vertical: 16.h,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).creditConfirmation,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: AppColor.skyblue,
+                                        fontSize: 12.0.t,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    AppSvg.asset(AssetUtils.creditConfirmation, height: 16.h, width: 16.h)
+                                  ],
+                                ),
+                              ),
+                            ),
+                            listOfDetails: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.current.transactionType,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "Send Money",
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.current.date,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "12 September 2021",
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Time",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "8:21 PM",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Ref ID",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "1209323102133939",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                        child: Container(
+                            height: 50.0.h,
+                            width: 50.0.w,
+                            decoration:
+                                BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
+                            child: Center(
+                                child: Text(
+                              StringUtils.getFirstInitials("Shakila"),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14.0.t),
+                            ))),
+                      ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.only(start: 14.0.w),

@@ -16609,6 +16609,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Credit Confirmation`
+  String get creditConfirmation {
+    return Intl.message(
+      'Credit Confirmation',
+      name: 'creditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
