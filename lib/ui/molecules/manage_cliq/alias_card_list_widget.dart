@@ -35,7 +35,6 @@ class AliasCardList extends StatelessWidget {
     return Padding(
       padding: EdgeInsetsDirectional.only(bottom: 8.0.h, start: 24.w, end: 24.w),
       child: Container(
-        width: 327.w,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white, boxShadow: [
           BoxShadow(blurRadius: 24, color: Color(0x14000000), offset: Offset(0, 8), spreadRadius: 0)
         ]),

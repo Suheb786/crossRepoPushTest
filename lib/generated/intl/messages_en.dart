@@ -102,7 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
+            "IBAN / ACCOUNT NO. / MOBILE NO. / ALIAS"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("Account No. Copied"),
@@ -1957,6 +1957,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage(
                 "Nick name can only contain alphanumerics"),
+        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
+            "Nickname cannot be more than 50 characters long. "),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "ATM data cannot be retrieved. Please try again later."),

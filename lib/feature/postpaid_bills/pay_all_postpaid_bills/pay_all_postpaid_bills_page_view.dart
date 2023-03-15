@@ -90,23 +90,27 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         end: 24.0.w,
                                         start: 24.0.w,
                                       ),
-                                      child: AppTextField(
-                                        labelText: '',
-                                        hintText: S.of(context).searchBill,
-                                        controller: model.searchBillController,
-                                        readOnly: false,
-                                        onPressed: () {},
-                                        onChanged: (val) {
-                                          model.searchPostPaidBillerList(val);
-                                        },
-                                        suffixIcon: (value, data) {
-                                          return Container(
-                                              height: 16.h,
-                                              width: 16.w,
-                                              padding: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(AssetUtils.search,
-                                                  color: AppColor.dark_gray_1));
-                                        },
+                                      child: Visibility(
+                                        visible: model.payPostPaidBillsDataList != null &&
+                                            model.payPostPaidBillsDataList.isNotEmpty,
+                                        child: AppTextField(
+                                          labelText: '',
+                                          hintText: S.of(context).searchBill,
+                                          controller: model.searchBillController,
+                                          readOnly: false,
+                                          onPressed: () {},
+                                          onChanged: (val) {
+                                            model.searchPostPaidBillerList(val);
+                                          },
+                                          suffixIcon: (value, data) {
+                                            return Container(
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                child: AppSvg.asset(AssetUtils.search,
+                                                    color: AppColor.dark_gray_1));
+                                          },
+                                        ),
                                       ),
                                     ),
                                     model.arguments.paidBillsPayTypeOptionEnum ==
@@ -316,8 +320,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                 )),
                           ),
                           Visibility(
-                            visible:
-                                true /* model.payPostPaidBillsDataList.any((item) => item.isChecked == true)*/,
+                            visible: true,
                             child: AppStreamBuilder<double>(
                               initialData: 0.0,
                               stream: model.totalBillAmtDueStream,
@@ -329,6 +332,18 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
                                     child: InkWell(
                                       onTap: () {
+                                        if (model.payPostPaidBillsDataList == null ||
+                                            model.payPostPaidBillsDataList.isEmpty) return;
+
+                                        bool isAnyChecked = false;
+                                        for (var item1 in model.payPostPaidBillsDataList) {
+                                          if (item1.isChecked == true) {
+                                            isAnyChecked = true;
+                                            break;
+                                          }
+                                        }
+                                        if (isAnyChecked == false) return;
+
                                         bool isAnyBillPartial = false;
                                         for (var item1 in model.postPaidBillInquiryData ?? []) {
                                           if (item1.isPartial == true) {
@@ -466,7 +481,13 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         height: 56.h,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100.0),
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          color: model.payPostPaidBillsDataList == null ||
+                                                  model.payPostPaidBillsDataList.isEmpty
+                                              ? AppColor.very_dark_gray1.withOpacity(0.5)
+                                              : model.payPostPaidBillsDataList
+                                                      .any((item) => item.isChecked == true)
+                                                  ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                                                  : AppColor.very_dark_gray1.withOpacity(0.5),
                                         ),
                                         child: Center(
                                           child: Text(
@@ -576,15 +597,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
               type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
         } else {
           if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0) {
-            if (model.payPostPaidBillsDataList[index].isPartial == false) {
-              model.showToastWithError(AppError(
-                  cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
-            } else {
-              model.showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
-            }
+            model.showToastWithError(
+                AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
           }
         }
       }

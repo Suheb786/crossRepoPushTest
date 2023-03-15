@@ -1890,6 +1890,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
+        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
+            "الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),

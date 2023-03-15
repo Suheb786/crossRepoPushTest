@@ -1263,6 +1263,9 @@ class ErrorParser {
       case ErrorType.DORMANT_ACCOUNT:
         return localisedHelper.accountDormant;
 
+      case ErrorType.NICKNAME_VALUE_EXCEEDS:
+        return localisedHelper.nickNameValueExceeds;
+
       default:
         return "";
     }

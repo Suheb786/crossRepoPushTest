@@ -96,6 +96,9 @@ class RequestFromNewRecipientUseCaseParams extends Params {
     } else if (nickName!.isEmpty && isFriend!) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_NICKNAME_VALUE, cause: Exception()));
+    } else if (this.isFriend! && ((this.nickName ?? '').length > 50)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''), type: ErrorType.NICKNAME_VALUE_EXCEEDS, cause: Exception()));
     }
     return Right(true);
   }

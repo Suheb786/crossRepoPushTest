@@ -1638,4 +1638,5 @@
   "returnPayment": "Return Payment",
   "selectTheReasonToReturn": "Select the reason to return",
   "creditConfirmation" : "Credit Confirmation"
+  "nickNameValueExceeds": "الحد الاعلى للأسم المستعار هو ٥٠ خانة"
 }

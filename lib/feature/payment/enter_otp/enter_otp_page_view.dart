@@ -40,10 +40,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                 stream: model.transferStream,
                 initialData: Resource.none(),
                 onData: (data) async {
-                  print('status---->${data.status}');
                   if (data.status == Status.SUCCESS) {
-                    print('success');
-
                     ///LOGGING EVENT TO APP FLYER
                     model.logEventsForAppFlyer(
                         eventName: 'send_money_to_new_contact',
@@ -65,7 +62,10 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                         "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
                       });
                     }
-
+                    data.data?.transferSuccessContent?.paymentMadeTo = ProviderScope.containerOf(context)
+                        .read(sendToNewRecipientViewModelProvider)
+                        .ibanOrMobileController
+                        .text;
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {

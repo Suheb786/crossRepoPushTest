@@ -1,6 +1,7 @@
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class UpdateCliqInfoBottomWidget extends StatelessWidget {
@@ -38,64 +39,39 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
           children: <Widget>[
             Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 12),
+                padding: EdgeInsets.only(top: 12.h),
                 child: Text(
                   title ?? "",
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColorDark.withOpacity(0.4)),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
-                height: 1,
+                height: 1.h,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
               ),
             ),
 
             ///on edit
-            InkWell(
-              onTap: () {
-                onEditId?.call();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  S.of(context).editId,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Container(
-                height: 1,
-                color: Theme.of(context).primaryColorDark.withOpacity(0.3),
-              ),
-            ),
-
-            ///onLink
             Visibility(
-              visible: showLinkAccount,
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
               child: InkWell(
                 onTap: () {
-                  onLinkId?.call();
+                  onEditId?.call();
                 },
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: Text(
-                    S.of(context).linkAccount,
+                    S.of(context).editId,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        fontSize: 14,
+                        fontSize: 14.t,
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).accentTextTheme.bodyText1!.color),
                   ),
@@ -103,12 +79,49 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: showLinkAccount,
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Container(
-                  height: 1,
+                  height: 1.h,
                   color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                ),
+              ),
+            ),
+
+            ///onLink
+            Visibility(
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
+              child: Visibility(
+                visible: showLinkAccount,
+                child: InkWell(
+                  onTap: () {
+                    onLinkId?.call();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: Text(
+                      S.of(context).linkAccount,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: CliqAliasIdStatusEnum.ACTIVE == cliqAliasIdStatusEnum,
+              child: Visibility(
+                visible: showLinkAccount,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  child: Container(
+                    height: 1.h,
+                    color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                  ),
                 ),
               ),
             ),
@@ -119,19 +132,19 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
                 onShareId?.call();
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Text(
                   S.of(context).shareId,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).accentTextTheme.bodyText1!.color),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
                 height: 1,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
@@ -148,23 +161,23 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
                       onActivateId?.call();
                     },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Text(
                   cliqAliasIdStatusEnum == CliqAliasIdStatusEnum.ACTIVE
                       ? S.of(context).suspendId
                       : S.of(context).activateId,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).accentTextTheme.bodyText1!.color),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
-                height: 1,
+                height: 1.h,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
               ),
             ),
@@ -175,19 +188,19 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
                 onDeleteId?.call();
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Text(
                   S.of(context).deleteCliqId,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).errorColor),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
                 height: 1,
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
@@ -200,12 +213,12 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
               },
               child: Center(
                   child: Padding(
-                padding: EdgeInsets.only(bottom: 24.0),
+                padding: EdgeInsets.only(bottom: 24.0.h),
                 child: Text(
                   S.of(context).cancel,
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),

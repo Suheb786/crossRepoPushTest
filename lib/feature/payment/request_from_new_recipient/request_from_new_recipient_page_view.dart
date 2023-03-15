@@ -16,8 +16,10 @@ import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
+import 'package:neo_bank/ui/molecules/payment/number_formatting_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -75,7 +77,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                       .read(requestMoneyViewModelProvider)
                                       .currentPinValue,
                                   data.data!.requestToPayContent!.dbtrName!,
-                                  data.data!.requestToPayContent!.dbtrMcc!,
+                                  model.ibanOrMobileController.text,
                                 ]);
                           } else if (data.status == Status.ERROR) {
                             ///LOG EVENT TO FIREBASE
@@ -133,7 +135,59 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                 padding: EdgeInsets.only(top: 16.0.h),
                                                 child: Focus(
                                                   child: AppTextField(
-                                                    labelText: S.of(context).ibanOrMobileRequest,
+                                                    labelText: S.of(context).accountMobileNoAlias,
+                                                    labelIcon: () {
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          InformationDialog.show(context,
+                                                              isSwipeToCancel: false,
+                                                              title:
+                                                                  S.of(context).mobileNoRegisteredWithBlink,
+                                                              descriptionWidget: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    S.of(context).samplesOfNoFormatting,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontSize: 14.t,
+                                                                        fontWeight: FontWeight.w400),
+                                                                  ),
+                                                                  NumberFormattingWidget(
+                                                                    title: S.of(context).iban,
+                                                                    desc: S.of(context).dummyIBAN,
+                                                                  ),
+                                                                  NumberFormattingWidget(
+                                                                    title: S.of(context).accountNumber,
+                                                                    desc: S.of(context).dummyAccountNo,
+                                                                  ),
+                                                                  NumberFormattingWidget(
+                                                                    title: S.of(context).mobileNo,
+                                                                    desc: S.of(context).dummyMobileNo,
+                                                                  ),
+                                                                  NumberFormattingWidget(
+                                                                    title: S.of(context).alias,
+                                                                    desc: S.of(context).dummyAlias,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              onDismissed: () {}, onSelected: () {
+                                                            Navigator.pop(context);
+                                                          });
+                                                        },
+                                                        child: Padding(
+                                                          padding: EdgeInsetsDirectional.only(start: 5.0.w),
+                                                          child: Container(
+                                                              height: 14.h,
+                                                              width: 14.w,
+                                                              child: AppSvg.asset(AssetUtils.info,
+                                                                  color: Theme.of(context)
+                                                                      .inputDecorationTheme
+                                                                      .focusedBorder!
+                                                                      .borderSide
+                                                                      .color)),
+                                                        ),
+                                                      );
+                                                    },
                                                     hintText: S.of(context).pleaseEnter,
                                                     controller: model.ibanOrMobileController,
                                                   ),
@@ -169,6 +223,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                               Expanded(
                                                                 child: Text(
                                                                   value,
+                                                                  textAlign: TextAlign.end,
                                                                   maxLines: 2,
                                                                   style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,

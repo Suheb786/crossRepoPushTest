@@ -26,16 +26,17 @@ class SendToNewRecipientUseCaseParams extends Params {
   String? recipientName;
   String? recipientAddress;
 
-  SendToNewRecipientUseCaseParams({this.ibanOrMobile,
-    this.purpose,
-    this.purposeDetail,
-    this.amount,
-    this.nickName: "",
-    this.isFriend: false,
-    this.limit,
-    this.messageEnum,
-    this.recipientName,
-    this.recipientAddress});
+  SendToNewRecipientUseCaseParams(
+      {this.ibanOrMobile,
+      this.purpose,
+      this.purposeDetail,
+      this.amount,
+      this.nickName: "",
+      this.isFriend: false,
+      this.limit,
+      this.messageEnum,
+      this.recipientName,
+      this.recipientAddress});
 
   @override
   Either<AppError, bool> verify() {
@@ -59,6 +60,9 @@ class SendToNewRecipientUseCaseParams extends Params {
     } else if (this.nickName!.isEmpty && this.isFriend!) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_NICKNAME_VALUE, cause: Exception()));
+    } else if (this.isFriend! && ((this.nickName ?? '').length > 50)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''), type: ErrorType.NICKNAME_VALUE_EXCEEDS, cause: Exception()));
     }
     return Right(true);
   }
