@@ -1633,5 +1633,9 @@
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
   "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
-  "nickNameValueExceeds": "الحد الاعلى للأسم المستعار هو ٥٠ خانة"
+  "nickNameValueExceeds": "الحد الاعلى للأسم المستعار هو ٥٠ خانة",
+  "returnPayment": "return payment",
+  "reasonToReject": "reason to reject",
+  "pleaseSelectReasonToReject": "Please Select Reason To Reject",
+  "selectReasonToReject": "Select the reason\nto reject"
 }

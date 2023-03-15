@@ -2092,21 +2092,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "ساعدنا لنطوّر خدماتنا: مساحة لادخال أي نص (اذا بالإمكان تطبيقها) "),
         "pleaseProvideInformationIfAppliesToYou":
-            MessageLookupByLibrary.simpleMessage(
-                "أدخل المعلومات التالية إذا بتنطبق عليك"),
-        "pleaseProvideSelfie":
-            MessageLookupByLibrary.simpleMessage("صوّر حالك سيلفي للاستمرار."),
+            MessageLookupByLibrary.simpleMessage("أدخل المعلومات التالية إذا بتنطبق عليك"),
+        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage("صوّر حالك سيلفي للاستمرار."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("الرجاء التحديد"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
-        "pleaseSelectTheReason":
-            MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
-        "pleaseSelectYourAction":
-            MessageLookupByLibrary.simpleMessage("شو بدك تعمل؟"),
+        "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage("Please Select Reason To Reject"),
+        "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
+        "pleaseSelectYourAction": MessageLookupByLibrary.simpleMessage("شو بدك تعمل؟"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("الرجاء التحديد"),
         "pleaseTryAgain": MessageLookupByLibrary.simpleMessage("حاول كمان مرة"),
-        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
-            "خلصنا! ما ضل إلا تحمّل الوثائق"),
+        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage("خلصنا! ما ضل إلا تحمّل الوثائق"),
         "politicallyExposedPerson": MessageLookupByLibrary.simpleMessage("PEP"),
         "postCode": MessageLookupByLibrary.simpleMessage("الرمز البريدي"),
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
@@ -2209,26 +2205,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrPayments": MessageLookupByLibrary.simpleMessage("دفعات QR"),
         "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
             "رمز الاستجابة فعال لمدة 30 دقيقة"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "يا ريت تكون بمكان هادي وفيه خصوصية"),
-        "reactivateCliqId":
-            MessageLookupByLibrary.simpleMessage("اعادة تفعيل حساب كليك"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
-        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
-            "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
-        "receiveMoneyFromOthers":
-            MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
-        "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
-            "شارك معلومات حسابك لتقدر تستقبل الأموال"),
-        "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
-            "رح توصلك كلمة مرور OTP على موبايلك للحركات المستقبلية"),
-        "recipientAddress":
-            MessageLookupByLibrary.simpleMessage("عنوان المستلم"),
+        "quietSurrounding": MessageLookupByLibrary.simpleMessage("يا ريت تكون بمكان هادي وفيه خصوصية"),
+        "reactivateCliqId": MessageLookupByLibrary.simpleMessage("اعادة تفعيل حساب كليك"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "reasonToReject": MessageLookupByLibrary.simpleMessage("reason to reject"),
+        "rebelliousRedCreditCard":
+            MessageLookupByLibrary.simpleMessage("البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
+        "receiveMoneyFromOthers": MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
+        "receiveMoneyFromOthersDesc":
+            MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك لتقدر تستقبل الأموال"),
+        "receiveOtpToNewNumber":
+            MessageLookupByLibrary.simpleMessage("رح توصلك كلمة مرور OTP على موبايلك للحركات المستقبلية"),
+        "recipientAddress": MessageLookupByLibrary.simpleMessage("عنوان المستلم"),
         "recipientName": MessageLookupByLibrary.simpleMessage("اسم المستلم"),
         "refNo": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
@@ -2357,24 +2347,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "معلومات FACTA ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
         "resumeCreditCardProcess": MessageLookupByLibrary.simpleMessage(
             "قربنا نخلص! كمّل طلبك واحصل على بطاقة Rebellious Red الائتمانية اليوم."),
-        "resumeCreditCardText":
-            MessageLookupByLibrary.simpleMessage("إستئناف الطلب"),
-        "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
-            "الرجاء الموافقة على الشروط والأحكام أعلاه"),
-        "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
+        "resumeCreditCardText": MessageLookupByLibrary.simpleMessage("إستئناف الطلب"),
+        "retrieveConditionNotChecked":
+            MessageLookupByLibrary.simpleMessage("الرجاء الموافقة على الشروط والأحكام أعلاه"),
+        "retrieveInstructionDetails":
+            MessageLookupByLibrary.simpleMessage("خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
-        "reviewApplication":
-            MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
+        "reviewApplication": MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-054)"),
         "rjFlightBookingToDialogBoxDescription":
-            MessageLookupByLibrary.simpleMessage(
-                "ادخل اسم الدولة ، ستظهر وجهتك على اللائحة"),
+            MessageLookupByLibrary.simpleMessage("ادخل اسم الدولة ، ستظهر وجهتك على اللائحة"),
         "rjFrom": MessageLookupByLibrary.simpleMessage("من"),
-        "samplesOfNoFormatting": MessageLookupByLibrary.simpleMessage(
-            "فيما يلي نماذج من تنسيق الأرقام:\n"),
+        "samplesOfNoFormatting": MessageLookupByLibrary.simpleMessage("فيما يلي نماذج من تنسيق الأرقام:\n"),
         "saveAdditionalDocumentationError":
             MessageLookupByLibrary.simpleMessage(
                 "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -2436,28 +2423,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار الحركات المتوقعة"),
         "selectFromLibrary":
             MessageLookupByLibrary.simpleMessage("اختار من المكتبة"),
-        "selectFutureDate": MessageLookupByLibrary.simpleMessage(
-            "التاريخ غير صحيح. الرجاء إدخال تاريخ من المستقبل."),
-        "selectMinimumSettlement": MessageLookupByLibrary.simpleMessage(
-            "اختار الحد الأدنى لنسبة السداد "),
-        "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
-            "اختار نسبة تسوية جديدة لدورة الدفع الجاية"),
-        "selectOneCardToAddApplePay": MessageLookupByLibrary.simpleMessage(
-            "أختار احدى البطاقات لاضافتها على أبل باي"),
+        "selectFutureDate": MessageLookupByLibrary.simpleMessage("التاريخ غير صحيح. الرجاء إدخال تاريخ من المستقبل."),
+        "selectMinimumSettlement": MessageLookupByLibrary.simpleMessage("اختار الحد الأدنى لنسبة السداد "),
+        "selectNewPercentage":
+            MessageLookupByLibrary.simpleMessage("اختار نسبة تسوية جديدة لدورة الدفع الجاية"),
+        "selectOneCardToAddApplePay":
+            MessageLookupByLibrary.simpleMessage("أختار احدى البطاقات لاضافتها على أبل باي"),
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
+        "selectReasonToReject": MessageLookupByLibrary.simpleMessage("Select the reason\nto reject"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
-        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "محاولتك لإرسال الأموال غير ناجحة"),
+        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage("محاولتك لإرسال الأموال غير ناجحة"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("إرسال أموال إلى"),
-        "sendMoneyToFriendAndFamily":
-            MessageLookupByLibrary.simpleMessage("حوّل الأموال لأصحابك وعيلتك"),
-        "sendOtpTokenError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage("حوّل الأموال لأصحابك وعيلتك"),
+        "sendOtpTokenError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),

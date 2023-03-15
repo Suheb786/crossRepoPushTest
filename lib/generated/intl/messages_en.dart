@@ -2164,25 +2164,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
-            MessageLookupByLibrary.simpleMessage(
-                "Please provide information below, if applies to you"),
-        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage(
-            "Please provide selfie to proceed further."),
+            MessageLookupByLibrary.simpleMessage("Please provide information below, if applies to you"),
+        "pleaseProvideSelfie":
+            MessageLookupByLibrary.simpleMessage("Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
-            MessageLookupByLibrary.simpleMessage(
-                "Schedule your call\nfor later"),
-        "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage(
-            "Please select the cancellation reason"),
-        "pleaseSelectYourAction":
-            MessageLookupByLibrary.simpleMessage("Please select your action"),
+            MessageLookupByLibrary.simpleMessage("Schedule your call\nfor later"),
+        "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage("Please Select Reason To Reject"),
+        "pleaseSelectTheReason":
+            MessageLookupByLibrary.simpleMessage("Please select the cancellation reason"),
+        "pleaseSelectYourAction": MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
-        "pleaseTryAgain":
-            MessageLookupByLibrary.simpleMessage("Please Try Again"),
-        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
-            "You’re done! Just upload\nyour documents"),
-        "politicallyExposedPerson":
-            MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
+        "pleaseTryAgain": MessageLookupByLibrary.simpleMessage("Please Try Again"),
+        "pleaseUploadNecessaryInfo":
+            MessageLookupByLibrary.simpleMessage("You’re done! Just upload\nyour documents"),
+        "politicallyExposedPerson": MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),
@@ -2297,26 +2293,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrPayments": MessageLookupByLibrary.simpleMessage("QR PAYMENTS"),
         "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
             "QR code will be valid\nfor 30 mins"),
-        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
-            "Best if your surrounding is quiet and private"),
-        "reactivateCliqId":
-            MessageLookupByLibrary.simpleMessage("Reactivate CliQ ID"),
-        "reasonOfCancellation":
-            MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
-        "reasonOfUnavailability":
-            MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
-        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
-            "Rebellious Red\nVisa Credit Card"),
-        "receiveMoneyFromOthers":
-            MessageLookupByLibrary.simpleMessage("Receive money from others"),
-        "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
-            "Share your account info to be able to receive money."),
+        "quietSurrounding":
+            MessageLookupByLibrary.simpleMessage("Best if your surrounding is quiet and private"),
+        "reactivateCliqId": MessageLookupByLibrary.simpleMessage("Reactivate CliQ ID"),
+        "reasonOfCancellation": MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
+        "reasonOfUnavailability": MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
+        "reasonOfUnavailabilitySmall": MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "reasonToReject": MessageLookupByLibrary.simpleMessage("reason to reject"),
+        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage("Rebellious Red\nVisa Credit Card"),
+        "receiveMoneyFromOthers": MessageLookupByLibrary.simpleMessage("Receive money from others"),
+        "receiveMoneyFromOthersDesc":
+            MessageLookupByLibrary.simpleMessage("Share your account info to be able to receive money."),
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
             "You will receive OTP to your\nnew number for future\ntransactions."),
-        "recipientAddress":
-            MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
+        "recipientAddress": MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
         "recipientName": MessageLookupByLibrary.simpleMessage("RECIPIENT NAME"),
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
@@ -2449,26 +2439,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "It seems you missed some of the required FATCA information. Please check again and ensure all information is provided."),
         "resumeCreditCardProcess": MessageLookupByLibrary.simpleMessage(
             "You are almost there!\nComplete your application and get your Rebellious Red\ncredit card issued, today."),
-        "resumeCreditCardText":
-            MessageLookupByLibrary.simpleMessage("Resume application"),
-        "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
-            "Please accept the above terms and conditions"),
+        "resumeCreditCardText": MessageLookupByLibrary.simpleMessage("Resume application"),
+        "retrieveConditionNotChecked":
+            MessageLookupByLibrary.simpleMessage("Please accept the above terms and conditions"),
         "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
             "An error occurred while retrieving your standing instruction details. Please try again later."),
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
-        "returnOnForPurchasePage":
-            MessageLookupByLibrary.simpleMessage("Return On"),
+        "returnOnForPurchasePage": MessageLookupByLibrary.simpleMessage("Return On"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
-        "reviewApplication":
-            MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "reviewApplication": MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-054)"),
-        "rjFlightBookingToDialogBoxDescription":
-            MessageLookupByLibrary.simpleMessage(
-                "Enter the name of the country. Your destination will appear on the list."),
+        "rjFlightBookingToDialogBoxDescription": MessageLookupByLibrary.simpleMessage(
+            "Enter the name of the country. Your destination will appear on the list."),
         "rjFrom": MessageLookupByLibrary.simpleMessage("FROM"),
-        "samplesOfNoFormatting": MessageLookupByLibrary.simpleMessage(
-            "Here are samples of the number formatting :\n"),
+        "samplesOfNoFormatting":
+            MessageLookupByLibrary.simpleMessage("Here are samples of the number formatting :\n"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
@@ -2536,24 +2523,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "Select new settlement percentage for your next payment cycle"),
-        "selectOneCardToAddApplePay": MessageLookupByLibrary.simpleMessage(
-            "Select one card that you want to add to Apple Pay"),
+        "selectOneCardToAddApplePay":
+            MessageLookupByLibrary.simpleMessage("Select one card that you want to add to Apple Pay"),
         "selectPreferredInstallmentDuration":
-            MessageLookupByLibrary.simpleMessage(
-                "Select your preferred instalment duration"),
-        "selectPreferredRegionAmount": MessageLookupByLibrary.simpleMessage(
-            "Select your preferred\nregion and amount"),
+            MessageLookupByLibrary.simpleMessage("Select your preferred instalment duration"),
+        "selectPreferredRegionAmount":
+            MessageLookupByLibrary.simpleMessage("Select your preferred\nregion and amount"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
+        "selectReasonToReject": MessageLookupByLibrary.simpleMessage("Select the reason\nto reject"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
-        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "Your attempt to send money was unsuccessful."),
+        "sendMoneyNotSuccessful":
+            MessageLookupByLibrary.simpleMessage("Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
-        "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
-            "Send money to your friends and family"),
+        "sendMoneyToFriendAndFamily":
+            MessageLookupByLibrary.simpleMessage("Send money to your friends and family"),
         "sendOtpTokenError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
