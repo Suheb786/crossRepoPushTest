@@ -336,7 +336,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                             model.payPostPaidBillsDataList.isEmpty) return;
 
                                         bool isAnyChecked = false;
-                                        for (var item1 in model.payPostPaidBillsDataList ?? []) {
+                                        for (var item1 in model.payPostPaidBillsDataList) {
                                           if (item1.isChecked == true) {
                                             isAnyChecked = true;
                                             break;
