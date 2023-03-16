@@ -90,27 +90,23 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         end: 24.0.w,
                                         start: 24.0.w,
                                       ),
-                                      child: Visibility(
-                                        visible: model.payPostPaidBillsDataList != null &&
-                                            model.payPostPaidBillsDataList.isNotEmpty,
-                                        child: AppTextField(
-                                          labelText: '',
-                                          hintText: S.of(context).searchBill,
-                                          controller: model.searchBillController,
-                                          readOnly: false,
-                                          onPressed: () {},
-                                          onChanged: (val) {
-                                            model.searchPostPaidBillerList(val);
-                                          },
-                                          suffixIcon: (value, data) {
-                                            return Container(
-                                                height: 16.h,
-                                                width: 16.w,
-                                                padding: EdgeInsetsDirectional.only(end: 8.w),
-                                                child: AppSvg.asset(AssetUtils.search,
-                                                    color: AppColor.dark_gray_1));
-                                          },
-                                        ),
+                                      child: AppTextField(
+                                        labelText: '',
+                                        hintText: S.of(context).searchBill,
+                                        controller: model.searchBillController,
+                                        readOnly: false,
+                                        onPressed: () {},
+                                        onChanged: (val) {
+                                          model.searchPostPaidBillerList(val);
+                                        },
+                                        suffixIcon: (value, data) {
+                                          return Container(
+                                              height: 16.h,
+                                              width: 16.w,
+                                              padding: EdgeInsetsDirectional.only(end: 8.w),
+                                              child: AppSvg.asset(AssetUtils.search,
+                                                  color: AppColor.dark_gray_1));
+                                        },
                                       ),
                                     ),
                                     model.arguments.paidBillsPayTypeOptionEnum ==
