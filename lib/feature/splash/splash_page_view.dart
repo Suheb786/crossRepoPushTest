@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/splash/splash_page_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -50,7 +49,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
             if (data == 1) {
               //model.checkDeviceCompatibility();
               // Navigator.pushNamed(context, RoutePaths.CreateCliqId);
-              Navigator.pushReplacementNamed(context, RoutePaths.temp);
+              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
             }
           },
           dataBuilder: (context, data) {
