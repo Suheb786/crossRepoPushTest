@@ -1269,6 +1269,16 @@ class ErrorParser {
       case ErrorType.REJECT_REASON_TYPE:
         return localisedHelper.pleaseSelectReasonToReject;
 
+      case ErrorType.ERROR_WHILE_GENERATING_QR_CODE:
+        return localisedHelper.errorWhileGeneratingQrCode;
+      case ErrorType.ERROR_WHILE_SENDING_QR_PAYMENT:
+        return localisedHelper.errorWhileSendingQRPayment;
+      case ErrorType.ERROR_WHILE_ADDING_CUSTOMER:
+        return localisedHelper.errorWhileAddingCustomer;
+      case ErrorType.NICKNAME_LENGTH_SHOULD_NOT_BE_GREATER_THAN_50:
+        return localisedHelper.nicknameLengthShouldNotBeGreaterThan50;
+      case ErrorType.ALIAS_ALREADY_EXIST:
+        return localisedHelper.aliasAlreadyExist;
       default:
         return "";
     }

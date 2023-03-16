@@ -16659,6 +16659,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Error while generating QR code`
+  String get errorWhileGeneratingQrCode {
+    return Intl.message(
+      'Error while generating QR code',
+      name: 'errorWhileGeneratingQrCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while sending QR payment`
+  String get errorWhileSendingQRPayment {
+    return Intl.message(
+      'Error while sending QR payment',
+      name: 'errorWhileSendingQRPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cliq Customer Already Registered`
+  String get cliqCustomerAlreadyRegistered {
+    return Intl.message(
+      'Cliq Customer Already Registered',
+      name: 'cliqCustomerAlreadyRegistered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname length should not be greater than 50`
+  String get nicknameLengthShouldNotBeGreaterThan50 {
+    return Intl.message(
+      'Nickname length should not be greater than 50',
+      name: 'nicknameLengthShouldNotBeGreaterThan50',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias already exist`
+  String get aliasAlreadyExist {
+    return Intl.message(
+      'Alias already exist',
+      name: 'aliasAlreadyExist',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -218,6 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
             "الخدمة معطلة ، جرّب كمان مرة بعدين "),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
+        "aliasAlreadyExist":
+            MessageLookupByLibrary.simpleMessage("Alias already exist"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار يجب ان لا يزيد عن ١٠ خانات، و يمكن ان يحتوي احرف وارقام"),
         "aliasMobileHint":
@@ -579,6 +581,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
             "تم تحديث الاسم المستعار لخدمة كليك"),
+        "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
+            "Cliq Customer Already Registered"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
@@ -1101,6 +1105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "حدث خطأ عند حذف الاسم المستعار"),
         "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ عند تعديل الاسم المستعار"),
+        "errorWhileGeneratingQrCode": MessageLookupByLibrary.simpleMessage(
+            "Error while generating QR code"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("خطأ خلال فتح الحساب"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -1156,6 +1162,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileSendingMoneyToCliqIBAN":
             MessageLookupByLibrary.simpleMessage(
                 "حدث خطأ عند ارسال الاموال للايبان"),
+        "errorWhileSendingQRPayment": MessageLookupByLibrary.simpleMessage(
+            "Error while sending QR payment"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ أثناء إرسال الدفعة الصادرة"),
@@ -1892,6 +1900,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
         "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
             "الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
+        "nicknameLengthShouldNotBeGreaterThan50":
+            MessageLookupByLibrary.simpleMessage(
+                "Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),

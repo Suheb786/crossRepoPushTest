@@ -1643,5 +1643,10 @@
   "returnPayment": "return payment",
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
-  "selectReasonToReject": "Select the reason\nto reject"
+  "selectReasonToReject": "Select the reason\nto reject",
+  "errorWhileGeneratingQrCode": "Error while generating QR code",
+  "errorWhileSendingQRPayment": "Error while sending QR payment",
+  "cliqCustomerAlreadyRegistered": "Cliq Customer Already Registered",
+  "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
+  "aliasAlreadyExist" : "Alias already exist"
 }
