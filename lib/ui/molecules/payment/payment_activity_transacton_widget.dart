@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
@@ -198,135 +200,135 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                  RTPConfirmationDialog.show(context,
-                                                      amount:
-                                                          "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                      cdtrAcct: content.data?[index].cdtrAcct ?? '',
-                                                      cdtrDpText: content.data?[index].cdtrName ?? '',
-                                                      cdtrName: content.data?[index].cdtrName ?? '',
-                                                      onAccepted: () {
-                                                    Navigator.pop(context);
-                                                    InformationDialog.show(
-                                                      context,
-                                                      isSwipeToCancel: true,
-                                                      onDismissed: () => Navigator.pop(context),
-                                                      onSelected: () {
-                                                        onAcceptButton.call(content.data![index]);
-                                                      },
-                                                      image: AssetUtils.acceptIcon,
-                                                      title: S.current.acceptRequest,
-                                                      descriptionWidget: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: S.current.youareabouttosend,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: S.current.towithspace,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: content.data?[index].cdtrName ?? '',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  S.current.asperhisrequestconfirmthisaction,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }, onRejected: () {
-                                                    Navigator.pop(context);
-                                                    InformationDialog.show(
-                                                      context,
-                                                      isSwipeToCancel: true,
-                                                      onDismissed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      onSelected: () {
-                                                        onRejectButton.call(content.data![index]);
-                                                      },
-                                                      image: AssetUtils.rejectIcon,
-                                                      title: S.current.rejectRequest,
-                                                      descriptionWidget: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: S.current.youareabouttoreject,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: S.current.requestFrom,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: content.data?[index].cdtrName ?? '',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  S.current.asperhisrequestconfirmthisaction,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  });
+                                                  // RTPConfirmationDialog.show(context,
+                                                  //     amount:
+                                                  //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                  //     cdtrAcct: content.data?[index].cdtrAcct ?? '',
+                                                  //     cdtrDpText: content.data?[index].cdtrName ?? '',
+                                                  //     cdtrName: content.data?[index].cdtrName ?? '',
+                                                  //     onAccepted: () {
+                                                  //   Navigator.pop(context);
+                                                  //   InformationDialog.show(
+                                                  //     context,
+                                                  //     isSwipeToCancel: true,
+                                                  //     onDismissed: () => Navigator.pop(context),
+                                                  //     onSelected: () {
+                                                  //       onAcceptButton.call(content.data![index]);
+                                                  //     },
+                                                  //     image: AssetUtils.acceptIcon,
+                                                  //     title: S.current.acceptRequest,
+                                                  //     descriptionWidget: RichText(
+                                                  //       text: TextSpan(
+                                                  //         children: [
+                                                  //           TextSpan(
+                                                  //             text: S.current.youareabouttosend,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: S.current.towithspace,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: content.data?[index].cdtrName ?? '',
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 S.current.asperhisrequestconfirmthisaction,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //         ],
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // }, onRejected: () {
+                                                  //   Navigator.pop(context);
+                                                  //   InformationDialog.show(
+                                                  //     context,
+                                                  //     isSwipeToCancel: true,
+                                                  //     onDismissed: () {
+                                                  //       Navigator.pop(context);
+                                                  //     },
+                                                  //     onSelected: () {
+                                                  //       onRejectButton.call(content.data![index]);
+                                                  //     },
+                                                  //     image: AssetUtils.rejectIcon,
+                                                  //     title: S.current.rejectRequest,
+                                                  //     descriptionWidget: RichText(
+                                                  //       text: TextSpan(
+                                                  //         children: [
+                                                  //           TextSpan(
+                                                  //             text: S.current.youareabouttoreject,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: S.current.requestFrom,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: content.data?[index].cdtrName ?? '',
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 S.current.asperhisrequestconfirmthisaction,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //         ],
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -355,137 +357,137 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               ),
                                               GestureDetector(
                                                 onTap: () {
-                                                  RTPConfirmationDialog.show(context,
-                                                      amount:
-                                                          "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                      cdtrAcct: content.data?[index].cdtrAcct ?? '',
-                                                      cdtrDpText: content.data?[index].cdtrName ?? '',
-                                                      cdtrName: content.data?[index].cdtrName ?? '',
-                                                      onAccepted: () {
-                                                    Navigator.pop(context);
-                                                    InformationDialog.show(
-                                                      context,
-                                                      isSwipeToCancel: true,
-                                                      onDismissed: () => Navigator.pop(context),
-                                                      onSelected: () {
-                                                        Navigator.pop(context);
-                                                        //Todo Api calling
-                                                      },
-                                                      image: AssetUtils.acceptIcon,
-                                                      title: S.current.acceptRequest,
-                                                      descriptionWidget: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: S.current.youareabouttosend,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: S.current.to,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: content.data?[index].cdtrName ?? '',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  S.current.asperhisrequestconfirmthisaction,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }, onRejected: () {
-                                                    Navigator.pop(context);
-                                                    InformationDialog.show(
-                                                      context,
-                                                      isSwipeToCancel: true,
-                                                      onDismissed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      onSelected: () {
-                                                        Navigator.pop(context);
-                                                        //Todo api calling
-                                                      },
-                                                      image: AssetUtils.rejectIcon,
-                                                      title: S.current.rejectRequest,
-                                                      descriptionWidget: RichText(
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: S.current.youareabouttoreject,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: (content.data?[index].cdtrName ?? 0.0)
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: S.current.requestFrom,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text: content.data?[index].cdtrName ?? '',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  S.current.asperhisrequestconfirmthisaction,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14.0.t,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  color: Theme.of(context).primaryColorDark),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  });
+                                                  // RTPConfirmationDialog.show(context,
+                                                  //     amount:
+                                                  //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                  //     cdtrAcct: content.data?[index].cdtrAcct ?? '',
+                                                  //     cdtrDpText: content.data?[index].cdtrName ?? '',
+                                                  //     cdtrName: content.data?[index].cdtrName ?? '',
+                                                  //     onAccepted: () {
+                                                  //   Navigator.pop(context);
+                                                  //   InformationDialog.show(
+                                                  //     context,
+                                                  //     isSwipeToCancel: true,
+                                                  //     onDismissed: () => Navigator.pop(context),
+                                                  //     onSelected: () {
+                                                  //       Navigator.pop(context);
+                                                  //       //Todo Api calling
+                                                  //     },
+                                                  //     image: AssetUtils.acceptIcon,
+                                                  //     title: S.current.acceptRequest,
+                                                  //     descriptionWidget: RichText(
+                                                  //       text: TextSpan(
+                                                  //         children: [
+                                                  //           TextSpan(
+                                                  //             text: S.current.youareabouttosend,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: S.current.to,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: content.data?[index].cdtrName ?? '',
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 S.current.asperhisrequestconfirmthisaction,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //         ],
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // }, onRejected: () {
+                                                  //   Navigator.pop(context);
+                                                  //   InformationDialog.show(
+                                                  //     context,
+                                                  //     isSwipeToCancel: true,
+                                                  //     onDismissed: () {
+                                                  //       Navigator.pop(context);
+                                                  //     },
+                                                  //     onSelected: () {
+                                                  //       Navigator.pop(context);
+                                                  //       //Todo api calling
+                                                  //     },
+                                                  //     image: AssetUtils.rejectIcon,
+                                                  //     title: S.current.rejectRequest,
+                                                  //     descriptionWidget: RichText(
+                                                  //       text: TextSpan(
+                                                  //         children: [
+                                                  //           TextSpan(
+                                                  //             text: S.current.youareabouttoreject,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: (content.data?[index].cdtrName ?? 0.0)
+                                                  //                 .toString(),
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: S.current.requestFrom,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text: content.data?[index].cdtrName ?? '',
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w600,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //           TextSpan(
+                                                  //             text:
+                                                  //                 S.current.asperhisrequestconfirmthisaction,
+                                                  //             style: TextStyle(
+                                                  //                 fontFamily: StringUtils.appFont,
+                                                  //                 fontSize: 14.0.t,
+                                                  //                 fontWeight: FontWeight.w400,
+                                                  //                 color: Theme.of(context).primaryColorDark),
+                                                  //           ),
+                                                  //         ],
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(

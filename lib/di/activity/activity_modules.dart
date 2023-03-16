@@ -6,6 +6,9 @@ import 'package:neo_bank/feature/activity/notification/notification_view_model.d
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_otp_screen/reject_request_payment_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/select_reject_reason/select_reject_reason_page_view_model.dart';
@@ -36,6 +39,17 @@ final paymentActivityTransactionViewModelProvider =
   ),
 );
 
+final returnPaymentTransactionSliderPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnPaymentTransactionSliderPageViewModel>(
+        (ref) => ReturnPaymentTransactionSliderPageViewModel());
+
+final returnPaymentSelectionPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnPaymentReasonSelectionPageViewModel>((ref) =>
+        ReturnPaymentReasonSelectionPageViewModel(ref.read(returnPaymentActivityTransactionUseCaseProvider)));
+
+final returnPaymentOtpPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnPaymentOtpPageViewModel>(
+        (ref) => ReturnPaymentOtpPageViewModel(ref.read(returnPaymentActivityOTPUseCaseProvider)));
 final acceptRequestMoneyOtpPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AcceptRequestMoneyOtpPageViewModel>(
   (ref) => AcceptRequestMoneyOtpPageViewModel(ref.read(activityOtpValidationUseCaseProvider)),

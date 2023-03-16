@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16569,11 +16570,21 @@ class S {
     );
   }
 
-  /// `Nickname cannot be more than 50 characters long. `
-  String get nickNameValueExceeds {
+  /// ` sent`
+  String get sent {
     return Intl.message(
-      'Nickname cannot be more than 50 characters long. ',
-      name: 'nickNameValueExceeds',
+      ' sent',
+      name: 'sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` to you`
+  String get toYou {
+    return Intl.message(
+      ' to you',
+      name: 'toYou',
       desc: '',
       args: [],
     );
@@ -16584,6 +16595,36 @@ class S {
     return Intl.message(
       'return payment',
       name: 'returnPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the reason\nto return`
+  String get selectTheReasonToReturn {
+    return Intl.message(
+      'Select the reason\nto return',
+      name: 'selectTheReasonToReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Confirmation`
+  String get creditConfirmation {
+    return Intl.message(
+      'Credit Confirmation',
+      name: 'creditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname cannot be more than 50 characters long. `
+  String get nickNameValueExceeds {
+    return Intl.message(
+      'Nickname cannot be more than 50 characters long. ',
+      name: 'nickNameValueExceeds',
       desc: '',
       args: [],
     );

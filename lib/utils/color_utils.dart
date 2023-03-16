@@ -62,6 +62,8 @@ class AppColor {
   static const text_color = const Color(0xffF8F8F8);
   static const border_color = const Color(0xff8270AF);
   static const gray = const Color(0xff8B8B8B);
+  static const light_gray = const Color(0xffb5b5b5);
+
   static const light_gray1 = const Color(0xfff2f2f2);
   static const gray_black = const Color(0xff101010);
   static const light_blue = const Color(0xff572BCC);
