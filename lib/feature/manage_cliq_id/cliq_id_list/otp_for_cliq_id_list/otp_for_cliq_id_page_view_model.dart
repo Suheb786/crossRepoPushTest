@@ -48,7 +48,8 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
 
   final AddLInkAccountUseCase _addLInkAccountUseCase;
 
-  OtpForCliqIdListPageViewModel(this._enterOtpForCliqIdValidationUseCase,
+  OtpForCliqIdListPageViewModel(
+      this._enterOtpForCliqIdValidationUseCase,
       this.arguments,
       this._suspendCliqIdUseCase,
       this._unlinkAccountFromCliqUseCase,
@@ -308,7 +309,7 @@ class OtpForCliqIdListPageViewModel extends BasePageViewModel {
 
   ///========================================== otp request validation==============================///
   PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();
 
