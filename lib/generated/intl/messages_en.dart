@@ -219,6 +219,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
             "Service is down please try again later"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
+        "aliasAlreadyExist":
+            MessageLookupByLibrary.simpleMessage("Alias already exist"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "Alias must be a maximum of 10 alphanumeric characters"),
         "aliasMobileHint":
@@ -597,6 +599,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "CliQ ID Mobile Number has been updated"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
             "CliQ ID Alias has been updated"),
+        "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
+            "Cliq Customer Already Registered"),
         "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
             "CliQ ID Mobile Number has been updated"),
@@ -1138,6 +1142,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while deleting an alias"),
         "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage(
             "Error while editing an alias"),
+        "errorWhileGeneratingQrCode": MessageLookupByLibrary.simpleMessage(
+            "Error while generating QR code"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -1196,6 +1202,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileSendingMoneyToCliqIBAN":
             MessageLookupByLibrary.simpleMessage(
                 "Error while sending money to cliq iban"),
+        "errorWhileSendingQRPayment": MessageLookupByLibrary.simpleMessage(
+            "Error while sending QR payment"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage(
                 "Error while Submitting Outward Payment"),
@@ -1959,6 +1967,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Nick name can only contain alphanumerics"),
         "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
             "Nickname cannot be more than 50 characters long. "),
+        "nicknameLengthShouldNotBeGreaterThan50":
+            MessageLookupByLibrary.simpleMessage(
+                "Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "ATM data cannot be retrieved. Please try again later."),
