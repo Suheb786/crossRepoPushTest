@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mo
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
@@ -908,6 +909,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RejectRequestPaymentPage(),
             settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
+
+      case RoutePaths.RejectRequestPayment:
+        return CupertinoPageRoute(
+            builder: (context) => RejectRequestPaymentPage(),
+            settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
+
+      case RoutePaths.CreditConfirmation:
+        return CupertinoPageRoute(
+            builder: (context) => CreditConfirmationPaymentActivityPage(),
+            settings: RouteSettings(name: RoutePaths.CreditConfirmation));
 
       default:
         return CupertinoPageRoute(
