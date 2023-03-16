@@ -1682,7 +1682,7 @@
   "sent": " sent",
   "toYou": " to you",
   "returnPayment": "Return Payment",
-  "selectTheReasonToReturn": "Select the reason to return",
-  "creditConfirmation": "Credit Confirmation"
+  "selectTheReasonToReturn": "Select the reason\nto return",
+  "creditConfirmation": "Credit Confirmation",
   "nickNameValueExceeds": "Nickname cannot be more than 50 characters long. "
 }

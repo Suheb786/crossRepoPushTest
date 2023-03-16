@@ -2450,8 +2450,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
-        "selectTheReasonToReturn":
-            MessageLookupByLibrary.simpleMessage("Select the reason to return"),
+        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
+            "Select the reason\nto return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),

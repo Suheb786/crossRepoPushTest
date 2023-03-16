@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/app.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -336,25 +337,30 @@ class TempReturnButton extends StatelessWidget {
                                               ],
                                             ),
                                             showDescription: false,
-                                            actionWidget: Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                color: AppColor.sky_blue_mid,
-                                                borderRadius: BorderRadius.circular(100),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 16.0.w,
-                                                  vertical: 16.h,
+                                            actionWidget: GestureDetector(
+                                              onTap: () {
+                                                Navigator.pushNamed(context, RoutePaths.ReturnPaymentSliderPage );
+                                              },
+                                              child: Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: AppColor.sky_blue_mid,
+                                                  borderRadius: BorderRadius.circular(100),
                                                 ),
-                                                child: Text(
-                                                  S.of(context).returnPayment,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: AppColor.white,
-                                                    fontSize: 12.0.t,
-                                                    fontWeight: FontWeight.w600,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 16.0.w,
+                                                    vertical: 16.h,
+                                                  ),
+                                                  child: Text(
+                                                    S.of(context).returnPayment,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: AppColor.white,
+                                                      fontSize: 12.0.t,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
                                                   ),
                                                 ),
                                               ),

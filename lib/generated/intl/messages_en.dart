@@ -2548,8 +2548,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select your preferred\nregion and amount"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
-        "selectTheReasonToReturn":
-            MessageLookupByLibrary.simpleMessage("Select the reason to return"),
+        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
+            "Select the reason\nto return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),

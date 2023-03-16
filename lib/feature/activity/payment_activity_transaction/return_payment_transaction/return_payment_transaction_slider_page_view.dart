@@ -84,13 +84,12 @@ class ReturnPaymentTransactionSliderPageView
                         direction: Direction.vertical,
                         offset: 0.5,
                         child: AppStreamBuilder<String>(
-                            initialData: S.of(context).letsCreateNewCliqId,
+                            initialData: S.of(context).selectTheReasonToReturn,
                             stream: model.changeHeaderWhileEnteringText,
                             dataBuilder: (context, header) {
                               return Text(
-                                StepTextHelper.accountRegistrationTextHelper(
+                                StepTextHelper.returnPaymentStepTextHelper(
                                   currentStep ?? 0,
-                                  header!,
                                   S.of(context).selectTheReasonToReturn,
                                   S.of(context).enterOtpHeader,
                                 ),

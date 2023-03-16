@@ -16600,10 +16600,10 @@ class S {
     );
   }
 
-  /// `Select the reason to return`
+  /// `Select the reason\nto return`
   String get selectTheReasonToReturn {
     return Intl.message(
-      'Select the reason to return',
+      'Select the reason\nto return',
       name: 'selectTheReasonToReturn',
       desc: '',
       args: [],
@@ -16615,6 +16615,11 @@ class S {
     return Intl.message(
       'Credit Confirmation',
       name: 'creditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nickname cannot be more than 50 characters long. `
   String get nickNameValueExceeds {
     return Intl.message(
