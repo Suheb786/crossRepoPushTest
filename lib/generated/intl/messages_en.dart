@@ -2174,6 +2174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
                 "Schedule your call\nfor later"),
+        "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage(
+            "Please Select Reason To Reject"),
         "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage(
             "Please select the cancellation reason"),
         "pleaseSelectYourAction":
@@ -2309,6 +2311,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "reasonToReject":
+            MessageLookupByLibrary.simpleMessage("reason to reject"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "Rebellious Red\nVisa Credit Card"),
         "receiveMoneyFromOthers":
@@ -2460,7 +2464,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
         "returnOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Return On"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
@@ -2547,6 +2551,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredRegionAmount": MessageLookupByLibrary.simpleMessage(
             "Select your preferred\nregion and amount"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
+        "selectReasonToReject": MessageLookupByLibrary.simpleMessage(
+            "Select the reason\nto reject"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
         "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
             "Select the reason\nto return"),

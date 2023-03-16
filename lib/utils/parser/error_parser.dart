@@ -1266,6 +1266,9 @@ class ErrorParser {
       case ErrorType.NICKNAME_VALUE_EXCEEDS:
         return localisedHelper.nickNameValueExceeds;
 
+      case ErrorType.REJECT_REASON_TYPE:
+        return localisedHelper.pleaseSelectReasonToReject;
+
       default:
         return "";
     }

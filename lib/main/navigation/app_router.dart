@@ -11,6 +11,8 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
 import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
 import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
 import 'package:neo_bank/feature/apple_pay_luncher_screen/apple_pay_launcher_page.dart';
@@ -897,6 +899,15 @@ class AppRouter {
 
       case RoutePaths.temp:
         return CupertinoPageRoute(builder: (context) => TempReturnButton());
+      case RoutePaths.AcceptRequestMoneyOtp:
+        return CupertinoPageRoute(
+            builder: (context) => AcceptRequestMoneyOtpPage(),
+            settings: RouteSettings(name: RoutePaths.AcceptRequestMoneyOtp));
+
+      case RoutePaths.RejectRequestPayment:
+        return CupertinoPageRoute(
+            builder: (context) => RejectRequestPaymentPage(),
+            settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
 
       default:
         return CupertinoPageRoute(

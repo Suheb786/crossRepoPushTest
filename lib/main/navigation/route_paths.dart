@@ -155,4 +155,6 @@ class RoutePaths {
   static const String ReturnPaymentSliderPage = "/returnPaymentReasonSelectionPage";
 
   static const String temp = "/temp";
+  static const String AcceptRequestMoneyOtp = "/acceptRequestMoneyOtpPage";
+  static const String RejectRequestPayment = "/rejectRequestPaymentPage";
 }

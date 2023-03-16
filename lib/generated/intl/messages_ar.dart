@@ -2101,6 +2101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("الرجاء التحديد"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
+        "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage(
+            "Please Select Reason To Reject"),
         "pleaseSelectTheReason":
             MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
         "pleaseSelectYourAction":
@@ -2221,6 +2223,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "reasonToReject":
+            MessageLookupByLibrary.simpleMessage("reason to reject"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
         "receiveMoneyFromOthers":
@@ -2366,7 +2370,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
@@ -2450,6 +2454,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
+        "selectReasonToReject": MessageLookupByLibrary.simpleMessage(
+            "Select the reason\nto reject"),
         "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
             "Select the reason\nto return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
