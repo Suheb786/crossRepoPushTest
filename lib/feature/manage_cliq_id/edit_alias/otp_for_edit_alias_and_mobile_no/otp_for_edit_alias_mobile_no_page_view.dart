@@ -106,8 +106,6 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                         isAlias: model.arguments.isAlias,
                                         aliasValue: model.arguments.aliasValue,
                                         otpCode: model.otpController.text);
-
-                                    //    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
                                   }
                                 }
                               },
@@ -116,7 +114,6 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                   onHorizontalDragEnd: (details) {
                                     if (details.primaryVelocity!.isNegative) {
                                       model.validateOtp();
-                                      //  Navigator.pushNamed(context, RoutePaths.OtpForEditAliasAndMobileNoPage);
                                     } else {
                                       Navigator.pop(context);
                                     }
@@ -154,14 +151,6 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
                                                       ? TextButton(
                                                           onPressed: () {
                                                             model.makeOtpRequest(
-                                                              /*accountNumber: ProviderScope.containerOf(
-                                                                          context)
-                                                                      .read(
-                                                                          linkBankAccountCliqIdViewModelProvider)
-                                                                      .linkBankAccountCliqIdList
-                                                                      .first
-                                                                      .accountNumber ??
-                                                                  '',*/
                                                               isAlias: model.arguments.isAlias,
                                                               aliasValue: model.arguments.aliasValue,
                                                               aliasId: model.arguments.aliasId,

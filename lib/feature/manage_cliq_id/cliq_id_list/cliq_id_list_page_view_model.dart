@@ -15,6 +15,11 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 
 class CliqIdListPageViewModel extends BasePageViewModel {
   String accountId = '';
@@ -130,9 +135,10 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   PublishSubject<ChangeDefaultAccountOtpUseCaseParams> _changeDefaultCliqIdOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _changeDefaultCliqIdOtpResponse = PublishSubject();
+  PublishSubject<Resource<ChangeDefaultAccountOtp>> _changeDefaultCliqIdOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get changeDefaultCliqIdOtpStream => _changeDefaultCliqIdOtpResponse.stream;
+  Stream<Resource<ChangeDefaultAccountOtp>> get changeDefaultCliqIdOtpStream =>
+      _changeDefaultCliqIdOtpResponse.stream;
 
   void confirmChangeDefaultCliqIdOtp({required String acc, required String aliasId}) {
     _changeDefaultCliqIdOtpRequest.safeAdd(ChangeDefaultAccountOtpUseCaseParams(aliasId: aliasId, acc: acc));
@@ -142,9 +148,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   PublishSubject<DeleteCliqIdOtpUseCaseParams> _deleteCliqIdOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _deleteCliqIdOtpResponse = PublishSubject();
+  PublishSubject<Resource<DeleteCliqIdOtp>> _deleteCliqIdOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get deleteCliqIdOtpStream => _deleteCliqIdOtpResponse.stream;
+  Stream<Resource<DeleteCliqIdOtp>> get deleteCliqIdOtpStream => _deleteCliqIdOtpResponse.stream;
 
   void deleteCliqIdOtp(bool getToken, String aliasId) {
     _deleteCliqIdOtpRequest.safeAdd(DeleteCliqIdOtpUseCaseParams(aliasId: aliasId, getToken: getToken));
@@ -154,9 +160,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   PublishSubject<ReActivateCliqIdOtpUseCaseParams> _reactivateCliqIDOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _reactivateCliqIDOtpResponse = PublishSubject();
+  PublishSubject<Resource<ReActivateCliqIdOtp>> _reactivateCliqIDOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get reactivateCliqIDOtpStream => _reactivateCliqIDOtpResponse.stream;
+  Stream<Resource<ReActivateCliqIdOtp>> get reactivateCliqIDOtpStream => _reactivateCliqIDOtpResponse.stream;
 
   void reactivatetCliqIDOtp({required bool getToken, required String aliasId}) {
     _reactivateCliqIDOtpRequest
@@ -167,9 +173,9 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   PublishSubject<SuspendCliqIdOtpUseCaseParams> _suspandCliqIDOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _suspandCliqIDOtpResponse = PublishSubject();
+  PublishSubject<Resource<SuspendCliqIdOtp>> _suspandCliqIDOtpResponse = PublishSubject();
 
-  Stream<Resource<bool>> get suspandCliqIdOtpStream => _suspandCliqIDOtpResponse.stream;
+  Stream<Resource<SuspendCliqIdOtp>> get suspandCliqIdOtpStream => _suspandCliqIDOtpResponse.stream;
 
   void suspandCliqIDOtp({required bool getToken, required String aliasId}) {
     _suspandCliqIDOtpRequest.safeAdd(SuspendCliqIdOtpUseCaseParams(aliasId: aliasId, getToken: getToken));
@@ -177,11 +183,11 @@ class CliqIdListPageViewModel extends BasePageViewModel {
 
   //*----------------unlick Cliq Id otp--------------///
 
-  Stream<Resource<bool>> get unlinkCliqIdOtpStream => _unlinkCliqIdOtpResponse.stream;
+  Stream<Resource<UnlinkCliqIdOtp>> get unlinkCliqIdOtpStream => _unlinkCliqIdOtpResponse.stream;
 
   PublishSubject<UnlinkAccountFromCliqOtpParams> _unlinkCliqIdOtpRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _unlinkCliqIdOtpResponse = PublishSubject();
+  PublishSubject<Resource<UnlinkCliqIdOtp>> _unlinkCliqIdOtpResponse = PublishSubject();
 
   unlinkCliqIdOtp({
     required bool getToken,

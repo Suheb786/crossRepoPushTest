@@ -70,7 +70,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0.h, bottom: currentStep == 2.h ? 0.h : 32.h, start: 24.w, end: 24.w),
+                          top: 8.0.h, bottom: currentStep == 2 ? 0.h : 32.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

@@ -1,12 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 
 abstract class CliqRepository {
   Future<Either<NetworkError, GetAlias>> getAlias({
@@ -46,7 +52,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> addLinkAccountOtp({
+  Future<Either<NetworkError, AddLinkAccountOtp>> addLinkAccountOtp({
     required String aliasId,
     required String linkType,
     required String accountNumber,
@@ -58,7 +64,8 @@ abstract class CliqRepository {
   Future<Either<NetworkError, bool>> confirmChangeDefaultAccount(
       {required String acc, required String aliasId, required String otpCode});
 
-  Future<Either<NetworkError, bool>> changeDefaultAccountOtp({required String acc, required String aliasId});
+  Future<Either<NetworkError, ChangeDefaultAccountOtp>> changeDefaultAccountOtp(
+      {required String acc, required String aliasId});
 
   Future<Either<NetworkError, bool>> unLinkAccountFromCliq({
     required String aliasId,
@@ -67,7 +74,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> unLinkAccountFromCliqOtp({
+  Future<Either<NetworkError, UnlinkCliqIdOtp>> unLinkAccountFromCliqOtp({
     required String aliasId,
     required String accountId,
     required bool getToken,
@@ -110,7 +117,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> suspendCliqIdOtp({
+  Future<Either<NetworkError, SuspendCliqIdOtp>> suspendCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });
@@ -121,7 +128,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> reActivateCliqIdOtp({
+  Future<Either<NetworkError, ReActivateCliqIdOtp>> reActivateCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });
@@ -132,7 +139,7 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> deleteCliqIdOtp({
+  Future<Either<NetworkError, DeleteCliqIdOtp>> deleteCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });

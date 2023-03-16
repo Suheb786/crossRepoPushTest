@@ -81,12 +81,16 @@ class OtpForCliqIdListPageArguments {
   final String aliasName;
   final bool isAlias;
   final String linkType;
+  final String mobileCode;
+  final String mobileNumber;
 
   OtpForCliqIdListPageArguments(
       {required this.cliqListActionTypeEnum,
       required this.aliasId,
       required this.accountId,
       required this.aliasName,
+      required this.mobileCode,
+      required this.mobileNumber,
       this.isAlias = false,
       this.linkType = ''});
 }

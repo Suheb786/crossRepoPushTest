@@ -2,12 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 
@@ -97,7 +103,7 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addLinkAccountOtp(
+  Future<Either<NetworkError, AddLinkAccountOtp>> addLinkAccountOtp(
       {required String aliasId,
       required String linkType,
       required String accountNumber,
@@ -112,7 +118,7 @@ class CliqRepositoryImpl extends CliqRepository {
         aliasValue: aliasValue,
         getToken: getToken));
 
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override
@@ -153,12 +159,12 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> deleteCliqIdOtp(
+  Future<Either<NetworkError, DeleteCliqIdOtp>> deleteCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     final result = await safeApiCall(_cliqDataSource.deleteCliqIdOtp(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -174,13 +180,13 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> reActivateCliqIdOtp(
+  Future<Either<NetworkError, ReActivateCliqIdOtp>> reActivateCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     final result =
         await safeApiCall(_cliqDataSource.reActivateCliqIdOtp(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -196,12 +202,12 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> suspendCliqIdOtp(
+  Future<Either<NetworkError, SuspendCliqIdOtp>> suspendCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     final result = await safeApiCall(_cliqDataSource.suspendCliqIdOtp(aliasId: aliasId, getToken: getToken));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -217,11 +223,11 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unLinkAccountFromCliqOtp(
+  Future<Either<NetworkError, UnlinkCliqIdOtp>> unLinkAccountFromCliqOtp(
       {required String aliasId, required String accountId, required bool getToken}) async {
     final result = await safeApiCall(
         _cliqDataSource.unLinkAccountFromCliqOtp(aliasId: aliasId, accountId: accountId, getToken: getToken));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override
@@ -479,10 +485,10 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> changeDefaultAccountOtp(
+  Future<Either<NetworkError, ChangeDefaultAccountOtp>> changeDefaultAccountOtp(
       {required String acc, required String aliasId}) async {
     final result = await safeApiCall(_cliqDataSource.changeDefaultAccountOtp(acc: acc, aliasId: aliasId));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override

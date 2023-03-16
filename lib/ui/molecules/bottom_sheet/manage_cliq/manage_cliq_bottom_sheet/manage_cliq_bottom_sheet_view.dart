@@ -44,16 +44,19 @@ class _ManageCliqBottomSheetViewState extends State<ManageCliqBottomSheetView> {
             },
           ),
         ),
-        CupertinoActionSheetAction(
-          child: Text(S.of(context).unlinkAccount,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: Theme.of(context).errorColor)),
-          onPressed: () {
-            widget.unlinkAccount?.call();
-          },
+        Visibility(
+          visible: false,
+          child: CupertinoActionSheetAction(
+            child: Text(S.of(context).unlinkAccount,
+                style: TextStyle(
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: Theme.of(context).errorColor)),
+            onPressed: () {
+              widget.unlinkAccount?.call();
+            },
+          ),
         ),
       ],
       cancelButton: CupertinoActionSheetAction(
