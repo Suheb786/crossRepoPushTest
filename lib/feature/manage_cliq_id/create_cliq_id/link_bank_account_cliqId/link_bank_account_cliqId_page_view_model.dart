@@ -101,6 +101,7 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   final ScrollController controller = ScrollController();
 
   String mobileNumber = '';
+  String mobileCode = '';
 
   List<GetAccountByCustomerId> linkBankAccountCliqIdList = [];
 

@@ -77,8 +77,16 @@ class OtpForEditAliasAndMobileNoPageArguments {
   final EditCliqOtp data;
   final String aliasId;
   final String aliasValue;
+  final String mobileNumber;
+  final String mobileCode;
   final bool isAlias;
 
-  OtpForEditAliasAndMobileNoPageArguments(
-      {required this.data, required this.aliasId, required this.aliasValue, required this.isAlias});
+  OtpForEditAliasAndMobileNoPageArguments({
+    required this.mobileNumber,
+    required this.mobileCode,
+    required this.data,
+    required this.aliasId,
+    required this.aliasValue,
+    required this.isAlias,
+  });
 }

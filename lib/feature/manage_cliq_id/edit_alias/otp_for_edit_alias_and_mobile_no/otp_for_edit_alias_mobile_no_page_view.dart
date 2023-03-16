@@ -6,7 +6,6 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -45,7 +44,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               height: 8.h,
             ),
             Text(
-              "${S.of(context).enterOtpHeader} \n ${"${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" + " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}"}",
+              "${S.of(context).enterOtpHeader} \n ${model.arguments.mobileCode.replaceAll('00', '+') + model.arguments.mobileNumber}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,

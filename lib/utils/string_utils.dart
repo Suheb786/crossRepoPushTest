@@ -70,4 +70,9 @@ class StringUtils {
   }
 
   static String appFont = intl.Intl.getCurrentLocale() == 'en' ? "Montserrat" : 'Tajawal';
+
+  static String replaceStringCharPattern(
+      {required String value, required String fromReplace, required String toReplace}) {
+    return value.replaceAll(fromReplace, toReplace);
+  }
 }

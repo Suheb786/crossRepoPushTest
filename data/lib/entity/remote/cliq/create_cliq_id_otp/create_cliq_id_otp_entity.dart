@@ -6,10 +6,12 @@ part 'create_cliq_id_otp_entity.g.dart';
 
 @JsonSerializable()
 class CreateCliqOtpEntity implements BaseLayerDataTransformer<CreateCliqOtpEntity, CreateCliqOtp> {
+  @JsonKey(name: "mobileCode", defaultValue: '')
+  final String? mobileCode;
   @JsonKey(name: "mobileNumber", defaultValue: '')
   final String? mobileNumber;
 
-  CreateCliqOtpEntity(this.mobileNumber);
+  CreateCliqOtpEntity({this.mobileCode, this.mobileNumber});
 
   factory CreateCliqOtpEntity.fromJson(Map<String, dynamic> json) => _$CreateCliqOtpEntityFromJson(json);
 
@@ -22,6 +24,6 @@ class CreateCliqOtpEntity implements BaseLayerDataTransformer<CreateCliqOtpEntit
 
   @override
   CreateCliqOtp transform() {
-    return CreateCliqOtp(this.mobileNumber);
+    return CreateCliqOtp(mobileCode: this.mobileCode, mobileNumber: this.mobileNumber);
   }
 }

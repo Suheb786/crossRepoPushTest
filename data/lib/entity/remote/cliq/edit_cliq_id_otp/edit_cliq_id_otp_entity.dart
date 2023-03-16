@@ -6,10 +6,12 @@ part 'edit_cliq_id_otp_entity.g.dart';
 
 @JsonSerializable()
 class EditCliqOtpEntity implements BaseLayerDataTransformer<EditCliqOtpEntity, EditCliqOtp> {
+  @JsonKey(name: "mobileCode", defaultValue: '')
+  final String? mobileCode;
   @JsonKey(name: "mobileNumber", defaultValue: '')
   final String? mobileNumber;
 
-  EditCliqOtpEntity(this.mobileNumber);
+  EditCliqOtpEntity({this.mobileCode, this.mobileNumber});
 
   factory EditCliqOtpEntity.fromJson(Map<String, dynamic> json) => _$EditCliqOtpEntityFromJson(json);
 
@@ -22,6 +24,6 @@ class EditCliqOtpEntity implements BaseLayerDataTransformer<EditCliqOtpEntity, E
 
   @override
   EditCliqOtp transform() {
-    return EditCliqOtp(this.mobileNumber);
+    return EditCliqOtp(mobileCode: this.mobileCode, mobileNumber: this.mobileNumber);
   }
 }

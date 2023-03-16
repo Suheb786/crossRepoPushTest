@@ -44,6 +44,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                 onData: (otpResponse) {
                   if (otpResponse.status == Status.SUCCESS) {
                     model.mobileNumber = otpResponse.data?.mobileNumber ?? '';
+                    model.mobileCode = otpResponse.data?.mobileCode ?? '';
                     log('model.mobileNumber---->${model.mobileNumber}');
                     ProviderScope.containerOf(context).read(enterOtpFortCliqIdViewModelProvider).updateTime();
                     ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
