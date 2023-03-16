@@ -53,7 +53,7 @@ class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel>
           ),
           Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 36.h),
+            padding: EdgeInsets.symmetric(vertical: 36.h),
             child: AppStreamBuilder<int>(
               stream: model.currentPageStream,
               initialData: 0,
