@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -26,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16575,6 +16574,46 @@ class S {
     return Intl.message(
       'Nickname cannot be more than 50 characters long. ',
       name: 'nickNameValueExceeds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `return payment`
+  String get returnPayment {
+    return Intl.message(
+      'return payment',
+      name: 'returnPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `reason to reject`
+  String get reasonToReject {
+    return Intl.message(
+      'reason to reject',
+      name: 'reasonToReject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Select Reason To Reject`
+  String get pleaseSelectReasonToReject {
+    return Intl.message(
+      'Please Select Reason To Reject',
+      name: 'pleaseSelectReasonToReject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the reason\nto reject`
+  String get selectReasonToReject {
+    return Intl.message(
+      'Select the reason\nto reject',
+      name: 'selectReasonToReject',
       desc: '',
       args: [],
     );
