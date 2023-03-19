@@ -1,9 +1,14 @@
 import 'dart:io';
-import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
+
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -29,11 +34,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+
 import 'otp_for_cliq_id_list/otp_for_cliq_id_page.dart';
-import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
-import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
-import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
@@ -197,19 +199,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             context),
                                                         // "${getAliasSnapshot.data?.aliases?[index].status}",
                                                         onTapAccount: (accountData) {
-                                                          bool isEmpty = (getAliasSnapshot.data?.aliases
-                                                                  ?.elementAt(index)
-                                                                  .accounts
-                                                                  .isEmpty) ??
-                                                              false;
-
-                                                          ///for active cliq bottom sheet
+                                                          ///for checking active aliases and default account status
                                                           if (getAliasSnapshot.data?.aliases?[index].status ==
                                                                   CliqAliasIdStatusEnum.ACTIVE &&
-                                                              isEmpty) {
+                                                              !(accountData.isDefault ?? false)) {
                                                             ManageCliqBottomSheetSelectionWidget.show(context,
                                                                 showSetAsDefault: !(accountData.isDefault ??
-                                                                    true), setAsDefault: () {
+                                                                    false), setAsDefault: () {
                                                               Navigator.pop(context);
                                                               CliqInformationDialog.show(context,
                                                                   image: AssetUtils.walletIcon,

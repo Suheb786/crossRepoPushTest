@@ -40,7 +40,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: true,
+              visible: showSetAsDefault,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Container(
@@ -50,7 +50,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: true,
+              visible: showSetAsDefault,
               child: InkWell(
                 onTap: () {
                   setAsDefault?.call();

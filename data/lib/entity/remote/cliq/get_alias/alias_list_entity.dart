@@ -48,7 +48,6 @@ class AliasListEntity extends BaseLayerDataTransformer<AliasListEntity, AliasLis
   Map<String, dynamic> toJson() => _$AliasListEntityToJson(this);
   @override
   AliasListEntity restore(AliasList data) {
-    // TODO: implement restore
     return super.restore(data);
   }
 
