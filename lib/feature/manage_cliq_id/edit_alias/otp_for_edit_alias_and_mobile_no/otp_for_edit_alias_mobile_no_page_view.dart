@@ -44,7 +44,7 @@ class OtpForEditAliasAndMobileNoPageView extends BasePageViewWidget<OtpForEditAl
               height: 8.h,
             ),
             Text(
-              "${S.of(context).enterOtpHeader} \n ${model.arguments.mobileCode.replaceAll('00', '+') + model.arguments.mobileNumber}",
+              "${S.of(context).enterOtpHeader} \n ${model.arguments.mobileCode.replaceAll('00', '+') + " " + model.arguments.mobileNumber}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
