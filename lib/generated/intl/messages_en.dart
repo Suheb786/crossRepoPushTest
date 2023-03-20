@@ -2475,7 +2475,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
         "returnOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Return On"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
