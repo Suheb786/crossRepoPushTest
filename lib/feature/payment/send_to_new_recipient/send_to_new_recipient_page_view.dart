@@ -193,9 +193,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                 onTap: () async {
                                                                   InformationDialog.show(context,
                                                                       isSwipeToCancel: false,
-                                                                      title: S
-                                                                          .of(context)
-                                                                          .mobileNoRegisteredWithBlink,
+                                                                      title: S.of(context).numberFormatting,
                                                                       descriptionWidget: Column(
                                                                         children: [
                                                                           Text(
@@ -206,6 +204,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.t,
+                                                                                color: AppColor.veryDarkGray1
+                                                                                    .withOpacity(0.5),
                                                                                 fontWeight: FontWeight.w400),
                                                                           ),
                                                                           NumberFormattingWidget(

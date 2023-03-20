@@ -16590,10 +16590,10 @@ class S {
     );
   }
 
-  /// `return payment`
+  /// `Return Payment`
   String get returnPayment {
     return Intl.message(
-      'return payment',
+      'Return Payment',
       name: 'returnPayment',
       desc: '',
       args: [],

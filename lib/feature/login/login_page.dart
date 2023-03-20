@@ -1,3 +1,5 @@
+import 'package:data/helper/secure_storage_helper.dart';
+import 'package:data/helper/shared_preference_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -23,10 +25,16 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
       if (!(getViewModel().isBiometricDialogShown)) {
-        getViewModel().getCurrentUser();
+        var value = await SharedPreferenceHelper.getValue();
+        if (value) {
+          await SecureStorageHelper.instance.clearUserData();
+          getViewModel().getCurrentUser();
+        } else {
+          getViewModel().getCurrentUser();
+        }
       }
     }
     super.didChangeAppLifecycleState(state);
@@ -38,10 +46,15 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
   }
 
   @override
-  void onModelReady(LoginViewModel model) {
-    //model.checkVersionUpdate();
+  Future<void> onModelReady(LoginViewModel model) async {
     model.getLanguageFromStorage(context);
-    model.getCurrentUser();
+    var value = await SharedPreferenceHelper.getValue();
+    if (value) {
+      await SecureStorageHelper.instance.clearUserData();
+      model.getCurrentUser();
+    } else {
+      model.getCurrentUser();
+    }
     super.onModelReady(model);
   }
 
