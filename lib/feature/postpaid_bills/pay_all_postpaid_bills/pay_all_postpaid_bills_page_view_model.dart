@@ -282,6 +282,23 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           }
 
           selectedPostPaidBillsList.add(item);
+        } else if (inquiryElement.billingNo == null ||
+            inquiryElement.billingNo!.isEmpty ||
+            inquiryElement.serviceType == null ||
+            inquiryElement.serviceType!.isEmpty) {
+          payPostPaidBillsDataList[j].isChecked = false;
+          payPostPaidBillsDataList[j].expDateStatus = false;
+          payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
+          payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
+
+          if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+            if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
+              if (double.parse(postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
+                showToastWithError(
+                    AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+              }
+            }
+          }
         }
       }
     }
