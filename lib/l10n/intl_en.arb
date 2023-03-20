@@ -1687,9 +1687,8 @@
   "nickNameValueExceeds": "Nickname cannot be more than 50 characters long. ",
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
-  "selectReasonToReject": "Select the reason\nto reject",
   "setAsCliqDefaultAccount": "Set as CliQ default account?",
-  "aliasShouldBeThreeChar": "Alias should be minimum 3 characters"
+  "aliasShouldBeThreeChar": "Alias should be minimum 3 characters",
   "selectReasonToReject": "Select the reason\nto reject",
   "errorWhileGeneratingQrCode": "Error while generating QR code",
   "errorWhileSendingQRPayment": "Error while sending QR payment",

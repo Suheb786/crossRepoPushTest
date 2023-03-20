@@ -45,7 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m11(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -166,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable":
             MessageLookupByLibrary.simpleMessage("الخدمة معطلة ، جرّب كمان مرة بعدين "),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
+        "aliasAlreadyExist": MessageLookupByLibrary.simpleMessage("Alias already exist"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار يجب ان لا يزيد عن ١٠ خانات، و يمكن ان يحتوي احرف وارقام"),
         "aliasMobileHint": MessageLookupByLibrary.simpleMessage("تلميح لرقم الموبايل: "),
@@ -434,6 +436,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasMobileNoUpdate":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage("تم تحديث الاسم المستعار لخدمة كليك"),
+        "cliqCustomerAlreadyRegistered":
+            MessageLookupByLibrary.simpleMessage("Cliq Customer Already Registered"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
         "cliqIDmobileNOUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم الموبايل المربوط بخدمة كليك"),
@@ -519,6 +523,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditCardTransactionListError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage("تم التحقق من البطاقة الائتمانية"),
+        "creditConfirmation": MessageLookupByLibrary.simpleMessage("Credit Confirmation"),
         "creditDashboardDataError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("سقف الائتمان"),
@@ -800,6 +805,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileCreatingAnAlias": MessageLookupByLibrary.simpleMessage("حدث خطأ عند انشاء الاسم المستعار"),
         "errorWhileDeletingAnAlias": MessageLookupByLibrary.simpleMessage("حدث خطأ عند حذف الاسم المستعار"),
         "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage("حدث خطأ عند تعديل الاسم المستعار"),
+        "errorWhileGeneratingQrCode": MessageLookupByLibrary.simpleMessage("Error while generating QR code"),
         "errorWhileGetAccount": MessageLookupByLibrary.simpleMessage("خطأ خلال فتح الحساب"),
         "errorWhileGetAdditionalDocument":
             MessageLookupByLibrary.simpleMessage("خطأ خلال الحصول على الوثائق الإضافية"),
@@ -841,6 +847,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileRequestingMoneyActivity": MessageLookupByLibrary.simpleMessage("حطأ عند طلب انشطة "),
         "errorWhileSendingMoneyToCliqIBAN":
             MessageLookupByLibrary.simpleMessage("حدث خطأ عند ارسال الاموال للايبان"),
+        "errorWhileSendingQRPayment": MessageLookupByLibrary.simpleMessage("Error while sending QR payment"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage("خطأ أثناء إرسال الدفعة الصادرة"),
         "errorWhileSubmmitingOutwardPayment":
@@ -1383,6 +1390,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage("يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),
         "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage("الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
+        "nicknameLengthShouldNotBeGreaterThan50":
+            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noATMData":
             MessageLookupByLibrary.simpleMessage("مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
@@ -1743,7 +1752,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "retrieveInstructionDetails":
             MessageLookupByLibrary.simpleMessage("خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
         "reviewApplication": MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -1809,6 +1818,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
         "selectReasonToReject": MessageLookupByLibrary.simpleMessage("Select the reason\nto reject"),
+        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage("Select the reason\nto return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
@@ -1821,6 +1831,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),
+        "sent": MessageLookupByLibrary.simpleMessage(" sent"),
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage("السيرفر تحت الصيانة، حاول بعدين."),
         "serviceIsNotavaliable": MessageLookupByLibrary.simpleMessage("الخدمة غير متوفرة حاليا"),
@@ -1966,6 +1977,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "toPayments": MessageLookupByLibrary.simpleMessage("الى الفواتير"),
         "toViewSubscription": MessageLookupByLibrary.simpleMessage("لاستعراض الاشتراكات"),
         "toWelcomePage": MessageLookupByLibrary.simpleMessage("إلى الصفحة الرئيسية"),
+        "toYou": MessageLookupByLibrary.simpleMessage(" to you"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage("TokenSerial / Apin فارغ من Vkey"),
         "tooManyRecurrentDeclined":
             MessageLookupByLibrary.simpleMessage("في عدد كبير من الحركات المرفوضة المتكررة"),

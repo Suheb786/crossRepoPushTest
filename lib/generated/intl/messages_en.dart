@@ -183,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable":
             MessageLookupByLibrary.simpleMessage("Service is down please try again later"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
+        "aliasAlreadyExist": MessageLookupByLibrary.simpleMessage("Alias already exist"),
         "aliasHint":
             MessageLookupByLibrary.simpleMessage("Alias must be a maximum of 10 alphanumeric characters"),
         "aliasMobileHint": MessageLookupByLibrary.simpleMessage("Alias mobile hint: "),
@@ -472,6 +473,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasMobileNoUpdate":
             MessageLookupByLibrary.simpleMessage("CliQ ID Mobile Number has been updated"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage("CliQ ID Alias has been updated"),
+        "cliqCustomerAlreadyRegistered":
+            MessageLookupByLibrary.simpleMessage("Cliq Customer Already Registered"),
         "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
         "cliqIDmobileNOUpdated":
             MessageLookupByLibrary.simpleMessage("CliQ ID Mobile Number has been updated"),
@@ -566,6 +569,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditCardTransactionListError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage("Credit card\nhas been verified."),
+        "creditConfirmation": MessageLookupByLibrary.simpleMessage("Credit Confirmation"),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
@@ -867,6 +871,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileCreatingAnAlias": MessageLookupByLibrary.simpleMessage("Error while creating an alias"),
         "errorWhileDeletingAnAlias": MessageLookupByLibrary.simpleMessage("Error while deleting an alias"),
         "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage("Error while editing an alias"),
+        "errorWhileGeneratingQrCode": MessageLookupByLibrary.simpleMessage("Error while generating QR code"),
         "errorWhileGetAccount": MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument":
             MessageLookupByLibrary.simpleMessage("Error while Get Additional Documentation"),
@@ -909,6 +914,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error while requesting money activity"),
         "errorWhileSendingMoneyToCliqIBAN":
             MessageLookupByLibrary.simpleMessage("Error while sending money to cliq iban"),
+        "errorWhileSendingQRPayment": MessageLookupByLibrary.simpleMessage("Error while sending QR payment"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage("Error while Submitting Outward Payment"),
         "errorWhileSubmmitingOutwardPayment":
@@ -1498,6 +1504,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
         "nickNameValueExceeds":
             MessageLookupByLibrary.simpleMessage("Nickname cannot be more than 50 characters long. "),
+        "nicknameLengthShouldNotBeGreaterThan50":
+            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noATMData":
             MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
@@ -1890,7 +1898,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while retrieving your standing instruction details. Please try again later."),
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
         "returnOnForPurchasePage": MessageLookupByLibrary.simpleMessage("Return On"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("return payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication": MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -1961,6 +1969,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selectReasonToReject": MessageLookupByLibrary.simpleMessage("Select the reason\nto reject"),
         "selectRegion": MessageLookupByLibrary.simpleMessage("Select Region"),
+        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage("Select the reason\nto return"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
@@ -1975,6 +1984,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "An error has occurred in sending the code. Please try again later or contact our Engagement Team on 06-5200100."),
+        "sent": MessageLookupByLibrary.simpleMessage(" sent"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "Server is under maintenance. Please try again in sometime."),
@@ -2126,6 +2136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "toViewSubscription": MessageLookupByLibrary.simpleMessage("to View Subscriptionss"),
         "toViewVoucher": MessageLookupByLibrary.simpleMessage("to View Voucher"),
         "toWelcomePage": MessageLookupByLibrary.simpleMessage("to Welcome Page"),
+        "toYou": MessageLookupByLibrary.simpleMessage(" to you"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage("TokenSerial / Apin is empty from Vkey"),
         "tooManyRecurrentDeclined":
             MessageLookupByLibrary.simpleMessage("There are too many recurrent declined transactions"),

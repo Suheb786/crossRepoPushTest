@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -16569,21 +16568,61 @@ class S {
     );
   }
 
-  /// `Nickname cannot be more than 50 characters long. `
-  String get nickNameValueExceeds {
+  /// ` sent`
+  String get sent {
     return Intl.message(
-      'Nickname cannot be more than 50 characters long. ',
-      name: 'nickNameValueExceeds',
+      ' sent',
+      name: 'sent',
       desc: '',
       args: [],
     );
   }
 
-  /// `return payment`
+  /// ` to you`
+  String get toYou {
+    return Intl.message(
+      ' to you',
+      name: 'toYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return Payment`
   String get returnPayment {
     return Intl.message(
-      'return payment',
+      'Return Payment',
       name: 'returnPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the reason\nto return`
+  String get selectTheReasonToReturn {
+    return Intl.message(
+      'Select the reason\nto return',
+      name: 'selectTheReasonToReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Confirmation`
+  String get creditConfirmation {
+    return Intl.message(
+      'Credit Confirmation',
+      name: 'creditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname cannot be more than 50 characters long. `
+  String get nickNameValueExceeds {
+    return Intl.message(
+      'Nickname cannot be more than 50 characters long. ',
+      name: 'nickNameValueExceeds',
       desc: '',
       args: [],
     );
@@ -16609,16 +16648,6 @@ class S {
     );
   }
 
-  /// `Select the reason\nto reject`
-  String get selectReasonToReject {
-    return Intl.message(
-      'Select the reason\nto reject',
-      name: 'selectReasonToReject',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Set as CliQ default account?`
   String get setAsCliqDefaultAccount {
     return Intl.message(
@@ -16634,6 +16663,66 @@ class S {
     return Intl.message(
       'Alias should be minimum 3 characters',
       name: 'aliasShouldBeThreeChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the reason\nto reject`
+  String get selectReasonToReject {
+    return Intl.message(
+      'Select the reason\nto reject',
+      name: 'selectReasonToReject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while generating QR code`
+  String get errorWhileGeneratingQrCode {
+    return Intl.message(
+      'Error while generating QR code',
+      name: 'errorWhileGeneratingQrCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while sending QR payment`
+  String get errorWhileSendingQRPayment {
+    return Intl.message(
+      'Error while sending QR payment',
+      name: 'errorWhileSendingQRPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cliq Customer Already Registered`
+  String get cliqCustomerAlreadyRegistered {
+    return Intl.message(
+      'Cliq Customer Already Registered',
+      name: 'cliqCustomerAlreadyRegistered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname length should not be greater than 50`
+  String get nicknameLengthShouldNotBeGreaterThan50 {
+    return Intl.message(
+      'Nickname length should not be greater than 50',
+      name: 'nicknameLengthShouldNotBeGreaterThan50',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias already exist`
+  String get aliasAlreadyExist {
+    return Intl.message(
+      'Alias already exist',
+      name: 'aliasAlreadyExist',
       desc: '',
       args: [],
     );
