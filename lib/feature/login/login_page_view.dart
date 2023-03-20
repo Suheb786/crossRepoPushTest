@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:data/helper/shared_preference_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
@@ -498,13 +499,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                         initialData: Resource
                                                                                                             .none(),
                                                                                                         onData:
-                                                                                                            (data) {
+                                                                                                            (data) async {
                                                                                                           if (data.status ==
                                                                                                               Status.SUCCESS) {
+                                                                                                            var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                             model.checkVersionUpdate(clear: "false");
                                                                                                           } else if (data.status ==
                                                                                                               Status.ERROR) {
                                                                                                             if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
+                                                                                                              var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                               model.checkVersionUpdate(clear: "true");
                                                                                                             }
                                                                                                           }

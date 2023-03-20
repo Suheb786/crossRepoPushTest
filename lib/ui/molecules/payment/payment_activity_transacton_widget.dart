@@ -159,7 +159,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                   color: Theme.of(context).primaryColorDark),
                                               children: [
                                                 TextSpan(
-                                                  text: content.data?[index].dbtrName,
+                                                  text: " ${content.data?[index].dbtrName}",
                                                   style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 12.0.t,

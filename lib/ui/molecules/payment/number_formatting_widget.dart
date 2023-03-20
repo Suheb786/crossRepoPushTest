@@ -35,7 +35,7 @@ class NumberFormattingWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: AppColor.veryDarkGray1),
+                    color: AppColor.veryDarkGray1.withOpacity(0.5)),
               ),
               SizedBox(height: 4.h),
               Text(
