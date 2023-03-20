@@ -75,27 +75,33 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 color: Theme.of(context).primaryColorDark.withOpacity(0.3),
               ),
             ),
-            InkWell(
-              onTap: () {
-                unlinkAccount?.call();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: Text(
-                  S.of(context).unlinkAccount,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 14.t,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).errorColor),
+            Visibility(
+              visible: false,
+              child: InkWell(
+                onTap: () {
+                  unlinkAccount?.call();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: Text(
+                    S.of(context).unlinkAccount,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 14.t,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).errorColor),
+                  ),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.h),
-              child: Container(
-                height: 1.h,
-                color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+            Visibility(
+              visible: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: Container(
+                  height: 1.h,
+                  color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                ),
               ),
             ),
             InkWell(

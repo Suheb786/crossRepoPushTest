@@ -108,7 +108,10 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                         .mobileNumberController
                                         .text,
                                 getToken: true,
-                                otpCode: model.otpController.text);
+                                otpCode: model.otpController.text,
+                                isSetDefault: ProviderScope.containerOf(context)
+                                    .read(linkBankAccountCliqIdViewModelProvider)
+                                    .isSetDefault);
                           }
                         }
                       },
@@ -227,16 +230,8 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                               .color!),
                                                     ))
                                                 : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min != null
-                                                      ? (currentTimeRemaining.min! < 10
-                                                      ? "0${currentTimeRemaining.min}"
-                                                      : currentTimeRemaining.min)
-                                                      : "00"}:${currentTimeRemaining.sec != null
-                                                      ? (currentTimeRemaining.sec! < 10
-                                                      ? "0${currentTimeRemaining.sec}"
-                                                      : currentTimeRemaining.sec)
-                                                      : "00"}'),
+                                                    S.of(context).resendIn(
+                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,

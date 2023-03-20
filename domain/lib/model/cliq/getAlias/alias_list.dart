@@ -7,7 +7,7 @@ class AliasList {
   final String? aliasName;
   final CliqAliasTypeEnum? aliasType;
   final CliqAliasIdStatusEnum? status;
-  final List<AccountList>? accounts;
+  final List<AccountList> accounts;
 
   AliasList({
     required this.aliasID,

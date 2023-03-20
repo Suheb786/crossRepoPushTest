@@ -5,7 +5,12 @@ import 'dart:io';
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:domain/constants/enum/cliq_alias_type_enum.dart';
 import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
+import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -82,73 +87,93 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
               initialData: Resource.none(),
               stream: model.getAliasStream,
               dataBuilder: (context, getAliasSnapshot) {
-                return AppStreamBuilder<Resource<bool>>(
+                return AppStreamBuilder<Resource<ChangeDefaultAccountOtp>>(
                     stream: model.changeDefaultCliqIdOtpStream,
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                            arguments: OtpForCliqIdListPageArguments(
-                                cliqListActionTypeEnum: CliqListActionTypeEnum.DEFAULT,
-                                aliasId: model.aliasId,
-                                accountId: model.accountId,
-                                aliasName: model.aliasName));
+                        if (data.data != null) {
+                          Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                              arguments: OtpForCliqIdListPageArguments(
+                                  cliqListActionTypeEnum: CliqListActionTypeEnum.DEFAULT,
+                                  aliasId: model.aliasId,
+                                  accountId: model.accountId,
+                                  aliasName: model.aliasName,
+                                  mobileCode: data.data?.mobileCode ?? '',
+                                  mobileNumber: data.data?.mobileNumber ?? ''));
+                        }
                       }
                     },
                     dataBuilder: (context, snapshot) {
-                      return AppStreamBuilder<Resource<bool>>(
+                      return AppStreamBuilder<Resource<ReActivateCliqIdOtp>>(
                         initialData: Resource.none(),
                         stream: model.reactivateCliqIDOtpStream,
                         onData: (value) {
                           if (value.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                                arguments: OtpForCliqIdListPageArguments(
-                                    cliqListActionTypeEnum: CliqListActionTypeEnum.REACTIVATED,
-                                    aliasId: model.aliasId,
-                                    accountId: model.accountId,
-                                    aliasName: model.aliasName));
+                            if (value.data != null) {
+                              Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                  arguments: OtpForCliqIdListPageArguments(
+                                      cliqListActionTypeEnum: CliqListActionTypeEnum.REACTIVATED,
+                                      aliasId: model.aliasId,
+                                      accountId: model.accountId,
+                                      aliasName: model.aliasName,
+                                      mobileCode: value.data?.mobileCode ?? '',
+                                      mobileNumber: value.data?.mobileNumber ?? ''));
+                            }
                           }
                         },
                         dataBuilder: (context, reactivateSnapshot) {
-                          return AppStreamBuilder<Resource<bool>>(
+                          return AppStreamBuilder<Resource<SuspendCliqIdOtp>>(
                             initialData: Resource.none(),
                             stream: model.suspandCliqIdOtpStream,
                             onData: (value) {
                               if (value.status == Status.SUCCESS) {
-                                Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                                    arguments: OtpForCliqIdListPageArguments(
-                                        cliqListActionTypeEnum: CliqListActionTypeEnum.SUSPENDEDCLIQ,
-                                        aliasId: model.aliasId,
-                                        accountId: model.accountId,
-                                        aliasName: model.aliasName));
+                                if (value.data != null) {
+                                  Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                      arguments: OtpForCliqIdListPageArguments(
+                                          cliqListActionTypeEnum: CliqListActionTypeEnum.SUSPENDEDCLIQ,
+                                          aliasId: model.aliasId,
+                                          accountId: model.accountId,
+                                          aliasName: model.aliasName,
+                                          mobileCode: value.data?.mobileCode ?? '',
+                                          mobileNumber: value.data?.mobileNumber ?? ''));
+                                }
                               }
                             },
                             dataBuilder: (context, suspnadSnapshot) {
-                              return AppStreamBuilder<Resource<bool>>(
+                              return AppStreamBuilder<Resource<DeleteCliqIdOtp>>(
                                 initialData: Resource.none(),
                                 stream: model.deleteCliqIdOtpStream,
                                 onData: (value) {
                                   if (value.status == Status.SUCCESS) {
-                                    Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                                        arguments: OtpForCliqIdListPageArguments(
-                                            cliqListActionTypeEnum: CliqListActionTypeEnum.DELETECLIQ,
-                                            aliasId: model.aliasId,
-                                            accountId: model.accountId,
-                                            aliasName: model.aliasName));
+                                    if (value.data != null) {
+                                      Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                          arguments: OtpForCliqIdListPageArguments(
+                                              cliqListActionTypeEnum: CliqListActionTypeEnum.DELETECLIQ,
+                                              aliasId: model.aliasId,
+                                              accountId: model.accountId,
+                                              aliasName: model.aliasName,
+                                              mobileNumber: value.data?.mobileNumber ?? '',
+                                              mobileCode: value.data?.mobileCode ?? ''));
+                                    }
                                   }
                                 },
                                 dataBuilder: (context, deleteSnapshot) {
-                                  return AppStreamBuilder<Resource<bool>>(
+                                  return AppStreamBuilder<Resource<UnlinkCliqIdOtp>>(
                                     initialData: Resource.none(),
                                     stream: model.unlinkCliqIdOtpStream,
                                     onData: (unlinkData) {
                                       if (unlinkData.status == Status.SUCCESS) {
-                                        Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                                            arguments: OtpForCliqIdListPageArguments(
-                                                cliqListActionTypeEnum: CliqListActionTypeEnum.UNLINKCLIQ,
-                                                aliasId: model.aliasId,
-                                                accountId: model.accountId,
-                                                aliasName: model.aliasName));
+                                        if (unlinkData.data != null) {
+                                          Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                              arguments: OtpForCliqIdListPageArguments(
+                                                  cliqListActionTypeEnum: CliqListActionTypeEnum.UNLINKCLIQ,
+                                                  aliasId: model.aliasId,
+                                                  accountId: model.accountId,
+                                                  aliasName: model.aliasName,
+                                                  mobileCode: unlinkData.data?.mobileCode ?? '',
+                                                  mobileNumber: unlinkData.data?.mobileNumber ?? ''));
+                                        }
                                       }
                                     },
                                     dataBuilder: (context, data) {
@@ -176,12 +201,13 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             context),
                                                         // "${getAliasSnapshot.data?.aliases?[index].status}",
                                                         onTapAccount: (accountData) {
-                                                          ///for active cliq bottom sheet
+                                                          ///for checking active aliases and default account status
                                                           if (getAliasSnapshot.data?.aliases?[index].status ==
-                                                              CliqAliasIdStatusEnum.ACTIVE) {
+                                                                  CliqAliasIdStatusEnum.ACTIVE &&
+                                                              !(accountData.isDefault ?? false)) {
                                                             ManageCliqBottomSheetSelectionWidget.show(context,
                                                                 showSetAsDefault: !(accountData.isDefault ??
-                                                                    true), setAsDefault: () {
+                                                                    false), setAsDefault: () {
                                                               Navigator.pop(context);
                                                               CliqInformationDialog.show(context,
                                                                   image: AssetUtils.walletIcon,
@@ -242,7 +268,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                             }, onCancelled: () {
                                                               Navigator.pop(context);
                                                             }, title: S.of(context).pleaseSelectYourAction);
-                                                          }
+                                                          } else {}
                                                         },
                                                         onTapAlias: () {
                                                           UpdateCliqInfoBottomSheetSelectionWidget.show(

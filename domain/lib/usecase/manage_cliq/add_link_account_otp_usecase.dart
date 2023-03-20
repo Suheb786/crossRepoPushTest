@@ -1,17 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddLInkAccountOtpUseCase extends BaseUseCase<NetworkError, AddLInkAccountOtpUseCaseParams, bool> {
+class AddLInkAccountOtpUseCase
+    extends BaseUseCase<NetworkError, AddLInkAccountOtpUseCaseParams, AddLinkAccountOtp> {
   final CliqRepository _cliqRepository;
 
   AddLInkAccountOtpUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required AddLInkAccountOtpUseCaseParams params}) {
+  Future<Either<NetworkError, AddLinkAccountOtp>> execute({required AddLInkAccountOtpUseCaseParams params}) {
     return _cliqRepository.addLinkAccountOtp(
         aliasId: params.aliasId,
         linkType: params.linkType,

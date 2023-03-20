@@ -1,9 +1,15 @@
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/delete_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
@@ -20,13 +26,13 @@ abstract class CliqDataSource {
       required String CustId,
       required bool GetToken});
 
-  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID({
-    required String accountNumber,
-    required bool isAlias,
-    required String aliasValue,
-    required String otpCode,
-    required bool getToken,
-  });
+  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
+      {required String accountNumber,
+      required bool isAlias,
+      required String aliasValue,
+      required String otpCode,
+      required bool getToken,
+      required bool isSetDefault});
 
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp({
     required String accountNumber,
@@ -45,7 +51,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp({
+  Future<HttpResponse<AddLinkAccountOtpResponseEntity>> addLinkAccountOtp({
     required String aliasId,
     required String linkType,
     required String accountNumber,
@@ -57,7 +63,7 @@ abstract class CliqDataSource {
   Future<HttpResponse<ResponseEntity>> confirmChangeDefaultAccount(
       {required String acc, required String aliasId, required String otpCode});
 
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({
+  Future<HttpResponse<ChangeDefaultAccountOtpResponseEntity>> changeDefaultAccountOtp({
     required String acc,
     required String aliasId,
   });
@@ -69,7 +75,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliqOtp({
+  Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>> unLinkAccountFromCliqOtp({
     required String aliasId,
     required String accountId,
     required bool getToken,
@@ -119,7 +125,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> suspendCliqIdOtp({
+  Future<HttpResponse<SuspendCliqIdOtpResponseEntity>> suspendCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });
@@ -130,7 +136,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> reActivateCliqIdOtp({
+  Future<HttpResponse<ReActivateCliqIdOtpResponseEntity>> reActivateCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });
@@ -141,7 +147,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> deleteCliqIdOtp({
+  Future<HttpResponse<DeleteCliqIdOtpResponseEntity>> deleteCliqIdOtp({
     required String aliasId,
     required bool getToken,
   });

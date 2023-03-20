@@ -18,7 +18,8 @@ class ConfirmCreateCliqIdUseCase
         isAlias: params.isAlias,
         aliasValue: params.aliasValue,
         otpCode: params.otpCode,
-        getToken: params.getToken);
+        getToken: params.getToken,
+        isSetDefault: params.isSetDefault);
   }
 }
 
@@ -28,13 +29,15 @@ class ConfirmCreateCliqIdParams extends Params {
   final String aliasValue;
   final String otpCode;
   final bool getToken;
+  final bool isSetDefault;
 
   ConfirmCreateCliqIdParams(
       {required this.accountNumber,
       required this.isAlias,
       required this.aliasValue,
       required this.otpCode,
-      required this.getToken});
+      required this.getToken,
+      required this.isSetDefault});
 
   @override
   Either<AppError, bool> verify() {

@@ -78,7 +78,9 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                         data: data.data!,
                                         aliasId: model.arguments.aliasID,
                                         aliasValue: model.mobileNoController.text,
-                                        isAlias: false));
+                                        isAlias: false,
+                                        mobileCode: data.data?.mobileCode ?? '',
+                                        mobileNumber: data.data?.mobileNumber ?? ''));
                               }
                             }
                           },
@@ -88,13 +90,6 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                                 stream: model.editMobileNoValidationResponseStream,
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    /* Navigator.pushNamed(context, RoutePaths.OtpForEditAliasAndMobileNoPage,
-                                        arguments: OtpForEditAliasAndMobileNoPageArguments(
-                                            data: EditCliqOtp('7738927791'),
-                                            aliasId: '76777',
-                                            aliasValue: model.aliasController.text,
-                                            isAlias: true));*/
-
                                     ///api call
                                     model.makeOtpRequest(
                                         aliasId: model.arguments.aliasID,

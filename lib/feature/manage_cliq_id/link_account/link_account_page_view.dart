@@ -24,6 +24,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'link_account_page_view_model.dart';
+import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
 
 class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
   LinkAccountPageView(ProviderBase model) : super(model);
@@ -68,19 +69,24 @@ class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
                       duration: Duration(milliseconds: 100),
                       shakeAngle: Rotation.deg(z: 1),
                       curve: Curves.easeInOutSine,
-                      child: AppStreamBuilder<Resource<bool>>(
+                      child: AppStreamBuilder<Resource<AddLinkAccountOtp>>(
                           stream: model.linkCliqIdOtpStream,
                           initialData: Resource.none(),
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
-                              Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
-                                  arguments: OtpForCliqIdListPageArguments(
+                              if (data.data != null) {
+                                Navigator.pushNamed(context, RoutePaths.OtpForCliqIdListPage,
+                                    arguments: OtpForCliqIdListPageArguments(
                                       cliqListActionTypeEnum: CliqListActionTypeEnum.LINKACCOUNT,
                                       aliasId: model.argument.aliasId,
                                       linkType: model.argument.linkType,
                                       accountId: model.accountNumber,
                                       isAlias: model.argument.isAlias,
-                                      aliasName: model.argument.aliasValue));
+                                      aliasName: model.argument.aliasValue,
+                                      mobileNumber: data.data?.mobileNumber ?? '',
+                                      mobileCode: data.data?.mobileCode ?? '',
+                                    ));
+                              }
                             }
                           },
                           dataBuilder: (context, snapshot) {

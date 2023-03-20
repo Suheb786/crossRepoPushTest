@@ -94,13 +94,15 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
       required bool isAlias,
       required String aliasValue,
       required String otpCode,
-      required bool getToken}) {
+      required bool getToken,
+      required bool isSetDefault}) {
     _createCliqIdRequest.safeAdd(ConfirmCreateCliqIdParams(
         accountNumber: accountNumber,
         isAlias: isAlias,
         aliasValue: aliasValue,
         otpCode: otpCode,
-        getToken: getToken));
+        getToken: getToken,
+        isSetDefault: isSetDefault));
   }
 
   /// api call

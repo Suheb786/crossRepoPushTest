@@ -2,8 +2,10 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
@@ -12,6 +14,7 @@ import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cl
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/delete_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
@@ -23,6 +26,7 @@ import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart
 import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
@@ -31,7 +35,9 @@ import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.d
 import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_request_entity.dart';
+import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
@@ -98,7 +104,8 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required bool isAlias,
       required String aliasValue,
       required String otpCode,
-      required bool getToken}) async {
+      required bool getToken,
+      required bool isSetDefault}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmCreateCLidID(ConfirmCreateCliqIdRequestEntity(
         accountNumber: accountNumber,
@@ -106,6 +113,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         otpCode: otpCode,
         isAlias: isAlias,
         getToken: getToken,
+        isSetDefault: isSetDefault,
         baseClass: baseData.toJson()));
   }
 
@@ -146,7 +154,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addLinkAccountOtp(
+  Future<HttpResponse<AddLinkAccountOtpResponseEntity>> addLinkAccountOtp(
       {required String aliasId,
       required String linkType,
       required String accountNumber,
@@ -200,7 +208,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteCliqIdOtp(
+  Future<HttpResponse<DeleteCliqIdOtpResponseEntity>> deleteCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.deleteCliqIdOtp(
@@ -216,7 +224,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> reActivateCliqIdOtp(
+  Future<HttpResponse<ReActivateCliqIdOtpResponseEntity>> reActivateCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.reActivateCliqIdOtp(
@@ -232,7 +240,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> suspendCliqIdOtp(
+  Future<HttpResponse<SuspendCliqIdOtpResponseEntity>> suspendCliqIdOtp(
       {required String aliasId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.suspendCliqIdOtp(
@@ -255,7 +263,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> unLinkAccountFromCliqOtp(
+  Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>> unLinkAccountFromCliqOtp(
       {required String aliasId, required String accountId, required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.unLinkAccountFromCliqOtp(UnLinkAccountFromCliqOtpRequestEntity(
@@ -524,7 +532,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeDefaultAccountOtp({
+  Future<HttpResponse<ChangeDefaultAccountOtpResponseEntity>> changeDefaultAccountOtp({
     required String acc,
     required String aliasId,
   }) async {

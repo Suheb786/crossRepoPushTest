@@ -26,9 +26,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16645,6 +16643,26 @@ class S {
     return Intl.message(
       'Please Select Reason To Reject',
       name: 'pleaseSelectReasonToReject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set as CliQ default account?`
+  String get setAsCliqDefaultAccount {
+    return Intl.message(
+      'Set as CliQ default account?',
+      name: 'setAsCliqDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias should be minimum 3 characters`
+  String get aliasShouldBeThreeChar {
+    return Intl.message(
+      'Alias should be minimum 3 characters',
+      name: 'aliasShouldBeThreeChar',
       desc: '',
       args: [],
     );

@@ -1,18 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class UnlinkAccountFromCliqOtpUseCase
-    extends BaseUseCase<NetworkError, UnlinkAccountFromCliqOtpParams, bool> {
+    extends BaseUseCase<NetworkError, UnlinkAccountFromCliqOtpParams, UnlinkCliqIdOtp> {
   final CliqRepository _cliqRepository;
 
   UnlinkAccountFromCliqOtpUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required UnlinkAccountFromCliqOtpParams params}) {
+  Future<Either<NetworkError, UnlinkCliqIdOtp>> execute({required UnlinkAccountFromCliqOtpParams params}) {
     return _cliqRepository.unLinkAccountFromCliqOtp(
         aliasId: params.aliasId, accountId: params.accountId, getToken: params.getToken);
   }

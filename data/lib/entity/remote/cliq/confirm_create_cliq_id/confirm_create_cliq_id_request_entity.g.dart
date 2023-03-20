@@ -13,6 +13,7 @@ ConfirmCreateCliqIdRequestEntity _$ConfirmCreateCliqIdRequestEntityFromJson(
     isAlias: json['isAlias'] as bool?,
     aliasValue: json['aliasValue'] as String?,
     otpCode: json['otpCode'] as String?,
+    isSetDefault: json['IsSetDefault'] as bool?,
     getToken: json['getToken'] as bool?,
     baseClass: json['baseClass'] as Map<String, dynamic>?,
   );
@@ -25,6 +26,7 @@ Map<String, dynamic> _$ConfirmCreateCliqIdRequestEntityToJson(
       'isAlias': instance.isAlias,
       'aliasValue': instance.aliasValue,
       'otpCode': instance.otpCode,
+      'IsSetDefault': instance.isSetDefault,
       'getToken': instance.getToken,
       'baseClass': instance.baseClass,
     };

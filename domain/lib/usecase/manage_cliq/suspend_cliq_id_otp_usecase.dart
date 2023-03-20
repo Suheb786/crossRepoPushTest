@@ -1,17 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SuspendCliqIdOtpUseCase extends BaseUseCase<NetworkError, SuspendCliqIdOtpUseCaseParams, bool> {
+class SuspendCliqIdOtpUseCase
+    extends BaseUseCase<NetworkError, SuspendCliqIdOtpUseCaseParams, SuspendCliqIdOtp> {
   final CliqRepository _cliqRepository;
 
   SuspendCliqIdOtpUseCase(this._cliqRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required SuspendCliqIdOtpUseCaseParams params}) {
+  Future<Either<NetworkError, SuspendCliqIdOtp>> execute({required SuspendCliqIdOtpUseCaseParams params}) {
     return _cliqRepository.suspendCliqIdOtp(aliasId: params.aliasId, getToken: params.getToken);
   }
 }

@@ -75,6 +75,8 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                     arguments: OtpForEditAliasAndMobileNoPageArguments(
                                         data: data.data!,
                                         aliasId: model.arguments.aliasID,
+                                        mobileNumber: data.data?.mobileNumber ?? '',
+                                        mobileCode: data.data?.mobileCode ?? '',
                                         aliasValue: model.aliasController.text,
                                         isAlias: true));
                               }
@@ -86,13 +88,6 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                                 stream: model.editAliasValidationResponseStream,
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    /* Navigator.pushNamed(context, RoutePaths.OtpForEditAliasAndMobileNoPage,
-                                        arguments: OtpForEditAliasAndMobileNoPageArguments(
-                                            data: EditCliqOtp('7738927791'),
-                                            aliasId: '76777',
-                                            aliasValue: model.aliasController.text,
-                                            isAlias: true));*/
-
                                     ///api call
                                     model.makeOtpRequest(
                                         aliasId: model.arguments.aliasID,
