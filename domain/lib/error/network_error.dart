@@ -772,6 +772,13 @@ class NetworkError extends BaseError {
           case "err-355":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_SENDING_MONEY_TO_CLIQ_IBAN);
+
+          case "err-356":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_GENERATING_QR_CODE);
+          case "err-357":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_SENDING_QR_PAYMENT);
+          case "err-361":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_WHILE_ADDING_CUSTOMER);
           case "err-366":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_BY_CUSTOMER_ID);
@@ -797,7 +804,8 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_MOBILE_NUMBER);
           case "err-376":
             return AppError(cause: cause, error: error, type: ErrorType.SERVICE_NOT_AVAILABLE);
-
+          case "err-378":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_CUSTOMER_ALREADY_REGISTERED);
           case "err-379":
             return AppError(cause: cause, error: error, type: ErrorType.REJECTED_DUE_TO_EXPIRY_DATE);
 
@@ -813,6 +821,13 @@ class NetworkError extends BaseError {
 
           case "err-384":
             return AppError(cause: cause, error: error, type: ErrorType.DORMANT_ACCOUNT);
+
+          case "err-385":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NICKNAME_LENGTH_SHOULD_NOT_BE_GREATER_THAN_50);
+
+          case "err-386":
+            return AppError(cause: cause, error: error, type: ErrorType.ALIAS_ALREADY_EXIST);
 
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -1266,8 +1281,7 @@ class NetworkError extends BaseError {
           case "err-372":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_IBAN);
 
-          case "err-373":
-            return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS);
+         
 
           case "err-374":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS_VALUE);

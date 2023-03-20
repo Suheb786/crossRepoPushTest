@@ -151,6 +151,11 @@ class RoutePaths {
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
   static const String LinkAccountPage = "/linkAccountPage";
   static const String OtpForCliqIdListPage = "/otpForCliqIdListPage";
+
+  static const String ReturnPaymentSliderPage = "/returnPaymentReasonSelectionPage";
+
+  static const String temp = "/temp";
   static const String AcceptRequestMoneyOtp = "/acceptRequestMoneyOtpPage";
   static const String RejectRequestPayment = "/rejectRequestPaymentPage";
+static const String CreditConfirmation = "/creditConfirmationPaymentActivityPage";
 }

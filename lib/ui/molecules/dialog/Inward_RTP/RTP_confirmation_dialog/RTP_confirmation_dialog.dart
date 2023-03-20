@@ -7,19 +7,25 @@ import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/
 class RTPConfirmationDialog {
   RTPConfirmationDialog._();
 
-  static show(
-    BuildContext mContext, {
-    Function()? onDismiss,
-    Function()? onAccepted,
-    Function()? onRejected,
-    required String amount,
-    required String cdtrAcct,
-    required String cdtrDpText,
-    required String cdtrName,
-  }) {
+  static show(BuildContext mContext,
+      {Function()? onDismiss,
+      Function()? onAccepted,
+      Function()? onRejected,
+      required String amount,
+      required String cdtrAcct,
+      required String cdtrDpText,
+      required String cdtrName,
+      required Widget actionWidget,
+      required Widget description,
+      required Widget listOfDetails,
+      required bool showDescription}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => RTPConfirmationDialogView(
+              actionWidget: actionWidget,
+              description: description,
+              listOfDetails: listOfDetails,
+              showDescription: showDescription,
               amount: amount,
               cdtrAcct: cdtrAcct,
               cdtrDpText: cdtrDpText,

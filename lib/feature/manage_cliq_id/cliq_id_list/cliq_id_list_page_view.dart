@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:domain/constants/enum/cliq_alias_status_enum.dart';

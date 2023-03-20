@@ -9,6 +9,9 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mo
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
 import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
@@ -152,6 +155,7 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 class AppRouter {
@@ -889,6 +893,13 @@ class AppRouter {
             builder: (context) => OtpForCliqIdListPage(settings.arguments as OtpForCliqIdListPageArguments),
             settings: RouteSettings(name: RoutePaths.OtpForCliqIdListPage));
 
+      case RoutePaths.ReturnPaymentSliderPage:
+        return CupertinoPageRoute(
+            builder: (context) => ReturnPaymentTransactionSliderPage(),
+            settings: RouteSettings(name: RoutePaths.ReturnPaymentSliderPage));
+
+      case RoutePaths.temp:
+        return CupertinoPageRoute(builder: (context) => TempReturnButton());
       case RoutePaths.AcceptRequestMoneyOtp:
         return CupertinoPageRoute(
             builder: (context) => AcceptRequestMoneyOtpPage(),
@@ -898,6 +909,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RejectRequestPaymentPage(),
             settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
+
+      case RoutePaths.RejectRequestPayment:
+        return CupertinoPageRoute(
+            builder: (context) => RejectRequestPaymentPage(),
+            settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
+
+      case RoutePaths.CreditConfirmation:
+        return CupertinoPageRoute(
+            builder: (context) => CreditConfirmationPaymentActivityPage(),
+            settings: RouteSettings(name: RoutePaths.CreditConfirmation));
 
       default:
         return CupertinoPageRoute(

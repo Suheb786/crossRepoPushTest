@@ -1679,11 +1679,21 @@
   "accountDormantDesc": "You cannot apply for a credit card; your account is dormant, please call us to activate it.",
   "pleaseEnterAmount": "Please enter amount",
   "selectAtLeastOneBill": "Select at least one bill",
+  "sent": " sent",
+  "toYou": " to you",
+  "returnPayment": "Return Payment",
+  "selectTheReasonToReturn": "Select the reason\nto return",
+  "creditConfirmation": "Credit Confirmation",
   "nickNameValueExceeds": "Nickname cannot be more than 50 characters long. ",
-  "returnPayment": "return payment",
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
   "selectReasonToReject": "Select the reason\nto reject",
   "setAsCliqDefaultAccount": "Set as CliQ default account?",
   "aliasShouldBeThreeChar": "Alias should be minimum 3 characters"
+  "selectReasonToReject": "Select the reason\nto reject",
+  "errorWhileGeneratingQrCode": "Error while generating QR code",
+  "errorWhileSendingQRPayment": "Error while sending QR payment",
+  "cliqCustomerAlreadyRegistered": "Cliq Customer Already Registered",
+  "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
+  "aliasAlreadyExist": "Alias already exist"
 }
