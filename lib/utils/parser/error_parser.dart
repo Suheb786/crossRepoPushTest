@@ -1269,6 +1269,9 @@ class ErrorParser {
       case ErrorType.REJECT_REASON_TYPE:
         return localisedHelper.pleaseSelectReasonToReject;
 
+      case ErrorType.INVALID_ALIAS_LENGTH:
+        return localisedHelper.aliasShouldBeThreeChar;
+
       default:
         return "";
     }

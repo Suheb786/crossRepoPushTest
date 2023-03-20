@@ -26,13 +26,13 @@ abstract class CliqDataSource {
       required String CustId,
       required bool GetToken});
 
-  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID({
-    required String accountNumber,
-    required bool isAlias,
-    required String aliasValue,
-    required String otpCode,
-    required bool getToken,
-  });
+  Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
+      {required String accountNumber,
+      required bool isAlias,
+      required String aliasValue,
+      required String otpCode,
+      required bool getToken,
+      required bool isSetDefault});
 
   Future<HttpResponse<CreateCliqIdOtpResponseEntity>> createCliqIdOtp({
     required String accountNumber,

@@ -1,6 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -37,241 +38,276 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
-                    initialData: Resource.none(),
-                    stream: model.cliqIdTypeSelectionValidationStream,
-                    onData: (data) {
-                      if (data.status == Status.SUCCESS) {
-                        if (data.data!) {
-                          ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
+                child: AppStreamBuilder<Resource<List<GetAccountByCustomerId>>>(
+                    stream: model.getAccountByCustomerIdStream,
+                    onData: (getAccountByCustomerIdResponse) {
+                      if (getAccountByCustomerIdResponse.status == Status.SUCCESS) {
+                        if (getAccountByCustomerIdResponse.data != null) {
+                          if (getAccountByCustomerIdResponse.data!.isNotEmpty) {
+                            ProviderScope.containerOf(context)
+                                .read(linkBankAccountCliqIdViewModelProvider)
+                                .updateLinkAccount(getAccountByCustomerIdResponse.data!);
+
+                            ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
+                          }
                         }
+
+                        // LinkAccountDialog.show(context,
+                        //     label: S.of(context).addLinkAccount,
+                        //     onSelected: (linkBankAccountItemSelected) {
+                        //       Navigator.pop(context);
+                        //       model.updateLinkAccount(
+                        //           linkBankAccountItemSelected);
+                        //     }, onDismissed: () {
+                        //       Navigator.pop(context);
+                        //     },
+                        //     accountsList:
+                        //     getAccountByCustomerIdResponse.data);
                       }
                     },
-                    dataBuilder: (context, cliqIdTypeSelectionResponse) {
-                      return GestureDetector(
-                        onHorizontalDragEnd: (details) {
-                          if (ProviderScope.containerOf(context)
-                                  .read(createCliqIdViewModelProvider)
-                                  .appSwiperController
-                                  .page ==
-                              0.0) {
-                            FocusScope.of(context).unfocus();
-                            if (StringUtils.isDirectionRTL(context)) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                model.validateUserInput();
-                              }
-                            } else {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.validateUserInput();
+                    initialData: Resource.none(),
+                    dataBuilder: (context, getAccountByCustomerIdResponse) {
+                      return AppStreamBuilder<Resource<bool>>(
+                          initialData: Resource.none(),
+                          stream: model.cliqIdTypeSelectionValidationStream,
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              if (data.data!) {
+                                model.getAccountByCustomerId();
                               }
                             }
-                          }
-                        },
-                        child: Card(
-                          margin: EdgeInsets.zero,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
-                                    ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom - 48),
-                            child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        physics: ClampingScrollPhysics(),
-                                        child: Column(
-                                          children: [
-                                            AppTextField(
-                                              labelText: S.of(context).cliqIdType.toUpperCase(),
-                                              hintText: S.of(context).pleaseSelect,
-                                              controller: model.cliqIdTypeController,
-                                              key: model.clickIdTypeKey,
-                                              readOnly: true,
-                                              onPressed: () {
-                                                RelationshipWithCardHolderDialog.show(context,
-                                                    title: S.of(context).cliqIdType,
-                                                    relationSHipWithCardHolder:
-                                                        StringUtils.isDirectionRTL(context)
-                                                            ? model.cliqIDTypeListAr
-                                                            : model.cliqIDTypeListEn, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model.cliqIdTypeController.text = value;
-                                                  model.updateCliqIdType(value.fromCliqIdTypeValue());
-                                                  model.validate();
-                                                });
-                                              },
-                                              suffixIcon: (isValid, value) {
-                                                return Container(
-                                                    height: 16.h,
-                                                    width: 16.w,
-                                                    padding: EdgeInsets.symmetric(horizontal: 7.w),
-                                                    child: AppSvg.asset(AssetUtils.downArrow,
-                                                        color: Theme.of(context).primaryColorDark));
-                                              },
-                                            ),
-                                            AppStreamBuilder(
-                                                stream: model.cliqIdTypeStream,
-                                                initialData: CliqIdTypeEnum.NONE,
-                                                dataBuilder: (context, cliqIdType) {
-                                                  switch (cliqIdType) {
-                                                    case CliqIdTypeEnum.ALIAS:
-                                                      return Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          SizedBox(
-                                                            height: 16.h,
-                                                          ),
-                                                          AppTextField(
-                                                              labelText: S.of(context).alias.toUpperCase(),
-                                                              hintText: S.of(context).pleaseEnter,
-                                                              inputType: TextInputType.text,
-                                                              inputFormatters: [
-                                                                LengthLimitingTextInputFormatter(10),
-                                                                FilteringTextInputFormatter.allow(
-                                                                    RegExp(r"[a-zA-Z0-9]")),
-                                                              ],
-                                                              inputAction: TextInputAction.done,
-                                                              controller: model.aliasController,
-                                                              key: model.aliasKey,
-                                                              onChanged: (value) {
-                                                                ProviderScope.containerOf(context)
-                                                                    .read(createCliqIdViewModelProvider)
-                                                                    .changeHeader(
-                                                                        S.current.letsGiveANameToYourCliqId);
-                                                                /*  model.aliasController.value =
-                                                                    TextEditingValue(
-                                                                        text: value.toUpperCase(),
-                                                                        selection:
-                                                                            model.aliasController.selection);*/
-                                                                model.validate();
-                                                              }),
-                                                          SizedBox(
-                                                            height: 16.h,
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              // Text(
-                                                              //   S.of(context).aliasNickNameHint,
-                                                              //   style: TextStyle(
-                                                              //       fontWeight: FontWeight.w600,
-                                                              //       fontSize: 12.t,
-                                                              //       fontFamily: StringUtils.appFont),
-                                                              // ),
-                                                              Text(
-                                                                S.of(context).aliasHint,
-                                                                style: TextStyle(
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: 12.t,
-                                                                    color: AppColor.dark_gray_1,
-                                                                    fontFamily: StringUtils.appFont),
-                                                              )
-                                                            ],
-                                                          )
-                                                        ],
-                                                      );
-                                                    case CliqIdTypeEnum.MOBILE_NO:
-                                                      return Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          SizedBox(
-                                                            height: 16.h,
-                                                          ),
-                                                          AppTextField(
-                                                            labelText:
-                                                                S.of(context).mobileNumber.toUpperCase(),
-                                                            hintText: S.of(context).mobileNoAliasHint,
-                                                            inputType: TextInputType.phone,
-                                                            inputAction: TextInputAction.done,
-                                                            inputFormatters: [
-                                                              LengthLimitingTextInputFormatter(14),
-                                                              FilteringTextInputFormatter.allow(
-                                                                  RegExp(r'[0-9]')),
-                                                            ],
-                                                            controller: model.mobileNumberController,
-                                                            key: model.mobileNumberKey,
-                                                            onChanged: (value) {
-                                                              model.validate();
-                                                            },
-                                                          ),
-                                                          SizedBox(
-                                                            height: 16.h,
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              // Text(
-                                                              //   S.of(context).aliasMobileHint,
-                                                              //   style: TextStyle(
-                                                              //       fontWeight: FontWeight.w600,
-                                                              //       fontSize: 12.t,
-                                                              //       fontFamily: StringUtils.appFont),
-                                                              // ),
-                                                              Text(
-                                                                S.of(context).aliasMobileNoHint,
-                                                                style: TextStyle(
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: 12.t,
-                                                                    color: AppColor.dark_gray_1,
-                                                                    fontFamily: StringUtils.appFont),
-                                                              )
-                                                            ],
-                                                          )
-                                                        ],
-                                                      );
-                                                    default:
-                                                      return Container();
-                                                  }
-                                                }),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 16.0.h),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                    buttonText: S.of(context).swipeToProceed,
+                          },
+                          dataBuilder: (context, cliqIdTypeSelectionResponse) {
+                            return GestureDetector(
+                              onHorizontalDragEnd: (details) {
+                                if (ProviderScope.containerOf(context)
+                                        .read(createCliqIdViewModelProvider)
+                                        .appSwiperController
+                                        .page ==
+                                    0.0) {
+                                  FocusScope.of(context).unfocus();
+                                  if (StringUtils.isDirectionRTL(context)) {
+                                    if (!details.primaryVelocity!.isNegative) {
+                                      model.validateUserInput();
+                                    }
+                                  } else {
+                                    if (details.primaryVelocity!.isNegative) {
+                                      model.validateUserInput();
+                                    }
+                                  }
+                                }
+                              },
+                              child: Card(
+                                margin: EdgeInsets.zero,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                          ? 0
+                                          : MediaQuery.of(context).viewInsets.bottom - 48),
+                                  child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: SingleChildScrollView(
+                                              physics: ClampingScrollPhysics(),
+                                              child: Column(
+                                                children: [
+                                                  AppTextField(
+                                                    labelText: S.of(context).cliqIdType.toUpperCase(),
+                                                    hintText: S.of(context).pleaseSelect,
+                                                    controller: model.cliqIdTypeController,
+                                                    key: model.clickIdTypeKey,
+                                                    readOnly: true,
+                                                    onPressed: () {
+                                                      RelationshipWithCardHolderDialog.show(context,
+                                                          title: S.of(context).cliqIdType,
+                                                          relationSHipWithCardHolder:
+                                                              StringUtils.isDirectionRTL(context)
+                                                                  ? model.cliqIDTypeListAr
+                                                                  : model.cliqIDTypeListEn, onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model.cliqIdTypeController.text = value;
+                                                        model.updateCliqIdType(value.fromCliqIdTypeValue());
+                                                        model.validate();
+                                                      });
+                                                    },
+                                                    suffixIcon: (isValid, value) {
+                                                      return Container(
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          padding: EdgeInsets.symmetric(horizontal: 7.w),
+                                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                                              color: Theme.of(context).primaryColorDark));
+                                                    },
                                                   ),
-                                                );
-                                              }),
-                                        ),
-                                        Center(
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text(
-                                              S.of(context).backToManageCliq,
-                                              style: TextStyle(
-                                                color: AppColor.brightBlue,
-                                                fontSize: 14.t,
-                                                letterSpacing: 1.0,
-                                                fontFamily: StringUtils.appFont,
-                                                fontWeight: FontWeight.w600,
+                                                  AppStreamBuilder(
+                                                      stream: model.cliqIdTypeStream,
+                                                      initialData: CliqIdTypeEnum.NONE,
+                                                      dataBuilder: (context, cliqIdType) {
+                                                        switch (cliqIdType) {
+                                                          case CliqIdTypeEnum.ALIAS:
+                                                            return Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: 16.h,
+                                                                ),
+                                                                AppTextField(
+                                                                    labelText:
+                                                                        S.of(context).alias.toUpperCase(),
+                                                                    hintText: S.of(context).pleaseEnter,
+                                                                    inputType: TextInputType.text,
+                                                                    inputFormatters: [
+                                                                      LengthLimitingTextInputFormatter(10),
+                                                                      FilteringTextInputFormatter.allow(
+                                                                          RegExp(r"[a-zA-Z0-9]")),
+                                                                    ],
+                                                                    inputAction: TextInputAction.done,
+                                                                    controller: model.aliasController,
+                                                                    key: model.aliasKey,
+                                                                    onChanged: (value) {
+                                                                      ProviderScope.containerOf(context)
+                                                                          .read(createCliqIdViewModelProvider)
+                                                                          .changeHeader(S.current
+                                                                              .letsGiveANameToYourCliqId);
+                                                                      /*  model.aliasController.value =
+                                                                        TextEditingValue(
+                                                                            text: value.toUpperCase(),
+                                                                            selection:
+                                                                                model.aliasController.selection);*/
+                                                                      model.validate();
+                                                                    }),
+                                                                SizedBox(
+                                                                  height: 16.h,
+                                                                ),
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    // Text(
+                                                                    //   S.of(context).aliasNickNameHint,
+                                                                    //   style: TextStyle(
+                                                                    //       fontWeight: FontWeight.w600,
+                                                                    //       fontSize: 12.t,
+                                                                    //       fontFamily: StringUtils.appFont),
+                                                                    // ),
+                                                                    Text(
+                                                                      S.of(context).aliasHint,
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 12.t,
+                                                                          color: AppColor.dark_gray_1,
+                                                                          fontFamily: StringUtils.appFont),
+                                                                    )
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            );
+                                                          case CliqIdTypeEnum.MOBILE_NO:
+                                                            return Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: 16.h,
+                                                                ),
+                                                                AppTextField(
+                                                                  labelText: S
+                                                                      .of(context)
+                                                                      .mobileNumber
+                                                                      .toUpperCase(),
+                                                                  hintText: S.of(context).mobileNoAliasHint,
+                                                                  inputType: TextInputType.phone,
+                                                                  inputAction: TextInputAction.done,
+                                                                  inputFormatters: [
+                                                                    LengthLimitingTextInputFormatter(14),
+                                                                    FilteringTextInputFormatter.allow(
+                                                                        RegExp(r'[0-9]')),
+                                                                  ],
+                                                                  controller: model.mobileNumberController,
+                                                                  key: model.mobileNumberKey,
+                                                                  onChanged: (value) {
+                                                                    model.validate();
+                                                                  },
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 16.h,
+                                                                ),
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    // Text(
+                                                                    //   S.of(context).aliasMobileHint,
+                                                                    //   style: TextStyle(
+                                                                    //       fontWeight: FontWeight.w600,
+                                                                    //       fontSize: 12.t,
+                                                                    //       fontFamily: StringUtils.appFont),
+                                                                    // ),
+                                                                    Text(
+                                                                      S.of(context).aliasMobileNoHint,
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: 12.t,
+                                                                          color: AppColor.dark_gray_1,
+                                                                          fontFamily: StringUtils.appFont),
+                                                                    )
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            );
+                                                          default:
+                                                            return Container();
+                                                        }
+                                                      }),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                      );
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                                                child: AppStreamBuilder<bool>(
+                                                    stream: model.showButtonStream,
+                                                    initialData: false,
+                                                    dataBuilder: (context, isValid) {
+                                                      return Visibility(
+                                                        visible: isValid!,
+                                                        child: AnimatedButton(
+                                                          buttonText: S.of(context).swipeToProceed,
+                                                        ),
+                                                      );
+                                                    }),
+                                              ),
+                                              Center(
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text(
+                                                    S.of(context).backToManageCliq,
+                                                    style: TextStyle(
+                                                      color: AppColor.brightBlue,
+                                                      fontSize: 14.t,
+                                                      letterSpacing: 1.0,
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                            );
+                          });
                     }));
           }),
     );

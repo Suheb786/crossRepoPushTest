@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m11(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
@@ -187,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasMobileHint": MessageLookupByLibrary.simpleMessage("Alias mobile hint: "),
         "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("Mobile number must start with 00962"),
         "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
+        "aliasShouldBeThreeChar":
+            MessageLookupByLibrary.simpleMessage("Alias should be minimum 3 characters"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric": MessageLookupByLibrary.simpleMessage("Allow biometric"),
@@ -1978,6 +1981,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceIsNotavaliable": MessageLookupByLibrary.simpleMessage("Service is not available"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout": MessageLookupByLibrary.simpleMessage("Session Timeout."),
+        "setAsCliqDefaultAccount": MessageLookupByLibrary.simpleMessage("Set as CliQ default account?"),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
         "setCardPintError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),

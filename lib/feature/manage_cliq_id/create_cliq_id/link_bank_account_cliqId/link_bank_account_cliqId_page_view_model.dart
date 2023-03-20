@@ -15,10 +15,11 @@ import 'package:rxdart/rxdart.dart';
 class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   final LinkBankAccountCliqIdValidationUseCase _linkBankAccountCliqIdValidationUseCase;
   final CreateCliqIdOtpUseCase _createCliqIdOtpUseCase;
-  final GetAccountByCustomerIDUseCase _getAccountByCustomerIDUseCase;
 
-  LinkBankAccountCliqIdPageViewModel(this._linkBankAccountCliqIdValidationUseCase,
-      this._createCliqIdOtpUseCase, this._getAccountByCustomerIDUseCase) {
+  LinkBankAccountCliqIdPageViewModel(
+    this._linkBankAccountCliqIdValidationUseCase,
+    this._createCliqIdOtpUseCase,
+  ) {
     ///validation request
     _linkBankAccountCliqIdValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _linkBankAccountCliqIdValidationUseCase.execute(params: value))
@@ -45,24 +46,12 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
         }
       });
     });
-
-    _getAccountByCustomerIdRequest.listen((value) {
-      RequestManager(value, createCall: () => _getAccountByCustomerIDUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _getAccountByCustomerIdResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
   }
 
-  void updateLinkAccount(GetAccountByCustomerId data) {
-    linkBankAccountCliqIdList.add(data);
-    _linkBankAccountCliqIdListRequest.safeAdd(linkBankAccountCliqIdList);
+  void updateLinkAccount(List<GetAccountByCustomerId> data) {
+    _linkBankAccountCliqIdListRequest.safeAdd(data);
+    linkBankAccountCliqIdList = data;
+    debugPrint('linkBankAccountCliqIdList --> ${linkBankAccountCliqIdList.length}');
   }
 
   void termAndConditionSelected(bool value) {
@@ -98,6 +87,17 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
 
   ///-----------------------------------------variables------------------------------------
 
+  ///cupertino switch value subject
+  final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get switchValue => _switchSubject.stream;
+  bool isSetDefault = false;
+
+  void updateSwitchValue(bool value) {
+    _switchSubject.safeAdd(value);
+    isSetDefault = value;
+  }
+
   final ScrollController controller = ScrollController();
 
   String mobileNumber = '';
@@ -131,19 +131,6 @@ class LinkBankAccountCliqIdPageViewModel extends BasePageViewModel {
   BehaviorSubject<bool> _isSelectedRequest = BehaviorSubject.seeded(false);
 
   Stream<bool> get isSelectedStream => _isSelectedRequest.stream;
-
-  ///-------------------Get Account By Customer ID----------------///
-
-  PublishSubject<GetAccountByCustomerIDUseCaseParams> _getAccountByCustomerIdRequest = PublishSubject();
-
-  PublishSubject<Resource<List<GetAccountByCustomerId>>> _getAccountByCustomerIdResponse = PublishSubject();
-
-  Stream<Resource<List<GetAccountByCustomerId>>> get getAccountByCustomerIdStream =>
-      _getAccountByCustomerIdResponse.stream;
-
-  void getAccountByCustomerId() {
-    _getAccountByCustomerIdRequest.safeAdd(GetAccountByCustomerIDUseCaseParams());
-  }
 
   ///-------------------Get Account By Customer ID----------------///
 

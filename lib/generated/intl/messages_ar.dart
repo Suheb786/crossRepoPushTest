@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasMobileHint": MessageLookupByLibrary.simpleMessage("تلميح لرقم الموبايل: "),
         "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("رقم الموبايل يجب ان يبدأ ب ٠٠٩٦٢"),
         "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
+        "aliasShouldBeThreeChar":
+            MessageLookupByLibrary.simpleMessage("Alias should be minimum 3 characters"),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
         "allowBiometric": MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
@@ -1824,6 +1826,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceIsNotavaliable": MessageLookupByLibrary.simpleMessage("الخدمة غير متوفرة حاليا"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "sessionTimeout": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
+        "setAsCliqDefaultAccount": MessageLookupByLibrary.simpleMessage("Set as CliQ default account?"),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("التعيين كحساب اساسي"),
         "setCardPintError": MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "setContactLessZeroError": MessageLookupByLibrary.simpleMessage(

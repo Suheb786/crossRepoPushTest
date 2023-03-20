@@ -1,6 +1,8 @@
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_validation_usecase.dart';
+import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -12,10 +14,10 @@ import 'package:rxdart/rxdart.dart';
 
 class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   final CliqIdTypeSelectionValidationUseCase _cliqIdTypeSelectionValidationUseCase;
+  final GetAccountByCustomerIDUseCase _getAccountByCustomerIDUseCase;
 
   CliqIdTypeSelectionPageViewModel(
-    this._cliqIdTypeSelectionValidationUseCase,
-  ) {
+      this._cliqIdTypeSelectionValidationUseCase, this._getAccountByCustomerIDUseCase) {
     ///validation request
     _cliqIdTypeSelectionValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _cliqIdTypeSelectionValidationUseCase.execute(params: value))
@@ -26,6 +28,19 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
           getError(event);
+        }
+      });
+    });
+
+    _getAccountByCustomerIdRequest.listen((value) {
+      RequestManager(value, createCall: () => _getAccountByCustomerIDUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAccountByCustomerIdResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -52,6 +67,9 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.PLEASE_ENTER_MOBILE_NO:
         mobileNumberKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_ALIAS_LENGTH:
+        aliasKey.currentState!.isValid = false;
         break;
       default:
         break;
@@ -117,4 +135,18 @@ class CliqIdTypeSelectionPageViewModel extends BasePageViewModel {
   BehaviorSubject<CliqIdTypeEnum> cliqIdTypeSubject = BehaviorSubject.seeded(CliqIdTypeEnum.NONE);
 
   Stream<CliqIdTypeEnum> get cliqIdTypeStream => cliqIdTypeSubject.stream;
+
+  ///-------------------Get Account By Customer ID----------------///
+  ///
+
+  PublishSubject<GetAccountByCustomerIDUseCaseParams> _getAccountByCustomerIdRequest = PublishSubject();
+
+  PublishSubject<Resource<List<GetAccountByCustomerId>>> _getAccountByCustomerIdResponse = PublishSubject();
+
+  Stream<Resource<List<GetAccountByCustomerId>>> get getAccountByCustomerIdStream =>
+      _getAccountByCustomerIdResponse.stream;
+
+  void getAccountByCustomerId() {
+    _getAccountByCustomerIdRequest.safeAdd(GetAccountByCustomerIDUseCaseParams());
+  }
 }

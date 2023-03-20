@@ -1,18 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
+import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
-import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
-import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
+import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
 import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
+import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
-import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 
 abstract class CliqRepository {
   Future<Either<NetworkError, GetAlias>> getAlias({
@@ -33,6 +33,7 @@ abstract class CliqRepository {
     required String aliasValue,
     required String otpCode,
     required bool getToken,
+    required bool isSetDefault,
   });
 
   Future<Either<NetworkError, CreateCliqOtp>> createCliqIdOtp({

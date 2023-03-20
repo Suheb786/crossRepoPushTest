@@ -1637,5 +1637,7 @@
   "returnPayment": "return payment",
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
-  "selectReasonToReject": "Select the reason\nto reject"
+  "selectReasonToReject": "Select the reason\nto reject",
+  "setAsCliqDefaultAccount": "Set as CliQ default account?",
+  "aliasShouldBeThreeChar": "Alias should be minimum 3 characters"
 }

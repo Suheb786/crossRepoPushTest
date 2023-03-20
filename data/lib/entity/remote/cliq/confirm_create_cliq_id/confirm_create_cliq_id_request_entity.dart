@@ -17,6 +17,9 @@ class ConfirmCreateCliqIdRequestEntity {
   @JsonKey(name: "otpCode")
   final String? otpCode;
 
+  @JsonKey(name: "IsSetDefault")
+  final bool? isSetDefault;
+
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
@@ -27,6 +30,7 @@ class ConfirmCreateCliqIdRequestEntity {
       required this.isAlias,
       required this.aliasValue,
       required this.otpCode,
+      required this.isSetDefault,
       required this.getToken,
       required this.baseClass});
 

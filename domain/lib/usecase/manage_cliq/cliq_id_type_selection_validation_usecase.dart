@@ -37,6 +37,9 @@ class CliqIdTypeSelectionValidationUseCaseParams extends Params {
     } else if (cliqIdTypeEnum == CliqIdTypeEnum.ALIAS) {
       if (alias.isEmpty) {
         return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_ALIAS, cause: Exception()));
+      } else if (alias.length < 3) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_ALIAS_LENGTH, cause: Exception()));
       }
     } else if (cliqIdTypeEnum == CliqIdTypeEnum.MOBILE_NO) {
       if (mobileNo.isEmpty) {

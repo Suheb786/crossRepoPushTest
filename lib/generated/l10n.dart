@@ -16618,6 +16618,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Set as CliQ default account?`
+  String get setAsCliqDefaultAccount {
+    return Intl.message(
+      'Set as CliQ default account?',
+      name: 'setAsCliqDefaultAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias should be minimum 3 characters`
+  String get aliasShouldBeThreeChar {
+    return Intl.message(
+      'Alias should be minimum 3 characters',
+      name: 'aliasShouldBeThreeChar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -58,13 +58,15 @@ class CliqRepositoryImpl extends CliqRepository {
       required bool isAlias,
       required String aliasValue,
       required String otpCode,
-      required bool getToken}) async {
+      required bool getToken,
+      required bool isSetDefault}) async {
     final result = await safeApiCall(_cliqDataSource.confirmCreateCLidID(
         accountNumber: accountNumber,
         isAlias: isAlias,
         aliasValue: aliasValue,
         otpCode: otpCode,
-        getToken: getToken));
+        getToken: getToken,
+        isSetDefault: isSetDefault));
 
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }

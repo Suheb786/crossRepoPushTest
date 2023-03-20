@@ -104,7 +104,8 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required bool isAlias,
       required String aliasValue,
       required String otpCode,
-      required bool getToken}) async {
+      required bool getToken,
+      required bool isSetDefault}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmCreateCLidID(ConfirmCreateCliqIdRequestEntity(
         accountNumber: accountNumber,
@@ -112,6 +113,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         otpCode: otpCode,
         isAlias: isAlias,
         getToken: getToken,
+        isSetDefault: isSetDefault,
         baseClass: baseData.toJson()));
   }
 
