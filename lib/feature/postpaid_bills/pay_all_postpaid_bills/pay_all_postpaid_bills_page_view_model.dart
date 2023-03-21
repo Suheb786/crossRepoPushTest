@@ -221,6 +221,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postpaidBillInquiry));
   }
 
+  List<PostPaidBillInquiryData> postPaidBillInquiryDataForOneItem = [];
+
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
       (params) {
@@ -233,11 +235,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            if (arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-              postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
-            } else {
-              postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData ?? [];
+            if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+              postPaidBillInquiryDataForOneItem = event.data?.content?.postPaidBillInquiryData ?? [];
             }
+            postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
             if (payPostPaidBillsDataList != null && payPostPaidBillsDataList.length > 0) {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
@@ -271,18 +272,21 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
           payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
           if (payPostPaidBillsDataList[j].expDateStatus == false) {
+            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
             payPostPaidBillsDataList[j].isChecked = false;
           }
           if (payPostPaidBillsDataList[j].isPartial == true &&
               double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0 &&
               double.parse(payPostPaidBillsDataList[j].maxValue ?? "0") <= 0.0) {
+            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
             payPostPaidBillsDataList[j].isChecked = false;
-            payPostPaidBillsDataList[j].expDateStatus = false;
+            payPostPaidBillsDataList[j].expDateStatus = true;
           }
           if (payPostPaidBillsDataList[j].isPartial == false &&
               double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0) {
+            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
             payPostPaidBillsDataList[j].isChecked = false;
-            payPostPaidBillsDataList[j].expDateStatus = false;
+            payPostPaidBillsDataList[j].expDateStatus = true;
           }
 
           selectedPostPaidBillsList.add(item);
@@ -307,30 +311,28 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
     if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-      if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
+      if (postPaidBillInquiryDataForOneItem.length == 1) {
         ///postPaidBillInquiryData?[0].success == false
-        if (postPaidBillInquiryData?[0].success == false) {
-          if (postPaidBillInquiryData != null &&
-              postPaidBillInquiryData?[0] != null &&
-              postPaidBillInquiryData?[0].message != null &&
-              postPaidBillInquiryData![0].message!.toString().isNotEmpty) {
-            if (postPaidBillInquiryData?[0].message == "err-379") {
+        if (postPaidBillInquiryDataForOneItem[0].success == false) {
+          if (postPaidBillInquiryDataForOneItem[0].message != null &&
+              postPaidBillInquiryDataForOneItem[0].message!.toString().isNotEmpty) {
+            if (postPaidBillInquiryDataForOneItem[0].message == "err-379") {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
-            } else if (postPaidBillInquiryData?[0].message == "err-381") {
+            } else if (postPaidBillInquiryDataForOneItem[0].message == "err-381") {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
-            } else if (postPaidBillInquiryData?[0].message == "err-383") {
+            } else if (postPaidBillInquiryDataForOneItem[0].message == "err-383") {
               showToastWithError(AppError(
                   cause: Exception(),
                   error: ErrorInfo(message: ''),
                   type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
             } else {
-              if (double.parse(payPostPaidBillsDataList[0].dueAmount ?? "0") <= 0.0) {
+              if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
                 showToastWithError(
                     AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
               }
@@ -339,24 +341,39 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
 
         ///postPaidBillInquiryData?[0].success == true
-        if (postPaidBillInquiryData?[0].success == true) {
-          if (postPaidBillInquiryData?[0].billingNo == null ||
-              postPaidBillInquiryData![0].billingNo!.isEmpty ||
-              postPaidBillInquiryData?[0].serviceType == null ||
-              postPaidBillInquiryData![0].serviceType!.isEmpty) {
+        if (postPaidBillInquiryDataForOneItem[0].success == true) {
+          if (postPaidBillInquiryDataForOneItem[0].billingNo == null ||
+              postPaidBillInquiryDataForOneItem[0].billingNo!.isEmpty ||
+              postPaidBillInquiryDataForOneItem[0].serviceType == null ||
+              postPaidBillInquiryDataForOneItem[0].serviceType!.isEmpty) {
             if (selectedIndex > -1 &&
                 payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi == false) {
               payPostPaidBillsDataList[selectedIndex].isChecked = false;
               payPostPaidBillsDataList[selectedIndex].expDateStatus = false;
               payPostPaidBillsDataList[selectedIndex].expDateMessage =
-                  postPaidBillInquiryData![0].message ?? "false";
+                  postPaidBillInquiryDataForOneItem[0].message ?? "false";
               payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi = true;
-              if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
-                if (double.parse(postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
+              if (postPaidBillInquiryDataForOneItem.length == 1) {
+                if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
                   showToastWithError(
                       AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
                 }
               }
+            }
+          }
+        }
+
+        if (payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid) {
+          payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = false;
+          if (double.parse(payPostPaidBillsDataList[selectedIndex].dueAmount ?? "0") <= 0.0) {
+            if (payPostPaidBillsDataList[selectedIndex].isPartial == false) {
+              showToastWithError(AppError(
+                  cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
+            } else {
+              showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
             }
           }
         }
