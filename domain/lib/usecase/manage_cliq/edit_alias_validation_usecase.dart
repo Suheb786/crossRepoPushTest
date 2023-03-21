@@ -27,6 +27,9 @@ class EditAliasValidationUseCaseParams extends Params {
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(editAlias)) {
       return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_ALIAS, cause: Exception()));
+    } else if (editAlias.length < 3) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_ALIAS_LENGTH, cause: Exception()));
     } else if (isSelected == false) {
       return Left(AppError(
           error: ErrorInfo(message: ''),

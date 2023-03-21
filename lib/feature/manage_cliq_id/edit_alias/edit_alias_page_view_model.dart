@@ -88,6 +88,10 @@ class EditAliasPageViewModel extends BasePageViewModel {
         aliasKey.currentState!.isValid = false;
         break;
 
+      case ErrorType.INVALID_ALIAS_LENGTH:
+        aliasKey.currentState!.isValid = false;
+        break;
+
       default:
         break;
     }
