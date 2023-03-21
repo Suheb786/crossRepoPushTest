@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -16658,10 +16659,10 @@ class S {
     );
   }
 
-  /// `Alias should be minimum 3 characters`
+  /// `Alias should be minimum 3 alphanumeric characters`
   String get aliasShouldBeThreeChar {
     return Intl.message(
-      'Alias should be minimum 3 characters',
+      'Alias should be minimum 3 alphanumeric characters',
       name: 'aliasShouldBeThreeChar',
       desc: '',
       args: [],

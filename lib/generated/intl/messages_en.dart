@@ -190,7 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("Mobile number must start with 00962"),
         "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
         "aliasShouldBeThreeChar":
-            MessageLookupByLibrary.simpleMessage("Alias should be minimum 3 characters"),
+            MessageLookupByLibrary.simpleMessage("Alias should be minimum 3 alphanumeric characters"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric": MessageLookupByLibrary.simpleMessage("Allow biometric"),
