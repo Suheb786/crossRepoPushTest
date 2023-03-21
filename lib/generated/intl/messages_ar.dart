@@ -45,7 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m11(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -173,7 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasMobileNoHint": MessageLookupByLibrary.simpleMessage("رقم الموبايل يجب ان يبدأ ب ٠٠٩٦٢"),
         "aliasNickNameHint": MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
         "aliasShouldBeThreeChar":
-            MessageLookupByLibrary.simpleMessage("Alias should be minimum 3 alphanumeric characters"),
+            MessageLookupByLibrary.simpleMessage("يجب ألا يقل الاسم المستعار عن 3 أحرف أبجدية رقمية"),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
         "allowBiometric": MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
