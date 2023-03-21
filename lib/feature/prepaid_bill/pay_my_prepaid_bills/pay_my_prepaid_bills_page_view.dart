@@ -135,27 +135,23 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                           ),
                                           Padding(
                                             padding: EdgeInsetsDirectional.only(start: 24.0, end: 24.0),
-                                            child: Visibility(
-                                              visible: model.getPrepaidBillData != null &&
-                                                  model.getPrepaidBillData!.isNotEmpty,
-                                              child: AppTextField(
-                                                labelText: '',
-                                                hintText: S.of(context).searchBill,
-                                                controller: model.searchBillController,
-                                                readOnly: false,
-                                                onPressed: () {},
-                                                onChanged: (val) {
-                                                  model.searchPrePaidBillerList(val);
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16.h,
-                                                      width: 16.w,
-                                                      padding: EdgeInsetsDirectional.only(end: 8.w),
-                                                      child: AppSvg.asset(AssetUtils.search,
-                                                          color: AppColor.dark_gray_1));
-                                                },
-                                              ),
+                                            child: AppTextField(
+                                              labelText: '',
+                                              hintText: S.of(context).searchBill,
+                                              controller: model.searchBillController,
+                                              readOnly: false,
+                                              onPressed: () {},
+                                              onChanged: (val) {
+                                                model.searchPrePaidBillerList(val);
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.h,
+                                                    width: 16.w,
+                                                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                                                    child: AppSvg.asset(AssetUtils.search,
+                                                        color: AppColor.dark_gray_1));
+                                              },
                                             ),
                                           ),
                                           model.getPrepaidBillData != null &&

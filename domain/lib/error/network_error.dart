@@ -1281,8 +1281,6 @@ class NetworkError extends BaseError {
           case "err-372":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_IBAN);
 
-         
-
           case "err-374":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_ALIAS_VALUE);
 

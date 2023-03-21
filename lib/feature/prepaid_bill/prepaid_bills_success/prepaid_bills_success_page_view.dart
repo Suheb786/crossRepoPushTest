@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -41,33 +40,19 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
           onHorizontalDragEnd: (details) {
             if (StringUtils.isDirectionRTL(context)) {
               if (!details.primaryVelocity!.isNegative) {
-                if (model.arguments.paidRoute == PrePaidRoute.PAY_NEW_BILL) {
-                  Navigator.of(context)
-                    ..pop()
-                    ..pop()
-                    ..pop()
-                    ..pop();
-                } else {
-                  Navigator.of(context)
-                    ..pop()
-                    ..pop()
-                    ..pop();
-                }
+                Navigator.of(context)
+                  ..pop()
+                  ..pop()
+                  ..pop()
+                  ..pop();
               }
             } else {
               if (details.primaryVelocity!.isNegative) {
-                if (model.arguments.paidRoute == PrePaidRoute.PAY_NEW_BILL) {
-                  Navigator.of(context)
-                    ..pop()
-                    ..pop()
-                    ..pop()
-                    ..pop();
-                } else {
-                  Navigator.of(context)
-                    ..pop()
-                    ..pop()
-                    ..pop();
-                }
+                Navigator.of(context)
+                  ..pop()
+                  ..pop()
+                  ..pop()
+                  ..pop();
               }
             }
           },
@@ -307,18 +292,11 @@ class PrePaidBillsSuccessPageView extends BasePageViewWidget<PrePaidBillsSuccess
                 GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      if (model.arguments.paidRoute == PrePaidRoute.PAY_NEW_BILL) {
-                        Navigator.of(context)
-                          ..pop()
-                          ..pop()
-                          ..pop()
-                          ..pop();
-                      } else {
-                        Navigator.of(context)
-                          ..pop()
-                          ..pop()
-                          ..pop();
-                      }
+                      Navigator.of(context)
+                        ..pop()
+                        ..pop()
+                        ..pop()
+                        ..pop();
                     }
                   },
                   child: AnimatedButton(

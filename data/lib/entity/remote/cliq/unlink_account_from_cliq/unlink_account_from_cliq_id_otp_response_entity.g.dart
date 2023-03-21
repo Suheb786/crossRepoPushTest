@@ -6,10 +6,13 @@ part of 'unlink_account_from_cliq_id_otp_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnlinkAccountFromCliqIdOtpResponseEntity _$UnlinkAccountFromCliqIdOtpResponseEntityFromJson(
-    Map<String, dynamic> json) {
+UnlinkAccountFromCliqIdOtpResponseEntity
+    _$UnlinkAccountFromCliqIdOtpResponseEntityFromJson(
+        Map<String, dynamic> json) {
   return UnlinkAccountFromCliqIdOtpResponseEntity(
-    json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

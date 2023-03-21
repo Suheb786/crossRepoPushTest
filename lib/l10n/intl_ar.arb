@@ -1642,7 +1642,7 @@
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
   "setAsCliqDefaultAccount": "Set as CliQ default account?",
-  "aliasShouldBeThreeChar": "Alias should be minimum 3 alphanumeric characters",
+  "aliasShouldBeThreeChar": "يجب ألا يقل الاسم المستعار عن 3 أحرف أبجدية رقمية",
   "selectReasonToReject": "Select the reason\nto reject",
   "errorWhileGeneratingQrCode": "Error while generating QR code",
   "errorWhileSendingQRPayment": "Error while sending QR payment",
