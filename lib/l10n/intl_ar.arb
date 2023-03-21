@@ -1566,9 +1566,6 @@
   "aliasNickNameHint": "تلميح للاسم المستعار: ",
   "aliasMobileHint": "تلميح لرقم الموبايل: ",
   "noRTPActivityToDisplay": "Tلا يوجد حاليا أي طلبات لعرضها",
-  "qrExpired": "QR Expired",
-  "qrInvalid": "QR does not exist",
-  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "howWouldLikeToPayYourBills": "كيف ترغب ان تقوم بتسديد فواتيرك",
   "swipeUpToPayNewBill": "اسحب للاعلى لتسدد فاتورة جديدة",
   "howMuchWouldYouLikeToPay": "ما المبلغ الذي  تريد\nان تسدده",
@@ -1633,6 +1630,8 @@
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
   "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
   "nickNameValueExceeds": "الحد الاعلى للأسم المستعار هو ٥٠ خانة",
+  "aliasShouldBeThreeChar": "يجب ألا يقل الاسم المستعار عن 3 أحرف أبجدية رقمية",
+  "aliasAlreadyExist": " الاسم المستعار مسجل مسبقاً",
   "accountDormant": "Account is Dormant",
   "sent": " sent",
   "toYou": " to you",
@@ -1642,11 +1641,12 @@
   "reasonToReject": "reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
   "setAsCliqDefaultAccount": "Set as CliQ default account?",
-  "aliasShouldBeThreeChar": "يجب ألا يقل الاسم المستعار عن 3 أحرف أبجدية رقمية",
   "selectReasonToReject": "Select the reason\nto reject",
   "errorWhileGeneratingQrCode": "Error while generating QR code",
   "errorWhileSendingQRPayment": "Error while sending QR payment",
   "cliqCustomerAlreadyRegistered": "Cliq Customer Already Registered",
   "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
-  "aliasAlreadyExist": "Alias already exist"
+  "qrExpired": "QR Expired",
+  "qrInvalid": "QR does not exist",
+  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
 }

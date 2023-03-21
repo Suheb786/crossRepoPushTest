@@ -219,7 +219,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الخدمة معطلة ، جرّب كمان مرة بعدين "),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
         "aliasAlreadyExist":
-            MessageLookupByLibrary.simpleMessage("Alias already exist"),
+            MessageLookupByLibrary.simpleMessage(" الاسم المستعار مسجل مسبقاً"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار يجب ان لا يزيد عن ١٠ خانات، و يمكن ان يحتوي احرف وارقام"),
         "aliasMobileHint":
