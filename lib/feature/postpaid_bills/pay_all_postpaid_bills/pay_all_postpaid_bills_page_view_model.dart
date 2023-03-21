@@ -295,28 +295,19 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               inquiryElement.billingNo!.isEmpty ||
               inquiryElement.serviceType == null ||
               inquiryElement.serviceType!.isEmpty) {
-            print('asdlaskdl;sa11');
             for (var item in payPostPaidBillsDataList) {
-              print('asdlaskdl;sa12');
               if (item.isAmountUpdatedFromApi == false) {
-                item.isChecked = false;
                 item.expDateStatus = false;
                 item.expDateMessage = postPaidBillInquiryData![0].message ?? "false";
                 item.isAmountUpdatedFromApi = true;
-                print('asdlaskdl;sa1');
               }
             }
           }
         }
       }
     }
-    print('asdlaskdl;sa657822: ${selectedIndex}');
     if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-      print('asdlaskdl;sa657822: ${selectedIndex}');
-
       if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
-        print('asdlaskdl;sa6578: ${selectedIndex}');
-
         ///postPaidBillInquiryData?[0].success == false
         if (postPaidBillInquiryData?[0].success == false) {
           if (postPaidBillInquiryData != null &&
@@ -353,7 +344,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               postPaidBillInquiryData![0].billingNo!.isEmpty ||
               postPaidBillInquiryData?[0].serviceType == null ||
               postPaidBillInquiryData![0].serviceType!.isEmpty) {
-            print('asdlaskdl;sa: ${selectedIndex}');
             if (selectedIndex > -1 &&
                 payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi == false) {
               payPostPaidBillsDataList[selectedIndex].isChecked = false;
@@ -361,11 +351,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               payPostPaidBillsDataList[selectedIndex].expDateMessage =
                   postPaidBillInquiryData![0].message ?? "false";
               payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi = true;
-              print('asdlaskdl;sa1');
               if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
-                print('asdlaskdl;sa2');
                 if (double.parse(postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
-                  print('asdlaskdl;sa3');
                   showToastWithError(
                       AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
                 }
