@@ -29,7 +29,7 @@ import 'package:retrofit/dio.dart';
 
 abstract class BillPaymentRemoteDS {
   ///get bill categories
-  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories();
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories({required String type});
 
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerList(
       {required GetPrepaidBillerListUseCaseParams params});

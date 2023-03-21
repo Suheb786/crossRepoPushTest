@@ -6,20 +6,22 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetBillCategoriesUseCase extends BaseUseCase<NetworkError,
-    GetBillCategoriesUseCaseParams, GetBillCategories> {
+class GetBillCategoriesUseCase
+    extends BaseUseCase<NetworkError, GetBillCategoriesUseCaseParams, GetBillCategories> {
   final BillPaymentRepository _repository;
 
   GetBillCategoriesUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, GetBillCategories>> execute(
-      {required GetBillCategoriesUseCaseParams params}) {
-    return _repository.getBillCategories();
+  Future<Either<NetworkError, GetBillCategories>> execute({required GetBillCategoriesUseCaseParams params}) {
+    return _repository.getBillCategories(type: params.type);
   }
 }
 
 class GetBillCategoriesUseCaseParams extends Params {
+  final String type;
+
+  GetBillCategoriesUseCaseParams({required this.type});
 
   @override
   Either<AppError, bool> verify() {

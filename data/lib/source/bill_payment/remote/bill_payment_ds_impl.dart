@@ -7,6 +7,7 @@ import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_p
 import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
 import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
 import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
+import 'package:data/entity/remote/bill_payment/get_bill_categories/get_biller_categories_request_entity.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
 import 'package:data/entity/remote/bill_payment/get_postpaid_biller_list/get_postpaid_biller_list_entity_response.dart';
@@ -52,9 +53,10 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   );
 
   @override
-  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories() async {
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories({required String type}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getBillCategories(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getBillCategories(
+        GetBillerCategoriesRequestEntity(getToken: true, type: type, baseData: baseData.toJson()));
   }
 
   @override

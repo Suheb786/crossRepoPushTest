@@ -61,7 +61,8 @@ class NewBillsPageViewModel extends BasePageViewModel {
   void getCategories() {
     list = AppConstantsUtils.billCategoriesCacheList;
     if (list == null || list!.isEmpty) {
-      _getCategoriesRequest.safeAdd(GetBillCategoriesUseCaseParams());
+      _getCategoriesRequest.safeAdd(
+          GetBillCategoriesUseCaseParams(type: AppConstantsUtils.PRE_PAID_FLOW ? 'prepaid' : 'postpaid'));
     } else {
       _getCategoriesResponse.safeAdd(Resource.success(
           data:

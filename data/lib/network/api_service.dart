@@ -51,6 +51,7 @@ import 'package:data/entity/remote/bill_payment/add_new_prepaid_biller/add_new_p
 import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_request.dart';
 import 'package:data/entity/remote/bill_payment/bill_payments_transactions/bill_payments_transaction_response.dart';
 import 'package:data/entity/remote/bill_payment/get_bill_categories/get_bill_categories_entity.dart';
+import 'package:data/entity/remote/bill_payment/get_bill_categories/get_biller_categories_request_entity.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_request.dart';
 import 'package:data/entity/remote/bill_payment/get_biller_lookup_List/get_biller_lookup_list_response.dart';
 import 'package:data/entity/remote/bill_payment/get_postpaid_biller_list/get_postpaid_biller_list_entity_response.dart';
@@ -820,7 +821,8 @@ abstract class ApiService {
   ///---------------- bill payment ------------------
 
   @POST("/BillPayment/GetBillerCategories")
-  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(@Body() BaseRequest request);
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(
+      @Body() GetBillerCategoriesRequestEntity request);
 
   @POST("/BillPayment/AccountInquiry")
   Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerListData(
