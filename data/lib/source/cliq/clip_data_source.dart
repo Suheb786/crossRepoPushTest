@@ -19,13 +19,6 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
-      {required String type,
-      required String value,
-      required String Currency,
-      required String CustId,
-      required bool GetToken});
-
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
       {required String accountNumber,
       required bool isAlias,
@@ -78,23 +71,6 @@ abstract class CliqDataSource {
   Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>> unLinkAccountFromCliqOtp({
     required String aliasId,
     required String accountId,
-    required bool getToken,
-  });
-
-  Future<HttpResponse<ResponseEntity>> requestMoney({
-    required String cliqType,
-    required String iban,
-    required String toAccountNo,
-    required String alias,
-    required String mobile,
-    required String receipentName,
-    required String amount,
-    required String currency,
-    required String rtpPurposeCode,
-    required String description,
-    required String beneficiaryId,
-    required String toAccountHolderName,
-    required String receipentAddress,
     required bool getToken,
   });
 
@@ -173,76 +149,6 @@ abstract class CliqDataSource {
     required String cdtrPstlAdr,
     required String dbtrPstlAdr,
     required bool getToken,
-  });
-
-  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN({
-    required String otpCode,
-    required String transferType,
-    required String cliqType,
-    required String toIban,
-    required String toAccountNo,
-    required String toAlias,
-    required String toMobileNo,
-    required String toBankCountry,
-    required String swift,
-    required String routingNO,
-    required String recipientName,
-    required String fromAccountNo,
-    required String transferAmount,
-    required String fromAccountCurrency,
-    required String toAccountCurrency,
-    required bool Charges,
-    required String TransferPurposeCode,
-    required String description,
-    required String whenToSend,
-    required String beneficiaryId,
-    dynamic fromCardId,
-    dynamic fromCardType,
-    dynamic ownAccountTransferType,
-    required String fromAccountHolderName,
-    required String recipientAddress,
-    required String flagAmount,
-    required String flagCurrency,
-    required bool getToken,
-  });
-
-  Future<HttpResponse<ResponseEntity>> qRCliqCode({
-    required String code,
-    required bool getToken,
-  });
-
-  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(
-      {required String referenceLabel,
-      required String merchantCategoryCode,
-      required String countryCode,
-      required String merchantID,
-      required String merchantName,
-      dynamic location,
-      required String transactionAmount,
-      required String city,
-      required String transactionCurrency,
-      required String additionalLanguageTemplate,
-      dynamic verificationCode,
-      required String dateTime,
-      dynamic billNumber,
-      dynamic mobileNumber,
-      dynamic storeLabel,
-      dynamic loyaltyNumber,
-      dynamic customerLabel,
-      dynamic terminalLabel,
-      required String qrCode,
-      required String crdtrBic,
-      required String fromAccount,
-      required String fromAccountHolderName,
-      required String ValueOfConvenienceFixed,
-      required String TipOrConvenienceIndicator,
-      dynamic valueOfPercentageConvenience,
-      required bool getToken});
-
-  Future<HttpResponse<ResponseEntity>> getCustomerByAccount({
-    required String accountCode,
-    required String CustID,
-    required bool GetToken,
   });
 
   Future<HttpResponse<ResponseEntity>> requestToPayResult({

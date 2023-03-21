@@ -41,18 +41,6 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getCliqAccountByAlias(
-      {required String type,
-      required String value,
-      required String Currency,
-      required String CustID,
-      required bool GetToken}) async {
-    final result = await safeApiCall(_cliqDataSource.getCliqAccountByAlias(
-        CustId: CustID, type: type, Currency: Currency, value: value, GetToken: GetToken));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
-  @override
   Future<Either<NetworkError, ConfirmCreateCliqId>> confirmCreateCLidID(
       {required String accountNumber,
       required bool isAlias,
@@ -233,165 +221,6 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> requestMoney(
-      {required String cliqType,
-      required String iban,
-      required String toAccountNo,
-      required String alias,
-      required String mobile,
-      required String receipentName,
-      required String amount,
-      required String currency,
-      required String rtpPurposeCode,
-      required String description,
-      required String beneficiaryId,
-      required String toAccountHolderName,
-      required String receipentAddress,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.requestMoney(
-        cliqType: cliqType,
-        iban: iban,
-        toAccountNo: toAccountNo,
-        alias: alias,
-        mobile: mobile,
-        receipentName: receipentName,
-        amount: amount,
-        currency: currency,
-        rtpPurposeCode: rtpPurposeCode,
-        description: description,
-        beneficiaryId: beneficiaryId,
-        toAccountHolderName: toAccountHolderName,
-        receipentAddress: receipentAddress,
-        getToken: getToken));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> qRCliqCode({required String code, required bool getToken}) async {
-    final result = await safeApiCall(
-      _cliqDataSource.qRCliqCode(code: code, getToken: getToken),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> sendMoneytoCliqIBAN(
-      {required String otpCode,
-      required String transferType,
-      required String cliqType,
-      required String toIban,
-      required String toAccountNo,
-      required String toAlias,
-      required String toMobileNo,
-      required String toBankCountry,
-      required String swift,
-      required String routingNO,
-      required String recipientName,
-      required String fromAccountNo,
-      required String transferAmount,
-      required String fromAccountCurrency,
-      required String toAccountCurrency,
-      required bool Charges,
-      required String TransferPurposeCode,
-      required String description,
-      required String whenToSend,
-      required String beneficiaryId,
-      fromCardId,
-      fromCardType,
-      ownAccountTransferType,
-      required String fromAccountHolderName,
-      required String recipientAddress,
-      required String flagAmount,
-      required String flagCurrency,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.sendMoneytoCliqIBAN(
-        otpCode: otpCode,
-        transferType: transferType,
-        cliqType: cliqType,
-        toIban: toIban,
-        toAccountNo: toAccountNo,
-        toAlias: toAlias,
-        toMobileNo: toMobileNo,
-        toBankCountry: toBankCountry,
-        swift: swift,
-        routingNO: routingNO,
-        recipientName: recipientName,
-        fromAccountNo: fromAccountNo,
-        transferAmount: transferAmount,
-        fromAccountCurrency: fromAccountCurrency,
-        toAccountCurrency: toAccountCurrency,
-        Charges: Charges,
-        TransferPurposeCode: TransferPurposeCode,
-        description: description,
-        whenToSend: whenToSend,
-        beneficiaryId: beneficiaryId,
-        fromAccountHolderName: fromAccountHolderName,
-        recipientAddress: recipientAddress,
-        flagAmount: flagAmount,
-        flagCurrency: flagCurrency,
-        getToken: getToken));
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> sendQRCliqPayment(
-      {required String referenceLabel,
-      required String merchantCategoryCode,
-      required String countryCode,
-      required String merchantID,
-      required String merchantName,
-      location,
-      required String transactionAmount,
-      required String city,
-      required String transactionCurrency,
-      required String additionalLanguageTemplate,
-      verificationCode,
-      required String dateTime,
-      billNumber,
-      mobileNumber,
-      storeLabel,
-      loyaltyNumber,
-      customerLabel,
-      terminalLabel,
-      required String qrCode,
-      required String crdtrBic,
-      required String fromAccount,
-      required String fromAccountHolderName,
-      required String ValueOfConvenienceFixed,
-      required String TipOrConvenienceIndicator,
-      valueOfPercentageConvenience,
-      required bool getToken}) async {
-    final result = await safeApiCall(_cliqDataSource.sendQRCliqPayment(
-        referenceLabel: referenceLabel,
-        merchantCategoryCode: merchantCategoryCode,
-        countryCode: countryCode,
-        merchantID: merchantID,
-        merchantName: merchantName,
-        transactionAmount: transactionAmount,
-        city: city,
-        transactionCurrency: transactionCurrency,
-        additionalLanguageTemplate: additionalLanguageTemplate,
-        dateTime: dateTime,
-        qrCode: qrCode,
-        crdtrBic: crdtrBic,
-        fromAccount: fromAccount,
-        fromAccountHolderName: fromAccountHolderName,
-        ValueOfConvenienceFixed: ValueOfConvenienceFixed,
-        TipOrConvenienceIndicator: TipOrConvenienceIndicator,
-        getToken: getToken));
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> updateRTPCliqRequest(
       {required String msgId,
       required String rejectReason,
@@ -450,15 +279,6 @@ class CliqRepositoryImpl extends CliqRepository {
         aliasId: aliasId, isAlias: isAlias, aliasValue: aliasValue, getToken: getToken));
 
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> getCustomerByAccount(
-      {required String accountCode, required String CustID, required bool GetToken}) async {
-    final result = await safeApiCall(
-      _cliqDataSource.getCustomerByAccount(accountCode: accountCode, CustID: CustID, GetToken: GetToken),
-    );
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 
   @override

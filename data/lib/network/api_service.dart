@@ -120,7 +120,6 @@ import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_re
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
-import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
@@ -138,16 +137,11 @@ import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_b
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
-import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
-import 'package:data/entity/remote/cliq/request_money_activity/response/request_money_activity_response_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
-import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
-import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -962,6 +956,8 @@ abstract class ApiService {
   @POST("/RJ/MakeTicketPaymentOtp")
   Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 
+  ///CLIQ
+
   @POST("/Cliq/CliqRegisterCustomer")
   Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
     @Body() BaseRequest request,
@@ -1014,22 +1010,8 @@ abstract class ApiService {
   @POST("/Cliq/UpdateRTPRequest")
   Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(@Body() UpdateRtpRequestEntity request);
 
-  @POST("/Cliq/SendMoneytoCliqIBAN")
-  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(@Body() SendMoneyToCliqIbanRequestEntity request);
-
-  @POST("/Cliq/QRCode")
-  Future<HttpResponse<ResponseEntity>> qRCliqCode(@Body() QrCodeCliqRequestEntity request);
-
-  @POST("/Cliq/SendQRPayment")
-  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(@Body() SendQrCliqPaymentRequestEntity request);
-
   @POST("/Cliq/GetAlias")
   Future<HttpResponse<GetAliasResponseEntity>> getAlias(@Body() CliqGetAliasRequestEntity request);
-
-  @POST("/Cliq/GetCliqAccountByAlias")
-  Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
-    @Body() GetCliqAccountByAliasEntity request,
-  );
 
   @POST("/Cliq/ConfirmCreateCLidID")
   Future<HttpResponse<ConfirmCreateCliqIdResponseEntity>> confirmCreateCLidID(
@@ -1061,19 +1043,9 @@ abstract class ApiService {
     @Body() ConfirmChangeDefaultAccountOtpRequestEntity request,
   );
 
-  @POST("/Cliq/RequestMoney")
-  Future<HttpResponse<ResponseEntity>> requestMoney(
-    @Body() RequestMoneyRequestEntity request,
-  );
-
   @POST("/Cliq/RequestMoneyActivity")
   Future<HttpResponse<PaymentActivityResponseEntity>> requestMoneyActivity(
     @Body() RequestMoneyActivityRequestEntity request,
-  );
-
-  @POST("/Cliq/GetCustomerByAccount")
-  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
-    @Body() GetCustomByAccountRequestEntity request,
   );
 
   @POST("/Cliq/RequestToPayResult")

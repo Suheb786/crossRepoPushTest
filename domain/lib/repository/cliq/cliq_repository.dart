@@ -19,14 +19,6 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> getCliqAccountByAlias({
-    required String type,
-    required String value,
-    required String Currency,
-    required String CustID,
-    required bool GetToken,
-  });
-
   Future<Either<NetworkError, ConfirmCreateCliqId>> confirmCreateCLidID({
     required String accountNumber,
     required bool isAlias,
@@ -78,23 +70,6 @@ abstract class CliqRepository {
   Future<Either<NetworkError, UnlinkCliqIdOtp>> unLinkAccountFromCliqOtp({
     required String aliasId,
     required String accountId,
-    required bool getToken,
-  });
-
-  Future<Either<NetworkError, bool>> requestMoney({
-    required String cliqType,
-    required String iban,
-    required String toAccountNo,
-    required String alias,
-    required String mobile,
-    required String receipentName,
-    required String amount,
-    required String currency,
-    required String rtpPurposeCode,
-    required String description,
-    required String beneficiaryId,
-    required String toAccountHolderName,
-    required String receipentAddress,
     required bool getToken,
   });
 
@@ -168,81 +143,11 @@ abstract class CliqRepository {
     required bool getToken,
   });
 
-  Future<Either<NetworkError, bool>> sendMoneytoCliqIBAN({
-    required String otpCode,
-    required String transferType,
-    required String cliqType,
-    required String toIban,
-    required String toAccountNo,
-    required String toAlias,
-    required String toMobileNo,
-    required String toBankCountry,
-    required String swift,
-    required String routingNO,
-    required String recipientName,
-    required String fromAccountNo,
-    required String transferAmount,
-    required String fromAccountCurrency,
-    required String toAccountCurrency,
-    required bool Charges,
-    required String TransferPurposeCode,
-    required String description,
-    required String whenToSend,
-    required String beneficiaryId,
-    dynamic fromCardId,
-    dynamic fromCardType,
-    dynamic ownAccountTransferType,
-    required String fromAccountHolderName,
-    required String recipientAddress,
-    required String flagAmount,
-    required String flagCurrency,
-    required bool getToken,
-  });
-
-  Future<Either<NetworkError, bool>> qRCliqCode({
-    required String code,
-    required bool getToken,
-  });
-
-  Future<Either<NetworkError, bool>> sendQRCliqPayment(
-      {required String referenceLabel,
-      required String merchantCategoryCode,
-      required String countryCode,
-      required String merchantID,
-      required String merchantName,
-      dynamic location,
-      required String transactionAmount,
-      required String city,
-      required String transactionCurrency,
-      required String additionalLanguageTemplate,
-      dynamic verificationCode,
-      required String dateTime,
-      dynamic billNumber,
-      dynamic mobileNumber,
-      dynamic storeLabel,
-      dynamic loyaltyNumber,
-      dynamic customerLabel,
-      dynamic terminalLabel,
-      required String qrCode,
-      required String crdtrBic,
-      required String fromAccount,
-      required String fromAccountHolderName,
-      required String ValueOfConvenienceFixed,
-      required String TipOrConvenienceIndicator,
-      dynamic valueOfPercentageConvenience,
-      required bool getToken});
-
   Future<Either<NetworkError, EditCliqOtp>> editCliqIdOtp({
     required String aliasId,
     required bool isAlias,
     required String aliasValue,
     required bool getToken,
-  });
-
-  Future<Either<NetworkError, bool>> getCustomerByAccount({
-    required String accountCode,
-    required String CustID,
-    required bool GetToken,
   });
 
   Future<Either<NetworkError, bool>> requestToPayResult({

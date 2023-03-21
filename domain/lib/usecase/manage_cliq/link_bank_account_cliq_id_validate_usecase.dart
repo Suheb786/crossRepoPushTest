@@ -7,7 +7,6 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-import 'package:flutter/cupertino.dart';
 
 class LinkBankAccountCliqIdValidationUseCase
     extends BaseUseCase<BaseError, LinkBankAccountCliqIdValidationUseCaseParams, bool> {
@@ -30,7 +29,6 @@ class LinkBankAccountCliqIdValidationUseCaseParams extends Params {
   Either<AppError, bool> verify() {
     switch (cliqListActionTypeEnum) {
       case CliqListActionTypeEnum.LINKACCOUNT:
-        debugPrint('LINKACCOUNT');
         if (listOfCustomerAccount.isEmpty) {
           return Left(AppError(
               error: ErrorInfo(message: ''), type: ErrorType.PLEASE_ADD_LINK_ACCOUNT, cause: Exception()));
@@ -42,7 +40,6 @@ class LinkBankAccountCliqIdValidationUseCaseParams extends Params {
         }
         break;
       default:
-        debugPrint('CREATECLIQ');
         if (isSelected == false) {
           return Left(AppError(
               error: ErrorInfo(message: ''),

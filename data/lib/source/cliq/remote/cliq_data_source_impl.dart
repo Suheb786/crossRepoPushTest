@@ -6,7 +6,6 @@ import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_re
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
-import 'package:data/entity/remote/cliq/cliq_get_account_by_alias/cliq_get_account_by_alias.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_request_entity.dart';
@@ -24,15 +23,11 @@ import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_b
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_customer_by_account/get_customer_by_account_request_entity.dart';
-import 'package:data/entity/remote/cliq/qr_code_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
-import 'package:data/entity/remote/cliq/request_money/request_money_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
-import 'package:data/entity/remote/cliq/send_money_to_cliq_iban_request_entity.dart';
-import 'package:data/entity/remote/cliq/send_qr_clip_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -271,158 +266,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> requestMoney(
-      {required String cliqType,
-      required String iban,
-      required String toAccountNo,
-      required String alias,
-      required String mobile,
-      required String receipentName,
-      required String amount,
-      required String currency,
-      required String rtpPurposeCode,
-      required String description,
-      required String beneficiaryId,
-      required String toAccountHolderName,
-      required String receipentAddress,
-      required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.requestMoney(RequestMoneyRequestEntity(
-        cliqType: cliqType,
-        iban: iban,
-        toAccountNo: toAccountNo,
-        alias: alias,
-        mobile: mobile,
-        receipentName: receipentName,
-        amount: amount,
-        currency: currency,
-        rtpPurposeCode: rtpPurposeCode,
-        description: description,
-        beneficiaryId: beneficiaryId,
-        toAccountHolderName: toAccountHolderName,
-        receipentAddress: receipentAddress,
-        getToken: getToken,
-        baseClass: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> qRCliqCode({required String code, required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .qRCliqCode(QrCodeCliqRequestEntity(code: code, getToken: getToken, baseData: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> sendMoneytoCliqIBAN(
-      {required String otpCode,
-      required String transferType,
-      required String cliqType,
-      required String toIban,
-      required String toAccountNo,
-      required String toAlias,
-      required String toMobileNo,
-      required String toBankCountry,
-      required String swift,
-      required String routingNO,
-      required String recipientName,
-      required String fromAccountNo,
-      required String transferAmount,
-      required String fromAccountCurrency,
-      required String toAccountCurrency,
-      required bool Charges,
-      required String TransferPurposeCode,
-      required String description,
-      required String whenToSend,
-      required String beneficiaryId,
-      fromCardId,
-      fromCardType,
-      ownAccountTransferType,
-      required String fromAccountHolderName,
-      required String recipientAddress,
-      required String flagAmount,
-      required String flagCurrency,
-      required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.sendMoneytoCliqIBAN(SendMoneyToCliqIbanRequestEntity(
-        otpCode: otpCode,
-        transferType: transferType,
-        cliqType: cliqType,
-        toIban: toIban,
-        toAccountNo: toAccountNo,
-        toAlias: toAlias,
-        toMobileNo: toMobileNo,
-        toBankCountry: toBankCountry,
-        swift: swift,
-        routingNO: routingNO,
-        recipientName: recipientName,
-        fromAccountNo: fromAccountNo,
-        transferAmount: transferAmount,
-        fromAccountCurrency: fromAccountCurrency,
-        toAccountCurrency: toAccountCurrency,
-        Charges: Charges,
-        TransferPurposeCode: TransferPurposeCode,
-        description: description,
-        whenToSend: whenToSend,
-        beneficiaryId: beneficiaryId,
-        fromAccountHolderName: fromAccountHolderName,
-        recipientAddress: recipientAddress,
-        flagAmount: flagAmount,
-        flagCurrency: flagCurrency,
-        getToken: getToken,
-        baseData: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> sendQRCliqPayment(
-      {required String referenceLabel,
-      required String merchantCategoryCode,
-      required String countryCode,
-      required String merchantID,
-      required String merchantName,
-      location,
-      required String transactionAmount,
-      required String city,
-      required String transactionCurrency,
-      required String additionalLanguageTemplate,
-      verificationCode,
-      required String dateTime,
-      billNumber,
-      mobileNumber,
-      storeLabel,
-      loyaltyNumber,
-      customerLabel,
-      terminalLabel,
-      required String qrCode,
-      required String crdtrBic,
-      required String fromAccount,
-      required String fromAccountHolderName,
-      required String ValueOfConvenienceFixed,
-      required String TipOrConvenienceIndicator,
-      valueOfPercentageConvenience,
-      required bool getToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.sendQRCliqPayment(SendQrCliqPaymentRequestEntity(
-        referenceLabel: referenceLabel,
-        merchantCategoryCode: merchantCategoryCode,
-        countryCode: countryCode,
-        merchantID: merchantID,
-        merchantName: merchantName,
-        transactionAmount: transactionAmount,
-        city: city,
-        transactionCurrency: transactionCurrency,
-        additionalLanguageTemplate: additionalLanguageTemplate,
-        dateTime: dateTime,
-        qrCode: qrCode,
-        crdtrBic: crdtrBic,
-        fromAccount: fromAccount,
-        fromAccountHolderName: fromAccountHolderName,
-        ValueOfConvenienceFixed: ValueOfConvenienceFixed,
-        TipOrConvenienceIndicator: TipOrConvenienceIndicator,
-        getToken: getToken,
-        baseData: baseData.toJson()));
-  }
-
-  @override
   Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
       {required String msgId,
       required String rejectReason,
@@ -482,31 +325,6 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         aliasValue: aliasValue,
         GetToken: getToken,
         baseClass: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> getCustomerByAccount(
-      {required String accountCode, required String CustID, required bool GetToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getCustomerByAccount(GetCustomByAccountRequestEntity(
-        accountCode: accountCode, CustID: CustID, GetToken: GetToken, BaseClass: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> getCliqAccountByAlias(
-      {required String type,
-      required String value,
-      required String Currency,
-      required String CustId,
-      required bool GetToken}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getCliqAccountByAlias(GetCliqAccountByAliasEntity(
-        type: type,
-        value: value,
-        Currency: Currency,
-        CustID: CustId,
-        GetToken: GetToken,
-        BaseClass: baseData.toJson()));
   }
 
   @override

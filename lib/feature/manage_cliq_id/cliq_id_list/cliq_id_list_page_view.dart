@@ -47,12 +47,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
     required String s,
     required String s2,
   }) async {
-    // final box = context.findRenderObject() as RenderBox?;
     await Share.share(
       S.of(context).hereMyCliqDetails + '${s}' + S.of(context).getYourBlinkAccountTodayBlinkNow + "\n$s2",
-
       subject: S.current.shareAccountInfo,
-      // sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size
     );
   }
 

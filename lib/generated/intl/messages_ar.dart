@@ -229,7 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasNickNameHint":
             MessageLookupByLibrary.simpleMessage("تلميح للاسم المستعار: "),
         "aliasShouldBeThreeChar": MessageLookupByLibrary.simpleMessage(
-            "Alias should be minimum 3 characters"),
+            "يجب ألا يقل الاسم المستعار عن 3 أحرف أبجدية رقمية"),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
         "allowBiometric":
