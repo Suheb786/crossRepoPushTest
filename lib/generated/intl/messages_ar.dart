@@ -45,7 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m11(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -166,7 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalServiceNotAvailable":
             MessageLookupByLibrary.simpleMessage("الخدمة معطلة ، جرّب كمان مرة بعدين "),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
-        "aliasAlreadyExist": MessageLookupByLibrary.simpleMessage("Alias already exist"),
+        "aliasAlreadyExist": MessageLookupByLibrary.simpleMessage(" الاسم المستعار مسجل مسبقاً"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
             "الاسم المستعار يجب ان لا يزيد عن ١٠ خانات، و يمكن ان يحتوي احرف وارقام"),
         "aliasMobileHint": MessageLookupByLibrary.simpleMessage("تلميح لرقم الموبايل: "),
