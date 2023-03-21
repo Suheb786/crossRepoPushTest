@@ -28,7 +28,7 @@ import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
 
 abstract class BillPaymentRepository {
   ///get bill categories
-  Future<Either<NetworkError, GetBillCategories>> getBillCategories();
+  Future<Either<NetworkError, GetBillCategories>> getBillCategories({required String type});
 
   ///get bill categories
   Future<Either<NetworkError, GetPostpaidBillerListModel>> getPostpaidBillerList(

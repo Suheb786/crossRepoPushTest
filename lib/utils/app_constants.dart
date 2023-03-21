@@ -57,7 +57,9 @@ class AppConstantsUtils {
 
   /// bill payments
   ///billCategoriesList
-  static List<GetBillCategoriesList>? billCategoriesCacheList = [];
+  static List<GetBillCategoriesList>? billPostpaidCategoriesCacheList = [];
+
+  static List<GetBillCategoriesList>? billPrepaidCategoriesCacheList = [];
 
   ///billerDetailsList
   static Map<String, List<BillerDetailsList>?> billerDetailsCacheList =
@@ -67,7 +69,8 @@ class AppConstantsUtils {
 
   /// reset lists
   static void resetCacheLists() {
-    billCategoriesCacheList = [];
+    billPostpaidCategoriesCacheList = [];
+    billPrepaidCategoriesCacheList = [];
     billerDetailsCacheList = Map<String, List<BillerDetailsList>?>();
   }
 }

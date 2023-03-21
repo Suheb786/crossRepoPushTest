@@ -33,8 +33,14 @@ class NewBillsPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            AppConstantsUtils.billCategoriesCacheList =
-                event.data!.getBillCategoriesData?.getBillCategoriesList;
+            if (AppConstantsUtils.PRE_PAID_FLOW) {
+              AppConstantsUtils.billPrepaidCategoriesCacheList =
+                  event.data!.getBillCategoriesData?.getBillCategoriesList;
+            } else {
+              AppConstantsUtils.billPostpaidCategoriesCacheList =
+                  event.data!.getBillCategoriesData?.getBillCategoriesList;
+            }
+
             list = event.data!.getBillCategoriesData?.getBillCategoriesList;
             _getCategoriesResponse.safeAdd(event);
             _searchCategoryListSubject
@@ -59,9 +65,12 @@ class NewBillsPageViewModel extends BasePageViewModel {
       _searchCategoryListSubject.stream;
 
   void getCategories() {
-    list = AppConstantsUtils.billCategoriesCacheList;
+    list = AppConstantsUtils.PRE_PAID_FLOW
+        ? AppConstantsUtils.billPrepaidCategoriesCacheList
+        : AppConstantsUtils.billPostpaidCategoriesCacheList;
     if (list == null || list!.isEmpty) {
-      _getCategoriesRequest.safeAdd(GetBillCategoriesUseCaseParams());
+      _getCategoriesRequest.safeAdd(
+          GetBillCategoriesUseCaseParams(type: AppConstantsUtils.PRE_PAID_FLOW ? 'prepaid' : 'postpaid'));
     } else {
       _getCategoriesResponse.safeAdd(Resource.success(
           data:

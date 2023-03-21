@@ -233,7 +233,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
+            if (arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+              postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
+            } else {
+              postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData ?? [];
+            }
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
             if (payPostPaidBillsDataList != null && payPostPaidBillsDataList.length > 0) {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
@@ -282,20 +286,20 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           }
 
           selectedPostPaidBillsList.add(item);
-        } else if (inquiryElement.billingNo == null ||
-            inquiryElement.billingNo!.isEmpty ||
-            inquiryElement.serviceType == null ||
-            inquiryElement.serviceType!.isEmpty) {
-          payPostPaidBillsDataList[j].isChecked = false;
-          payPostPaidBillsDataList[j].expDateStatus = false;
-          payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
-          payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
+        }
+      }
 
-          if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-            if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
-              if (double.parse(postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
-                showToastWithError(
-                    AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+      if (arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+        if (postPaidBillInquiryData != null && postPaidBillInquiryData!.isNotEmpty) {
+          if (inquiryElement.billingNo == null ||
+              inquiryElement.billingNo!.isEmpty ||
+              inquiryElement.serviceType == null ||
+              inquiryElement.serviceType!.isEmpty) {
+            for (var item in payPostPaidBillsDataList) {
+              if (item.isAmountUpdatedFromApi == false) {
+                item.expDateStatus = false;
+                item.expDateMessage = postPaidBillInquiryData![0].message ?? "false";
+                item.isAmountUpdatedFromApi = true;
               }
             }
           }
@@ -304,6 +308,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     }
     if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
       if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
+        ///postPaidBillInquiryData?[0].success == false
         if (postPaidBillInquiryData?[0].success == false) {
           if (postPaidBillInquiryData != null &&
               postPaidBillInquiryData?[0] != null &&
@@ -328,6 +333,29 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               if (double.parse(payPostPaidBillsDataList[0].dueAmount ?? "0") <= 0.0) {
                 showToastWithError(
                     AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+              }
+            }
+          }
+        }
+
+        ///postPaidBillInquiryData?[0].success == true
+        if (postPaidBillInquiryData?[0].success == true) {
+          if (postPaidBillInquiryData?[0].billingNo == null ||
+              postPaidBillInquiryData![0].billingNo!.isEmpty ||
+              postPaidBillInquiryData?[0].serviceType == null ||
+              postPaidBillInquiryData![0].serviceType!.isEmpty) {
+            if (selectedIndex > -1 &&
+                payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi == false) {
+              payPostPaidBillsDataList[selectedIndex].isChecked = false;
+              payPostPaidBillsDataList[selectedIndex].expDateStatus = false;
+              payPostPaidBillsDataList[selectedIndex].expDateMessage =
+                  postPaidBillInquiryData![0].message ?? "false";
+              payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi = true;
+              if (postPaidBillInquiryData != null && postPaidBillInquiryData!.length == 1) {
+                if (double.parse(postPaidBillInquiryData?[0].dueAmount ?? "0") <= 0.0) {
+                  showToastWithError(
+                      AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+                }
               }
             }
           }

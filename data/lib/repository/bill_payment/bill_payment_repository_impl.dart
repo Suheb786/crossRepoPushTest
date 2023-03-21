@@ -34,8 +34,8 @@ class BillPaymentRepositoryImpl extends BillPaymentRepository {
   BillPaymentRepositoryImpl(this._remoteDS);
 
   @override
-  Future<Either<NetworkError, GetBillCategories>> getBillCategories() async {
-    final result = await safeApiCall(_remoteDS.getBillCategories());
+  Future<Either<NetworkError, GetBillCategories>> getBillCategories({required String type}) async {
+    final result = await safeApiCall(_remoteDS.getBillCategories(type: type));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
