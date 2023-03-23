@@ -1648,5 +1648,6 @@
   "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
   "qrExpired": "QR Expired",
   "qrInvalid": "QR does not exist",
+  "share": "Share",
   "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
 }

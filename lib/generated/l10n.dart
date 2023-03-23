@@ -16720,6 +16720,16 @@ class S {
     );
   }
 
+  /// `Share`
+  String get share {
+    return Intl.message(
+      'Share',
+      name: 'share',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Alias already exist`
   String get aliasAlreadyExist {
     return Intl.message(

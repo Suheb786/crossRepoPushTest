@@ -51,38 +51,65 @@ class TempReturnButton extends StatelessWidget {
                             cdtrName: "Ahmed Lutfi",
                             description: Container(),
                             showDescription: false,
-                            actionWidget: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: AppColor.white,
-                                border: Border.all(color: AppColor.white_gray),
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 24.0.w,
-                                  vertical: 16.h,
+                            actionWidget: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.CreditConfirmation);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: AppColor.white,
+                                  border: Border.all(color: AppColor.white_gray),
+                                  borderRadius: BorderRadius.circular(100),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      S.of(context).creditConfirmation,
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: AppColor.skyblue,
-                                        fontSize: 12.0.t,
-                                        fontWeight: FontWeight.w600,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 24.0.w,
+                                    vertical: 16.h,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        S.of(context).creditConfirmation,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.skyblue,
+                                          fontSize: 12.0.t,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
-                                    ),
-                                    AppSvg.asset(AssetUtils.creditConfirmation, height: 16.h, width: 16.h)
-                                  ],
+                                      AppSvg.asset(AssetUtils.creditConfirmation, height: 16.h, width: 16.h)
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                             listOfDetails: Column(
                               children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.current.status,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "Rejected",
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -339,7 +366,8 @@ class TempReturnButton extends StatelessWidget {
                                             showDescription: false,
                                             actionWidget: GestureDetector(
                                               onTap: () {
-                                                Navigator.pushNamed(context, RoutePaths.ReturnPaymentSliderPage );
+                                                Navigator.pushNamed(
+                                                    context, RoutePaths.ReturnPaymentSliderPage);
                                               },
                                               child: Container(
                                                 width: double.infinity,

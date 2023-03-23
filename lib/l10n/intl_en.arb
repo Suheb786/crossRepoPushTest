@@ -1694,5 +1694,6 @@
   "errorWhileSendingQRPayment": "Error while sending QR payment",
   "cliqCustomerAlreadyRegistered": "Cliq Customer Already Registered",
   "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
+  "share": "Share",
   "aliasAlreadyExist": "Alias already exist"
 }

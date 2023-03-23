@@ -2610,6 +2610,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setupAndPersonalizeYourNewDebitCard":
             MessageLookupByLibrary.simpleMessage(
                 "Set up and personalize your new debit card"),
+        "share": MessageLookupByLibrary.simpleMessage("Share"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("Share CliQ ID"),
