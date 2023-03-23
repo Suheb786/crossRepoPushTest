@@ -68,8 +68,16 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
     isTotalAmountZero = await totalBillAmt > 0.0 ? false : true;
     if (isTotalAmountZero) {
-      showToastWithError(AppError(
-          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+      bool? isAnyBillPartial = postPaidBillInquiryData?.any((element) => element.isPartial == true);
+      if (isAnyBillPartial == true) {
+        showToastWithError(AppError(
+            cause: Exception(),
+            error: ErrorInfo(message: ""),
+            type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+      } else {
+        showToastWithError(AppError(
+            cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+      }
     }
     validRequestCounter = 0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
