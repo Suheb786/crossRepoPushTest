@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
@@ -14,8 +15,6 @@ import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/link_bank_account
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/manage_cliq/link_account_dialog/link_account_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -63,14 +62,14 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                 : "",
                             isAlias: ProviderScope.containerOf(context)
                                     .read(cliqIdTypeSelectionViewModelProvider)
-                                    .cliqIdTypeController
-                                    .text ==
-                                S.of(context).alias,
+                                    .cliqIdTypeSubject
+                                    .value ==
+                                CliqIdTypeEnum.ALIAS,
                             aliasValue: (ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
-                                        .cliqIdTypeController
-                                        .text ==
-                                    S.of(context).alias)
+                                        .cliqIdTypeSubject
+                                        .value ==
+                                    CliqIdTypeEnum.ALIAS)
                                 ? ProviderScope.containerOf(context)
                                     .read(cliqIdTypeSelectionViewModelProvider)
                                     .aliasController
