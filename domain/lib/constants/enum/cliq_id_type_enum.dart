@@ -20,7 +20,7 @@ extension CliqIdTypeEnumExt on String {
         return CliqIdTypeEnum.ALIAS;
       case "Mobile Number":
         return CliqIdTypeEnum.MOBILE_NO;
-      case 'اسم مستعار':
+      case 'الاسم المستعار':
         return CliqIdTypeEnum.ALIAS;
       case 'رقم الموبايل':
         return CliqIdTypeEnum.MOBILE_NO;
