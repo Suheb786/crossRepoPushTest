@@ -1290,7 +1290,7 @@ class NetworkError extends BaseError {
           case "EFW-401":
             return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
           case "EFW-367":
-            return AppError(cause: cause, error: error, type: ErrorType.BILL_NOT_FOUND);
+            return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
           case "EFW-325":
             return AppError(cause: cause, error: error, type: ErrorType.INVALID_PAID_AMOUNT);
           case "EFW-397":
