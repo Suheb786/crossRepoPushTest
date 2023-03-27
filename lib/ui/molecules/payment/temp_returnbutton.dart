@@ -281,143 +281,143 @@ class TempReturnButton extends StatelessWidget {
                                           fontSize: 12.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 5.0.h),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          RTPConfirmationDialog.show(
-                                            context,
-                                            amount: "10.00",
-                                            cdtrAcct: "EFBKI000012341234123819241213|",
-                                            cdtrDpText: StringUtils.getFirstInitials("Shakila Naseem"),
-                                            cdtrName: "Shakila Naseem",
-                                            description: Container(),
-                                            listOfDetails: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      S.current.date,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w400),
-                                                    ),
-                                                    Text(
-                                                      "12 September 2021",
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w600),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 16.h,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Time",
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w400),
-                                                    ),
-                                                    Text(
-                                                      "8:21 PM",
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w600),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 16.h,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Ref ID",
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w400),
-                                                    ),
-                                                    Text(
-                                                      "1209323102133939",
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.t,
-                                                          fontWeight: FontWeight.w600),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                            showDescription: false,
-                                            actionWidget: GestureDetector(
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                    context, RoutePaths.ReturnPaymentSliderPage);
-                                              },
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: AppColor.sky_blue_mid,
-                                                  borderRadius: BorderRadius.circular(100),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 16.0.w,
-                                                    vertical: 16.h,
-                                                  ),
-                                                  child: Text(
-                                                    S.of(context).returnPayment,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.white,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: AppColor.skyblue),
-                                            borderRadius: BorderRadius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 16.0.w,
-                                              vertical: 10.h,
-                                            ),
-                                            child: Text(
-                                              S.current.returnPayment,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.skyblue,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
+                                    // Padding(
+                                    //   padding: EdgeInsets.only(top: 5.0.h),
+                                    //   child: GestureDetector(
+                                    //     onTap: () {
+                                    //       RTPConfirmationDialog.show(
+                                    //         context,
+                                    //         amount: "10.00",
+                                    //         cdtrAcct: "EFBKI000012341234123819241213|",
+                                    //         cdtrDpText: StringUtils.getFirstInitials("Shakila Naseem"),
+                                    //         cdtrName: "Shakila Naseem",
+                                    //         description: Container(),
+                                    //         listOfDetails: Column(
+                                    //           children: [
+                                    //             Row(
+                                    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //               children: [
+                                    //                 Text(
+                                    //                   S.current.date,
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w400),
+                                    //                 ),
+                                    //                 Text(
+                                    //                   "12 September 2021",
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w600),
+                                    //                 ),
+                                    //               ],
+                                    //             ),
+                                    //             SizedBox(
+                                    //               height: 16.h,
+                                    //             ),
+                                    //             Row(
+                                    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //               children: [
+                                    //                 Text(
+                                    //                   "Time",
+                                    //                   textAlign: TextAlign.center,
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w400),
+                                    //                 ),
+                                    //                 Text(
+                                    //                   "8:21 PM",
+                                    //                   textAlign: TextAlign.center,
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w600),
+                                    //                 ),
+                                    //               ],
+                                    //             ),
+                                    //             SizedBox(
+                                    //               height: 16.h,
+                                    //             ),
+                                    //             Row(
+                                    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //               children: [
+                                    //                 Text(
+                                    //                   "Ref ID",
+                                    //                   textAlign: TextAlign.center,
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w400),
+                                    //                 ),
+                                    //                 Text(
+                                    //                   "1209323102133939",
+                                    //                   textAlign: TextAlign.center,
+                                    //                   style: TextStyle(
+                                    //                       fontFamily: StringUtils.appFont,
+                                    //                       fontSize: 12.t,
+                                    //                       fontWeight: FontWeight.w600),
+                                    //                 ),
+                                    //               ],
+                                    //             )
+                                    //           ],
+                                    //         ),
+                                    //         showDescription: false,
+                                    //         actionWidget: GestureDetector(
+                                    //           onTap: () {
+                                    //             Navigator.pushNamed(
+                                    //                 context, RoutePaths.ReturnPaymentSliderPage);
+                                    //           },
+                                    //           child: Container(
+                                    //             width: double.infinity,
+                                    //             decoration: BoxDecoration(
+                                    //               color: AppColor.sky_blue_mid,
+                                    //               borderRadius: BorderRadius.circular(100),
+                                    //             ),
+                                    //             child: Padding(
+                                    //               padding: EdgeInsets.symmetric(
+                                    //                 horizontal: 16.0.w,
+                                    //                 vertical: 16.h,
+                                    //               ),
+                                    //               child: Text(
+                                    //                 S.of(context).returnPayment,
+                                    //                 textAlign: TextAlign.center,
+                                    //                 style: TextStyle(
+                                    //                   fontFamily: StringUtils.appFont,
+                                    //                   color: AppColor.white,
+                                    //                   fontSize: 12.0.t,
+                                    //                   fontWeight: FontWeight.w600,
+                                    //                 ),
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //         ),
+                                    //       );
+                                    //     },
+                                    //     child: Container(
+                                    //       decoration: BoxDecoration(
+                                    //         border: Border.all(color: AppColor.skyblue),
+                                    //         borderRadius: BorderRadius.circular(20),
+                                    //       ),
+                                    //       child: Padding(
+                                    //         padding: EdgeInsets.symmetric(
+                                    //           horizontal: 16.0.w,
+                                    //           vertical: 10.h,
+                                    //         ),
+                                    //         child: Text(
+                                    //           S.current.returnPayment,
+                                    //           style: TextStyle(
+                                    //             fontFamily: StringUtils.appFont,
+                                    //             color: AppColor.skyblue,
+                                    //             fontSize: 12.0.t,
+                                    //             fontWeight: FontWeight.w600,
+                                    //           ),
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // )
                                   ],
                                 ),
                               ),
@@ -425,13 +425,134 @@ class TempReturnButton extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0.h),
-                        child: Divider(
-                          thickness: 4,
-                          color: Colors.red,
+
+                      InkWell(
+                        onTap: () {
+                          RTPConfirmationDialog.show(
+                            context,
+                            amount: "10.00",
+                            cdtrAcct: "EFBKI000012341234123819241213|",
+                            cdtrDpText: StringUtils.getFirstInitials("Shakila Naseem"),
+                            cdtrName: "Shakila Naseem",
+                            description: Container(),
+                            listOfDetails: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.current.date,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "12 September 2021",
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Time",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "8:21 PM",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Ref ID",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Text(
+                                      "1209323102133939",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.t,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            showDescription: false,
+                            actionWidget: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, RoutePaths.ReturnPaymentSliderPage);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: AppColor.sky_blue_mid,
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.0.w,
+                                    vertical: 16.h,
+                                  ),
+                                  child: Text(
+                                    S.of(context).returnPayment,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.white,
+                                      fontSize: 12.0.t,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          child: Icon(
+                            Icons.chevron_right,
+                            color: AppColor.white_gray,
+                          ),
                         ),
                       )
+
+                      // Padding(
+                      //   padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                      //   child: Divider(
+                      //     thickness: 114,
+                      //     color: Colors.red,
+                      //   ),
+                      // )
                     ],
                   );
                 },
