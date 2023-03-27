@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "accountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "IBAN / رقم الحساب / رقم الجوال / ALIAS"),
+            "الأيبان / رقم الحساب / رقم الجوال / الاسم المستعار"),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
         "accountNoCopied":
             MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
@@ -217,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-301)"),
         "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
             "الخدمة معطلة ، جرّب كمان مرة بعدين "),
-        "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
+        "alias": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
         "aliasAlreadyExist":
             MessageLookupByLibrary.simpleMessage(" الاسم المستعار مسجل مسبقاً"),
         "aliasHint": MessageLookupByLibrary.simpleMessage(
@@ -519,7 +519,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage(
             "اضبط سقف البطاقة الائتمانية المطلوب "),
         "changeDefaultAccount":
-            MessageLookupByLibrary.simpleMessage("Change default account"),
+            MessageLookupByLibrary.simpleMessage("تغير الحساب الأساسي"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("تغيير الإيميل"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
@@ -583,8 +583,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage(
             "تم تحديث الاسم المستعار لخدمة كليك"),
-        "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
-            "Cliq Customer Already Registered"),
+        "cliqCustomerAlreadyRegistered":
+            MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
             "تم تحديث رقم الموبايل المربوط بخدمة كليك"),
@@ -917,7 +917,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyHomeAddress":
             MessageLookupByLibrary.simpleMessage("لازم تدخل عنوان السكن"),
         "emptyIbanOrMobile": MessageLookupByLibrary.simpleMessage(
-            "لازم تكتب الـ IBAN/ رقم الموبايل/ الاسم المستعار"),
+            "لازم تكتب الـ الأيبان/ رقم الموبايل/ الاسم المستعار"),
         "emptyIdNumber":
             MessageLookupByLibrary.simpleMessage("لازم تدخّل رقم هويتك"),
         "emptyIncome":
@@ -1404,22 +1404,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "iConfirmThatMy": MessageLookupByLibrary.simpleMessage("أوكد على"),
         "iDNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("عندي حساب"),
-        "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
-        "ibanCopied": MessageLookupByLibrary.simpleMessage("نسخ IBAN"),
+        "iban": MessageLookupByLibrary.simpleMessage("الأيبان"),
+        "ibanCopied": MessageLookupByLibrary.simpleMessage("نسخ الأيبان"),
         "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage(
-            "IBAN/ رقم موبايل/ اسم مستعار"),
+            "الأيبان/ رقم موبايل/ اسم مستعار"),
         "ibanNotBlink": MessageLookupByLibrary.simpleMessage(
-            "رقم IBAN غير موجود على Blink"),
+            "رقم الأيبان غير موجود على Blink"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "ibanOrMobile": MessageLookupByLibrary.simpleMessage(
-            "IBAN/ رقم موبايل/ اسم مستعار"),
-        "ibanOrMobileOrAccount":
-            MessageLookupByLibrary.simpleMessage("IBAN/ رقم الموبايل/ الحساب"),
+            "الأيبان/ رقم موبايل/ اسم مستعار"),
+        "ibanOrMobileOrAccount": MessageLookupByLibrary.simpleMessage(
+            "الأيبان/ رقم الموبايل/ الحساب"),
         "ibanOrMobileRequest":
             MessageLookupByLibrary.simpleMessage("رقم موبايل/ اسم مستعار"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
-            "رقم IBAN اللي دخلته غير موجود على Blink. رح تقدر تحوّل الأموال لحسابات خارجية قريباً. بتقدر هلأ تدعو صاحبك لينضم لعيلتنا!"),
+            "رقم الأيبان اللي دخلته غير موجود على Blink. رح تقدر تحوّل الأموال لحسابات خارجية قريباً. بتقدر هلأ تدعو صاحبك لينضم لعيلتنا!"),
         "idAlreadyExists":
             MessageLookupByLibrary.simpleMessage("رقم الهوية موجود بالفعل"),
         "idCardDataNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1835,7 +1835,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNoRegisteredWithBlink": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف المحمول المسجل مع وميض"),
         "mobileNoRegisteredWithBlinkDesc": MessageLookupByLibrary.simpleMessage(
-            "لقد وجدنا أن رقم الهاتف المحمول الذي أدخلته مسجل في blink. إذا تابعت ، فسيتم إرسال الأموال إلى حساب المستلم الوامض. إذا كنت تنوي المتابعة مع حساب مصرفي آخر ، فيمكنك استخدام رقم الحساب المصرفي الدولي (IBAN) أو الاسم المستعار."),
+            "لقد وجدنا أن رقم الهاتف المحمول الذي أدخلته مسجل في blink. إذا تابعت ، فسيتم إرسال الأموال إلى حساب المستلم الوامض. إذا كنت تنوي المتابعة مع حساب مصرفي آخر ، فيمكنك استخدام رقم الحساب المصرفي الدولي (الأيبان) أو الاسم المستعار."),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الموبايل"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "mobileNumberUpdated":
@@ -1904,7 +1904,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الحد الاعلى للأسم المستعار هو ٥٠ خانة"),
         "nicknameLengthShouldNotBeGreaterThan50":
             MessageLookupByLibrary.simpleMessage(
-                "Nickname length should not be greater than 50"),
+                "الحد الأعلى للاسم المستعار هو 50 خانة"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "مش قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
@@ -2493,8 +2493,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الخدمة غير متوفرة حاليا"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "sessionTimeout": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
-        "setAsCliqDefaultAccount": MessageLookupByLibrary.simpleMessage(
-            "Set as CliQ default account?"),
+        "setAsCliqDefaultAccount":
+            MessageLookupByLibrary.simpleMessage("تحديد كحساب أساسي"),
         "setAsDefault":
             MessageLookupByLibrary.simpleMessage("التعيين كحساب اساسي"),
         "setCardPintError": MessageLookupByLibrary.simpleMessage(

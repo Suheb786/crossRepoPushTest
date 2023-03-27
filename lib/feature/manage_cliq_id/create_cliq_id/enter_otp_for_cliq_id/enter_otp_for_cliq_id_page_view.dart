@@ -91,14 +91,14 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                     : "",
                                 isAlias: ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
-                                        .cliqIdTypeController
-                                        .text ==
-                                    S.of(context).alias,
+                                        .cliqIdTypeSubject
+                                        .value ==
+                                    CliqIdTypeEnum.ALIAS,
                                 aliasValue: (ProviderScope.containerOf(context)
                                             .read(cliqIdTypeSelectionViewModelProvider)
-                                            .cliqIdTypeController
-                                            .text ==
-                                        S.of(context).alias)
+                                            .cliqIdTypeSubject
+                                            .value ==
+                                        CliqIdTypeEnum.ALIAS)
                                     ? ProviderScope.containerOf(context)
                                         .read(cliqIdTypeSelectionViewModelProvider)
                                         .aliasController
@@ -195,15 +195,15 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                             : "",
                                                         isAlias: ProviderScope.containerOf(context)
                                                                 .read(cliqIdTypeSelectionViewModelProvider)
-                                                                .cliqIdTypeController
-                                                                .text ==
-                                                            S.of(context).alias,
+                                                                .cliqIdTypeSubject
+                                                                .value ==
+                                                            CliqIdTypeEnum.ALIAS,
                                                         aliasValue: (ProviderScope.containerOf(context)
                                                                     .read(
                                                                         cliqIdTypeSelectionViewModelProvider)
-                                                                    .cliqIdTypeController
-                                                                    .text ==
-                                                                S.of(context).alias)
+                                                                    .cliqIdTypeSubject
+                                                                    .value ==
+                                                                CliqIdTypeEnum.ALIAS)
                                                             ? ProviderScope.containerOf(context)
                                                                 .read(cliqIdTypeSelectionViewModelProvider)
                                                                 .aliasController
