@@ -36,7 +36,9 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                   stream: model.returnPaymentOtpValidationStream,
                   initialData: Resource.none(),
                   onData: (value) {
-                    if (value.status == Status.SUCCESS) {}
+                    if (value.status == Status.SUCCESS) {
+                      Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess);
+                    }
                   },
                   dataBuilder: (context, enterOTP) {
                     return GestureDetector(

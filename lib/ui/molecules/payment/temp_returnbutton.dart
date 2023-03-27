@@ -91,20 +91,20 @@ class TempReturnButton extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      S.current.status,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.t,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      "Rejected",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
-                                    ),
+                                    // Text(
+                                    //   S.current.status,
+                                    //   style: TextStyle(
+                                    //       fontFamily: StringUtils.appFont,
+                                    //       fontSize: 12.t,
+                                    //       fontWeight: FontWeight.w400),
+                                    // ),
+                                    // Text(
+                                    //   "Rejected",
+                                    //   style: TextStyle(
+                                    //       fontFamily: StringUtils.appFont,
+                                    //       fontSize: 12.t,
+                                    //       fontWeight: FontWeight.w600),
+                                    // ),
                                   ],
                                 ),
                                 SizedBox(
