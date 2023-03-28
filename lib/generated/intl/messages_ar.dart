@@ -2511,6 +2511,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "أكمل المعلومات لإصدار البطاقة التابعة"),
         "setupAndPersonalizeYourNewDebitCard":
             MessageLookupByLibrary.simpleMessage("اصدر بطاقة الدفع المباشر"),
+        "share": MessageLookupByLibrary.simpleMessage("Share"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("شارك CliQ"),
