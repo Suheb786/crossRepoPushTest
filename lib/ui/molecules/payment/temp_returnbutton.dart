@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -24,13 +25,183 @@ class TempReturnButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "11 September",
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 15.0.t,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).primaryColorDark),
+            GestureDetector(
+              onTap: () {
+                //* ACCEPT/REJECT POP UP
+                RTPConfirmationDialog.show(
+                  context,
+                  amount: "",
+                  isAmountVisible: false,
+                  cdtrAcct: "EFBKI000012341234123819241213|",
+                  cdtrDpText: StringUtils.getFirstInitials("Ahmed Lutfi"),
+                  cdtrName: "Ahmed Lutfi",
+                  description: RichText(
+                      maxLines: 3,
+                      text: TextSpan(
+                          text: "Ahmed Lutfi ",
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14.0.t,
+                              overflow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.veryDarkGray1),
+                          children: [
+                            TextSpan(
+                              text: S.current.isRequesting,
+
+                              // "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.0.t,
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).primaryColorDark),
+                              children: [
+                                TextSpan(
+                                  text: " 10.00 JOD",
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColor.veryDarkGray1),
+                                  children: [
+                                    TextSpan(
+                                      text: S.current.fromYouWouldYouLikeToAcceptIt,
+                                      style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14.0.t,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: FontWeight.w400,
+                                        // color: AppColor.sky_blue_mid,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ])),
+                  showDescription: true,
+                  actionWidget: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColor.sky_blue_mid,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 16.h,
+                            ),
+                            child: Text(
+                              S.of(context).accept,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.white,
+                                fontSize: 12.0.t,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColor.white,
+                            border: Border.all(color: AppColor.sky_blue_mid),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 16.h,
+                            ),
+                            child: Text(
+                              S.of(context).reject,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.sky_blue_mid,
+                                fontSize: 12.0.t,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  listOfDetails: Column(
+                    children: [
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            S.current.date,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 12.t,
+                                color: AppColor.very_dark_gray1,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "12 September 2021",
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12.t,
+                              color: AppColor.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Time",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 12.t,
+                                color: AppColor.very_dark_gray1,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            "8:21 PM",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12.t,
+                              color: AppColor.black,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Text(
+                "11 September",
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 15.0.t,
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).primaryColorDark),
+              ),
             ),
             Card(
               margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
@@ -43,9 +214,11 @@ class TempReturnButton extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          //* CREDIT CONFIRMATION POP UP
                           RTPConfirmationDialog.show(
                             context,
                             amount: "- 10.000",
+                            isAmountVisible: true,
                             cdtrAcct: "EFBKI000012341234123819241213|",
                             cdtrDpText: StringUtils.getFirstInitials("Ahmed Lutfi"),
                             cdtrName: "Ahmed Lutfi",
@@ -118,6 +291,7 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
+                                          color: AppColor.very_dark_gray1,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -125,7 +299,8 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -140,6 +315,7 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
+                                          color: AppColor.very_dark_gray1,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -147,7 +323,8 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -163,6 +340,7 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
+                                          color: AppColor.very_dark_gray1,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -171,7 +349,8 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -187,6 +366,7 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
+                                          color: AppColor.very_dark_gray1,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -195,7 +375,8 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 )
@@ -273,13 +454,184 @@ class TempReturnButton extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "12:03 AM",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.gray1,
-                                          fontSize: 12.0.t,
-                                          fontWeight: FontWeight.w600),
+                                    GestureDetector(
+                                      onTap: () {
+                                        //* STATUS POP UP
+                                        RTPConfirmationDialog.show(
+                                          context,
+                                          amount: "- 10.000",
+                                          isAmountVisible: false,
+                                          cdtrAcct: "EFBKI000012341234123819241213|",
+                                          cdtrDpText: StringUtils.getFirstInitials("Ahmed Lutfi"),
+                                          cdtrName: "Ahmed Lutfi",
+                                          showDescription: true,
+                                          actionWidget: Container(),
+                                          description: RichText(
+                                            textAlign: TextAlign.start,
+                                            maxLines: 3,
+                                            text: TextSpan(
+                                              text: S.current.yourequested,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.0.t,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: AppColor.veryDarkGray1),
+                                              children: [
+                                                TextSpan(
+                                                  text: " 10.00 JOD ",
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 14.0.t,
+                                                      fontWeight: FontWeight.w700,
+                                                      color: AppColor.veryDarkGray1),
+                                                ),
+                                                TextSpan(
+                                                  text: S.current.from,
+                                                  style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14.0.t,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    fontWeight: FontWeight.w400,
+                                                    // color: AppColor.sky_blue_mid,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: " Ahmed Lutfi",
+                                                  style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14.0.t,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    fontWeight: FontWeight.w700,
+                                                    // color: AppColor.sky_blue_mid,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          listOfDetails: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [],
+                                              ),
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    S.current.status,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.very_dark_gray1,
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(20),
+                                                        color: AppColor.dark_brown),
+                                                    padding: EdgeInsets.only(
+                                                        left: 8.w, right: 8.w, top: 4.h, bottom: 1.h),
+                                                    child: Text(
+                                                      "Rejected",
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 12.t,
+                                                          color: AppColor.white,
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    S.current.reason,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.very_dark_gray1,
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                  Text(
+                                                    "Personal",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.black,
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    S.current.date,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.very_dark_gray1,
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                  Text(
+                                                    "12 September 2021",
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.black,
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Time",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.very_dark_gray1,
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                  Text(
+                                                    "8:21 PM",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        color: AppColor.black,
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        "12:03 AM",
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: AppColor.gray1,
+                                            fontSize: 12.0.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                     ),
                                     // Padding(
                                     //   padding: EdgeInsets.only(top: 5.0.h),
@@ -428,9 +780,11 @@ class TempReturnButton extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
+                          //* RETURN PAYMENT POP UP
                           RTPConfirmationDialog.show(
                             context,
                             amount: "10.00",
+                            isAmountVisible: true,
                             cdtrAcct: "EFBKI000012341234123819241213|",
                             cdtrDpText: StringUtils.getFirstInitials("Shakila Naseem"),
                             cdtrName: "Shakila Naseem",
@@ -445,6 +799,7 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
+                                          color: AppColor.very_dark_gray1,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -452,7 +807,8 @@ class TempReturnButton extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -467,6 +823,7 @@ class TempReturnButton extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
+                                          color: AppColor.very_dark_gray1,
                                           fontSize: 12.t,
                                           fontWeight: FontWeight.w400),
                                     ),
@@ -475,8 +832,9 @@ class TempReturnButton extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -491,6 +849,7 @@ class TempReturnButton extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
+                                          color: AppColor.very_dark_gray1,
                                           fontSize: 12.t,
                                           fontWeight: FontWeight.w400),
                                     ),
@@ -499,8 +858,9 @@ class TempReturnButton extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 )

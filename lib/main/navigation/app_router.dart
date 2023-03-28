@@ -923,7 +923,8 @@ class AppRouter {
 
       case RoutePaths.PaymentTransationSuccess:
         return CupertinoPageRoute(
-            builder: (context) => PaymentTransationSuccessPage(),
+            builder: (context) =>
+                PaymentTransationSuccessPage(settings.arguments as PaymentTransationSuccessArgument),
             settings: RouteSettings(name: RoutePaths.PaymentTransationSuccess));
 
       default:

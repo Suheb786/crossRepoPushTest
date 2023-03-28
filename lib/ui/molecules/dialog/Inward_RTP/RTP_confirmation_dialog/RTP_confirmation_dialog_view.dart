@@ -23,12 +23,14 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final Widget listOfDetails;
   final Widget description;
   final bool showDescription;
+  final bool isAmountVisible;
   final Widget actionWidget;
 
   const RTPConfirmationDialogView(
       {this.onDismiss,
       this.onAccepted,
       this.onRejected,
+      required this.isAmountVisible,
       required this.actionWidget,
       required this.description,
       required this.listOfDetails,
@@ -74,25 +76,28 @@ class RTPConfirmationDialogView extends StatelessWidget {
                             ),
                           )),
                       SizedBox(height: 16.0.h),
-                      RichText(
-                        text: TextSpan(
-                          text: amount,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 24.t,
-                              fontWeight: FontWeight.w700,
-                              color: AppColor.black),
-                          children: [
-                            TextSpan(text: " "),
-                            TextSpan(
-                              text: S.of(context).JOD,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 12.t,
-                                  color: AppColor.light_gray,
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
+                      Visibility(
+                        visible: isAmountVisible,
+                        child: RichText(
+                          text: TextSpan(
+                            text: amount,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 24.t,
+                                fontWeight: FontWeight.w700,
+                                color: AppColor.black),
+                            children: [
+                              TextSpan(text: " "),
+                              TextSpan(
+                                text: S.of(context).JOD,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12.t,
+                                    color: AppColor.light_gray,
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 8.0.h),
@@ -100,7 +105,10 @@ class RTPConfirmationDialogView extends StatelessWidget {
                         cdtrName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.veryDarkGray1,
+                            fontSize: 20.t,
+                            fontWeight: FontWeight.w600),
                       ),
                       Text(
                         cdtrAcct,

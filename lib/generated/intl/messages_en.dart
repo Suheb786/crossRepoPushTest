@@ -23,29 +23,31 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(additionalIncomeList) =>
       "Add. Income \n${additionalIncomeList}";
 
-  static String m12(String) => "Back to ${String}";
+  static String m13(String) => "Back to ${String}";
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
-  static String m2(String) => "${String} has been activated";
+  static String m2(Name) => "from ${Name}";
 
-  static String m3(String) => "${String} has been deleted";
+  static String m3(String) => "${String} has been activated";
 
-  static String m4(String) => "${String} has been suspended";
+  static String m4(String) => "${String} has been deleted";
 
-  static String m5(maximumLimit) => "Maximum ${maximumLimit} JOD";
+  static String m5(String) => "${String} has been suspended";
 
-  static String m6(noOfBills) => "Paying ${noOfBills} bills";
+  static String m6(maximumLimit) => "Maximum ${maximumLimit} JOD";
 
-  static String m7(resendTime) => "Resend in ${resendTime}";
+  static String m7(noOfBills) => "Paying ${noOfBills} bills";
 
-  static String m8(accountNo) => "Savings Account ${accountNo}";
+  static String m8(resendTime) => "Resend in ${resendTime}";
 
-  static String m9(String) => "Savings Account ${String}";
+  static String m9(accountNo) => "Savings Account ${accountNo}";
 
-  static String m10(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m10(String) => "Savings Account ${String}";
 
-  static String m11(noOfTransaction) =>
+  static String m11(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+
+  static String m12(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -341,7 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
-        "backToCategory": m12,
+        "backToCategory": m13,
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
@@ -1328,6 +1330,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fromSavedBills":
             MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("from"),
+        "fromStrin": m2,
         "fromYouWouldYouLikeToAcceptIt": MessageLookupByLibrary.simpleMessage(
             " from you. Would you like to accept?"),
         "fromYourCliqIdList":
@@ -1418,9 +1421,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "Age must be greater than 18 to proceed."),
-        "hasBeenActivated": m2,
-        "hasBeenDeleted": m3,
-        "hasbeenSuspended": m4,
+        "hasBeenActivated": m3,
+        "hasBeenDeleted": m4,
+        "hasbeenSuspended": m5,
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
         "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
@@ -1870,7 +1873,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account."),
         "maximumAgeOfUser":
             MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
-        "maximumLimit": m5,
+        "maximumLimit": m6,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
             "Merchant payment limit exceeded."),
@@ -2104,7 +2107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone."),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
         "payBill": MessageLookupByLibrary.simpleMessage("PAY BILL"),
-        "payBills": m6,
+        "payBills": m7,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("Pay My Bill"),
         "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
@@ -2318,6 +2321,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Best if your surrounding is quiet and private"),
         "reactivateCliqId":
             MessageLookupByLibrary.simpleMessage("Reactivate CliQ ID"),
+        "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
         "reasonOfUnavailability":
@@ -2439,7 +2443,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
-        "resendIn": m7,
+        "resendIn": m8,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "resetFilter": MessageLookupByLibrary.simpleMessage("Reset Filter"),
@@ -2497,8 +2501,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
             "Save your earnings digitally and securely"),
-        "savingAccount": m8,
-        "savingAccountList": m9,
+        "savingAccount": m9,
+        "savingAccountList": m10,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -2519,7 +2523,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Scan your Id to proceed further."),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m10,
+        "scrollToSetDate": m11,
         "searchAgain": MessageLookupByLibrary.simpleMessage("Search Again"),
         "searchBill": MessageLookupByLibrary.simpleMessage("Search bill"),
         "searchCategory":
@@ -2832,7 +2836,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m11,
+        "typeOfTransactionsSmall": m12,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),
@@ -3077,6 +3081,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your card is now set up with Apple Pay."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
-            "Your Yellow Sun debit card has been issued!")
+            "Your Yellow Sun debit card has been issued!"),
+        "yourequested": MessageLookupByLibrary.simpleMessage("You Requested")
       };
 }

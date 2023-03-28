@@ -25,25 +25,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
 
-  static String m2(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
+  static String m2(Name) => "from ${Name}";
 
-  static String m3(String) => "${String} تم حذف خدمة كليك على الاسم المستعار";
+  static String m3(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
 
-  static String m4(String) => "${String} تم إيقاف خدمة كليك على الاسم المستعار";
+  static String m4(String) => "${String} تم حذف خدمة كليك على الاسم المستعار";
 
-  static String m5(maximumLimit) => "أقصى ${maximumLimit} دينار";
+  static String m5(String) => "${String} تم إيقاف خدمة كليك على الاسم المستعار";
 
-  static String m6(noOfBills) => "تسديد ${noOfBills} فاتورة";
+  static String m6(maximumLimit) => "أقصى ${maximumLimit} دينار";
 
-  static String m7(resendTime) => "إعادة الإرسال خلال ${resendTime}";
+  static String m7(noOfBills) => "تسديد ${noOfBills} فاتورة";
 
-  static String m8(accountNo) => "حساب التوفير ${accountNo}";
+  static String m8(resendTime) => "إعادة الإرسال خلال ${resendTime}";
 
-  static String m9(String) => "حساب التوفير ${String}";
+  static String m9(accountNo) => "حساب التوفير ${accountNo}";
 
-  static String m10(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
+  static String m10(String) => "حساب التوفير ${String}";
 
-  static String m11(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
+  static String m11(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
+
+  static String m12(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -1282,6 +1284,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fromSavedBills":
             MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("من"),
+        "fromStrin": m2,
         "fromYouWouldYouLikeToAcceptIt":
             MessageLookupByLibrary.simpleMessage("منك، هل تريد الموافقة"),
         "fromYourCliqIdList":
@@ -1372,9 +1375,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خدمات حكومية"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "للاستمرار، لازم يكون العمر أكبر من 18 سنة."),
-        "hasBeenActivated": m2,
-        "hasBeenDeleted": m3,
-        "hasbeenSuspended": m4,
+        "hasBeenActivated": m3,
+        "hasBeenDeleted": m4,
+        "hasbeenSuspended": m5,
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "helloE": MessageLookupByLibrary.simpleMessage("مرحبا!"),
         "helloHereMyBlinkAccount": MessageLookupByLibrary.simpleMessage(
@@ -1810,7 +1813,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "وصلت للحد الأقصى من عدد الحسابات. للأسف ما رح تقدر تفتح حساب جديد."),
         "maximumAgeOfUser": MessageLookupByLibrary.simpleMessage(
             "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),
-        "maximumLimit": m5,
+        "maximumLimit": m6,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("خليها لبعدين"),
         "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
             "تم تجاوز سقف الدفع في المتاجر"),
@@ -2032,7 +2035,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الدفع و طلب الأموال من خلال رمز الاستجابة السريع  متاح حاليا فقط للتحويل بين عملاء بلينك ، سنعلمك في حال أصبحت جاهزة و فعالة للجميع"),
         "payBack": MessageLookupByLibrary.simpleMessage("سداد"),
         "payBill": MessageLookupByLibrary.simpleMessage("تسديد الفاتورة"),
-        "payBills": m6,
+        "payBills": m7,
         "payFrom": MessageLookupByLibrary.simpleMessage("تسديد من"),
         "payMyBill": MessageLookupByLibrary.simpleMessage("تسديد فاتورتي"),
         "payViaQR": MessageLookupByLibrary.simpleMessage(
@@ -2230,6 +2233,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يا ريت تكون بمكان هادي وفيه خصوصية"),
         "reactivateCliqId":
             MessageLookupByLibrary.simpleMessage("اعادة تفعيل حساب كليك"),
+        "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
         "reasonOfUnavailability":
@@ -2350,7 +2354,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("تحديد موعد للمكالمة"),
         "resendCode": MessageLookupByLibrary.simpleMessage("أعد إرسال الرمز"),
-        "resendIn": m7,
+        "resendIn": m8,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "residenceCountryNotFound": MessageLookupByLibrary.simpleMessage(
@@ -2404,8 +2408,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "saveEarningsDigitally":
             MessageLookupByLibrary.simpleMessage("احفظ أرباحك رقمياً وبأمان"),
-        "savingAccount": m8,
-        "savingAccountList": m9,
+        "savingAccount": m9,
+        "savingAccountList": m10,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-006)"),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -2426,7 +2430,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("امسح هويتك عشان تكمّل"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("تحديد موعد لاحق"),
-        "scrollToSetDate": m10,
+        "scrollToSetDate": m11,
         "searchAgain": MessageLookupByLibrary.simpleMessage("البحث مرة أخرى"),
         "searchBill": MessageLookupByLibrary.simpleMessage("البحث عن فاتورة"),
         "searchCategory": MessageLookupByLibrary.simpleMessage("البحث عن فئة"),
@@ -2726,7 +2730,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("نوع الدخل"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("نوع الحركات"),
-        "typeOfTransactionsSmall": m11,
+        "typeOfTransactionsSmall": m12,
         "unBlockPin":
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
@@ -2963,6 +2967,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
-            "تم إصدار بطاقة الدفع المباشر Yellow Sun")
+            "تم إصدار بطاقة الدفع المباشر Yellow Sun"),
+        "yourequested": MessageLookupByLibrary.simpleMessage("You Requested")
       };
 }
