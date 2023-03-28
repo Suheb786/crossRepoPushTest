@@ -1695,5 +1695,8 @@
   "cliqCustomerAlreadyRegistered": "Cliq Customer Already Registered",
   "nicknameLengthShouldNotBeGreaterThan50": "Nickname length should not be greater than 50",
   "share": "Share",
-  "aliasAlreadyExist": "Alias already exist"
+  "aliasAlreadyExist": "Alias already exist",
+  "reason": "Reason",
+  "fromStrin": "from {Name}",
+  "yourequested": "You Requested"
 }

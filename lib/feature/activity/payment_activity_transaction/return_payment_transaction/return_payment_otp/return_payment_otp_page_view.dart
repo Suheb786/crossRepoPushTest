@@ -6,6 +6,7 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -37,7 +38,12 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                   initialData: Resource.none(),
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
-                      Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess);
+                      Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
+                          arguments: PaymentTransationSuccessArgument(
+                              ammount: "10.000",
+                              iban: "FDSFSDFO08-09FD",
+                              name: "Sabir Ali",
+                              statusInfo: "Sent to"));
                     }
                   },
                   dataBuilder: (context, enterOTP) {

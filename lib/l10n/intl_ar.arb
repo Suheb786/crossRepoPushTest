@@ -1649,5 +1649,8 @@
   "qrExpired": "QR Expired",
   "qrInvalid": "QR does not exist",
   "share": "Share",
-  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link"
+  "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
+  "reason": "Reason",
+  "fromStrin": "from {Name}",
+  "yourequested": "You Requested"
 }

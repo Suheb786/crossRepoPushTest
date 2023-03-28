@@ -39,9 +39,12 @@ class CreditConfirmationPaymentActivityPageView
               children: [
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: AppColor.gray_black,
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: AppColor.gray_black,
+                    ),
                   ),
                 ),
                 Padding(

@@ -8,6 +8,9 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_t
 import 'package:riverpod/src/framework.dart';
 
 class PaymentTransationSuccessPage extends BasePage<PaymentTransationSuccessPageViewModel> {
+  final PaymentTransationSuccessArgument paymentTransationSuccessArgument;
+
+  PaymentTransationSuccessPage(this.paymentTransationSuccessArgument);
   @override
   State<StatefulWidget> createState() => PaymentTransationSuccessPageState();
 }
@@ -26,6 +29,20 @@ class PaymentTransationSuccessPageState
 
   @override
   ProviderBase provideBase() {
-    return paymentTransationSuccessPageViewModelProvider;
+    return paymentTransationSuccessPageViewModelProvider.call(widget.paymentTransationSuccessArgument);
   }
+}
+
+class PaymentTransationSuccessArgument {
+  final String ammount;
+  final String name;
+  final String iban;
+  final String statusInfo;
+
+  PaymentTransationSuccessArgument({
+    required this.ammount,
+    required this.name,
+    required this.statusInfo,
+    required this.iban,
+  });
 }

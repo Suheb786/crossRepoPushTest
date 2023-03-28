@@ -16739,6 +16739,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Reason`
+  String get reason {
+    return Intl.message(
+      'Reason',
+      name: 'reason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from {Name}`
+  String fromStrin(Object Name) {
+    return Intl.message(
+      'from $Name',
+      name: 'fromStrin',
+      desc: '',
+      args: [Name],
+    );
+  }
+
+  /// `You Requested`
+  String get yourequested {
+    return Intl.message(
+      'You Requested',
+      name: 'yourequested',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

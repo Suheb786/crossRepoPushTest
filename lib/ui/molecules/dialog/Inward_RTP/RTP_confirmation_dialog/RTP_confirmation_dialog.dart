@@ -12,6 +12,7 @@ class RTPConfirmationDialog {
       Function()? onAccepted,
       Function()? onRejected,
       required String amount,
+      required bool isAmountVisible,
       required String cdtrAcct,
       required String cdtrDpText,
       required String cdtrName,
@@ -33,6 +34,7 @@ class RTPConfirmationDialog {
               onAccepted: onAccepted,
               onDismiss: onDismiss,
               onRejected: onRejected,
+              isAmountVisible: isAmountVisible,
             ));
   }
 }

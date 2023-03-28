@@ -24,8 +24,8 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          // Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          // ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
+
 
         }
       },
@@ -56,7 +56,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "10.000",
+                    model.paymentTransationSuccessArgument.ammount,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
@@ -81,7 +81,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 6.0.h),
               child: Text(
-                S.of(context).sentTo,
+                model.paymentTransationSuccessArgument.statusInfo,
                 maxLines: 3,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -94,7 +94,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 16.0.h),
               child: Text(
-                "Shakila Naseem",
+                model.paymentTransationSuccessArgument.name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
@@ -106,7 +106,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 4.0.h),
               child: Text(
-                "EFBKI000012341234123819241213",
+                model.paymentTransationSuccessArgument.iban,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
