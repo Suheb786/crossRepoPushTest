@@ -49,8 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("Customer of invalid Alias"),

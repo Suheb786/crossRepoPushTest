@@ -72,7 +72,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           content.data?[index].trxDir ==
-                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
                               ? RichText(
                                   maxLines: 3,
                                   text: TextSpan(
