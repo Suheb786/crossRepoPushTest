@@ -156,6 +156,7 @@ abstract class CliqRepository {
     required String RTPStatus,
     required String RejectReason,
     required String RejectADdInfo,
+    required bool GetToken,
   });
 
   Future<Either<NetworkError, List<GetAccountByCustomerId>>> getAccountByCustomerID();
@@ -177,6 +178,8 @@ abstract class CliqRepository {
       required String cdtrAlias,
       required String rgltryRptg,
       required String payRefNo,
+      required String OrgnlMsgId,
+      required String CtgyPurp,
       required String rejectReason,
       required String rejectADdInfo,
       required String rtpStatus,

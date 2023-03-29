@@ -14,6 +14,8 @@ RequestToPayResultRequestEntity _$RequestToPayResultRequestEntityFromJson(
     RTPStatus: json['RTPStatus'] as String,
     RejectReason: json['RejectReason'] as String,
     RejectADdInfo: json['RejectADdInfo'] as String,
+    GetToken: json['GetToken'] as bool,
+    BaseClass: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -25,4 +27,6 @@ Map<String, dynamic> _$RequestToPayResultRequestEntityToJson(
       'RTPStatus': instance.RTPStatus,
       'RejectReason': instance.RejectReason,
       'RejectADdInfo': instance.RejectADdInfo,
+      'GetToken': instance.GetToken,
+      'BaseClass': instance.BaseClass,
     };

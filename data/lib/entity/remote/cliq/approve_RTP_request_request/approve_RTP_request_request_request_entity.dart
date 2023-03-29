@@ -36,6 +36,12 @@ class ApproveRTPRequestReqestEntity {
   final String rgltryRptg;
   @JsonKey(name: "payRefNo")
   final String payRefNo;
+  @JsonKey(name: "OrgnlMsgId")
+  final String OrgnlMsgId;
+
+  @JsonKey(name: "CtgyPurp")
+  final String CtgyPurp;
+
   @JsonKey(name: "rejectReason")
   final String rejectReason;
   @JsonKey(name: "rejectADdInfo")
@@ -62,6 +68,8 @@ class ApproveRTPRequestReqestEntity {
       required this.cdtrAlias,
       required this.rgltryRptg,
       required this.payRefNo,
+      required this.OrgnlMsgId,
+      required this.CtgyPurp,
       required this.rejectReason,
       required this.rejectADdInfo,
       required this.rtpStatus,

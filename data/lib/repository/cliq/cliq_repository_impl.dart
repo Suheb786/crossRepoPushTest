@@ -287,7 +287,8 @@ class CliqRepositoryImpl extends CliqRepository {
       required String OrgnlMsgId,
       required String RTPStatus,
       required String RejectReason,
-      required String RejectADdInfo}) async {
+      required String RejectADdInfo,
+      required bool GetToken}) async {
     final result = await safeApiCall(
       _cliqDataSource.requestToPayResult(
         CustID: CustID,
@@ -295,6 +296,7 @@ class CliqRepositoryImpl extends CliqRepository {
         RTPStatus: RTPStatus,
         RejectReason: RejectReason,
         RejectADdInfo: RejectADdInfo,
+        GetToken: GetToken,
       ),
     );
     return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
@@ -331,6 +333,8 @@ class CliqRepositoryImpl extends CliqRepository {
     required String cdtrAlias,
     required String rgltryRptg,
     required String payRefNo,
+    required String OrgnlMsgId,
+    required String CtgyPurp,
     required String rejectReason,
     required String rejectADdInfo,
     required String rtpStatus,
@@ -353,6 +357,8 @@ class CliqRepositoryImpl extends CliqRepository {
         cdtrAlias: cdtrAlias,
         rgltryRptg: rgltryRptg,
         payRefNo: payRefNo,
+        OrgnlMsgId: OrgnlMsgId,
+        CtgyPurp: CtgyPurp,
         rejectReason: rejectReason,
         rejectADdInfo: rejectADdInfo,
         rtpStatus: rtpStatus,

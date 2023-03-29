@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
@@ -235,6 +237,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       cdtrAlias: "",
                                                                       rgltryRptg: "",
                                                                       payRefNo: "",
+                                                                      OrgnlMsgId: "",
+                                                                      CtgyPurp: "",
                                                                       rejectReason: "",
                                                                       rtpStatus: "",
                                                                       rejectADdInfo: "",
@@ -248,6 +252,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     OrgnlMsgId: (data.msgID),
                                                                     RejectADdInfo: "",
                                                                     RejectReason: "",
+                                                                    GetToken: true,
                                                                   );
                                                                 },
                                                               )
