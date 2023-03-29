@@ -43,7 +43,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                   child: Text(
                     S.of(context).paymentActivity,
                     style: TextStyle(
-                        fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
+                        color: AppColor.veryDarkGray2,
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0.t),
                   ),
                 ),
               ),
@@ -66,29 +69,73 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                               height: 4.0.h,
                               width: 64.0.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
+                                  borderRadius: BorderRadius.circular(4), color: AppColor.white_gray),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 38.0.w),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AppStreamBuilder<String>(
-                                      stream: model.transactionTypeResponseStream,
-                                      initialData: StringUtils.isDirectionRTL(context)
-                                          ? "كل الحركات"
-                                          : 'All Transactions',
-                                      dataBuilder: (context, transactionType) {
-                                        return InkWell(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppStreamBuilder<String>(
+                                    stream: model.transactionTypeResponseStream,
+                                    initialData: StringUtils.isDirectionRTL(context)
+                                        ? "كل الحركات"
+                                        : 'All Transactions',
+                                    dataBuilder: (context, transactionType) {
+                                      return InkWell(
+                                        onTap: () {
+                                          PaymentActivityFilterDialog.show(context, type: FilterType.type,
+                                              onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.updateTransactionType(value);
+                                          }, onDismissed: () {
+                                            Navigator.pop(context);
+                                          });
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(16),
+                                            color: AppColor.whiteGray,
+                                          ),
+                                          padding: EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                transactionType!,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 12.0.t,
+                                                    color: AppColor.veryDarkGray2,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional.only(
+                                                  start: 12.0.w,
+                                                ),
+                                                child: AppSvg.asset(
+                                                  AssetUtils.dropDown,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                AppStreamBuilder<String>(
+                                    stream: model.paymentPeriodResponseStream,
+                                    initialData:
+                                        StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
+                                    dataBuilder: (mContext, paymentPeriod) {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.only(start: 8.0.w),
+                                        child: InkWell(
                                           onTap: () {
-                                            PaymentActivityFilterDialog.show(context, type: FilterType.type,
+                                            PaymentActivityFilterDialog.show(context, type: FilterType.period,
                                                 onSelected: (value) {
                                               Navigator.pop(context);
-                                              model.updateTransactionType(value);
+                                              model.updatePaymentPeriod(value);
                                             }, onDismissed: () {
                                               Navigator.pop(context);
                                             });
@@ -103,75 +150,29 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                             child: Row(
                                               children: [
                                                 Text(
-                                                  transactionType!,
+                                                  paymentPeriod!,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       fontSize: 12.0.t,
+                                                      color: AppColor.veryDarkGray2,
                                                       fontWeight: FontWeight.w600),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.only(
-                                                    start: 12.0.w,
-                                                  ),
-                                                  child: AppSvg.asset(
-                                                    AssetUtils.dropDown,
-                                                  ),
+                                                  padding: EdgeInsetsDirectional.only(start: 12.0.w),
+                                                  child: AppSvg.asset(AssetUtils.dropDown),
                                                 )
                                               ],
                                             ),
                                           ),
-                                        );
-                                      }),
-                                  AppStreamBuilder<String>(
-                                      stream: model.paymentPeriodResponseStream,
-                                      initialData:
-                                          StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
-                                      dataBuilder: (mContext, paymentPeriod) {
-                                        return Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 8.0.w),
-                                          child: InkWell(
-                                            onTap: () {
-                                              PaymentActivityFilterDialog.show(context,
-                                                  type: FilterType.period, onSelected: (value) {
-                                                Navigator.pop(context);
-                                                model.updatePaymentPeriod(value);
-                                              }, onDismissed: () {
-                                                Navigator.pop(context);
-                                              });
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(16),
-                                                color: AppColor.whiteGray,
-                                              ),
-                                              padding:
-                                                  EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.0.w),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    paymentPeriod!,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 12.0.t,
-                                                        fontWeight: FontWeight.w600),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsetsDirectional.only(start: 12.0.w),
-                                                    child: AppSvg.asset(AssetUtils.dropDown),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      })
-                                ],
-                              ),
+                                        ),
+                                      );
+                                    })
+                              ],
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(top: 28.0.h, start: 24.0.w, end: 24.0.w),
+                              padding: EdgeInsetsDirectional.only(top: 0.0.h, start: 24.0.w, end: 24.0.w),
                               child: AppStreamBuilder<Resource<bool>>(
                                   stream: model.requestToPayResultStream,
                                   initialData: Resource.none(),
@@ -241,12 +242,13 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 },
                                                                 onRejectButton:
                                                                     (RequestMoneyActivityList data) {
-                                                                  model.requestToPayResult(
-                                                                      CustID: "",
-                                                                      RTPStatus: "",
-                                                                      OrgnlMsgId: (data.msgID),
-                                                                      RejectADdInfo: "",
-                                                                      RejectReason: "");
+                                                                      model.requestToPayResult(
+                                                                    CustID: "",
+                                                                    RTPStatus: "",
+                                                                    OrgnlMsgId: (data.msgID),
+                                                                    RejectADdInfo: "",
+                                                                    RejectReason: "",
+                                                                  );
                                                                 },
                                                               )
                                                             : Center(

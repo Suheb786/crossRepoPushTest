@@ -38,7 +38,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        if (currentStep == 1 && (paymentActivity?.data ?? []).length > 4) {
+                        if (currentStep == 1) {
+                          //&& (paymentActivity?.data ?? []).length > 4) {
                           Navigator.push(context, CustomRoute.createRoute(PaymentActivityTransactionPage()));
                         }
                       } else {
@@ -90,8 +91,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                             ),
                                           ),
                                           Visibility(
-                                            visible:
-                                                currentStep == 1 && (paymentActivity?.data ?? []).length > 4,
+                                            visible: currentStep == 1,
+                                            // && (paymentActivity?.data ?? []).length > 4,
                                             child: Positioned(
                                               bottom: 0,
                                               child: Column(

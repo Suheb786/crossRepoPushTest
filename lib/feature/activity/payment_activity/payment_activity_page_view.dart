@@ -1,5 +1,7 @@
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
@@ -21,16 +23,14 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
           if (StringUtils.isDirectionRTL(context)) {
-            if (!details.primaryVelocity!.isNegative) {
-            } else {
+            if (!details.primaryVelocity!.isNegative) {} else {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
                   .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             }
           } else {
-            if (details.primaryVelocity!.isNegative) {
-            } else {
+            if (details.primaryVelocity!.isNegative) {} else {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
@@ -56,10 +56,10 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                       fontFamily: StringUtils.appFont,
                       fontSize: 12.0.t,
                       fontWeight: FontWeight.w600,
-                      color: AppColor.dark_yellow),
+                      color: AppColor.gray_black),
                 ),
                 SizedBox(
-                  height: 10.0.h,
+                  height: 24.0.h,
                 ),
                 Expanded(
                   child: AppStreamBuilder<Resource<List<RequestMoneyActivityList>>>(
@@ -72,13 +72,15 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                           case Status.SUCCESS:
                             return ((activity.data ?? []).length > 0)
                                 ? ListView.builder(
-                                    itemCount: (activity.data ?? []).length,
+                                    padding: EdgeInsets.zero,
+                                    itemCount: ((activity.data ?? []).length > 4)
+                                        ? 5
+                                        : ((activity.data ?? []).length),
                                     shrinkWrap: true,
                                     itemBuilder: (mContext, index) {
                                       return Padding(
                                         padding: EdgeInsetsDirectional.only(
-                                            top: index == 0 ? 0 : 23.0.h,
-                                            bottom: index == (activity.data ?? []).length - 1 ? 10.0.h : 0),
+                                            top: index == 0 ? 0 : 16.h, bottom: index == 4 ? 10.0.h : 0),
                                         child: Row(
                                           children: [
                                             Container(
@@ -88,52 +90,102 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                   color: Theme.of(context).primaryColor,
                                                   shape: BoxShape.circle),
                                               child: Center(
-                                                child: Text(
-                                                  (activity.data?[index].dbtrName ?? '').split(" ").length > 1
-                                                      ? StringUtils.getFirstInitials(
-                                                          activity.data?[index].dbtrName)
-                                                      : "",
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).accentColor,
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 14.0.t),
-                                                ),
+                                                child: activity.data?[index].trxDir ==
+                                                        RequestMoneyActivityStatusEnum
+                                                            .TRANSACTION_DIRECTORY_OUTGOING
+                                                    ? Text(
+                                                        (activity.data?[index].cdtrName ?? '')
+                                                                    .split(" ")
+                                                                    .length >
+                                                                1
+                                                            ? StringUtils.getFirstInitials(
+                                                                activity.data?[index].cdtrName)
+                                                            : "",
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            color: Theme.of(context).accentColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 14.0.t),
+                                                      )
+                                                    : Text(
+                                                        (activity.data?[index].dbtrName ?? '')
+                                                                    .split(" ")
+                                                                    .length >
+                                                                1
+                                                            ? StringUtils.getFirstInitials(
+                                                                activity.data?[index].dbtrName)
+                                                            : "",
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            color: Theme.of(context).accentColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 14.0.t),
+                                                      ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional.only(start: 11.0.w),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.only(start: 8.0.w),
                                                 child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text.rich(TextSpan(
-                                                        text: S.of(context).youRequested,
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t),
-                                                        children: [
-                                                          TextSpan(
-                                                              text:
-                                                                  '${activity.data![index].amount} ${S.of(context).JOD} ',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  fontSize: 12.0.t)),
-                                                          TextSpan(
-                                                              text: S.of(context).fromS,
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 12.0.t)),
-                                                          TextSpan(
-                                                              text: '${activity.data![index].dbtrName}',
-                                                              style: TextStyle(
-                                                                  fontFamily: StringUtils.appFont,
-                                                                  fontWeight: FontWeight.w600,
-                                                                  fontSize: 12.0.t)),
-                                                        ])),
+                                                    (activity.data?[index].trxDir ==
+                                                            RequestMoneyActivityStatusEnum
+                                                                .TRANSACTION_DIRECTORY_INCOMING)
+                                                        ? Text.rich(TextSpan(
+                                                            text: S.of(context).youRequested,
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w400,
+                                                                fontSize: 12.0.t),
+                                                            children: [
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text: S.of(context).fromS,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text: '${activity.data![index].dbtrName}',
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        fontSize: 12.0.t)),
+                                                              ]))
+                                                        : Text.rich(TextSpan(
+                                                            text: '${activity.data![index].dbtrName}',
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12.0.t),
+                                                            children: [
+                                                                TextSpan(
+                                                                    text: S.of(context).requested,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text: S.of(context).fromYou,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 12.0.t)),
+                                                              ])),
                                                     // Text(
                                                     //   "You requested ${transaction
                                                     //       .data![index]
@@ -145,44 +197,44 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                     //       FontWeight.w700,
                                                     //       fontSize: 12),
                                                     // ),
-                                                    Padding(
-                                                      padding: EdgeInsetsDirectional.only(top: 6.0.h),
-                                                      child: Container(
-                                                        padding: EdgeInsetsDirectional.only(
-                                                            start: 8.0.w,
-                                                            end: 8.0.w,
-                                                            top: 3.0.h,
-                                                            bottom: 2.0.h),
-                                                        decoration: BoxDecoration(
-                                                          color: model
-                                                              .getColor((activity.data![index].trxStatus)),
-                                                          borderRadius: BorderRadius.circular(100),
-                                                        ),
-                                                        child: Text(
-                                                          "${(activity.data?[index].trxStatus) ?? ""}",
-                                                          style: TextStyle(
-                                                            color: Theme.of(context).accentColor,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 12.0.t,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
+                                              Padding(
+                                                padding: EdgeInsetsDirectional.only(top: 6.0.h),
+                                                child: Container(
+                                                  padding: EdgeInsetsDirectional.only(
+                                                      start: 8.0.w,
+                                                      end: 8.0.w,
+                                                      top: 3.0.h,
+                                                      bottom: 2.0.h),
+                                                  decoration: BoxDecoration(
+                                                    color: model
+                                                        .getColor((activity.data![index].trxStatus)),
+                                                    borderRadius: BorderRadius.circular(100),
+                                                  ),
+                                                  child: Text(
+                                                    "${(activity.data?[index].trxStatus) ?? ""}",
+                                                    style: TextStyle(
+                                                      color: Theme.of(context).accentColor,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12.0.t,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      );
-                                    },
-                                  )
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            )
                                 : Center(
-                                    child: Text(
-                                      S.of(context).noRTPActivityToDisplay,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
+                              child: Text(
+                                S.of(context).noRTPActivityToDisplay,
+                                textAlign: TextAlign.center,
+                              ),
+                            );
 
                           default:
                             return Container();

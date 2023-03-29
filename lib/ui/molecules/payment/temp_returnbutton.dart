@@ -2,16 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/app.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:neo_bank/utils/time_utils.dart';
 
 class TempReturnButton extends StatelessWidget {
   const TempReturnButton({Key? key}) : super(key: key);
@@ -86,6 +83,7 @@ class TempReturnButton extends StatelessWidget {
                         onTap: () {},
                         child: Container(
                           width: double.infinity,
+                          height: 48.h,
                           decoration: BoxDecoration(
                             color: AppColor.sky_blue_mid,
                             borderRadius: BorderRadius.circular(100),
@@ -112,6 +110,7 @@ class TempReturnButton extends StatelessWidget {
                         onTap: () {},
                         child: Container(
                           width: double.infinity,
+                          height: 48.h,
                           decoration: BoxDecoration(
                             color: AppColor.white,
                             border: Border.all(color: AppColor.sky_blue_mid),
@@ -467,17 +466,15 @@ class TempReturnButton extends StatelessWidget {
                                           showDescription: true,
                                           actionWidget: Container(),
                                           description: RichText(
-                                            textAlign: TextAlign.start,
-                                            maxLines: 3,
-                                            text: TextSpan(
-                                              text: S.current.yourequested,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 14.0.t,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: AppColor.veryDarkGray1),
-                                              children: [
+                                              text: TextSpan(
+                                                  text: S.current.yourequested,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 14.0.t,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: AppColor.veryDarkGray1),
+                                                  children: [
                                                 TextSpan(
                                                   text: " 10.00 JOD ",
                                                   style: TextStyle(
@@ -485,36 +482,34 @@ class TempReturnButton extends StatelessWidget {
                                                       fontSize: 14.0.t,
                                                       fontWeight: FontWeight.w700,
                                                       color: AppColor.veryDarkGray1),
+                                                  children: [
+                                                    TextSpan(
+                                                      text: S.current.fromSingleLine,
+                                                      style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 14.0.t,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        fontWeight: FontWeight.w400,
+                                                        // color: AppColor.sky_blue_mid,
+                                                      ),
+                                                      children: [
+                                                        TextSpan(
+                                                          text: " Ahmed Lutfi",
+                                                          style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.0.t,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            fontWeight: FontWeight.w700,
+                                                            // color: AppColor.sky_blue_mid,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
-                                                TextSpan(
-                                                  text: S.current.from,
-                                                  style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.0.t,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    fontWeight: FontWeight.w400,
-                                                    // color: AppColor.sky_blue_mid,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: " Ahmed Lutfi",
-                                                  style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.0.t,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    fontWeight: FontWeight.w700,
-                                                    // color: AppColor.sky_blue_mid,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                              ])),
                                           listOfDetails: Column(
                                             children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [],
-                                              ),
                                               SizedBox(
                                                 height: 16.h,
                                               ),

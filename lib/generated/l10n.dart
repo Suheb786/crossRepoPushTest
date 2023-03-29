@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -26,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -6220,10 +6219,10 @@ class S {
     );
   }
 
-  /// `Payment activity`
+  /// `Payment Activity`
   String get paymentActivity {
     return Intl.message(
-      'Payment activity',
+      'Payment Activity',
       name: 'paymentActivity',
       desc: '',
       args: [],
@@ -16765,6 +16764,26 @@ class S {
     return Intl.message(
       'You Requested',
       name: 'yourequested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from you`
+  String get fromYou {
+    return Intl.message(
+      'from you',
+      name: 'fromYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You sent `
+  String get youSend {
+    return Intl.message(
+      'You sent ',
+      name: 'youSend',
       desc: '',
       args: [],
     );

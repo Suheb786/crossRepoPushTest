@@ -1320,26 +1320,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
-        "freezeThisCard":
-            MessageLookupByLibrary.simpleMessage("Freeze this card"),
+        "freezeThisCard": MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
-        "fromLabelForRJFlightBooking":
-            MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
+        "fromLabelForRJFlightBooking": MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "fromS": MessageLookupByLibrary.simpleMessage("from "),
-        "fromSavedBills":
-            MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
+        "fromSavedBills": MessageLookupByLibrary.simpleMessage("from Saved Bills?"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("from"),
         "fromStrin": m2,
-        "fromYouWouldYouLikeToAcceptIt": MessageLookupByLibrary.simpleMessage(
-            " from you. Would you like to accept?"),
-        "fromYourCliqIdList":
-            MessageLookupByLibrary.simpleMessage(" from your CliQ ID list?"),
+        "fromYou": MessageLookupByLibrary.simpleMessage("from you"),
+        "fromYouWouldYouLikeToAcceptIt":
+            MessageLookupByLibrary.simpleMessage(" from you. Would you like to accept?"),
+        "fromYourCliqIdList": MessageLookupByLibrary.simpleMessage(" from your CliQ ID list?"),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
         "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
-        "genderHint":
-            MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
+        "genderHint": MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
         "generateBlockPin": MessageLookupByLibrary.simpleMessage(
             "Error while generating block pin"),
@@ -2113,21 +2109,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
         "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
             "Place the QR code within the frame and proceed with payment"),
-        "payYourBillswithBlink":
-            MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
+        "payYourBillswithBlink": MessageLookupByLibrary.simpleMessage("Pay your bills with Blink!"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paying": MessageLookupByLibrary.simpleMessage("Paying"),
-        "paymentActivity":
-            MessageLookupByLibrary.simpleMessage("Payment activity"),
+        "paymentActivity": MessageLookupByLibrary.simpleMessage("Payment Activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "paymentAmountCanBe":
-            MessageLookupByLibrary.simpleMessage("Payment amount can be"),
+        "paymentAmountCanBe": MessageLookupByLibrary.simpleMessage("Payment amount can be"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "paymentNotDone":
-            MessageLookupByLibrary.simpleMessage("payment not done"),
+        "paymentNotDone": MessageLookupByLibrary.simpleMessage("payment not done"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
@@ -3030,24 +3022,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can change the above details in the card settings "),
+            MessageLookupByLibrary.simpleMessage("You can change the above details in the card settings "),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
+        "youSend": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your request \n is accepted and money is \n added into your account."),
-        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
-            "Didn\'t receive an SMS? Contact our Engagement Team."),
-        "youareabouttoreject":
-            MessageLookupByLibrary.simpleMessage("You are about to reject "),
-        "youareabouttosend":
-            MessageLookupByLibrary.simpleMessage("You are about to send "),
+        "youWillReceiveCardPinViaSms":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive an SMS? Contact our Engagement Team."),
+        "youareabouttoreject": MessageLookupByLibrary.simpleMessage("You are about to reject "),
+        "youareabouttosend": MessageLookupByLibrary.simpleMessage("You are about to send "),
         "yourAddOtherCardFromCardSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can add your other cards from\nCard Settings."),
+            MessageLookupByLibrary.simpleMessage("You can add your other cards from\nCard Settings."),
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(

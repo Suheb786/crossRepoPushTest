@@ -636,7 +636,7 @@
   "cardcantBeUsedForTransactions": "While frozen, your card can't be used for any transactions.",
   "directDebitsWontBeMade": "While frozen, direct debits linked to this card won't be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier.",
   "freezeAndActiveAtAnyTime": "You can unfreeze and activate your card at anytime.",
-  "paymentActivity": "Payment activity",
+  "paymentActivity": "Payment Activity",
   "allTransaction": "All Transactions",
   "allTime": "All Time",
   "sendMoneyNotSuccessful": "Your attempt to send money was unsuccessful.",
@@ -1698,5 +1698,7 @@
   "aliasAlreadyExist": "Alias already exist",
   "reason": "Reason",
   "fromStrin": "from {Name}",
-  "yourequested": "You Requested"
+  "yourequested": "You Requested",
+  "fromYou": "from you",
+  "youSend": "You sent "
 }

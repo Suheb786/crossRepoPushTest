@@ -5,9 +5,6 @@ import 'package:domain/model/cliq/request_money_activity/request_money_activity_
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/dialog/Inward_RTP/RTP_confirmation_dialog/RTP_confirmation_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -31,9 +28,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
           content.rtpDate != null ? TimeUtils.getFormattedDateForRTP(content.rtpDate!.toString()) : '-',
           style: TextStyle(
               fontFamily: StringUtils.appFont,
-              fontSize: 15.0.t,
+              fontSize: 14.0.t,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColorDark),
+              color: AppColor.veryDarkGray2),
         ),
         Card(
           margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
@@ -51,7 +48,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
                           child: content.data?[index].trxDir ==
-                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
+                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
                               ? Text(
                                   StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
                                   style: TextStyle(
@@ -75,60 +72,47 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           content.data?[index].trxDir ==
-                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
+                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
                               ? RichText(
                                   maxLines: 3,
                                   text: TextSpan(
-                                      text: content.data?[index].cdtrName,
+                                      text: S.current.youSend,
                                       style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.0.t,
-                                        overflow: TextOverflow.ellipsis,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.sky_blue_mid,
-                                      ),
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 12.0.t,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context).primaryColorDark),
                                       children: [
                                         TextSpan(
-                                            text: S.current.requested,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w400,
-                                                color: Theme.of(context).primaryColorDark),
-                                            children: [
-                                              TextSpan(
-                                                text:
-                                                    "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                style: TextStyle(
+                                          text:
+                                              "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                          style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 12.0.t,
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context).primaryColorDark,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: " " + S.of(context).to + ' ',
+                                              style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 12.0.t,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).primaryColorDark,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: S.of(context).from,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 12.0.t,
-                                                        fontWeight: FontWeight.w400,
-                                                        color: Theme.of(context).primaryColorDark),
-                                                    children: [
-                                                      TextSpan(
-                                                        text: S.current.you,
-                                                        style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12.0.t,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          fontWeight: FontWeight.w400,
-                                                          color: Theme.of(context).primaryColorDark,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Theme.of(context).primaryColorDark),
+                                            ),
+                                            TextSpan(
+                                              text: content.data?[index].cdtrName,
+                                              style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 12.0.t,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.sky_blue_mid,
                                               ),
-                                            ])
+                                            ),
+                                          ],
+                                        ),
                                       ]))
                               : RichText(
                                   maxLines: 3,
@@ -142,36 +126,35 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                           color: Theme.of(context).primaryColorDark),
                                       children: [
                                         TextSpan(
-                                          text:
-                                              "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.0.t,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).primaryColorDark),
-                                          children: [
-                                            TextSpan(
-                                              text: S.of(context).from,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 12.0.t,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context).primaryColorDark),
-                                              children: [
-                                                TextSpan(
-                                                  text: " ${content.data?[index].dbtrName}",
-                                                  style: TextStyle(
+                                            text:
+                                                "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 12.0.t,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context).primaryColorDark),
+                                            children: [
+                                              TextSpan(
+                                                text: S.of(context).from,
+                                                style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 12.0.t,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    fontWeight: FontWeight.w600,
-                                                    // color: AppColor.sky_blue_mid,
-                                                  ),
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context).primaryColorDark),
+                                                children: [],
+                                              ),
+                                              TextSpan(
+                                                text: " ${content.data?[index].dbtrName}",
+                                                style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 12.0.t,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.sky_blue_mid,
+                                                  // color: AppColor.sky_blue_mid,
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                              ),
+                                            ]),
                                       ])),
                           Padding(
                               padding: EdgeInsets.only(top: 5.0.h),
@@ -584,7 +567,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
         return AppColor.darkModerateLimeGreen;
       case RequestMoneyActivityStatusEnum.CATEGORY_REJECTED:
-        return AppColor.vividRed;
+        return AppColor.dark_brown;
       case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
         return AppColor.dark_orange;
       case RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED:
