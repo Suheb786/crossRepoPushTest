@@ -128,13 +128,16 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
     required final String RTPStatus,
     required final String RejectReason,
     required final String RejectADdInfo,
+    required final bool GetToken,
   }) {
     _requestToPayResultRequest.safeAdd(RequestToPayResultUsecaseParams(
-        CustID: CustID,
-        OrgnlMsgId: OrgnlMsgId,
-        RTPStatus: RTPStatus,
-        RejectReason: RejectReason,
-        RejectADdInfo: RejectADdInfo));
+      CustID: CustID,
+      OrgnlMsgId: OrgnlMsgId,
+      RTPStatus: RTPStatus,
+      RejectReason: RejectReason,
+      RejectADdInfo: RejectADdInfo,
+      GetToken: GetToken,
+    ));
   }
 
   void approveRTPRequest({
@@ -154,6 +157,8 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
     required final String cdtrAlias,
     required final String rgltryRptg,
     required final String payRefNo,
+    required String OrgnlMsgId,
+    required String CtgyPurp,
     required final String rejectReason,
     required final String rtpStatus,
     required final String rejectADdInfo,
@@ -177,6 +182,8 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
           cdtrAlias: cdtrAlias,
           rgltryRptg: rgltryRptg,
           payRefNo: payRefNo,
+          OrgnlMsgId: OrgnlMsgId,
+          CtgyPurp: CtgyPurp,
           rejectReason: rejectReason,
           rtpStatus: rtpStatus,
           rejectADdInfo: rejectADdInfo,

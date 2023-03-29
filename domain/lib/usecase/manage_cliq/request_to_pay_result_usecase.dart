@@ -17,7 +17,8 @@ class RequestToPayResultUseCase extends BaseUseCase<NetworkError, RequestToPayRe
         OrgnlMsgId: params.OrgnlMsgId,
         RTPStatus: params.RTPStatus,
         RejectReason: params.RejectReason,
-        RejectADdInfo: params.RejectADdInfo);
+        RejectADdInfo: params.RejectADdInfo,
+        GetToken: params.GetToken);
   }
 }
 
@@ -27,13 +28,16 @@ class RequestToPayResultUsecaseParams extends Params {
   final String RTPStatus;
   final String RejectReason;
   final String RejectADdInfo;
+  final bool GetToken;
 
-  RequestToPayResultUsecaseParams(
-      {required this.CustID,
-      required this.OrgnlMsgId,
-      required this.RTPStatus,
-      required this.RejectReason,
-      required this.RejectADdInfo});
+  RequestToPayResultUsecaseParams({
+    required this.CustID,
+    required this.OrgnlMsgId,
+    required this.RTPStatus,
+    required this.RejectReason,
+    required this.RejectADdInfo,
+    required this.GetToken,
+  });
 
   @override
   Either<AppError, bool> verify() {

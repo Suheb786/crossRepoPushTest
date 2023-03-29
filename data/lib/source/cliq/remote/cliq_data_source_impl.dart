@@ -333,14 +333,18 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required String OrgnlMsgId,
       required String RTPStatus,
       required String RejectReason,
+      required bool GetToken,
       required String RejectADdInfo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPayResult(RequestToPayResultRequestEntity(
-        CustID: CustID,
-        OrgnlMsgId: OrgnlMsgId,
-        RTPStatus: RTPStatus,
-        RejectReason: RejectReason,
-        RejectADdInfo: RejectADdInfo));
+      CustID: CustID,
+      OrgnlMsgId: OrgnlMsgId,
+      RTPStatus: RTPStatus,
+      RejectReason: RejectReason,
+      RejectADdInfo: RejectADdInfo,
+      GetToken: GetToken,
+      BaseClass: baseData.toJson(),
+    ));
   }
 
   @override
@@ -377,6 +381,8 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required String cdtrAlias,
       required String rgltryRptg,
       required String payRefNo,
+      required String OrgnlMsgId,
+      required String CtgyPurp,
       required String rejectReason,
       required String rejectADdInfo,
       required String rtpStatus,
@@ -399,6 +405,8 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       cdtrAlias: cdtrAlias,
       rgltryRptg: rgltryRptg,
       payRefNo: payRefNo,
+      OrgnlMsgId: OrgnlMsgId,
+      CtgyPurp: CtgyPurp,
       rejectReason: rejectReason,
       rejectADdInfo: rejectADdInfo,
       rtpStatus: rtpStatus,

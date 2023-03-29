@@ -157,6 +157,7 @@ abstract class CliqDataSource {
     required String RTPStatus,
     required String RejectReason,
     required String RejectADdInfo,
+    required bool GetToken,
   });
 
   Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID();
@@ -178,6 +179,8 @@ abstract class CliqDataSource {
     required String cdtrAlias,
     required String rgltryRptg,
     required String payRefNo,
+    required String OrgnlMsgId,
+    required String CtgyPurp,
     required String rejectReason,
     required String rejectADdInfo,
     required String rtpStatus,
