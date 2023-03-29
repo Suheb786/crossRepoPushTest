@@ -242,7 +242,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 },
                                                                 onRejectButton:
                                                                     (RequestMoneyActivityList data) {
-                                                                      model.requestToPayResult(
+                                                                  model.requestToPayResult(
                                                                     CustID: "",
                                                                     RTPStatus: "",
                                                                     OrgnlMsgId: (data.msgID),

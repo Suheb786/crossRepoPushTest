@@ -48,7 +48,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
                           child: content.data?[index].trxDir ==
-                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
                               ? Text(
                                   StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
                                   style: TextStyle(
