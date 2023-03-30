@@ -162,7 +162,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                         fontSize: 12.0.t)),
                                                               ]))
                                                         : Text.rich(TextSpan(
-                                                        text: '${activity.data![index].cdtrName}',
+                                                            text: '${activity.data![index].cdtrName}',
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontWeight: FontWeight.w600,
