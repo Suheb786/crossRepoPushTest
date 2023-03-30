@@ -53,28 +53,26 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   @override
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String? beneficiaryId,
-        String? otpCode,
-        String? transferType,
-        String? beneficiaryImage,
-        bool? isFriend,
-        num? toAmount,
-        num? localEq,
-        String? memo,
-        String? toAccount,
-        String? nickName,
-        String? detCustomerType,
-        String? type,
-        String? recipientName,
-        String? recipientAddress}) async {
+      String? otpCode,
+      String? transferType,
+      String? beneficiaryImage,
+      bool? isFriend,
+      num? toAmount,
+      num? localEq,
+      String? memo,
+      String? toAccount,
+      String? nickName,
+      String? detCustomerType,
+      String? type,
+      String? recipientName,
+      String? recipientAddress}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transfer(TransferRequestEntity(
         baseData: baseData.toJson(),
         toAmount: toAmount!,
         toAccount: toAccount!,
         beneficiaryId: beneficiaryId,
-        beneficiaryImage: (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
-            ? ImageUtils.convertToBase64(beneficiaryImage)
-            : '',
+        beneficiaryImage: (beneficiaryImage!.isNotEmpty) ? ImageUtils.convertToBase64(beneficiaryImage) : '',
         otpCode: otpCode,
         isFriend: isFriend!,
         localEq: localEq!,
@@ -116,7 +114,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         dbtrAcct: dbtrAcct,
         dbtrName: dbtrName,
         isFriend: isFriend,
-        beneImage: (image!.isNotEmpty && image != null) ? ImageUtils.convertToBase64(image) : '',
+        beneImage: (image!.isNotEmpty) ? ImageUtils.convertToBase64(image) : '',
         detCustomerType: detCustomerType,
         type: type,
         addressCountry: addressCountry,
@@ -179,9 +177,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         toAmount: toAmount!,
         toAccount: toAccount!,
         beneficiaryId: beneficiaryId,
-        beneficiaryImage: (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
-            ? ImageUtils.convertToBase64(beneficiaryImage)
-            : '',
+        beneficiaryImage: (beneficiaryImage!.isNotEmpty) ? ImageUtils.convertToBase64(beneficiaryImage) : '',
         isFriend: isFriend!,
         localEq: localEq!,
         memo: memo!,
@@ -217,5 +213,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyQR(VerifyQRRequestEntity(
         baseData: baseData.toJson(), source: source, getToken: true, qrRequestId: requestId));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getRejectionReason({required bool GetToken}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.getRejectionReason(BaseRequest(baseData: baseData.toJson(), getToken: GetToken));
   }
 }

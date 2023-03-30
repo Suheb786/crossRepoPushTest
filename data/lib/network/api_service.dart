@@ -1070,6 +1070,11 @@ abstract class ApiService {
     @Body() SubmitOutwardPaymentRequestEntity request,
   );
 
+  @POST("/transfer/GetReturnPaymentReasons")
+  Future<HttpResponse<ResponseEntity>> getRejectionReason(
+    @Body() BaseRequest request,
+  );
+
   ///QR
   @POST("/Transfer/GenerateQR")
   Future<HttpResponse<QRResponseEntity>> generateQR(@Body() GenerateQRRequestEntity generateQRRequestEntity);

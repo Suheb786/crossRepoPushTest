@@ -18,19 +18,19 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
-        String? otpCode,
-        String transferType,
-        String beneficiaryImage,
-        bool isFriend,
-        num toAmount,
-        num localEq,
-        String memo,
-        String toAccount,
-        String nickName,
-        String detCustomerType,
-        String type,
-        String? recipientName,
-        String? recipientAddress});
+      String? otpCode,
+      String transferType,
+      String beneficiaryImage,
+      bool isFriend,
+      num toAmount,
+      num localEq,
+      String memo,
+      String toAccount,
+      String nickName,
+      String detCustomerType,
+      String type,
+      String? recipientName,
+      String? recipientAddress});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       String ctgyPurp,
@@ -77,4 +77,8 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       {required String requestId, required String toAmount, required String toAccount});
+
+  Future<HttpResponse<ResponseEntity>> getRejectionReason({
+    required bool GetToken,
+  });
 }

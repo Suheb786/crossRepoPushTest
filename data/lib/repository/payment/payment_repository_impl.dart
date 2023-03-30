@@ -44,19 +44,19 @@ class PaymentRepositoryImpl extends PaymentRepository {
   @override
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String? beneficiaryId,
-        String? otpCode,
-        String? transferType,
-        String? beneficiaryImage,
-        bool? isFriend,
-        num? toAmount,
-        num? localEq,
-        String? memo,
-        String? toAccount,
-        String? nickName,
-        String? detCustomerType,
-        String? type,
-        String? recipientName,
-        String? recipientAddress}) async {
+      String? otpCode,
+      String? transferType,
+      String? beneficiaryImage,
+      bool? isFriend,
+      num? toAmount,
+      num? localEq,
+      String? memo,
+      String? toAccount,
+      String? nickName,
+      String? detCustomerType,
+      String? type,
+      String? recipientName,
+      String? recipientAddress}) async {
     final result = await safeApiCall(
       paymentRemoteDs.transfer(
           beneficiaryId: beneficiaryId!,
@@ -218,5 +218,11 @@ class PaymentRepositoryImpl extends PaymentRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getRejectionReason({required bool GetToken}) async {
+    final result = await safeApiCall(paymentRemoteDs.getRejectionReason(GetToken: GetToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
   }
 }
