@@ -48,7 +48,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
                           child: content.data?[index].trxDir ==
-                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
                               ? Text(
                                   StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
                                   style: TextStyle(
@@ -72,17 +72,27 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           content.data?[index].trxDir ==
-                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING
+                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
                               ? RichText(
                                   maxLines: 3,
                                   text: TextSpan(
-                                      text: S.current.youSend,
+                                      text: content.data?[index].cdtrName,
                                       style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.0.t,
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).primaryColorDark),
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 12.0.t,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.sky_blue_mid,
+                                      ),
                                       children: [
+                                        TextSpan(
+                                          text: S.of(context).requested,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 12.0.t,
+                                              fontWeight: FontWeight.w400,
+                                              color: Theme.of(context).primaryColorDark),
+                                        ),
                                         TextSpan(
                                           text:
                                               "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
@@ -94,22 +104,12 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: " " + S.of(context).to + ' ',
+                                              text: " " + S.of(context).fromYou,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 12.0.t,
                                                   fontWeight: FontWeight.w400,
                                                   color: Theme.of(context).primaryColorDark),
-                                            ),
-                                            TextSpan(
-                                              text: content.data?[index].cdtrName,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 12.0.t,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontWeight: FontWeight.w600,
-                                                color: AppColor.sky_blue_mid,
-                                              ),
                                             ),
                                           ],
                                         ),
@@ -167,7 +167,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       children: [
                                         Text(
                                           content.data?[index].rtpDate != null
-                                              ? TimeUtils.getFormattedTimeForTransaction(
+                                              ? TimeUtils.getFormattedTimeFor12HrsFormat(
                                                   content.data![index].rtpDate.toString())
                                               : '-',
                                           style: TextStyle(
@@ -183,6 +183,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
+                                                  onAcceptButton.call(content.data![index]);
                                                   // RTPConfirmationDialog.show(context,
                                                   //     amount:
                                                   //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
@@ -340,6 +341,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               ),
                                               GestureDetector(
                                                 onTap: () {
+                                                  onRejectButton.call(content.data![index]);
+
                                                   // RTPConfirmationDialog.show(context,
                                                   //     amount:
                                                   //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
@@ -502,7 +505,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       children: [
                                         Text(
                                           content.data?[index].rtpDate != null
-                                              ? TimeUtils.getFormattedTimeForTransaction(
+                                              ? TimeUtils.getFormattedTimeFor12HrsFormat(
                                                   content.data![index].rtpDate.toString())
                                               : '-',
                                           style: TextStyle(

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'request_to_pay_result_request_entity.g.dart';

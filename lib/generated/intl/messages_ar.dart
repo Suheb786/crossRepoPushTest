@@ -47,7 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -1706,6 +1707,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
             "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 150 دينار عند استلامها."),
+        "requestSuccessFullyRejected":
+            MessageLookupByLibrary.simpleMessage("Request successfully\nrejected."),
         "requestSupplementaryCard": MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError":
             MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -1969,6 +1972,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage("لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage("صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),

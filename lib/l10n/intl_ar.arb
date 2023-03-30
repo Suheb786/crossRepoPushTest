@@ -1654,5 +1654,7 @@
   "fromStrin": "from {Name}",
   "yourequested": "You Requested",
   "fromYou": "from you",
-  "youSend": "You sent "
+  "youSend": "You sent ",
+  "time": "Time",
+  "requestSuccessFullyRejected": "Request successfully\nrejected."
 }

@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
@@ -1850,6 +1851,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
             "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD."),
+        "requestSuccessFullyRejected":
+            MessageLookupByLibrary.simpleMessage("Request successfully\nrejected."),
         "requestSupplementaryCard": MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
@@ -2128,6 +2131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("There are no due bills, but you can make partial payments"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage("There are no due bills to be paid at the moment"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage("It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "to": MessageLookupByLibrary.simpleMessage("to"),
