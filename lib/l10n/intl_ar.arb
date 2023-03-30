@@ -1652,5 +1652,9 @@
   "qrNotScanned": "QR Not Scanned or Re Read the qr code/link",
   "reason": "Reason",
   "fromStrin": "from {Name}",
-  "yourequested": "You Requested"
+  "yourequested": "You Requested",
+  "fromYou": "from you",
+  "youSend": "You sent ",
+  "time": "Time",
+  "requestSuccessFullyRejected": "Request successfully\nrejected."
 }

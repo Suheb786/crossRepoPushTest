@@ -21,6 +21,7 @@ import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
+import 'package:domain/usecase/manage_cliq/rejection_reason_inward_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:domain/usecase/manage_cliq/submit_outward_payment_usecase.dart';
@@ -177,4 +178,9 @@ final editCliqOtpUseCaseProvider = Provider.autoDispose<EditCliqOtpUseCase>(
 
 final editCliqMobileNoValidationUseCaseProvider = Provider.autoDispose<EditCliqMobileNoValidationUseCase>(
   (ref) => EditCliqMobileNoValidationUseCase(),
+);
+
+///[RejectionReasonInwardUseCase] provider
+final rejectionReasonInwardUseCaseProvider = Provider.autoDispose<RejectionReasonInwardUseCase>(
+  (ref) => RejectionReasonInwardUseCase(ref.read(cliqRepositoryProvider)),
 );

@@ -143,4 +143,15 @@ class TimeUtils {
     final DateFormat formatter = DateFormat('dd MMMM');
     return formatter.format(dateTime);
   }
+
+  static String getFormattedTimeFor12HrsFormat(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('hh:mm aa');
+    return formatter.format(dateTime);
+  }
+
+  static String convertDateTimeToDate(String date) {
+    final DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').parse(date).toLocal();
+    return DateFormat('dd MMMM yyyy').format(dateTime);
+  }
 }

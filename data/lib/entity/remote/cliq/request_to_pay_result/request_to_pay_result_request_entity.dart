@@ -15,12 +15,20 @@ class RequestToPayResultRequestEntity {
   @JsonKey(name: "RejectADdInfo")
   final String RejectADdInfo;
 
-  RequestToPayResultRequestEntity(
-      {required this.CustID,
-      required this.OrgnlMsgId,
-      required this.RTPStatus,
-      required this.RejectReason,
-      required this.RejectADdInfo});
+  @JsonKey(name: "GetToken")
+  final bool GetToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> BaseClass;
+
+  RequestToPayResultRequestEntity({
+    required this.CustID,
+    required this.OrgnlMsgId,
+    required this.RTPStatus,
+    required this.RejectReason,
+    required this.RejectADdInfo,
+    required this.GetToken,
+    required this.BaseClass,
+  });
 
   factory RequestToPayResultRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestToPayResultRequestEntityFromJson(json);

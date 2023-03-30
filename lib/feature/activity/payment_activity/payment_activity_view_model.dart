@@ -9,7 +9,7 @@ class PaymentActivityViewModel extends BasePageViewModel {
       case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
         return AppColor.darkModerateLimeGreen;
       case RequestMoneyActivityStatusEnum.CATEGORY_REJECTED:
-        return AppColor.vividRed;
+        return AppColor.dark_brown;
       case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
         return AppColor.dark_orange;
 

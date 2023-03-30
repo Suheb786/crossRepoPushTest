@@ -903,17 +903,14 @@ class AppRouter {
         return CupertinoPageRoute(builder: (context) => TempReturnButton());
       case RoutePaths.AcceptRequestMoneyOtp:
         return CupertinoPageRoute(
-            builder: (context) => AcceptRequestMoneyOtpPage(),
+            builder: (context) =>
+                AcceptRequestMoneyOtpPage(settings.arguments as AcceptRequestMoneyOtpPageArgument),
             settings: RouteSettings(name: RoutePaths.AcceptRequestMoneyOtp));
 
       case RoutePaths.RejectRequestPayment:
         return CupertinoPageRoute(
-            builder: (context) => RejectRequestPaymentPage(),
-            settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
-
-      case RoutePaths.RejectRequestPayment:
-        return CupertinoPageRoute(
-            builder: (context) => RejectRequestPaymentPage(),
+            builder: (context) =>
+                RejectRequestPaymentPage(settings.arguments as RejectRequestPaymentPageArgument),
             settings: RouteSettings(name: RoutePaths.RejectRequestPayment));
 
       case RoutePaths.CreditConfirmation:

@@ -29,6 +29,8 @@ class ApproveRTPRequestUseCase extends BaseUseCase<NetworkError, ApproveRTPReque
       cdtrAlias: params.cdtrAlias,
       rgltryRptg: params.rgltryRptg,
       payRefNo: params.payRefNo,
+      OrgnlMsgId: params.OrgnlMsgId,
+      CtgyPurp: params.CtgyPurp,
       rejectReason: params.rejectReason,
       rejectADdInfo: params.rejectADdInfo,
       rtpStatus: params.rtpStatus,
@@ -54,6 +56,8 @@ class ApproveRTPRequestUseCaseParam extends Params {
   final String cdtrAlias;
   final String rgltryRptg;
   final String payRefNo;
+  final String OrgnlMsgId;
+  final String CtgyPurp;
   final String rejectReason;
   final String rejectADdInfo;
   final String rtpStatus;
@@ -77,6 +81,8 @@ class ApproveRTPRequestUseCaseParam extends Params {
       required this.cdtrAlias,
       required this.rgltryRptg,
       required this.payRefNo,
+      required this.OrgnlMsgId,
+      required this.CtgyPurp,
       required this.rejectReason,
       required this.rtpStatus,
       required this.rejectADdInfo,

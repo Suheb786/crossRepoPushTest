@@ -1,10 +1,16 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RejectRequestPaymentPageViewModel extends BasePageViewModel {
+  RejectRequestPaymentPageArgument argument = RejectRequestPaymentPageArgument(
+      amount: '', name: '', iban: '', statusInfo: '', custID: '', OrgnlMsgId: '', rtpStatus: '');
+
+  RejectRequestPaymentPageViewModel();
+
   final SwiperController pageController = SwiperController();
 
   ///current page index request holder
