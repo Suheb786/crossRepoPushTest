@@ -16808,6 +16808,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Exception while executing Get Rejection Reasons`
+  String get exceptionExecutingGetRejectionReasons {
+    return Intl.message(
+      'Exception while executing Get Rejection Reasons',
+      name: 'exceptionExecutingGetRejectionReasons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Get Return Payment Reasons`
+  String get exceptionExecutingGetPaymentReasons {
+    return Intl.message(
+      'Exception while executing Get Return Payment Reasons',
+      name: 'exceptionExecutingGetPaymentReasons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Transaction History List`
+  String get errorWhileGettingTransactionHistoryList {
+    return Intl.message(
+      'Error while getting Transaction History List',
+      name: 'errorWhileGettingTransactionHistoryList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Return RTP Request`
+  String get errorWhileGettingReturnRtpRequest {
+    return Intl.message(
+      'Error while getting Return RTP Request',
+      name: 'errorWhileGettingReturnRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Get Transaction History`
+  String get exceptionWhileExecutingGetTransactionHistory {
+    return Intl.message(
+      'Exception while executing Get Transaction History',
+      name: 'exceptionWhileExecutingGetTransactionHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Approve RTP Request Otp`
+  String get exceptionWhileExecutingApproveRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Approve RTP Request Otp',
+      name: 'exceptionWhileExecutingApproveRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Approve RTP Request`
+  String get exceptionWhileExecutingApproveRtpRequest {
+    return Intl.message(
+      'Exception while executing Approve RTP Request',
+      name: 'exceptionWhileExecutingApproveRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Reject RTP Request Otp`
+  String get exceptionWhileExecutingRejectRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Reject RTP Request Otp',
+      name: 'exceptionWhileExecutingRejectRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

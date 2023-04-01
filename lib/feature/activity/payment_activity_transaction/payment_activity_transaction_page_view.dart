@@ -19,6 +19,7 @@ import 'package:neo_bank/ui/molecules/payment/payment_activity_transacton_widget
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -183,6 +184,17 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                               child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
                                   stream: model.requestMoneyActivity,
                                   initialData: Resource.none(),
+                                  onData: (data) async {
+                                    if (data.status == Status.SUCCESS) {
+                                      ///LOG EVENT TO FIREBASE
+                                      await FireBaseLogUtil.fireBaseLog(
+                                          "request_money", {"is_request_money": true});
+                                    } else if (data.status == Status.ERROR) {
+                                      ///LOG EVENT TO FIREBASE
+                                      await FireBaseLogUtil.fireBaseLog(
+                                          "request_money", {"is_request_money": false});
+                                    }
+                                  },
                                   dataBuilder: (context, requestActivity) {
                                     switch (requestActivity!.status) {
                                       case Status.SUCCESS:

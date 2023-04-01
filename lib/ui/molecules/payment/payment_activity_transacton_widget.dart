@@ -5,6 +5,8 @@ import 'package:domain/model/cliq/request_money_activity/request_money_activity_
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -539,12 +541,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0.h),
-                    child: Divider(
-                      thickness: 4,
-                      color: Colors.red,
-                    ),
-                  )
+                      padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                      child: AppSvg.asset(AssetUtils.rightChevron,
+                          matchTextDirection: true, color: AppColor.white_gray))
                 ],
               );
             },

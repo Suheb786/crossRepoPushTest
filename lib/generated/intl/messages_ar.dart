@@ -47,7 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -829,6 +830,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage("خطأ خلال الحصول على FACTA"),
         "errorWhileGettingRetailCIF": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-009)"),
+        "errorWhileGettingReturnRtpRequest":
+            MessageLookupByLibrary.simpleMessage("Error while getting Return RTP Request"),
+        "errorWhileGettingTransactionHistoryList":
+            MessageLookupByLibrary.simpleMessage("Error while getting Transaction History List"),
         "errorWhileGettingXCSCustomerDetails": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-089)"),
         "errorWhileIssueCard": MessageLookupByLibrary.simpleMessage("خطأ خلال إصدار البطاقة"),
@@ -868,6 +873,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء حدوث خطأ في ESettlement API"),
         "establishCallError": MessageLookupByLibrary.simpleMessage("خطأ خلال بدء المكالمة"),
         "estimatedTime": m1,
+        "exceptionExecutingGetPaymentReasons":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Return Payment Reasons"),
+        "exceptionExecutingGetRejectionReasons":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Rejection Reasons"),
+        "exceptionWhileExecutingApproveRtpRequest":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Approve RTP Request"),
+        "exceptionWhileExecutingApproveRtpRequestOtp":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Approve RTP Request Otp"),
+        "exceptionWhileExecutingGetTransactionHistory":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Transaction History"),
+        "exceptionWhileExecutingRejectRtpRequestOtp":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Reject RTP Request Otp"),
         "exchangeRateForCurrencies": MessageLookupByLibrary.simpleMessage("سعر صرف العملات الأخرى مرتفع"),
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
             "عنا نموذج تقييم آلي لإنشاء درجتك الائتمانية بناءً على معلوماتك الشخصية والائتمانية. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),

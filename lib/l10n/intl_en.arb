@@ -1702,5 +1702,13 @@
   "fromYou": "from you",
   "youSend": "You sent ",
   "time": "Time",
-  "requestSuccessFullyRejected": "Request successfully\nrejected."
+  "requestSuccessFullyRejected": "Request successfully\nrejected.",
+  "exceptionExecutingGetRejectionReasons": "Exception while executing Get Rejection Reasons",
+  "exceptionExecutingGetPaymentReasons": "Exception while executing Get Return Payment Reasons",
+  "errorWhileGettingTransactionHistoryList": "Error while getting Transaction History List",
+  "errorWhileGettingReturnRtpRequest": "Error while getting Return RTP Request",
+  "exceptionWhileExecutingGetTransactionHistory": "Exception while executing Get Transaction History",
+  "exceptionWhileExecutingApproveRtpRequestOtp": "Exception while executing Approve RTP Request Otp",
+  "exceptionWhileExecutingApproveRtpRequest": "Exception while executing Approve RTP Request",
+  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp"
 }

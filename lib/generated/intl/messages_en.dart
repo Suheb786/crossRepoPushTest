@@ -897,6 +897,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage("Error While Getting FatcaCrs"),
         "errorWhileGettingRetailCIF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-009)"),
+        "errorWhileGettingReturnRtpRequest":
+            MessageLookupByLibrary.simpleMessage("Error while getting Return RTP Request"),
+        "errorWhileGettingTransactionHistoryList":
+            MessageLookupByLibrary.simpleMessage("Error while getting Transaction History List"),
         "errorWhileGettingXCSCustomerDetails":
             MessageLookupByLibrary.simpleMessage("Error while getting XCS Customer Card Details"),
         "errorWhileIssueCard": MessageLookupByLibrary.simpleMessage("Error while Issue Card"),
@@ -937,6 +941,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("An Error has Occured while ESettlement API get wrong"),
         "establishCallError": MessageLookupByLibrary.simpleMessage("Error occurred while establish call"),
         "estimatedTime": m1,
+        "exceptionExecutingGetPaymentReasons":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Return Payment Reasons"),
+        "exceptionExecutingGetRejectionReasons":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Rejection Reasons"),
+        "exceptionWhileExecutingApproveRtpRequest":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Approve RTP Request"),
+        "exceptionWhileExecutingApproveRtpRequestOtp":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Approve RTP Request Otp"),
+        "exceptionWhileExecutingGetTransactionHistory":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Get Transaction History"),
+        "exceptionWhileExecutingRejectRtpRequestOtp":
+            MessageLookupByLibrary.simpleMessage("Exception while executing Reject RTP Request Otp"),
         "exchangeRateForCurrencies":
             MessageLookupByLibrary.simpleMessage("The exchange rate for other currencies is high"),
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
