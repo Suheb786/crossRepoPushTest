@@ -35,6 +35,7 @@ class ApproveRTPRequestUseCase extends BaseUseCase<NetworkError, ApproveRTPReque
       rejectADdInfo: params.rejectADdInfo,
       rtpStatus: params.rtpStatus,
       GetToken: params.GetToken,
+      otpCode: params.otpCode,
     );
   }
 }
@@ -61,6 +62,7 @@ class ApproveRTPRequestUseCaseParam extends Params {
   final String rejectReason;
   final String rejectADdInfo;
   final String rtpStatus;
+  final String otpCode;
 
   final bool GetToken;
 
@@ -85,6 +87,7 @@ class ApproveRTPRequestUseCaseParam extends Params {
       required this.CtgyPurp,
       required this.rejectReason,
       required this.rtpStatus,
+      required this.otpCode,
       required this.rejectADdInfo,
       required this.GetToken});
 

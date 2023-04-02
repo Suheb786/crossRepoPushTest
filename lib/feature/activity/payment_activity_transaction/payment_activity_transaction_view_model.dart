@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
+import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -34,11 +36,10 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   BehaviorSubject<String> _transactionTypeResponse = BehaviorSubject();
 
   PaymentActivityTransactionUseCase _useCase;
+  final ApproveRTPOtpUseCase _approveRTPOtpUseCase;
 
   PaymentActivityTransactionViewModel(
-    this._useCase,
-    this._requestMoneyActivityUseCase,
-  ) {
+      this._useCase, this._requestMoneyActivityUseCase, this._approveRTPOtpUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
         RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))
@@ -68,7 +69,23 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         }
       });
     });
+
     getRequestMoneyActivity(true, 30, "All");
+
+    _approveRTPOtpRequest.listen(
+      (value) {
+        RequestManager(value, createCall: () => _approveRTPOtpUseCase.execute(params: value)).asFlow().listen(
+          (event) {
+            updateLoader();
+            _approveRTPOtpResponse.safeAdd(event);
+
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            }
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -153,4 +170,72 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         return 'All';
     }
   }
+
+  ///*--------------------[approve-otp]---------------------->>>>>>>
+  ApproveRtpData approveRtpData = ApproveRtpData();
+
+  PublishSubject<ApproveRTPOtpUseCaseParams> _approveRTPOtpRequest = PublishSubject();
+
+  Stream<Resource<ApproveRTPOtp>> get approveRTPOtpStream => _approveRTPOtpResponse.stream;
+
+  PublishSubject<Resource<ApproveRTPOtp>> _approveRTPOtpResponse = PublishSubject();
+
+  void makeApproveRTPOtpRequest() {
+    _approveRTPOtpRequest.safeAdd(ApproveRTPOtpUseCaseParams());
+  }
+}
+
+class ApproveRtpData {
+  final String amount;
+  final String name;
+  final String iban;
+  final String statusInfo;
+  final String custID;
+  final String dbtrAcct;
+  final String dbtrName;
+  final String dbtrPstlAdr;
+  final String dbtrRecordID;
+  final String currency;
+
+  final String dbtrAlias;
+  final String cdtrBic;
+  final String cdtrName;
+  final String cdtrAcct;
+  final String cdtrPstlAdr;
+  final String cdtrRecordID;
+  final String cdtrAlias;
+  final String rgltryRptg;
+  final String payRefNo;
+  final String orgnlMsgId;
+  final String ctgyPurp;
+  final String rejectReason;
+  final String rtpStatus;
+  final String rejectADdInfo;
+
+  ApproveRtpData({
+    this.amount = '',
+    this.name = '',
+    this.iban = '',
+    this.statusInfo = '',
+    this.custID = '',
+    this.dbtrAcct = '',
+    this.dbtrName = '',
+    this.dbtrPstlAdr = '',
+    this.dbtrRecordID = '',
+    this.currency = '',
+    this.dbtrAlias = '',
+    this.cdtrBic = '',
+    this.cdtrName = '',
+    this.cdtrAcct = '',
+    this.cdtrPstlAdr = '',
+    this.cdtrRecordID = '',
+    this.cdtrAlias = '',
+    this.rgltryRptg = '',
+    this.payRefNo = '',
+    this.orgnlMsgId = '',
+    this.ctgyPurp = '',
+    this.rejectReason = '',
+    this.rtpStatus = '',
+    this.rejectADdInfo = '',
+  });
 }

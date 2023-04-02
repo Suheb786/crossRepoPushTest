@@ -36,10 +36,8 @@ final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<Paym
 
 final paymentActivityTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentActivityTransactionViewModel>(
-  (ref) => PaymentActivityTransactionViewModel(
-    ref.read(paymentActivityTransactionUseCaseProvider),
-    ref.read(requestMoneyActivityUseCaseProvider),
-  ),
+  (ref) => PaymentActivityTransactionViewModel(ref.read(paymentActivityTransactionUseCaseProvider),
+      ref.read(requestMoneyActivityUseCaseProvider), ref.read(approveRTPOtpUseCaseProivder)),
 );
 
 final returnPaymentTransactionSliderPageViewModelProvider =
@@ -55,11 +53,8 @@ final returnPaymentOtpPageViewModelProvider =
         (ref) => ReturnPaymentOtpPageViewModel(ref.read(returnPaymentActivityOTPUseCaseProvider)));
 final acceptRequestMoneyOtpPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<AcceptRequestMoneyOtpPageViewModel, AcceptRequestMoneyOtpPageArgument>(
-  (ref, args) => AcceptRequestMoneyOtpPageViewModel(
-    args,
-    ref.read(activityOtpValidationUseCaseProvider),
-    ref.read(approveRTPRequestUseCaseProivder),
-  ),
+  (ref, args) => AcceptRequestMoneyOtpPageViewModel(args, ref.read(activityOtpValidationUseCaseProvider),
+      ref.read(approveRTPRequestUseCaseProivder), ref.read(approveRTPOtpUseCaseProivder)),
 );
 
 final rejectRequestPaymentPageViewModelProvider =
@@ -69,14 +64,14 @@ final rejectRequestPaymentPageViewModelProvider =
 
 final selectRejectReasonPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<SelectRejectReasonPageViewModel>(
-  (ref) => SelectRejectReasonPageViewModel(
-      ref.read(reasonToRejectValidationUseCaseProvider), ref.read(rejectionReasonInwardUseCaseProvider)),
+  (ref) => SelectRejectReasonPageViewModel(ref.read(reasonToRejectValidationUseCaseProvider),
+      ref.read(rejectionReasonInwardUseCaseProvider), ref.read(requestToPayResultOtpUseCaseProivder)),
 );
 
 final rejectRequestPaymentOtpPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<RejectRequestPaymentOtpPageViewModel>(
-  (ref) => RejectRequestPaymentOtpPageViewModel(
-      ref.read(activityOtpValidationUseCaseProvider), ref.read(requestToPayResultUseCaseProvider)),
+  (ref) => RejectRequestPaymentOtpPageViewModel(ref.read(activityOtpValidationUseCaseProvider),
+      ref.read(requestToPayResultUseCaseProvider), ref.read(requestToPayResultOtpUseCaseProivder)),
 );
 
 final creditConfirmationPageViewModelProvider =

@@ -1,4 +1,6 @@
+import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
+import 'package:domain/usecase/manage_cliq/request_to_pay_result_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -12,8 +14,10 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
   final ActivityOtpValidationUseCase _activityOtpValidationUseCase;
+  final RequestToPayResultOtpUseCase _requestToPayResultOtpUseCase;
 
-  RejectRequestPaymentOtpPageViewModel(this._activityOtpValidationUseCase, this._requestToPayResultUseCase) {
+  RejectRequestPaymentOtpPageViewModel(this._activityOtpValidationUseCase, this._requestToPayResultUseCase,
+      this._requestToPayResultOtpUseCase) {
     ///OTP validation request
     _otpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _activityOtpValidationUseCase.execute(params: value))
@@ -38,6 +42,25 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _rejectOtpRequest.listen(
+      (value) {
+        RequestManager(value, createCall: () => _requestToPayResultOtpUseCase.execute(params: value))
+            .asFlow()
+            .listen(
+          (event) {
+            updateLoader();
+            _rejectOtpResponse.safeAdd(event);
+
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            } else if (event.status == Status.SUCCESS) {
+              updateTime();
+            }
+          },
+        );
+      },
+    );
   }
 
   void updateTime() {
@@ -84,6 +107,7 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
     required final String RTPStatus,
     required final String RejectReason,
     required final String RejectADdInfo,
+    required final String otpCode,
     required final bool GetToken,
   }) {
     _requestToPayResultRequest.safeAdd(RequestToPayResultUsecaseParams(
@@ -93,7 +117,21 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
       RejectReason: RejectReason,
       RejectADdInfo: RejectADdInfo,
       GetToken: GetToken,
+      otpCode: otpCode,
     ));
+  }
+
+  ///*--------------------[reject-otp]---------------------->>>>>>>
+
+  PublishSubject<RequestToPayResultOtpUseCaseParams> _rejectOtpRequest = PublishSubject();
+
+  Stream<Resource<RequestToPayResultOtp>> get rejectOtpStream => _rejectOtpResponse.stream;
+
+  PublishSubject<Resource<RequestToPayResultOtp>> _rejectOtpResponse = PublishSubject();
+
+  void makeRejectOtpRequest() {
+    otpController.clear();
+    _rejectOtpRequest.safeAdd(RequestToPayResultOtpUseCaseParams());
   }
 
   ///------------------------------------------variable--------------------------------------

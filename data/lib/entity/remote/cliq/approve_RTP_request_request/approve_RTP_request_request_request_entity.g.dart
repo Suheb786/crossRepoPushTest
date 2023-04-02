@@ -28,6 +28,7 @@ ApproveRTPRequestReqestEntity _$ApproveRTPRequestReqestEntityFromJson(
     rejectReason: json['rejectReason'] as String,
     rejectADdInfo: json['rejectADdInfo'] as String,
     rtpStatus: json['rtpStatus'] as String,
+    otpCode: json['OtpCode'] as String,
     GetToken: json['GetToken'] as bool,
     BaseClass: json['BaseClass'] as Map<String, dynamic>,
     custID: json['custID'] as String,
@@ -59,6 +60,7 @@ Map<String, dynamic> _$ApproveRTPRequestReqestEntityToJson(
       'rejectReason': instance.rejectReason,
       'rejectADdInfo': instance.rejectADdInfo,
       'rtpStatus': instance.rtpStatus,
+      'OtpCode': instance.otpCode,
       'GetToken': instance.GetToken,
       'BaseClass': instance.BaseClass,
     };
