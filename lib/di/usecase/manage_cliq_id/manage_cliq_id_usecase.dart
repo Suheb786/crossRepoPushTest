@@ -3,6 +3,7 @@ import 'package:domain/usecase/manage_cliq/add_link_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/add_link_account_usecase.dart';
 import 'package:domain/usecase/manage_cliq/add_new_mobile_number_cliq_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
+import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/change_default_account_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_validation_usecase.dart';
 import 'package:domain/usecase/manage_cliq/confirm_change_default_account_usecase.dart';
@@ -23,6 +24,7 @@ import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_otp_usecase.dart'
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/rejection_reason_inward_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
+import 'package:domain/usecase/manage_cliq/request_to_pay_result_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:domain/usecase/manage_cliq/submit_outward_payment_usecase.dart';
 import 'package:domain/usecase/manage_cliq/suspend_cliq_id_otp_usecase.dart';
@@ -183,4 +185,14 @@ final editCliqMobileNoValidationUseCaseProvider = Provider.autoDispose<EditCliqM
 ///[RejectionReasonInwardUseCase] provider
 final rejectionReasonInwardUseCaseProvider = Provider.autoDispose<RejectionReasonInwardUseCase>(
   (ref) => RejectionReasonInwardUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[ApproveRTPOtpUseCase] provider
+final approveRTPOtpUseCaseProivder = Provider.autoDispose<ApproveRTPOtpUseCase>(
+  (ref) => ApproveRTPOtpUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[RequestToPayResultOtpUseCase] provider
+final requestToPayResultOtpUseCaseProivder = Provider.autoDispose<RequestToPayResultOtpUseCase>(
+  (ref) => RequestToPayResultOtpUseCase(ref.read(cliqRepositoryProvider)),
 );

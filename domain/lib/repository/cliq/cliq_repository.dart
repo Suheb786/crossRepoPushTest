@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
+import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
@@ -11,6 +12,7 @@ import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
 import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
+import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
@@ -157,6 +159,7 @@ abstract class CliqRepository {
     required String RTPStatus,
     required String RejectReason,
     required String RejectADdInfo,
+    required String otpCode,
     required bool GetToken,
   });
 
@@ -184,6 +187,7 @@ abstract class CliqRepository {
       required String rejectReason,
       required String rejectADdInfo,
       required String rtpStatus,
+      required String otpCode,
       required bool GetToken});
 
   Future<Either<NetworkError, bool>> submitOutwardPayment({
@@ -212,4 +216,8 @@ abstract class CliqRepository {
   });
 
   Future<Either<NetworkError, List<RejectionReasonInward>>> getRejectionReasons();
+
+  Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp();
+
+  Future<Either<NetworkError, RequestToPayResultOtp>> requestToPayResultOtp();
 }
