@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16784,6 +16785,96 @@ class S {
     return Intl.message(
       'You sent ',
       name: 'youSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Transaction History List`
+  String get errorWhileGettingTransactionHistoryList {
+    return Intl.message(
+      'Error while getting Transaction History List',
+      name: 'errorWhileGettingTransactionHistoryList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Return RTP Request`
+  String get errorWhileGettingReturnRtpRequest {
+    return Intl.message(
+      'Error while getting Return RTP Request',
+      name: 'errorWhileGettingReturnRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Get Transaction History`
+  String get exceptionWhileExecutingGetTransactionHistory {
+    return Intl.message(
+      'Exception while executing Get Transaction History',
+      name: 'exceptionWhileExecutingGetTransactionHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Approve RTP Request Otp`
+  String get exceptionWhileExecutingApproveRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Approve RTP Request Otp',
+      name: 'exceptionWhileExecutingApproveRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Approve RTP Request`
+  String get exceptionWhileExecutingApproveRtpRequest {
+    return Intl.message(
+      'Exception while executing Approve RTP Request',
+      name: 'exceptionWhileExecutingApproveRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Reject RTP Request Otp`
+  String get exceptionWhileExecutingRejectRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Reject RTP Request Otp',
+      name: 'exceptionWhileExecutingRejectRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Reject RTP Request`
+  String get exceptionWhileExecutingRejectRtpRequest {
+    return Intl.message(
+      'Exception while executing Reject RTP Request',
+      name: 'exceptionWhileExecutingRejectRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request Otp`
+  String get exceptionWhileExecutingReturnRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Return RTP Request Otp',
+      name: 'exceptionWhileExecutingReturnRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request`
+  String get exceptionWhileExecutingReturnRtpRequest {
+    return Intl.message(
+      'Exception while executing Return RTP Request',
+      name: 'exceptionWhileExecutingReturnRtpRequest',
       desc: '',
       args: [],
     );

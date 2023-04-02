@@ -1282,6 +1282,24 @@ class ErrorParser {
         return localisedHelper.nicknameLengthShouldNotBeGreaterThan50;
       case ErrorType.ALIAS_ALREADY_EXIST:
         return localisedHelper.aliasAlreadyExist;
+      case ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST:
+        return localisedHelper.errorWhileGettingTransactionHistoryList;
+      case ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST:
+        return localisedHelper.errorWhileGettingReturnRtpRequest;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_TRANSACTION_HISTORY:
+        return localisedHelper.exceptionWhileExecutingGetTransactionHistory;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST:
+        return localisedHelper.exceptionWhileExecutingApproveRtpRequest;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST_OTP:
+        return localisedHelper.exceptionWhileExecutingApproveRtpRequestOtp;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST_OTP:
+        return localisedHelper.exceptionWhileExecutingRejectRtpRequestOtp;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST:
+        return localisedHelper.exceptionWhileExecutingReturnRtpRequest;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST:
+        return localisedHelper.exceptionWhileExecutingRejectRtpRequest;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST_OTP:
+        return localisedHelper.exceptionWhileExecutingReturnRtpRequestOtp;
       default:
         return "";
     }
