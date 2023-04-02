@@ -1,4 +1,5 @@
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
+import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,7 +13,7 @@ import 'package:sms_autofill/sms_autofill.dart';
 class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
   final ActivityOtpValidationUseCase _activityOtpValidationUseCase;
 
-  RejectRequestPaymentOtpPageViewModel(this._activityOtpValidationUseCase) {
+  RejectRequestPaymentOtpPageViewModel(this._activityOtpValidationUseCase, this._requestToPayResultUseCase) {
     ///OTP validation request
     _otpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _activityOtpValidationUseCase.execute(params: value))
@@ -23,6 +24,18 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+
+    _requestToPayResultRequest.listen((value) {
+      RequestManager(value, createCall: () {
+        return _requestToPayResultUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _requestToPayResultResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
   }
@@ -53,6 +66,34 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
   listenForSmsCode() async {
     otpController.clear();
     SmsAutoFill().listenForCode();
+  }
+
+  ///[reject-inward-request]
+
+  PublishSubject<RequestToPayResultUsecaseParams> _requestToPayResultRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _requestToPayResultResponse = PublishSubject();
+
+  Stream<Resource<bool>> get requestToPayResultStream => _requestToPayResultResponse.stream;
+
+  RequestToPayResultUseCase _requestToPayResultUseCase;
+
+  void requestToPayResult({
+    required final String CustID,
+    required final String OrgnlMsgId,
+    required final String RTPStatus,
+    required final String RejectReason,
+    required final String RejectADdInfo,
+    required final bool GetToken,
+  }) {
+    _requestToPayResultRequest.safeAdd(RequestToPayResultUsecaseParams(
+      CustID: CustID,
+      OrgnlMsgId: OrgnlMsgId,
+      RTPStatus: RTPStatus,
+      RejectReason: RejectReason,
+      RejectADdInfo: RejectADdInfo,
+      GetToken: GetToken,
+    ));
   }
 
   ///------------------------------------------variable--------------------------------------

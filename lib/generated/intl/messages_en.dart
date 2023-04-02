@@ -1240,6 +1240,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "establishCallError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while establish call"),
         "estimatedTime": m1,
+        "exceptionExecutingGetPaymentReasons":
+            MessageLookupByLibrary.simpleMessage(
+                "Exception while executing Get Return Payment Reasons"),
+        "exceptionExecutingGetRejectionReasons":
+            MessageLookupByLibrary.simpleMessage(
+                "Exception while executing Get Rejection Reasons"),
         "exceptionWhileExecutingApproveRtpRequest":
             MessageLookupByLibrary.simpleMessage(
                 "Exception while executing Approve RTP Request"),
@@ -2446,6 +2452,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
             "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD."),
+        "requestSuccessFullyRejected": MessageLookupByLibrary.simpleMessage(
+            "Request successfully\nrejected."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2800,6 +2808,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "There are no due bills to be paid at the moment"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),

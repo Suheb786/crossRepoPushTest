@@ -94,7 +94,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                               child: Center(
                                                 child: activity.data?[index].trxDir ==
                                                         RequestMoneyActivityStatusEnum
-                                                            .TRANSACTION_DIRECTORY_OUTGOING
+                                                            .TRANSACTION_DIRECTORY_INCOMING
                                                     ? Text(
                                                         (activity.data?[index].cdtrName ?? '')
                                                                     .split(" ")
@@ -133,7 +133,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                   children: [
                                                     (activity.data?[index].trxDir ==
                                                             RequestMoneyActivityStatusEnum
-                                                                .TRANSACTION_DIRECTORY_INCOMING)
+                                                                .TRANSACTION_DIRECTORY_OUTGOING)
                                                         ? Text.rich(TextSpan(
                                                             text: S.of(context).youRequested,
                                                             style: TextStyle(
@@ -162,7 +162,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                         fontSize: 12.0.t)),
                                                               ]))
                                                         : Text.rich(TextSpan(
-                                                            text: '${activity.data![index].dbtrName}',
+                                                            text: '${activity.data![index].cdtrName}',
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontWeight: FontWeight.w600,

@@ -8,13 +8,14 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/usecase/manage_cliq/rejection_reason_inward_usecase.dart';
+import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
 
 class SelectRejectReasonPageViewModel extends BasePageViewModel {
   final ReasonToRejectValidationUseCase _reasonToRejectValidationUseCase;
+  final RejectionReasonInwardUseCase _rejectionReasonInwardUseCase;
 
-  SelectRejectReasonPageViewModel(
-    this._reasonToRejectValidationUseCase,
-  ) {
+  SelectRejectReasonPageViewModel(this._reasonToRejectValidationUseCase, this._rejectionReasonInwardUseCase) {
     ///reason to reject validation request
     _reasonToRejectValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _reasonToRejectValidationUseCase.execute(params: value))
@@ -28,6 +29,21 @@ class SelectRejectReasonPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    /// reason for reject inward request
+
+    _reasonToRejectRequest.listen((value) {
+      RequestManager(value, createCall: () => _rejectionReasonInwardUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _reasonToRejectResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
+      });
+    });
+    reasonToReject();
   }
 
   void validateUserInput() {
@@ -57,6 +73,17 @@ class SelectRejectReasonPageViewModel extends BasePageViewModel {
     }
   }
 
+  ///reject reason for inward requet
+  PublishSubject<RejectionReasonInwardUseCaseParams> _reasonToRejectRequest = PublishSubject();
+
+  PublishSubject<Resource<List<RejectionReasonInward>>> _reasonToRejectResponse = PublishSubject();
+
+  Stream<Resource<List<RejectionReasonInward>>> get reasonToRejectStream => _reasonToRejectResponse.stream;
+
+  void reasonToReject() {
+    _reasonToRejectRequest.safeAdd(RejectionReasonInwardUseCaseParams());
+  }
+
   @override
   void dispose() {
     _reasonToRejectValidationRequest.close();
@@ -69,6 +96,8 @@ class SelectRejectReasonPageViewModel extends BasePageViewModel {
 
   final TextEditingController reasonToRejectController = TextEditingController();
   final GlobalKey<AppTextFieldState> reasonToRejectKey = GlobalKey(debugLabel: "reasonToReject");
+
+  String rejectADdInfo = '';
 
   ///validation request and response
   PublishSubject<ReasonToRejectValidationUseCaseParams> _reasonToRejectValidationRequest = PublishSubject();

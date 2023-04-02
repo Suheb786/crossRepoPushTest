@@ -1282,6 +1282,12 @@ class ErrorParser {
         return localisedHelper.nicknameLengthShouldNotBeGreaterThan50;
       case ErrorType.ALIAS_ALREADY_EXIST:
         return localisedHelper.aliasAlreadyExist;
+
+      case ErrorType.EXCEPTION_EXECUTING_GET_REJECTION_REASONS:
+        return localisedHelper.exceptionExecutingGetRejectionReasons;
+
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_RETURN_PAYMENT_REASONS:
+        return localisedHelper.exceptionExecutingGetPaymentReasons;
       case ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST:
         return localisedHelper.errorWhileGettingTransactionHistoryList;
       case ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST:

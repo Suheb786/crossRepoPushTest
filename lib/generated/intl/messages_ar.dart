@@ -1199,6 +1199,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "establishCallError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال بدء المكالمة"),
         "estimatedTime": m1,
+        "exceptionExecutingGetPaymentReasons":
+            MessageLookupByLibrary.simpleMessage(
+                "Exception while executing Get Return Payment Reasons"),
+        "exceptionExecutingGetRejectionReasons":
+            MessageLookupByLibrary.simpleMessage(
+                "Exception while executing Get Rejection Reasons"),
         "exceptionWhileExecutingApproveRtpRequest":
             MessageLookupByLibrary.simpleMessage(
                 "Exception while executing Approve RTP Request"),
@@ -2356,6 +2362,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
             "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 150 دينار عند استلامها."),
+        "requestSuccessFullyRejected": MessageLookupByLibrary.simpleMessage(
+            "Request successfully\nrejected."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2699,6 +2707,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),

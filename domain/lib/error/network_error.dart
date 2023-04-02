@@ -1238,6 +1238,24 @@ class NetworkError extends BaseError {
           case "ex-146":
             return AppError(
                 cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST);
+          // case "ex-140":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_TRANSACTION_HISTORY);
+          //
+          // case "ex-141":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST_OTP);
+          // case "ex-142":
+          //   return AppError(
+          //       cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST);
+          //
+          // case "ex-143":
+          //   return AppError(
+          //       cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST_OTP);
 
           case "err-vkey-1":
             return AppError(cause: cause, error: error, type: ErrorType.REGISTERING_USER_TO_VKEY_ERROR);
@@ -1335,6 +1353,22 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT);
           case "EFW-398":
             return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX);
+
+          /*     case "ex-138":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_EXECUTING_GET_REJECTION_REASONS);
+
+          case "ex-139":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_RETURN_PAYMENT_REASONS);*/
+          case "err-387":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST);
+          case "err-388":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST);
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

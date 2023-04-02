@@ -16790,6 +16790,46 @@ class S {
     );
   }
 
+  /// `Time`
+  String get time {
+    return Intl.message(
+      'Time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request successfully\nrejected.`
+  String get requestSuccessFullyRejected {
+    return Intl.message(
+      'Request successfully\nrejected.',
+      name: 'requestSuccessFullyRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Get Rejection Reasons`
+  String get exceptionExecutingGetRejectionReasons {
+    return Intl.message(
+      'Exception while executing Get Rejection Reasons',
+      name: 'exceptionExecutingGetRejectionReasons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Get Return Payment Reasons`
+  String get exceptionExecutingGetPaymentReasons {
+    return Intl.message(
+      'Exception while executing Get Return Payment Reasons',
+      name: 'exceptionExecutingGetPaymentReasons',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Error while getting Transaction History List`
   String get errorWhileGettingTransactionHistoryList {
     return Intl.message(
@@ -16840,16 +16880,6 @@ class S {
     );
   }
 
-  /// `Exception while executing Reject RTP Request Otp`
-  String get exceptionWhileExecutingRejectRtpRequestOtp {
-    return Intl.message(
-      'Exception while executing Reject RTP Request Otp',
-      name: 'exceptionWhileExecutingRejectRtpRequestOtp',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Exception while executing Reject RTP Request`
   String get exceptionWhileExecutingRejectRtpRequest {
     return Intl.message(
@@ -16875,6 +16905,16 @@ class S {
     return Intl.message(
       'Exception while executing Return RTP Request',
       name: 'exceptionWhileExecutingReturnRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Reject RTP Request Otp`
+  String get exceptionWhileExecutingRejectRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Reject RTP Request Otp',
+      name: 'exceptionWhileExecutingRejectRtpRequestOtp',
       desc: '',
       args: [],
     );
