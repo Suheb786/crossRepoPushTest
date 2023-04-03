@@ -27,6 +27,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/payment/payment_datasource.dart';
 import 'package:retrofit/dio.dart';
+import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 
 class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   final ApiService _apiService;
@@ -216,8 +217,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getRejectionReason({required bool GetToken}) async {
+  Future<HttpResponse<GetRejectionReasonResponseEntity>> getReturnRejectionReason(
+      {required bool getToken}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.getRejectionReason(BaseRequest(baseData: baseData.toJson(), getToken: GetToken));
+    return _apiService.getRejectionReason(BaseRequest(baseData: baseData.toJson(), getToken: getToken));
   }
 }

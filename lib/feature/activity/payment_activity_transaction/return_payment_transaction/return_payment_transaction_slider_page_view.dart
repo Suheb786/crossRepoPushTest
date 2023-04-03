@@ -65,13 +65,16 @@ class ReturnPaymentTransactionSliderPageView
               dataBuilder: (context, currentStep) {
                 return Column(
                   children: [
-                    Text(
-                      S.of(context).returnPayment.toUpperCase(),
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.black,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Text(
+                        S.of(context).returnPayment.toUpperCase(),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(

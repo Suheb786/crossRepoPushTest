@@ -48,6 +48,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
 import 'package:retrofit/dio.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 
 class CliqRemoteDataSourceImpl extends CliqDataSource {
   final ApiService _apiService;
@@ -485,7 +486,8 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP({required bool getToken}) async {
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
+      {required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.returnRTPrequestOTP(BaseRequest(baseData: baseData.toJson(), getToken: getToken));
   }

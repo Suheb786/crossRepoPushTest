@@ -3,6 +3,9 @@ import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/return_reason_payment_dialog_view.dart';
+import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -69,9 +72,11 @@ import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_vie
 import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/return_reason_payment_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/bill_name/bill_name_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/service/select_service_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/return_reason_payment_dialog_view_model.dart';
 
 final paymentHomeViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
   (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
@@ -367,3 +372,14 @@ final billPaymentsTransactionViewModelProvider =
 final qrScanningScreenViewModelProvider = ChangeNotifierProvider.autoDispose<QrScanningScreenPageViewModel>(
     (ref) => QrScanningScreenPageViewModel(ref.read(verifyQRUseCaseProvider)));
 
+final returnPaymentSelectionPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnPaymentReasonSelectionPageViewModel>(
+  (ref) => ReturnPaymentReasonSelectionPageViewModel(
+      ref.read(returnPaymentActivityTransactionUseCaseProvider),
+      ref.read(getReasonToReturUseCaseProvider),
+      ref.read(returnRTPrequestOTPUseCaseProivder)),
+);
+
+final returnReasonsPaymentDialogPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReturnReasonsPaymentDialogViewModel>(
+        (ref) => ReturnReasonsPaymentDialogViewModel());

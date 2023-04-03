@@ -6,6 +6,8 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
+import 'package:neo_bank/di/activity/activity_modules.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -113,7 +115,11 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                       widgetBuilder: (context, currentTimeRemaining) {
                                         return currentTimeRemaining == null
                                             ? TextButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  ProviderScope.containerOf(context)
+                                                      .read(returnPaymentSelectionPageViewModelProvider)
+                                                      .returnRTPrequestOTP();
+                                                },
                                                 child: Text(
                                                   S.of(context).resendCode,
                                                   style: TextStyle(

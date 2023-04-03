@@ -14,6 +14,7 @@ import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
 import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
+import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
@@ -430,9 +431,9 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> returnRTPrequestOTP({required bool getToken}) async {
+  Future<Either<NetworkError, ReturnRTPRequestOTP>> returnRTPrequestOTP({required bool getToken}) async {
     final result = await safeApiCall(_cliqDataSource.returnRTPrequestOTP(getToken: getToken));
-    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 
   @override

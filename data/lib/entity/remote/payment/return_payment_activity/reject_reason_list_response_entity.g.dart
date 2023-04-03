@@ -9,8 +9,8 @@ part of 'reject_reason_list_response_entity.dart';
 RejctReasonListEntity _$RejctReasonListEntityFromJson(
     Map<String, dynamic> json) {
   return RejctReasonListEntity(
-    code: json['code'] as String?,
-    description: json['description'] as String?,
+    code: json['code'] as String,
+    description: json['description'] as String,
   );
 }
 

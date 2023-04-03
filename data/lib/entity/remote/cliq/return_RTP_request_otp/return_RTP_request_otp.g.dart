@@ -6,16 +6,16 @@ part of 'return_RTP_request_otp.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReturnRTPRequestOTPEntity _$ReturnRTPRequestOTPEntityFromJson(
+ReturnRTPRequestOTPResponseEntity _$ReturnRTPRequestOTPResponseEntityFromJson(
     Map<String, dynamic> json) {
-  return ReturnRTPRequestOTPEntity(
+  return ReturnRTPRequestOTPResponseEntity(
     mobileCode: json['mobileCode'] as String?,
     mobileNumber: json['mobileNumber'] as String?,
   );
 }
 
-Map<String, dynamic> _$ReturnRTPRequestOTPEntityToJson(
-        ReturnRTPRequestOTPEntity instance) =>
+Map<String, dynamic> _$ReturnRTPRequestOTPResponseEntityToJson(
+        ReturnRTPRequestOTPResponseEntity instance) =>
     <String, dynamic>{
       'mobileCode': instance.mobileCode,
       'mobileNumber': instance.mobileNumber,

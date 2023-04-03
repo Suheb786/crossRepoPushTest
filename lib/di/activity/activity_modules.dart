@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
+import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
 import 'package:neo_bank/feature/activity/notification/notification_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
@@ -44,13 +45,10 @@ final returnPaymentTransactionSliderPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReturnPaymentTransactionSliderPageViewModel>(
         (ref) => ReturnPaymentTransactionSliderPageViewModel());
 
-final returnPaymentSelectionPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ReturnPaymentReasonSelectionPageViewModel>((ref) =>
-        ReturnPaymentReasonSelectionPageViewModel(ref.read(returnPaymentActivityTransactionUseCaseProvider)));
-
 final returnPaymentOtpPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ReturnPaymentOtpPageViewModel>(
-        (ref) => ReturnPaymentOtpPageViewModel(ref.read(returnPaymentActivityOTPUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<ReturnPaymentOtpPageViewModel>((ref) => ReturnPaymentOtpPageViewModel(
+        ref.read(returnPaymentActivityOTPUseCaseProvider), ref.read(returnRTPrequestOTPUseCaseProivder)));
+
 final acceptRequestMoneyOtpPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<AcceptRequestMoneyOtpPageViewModel, AcceptRequestMoneyOtpPageArgument>(
   (ref, args) => AcceptRequestMoneyOtpPageViewModel(args, ref.read(activityOtpValidationUseCaseProvider),

@@ -1,4 +1,6 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
+import 'package:domain/usecase/manage_cliq/return_rtp_request_otp_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,6 +14,7 @@ import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
 
 class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   final ReturnPaymentOTPUseCase _returnPaymentOTPUseCase;
+  final ReturnRTPrequestOTPUsecase _returnRTPrequestOTPUsecase;
 
   ///--------------------------public-instance-valiables-------------------------------------///
 
@@ -30,17 +33,26 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
 
   TextEditingController otpController = TextEditingController();
 
-  ///-----------------add-contact-iban-otp-subjects-------------------------------------///
+  // PublishSubject<bool> _returnRTPreqeustrequest = PublishSubject();
 
-  PublishSubject<ReturnPaymentOTPUseCaseParams> _returnPaymentOtpRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _returnPaymentOtpResponse = PublishSubject();
+  // PublishSubject<Resource<ReturnRTPRequestOTP>> _returnRTPreqeustresponse = PublishSubject();
 
-  ReturnPaymentOtpPageViewModel(this._returnPaymentOTPUseCase) {
-    _returnPaymentOtpRequest.listen((value) {
+  // Stream<Resource<ReturnRTPRequestOTP>> get returnRTPrequestOTPstream => _returnRTPreqeustresponse.stream;
+
+  // void returnRTPrequest(String mobileCode, String mobileNumber) {
+  //   _returnRTPreqeustrequest
+  //       .safeAdd();
+  // }
+
+  PublishSubject<ReturnPaymentOTPUseCaseParams> _returnPaymentOtpValidationRequest = PublishSubject();
+  PublishSubject<Resource<bool>> _returnPaymentOtpValidationResponse = PublishSubject();
+
+  ReturnPaymentOtpPageViewModel(this._returnPaymentOTPUseCase, this._returnRTPrequestOTPUsecase) {
+    _returnPaymentOtpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _returnPaymentOTPUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _returnPaymentOtpResponse.safeAdd(event);
+        _returnPaymentOtpValidationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -48,7 +60,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
       });
     });
   }
-  Stream<Resource<bool>> get returnPaymentOtpValidationStream => _returnPaymentOtpResponse.stream;
+  Stream<Resource<bool>> get returnPaymentOtpValidationStream => _returnPaymentOtpValidationResponse.stream;
 
   ///--------------------------otp-subject-------------------------------------///
 
@@ -73,7 +85,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   ///--------------------------public-other-methods-------------------------------------///
 
   void validateOTP() {
-    _returnPaymentOtpRequest.safeAdd(ReturnPaymentOTPUseCaseParams(otp: _otpSubject.value));
+    _returnPaymentOtpValidationRequest.safeAdd(ReturnPaymentOTPUseCaseParams(otp: _otpSubject.value));
   }
 
   void validate(String val) {
@@ -95,18 +107,4 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  // AddContactIBANotpPageViewModel(this.addContactIbanOTPuseCase) {
-  //   addcontactIbanOTPuseCaseRequest.listen((value) {
-  //     RequestManager(value, createCall: () => addContactIbanOTPuseCase.execute(params: value))
-  //         .asFlow()
-  //         .listen((event) {
-  //       addcontactIbanOTPuseCaseResponse.safeAdd(event);
-  //       if (event.status == Status.ERROR) {
-  //         getError(event);
-  //         showErrorState();
-  //         showToastWithError(event.appError!);
-  //       } else if (event.status == Status.SUCCESS) {}
-  //     });
-  //   });
-  // }
 }

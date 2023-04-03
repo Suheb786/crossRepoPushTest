@@ -11,6 +11,7 @@ import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/get_call_status_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_request.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
@@ -150,6 +151,7 @@ import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_res
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_response.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -209,6 +211,7 @@ import 'package:data/entity/remote/payment/get_account_by_alias_content_response
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
 import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
+import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/qr/generate_qr_request_entity.dart';
 import 'package:data/entity/remote/payment/qr/transfer_qr_request_entity.dart';
@@ -1078,7 +1081,7 @@ abstract class ApiService {
   );
 
   @POST("/Cliq/ReturnRTPRequestOtp")
-  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP(
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
     @Body() BaseRequest request,
   );
 
@@ -1093,7 +1096,7 @@ abstract class ApiService {
   );
 
   @POST("/transfer/GetReturnPaymentReasons")
-  Future<HttpResponse<ResponseEntity>> getRejectionReason(
+  Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
     @Body() BaseRequest request,
   );
   @POST("/Cliq/ApproveRTPRequestOtp")

@@ -3467,18 +3467,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP(request) async {
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
+      request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<ReturnRTPRequestOTPResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Cliq/ReturnRTPRequestOtp',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = ReturnRTPRequestOTPResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -3518,18 +3519,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getRejectionReason(request) async {
+  Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
+      request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<GetRejectionReasonResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/transfer/GetReturnPaymentReasons',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = GetRejectionReasonResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

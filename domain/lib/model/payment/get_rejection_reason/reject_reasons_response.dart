@@ -1,8 +1,8 @@
-class RejectReasonsPayment {
-  final String? code;
-  final String? description;
+class ReturnReasonsPayment {
+  final String  code;
+  final String description;
 
-  RejectReasonsPayment({
+  ReturnReasonsPayment({
     required this.code,
     required this.description,
   });

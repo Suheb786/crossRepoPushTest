@@ -4,11 +4,11 @@ import 'package:domain/model/payment/get_rejection_reason/reject_reasons_respons
 part 'reject_reason_list_response_entity.g.dart';
 
 @JsonSerializable()
-class RejctReasonListEntity extends BaseLayerDataTransformer<RejctReasonListEntity, RejectReasonsPayment> {
+class RejctReasonListEntity extends BaseLayerDataTransformer<RejctReasonListEntity, ReturnReasonsPayment> {
   @JsonKey(name: "code")
-  final String? code;
+  final String code;
   @JsonKey(name: "description")
-  final String? description;
+  final String description;
 
   RejctReasonListEntity({
     required this.code,
@@ -19,8 +19,8 @@ class RejctReasonListEntity extends BaseLayerDataTransformer<RejctReasonListEnti
   Map<String, dynamic> toJson() => _$RejctReasonListEntityToJson(this);
 
   @override
-  RejectReasonsPayment transform() {
-    return RejectReasonsPayment(
+  ReturnReasonsPayment transform() {
+    return ReturnReasonsPayment(
       code: this.code,
       description: this.description,
     );

@@ -16,6 +16,7 @@ import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 
 abstract class CliqDataSource {
   Future<HttpResponse<GetAliasResponseEntity>> getAlias({
@@ -221,7 +222,7 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
-  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP({
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP({
     required bool getToken,
   });
 
