@@ -422,4 +422,60 @@ class CliqRepositoryImpl extends CliqRepository {
     final result = await safeApiCall(_cliqDataSource.getRejectionReasons(getToken: true));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
+
+  @override
+  Future<Either<NetworkError, bool>> returnRTPrequestOTP({required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.returnRTPrequestOTP(getToken: getToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> returnRTPrequest(
+      {required String? CustID,
+      required String? MessageID,
+      required String? DbtrAcct,
+      required String? DbtrName,
+      required String? CdtrAcct,
+      required String? CdtrName,
+      required String? Currency,
+      required double? Amount,
+      required String? RtrnReason,
+      required String? RtrnAddInfo,
+      required bool? IsDispute,
+      required String? DisputeRefNo,
+      required String? OtpCode,
+      required bool GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.returnRTPrequest(
+      CustID: CustID,
+      MessageID: MessageID,
+      DbtrAcct: DbtrAcct,
+      DbtrName: DbtrName,
+      CdtrAcct: CdtrAcct,
+      CdtrName: CdtrName,
+      Currency: Currency,
+      Amount: Amount,
+      RtrnReason: RtrnReason,
+      RtrnAddInfo: RtrnAddInfo,
+      IsDispute: IsDispute,
+      DisputeRefNo: DisputeRefNo,
+      OtpCode: OtpCode,
+      GetToken: GetToken,
+    ));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getTransactionHistory(
+      {required String? FilterDays,
+      required String? TransactionType,
+      required String? TotalRecords,
+      required bool? GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.getTransactionHistory(
+        FilterDays: FilterDays,
+        TransactionType: TransactionType,
+        TotalRecords: TotalRecords,
+        GetToken: GetToken));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
 }

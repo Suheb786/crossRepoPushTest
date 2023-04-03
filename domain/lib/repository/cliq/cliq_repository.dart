@@ -212,4 +212,31 @@ abstract class CliqRepository {
   });
 
   Future<Either<NetworkError, List<RejectionReasonInward>>> getRejectionReasons();
+  Future<Either<NetworkError, bool>> returnRTPrequestOTP({
+    required bool getToken,
+  });
+
+  Future<Either<NetworkError, bool>> returnRTPrequest({
+    required String? CustID,
+    required String? MessageID,
+    required String? DbtrAcct,
+    required String? DbtrName,
+    required String? CdtrAcct,
+    required String? CdtrName,
+    required String? Currency,
+    required double? Amount,
+    required String? RtrnReason,
+    required String? RtrnAddInfo,
+    required bool? IsDispute,
+    required String? DisputeRefNo,
+    required String? OtpCode,
+    required bool GetToken,
+  });
+
+  Future<Either<NetworkError, bool>> getTransactionHistory({
+    required String? FilterDays,
+    required String? TransactionType,
+    required String? TotalRecords,
+    required bool? GetToken,
+  });
 }

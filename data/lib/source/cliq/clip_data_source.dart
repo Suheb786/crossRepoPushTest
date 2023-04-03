@@ -216,4 +216,32 @@ abstract class CliqDataSource {
   Future<HttpResponse<RejectionReasonResponseEntity>> getRejectionReasons({
     required bool getToken,
   });
+
+  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP({
+    required bool getToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> returnRTPrequest({
+    required String? CustID,
+    required String? MessageID,
+    required String? DbtrAcct,
+    required String? DbtrName,
+    required String? CdtrAcct,
+    required String? CdtrName,
+    required String? Currency,
+    required double? Amount,
+    required String? RtrnReason,
+    required String? RtrnAddInfo,
+    required bool? IsDispute,
+    required String? DisputeRefNo,
+    required String? OtpCode,
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> getTransactionHistory({
+    required String? FilterDays,
+    required String? TransactionType,
+    required String? TotalRecords,
+    required bool? GetToken,
+  });
 }

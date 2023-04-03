@@ -137,6 +137,7 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -144,6 +145,7 @@ import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason
 import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -1069,6 +1071,21 @@ abstract class ApiService {
   @POST("/Cliq/SubmitOutwardPayment")
   Future<HttpResponse<ResponseEntity>> submitOutwardPayment(
     @Body() SubmitOutwardPaymentRequestEntity request,
+  );
+
+  @POST("/Cliq/ReturnRTPRequestOtp")
+  Future<HttpResponse<ResponseEntity>> returnRTPrequestOTP(
+    @Body() BaseRequest request,
+  );
+
+  @POST("/Cliq/ReturnRTPRequest")
+  Future<HttpResponse<ResponseEntity>> returnRTPrequest(
+    @Body() ReturnRTPrequestRequestEntity request,
+  );
+
+  @POST("/Cliq/GetTransactionHistory")
+  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
+    @Body() GetTransactionHistoryRequestEntity request,
   );
 
   @POST("/transfer/GetReturnPaymentReasons")
