@@ -6,9 +6,12 @@ part of 'request_to_pay_result_otp_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestToPayResultOtpResponseEntity _$RequestToPayResultOtpResponseEntityFromJson(Map<String, dynamic> json) {
+RequestToPayResultOtpResponseEntity
+    _$RequestToPayResultOtpResponseEntityFromJson(Map<String, dynamic> json) {
   return RequestToPayResultOtpResponseEntity(
-    json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
