@@ -5,6 +5,8 @@ import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_re
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
@@ -31,6 +33,8 @@ import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -336,6 +340,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required String OrgnlMsgId,
       required String RTPStatus,
       required String RejectReason,
+      required String otpCode,
       required bool GetToken,
       required String RejectADdInfo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
@@ -345,6 +350,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       RTPStatus: RTPStatus,
       RejectReason: RejectReason,
       RejectADdInfo: RejectADdInfo,
+      otpCode: otpCode,
       GetToken: GetToken,
       BaseClass: baseData.toJson(),
     ));
@@ -389,6 +395,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       required String rejectReason,
       required String rejectADdInfo,
       required String rtpStatus,
+      required String otpCode,
       required bool GetToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.approveRTPRequest(ApproveRTPRequestReqestEntity(
@@ -415,6 +422,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
       rtpStatus: rtpStatus,
       GetToken: GetToken,
       BaseClass: baseData.toJson(),
+      otpCode: otpCode,
     ));
   }
 
@@ -533,5 +541,19 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
         TotalRecords: TotalRecords,
         GetToken: GetToken,
         BaseClass: baseData.toJson()));
+  }
+
+  Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({required bool getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .approveRTPRequestOtp(ApproveRTPOtpRequestEntity(getToken: getToken, baseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<RequestToPayResultOtpResponseEntity>> requestToPayResultOtp(
+      {required bool getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.requestToPayResultOtp(
+        RequestToPayResultOtpRequestEntity(getToken: getToken, baseClass: baseData.toJson()));
   }
 }

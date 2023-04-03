@@ -63,6 +63,8 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
 
                     // model.getRequestMoneyActivity(
                     //     true, model.filterDays, model.transactionType);
+                  } else if (data.status == Status.ERROR) {
+                    await FireBaseLogUtil.fireBaseLog("rtp_rejected", {"is_rtp_rejected": false});
                   }
                 },
                 dataBuilder: (context, snapshot) {
@@ -92,7 +94,8 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                                 RejectADdInfo: ProviderScope.containerOf(context)
                                     .read(selectRejectReasonPageViewModelProvider)
                                     .rejectADdInfo,
-                                GetToken: true);
+                                GetToken: true,
+                                otpCode: model.otpController.text);
                             //  Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
 
                           }
@@ -163,7 +166,7 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                                             return currentTimeRemaining == null
                                                 ? TextButton(
                                                     onPressed: () {
-                                                      model.updateTime();
+                                                      model.makeRejectOtpRequest();
                                                     },
                                                     child: Text(
                                                       S.of(context).resendCode,

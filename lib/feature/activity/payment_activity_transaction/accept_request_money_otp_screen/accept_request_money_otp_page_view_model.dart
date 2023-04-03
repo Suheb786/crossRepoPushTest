@@ -1,5 +1,7 @@
+import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
+import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -15,13 +17,11 @@ import 'accept_request_money_otp_page.dart';
 class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
   final ActivityOtpValidationUseCase _activityOtpValidationUseCase;
   final ApproveRTPRequestUseCase _approveRTPRequestUseCase;
+  final ApproveRTPOtpUseCase _approveRTPOtpUseCase;
   final AcceptRequestMoneyOtpPageArgument argument;
 
-  AcceptRequestMoneyOtpPageViewModel(
-    this.argument,
-    this._activityOtpValidationUseCase,
-    this._approveRTPRequestUseCase,
-  ) {
+  AcceptRequestMoneyOtpPageViewModel(this.argument, this._activityOtpValidationUseCase,
+      this._approveRTPRequestUseCase, this._approveRTPOtpUseCase) {
     ///OTP validation request
     _otpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _activityOtpValidationUseCase.execute(params: value))
@@ -50,6 +50,22 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
         );
       },
     );
+    _approveRTPOtpRequest.listen(
+      (value) {
+        RequestManager(value, createCall: () => _approveRTPOtpUseCase.execute(params: value)).asFlow().listen(
+          (event) {
+            updateLoader();
+            _approveRTPOtpResponse.safeAdd(event);
+
+            if (event.status == Status.ERROR) {
+              showToastWithError(event.appError!);
+            } else if (event.status == Status.SUCCESS) {
+              updateTime();
+            }
+          },
+        );
+      },
+    );
   }
 
   void updateTime() {
@@ -64,7 +80,20 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
     _otpValidationRequest.safeAdd(ActivityOtpValidationUseCaseParams(otp: _otpSubject.value));
   }
 
-  ///*--------------------[accept-request-money-activity]---------------------->>>>>>>
+  ///*--------------------[approve-otp]---------------------->>>>>>>
+
+  PublishSubject<ApproveRTPOtpUseCaseParams> _approveRTPOtpRequest = PublishSubject();
+
+  Stream<Resource<ApproveRTPOtp>> get approveRTPOtpStream => _approveRTPOtpResponse.stream;
+
+  PublishSubject<Resource<ApproveRTPOtp>> _approveRTPOtpResponse = PublishSubject();
+
+  void makeApproveRTPOtpRequest() {
+    otpController.clear();
+    _approveRTPOtpRequest.safeAdd(ApproveRTPOtpUseCaseParams());
+  }
+
+  ///*--------------------[approve rtp]---------------------->>>>>>>
 
   PublishSubject<ApproveRTPRequestUseCaseParam> _approveRTPRequest = PublishSubject();
 
@@ -94,6 +123,7 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
     required final String rejectReason,
     required final String rtpStatus,
     required final String rejectADdInfo,
+    required final String otpCode,
     required final bool getToken,
   }) {
     _approveRTPRequest.safeAdd(
@@ -119,7 +149,8 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
           rejectReason: rejectReason,
           rtpStatus: rtpStatus,
           rejectADdInfo: rejectADdInfo,
-          GetToken: getToken),
+          GetToken: getToken,
+          otpCode: otpCode),
     );
   }
 

@@ -18,6 +18,7 @@ class RequestToPayResultUseCase extends BaseUseCase<NetworkError, RequestToPayRe
         RTPStatus: params.RTPStatus,
         RejectReason: params.RejectReason,
         RejectADdInfo: params.RejectADdInfo,
+        otpCode: params.otpCode,
         GetToken: params.GetToken);
   }
 }
@@ -28,6 +29,7 @@ class RequestToPayResultUsecaseParams extends Params {
   final String RTPStatus;
   final String RejectReason;
   final String RejectADdInfo;
+  final String otpCode;
   final bool GetToken;
 
   RequestToPayResultUsecaseParams({
@@ -36,6 +38,7 @@ class RequestToPayResultUsecaseParams extends Params {
     required this.RTPStatus,
     required this.RejectReason,
     required this.RejectADdInfo,
+    required this.otpCode,
     required this.GetToken,
   });
 

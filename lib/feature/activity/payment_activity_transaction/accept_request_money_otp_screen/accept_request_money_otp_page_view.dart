@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -46,8 +45,8 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
             ),
             Text(
               // "${S.of(context).enterOtpHeader} \n ${'+962 79 322 8080'}",
-              "${S.of(context).enterOtpHeader}\n ${"${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" + " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}"}",
-
+              "${S.of(context).enterOtpHeader}\n ${model.argument.mobileCode.replaceAll('00', '+')}" +
+                  " ${model.argument.mobileNumber}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
@@ -78,10 +77,10 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                             await FireBaseLogUtil.fireBaseLog("rtp_accepted", {"is_rtp_accepted": true});
                             Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
                                 arguments: PaymentTransationSuccessArgument(
-                                    ammount: model.argument.amount,
-                                    name: model.argument.name,
-                                    statusInfo: model.argument.statusInfo,
-                                    iban: model.argument.iban));
+                                    ammount: model.argument.approveRtpData.amount,
+                                    name: model.argument.approveRtpData.name,
+                                    statusInfo: model.argument.approveRtpData.statusInfo,
+                                    iban: model.argument.approveRtpData.iban));
                             // model.getRequestMoneyActivity(
                             //     true, model.filterDays, model.transactionType);
                           }
@@ -95,27 +94,28 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                   // /TODO approveRTPRequest
 
                                   model.approveRTPRequest(
-                                      custID: model.argument.custID,
-                                      dbtrAcct: model.argument.dbtrAcct,
-                                      dbtrName: model.argument.dbtrName,
-                                      dbtrPstlAdr: model.argument.dbtrPstlAdr,
-                                      dbtrRecordID: model.argument.dbtrRecordID,
-                                      currency: model.argument.currency,
-                                      amount: model.argument.amount,
-                                      dbtrAlias: model.argument.dbtrAlias,
-                                      cdtrBic: model.argument.cdtrBic,
-                                      cdtrName: model.argument.cdtrName,
-                                      cdtrAcct: model.argument.cdtrAcct,
-                                      cdtrPstlAdr: model.argument.cdtrPstlAdr,
-                                      cdtrRecordID: model.argument.cdtrRecordID,
-                                      cdtrAlias: model.argument.cdtrAlias,
-                                      rgltryRptg: model.argument.rgltryRptg,
-                                      payRefNo: model.argument.payRefNo,
-                                      OrgnlMsgId: model.argument.OrgnlMsgId,
-                                      CtgyPurp: model.argument.CtgyPurp,
-                                      rejectReason: model.argument.rejectReason,
-                                      rtpStatus: model.argument.rtpStatus,
-                                      rejectADdInfo: model.argument.rejectADdInfo,
+                                      custID: model.argument.approveRtpData.custID,
+                                      dbtrAcct: model.argument.approveRtpData.dbtrAcct,
+                                      dbtrName: model.argument.approveRtpData.dbtrName,
+                                      dbtrPstlAdr: model.argument.approveRtpData.dbtrPstlAdr,
+                                      dbtrRecordID: model.argument.approveRtpData.dbtrRecordID,
+                                      currency: model.argument.approveRtpData.currency,
+                                      amount: model.argument.approveRtpData.amount,
+                                      dbtrAlias: model.argument.approveRtpData.dbtrAlias,
+                                      cdtrBic: model.argument.approveRtpData.cdtrBic,
+                                      cdtrName: model.argument.approveRtpData.cdtrName,
+                                      cdtrAcct: model.argument.approveRtpData.cdtrAcct,
+                                      cdtrPstlAdr: model.argument.approveRtpData.cdtrPstlAdr,
+                                      cdtrRecordID: model.argument.approveRtpData.cdtrRecordID,
+                                      cdtrAlias: model.argument.approveRtpData.cdtrAlias,
+                                      rgltryRptg: model.argument.approveRtpData.rgltryRptg,
+                                      payRefNo: model.argument.approveRtpData.payRefNo,
+                                      OrgnlMsgId: model.argument.approveRtpData.orgnlMsgId,
+                                      CtgyPurp: model.argument.approveRtpData.ctgyPurp,
+                                      rejectReason: model.argument.approveRtpData.rejectReason,
+                                      rtpStatus: model.argument.approveRtpData.rtpStatus,
+                                      rejectADdInfo: model.argument.approveRtpData.rejectADdInfo,
+                                      otpCode: model.otpController.text,
                                       getToken: true);
 
                                   //    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
@@ -163,7 +163,7 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
                                                           onPressed: () {
-                                                            model.updateTime();
+                                                            model.makeApproveRTPOtpRequest();
                                                           },
                                                           child: Text(
                                                             S.of(context).resendCode,

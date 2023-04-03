@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
@@ -9,6 +10,7 @@ import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_b
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason_response_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
@@ -158,6 +160,7 @@ abstract class CliqDataSource {
     required String RTPStatus,
     required String RejectReason,
     required String RejectADdInfo,
+    required String otpCode,
     required bool GetToken,
   });
 
@@ -185,6 +188,7 @@ abstract class CliqDataSource {
     required String rejectReason,
     required String rejectADdInfo,
     required String rtpStatus,
+    required String otpCode,
     required bool GetToken,
   });
 
@@ -243,5 +247,12 @@ abstract class CliqDataSource {
     required String? TransactionType,
     required String? TotalRecords,
     required bool? GetToken,
+  });
+  Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({
+    required bool getToken,
+  });
+
+  Future<HttpResponse<RequestToPayResultOtpResponseEntity>> requestToPayResultOtp({
+    required bool getToken,
   });
 }

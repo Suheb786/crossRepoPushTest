@@ -14,7 +14,8 @@ class RequestToPayResultRequestEntity {
   final String RejectReason;
   @JsonKey(name: "RejectADdInfo")
   final String RejectADdInfo;
-
+  @JsonKey(name: "OtpCode")
+  final String otpCode;
   @JsonKey(name: "GetToken")
   final bool GetToken;
   @JsonKey(name: "BaseClass")
@@ -26,6 +27,7 @@ class RequestToPayResultRequestEntity {
     required this.RTPStatus,
     required this.RejectReason,
     required this.RejectADdInfo,
+    required this.otpCode,
     required this.GetToken,
     required this.BaseClass,
   });

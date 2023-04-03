@@ -48,6 +48,8 @@ class ApproveRTPRequestReqestEntity {
   final String rejectADdInfo;
   @JsonKey(name: "rtpStatus")
   final String rtpStatus;
+  @JsonKey(name: "OtpCode")
+  final String otpCode;
   @JsonKey(name: "GetToken")
   final bool GetToken;
   @JsonKey(name: "BaseClass")
@@ -73,6 +75,7 @@ class ApproveRTPRequestReqestEntity {
       required this.rejectReason,
       required this.rejectADdInfo,
       required this.rtpStatus,
+      required this.otpCode,
       required this.GetToken,
       required this.BaseClass,
       required this.custID,

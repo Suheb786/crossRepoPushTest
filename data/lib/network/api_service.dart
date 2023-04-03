@@ -120,6 +120,8 @@ import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_re
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/add_link_account/add_link_account_request_entity.dart';
 import 'package:data/entity/remote/cliq/approve_RTP_request_request/approve_RTP_request_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_change_default_account_request_entity.dart';
@@ -146,6 +148,8 @@ import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
+import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -1091,6 +1095,15 @@ abstract class ApiService {
   @POST("/transfer/GetReturnPaymentReasons")
   Future<HttpResponse<ResponseEntity>> getRejectionReason(
     @Body() BaseRequest request,
+  );
+  @POST("/Cliq/ApproveRTPRequestOtp")
+  Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp(
+    @Body() ApproveRTPOtpRequestEntity request,
+  );
+
+  @POST("/Cliq/RequestToPayResultOtp")
+  Future<HttpResponse<RequestToPayResultOtpResponseEntity>> requestToPayResultOtp(
+    @Body() RequestToPayResultOtpRequestEntity request,
   );
 
   ///QR
