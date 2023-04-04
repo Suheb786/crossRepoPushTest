@@ -642,6 +642,7 @@ enum ErrorType {
   ALIAS_ALREADY_EXIST,
 //Manage contact
   DAILY_LIMIT_EXCEDED,
+  NICKNAME_ALREADY_EXISTS,
 
   ///EVouchers
   SELECT_REGION,

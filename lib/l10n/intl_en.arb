@@ -1710,5 +1710,6 @@
   "exceptionWhileExecutingGetTransactionHistory": "Exception while executing Get Transaction History",
   "exceptionWhileExecutingApproveRtpRequestOtp": "Exception while executing Approve RTP Request Otp",
   "exceptionWhileExecutingApproveRtpRequest": "Exception while executing Approve RTP Request",
-  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp"
+  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
+  "nickNameAlreadyExists": "Nickname is already stored as beneficiary"
 }

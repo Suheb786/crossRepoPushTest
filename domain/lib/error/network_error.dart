@@ -829,6 +829,9 @@ class NetworkError extends BaseError {
           case "err-386":
             return AppError(cause: cause, error: error, type: ErrorType.ALIAS_ALREADY_EXIST);
 
+          case "err-390":
+            return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTS);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

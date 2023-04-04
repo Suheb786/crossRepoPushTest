@@ -205,7 +205,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             inputType: TextInputType.numberWithOptions(decimal: true),
                             inputAction: TextInputAction.done,
                             inputFormatters: [
-                              LengthLimitingTextInputFormatter(14),
+                              LengthLimitingTextInputFormatter(5),
                               FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                             ],
                             prefixIcon: () {
