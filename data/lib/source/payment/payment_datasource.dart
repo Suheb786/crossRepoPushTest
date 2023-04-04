@@ -8,6 +8,7 @@ import 'package:data/entity/remote/qr/qr_response_entity.dart';
 import 'package:data/entity/remote/qr/qr_transfer_response_entity.dart';
 import 'package:data/entity/remote/qr/verify_qr_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:data/entity/remote/payment/return_payment_activity/get_rejection_reason_response_entity.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class PaymentRemoteDs {
@@ -18,19 +19,19 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
-        String? otpCode,
-        String transferType,
-        String beneficiaryImage,
-        bool isFriend,
-        num toAmount,
-        num localEq,
-        String memo,
-        String toAccount,
-        String nickName,
-        String detCustomerType,
-        String type,
-        String? recipientName,
-        String? recipientAddress});
+      String? otpCode,
+      String transferType,
+      String beneficiaryImage,
+      bool isFriend,
+      num toAmount,
+      num localEq,
+      String memo,
+      String toAccount,
+      String nickName,
+      String detCustomerType,
+      String type,
+      String? recipientName,
+      String? recipientAddress});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       String ctgyPurp,
@@ -77,4 +78,8 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<QRTransferResponseEntity>> transferQR(
       {required String requestId, required String toAmount, required String toAccount});
+
+  Future<HttpResponse<GetRejectionReasonResponseEntity>> getReturnRejectionReason({
+    required bool getToken,
+  });
 }

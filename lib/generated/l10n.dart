@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -16889,6 +16890,36 @@ class S {
     );
   }
 
+  /// `Exception while executing Reject RTP Request`
+  String get exceptionWhileExecutingRejectRtpRequest {
+    return Intl.message(
+      'Exception while executing Reject RTP Request',
+      name: 'exceptionWhileExecutingRejectRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request Otp`
+  String get exceptionWhileExecutingReturnRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Return RTP Request Otp',
+      name: 'exceptionWhileExecutingReturnRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request`
+  String get exceptionWhileExecutingReturnRtpRequest {
+    return Intl.message(
+      'Exception while executing Return RTP Request',
+      name: 'exceptionWhileExecutingReturnRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exception while executing Reject RTP Request Otp`
   String get exceptionWhileExecutingRejectRtpRequestOtp {
     return Intl.message(
@@ -16896,6 +16927,16 @@ class S {
       name: 'exceptionWhileExecutingRejectRtpRequestOtp',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to {variable}`
+  String enterOTPheaderwithVaiable(Object variable) {
+    return Intl.message(
+      'Enter the 6-digit code sent to $variable',
+      name: 'enterOTPheaderwithVaiable',
+      desc: '',
+      args: [variable],
     );
   }
 }

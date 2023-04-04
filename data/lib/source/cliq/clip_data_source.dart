@@ -16,6 +16,7 @@ import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 
 abstract class CliqDataSource {
   Future<HttpResponse<GetAliasResponseEntity>> getAlias({
@@ -221,6 +222,33 @@ abstract class CliqDataSource {
     required bool getToken,
   });
 
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP({
+    required bool getToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> returnRTPrequest({
+    required String? CustID,
+    required String? MessageID,
+    required String? DbtrAcct,
+    required String? DbtrName,
+    required String? CdtrAcct,
+    required String? CdtrName,
+    required String? Currency,
+    required double? Amount,
+    required String? RtrnReason,
+    required String? RtrnAddInfo,
+    required bool? IsDispute,
+    required String? DisputeRefNo,
+    required String? OtpCode,
+    required bool GetToken,
+  });
+
+  Future<HttpResponse<ResponseEntity>> getTransactionHistory({
+    required String? FilterDays,
+    required String? TransactionType,
+    required String? TotalRecords,
+    required bool? GetToken,
+  });
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({
     required bool getToken,
   });

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
@@ -18,19 +19,19 @@ abstract class PaymentRepository {
 
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String beneficiaryId,
-        String? otpCode,
-        String transferType,
-        String beneficiaryImage,
-        bool isFriend,
-        num toAmount,
-        num localEq,
-        String memo,
-        String toAccount,
-        String nickName,
-        String? detCustomerType,
-        String? type,
-        String? recipientName,
-        String? recipientAddress});
+      String? otpCode,
+      String transferType,
+      String beneficiaryImage,
+      bool isFriend,
+      num toAmount,
+      num localEq,
+      String memo,
+      String toAccount,
+      String nickName,
+      String? detCustomerType,
+      String? type,
+      String? recipientName,
+      String? recipientAddress});
 
   Future<Either<NetworkError, bool>> transferVerify({required String amount});
 
@@ -71,12 +72,23 @@ abstract class PaymentRepository {
       String? detCustomerType,
       String? type});
 
+  Future<Either<NetworkError, GetRejectionReasonResponseModel>> getReturnRejectionReason({
+    required bool GetToken,
+  });
+
   ///QR
-  Future<Either<NetworkError, QrResponse>> generateQR({required String amount});
+  Future<Either<NetworkError, QrResponse>> generateQR({
+    required String amount,
+  });
 
-  Future<Either<NetworkError, VerifyQrResponse>> verifyQR(
-      {required String requestId, required String source});
+  Future<Either<NetworkError, VerifyQrResponse>> verifyQR({
+    required String requestId,
+    required String source,
+  });
 
-  Future<Either<NetworkError, QRTransferResponse>> transferQR(
-      {required String requestId, required String toAmount, required String toAccount});
+  Future<Either<NetworkError, QRTransferResponse>> transferQR({
+    required String requestId,
+    required String toAmount,
+    required String toAccount,
+  });
 }

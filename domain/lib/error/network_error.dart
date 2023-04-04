@@ -829,6 +829,14 @@ class NetworkError extends BaseError {
           case "err-386":
             return AppError(cause: cause, error: error, type: ErrorType.ALIAS_ALREADY_EXIST);
 
+          case "err-387":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST);
+
+          case "err-388":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 
@@ -1201,6 +1209,35 @@ class NetworkError extends BaseError {
           case "ex-121":
             return AppError(cause: cause, error: error, type: ErrorType.GET_CURRENT_VALUES_ERROR);
 
+          case "ex-140":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_TRANSACTION_HISTORY);
+          case "ex-141":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST_OTP);
+
+          case "ex-142":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST);
+
+          case "ex-143":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST_OTP);
+
+          case "ex-144":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST);
+          case "ex-145":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST_OTP);
+
+          case "ex-146":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST);
           // case "ex-140":
           //   return AppError(
           //       cause: cause,

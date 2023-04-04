@@ -1711,5 +1711,9 @@
   "exceptionWhileExecutingGetTransactionHistory": "Exception while executing Get Transaction History",
   "exceptionWhileExecutingApproveRtpRequestOtp": "Exception while executing Approve RTP Request Otp",
   "exceptionWhileExecutingApproveRtpRequest": "Exception while executing Approve RTP Request",
-  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp"
+  "exceptionWhileExecutingRejectRtpRequest": "Exception while executing Reject RTP Request",
+  "exceptionWhileExecutingReturnRtpRequestOtp": "Exception while executing Return RTP Request Otp",
+  "exceptionWhileExecutingReturnRtpRequest": "Exception while executing Return RTP Request",
+  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
+  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}"
 }
