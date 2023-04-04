@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
+import 'package:domain/usecase/manage_cliq/return_RTP_request_usecase.dart';
 import 'package:domain/usecase/manage_cliq/return_rtp_request_otp_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -15,6 +16,7 @@ import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
 class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   final ReturnPaymentOTPUseCase _returnPaymentOTPUseCase;
   final ReturnRTPrequestOTPUsecase _returnRTPrequestOTPUsecase;
+  final ReturnRTPrequestUsecase _returnRTPrequestUsecase;
 
   ///--------------------------public-instance-valiables-------------------------------------///
 
@@ -33,26 +35,67 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
 
   TextEditingController otpController = TextEditingController();
 
-  // PublishSubject<bool> _returnRTPreqeustrequest = PublishSubject();
+  PublishSubject<ReturnRTPrequestUsecaseParams> _returnRTPreqeustrequest = PublishSubject();
 
-  // PublishSubject<Resource<ReturnRTPRequestOTP>> _returnRTPreqeustresponse = PublishSubject();
+  PublishSubject<Resource<bool>> _returnRTPreqeustresponse = PublishSubject();
 
-  // Stream<Resource<ReturnRTPRequestOTP>> get returnRTPrequestOTPstream => _returnRTPreqeustresponse.stream;
+  Stream<Resource<bool>> get returnRTPrequeststream => _returnRTPreqeustresponse.stream;
 
-  // void returnRTPrequest(String mobileCode, String mobileNumber) {
-  //   _returnRTPreqeustrequest
-  //       .safeAdd();
-  // }
+  void returnRTPrequest(
+      String? custID,
+      String? messageID,
+      String? dbtrAcct,
+      String? dbtrName,
+      String? cdtrAcct,
+      String? cdtrName,
+      String? currency,
+      double? amount,
+      String? rtrnReason,
+      String? rtrnAddInfo,
+      bool isDispute,
+      String? disputeRefNo,
+      String? otpCode,
+      bool getToken) {
+    _returnRTPreqeustrequest.safeAdd(
+      ReturnRTPrequestUsecaseParams(
+          CustID: custID,
+          MessageID: messageID,
+          DbtrAcct: dbtrAcct,
+          DbtrName: dbtrName,
+          CdtrAcct: cdtrAcct,
+          CdtrName: cdtrName,
+          Currency: currency,
+          Amount: amount,
+          RtrnReason: rtrnReason,
+          RtrnAddInfo: rtrnAddInfo,
+          IsDispute: isDispute,
+          DisputeRefNo: disputeRefNo,
+          OtpCode: otpCode,
+          GetToken: getToken),
+    );
+  }
 
   PublishSubject<ReturnPaymentOTPUseCaseParams> _returnPaymentOtpValidationRequest = PublishSubject();
   PublishSubject<Resource<bool>> _returnPaymentOtpValidationResponse = PublishSubject();
 
-  ReturnPaymentOtpPageViewModel(this._returnPaymentOTPUseCase, this._returnRTPrequestOTPUsecase) {
+  ReturnPaymentOtpPageViewModel(
+      this._returnPaymentOTPUseCase, this._returnRTPrequestOTPUsecase, this._returnRTPrequestUsecase) {
     _returnPaymentOtpValidationRequest.listen((value) {
       RequestManager(value, createCall: () => _returnPaymentOTPUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _returnPaymentOtpValidationResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else {}
+      });
+    });
+    _returnRTPreqeustrequest.listen((value) {
+      RequestManager(value, createCall: () => _returnRTPrequestUsecase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _returnRTPreqeustresponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

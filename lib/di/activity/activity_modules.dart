@@ -46,8 +46,13 @@ final returnPaymentTransactionSliderPageViewModelProvider =
         (ref) => ReturnPaymentTransactionSliderPageViewModel());
 
 final returnPaymentOtpPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ReturnPaymentOtpPageViewModel>((ref) => ReturnPaymentOtpPageViewModel(
-        ref.read(returnPaymentActivityOTPUseCaseProvider), ref.read(returnRTPrequestOTPUseCaseProivder)));
+    ChangeNotifierProvider.autoDispose<ReturnPaymentOtpPageViewModel>(
+  (ref) => ReturnPaymentOtpPageViewModel(
+    ref.read(returnPaymentActivityOTPUseCaseProvider),
+    ref.read(returnRTPrequestOTPUseCaseProivder),
+    ref.read(returnRTPrequestUseCaseProivder),
+  ),
+);
 
 final acceptRequestMoneyOtpPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<AcceptRequestMoneyOtpPageViewModel, AcceptRequestMoneyOtpPageArgument>(

@@ -36,8 +36,8 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.returnPaymentOtpValidationStream,
                   initialData: Resource.none(),
+                  stream: model.returnRTPrequeststream,
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
                       Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
@@ -48,120 +48,144 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                               statusInfo: "Sent to"));
                     }
                   },
-                  dataBuilder: (context, enterOTP) {
-                    return GestureDetector(
-                      onHorizontalDragEnd: (details) {
-                        // ProviderScope.containerOf(context)
-                        //     .read(returnPaymentTransactionSliderPageViewModelProvider)
-                        //     .previousPage();
-
-                        if (ProviderScope.containerOf(context)
-                                .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                .appSwiperController
-                                .page ==
-                            1.0) {
-                          FocusScope.of(context).unfocus();
-                          if (StringUtils.isDirectionRTL(context)) {
-                            if (!details.primaryVelocity!.isNegative) {
-                              model.validateOTP();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .previousPage();
-                            }
-                          } else {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.validateOTP();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .previousPage();
-                            }
+                  dataBuilder: (context, returnRTPrequestSnapshot) {
+                    return AppStreamBuilder<Resource<bool>>(
+                        stream: model.returnPaymentOtpValidationStream,
+                        initialData: Resource.none(),
+                        onData: (value) {
+                          if (value.status == Status.SUCCESS) {
+                            model.returnRTPrequest(
+                                "custID",
+                                "messageID",
+                                "dbtrAcct",
+                                "dbtrName",
+                                "cdtrAcct",
+                                "cdtrName",
+                                "currency",
+                                2.0,
+                                "rtrnReason",
+                                "rtrnAddInfo",
+                                true,
+                                "disputeRefNo",
+                                "434344",
+                                true);
                           }
-                        }
-                      },
-                      child: Card(
-                        child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SingleChildScrollView(
-                                  physics: ClampingScrollPhysics(),
+                        },
+                        dataBuilder: (context, enterOTP) {
+                          return GestureDetector(
+                            onHorizontalDragEnd: (details) {
+                              // ProviderScope.containerOf(context)
+                              //     .read(returnPaymentTransactionSliderPageViewModelProvider)
+                              //     .previousPage();
+
+                              if (ProviderScope.containerOf(context)
+                                      .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                      .appSwiperController
+                                      .page ==
+                                  1.0) {
+                                FocusScope.of(context).unfocus();
+                                if (StringUtils.isDirectionRTL(context)) {
+                                  if (!details.primaryVelocity!.isNegative) {
+                                    model.validateOTP();
+                                  } else {
+                                    ProviderScope.containerOf(context)
+                                        .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                        .previousPage();
+                                  }
+                                } else {
+                                  if (details.primaryVelocity!.isNegative) {
+                                    model.validateOTP();
+                                  } else {
+                                    ProviderScope.containerOf(context)
+                                        .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                        .previousPage();
+                                  }
+                                }
+                              }
+                            },
+                            child: Card(
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppOtpFields(
-                                        length: 6,
-                                        controller: model.otpController,
-                                        key: model.otpKey,
-                                        onChanged: (val) {
-                                          model.validate(val);
-                                        },
+                                      SingleChildScrollView(
+                                        physics: ClampingScrollPhysics(),
+                                        child: Column(
+                                          children: [
+                                            AppOtpFields(
+                                              length: 6,
+                                              controller: model.otpController,
+                                              key: model.otpKey,
+                                              onChanged: (val) {
+                                                model.validate(val);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Column(
+                                        children: [
+                                          CountdownTimer(
+                                            controller: model.countDownController,
+                                            onEnd: () {},
+                                            endTime: model.endTime,
+                                            textStyle: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 16.t,
+                                              color: AppColor.sky_blue_mid,
+                                            ),
+                                            widgetBuilder: (context, currentTimeRemaining) {
+                                              return currentTimeRemaining == null
+                                                  ? TextButton(
+                                                      onPressed: () {
+                                                        ProviderScope.containerOf(context)
+                                                            .read(returnPaymentSelectionPageViewModelProvider)
+                                                            .returnRTPrequestOTP();
+                                                      },
+                                                      child: Text(
+                                                        S.of(context).resendCode,
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w600,
+                                                            color: AppColor.sky_blue_mid),
+                                                      ))
+                                                  : Text(
+                                                      S.of(context).resendIn(
+                                                          '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 14.t,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: AppColor.sky_blue_mid),
+                                                    );
+                                            },
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 16.0.h),
+                                            child: AppStreamBuilder<bool>(
+                                                stream: model.showButtonSubjectStream,
+                                                initialData: false,
+                                                dataBuilder: (context, isValid) {
+                                                  return Visibility(
+                                                    visible: isValid!,
+                                                    child: AnimatedButton(
+                                                      borderColor: AppColor.sky_blue_mid,
+                                                      textColor: AppColor.sky_blue_mid,
+                                                      buttonHeight: 50.h,
+                                                      buttonText: S.of(context).swipeToProceed,
+                                                    ),
+                                                  );
+                                                }),
+                                          ),
+                                        ],
                                       ),
                                     ],
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    CountdownTimer(
-                                      controller: model.countDownController,
-                                      onEnd: () {},
-                                      endTime: model.endTime,
-                                      textStyle: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 16.t,
-                                        color: AppColor.sky_blue_mid,
-                                      ),
-                                      widgetBuilder: (context, currentTimeRemaining) {
-                                        return currentTimeRemaining == null
-                                            ? TextButton(
-                                                onPressed: () {
-                                                  ProviderScope.containerOf(context)
-                                                      .read(returnPaymentSelectionPageViewModelProvider)
-                                                      .returnRTPrequestOTP();
-                                                },
-                                                child: Text(
-                                                  S.of(context).resendCode,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: AppColor.sky_blue_mid),
-                                                ))
-                                            : Text(
-                                                S.of(context).resendIn(
-                                                    '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 14.t,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.sky_blue_mid),
-                                              );
-                                      },
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 16.0.h),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.showButtonSubjectStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return Visibility(
-                                              visible: isValid!,
-                                              child: AnimatedButton(
-                                                borderColor: AppColor.sky_blue_mid,
-                                                textColor: AppColor.sky_blue_mid,
-                                                buttonHeight: 50.h,
-                                                buttonText: S.of(context).swipeToProceed,
-                                              ),
-                                            );
-                                          }),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )),
-                      ),
-                    );
+                                  )),
+                            ),
+                          );
+                        });
                   }));
         });
   }
