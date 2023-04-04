@@ -11,6 +11,7 @@ RequestMoneyActivityRequestEntity _$RequestMoneyActivityRequestEntityFromJson(
   return RequestMoneyActivityRequestEntity(
     FilterDays: json['FilterDays'] as int,
     TransactionType: json['TransactionType'] as String,
+    TotalRecords: json['TotalRecords'] as String,
     getToken: json['GetToken'] as bool,
     baseClass: json['BaseClass'] as Map<String, dynamic>,
   );
@@ -21,6 +22,7 @@ Map<String, dynamic> _$RequestMoneyActivityRequestEntityToJson(
     <String, dynamic>{
       'FilterDays': instance.FilterDays,
       'TransactionType': instance.TransactionType,
+      'TotalRecords': instance.TotalRecords,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseClass,
     };

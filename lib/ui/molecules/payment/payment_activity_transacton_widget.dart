@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:domain/constants/enum/payment_type_enum.dart';
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
@@ -17,8 +18,21 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
   final Function(RequestMoneyActivityList) onAcceptButton;
   final Function(RequestMoneyActivityList) onRejectButton;
 
+  // final Function(RequestMoneyActivityList) onTapInWard;
+  final Function(RequestMoneyActivityList) onTapInWardSendMoney;
+
+  // final Function(RequestMoneyActivityList) onTapOutWard;
+  final Function(RequestMoneyActivityList) onTapOutWardSendMoney;
+
   const PaymentActivityTransactionWidget(
-      {Key? key, required this.onAcceptButton, required this.onRejectButton, required this.content})
+      {Key? key,
+      required this.onAcceptButton,
+      required this.onRejectButton,
+      //    required this.onTapInWard,
+      required this.onTapInWardSendMoney,
+      // required this.onTapOutWard,
+      required this.onTapOutWardSendMoney,
+      required this.content})
       : super(key: key);
 
   @override
@@ -27,7 +41,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          content.rtpDate != null ? TimeUtils.getFormattedDateForRTP(content.rtpDate!.toString()) : '-',
+          content.activityDate != null
+              ? TimeUtils.getFormattedDateForRTP(content.activityDate!.toString())
+              : '-',
           style: TextStyle(
               fontFamily: StringUtils.appFont,
               fontSize: 14.0.t,
@@ -73,97 +89,45 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          content.data?[index].trxDir ==
-                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
-                              ? RichText(
-                                  maxLines: 3,
-                                  text: TextSpan(
-                                      text: content.data?[index].cdtrName,
-                                      style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 12.0.t,
-                                        overflow: TextOverflow.ellipsis,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.sky_blue_mid,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: S.of(context).requested,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.0.t,
-                                              fontWeight: FontWeight.w400,
-                                              color: Theme.of(context).primaryColorDark),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                              "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                          style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontSize: 12.0.t,
-                                            fontWeight: FontWeight.w600,
-                                            color: Theme.of(context).primaryColorDark,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text: " " + S.of(context).fromYou,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 12.0.t,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context).primaryColorDark),
-                                            ),
-                                          ],
-                                        ),
-                                      ]))
-                              : RichText(
-                                  maxLines: 3,
-                                  text: TextSpan(
-                                      text: S.of(context).youRequested,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.0.t,
-                                          overflow: TextOverflow.ellipsis,
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).primaryColorDark),
-                                      children: [
-                                        TextSpan(
-                                            text:
-                                                "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).primaryColorDark),
-                                            children: [
-                                              TextSpan(
-                                                text: S.of(context).from,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontSize: 12.0.t,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context).primaryColorDark),
-                                                children: [],
-                                              ),
-                                              TextSpan(
-                                                text: " ${content.data?[index].dbtrName}",
-                                                style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  fontSize: 12.0.t,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.sky_blue_mid,
-                                                  // color: AppColor.sky_blue_mid,
-                                                ),
-                                              ),
-                                            ]),
-                                      ])),
+                          if (content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+                              content.data?[index].paymentType == PaymentTypeEnum.SEND_MONEY)
+                            GestureDetector(
+                                onTap: () {
+                                  onTapInWardSendMoney.call(content.data![index]);
+                                },
+                                child: getItemForInwardSendMoney(context, content.data?[index]))
+                          else if (content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
+                              content.data?[index].paymentType == PaymentTypeEnum.SEND_MONEY)
+                            GestureDetector(
+                                onTap: () {
+                                  onTapOutWardSendMoney.call(content.data![index]);
+                                },
+                                child: getItemForOutwardSendMoney(context, content.data?[index])),
+                          if (content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+                              content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST)
+                            GestureDetector(
+                                onTap: () {
+                                  //   onTapInWard.call(content.data![index]);
+                                },
+                                child: getItemForInwardRTP(context, content.data?[index]))
+                          else if (content.data?[index].trxDir ==
+                                  RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
+                              content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST)
+                            GestureDetector(
+                                onTap: () {
+                                  //  onTapOutWard.call(content.data![index]);
+                                },
+                                child: getItemForOutwardRTP(context, content.data?[index])),
                           Padding(
                               padding: EdgeInsets.only(top: 5.0.h),
-                              child: content.data?[index].trxDir ==
+                              child: (content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST &&
+                                      content.data?[index].trxDir ==
                                           RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
                                       content.data?[index].trxStatus ==
-                                          RequestMoneyActivityStatusEnum.CATEGORY_PENDING
+                                          RequestMoneyActivityStatusEnum.CATEGORY_PENDING)
                                   ? Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -186,135 +150,6 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               GestureDetector(
                                                 onTap: () {
                                                   onAcceptButton.call(content.data![index]);
-                                                  // RTPConfirmationDialog.show(context,
-                                                  //     amount:
-                                                  //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                  //     cdtrAcct: content.data?[index].cdtrAcct ?? '',
-                                                  //     cdtrDpText: content.data?[index].cdtrName ?? '',
-                                                  //     cdtrName: content.data?[index].cdtrName ?? '',
-                                                  //     onAccepted: () {
-                                                  //   Navigator.pop(context);
-                                                  //   InformationDialog.show(
-                                                  //     context,
-                                                  //     isSwipeToCancel: true,
-                                                  //     onDismissed: () => Navigator.pop(context),
-                                                  //     onSelected: () {
-                                                  //       onAcceptButton.call(content.data![index]);
-                                                  //     },
-                                                  //     image: AssetUtils.acceptIcon,
-                                                  //     title: S.current.acceptRequest,
-                                                  //     descriptionWidget: RichText(
-                                                  //       text: TextSpan(
-                                                  //         children: [
-                                                  //           TextSpan(
-                                                  //             text: S.current.youareabouttosend,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: S.current.towithspace,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: content.data?[index].cdtrName ?? '',
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 S.current.asperhisrequestconfirmthisaction,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //         ],
-                                                  //       ),
-                                                  //     ),
-                                                  //   );
-                                                  // }, onRejected: () {
-                                                  //   Navigator.pop(context);
-                                                  //   InformationDialog.show(
-                                                  //     context,
-                                                  //     isSwipeToCancel: true,
-                                                  //     onDismissed: () {
-                                                  //       Navigator.pop(context);
-                                                  //     },
-                                                  //     onSelected: () {
-                                                  //       onRejectButton.call(content.data![index]);
-                                                  //     },
-                                                  //     image: AssetUtils.rejectIcon,
-                                                  //     title: S.current.rejectRequest,
-                                                  //     descriptionWidget: RichText(
-                                                  //       text: TextSpan(
-                                                  //         children: [
-                                                  //           TextSpan(
-                                                  //             text: S.current.youareabouttoreject,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: S.current.requestFrom,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: content.data?[index].cdtrName ?? '',
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 S.current.asperhisrequestconfirmthisaction,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //         ],
-                                                  //       ),
-                                                  //     ),
-                                                  //   );
-                                                  // });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -344,138 +179,6 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               GestureDetector(
                                                 onTap: () {
                                                   onRejectButton.call(content.data![index]);
-
-                                                  // RTPConfirmationDialog.show(context,
-                                                  //     amount:
-                                                  //         "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                  //     cdtrAcct: content.data?[index].cdtrAcct ?? '',
-                                                  //     cdtrDpText: content.data?[index].cdtrName ?? '',
-                                                  //     cdtrName: content.data?[index].cdtrName ?? '',
-                                                  //     onAccepted: () {
-                                                  //   Navigator.pop(context);
-                                                  //   InformationDialog.show(
-                                                  //     context,
-                                                  //     isSwipeToCancel: true,
-                                                  //     onDismissed: () => Navigator.pop(context),
-                                                  //     onSelected: () {
-                                                  //       Navigator.pop(context);
-                                                  //       //Todo Api calling
-                                                  //     },
-                                                  //     image: AssetUtils.acceptIcon,
-                                                  //     title: S.current.acceptRequest,
-                                                  //     descriptionWidget: RichText(
-                                                  //       text: TextSpan(
-                                                  //         children: [
-                                                  //           TextSpan(
-                                                  //             text: S.current.youareabouttosend,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 "${(content.data?[index].amount ?? 0.0).toString()} ${S.of(context).JOD}",
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: S.current.to,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: content.data?[index].cdtrName ?? '',
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 S.current.asperhisrequestconfirmthisaction,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //         ],
-                                                  //       ),
-                                                  //     ),
-                                                  //   );
-                                                  // }, onRejected: () {
-                                                  //   Navigator.pop(context);
-                                                  //   InformationDialog.show(
-                                                  //     context,
-                                                  //     isSwipeToCancel: true,
-                                                  //     onDismissed: () {
-                                                  //       Navigator.pop(context);
-                                                  //     },
-                                                  //     onSelected: () {
-                                                  //       Navigator.pop(context);
-                                                  //       //Todo api calling
-                                                  //     },
-                                                  //     image: AssetUtils.rejectIcon,
-                                                  //     title: S.current.rejectRequest,
-                                                  //     descriptionWidget: RichText(
-                                                  //       text: TextSpan(
-                                                  //         children: [
-                                                  //           TextSpan(
-                                                  //             text: S.current.youareabouttoreject,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: (content.data?[index].cdtrName ?? 0.0)
-                                                  //                 .toString(),
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: S.current.requestFrom,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text: content.data?[index].cdtrName ?? '',
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w600,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //           TextSpan(
-                                                  //             text:
-                                                  //                 S.current.asperhisrequestconfirmthisaction,
-                                                  //             style: TextStyle(
-                                                  //                 fontFamily: StringUtils.appFont,
-                                                  //                 fontSize: 14.0.t,
-                                                  //                 fontWeight: FontWeight.w400,
-                                                  //                 color: Theme.of(context).primaryColorDark),
-                                                  //           ),
-                                                  //         ],
-                                                  //       ),
-                                                  //     ),
-                                                  //   );
-                                                  // });
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -503,39 +206,78 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                         )
                                       ],
                                     )
-                                  : Row(
-                                      children: [
-                                        Text(
-                                          content.data?[index].rtpDate != null
-                                              ? TimeUtils.getFormattedTimeFor12HrsFormat(
-                                                  content.data![index].rtpDate.toString())
-                                              : '-',
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: AppColor.gray1,
-                                              fontSize: 12.0.t,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 9.0.w),
-                                          child: Container(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
-                                            decoration: BoxDecoration(
-                                                color: getColor(content.data?[index].trxStatus),
-                                                borderRadius: BorderRadius.circular(100)),
-                                            child: Text(
-                                              (content.data?[index].trxStatus ?? '').toString(),
+                                  : (content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST &&
+                                          content.data?[index].trxDir ==
+                                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING)
+                                      ? Row(
+                                          children: [
+                                            Text(
+                                              content.data?[index].rtpDate != null
+                                                  ? TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                      content.data![index].rtpDate.toString())
+                                                  : '-',
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 12.0.t),
+                                                  color: AppColor.gray1,
+                                                  fontSize: 12.0.t,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                          ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 9.0.w),
+                                              child: Container(
+                                                padding: EdgeInsetsDirectional.only(
+                                                    start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
+                                                decoration: BoxDecoration(
+                                                    color: getColor(content.data?[index].trxStatus),
+                                                    borderRadius: BorderRadius.circular(100)),
+                                                child: Text(
+                                                  (content.data?[index].trxStatus ?? '').toString(),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: Theme.of(context).accentColor,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12.0.t),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         )
-                                      ],
-                                    ))
+                                      : Row(
+                                          children: [
+                                            Text(
+                                              content.data?[index].rtpDate != null
+                                                  ? TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                      content.data![index].rtpDate.toString())
+                                                  : '-',
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  color: AppColor.gray1,
+                                                  fontSize: 12.0.t,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Visibility(
+                                              visible: false,
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.only(start: 9.0.w),
+                                                child: Container(
+                                                  padding: EdgeInsetsDirectional.only(
+                                                      start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
+                                                  decoration: BoxDecoration(
+                                                      color: getColor(content.data?[index].trxStatus),
+                                                      borderRadius: BorderRadius.circular(100)),
+                                                  child: Text(
+                                                    (content.data?[index].trxStatus ?? '').toString(),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context).accentColor,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 12.0.t),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ))
                         ],
                       ),
                     ),
@@ -562,6 +304,239 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget getItemForInwardSendMoney(BuildContext context, RequestMoneyActivityList? data) {
+    switch (data?.trxStatus ?? RequestMoneyActivityStatusEnum.CATEGORY_NONE) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
+        return RichText(
+            maxLines: 3,
+            text: TextSpan(
+                text: data?.cdtrName ?? '',
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 12.0.t,
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.sky_blue_mid,
+                ),
+                children: [
+                  TextSpan(
+                    text: S.of(context).sentTo,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 12.0.t,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).primaryColorDark),
+                  ),
+                  TextSpan(
+                    text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
+                    style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 12.0.t,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: " " + S.of(context).toYou,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 12.0.t,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).primaryColorDark),
+                      ),
+                    ],
+                  ),
+                ]));
+
+      default:
+        return Container();
+    }
+  }
+
+  Widget getItemForInwardRTP(BuildContext context, RequestMoneyActivityList? data) {
+    switch (data?.trxStatus ?? RequestMoneyActivityStatusEnum.CATEGORY_NONE) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
+        return RichText(
+            maxLines: 3,
+            text: TextSpan(
+                text: data?.cdtrName ?? '',
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 12.0.t,
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.sky_blue_mid,
+                ),
+                children: [
+                  TextSpan(
+                    text: S.of(context).requested,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 12.0.t,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).primaryColorDark),
+                  ),
+                  TextSpan(
+                    text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
+                    style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 12.0.t,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: " " + S.of(context).fromYou,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 12.0.t,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).primaryColorDark),
+                      ),
+                    ],
+                  ),
+                ]));
+
+      default:
+        return Container();
+    }
+  }
+
+  Widget getItemForOutwardSendMoney(BuildContext context, RequestMoneyActivityList? data) {
+    // return RichText(
+    //     maxLines: 3,
+    //     text: TextSpan(
+    //         text: S.of(context).youSent,
+    //         style: TextStyle(
+    //             fontFamily: StringUtils.appFont,
+    //             fontSize: 12.0.t,
+    //             overflow: TextOverflow.ellipsis,
+    //             fontWeight: FontWeight.w400,
+    //             color: Theme.of(context).primaryColorDark),
+    //         children: [
+    //           TextSpan(
+    //               text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
+    //               style: TextStyle(
+    //                   fontFamily: StringUtils.appFont,
+    //                   fontSize: 12.0.t,
+    //                   fontWeight: FontWeight.w600,
+    //                   color: Theme.of(context).primaryColorDark),
+    //               children: [
+    //                 TextSpan(
+    //                   text: S.of(context).to,
+    //                   style: TextStyle(
+    //                       fontFamily: StringUtils.appFont,
+    //                       fontSize: 12.0.t,
+    //                       fontWeight: FontWeight.w400,
+    //                       color: Theme.of(context).primaryColorDark),
+    //                   children: [],
+    //                 ),
+    //                 TextSpan(
+    //                   text: " ${data?.cdtrName ?? ''}",
+    //                   style: TextStyle(
+    //                     fontFamily: StringUtils.appFont,
+    //                     fontSize: 12.0.t,
+    //                     overflow: TextOverflow.ellipsis,
+    //                     fontWeight: FontWeight.w600,
+    //                     color: AppColor.sky_blue_mid,
+    //                     // color: AppColor.sky_blue_mid,
+    //                   ),
+    //                 ),
+    //               ]),
+    //         ]));
+
+    switch (data?.trxStatus ?? RequestMoneyActivityStatusEnum.CATEGORY_NONE) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
+        return RichText(
+            maxLines: 3,
+            text: TextSpan(
+                text: S.of(context).youSent,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 12.0.t,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).primaryColorDark),
+                children: [
+                  TextSpan(
+                      text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 12.0.t,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).primaryColorDark),
+                      children: [
+                        TextSpan(
+                          text: S.of(context).to,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12.0.t,
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).primaryColorDark),
+                          children: [],
+                        ),
+                        TextSpan(
+                          text: " ${data?.cdtrName ?? ''}",
+                          style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 12.0.t,
+                            overflow: TextOverflow.ellipsis,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.sky_blue_mid,
+                            // color: AppColor.sky_blue_mid,
+                          ),
+                        ),
+                      ]),
+                ]));
+      default:
+        return Container();
+    }
+  }
+
+  Widget getItemForOutwardRTP(BuildContext context, RequestMoneyActivityList? data) {
+    return RichText(
+        maxLines: 3,
+        text: TextSpan(
+            text: S.of(context).youRequested,
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontSize: 12.0.t,
+                overflow: TextOverflow.ellipsis,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).primaryColorDark),
+            children: [
+              TextSpan(
+                  text: "${(data?.amount ?? 0.0).toString()} ${S.of(context).JOD}",
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 12.0.t,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColorDark),
+                  children: [
+                    TextSpan(
+                      text: S.of(context).from,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 12.0.t,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).primaryColorDark),
+                      children: [],
+                    ),
+                    TextSpan(
+                      text: " ${data?.dbtrName ?? ''}",
+                      style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 12.0.t,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.sky_blue_mid,
+                        // color: AppColor.sky_blue_mid,
+                      ),
+                    ),
+                  ]),
+            ]));
   }
 
   Color getColor(RequestMoneyActivityStatusEnum? value) {

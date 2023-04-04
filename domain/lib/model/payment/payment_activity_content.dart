@@ -2,10 +2,10 @@ import 'package:domain/model/cliq/request_money_activity/request_money_activity_
 
 class PaymentActivityContent {
   PaymentActivityContent({
-    this.rtpDate,
+    this.activityDate,
     this.data,
   });
 
-  DateTime? rtpDate;
+  DateTime? activityDate;
   List<RequestMoneyActivityList>? data;
 }
