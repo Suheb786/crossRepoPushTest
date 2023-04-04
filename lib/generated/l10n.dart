@@ -16781,10 +16781,10 @@ class S {
   }
 
   /// `You sent `
-  String get youSend {
+  String get youSent {
     return Intl.message(
       'You sent ',
-      name: 'youSend',
+      name: 'youSent',
       desc: '',
       args: [],
     );
@@ -16795,6 +16795,16 @@ class S {
     return Intl.message(
       'Time',
       name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref ID`
+  String get refID {
+    return Intl.message(
+      'Ref ID',
+      name: 'refID',
       desc: '',
       args: [],
     );
@@ -16880,6 +16890,36 @@ class S {
     );
   }
 
+  /// `Exception while executing Reject RTP Request`
+  String get exceptionWhileExecutingRejectRtpRequest {
+    return Intl.message(
+      'Exception while executing Reject RTP Request',
+      name: 'exceptionWhileExecutingRejectRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request Otp`
+  String get exceptionWhileExecutingReturnRtpRequestOtp {
+    return Intl.message(
+      'Exception while executing Return RTP Request Otp',
+      name: 'exceptionWhileExecutingReturnRtpRequestOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing Return RTP Request`
+  String get exceptionWhileExecutingReturnRtpRequest {
+    return Intl.message(
+      'Exception while executing Return RTP Request',
+      name: 'exceptionWhileExecutingReturnRtpRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exception while executing Reject RTP Request Otp`
   String get exceptionWhileExecutingRejectRtpRequestOtp {
     return Intl.message(
@@ -16887,6 +16927,16 @@ class S {
       name: 'exceptionWhileExecutingRejectRtpRequestOtp',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to {variable}`
+  String enterOTPheaderwithVaiable(Object variable) {
+    return Intl.message(
+      'Enter the 6-digit code sent to $variable',
+      name: 'enterOTPheaderwithVaiable',
+      desc: '',
+      args: [variable],
     );
   }
 
