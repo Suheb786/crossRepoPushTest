@@ -6,8 +6,7 @@ part of 'payment_activity_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PaymentActivityContentEntity _$PaymentActivityContentEntityFromJson(
-    Map<String, dynamic> json) {
+PaymentActivityContentEntity _$PaymentActivityContentEntityFromJson(Map<String, dynamic> json) {
   return PaymentActivityContentEntity(
     activityDate: json['activityDate'] == null ? null : DateTime.parse(json['activityDate'] as String),
     data: (json['data'] as List<dynamic>?)
@@ -16,8 +15,7 @@ PaymentActivityContentEntity _$PaymentActivityContentEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$PaymentActivityContentEntityToJson(
-        PaymentActivityContentEntity instance) =>
+Map<String, dynamic> _$PaymentActivityContentEntityToJson(PaymentActivityContentEntity instance) =>
     <String, dynamic>{
       'activityDate': instance.activityDate?.toIso8601String(),
       'data': instance.data,

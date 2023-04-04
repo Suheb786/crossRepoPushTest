@@ -2,6 +2,7 @@
 
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
@@ -28,7 +29,6 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 import 'accept_request_money_otp_screen/accept_request_money_otp_page.dart';
-import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 
 class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
   PaymentActivityTransactionPageView(ProviderBase model) : super(model);
