@@ -83,6 +83,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                             title: S.of(context).sendMoneyNotSuccessful,
                             content: S.of(context).dailyLimitExceededorTryLater),
                       );
+                    } else if (data.appError!.type == ErrorType.NICKNAME_ALREADY_EXISTS) {
+                      model.showToastWithError(data.appError!);
                     } else {
                       Navigator.pushNamed(
                         context,

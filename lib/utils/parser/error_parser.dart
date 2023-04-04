@@ -1306,6 +1306,8 @@ class ErrorParser {
         return localisedHelper.exceptionWhileExecutingRejectRtpRequest;
       case ErrorType.EXCEPTION_WHILE_EXECUTING_RETURN_RTP_REQUEST_OTP:
         return localisedHelper.exceptionWhileExecutingReturnRtpRequestOtp;
+      case ErrorType.NICKNAME_ALREADY_EXISTS:
+        return localisedHelper.nickNameAlreadyExists;
       default:
         return "";
     }

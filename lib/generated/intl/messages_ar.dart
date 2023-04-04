@@ -1937,6 +1937,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "بنعتذر منك، إنت غير مؤهل للحصول على بطاقة ائتمانية بهاللحظة. بتقدر تتمتع بكل خدماتنا الأخرى."),
         "nickName": MessageLookupByLibrary.simpleMessage("الاسم المستعار"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "الاسم المستعار مسجل مسبقا كمستفيد"),
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يحتوي  الأسم المستعار على حروف و أرقام فقط"),

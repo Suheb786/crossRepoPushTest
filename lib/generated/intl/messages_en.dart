@@ -2004,6 +2004,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "Nickname is already stored as beneficiary"),
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage(
                 "Nick name can only contain alphanumerics"),

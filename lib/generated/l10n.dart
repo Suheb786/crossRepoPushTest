@@ -16939,6 +16939,16 @@ class S {
       args: [variable],
     );
   }
+
+  /// `Nickname is already stored as beneficiary`
+  String get nickNameAlreadyExists {
+    return Intl.message(
+      'Nickname is already stored as beneficiary',
+      name: 'nickNameAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -837,6 +837,9 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST);
 
+          case "err-390":
+            return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTS);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

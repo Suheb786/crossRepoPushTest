@@ -1715,5 +1715,6 @@
   "exceptionWhileExecutingReturnRtpRequestOtp": "Exception while executing Return RTP Request Otp",
   "exceptionWhileExecutingReturnRtpRequest": "Exception while executing Return RTP Request",
   "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
-  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}"
+  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}",
+  "nickNameAlreadyExists": "Nickname is already stored as beneficiary"
 }
