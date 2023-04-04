@@ -4,13 +4,21 @@ import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
+import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
+
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/activity/activity_modules.dart';
+import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -233,7 +241,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                           onTapOutWardSendMoney: (RequestMoneyActivityList) {
                                                             if (RequestMoneyActivityStatusEnum
                                                                     .CATEGORY_ACCEPTED ==
-                                                                RequestMoneyActivityList.trxReason) {
+                                                                RequestMoneyActivityList.trxStatus) {
                                                               //* CREDIT CONFIRMATION POP UP
                                                               RTPConfirmationDialog.show(
                                                                 context,
@@ -432,7 +440,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                           onTapInWardSendMoney: (RequestMoneyActivityList) {
                                                             if (RequestMoneyActivityStatusEnum
                                                                     .CATEGORY_ACCEPTED ==
-                                                                RequestMoneyActivityList.trxReason) {
+                                                                RequestMoneyActivityList.trxStatus) {
                                                               //* RETURN PAYMENT POP UP
                                                               RTPConfirmationDialog.show(
                                                                 context,
@@ -540,7 +548,40 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 actionWidget: GestureDetector(
                                                                   onTap: () {
                                                                     Navigator.pushNamed(context,
-                                                                        RoutePaths.ReturnPaymentSliderPage);
+                                                                        RoutePaths.ReturnPaymentSliderPage,
+                                                                        arguments: ReturnPaymentTransactionSliderPageArgument(
+                                                                            name: RequestMoneyActivityList
+                                                                                .cdtrName,
+                                                                            iban: RequestMoneyActivityList
+                                                                                .cdtrAcct,
+                                                                            statusInfo: S.current.sentTo,
+                                                                            custID: "",
+                                                                            OrgnlMsgId: RequestMoneyActivityList
+                                                                                .msgID,
+                                                                            rtpStatus: "true",
+                                                                            messageID: RequestMoneyActivityList
+                                                                                .msgID,
+                                                                            dbtrAcct: RequestMoneyActivityList
+                                                                                .dbtrAcct,
+                                                                            dbtrName: RequestMoneyActivityList
+                                                                                .dbtrName,
+                                                                            cdtrAcct: RequestMoneyActivityList
+                                                                                .cdtrAcct,
+                                                                            cdtrName: RequestMoneyActivityList
+                                                                                .cdtrName,
+                                                                            currency:
+                                                                                RequestMoneyActivityList.curr,
+                                                                            rtrnReason: RequestMoneyActivityList
+                                                                                .trxReason,
+                                                                            rtrnAddInfo:
+                                                                                RequestMoneyActivityList
+                                                                                    .rmtInf,
+                                                                            isDispute: true,
+                                                                            disputeRefNo:
+                                                                                RequestMoneyActivityList
+                                                                                    .payRefNo,
+                                                                            otpCode: "123456",
+                                                                            getToken: true));
                                                                   },
                                                                   child: Container(
                                                                     width: double.infinity,

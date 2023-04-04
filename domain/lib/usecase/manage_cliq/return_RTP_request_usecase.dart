@@ -42,7 +42,7 @@ class ReturnRTPrequestUsecaseParams extends Params {
   final double? Amount;
   final String? RtrnReason;
   final String? RtrnAddInfo;
-  final bool IsDispute;
+  final bool? IsDispute;
   final String? DisputeRefNo;
   final String? OtpCode;
   final bool GetToken;

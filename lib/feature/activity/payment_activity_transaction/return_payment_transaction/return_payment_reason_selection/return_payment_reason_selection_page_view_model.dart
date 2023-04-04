@@ -17,6 +17,8 @@ import 'package:rxdart/subjects.dart';
 
 class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
   final ReturnRTPrequestOTPUsecase _returnRTPrequestOTPUsecase;
+  String mobileCode = '';
+  String mobileNumber = '';
 
   String returnReasonCode = "";
   final ReturnPaymentTransactionUsecase _returnPaymentTransactionUsecase;

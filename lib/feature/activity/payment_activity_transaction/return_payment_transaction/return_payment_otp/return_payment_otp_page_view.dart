@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -38,14 +39,31 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
               child: AppStreamBuilder<Resource<bool>>(
                   initialData: Resource.none(),
                   stream: model.returnRTPrequeststream,
-                  onData: (value) {
+                  onData: (value) async {
                     if (value.status == Status.SUCCESS) {
+                      await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": true});
+
                       Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
                           arguments: PaymentTransationSuccessArgument(
-                              ammount: "10.000",
-                              iban: "FDSFSDFO08-09FD",
-                              name: "Sabir Ali",
-                              statusInfo: "Sent to"));
+                              ammount: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .amount
+                                  .toString(),
+                              name: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .name,
+                              statusInfo: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .statusInfo,
+                              iban: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .iban));
+                    } else if (value.status == Status.ERROR) {
+                      await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": false});
                     }
                   },
                   dataBuilder: (context, returnRTPrequestSnapshot) {
@@ -55,20 +73,63 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                         onData: (value) {
                           if (value.status == Status.SUCCESS) {
                             model.returnRTPrequest(
-                                "custID",
-                                "messageID",
-                                "dbtrAcct",
-                                "dbtrName",
-                                "cdtrAcct",
-                                "cdtrName",
-                                "currency",
-                                2.0,
-                                "rtrnReason",
-                                "rtrnAddInfo",
-                                true,
-                                "disputeRefNo",
-                                "434344",
-                                true);
+                              custID: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .custID,
+                              messageID: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .messageID,
+                              dbtrAcct: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .dbtrAcct,
+                              dbtrName: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .dbtrName,
+                              cdtrAcct: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .cdtrAcct,
+                              cdtrName: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .cdtrName,
+                              currency: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .currency,
+                              amount: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .amount,
+                              rtrnReason: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .rtrnReason,
+                              rtrnAddInfo: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .rtrnAddInfo,
+                              isDispute: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .isDispute,
+                              disputeRefNo: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .disputeRefNo,
+                              otpCode: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .otpCode,
+                              getToken: ProviderScope.containerOf(context)
+                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                  .returnArgument
+                                  .getToken,
+                            );
                           }
                         },
                         dataBuilder: (context, enterOTP) {

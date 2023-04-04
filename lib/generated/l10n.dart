@@ -16929,6 +16929,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter the 6-digit code sent to {variable}`
+  String enterOTPheaderwithVaiable(Object variable) {
+    return Intl.message(
+      'Enter the 6-digit code sent to $variable',
+      name: 'enterOTPheaderwithVaiable',
+      desc: '',
+      args: [variable],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
