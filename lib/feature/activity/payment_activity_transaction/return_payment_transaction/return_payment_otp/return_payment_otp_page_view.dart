@@ -106,13 +106,12 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                   .returnArgument
                                   .amount,
                               rtrnReason: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .rtrnReason,
+                                  .read(returnPaymentSelectionPageViewModelProvider)
+                                  .returnReasonCode,
                               rtrnAddInfo: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .rtrnAddInfo,
+                                  .read(returnPaymentSelectionPageViewModelProvider)
+                                  .reasonToReturnController
+                                  .text,
                               isDispute: ProviderScope.containerOf(context)
                                   .read(returnPaymentTransactionSliderPageViewModelProvider)
                                   .returnArgument
@@ -121,10 +120,7 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                   .read(returnPaymentTransactionSliderPageViewModelProvider)
                                   .returnArgument
                                   .disputeRefNo,
-                              otpCode: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .otpCode,
+                              otpCode: model.otpController.text,
                               getToken: ProviderScope.containerOf(context)
                                   .read(returnPaymentTransactionSliderPageViewModelProvider)
                                   .returnArgument
