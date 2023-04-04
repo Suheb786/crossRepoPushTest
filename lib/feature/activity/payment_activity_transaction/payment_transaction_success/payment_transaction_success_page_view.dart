@@ -24,8 +24,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
-
+          //  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
 
         }
       },

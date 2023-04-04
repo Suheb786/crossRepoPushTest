@@ -16780,10 +16780,10 @@ class S {
   }
 
   /// `You sent `
-  String get youSend {
+  String get youSent {
     return Intl.message(
       'You sent ',
-      name: 'youSend',
+      name: 'youSent',
       desc: '',
       args: [],
     );
@@ -16794,6 +16794,16 @@ class S {
     return Intl.message(
       'Time',
       name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref ID`
+  String get refID {
+    return Intl.message(
+      'Ref ID',
+      name: 'refID',
       desc: '',
       args: [],
     );
