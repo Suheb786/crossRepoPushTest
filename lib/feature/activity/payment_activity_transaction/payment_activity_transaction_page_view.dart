@@ -227,7 +227,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               .length >
                                                           0
                                                       ? PaymentActivityTransactionWidget(
-                                                    content: requestActivity
+                                                          content: requestActivity
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
                                                           onTapOutWardSendMoney: (RequestMoneyActivityList) {
