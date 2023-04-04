@@ -1,10 +1,33 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/subjects.dart';
 
 class ReturnPaymentTransactionSliderPageViewModel extends BasePageViewModel {
+  ReturnPaymentTransactionSliderPageArgument returnArgument = ReturnPaymentTransactionSliderPageArgument(
+    amount: 0,
+    name: "",
+    iban: "",
+    statusInfo: "",
+    custID: "",
+    OrgnlMsgId: "",
+    rtpStatus: "",
+    cdtrAcct: "",
+    cdtrName: "",
+    currency: "",
+    dbtrAcct: "",
+    dbtrName: "",
+    disputeRefNo: "",
+    getToken: true,
+    isDispute: true,
+    messageID: "",
+    otpCode: "",
+    rtrnAddInfo: "",
+    rtrnReason: "",
+  );
+
   final SwiperController pageController = SwiperController();
 
   ///current page index request holder

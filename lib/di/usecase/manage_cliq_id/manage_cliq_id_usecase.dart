@@ -19,6 +19,8 @@ import 'package:domain/usecase/manage_cliq/enter_otp_for_cliq_id_usecase.dart';
 import 'package:domain/usecase/manage_cliq/enter_otp_for_mobile_number_cliq_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:domain/usecase/manage_cliq/get_alias_usecase.dart';
+import 'package:domain/usecase/manage_cliq/return_RTP_request_usecase.dart';
+import 'package:domain/usecase/manage_cliq/return_rtp_request_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/re_activate_cliq_id_usecase.dart';
@@ -195,4 +197,14 @@ final approveRTPOtpUseCaseProivder = Provider.autoDispose<ApproveRTPOtpUseCase>(
 ///[RequestToPayResultOtpUseCase] provider
 final requestToPayResultOtpUseCaseProivder = Provider.autoDispose<RequestToPayResultOtpUseCase>(
   (ref) => RequestToPayResultOtpUseCase(ref.read(cliqRepositoryProvider)),
+);
+
+///[returnRTPrequestOTPUseCase] provider
+final returnRTPrequestOTPUseCaseProivder = Provider.autoDispose<ReturnRTPrequestOTPUsecase>(
+  (ref) => ReturnRTPrequestOTPUsecase(ref.read(cliqRepositoryProvider)),
+);
+
+///[returnRTPrequestUseCase] provider
+final returnRTPrequestUseCaseProivder = Provider.autoDispose<ReturnRTPrequestUsecase>(
+  (ref) => ReturnRTPrequestUsecase(ref.read(cliqRepositoryProvider)),
 );

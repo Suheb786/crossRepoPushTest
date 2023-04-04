@@ -24,8 +24,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
-
+          //  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
 
         }
       },
@@ -56,7 +55,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.paymentTransationSuccessArgument.ammount,
+                    "${model.paymentTransationSuccessArgument.ammount}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
@@ -81,7 +80,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 6.0.h),
               child: Text(
-                model.paymentTransationSuccessArgument.statusInfo,
+                model.paymentTransationSuccessArgument.statusInfo ?? "",
                 maxLines: 3,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -94,7 +93,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 16.0.h),
               child: Text(
-                model.paymentTransationSuccessArgument.name,
+                model.paymentTransationSuccessArgument.name ?? "",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
@@ -106,7 +105,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
             Padding(
               padding: EdgeInsets.only(top: 4.0.h),
               child: Text(
-                model.paymentTransationSuccessArgument.iban,
+                model.paymentTransationSuccessArgument.iban ?? "",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,

@@ -896,7 +896,8 @@ class AppRouter {
 
       case RoutePaths.ReturnPaymentSliderPage:
         return CupertinoPageRoute(
-            builder: (context) => ReturnPaymentTransactionSliderPage(),
+            builder: (context) => ReturnPaymentTransactionSliderPage(
+                settings.arguments as ReturnPaymentTransactionSliderPageArgument),
             settings: RouteSettings(name: RoutePaths.ReturnPaymentSliderPage));
 
       case RoutePaths.temp:

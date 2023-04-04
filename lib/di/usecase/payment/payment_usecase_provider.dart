@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/activity/return_payment_transaction_usecase.dart';
 import 'package:domain/usecase/dynamic_link/create_dynamic_link_usecases.dart';
 import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
@@ -9,6 +10,7 @@ import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
 import 'package:domain/usecase/payment/generate_qr_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
+import 'package:domain/usecase/payment/get_rejection_reason_usecase.dart';
 import 'package:domain/usecase/payment/pay_back_credit_card_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
@@ -155,3 +157,9 @@ final transferQRUseCaseProvider = Provider.autoDispose<TransferQRUseCase>(
 final verifyQRUseCaseProvider = Provider.autoDispose<VerifyQRUseCase>(
   (ref) => VerifyQRUseCase(ref.read(paymentRepositoryProvider)),
 );
+
+final getReasonToReturUseCaseProvider = Provider.autoDispose<GetRejectionReasonUseCase>(
+    (ref) => GetRejectionReasonUseCase(ref.read(paymentRepositoryProvider)));
+
+final returnPaymentTransactoinUseCaseProvider =
+    Provider.autoDispose<ReturnPaymentTransactionUsecase>((ref) => ReturnPaymentTransactionUsecase());

@@ -4,6 +4,7 @@ import 'package:data/source/payment/payment_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
@@ -44,19 +45,19 @@ class PaymentRepositoryImpl extends PaymentRepository {
   @override
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String? beneficiaryId,
-        String? otpCode,
-        String? transferType,
-        String? beneficiaryImage,
-        bool? isFriend,
-        num? toAmount,
-        num? localEq,
-        String? memo,
-        String? toAccount,
-        String? nickName,
-        String? detCustomerType,
-        String? type,
-        String? recipientName,
-        String? recipientAddress}) async {
+      String? otpCode,
+      String? transferType,
+      String? beneficiaryImage,
+      bool? isFriend,
+      num? toAmount,
+      num? localEq,
+      String? memo,
+      String? toAccount,
+      String? nickName,
+      String? detCustomerType,
+      String? type,
+      String? recipientName,
+      String? recipientAddress}) async {
     final result = await safeApiCall(
       paymentRemoteDs.transfer(
           beneficiaryId: beneficiaryId!,
@@ -218,5 +219,12 @@ class PaymentRepositoryImpl extends PaymentRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, GetRejectionReasonResponseModel>> getReturnRejectionReason(
+      {required bool GetToken}) async {
+    final result = await safeApiCall(paymentRemoteDs.getReturnRejectionReason(getToken: GetToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

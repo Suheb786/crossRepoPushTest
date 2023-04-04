@@ -1654,8 +1654,9 @@
   "fromStrin": "from {Name}",
   "yourequested": "You Requested",
   "fromYou": "from you",
-  "youSend": "You sent ",
+  "youSent": "You sent ",
   "time": "Time",
+  "refID": "Ref ID",
   "requestSuccessFullyRejected": "Request successfully\nrejected.",
   "exceptionExecutingGetRejectionReasons": "Exception while executing Get Rejection Reasons",
   "exceptionExecutingGetPaymentReasons": "Exception while executing Get Return Payment Reasons",
@@ -1664,6 +1665,11 @@
   "exceptionWhileExecutingGetTransactionHistory": "Exception while executing Get Transaction History",
   "exceptionWhileExecutingApproveRtpRequestOtp": "Exception while executing Approve RTP Request Otp",
   "exceptionWhileExecutingApproveRtpRequest": "Exception while executing Approve RTP Request",
+  "exceptionWhileExecutingRejectRtpRequest": "Exception while executing Reject RTP Request",
+  "exceptionWhileExecutingReturnRtpRequestOtp": "Exception while executing Return RTP Request Otp",
+  "exceptionWhileExecutingReturnRtpRequest": "Exception while executing Return RTP Request",
+  "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
+  "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}"
   "exceptionWhileExecutingRejectRtpRequestOtp": "Exception while executing Reject RTP Request Otp",
   "nickNameAlreadyExists": "الاسم المستعار مسجل مسبقا كمستفيد"
 }

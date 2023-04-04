@@ -34,10 +34,10 @@ class PaymentTransationSuccessPageState
 }
 
 class PaymentTransationSuccessArgument {
-  final String ammount;
-  final String name;
-  final String iban;
-  final String statusInfo;
+  final String? ammount;
+  final String? name;
+  final String? iban;
+  final String? statusInfo;
 
   PaymentTransationSuccessArgument({
     required this.ammount,

@@ -73,8 +73,7 @@ final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewM
       ref.read(currentUserUseCaseProvider),
       ref.read(saveDataUserUseCaseProvider),
       ref.read(verifyQRUseCaseProvider),
-      ref.read(getAntelopCardListUseCaseProvider)
-  ),
+      ref.read(getAntelopCardListUseCaseProvider)),
 );
 
 final filterTransactionDialogViewModelProvier =

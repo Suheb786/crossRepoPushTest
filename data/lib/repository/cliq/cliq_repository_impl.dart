@@ -14,6 +14,7 @@ import 'package:domain/model/cliq/getAlias/get_alias.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/model/cliq/re_activate_cliq_id/re_activate_cliq_id_otp.dart';
 import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
+import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
@@ -430,6 +431,61 @@ class CliqRepositoryImpl extends CliqRepository {
   }
 
   @override
+  Future<Either<NetworkError, ReturnRTPRequestOTP>> returnRTPrequestOTP({required bool getToken}) async {
+    final result = await safeApiCall(_cliqDataSource.returnRTPrequestOTP(getToken: getToken));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> returnRTPrequest(
+      {required String? CustID,
+      required String? MessageID,
+      required String? DbtrAcct,
+      required String? DbtrName,
+      required String? CdtrAcct,
+      required String? CdtrName,
+      required String? Currency,
+      required double? Amount,
+      required String? RtrnReason,
+      required String? RtrnAddInfo,
+      required bool? IsDispute,
+      required String? DisputeRefNo,
+      required String? OtpCode,
+      required bool GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.returnRTPrequest(
+      CustID: CustID,
+      MessageID: MessageID,
+      DbtrAcct: DbtrAcct,
+      DbtrName: DbtrName,
+      CdtrAcct: CdtrAcct,
+      CdtrName: CdtrName,
+      Currency: Currency,
+      Amount: Amount,
+      RtrnReason: RtrnReason,
+      RtrnAddInfo: RtrnAddInfo,
+      IsDispute: IsDispute,
+      DisputeRefNo: DisputeRefNo,
+      OtpCode: OtpCode,
+      GetToken: GetToken,
+    ));
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getTransactionHistory(
+      {required String? FilterDays,
+      required String? TransactionType,
+      required String? TotalRecords,
+      required bool? GetToken}) async {
+    final result = await safeApiCall(_cliqDataSource.getTransactionHistory(
+        FilterDays: FilterDays,
+        TransactionType: TransactionType,
+        TotalRecords: TotalRecords,
+        GetToken: GetToken));
+
+    return result!.fold((l) => Left(l), (r) => Right(r.isSuccessful()));
+  }
+
   Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp() async {
     final result = await safeApiCall(_cliqDataSource.approveRTPRequestOtp(getToken: true));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
