@@ -151,7 +151,6 @@ import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_res
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
-import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_response.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
