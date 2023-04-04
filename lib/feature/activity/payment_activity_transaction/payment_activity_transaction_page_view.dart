@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
@@ -27,7 +29,6 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 import 'accept_request_money_otp_screen/accept_request_money_otp_page.dart';
-import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 
 class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
   PaymentActivityTransactionPageView(ProviderBase model) : super(model);
@@ -229,17 +230,355 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                           content: requestActivity
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
+                                                          onTapOutWardSendMoney: (RequestMoneyActivityList) {
+                                                            if (RequestMoneyActivityStatusEnum
+                                                                    .CATEGORY_ACCEPTED ==
+                                                                RequestMoneyActivityList.trxReason) {
+                                                              //* CREDIT CONFIRMATION POP UP
+                                                              RTPConfirmationDialog.show(
+                                                                context,
+                                                                amount: RequestMoneyActivityList.amount
+                                                                    .toString(),
+                                                                isAmountVisible: true,
+                                                                cdtrAcct:
+                                                                    RequestMoneyActivityList.cdtrAcct ?? '',
+                                                                cdtrDpText: StringUtils.getFirstInitials(
+                                                                    RequestMoneyActivityList.cdtrName),
+                                                                cdtrName:
+                                                                    RequestMoneyActivityList.cdtrName ?? '',
+                                                                description: Container(),
+                                                                showDescription: false,
+                                                                actionWidget: GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.pushNamed(context,
+                                                                        RoutePaths.CreditConfirmation);
+                                                                  },
+                                                                  child: Container(
+                                                                    width: double.infinity,
+                                                                    decoration: BoxDecoration(
+                                                                      color: AppColor.white,
+                                                                      border: Border.all(
+                                                                          color: AppColor.white_gray),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(100),
+                                                                    ),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                        horizontal: 24.0.w,
+                                                                        vertical: 16.h,
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Text(
+                                                                            S.of(context).creditConfirmation,
+                                                                            textAlign: TextAlign.start,
+                                                                            style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              color: AppColor.skyblue,
+                                                                              fontSize: 12.0.t,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
+                                                                          ),
+                                                                          AppSvg.asset(
+                                                                              AssetUtils.creditConfirmation,
+                                                                              height: 16.h,
+                                                                              width: 16.h)
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                listOfDetails: Column(
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        // Text(
+                                                                        //   S.current.status,
+                                                                        //   style: TextStyle(
+                                                                        //       fontFamily: StringUtils.appFont,
+                                                                        //       fontSize: 12.t,
+                                                                        //       fontWeight: FontWeight.w400),
+                                                                        // ),
+                                                                        // Text(
+                                                                        //   "Rejected",
+                                                                        //   style: TextStyle(
+                                                                        //       fontFamily: StringUtils.appFont,
+                                                                        //       fontSize: 12.t,
+                                                                        //       fontWeight: FontWeight.w600),
+                                                                        // ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.transactionType,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          RequestMoneyActivityList.paymentType
+                                                                              .toString(),
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.date,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils.convertDateTimeToDate(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.of(context).time,
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils
+                                                                              .getFormattedTimeFor12HrsFormat(
+                                                                                  RequestMoneyActivityList
+                                                                                      .rtpDate
+                                                                                      .toString()),
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.refID,
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          RequestMoneyActivityList.payRefNo ??
+                                                                              '',
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            }
+                                                          },
+                                                          onTapInWardSendMoney: (RequestMoneyActivityList) {
+                                                            if (RequestMoneyActivityStatusEnum
+                                                                    .CATEGORY_ACCEPTED ==
+                                                                RequestMoneyActivityList.trxReason) {
+                                                              //* RETURN PAYMENT POP UP
+                                                              RTPConfirmationDialog.show(
+                                                                context,
+                                                                amount: " " +
+                                                                    RequestMoneyActivityList.amount
+                                                                        .toString() +
+                                                                    " " +
+                                                                    RequestMoneyActivityList.curr.toString(),
+                                                                isAmountVisible: false,
+                                                                cdtrAcct:
+                                                                    RequestMoneyActivityList.cdtrAcct ?? '',
+                                                                cdtrDpText: StringUtils.getFirstInitials(
+                                                                    RequestMoneyActivityList.cdtrName),
+                                                                cdtrName:
+                                                                    RequestMoneyActivityList.cdtrName ?? '',
+                                                                description: Container(),
+                                                                listOfDetails: Column(
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.date,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils.convertDateTimeToDate(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.time,
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontSize: 12.t,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils
+                                                                              .getFormattedTimeFor12HrsFormat(
+                                                                                  RequestMoneyActivityList
+                                                                                      .rtpDate
+                                                                                      .toString()),
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              color: AppColor.black,
+                                                                              fontSize: 12.t,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.of(context).refID,
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontSize: 12.t,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          RequestMoneyActivityList.payRefNo ??
+                                                                              '',
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              color: AppColor.black,
+                                                                              fontSize: 12.t,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                showDescription: false,
+                                                                actionWidget: GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.pushNamed(context,
+                                                                        RoutePaths.ReturnPaymentSliderPage);
+                                                                  },
+                                                                  child: Container(
+                                                                    width: double.infinity,
+                                                                    decoration: BoxDecoration(
+                                                                      color: AppColor.sky_blue_mid,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(100),
+                                                                    ),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                        horizontal: 16.0.w,
+                                                                        vertical: 16.h,
+                                                                      ),
+                                                                      child: Text(
+                                                                        S.of(context).returnPayment,
+                                                                        textAlign: TextAlign.center,
+                                                                        style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
+                                                                          color: AppColor.white,
+                                                                          fontSize: 12.0.t,
+                                                                          fontWeight: FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                          },
                                                           onAcceptButton: (RequestMoneyActivityList data) {
-                                                            debugPrint('RequestMoneyActivityList');
-                                                            //TODO ACCEPT/REJECT POP UP
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "",
                                                               isAmountVisible: false,
-                                                              cdtrAcct: data.cdtrAcct,
+                                                              cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:
                                                                   StringUtils.getFirstInitials(data.cdtrName),
-                                                              cdtrName: data.cdtrName,
+                                                              cdtrName: data.cdtrName ?? '',
                                                               description: RichText(
                                                                   maxLines: 3,
                                                                   text: TextSpan(
@@ -304,26 +643,28 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
 
                                                                       model.approveRtpData = ApproveRtpData(
                                                                           amount: data.amount.toString(),
-                                                                          iban: data.cdtrAcct,
+                                                                          iban: data.cdtrAcct ?? '',
                                                                           statusInfo: S.of(context).sentTo,
-                                                                          name: data.cdtrName,
-                                                                          dbtrAcct: data.dbtrAcct,
-                                                                          currency: 'JOD',
+                                                                          name: data.cdtrName ?? '',
+                                                                          dbtrAcct: data.dbtrAcct ?? '',
+                                                                          currency: data.curr ?? '',
                                                                           rtpStatus: 'True',
-                                                                          ctgyPurp: data.ctgyPurp,
-                                                                          payRefNo: data.payRefNo,
-                                                                          dbtrPstlAdr: data.dbtrAddr,
-                                                                          cdtrRecordID: data.cdtrRecordID,
-                                                                          cdtrPstlAdr: data.cdtrAddr,
-                                                                          orgnlMsgId: data.msgID,
-                                                                          rgltryRptg: data.rgltryRptg,
-                                                                          dbtrRecordID: data.dbtrRecordID,
-                                                                          cdtrAcct: data.cdtrAcct,
-                                                                          dbtrAlias: data.dbtrAlias,
-                                                                          cdtrBic: data.cdtrAgt,
-                                                                          dbtrName: data.dbtrName,
-                                                                          cdtrAlias: data.cdtrAlias,
-                                                                          cdtrName: data.cdtrName,
+                                                                          ctgyPurp: data.ctgyPurp ?? '',
+                                                                          payRefNo: data.payRefNo ?? '',
+                                                                          dbtrPstlAdr: data.dbtrAddr ?? '',
+                                                                          cdtrRecordID:
+                                                                              data.cdtrRecordID ?? '',
+                                                                          cdtrPstlAdr: data.cdtrAddr ?? '',
+                                                                          orgnlMsgId: data.msgID ?? '',
+                                                                          rgltryRptg: data.rgltryRptg ?? '',
+                                                                          dbtrRecordID:
+                                                                              data.dbtrRecordID ?? '',
+                                                                          cdtrAcct: data.cdtrAcct ?? '',
+                                                                          dbtrAlias: data.dbtrAlias ?? '',
+                                                                          cdtrBic: data.cdtrAgt ?? '',
+                                                                          dbtrName: data.dbtrName ?? '',
+                                                                          cdtrAlias: data.cdtrAlias ?? '',
+                                                                          cdtrName: data.cdtrName ?? '',
                                                                           custID: '',
                                                                           rejectADdInfo: '',
                                                                           rejectReason: '');
@@ -365,13 +706,14 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               RejectRequestPaymentPageArgument(
                                                                                   amount:
                                                                                       data.amount.toString(),
-                                                                                  name: data.cdtrName,
-                                                                                  iban: data.cdtrAcct,
+                                                                                  name: data.cdtrName ?? '',
+                                                                                  iban: data.cdtrAcct ?? '',
                                                                                   statusInfo: S
                                                                                       .of(context)
                                                                                       .requestSuccessFullyRejected,
                                                                                   custID: '',
-                                                                                  OrgnlMsgId: data.cdtrAgt,
+                                                                                  OrgnlMsgId:
+                                                                                      data.cdtrAgt ?? '',
                                                                                   rtpStatus: 'True'));
                                                                     },
                                                                     child: Container(
@@ -472,10 +814,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               context,
                                                               amount: "",
                                                               isAmountVisible: false,
-                                                              cdtrAcct: data.cdtrAcct,
+                                                              cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:
                                                                   StringUtils.getFirstInitials(data.cdtrName),
-                                                              cdtrName: data.cdtrName,
+                                                              cdtrName: data.cdtrName ?? '',
                                                               description: RichText(
                                                                   maxLines: 3,
                                                                   text: TextSpan(
@@ -539,26 +881,28 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       Navigator.pop(context);
                                                                       model.approveRtpData = ApproveRtpData(
                                                                           amount: data.amount.toString(),
-                                                                          iban: data.cdtrAcct,
+                                                                          iban: data.cdtrAcct ?? '',
                                                                           statusInfo: S.of(context).sentTo,
-                                                                          name: data.cdtrName,
-                                                                          dbtrAcct: data.dbtrAcct,
-                                                                          currency: 'JOD',
+                                                                          name: data.cdtrName ?? '',
+                                                                          dbtrAcct: data.dbtrAcct ?? '',
+                                                                          currency: data.curr ?? '',
                                                                           rtpStatus: 'True',
-                                                                          ctgyPurp: data.ctgyPurp,
-                                                                          payRefNo: data.payRefNo,
-                                                                          dbtrPstlAdr: data.dbtrAddr,
-                                                                          cdtrRecordID: data.cdtrRecordID,
-                                                                          cdtrPstlAdr: data.cdtrAddr,
-                                                                          orgnlMsgId: data.msgID,
-                                                                          rgltryRptg: data.rgltryRptg,
-                                                                          dbtrRecordID: data.dbtrRecordID,
-                                                                          cdtrAcct: data.cdtrAcct,
-                                                                          dbtrAlias: data.dbtrAlias,
-                                                                          cdtrBic: data.cdtrAgt,
-                                                                          dbtrName: data.dbtrName,
-                                                                          cdtrAlias: data.cdtrAlias,
-                                                                          cdtrName: data.cdtrName,
+                                                                          ctgyPurp: data.ctgyPurp ?? '',
+                                                                          payRefNo: data.payRefNo ?? '',
+                                                                          dbtrPstlAdr: data.dbtrAddr ?? '',
+                                                                          cdtrRecordID:
+                                                                              data.cdtrRecordID ?? '',
+                                                                          cdtrPstlAdr: data.cdtrAddr ?? '',
+                                                                          orgnlMsgId: data.msgID ?? '',
+                                                                          rgltryRptg: data.rgltryRptg ?? '',
+                                                                          dbtrRecordID:
+                                                                              data.dbtrRecordID ?? '',
+                                                                          cdtrAcct: data.cdtrAcct ?? '',
+                                                                          dbtrAlias: data.dbtrAlias ?? '',
+                                                                          cdtrBic: data.cdtrAgt ?? '',
+                                                                          dbtrName: data.dbtrName ?? '',
+                                                                          cdtrAlias: data.cdtrAlias ?? '',
+                                                                          cdtrName: data.cdtrName ?? '',
                                                                           custID: '',
                                                                           rejectADdInfo: '',
                                                                           rejectReason: '');
@@ -599,13 +943,14 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                               RejectRequestPaymentPageArgument(
                                                                                   amount:
                                                                                       data.amount.toString(),
-                                                                                  name: data.cdtrName,
-                                                                                  iban: data.cdtrAcct,
+                                                                                  name: data.cdtrName ?? '',
+                                                                                  iban: data.cdtrAcct ?? '',
                                                                                   statusInfo: S
                                                                                       .of(context)
                                                                                       .requestSuccessFullyRejected,
                                                                                   custID: '',
-                                                                                  OrgnlMsgId: data.cdtrAgt,
+                                                                                  OrgnlMsgId:
+                                                                                      data.cdtrAgt ?? '',
                                                                                   rtpStatus: 'True'));
                                                                     },
                                                                     child: Container(
@@ -699,16 +1044,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 ],
                                                               ),
                                                             );
-
-                                                            ///TODO Reject Request
-                                                            // model.requestToPayResult(
-                                                            //   CustID: "",
-                                                            //   RTPStatus: "",
-                                                            //   OrgnlMsgId: (data.msgID),
-                                                            //   RejectADdInfo: "",
-                                                            //   RejectReason: "",
-                                                            //   GetToken: true,
-                                                            // );
                                                           },
                                                         )
                                                       : Center(

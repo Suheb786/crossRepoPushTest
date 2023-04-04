@@ -2287,6 +2287,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recipientAddress":
             MessageLookupByLibrary.simpleMessage("عنوان المستلم"),
         "recipientName": MessageLookupByLibrary.simpleMessage("اسم المستلم"),
+        "refID": MessageLookupByLibrary.simpleMessage("Ref ID"),
         "refNo": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
@@ -2962,7 +2963,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
-        "youSend": MessageLookupByLibrary.simpleMessage("You sent "),
+        "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
