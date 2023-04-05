@@ -114,12 +114,12 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                                 .setData(model.setData());
 
                                             if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                              if (model.isPrepaidCategoryListEmpty == false) {
-                                                /// prepaid bill details inquiry
-                                                ProviderScope.containerOf(context)
-                                                    .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                    .validatePrePaidBill();
-                                              }
+                                              // if (model.isPrepaidCategoryListEmpty == false) {
+                                              /// prepaid bill details inquiry
+                                              ProviderScope.containerOf(context)
+                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
+                                                  .validatePrePaidBill(amount: model.amountText);
+                                              // }
                                             } else if (AppConstantsUtils.POST_PAID_FLOW) {
                                               /// post paid bill details inquiry
                                               ProviderScope.containerOf(context)
@@ -146,12 +146,12 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                                 .setData(model.setData());
 
                                             if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                              if (model.isPrepaidCategoryListEmpty == false) {
-                                                /// prepaid bill details inquiry
-                                                ProviderScope.containerOf(context)
-                                                    .read(confirmBillPaymentAmountPageViewModelProvider)
-                                                    .validatePrePaidBill();
-                                              }
+                                              // if (model.isPrepaidCategoryListEmpty == false) {
+                                              /// prepaid bill details inquiry
+                                              ProviderScope.containerOf(context)
+                                                  .read(confirmBillPaymentAmountPageViewModelProvider)
+                                                  .validatePrePaidBill(amount: model.amountText);
+                                              // }
                                             } else if (AppConstantsUtils.POST_PAID_FLOW) {
                                               /// post paid bill details inquiry
                                               ProviderScope.containerOf(context)
@@ -539,7 +539,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         !StringUtils.isDirectionRTL(context) ? billerServices.fieldLabelEn! : billerServices.fieldLabelAr!;
     model.updateStreamForBillingNumber(billerServices.billingNoRequired!);
     Future.delayed(Duration(milliseconds: 200)).then((value) => {
-      model.getPrePaidCategoriesList(
+          model.getPrePaidCategoriesList(
             AppConstantsUtils.SELECTED_SERVICE_CODE,
             AppConstantsUtils.SELECTED_BILLER_CODE,
           )
@@ -639,7 +639,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         serviceCode: AppConstantsUtils.SELECTED_SERVICE_CODE, onDismissed: () {
       Navigator.pop(context);
     }, onSelected: (value) {
-          AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
+      AppConstantsUtils.PREPAID_CATEGORY_CODE = value.code.toString();
       AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = value.description.toString();
       AppConstantsUtils.PREPAID_CATEGORY_TYPE = value.type.toString();
       model.denominationTextController.text = value.description.toString();

@@ -68,16 +68,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
     isTotalAmountZero = await totalBillAmt > 0.0 ? false : true;
     if (isTotalAmountZero) {
-      bool? isAnyBillPartial = postPaidBillInquiryData?.any((element) => element.isPartial == true);
-      if (isAnyBillPartial == true) {
-        showToastWithError(AppError(
-            cause: Exception(),
-            error: ErrorInfo(message: ""),
-            type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
-      } else {
-        showToastWithError(AppError(
-            cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
-      }
+      showToastWithError(AppError(
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
     }
     validRequestCounter = 0;
     for (int index = 0; index < postPaidBillInquiryData!.length; index++) {
@@ -135,7 +127,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         billerName: !StringUtils.isDirectionRTL(context)
             ? arguments.noOfSelectedBills[i].billerNameEN
             : arguments.noOfSelectedBills[i].billerNameAR,
-        dueAmount: double.parse(item.dueAmount ?? "0").toStringAsFixed(3),
+        dueAmount: checkAndGetValidBillerDueAmount(item.billingNo, item.serviceType),
         fee: item.feesAmt ?? "0.0",
         serviceType: !StringUtils.isDirectionRTL(context)
             ? arguments.noOfSelectedBills[i].serviceType
@@ -160,7 +152,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -225,9 +217,33 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   getValidBillerDueAmount(String? billingNumber, String? serviceType) {
     for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber && item.serviceType == serviceType)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) {
         return item.dueAmount != null && item.dueAmount!.isNotEmpty
             ? double.parse(item.dueAmount ?? "0").toStringAsFixed(3)
+            : "0.0";
+      }
+  }
+
+  checkAndGetValidBillerDueAmount(String? billingNumber, String? serviceType) {
+    for (var item in arguments.noOfSelectedBills) {
+      if (item.billingNo == billingNumber && item.serviceType == serviceType) {
+        if (double.parse(getValidBillerDueAmount(billingNumber, serviceType) ?? "0") ==
+            double.parse(getValidBillerActualDueAmount(billingNumber, serviceType) ?? "0")) {
+          return double.parse('${double.parse(item.dueAmount ?? "0.0") - double.parse(item.fees ?? "0.0")}')
+              .toStringAsFixed(3);
+        } else
+          return item.dueAmount != null && item.dueAmount!.isNotEmpty
+              ? double.parse(item.dueAmount ?? "0").toStringAsFixed(3)
+              : double.parse("0").toStringAsFixed(3);
+      }
+    }
+  }
+
+  getValidBillerActualDueAmount(String? billingNumber, String? serviceType) {
+    for (var item in arguments.noOfSelectedBills)
+      if (item.billingNo == billingNumber && item.serviceType == serviceType)
+        return item.actualdueAmountFromApi != null && item.actualdueAmountFromApi!.isNotEmpty
+            ? double.parse(item.actualdueAmountFromApi ?? "0").toStringAsFixed(3)
             : "0.0";
   }
 
