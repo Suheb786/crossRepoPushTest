@@ -24,14 +24,16 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
           if (StringUtils.isDirectionRTL(context)) {
-            if (!details.primaryVelocity!.isNegative) {} else {
+            if (!details.primaryVelocity!.isNegative) {
+            } else {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
                   .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             }
           } else {
-            if (details.primaryVelocity!.isNegative) {} else {
+            if (details.primaryVelocity!.isNegative) {
+            } else {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
@@ -73,182 +75,182 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                           case Status.SUCCESS:
                             return ((activity.data ?? []).length > 0)
                                 ? ListView.builder(
-                              padding: EdgeInsets.zero,
-                              itemCount: ((activity.data ?? []).length > 4)
-                                  ? 5
-                                  : ((activity.data ?? []).length),
-                              shrinkWrap: true,
-                              itemBuilder: (mContext, index) {
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                      top: index == 0 ? 0 : 16.h, bottom: index == 4 ? 10.0.h : 0),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 50.0.h,
-                                        width: 50.0.w,
-                                        decoration: BoxDecoration(
-                                            color: Theme.of(context).primaryColor,
-                                            shape: BoxShape.circle),
-                                        child: Center(
-                                          child: activity.data?[index].trxDir ==
-                                              RequestMoneyActivityStatusEnum
-                                                  .TRANSACTION_DIRECTORY_INCOMING
-                                              ? Text(
-                                            (activity.data?[index].cdtrName ?? '')
-                                                .split(" ")
-                                                .length >
-                                                1
-                                                ? StringUtils.getFirstInitials(
-                                                activity.data?[index].cdtrName)
-                                                : "",
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentColor,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14.0.t),
-                                          )
-                                              : Text(
-                                            (activity.data?[index].dbtrName ?? '')
-                                                .split(" ")
-                                                .length >
-                                                1
-                                                ? StringUtils.getFirstInitials(
-                                                activity.data?[index].dbtrName)
-                                                : "",
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentColor,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14.0.t),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 8.0.w),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              (activity.data?[index].trxDir == RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
-                                                  activity.data?[index].paymentType ==
-                                                      PaymentTypeEnum.RTP_REQUEST)
-                                                  ? Text.rich(TextSpan(
-                                                  text: '${activity.data![index].cdtrName}',
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 12.0.t),
-                                                  children: [
-                                                    TextSpan(
-                                                        text: S.of(context).requested,
+                                    padding: EdgeInsets.zero,
+                                    itemCount: ((activity.data ?? []).length > 4)
+                                        ? 5
+                                        : ((activity.data ?? []).length),
+                                    shrinkWrap: true,
+                                    itemBuilder: (mContext, index) {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: index == 0 ? 0 : 16.h, bottom: index == 4 ? 10.0.h : 0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: 50.0.h,
+                                              width: 50.0.w,
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context).primaryColor,
+                                                  shape: BoxShape.circle),
+                                              child: Center(
+                                                child: activity.data?[index].trxDir ==
+                                                        RequestMoneyActivityStatusEnum
+                                                            .TRANSACTION_DIRECTORY_INCOMING
+                                                    ? Text(
+                                                        (activity.data?[index].cdtrName ?? '')
+                                                                    .split(" ")
+                                                                    .length >
+                                                                1
+                                                            ? StringUtils.getFirstInitials(
+                                                                activity.data?[index].cdtrName)
+                                                            : "",
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text:
+                                                            color: Theme.of(context).accentColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 14.0.t),
+                                                      )
+                                                    : Text(
+                                                        (activity.data?[index].dbtrName ?? '')
+                                                                    .split(" ")
+                                                                    .length >
+                                                                1
+                                                            ? StringUtils.getFirstInitials(
+                                                                activity.data?[index].dbtrName)
+                                                            : "",
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            color: Theme.of(context).accentColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: 14.0.t),
+                                                      ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.only(start: 8.0.w),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    (activity.data?[index].trxDir == RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+                                                            activity.data?[index].paymentType ==
+                                                                PaymentTypeEnum.RTP_REQUEST)
+                                                        ? Text.rich(TextSpan(
+                                                            text: '${activity.data![index].cdtrName}',
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12.0.t),
+                                                            children: [
+                                                                TextSpan(
+                                                                    text: S.of(context).requested,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text:
                                                                         '${activity.data?[index].amount} ${activity.data?[index].curr} ',
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text: S.of(context).fromYou,
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t)),
-                                                  ]))
-                                                  : (activity.data?[index].trxDir ==
-                                                  RequestMoneyActivityStatusEnum
-                                                      .TRANSACTION_DIRECTORY_OUTGOING &&
-                                                  activity.data?[index].paymentType ==
-                                                      PaymentTypeEnum.RTP_REQUEST)
-                                                  ? Text.rich(TextSpan(
-                                                  text: S.of(context).youRequested,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 12.0.t),
-                                                  children: [
-                                                    TextSpan(
-                                                        text:
-                                                        '${activity.data![index].amount} ${S.of(context).JOD} ',
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text: S.of(context).fromS,
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text:
-                                                        '${activity.data![index].dbtrName}',
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 12.0.t)),
-                                                  ]))
-                                                  : (activity.data?[index].trxDir ==
-                                                  RequestMoneyActivityStatusEnum
-                                                      .TRANSACTION_DIRECTORY_INCOMING &&
-                                                  activity.data?[index].paymentType ==
-                                                      PaymentTypeEnum.SEND_MONEY)
-                                                  ? Text.rich(TextSpan(
-                                                  text: '${activity.data![index].cdtrName}',
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 12.0.t),
-                                                  children: [
-                                                    TextSpan(
-                                                        text: S.of(context).sent,
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                            StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text:
-                                                        '${activity.data![index].amount} ${activity.data![index].amount} ',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                            StringUtils.appFont,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 12.0.t)),
-                                                    TextSpan(
-                                                        text: S.of(context).toYou,
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                            StringUtils.appFont,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 12.0.t)),
-                                                  ]))
-                                                  : (activity.data?[index].trxDir ==
-                                                  RequestMoneyActivityStatusEnum
-                                                      .TRANSACTION_DIRECTORY_OUTGOING &&
-                                                  activity.data?[index].paymentType ==
-                                                      PaymentTypeEnum.SEND_MONEY)
-                                                  ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
-                                                TextSpan(
-                                                    text:
-                                                    '${activity.data![index].amount} ${activity.data![index].curr} ',
-                                                    style: TextStyle(
-                                                        fontFamily:
-                                                        StringUtils.appFont,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: 12.0.t)),
-                                                TextSpan(
-                                                    text: S.of(context).to,
-                                                    style: TextStyle(
-                                                        fontFamily:
-                                                        StringUtils.appFont,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 12.0.t)),
+                                                                TextSpan(
+                                                                    text: S.of(context).fromYou,
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 12.0.t)),
+                                                              ]))
+                                                        : (activity.data?[index].trxDir ==
+                                                                    RequestMoneyActivityStatusEnum
+                                                                        .TRANSACTION_DIRECTORY_OUTGOING &&
+                                                                activity.data?[index].paymentType ==
+                                                                    PaymentTypeEnum.RTP_REQUEST)
+                                                            ? Text.rich(TextSpan(
+                                                                text: S.of(context).youRequested,
+                                                                style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 12.0.t),
+                                                                children: [
+                                                                    TextSpan(
+                                                                        text:
+                                                                            '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontWeight: FontWeight.w600,
+                                                                            fontSize: 12.0.t)),
+                                                                    TextSpan(
+                                                                        text: S.of(context).fromS,
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 12.0.t)),
+                                                                    TextSpan(
+                                                                        text:
+                                                                            '${activity.data![index].dbtrName}',
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontWeight: FontWeight.w600,
+                                                                            fontSize: 12.0.t)),
+                                                                  ]))
+                                                            : (activity.data?[index].trxDir ==
+                                                                        RequestMoneyActivityStatusEnum
+                                                                            .TRANSACTION_DIRECTORY_INCOMING &&
+                                                                    activity.data?[index].paymentType ==
+                                                                        PaymentTypeEnum.SEND_MONEY)
+                                                                ? Text.rich(TextSpan(
+                                                                    text: '${activity.data![index].cdtrName}',
+                                                                    style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        fontSize: 12.0.t),
+                                                                    children: [
+                                                                        TextSpan(
+                                                                            text: S.of(context).sent,
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontWeight: FontWeight.w400,
+                                                                                fontSize: 12.0.t)),
+                                                                        TextSpan(
+                                                                            text:
+                                                                                '${activity.data![index].amount} ${activity.data![index].amount} ',
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 12.0.t)),
+                                                                        TextSpan(
+                                                                            text: S.of(context).toYou,
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontWeight: FontWeight.w400,
+                                                                                fontSize: 12.0.t)),
+                                                                      ]))
+                                                                : (activity.data?[index].trxDir ==
+                                                                            RequestMoneyActivityStatusEnum
+                                                                                .TRANSACTION_DIRECTORY_OUTGOING &&
+                                                                        activity.data?[index].paymentType ==
+                                                                            PaymentTypeEnum.SEND_MONEY)
+                                                                    ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
+                                                                        TextSpan(
+                                                                            text:
+                                                                                '${activity.data![index].amount} ${activity.data![index].curr} ',
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 12.0.t)),
+                                                                        TextSpan(
+                                                                            text: S.of(context).to,
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontWeight: FontWeight.w400,
+                                                                                fontSize: 12.0.t)),
                                                                         TextSpan(
                                                                             text:
                                                                                 '${activity.data![index].cdtrName}',
@@ -290,20 +292,20 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                       ),
                                                     )
                                                   ],
-                                          ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                );
-                              },
-                            )
+                                      );
+                                    },
+                                  )
                                 : Center(
-                              child: Text(
-                                S.of(context).noRTPActivityToDisplay,
-                                textAlign: TextAlign.center,
-                              ),
-                            );
+                                    child: Text(
+                                      S.of(context).noRTPActivityToDisplay,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
 
                           default:
                             return Container();
