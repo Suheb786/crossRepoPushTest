@@ -150,7 +150,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                         fontSize: 12.0.t)),
                                                                 TextSpan(
                                                                     text:
-                                                                        '${activity.data?[index].amount} ${activity.data?[index].curr} ',
+                                                                        '${activity.data?[index].amount?.toStringAsFixed(3)} ${activity.data?[index].curr} ',
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w600,
@@ -176,7 +176,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                 children: [
                                                                     TextSpan(
                                                                         text:
-                                                                            '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                            '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                         style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
                                                                             fontWeight: FontWeight.w600,
@@ -216,7 +216,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                 fontSize: 12.0.t)),
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].amount} ${activity.data![index].amount} ',
+                                                                                '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -238,7 +238,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                     ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].amount} ${activity.data![index].curr} ',
+                                                                                '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
