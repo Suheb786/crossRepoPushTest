@@ -72,24 +72,14 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                               child: Center(
-                                  child: content.data?[index].trxDir ==
-                                          RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
-                                      ? Text(
-                                          StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).accentColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 14.0.t),
-                                        )
-                                      : Text(
-                                          StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).accentColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 14.0.t),
-                                        ))),
+                                  child: Text(
+                                StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).accentColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14.0.t),
+                              ))),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.only(start: 14.0.w),
@@ -161,26 +151,14 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                                   child: Center(
-                                      child: content.data?[index].trxDir ==
-                                              RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
-                                          ? Text(
-                                              StringUtils.getFirstInitials(
-                                                  content.data?[index].cdtrName ?? ''),
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 14.0.t),
-                                            )
-                                          : Text(
-                                              StringUtils.getFirstInitials(
-                                                  content.data?[index].dbtrName ?? ''),
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 14.0.t),
-                                            ))),
+                                      child: Text(
+                                    StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).accentColor,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14.0.t),
+                                  ))),
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.only(start: 14.0.w),
@@ -248,26 +226,14 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                                     child: Center(
-                                        child: content.data?[index].trxDir ==
-                                                RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
-                                            ? Text(
-                                                StringUtils.getFirstInitials(
-                                                    content.data?[index].cdtrName ?? ''),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 14.0.t),
-                                              )
-                                            : Text(
-                                                StringUtils.getFirstInitials(
-                                                    content.data?[index].dbtrName ?? ''),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 14.0.t),
-                                              ))),
+                                        child: Text(
+                                      StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).accentColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14.0.t),
+                                    ))),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(start: 14.0.w),
@@ -421,26 +387,14 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                                     child: Center(
-                                        child: content.data?[index].trxDir ==
-                                                RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING
-                                            ? Text(
-                                                StringUtils.getFirstInitials(
-                                                    content.data?[index].cdtrName ?? ''),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 14.0.t),
-                                              )
-                                            : Text(
-                                                StringUtils.getFirstInitials(
-                                                    content.data?[index].dbtrName ?? ''),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 14.0.t),
-                                              ))),
+                                        child: Text(
+                                      StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).accentColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14.0.t),
+                                    ))),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(start: 14.0.w),
