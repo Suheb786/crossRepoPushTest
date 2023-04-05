@@ -13,7 +13,9 @@ ApproveRTPOtpEntity _$ApproveRTPOtpEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApproveRTPOtpEntityToJson(ApproveRTPOtpEntity instance) => <String, dynamic>{
+Map<String, dynamic> _$ApproveRTPOtpEntityToJson(
+        ApproveRTPOtpEntity instance) =>
+    <String, dynamic>{
       'mobileCode': instance.mobileCode,
       'mobileNumber': instance.mobileNumber,
     };

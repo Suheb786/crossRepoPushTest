@@ -4,6 +4,7 @@ import 'package:domain/usecase/activity/notification_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_usecase.dart';
 import 'package:domain/usecase/activity/reason_to_reject_validation_usecase.dart';
+import 'package:domain/usecase/payment/get_rejection_reason_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/activity/return_payment_transaction_usecase.dart';
 import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
@@ -27,6 +28,7 @@ final returnPaymentActivityTransactionUseCaseProvider =
 ///[ReturnPaymentActivityOTPUseCase] provider
 final returnPaymentActivityOTPUseCaseProvider =
     Provider.autoDispose<ReturnPaymentOTPUseCase>((ref) => ReturnPaymentOTPUseCase());
+
 final activityOtpValidationUseCaseProvider = Provider.autoDispose<ActivityOtpValidationUseCase>(
   (ref) => ActivityOtpValidationUseCase(),
 );

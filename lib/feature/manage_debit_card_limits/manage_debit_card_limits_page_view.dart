@@ -37,7 +37,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
               model.onlinePurchaseValue = model.onlinePurchaseInitialValue =
                   num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![4].currentLimit!);
               model.contactlessPaymentsValue = model.contactlessPaymentsInitialValue =
-                  num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![5].currentLimit!);
+                  num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![6].currentLimit!);
               model.isAtmWithdrawal =
                   num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![0].currentLimit!) > 0
                       ? true
@@ -51,7 +51,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                       ? true
                       : false;
               model.isContactLessPayments =
-                  num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![5].currentLimit!) > 0
+                  num.parse(debitCardLimitResponse.data!.debitCardLimitContent!.limits![6].currentLimit!) > 0
                       ? true
                       : false;
               model.updateShowSaveButtonValue(false);
@@ -147,7 +147,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                     debitCardLimitResponse
                                                                         .data!
                                                                         .debitCardLimitContent!
-                                                                        .limits![5]
+                                                                        .limits![6]
                                                                         .currentLimit!),
                                                                 merchantPayment: num.parse(
                                                                     debitCardLimitResponse
@@ -202,7 +202,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                     debitCardLimitResponse
                                                                         .data!
                                                                         .debitCardLimitContent!
-                                                                        .limits![5]
+                                                                        .limits![6]
                                                                         .currentLimit!),
                                                                 merchantPayment: 0);
                                                           }
@@ -289,7 +289,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                     debitCardLimitResponse
                                                                         .data!
                                                                         .debitCardLimitContent!
-                                                                        .limits![5]
+                                                                        .limits![6]
                                                                         .currentLimit!),
                                                                 merchantPayment: num.parse(
                                                                     debitCardLimitResponse
@@ -383,7 +383,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                         .currentLimit!),
 
                                                                 ///TODO:check with backend
-                                                                contactlessPayments: 150,
+                                                                contactlessPayments: 300,
                                                                 merchantPayment: num.parse(
                                                                     debitCardLimitResponse
                                                                         .data!
@@ -427,7 +427,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                     num.parse(debitCardLimitResponse
                                                                             .data!
                                                                             .debitCardLimitContent!
-                                                                            .limits![5]
+                                                                            .limits![6]
                                                                             .currentLimit!) !=
                                                                         0)
                                                                 ? true
@@ -438,10 +438,10 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                             .isNotEmpty),
                                                         title: S.of(context).contactLessPayments,
                                                         amountSet: debitCardLimitResponse.data!
-                                                            .debitCardLimitContent!.limits![5].currentLimit!
+                                                            .debitCardLimitContent!.limits![6].currentLimit!
                                                             .toString(),
                                                         maxAmount: debitCardLimitResponse
-                                                            .data!.debitCardLimitContent!.limits![5].maxLimit!
+                                                            .data!.debitCardLimitContent!.limits![6].maxLimit!
                                                             .toString(),
                                                         isLast: true,
                                                         readOnly: true,

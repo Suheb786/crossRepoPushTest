@@ -8,6 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page_view.dart';
@@ -65,13 +67,16 @@ class ReturnPaymentTransactionSliderPageView
               dataBuilder: (context, currentStep) {
                 return Column(
                   children: [
-                    Text(
-                      S.of(context).returnPayment.toUpperCase(),
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.black,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                    InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Text(
+                        S.of(context).returnPayment.toUpperCase(),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
@@ -91,7 +96,13 @@ class ReturnPaymentTransactionSliderPageView
                                 StepTextHelper.returnPaymentStepTextHelper(
                                   currentStep ?? 0,
                                   S.of(context).selectTheReasonToReturn,
-                                  S.of(context).enterOtpHeader,
+                                  S.of(context).enterOTPheaderwithVaiable(ProviderScope.containerOf(context)
+                                          .read(returnPaymentSelectionPageViewModelProvider)
+                                          .mobileCode
+                                          .replaceAll("00", "+") +
+                                      ProviderScope.containerOf(context)
+                                          .read(returnPaymentSelectionPageViewModelProvider)
+                                          .mobileNumber),
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(

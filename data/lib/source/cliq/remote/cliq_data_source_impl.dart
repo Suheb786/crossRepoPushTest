@@ -24,6 +24,7 @@ import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_respon
 import 'package:data/entity/remote/cliq/get_account_by_customer_id/get_account_by_customer_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_request_entity.dart';
 import 'package:data/entity/remote/cliq/get_alias/get_alias_response_entity.dart';
+import 'package:data/entity/remote/cliq/get_transaction_history/get_transaction_history_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/re_activate_cliq_id_request_entity.dart';
@@ -31,6 +32,7 @@ import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason
 import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
@@ -46,6 +48,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
 import 'package:retrofit/dio.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 
 class CliqRemoteDataSourceImpl extends CliqDataSource {
   final ApiService _apiService;
@@ -483,6 +486,65 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
+  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
+      {required bool getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.returnRTPrequestOTP(BaseRequest(baseData: baseData.toJson(), getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> returnRTPrequest(
+      {required String? CustID,
+      required String? MessageID,
+      required String? DbtrAcct,
+      required String? DbtrName,
+      required String? CdtrAcct,
+      required String? CdtrName,
+      required String? Currency,
+      required double? Amount,
+      required String? RtrnReason,
+      required String? RtrnAddInfo,
+      required bool? IsDispute,
+      required String? DisputeRefNo,
+      required String? OtpCode,
+      required bool? GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.returnRTPrequest(
+      ReturnRTPrequestRequestEntity(
+        CustID: CustID,
+        MessageID: MessageID,
+        DbtrAcct: DbtrAcct,
+        DbtrName: DbtrName,
+        CdtrAcct: CdtrAcct,
+        CdtrName: CdtrName,
+        Currency: Currency,
+        Amount: Amount,
+        RtrnReason: RtrnReason,
+        RtrnAddInfo: RtrnAddInfo,
+        IsDispute: IsDispute,
+        DisputeRefNo: DisputeRefNo,
+        OtpCode: OtpCode,
+        GetToken: GetToken,
+        BaseClass: baseData.toJson(),
+      ),
+    );
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getTransactionHistory(
+      {required String? FilterDays,
+      required String? TransactionType,
+      required String? TotalRecords,
+      required bool? GetToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getTransactionHistory(GetTransactionHistoryRequestEntity(
+        FilterDays: FilterDays,
+        TransactionType: TransactionType,
+        TotalRecords: TotalRecords,
+        GetToken: GetToken,
+        BaseClass: baseData.toJson()));
+  }
+
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
