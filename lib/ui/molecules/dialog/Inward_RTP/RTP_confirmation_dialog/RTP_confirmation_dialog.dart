@@ -22,7 +22,7 @@ class RTPConfirmationDialog {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => RTPConfirmationDialogView(
-          actionWidget: actionWidget,
+              actionWidget: actionWidget,
               description: description,
               listOfDetails: listOfDetails,
               showDescription: showDescription,
