@@ -35,6 +35,7 @@ import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_res
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -48,7 +49,6 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/cliq/clip_data_source.dart';
 import 'package:retrofit/dio.dart';
-import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 
 class CliqRemoteDataSourceImpl extends CliqDataSource {
   final ApiService _apiService;
@@ -486,7 +486,7 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
   }
 
   @override
-  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
+  Future<HttpResponse<ReturnRTPrequestOTPResponseEntity>> returnRTPrequestOTP(
       {required bool getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.returnRTPrequestOTP(BaseRequest(baseData: baseData.toJson(), getToken: getToken));

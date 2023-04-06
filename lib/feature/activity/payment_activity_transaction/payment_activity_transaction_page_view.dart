@@ -16,6 +16,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
@@ -248,6 +249,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               amount: "- " +
                                                                   RequestMoneyActivityList.amount.toString(),
                                                               isAmountVisible: true,
+                                                              currency: RequestMoneyActivityList.curr ?? "",
                                                               cdtrAcct:
                                                                   RequestMoneyActivityList.cdtrAcct ?? '',
                                                               cdtrDpText: StringUtils.getFirstInitials(
@@ -259,7 +261,24 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               actionWidget: GestureDetector(
                                                                 onTap: () {
                                                                   Navigator.pushNamed(
-                                                                      context, RoutePaths.CreditConfirmation);
+                                                                      context, RoutePaths.CreditConfirmation,
+                                                                      arguments: CreditConfirmationArgument(
+                                                                          crediterDP: StringUtils.getFirstInitials(
+                                                                              RequestMoneyActivityList
+                                                                                  .cdtrName),
+                                                                          transactionType:
+                                                                              RequestMoneyActivityList.paymentType
+                                                                                  .toString(),
+                                                                          date: TimeUtils.convertDateTimeToDate(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          time: TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          refID: RequestMoneyActivityList.payRefNo,
+                                                                          accountNo: RequestMoneyActivityList.cdtrAcct,
+                                                                          amount: "- ${RequestMoneyActivityList.amount}",
+                                                                          crediterName: RequestMoneyActivityList.cdtrName));
                                                                 },
                                                                 child: Container(
                                                                   width: double.infinity,
@@ -441,14 +460,13 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     .CATEGORY_ACCEPTED ==
                                                                 RequestMoneyActivityList.trxStatus) {
                                                               //* RETURN PAYMENT POP UP
+
                                                               RTPConfirmationDialog.show(
                                                                 context,
-                                                                amount: " " +
-                                                                    RequestMoneyActivityList.amount
-                                                                        .toString() +
-                                                                    " " +
-                                                                    RequestMoneyActivityList.curr.toString(),
-                                                                isAmountVisible: false,
+                                                                amount: RequestMoneyActivityList.amount
+                                                                    .toString(),
+                                                                isAmountVisible: true,
+                                                                currency: RequestMoneyActivityList.curr ?? "",
                                                                 cdtrAcct:
                                                                     RequestMoneyActivityList.cdtrAcct ?? '',
                                                                 cdtrDpText: StringUtils.getFirstInitials(
@@ -614,6 +632,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               context,
                                                               amount: "",
                                                               isAmountVisible: false,
+                                                              currency: data.curr ?? "",
                                                               cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:
                                                                   StringUtils.getFirstInitials(data.cdtrName),
@@ -851,7 +870,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                             //* ACCEPT/REJECT POP UP
                                                             RTPConfirmationDialog.show(
                                                               context,
-                                                              amount: "",
+                                                              amount: data.amount.toString(),
+                                                              currency: data.curr ?? "",
                                                               isAmountVisible: false,
                                                               cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:

@@ -916,7 +916,8 @@ class AppRouter {
 
       case RoutePaths.CreditConfirmation:
         return CupertinoPageRoute(
-            builder: (context) => CreditConfirmationPaymentActivityPage(),
+            builder: (context) =>
+                CreditConfirmationPaymentActivityPage(settings.arguments as CreditConfirmationArgument),
             settings: RouteSettings(name: RoutePaths.CreditConfirmation));
 
       case RoutePaths.PaymentTransationSuccess:

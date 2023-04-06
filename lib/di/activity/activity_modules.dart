@@ -7,6 +7,7 @@ import 'package:neo_bank/feature/activity/notification/notification_view_model.d
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page.dart';
@@ -77,9 +78,9 @@ final rejectRequestPaymentOtpPageViewModelProvider =
       ref.read(requestToPayResultUseCaseProvider), ref.read(requestToPayResultOtpUseCaseProivder)),
 );
 
-final creditConfirmationPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditConfirmationPaymentActivityViewModel>(
-  (ref) => CreditConfirmationPaymentActivityViewModel(),
+final creditConfirmationPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditConfirmationPaymentActivityViewModel, CreditConfirmationArgument>(
+  (ref, arg) => CreditConfirmationPaymentActivityViewModel(arg),
 );
 
 final paymentTransationSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

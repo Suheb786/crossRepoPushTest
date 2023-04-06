@@ -24,12 +24,14 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final Widget description;
   final bool showDescription;
   final bool isAmountVisible;
+  final String currency;
   final Widget actionWidget;
 
   const RTPConfirmationDialogView(
       {this.onDismiss,
       this.onAccepted,
       this.onRejected,
+      required this.currency,
       required this.isAmountVisible,
       required this.actionWidget,
       required this.description,
@@ -89,7 +91,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                             children: [
                               TextSpan(text: " "),
                               TextSpan(
-                                text: S.of(context).JOD,
+                                text: currency,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 12.t,
@@ -128,7 +130,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                       SizedBox(height: 32.h),
                       actionWidget,
                       SizedBox(
-                        height: 30.h,
+                        height: 25.h,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 16.h),

@@ -19,6 +19,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -79,8 +80,7 @@ class ReturnPaymentTransactionSliderPageView
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -96,13 +96,7 @@ class ReturnPaymentTransactionSliderPageView
                                 StepTextHelper.returnPaymentStepTextHelper(
                                   currentStep ?? 0,
                                   S.of(context).selectTheReasonToReturn,
-                                  S.of(context).enterOTPheaderwithVaiable(ProviderScope.containerOf(context)
-                                          .read(returnPaymentSelectionPageViewModelProvider)
-                                          .mobileCode
-                                          .replaceAll("00", "+") +
-                                      ProviderScope.containerOf(context)
-                                          .read(returnPaymentSelectionPageViewModelProvider)
-                                          .mobileNumber),
+                                  S.current.enterOtpHeader,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -115,30 +109,31 @@ class ReturnPaymentTransactionSliderPageView
                       ),
                     ),
                     Visibility(
-                      visible: currentStep == 2,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 32),
-                        child: ShowUpAnimation(
-                          delayStart: Duration(milliseconds: 500),
-                          animationDuration: Duration(milliseconds: 750),
-                          curve: Curves.bounceIn,
-                          direction: Direction.vertical,
-                          offset: 0.5,
-                          child: Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Text(
-                              "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
-                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            ),
+                      visible: currentStep == 1,
+                      child: ShowUpAnimation(
+                        delayStart: Duration(milliseconds: 500),
+                        animationDuration: Duration(milliseconds: 750),
+                        curve: Curves.bounceIn,
+                        direction: Direction.vertical,
+                        offset: 0.5,
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Text(
+                            "${ProviderScope.containerOf(context).read(returnPaymentSelectionPageViewModelProvider).mobileCode?.replaceAll('00', '+')}" +
+                                " " 
+                                    "${ProviderScope.containerOf(context).read(returnPaymentSelectionPageViewModelProvider).mobileNumber}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
                     ),
                     Expanded(
                       child: AppSwiper(

@@ -515,7 +515,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
     return RichText(
         maxLines: 3,
         text: TextSpan(
-            text: data?.cdtrName ?? '',
+            text: "${data?.cdtrName ?? ""} ",
             style: TextStyle(
               fontFamily: StringUtils.appFont,
               fontSize: 12.0.t,
@@ -533,7 +533,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                     color: Theme.of(context).primaryColorDark),
               ),
               TextSpan(
-                text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
+                text: " ${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
                 style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontSize: 12.0.t,

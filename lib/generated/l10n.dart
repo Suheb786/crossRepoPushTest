@@ -16949,6 +16949,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Reason to return`
+  String get reasonToreturn {
+    return Intl.message(
+      'Reason to return',
+      name: 'reasonToreturn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
