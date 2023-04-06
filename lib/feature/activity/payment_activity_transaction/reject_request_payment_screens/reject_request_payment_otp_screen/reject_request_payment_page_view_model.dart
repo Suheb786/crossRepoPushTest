@@ -47,11 +47,11 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
     });
 
     _rejectOtpRequest.listen(
-          (value) {
+      (value) {
         RequestManager(value, createCall: () => _requestToPayResultOtpUseCase.execute(params: value))
             .asFlow()
             .listen(
-              (event) {
+          (event) {
             updateLoader();
             _rejectOtpResponse.safeAdd(event);
 

@@ -38,11 +38,11 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
       });
     });
     _approveRTPRequest.listen(
-          (value) {
+      (value) {
         RequestManager(value, createCall: () => _approveRTPRequestUseCase.execute(params: value))
             .asFlow()
             .listen(
-              (event) {
+          (event) {
             updateLoader();
             _approveRTPResponse.safeAdd(event);
 
@@ -56,7 +56,7 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
     _approveRTPOtpRequest.listen(
           (value) {
         RequestManager(value, createCall: () => _approveRTPOtpUseCase.execute(params: value)).asFlow().listen(
-              (event) {
+          (event) {
             updateLoader();
             _approveRTPOtpResponse.safeAdd(event);
 
