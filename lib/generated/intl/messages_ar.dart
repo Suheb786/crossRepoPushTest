@@ -2158,6 +2158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
         "pleaseSelectReasonToReject":
             MessageLookupByLibrary.simpleMessage("يرجى اختيار سبب الرفض"),
+        "pleaseSelectReasonToReturn": MessageLookupByLibrary.simpleMessage(
+            "Please select reason to Return"),
         "pleaseSelectTheReason":
             MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
         "pleaseSelectYourAction":

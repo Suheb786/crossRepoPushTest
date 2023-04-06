@@ -16959,6 +16959,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select reason to Return`
+  String get pleaseSelectReasonToReturn {
+    return Intl.message(
+      'Please select reason to Return',
+      name: 'pleaseSelectReasonToReturn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

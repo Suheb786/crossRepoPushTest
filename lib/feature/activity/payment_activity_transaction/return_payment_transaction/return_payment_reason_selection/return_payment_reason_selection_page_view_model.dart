@@ -70,6 +70,7 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showErrorState();
             showToastWithError(event.appError!);
+            getError(event);
           } else if (event.status == Status.SUCCESS) {}
         },
       );
@@ -123,7 +124,7 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
 
   void getError(Resource<bool> event) {
     switch (event.appError!.type) {
-      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+      case ErrorType.PLEASE_SELECT_REASON_TO_RETURN:
         reasonToReturnKey.currentState!.isValid = false;
         break;
       default:

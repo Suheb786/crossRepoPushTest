@@ -90,6 +90,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          getError(event);
         } else {}
       });
     });
@@ -146,6 +147,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   void getError(Resource<bool> event) {
     switch (event.appError?.type) {
       case ErrorType.INVALID_OTP:
+        otpKey.currentState?.isValid = false;
         break;
       default:
     }

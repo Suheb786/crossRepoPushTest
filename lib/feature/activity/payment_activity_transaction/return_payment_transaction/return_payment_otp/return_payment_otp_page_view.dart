@@ -43,7 +43,8 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                     stream: model.returnRTPrequeststream,
                     onData: (value) async {
                       if (value.status == Status.SUCCESS) {
-                        await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": true});
+                        await FireBaseLogUtil.fireBaseLog(
+                            "return_payment_success", {"is_return_payment_success": true});
 
                         Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
                             arguments: PaymentTransationSuccessArgument(
@@ -65,7 +66,8 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                     .returnArgument
                                     .iban));
                       } else if (value.status == Status.ERROR) {
-                        await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": false});
+                        await FireBaseLogUtil.fireBaseLog(
+                            "return_payment_failure", {"is_return_payment_failure": true});
                       }
                     },
                     dataBuilder: (context, returnRTPrequestSnapshot) {

@@ -243,7 +243,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
                                                               currency: RequestMoneyActivityList.curr ?? '',
                                                               isAmountVisible: true,
-
                                                               cdtrAcct:
                                                                   RequestMoneyActivityList.cdtrAcct ?? '',
                                                               cdtrDpText: StringUtils.getFirstInitials(
@@ -455,7 +454,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     .CATEGORY_ACCEPTED ==
                                                                 RequestMoneyActivityList.trxStatus) {
                                                               //* RETURN PAYMENT POP UP
-
                                                               RTPConfirmationDialog.show(
                                                                 context,
                                                                 amount: " " +
@@ -560,6 +558,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 showDescription: false,
                                                                 actionWidget: GestureDetector(
                                                                   onTap: () {
+                                                                    Navigator.pop(context);
+
                                                                     Navigator.pushNamed(context,
                                                                         RoutePaths.ReturnPaymentSliderPage,
                                                                         arguments: ReturnPaymentTransactionSliderPageArgument(
@@ -589,6 +589,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                             rtrnReason: "",
                                                                             rtrnAddInfo: "",
                                                                             isDispute: false,
+                                                                            amount: RequestMoneyActivityList
+                                                                                .amount,
                                                                             disputeRefNo:
                                                                                 RequestMoneyActivityList
                                                                                     .payRefNo,

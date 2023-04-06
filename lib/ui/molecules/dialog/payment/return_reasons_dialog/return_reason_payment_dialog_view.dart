@@ -125,8 +125,7 @@ class ReturnReasonPaymentDialogView extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                            child:
-                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
