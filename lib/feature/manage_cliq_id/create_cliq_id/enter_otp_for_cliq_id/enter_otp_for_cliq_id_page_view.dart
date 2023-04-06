@@ -65,7 +65,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                 .text));
                   } else if (data.status == Status.ERROR) {
                     ///LOG EVENT TO FIREBASE
-                    await FireBaseLogUtil.fireBaseLog("alias_created", {"is_alias_created": false});
+                    await FireBaseLogUtil.fireBaseLog("alias_creation_failed", {"is_alias_created": false});
                   }
                 },
                 dataBuilder: (context, createCliqIdResponse) {

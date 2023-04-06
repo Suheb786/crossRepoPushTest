@@ -222,7 +222,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                             model.antelopSdkInitialize();
                                                           }
 
-                                                          model.registerCliqEfawateer();
+                                                          //model.registerCliqEfawateer();
 
                                                           ///apple pay initialize
                                                           // model.antelopSdkInitialize();
@@ -263,7 +263,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.applicationId =
                                                                         data.data!.applicationId!;
                                                                     model.saveUserData();
-                                                                    model.registerCliqEfawateer();
+                                                                    //model.registerCliqEfawateer();
                                                                     AppConstantsUtils
                                                                             .isApplePayFeatureEnabled =
                                                                         data.data?.applePay ?? false;

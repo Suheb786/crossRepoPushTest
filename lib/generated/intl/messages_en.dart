@@ -2192,7 +2192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "physicalCardUse": MessageLookupByLibrary.simpleMessage(
-            "You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD."),
+            "You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 300 JOD."),
         "pinDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "pinRequired": MessageLookupByLibrary.simpleMessage("Pin Required"),
@@ -2461,7 +2461,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
-            "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD."),
+            "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 300 JOD."),
         "requestSuccessFullyRejected": MessageLookupByLibrary.simpleMessage(
             "Request successfully\nrejected."),
         "requestSupplementaryCard":

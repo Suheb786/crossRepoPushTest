@@ -43,6 +43,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   bool? isOtpRequired = false;
   bool? isOtpSend = false;
   var isDateOk = true;
+  double dueAmountToShow = 0.0;
 
   ConfirmBillPaymentAmountPageViewModel(this.validatePrePaidUseCase, this.payPrePaidUseCase,
       this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this._enterOtpBillPaymentsUseCase) {
@@ -98,7 +99,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -190,7 +191,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-      (params) {
+          (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -211,7 +212,11 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
-  void validatePrePaidBill() {
+  void validatePrePaidBill({String? amount: "0"}) {
+    if (double.parse(amount ?? "0") > 0.0) {
+      amtController.text = double.parse(amount ?? "0").toStringAsFixed(3);
+    }
+
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("validate_pre_paid_saved_bill", {"validate_pre_paid_saved_bill_call": true});
     _validatePrePaidRequest.safeAdd(ValidatePrePaidUseCaseParams(
@@ -226,7 +231,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
         billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
+            AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
             ? true
             : false));
   }

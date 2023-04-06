@@ -277,6 +277,9 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             labelText: S.of(context).employerCity,
                             hintText: S.of(context).pleaseEnter,
                             controller: model.employerCityController,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(60),
+                            ],
                             inputType: TextInputType.text,
                             inputAction: TextInputAction.go,
                             key: model.employerCityKey,

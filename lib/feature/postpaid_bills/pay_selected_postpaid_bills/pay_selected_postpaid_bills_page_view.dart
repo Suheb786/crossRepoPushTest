@@ -141,7 +141,7 @@ class PaySelectedBillsPostPaidBillsPageView
                           Expanded(
                             child: Card(
                               child: model.postPaidBillInquiryData == null ||
-                                      model.postPaidBillInquiryData!.isEmpty
+                                  model.postPaidBillInquiryData!.isEmpty
                                   ? Center(
                                       child: Text(
                                         S.of(context).noDataFound,
@@ -210,7 +210,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                                       onChanged: (value) {
                                                         onChangedCalled(model, index, value, context);
                                                       },
-                                                      billAmtDue: model.getValidBillerDueAmount(
+                                                      billAmtDue: model.checkAndGetValidBillerDueAmount(
                                                         model.arguments.postPaidBillInquiryData?[index]
                                                             .billingNo,
                                                         model.arguments.postPaidBillInquiryData?[index]
