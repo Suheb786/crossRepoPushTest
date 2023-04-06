@@ -190,20 +190,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                   initialData: Resource.none(),
                                   onData: (data) async {
                                     if (data.status == Status.SUCCESS) {
-                                      ///LOG EVENT TO FIREBASE
-                                      await FireBaseLogUtil.fireBaseLog(
-                                          "approve_otp", {"is_approve_otp": true});
-
                                       Navigator.pushNamed(context, RoutePaths.AcceptRequestMoneyOtp,
                                           arguments: AcceptRequestMoneyOtpPageArgument(
                                               approveRtpData: model.approveRtpData,
                                               mobileCode: data.data?.mobileCode ?? '',
                                               mobileNumber: data.data?.mobileNumber ?? ''));
-                                    } else if (data.status == Status.ERROR) {
-                                      ///LOG EVENT TO FIREBASE
-                                      await FireBaseLogUtil.fireBaseLog(
-                                          "approve_otp", {"is_approve_otp": false});
-                                    }
+                                    } else if (data.status == Status.ERROR) {}
                                   },
                                   dataBuilder: (context, approveRTPOtpResponse) {
                                     return AppStreamBuilder<Resource<PaymentActivityResponse>>(
@@ -212,12 +204,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                         onData: (data) async {
                                           if (data.status == Status.SUCCESS) {
                                             ///LOG EVENT TO FIREBASE
-                                            await FireBaseLogUtil.fireBaseLog(
-                                                "request_money", {"is_request_money": true});
+                                            await FireBaseLogUtil.fireBaseLog("transaction_history_success",
+                                                {"is_transaction_history_success": true});
                                           } else if (data.status == Status.ERROR) {
                                             ///LOG EVENT TO FIREBASE
-                                            await FireBaseLogUtil.fireBaseLog(
-                                                "request_money", {"is_request_money": false});
+                                            await FireBaseLogUtil.fireBaseLog("transaction_history_failed",
+                                                {"is_transaction_history_failed": true});
                                           }
                                         },
                                         dataBuilder: (context, requestActivity) {
@@ -243,7 +235,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
                                                               currency: RequestMoneyActivityList.curr ?? '',
                                                               isAmountVisible: true,
-
                                                               cdtrAcct:
                                                                   RequestMoneyActivityList.cdtrAcct ?? '',
                                                               cdtrDpText: StringUtils.getFirstInitials(
