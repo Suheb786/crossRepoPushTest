@@ -48,9 +48,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
           model.validationCode = value.data?.content?.validationCode ?? "";
           model.isNewBiller = value.data?.content?.validationCode == "" ? false : true;
           model.validate(model.amtController.text);
-          if (model.isPrepaidCategoryListEmpty == true) {
-            Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
-          }
+          // if (model.isPrepaidCategoryListEmpty == true) {
+          //   Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
+          // }
         }
       },
       dataBuilder: (context, snapshot) {
@@ -88,7 +88,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     if (model.isPrepaidCategoryListEmpty == false) {
                       model.payPrePaidBill(context);
                     } else if (model.isPrepaidCategoryListEmpty == true) {
-                      model.validatePrePaidBill();
+                      model.payPrePaidBill(context);
                     }
                   }
                 } else {
@@ -96,7 +96,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                     if (model.isPrepaidCategoryListEmpty == false) {
                       model.payPrePaidBill(context);
                     } else if (model.isPrepaidCategoryListEmpty == true) {
-                      model.validatePrePaidBill();
+                      model.payPrePaidBill(context);
                     }
                   }
                 }
@@ -371,7 +371,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       if (model.isPrepaidCategoryListEmpty == false) {
                                         model.payPrePaidBill(context);
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
-                                        model.validatePrePaidBill();
+                                        model.payPrePaidBill(context);
                                       }
                                     }
                                   } else {
@@ -379,7 +379,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                       if (model.isPrepaidCategoryListEmpty == false) {
                                         model.payPrePaidBill(context);
                                       } else if (model.isPrepaidCategoryListEmpty == true) {
-                                        model.validatePrePaidBill();
+                                        model.payPrePaidBill(context);
                                       }
                                     }
                                   }
@@ -430,20 +430,29 @@ class HowMuchLikeToPayPrePaidBillsPageView
 
   ///enter amount appTextField
   _enterAmountAppTextField(HowMuchLikeToPayPrePaidBillsPageViewModel model, BuildContext context) {
-    return Padding(
-        padding: EdgeInsetsDirectional.only(top: 16.0.h),
-        child: AppTextField(
-          inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
-          labelText: S.of(context).amount.toUpperCase(),
-          inputType: TextInputType.numberWithOptions(decimal: true),
-          controller: model.amtController,
-          key: model.amtKey,
-          readOnly: !model.isPrepaidCategoryListEmpty,
-          hintText: S.of(context).pleaseEnter,
-          onPressed: () {},
-          onChanged: (val) {
-            model.validate(val);
-          },
-        ));
+    return Focus(
+      onFocusChange: (hasFocus) {
+        if (!hasFocus) {
+          if (model.isPrepaidCategoryListEmpty == true) {
+            Future.delayed(Duration(milliseconds: 200)).then((value) => model.validatePrePaidBill());
+          }
+        }
+      },
+      child: Padding(
+          padding: EdgeInsetsDirectional.only(top: 16.0.h),
+          child: AppTextField(
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}'))],
+            labelText: S.of(context).amount.toUpperCase(),
+            inputType: TextInputType.numberWithOptions(decimal: true),
+            controller: model.amtController,
+            key: model.amtKey,
+            readOnly: !model.isPrepaidCategoryListEmpty,
+            hintText: S.of(context).pleaseEnter,
+            onPressed: () {},
+            onChanged: (val) {
+              model.validate(val);
+            },
+          )),
+    );
   }
 }

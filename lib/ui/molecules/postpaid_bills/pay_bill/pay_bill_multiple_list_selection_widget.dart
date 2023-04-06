@@ -92,7 +92,12 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                                       fontSize: 12.0.t),
                                   children: [
                                   TextSpan(
-                                      text: billAmtDue,
+                                      text: double.parse(
+                                                  '${double.parse(billAmtDue) - double.parse(fees)}') <=
+                                              0.0
+                                          ? '${double.parse("0").toStringAsFixed(3)}'
+                                          : double.parse('${double.parse(billAmtDue) - double.parse(fees)}')
+                                              .toStringAsFixed(3),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.veryDarkGray2,
@@ -118,7 +123,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                                           fontSize: 12.0.t),
                                       children: [
                                     TextSpan(
-                                        text: billAmtDue,
+                                        text: double.parse('${double.parse(billAmtDue) - double.parse(fees)}')
+                                            .toStringAsFixed(3),
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             color: AppColor.veryDarkGray2,

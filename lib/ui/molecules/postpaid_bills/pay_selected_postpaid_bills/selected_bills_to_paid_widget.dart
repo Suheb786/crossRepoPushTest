@@ -53,6 +53,10 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
         model.amtController.text = this.billAmtDue != null && this.billAmtDue!.isNotEmpty
             ? double.parse(this.billAmtDue ?? "0.0").toStringAsFixed(3)
             : "0.0";
+
+        if (double.parse(this.billAmtDue ?? "0.0") <= 0.0) {
+          model.amtController.text = "0.0";
+        }
       },
       builder: (BuildContext context, model, child) {
         return Padding(

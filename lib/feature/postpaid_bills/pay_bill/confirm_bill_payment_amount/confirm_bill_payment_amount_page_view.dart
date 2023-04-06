@@ -102,6 +102,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                       model.dueAmtController = model.addAllBillAmt() ?? "0";
                       model.addNewBillDetailsData.amount = model.dueAmtController;
 
+                      model.dueAmountToShow = double.parse(model.dueAmtController ?? "0") -
+                          double.parse(model.feeAmtValue ?? "0");
+
                       if (model.postPaidBillInquiryData?[0].success == false) {
                         if (model.postPaidBillInquiryData != null &&
                             model.postPaidBillInquiryData?[0] != null &&
@@ -225,17 +228,20 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                   model.validationCode = value.data?.content?.validationCode ?? "";
                                   model.isNewBiller =
                                       value.data?.content?.validationCode == "" ? false : true;
-                                  if (AppConstantsUtils.PRE_PAID_FLOW == true) {
-                                    if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
-                                      if (model.isAmountMoreThanZero == true) {
-                                        _navigatePrePaid(model, context);
-                                      } else {
-                                        model.amountGreaterThanZeroMessage(model);
-                                      }
-                                    } else {
-                                      model.validate(model.dueAmtController);
-                                    }
-                                  }
+                                  model.dueAmountToShow = double.parse(model.dueAmtController ?? "0") -
+                                      double.parse(model.feeAmtValue ?? "0");
+
+                                  // if (AppConstantsUtils.PRE_PAID_FLOW == true) {
+                                  //   if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
+                                  //     if (model.isAmountMoreThanZero == true) {
+                                  //       _navigatePrePaid(model, context);
+                                  //     } else {
+                                  //       model.amountGreaterThanZeroMessage(model);
+                                  //     }
+                                  //   } else {
+                                  //     model.validate(model.dueAmtController);
+                                  //   }
+                                  // }
                                 }
                               },
                               dataBuilder: (context, snapshot) {
@@ -296,11 +302,11 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             } else {
                                                               model.amountGreaterThanZeroMessage(model);
                                                             }
-                                                          } else if (model.addNewBillDetailsData
+                                                          } /*else if (model.addNewBillDetailsData
                                                                   .isPrepaidCategoryListEmpty ==
                                                               true) {
                                                             model.validatePrePaidBill();
-                                                          }
+                                                          }*/
                                                         }
                                                       }
                                                     } else {
@@ -320,11 +326,11 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             } else {
                                                               model.amountGreaterThanZeroMessage(model);
                                                             }
-                                                          } else if (model.addNewBillDetailsData
+                                                          } /*else if (model.addNewBillDetailsData
                                                                   .isPrepaidCategoryListEmpty ==
                                                               true) {
                                                             model.validatePrePaidBill();
-                                                          }
+                                                          }*/
                                                         }
                                                       } else {
                                                         ProviderScope.containerOf(context)
@@ -373,7 +379,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   _confirmDetailsWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-          // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
+        // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
           decoration: BoxDecoration(
               border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
           child: Column(
@@ -530,7 +536,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                   ),
                 ),
                 Text(
-                  '${model.addNewBillDetailsData.amount} ${S.of(context).JOD}',
+                  model.dueAmountToShow <= 0.0
+                      ? '${double.parse("0").toStringAsFixed(3)} ${S.of(context).JOD}'
+                      : '${model.dueAmountToShow.toStringAsFixed(3)} ${S.of(context).JOD}',
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
