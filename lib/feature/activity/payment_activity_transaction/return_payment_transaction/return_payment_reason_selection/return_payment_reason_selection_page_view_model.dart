@@ -17,8 +17,8 @@ import 'package:rxdart/subjects.dart';
 
 class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
   final ReturnRTPrequestOTPUsecase _returnRTPrequestOTPUsecase;
-  String mobileCode = '';
-  String mobileNumber = '';
+  String? mobileCode;
+  String? mobileNumber;
 
   String returnReasonCode = "";
   final ReturnPaymentTransactionUsecase _returnPaymentTransactionUsecase;
@@ -70,7 +70,8 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
           if (event.status == Status.ERROR) {
             showErrorState();
             showToastWithError(event.appError!);
-          } else {}
+            getError(event);
+          } else if (event.status == Status.SUCCESS) {}
         },
       );
     });
@@ -90,11 +91,12 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _returnRTPrequestOTPUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _returnRTPreqeustOTPresponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else {}
+        } else if (event.status == Status.SUCCESS) {}
       });
     });
   }
@@ -122,7 +124,7 @@ class ReturnPaymentReasonSelectionPageViewModel extends BasePageViewModel {
 
   void getError(Resource<bool> event) {
     switch (event.appError!.type) {
-      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+      case ErrorType.PLEASE_SELECT_REASON_TO_RETURN:
         reasonToReturnKey.currentState!.isValid = false;
         break;
       default:

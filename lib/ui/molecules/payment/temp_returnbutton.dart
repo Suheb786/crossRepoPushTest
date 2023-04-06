@@ -29,6 +29,7 @@ class TempReturnButton extends StatelessWidget {
                   context,
                   amount: "",
                   isAmountVisible: false,
+                  currency: "",
                   cdtrAcct: "EFBKI000012341234123819241213|",
                   cdtrDpText: StringUtils.getFirstInitials("Ahmed Lutfi"),
                   cdtrName: "Ahmed Lutfi",
@@ -191,6 +192,7 @@ class TempReturnButton extends StatelessWidget {
                       ),
                     ],
                   ),
+
                 );
               },
               child: Text(
@@ -216,6 +218,7 @@ class TempReturnButton extends StatelessWidget {
                           //* CREDIT CONFIRMATION POP UP
                           RTPConfirmationDialog.show(
                             context,
+                            currency: "",
                             amount: "- 10.000",
                             isAmountVisible: true,
                             cdtrAcct: "EFBKI000012341234123819241213|",
@@ -381,6 +384,7 @@ class TempReturnButton extends StatelessWidget {
                                 )
                               ],
                             ),
+
                           );
                         },
                         child: Container(
@@ -458,6 +462,7 @@ class TempReturnButton extends StatelessWidget {
                                         //* STATUS POP UP
                                         RTPConfirmationDialog.show(
                                           context,
+                                          currency: "",
                                           amount: "- 10.000",
                                           isAmountVisible: false,
                                           cdtrAcct: "EFBKI000012341234123819241213|",
@@ -617,6 +622,7 @@ class TempReturnButton extends StatelessWidget {
                                               ),
                                             ],
                                           ),
+
                                         );
                                       },
                                       child: Text(
@@ -780,6 +786,7 @@ class TempReturnButton extends StatelessWidget {
                             context,
                             amount: "10.00",
                             isAmountVisible: true,
+                            currency: "",
                             cdtrAcct: "EFBKI000012341234123819241213|",
                             cdtrDpText: StringUtils.getFirstInitials("Shakila Naseem"),
                             cdtrName: "Shakila Naseem",
@@ -890,6 +897,7 @@ class TempReturnButton extends StatelessWidget {
                                 ),
                               ),
                             ),
+
                           );
                         },
                         child: CircleAvatar(

@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'return_RTP_request_otp.dart';
+part of 'return_RTP_request_otp_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReturnRTPRequestOTPResponseEntity _$ReturnRTPRequestOTPResponseEntityFromJson(
+ReturnRTPRequestOTPEntity _$ReturnRTPRequestOTPEntityFromJson(
     Map<String, dynamic> json) {
-  return ReturnRTPRequestOTPResponseEntity(
+  return ReturnRTPRequestOTPEntity(
     mobileCode: json['mobileCode'] as String?,
     mobileNumber: json['mobileNumber'] as String?,
   );
 }
 
-Map<String, dynamic> _$ReturnRTPRequestOTPResponseEntityToJson(
-        ReturnRTPRequestOTPResponseEntity instance) =>
+Map<String, dynamic> _$ReturnRTPRequestOTPEntityToJson(
+        ReturnRTPRequestOTPEntity instance) =>
     <String, dynamic>{
       'mobileCode': instance.mobileCode,
       'mobileNumber': instance.mobileNumber,

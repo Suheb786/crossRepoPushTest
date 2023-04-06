@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:domain/usecase/activity/return_payment_OTP_usecase.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   final ReturnPaymentOTPUseCase _returnPaymentOTPUseCase;
@@ -89,6 +90,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          getError(event);
         } else {}
       });
     });
@@ -96,6 +98,7 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _returnRTPrequestUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _returnRTPreqeustresponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -144,9 +147,21 @@ class ReturnPaymentOtpPageViewModel extends BasePageViewModel {
   void getError(Resource<bool> event) {
     switch (event.appError?.type) {
       case ErrorType.INVALID_OTP:
+        otpKey.currentState?.isValid = false;
         break;
       default:
     }
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
+  }
+
+  void updateTime() {
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    notifyListeners();
+    listenForSmsCode();
   }
 
   ///--------------------------public-constructor-------------------------------------///

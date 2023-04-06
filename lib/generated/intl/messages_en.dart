@@ -2231,6 +2231,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Schedule your call\nfor later"),
         "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage(
             "Please Select Reason To Reject"),
+        "pleaseSelectReasonToReturn": MessageLookupByLibrary.simpleMessage(
+            "Please select reason to Return"),
         "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage(
             "Please select the cancellation reason"),
         "pleaseSelectYourAction":
@@ -2369,6 +2371,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "reasonToReject":
             MessageLookupByLibrary.simpleMessage("reason to reject"),
+        "reasonToreturn":
+            MessageLookupByLibrary.simpleMessage("Reason to return"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "Rebellious Red\nVisa Credit Card"),
         "receiveMoneyFromOthers":

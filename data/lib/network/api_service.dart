@@ -11,7 +11,7 @@ import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/get_call_status_request.dart';
 import 'package:data/entity/remote/account/get_time_slots_request.dart';
-import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
+
 import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
@@ -151,6 +151,8 @@ import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_res
 import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_response_entity.dart';
@@ -1080,7 +1082,7 @@ abstract class ApiService {
   );
 
   @POST("/Cliq/ReturnRTPRequestOtp")
-  Future<HttpResponse<ReturnRTPRequestOTPResponseEntity>> returnRTPrequestOTP(
+  Future<HttpResponse<ReturnRTPrequestOTPResponseEntity>> returnRTPrequestOTP(
     @Body() BaseRequest request,
   );
 

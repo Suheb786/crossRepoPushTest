@@ -24,7 +24,8 @@ abstract class BasePage<VM extends BasePageViewModel> extends StatefulWidget {
 
 abstract class BasePageState<VM extends BasePageViewModel, T extends BasePage<VM>> extends State<T> {}
 
-abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>> extends BasePageState<VM, B> {
+abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage<VM>>
+    extends BasePageState<VM, B> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool subscribeVisibilityEvents = false;

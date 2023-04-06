@@ -12,6 +12,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_t
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -27,223 +28,229 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
 
   @override
   Widget build(BuildContext context, model) {
-    return AppStreamBuilder<bool>(
-        stream: model.errorDetectorStream,
-        initialData: false,
-        dataBuilder: (context, isValid) {
-          return ShakeAnimatedWidget(
-              enabled: isValid ?? false,
-              duration: Duration(milliseconds: 100),
-              shakeAngle: Rotation.deg(z: 1),
-              curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
-                  initialData: Resource.none(),
-                  stream: model.returnRTPrequeststream,
-                  onData: (value) async {
-                    if (value.status == Status.SUCCESS) {
-                      await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": true});
+    return AppKeyBoardHide(
+      child: AppStreamBuilder<bool>(
+          stream: model.errorDetectorStream,
+          initialData: false,
+          dataBuilder: (context, isValid) {
+            return ShakeAnimatedWidget(
+                enabled: isValid ?? false,
+                duration: Duration(milliseconds: 100),
+                shakeAngle: Rotation.deg(z: 1),
+                curve: Curves.easeInOutSine,
+                child: AppStreamBuilder<Resource<bool>>(
+                    initialData: Resource.none(),
+                    stream: model.returnRTPrequeststream,
+                    onData: (value) async {
+                      if (value.status == Status.SUCCESS) {
+                        await FireBaseLogUtil.fireBaseLog(
+                            "return_payment_success", {"is_return_payment_success": true});
 
-                      Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
-                          arguments: PaymentTransationSuccessArgument(
-                              ammount: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .amount
-                                  .toString(),
-                              name: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .name,
-                              statusInfo: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .statusInfo,
-                              iban: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .iban));
-                    } else if (value.status == Status.ERROR) {
-                      await FireBaseLogUtil.fireBaseLog("return_RTP", {"is_return_RTP": false});
-                    }
-                  },
-                  dataBuilder: (context, returnRTPrequestSnapshot) {
-                    return AppStreamBuilder<Resource<bool>>(
-                        stream: model.returnPaymentOtpValidationStream,
-                        initialData: Resource.none(),
-                        onData: (value) {
-                          if (value.status == Status.SUCCESS) {
-                            model.returnRTPrequest(
-                              custID: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .custID,
-                              messageID: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .messageID,
-                              dbtrAcct: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .dbtrAcct,
-                              dbtrName: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .dbtrName,
-                              cdtrAcct: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .cdtrAcct,
-                              cdtrName: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .cdtrName,
-                              currency: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .currency,
-                              amount: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .amount,
-                              rtrnReason: ProviderScope.containerOf(context)
-                                  .read(returnPaymentSelectionPageViewModelProvider)
-                                  .returnReasonCode,
-                              rtrnAddInfo: ProviderScope.containerOf(context)
-                                  .read(returnPaymentSelectionPageViewModelProvider)
-                                  .reasonToReturnController
-                                  .text,
-                              isDispute: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .isDispute,
-                              disputeRefNo: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .disputeRefNo,
-                              otpCode: model.otpController.text,
-                              getToken: ProviderScope.containerOf(context)
-                                  .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                  .returnArgument
-                                  .getToken,
-                            );
-                          }
-                        },
-                        dataBuilder: (context, enterOTP) {
-                          return GestureDetector(
-                            onHorizontalDragEnd: (details) {
-                              // ProviderScope.containerOf(context)
-                              //     .read(returnPaymentTransactionSliderPageViewModelProvider)
-                              //     .previousPage();
+                        Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
+                            arguments: PaymentTransationSuccessArgument(
+                                ammount: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .amount
+                                    .toString(),
+                                name: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .name,
+                                statusInfo: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .statusInfo,
+                                iban: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .iban));
+                      } else if (value.status == Status.ERROR) {
+                        await FireBaseLogUtil.fireBaseLog(
+                            "return_payment_failure", {"is_return_payment_failure": true});
+                      }
+                    },
+                    dataBuilder: (context, returnRTPrequestSnapshot) {
+                      return AppStreamBuilder<Resource<bool>>(
+                          stream: model.returnPaymentOtpValidationStream,
+                          initialData: Resource.none(),
+                          onData: (value) {
+                            if (value.status == Status.SUCCESS) {
+                              model.returnRTPrequest(
+                                custID: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .custID,
+                                messageID: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .messageID,
+                                dbtrAcct: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .dbtrAcct,
+                                dbtrName: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .dbtrName,
+                                cdtrAcct: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .cdtrAcct,
+                                cdtrName: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .cdtrName,
+                                currency: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .currency,
+                                amount: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .amount,
+                                rtrnReason: ProviderScope.containerOf(context)
+                                    .read(returnPaymentSelectionPageViewModelProvider)
+                                    .returnReasonCode,
+                                rtrnAddInfo: ProviderScope.containerOf(context)
+                                    .read(returnPaymentSelectionPageViewModelProvider)
+                                    .reasonToReturnController
+                                    .text,
+                                isDispute: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .isDispute,
+                                disputeRefNo: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .disputeRefNo,
+                                otpCode: model.otpController.text,
+                                getToken: ProviderScope.containerOf(context)
+                                    .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                    .returnArgument
+                                    .getToken,
+                              );
+                            }
+                          },
+                          dataBuilder: (context, enterOTP) {
+                            return GestureDetector(
+                              onHorizontalDragEnd: (details) {
+                                if (ProviderScope.containerOf(context)
+                                        .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                        .appSwiperController
+                                        .page ==
+                                    1.0) {
+                                  FocusScope.of(context).unfocus();
+                                  if (StringUtils.isDirectionRTL(context)) {
+                                    if (!details.primaryVelocity!.isNegative) {
+                                      model.validateOTP();
+                                    } else {
+                                      model.otpController.clear();
 
-                              if (ProviderScope.containerOf(context)
-                                      .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                      .appSwiperController
-                                      .page ==
-                                  1.0) {
-                                FocusScope.of(context).unfocus();
-                                if (StringUtils.isDirectionRTL(context)) {
-                                  if (!details.primaryVelocity!.isNegative) {
-                                    model.validateOTP();
+                                      ProviderScope.containerOf(context)
+                                          .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                          .previousPage();
+                                    }
                                   } else {
-                                    ProviderScope.containerOf(context)
-                                        .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                        .previousPage();
-                                  }
-                                } else {
-                                  if (details.primaryVelocity!.isNegative) {
-                                    model.validateOTP();
-                                  } else {
-                                    ProviderScope.containerOf(context)
-                                        .read(returnPaymentTransactionSliderPageViewModelProvider)
-                                        .previousPage();
+                                    if (details.primaryVelocity!.isNegative) {
+                                      model.validateOTP();
+                                    } else {
+                                      model.otpController.clear();
+
+                                      ProviderScope.containerOf(context)
+                                          .read(returnPaymentTransactionSliderPageViewModelProvider)
+                                          .previousPage();
+                                    }
                                   }
                                 }
-                              }
-                            },
-                            child: Card(
-                              child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SingleChildScrollView(
-                                        physics: ClampingScrollPhysics(),
-                                        child: Column(
-                                          children: [
-                                            AppOtpFields(
-                                              length: 6,
-                                              controller: model.otpController,
-                                              key: model.otpKey,
-                                              onChanged: (val) {
-                                                model.validate(val);
-                                              },
-                                            ),
-                                          ],
+                              },
+                              child: Card(
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SingleChildScrollView(
+                                          physics: ClampingScrollPhysics(),
+                                          child: Column(
+                                            children: [
+                                              AppOtpFields(
+                                                length: 6,
+                                                controller: model.otpController,
+                                                key: model.otpKey,
+                                                onChanged: (val) {
+                                                  model.validate(val);
+                                                },
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          CountdownTimer(
-                                            controller: model.countDownController,
-                                            onEnd: () {},
-                                            endTime: model.endTime,
-                                            textStyle: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 16.t,
-                                              color: AppColor.sky_blue_mid,
-                                            ),
-                                            widgetBuilder: (context, currentTimeRemaining) {
-                                              return currentTimeRemaining == null
-                                                  ? TextButton(
-                                                      onPressed: () {
-                                                        ProviderScope.containerOf(context)
-                                                            .read(returnPaymentSelectionPageViewModelProvider)
-                                                            .returnRTPrequestOTP();
-                                                      },
-                                                      child: Text(
-                                                        S.of(context).resendCode,
+                                        Column(
+                                          children: [
+                                            CountdownTimer(
+                                              controller: model.countDownController,
+                                              onEnd: () {},
+                                              endTime: model.endTime,
+                                              textStyle: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 16.t,
+                                                color: AppColor.sky_blue_mid,
+                                              ),
+                                              widgetBuilder: (context, currentTimeRemaining) {
+                                                return currentTimeRemaining == null
+                                                    ? TextButton(
+                                                        onPressed: () {
+                                                          model.otpController.clear();
+                                                          ProviderScope.containerOf(context)
+                                                              .read(
+                                                                  returnPaymentSelectionPageViewModelProvider)
+                                                              .returnRTPrequestOTP();
+                                                        },
+                                                        child: Text(
+                                                          S.of(context).resendCode,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14.t,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: AppColor.sky_blue_mid),
+                                                        ))
+                                                    : Text(
+                                                        S.of(context).resendIn(
+                                                            '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
                                                             fontSize: 14.t,
                                                             fontWeight: FontWeight.w600,
                                                             color: AppColor.sky_blue_mid),
-                                                      ))
-                                                  : Text(
-                                                      S.of(context).resendIn(
-                                                          '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.t,
-                                                          fontWeight: FontWeight.w600,
-                                                          color: AppColor.sky_blue_mid),
+                                                      );
+                                              },
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 16.0.h),
+                                              child: AppStreamBuilder<bool>(
+                                                  stream: model.showButtonSubjectStream,
+                                                  initialData: false,
+                                                  dataBuilder: (context, isValid) {
+                                                    return Visibility(
+                                                      visible: isValid!,
+                                                      child: AnimatedButton(
+                                                        borderColor: AppColor.sky_blue_mid,
+                                                        textColor: AppColor.sky_blue_mid,
+                                                        buttonHeight: 50.h,
+                                                        buttonText: S.of(context).swipeToProceed,
+                                                      ),
                                                     );
-                                            },
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 16.0.h),
-                                            child: AppStreamBuilder<bool>(
-                                                stream: model.showButtonSubjectStream,
-                                                initialData: false,
-                                                dataBuilder: (context, isValid) {
-                                                  return Visibility(
-                                                    visible: isValid!,
-                                                    child: AnimatedButton(
-                                                      borderColor: AppColor.sky_blue_mid,
-                                                      textColor: AppColor.sky_blue_mid,
-                                                      buttonHeight: 50.h,
-                                                      buttonText: S.of(context).swipeToProceed,
-                                                    ),
-                                                  );
-                                                }),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                          );
-                        });
-                  }));
-        });
+                                                  }),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                            );
+                          });
+                    }));
+          }),
+    );
   }
 }

@@ -9,6 +9,7 @@ import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page.dart';
@@ -189,20 +190,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                   initialData: Resource.none(),
                                   onData: (data) async {
                                     if (data.status == Status.SUCCESS) {
-                                      ///LOG EVENT TO FIREBASE
-                                      await FireBaseLogUtil.fireBaseLog(
-                                          "approve_otp", {"is_approve_otp": true});
-
                                       Navigator.pushNamed(context, RoutePaths.AcceptRequestMoneyOtp,
                                           arguments: AcceptRequestMoneyOtpPageArgument(
                                               approveRtpData: model.approveRtpData,
                                               mobileCode: data.data?.mobileCode ?? '',
                                               mobileNumber: data.data?.mobileNumber ?? ''));
-                                    } else if (data.status == Status.ERROR) {
-                                      ///LOG EVENT TO FIREBASE
-                                      await FireBaseLogUtil.fireBaseLog(
-                                          "approve_otp", {"is_approve_otp": false});
-                                    }
+                                    } else if (data.status == Status.ERROR) {}
                                   },
                                   dataBuilder: (context, approveRTPOtpResponse) {
                                     return AppStreamBuilder<Resource<PaymentActivityResponse>>(
@@ -211,12 +204,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                         onData: (data) async {
                                           if (data.status == Status.SUCCESS) {
                                             ///LOG EVENT TO FIREBASE
-                                            await FireBaseLogUtil.fireBaseLog(
-                                                "request_money", {"is_request_money": true});
+                                            await FireBaseLogUtil.fireBaseLog("transaction_history_success",
+                                                {"is_transaction_history_success": true});
                                           } else if (data.status == Status.ERROR) {
                                             ///LOG EVENT TO FIREBASE
-                                            await FireBaseLogUtil.fireBaseLog(
-                                                "request_money", {"is_request_money": false});
+                                            await FireBaseLogUtil.fireBaseLog("transaction_history_failed",
+                                                {"is_transaction_history_failed": true});
                                           }
                                         },
                                         dataBuilder: (context, requestActivity) {
@@ -239,7 +232,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "- " +
-                                                                  RequestMoneyActivityList.amount.toString(),
+                                                                  '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
+                                                              currency: RequestMoneyActivityList.curr ?? '',
                                                               isAmountVisible: true,
                                                               cdtrAcct:
                                                                   RequestMoneyActivityList.cdtrAcct ?? '',
@@ -252,7 +246,24 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               actionWidget: GestureDetector(
                                                                 onTap: () {
                                                                   Navigator.pushNamed(
-                                                                      context, RoutePaths.CreditConfirmation);
+                                                                      context, RoutePaths.CreditConfirmation,
+                                                                      arguments: CreditConfirmationArgument(
+                                                                          crediterDP: StringUtils.getFirstInitials(
+                                                                              RequestMoneyActivityList
+                                                                                  .cdtrName),
+                                                                          transactionType:
+                                                                              RequestMoneyActivityList.paymentType
+                                                                                  .toString(),
+                                                                          date: TimeUtils.convertDateTimeToDate(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          time: TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                                              RequestMoneyActivityList.rtpDate
+                                                                                  .toString()),
+                                                                          refID: RequestMoneyActivityList.payRefNo,
+                                                                          accountNo: RequestMoneyActivityList.cdtrAcct,
+                                                                          amount: "- ${RequestMoneyActivityList.amount}",
+                                                                          crediterName: RequestMoneyActivityList.cdtrName));
                                                                 },
                                                                 child: Container(
                                                                   width: double.infinity,
@@ -355,7 +366,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                       ),
                                                                       Text(
                                                                         TimeUtils.convertDateTimeToDate(
-                                                                            RequestMoneyActivityList.rtpDate
+                                                                            RequestMoneyActivityList
+                                                                                .paymentDate
                                                                                 .toString()),
                                                                         style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
@@ -385,7 +397,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         TimeUtils
                                                                             .getFormattedTimeFor12HrsFormat(
                                                                                 RequestMoneyActivityList
-                                                                                    .rtpDate
+                                                                                    .paymentDate
                                                                                     .toString()),
                                                                         textAlign: TextAlign.center,
                                                                         style: TextStyle(
@@ -437,11 +449,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               RTPConfirmationDialog.show(
                                                                 context,
                                                                 amount: " " +
-                                                                    RequestMoneyActivityList.amount
-                                                                        .toString() +
-                                                                    " " +
-                                                                    RequestMoneyActivityList.curr.toString(),
-                                                                isAmountVisible: false,
+                                                                    '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
+                                                                currency: RequestMoneyActivityList.curr ?? '',
+                                                                isAmountVisible: true,
                                                                 cdtrAcct:
                                                                     RequestMoneyActivityList.cdtrAcct ?? '',
                                                                 cdtrDpText: StringUtils.getFirstInitials(
@@ -465,7 +475,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         ),
                                                                         Text(
                                                                           TimeUtils.convertDateTimeToDate(
-                                                                              RequestMoneyActivityList.rtpDate
+                                                                              RequestMoneyActivityList
+                                                                                  .paymentDate
                                                                                   .toString()),
                                                                           style: TextStyle(
                                                                               fontFamily: StringUtils.appFont,
@@ -495,7 +506,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           TimeUtils
                                                                               .getFormattedTimeFor12HrsFormat(
                                                                                   RequestMoneyActivityList
-                                                                                      .rtpDate
+                                                                                      .paymentDate
                                                                                       .toString()),
                                                                           textAlign: TextAlign.center,
                                                                           style: TextStyle(
@@ -539,6 +550,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 showDescription: false,
                                                                 actionWidget: GestureDetector(
                                                                   onTap: () {
+                                                                    Navigator.pop(context);
+
                                                                     Navigator.pushNamed(context,
                                                                         RoutePaths.ReturnPaymentSliderPage,
                                                                         arguments: ReturnPaymentTransactionSliderPageArgument(
@@ -568,6 +581,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                             rtrnReason: "",
                                                                             rtrnAddInfo: "",
                                                                             isDispute: false,
+                                                                            amount: RequestMoneyActivityList
+                                                                                .amount,
                                                                             disputeRefNo:
                                                                                 RequestMoneyActivityList
                                                                                     .payRefNo,
@@ -607,6 +622,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               context,
                                                               amount: "",
                                                               isAmountVisible: false,
+                                                              currency: data.curr ?? '',
                                                               cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:
                                                                   StringUtils.getFirstInitials(data.cdtrName),
@@ -636,9 +652,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           children: [
                                                                             TextSpan(
                                                                               text: " " +
-                                                                                  data.amount.toString() +
+                                                                                  '${(data.amount?.toStringAsFixed(3)).toString()}' +
                                                                                   " " +
-                                                                                  S.of(context).JOD,
+                                                                                  data.curr.toString(),
                                                                               style: TextStyle(
                                                                                   fontFamily:
                                                                                       StringUtils.appFont,
@@ -845,6 +861,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "",
+                                                              currency: data.curr ?? '',
                                                               isAmountVisible: false,
                                                               cdtrAcct: data.cdtrAcct ?? '',
                                                               cdtrDpText:
@@ -875,9 +892,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           children: [
                                                                             TextSpan(
                                                                               text: " " +
-                                                                                  data.amount.toString() +
+                                                                                  '${(data.amount?.toStringAsFixed(3)).toString()}' +
                                                                                   " " +
-                                                                                  S.of(context).JOD,
+                                                                                  data.curr.toString(),
                                                                               style: TextStyle(
                                                                                   fontFamily:
                                                                                       StringUtils.appFont,
