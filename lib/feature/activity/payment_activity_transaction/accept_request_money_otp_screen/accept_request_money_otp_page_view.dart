@@ -74,7 +74,8 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                         onData: (data) async {
                           if (data.status == Status.SUCCESS) {
                             ///LOG EVENT TO FIREBASE
-                            await FireBaseLogUtil.fireBaseLog("rtp_accepted", {"is_rtp_accepted": true});
+                            await FireBaseLogUtil.fireBaseLog(
+                                "accept_rtp_success", {"is_accept_rtp_success": true});
                             Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
                                 arguments: PaymentTransationSuccessArgument(
                                     ammount: model.argument.approveRtpData.amount,
@@ -83,6 +84,10 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                     iban: model.argument.approveRtpData.iban));
                             // model.getRequestMoneyActivity(
                             //     true, model.filterDays, model.transactionType);
+                          } else if (data.status == Status.ERROR) {
+                            ///LOG EVENT TO FIREBASE
+                            await FireBaseLogUtil.fireBaseLog(
+                                "accept_rtp_failure", {"is_accept_rtp_failure": false});
                           }
                         },
                         dataBuilder: (context, snapshot) {
@@ -142,6 +147,7 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                               AppOtpFields(
                                                 length: 6,
                                                 controller: model.otpController,
+                                                key: model.otpControllerKey,
                                                 onChanged: (val) {
                                                   model.validate(val);
                                                 },

@@ -1,3 +1,4 @@
+import "package:domain/constants/error_types.dart";
 import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_RTP_request_usecase.dart';
@@ -5,6 +6,7 @@ import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -31,15 +33,16 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          getError(event);
         } else if (event.status == Status.SUCCESS) {}
       });
     });
     _approveRTPRequest.listen(
-      (value) {
+          (value) {
         RequestManager(value, createCall: () => _approveRTPRequestUseCase.execute(params: value))
             .asFlow()
             .listen(
-          (event) {
+              (event) {
             updateLoader();
             _approveRTPResponse.safeAdd(event);
 
@@ -51,9 +54,9 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
       },
     );
     _approveRTPOtpRequest.listen(
-      (value) {
+          (value) {
         RequestManager(value, createCall: () => _approveRTPOtpUseCase.execute(params: value)).asFlow().listen(
-          (event) {
+              (event) {
             updateLoader();
             _approveRTPOtpResponse.safeAdd(event);
 
@@ -91,6 +94,17 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
   void makeApproveRTPOtpRequest() {
     otpController.clear();
     _approveRTPOtpRequest.safeAdd(ApproveRTPOtpUseCaseParams());
+  }
+
+  void getError(Resource<bool> event) {
+    switch (event.appError!.type) {
+      case ErrorType.INVALID_OTP:
+        otpControllerKey.currentState!.isValid = false;
+        break;
+
+      default:
+        break;
+    }
   }
 
   ///*--------------------[approve rtp]---------------------->>>>>>>
@@ -178,6 +192,7 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   TextEditingController otpController = TextEditingController();
+  final GlobalKey<AppTextFieldState> otpControllerKey = GlobalKey(debugLabel: "otpController");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);

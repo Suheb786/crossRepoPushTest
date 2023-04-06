@@ -40,7 +40,7 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                 onData: (data) async {
                   if (data.status == Status.SUCCESS) {
                     ///LOG EVENT TO FIREBASE
-                    await FireBaseLogUtil.fireBaseLog("rtp_rejected", {"is_rtp_rejected": true});
+                    await FireBaseLogUtil.fireBaseLog("reject_rtp_success", {"is_reject_rtp_success": true});
 
                     Navigator.pushNamed(context, RoutePaths.PaymentTransationSuccess,
                         arguments: PaymentTransationSuccessArgument(
@@ -64,7 +64,7 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                     // model.getRequestMoneyActivity(
                     //     true, model.filterDays, model.transactionType);
                   } else if (data.status == Status.ERROR) {
-                    await FireBaseLogUtil.fireBaseLog("rtp_rejected", {"is_rtp_rejected": false});
+                    await FireBaseLogUtil.fireBaseLog("reject_rtp_failure", {"is_reject_rtp_failure": false});
                   }
                 },
                 dataBuilder: (context, snapshot) {
@@ -145,6 +145,7 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                                           AppOtpFields(
                                             length: 6,
                                             controller: model.otpController,
+                                            key: model.otpControllerKey,
                                             onChanged: (val) {
                                               model.validate(val);
                                             },
