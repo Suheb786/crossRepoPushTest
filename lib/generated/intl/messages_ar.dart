@@ -23,7 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(additionalIncomeList) =>
       "إضافة دخل\n${additionalIncomeList}";
 
-  static String m1(variable) => "Enter the 6-digit code sent to ${variable}";
+  static String m1(variable) =>
+      "أدخل الرمز المكون من 6 أرقام المرسل إلى {متغير}";
 
   static String m2(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
 
@@ -1219,13 +1220,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "خطأ اثناء تنفيذ الحصول على الحركات السابقة"),
         "exceptionWhileExecutingRejectRtpRequest":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Reject RTP Request"),
+                "استثناء أثناء تنفيذ رفض طلب RTP"),
         "exceptionWhileExecutingRejectRtpRequestOtp":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Reject RTP Request Otp"),
+                "استثناء أثناء تنفيذ رفض طلب RTP Otp"),
         "exceptionWhileExecutingReturnRtpRequest":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Return RTP Request"),
+                "استثناء أثناء تنفيذ طلب إرجاع RTP"),
         "exceptionWhileExecutingReturnRtpRequestOtp":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ اثناء تنفيذ رفض طلب رمز المرور لمرة واحدة لطلب الدفع "),
@@ -2158,8 +2159,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
         "pleaseSelectReasonToReject":
             MessageLookupByLibrary.simpleMessage("يرجى اختيار سبب الرفض"),
-        "pleaseSelectReasonToReturn": MessageLookupByLibrary.simpleMessage(
-            "Please select reason to Return"),
+        "pleaseSelectReasonToReturn":
+            MessageLookupByLibrary.simpleMessage("الرجاء تحديد سبب للعودة"),
         "pleaseSelectTheReason":
             MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
         "pleaseSelectYourAction":
@@ -2276,7 +2277,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يا ريت تكون بمكان هادي وفيه خصوصية"),
         "reactivateCliqId":
             MessageLookupByLibrary.simpleMessage("اعادة تفعيل حساب كليك"),
-        "reason": MessageLookupByLibrary.simpleMessage("Reason"),
+        "reason": MessageLookupByLibrary.simpleMessage("سبب"),
         "reasonOfCancellation":
             MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
         "reasonOfUnavailability":
@@ -2284,8 +2285,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
         "reasonToReject": MessageLookupByLibrary.simpleMessage("سبب الرفض"),
-        "reasonToreturn":
-            MessageLookupByLibrary.simpleMessage("Reason to return"),
+        "reasonToreturn": MessageLookupByLibrary.simpleMessage("سبب العودة"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
         "receiveMoneyFromOthers":
@@ -2297,7 +2297,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recipientAddress":
             MessageLookupByLibrary.simpleMessage("عنوان المستلم"),
         "recipientName": MessageLookupByLibrary.simpleMessage("اسم المستلم"),
-        "refID": MessageLookupByLibrary.simpleMessage("Ref ID"),
+        "refID": MessageLookupByLibrary.simpleMessage("رقم العقار"),
         "refNo": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
