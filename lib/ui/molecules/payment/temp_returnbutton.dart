@@ -192,7 +192,7 @@ class TempReturnButton extends StatelessWidget {
                       ),
                     ],
                   ),
-                  currency: '',
+
                 );
               },
               child: Text(
@@ -384,7 +384,7 @@ class TempReturnButton extends StatelessWidget {
                                 )
                               ],
                             ),
-                            currency: '',
+
                           );
                         },
                         child: Container(
@@ -622,7 +622,7 @@ class TempReturnButton extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          currency: '',
+
                                         );
                                       },
                                       child: Text(
@@ -897,7 +897,7 @@ class TempReturnButton extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            currency: '',
+
                           );
                         },
                         child: CircleAvatar(

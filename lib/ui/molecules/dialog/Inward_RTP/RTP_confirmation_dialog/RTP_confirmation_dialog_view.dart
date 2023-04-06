@@ -12,7 +12,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final String cdtrAcct;
   final String cdtrDpText;
   final String cdtrName;
-  final String currency;
+
   final Function? onAccepted;
   final Function? onDismiss;
   final Function? onRejected;
@@ -36,7 +36,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
       required this.cdtrName,
       required this.cdtrDpText,
       required this.amount,
-      required this.currency,
+
       required this.cdtrAcct});
 
   @override
