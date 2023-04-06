@@ -54,7 +54,7 @@ class AcceptRequestMoneyOtpPageViewModel extends BasePageViewModel {
       },
     );
     _approveRTPOtpRequest.listen(
-          (value) {
+      (value) {
         RequestManager(value, createCall: () => _approveRTPOtpUseCase.execute(params: value)).asFlow().listen(
           (event) {
             updateLoader();
