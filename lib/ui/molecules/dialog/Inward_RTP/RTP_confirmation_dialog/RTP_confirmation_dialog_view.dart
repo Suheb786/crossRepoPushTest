@@ -12,7 +12,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final String cdtrAcct;
   final String cdtrDpText;
   final String cdtrName;
-  final String currency;
+
   final Function? onAccepted;
   final Function? onDismiss;
   final Function? onRejected;
@@ -20,12 +20,14 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final Widget description;
   final bool showDescription;
   final bool isAmountVisible;
+  final String currency;
   final Widget actionWidget;
 
   const RTPConfirmationDialogView(
       {this.onDismiss,
       this.onAccepted,
       this.onRejected,
+      required this.currency,
       required this.isAmountVisible,
       required this.actionWidget,
       required this.description,
@@ -34,7 +36,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
       required this.cdtrName,
       required this.cdtrDpText,
       required this.amount,
-      required this.currency,
+
       required this.cdtrAcct});
 
   @override
@@ -125,7 +127,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                       SizedBox(height: 32.h),
                       actionWidget,
                       SizedBox(
-                        height: 30.h,
+                        height: 25.h,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 16.h),

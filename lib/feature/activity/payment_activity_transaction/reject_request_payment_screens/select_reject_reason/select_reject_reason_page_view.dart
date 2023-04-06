@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
@@ -49,6 +51,7 @@ class SelectRejectReasonPageView extends BasePageViewWidget<SelectRejectReasonPa
 
                         model.mobileCode = data.data?.mobileCode ?? '';
                         model.mobileNumber = data.data?.mobileNumber ?? '';
+                        log(" model.mobile no is : ${model.mobileNumber}");
 
                         ProviderScope.containerOf(context)
                             .read(rejectRequestPaymentPageViewModelProvider)

@@ -26,10 +26,6 @@ class CreditConfirmationPaymentActivityPageView
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).canvasColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
       ),
       child: Container(
         margin: EdgeInsets.only(top: 52.h),
@@ -65,7 +61,8 @@ class CreditConfirmationPaymentActivityPageView
                 margin: EdgeInsets.only(top: 35.h),
                 decoration: BoxDecoration(
                   color: AppColor.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius:
+                      BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                 ),
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 24.0.w),
@@ -81,7 +78,7 @@ class CreditConfirmationPaymentActivityPageView
                                     shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                                 child: Center(
                                   child: Text(
-                                    StringUtils.getFirstInitials("Ahmed Lufti"),
+                                    model.creditConfirmationArgument.crediterDP ?? "",
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).accentColor,
@@ -92,7 +89,7 @@ class CreditConfirmationPaymentActivityPageView
                             SizedBox(height: 16.0.h),
                             RichText(
                               text: TextSpan(
-                                text: "- 10.000",
+                                text: model.creditConfirmationArgument.amount.toString(),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 24.t,
@@ -113,7 +110,7 @@ class CreditConfirmationPaymentActivityPageView
                             ),
                             SizedBox(height: 8.0.h),
                             Text(
-                              "Ahmed Lutfi",
+                              model.creditConfirmationArgument.crediterName ?? "",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -121,7 +118,7 @@ class CreditConfirmationPaymentActivityPageView
                                   fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              "EFBKI000012341234123819241213|",
+                              model.creditConfirmationArgument.accountNo ?? "",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -146,11 +143,11 @@ class CreditConfirmationPaymentActivityPageView
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "Send Money",
+                                      model.creditConfirmationArgument.transactionType ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -168,11 +165,11 @@ class CreditConfirmationPaymentActivityPageView
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "12 September 2021",
+                                      model.creditConfirmationArgument.date ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -183,7 +180,7 @@ class CreditConfirmationPaymentActivityPageView
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Time",
+                                      S.current.time,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -191,12 +188,12 @@ class CreditConfirmationPaymentActivityPageView
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "8:21 PM",
+                                      model.creditConfirmationArgument.time ?? "",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),
@@ -207,7 +204,7 @@ class CreditConfirmationPaymentActivityPageView
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Ref ID",
+                                      S.current.refID,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -215,12 +212,12 @@ class CreditConfirmationPaymentActivityPageView
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "1209323102133939",
+                                      model.creditConfirmationArgument.refID ?? "",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.t,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 )

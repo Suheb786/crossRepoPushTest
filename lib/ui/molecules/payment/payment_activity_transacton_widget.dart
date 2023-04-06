@@ -469,7 +469,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
     return RichText(
         maxLines: 3,
         text: TextSpan(
-            text: data?.cdtrName ?? '',
+            text: "${data?.cdtrName ?? ""} ",
             style: TextStyle(
               fontFamily: StringUtils.appFont,
               fontSize: 12.0.t,

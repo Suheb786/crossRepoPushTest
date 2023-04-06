@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(estimatedTime) => "وقت الانتظار المتوقع \n${estimatedTime}";
 
-  static String m3(Name) => "from ${Name}";
+  static String m3(Name) => "من {الاسم}";
 
   static String m4(String) => "${String} تم تفعيل خدمة كليك على الاسم المستعار";
 
@@ -706,7 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من البطاقة الائتمانية"),
         "creditConfirmation":
-            MessageLookupByLibrary.simpleMessage("Credit Confirmation"),
+            MessageLookupByLibrary.simpleMessage("إشعار حوالة"),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("سقف الائتمان"),
@@ -1113,7 +1113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileEditingAnAlias": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ عند تعديل الاسم المستعار"),
         "errorWhileGeneratingQrCode": MessageLookupByLibrary.simpleMessage(
-            "Error while generating QR code"),
+            "خطأ اثناء انشاء رمز الاجابة السريعة"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("خطأ خلال فتح الحساب"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -1146,10 +1146,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-009)"),
         "errorWhileGettingReturnRtpRequest":
             MessageLookupByLibrary.simpleMessage(
-                "Error while getting Return RTP Request"),
+                "خطأ اثناء الحصول على  طلب الدفع"),
         "errorWhileGettingTransactionHistoryList":
             MessageLookupByLibrary.simpleMessage(
-                "Error while getting Transaction History List"),
+                "خطأ اثناء الحصول على سجل الحركات السابقة"),
         "errorWhileGettingXCSCustomerDetails": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-089)"),
         "errorWhileIssueCard":
@@ -1176,7 +1176,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "حدث خطأ عند ارسال الاموال للايبان"),
         "errorWhileSendingQRPayment": MessageLookupByLibrary.simpleMessage(
-            "Error while sending QR payment"),
+            "خطأ اثناء ارسال دفعة الاستجابة السريعة"),
         "errorWhileSubmittingOutwardPayment":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ أثناء إرسال الدفعة الصادرة"),
@@ -1204,19 +1204,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "estimatedTime": m2,
         "exceptionExecutingGetPaymentReasons":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Get Return Payment Reasons"),
+                "خطأ اثناء تنفيذ الحصول على اسباب اعادة الحوالة"),
         "exceptionExecutingGetRejectionReasons":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Get Rejection Reasons"),
+                "خطأ أثناء تنفيذ الحصول على أسباب الرفض"),
         "exceptionWhileExecutingApproveRtpRequest":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Approve RTP Request"),
+                "خطأ اثناء تنفيذ الموافقة على  طلب الدفع"),
         "exceptionWhileExecutingApproveRtpRequestOtp":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Approve RTP Request Otp"),
+                "خطأ أثناء تنفيذ الموافقة على الطلب"),
         "exceptionWhileExecutingGetTransactionHistory":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Get Transaction History"),
+                "خطأ اثناء تنفيذ الحصول على الحركات السابقة"),
         "exceptionWhileExecutingRejectRtpRequest":
             MessageLookupByLibrary.simpleMessage(
                 "Exception while executing Reject RTP Request"),
@@ -1228,7 +1228,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Exception while executing Return RTP Request"),
         "exceptionWhileExecutingReturnRtpRequestOtp":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while executing Return RTP Request Otp"),
+                "خطأ اثناء تنفيذ رفض طلب رمز المرور لمرة واحدة لطلب الدفع "),
         "exchangeRateForCurrencies": MessageLookupByLibrary.simpleMessage(
             "سعر صرف العملات الأخرى مرتفع"),
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
@@ -1321,7 +1321,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("من فواتيرك المخزنة"),
         "fromSingleLine": MessageLookupByLibrary.simpleMessage("من"),
         "fromStrin": m3,
-        "fromYou": MessageLookupByLibrary.simpleMessage("from you"),
+        "fromYou": MessageLookupByLibrary.simpleMessage("منك"),
         "fromYouWouldYouLikeToAcceptIt":
             MessageLookupByLibrary.simpleMessage("منك، هل تريد الموافقة"),
         "fromYourCliqIdList":
@@ -2156,8 +2156,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("الرجاء التحديد"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
-        "pleaseSelectReasonToReject": MessageLookupByLibrary.simpleMessage(
-            "Please Select Reason To Reject"),
+        "pleaseSelectReasonToReject":
+            MessageLookupByLibrary.simpleMessage("يرجى اختيار سبب الرفض"),
         "pleaseSelectTheReason":
             MessageLookupByLibrary.simpleMessage("اختار سبب الإلغاء"),
         "pleaseSelectYourAction":
@@ -2261,10 +2261,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("السبب"),
-        "qrExpired": MessageLookupByLibrary.simpleMessage("QR Expired"),
-        "qrInvalid": MessageLookupByLibrary.simpleMessage("QR does not exist"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage(
+            "رمز الاستجابة السريعة منتهي الصلاحية"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage(
+            "رمز الاستجابة السريعة غير موجود"),
         "qrNotScanned": MessageLookupByLibrary.simpleMessage(
-            "QR Not Scanned or Re Read the qr code/link"),
+            "لم يتم مسح رمز الاستجابة السريعة او اعادة قراءة رمز/رابط الاستجابة السريعة"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("دفعات QR"),
         "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
             "رمز الاستجابة فعال لمدة 30 دقيقة"),
@@ -2279,8 +2281,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
-        "reasonToReject":
-            MessageLookupByLibrary.simpleMessage("reason to reject"),
+        "reasonToReject": MessageLookupByLibrary.simpleMessage("سبب الرفض"),
+        "reasonToreturn":
+            MessageLookupByLibrary.simpleMessage("Reason to return"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
             "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
         "receiveMoneyFromOthers":
@@ -2368,8 +2371,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
             "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 150 دينار عند استلامها."),
-        "requestSuccessFullyRejected": MessageLookupByLibrary.simpleMessage(
-            "Request successfully\nrejected."),
+        "requestSuccessFullyRejected":
+            MessageLookupByLibrary.simpleMessage("تم الطلب بنجاح/تم رفض الطلب"),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2429,7 +2432,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال استرداد تفاصيل التعليمات الثابتة. حاول كمان مرة "),
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
-        "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
+        "returnPayment": MessageLookupByLibrary.simpleMessage("أرجاع دفعة"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
@@ -2513,10 +2516,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
-        "selectReasonToReject": MessageLookupByLibrary.simpleMessage(
-            "Select the reason\nto reject"),
-        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage(
-            "Select the reason\nto return"),
+        "selectReasonToReject":
+            MessageLookupByLibrary.simpleMessage("اختيار سبب الرفض"),
+        "selectTheReasonToReturn":
+            MessageLookupByLibrary.simpleMessage("أختر  سبب ارجاع الدفعة"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
@@ -2531,7 +2534,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),
-        "sent": MessageLookupByLibrary.simpleMessage(" sent"),
+        "sent": MessageLookupByLibrary.simpleMessage(" ارسل"),
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "السيرفر تحت الصيانة، حاول بعدين."),
@@ -2557,7 +2560,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "أكمل المعلومات لإصدار البطاقة التابعة"),
         "setupAndPersonalizeYourNewDebitCard":
             MessageLookupByLibrary.simpleMessage("اصدر بطاقة الدفع المباشر"),
-        "share": MessageLookupByLibrary.simpleMessage("Share"),
+        "share": MessageLookupByLibrary.simpleMessage("شارك"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("شارك معلومات حسابك"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("شارك CliQ"),
@@ -2713,7 +2716,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
-        "time": MessageLookupByLibrary.simpleMessage("Time"),
+        "time": MessageLookupByLibrary.simpleMessage("وقت"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
@@ -2730,7 +2733,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لاستعراض الاشتراكات"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("إلى الصفحة الرئيسية"),
-        "toYou": MessageLookupByLibrary.simpleMessage(" to you"),
+        "toYou": MessageLookupByLibrary.simpleMessage("اليك "),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(
             "TokenSerial / Apin فارغ من Vkey"),
         "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(
@@ -2968,7 +2971,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
-        "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
+        "youSent": MessageLookupByLibrary.simpleMessage(" تم الارسال"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
@@ -3012,6 +3015,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun"),
-        "yourequested": MessageLookupByLibrary.simpleMessage("You Requested")
+        "yourequested": MessageLookupByLibrary.simpleMessage("تم طلب")
       };
 }
