@@ -51,13 +51,13 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                         .isFriend) {
                       ///LOG EVENT TO FIREBASE
                       await FireBaseLogUtil.fireBaseLog(
-                          "send_money_to_new_contact_saved_beneficiary_payment_success", {
+                          "send_money_success_new_contact_saved", {
                         "is_money_sent": true,
                         "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
                       });
                     } else {
                       ///LOG EVENT TO FIREBASE
-                      await FireBaseLogUtil.fireBaseLog("send_money_to_new_contact_payment_success", {
+                      await FireBaseLogUtil.fireBaseLog("send_money_success_new_contact", {
                         "is_money_sent": true,
                         "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
                       });
@@ -71,7 +71,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                   } else if (data.status == Status.ERROR) {
                     ///LOG EVENT TO FIREBASE
                     await FireBaseLogUtil.fireBaseLog(
-                        "send_money_to_new_contact_payment_failure", {"is_money_sent": false});
+                        "send_money_new_contact_failure", {"is_money_sent": false});
 
                     if (data.appError!.type == ErrorType.INVALID_OTP_NETWORK) {
                       model.showToastWithError(data.appError!);

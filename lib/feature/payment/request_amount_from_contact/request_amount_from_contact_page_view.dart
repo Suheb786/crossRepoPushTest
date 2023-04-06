@@ -37,7 +37,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
 
               ///LOG EVENT TO FIREBASE
               await FireBaseLogUtil.fireBaseLog(
-                  "request_money_from_saved_beneficiary_failure", {"is_money_requested": false});
+                  "request_money_saved_beneficiary_failure", {"is_money_requested": false});
             } else if (data.status == Status.SUCCESS) {
               ///LOGGING EVENT TO APP FLYER
               model.logEventsForAppFlyer(
@@ -45,7 +45,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                   eventValue: {"money_requested": model.currentPinValue});
 
               ///LOG EVENT TO FIREBASE
-              await FireBaseLogUtil.fireBaseLog("request_money_from_saved_beneficiary_success",
+              await FireBaseLogUtil.fireBaseLog("request_money_saved_beneficiary_success",
                   {"is_money_requested": true, "money_requested": model.currentPinValue});
               Navigator.pushNamed(context, RoutePaths.RequestAmountFromContactSuccess, arguments: [
                 model.currentPinValue,

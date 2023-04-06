@@ -4250,10 +4250,10 @@ class S {
     );
   }
 
-  /// `You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.`
+  /// `You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 300 JOD.`
   String get physicalCardUse {
     return Intl.message(
-      'You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.',
+      'You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 300 JOD.',
       name: 'physicalCardUse',
       desc: '',
       args: [],
@@ -13850,10 +13850,10 @@ class S {
     );
   }
 
-  /// `Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD.`
+  /// `Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 300 JOD.`
   String get requestPhysicalCardSuccessDec {
     return Intl.message(
-      'Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD.',
+      'Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 300 JOD.',
       name: 'requestPhysicalCardSuccessDec',
       desc: '',
       args: [],

@@ -2121,7 +2121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsName": MessageLookupByLibrary.simpleMessage("اسم الشخص"),
         "personsRole": MessageLookupByLibrary.simpleMessage("وظيفته"),
         "physicalCardUse": MessageLookupByLibrary.simpleMessage(
-            "بتقدر تستخدم بطاقتك الفعلية لتدفع وتشتري بأي مكان. السقف الاعلى للدفع بدون لمس هو 150 دينار."),
+            "بتقدر تستخدم بطاقتك الفعلية لتدفع وتشتري بأي مكان. السقف الاعلى للدفع بدون لمس هو 300 دينار."),
         "pinDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("رقم PIN غير مطابق"),
         "pinRequired":
@@ -2367,7 +2367,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
             "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
-            "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 150 دينار عند استلامها."),
+            "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 300 دينار عند استلامها."),
         "requestSuccessFullyRejected": MessageLookupByLibrary.simpleMessage(
             "Request successfully\nrejected."),
         "requestSupplementaryCard":
