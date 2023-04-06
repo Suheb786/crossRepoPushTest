@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
 import 'package:riverpod/src/framework.dart';
+import 'package:sms_autofill/sms_autofill.dart';
+
 
 class ReturnPaymentOtpPage extends BasePage<ReturnPaymentOtpPageViewModel> {
   @override
@@ -13,7 +15,7 @@ class ReturnPaymentOtpPage extends BasePage<ReturnPaymentOtpPageViewModel> {
 }
 
 class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageViewModel, ReturnPaymentOtpPage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, CodeAutoFill {
   @override
   Widget buildView(BuildContext context, ReturnPaymentOtpPageViewModel model) {
     return ReturnPaymentOtpPageView(provideBase());
@@ -39,6 +41,21 @@ class ReturnPaymentOtpPageState extends BaseStatefulPage<ReturnPaymentOtpPageVie
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);
+  }
+
+  @override
+  void codeUpdated() {
+    getViewModel().otpController.text = code!;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listenForCode();
+
+    SmsAutoFill().getAppSignature.then((signature) {
+      print('inside signature---->$signature');
+    });
   }
 
   @override

@@ -13,6 +13,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -58,14 +59,8 @@ class ReturnPaymentReasonSelectionPageView
                           stream: model.returnRTPrequestOTPstream,
                           onData: (value) async {
                             if (value.status == Status.SUCCESS) {
-                              ///LOG EVENT TO FIREBASE
-                              await FireBaseLogUtil.fireBaseLog(
-                                  "return_RTP_otp", {"is_return_RTP_otp": true});
-
                               model.mobileCode = value.data?.mobileCode;
                               model.mobileNumber = value.data?.mobileNumber;
-                              log("value.data.mobileno::: ${value.data?.mobileNumber}");
-                              log(" model.mobile no is : ${model.mobileNumber}");
 
                               ProviderScope.containerOf(context)
                                   .read(returnPaymentTransactionSliderPageViewModelProvider)
@@ -74,13 +69,7 @@ class ReturnPaymentReasonSelectionPageView
                               ProviderScope.containerOf(context)
                                   .read(returnPaymentOtpPageViewModelProvider)
                                   .updateTime();
-                            } else if (value.status == Status.ERROR) {
-                              ///LOG EVENT TO FIREBASE
-                              await FireBaseLogUtil.fireBaseLog(
-                                "return_RTP_otp",
-                                {"is_return_RTP_otp": false},
-                              );
-                            }
+                            } else if (value.status == Status.ERROR) {}
                           },
                           dataBuilder: (context, returnOTP) {
                             return AppStreamBuilder<Resource<bool>>(
@@ -166,7 +155,7 @@ class ReturnPaymentReasonSelectionPageView
                                                                         false;
                                                                     if (responseStatus) {
                                                                       ReturnReasonPaymentDialog.show(context,
-                                                                          title: S.current.reasonToReject
+                                                                          title: S.current.reasonToreturn
                                                                               .toUpperCase(),
                                                                           returnReasonsPayment: reasonToReturn
                                                                               ?.data, onDismissed: () {

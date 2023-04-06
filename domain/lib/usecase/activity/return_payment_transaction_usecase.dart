@@ -26,9 +26,7 @@ class ReturnPaymentTransactionUsecaseParams extends Params {
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(returnReason)) {
       return Left(AppError(
-          cause: Exception(),
-          error: ErrorInfo(message: ""),
-          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION));
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.PLEASE_SELECT_REASON_TO_RETURN));
     }
     return Right(true);
   }
