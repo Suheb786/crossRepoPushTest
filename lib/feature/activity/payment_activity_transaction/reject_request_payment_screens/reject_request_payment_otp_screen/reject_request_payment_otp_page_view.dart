@@ -64,7 +64,7 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                     // model.getRequestMoneyActivity(
                     //     true, model.filterDays, model.transactionType);
                   } else if (data.status == Status.ERROR) {
-                    await FireBaseLogUtil.fireBaseLog("reject_rtp_failure", {"is_reject_rtp_failure": false});
+                    await FireBaseLogUtil.fireBaseLog("reject_rtp_failure", {"is_reject_rtp_failure": true});
                   }
                 },
                 dataBuilder: (context, snapshot) {

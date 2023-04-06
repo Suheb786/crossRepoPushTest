@@ -87,7 +87,7 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                           } else if (data.status == Status.ERROR) {
                             ///LOG EVENT TO FIREBASE
                             await FireBaseLogUtil.fireBaseLog(
-                                "accept_rtp_failure", {"is_accept_rtp_failure": false});
+                                "accept_rtp_failure", {"is_accept_rtp_failure": true});
                           }
                         },
                         dataBuilder: (context, snapshot) {

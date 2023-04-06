@@ -209,7 +209,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                           } else if (data.status == Status.ERROR) {
                                             ///LOG EVENT TO FIREBASE
                                             await FireBaseLogUtil.fireBaseLog("transaction_history_failed",
-                                                {"is_transaction_history_failed": false});
+                                                {"is_transaction_history_failed": true});
                                           }
                                         },
                                         dataBuilder: (context, requestActivity) {
@@ -235,7 +235,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   '${(RequestMoneyActivityList.amount?.toStringAsFixed(3)).toString()}',
                                                               currency: RequestMoneyActivityList.curr ?? '',
                                                               isAmountVisible: true,
-
                                                               cdtrAcct:
                                                                   RequestMoneyActivityList.cdtrAcct ?? '',
                                                               cdtrDpText: StringUtils.getFirstInitials(
