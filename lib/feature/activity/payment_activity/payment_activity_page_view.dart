@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/payment_type_enum.dart';
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:domain/constants/enum/payment_type_enum.dart';
 
 class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewModel> {
   PaymentActivityPageView(ProviderBase model) : super(model);
@@ -150,7 +150,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                         fontSize: 12.0.t)),
                                                                 TextSpan(
                                                                     text:
-                                                                        '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                        '${activity.data?[index].amount?.toStringAsFixed(3)} ${activity.data?[index].curr} ',
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w600,
@@ -176,7 +176,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                 children: [
                                                                     TextSpan(
                                                                         text:
-                                                                            '${activity.data![index].amount} ${S.of(context).JOD} ',
+                                                                            '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                         style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
                                                                             fontWeight: FontWeight.w600,
@@ -216,7 +216,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                 fontSize: 12.0.t)),
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].amount} ${activity.data![index].amount} ',
+                                                                                '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -238,7 +238,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                     ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].amount} ${activity.data![index].curr} ',
+                                                                                '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -261,36 +261,32 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                 fontSize: 12.0.t)),
                                                                       ]))
                                                                     : Container(),
-                                                    // Text(
-                                                    //   "You requested ${transaction
-                                                    //       .data![index]
-                                                    //       .amount} JOD from ${transaction
-                                                    //       .data![index].name}",
-                                                    //   maxLines: 2,
-                                                    //   style: TextStyle(
-                                                    //       fontWeight:
-                                                    //       FontWeight.w700,
-                                                    //       fontSize: 12),
-                                                    // ),
-                                                    Padding(
-                                                      padding: EdgeInsetsDirectional.only(top: 6.0.h),
-                                                      child: Container(
-                                                        padding: EdgeInsetsDirectional.only(
-                                                            start: 8.0.w,
-                                                            end: 8.0.w,
-                                                            top: 3.0.h,
-                                                            bottom: 2.0.h),
-                                                        decoration: BoxDecoration(
-                                                          color: model
-                                                              .getColor((activity.data![index].trxStatus)),
-                                                          borderRadius: BorderRadius.circular(100),
-                                                        ),
-                                                        child: Text(
-                                                          "${(activity.data?[index].trxStatus) ?? ""}",
-                                                          style: TextStyle(
-                                                            color: Theme.of(context).accentColor,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 12.0.t,
+                                                    Visibility(
+                                                      visible: !(activity.data?[index].trxDir ==
+                                                              RequestMoneyActivityStatusEnum
+                                                                  .TRANSACTION_DIRECTORY_INCOMING &&
+                                                          activity.data?[index].paymentType ==
+                                                              PaymentTypeEnum.SEND_MONEY),
+                                                      child: Padding(
+                                                        padding: EdgeInsetsDirectional.only(top: 6.0.h),
+                                                        child: Container(
+                                                          padding: EdgeInsetsDirectional.only(
+                                                              start: 8.0.w,
+                                                              end: 8.0.w,
+                                                              top: 3.0.h,
+                                                              bottom: 2.0.h),
+                                                          decoration: BoxDecoration(
+                                                            color: model
+                                                                .getColor((activity.data![index].trxStatus)),
+                                                            borderRadius: BorderRadius.circular(100),
+                                                          ),
+                                                          child: Text(
+                                                            "${(activity.data?[index].trxStatus) ?? ""}",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context).accentColor,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 12.0.t,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
