@@ -28,6 +28,6 @@ class PaymentActivityContentEntity
   @override
   PaymentActivityContent transform() {
     return PaymentActivityContent(
-        activityDate: this.activityDate, data: this.data!.map((e) => e.transform()).toList());
+        activityDate: this.activityDate, data: this.data?.map((e) => e.transform()).toList());
   }
 }

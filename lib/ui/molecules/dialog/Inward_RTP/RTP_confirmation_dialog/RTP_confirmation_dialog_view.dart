@@ -1,13 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -17,6 +12,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
   final String cdtrAcct;
   final String cdtrDpText;
   final String cdtrName;
+  final String currency;
   final Function? onAccepted;
   final Function? onDismiss;
   final Function? onRejected;
@@ -38,6 +34,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
       required this.cdtrName,
       required this.cdtrDpText,
       required this.amount,
+      required this.currency,
       required this.cdtrAcct});
 
   @override
@@ -89,7 +86,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                             children: [
                               TextSpan(text: " "),
                               TextSpan(
-                                text: S.of(context).JOD,
+                                text: currency,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 12.t,
