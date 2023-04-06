@@ -46,9 +46,6 @@ class SelectRejectReasonPageView extends BasePageViewWidget<SelectRejectReasonPa
                     initialData: Resource.none(),
                     onData: (data) async {
                       if (data.status == Status.SUCCESS) {
-                        ///LOG EVENT TO FIREBASE
-                        await FireBaseLogUtil.fireBaseLog("reject_otp", {"is_reject_otp": true});
-
                         model.mobileCode = data.data?.mobileCode ?? '';
                         model.mobileNumber = data.data?.mobileNumber ?? '';
                         log(" model.mobile no is : ${model.mobileNumber}");
@@ -59,10 +56,7 @@ class SelectRejectReasonPageView extends BasePageViewWidget<SelectRejectReasonPa
                         ProviderScope.containerOf(context)
                             .read(rejectRequestPaymentOtpPageViewModelProvider)
                             .updateTime();
-                      } else if (data.status == Status.ERROR) {
-                        ///LOG EVENT TO FIREBASE
-                        await FireBaseLogUtil.fireBaseLog("reject_otp", {"is_reject_otp": false});
-                      }
+                      } else if (data.status == Status.ERROR) {}
                     },
                     dataBuilder: (context, rejectOtpResponse) {
                       return AppStreamBuilder<Resource<List<RejectionReasonInward>>>(

@@ -1,3 +1,4 @@
+import "package:domain/constants/error_types.dart";
 import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/usecase/activity/activity_otp_validation_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_to_pay_result_otp_usecase.dart';
@@ -5,6 +6,7 @@ import 'package:domain/usecase/manage_cliq/request_to_pay_result_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -27,6 +29,7 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          getError(event);
         } else if (event.status == Status.SUCCESS) {}
       });
     });
@@ -134,6 +137,17 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
     _rejectOtpRequest.safeAdd(RequestToPayResultOtpUseCaseParams());
   }
 
+  void getError(Resource<bool> event) {
+    switch (event.appError!.type) {
+      case ErrorType.INVALID_OTP:
+        otpControllerKey.currentState!.isValid = false;
+        break;
+
+      default:
+        break;
+    }
+  }
+
   ///------------------------------------------variable--------------------------------------
 
   ///countdown controller
@@ -142,6 +156,7 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   TextEditingController otpController = TextEditingController();
+  final GlobalKey<AppTextFieldState> otpControllerKey = GlobalKey(debugLabel: "otpController");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
