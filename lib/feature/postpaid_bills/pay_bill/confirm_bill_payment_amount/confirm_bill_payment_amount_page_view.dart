@@ -231,17 +231,15 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                   model.dueAmountToShow = double.parse(model.dueAmtController ?? "0") -
                                       double.parse(model.feeAmtValue ?? "0");
 
-                                  // if (AppConstantsUtils.PRE_PAID_FLOW == true) {
-                                  //   if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
-                                  //     if (model.isAmountMoreThanZero == true) {
-                                  //       _navigatePrePaid(model, context);
-                                  //     } else {
-                                  //       model.amountGreaterThanZeroMessage(model);
-                                  //     }
-                                  //   } else {
-                                  //     model.validate(model.dueAmtController);
-                                  //   }
-                                  // }
+                                  if (AppConstantsUtils.PRE_PAID_FLOW == true) {
+                                    if (model.addNewBillDetailsData.isPrepaidCategoryListEmpty == true) {
+                                      if (model.isAmountMoreThanZero == false) {
+                                        model.amountGreaterThanZeroMessage(model);
+                                      }
+                                    } else {
+                                      model.validate(model.dueAmtController);
+                                    }
+                                  }
                                 }
                               },
                               dataBuilder: (context, snapshot) {
@@ -294,19 +292,11 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             model.amountGreaterThanZeroMessage(model);
                                                           }
                                                         } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                          if (model.addNewBillDetailsData
-                                                                  .isPrepaidCategoryListEmpty ==
-                                                              false) {
-                                                            if (isValid == true) {
-                                                              _navigatePrePaid(model, context);
-                                                            } else {
-                                                              model.amountGreaterThanZeroMessage(model);
-                                                            }
-                                                          } /*else if (model.addNewBillDetailsData
-                                                                  .isPrepaidCategoryListEmpty ==
-                                                              true) {
-                                                            model.validatePrePaidBill();
-                                                          }*/
+                                                          if (isValid == true) {
+                                                            _navigatePrePaid(model, context);
+                                                          } else {
+                                                            model.amountGreaterThanZeroMessage(model);
+                                                          }
                                                         }
                                                       }
                                                     } else {
@@ -318,19 +308,11 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                             model.amountGreaterThanZeroMessage(model);
                                                           }
                                                         } else if (AppConstantsUtils.PRE_PAID_FLOW) {
-                                                          if (model.addNewBillDetailsData
-                                                                  .isPrepaidCategoryListEmpty ==
-                                                              false) {
-                                                            if (isValid == true) {
-                                                              _navigatePrePaid(model, context);
-                                                            } else {
-                                                              model.amountGreaterThanZeroMessage(model);
-                                                            }
-                                                          } /*else if (model.addNewBillDetailsData
-                                                                  .isPrepaidCategoryListEmpty ==
-                                                              true) {
-                                                            model.validatePrePaidBill();
-                                                          }*/
+                                                          if (isValid == true) {
+                                                            _navigatePrePaid(model, context);
+                                                          } else {
+                                                            model.amountGreaterThanZeroMessage(model);
+                                                          }
                                                         }
                                                       } else {
                                                         ProviderScope.containerOf(context)
