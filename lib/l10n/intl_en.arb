@@ -1718,5 +1718,6 @@
   "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}",
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
-  "pleaseSelectReasonToReturn": "Please select reason to Return"
+  "pleaseSelectReasonToReturn": "Please select reason to Return",
+  "accountClosed": "Oops, Your account is closed, please contact us if you need any information on 06-5200100"
 }

@@ -840,6 +840,9 @@ class NetworkError extends BaseError {
           case "err-390":
             return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTS);
 
+          case "err-400":
+            return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_CLOSED);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

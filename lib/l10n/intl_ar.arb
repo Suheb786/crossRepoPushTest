@@ -1671,6 +1671,7 @@
   "exceptionWhileExecutingRejectRtpRequestOtp": "استثناء أثناء تنفيذ رفض طلب RTP Otp",
   "enterOTPheaderwithVaiable": "أدخل الرمز المكون من 6 أرقام المرسل إلى {متغير}",
   "nickNameAlreadyExists": "الاسم المستعار مسجل مسبقا كمستفيد",
-"reasonToreturn": "سبب العودة",
-"pleaseSelectReasonToReturn" : "الرجاء تحديد سبب للعودة"
+  "reasonToreturn": "سبب العودة",
+  "pleaseSelectReasonToReturn": "الرجاء تحديد سبب للعودة",
+  "accountClosed": "عفواً! تم إغلاق حسابك ، يرجى الاتصال بنا إذا كنت بحاجة إلى أي معلومات على 5200100-06"
 }

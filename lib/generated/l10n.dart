@@ -16969,6 +16969,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops, Your account is closed, please contact us if you need any information on 06-5200100`
+  String get accountClosed {
+    return Intl.message(
+      'Oops, Your account is closed, please contact us if you need any information on 06-5200100',
+      name: 'accountClosed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

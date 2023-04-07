@@ -50,8 +50,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                         .read(sendToNewRecipientViewModelProvider)
                         .isFriend) {
                       ///LOG EVENT TO FIREBASE
-                      await FireBaseLogUtil.fireBaseLog(
-                          "send_money_success_new_contact_saved", {
+                      await FireBaseLogUtil.fireBaseLog("send_money_success_new_contact_saved", {
                         "is_money_sent": true,
                         "money_sent": data.data?.transferSuccessContent?.amount ?? 0.0
                       });
@@ -84,6 +83,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                             content: S.of(context).dailyLimitExceededorTryLater),
                       );
                     } else if (data.appError!.type == ErrorType.NICKNAME_ALREADY_EXISTS) {
+                      model.showToastWithError(data.appError!);
+                    } else if (data.appError!.type == ErrorType.LOGIN_REGISTER_DISABLED) {
                       model.showToastWithError(data.appError!);
                     } else {
                       Navigator.pushNamed(

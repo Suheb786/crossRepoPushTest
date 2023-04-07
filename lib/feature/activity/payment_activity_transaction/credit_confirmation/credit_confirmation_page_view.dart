@@ -89,7 +89,8 @@ class CreditConfirmationPaymentActivityPageView
                             SizedBox(height: 16.0.h),
                             RichText(
                               text: TextSpan(
-                                text: model.creditConfirmationArgument.amount.toString(),
+                                text:
+                                    "-${double.parse(model.creditConfirmationArgument.amount?.replaceAll('-', '') ?? '0.0').toStringAsFixed(3)}",
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 24.t,

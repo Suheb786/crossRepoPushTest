@@ -351,6 +351,8 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             title: S.of(context).sendMoneyNotSuccessful,
                             content: S.of(context).dailyLimitExceededorTryLater),
                       );
+                    } else if (data.appError!.type == ErrorType.LOGIN_REGISTER_DISABLED) {
+                      model.showToastWithError(data.appError!);
                     } else {
                       Navigator.pushNamed(
                         context,

@@ -1310,6 +1310,8 @@ class ErrorParser {
         return localisedHelper.exceptionWhileExecutingReturnRtpRequestOtp;
       case ErrorType.NICKNAME_ALREADY_EXISTS:
         return localisedHelper.nickNameAlreadyExists;
+      case ErrorType.ACCOUNT_CLOSED:
+        return localisedHelper.accountClosed;
       default:
         return "";
     }

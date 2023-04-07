@@ -82,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountCard": MessageLookupByLibrary.simpleMessage("Account Card"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "accountClosed": MessageLookupByLibrary.simpleMessage(
+            "Oops, Your account is closed, please contact us if you need any information on 06-5200100"),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
         "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(

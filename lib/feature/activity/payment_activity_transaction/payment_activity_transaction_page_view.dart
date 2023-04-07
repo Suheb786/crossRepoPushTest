@@ -245,6 +245,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               showDescription: false,
                                                               actionWidget: GestureDetector(
                                                                 onTap: () {
+                                                                  Navigator.pop(context);
                                                                   Navigator.pushNamed(
                                                                       context, RoutePaths.CreditConfirmation,
                                                                       arguments: CreditConfirmationArgument(
