@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -171,7 +173,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           providerBase: atmWithdrawalViewModelProvider,
                                                           onChange: (atmWithdrawalValue) {
                                                             model.atmWithdrawalValue =
-                                                                num.parse(atmWithdrawalValue);
+                                                                num.tryParse(atmWithdrawalValue) ?? 0;
                                                             model.showSaveButton();
                                                           },
                                                           onDone: (String value) {},
@@ -225,7 +227,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           providerBase: merchantPaymentViewModelProvider,
                                                           onChange: (merchantPaymentValue) {
                                                             model.merchantPaymentValue =
-                                                                num.parse(merchantPaymentValue);
+                                                                num.tryParse(merchantPaymentValue) ?? 0;
                                                             model.showSaveButton();
                                                           },
                                                           onDone: (merchantPaymentValue) {},
@@ -276,7 +278,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           providerBase: onlinePurchaseViewModelProvider,
                                                           onChange: (onlinePurchaseLimitValue) {
                                                             model.onlinePurchaseValue =
-                                                                num.parse(onlinePurchaseLimitValue);
+                                                                num.tryParse(onlinePurchaseLimitValue) ?? 0;
                                                             model.showSaveButton();
                                                           },
                                                           readOnly: true,
@@ -376,7 +378,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           providerBase: contactLessPaymentViewModelProvider,
                                                           onChange: (contactLessPaymentValue) {
                                                             model.contactlessPaymentsValue =
-                                                                num.parse(contactLessPaymentValue);
+                                                                num.tryParse(contactLessPaymentValue) ?? 0;
                                                             model.showSaveButton();
                                                           },
                                                           onDone: (contactLessPaymentValue) {},
