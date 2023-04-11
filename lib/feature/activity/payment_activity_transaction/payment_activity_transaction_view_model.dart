@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
@@ -48,13 +47,16 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
           (event) {
             updateLoader();
             _requestMoneyActivityResponse.safeAdd(event);
-
             if (event.status == Status.ERROR) {
-              if (event.appError!.type == ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY) {
-              } else {
-                showToastWithError(event.appError!);
-              }
+              showToastWithError(event.appError!);
             }
+
+            // if (event.status == Status.ERROR) {
+            //   if (event.appError!.type == ErrorType.ERROR_WHILE_REQUESTING_MONEY_ACTIVITY) {
+            //   } else {
+            //     showToastWithError(event.appError!);
+            //   }
+            // }
           },
         );
       },

@@ -249,22 +249,27 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   Navigator.pushNamed(
                                                                       context, RoutePaths.CreditConfirmation,
                                                                       arguments: CreditConfirmationArgument(
-                                                                          crediterDP: StringUtils.getFirstInitials(
-                                                                              RequestMoneyActivityList
-                                                                                  .cdtrName),
+                                                                          crediterDP:
+                                                                              StringUtils.getFirstInitials(
+                                                                                  RequestMoneyActivityList
+                                                                                      .cdtrName),
                                                                           transactionType:
-                                                                              RequestMoneyActivityList.paymentType
+                                                                              RequestMoneyActivityList
+                                                                                  .paymentType
                                                                                   .toString(),
-                                                                          date: TimeUtils.convertDateTimeToDate(
-                                                                              RequestMoneyActivityList.rtpDate
-                                                                                  .toString()),
+                                                                          date:
+                                                                              TimeUtils.convertDateTimeToDate(
+                                                                                  RequestMoneyActivityList
+                                                                                      .paymentDate
+                                                                                      .toString()),
                                                                           time: TimeUtils.getFormattedTimeFor12HrsFormat(
-                                                                              RequestMoneyActivityList.rtpDate
-                                                                                  .toString()),
+                                                                              RequestMoneyActivityList.paymentDate.toString()),
                                                                           refID: RequestMoneyActivityList.payRefNo,
                                                                           accountNo: RequestMoneyActivityList.cdtrAcct,
                                                                           amount: "- ${RequestMoneyActivityList.amount}",
-                                                                          crediterName: RequestMoneyActivityList.cdtrName));
+                                                                          crediterName: RequestMoneyActivityList.cdtrName,
+                                                                          msgID: RequestMoneyActivityList.msgID,
+                                                                          currency: RequestMoneyActivityList.curr));
                                                                 },
                                                                 child: Container(
                                                                   width: double.infinity,

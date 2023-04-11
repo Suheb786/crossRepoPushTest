@@ -16970,6 +16970,36 @@ class S {
     );
   }
 
+  /// `Exception while executing Get Credit Confirmation`
+  String get exceptionWhileGettingGetCreditConfirmation {
+    return Intl.message(
+      'Exception while executing Get Credit Confirmation',
+      name: 'exceptionWhileGettingGetCreditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Get Credit Confirmation`
+  String get errorWhileGettingGetCreditConfirmation {
+    return Intl.message(
+      'Error while getting Get Credit Confirmation',
+      name: 'errorWhileGettingGetCreditConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MsgId not found in the Transaction History List`
+  String get msgIdNotFoundInTransactionHistory {
+    return Intl.message(
+      'MsgId not found in the Transaction History List',
+      name: 'msgIdNotFoundInTransactionHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Oops, Your account is closed, please contact us if you need any information on 06-5200100`
   String get accountClosed {
     return Intl.message(

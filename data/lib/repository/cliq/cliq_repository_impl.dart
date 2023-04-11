@@ -7,6 +7,7 @@ import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
@@ -494,6 +495,14 @@ class CliqRepositoryImpl extends CliqRepository {
   @override
   Future<Either<NetworkError, RequestToPayResultOtp>> requestToPayResultOtp() async {
     final result = await safeApiCall(_cliqDataSource.requestToPayResultOtp(getToken: true));
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
+  }
+
+  @override
+  Future<Either<NetworkError, CreditConfirmation>> getCreditConfirmation(
+      {required String msgId, required String custID}) async {
+    final result = await safeApiCall(
+        _cliqDataSource.getCreditConfirmation(msgId: msgId, custID: custID, getToken: true));
     return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

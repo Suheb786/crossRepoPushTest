@@ -22,8 +22,10 @@ class ManageLimitsWidgetViewModel extends BasePageViewModel {
         AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_LIMIT_VALUE, cause: Exception()));
   }
 
+  String amountSet = "";
   @override
   void dispose() {
+    controller.dispose();
     //_switchSubject.close();
     super.dispose();
   }

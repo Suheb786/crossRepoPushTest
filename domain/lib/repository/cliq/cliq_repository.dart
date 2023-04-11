@@ -5,6 +5,7 @@ import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/cliq/change_default_account/change_default_account_otp.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
+import 'package:domain/model/cliq/credit_confirmation/credit_confirmation.dart';
 import 'package:domain/model/cliq/delete_cliq_id/delete_cliq_id_otp.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
@@ -16,7 +17,6 @@ import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.
 import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
 import 'package:domain/model/cliq/suspend_cliq_id/suspend_cliq_id_otp.dart';
 import 'package:domain/model/cliq/unlink_cliq_id/unlink_cliq_id_otp.dart';
-
 import 'package:domain/model/payment/payment_activity_response.dart';
 
 abstract class CliqRepository {
@@ -249,4 +249,9 @@ abstract class CliqRepository {
   Future<Either<NetworkError, ApproveRTPOtp>> approveRTPRequestOtp();
 
   Future<Either<NetworkError, RequestToPayResultOtp>> requestToPayResultOtp();
+
+  Future<Either<NetworkError, CreditConfirmation>> getCreditConfirmation({
+    required String custID,
+    required String msgId,
+  });
 }

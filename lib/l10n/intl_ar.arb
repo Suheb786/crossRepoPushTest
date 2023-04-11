@@ -1673,5 +1673,8 @@
   "nickNameAlreadyExists": "الاسم المستعار مسجل مسبقا كمستفيد",
   "reasonToreturn": "سبب العودة",
   "pleaseSelectReasonToReturn": "الرجاء تحديد سبب للعودة",
+  "errorWhileGettingGetCreditConfirmation": "خطأ اثناء اصدار  إشعار حوالة",
+  "exceptionWhileGettingGetCreditConfirmation": "خطأ اثناء تنفيذ طلب إشعار حوالة",
+  "msgIdNotFoundInTransactionHistory": "خطأ اثناء الحصول على سجل الحركات السابقة",
   "accountClosed": "عفواً! تم إغلاق حسابك ، يرجى الاتصال بنا إذا كنت بحاجة إلى أي معلومات على 5200100-06"
 }

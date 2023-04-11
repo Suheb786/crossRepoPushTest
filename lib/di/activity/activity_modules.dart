@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
-import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
 import 'package:neo_bank/feature/activity/notification/notification_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_view_model.dart';
@@ -16,7 +15,6 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_re
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/reject_request_payment_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/reject_request_payment_screens/select_reject_reason/select_reject_reason_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_otp/return_payment_otp_page_view_model.dart';
-import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/reject_reason_inward_request/reject_reason_inward_request_dialog_view_model.dart';
 
@@ -80,7 +78,7 @@ final rejectRequestPaymentOtpPageViewModelProvider =
 
 final creditConfirmationPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<CreditConfirmationPaymentActivityViewModel, CreditConfirmationArgument>(
-  (ref, arg) => CreditConfirmationPaymentActivityViewModel(arg),
+  (ref, arg) => CreditConfirmationPaymentActivityViewModel(arg, ref.read(creditConfirmationUseCaseProvider)),
 );
 
 final paymentTransationSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

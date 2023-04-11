@@ -1719,5 +1719,8 @@
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
   "pleaseSelectReasonToReturn": "Please select reason to Return",
+  "exceptionWhileGettingGetCreditConfirmation": "Exception while executing Get Credit Confirmation",
+  "errorWhileGettingGetCreditConfirmation": "Error while getting Get Credit Confirmation",
+  "msgIdNotFoundInTransactionHistory": "MsgId not found in the Transaction History List",
   "accountClosed": "Oops, Your account is closed, please contact us if you need any information on 06-5200100"
 }
