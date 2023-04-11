@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,11 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_limits_widget_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ManageLimitsWidget extends StatelessWidget {
   final String title;
@@ -45,7 +50,18 @@ class ManageLimitsWidget extends StatelessWidget {
     return BaseWidget<ManageLimitsWidgetViewModel>(
       providerBase: providerBase,
       onModelReady: (model) {
-        model.controller.text = amountSet;
+        if (model.amountSet.isEmpty) {
+          model.controller.text = amountSet;
+        }
+
+        model.error.listen((event) {
+          _showTopError(
+              ErrorParser.getLocalisedStringError(
+                error: event,
+                localisedHelper: S.of(context),
+              ),
+              context);
+        });
       },
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
@@ -177,13 +193,13 @@ class ManageLimitsWidget extends StatelessWidget {
                                         ),
                                       )),
                                   onChanged: (value) {
-                                    if (int.parse(maxAmount) > int.parse(value)) {
+                                    if ((num.tryParse(maxAmount) ?? 0) < (num.tryParse(value) ?? 0)) {
                                       model.showErrorToast();
                                     }
                                     onChange.call(value);
                                   },
                                   onFieldSubmitted: (value) {
-                                    if (int.parse(maxAmount) > int.parse(value)) {
+                                    if ((num.tryParse(maxAmount) ?? 0) < (num.tryParse(value) ?? 0)) {
                                       model.showErrorToast();
                                     }
                                     onDone.call(value);
@@ -203,5 +219,56 @@ class ManageLimitsWidget extends StatelessWidget {
         );
       },
     );
+  }
+
+  _showTopError(String message, BuildContext context) {
+    showTopSnackBar(
+        context,
+        Material(
+          color: AppColor.white.withOpacity(0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).error,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10.0.t),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.0.h, right: 16.0.w),
+                          child: Text(message,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  // fontFamily: "Montserrat",
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.t)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        displayDuration: Duration(milliseconds: 1500),
+        hideOutAnimationDuration: Duration(milliseconds: 500),
+        showOutAnimationDuration: Duration(milliseconds: 700));
   }
 }
