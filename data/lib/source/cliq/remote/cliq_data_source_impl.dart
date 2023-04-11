@@ -14,6 +14,8 @@ import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cl
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/credit_confirmation/credit_confirmation_request_entity.dart';
+import 'package:data/entity/remote/cliq/credit_confirmation/credit_confirmation_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_request_entity.dart';
@@ -32,9 +34,9 @@ import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason
 import 'package:data/entity/remote/cliq/rejection_reason_inward/rejection_reason_response_entity.dart';
 import 'package:data/entity/remote/cliq/request_money_activity/request_money_activity_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result/request_to_pay_result_request_entity.dart';
-import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_request_entity.dart';
 import 'package:data/entity/remote/cliq/request_to_pay_result_otp/request_to_pay_result_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/return_RTP_request/return_RTP_request_request_entity.dart';
 import 'package:data/entity/remote/cliq/return_RTP_request_otp/return_RTP_request_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/submit_outward_payment/submit_outward_payment_request_entity.dart';
 import 'package:data/entity/remote/cliq/suspend_cliq_id_otp_request_entity.dart';
@@ -557,5 +559,13 @@ class CliqRemoteDataSourceImpl extends CliqDataSource {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPayResultOtp(
         RequestToPayResultOtpRequestEntity(getToken: getToken, baseClass: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
+      {required String msgId, required String custID, required bool getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCreditConfirmation(CreditConfirmationRequestEntity(
+        custID: custID, baseClass: baseData.toJson(), msgId: msgId, getToken: true));
   }
 }

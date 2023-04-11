@@ -3,6 +3,7 @@ import 'package:data/entity/remote/cliq/approve_rtp_otp/approve_rtp_otp_response
 import 'package:data/entity/remote/cliq/change_default_account_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/confirm_create_cliq_id/confirm_create_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/create_cliq_id_otp/create_cliq_id_otp_response_entity.dart';
+import 'package:data/entity/remote/cliq/credit_confirmation/credit_confirmation_response_entity.dart';
 import 'package:data/entity/remote/cliq/delete_cliq_id_otp_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id/edit_cliq_id_response_entity.dart';
 import 'package:data/entity/remote/cliq/edit_cliq_id_otp/edit_cliq_id_otp_response_entity.dart';
@@ -17,7 +18,6 @@ import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
-
 
 abstract class CliqDataSource {
   Future<HttpResponse<GetAliasResponseEntity>> getAlias({
@@ -250,11 +250,18 @@ abstract class CliqDataSource {
     required String? TotalRecords,
     required bool? GetToken,
   });
+
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp({
     required bool getToken,
   });
 
   Future<HttpResponse<RequestToPayResultOtpResponseEntity>> requestToPayResultOtp({
+    required bool getToken,
+  });
+
+  Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation({
+    required String msgId,
+    required String custID,
     required bool getToken,
   });
 }

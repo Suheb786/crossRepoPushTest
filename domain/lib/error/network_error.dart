@@ -1250,18 +1250,18 @@ class NetworkError extends BaseError {
           //       error: error,
           //       type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_TRANSACTION_HISTORY);
           //
-          // case "ex-141":
-          //   return AppError(
-          //       cause: cause,
-          //       error: error,
-          //       type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST_OTP);
-          // case "ex-142":
-          //   return AppError(
-          //       cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_APPROVE_RTP_REQUEST);
+          case "ex-147":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_CREDIT_CONFIRMATION);
+          case "err-392":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.MSGID_NOT_FOUND_IN_THE_TRANSACTION_HISTORY_LIST);
           //
-          // case "ex-143":
-          //   return AppError(
-          //       cause: cause, error: error, type: ErrorType.EXCEPTION_WHILE_EXECUTING_REJECT_RTP_REQUEST_OTP);
+          case "err-389":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_GET_CREDIT_CONFIRMATION);
 
           case "err-vkey-1":
             return AppError(cause: cause, error: error, type: ErrorType.REGISTERING_USER_TO_VKEY_ERROR);

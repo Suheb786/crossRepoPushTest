@@ -1312,6 +1312,13 @@ class ErrorParser {
         return localisedHelper.nickNameAlreadyExists;
       case ErrorType.ACCOUNT_CLOSED:
         return localisedHelper.accountClosed;
+      case ErrorType.ERROR_WHILE_GETTING_GET_CREDIT_CONFIRMATION:
+        return localisedHelper.errorWhileGettingGetCreditConfirmation;
+
+      case ErrorType.MSGID_NOT_FOUND_IN_THE_TRANSACTION_HISTORY_LIST:
+        return localisedHelper.msgIdNotFoundInTransactionHistory;
+      case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_CREDIT_CONFIRMATION:
+        return localisedHelper.exceptionWhileGettingGetCreditConfirmation;
       default:
         return "";
     }
