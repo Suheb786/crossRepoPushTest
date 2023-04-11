@@ -236,7 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aliasNickNameHint":
             MessageLookupByLibrary.simpleMessage("Alias nickname hint: "),
         "aliasShouldBeThreeChar": MessageLookupByLibrary.simpleMessage(
-            "Alias should be minimum 3 alphanumeric characters"),
+            "Alias must be between 3 to 10 alphanumeric characters"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction":
             MessageLookupByLibrary.simpleMessage("All Transactions"),

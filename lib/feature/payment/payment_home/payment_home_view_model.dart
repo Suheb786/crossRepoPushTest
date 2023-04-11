@@ -119,9 +119,20 @@ class PaymentHomeViewModel extends BasePageViewModel {
     }
   }
 
+  List<PaymentHomeWidgetFeature> paymentWidgetTypeFeature = [];
+
   @override
   void dispose() {
     _currentStep.close();
     super.dispose();
   }
 }
+
+class PaymentHomeWidgetFeature {
+  final PaymentWidgetType paymentWidgetType;
+  final bool isEnabled;
+
+  PaymentHomeWidgetFeature({required this.paymentWidgetType, required this.isEnabled});
+}
+
+enum PaymentWidgetType { SEND_MONEY, REQUEST_MONEY, POST_PAID_BILL, PRE_PAID_BILL }

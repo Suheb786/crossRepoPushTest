@@ -16660,10 +16660,10 @@ class S {
     );
   }
 
-  /// `Alias should be minimum 3 alphanumeric characters`
+  /// `Alias must be between 3 to 10 alphanumeric characters`
   String get aliasShouldBeThreeChar {
     return Intl.message(
-      'Alias should be minimum 3 alphanumeric characters',
+      'Alias must be between 3 to 10 alphanumeric characters',
       name: 'aliasShouldBeThreeChar',
       desc: '',
       args: [],

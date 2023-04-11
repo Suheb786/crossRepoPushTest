@@ -28,6 +28,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   NavigationType? navigationType;
+  List<dynamic> pages = [];
 
   PaymentHomePageView(ProviderBase model, this.navigationType) : super(model);
 
@@ -44,6 +45,53 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         },
         dataBuilder: (context, data) {
           if (data!.status == Status.SUCCESS) {
+            pages.add(AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries));
+            model.paymentWidgetTypeFeature.add(
+                PaymentHomeWidgetFeature(paymentWidgetType: PaymentWidgetType.SEND_MONEY, isEnabled: true));
+            if (ProviderScope.containerOf(context)
+                    .read(appHomeViewModelProvider)
+                    .dashboardDataContent
+                    .dashboardFeatures
+                    ?.blinkRetailAppCliqRTP ??
+                false) {
+              pages.add(AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries));
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.REQUEST_MONEY, isEnabled: true));
+            }
+            if ((ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.blinkRetailAppBillPayment ??
+                    true) &&
+                (ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.appBillPaymentPostpaid ??
+                    true)) {
+              pages.add(PostPaidBillCardWidget());
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.POST_PAID_BILL, isEnabled: true));
+            }
+
+            if ((ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.blinkRetailAppBillPayment ??
+                    true) &&
+                (ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .dashboardFeatures
+                        ?.appBillPaymentPrepaid ??
+                    true)) {
+              pages.add(PrePaidBillCardWidget());
+              model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(
+                  paymentWidgetType: PaymentWidgetType.PRE_PAID_BILL, isEnabled: true));
+            }
+
             return Padding(
               padding: EdgeInsets.only(bottom: 47.0.h),
               child: AppStreamBuilder<int>(
@@ -59,50 +107,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                         if (currentStep == 0) {
                           Navigator.pushNamed(context, RoutePaths.SendMoney);
                         } else if (currentStep == 1) {
-                          Navigator.pushNamed(context, RoutePaths.RequestMoney);
+                          getVerticalRouting(context, model, 1);
                         } else if (currentStep == 2) {
-                          if (((ProviderScope.containerOf(context)
-                                      .read(appHomeViewModelProvider)
-                                      .dashboardDataContent
-                                      .dashboardFeatures
-                                      ?.blinkRetailAppBillPayment ??
-                                  true) &&
-                              (ProviderScope.containerOf(context)
-                                      .read(appHomeViewModelProvider)
-                                      .dashboardDataContent
-                                      .dashboardFeatures
-                                      ?.appBillPaymentPrepaid ??
-                                  true) &&
-                              !(ProviderScope.containerOf(context)
-                                      .read(appHomeViewModelProvider)
-                                      .dashboardDataContent
-                                      .dashboardFeatures
-                                      ?.appBillPaymentPostpaid ??
-                                  true))) {
-                            ///LOG EVENT TO FIREBASE
-                            FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
-                            Navigator.pushNamed(context, RoutePaths.NewBillsPage);
-                            AppConstantsUtils.PRE_PAID_FLOW = true;
-                            AppConstantsUtils.POST_PAID_FLOW = false;
-                            AppConstantsUtils.IS_NEW_PAYMENT = true;
-                          } else {
-                            ///LOG EVENT TO FIREBASE
-                            FireBaseLogUtil.fireBaseLog("new_post_paid", {"new_post_paid_clicked": true});
-                            Navigator.pushNamed(context, RoutePaths.NewBillsPage);
-                            AppConstantsUtils.POST_PAID_FLOW = true;
-                            AppConstantsUtils.PRE_PAID_FLOW = false;
-                            AppConstantsUtils.IS_NEW_PAYMENT = true;
-                          }
+                          getVerticalRouting(context, model, 2);
                         } else if (currentStep == 3) {
-                          ///LOG EVENT TO FIREBASE
-                          FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
-                          Navigator.pushNamed(context, RoutePaths.NewBillsPage);
-                          AppConstantsUtils.PRE_PAID_FLOW = true;
-                          AppConstantsUtils.POST_PAID_FLOW = false;
-                          AppConstantsUtils.IS_NEW_PAYMENT = true;
+                          getVerticalRouting(context, model, 3);
+                        } else {
+                          Navigator.pop(context);
                         }
-                      } else {
-                        Navigator.pop(context);
                       }
                     },
                     behavior: HitTestBehavior.translucent,
@@ -174,98 +186,98 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     ],
                                   )
                           else if (currentStep == 1)
-                            ProviderScope.containerOf(context)
-                                        .read(appHomeViewModelProvider)
-                                        .dashboardDataContent
-                                        .dashboardFeatures
-                                        ?.appBillPaymentQrCode ??
-                                    true
-                                ? Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                          onTap: () async {
-                                            ///LOG EVENT TO FIREBASE
-                                            await FirebaseAnalytics.instance.logEvent(
-                                                name: "request_via_qr",
-                                                parameters: {"request_via_qr_clicked": true});
-                                            InformationDialog.show(context,
-                                                image: AssetUtils.payRequestViaQRBlackIcon,
-                                                title: S.of(context).requestViaQR,
-                                                descriptionWidget: Text(S.of(context).payAndRequestMoneyViaQR,
-                                                    style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 14.0.t)), onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: () {
-                                              Navigator.pop(context);
+                            if (model.paymentWidgetTypeFeature[1].paymentWidgetType ==
+                                PaymentWidgetType.REQUEST_MONEY)
+                              ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .dashboardFeatures
+                                          ?.appBillPaymentQrCode ??
+                                      true
+                                  ? Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                            onTap: () async {
+                                              ///LOG EVENT TO FIREBASE
+                                              await FirebaseAnalytics.instance.logEvent(
+                                                  name: "request_via_qr",
+                                                  parameters: {"request_via_qr_clicked": true});
+                                              InformationDialog.show(context,
+                                                  image: AssetUtils.payRequestViaQRBlackIcon,
+                                                  title: S.of(context).requestViaQR,
+                                                  descriptionWidget: Text(
+                                                      S.of(context).payAndRequestMoneyViaQR,
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 14.0.t)), onDismissed: () {
+                                                Navigator.pop(context);
+                                              }, onSelected: () {
+                                                Navigator.pop(context);
 
-                                              Navigator.pushNamed(
-                                                  context, RoutePaths.RequestMoneyQrGeneration,
-                                                  arguments: RequestMoneyQrGenerationPageArguments(
-                                                      ProviderScope.containerOf(context)
-                                                          .read(appHomeViewModelProvider)
-                                                          .dashboardDataContent
-                                                          .account!));
-                                            });
-                                          },
-                                          child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 9.0.h),
-                                        child: Text(
-                                          S.of(context).requestViaQR,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18.0.t),
+                                                Navigator.pushNamed(
+                                                    context, RoutePaths.RequestMoneyQrGeneration,
+                                                    arguments: RequestMoneyQrGenerationPageArguments(
+                                                        ProviderScope.containerOf(context)
+                                                            .read(appHomeViewModelProvider)
+                                                            .dashboardDataContent
+                                                            .account!));
+                                              });
+                                            },
+                                            child: AppSvg.asset(AssetUtils.requestViaQrIcon)),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 9.0.h),
+                                          child: Text(
+                                            S.of(context).requestViaQR,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18.0.t),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                : Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                                        child: AppSvg.asset(AssetUtils.payments),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 9.0.h),
-                                        child: Text(
-                                          S.of(context).billsAndPayments,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 18.0.t),
+                                      ],
+                                    )
+                                  : Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                          child: AppSvg.asset(AssetUtils.payments),
                                         ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 9.0.h),
+                                          child: Text(
+                                            S.of(context).billsAndPayments,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18.0.t),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                            else
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                                    child: AppSvg.asset(AssetUtils.payments),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 9.0.h),
+                                    child: Text(
+                                      S.of(context).billsAndPayments,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18.0.t),
+                                    ),
                                   )
-                          else if (((ProviderScope.containerOf(context)
-                                          .read(appHomeViewModelProvider)
-                                          .dashboardDataContent
-                                          .dashboardFeatures
-                                          ?.blinkRetailAppBillPayment ??
-                                      true) &&
-                                  (ProviderScope.containerOf(context)
-                                          .read(appHomeViewModelProvider)
-                                          .dashboardDataContent
-                                          .dashboardFeatures
-                                          ?.appBillPaymentPrepaid ??
-                                      true)) ||
-                              ((ProviderScope.containerOf(context)
-                                          .read(appHomeViewModelProvider)
-                                          .dashboardDataContent
-                                          .dashboardFeatures
-                                          ?.blinkRetailAppBillPayment ??
-                                      true) &&
-                                  (ProviderScope.containerOf(context)
-                                          .read(appHomeViewModelProvider)
-                                          .dashboardDataContent
-                                          .dashboardFeatures
-                                          ?.appBillPaymentPostpaid ??
-                                      true)))
+                                ],
+                              )
+                          else
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -293,36 +305,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     padding: EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
                                     child: AppSwiper(
                                       appSwiperController: model.appSwiperController,
-                                      pages: [
-                                        AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
-                                        AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
-                                        if ((ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .dashboardDataContent
-                                                    .dashboardFeatures
-                                                    ?.blinkRetailAppBillPayment ??
-                                                true) &&
-                                            (ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .dashboardDataContent
-                                                    .dashboardFeatures
-                                                    ?.appBillPaymentPostpaid ??
-                                                true))
-                                          PostPaidBillCardWidget(),
-                                        if ((ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .dashboardDataContent
-                                                    .dashboardFeatures
-                                                    ?.blinkRetailAppBillPayment ??
-                                                true) &&
-                                            (ProviderScope.containerOf(context)
-                                                    .read(appHomeViewModelProvider)
-                                                    .dashboardDataContent
-                                                    .dashboardFeatures
-                                                    ?.appBillPaymentPrepaid ??
-                                                true))
-                                          PrePaidBillCardWidget(),
-                                      ],
+                                      pages: pages,
                                       pageController: model.pageController,
                                       onIndexChanged: (index) {
                                         model.updatePage(index);
@@ -334,7 +317,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 ),
                                 SmoothPageIndicator(
                                   controller: model.controller,
-                                  count: getChildCount(context),
+                                  count: pages.length,
                                   effect: ScrollingDotsEffect(
                                     activeStrokeWidth: 2.6,
                                     activeDotScale: 1.3,
@@ -363,55 +346,32 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         });
   }
 
-  int getChildCount(context) {
-    int count = 2;
-    if ((ProviderScope.containerOf(context)
-            .read(appHomeViewModelProvider)
-            .dashboardDataContent
-            .dashboardFeatures
-            ?.blinkRetailAppBillPayment ??
-        true)) {
-      if ((ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPrepaid ??
-              true) &&
-          !(ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPostpaid ??
-              true)) {
-        count = 3;
-      } else if ((ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPostpaid ??
-              true) &&
-          !(ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPrepaid ??
-              true)) {
-        count = 3;
-      } else if ((ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPrepaid ??
-              true) &&
-          (ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .dashboardDataContent
-                  .dashboardFeatures
-                  ?.appBillPaymentPostpaid ??
-              true)) {
-        count = 4;
-      }
+  getVerticalRouting(BuildContext context, PaymentHomeViewModel model, int index) {
+    switch (model.paymentWidgetTypeFeature[index].paymentWidgetType) {
+      case PaymentWidgetType.REQUEST_MONEY:
+        Navigator.pushNamed(context, RoutePaths.RequestMoney);
+        break;
+      case PaymentWidgetType.PRE_PAID_BILL:
+
+        ///LOG EVENT TO FIREBASE
+        FireBaseLogUtil.fireBaseLog("new_pre_paid", {"new_pre_paid_clicked": true});
+        Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        AppConstantsUtils.PRE_PAID_FLOW = true;
+        AppConstantsUtils.POST_PAID_FLOW = false;
+        AppConstantsUtils.IS_NEW_PAYMENT = true;
+        break;
+      case PaymentWidgetType.POST_PAID_BILL:
+
+        ///LOG EVENT TO FIREBASE
+        FireBaseLogUtil.fireBaseLog("new_post_paid", {"new_post_paid_clicked": true});
+        Navigator.pushNamed(context, RoutePaths.NewBillsPage);
+        AppConstantsUtils.POST_PAID_FLOW = true;
+        AppConstantsUtils.PRE_PAID_FLOW = false;
+        AppConstantsUtils.IS_NEW_PAYMENT = true;
+        break;
+
+      default:
+        Navigator.pop(context);
     }
-    return count;
   }
 }
