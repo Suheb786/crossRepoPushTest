@@ -44,6 +44,11 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           }
         },
         dataBuilder: (context, data) {
+          print('feature Enabled ---->${ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .dashboardDataContent
+              .dashboardFeatures
+              ?.rtpFeatureEnabled}');
           if (data!.status == Status.SUCCESS) {
             pages.add(AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries));
             model.paymentWidgetTypeFeature.add(

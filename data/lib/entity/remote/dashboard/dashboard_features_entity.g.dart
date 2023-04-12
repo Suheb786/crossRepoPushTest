@@ -30,6 +30,9 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
     blinkRetailAppCliqSendPayment:
         json['blink-retail-app-cliq-send-payment'] as bool?,
     blinkRetailAppRTP: json['blink-retail-app-cliq-rtp'] as bool?,
+    rtpFeatureEnabled: json['blink-retail-app-cliq-rtp-outward'] as bool?,
+    returnPaymentFeatureEnabled:
+        json['blink-retail-app-cliq-return-payment'] as bool?,
   );
 }
 
@@ -56,4 +59,7 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
       'blink-retail-app-cliq-rtp': instance.blinkRetailAppRTP,
       'blink-retail-app-cliq-send-payment':
           instance.blinkRetailAppCliqSendPayment,
+      'blink-retail-app-cliq-rtp-outward': instance.rtpFeatureEnabled,
+      'blink-retail-app-cliq-return-payment':
+          instance.returnPaymentFeatureEnabled,
     };

@@ -6,7 +6,8 @@ part of 'credit_confirmation_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreditConfirmationRequestEntity _$CreditConfirmationRequestEntityFromJson(Map<String, dynamic> json) {
+CreditConfirmationRequestEntity _$CreditConfirmationRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return CreditConfirmationRequestEntity(
     getToken: json['GetToken'] as bool,
     baseClass: json['BaseClass'] as Map<String, dynamic>,
@@ -15,7 +16,8 @@ CreditConfirmationRequestEntity _$CreditConfirmationRequestEntityFromJson(Map<St
   );
 }
 
-Map<String, dynamic> _$CreditConfirmationRequestEntityToJson(CreditConfirmationRequestEntity instance) =>
+Map<String, dynamic> _$CreditConfirmationRequestEntityToJson(
+        CreditConfirmationRequestEntity instance) =>
     <String, dynamic>{
       'MsgId': instance.msgId,
       'CustID': instance.custID,
