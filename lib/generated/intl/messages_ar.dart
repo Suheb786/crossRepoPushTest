@@ -981,7 +981,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفعيل تسجيل الدخول بالبصمة"),
         "enableBiometricLoginDescriptionAndroid":
             MessageLookupByLibrary.simpleMessage(
-                "امسح إصبعك / وجهك لتسجيل الدخول"),
+                "مسح بصمة اصبعك او وجهك لتسجيل الدخول"),
         "enableBiometricLoginDescriptionIos":
             MessageLookupByLibrary.simpleMessage(
                 "سجّل دخول من خلال بصمة الوجه"),

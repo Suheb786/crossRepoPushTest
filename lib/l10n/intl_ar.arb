@@ -520,7 +520,7 @@
   "accountLocked": "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل.",
   "pleaseProvideSelfie": "صوّر حالك سيلفي للاستمرار.",
   "enableBiometricLoginTitle": "تفعيل تسجيل الدخول بالبصمة",
-  "enableBiometricLoginDescriptionAndroid": "امسح إصبعك / وجهك لتسجيل الدخول",
+  "enableBiometricLoginDescriptionAndroid": "مسح بصمة اصبعك او وجهك لتسجيل الدخول",
   "enableBiometricLoginDescriptionIos": "سجّل دخول من خلال بصمة الوجه",
   "swipeUpToJoinOurCommunity": "اسحب لفوق لتنضم إلنا",
   "letsCreateYourProfile": "خلينا نعمل ملفك الشخصي",
