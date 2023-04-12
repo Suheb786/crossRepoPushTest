@@ -49,6 +49,12 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-cliq-send-payment")
   final bool? blinkRetailAppCliqSendPayment;
 
+  @JsonKey(name: "blink-retail-app-cliq-rtp-outward")
+  final bool? rtpFeatureEnabled;
+
+  @JsonKey(name: "blink-retail-app-cliq-return-payment")
+  final bool? returnPaymentFeatureEnabled;
+
   DashboardFeaturesEntity(
       {this.blinkRetailAppBillPayment,
       this.blinkRetailAppBillPaymentPayPostpaid,
@@ -63,7 +69,9 @@ class DashboardFeaturesEntity
       this.blinkRetailAppAliasManagement,
       this.blinkRetailAppCliq,
       this.blinkRetailAppCliqSendPayment,
-      this.blinkRetailAppRTP});
+      this.blinkRetailAppRTP,
+      this.rtpFeatureEnabled,
+      this.returnPaymentFeatureEnabled});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -91,6 +99,8 @@ class DashboardFeaturesEntity
         blinkRetailAppCliq: this.blinkRetailAppCliq ?? false,
         blinkRetailAppCliqAliasManagement: this.blinkRetailAppAliasManagement ?? false,
         blinkRetailAppCliqRTP: blinkRetailAppRTP ?? false,
-        blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? false);
+        blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? false,
+        rtpFeatureEnabled: rtpFeatureEnabled ?? false,
+        returnPaymentFeatureEnabled: /*returnPaymentFeatureEnabled ??*/ false);
   }
 }

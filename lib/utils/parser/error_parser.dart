@@ -1319,6 +1319,16 @@ class ErrorParser {
         return localisedHelper.msgIdNotFoundInTransactionHistory;
       case ErrorType.EXCEPTION_WHILE_EXECUTING_GET_CREDIT_CONFIRMATION:
         return localisedHelper.exceptionWhileGettingGetCreditConfirmation;
+      case ErrorType.CLIQ_RTP_OFFLINE:
+        return localisedHelper.cliqRTPOffline;
+      case ErrorType.CLIQ_RTP_OUTWARD_OFFLINE:
+        return localisedHelper.cliqOutwardOffline;
+      case ErrorType.CLIQ_RETURN_PAYMENT_OFFLINE:
+        return localisedHelper.cliqReturnPaymentOffline;
+      case ErrorType.CLIQ_SEND_PAYMENT_OFFLINE:
+        return localisedHelper.cliqSendPaymentOffline;
+      case ErrorType.REQUEST_TO_PAY_DISABLED:
+        return localisedHelper.requestMoneyFeatureDisabled;
       default:
         return "";
     }

@@ -620,6 +620,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CliqID Updated Successfully"),
         "cliqMobileNumberUpdate": MessageLookupByLibrary.simpleMessage(
             "CLIQ ID UPDATE\nCliQ ID Mobile Number has been updated"),
+        "cliqOutwardOffline": MessageLookupByLibrary.simpleMessage(
+            "Cliq Outward currently offline and will be back shortly!"),
+        "cliqRTPOffline": MessageLookupByLibrary.simpleMessage(
+            "Cliq RTP currently offline and will be back shortly!"),
+        "cliqReturnPaymentOffline": MessageLookupByLibrary.simpleMessage(
+            "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
+        "cliqSendPaymentOffline": MessageLookupByLibrary.simpleMessage(
+            "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
         "cliqType": MessageLookupByLibrary.simpleMessage("CLIQ Type"),
         "closeDateIssueMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill is closed."),
@@ -1007,7 +1015,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enableBiometricLogin":
             MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
         "enableBiometricLoginDescriptionAndroid":
-            MessageLookupByLibrary.simpleMessage("Scan your finger to log in"),
+            MessageLookupByLibrary.simpleMessage(
+                "Scan your finger/face to log in"),
         "enableBiometricLoginDescriptionIos":
             MessageLookupByLibrary.simpleMessage("Scan your face to log in"),
         "enableBiometricLoginTitle":
@@ -1182,6 +1191,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
+        "errorWhileGettingGetCreditConfirmation":
+            MessageLookupByLibrary.simpleMessage(
+                "Error while getting Get Credit Confirmation"),
         "errorWhileGettingRetailCIF": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-009)"),
         "errorWhileGettingReturnRtpRequest":
@@ -1272,6 +1284,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "exceptionWhileExecutingReturnRtpRequestOtp":
             MessageLookupByLibrary.simpleMessage(
                 "Exception while executing Return RTP Request Otp"),
+        "exceptionWhileGettingGetCreditConfirmation":
+            MessageLookupByLibrary.simpleMessage(
+                "Exception while executing Get Credit Confirmation"),
         "exchangeRateForCurrencies": MessageLookupByLibrary.simpleMessage(
             "The exchange rate for other currencies is high"),
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
@@ -1955,6 +1970,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "mothersBirthplace":
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
+        "msgIdNotFoundInTransactionHistory":
+            MessageLookupByLibrary.simpleMessage(
+                "MsgId not found in the Transaction History List"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
         "myCreditCard":
@@ -2446,6 +2464,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestFrom": MessageLookupByLibrary.simpleMessage(" Request Form "),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
+        "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
+            "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
         "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(

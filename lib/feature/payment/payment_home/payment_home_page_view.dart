@@ -52,7 +52,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     .read(appHomeViewModelProvider)
                     .dashboardDataContent
                     .dashboardFeatures
-                    ?.blinkRetailAppCliqRTP ??
+                    ?.rtpFeatureEnabled ??
                 false) {
               pages.add(AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries));
               model.paymentWidgetTypeFeature.add(PaymentHomeWidgetFeature(

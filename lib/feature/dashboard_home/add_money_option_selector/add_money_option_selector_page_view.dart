@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +75,20 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       desc: S.of(context).requestMoneyFromOtherBankDesc,
                       buttonText: S.of(context).requestMoney,
                       onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                            arguments: NavigationType.ADD_MONEY);
+                        if (ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .dashboardDataContent
+                                .dashboardFeatures
+                                ?.rtpFeatureEnabled ??
+                            false) {
+                          Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                              arguments: NavigationType.ADD_MONEY);
+                        } else {
+                          model.showToastWithError(AppError(
+                              cause: Exception(),
+                              error: ErrorInfo(message: ''),
+                              type: ErrorType.REQUEST_TO_PAY_DISABLED));
+                        }
                       },
                     ),
                     SizedBox(

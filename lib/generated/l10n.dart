@@ -5060,10 +5060,10 @@ class S {
     );
   }
 
-  /// `Scan your finger to log in`
+  /// `Scan your finger/face to log in`
   String get enableBiometricLoginDescriptionAndroid {
     return Intl.message(
-      'Scan your finger to log in',
+      'Scan your finger/face to log in',
       name: 'enableBiometricLoginDescriptionAndroid',
       desc: '',
       args: [],
@@ -17005,6 +17005,56 @@ class S {
     return Intl.message(
       'Oops, Your account is closed, please contact us if you need any information on 06-5200100',
       name: 'accountClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cliq RTP currently offline and will be back shortly!`
+  String get cliqRTPOffline {
+    return Intl.message(
+      'Cliq RTP currently offline and will be back shortly!',
+      name: 'cliqRTPOffline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cliq Outward currently offline and will be back shortly!`
+  String get cliqOutwardOffline {
+    return Intl.message(
+      'Cliq Outward currently offline and will be back shortly!',
+      name: 'cliqOutwardOffline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.`
+  String get cliqReturnPaymentOffline {
+    return Intl.message(
+      'Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.',
+      name: 'cliqReturnPaymentOffline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.`
+  String get cliqSendPaymentOffline {
+    return Intl.message(
+      'Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.',
+      name: 'cliqSendPaymentOffline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.`
+  String get requestMoneyFeatureDisabled {
+    return Intl.message(
+      'Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.',
+      name: 'requestMoneyFeatureDisabled',
       desc: '',
       args: [],
     );

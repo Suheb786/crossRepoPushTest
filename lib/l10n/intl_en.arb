@@ -520,7 +520,7 @@
   "accountLocked": "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock.",
   "pleaseProvideSelfie": "Please provide selfie to proceed further.",
   "enableBiometricLoginTitle": "Enable Biometric Login",
-  "enableBiometricLoginDescriptionAndroid": "Scan your finger to log in",
+  "enableBiometricLoginDescriptionAndroid": "Scan your finger/face to log in",
   "enableBiometricLoginDescriptionIos": "Scan your face to log in",
   "swipeUpToJoinOurCommunity": "Swipe up to join our community",
   "letsCreateYourProfile": "Let’s Create\nYour Profile",
@@ -1722,5 +1722,10 @@
   "exceptionWhileGettingGetCreditConfirmation": "Exception while executing Get Credit Confirmation",
   "errorWhileGettingGetCreditConfirmation": "Error while getting Get Credit Confirmation",
   "msgIdNotFoundInTransactionHistory": "MsgId not found in the Transaction History List",
-  "accountClosed": "Oops, Your account is closed, please contact us if you need any information on 06-5200100"
+  "accountClosed": "Oops, Your account is closed, please contact us if you need any information on 06-5200100",
+  "cliqRTPOffline": "Cliq RTP currently offline and will be back shortly!",
+  "cliqOutwardOffline": "Cliq Outward currently offline and will be back shortly!",
+  "cliqReturnPaymentOffline": "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
+  "cliqSendPaymentOffline": "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
+  "requestMoneyFeatureDisabled": "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."
 }

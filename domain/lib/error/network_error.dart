@@ -840,6 +840,18 @@ class NetworkError extends BaseError {
           case "err-390":
             return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTS);
 
+          case "err-393":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_RTP_OFFLINE);
+
+          case "err-394":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_RTP_OUTWARD_OFFLINE);
+
+          case "err-395":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_RETURN_PAYMENT_OFFLINE);
+
+          case "err-396":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_SEND_PAYMENT_OFFLINE);
+
           case "err-400":
             return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_CLOSED);
 

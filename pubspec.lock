@@ -716,7 +716,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: a8583331697943561f19e9b8f147be9f7eceea62
+      resolved-ref: "09bea8cceaec00b91cdd1ee2ac059e6b9f28a05b"
       url: "https://github.com/mohammad-shaddad/mobile-messaging-flutter-plugin.git"
     source: git
     version: "0.5.2"
