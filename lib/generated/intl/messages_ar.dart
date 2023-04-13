@@ -49,8 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
