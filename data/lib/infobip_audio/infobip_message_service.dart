@@ -1,5 +1,6 @@
 import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
+import 'package:flutter/material.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
 import 'package:infobip_mobilemessaging/models/Installation.dart';
@@ -13,20 +14,30 @@ class InfobipMessageService {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<bool> initPlatformState() async {
+    debugPrint('-------Inside Init-------');
     await InfobipMobilemessaging.init(
       Configuration(
         applicationCode: KeyHelper.INFOBIP_APPLICATION_CODE,
         inAppChatEnabled: true,
-        androidSettings: AndroidSettings(firebaseSenderId: InfobipUtilsConstants.FIREBASE_SENDER_ID),
+        androidSettings: AndroidSettings(
+          firebaseOptions: FirebaseOptions(
+            apiKey: InfobipUtilsConstants.FIREBASE_API_KEY,
+            applicationId: InfobipUtilsConstants.FIREBASE_APPLICATION_ID,
+            projectId: InfobipUtilsConstants.FIREBASE_PROJECT_ID,
+          ),
+        ),
         defaultMessageStorage: true,
         iosSettings:
             IOSSettings(notificationTypes: ["alert", "badge", "sound"], forceCleanup: false, logging: true),
       ),
     );
 
+    ///Push Notification Permission  for Android 13+
+    InfobipMobilemessaging.registerForAndroidRemoteNotifications();
+
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
       print("Callback. TOKEN_RECEIVED event:" + token);
-      addLibraryEvent("Token Received");
+      // addLibraryEvent("Token Received");
     });
 
     InfobipMobilemessaging.on(
@@ -38,55 +49,59 @@ class InfobipMessageService {
                       message.title! +
                       " body: " +
                       message.body!),
-                  addLibraryEvent("Message Received"),
+                  /*addLibraryEvent("Message Received"),*/
                   print("defaultMessageStorage().findAll():"),
                   print(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
                 }
             });
     InfobipMobilemessaging.on(
         LibraryEvent.USER_UPDATED,
-        (event) =>
-            {print("Callback. USER_UPDATED event:" + event.toString()), addLibraryEvent("User Updated")});
+        (event) => {
+              print("Callback. USER_UPDATED event:" + event), /*addLibraryEvent("User Updated")*/
+            });
     InfobipMobilemessaging.on(
         LibraryEvent.PERSONALIZED,
-        (event) =>
-            {print("Callback. PERSONALIZED event:" + event.toString()), addLibraryEvent("Personalized")});
+        (event) => {
+              print("Callback. PERSONALIZED event:" + event), /*addLibraryEvent("Personalized")*/
+            });
     InfobipMobilemessaging.on(
         LibraryEvent.INSTALLATION_UPDATED,
         (String event) => {
-              print("Callback. INSTALLATION_UPDATED event:" + event.toString()),
-              addLibraryEvent("Installation Updated")
+              print("Callback. INSTALLATION_UPDATED event:" + event),
+              // addLibraryEvent("Installation Updated")
             });
     InfobipMobilemessaging.on(
         LibraryEvent.DEPERSONALIZED,
-        (event) =>
-            {print("Callback. DEPERSONALIZED event:" + event.toString()), addLibraryEvent("Depersonalized")});
+        (event) => {
+              print(
+                  "Callback. DEPERSONALIZED event:" + event), /*addLibraryEvent("Depersonalized")*/
+            });
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_ACTION_TAPPED,
         (event) => {
-              print("Callback. NOTIFICATION_ACTION_TAPPED event:" + event.toString()),
-              addLibraryEvent("Notification Action Tapped")
+              print("Callback. NOTIFICATION_ACTION_TAPPED event:" + event),
+              // addLibraryEvent("Notification Action Tapped")
             });
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_TAPPED,
         (Message message) => {
-              print("Callback. NOTIFICATION_TAPPED event:" + message.toString()),
+              print("Callback. NOTIFICATION_TAPPED event:" + '${message}'),
               // callback(true),
-              addLibraryEvent("Notification Tapped"),
+              // addLibraryEvent("Notification Tapped"),
               if (message.chat!) {print('Chat Message Tapped')}
             });
     InfobipMobilemessaging.on(
         LibraryEvent.REGISTRATION_UPDATED,
         (String token) => {
               print("Callback. REGISTRATION_UPDATED event:" + token),
-              addLibraryEvent("Registration Updated")
+              // addLibraryEvent("Registration Updated")
             });
     return true;
   }
 
-  static void addLibraryEvent(String libraryEvent) {
-    libraryEvents.add(libraryEvent);
-  }
+  // static void addLibraryEvent(String libraryEvent) {
+  //   libraryEvents.add(libraryEvent);
+  // }
 
   Future<bool> showChat() async {
     InfobipMobilemessaging.resetMessageCounter();

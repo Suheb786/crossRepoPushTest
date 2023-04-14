@@ -33,6 +33,9 @@ class KeyHelper {
       IOS_BLINK_ID = mapContent['dynamicObject']['IOSKey'];
       INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
       INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
+
+      print('Infobip app key--->${INFOBIP_APP_KEY}');
+      print('infobip application code --->${INFOBIP_APPLICATION_CODE}');
     }
   }
 }

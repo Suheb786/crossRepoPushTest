@@ -523,12 +523,10 @@ packages:
   infobip_mobilemessaging:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "09bea8cceaec00b91cdd1ee2ac059e6b9f28a05b"
-      url: "https://github.com/mohammad-shaddad/mobile-messaging-flutter-plugin.git"
-    source: git
-    version: "0.5.2"
+      name: infobip_mobilemessaging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.1"
   infobip_plugin:
     dependency: "direct main"
     description:
