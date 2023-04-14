@@ -234,6 +234,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                           //     .read(
                                                           //         appViewModel)
                                                           //     .getToken();
+                                                          model.saveUserData();
                                                           model.checkKycStatus();
                                                         }
                                                       },
