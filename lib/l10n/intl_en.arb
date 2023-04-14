@@ -1563,7 +1563,7 @@
   "dummyIBAN": "ABC000012341234123819241213",
   "dummyAccountNo": "9911 1407 61",
   "mobileNo": "Mobile No.",
-  "dummyMobileNo": "+962 3320 8080",
+  "dummyMobileNo": "00962 3320 8080",
   "dummyAlias": "username1",
   "samplesOfNoFormatting": "Here are samples of the number formatting :\n",
   "emptyRecipientName": "Enter Recipient Name",

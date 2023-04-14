@@ -196,7 +196,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                     //       fontFamily: StringUtils.appFont),
                                                                     // ),
                                                                     Text(
-                                                                      S.of(context).aliasHint,
+                                                                      S.of(context).aliasShouldBeThreeChar,
                                                                       style: TextStyle(
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: 12.t,

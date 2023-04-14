@@ -15410,10 +15410,10 @@ class S {
     );
   }
 
-  /// `+962 3320 8080`
+  /// `00962 3320 8080`
   String get dummyMobileNo {
     return Intl.message(
-      '+962 3320 8080',
+      '00962 3320 8080',
       name: 'dummyMobileNo',
       desc: '',
       args: [],

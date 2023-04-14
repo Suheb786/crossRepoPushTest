@@ -863,7 +863,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "dummyIBAN":
             MessageLookupByLibrary.simpleMessage("ABC000012341234123819241213"),
-        "dummyMobileNo": MessageLookupByLibrary.simpleMessage("+962 3320 8080"),
+        "dummyMobileNo":
+            MessageLookupByLibrary.simpleMessage("00962 3320 8080"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
