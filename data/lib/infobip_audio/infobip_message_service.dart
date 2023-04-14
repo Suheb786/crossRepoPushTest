@@ -36,9 +36,9 @@ class InfobipMessageService {
     InfobipMobilemessaging.registerForAndroidRemoteNotifications();
 
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
-      print("--------Callback. TOKEN_RECEIVED event:------------");
-      print(token);
-      print("--------Callback. TOKEN_RECEIVED event:------------");
+      debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
+      debugPrint(token);
+      debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
 
       addLibraryEvent("Token Received");
     });
@@ -48,70 +48,70 @@ class InfobipMessageService {
         (Message message) => {
               if (message != null)
                 {
-                  print("--------Callback. MESSAGE_RECEIVED event:------------"),
-                  print(message),
-                  print("--------Callback. MESSAGE_RECEIVED event:------------"),
+                  debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
+                  debugPrint(message),
+                  debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
                   /*addLibraryEvent("Message Received"),*/
-                  print(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+                  debugPrint(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
                 }
             });
     InfobipMobilemessaging.on(
         LibraryEvent.USER_UPDATED,
         (event) => {
-              print("--------Callback. USER_UPDATED event:------------"),
-              print(event),
-              print("--------Callback. USER_UPDATED event:------------"),
+              debugPrint("--------Callback. USER_UPDATED event:------------"),
+              debugPrint(event),
+              debugPrint("--------Callback. USER_UPDATED event:------------"),
               /*addLibraryEvent("User Updated")*/
             });
     InfobipMobilemessaging.on(
         LibraryEvent.PERSONALIZED,
         (event) => {
-              print("--------Callback. PERSONALIZED event:------------"),
-              print(event),
-              print("--------Callback. PERSONALIZED event:------------"),
+              debugPrint("--------Callback. PERSONALIZED event:------------"),
+              debugPrint(event),
+              debugPrint("--------Callback. PERSONALIZED event:------------"),
               /*addLibraryEvent("Personalized")*/
             });
     InfobipMobilemessaging.on(
         LibraryEvent.INSTALLATION_UPDATED,
         (String event) => {
-              print("--------Callback. INSTALLATION_UPDATED event:------------"),
-              print(event),
-              print("--------Callback. INSTALLATION_UPDATED event:------------"),
+              debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
+              debugPrint(event),
+              debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
               addLibraryEvent("Installation Updated")
             });
     InfobipMobilemessaging.on(
         LibraryEvent.DEPERSONALIZED,
         (event) => {
-              print("--------Callback. DEPERSONALIZED event:------------"),
-              print(event),
-              print("--------Callback. DEPERSONALIZED event:------------"),
+              debugPrint("--------Callback. DEPERSONALIZED event:------------"),
+              debugPrint(event),
+              debugPrint("--------Callback. DEPERSONALIZED event:------------"),
               /*addLibraryEvent("Depersonalized")*/
             });
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_ACTION_TAPPED,
         (event) => {
-              print("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
-              print(event),
-              print("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
+              debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
+              debugPrint(event),
+              debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
               addLibraryEvent("Notification Action Tapped")
             });
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_TAPPED,
         (Message message) => {
-              print("--------Callback. NOTIFICATION_TAPPED event:------------"),
-              print(message),
-              print("--------Callback. NOTIFICATION_TAPPED event:------------"),
+              debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
+              debugPrint(message),
+              debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
 
               // callback(true),
               addLibraryEvent("Notification Tapped"),
-              if (message.chat!) {print('Chat Message Tapped')}
+              if (message.chat!) {debugPrint('Chat Message Tapped')}
             });
     InfobipMobilemessaging.on(
         LibraryEvent.REGISTRATION_UPDATED,
         (String token) => {
-              print("--------Callback. REGISTRATION_UPDATED event:------------"),
-              print(token),
-              print("--------Callback. REGISTRATION_UPDATED event:------------"),
+              debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
+              debugPrint(token),
+              debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
               addLibraryEvent("Registration Updated")
             });
     return true;
@@ -134,7 +134,7 @@ class InfobipMessageService {
   }
 
   Future<bool> saveUser({required UserData userData}) async {
-    print("USER EXTERNAL ID " + userData.externalUserId!);
+    debugPrint("USER EXTERNAL ID " + userData.externalUserId!);
     Installation installation = await InfobipMobilemessaging.getInstallation();
     installation.customAttributes = {'OneTimePassword': true};
     InfobipMobilemessaging.saveInstallation(installation);

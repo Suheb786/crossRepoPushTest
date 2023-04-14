@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 class KeyHelper {
   KeyHelper._();
 
@@ -26,7 +28,7 @@ class KeyHelper {
     var mapContent = Map<String, dynamic>();
     if (content != null) {
       mapContent = jsonDecode(content);
-      print('mapContent--->$mapContent');
+      debugPrint('mapContent--->$mapContent');
       CARD_DECRYPTION_KEY = mapContent['dynamicObject']['CardKey'];
       PIN_BLOCK_KEY = mapContent['dynamicObject']['PinblockKey'];
       ANDROID_BLINK_ID = mapContent['dynamicObject']['AndroidKey'];
@@ -34,8 +36,8 @@ class KeyHelper {
       INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
       INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
 
-      print('Infobip app key--->${INFOBIP_APP_KEY}');
-      print('infobip application code --->${INFOBIP_APPLICATION_CODE}');
+      debugPrint('Infobip app key--->${INFOBIP_APP_KEY}');
+      debugPrint('infobip application code --->${INFOBIP_APPLICATION_CODE}');
     }
   }
 }
