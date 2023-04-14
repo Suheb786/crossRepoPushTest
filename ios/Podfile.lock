@@ -245,11 +245,11 @@ PODS:
     - TOCropViewController (~> 2.6.0)
   - image_picker (0.0.1):
     - Flutter
-  - infobip_mobilemessaging (0.0.1):
+  - infobip_mobilemessaging (0.9.1):
     - Flutter
-    - MobileMessaging/Core (= 9.2.11)
-    - MobileMessaging/Geofencing (= 9.2.11)
-    - MobileMessaging/InAppChat (= 9.2.11)
+    - MobileMessaging/Core (= 10.5.1)
+    - MobileMessaging/Geofencing (= 10.5.1)
+    - MobileMessaging/InAppChat (= 10.5.1)
   - infobip_plugin (0.0.1):
     - AFNetworking
     - Flutter
@@ -258,10 +258,10 @@ PODS:
     - IBGoogleWebRTC (~> 1.0.36614)
   - local_auth (0.0.1):
     - Flutter
-  - MobileMessaging/Core (9.2.11)
-  - MobileMessaging/Geofencing (9.2.11):
+  - MobileMessaging/Core (10.5.1)
+  - MobileMessaging/Geofencing (10.5.1):
     - MobileMessaging/Core
-  - MobileMessaging/InAppChat (9.2.11):
+  - MobileMessaging/InAppChat (10.5.1):
     - MobileMessaging/Core
   - MTBBarcodeScanner (5.0.11)
   - nanopb (2.30908.0):
@@ -506,11 +506,11 @@ SPEC CHECKSUMS:
   IBGoogleWebRTC: 4dc0e8b0bf16bc473caff8797152af80385d3402
   image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: 541dcbb3b9cf32d87eacbd957845d8651d6c62c3
-  infobip_mobilemessaging: eb1cab90dcea9199c25769e4653b957416e179c3
+  infobip_mobilemessaging: 0ff18e07c190982454f4a5c05379cea769392ec1
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
   InfobipRTC: 3cd60d4688d0a12ab9847fc8cd961962504b22c7
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
-  MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
+  MobileMessaging: dcf3d8e7bd0a89b6d4500235b8c518c7c62a3c95
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c

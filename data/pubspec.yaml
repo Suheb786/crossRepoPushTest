@@ -36,13 +36,9 @@ dependencies:
   r_get_ip: ^0.1.1
   blinkid_flutter: 5.14.0
   local_auth: ^1.1.7
-  #  rsa_encrypt: ^2.0.0
   encrypt: ^5.0.1
   path_provider: any
-  infobip_mobilemessaging:
-    git:
-      url: https://github.com/mohammad-shaddad/mobile-messaging-flutter-plugin.git
-      ref: main
+  infobip_mobilemessaging: ^0.9.1
   permission_handler: ^10.0.0
   tuple: ^2.0.0
   flutter_jailbreak_detection: ^1.8.0
