@@ -49,10 +49,10 @@ class InfobipMessageService {
               if (message != null)
                 {
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
-                  debugPrint(message),
+                  debugPrint(message.toString()),
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
                   /*addLibraryEvent("Message Received"),*/
-                  debugPrint(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+                  // debugPrint(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
                 }
             });
     InfobipMobilemessaging.on(
@@ -99,7 +99,7 @@ class InfobipMessageService {
         LibraryEvent.NOTIFICATION_TAPPED,
         (Message message) => {
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
-              debugPrint(message),
+              debugPrint(message.toString()),
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
 
               // callback(true),
