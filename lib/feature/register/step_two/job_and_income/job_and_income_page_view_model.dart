@@ -140,16 +140,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     _getCitiesByCountryRequest.safeAdd(GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
   }
 
-  void updateCityVisibility() {
-    employerCityController.clear();
-
-    if (employerCityController.text == 'Jordan' || employerCityController.text == 'الاردن') {
-      _getCitiesByCountryRequest.safeAdd(false);
-    } else {
-      _getCitiesByCountryRequest.safeAdd(true);
-    }
-  }
-
   bool isValid() {
     bool valid = false;
     if (employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER) {
