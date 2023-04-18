@@ -276,7 +276,6 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           SizedBox(
                             height: 16.h,
                           ),
-
                           AppStreamBuilder<Resource<CityListResponse>>(
                               initialData: Resource.none(),
                               stream: model.getCitiesByCountryResponseStream,
@@ -296,6 +295,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                           type: ErrorType.INVALID_COUNTRY));
                                     } else {
                                       FocusScope.of(context).unfocus();
+                                      model.employerCountryKey.currentState!.isValid = true;
                                       Future.delayed(Duration(milliseconds: 500), () {
                                         StateCityDialog.show(context, title: S.of(context).employerCitySmall,
                                             onDismissed: () {
@@ -323,24 +323,6 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   },
                                 );
                               }),
-
-                          //*OLD EMPLOYER_CITY FIELD
-
-                          // AppTextField(
-                          //   labelText: S.of(context).employerCity,
-                          //   hintText: S.of(context).pleaseEnter,
-                          //   controller: model.employerCityController,
-                          //   inputFormatters: [
-                          //     LengthLimitingTextInputFormatter(60),
-                          //   ],
-                          //   inputType: TextInputType.text,
-                          //   inputAction: TextInputAction.go,
-                          //   key: model.employerCityKey,
-                          //   onChanged: (value) {
-                          //     model.isValid();
-                          //   },
-                          // ),
-
                           SizedBox(
                             height: 16.h,
                           ),

@@ -237,7 +237,10 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_OCCUPATION:
         occupationKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_ANNUAL_INCOME:
+      case ErrorType.INVALID_MONTHLY_INCOME:
+        annualIncomeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_MONTHLY_INCOME_VALUE:
         annualIncomeKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_EMPLOYER_NAME:
