@@ -3,6 +3,7 @@ import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog.dart';
@@ -258,6 +260,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   Navigator.pop(context);
                                   model.updateEmployerCountry(
                                       value.countryName!, value.countryEnglishName ?? '');
+                                  model.getCitiesByCountry(isoCode: value.isoCode3 ?? "");
                                   model.isValid();
                                 });
                               });
@@ -273,20 +276,71 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           SizedBox(
                             height: 16.h,
                           ),
-                          AppTextField(
-                            labelText: S.of(context).employerCity,
-                            hintText: S.of(context).pleaseEnter,
-                            controller: model.employerCityController,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(60),
-                            ],
-                            inputType: TextInputType.text,
-                            inputAction: TextInputAction.go,
-                            key: model.employerCityKey,
-                            onChanged: (value) {
-                              model.isValid();
-                            },
-                          ),
+
+                          AppStreamBuilder<Resource<CityListResponse>>(
+                              initialData: Resource.none(),
+                              stream: model.getCitiesByCountryResponseStream,
+                              dataBuilder: (context, cityList) {
+                                return AppTextField(
+                                  labelText: S.of(context).employerCity,
+                                  hintText: S.of(context).pleaseSelect,
+                                  controller: model.employerCityController,
+                                  readOnly: true,
+                                  key: model.employerCityKey,
+                                  onPressed: () {
+                                    if (model.employerCountryController.text.isEmpty) {
+                                      model.employerCountryKey.currentState!.isValid = false;
+                                      model.showToastWithError(AppError(
+                                          cause: Exception(),
+                                          error: ErrorInfo(message: ''),
+                                          type: ErrorType.INVALID_COUNTRY));
+                                    } else {
+                                      FocusScope.of(context).unfocus();
+                                      Future.delayed(Duration(milliseconds: 500), () {
+                                        StateCityDialog.show(context, title: S.of(context).employerCitySmall,
+                                            onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, onSelected: (value) {
+                                          Navigator.pop(context);
+                                          model.employerCityController.text = value.cityName!;
+                                          model.currentCity = value;
+                                          model.isValid();
+                                        },
+                                            stateCityTypeEnum: StateCityTypeEnum.CITY,
+                                            stateCityData: cityList!.status == Status.SUCCESS
+                                                ? cityList.data!.cityContent!.stateData!
+                                                : []);
+                                      });
+                                    }
+                                  },
+                                  suffixIcon: (value, data) {
+                                    return Container(
+                                        height: 16.h,
+                                        width: 16.w,
+                                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                                        child:
+                                            AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                  },
+                                );
+                              }),
+
+                          //*OLD EMPLOYER_CITY FIELD
+
+                          // AppTextField(
+                          //   labelText: S.of(context).employerCity,
+                          //   hintText: S.of(context).pleaseEnter,
+                          //   controller: model.employerCityController,
+                          //   inputFormatters: [
+                          //     LengthLimitingTextInputFormatter(60),
+                          //   ],
+                          //   inputType: TextInputType.text,
+                          //   inputAction: TextInputAction.go,
+                          //   key: model.employerCityKey,
+                          //   onChanged: (value) {
+                          //     model.isValid();
+                          //   },
+                          // ),
+
                           SizedBox(
                             height: 16.h,
                           ),

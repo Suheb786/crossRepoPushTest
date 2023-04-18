@@ -1,9 +1,12 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/country/city_list/city_list_response.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
 import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
+import 'package:domain/usecase/country/get_cities_by_country_usecase.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +19,10 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class JobAndIncomePageViewModel extends BasePageViewModel {
+  StateCityData currentCity = StateCityData();
+
   final JobAndIncomeUseCase _jobAndIncomeUseCase;
+  final GetCityByCountryListUseCase _getCityByCountryListUseCase;
 
   final GetComboValuesUseCase _getComboValuesUseCase;
 
@@ -120,6 +126,30 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   ///get combo values stream
   Stream<Resource<GetComboValuesResponse>> get getComboValuesStream => _getComboValuesResponse.stream;
 
+  /// get cities by country request subject holder
+  PublishSubject<GetCityByCountryListUseParams> _getCitiesByCountryRequest = PublishSubject();
+
+  /// get cities by country response subject holder
+  PublishSubject<Resource<CityListResponse>> _getCitiesByCountryResponse = PublishSubject();
+
+  /// get cities by country response stream
+  Stream<Resource<CityListResponse>> get getCitiesByCountryResponseStream =>
+      _getCitiesByCountryResponse.stream;
+
+  void getCitiesByCountry({required String isoCode}) {
+    _getCitiesByCountryRequest.safeAdd(GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
+  }
+
+  void updateCityVisibility() {
+    employerCityController.clear();
+
+    if (employerCityController.text == 'Jordan' || employerCityController.text == 'الاردن') {
+      _getCitiesByCountryRequest.safeAdd(false);
+    } else {
+      _getCitiesByCountryRequest.safeAdd(true);
+    }
+  }
+
   bool isValid() {
     bool valid = false;
     if (employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER) {
@@ -157,7 +187,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  JobAndIncomePageViewModel(this._jobAndIncomeUseCase, this._getComboValuesUseCase) {
+  JobAndIncomePageViewModel(
+      this._jobAndIncomeUseCase, this._getComboValuesUseCase, this._getCityByCountryListUseCase) {
     _jobAndIncomeRequest.listen((value) {
       RequestManager(value, createCall: () => _jobAndIncomeUseCase.execute(params: value))
           .asFlow()
@@ -182,6 +213,18 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           businessTypeList = event.data!.getComboValuesContent!.getComboValuesContentData!.businessType!;
+        }
+      });
+    });
+    _getCitiesByCountryRequest.listen((value) {
+      RequestManager(value, createCall: () => _getCityByCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCitiesByCountryResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -235,7 +278,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   void validateJobAndIncomeDetails() {
     _jobAndIncomeRequest.safeAdd(JobAndIncomeUseCaseParams(
         annualIncome: annualIncomeController.text,
-        employerCity: employerCityController.text,
+        employerCity: currentCity.cityId,
         employerContact: employerContactController.text,
         employerCountry: employerCountryController.text,
         employerName: employerNameController.text,
