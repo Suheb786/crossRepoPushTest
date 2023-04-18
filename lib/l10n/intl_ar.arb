@@ -1550,7 +1550,7 @@
   "dummyIBAN": "ABC000012341234123819241213",
   "dummyAccountNo": "9911 1407 61",
   "mobileNo": "رقم الموبايل.",
-  "dummyMobileNo": "+962 3320 8080",
+  "dummyMobileNo": "00962 3320 8080",
   "dummyAlias": "اسم المستخدم 1",
   "samplesOfNoFormatting": "فيما يلي نماذج من تنسيق الأرقام:\n",
   "emptyRecipientName": "أدخل اسم المستلم",
