@@ -5,10 +5,6 @@ import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 
 ChangeNotifierProvider<AppViewModel> appViewModel = ChangeNotifierProvider<AppViewModel>(
-  (ref) => AppViewModel(
-      ref.read(getTokenUseCaseProvider),
-      ref.read(infobipMessagePluginUseCaseProvider),
-      ref.read(saveUserUseCaseProvider),
-      ref.read(initiAppFlyerSDKProvider),
-      ref.read(logAppFlyerEventUseCaseProvider)),
+  (ref) => AppViewModel(ref.read(getTokenUseCaseProvider), ref.read(saveUserUseCaseProvider),
+      ref.read(initiAppFlyerSDKProvider), ref.read(logAppFlyerEventUseCaseProvider)),
 );

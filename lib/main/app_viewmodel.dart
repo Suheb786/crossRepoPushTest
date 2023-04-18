@@ -8,6 +8,7 @@ import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -198,11 +199,8 @@ class AppViewModel extends BaseViewModel {
 
   final GetTokenUseCase _getTokenUseCase;
   final SaveUserUseCase _saveUserUseCase;
-  final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
   final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
   final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
-
-  PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
   PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
@@ -240,8 +238,8 @@ class AppViewModel extends BaseViewModel {
   }
 
   ///---------------log app flyers events------------------///
-  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase,
-      this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase) {
+  AppViewModel(this._getTokenUseCase, this._saveUserUseCase, this._initAppFlyerSDKUseCase,
+      this._logAppFlyerSDKEventsUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
@@ -250,14 +248,6 @@ class AppViewModel extends BaseViewModel {
           //print("error");
         }
         _getTokenResponse.safeAdd(event);
-      });
-    });
-
-    _initInfobipMessageRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        return _infobipMessagePluginUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        _initInfobipMessageResponseSubject.safeAdd(event);
       });
     });
 
@@ -296,10 +286,6 @@ class AppViewModel extends BaseViewModel {
     //   }
     // });
     //initInfobipMessagePlugin();
-  }
-
-  initInfobipMessagePlugin() async {
-    _initInfobipMessageRequestSubject.safeAdd(InfobipMessagePluginUseCaseParams());
   }
 
   void getToken() async {
