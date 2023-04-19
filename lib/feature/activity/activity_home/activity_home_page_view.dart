@@ -91,8 +91,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                             ),
                                           ),
                                           Visibility(
-                                            visible: currentStep == 1,
-                                            // && (paymentActivity?.data ?? []).length > 4,
+                                            visible:
+                                                currentStep == 1 && (paymentActivity?.data ?? []).isNotEmpty,
                                             child: Positioned(
                                               bottom: 0,
                                               child: Column(
