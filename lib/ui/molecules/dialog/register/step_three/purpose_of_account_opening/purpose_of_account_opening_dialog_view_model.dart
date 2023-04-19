@@ -26,8 +26,8 @@ class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
     'Normal Daily Banking',
     'Saving',
     'Credit Card',
-    'Facilities',
-    'Others'
+    'Facilities' /*,
+    'Others'*/
   ];
 
   ///get purpose of account opening request holder

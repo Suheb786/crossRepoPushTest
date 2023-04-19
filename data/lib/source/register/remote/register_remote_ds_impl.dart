@@ -33,16 +33,16 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       'Normal Daily Banking',
       'Saving',
       'Credit Card',
-      'Facilities',
-      'Others'
+      'Facilities' /*,
+      'Others'*/
     ];
     List<String> purposeListAr = [
       'تحويل راتب',
       'تعاملات مصرفية يومية',
       'توفير',
       'بطاقة ائتمانية',
-      'تسهيلات',
-      'أخرى'
+      'تسهيلات' /*,
+      'أخرى'*/
     ];
 
     return Future.value(Future.value(Intl.getCurrentLocale() == 'en' ? purposeListEn : purposeListAr));
