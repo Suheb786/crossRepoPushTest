@@ -17,6 +17,7 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
     employeeName: json['employeeName'] as String?,
     employerCountry: json['employerCountry'] as String?,
     employerCity: json['employerCity'] as String?,
+    employerCityAr: json['employerCityAr'] as String?,
     employerContact: json['employerContact'] as String?,
     createdOn: json['createdOn'] == null
         ? null
@@ -47,6 +48,7 @@ Map<String, dynamic> _$JobDetailContentEntityToJson(
       'employerCountry': instance.employerCountry,
       'employerCountryAr': instance.employerCountryAr,
       'employerCity': instance.employerCity,
+      'employerCityAr': instance.employerCityAr,
       'employerContact': instance.employerContact,
       'createdOn': instance.createdOn?.toIso8601String(),
       'additionalIncome': instance.additionalIncome,

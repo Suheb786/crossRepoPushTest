@@ -10,6 +10,7 @@ class JobDetailContentInfo {
   final String? employeeName;
   final String? employerCountry;
   final String? employerCity;
+  final String? employerCityAr;
   final String? employerContact;
   final bool? additionalIncome;
   final DateTime? createdOn;
@@ -34,5 +35,6 @@ class JobDetailContentInfo {
       this.occupation: "",
       this.businessSpecificType: "",
       this.businessTypeAr = '',
-      this.employerCountryAr = ''});
+      this.employerCountryAr = '',
+      this.employerCityAr = ''});
 }

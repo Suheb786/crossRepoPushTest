@@ -475,10 +475,15 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
                 getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountryAr)
             ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountryAr
             : '';
-    employerCityController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity)
-        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity!
-        : '';
+    employerCityController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity)
+            ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity!
+            : ''
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCityAr)
+            ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCityAr!
+            : '';
     employerContactController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerContact)
         ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerContact!
