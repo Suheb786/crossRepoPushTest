@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:flutter/material.dart';
 
 class KeyHelper {
@@ -35,9 +36,13 @@ class KeyHelper {
       IOS_BLINK_ID = mapContent['dynamicObject']['IOSKey'];
       INFOBIP_APP_KEY = mapContent['dynamicObject']['AppKey'];
       INFOBIP_APPLICATION_CODE = mapContent['dynamicObject']['ApplicationCode'];
+      InfobipUtilsConstants.FIREBASE_API_KEY = mapContent['dynamicObject']['FIREBASE_API_KEY'];
+      InfobipUtilsConstants.FIREBASE_APPLICATION_ID = mapContent['dynamicObject']['FIREBASE_APPLICATION_ID'];
+      InfobipUtilsConstants.FIREBASE_PROJECT_ID = mapContent['dynamicObject']['FIREBASE_PROJECT_ID'];
 
       debugPrint('Infobip app key--->${INFOBIP_APP_KEY}');
       debugPrint('infobip application code --->${INFOBIP_APPLICATION_CODE}');
+      debugPrint('Application id--->${InfobipUtilsConstants.FIREBASE_APPLICATION_ID}');
     }
   }
 }

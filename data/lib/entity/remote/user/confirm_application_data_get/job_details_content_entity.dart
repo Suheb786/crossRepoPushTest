@@ -33,6 +33,8 @@ class JobDetailContentEntity
   final String? employerCountryAr;
   @JsonKey(name: "employerCity")
   final String? employerCity;
+  @JsonKey(name: "employerCityAr")
+  final String? employerCityAr;
   @JsonKey(name: "employerContact")
   final String? employerContact;
   @JsonKey(name: "createdOn")
@@ -51,6 +53,7 @@ class JobDetailContentEntity
       this.employeeName,
       this.employerCountry,
       this.employerCity,
+      this.employerCityAr,
       this.employerContact,
       this.createdOn,
       this.additionalIncome,
@@ -77,6 +80,7 @@ class JobDetailContentEntity
         additionalIncome: response.additionalIncome,
         annualIncome: response.annualIncome,
         employerCity: response.employerCity,
+        employerCityAr: response.employerCityAr,
         employerContact: response.employerContact,
         employerCountry: response.employerCountry,
         profession: response.profession,
@@ -99,6 +103,7 @@ class JobDetailContentEntity
         additionalIncome: this.additionalIncome,
         employerContact: this.employerContact,
         employerCity: this.employerCity,
+        employerCityAr: this.employerCityAr,
         employerCountry: this.employerCountry ?? '',
         employeeName: this.employeeName,
         mainSource: this.mainSource,
