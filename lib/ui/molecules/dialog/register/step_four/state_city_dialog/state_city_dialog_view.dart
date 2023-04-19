@@ -138,9 +138,10 @@ class StateCityDialogView extends StatelessWidget {
                                                             label: stateCityTypeEnum == StateCityTypeEnum.CITY
                                                                 ? stateCityResponse.data![index].cityName!
                                                                 : stateCityResponse.data![index].stateName!,
-                                                            textColor: currentIndex == index
-                                                                ? Theme.of(context).primaryColorDark
-                                                                : AppColor.dark_gray_1,
+                                                            textColor:
+                                                                stateCityResponse.data![index].isSelected
+                                                                    ? Theme.of(context).primaryColorDark
+                                                                    : AppColor.dark_gray_1,
                                                             widgetColor: Colors.transparent,
                                                           );
                                                         })),
