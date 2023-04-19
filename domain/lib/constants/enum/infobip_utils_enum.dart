@@ -3,7 +3,7 @@ class InfobipUtilsConstants {
   static const String PRIMARY_COLOR = '#E53E51';
 
   ///Firebase values
-  static const String FIREBASE_API_KEY = "AIzaSyCq8XWbVz8Gxb15c_JBJK6aBhO_-pEkj7c";
-  static const String FIREBASE_APPLICATION_ID = "1:570110559067:android:c8a0cd56a7716a0130507e";
-  static const String FIREBASE_PROJECT_ID = "blink-uat";
+  static String FIREBASE_API_KEY = "";
+  static String FIREBASE_APPLICATION_ID = "";
+  static String FIREBASE_PROJECT_ID = "";
 }
