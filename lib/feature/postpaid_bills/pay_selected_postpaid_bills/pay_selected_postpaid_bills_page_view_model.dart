@@ -7,7 +7,9 @@ import 'package:domain/model/bill_payments/pay_post_paid_bill/pay_post_paid_bill
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry_data.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -136,23 +138,39 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
     addAllBillAmt(context, isApi: true);
-    Future.delayed(Duration(milliseconds: 200))
-        .then((value) => _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
-            billerList: tempPostpaidBillInquiryRequestList,
-            accountNo: savingAccountController.text,
-            totalAmount: totalBillAmt.toStringAsFixed(3),
-            currencyCode: "JOD",
-            isNewBiller: false,
-            isCreditCardPayment: false,
-            CardId: "",
-            nickName: "",
-            // only need to be added in case of new biller added request
-            otpCode: "")));
+
+    if (totalBillAmt > 0) {
+      if (double.parse(ProviderScope.containerOf(context)
+                  .read(appHomeViewModelProvider)
+                  .dashboardDataContent
+                  .account
+                  ?.availableBalance ??
+              '-1') >=
+          totalBillAmt) {
+        Future.delayed(Duration(milliseconds: 200))
+            .then((value) => _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
+                billerList: tempPostpaidBillInquiryRequestList,
+                accountNo: savingAccountController.text,
+                totalAmount: totalBillAmt.toStringAsFixed(3),
+                currencyCode: "JOD",
+                isNewBiller: false,
+                isCreditCardPayment: false,
+                CardId: "",
+                nickName: "",
+                // only need to be added in case of new biller added request
+                otpCode: "")));
+      } else {
+        showToastWithError(AppError(
+            cause: Exception(),
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED));
+      }
+    }
   }
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {

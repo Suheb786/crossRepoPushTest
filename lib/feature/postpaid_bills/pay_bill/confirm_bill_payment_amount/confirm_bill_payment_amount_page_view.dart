@@ -17,6 +17,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
@@ -214,6 +216,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               stream: model.validatePrePaidStream,
                               onData: (value) {
                                 if (value.status == Status.SUCCESS) {
+                                  model.notSufficientBalance = false;
                                   model.feeAmtController.text = "0.0";
                                   model.feeAmtController.text =
                                       double.parse(value.data?.content?.feesAmount ?? "0").toStringAsFixed(3);
@@ -240,6 +243,9 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                       model.validate(model.dueAmtController);
                                     }
                                   }
+                                } else if (value.status == Status.ERROR) {
+                                  model.notSufficientBalance = true;
+                                  model.validate(model.dueAmtController);
                                 }
                               },
                               dataBuilder: (context, snapshot) {
@@ -361,7 +367,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   _confirmDetailsWidget(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
+          // padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 24.0.h),
           decoration: BoxDecoration(
               border: Border.all(color: AppColor.white_gray), borderRadius: BorderRadius.circular(12.0)),
           child: Column(
@@ -745,18 +751,44 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
   }
 
   void _navigatePostPaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    if (model.checkAmountMoreThanHundred()) {
-      model.enterOtpBillPayments(context);
+    if (double.parse(ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .account
+                ?.availableBalance ??
+            '-1') >=
+        double.parse(model.totalAmountToPay() ?? "0")) {
+      if (model.checkAmountMoreThanHundred()) {
+        model.enterOtpBillPayments(context);
+      } else {
+        model.payPostPaidBill();
+      }
     } else {
-      model.payPostPaidBill();
+      model.showToastWithError(AppError(
+          cause: Exception(),
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED));
     }
   }
 
   void _navigatePrePaid(ConfirmBillPaymentAmountPageViewModel model, BuildContext context) {
-    if (model.checkAmountMoreThanHundred()) {
-      model.enterOtpBillPayments(context);
+    if (double.parse(ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .account
+                ?.availableBalance ??
+            '-1') >=
+        double.parse(model.dueAmtController ?? "0")) {
+      if (model.checkAmountMoreThanHundred()) {
+        model.enterOtpBillPayments(context);
+      } else {
+        model.payPrePaidBill();
+      }
     } else {
-      model.payPrePaidBill();
+      model.showToastWithError(AppError(
+          cause: Exception(),
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED));
     }
   }
 }

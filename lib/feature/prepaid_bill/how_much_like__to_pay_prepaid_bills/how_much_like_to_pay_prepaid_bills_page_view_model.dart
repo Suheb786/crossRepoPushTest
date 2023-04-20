@@ -119,36 +119,38 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
 
   ///already saved flow.
   void payPrePaidBill(BuildContext context) {
-    ///LOG EVENT TO FIREBASE
-    FireBaseLogUtil.fireBaseLog("pay_pre_paid_saved_bill", {"pay_pre_paid_saved_bill_call": true});
-    _payPrePaidRequest.safeAdd(PayPrePaidUseCaseParams(
-        billerName: StringUtils.isDirectionRTL(context)
-            ? argument.payMyPrePaidBillsPageDataList[0].billerNameAR
-            : argument.payMyPrePaidBillsPageDataList[0].billerName,
-        billerCode: billerCode,
-        billingNumber: billingNumber,
-        serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
-        amount: amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '',
-        /* isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",*/
-        fees: double.parse(feesAmt ?? "0").toStringAsFixed(3),
-        /*isPrepaidCategoryListEmpty == true ? double.parse(feesAmt ?? "0").toStringAsFixed(3) : "",*/
-        validationCode: validationCode ?? "",
-        currencyCode: "JOD",
-        accountNo: savingAccountController.text,
-        otpCode: "",
-        isNewBiller: false,
-        nickName: argument.payMyPrePaidBillsPageDataList[0].nickname ?? "",
-        // only need to be added in case of new biller added request
-        prepaidCategoryCode:
-            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
-        prepaidCategoryType:
-            isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
-        billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
-                argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
-            ? true
-            : false,
-        CardId: "",
-        isCreditCardPayment: false));
+    if (_showButtonSubject.value) {
+      ///LOG EVENT TO FIREBASE
+      FireBaseLogUtil.fireBaseLog("pay_pre_paid_saved_bill", {"pay_pre_paid_saved_bill_call": true});
+      _payPrePaidRequest.safeAdd(PayPrePaidUseCaseParams(
+          billerName: StringUtils.isDirectionRTL(context)
+              ? argument.payMyPrePaidBillsPageDataList[0].billerNameAR
+              : argument.payMyPrePaidBillsPageDataList[0].billerName,
+          billerCode: billerCode,
+          billingNumber: billingNumber,
+          serviceType: argument.payMyPrePaidBillsPageDataList[0].serviceType,
+          amount: amtController.text.isNotEmpty ? double.parse(amtController.text).toStringAsFixed(3) : '',
+          /* isPrepaidCategoryListEmpty == true ? double.parse(amtController.text).toStringAsFixed(3) : "",*/
+          fees: double.parse(feesAmt ?? "0").toStringAsFixed(3),
+          /*isPrepaidCategoryListEmpty == true ? double.parse(feesAmt ?? "0").toStringAsFixed(3) : "",*/
+          validationCode: validationCode ?? "",
+          currencyCode: "JOD",
+          accountNo: savingAccountController.text,
+          otpCode: "",
+          isNewBiller: false,
+          nickName: argument.payMyPrePaidBillsPageDataList[0].nickname ?? "",
+          // only need to be added in case of new biller added request
+          prepaidCategoryCode:
+              isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_CODE : "",
+          prepaidCategoryType:
+              isPrepaidCategoryListEmpty == false ? AppConstantsUtils.PREPAID_CATEGORY_TYPE : "",
+          billingNumberRequired: argument.payMyPrePaidBillsPageDataList[0].billingNumber != null &&
+                  argument.payMyPrePaidBillsPageDataList[0].billingNumber != ""
+              ? true
+              : false,
+          CardId: "",
+          isCreditCardPayment: false));
+    }
   }
 
   void payPrePaidBillListener() {

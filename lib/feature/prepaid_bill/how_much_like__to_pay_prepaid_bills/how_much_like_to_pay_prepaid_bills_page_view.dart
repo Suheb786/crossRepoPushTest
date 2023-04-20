@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -51,6 +52,9 @@ class HowMuchLikeToPayPrePaidBillsPageView
           // if (model.isPrepaidCategoryListEmpty == true) {
           //   Future.delayed(Duration(milliseconds: 200)).then((value) => model.payPrePaidBill(context));
           // }
+        } else if (value.status == Status.ERROR) {
+          /// value send 0 when balance is insufficient
+          model.validate('0');
         }
       },
       dataBuilder: (context, snapshot) {
@@ -433,8 +437,23 @@ class HowMuchLikeToPayPrePaidBillsPageView
     return Focus(
       onFocusChange: (hasFocus) {
         if (!hasFocus) {
-          if (model.isPrepaidCategoryListEmpty == true) {
-            Future.delayed(Duration(milliseconds: 200)).then((value) => model.validatePrePaidBill());
+          if (model.amtController.text.isNotEmpty && double.parse(model.amtController.text) > 0) {
+            if (double.parse(ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account
+                        ?.availableBalance ??
+                    '-1') >=
+                double.parse(model.amtController.text)) {
+              if (model.isPrepaidCategoryListEmpty == true) {
+                Future.delayed(Duration(milliseconds: 200)).then((value) => model.validatePrePaidBill());
+              }
+            } else {
+              model.showToastWithError(AppError(
+                  cause: Exception(),
+                  error: ErrorInfo(message: ''),
+                  type: ErrorType.INSUFFICIENT_FUNDS_BILL_CANNOT_BE_PAYED));
+            }
           }
         }
       },
