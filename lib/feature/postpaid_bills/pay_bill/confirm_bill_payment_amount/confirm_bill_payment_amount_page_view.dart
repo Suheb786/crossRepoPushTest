@@ -137,6 +137,12 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                             }
                           }
                         }
+                      } else if (model.postPaidBillInquiryData?[0].billingNo == null ||
+                          (model.postPaidBillInquiryData?[0].billingNo ?? '').isEmpty ||
+                          model.postPaidBillInquiryData?[0].serviceType == null ||
+                          (model.postPaidBillInquiryData?[0].serviceType ?? '').isEmpty) {
+                        model.showToastWithError(AppError(
+                            cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.NETWORK));
                       } else {
                         model.isDateOk = true;
                         model.amountGreaterThanZeroMessage(model);
