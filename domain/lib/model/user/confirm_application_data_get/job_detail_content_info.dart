@@ -17,6 +17,7 @@ class JobDetailContentInfo {
   final bool? isActive;
   final String businessTypeAr;
   final String employerCountryAr;
+  final String employeeCityId;
 
   JobDetailContentInfo(
       {this.id: 0,
@@ -36,5 +37,6 @@ class JobDetailContentInfo {
       this.businessSpecificType: "",
       this.businessTypeAr = '',
       this.employerCountryAr = '',
-      this.employerCityAr = ''});
+      this.employerCityAr = '',
+      this.employeeCityId = ''});
 }

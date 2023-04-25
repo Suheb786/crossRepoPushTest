@@ -25,6 +25,8 @@ class JobDetailContentEntity
   final String? mainSource;
   @JsonKey(name: "annualIncome")
   final String? annualIncome;
+  @JsonKey(name: "employeeCityId")
+  final String? employeeCityId;
   @JsonKey(name: "employeeName")
   final String? employeeName;
   @JsonKey(name: "employerCountry")
@@ -62,7 +64,8 @@ class JobDetailContentEntity
       this.businessType,
       this.businessSpecificType,
       this.employerCountryAr,
-      this.businessTypeAr});
+      this.businessTypeAr,
+      this.employeeCityId});
 
   factory JobDetailContentEntity.fromJson(Map<String, dynamic> json) =>
       _$JobDetailContentEntityFromJson(json);
@@ -89,7 +92,8 @@ class JobDetailContentEntity
         businessSpecificType: response.businessSpecificType,
         businessType: response.businessType,
         employerCountryAr: response.employerCountryAr,
-        occupation: response.occupation);
+        occupation: response.occupation,
+        employeeCityId: response.employeeCityId);
   }
 
   @override
@@ -112,6 +116,7 @@ class JobDetailContentEntity
         businessType: this.businessType ?? '',
         businessSpecificType: this.businessSpecificType,
         businessTypeAr: this.businessTypeAr ?? '',
-        employerCountryAr: this.employerCountryAr ?? '');
+        employerCountryAr: this.employerCountryAr ?? '',
+        employeeCityId: this.employeeCityId ?? '');
   }
 }

@@ -65,6 +65,12 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
   }
 
   @override
+  void deactivate() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.deactivate();
+  }
+
+  @override
   Widget buildView(BuildContext context, LoginViewModel model) {
     return LoginPageView(provideBase());
   }

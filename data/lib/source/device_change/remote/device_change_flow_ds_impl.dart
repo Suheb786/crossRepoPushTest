@@ -26,7 +26,7 @@ class ChangeDeviceRemoteDSImpl extends ChangeDeviceRemoteDS {
   Future<HttpResponse<ResponseEntity>> sendOtpToken() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
-        .sendOtpToken(SendOtpTokenDeviceChangeRequestEntity(baseData: baseData.toJson(), getToken: false));
+        .sendOtpToken(SendOtpTokenDeviceChangeRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
@@ -41,6 +41,6 @@ class ChangeDeviceRemoteDSImpl extends ChangeDeviceRemoteDS {
       {required String otp, required String firebaseToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyChangeDeviceOtp(VerifyDeviceChangeOtpRequestEntity(
-        baseData: baseData.toJson(), getToken: false, otp: otp, fireBaseToken: firebaseToken));
+        baseData: baseData.toJson(), getToken: true, otp: otp, fireBaseToken: firebaseToken));
   }
 }

@@ -45,7 +45,9 @@ class CreditCardVideoKycPageView extends BasePageViewWidget<CreditCardVideoKycVi
                 child: Container(
                   width: 97.w,
                   height: 128.h,
-                  child: RtcLocalView.SurfaceView(),
+                  child: RtcLocalView.SurfaceView(
+
+                  ),
                 ),
               ),
             ),
