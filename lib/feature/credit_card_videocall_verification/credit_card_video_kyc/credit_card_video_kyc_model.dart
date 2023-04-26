@@ -81,6 +81,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
       await _engine.setAudioProfile(AudioProfile.MusicHighQuality, AudioScenario.ChatRoomEntertainment);
       print('---------- Audio Profile-----------');
       await _engine.startPreview();
+
       print('----------Preview-----------');
       await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
       print('----------Channel Profile-----------');
