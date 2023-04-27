@@ -46,7 +46,9 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     _initEngine();
 
     _callStatusUpdateRequest.listen((value) {
-      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         //updateLoader();
         _callStatusUpdateResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -56,7 +58,9 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     });
 
     _callEndStatusUpdateRequest.listen((value) {
-      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         //updateLoader();
         _callEndStatusUpdateResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -71,28 +75,27 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
       _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
       _addAgoraEventHandlers();
 
-      print(' channelId --  $channelId  token -- $tempToken uid --- $uid');
-      print('---------------------');
+      debugPrint(' channelId --  $channelId  token -- $tempToken uid --- $uid');
+      debugPrint('---------------------');
       await _engine.enableVideo();
-      print('----------Enable Video-----------');
+      debugPrint('----------Enable Video-----------');
       await _engine.enableAudio();
-      print('----------Enable Audio-----------');
+      debugPrint('----------Enable Audio-----------');
       //await _engine.setAudioProfile(AudioProfile.Default, AudioScenario.GameStreaming);
       await _engine.setAudioProfile(AudioProfile.MusicHighQuality, AudioScenario.ChatRoomEntertainment);
-      print('---------- Audio Profile-----------');
+      debugPrint('---------- Audio Profile-----------');
       await _engine.startPreview();
-
-      print('----------Preview-----------');
+      debugPrint('----------Preview-----------');
       await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-      print('----------Channel Profile-----------');
+      debugPrint('----------Channel Profile-----------');
       await _engine.setClientRole(ClientRole.Broadcaster);
-      print('----------Client Role-----------');
+      debugPrint('----------Client Role-----------');
       await _engine.setEnableSpeakerphone(true);
-      print('----------Set Speaker phone-----------');
+      debugPrint('----------Set Speaker phone-----------');
       await _engine.enableLocalAudio(true);
-      print('----------Enable local audio-----------');
+      debugPrint('----------Enable local audio-----------');
     } catch (e) {
-      print("goinginto catch ------------");
+      debugPrint("goinginto catch ------------");
     } finally {
       joinAgoraChannel();
     }
@@ -159,11 +162,13 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   void callStatusUpdate(String? status) {
-    _callStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
+    _callStatusUpdateRequest
+        .safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
   }
 
   void callEndStatusUpdate(String? status) {
-    _callEndStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
+    _callEndStatusUpdateRequest
+        .safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
   }
 
   void leaveChannelWhenAppInBackground() {

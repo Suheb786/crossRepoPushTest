@@ -22,7 +22,9 @@ class CreditCardVideoKycPage extends BasePage<CreditCardVideoKycViewModel> {
   CreditCardVideoKycPageState createState() => CreditCardVideoKycPageState();
 }
 
-class CreditCardVideoKycPageState extends BaseStatefulPage<CreditCardVideoKycViewModel, CreditCardVideoKycPage> with WidgetsBindingObserver {
+class CreditCardVideoKycPageState
+    extends BaseStatefulPage<CreditCardVideoKycViewModel, CreditCardVideoKycPage>
+    with WidgetsBindingObserver {
   void initState() {
     WidgetsBinding.instance?.addObserver(this);
     super.initState();
