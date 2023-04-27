@@ -65,6 +65,8 @@ class CreditCardVideoKycPageState
             style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
           ),
           onDismissed: () {}, onSelected: () {
+        getViewModel().leaveAgoraChannel();
+        ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
         Navigator.of(context)
           ..pop()
           ..pop()

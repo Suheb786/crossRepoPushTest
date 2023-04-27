@@ -75,20 +75,38 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
       _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
       _addAgoraEventHandlers();
 
+      debugPrint(' channelId --  $channelId  token -- $tempToken uid --- $uid');
+      debugPrint('---------------------');
       await _engine.enableVideo();
+      debugPrint('----------Enable Video-----------');
+      await _engine.enableAudio();
+      debugPrint('----------Enable Audio-----------');
+      //await _engine.setAudioProfile(AudioProfile.Default, AudioScenario.GameStreaming);
+      await _engine.setAudioProfile(AudioProfile.MusicHighQuality, AudioScenario.ChatRoomEntertainment);
+      debugPrint('---------- Audio Profile-----------');
       await _engine.startPreview();
-      await _engine.setChannelProfile(ChannelProfile.Communication);
+      debugPrint('----------Preview-----------');
+      await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
+      debugPrint('----------Channel Profile-----------');
       await _engine.setClientRole(ClientRole.Broadcaster);
+      debugPrint('----------Client Role-----------');
+      await _engine.setEnableSpeakerphone(true);
+      debugPrint('----------Set Speaker phone-----------');
+      await _engine.enableLocalAudio(true);
+      debugPrint('----------Enable local audio-----------');
     } catch (e) {
+      debugPrint("goinginto catch ------------");
+    } finally {
       joinAgoraChannel();
     }
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
+    _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) async {
       debugPrint("joinChannelSuccess $uid");
       isJoined = true;
-      notifyListeners();
+      await _engine.enableLocalVideo(true);
+      // notifyListeners();
     }, userJoined: (uid, elapsed) {
       debugPrint("userJoined $uid");
       remoteUid.add(uid);
@@ -98,10 +116,11 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
       remoteUid.removeWhere((element) => element == uid);
       leaveAgoraChannel();
       //notifyListeners();
-    }, leaveChannel: (stats) {
+    }, leaveChannel: (stats) async {
       debugPrint('leave channel');
       isJoined = false;
       remoteUid.clear();
+      await _engine.leaveChannel().then((value) async => await _engine.destroy());
       // notifyListeners();
       //leaveAgoraChannel();
       //getCallStatus();
@@ -112,7 +131,10 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
 
   joinAgoraChannel() async {
     if (Platform.isAndroid) {
-      await [Permission.microphone, Permission.camera].request();
+      await [
+        Permission.microphone,
+        Permission.camera,
+      ].request();
     }
     await _engine.joinChannel(tempToken, channelId, null, uid);
     callStatusUpdate("S");
@@ -121,6 +143,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
 
   leaveAgoraChannel() async {
     await _engine.leaveChannel();
+    await _engine.destroy();
     callEndStatusUpdate("E");
     //notifyListeners();
   }
@@ -154,7 +177,6 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _engine.destroy();
     Wakelock.disable();
     super.dispose();
   }
