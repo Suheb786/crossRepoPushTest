@@ -29,6 +29,7 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
     businessSpecificType: json['businessSpecificType'] as String?,
     employerCountryAr: json['employerCountryAr'] as String?,
     businessTypeAr: json['businessTypeAr'] as String?,
+    employeeCityId: json['employeeCityId'] as String?,
   );
 }
 
@@ -44,6 +45,7 @@ Map<String, dynamic> _$JobDetailContentEntityToJson(
       'businessSpecificType': instance.businessSpecificType,
       'mainSource': instance.mainSource,
       'annualIncome': instance.annualIncome,
+      'employeeCityId': instance.employeeCityId,
       'employeeName': instance.employeeName,
       'employerCountry': instance.employerCountry,
       'employerCountryAr': instance.employerCountryAr,

@@ -30,9 +30,7 @@ class CreditCardVideoCallInitiatePageState
   @override
   void onModelReady(CreditCardVideoCallInitiatePageViewModel model) {
     super.onModelReady(model);
-    Future.delayed(Duration(seconds: 2), () {
-      model.checkAvailableAgent();
-    });
+
   }
 
   @override
