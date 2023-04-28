@@ -101,7 +101,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
 
-  void payPostPaidBill(BuildContext context) {
+  Future<void> payPostPaidBill(BuildContext context) async {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("pay_post_paid_saved_bill", {"pay_post_paid_saved_bill_call": true});
     tempPostpaidBillInquiryRequestList = [];
@@ -137,8 +137,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
       ));
     }
     tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
-    addAllBillAmt(context, isApi: true);
-
+    await addAllBillAmt(context, isApi: true);
     if (totalBillAmt > 0) {
       if (double.parse(ProviderScope.containerOf(context)
                   .read(appHomeViewModelProvider)

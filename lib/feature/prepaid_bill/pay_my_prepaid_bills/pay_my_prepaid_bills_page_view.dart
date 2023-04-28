@@ -75,6 +75,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                                   [model.getPrepaidBillerListModelData]));
                         }
                       } else if (value.status == Status.ERROR) {
+                        ///No category found(denomination) so user inputs amount on its own
                         if (value.appError?.error.message.toString().toLowerCase() ==
                             "err-359".toLowerCase()) {
                           model.isPrePaidCategoryEmpty = true;
