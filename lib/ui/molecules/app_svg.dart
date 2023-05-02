@@ -21,9 +21,9 @@ class AppSvg {
       String? semanticsLabel}) {
     if (kIsWeb) {
       return Consumer(
-        builder: (context, watch, child) => Image.network(
+        builder: (context, ref, child) => Image.network(
           darkAssetName != null
-              ? (watch(appViewModel).appTheme == AppTheme.dark ? "$darkAssetName" : "$assetName")
+              ? (ref.watch(appViewModel).appTheme == AppTheme.dark ? "$darkAssetName" : "$assetName")
               : "$assetName",
           width: width,
           height: height,
@@ -35,9 +35,9 @@ class AppSvg {
       );
     }
     return Consumer(
-      builder: (context, watch, child) => SvgPicture.asset(
+      builder: (context, ref, child) => SvgPicture.asset(
           darkAssetName != null
-              ? (watch(appViewModel).appTheme == AppTheme.dark ? darkAssetName : assetName)
+              ? (ref.watch(appViewModel).appTheme == AppTheme.dark ? darkAssetName : assetName)
               : assetName,
           width: width,
           height: height,

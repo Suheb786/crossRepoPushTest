@@ -15,11 +15,11 @@ class App extends ConsumerWidget {
   late AppViewModel _appViewModel;
 
   @override
-  Widget build(BuildContext context, watch) {
+  Widget build(BuildContext context, ref) {
     return BaseWidget<AppViewModel>(
       providerBase: appViewModel,
       onModelReady: (model) {
-        _appViewModel = watch(appViewModel);
+        _appViewModel = ref.watch(appViewModel);
         // model.initAppFlyerSDKStream.listen((event) {
         //   if (event.status == Status.SUCCESS) {
         //     debugPrint('-----SDK INITIALIZED------');
