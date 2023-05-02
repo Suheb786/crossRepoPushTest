@@ -1,5 +1,4 @@
-import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
-import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,8 +25,11 @@ class CreditCardVideoKycPageView extends BasePageViewWidget<CreditCardVideoKycVi
         children: [
           model.remoteUid.isNotEmpty
               ? Container(
-                  child: RtcRemoteView.SurfaceView(
-                    uid: model.remoteUid.first,
+                  child: AgoraVideoView(
+                    controller: VideoViewController(
+                      rtcEngine: model.engine,
+                      canvas: VideoCanvas(uid: model.uid),
+                    ),
                   ),
                 )
               : Container(
@@ -45,7 +47,13 @@ class CreditCardVideoKycPageView extends BasePageViewWidget<CreditCardVideoKycVi
                 child: Container(
                   width: 97.w,
                   height: 128.h,
-                  child: RtcLocalView.SurfaceView(),
+                  child: AgoraVideoView(
+                    controller: VideoViewController.remote(
+                      rtcEngine: model.engine,
+                      canvas: VideoCanvas(uid: model.uid),
+                      connection: RtcConnection(channelId: model.channelId),
+                    ),
+                  ),
                 ),
               ),
             ),

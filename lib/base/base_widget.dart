@@ -27,8 +27,8 @@ class _BaseWidget<T extends ChangeNotifier> extends State<BaseWidget<T>> {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, watch, child) {
-        _model = watch(widget.providerBase as ProviderBase<Object?, T>);
+      builder: (context, ref, child) {
+        _model = ref.watch(widget.providerBase as ProviderBase<T?>);
         widget.onModelReady?.call(_model!);
         return widget.builder(context, _model, child);
       },

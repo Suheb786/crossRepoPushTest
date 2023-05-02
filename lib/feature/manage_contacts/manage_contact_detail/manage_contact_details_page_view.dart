@@ -347,15 +347,17 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
   }
 
   void _cropImage(String data, ManageContactDetailsPageViewModel model, BuildContext context) async {
-    File? cropped = await ImageCropper().cropImage(
+    CroppedFile? cropped = await ImageCropper().cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,
-        iosUiSettings: IOSUiSettings(
-            resetButtonHidden: true,
-            rotateButtonsHidden: true,
-            aspectRatioPickerButtonHidden: true,
-            doneButtonTitle: 'Choose'),
-        androidUiSettings: AndroidUiSettings(hideBottomControls: true),
+        uiSettings: [
+          AndroidUiSettings(hideBottomControls: true),
+          IOSUiSettings(
+              resetButtonHidden: true,
+              rotateButtonsHidden: true,
+              aspectRatioPickerButtonHidden: true,
+              doneButtonTitle: 'Choose')
+        ],
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;
