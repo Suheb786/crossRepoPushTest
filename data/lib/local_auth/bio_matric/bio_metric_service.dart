@@ -1,4 +1,6 @@
 import 'package:local_auth/local_auth.dart';
+import 'package:local_auth_platform_interface/types/auth_messages.dart';
+import 'package:local_auth_android/types/auth_messages_android.dart';
 
 class BioMetricService {
   final LocalAuthentication _localAuthentication;
@@ -14,21 +16,17 @@ class BioMetricService {
   }
 
   Future<bool> authenticateWithBiometrics(
-      {bool useErrorDialogs: true,
-      bool stickyAuth: false,
-      String title: "",
-      String localisedReason: ""}) async {
-    // TODO: THIS IS THE ISSUE AND NEEDS TO BE CHECKED!
-    // Iterable<AuthMessages> authMessages = const [
-    //   AndroidAuthMessages(biometricHint: "", signInTitle: title),
-    // ];
+      {bool useErrorDialogs = true,
+      bool stickyAuth = false,
+      String title = "",
+      String localisedReason = ""}) async {
+    Iterable<AuthMessages> authMessages = [
+      AndroidAuthMessages(biometricHint: "", signInTitle: title),
+    ];
     return _localAuthentication.authenticate(
         localizedReason: localisedReason,
-        // authMessages: authMessages,
+        authMessages: authMessages,
         options: AuthenticationOptions(
-            biometricOnly: true,
-            // androidAuthStrings: AndroidAuthMessages(biometricHint: "", signInTitle: title),
-            useErrorDialogs: useErrorDialogs,
-            stickyAuth: stickyAuth));
+            biometricOnly: true, useErrorDialogs: useErrorDialogs, stickyAuth: stickyAuth));
   }
 }

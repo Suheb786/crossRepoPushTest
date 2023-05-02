@@ -304,23 +304,35 @@ class UserRepositoryImpl extends UserRepository {
             fullName: StringConverter.getFullName(
                 primaryId: r.mrzResult!.primaryId ?? '',
                 secondaryId: r.mrzResult!.secondaryId ?? '',
-                fullName: r.fullName),
-            firstName:
-                r.mrzResult!.secondaryId?.trim().split(" ").elementAt(0).toString() ?? r.firstName ?? "",
+                fullName: r.fullName?.description ?? ''),
+            firstName: r.mrzResult!.secondaryId?.trim().split(" ").elementAt(0).toString() ??
+                r.firstName?.description ??
+                "",
             middleName: StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
-            familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
-            idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber ?? '',
+            familyName: r.mrzResult!.primaryId ?? r.lastName?.description ?? "",
+            idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber?.description ?? '',
             dob: r.dateOfBirth != null
-                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!, r.dateOfBirth!.day!)
+                ? DateTime(r.dateOfBirth!.date!.year!, r.dateOfBirth!.date!.month!, r.dateOfBirth!.date!.day!)
                 : DateTime(0),
-            nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+            nationality: r.nationality != null
+                ? r.nationality!.description!.isNotEmpty
+                    ? r.nationality?.description
+                    : ''
+                : '',
             doe: r.dateOfExpiry != null
-                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
+                ? DateTime(
+                    r.dateOfExpiry!.date!.year!, r.dateOfExpiry!.date!.month!, r.dateOfExpiry!.date!.day!)
                 : DateTime(0),
-            gender: r.sex!.isNotEmpty ? r.sex : '',
-            motherName: r.mothersName != null ? (r.mothersName!.isNotEmpty ? r.mothersName : '') : "",
+            gender: r.sex != null
+                ? r.sex!.description!.isNotEmpty
+                    ? r.sex!.description
+                    : ''
+                : "",
+            motherName: r.mothersName != null
+                ? (r.mothersName!.description!.isNotEmpty ? r.mothersName!.description : '')
+                : "",
             documentCode: r.mrzResult!.documentCode!.isNotEmpty ? r.mrzResult!.documentCode : '',
-            documentNumber: r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber ?? '',
+            documentNumber: r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber?.description ?? '' ?? '',
             issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             frontCardImage: r.fullDocumentFrontImage,
             backCardImage: r.fullDocumentBackImage,
@@ -328,16 +340,19 @@ class UserRepositoryImpl extends UserRepository {
             issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             issuingDate: r.dateOfIssue != null &&
-                    r.dateOfIssue!.year != 0 &&
-                    r.dateOfIssue!.month != 0 &&
-                    r.dateOfIssue!.day != 0
-                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!, r.dateOfIssue!.day!)
+                    r.dateOfIssue!.date!.year != 0 &&
+                    r.dateOfIssue!.date!.month != 0 &&
+                    r.dateOfIssue!.date!.day != 0
+                ? DateTime(r.dateOfIssue!.date!.year!, r.dateOfIssue!.date!.month!, r.dateOfIssue!.date!.day!)
                 : r.dateOfExpiry != null
-                    ? DateTime(r.dateOfExpiry!.year! - 10, r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
+                    ? DateTime(r.dateOfExpiry!.date!.year! - 10, r.dateOfExpiry!.date!.month!,
+                        r.dateOfExpiry!.date!.day!)
                     : DateTime(0),
             currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             nationalityIsoCode3: r.mrzResult?.nationality ?? "",
-            placeOfBirth: r.placeOfBirth != null ? (r.placeOfBirth!.isNotEmpty ? r.placeOfBirth : "") : "")));
+            placeOfBirth: r.placeOfBirth != null
+                ? ((r.placeOfBirth?.description ?? '').isNotEmpty ? r.placeOfBirth!.description : "")
+                : "")));
   }
 
   @override
