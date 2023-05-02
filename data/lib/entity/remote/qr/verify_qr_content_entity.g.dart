@@ -7,14 +7,13 @@ part of 'verify_qr_content_entity.dart';
 // **************************************************************************
 
 VerifyQRContentEntity _$VerifyQRContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return VerifyQRContentEntity(
-    toAccount: json['toAccount'] as String?,
-    accountHolderName: json['accountHolderName'] as String?,
-    amount: json['amount'] as String?,
-    requestId: json['requestId'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyQRContentEntity(
+      toAccount: json['toAccount'] as String?,
+      accountHolderName: json['accountHolderName'] as String?,
+      amount: json['amount'] as String?,
+      requestId: json['requestId'] as String?,
+    );
 
 Map<String, dynamic> _$VerifyQRContentEntityToJson(
         VerifyQRContentEntity instance) =>

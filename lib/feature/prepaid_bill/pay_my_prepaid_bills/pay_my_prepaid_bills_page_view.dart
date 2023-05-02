@@ -288,7 +288,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
 
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -329,8 +329,8 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
           ),
         ),
         displayDuration: Duration(milliseconds: 1000),
-        hideOutAnimationDuration: Duration(milliseconds: 200),
-        showOutAnimationDuration: Duration(milliseconds: 500));
+        reverseAnimationDuration: Duration(milliseconds: 200),
+        animationDuration: Duration(milliseconds: 500));
   }
 
   void _onPrePaidListItemSection(PayMyPrePaidBillsPageViewModel model, int index, BuildContext context) {

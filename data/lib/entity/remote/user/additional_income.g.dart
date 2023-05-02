@@ -6,12 +6,11 @@ part of 'additional_income.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AdditionalIncome _$AdditionalIncomeFromJson(Map<String, dynamic> json) {
-  return AdditionalIncome(
-    additionalIncomeSource: json['AdditionalIncomeSource'] as String?,
-    totalIncome: json['TotalIncome'] as String?,
-  );
-}
+AdditionalIncome _$AdditionalIncomeFromJson(Map<String, dynamic> json) =>
+    AdditionalIncome(
+      additionalIncomeSource: json['AdditionalIncomeSource'] as String?,
+      totalIncome: json['TotalIncome'] as String?,
+    );
 
 Map<String, dynamic> _$AdditionalIncomeToJson(AdditionalIncome instance) =>
     <String, dynamic>{

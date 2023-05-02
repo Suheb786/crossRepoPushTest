@@ -7,11 +7,10 @@ part of 'register_interest_content_entity.dart';
 // **************************************************************************
 
 RegisterInterestContentEntity _$RegisterInterestContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return RegisterInterestContentEntity(
-    referenceNo: json['referenceNo'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    RegisterInterestContentEntity(
+      referenceNo: json['referenceNo'] as String?,
+    );
 
 Map<String, dynamic> _$RegisterInterestContentEntityToJson(
         RegisterInterestContentEntity instance) =>

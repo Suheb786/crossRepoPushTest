@@ -7,13 +7,12 @@ part of 'ahwal_detail_response_entity.dart';
 // **************************************************************************
 
 AhwalDetailResponseEntity _$AhwalDetailResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return AhwalDetailResponseEntity(
-    responseEntity: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    AhwalDetailResponseEntity(
+      responseEntity: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$AhwalDetailResponseEntityToJson(
         AhwalDetailResponseEntity instance) =>

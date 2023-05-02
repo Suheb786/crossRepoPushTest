@@ -6,20 +6,19 @@ part of 'logout_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LogoutRequestEntity _$LogoutRequestEntityFromJson(Map<String, dynamic> json) {
-  return LogoutRequestEntity(
-    appVersion: json['AppVersion'] as String?,
-    mobileModel: json['MobileModel'] as String?,
-    browser: json['Browser'] as String?,
-    platform: json['Platform'] as String?,
-    longitude: json['Longitude'] as String?,
-    latitude: json['Latitude'] as String?,
-    deviceID: json['DeviceID'] as String?,
-    vkeySessionId: json['VkeySessionId'] as String?,
-    channelType: json['ChannelType'] as String?,
-    iP: json['IP'] as String?,
-  );
-}
+LogoutRequestEntity _$LogoutRequestEntityFromJson(Map<String, dynamic> json) =>
+    LogoutRequestEntity(
+      appVersion: json['AppVersion'] as String?,
+      mobileModel: json['MobileModel'] as String?,
+      browser: json['Browser'] as String?,
+      platform: json['Platform'] as String?,
+      longitude: json['Longitude'] as String?,
+      latitude: json['Latitude'] as String?,
+      deviceID: json['DeviceID'] as String?,
+      vkeySessionId: json['VkeySessionId'] as String?,
+      channelType: json['ChannelType'] as String?,
+      iP: json['IP'] as String?,
+    );
 
 Map<String, dynamic> _$LogoutRequestEntityToJson(
         LogoutRequestEntity instance) =>

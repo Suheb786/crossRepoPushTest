@@ -7,13 +7,12 @@ part of 'get_prepaid_biller_list_entity.dart';
 // **************************************************************************
 
 GetPrepaidBillerListEntity _$GetPrepaidBillerListEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetPrepaidBillerListEntity(
-    billList: (json['result'] as List<dynamic>?)
-        ?.map((e) => e as Map<String, dynamic>)
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetPrepaidBillerListEntity(
+      billList: (json['result'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
 
 Map<String, dynamic> _$GetPrepaidBillerListEntityToJson(
         GetPrepaidBillerListEntity instance) =>

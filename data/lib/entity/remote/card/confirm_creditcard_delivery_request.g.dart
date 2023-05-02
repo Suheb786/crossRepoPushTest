@@ -7,15 +7,14 @@ part of 'confirm_creditcard_delivery_request.dart';
 // **************************************************************************
 
 ConfirmCreditCardDeliveryRequest _$ConfirmCreditCardDeliveryRequestFromJson(
-    Map<String, dynamic> json) {
-  return ConfirmCreditCardDeliveryRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    accountId: json['AccountId'] as String?,
-    cardId: json['CardId'] as String?,
-    cardDigit: json['CardDigit'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ConfirmCreditCardDeliveryRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      accountId: json['AccountId'] as String? ?? '1',
+      cardId: json['CardId'] as String? ?? "",
+      cardDigit: json['CardDigit'] as String?,
+    );
 
 Map<String, dynamic> _$ConfirmCreditCardDeliveryRequestToJson(
         ConfirmCreditCardDeliveryRequest instance) =>

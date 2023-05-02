@@ -7,22 +7,21 @@ part of 'pay_post_paid_bill_request_entity.dart';
 // **************************************************************************
 
 PayPostPaidBillRequestEntity _$PayPostPaidBillRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return PayPostPaidBillRequestEntity(
-    billerList: json['billList'],
-    accountNo: json['accountNo'] as String?,
-    totalAmount: json['totalAmount'] as String?,
-    fee: json['fee'] as String?,
-    currencyCode: json['currencyCode'] as String?,
-    otpCode: json['otpCode'] as String?,
-    isCreditCardPayment: json['isCreditCardPayment'] as bool?,
-    isNewBiller: json['isNewBiller'] as bool?,
-    CardId: json['CardId'] as String?,
-    nickName: json['NickName'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    PayPostPaidBillRequestEntity(
+      billerList: json['billList'],
+      accountNo: json['accountNo'] as String?,
+      totalAmount: json['totalAmount'] as String?,
+      fee: json['fee'] as String?,
+      currencyCode: json['currencyCode'] as String?,
+      otpCode: json['otpCode'] as String?,
+      isCreditCardPayment: json['isCreditCardPayment'] as bool?,
+      isNewBiller: json['isNewBiller'] as bool?,
+      CardId: json['CardId'] as String?,
+      nickName: json['NickName'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$PayPostPaidBillRequestEntityToJson(
         PayPostPaidBillRequestEntity instance) =>

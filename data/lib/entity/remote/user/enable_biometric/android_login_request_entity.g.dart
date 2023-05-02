@@ -7,14 +7,13 @@ part of 'android_login_request_entity.dart';
 // **************************************************************************
 
 AndroidLoginRequestEntity _$AndroidLoginRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return AndroidLoginRequestEntity(
-    uniqueId: json['uniqueId'] as String?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    fireBaseToken: json['fireBaseToken'] as String?,
-    signature: json['Signature'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AndroidLoginRequestEntity(
+      uniqueId: json['uniqueId'] as String? ?? "",
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      fireBaseToken: json['fireBaseToken'] as String? ?? "",
+      signature: json['Signature'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$AndroidLoginRequestEntityToJson(
         AndroidLoginRequestEntity instance) =>

@@ -7,14 +7,13 @@ part of 'request_money_activity_entity.dart';
 // **************************************************************************
 
 RequestMoneyActivityEntity _$RequestMoneyActivityEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestMoneyActivityEntity(
-    requestMoneyActivities: (json['requestMoneyActivities'] as List<dynamic>?)
-        ?.map((e) =>
-            RequestMoneyActivityListEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestMoneyActivityEntity(
+      requestMoneyActivities: (json['requestMoneyActivities'] as List<dynamic>?)
+          ?.map((e) => RequestMoneyActivityListEntity.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$RequestMoneyActivityEntityToJson(
         RequestMoneyActivityEntity instance) =>

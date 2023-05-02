@@ -7,14 +7,13 @@ part of 'city_list_request_entity.dart';
 // **************************************************************************
 
 CityListRequestEntity _$CityListRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CityListRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    isoCode: json['IsoCode'] as String?,
-    stateID: json['StateID'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CityListRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      isoCode: json['IsoCode'] as String? ?? "",
+      stateID: json['StateID'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CityListRequestEntityToJson(
         CityListRequestEntity instance) =>

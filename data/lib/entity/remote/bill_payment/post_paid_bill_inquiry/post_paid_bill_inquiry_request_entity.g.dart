@@ -7,13 +7,12 @@ part of 'post_paid_bill_inquiry_request_entity.dart';
 // **************************************************************************
 
 PostPaidBillInquiryRequestEntity _$PostPaidBillInquiryRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return PostPaidBillInquiryRequestEntity(
-    postpaidBillInquiries: json['postpaidBillInquiries'],
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    PostPaidBillInquiryRequestEntity(
+      postpaidBillInquiries: json['postpaidBillInquiries'],
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$PostPaidBillInquiryRequestEntityToJson(
         PostPaidBillInquiryRequestEntity instance) =>

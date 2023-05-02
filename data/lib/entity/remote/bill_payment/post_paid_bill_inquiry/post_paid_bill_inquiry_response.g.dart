@@ -7,13 +7,12 @@ part of 'post_paid_bill_inquiry_response.dart';
 // **************************************************************************
 
 PostPaidBillInquiryResponse _$PostPaidBillInquiryResponseFromJson(
-    Map<String, dynamic> json) {
-  return PostPaidBillInquiryResponse(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    PostPaidBillInquiryResponse(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$PostPaidBillInquiryResponseToJson(
         PostPaidBillInquiryResponse instance) =>

@@ -7,33 +7,32 @@ part of 'submit_outward_payment_request_entity.dart';
 // **************************************************************************
 
 SubmitOutwardPaymentRequestEntity _$SubmitOutwardPaymentRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return SubmitOutwardPaymentRequestEntity(
-    json['custID'] as String,
-    json['dbtrAcct'] as String,
-    json['dbtrName'] as String,
-    json['dbtrPstlAdr'] as String,
-    json['dbtrRecordID'] as String,
-    json['dbtrAlias'] as String,
-    json['currency'] as String,
-    json['amount'] as String,
-    json['purposE_CODE'] as String,
-    json['cdtrBic'] as String,
-    json['cdtrName'] as String,
-    json['cdtrAcct'] as String,
-    json['cdtrPstlAdr'] as String,
-    json['cdtrRecordID'] as String,
-    json['cdtrAlias'] as String,
-    json['rgltryRptg'] as String,
-    json['CustIDTO'] as String,
-    json['DbtrIsIndvl'] as String,
-    json['CdtrIsIndvl'] as String,
-    json['RmtInf'] as String,
-    json['QRFlag'] as String,
-    json['GetToken'] as bool,
-    json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    SubmitOutwardPaymentRequestEntity(
+      json['custID'] as String,
+      json['dbtrAcct'] as String,
+      json['dbtrName'] as String,
+      json['dbtrPstlAdr'] as String,
+      json['dbtrRecordID'] as String,
+      json['dbtrAlias'] as String,
+      json['currency'] as String,
+      json['amount'] as String,
+      json['purposE_CODE'] as String,
+      json['cdtrBic'] as String,
+      json['cdtrName'] as String,
+      json['cdtrAcct'] as String,
+      json['cdtrPstlAdr'] as String,
+      json['cdtrRecordID'] as String,
+      json['cdtrAlias'] as String,
+      json['rgltryRptg'] as String,
+      json['CustIDTO'] as String,
+      json['DbtrIsIndvl'] as String,
+      json['CdtrIsIndvl'] as String,
+      json['RmtInf'] as String,
+      json['QRFlag'] as String,
+      json['GetToken'] as bool,
+      json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$SubmitOutwardPaymentRequestEntityToJson(
         SubmitOutwardPaymentRequestEntity instance) =>

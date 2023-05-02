@@ -7,13 +7,13 @@ part of 'profile_changed_success_response_entity.dart';
 // **************************************************************************
 
 ProfileChangedSuccessResponseEntity
-    _$ProfileChangedSuccessResponseEntityFromJson(Map<String, dynamic> json) {
-  return ProfileChangedSuccessResponseEntity(
-    responseEntity: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+    _$ProfileChangedSuccessResponseEntityFromJson(Map<String, dynamic> json) =>
+        ProfileChangedSuccessResponseEntity(
+          responseEntity: json['response'] == null
+              ? null
+              : ResponseEntity.fromJson(
+                  json['response'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$ProfileChangedSuccessResponseEntityToJson(
         ProfileChangedSuccessResponseEntity instance) =>

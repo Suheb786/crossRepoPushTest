@@ -7,13 +7,12 @@ part of 'verify_mobile_otp_request.dart';
 // **************************************************************************
 
 VerifyMobileOtpRequest _$VerifyMobileOtpRequestFromJson(
-    Map<String, dynamic> json) {
-  return VerifyMobileOtpRequest(
-    otpCode: json['otpCode'] as String?,
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyMobileOtpRequest(
+      otpCode: json['otpCode'] as String? ?? "",
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$VerifyMobileOtpRequestToJson(
         VerifyMobileOtpRequest instance) =>

@@ -7,16 +7,15 @@ part of 'prepaid_categories_entity.dart';
 // **************************************************************************
 
 PrepaidCategoriesEntity _$PrepaidCategoriesEntityFromJson(
-    Map<String, dynamic> json) {
-  return PrepaidCategoriesEntity(
-    catCode: json['catCode'] as String?,
-    shortDescriptionAr: json['shortDescriptionAr'] as String?,
-    shortDescriptionEn: json['shortDescriptionEn'] as String?,
-    descriptionEn: json['descriptionEn'] as String?,
-    descriptionAr: json['descriptionAr'] as String?,
-    type: json['type'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    PrepaidCategoriesEntity(
+      catCode: json['catCode'] as String?,
+      shortDescriptionAr: json['shortDescriptionAr'] as String?,
+      shortDescriptionEn: json['shortDescriptionEn'] as String?,
+      descriptionEn: json['descriptionEn'] as String?,
+      descriptionAr: json['descriptionAr'] as String?,
+      type: json['type'] as String?,
+    );
 
 Map<String, dynamic> _$PrepaidCategoriesEntityToJson(
         PrepaidCategoriesEntity instance) =>

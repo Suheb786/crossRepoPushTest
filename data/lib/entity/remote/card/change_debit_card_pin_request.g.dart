@@ -7,15 +7,14 @@ part of 'change_debit_card_pin_request.dart';
 // **************************************************************************
 
 ChangeDebitCardPinRequest _$ChangeDebitCardPinRequestFromJson(
-    Map<String, dynamic> json) {
-  return ChangeDebitCardPinRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    pinCode: json['PinCode'] as String?,
-    tokenizedPan: json['TokenizedPan'] as String?,
-    otp: json['otp'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ChangeDebitCardPinRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      pinCode: json['PinCode'] as String?,
+      tokenizedPan: json['TokenizedPan'] as String?,
+      otp: json['otp'] as String?,
+    );
 
 Map<String, dynamic> _$ChangeDebitCardPinRequestToJson(
         ChangeDebitCardPinRequest instance) =>

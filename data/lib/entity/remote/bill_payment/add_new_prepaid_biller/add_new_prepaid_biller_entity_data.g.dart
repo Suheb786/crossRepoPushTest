@@ -7,11 +7,10 @@ part of 'add_new_prepaid_biller_entity_data.dart';
 // **************************************************************************
 
 AddNewPrepaidBillerEntityData _$AddNewPrepaidBillerEntityDataFromJson(
-    Map<String, dynamic> json) {
-  return AddNewPrepaidBillerEntityData(
-    nickName: json['nickName'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AddNewPrepaidBillerEntityData(
+      nickName: json['nickName'] as String?,
+    );
 
 Map<String, dynamic> _$AddNewPrepaidBillerEntityDataToJson(
         AddNewPrepaidBillerEntityData instance) =>

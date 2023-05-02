@@ -7,15 +7,14 @@ part of 'save_upload_document_request_entity.dart';
 // **************************************************************************
 
 SaveUploadDocumentRequestEntity _$SaveUploadDocumentRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return SaveUploadDocumentRequestEntity(
-    proofOfAddressId: json['ProofOfAddressId'] as String?,
-    proofOfIncomeId: json['ProofOfIncomeId'] as String?,
-    proofOfNationalityId: json['ProofOfNationalityId'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    SaveUploadDocumentRequestEntity(
+      proofOfAddressId: json['ProofOfAddressId'] as String?,
+      proofOfIncomeId: json['ProofOfIncomeId'] as String?,
+      proofOfNationalityId: json['ProofOfNationalityId'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$SaveUploadDocumentRequestEntityToJson(
         SaveUploadDocumentRequestEntity instance) =>

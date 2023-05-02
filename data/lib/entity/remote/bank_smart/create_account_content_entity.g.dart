@@ -7,15 +7,14 @@ part of 'create_account_content_entity.dart';
 // **************************************************************************
 
 CreateAccountContentEntity _$CreateAccountContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreateAccountContentEntity(
-    data: json['data'] == null
-        ? null
-        : CreateAccountDataEntity.fromJson(
-            json['data'] as Map<String, dynamic>),
-    isAccountBlackListed: json['isAccountBlackListed'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CreateAccountContentEntity(
+      data: json['data'] == null
+          ? null
+          : CreateAccountDataEntity.fromJson(
+              json['data'] as Map<String, dynamic>),
+      isAccountBlackListed: json['isAccountBlackListed'] as bool?,
+    );
 
 Map<String, dynamic> _$CreateAccountContentEntityToJson(
         CreateAccountContentEntity instance) =>

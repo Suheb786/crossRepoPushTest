@@ -6,12 +6,11 @@ part of 'approve_rtp_otp_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ApproveRTPOtpEntity _$ApproveRTPOtpEntityFromJson(Map<String, dynamic> json) {
-  return ApproveRTPOtpEntity(
-    mobileCode: json['mobileCode'] as String? ?? '',
-    mobileNumber: json['mobileNumber'] as String? ?? '',
-  );
-}
+ApproveRTPOtpEntity _$ApproveRTPOtpEntityFromJson(Map<String, dynamic> json) =>
+    ApproveRTPOtpEntity(
+      mobileCode: json['mobileCode'] as String? ?? '',
+      mobileNumber: json['mobileNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$ApproveRTPOtpEntityToJson(
         ApproveRTPOtpEntity instance) =>

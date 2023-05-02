@@ -7,22 +7,21 @@ part of 'get_card_application_content_entity.dart';
 // **************************************************************************
 
 GetCardApplicationContentEntity _$GetCardApplicationContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCardApplicationContentEntity(
-    cardId: json['cardId'] as String?,
-    loanValueId: json['loanValueId'] as num?,
-    processLoanStep: json['processLoanStep'] as bool?,
-    processLoanDate: json['processLoanDate'] as String?,
-    issueCardOnNI: json['issueCardOnNI'] as bool?,
-    issueCardDate: json['issueCardDate'] as String?,
-    finalStep: json['finalStep'] as bool?,
-    contactLessError: json['contactLessError'] as int?,
-    linkCardError: json['linkCardError'] as int?,
-    crifError: json['crifError'] as int?,
-    manageSOError: json['manageSOError'] as int?,
-    aramexError: json['aramexError'] as int?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCardApplicationContentEntity(
+      cardId: json['cardId'] as String? ?? "",
+      loanValueId: json['loanValueId'] as num? ?? 0,
+      processLoanStep: json['processLoanStep'] as bool? ?? false,
+      processLoanDate: json['processLoanDate'] as String? ?? "",
+      issueCardOnNI: json['issueCardOnNI'] as bool? ?? false,
+      issueCardDate: json['issueCardDate'] as String? ?? "",
+      finalStep: json['finalStep'] as bool? ?? false,
+      contactLessError: json['contactLessError'] as int? ?? 0,
+      linkCardError: json['linkCardError'] as int? ?? 0,
+      crifError: json['crifError'] as int? ?? 0,
+      manageSOError: json['manageSOError'] as int? ?? 0,
+      aramexError: json['aramexError'] as int? ?? 0,
+    );
 
 Map<String, dynamic> _$GetCardApplicationContentEntityToJson(
         GetCardApplicationContentEntity instance) =>

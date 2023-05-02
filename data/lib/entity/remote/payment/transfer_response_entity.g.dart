@@ -7,18 +7,17 @@ part of 'transfer_response_entity.dart';
 // **************************************************************************
 
 TransferResponseEntity _$TransferResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return TransferResponseEntity(
-    beneficiaryId: json['beneficiaryId'] as String?,
-    transferType: json['transferType'] as String?,
-    beneficiaryImage: json['beneficiaryImage'] as String?,
-    toAmount: json['toAmount'] as num?,
-    localEq: json['localEq'] as num?,
-    toAccount: json['toAccount'] as String?,
-    name: json['name'] as String?,
-    message: json['message'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    TransferResponseEntity(
+      beneficiaryId: json['beneficiaryId'] as String?,
+      transferType: json['transferType'] as String?,
+      beneficiaryImage: json['beneficiaryImage'] as String?,
+      toAmount: json['toAmount'] as num?,
+      localEq: json['localEq'] as num?,
+      toAccount: json['toAccount'] as String?,
+      name: json['name'] as String? ?? "",
+      message: json['message'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$TransferResponseEntityToJson(
         TransferResponseEntity instance) =>

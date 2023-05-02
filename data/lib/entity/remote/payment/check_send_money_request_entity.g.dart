@@ -7,14 +7,13 @@ part of 'check_send_money_request_entity.dart';
 // **************************************************************************
 
 CheckSendMoneyRequestEntity _$CheckSendMoneyRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckSendMoneyRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    toAccount: json['ToAccount'] as String?,
-    toAmount: json['ToAmount'] as num?,
-    getToken: json['getToken'] as bool,
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckSendMoneyRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      toAccount: json['ToAccount'] as String? ?? '',
+      toAmount: json['ToAmount'] as num? ?? 0,
+      getToken: json['getToken'] as bool? ?? true,
+    );
 
 Map<String, dynamic> _$CheckSendMoneyRequestEntityToJson(
         CheckSendMoneyRequestEntity instance) =>

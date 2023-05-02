@@ -7,12 +7,11 @@ part of 'doc_status_request_entity.dart';
 // **************************************************************************
 
 DocStatusRequestEntity _$DocStatusRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return DocStatusRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    DocStatusRequestEntity(
+      getToken: json['GetToken'] as bool?,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$DocStatusRequestEntityToJson(
         DocStatusRequestEntity instance) =>

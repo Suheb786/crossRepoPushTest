@@ -7,13 +7,12 @@ part of 'delete_cliq_id_otp_response_entity.dart';
 // **************************************************************************
 
 DeleteCliqIdOtpResponseEntity _$DeleteCliqIdOtpResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return DeleteCliqIdOtpResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    DeleteCliqIdOtpResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$DeleteCliqIdOtpResponseEntityToJson(
         DeleteCliqIdOtpResponseEntity instance) =>

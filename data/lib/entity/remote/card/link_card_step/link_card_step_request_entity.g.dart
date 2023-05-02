@@ -7,14 +7,13 @@ part of 'link_card_step_request_entity.dart';
 // **************************************************************************
 
 LinkCardStepRequestEntity _$LinkCardStepRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return LinkCardStepRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    cardId: json['CardId'] as String?,
-    accountNumber: json['AccountNumber'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    LinkCardStepRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      cardId: json['CardId'] as String? ?? "",
+      accountNumber: json['AccountNumber'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$LinkCardStepRequestEntityToJson(
         LinkCardStepRequestEntity instance) =>

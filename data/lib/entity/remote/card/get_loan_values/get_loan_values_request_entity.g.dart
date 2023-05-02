@@ -7,13 +7,12 @@ part of 'get_loan_values_request_entity.dart';
 // **************************************************************************
 
 GetLoanValuesRequestEntity _$GetLoanValuesRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetLoanValuesRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    accountId: json['AccountId'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetLoanValuesRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      accountId: json['AccountId'] as String? ?? "1",
+    );
 
 Map<String, dynamic> _$GetLoanValuesRequestEntityToJson(
         GetLoanValuesRequestEntity instance) =>

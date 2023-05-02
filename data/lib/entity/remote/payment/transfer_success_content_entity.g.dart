@@ -7,17 +7,16 @@ part of 'transfer_success_content_entity.dart';
 // **************************************************************************
 
 TransferSuccessContentEntity _$TransferSuccessContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return TransferSuccessContentEntity(
-    amount: json['amount'] as num?,
-    name: json['name'] as String?,
-    iban: json['iban'] as String?,
-    transferDate: json['transferDate'] == null
-        ? null
-        : DateTime.parse(json['transferDate'] as String),
-    reference: json['reference'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    TransferSuccessContentEntity(
+      amount: json['amount'] as num?,
+      name: json['name'] as String?,
+      iban: json['iban'] as String?,
+      transferDate: json['transferDate'] == null
+          ? null
+          : DateTime.parse(json['transferDate'] as String),
+      reference: json['reference'] as String?,
+    );
 
 Map<String, dynamic> _$TransferSuccessContentEntityToJson(
         TransferSuccessContentEntity instance) =>

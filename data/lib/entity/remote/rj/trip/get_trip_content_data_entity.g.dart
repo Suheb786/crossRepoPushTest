@@ -7,14 +7,13 @@ part of 'get_trip_content_data_entity.dart';
 // **************************************************************************
 
 GetTripContentDataEntity _$GetTripContentDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetTripContentDataEntity(
-    content: json['content'] == null
-        ? null
-        : GetTripContentEntity.fromJson(
-            json['content'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetTripContentDataEntity(
+      content: json['content'] == null
+          ? null
+          : GetTripContentEntity.fromJson(
+              json['content'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetTripContentDataEntityToJson(
         GetTripContentDataEntity instance) =>

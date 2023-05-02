@@ -7,24 +7,23 @@ part of 'get_two_way_trip_link_request_entity.dart';
 // **************************************************************************
 
 GetTwoWayTripLinkRequestEntity _$GetTwoWayTripLinkRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetTwoWayTripLinkRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    language: json['Language'] as String?,
-    adults: json['Adults'] as String?,
-    cabin: json['Cabin'] as String?,
-    childs: json['Childs'] as String?,
-    customerRef: json['CustomerRef'] as String?,
-    fromDate: json['Date2'] as String?,
-    toDate: json['Date1'] as String?,
-    des: json['Des'] as String?,
-    infants: json['Infants'] as String?,
-    org: json['Org'] as String?,
-    promoCode: json['PromoCode'] as String?,
-    youths: json['Youths'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetTwoWayTripLinkRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      language: json['Language'] as String?,
+      adults: json['Adults'] as String?,
+      cabin: json['Cabin'] as String?,
+      childs: json['Childs'] as String?,
+      customerRef: json['CustomerRef'] as String?,
+      fromDate: json['Date2'] as String?,
+      toDate: json['Date1'] as String?,
+      des: json['Des'] as String?,
+      infants: json['Infants'] as String?,
+      org: json['Org'] as String?,
+      promoCode: json['PromoCode'] as String?,
+      youths: json['Youths'] as String?,
+    );
 
 Map<String, dynamic> _$GetTwoWayTripLinkRequestEntityToJson(
         GetTwoWayTripLinkRequestEntity instance) =>

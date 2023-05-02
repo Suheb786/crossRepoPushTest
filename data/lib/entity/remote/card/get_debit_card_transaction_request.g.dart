@@ -7,14 +7,13 @@ part of 'get_debit_card_transaction_request.dart';
 // **************************************************************************
 
 GetDebitCardTransactionRequest _$GetDebitCardTransactionRequestFromJson(
-    Map<String, dynamic> json) {
-  return GetDebitCardTransactionRequest(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    noOfDays: json['NoOfDays'] as num?,
-    getToken: json['GetToken'] as bool?,
-    isDebit: json['IsDebit'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetDebitCardTransactionRequest(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      noOfDays: json['NoOfDays'] as num? ?? 90,
+      getToken: json['GetToken'] as bool? ?? true,
+      isDebit: json['IsDebit'] as bool? ?? true,
+    );
 
 Map<String, dynamic> _$GetDebitCardTransactionRequestToJson(
         GetDebitCardTransactionRequest instance) =>

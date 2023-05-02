@@ -7,12 +7,11 @@ part of 'card_statement_content_entity.dart';
 // **************************************************************************
 
 CardStatementContentEntity _$CardStatementContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return CardStatementContentEntity(
-    pdfBase64String: json['pdfBase64'] as String?,
-    pdfFileName: json['fileName'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CardStatementContentEntity(
+      pdfBase64String: json['pdfBase64'] as String?,
+      pdfFileName: json['fileName'] as String?,
+    );
 
 Map<String, dynamic> _$CardStatementContentEntityToJson(
         CardStatementContentEntity instance) =>

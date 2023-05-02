@@ -6,14 +6,14 @@ part of 'purpose_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PurposeContentEntity _$PurposeContentEntityFromJson(Map<String, dynamic> json) {
-  return PurposeContentEntity(
-    transferPurposeResponse: json['transferPurposeResponse'] == null
-        ? null
-        : TransferPurposeResponseEntity.fromJson(
-            json['transferPurposeResponse'] as Map<String, dynamic>),
-  );
-}
+PurposeContentEntity _$PurposeContentEntityFromJson(
+        Map<String, dynamic> json) =>
+    PurposeContentEntity(
+      transferPurposeResponse: json['transferPurposeResponse'] == null
+          ? null
+          : TransferPurposeResponseEntity.fromJson(
+              json['transferPurposeResponse'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$PurposeContentEntityToJson(
         PurposeContentEntity instance) =>

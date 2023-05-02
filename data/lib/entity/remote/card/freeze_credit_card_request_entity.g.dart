@@ -7,13 +7,12 @@ part of 'freeze_credit_card_request_entity.dart';
 // **************************************************************************
 
 FreezeCreditCardRequestEntity _$FreezeCreditCardRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return FreezeCreditCardRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    cardId: json['CardId'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    FreezeCreditCardRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      cardId: json['CardId'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$FreezeCreditCardRequestEntityToJson(
         FreezeCreditCardRequestEntity instance) =>

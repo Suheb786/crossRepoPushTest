@@ -7,12 +7,11 @@ part of 'change_default_account_otp_entity.dart';
 // **************************************************************************
 
 ChangeDefaultAccountOtpEntity _$ChangeDefaultAccountOtpEntityFromJson(
-    Map<String, dynamic> json) {
-  return ChangeDefaultAccountOtpEntity(
-    mobileCode: json['mobileCode'] as String? ?? '',
-    mobileNumber: json['mobileNumber'] as String? ?? '',
-  );
-}
+        Map<String, dynamic> json) =>
+    ChangeDefaultAccountOtpEntity(
+      mobileCode: json['mobileCode'] as String? ?? '',
+      mobileNumber: json['mobileNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$ChangeDefaultAccountOtpEntityToJson(
         ChangeDefaultAccountOtpEntity instance) =>

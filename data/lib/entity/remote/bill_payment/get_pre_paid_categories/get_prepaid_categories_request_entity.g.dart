@@ -7,14 +7,13 @@ part of 'get_prepaid_categories_request_entity.dart';
 // **************************************************************************
 
 GetPrePaidCategoriesRequestEntity _$GetPrePaidCategoriesRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetPrePaidCategoriesRequestEntity(
-    billerCode: json['billerCode'] as String?,
-    serviceCode: json['serviceCode'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetPrePaidCategoriesRequestEntity(
+      billerCode: json['billerCode'] as String?,
+      serviceCode: json['serviceCode'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetPrePaidCategoriesRequestEntityToJson(
         GetPrePaidCategoriesRequestEntity instance) =>

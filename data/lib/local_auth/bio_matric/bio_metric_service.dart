@@ -1,4 +1,3 @@
-import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 
 class BioMetricService {
@@ -19,11 +18,17 @@ class BioMetricService {
       bool stickyAuth: false,
       String title: "",
       String localisedReason: ""}) async {
+    // TODO: THIS IS THE ISSUE AND NEEDS TO BE CHECKED!
+    // Iterable<AuthMessages> authMessages = const [
+    //   AndroidAuthMessages(biometricHint: "", signInTitle: title),
+    // ];
     return _localAuthentication.authenticate(
         localizedReason: localisedReason,
-        biometricOnly: true,
-        androidAuthStrings: AndroidAuthMessages(biometricHint: "", signInTitle: title),
-        useErrorDialogs: useErrorDialogs,
-        stickyAuth: stickyAuth);
+        // authMessages: authMessages,
+        options: AuthenticationOptions(
+            biometricOnly: true,
+            // androidAuthStrings: AndroidAuthMessages(biometricHint: "", signInTitle: title),
+            useErrorDialogs: useErrorDialogs,
+            stickyAuth: stickyAuth));
   }
 }

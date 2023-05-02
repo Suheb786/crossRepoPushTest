@@ -7,13 +7,12 @@ part of 'save_id_info_response_entity.dart';
 // **************************************************************************
 
 SaveIdInfoResponseEntity _$SaveIdInfoResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return SaveIdInfoResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    SaveIdInfoResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$SaveIdInfoResponseEntityToJson(
         SaveIdInfoResponseEntity instance) =>

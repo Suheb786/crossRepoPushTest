@@ -7,11 +7,10 @@ part of 'profile_changed_success_entity.dart';
 // **************************************************************************
 
 ProfileChangedSuccessEntity _$ProfileChangedSuccessEntityFromJson(
-    Map<String, dynamic> json) {
-  return ProfileChangedSuccessEntity(
-    data: json['data'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ProfileChangedSuccessEntity(
+      data: json['data'] as String?,
+    );
 
 Map<String, dynamic> _$ProfileChangedSuccessEntityToJson(
         ProfileChangedSuccessEntity instance) =>

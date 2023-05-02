@@ -7,14 +7,13 @@ part of 'change_my_number_request_entity.dart';
 // **************************************************************************
 
 ChangeMyNumberRequestEntity _$ChangeMyNumberRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ChangeMyNumberRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    mobileNo: json['MobileNumber'] as String?,
-    mobileCode: json['MobileCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ChangeMyNumberRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      mobileNo: json['MobileNumber'] as String?,
+      mobileCode: json['MobileCode'] as String?,
+    );
 
 Map<String, dynamic> _$ChangeMyNumberRequestEntityToJson(
         ChangeMyNumberRequestEntity instance) =>

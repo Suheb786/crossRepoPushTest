@@ -7,15 +7,14 @@ part of 'verify_device_change_otp_request_entity.dart';
 // **************************************************************************
 
 VerifyDeviceChangeOtpRequestEntity _$VerifyDeviceChangeOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return VerifyDeviceChangeOtpRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    type: json['type'] as String?,
-    otp: json['otp'] as String?,
-    fireBaseToken: json['FireBaseToken'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyDeviceChangeOtpRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      type: json['type'] as String? ?? "DeviceChange",
+      otp: json['otp'] as String? ?? "",
+      fireBaseToken: json['FireBaseToken'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$VerifyDeviceChangeOtpRequestEntityToJson(
         VerifyDeviceChangeOtpRequestEntity instance) =>

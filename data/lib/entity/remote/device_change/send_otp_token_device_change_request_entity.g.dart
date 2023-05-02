@@ -7,14 +7,14 @@ part of 'send_otp_token_device_change_request_entity.dart';
 // **************************************************************************
 
 SendOtpTokenDeviceChangeRequestEntity
-    _$SendOtpTokenDeviceChangeRequestEntityFromJson(Map<String, dynamic> json) {
-  return SendOtpTokenDeviceChangeRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    type: json['type'] as String?,
-    otp: json['otp'] as String?,
-  );
-}
+    _$SendOtpTokenDeviceChangeRequestEntityFromJson(
+            Map<String, dynamic> json) =>
+        SendOtpTokenDeviceChangeRequestEntity(
+          baseData: json['baseClass'] as Map<String, dynamic>,
+          getToken: json['getToken'] as bool? ?? true,
+          type: json['type'] as String? ?? "DeviceChange",
+          otp: json['otp'] as String? ?? "",
+        );
 
 Map<String, dynamic> _$SendOtpTokenDeviceChangeRequestEntityToJson(
         SendOtpTokenDeviceChangeRequestEntity instance) =>

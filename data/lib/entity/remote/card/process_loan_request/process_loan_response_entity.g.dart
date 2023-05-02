@@ -7,13 +7,12 @@ part of 'process_loan_response_entity.dart';
 // **************************************************************************
 
 ProcessLoanResponseEntity _$ProcessLoanResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return ProcessLoanResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    ProcessLoanResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$ProcessLoanResponseEntityToJson(
         ProcessLoanResponseEntity instance) =>

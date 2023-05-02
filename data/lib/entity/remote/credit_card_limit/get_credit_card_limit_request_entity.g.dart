@@ -7,13 +7,12 @@ part of 'get_credit_card_limit_request_entity.dart';
 // **************************************************************************
 
 CreditCardLimitRequestEntity _$CreditCardLimitRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreditCardLimitRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>?,
-    secureCode: json['SecureCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CreditCardLimitRequestEntity(
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>?,
+      secureCode: json['SecureCode'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CreditCardLimitRequestEntityToJson(
         CreditCardLimitRequestEntity instance) =>

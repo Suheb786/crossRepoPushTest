@@ -7,12 +7,11 @@ part of 'get_placeholder_request_entity.dart';
 // **************************************************************************
 
 GetPlaceholderRequestEntity _$GetPlaceholderRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetPlaceholderRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    placeholderId: json['PlaceholderId'] as int,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetPlaceholderRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      placeholderId: json['PlaceholderId'] as int? ?? 0,
+    );
 
 Map<String, dynamic> _$GetPlaceholderRequestEntityToJson(
         GetPlaceholderRequestEntity instance) =>

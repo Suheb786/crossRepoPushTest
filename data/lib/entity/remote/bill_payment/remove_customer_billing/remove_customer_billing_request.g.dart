@@ -7,15 +7,14 @@ part of 'remove_customer_billing_request.dart';
 // **************************************************************************
 
 RemoveCustomerBillingRequest _$RemoveCustomerBillingRequestFromJson(
-    Map<String, dynamic> json) {
-  return RemoveCustomerBillingRequest(
-    billerCode: json['billerCode'] as String?,
-    billingNo: json['billingNo'] as String?,
-    serviceType: json['serviceType'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    RemoveCustomerBillingRequest(
+      billerCode: json['billerCode'] as String?,
+      billingNo: json['billingNo'] as String?,
+      serviceType: json['serviceType'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$RemoveCustomerBillingRequestToJson(
         RemoveCustomerBillingRequest instance) =>

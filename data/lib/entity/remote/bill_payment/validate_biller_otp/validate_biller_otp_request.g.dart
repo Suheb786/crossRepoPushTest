@@ -7,18 +7,17 @@ part of 'validate_biller_otp_request.dart';
 // **************************************************************************
 
 ValidateBillerOtpRequest _$ValidateBillerOtpRequestFromJson(
-    Map<String, dynamic> json) {
-  return ValidateBillerOtpRequest(
-    billerType: json['BillerType'] as String?,
-    billerName: json['BillerName'] as String?,
-    amount: json['Amount'] as String?,
-    currencyCode: json['CurrencyCode'] as String?,
-    accountNo: json['AccountNo'] as String?,
-    isNewBiller: json['IsNewBiller'] as bool?,
-    getToken: json['getToken'] as bool,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    ValidateBillerOtpRequest(
+      billerType: json['BillerType'] as String?,
+      billerName: json['BillerName'] as String?,
+      amount: json['Amount'] as String?,
+      currencyCode: json['CurrencyCode'] as String?,
+      accountNo: json['AccountNo'] as String?,
+      isNewBiller: json['IsNewBiller'] as bool?,
+      getToken: json['getToken'] as bool,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$ValidateBillerOtpRequestToJson(
         ValidateBillerOtpRequest instance) =>

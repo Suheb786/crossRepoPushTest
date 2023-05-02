@@ -6,11 +6,10 @@ part of 'qr_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QRContentEntity _$QRContentEntityFromJson(Map<String, dynamic> json) {
-  return QRContentEntity(
-    requestId: json['requestId'] as String?,
-  );
-}
+QRContentEntity _$QRContentEntityFromJson(Map<String, dynamic> json) =>
+    QRContentEntity(
+      requestId: json['requestId'] as String?,
+    );
 
 Map<String, dynamic> _$QRContentEntityToJson(QRContentEntity instance) =>
     <String, dynamic>{

@@ -7,13 +7,12 @@ part of 'state_list_request_entity.dart';
 // **************************************************************************
 
 StateListRequestEntity _$StateListRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return StateListRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    isoCode: json['IsoCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    StateListRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      isoCode: json['IsoCode'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$StateListRequestEntityToJson(
         StateListRequestEntity instance) =>

@@ -6,12 +6,12 @@ part of 'get_call_status_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCallStatusRequest _$GetCallStatusRequestFromJson(Map<String, dynamic> json) {
-  return GetCallStatusRequest(
-    session: json['session'] as String?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+GetCallStatusRequest _$GetCallStatusRequestFromJson(
+        Map<String, dynamic> json) =>
+    GetCallStatusRequest(
+      session: json['session'] as String? ?? "",
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCallStatusRequestToJson(
         GetCallStatusRequest instance) =>

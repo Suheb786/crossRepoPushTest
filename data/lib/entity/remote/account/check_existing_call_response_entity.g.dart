@@ -7,13 +7,12 @@ part of 'check_existing_call_response_entity.dart';
 // **************************************************************************
 
 CheckExistingCallResponseEntity _$CheckExistingCallResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckExistingCallResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckExistingCallResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CheckExistingCallResponseEntityToJson(
         CheckExistingCallResponseEntity instance) =>

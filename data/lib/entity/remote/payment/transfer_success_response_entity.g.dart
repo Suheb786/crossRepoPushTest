@@ -7,13 +7,12 @@ part of 'transfer_success_response_entity.dart';
 // **************************************************************************
 
 TransferSuccessResponseEntity _$TransferSuccessResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return TransferSuccessResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    TransferSuccessResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$TransferSuccessResponseEntityToJson(
         TransferSuccessResponseEntity instance) =>

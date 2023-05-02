@@ -7,13 +7,12 @@ part of 'verify_otp_response_entity.dart';
 // **************************************************************************
 
 VerifyOtpResponseEntity _$VerifyOtpResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return VerifyOtpResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyOtpResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$VerifyOtpResponseEntityToJson(
         VerifyOtpResponseEntity instance) =>

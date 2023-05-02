@@ -7,13 +7,12 @@ part of 'create_account_response_entity.dart';
 // **************************************************************************
 
 CreateAccountResponseEntity _$CreateAccountResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreateAccountResponseEntity(
-    responseEntity: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CreateAccountResponseEntity(
+      responseEntity: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CreateAccountResponseEntityToJson(
         CreateAccountResponseEntity instance) =>

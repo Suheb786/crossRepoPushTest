@@ -7,12 +7,11 @@ part of 'get_alias_request_entity.dart';
 // **************************************************************************
 
 CliqGetAliasRequestEntity _$CliqGetAliasRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CliqGetAliasRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    CliqGetAliasRequestEntity(
+      getToken: json['getToken'] as bool?,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$CliqGetAliasRequestEntityToJson(
         CliqGetAliasRequestEntity instance) =>

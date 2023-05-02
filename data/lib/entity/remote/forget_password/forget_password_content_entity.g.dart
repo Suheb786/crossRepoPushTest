@@ -7,11 +7,10 @@ part of 'forget_password_content_entity.dart';
 // **************************************************************************
 
 ForgetPasswordContentEntity _$ForgetPasswordContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return ForgetPasswordContentEntity(
-    mobileNumber: json['mobileNumber'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ForgetPasswordContentEntity(
+      mobileNumber: json['mobileNumber'] as String?,
+    );
 
 Map<String, dynamic> _$ForgetPasswordContentEntityToJson(
         ForgetPasswordContentEntity instance) =>

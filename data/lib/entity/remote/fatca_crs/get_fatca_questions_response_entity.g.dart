@@ -7,13 +7,12 @@ part of 'get_fatca_questions_response_entity.dart';
 // **************************************************************************
 
 GetFatcaQuestionsResponseEntity _$GetFatcaQuestionsResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetFatcaQuestionsResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetFatcaQuestionsResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetFatcaQuestionsResponseEntityToJson(
         GetFatcaQuestionsResponseEntity instance) =>

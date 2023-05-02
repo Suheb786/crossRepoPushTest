@@ -7,18 +7,17 @@ part of 'request_to_pay_result_request_entity.dart';
 // **************************************************************************
 
 RequestToPayResultRequestEntity _$RequestToPayResultRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestToPayResultRequestEntity(
-    CustID: json['CustID'] as String,
-    OrgnlMsgId: json['OrgnlMsgId'] as String,
-    RTPStatus: json['RTPStatus'] as String,
-    RejectReason: json['RejectReason'] as String,
-    RejectADdInfo: json['RejectADdInfo'] as String,
-    otpCode: json['OtpCode'] as String,
-    GetToken: json['GetToken'] as bool,
-    BaseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestToPayResultRequestEntity(
+      CustID: json['CustID'] as String,
+      OrgnlMsgId: json['OrgnlMsgId'] as String,
+      RTPStatus: json['RTPStatus'] as String,
+      RejectReason: json['RejectReason'] as String,
+      RejectADdInfo: json['RejectADdInfo'] as String,
+      otpCode: json['OtpCode'] as String,
+      GetToken: json['GetToken'] as bool,
+      BaseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$RequestToPayResultRequestEntityToJson(
         RequestToPayResultRequestEntity instance) =>

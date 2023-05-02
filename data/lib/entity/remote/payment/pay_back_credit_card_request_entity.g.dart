@@ -7,14 +7,13 @@ part of 'pay_back_credit_card_request_entity.dart';
 // **************************************************************************
 
 PayBackCreditCardRequestEntity _$PayBackCreditCardRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return PayBackCreditCardRequestEntity(
-    payBackAmount: json['PayBackAmount'] as String?,
-    secureCode: json['SecureCode'] as String?,
-    getToken: json['getToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    PayBackCreditCardRequestEntity(
+      payBackAmount: json['PayBackAmount'] as String? ?? "",
+      secureCode: json['SecureCode'] as String? ?? "",
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$PayBackCreditCardRequestEntityToJson(
         PayBackCreditCardRequestEntity instance) =>

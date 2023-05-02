@@ -7,13 +7,12 @@ part of 'get_allowed_issuer_response_entity.dart';
 // **************************************************************************
 
 GetAllowedIssuerResponseEntity _$GetAllowedIssuerResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetAllowedIssuerResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetAllowedIssuerResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetAllowedIssuerResponseEntityToJson(
         GetAllowedIssuerResponseEntity instance) =>

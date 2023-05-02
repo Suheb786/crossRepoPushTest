@@ -7,23 +7,22 @@ part of 'post_paid_bill_inquiry_entity.dart';
 // **************************************************************************
 
 PostPaidBillInquiryEntity _$PostPaidBillInquiryEntityFromJson(
-    Map<String, dynamic> json) {
-  return PostPaidBillInquiryEntity(
-    serviceType: json['serviceType'] as String?,
-    billerCode: json['billerCode'] as String?,
-    message: json['message'],
-    success: json['success'] as bool?,
-    billingNo: json['billingNo'] as String?,
-    billNo: json['billNo'] as String?,
-    dueAmount: json['dueAmount'],
-    dueDate: json['dueDate'] as String?,
-    feesAmt: json['feesAmt'],
-    isPartial: json['isPartial'] as bool?,
-    minValue: json['minValue'],
-    maxValue: json['maxValue'],
-    inqRefNo: json['inqRefNo'],
-  );
-}
+        Map<String, dynamic> json) =>
+    PostPaidBillInquiryEntity(
+      serviceType: json['serviceType'] as String?,
+      billerCode: json['billerCode'] as String?,
+      message: json['message'],
+      success: json['success'] as bool?,
+      billingNo: json['billingNo'] as String?,
+      billNo: json['billNo'] as String?,
+      dueAmount: json['dueAmount'],
+      dueDate: json['dueDate'] as String?,
+      feesAmt: json['feesAmt'],
+      isPartial: json['isPartial'] as bool?,
+      minValue: json['minValue'],
+      maxValue: json['maxValue'],
+      inqRefNo: json['inqRefNo'],
+    );
 
 Map<String, dynamic> _$PostPaidBillInquiryEntityToJson(
         PostPaidBillInquiryEntity instance) =>

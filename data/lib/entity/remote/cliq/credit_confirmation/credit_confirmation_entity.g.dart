@@ -7,11 +7,10 @@ part of 'credit_confirmation_entity.dart';
 // **************************************************************************
 
 CreditConfirmationEntity _$CreditConfirmationEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreditConfirmationEntity(
-    json['pdf'] ?? '',
-  );
-}
+        Map<String, dynamic> json) =>
+    CreditConfirmationEntity(
+      json['pdf'] ?? '',
+    );
 
 Map<String, dynamic> _$CreditConfirmationEntityToJson(
         CreditConfirmationEntity instance) =>

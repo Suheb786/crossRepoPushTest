@@ -7,16 +7,15 @@ part of 'check_forget_password_request_entity.dart';
 // **************************************************************************
 
 CheckForgetPasswordRequestEntity _$CheckForgetPasswordRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckForgetPasswordRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    email: json['Email'] as String?,
-    idExpiry: json['IdExpiry'] as String?,
-    idNo: json['Idno'] as String?,
-    uniqueId: json['UniqueId'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckForgetPasswordRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      email: json['Email'] as String?,
+      idExpiry: json['IdExpiry'] as String?,
+      idNo: json['Idno'] as String?,
+      uniqueId: json['UniqueId'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CheckForgetPasswordRequestEntityToJson(
         CheckForgetPasswordRequestEntity instance) =>

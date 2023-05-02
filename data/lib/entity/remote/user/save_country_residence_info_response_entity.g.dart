@@ -8,14 +8,13 @@ part of 'save_country_residence_info_response_entity.dart';
 
 SaveCountryResidenceInfoResponseEntity
     _$SaveCountryResidenceInfoResponseEntityFromJson(
-        Map<String, dynamic> json) {
-  return SaveCountryResidenceInfoResponseEntity(
-    saveCountryResidenceInfoResponseDataEntity: json['response'] == null
-        ? null
-        : SaveCountryResidenceInfoResponseDataEntity.fromJson(
-            json['response'] as Map<String, dynamic>),
-  );
-}
+            Map<String, dynamic> json) =>
+        SaveCountryResidenceInfoResponseEntity(
+          saveCountryResidenceInfoResponseDataEntity: json['response'] == null
+              ? null
+              : SaveCountryResidenceInfoResponseDataEntity.fromJson(
+                  json['response'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$SaveCountryResidenceInfoResponseEntityToJson(
         SaveCountryResidenceInfoResponseEntity instance) =>

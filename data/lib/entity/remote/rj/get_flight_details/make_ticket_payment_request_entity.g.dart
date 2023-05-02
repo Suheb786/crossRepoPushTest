@@ -7,16 +7,15 @@ part of 'make_ticket_payment_request_entity.dart';
 // **************************************************************************
 
 MakeTicketPaymentRequestEntity _$MakeTicketPaymentRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return MakeTicketPaymentRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    referenceNumber: json['ReferenceNumber'] as String?,
-    amount: json['Amount'] as String?,
-    accountNo: json['AccountNo'] as String?,
-    otpCode: json['OtpCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    MakeTicketPaymentRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      referenceNumber: json['ReferenceNumber'] as String?,
+      amount: json['Amount'] as String?,
+      accountNo: json['AccountNo'] as String?,
+      otpCode: json['OtpCode'] as String?,
+    );
 
 Map<String, dynamic> _$MakeTicketPaymentRequestEntityToJson(
         MakeTicketPaymentRequestEntity instance) =>

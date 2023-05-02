@@ -7,11 +7,10 @@ part of 'generate_key_pair_request_entity.dart';
 // **************************************************************************
 
 GenerateKeyPairRequestEntity _$GenerateKeyPairRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GenerateKeyPairRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GenerateKeyPairRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GenerateKeyPairRequestEntityToJson(
         GenerateKeyPairRequestEntity instance) =>

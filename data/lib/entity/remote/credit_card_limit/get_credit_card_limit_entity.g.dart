@@ -7,20 +7,20 @@ part of 'get_credit_card_limit_entity.dart';
 // **************************************************************************
 
 GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCreditCardLimitEntity(
-    isATM: json['isATM'] as bool?,
-    atmCurrentLimit: json['atmCurrentLimit'] as String?,
-    atmMaxLimit: json['atmmaxLimit'] as String?,
-    isMerchant: json['isMarchant'] as bool?,
-    merchantCurrentLimit: json['marchantCurrentLimit'] as String?,
-    merchantMAXLimit: json['marchantMAXLimit'] as String?,
-    isOnlinePurchase: json['isOnlinePurchase'] as bool?,
-    onlinePurchaseCurrentLimit: json['onlinePurchaseCurrentLimit'] as String?,
-    onlinePurchaseMAXLimit: json['onlinePurchaseMAXLimit'] as String?,
-    isContactLess: json['isContactLess'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCreditCardLimitEntity(
+      isATM: json['isATM'] as bool? ?? false,
+      atmCurrentLimit: json['atmCurrentLimit'] as String? ?? "0",
+      atmMaxLimit: json['atmmaxLimit'] as String? ?? "0",
+      isMerchant: json['isMarchant'] as bool? ?? false,
+      merchantCurrentLimit: json['marchantCurrentLimit'] as String? ?? "0",
+      merchantMAXLimit: json['marchantMAXLimit'] as String? ?? "0",
+      isOnlinePurchase: json['isOnlinePurchase'] as bool? ?? false,
+      onlinePurchaseCurrentLimit:
+          json['onlinePurchaseCurrentLimit'] as String? ?? "0",
+      onlinePurchaseMAXLimit: json['onlinePurchaseMAXLimit'] as String? ?? "0",
+      isContactLess: json['isContactLess'] as bool? ?? false,
+    );
 
 Map<String, dynamic> _$GetCreditCardLimitEntityToJson(
         GetCreditCardLimitEntity instance) =>

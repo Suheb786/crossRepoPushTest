@@ -7,13 +7,12 @@ part of 'unblock_credit_card_pin_request_entity.dart';
 // **************************************************************************
 
 UnblockCreditCardPinRequestEntity _$UnblockCreditCardPinRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return UnblockCreditCardPinRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    cardCode: json['CardCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    UnblockCreditCardPinRequestEntity(
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+      cardCode: json['CardCode'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$UnblockCreditCardPinRequestEntityToJson(
         UnblockCreditCardPinRequestEntity instance) =>

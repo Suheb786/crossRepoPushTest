@@ -7,12 +7,11 @@ part of 'request_to_pay_result_otp_entity.dart';
 // **************************************************************************
 
 RequestToPayResultOtpEntity _$RequestToPayResultOtpEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestToPayResultOtpEntity(
-    mobileCode: json['mobileCode'] as String? ?? '',
-    mobileNumber: json['mobileNumber'] as String? ?? '',
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestToPayResultOtpEntity(
+      mobileCode: json['mobileCode'] as String? ?? '',
+      mobileNumber: json['mobileNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$RequestToPayResultOtpEntityToJson(
         RequestToPayResultOtpEntity instance) =>

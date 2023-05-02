@@ -7,13 +7,12 @@ part of 'register_interest_request_entity.dart';
 // **************************************************************************
 
 RegisterInterestRequestEntity _$RegisterInterestRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RegisterInterestRequestEntity(
-    uniqueId: json['UniqueId'] as String?,
-    email: json['Email'] as String?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    RegisterInterestRequestEntity(
+      uniqueId: json['UniqueId'] as String?,
+      email: json['Email'] as String?,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$RegisterInterestRequestEntityToJson(
         RegisterInterestRequestEntity instance) =>

@@ -7,14 +7,13 @@ part of 'verify_change_email_request.dart';
 // **************************************************************************
 
 VerifyChangeEmailRequest _$VerifyChangeEmailRequestFromJson(
-    Map<String, dynamic> json) {
-  return VerifyChangeEmailRequest(
-    uniqueId: json['UniqueId'] as String,
-    otp: json['Otp'] as String,
-    getToken: json['GetToken'] as bool,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyChangeEmailRequest(
+      uniqueId: json['UniqueId'] as String? ?? "",
+      otp: json['Otp'] as String? ?? "",
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$VerifyChangeEmailRequestToJson(
         VerifyChangeEmailRequest instance) =>

@@ -7,11 +7,10 @@ part of 'get_customer_document_content_entity.dart';
 // **************************************************************************
 
 GetCustomerDocumentContentEntity _$GetCustomerDocumentContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCustomerDocumentContentEntity(
-    doc: json['doc'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCustomerDocumentContentEntity(
+      doc: json['doc'] as String?,
+    );
 
 Map<String, dynamic> _$GetCustomerDocumentContentEntityToJson(
         GetCustomerDocumentContentEntity instance) =>

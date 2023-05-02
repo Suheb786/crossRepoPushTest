@@ -20,31 +20,46 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
     switch (throwable.runtimeType) {
       case DioError:
         switch ((throwable as DioError).type) {
-          case DioErrorType.connectTimeout:
-            //"Connection timeout with API server";
-            break;
           case DioErrorType.sendTimeout:
             //"Receive timeout exception";
             break;
           case DioErrorType.receiveTimeout:
             //"Receive timeout in connection with API server";
             break;
-          case DioErrorType.response:
-            if (throwable is DioError) {
-              return Left(getError(apiResponse: throwable.response));
-            }
-            break;
+          // case DioErrorType.response:
+          //   if (throwable is DioError) {
+          //     return Left(getError(apiResponse: throwable.response));
+          //   }
+          //   break;
           //"Received invalid status code: ${error.response.statusCode}";
           case DioErrorType.cancel:
             //"Request to API server was cancelled"
             break;
-          case DioErrorType.other:
+          /*case DioErrorType.other:
+            return Left(
+              NetworkError(
+                  message: "Connection to API server failed due to internet connection",
+                  httpError: 101,
+                  cause: throwable),
+            );*/
+          case DioErrorType.connectionTimeout:
+          case DioErrorType.badCertificate:
+          case DioErrorType.connectionError:
             return Left(
               NetworkError(
                   message: "Connection to API server failed due to internet connection",
                   httpError: 101,
                   cause: throwable),
             );
+
+          case DioErrorType.badResponse:
+            if (throwable is DioError) {
+              return Left(getError(apiResponse: throwable.response));
+            }
+            break;
+
+          case DioErrorType.unknown:
+            break;
         }
 
         break;

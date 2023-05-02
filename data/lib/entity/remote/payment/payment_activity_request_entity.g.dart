@@ -7,13 +7,12 @@ part of 'payment_activity_request_entity.dart';
 // **************************************************************************
 
 PaymentActivityRequestEntity _$PaymentActivityRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return PaymentActivityRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    filterDays: json['filterDays'] as int?,
-  );
-}
+        Map<String, dynamic> json) =>
+    PaymentActivityRequestEntity(
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+      filterDays: json['filterDays'] as int? ?? 30,
+    );
 
 Map<String, dynamic> _$PaymentActivityRequestEntityToJson(
         PaymentActivityRequestEntity instance) =>

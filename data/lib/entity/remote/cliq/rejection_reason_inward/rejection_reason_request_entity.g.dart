@@ -7,12 +7,11 @@ part of 'rejection_reason_request_entity.dart';
 // **************************************************************************
 
 RejectionReasonRequestEntity _$RejectionReasonRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RejectionReasonRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    RejectionReasonRequestEntity(
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$RejectionReasonRequestEntityToJson(
         RejectionReasonRequestEntity instance) =>

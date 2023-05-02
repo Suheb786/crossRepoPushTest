@@ -7,13 +7,12 @@ part of 'video_call_status_response_entity.dart';
 // **************************************************************************
 
 VideoCallStatusResponseEntity _$VideoCallStatusResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return VideoCallStatusResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    VideoCallStatusResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$VideoCallStatusResponseEntityToJson(
         VideoCallStatusResponseEntity instance) =>

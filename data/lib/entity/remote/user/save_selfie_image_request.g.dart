@@ -7,13 +7,12 @@ part of 'save_selfie_image_request.dart';
 // **************************************************************************
 
 SaveSelfieImageRequest _$SaveSelfieImageRequestFromJson(
-    Map<String, dynamic> json) {
-  return SaveSelfieImageRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    selfieImage: json['SelfeeImage'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    SaveSelfieImageRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      selfieImage: json['SelfeeImage'] as String?,
+    );
 
 Map<String, dynamic> _$SaveSelfieImageRequestToJson(
         SaveSelfieImageRequest instance) =>

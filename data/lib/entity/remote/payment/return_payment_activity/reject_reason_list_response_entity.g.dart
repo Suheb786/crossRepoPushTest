@@ -7,12 +7,11 @@ part of 'reject_reason_list_response_entity.dart';
 // **************************************************************************
 
 RejctReasonListEntity _$RejctReasonListEntityFromJson(
-    Map<String, dynamic> json) {
-  return RejctReasonListEntity(
-    code: json['code'] as String,
-    description: json['description'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    RejctReasonListEntity(
+      code: json['code'] as String,
+      description: json['description'] as String,
+    );
 
 Map<String, dynamic> _$RejctReasonListEntityToJson(
         RejctReasonListEntity instance) =>

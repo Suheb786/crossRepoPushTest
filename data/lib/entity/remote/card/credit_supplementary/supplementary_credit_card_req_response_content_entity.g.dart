@@ -8,12 +8,11 @@ part of 'supplementary_credit_card_req_response_content_entity.dart';
 
 SupplementaryCreditCardReqResponseContentEntity
     _$SupplementaryCreditCardReqResponseContentEntityFromJson(
-        Map<String, dynamic> json) {
-  return SupplementaryCreditCardReqResponseContentEntity(
-    primaryId: json['primaryId'] as String?,
-    suppId: json['suppId'] as String?,
-  );
-}
+            Map<String, dynamic> json) =>
+        SupplementaryCreditCardReqResponseContentEntity(
+          primaryId: json['primaryId'] as String? ?? "",
+          suppId: json['suppId'] as String? ?? "",
+        );
 
 Map<String, dynamic> _$SupplementaryCreditCardReqResponseContentEntityToJson(
         SupplementaryCreditCardReqResponseContentEntity instance) =>

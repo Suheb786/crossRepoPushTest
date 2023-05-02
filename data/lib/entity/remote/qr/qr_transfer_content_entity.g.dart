@@ -7,15 +7,14 @@ part of 'qr_transfer_content_entity.dart';
 // **************************************************************************
 
 QRTransferContentEntity _$QRTransferContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return QRTransferContentEntity(
-    transferDate: json['transferDate'] as String?,
-    name: json['name'] as String?,
-    amount: json['amount'] as num?,
-    iban: json['iban'] as String?,
-    reference: json['reference'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    QRTransferContentEntity(
+      transferDate: json['transferDate'] as String?,
+      name: json['name'] as String?,
+      amount: json['amount'] as num?,
+      iban: json['iban'] as String?,
+      reference: json['reference'] as String?,
+    );
 
 Map<String, dynamic> _$QRTransferContentEntityToJson(
         QRTransferContentEntity instance) =>

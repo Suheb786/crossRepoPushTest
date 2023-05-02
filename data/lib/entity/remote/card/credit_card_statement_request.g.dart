@@ -7,14 +7,13 @@ part of 'credit_card_statement_request.dart';
 // **************************************************************************
 
 CreditCardStatementRequest _$CreditCardStatementRequestFromJson(
-    Map<String, dynamic> json) {
-  return CreditCardStatementRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    date: json['Date'] as String?,
-    cardId: json['CardId'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CreditCardStatementRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      date: json['Date'] as String? ?? '',
+      cardId: json['CardId'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CreditCardStatementRequestToJson(
         CreditCardStatementRequest instance) =>

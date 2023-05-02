@@ -7,13 +7,14 @@ part of 'purpose_of_account_opening_response_entity.dart';
 // **************************************************************************
 
 PurposeOfAccountOpeningResponseEntity
-    _$PurposeOfAccountOpeningResponseEntityFromJson(Map<String, dynamic> json) {
-  return PurposeOfAccountOpeningResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+    _$PurposeOfAccountOpeningResponseEntityFromJson(
+            Map<String, dynamic> json) =>
+        PurposeOfAccountOpeningResponseEntity(
+          response: json['response'] == null
+              ? null
+              : ResponseEntity.fromJson(
+                  json['response'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$PurposeOfAccountOpeningResponseEntityToJson(
         PurposeOfAccountOpeningResponseEntity instance) =>

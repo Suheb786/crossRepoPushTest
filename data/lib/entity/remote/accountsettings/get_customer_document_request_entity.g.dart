@@ -7,13 +7,12 @@ part of 'get_customer_document_request_entity.dart';
 // **************************************************************************
 
 GetCustomerDocumentRequestEntity _$GetCustomerDocumentRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCustomerDocumentRequestEntity(
-    docId: json['DocId'] as String,
-    getToken: json['GetToken'] as bool,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCustomerDocumentRequestEntity(
+      docId: json['DocId'] as String? ?? "",
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCustomerDocumentRequestEntityToJson(
         GetCustomerDocumentRequestEntity instance) =>

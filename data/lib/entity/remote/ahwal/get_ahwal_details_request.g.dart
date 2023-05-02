@@ -7,12 +7,11 @@ part of 'get_ahwal_details_request.dart';
 // **************************************************************************
 
 GetAhwalDetailsRequest _$GetAhwalDetailsRequestFromJson(
-    Map<String, dynamic> json) {
-  return GetAhwalDetailsRequest(
-    idNo: json['IdNo'] as String?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetAhwalDetailsRequest(
+      idNo: json['IdNo'] as String? ?? "",
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetAhwalDetailsRequestToJson(
         GetAhwalDetailsRequest instance) =>

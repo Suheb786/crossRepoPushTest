@@ -387,7 +387,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
   }
 
   void _cropImage(String data, AccountSettingPageViewModel model, BuildContext context) async {
-    File? cropped = await ImageCropper.cropImage(
+    File? cropped = await ImageCropper().cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,
         iosUiSettings: IOSUiSettings(

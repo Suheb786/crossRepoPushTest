@@ -6,14 +6,13 @@ part of 'get_time_slots_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetTimeSlotsRequest _$GetTimeSlotsRequestFromJson(Map<String, dynamic> json) {
-  return GetTimeSlotsRequest(
-    gender: json['gender'] as String?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    callDate: json['callDate'] as String?,
-    dateToSend: json['dateToSend'] as int?,
-  );
-}
+GetTimeSlotsRequest _$GetTimeSlotsRequestFromJson(Map<String, dynamic> json) =>
+    GetTimeSlotsRequest(
+      gender: json['gender'] as String? ?? "",
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      callDate: json['callDate'] as String?,
+      dateToSend: json['dateToSend'] as int?,
+    );
 
 Map<String, dynamic> _$GetTimeSlotsRequestToJson(
         GetTimeSlotsRequest instance) =>

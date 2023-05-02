@@ -7,14 +7,13 @@ part of 'get_customer_by_account_request_entity.dart';
 // **************************************************************************
 
 GetCustomByAccountRequestEntity _$GetCustomByAccountRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCustomByAccountRequestEntity(
-    accountCode: json['accountCode'] as String?,
-    CustID: json['CustID'] as String?,
-    GetToken: json['GetToken'] as bool?,
-    BaseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCustomByAccountRequestEntity(
+      accountCode: json['accountCode'] as String?,
+      CustID: json['CustID'] as String?,
+      GetToken: json['GetToken'] as bool?,
+      BaseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCustomByAccountRequestEntityToJson(
         GetCustomByAccountRequestEntity instance) =>

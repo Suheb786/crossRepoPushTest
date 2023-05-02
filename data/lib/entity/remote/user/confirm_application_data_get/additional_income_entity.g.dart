@@ -7,18 +7,17 @@ part of 'additional_income_entity.dart';
 // **************************************************************************
 
 AdditionalIncomeEntity _$AdditionalIncomeEntityFromJson(
-    Map<String, dynamic> json) {
-  return AdditionalIncomeEntity(
-    id: json['id'] as int?,
-    userId: json['userId'] as String?,
-    additionalIncomeSource: json['additionalIncomeSource'] as String?,
-    totalIncome: json['totalIncome'] as String?,
-    createdOn: json['createdOn'] == null
-        ? null
-        : DateTime.parse(json['createdOn'] as String),
-    additionalIncomeSourceAr: json['additionalIncomeSourceAr'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AdditionalIncomeEntity(
+      id: json['id'] as int?,
+      userId: json['userId'] as String?,
+      additionalIncomeSource: json['additionalIncomeSource'] as String?,
+      totalIncome: json['totalIncome'] as String?,
+      createdOn: json['createdOn'] == null
+          ? null
+          : DateTime.parse(json['createdOn'] as String),
+      additionalIncomeSourceAr: json['additionalIncomeSourceAr'] as String?,
+    );
 
 Map<String, dynamic> _$AdditionalIncomeEntityToJson(
         AdditionalIncomeEntity instance) =>

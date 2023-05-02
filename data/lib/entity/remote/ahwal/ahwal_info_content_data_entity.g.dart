@@ -7,11 +7,10 @@ part of 'ahwal_info_content_data_entity.dart';
 // **************************************************************************
 
 AhwalInfoContentDataEntity _$AhwalInfoContentDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return AhwalInfoContentDataEntity(
-    skipConfirmationScreen: json['skipConfirmationScreen'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AhwalInfoContentDataEntity(
+      skipConfirmationScreen: json['skipConfirmationScreen'] as bool? ?? false,
+    );
 
 Map<String, dynamic> _$AhwalInfoContentDataEntityToJson(
         AhwalInfoContentDataEntity instance) =>

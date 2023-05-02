@@ -7,15 +7,14 @@ part of 'enroll_card_request_entity.dart';
 // **************************************************************************
 
 EnrollCardRequestEntity _$EnrollCardRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return EnrollCardRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    walletId: json['walletId'] as String?,
-    cardId: json['cardId'] as String?,
-    cardType: json['cardType'] as String?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    EnrollCardRequestEntity(
+      getToken: json['GetToken'] as bool? ?? true,
+      walletId: json['walletId'] as String? ?? "",
+      cardId: json['cardId'] as String? ?? "",
+      cardType: json['cardType'] as String?,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$EnrollCardRequestEntityToJson(
         EnrollCardRequestEntity instance) =>

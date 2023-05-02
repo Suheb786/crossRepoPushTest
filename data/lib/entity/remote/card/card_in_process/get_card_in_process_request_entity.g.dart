@@ -7,16 +7,15 @@ part of 'get_card_in_process_request_entity.dart';
 // **************************************************************************
 
 GetCardInProcessRequestEntity _$GetCardInProcessRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCardInProcessRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    minimumSettlement: json['MinimumSettlement'] as String?,
-    loanValueId: json['LoanValueId'] as num?,
-    nickName: json['NickName'] as String?,
-    creditLimit: json['CreditLimit'] as num?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCardInProcessRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      minimumSettlement: json['MinimumSettlement'] as String? ?? "",
+      loanValueId: json['LoanValueId'] as num? ?? 0,
+      nickName: json['NickName'] as String? ?? "",
+      creditLimit: json['CreditLimit'] as num? ?? 0,
+    );
 
 Map<String, dynamic> _$GetCardInProcessRequestEntityToJson(
         GetCardInProcessRequestEntity instance) =>

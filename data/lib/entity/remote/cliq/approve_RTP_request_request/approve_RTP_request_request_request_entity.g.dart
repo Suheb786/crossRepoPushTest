@@ -7,34 +7,33 @@ part of 'approve_RTP_request_request_request_entity.dart';
 // **************************************************************************
 
 ApproveRTPRequestReqestEntity _$ApproveRTPRequestReqestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ApproveRTPRequestReqestEntity(
-    dbtrName: json['dbtrName'] as String,
-    dbtrPstlAdr: json['dbtrPstlAdr'] as String,
-    dbtrRecordID: json['dbtrRecordID'] as String,
-    dbtrAlias: json['dbtrAlias'] as String,
-    currency: json['currency'] as String,
-    amount: json['amount'] as String,
-    cdtrBic: json['cdtrBic'] as String,
-    cdtrName: json['cdtrName'] as String,
-    cdtrAcct: json['cdtrAcct'] as String,
-    cdtrPstlAdr: json['cdtrPstlAdr'] as String,
-    cdtrRecordID: json['cdtrRecordID'] as String,
-    cdtrAlias: json['cdtrAlias'] as String,
-    rgltryRptg: json['rgltryRptg'] as String,
-    payRefNo: json['payRefNo'] as String,
-    OrgnlMsgId: json['OrgnlMsgId'] as String,
-    CtgyPurp: json['CtgyPurp'] as String,
-    rejectReason: json['rejectReason'] as String,
-    rejectADdInfo: json['rejectADdInfo'] as String,
-    rtpStatus: json['rtpStatus'] as String,
-    otpCode: json['OtpCode'] as String,
-    GetToken: json['GetToken'] as bool,
-    BaseClass: json['BaseClass'] as Map<String, dynamic>,
-    custID: json['custID'] as String,
-    dbtrAcct: json['dbtrAcct'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    ApproveRTPRequestReqestEntity(
+      dbtrName: json['dbtrName'] as String,
+      dbtrPstlAdr: json['dbtrPstlAdr'] as String,
+      dbtrRecordID: json['dbtrRecordID'] as String,
+      dbtrAlias: json['dbtrAlias'] as String,
+      currency: json['currency'] as String,
+      amount: json['amount'] as String,
+      cdtrBic: json['cdtrBic'] as String,
+      cdtrName: json['cdtrName'] as String,
+      cdtrAcct: json['cdtrAcct'] as String,
+      cdtrPstlAdr: json['cdtrPstlAdr'] as String,
+      cdtrRecordID: json['cdtrRecordID'] as String,
+      cdtrAlias: json['cdtrAlias'] as String,
+      rgltryRptg: json['rgltryRptg'] as String,
+      payRefNo: json['payRefNo'] as String,
+      OrgnlMsgId: json['OrgnlMsgId'] as String,
+      CtgyPurp: json['CtgyPurp'] as String,
+      rejectReason: json['rejectReason'] as String,
+      rejectADdInfo: json['rejectADdInfo'] as String,
+      rtpStatus: json['rtpStatus'] as String,
+      otpCode: json['OtpCode'] as String,
+      GetToken: json['GetToken'] as bool,
+      BaseClass: json['BaseClass'] as Map<String, dynamic>,
+      custID: json['custID'] as String,
+      dbtrAcct: json['dbtrAcct'] as String,
+    );
 
 Map<String, dynamic> _$ApproveRTPRequestReqestEntityToJson(
         ApproveRTPRequestReqestEntity instance) =>

@@ -7,13 +7,12 @@ part of 'get_cipher_response_entity.dart';
 // **************************************************************************
 
 GetCipherResponseEntity _$GetCipherResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCipherResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCipherResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetCipherResponseEntityToJson(
         GetCipherResponseEntity instance) =>

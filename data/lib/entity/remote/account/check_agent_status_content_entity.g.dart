@@ -7,11 +7,10 @@ part of 'check_agent_status_content_entity.dart';
 // **************************************************************************
 
 CheckAgentStatusContentEntity _$CheckAgentStatusContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckAgentStatusContentEntity(
-    status: json['status'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckAgentStatusContentEntity(
+      status: json['status'] as bool?,
+    );
 
 Map<String, dynamic> _$CheckAgentStatusContentEntityToJson(
         CheckAgentStatusContentEntity instance) =>

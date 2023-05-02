@@ -12,10 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dartz: ^0.10.0
-  rxdart: ^0.27.2
-  riverpod: ^0.14.0+3
-  device_info: ^2.0.2
+  dartz: ^0.10.1
+  rxdart: ^0.27.7
+  riverpod: ^2.3.6
+  device_info: ^2.0.3
 
 dev_dependencies:
   flutter_test:

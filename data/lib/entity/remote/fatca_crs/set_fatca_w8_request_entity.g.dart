@@ -7,37 +7,38 @@ part of 'set_fatca_w8_request_entity.dart';
 // **************************************************************************
 
 SetFatcaW8RequestEntity _$SetFatcaW8RequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return SetFatcaW8RequestEntity(
-    nameIncomeTAXReturn: json['NameIncomeTAXReturn'] as String?,
-    dateOfBirth: json['DateOfBirth'] as String?,
-    citizenShipCountry: json['CitizenShipCountry'] as String?,
-    permanentResidenceAddress: json['PermenantResidenceAddress'] as String?,
-    countryIsoCode: json['Country'] as String?,
-    cityId: json['City'] as String?,
-    stateId: json['State'] as String?,
-    postCode: json['PostCode'] as String?,
-    isDifferentMailingAddress: json['DifferentMailingAddress'] as bool?,
-    mailingAddressLine: json['MailingAddressLine'] as String?,
-    differentMailingCountryIsoCode: json['DifferentMailingCountry'] as String?,
-    differentMailingStateID: json['DifferentMailingState'] as String?,
-    differentMailingCityId: json['DifferentMailingCity'] as String?,
-    differentMailingPostCode: json['DifferentMailingPostCode'] as String?,
-    taxPayer: json['TaxPayer'] as String?,
-    usTaxPayerTin: json['UsTaxPayerTin'] as String?,
-    foreignTaxPayerTin: json['ForeignTaxPayerTin'] as String?,
-    referenceNumber: json['ReferenceNumber'] as String?,
-    isClaimedTaxTreatBenefits: json['ClaimTaxTreatBenefits'] as bool?,
-    beneficialOwnerResidentIsoCode: json['BeneficialOwnerResident'] as String?,
-    provisionOrClaim: json['ProvisionOrClaim'] as String?,
-    treatyClaimRate: json['TreatyClaimRate'] as String?,
-    typeOfIncome: json['TypeOfIncome'] as String?,
-    explanation: json['Explanation'] as String?,
-    signatureId: json['SignatureId'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    SetFatcaW8RequestEntity(
+      nameIncomeTAXReturn: json['NameIncomeTAXReturn'] as String?,
+      dateOfBirth: json['DateOfBirth'] as String?,
+      citizenShipCountry: json['CitizenShipCountry'] as String?,
+      permanentResidenceAddress: json['PermenantResidenceAddress'] as String?,
+      countryIsoCode: json['Country'] as String?,
+      cityId: json['City'] as String?,
+      stateId: json['State'] as String?,
+      postCode: json['PostCode'] as String?,
+      isDifferentMailingAddress: json['DifferentMailingAddress'] as bool?,
+      mailingAddressLine: json['MailingAddressLine'] as String?,
+      differentMailingCountryIsoCode:
+          json['DifferentMailingCountry'] as String?,
+      differentMailingStateID: json['DifferentMailingState'] as String?,
+      differentMailingCityId: json['DifferentMailingCity'] as String?,
+      differentMailingPostCode: json['DifferentMailingPostCode'] as String?,
+      taxPayer: json['TaxPayer'] as String?,
+      usTaxPayerTin: json['UsTaxPayerTin'] as String?,
+      foreignTaxPayerTin: json['ForeignTaxPayerTin'] as String?,
+      referenceNumber: json['ReferenceNumber'] as String?,
+      isClaimedTaxTreatBenefits: json['ClaimTaxTreatBenefits'] as bool?,
+      beneficialOwnerResidentIsoCode:
+          json['BeneficialOwnerResident'] as String?,
+      provisionOrClaim: json['ProvisionOrClaim'] as String?,
+      treatyClaimRate: json['TreatyClaimRate'] as String?,
+      typeOfIncome: json['TypeOfIncome'] as String?,
+      explanation: json['Explanation'] as String?,
+      signatureId: json['SignatureId'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$SetFatcaW8RequestEntityToJson(
         SetFatcaW8RequestEntity instance) =>

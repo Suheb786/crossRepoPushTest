@@ -7,11 +7,11 @@ part of 'return_RTP_request_otp_response_entity.dart';
 // **************************************************************************
 
 ReturnRTPrequestOTPResponseEntity _$ReturnRTPrequestOTPResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return ReturnRTPrequestOTPResponseEntity(
-    response: ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    ReturnRTPrequestOTPResponseEntity(
+      response:
+          ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$ReturnRTPrequestOTPResponseEntityToJson(
         ReturnRTPrequestOTPResponseEntity instance) =>

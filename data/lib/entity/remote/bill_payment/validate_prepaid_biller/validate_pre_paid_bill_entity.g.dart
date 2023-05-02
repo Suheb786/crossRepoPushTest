@@ -7,18 +7,17 @@ part of 'validate_pre_paid_bill_entity.dart';
 // **************************************************************************
 
 ValidatePrePaidBillEntity _$ValidatePrePaidBillEntityFromJson(
-    Map<String, dynamic> json) {
-  return ValidatePrePaidBillEntity(
-    success: json['success'],
-    message: json['message'],
-    billerCode: json['billerCode'],
-    billingNo: json['billingNo'],
-    customerName: json['customerName'],
-    dueAmount: json['dueAmount'],
-    feesAmount: json['feesAmount'],
-    validationCode: json['validationCode'],
-  );
-}
+        Map<String, dynamic> json) =>
+    ValidatePrePaidBillEntity(
+      success: json['success'],
+      message: json['message'],
+      billerCode: json['billerCode'],
+      billingNo: json['billingNo'],
+      customerName: json['customerName'],
+      dueAmount: json['dueAmount'],
+      feesAmount: json['feesAmount'],
+      validationCode: json['validationCode'],
+    );
 
 Map<String, dynamic> _$ValidatePrePaidBillEntityToJson(
         ValidatePrePaidBillEntity instance) =>

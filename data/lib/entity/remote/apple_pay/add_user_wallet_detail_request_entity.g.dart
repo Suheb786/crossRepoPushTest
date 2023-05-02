@@ -7,14 +7,13 @@ part of 'add_user_wallet_detail_request_entity.dart';
 // **************************************************************************
 
 AddUserWalletDetailRequestEntity _$AddUserWalletDetailRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return AddUserWalletDetailRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    walletId: json['WalletId'] as String?,
-    entrustWalletId: json['EntrustWalletId'] as String?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    AddUserWalletDetailRequestEntity(
+      getToken: json['GetToken'] as bool? ?? true,
+      walletId: json['WalletId'] as String? ?? "",
+      entrustWalletId: json['EntrustWalletId'] as String? ?? "",
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$AddUserWalletDetailRequestEntityToJson(
         AddUserWalletDetailRequestEntity instance) =>

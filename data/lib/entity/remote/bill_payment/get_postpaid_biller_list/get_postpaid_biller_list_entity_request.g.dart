@@ -7,9 +7,8 @@ part of 'get_postpaid_biller_list_entity_request.dart';
 // **************************************************************************
 
 GetPostPaidBillerListEntityRequest _$GetPostPaidBillerListEntityRequestFromJson(
-    Map<String, dynamic> json) {
-  return GetPostPaidBillerListEntityRequest();
-}
+        Map<String, dynamic> json) =>
+    GetPostPaidBillerListEntityRequest();
 
 Map<String, dynamic> _$GetPostPaidBillerListEntityRequestToJson(
         GetPostPaidBillerListEntityRequest instance) =>

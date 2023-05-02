@@ -7,14 +7,13 @@ part of 'save_profile_status_response_entity.dart';
 // **************************************************************************
 
 SaveProfileStatusResponseEntity _$SaveProfileStatusResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return SaveProfileStatusResponseEntity(
-    saveProfileStatusResponseDataEntity: json['response'] == null
-        ? null
-        : SaveProfileStatusResponseDataEntity.fromJson(
-            json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    SaveProfileStatusResponseEntity(
+      saveProfileStatusResponseDataEntity: json['response'] == null
+          ? null
+          : SaveProfileStatusResponseDataEntity.fromJson(
+              json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$SaveProfileStatusResponseEntityToJson(
         SaveProfileStatusResponseEntity instance) =>

@@ -7,12 +7,11 @@ part of 'approve_rtp_otp_request_entity.dart';
 // **************************************************************************
 
 ApproveRTPOtpRequestEntity _$ApproveRTPOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ApproveRTPOtpRequestEntity(
-    getToken: json['GetToken'] as bool,
-    baseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    ApproveRTPOtpRequestEntity(
+      getToken: json['GetToken'] as bool,
+      baseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$ApproveRTPOtpRequestEntityToJson(
         ApproveRTPOtpRequestEntity instance) =>

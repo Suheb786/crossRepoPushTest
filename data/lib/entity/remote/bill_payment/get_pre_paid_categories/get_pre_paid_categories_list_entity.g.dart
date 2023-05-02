@@ -7,14 +7,13 @@ part of 'get_pre_paid_categories_list_entity.dart';
 // **************************************************************************
 
 GetPrePaidCategoriesListEntity _$GetPrePaidCategoriesListEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetPrePaidCategoriesListEntity(
-    getPrePaidCategoriesEntity: (json['categories'] as List<dynamic>?)
-        ?.map((e) =>
-            GetPrePaidCategoriesEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetPrePaidCategoriesListEntity(
+      getPrePaidCategoriesEntity: (json['categories'] as List<dynamic>?)
+          ?.map((e) =>
+              GetPrePaidCategoriesEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$GetPrePaidCategoriesListEntityToJson(
         GetPrePaidCategoriesListEntity instance) =>

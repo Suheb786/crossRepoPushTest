@@ -7,17 +7,16 @@ part of 'confirm_create_cliq_id_request_entity.dart';
 // **************************************************************************
 
 ConfirmCreateCliqIdRequestEntity _$ConfirmCreateCliqIdRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ConfirmCreateCliqIdRequestEntity(
-    accountNumber: json['accountNumber'] as String?,
-    isAlias: json['isAlias'] as bool?,
-    aliasValue: json['aliasValue'] as String?,
-    otpCode: json['otpCode'] as String?,
-    isSetDefault: json['IsSetDefault'] as bool?,
-    getToken: json['getToken'] as bool?,
-    baseClass: json['baseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ConfirmCreateCliqIdRequestEntity(
+      accountNumber: json['accountNumber'] as String?,
+      isAlias: json['isAlias'] as bool?,
+      aliasValue: json['aliasValue'] as String?,
+      otpCode: json['otpCode'] as String?,
+      isSetDefault: json['IsSetDefault'] as bool?,
+      getToken: json['getToken'] as bool?,
+      baseClass: json['baseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$ConfirmCreateCliqIdRequestEntityToJson(
         ConfirmCreateCliqIdRequestEntity instance) =>

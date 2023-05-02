@@ -7,9 +7,8 @@ part of 'get_prepaid_biller_list_entity_request.dart';
 // **************************************************************************
 
 GetPrePaidBillerListEntityRequest _$GetPrePaidBillerListEntityRequestFromJson(
-    Map<String, dynamic> json) {
-  return GetPrePaidBillerListEntityRequest();
-}
+        Map<String, dynamic> json) =>
+    GetPrePaidBillerListEntityRequest();
 
 Map<String, dynamic> _$GetPrePaidBillerListEntityRequestToJson(
         GetPrePaidBillerListEntityRequest instance) =>

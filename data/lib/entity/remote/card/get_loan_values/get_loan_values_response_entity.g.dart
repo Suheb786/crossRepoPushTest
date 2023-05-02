@@ -7,13 +7,12 @@ part of 'get_loan_values_response_entity.dart';
 // **************************************************************************
 
 GetLoanValuesResponseEntity _$GetLoanValuesResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetLoanValuesResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetLoanValuesResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetLoanValuesResponseEntityToJson(
         GetLoanValuesResponseEntity instance) =>

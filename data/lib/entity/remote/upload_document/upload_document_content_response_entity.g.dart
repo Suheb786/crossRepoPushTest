@@ -7,11 +7,10 @@ part of 'upload_document_content_response_entity.dart';
 // **************************************************************************
 
 UploadDocumentContentResponseEntity
-    _$UploadDocumentContentResponseEntityFromJson(Map<String, dynamic> json) {
-  return UploadDocumentContentResponseEntity(
-    documentId: json['documentId'] as String?,
-  );
-}
+    _$UploadDocumentContentResponseEntityFromJson(Map<String, dynamic> json) =>
+        UploadDocumentContentResponseEntity(
+          documentId: json['documentId'] as String?,
+        );
 
 Map<String, dynamic> _$UploadDocumentContentResponseEntityToJson(
         UploadDocumentContentResponseEntity instance) =>

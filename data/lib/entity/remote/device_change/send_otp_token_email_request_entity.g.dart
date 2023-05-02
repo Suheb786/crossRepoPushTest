@@ -7,13 +7,12 @@ part of 'send_otp_token_email_request_entity.dart';
 // **************************************************************************
 
 SendOtpTokenEmailRequestEntity _$SendOtpTokenEmailRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return SendOtpTokenEmailRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    type: json['type'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    SendOtpTokenEmailRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      type: json['type'] as String? ?? "ChangeDeviceEmail",
+    );
 
 Map<String, dynamic> _$SendOtpTokenEmailRequestEntityToJson(
         SendOtpTokenEmailRequestEntity instance) =>

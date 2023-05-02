@@ -7,12 +7,11 @@ part of 'get_account_request_entity.dart';
 // **************************************************************************
 
 GetAccountRequestEntity _$GetAccountRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetAccountRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetAccountRequestEntity(
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetAccountRequestEntityToJson(
         GetAccountRequestEntity instance) =>

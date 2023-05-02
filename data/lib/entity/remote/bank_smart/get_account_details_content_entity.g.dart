@@ -7,15 +7,14 @@ part of 'get_account_details_content_entity.dart';
 // **************************************************************************
 
 GetAccountDetailsContentEntity _$GetAccountDetailsContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetAccountDetailsContentEntity(
-    data: json['data'] == null
-        ? null
-        : CreateAccountDataEntity.fromJson(
-            json['data'] as Map<String, dynamic>),
-    openDate: json['openDate'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetAccountDetailsContentEntity(
+      data: json['data'] == null
+          ? null
+          : CreateAccountDataEntity.fromJson(
+              json['data'] as Map<String, dynamic>),
+      openDate: json['openDate'] as String?,
+    );
 
 Map<String, dynamic> _$GetAccountDetailsContentEntityToJson(
         GetAccountDetailsContentEntity instance) =>

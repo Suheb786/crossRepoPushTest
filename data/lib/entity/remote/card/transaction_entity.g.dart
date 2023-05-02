@@ -6,22 +6,21 @@ part of 'transaction_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransactionEntity _$TransactionEntityFromJson(Map<String, dynamic> json) {
-  return TransactionEntity(
-    id: json['id'] as int?,
-    description: json['description'] as String?,
-    transactionTime:
-        json['time'] == null ? null : DateTime.parse(json['time'] as String),
-    amount: json['amount'] as num?,
-    amountCur: json['amountCUR'] as String?,
-    balance: json['balance'] as num?,
-    balanceCur: json['balanceCUR'] as String?,
-    trnxType: json['trnxType'] as String?,
-    memo: json['memo'] as String?,
-    type: json['type'] as String?,
-    currency: json['currency'] as String?,
-  );
-}
+TransactionEntity _$TransactionEntityFromJson(Map<String, dynamic> json) =>
+    TransactionEntity(
+      id: json['id'] as int?,
+      description: json['description'] as String?,
+      transactionTime:
+          json['time'] == null ? null : DateTime.parse(json['time'] as String),
+      amount: json['amount'] as num?,
+      amountCur: json['amountCUR'] as String?,
+      balance: json['balance'] as num?,
+      balanceCur: json['balanceCUR'] as String?,
+      trnxType: json['trnxType'] as String?,
+      memo: json['memo'] as String? ?? "",
+      type: json['type'] as String? ?? "",
+      currency: json['currency'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$TransactionEntityToJson(TransactionEntity instance) =>
     <String, dynamic>{

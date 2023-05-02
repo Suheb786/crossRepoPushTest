@@ -7,12 +7,11 @@ part of 'return_RTP_request_otp_entity.dart';
 // **************************************************************************
 
 ReturnRTPRequestOTPEntity _$ReturnRTPRequestOTPEntityFromJson(
-    Map<String, dynamic> json) {
-  return ReturnRTPRequestOTPEntity(
-    mobileCode: json['mobileCode'] as String?,
-    mobileNumber: json['mobileNumber'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ReturnRTPRequestOTPEntity(
+      mobileCode: json['mobileCode'] as String?,
+      mobileNumber: json['mobileNumber'] as String?,
+    );
 
 Map<String, dynamic> _$ReturnRTPRequestOTPEntityToJson(
         ReturnRTPRequestOTPEntity instance) =>

@@ -7,13 +7,12 @@ part of 'debit_card_limit_request_entity.dart';
 // **************************************************************************
 
 DebitCardLimitRequestEntity _$DebitCardLimitRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return DebitCardLimitRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    tokenizedPan: json['TokenizedPan'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    DebitCardLimitRequestEntity(
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+      tokenizedPan: json['TokenizedPan'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$DebitCardLimitRequestEntityToJson(
         DebitCardLimitRequestEntity instance) =>

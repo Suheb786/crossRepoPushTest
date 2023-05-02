@@ -7,13 +7,12 @@ part of 'cancel_credit_card_request.dart';
 // **************************************************************************
 
 CancelCreditCardRequest _$CancelCreditCardRequestFromJson(
-    Map<String, dynamic> json) {
-  return CancelCreditCardRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    reason: json['Reason'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CancelCreditCardRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      reason: json['Reason'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CancelCreditCardRequestToJson(
         CancelCreditCardRequest instance) =>

@@ -7,13 +7,12 @@ part of 'check_forget_password_response_entity.dart';
 // **************************************************************************
 
 CheckForgetPasswordResponseEntity _$CheckForgetPasswordResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckForgetPasswordResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckForgetPasswordResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CheckForgetPasswordResponseEntityToJson(
         CheckForgetPasswordResponseEntity instance) =>

@@ -6,16 +6,14 @@ part of 'atms_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AtmsEntity _$AtmsEntityFromJson(Map<String, dynamic> json) {
-  return AtmsEntity(
-    bankName: json['bankName'] as String?,
-    bankAddress: json['bankAddress'] as String?,
-    country: json['country'] as String?,
-    city: json['city'] as String?,
-    longitude: json['longitude'] as String?,
-    latitude: json['latitude'] as String?,
-  );
-}
+AtmsEntity _$AtmsEntityFromJson(Map<String, dynamic> json) => AtmsEntity(
+      bankName: json['bankName'] as String?,
+      bankAddress: json['bankAddress'] as String?,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      longitude: json['longitude'] as String?,
+      latitude: json['latitude'] as String?,
+    );
 
 Map<String, dynamic> _$AtmsEntityToJson(AtmsEntity instance) =>
     <String, dynamic>{

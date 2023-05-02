@@ -7,12 +7,11 @@ part of 'get_customer_doc_id_content_entity.dart';
 // **************************************************************************
 
 GetCustomerDocIdContentEntity _$GetCustomerDocIdContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCustomerDocIdContentEntity(
-    proofOfAddress: json['proofOfAddress'] as String?,
-    proofOfIncome: json['proofOfIncome'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCustomerDocIdContentEntity(
+      proofOfAddress: json['proofOfAddress'] as String? ?? "",
+      proofOfIncome: json['proofOfIncome'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$GetCustomerDocIdContentEntityToJson(
         GetCustomerDocIdContentEntity instance) =>

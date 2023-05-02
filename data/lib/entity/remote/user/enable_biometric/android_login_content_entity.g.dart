@@ -7,11 +7,10 @@ part of 'android_login_content_entity.dart';
 // **************************************************************************
 
 AndroidLoginContentEntity _$AndroidLoginContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return AndroidLoginContentEntity(
-    applepay: json['applepay'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AndroidLoginContentEntity(
+      applepay: json['applepay'] as bool?,
+    );
 
 Map<String, dynamic> _$AndroidLoginContentEntityToJson(
         AndroidLoginContentEntity instance) =>

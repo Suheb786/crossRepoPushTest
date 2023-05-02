@@ -6,16 +6,16 @@ part of 'purpose_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PurposeRequestEntity _$PurposeRequestEntityFromJson(Map<String, dynamic> json) {
-  return PurposeRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    toAccount: json['ToAccount'] as String?,
-    transferType: json['TransferType'] as String?,
-    getToken: json['getToken'] as bool,
-    type: json['Type'] as String?,
-    detCustomerType: json['DetCustomerType'] as String?,
-  );
-}
+PurposeRequestEntity _$PurposeRequestEntityFromJson(
+        Map<String, dynamic> json) =>
+    PurposeRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      toAccount: json['ToAccount'] as String?,
+      transferType: json['TransferType'] as String?,
+      getToken: json['getToken'] as bool? ?? true,
+      type: json['Type'] as String?,
+      detCustomerType: json['DetCustomerType'] as String?,
+    );
 
 Map<String, dynamic> _$PurposeRequestEntityToJson(
         PurposeRequestEntity instance) =>

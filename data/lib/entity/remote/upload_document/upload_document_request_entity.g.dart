@@ -7,13 +7,12 @@ part of 'upload_document_request_entity.dart';
 // **************************************************************************
 
 UploadDocumentRequestEntity _$UploadDocumentRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return UploadDocumentRequestEntity(
-    documentBase64: json['DocumentBase64'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    UploadDocumentRequestEntity(
+      documentBase64: json['DocumentBase64'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$UploadDocumentRequestEntityToJson(
         UploadDocumentRequestEntity instance) =>

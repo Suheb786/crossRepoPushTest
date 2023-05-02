@@ -7,13 +7,12 @@ part of 'get_account_details_response_entity.dart';
 // **************************************************************************
 
 GetAccountDetailsResponseEntity _$GetAccountDetailsResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetAccountDetailsResponseEntity(
-    responseEntity: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetAccountDetailsResponseEntity(
+      responseEntity: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetAccountDetailsResponseEntityToJson(
         GetAccountDetailsResponseEntity instance) =>

@@ -7,13 +7,12 @@ part of 'request_to_pay_content_response_entity.dart';
 // **************************************************************************
 
 RequestToPayContentResponseEntity _$RequestToPayContentResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestToPayContentResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestToPayContentResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$RequestToPayContentResponseEntityToJson(
         RequestToPayContentResponseEntity instance) =>

@@ -7,16 +7,15 @@ part of 'cliq_get_account_by_alias.dart';
 // **************************************************************************
 
 GetCliqAccountByAliasEntity _$GetCliqAccountByAliasEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCliqAccountByAliasEntity(
-    type: json['type'] as String?,
-    value: json['value'] as String?,
-    Currency: json['Currency'] as String?,
-    CustID: json['CustID'] as String?,
-    GetToken: json['GetToken'] as bool?,
-    BaseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCliqAccountByAliasEntity(
+      type: json['type'] as String?,
+      value: json['value'] as String?,
+      Currency: json['Currency'] as String?,
+      CustID: json['CustID'] as String?,
+      GetToken: json['GetToken'] as bool?,
+      BaseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCliqAccountByAliasEntityToJson(
         GetCliqAccountByAliasEntity instance) =>

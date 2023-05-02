@@ -7,13 +7,12 @@ part of 'additional_dropdown_data_entity.dart';
 // **************************************************************************
 
 AdditionalDropDownDataEntity _$AdditionalDropDownDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return AdditionalDropDownDataEntity(
-    name: json['name'] as String?,
-    values: json['values'] as String?,
-    nameAR: json['nameAR'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    AdditionalDropDownDataEntity(
+      name: json['name'] as String?,
+      values: json['values'] as String?,
+      nameAR: json['nameAR'] as String?,
+    );
 
 Map<String, dynamic> _$AdditionalDropDownDataEntityToJson(
         AdditionalDropDownDataEntity instance) =>

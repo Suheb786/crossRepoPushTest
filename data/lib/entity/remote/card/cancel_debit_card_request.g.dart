@@ -7,13 +7,12 @@ part of 'cancel_debit_card_request.dart';
 // **************************************************************************
 
 CancelDebitCardRequest _$CancelDebitCardRequestFromJson(
-    Map<String, dynamic> json) {
-  return CancelDebitCardRequest(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    reason: json['Status'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CancelDebitCardRequest(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      reason: json['Status'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CancelDebitCardRequestToJson(
         CancelDebitCardRequest instance) =>

@@ -6,14 +6,13 @@ part of 'purpose_detail_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PurposeDetailEntity _$PurposeDetailEntityFromJson(Map<String, dynamic> json) {
-  return PurposeDetailEntity(
-    strCode: json['strCode'] as String?,
-    labelEn: json['labelEN'] as String?,
-    labelAr: json['labelAR'] as String?,
-    limit: json['limit'] as num?,
-  );
-}
+PurposeDetailEntity _$PurposeDetailEntityFromJson(Map<String, dynamic> json) =>
+    PurposeDetailEntity(
+      strCode: json['strCode'] as String?,
+      labelEn: json['labelEN'] as String?,
+      labelAr: json['labelAR'] as String?,
+      limit: json['limit'] as num?,
+    );
 
 Map<String, dynamic> _$PurposeDetailEntityToJson(
         PurposeDetailEntity instance) =>

@@ -7,13 +7,13 @@ part of 'request_physical_debit_card_request_entity.dart';
 // **************************************************************************
 
 RequestPhysicalDebitCardRequestEntity
-    _$RequestPhysicalDebitCardRequestEntityFromJson(Map<String, dynamic> json) {
-  return RequestPhysicalDebitCardRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    tokenizedPan: json['TokenizedPan'] as String?,
-  );
-}
+    _$RequestPhysicalDebitCardRequestEntityFromJson(
+            Map<String, dynamic> json) =>
+        RequestPhysicalDebitCardRequestEntity(
+          getToken: json['getToken'] as bool? ?? true,
+          baseData: json['baseClass'] as Map<String, dynamic>?,
+          tokenizedPan: json['TokenizedPan'] as String? ?? "",
+        );
 
 Map<String, dynamic> _$RequestPhysicalDebitCardRequestEntityToJson(
         RequestPhysicalDebitCardRequestEntity instance) =>

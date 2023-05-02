@@ -7,14 +7,13 @@ part of 'get_biller_lookup_list_request.dart';
 // **************************************************************************
 
 GetBillerLookupListRequest _$GetBillerLookupListRequestFromJson(
-    Map<String, dynamic> json) {
-  return GetBillerLookupListRequest(
-    categoryName: json['categoryName'] as String?,
-    type: json['Type'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetBillerLookupListRequest(
+      categoryName: json['categoryName'] as String?,
+      type: json['Type'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetBillerLookupListRequestToJson(
         GetBillerLookupListRequest instance) =>

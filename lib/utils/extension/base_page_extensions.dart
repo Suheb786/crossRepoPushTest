@@ -18,7 +18,7 @@ extension PageExtensions on BaseStatefulPage {
 
   showTopError(String message) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -62,13 +62,13 @@ extension PageExtensions on BaseStatefulPage {
           ),
         ),
         displayDuration: Duration(milliseconds: 5000),
-        hideOutAnimationDuration: Duration(milliseconds: 500),
-        showOutAnimationDuration: Duration(milliseconds: 700));
+        reverseAnimationDuration: Duration(milliseconds: 500),
+        animationDuration: Duration(milliseconds: 700));
   }
 
   showTopSuccess(String message) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -109,13 +109,13 @@ extension PageExtensions on BaseStatefulPage {
           ),
         ),
         displayDuration: Duration(milliseconds: 1000),
-        hideOutAnimationDuration: Duration(milliseconds: 200),
-        showOutAnimationDuration: Duration(milliseconds: 500));
+        reverseAnimationDuration: Duration(milliseconds: 200),
+        animationDuration: Duration(milliseconds: 500));
   }
 
   showSuccessToastWithTitleAndDescription(String title, String description) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -156,7 +156,7 @@ extension PageExtensions on BaseStatefulPage {
           ),
         ),
         displayDuration: Duration(milliseconds: 1000),
-        hideOutAnimationDuration: Duration(milliseconds: 200),
-        showOutAnimationDuration: Duration(milliseconds: 500));
+        reverseAnimationDuration: Duration(milliseconds: 200),
+        animationDuration: Duration(milliseconds: 500));
   }
 }

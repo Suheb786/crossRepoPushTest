@@ -7,12 +7,11 @@ part of 're_activate_cliq_id_otp_entity.dart';
 // **************************************************************************
 
 ReActivateCliqIdOtpEntity _$ReActivateCliqIdOtpEntityFromJson(
-    Map<String, dynamic> json) {
-  return ReActivateCliqIdOtpEntity(
-    mobileCode: json['mobileCode'] as String? ?? '',
-    mobileNumber: json['mobileNumber'] as String? ?? '',
-  );
-}
+        Map<String, dynamic> json) =>
+    ReActivateCliqIdOtpEntity(
+      mobileCode: json['mobileCode'] as String? ?? '',
+      mobileNumber: json['mobileNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$ReActivateCliqIdOtpEntityToJson(
         ReActivateCliqIdOtpEntity instance) =>

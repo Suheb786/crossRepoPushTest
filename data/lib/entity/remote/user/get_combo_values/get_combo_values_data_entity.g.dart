@@ -7,18 +7,17 @@ part of 'get_combo_values_data_entity.dart';
 // **************************************************************************
 
 GetComboValuesDataEntity _$GetComboValuesDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetComboValuesDataEntity(
-    id: json['id'] as int?,
-    type: json['type'] as String?,
-    intCode: json['intCode'] as int?,
-    strCode: json['strCode'] as String?,
-    labelEn: json['labelEn'] as String?,
-    labelAr: json['labelAr'] as String?,
-    ageGroup: json['ageGroup'] as String?,
-    orderNo: json['orderNo'] as int?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetComboValuesDataEntity(
+      id: json['id'] as int?,
+      type: json['type'] as String?,
+      intCode: json['intCode'] as int?,
+      strCode: json['strCode'] as String?,
+      labelEn: json['labelEn'] as String?,
+      labelAr: json['labelAr'] as String?,
+      ageGroup: json['ageGroup'] as String?,
+      orderNo: json['orderNo'] as int?,
+    );
 
 Map<String, dynamic> _$GetComboValuesDataEntityToJson(
         GetComboValuesDataEntity instance) =>

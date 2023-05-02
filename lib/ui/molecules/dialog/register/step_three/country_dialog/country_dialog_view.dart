@@ -231,7 +231,7 @@ class CountryDialogView extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -276,7 +276,7 @@ class CountryDialogView extends StatelessWidget {
           ),
         ),
         displayDuration: Duration(milliseconds: 1500),
-        hideOutAnimationDuration: Duration(milliseconds: 500),
-        showOutAnimationDuration: Duration(milliseconds: 700));
+        reverseAnimationDuration: Duration(milliseconds: 500),
+        animationDuration: Duration(milliseconds: 700));
   }
 }

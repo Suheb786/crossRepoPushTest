@@ -7,12 +7,11 @@ part of 'enroll_card_content_entity.dart';
 // **************************************************************************
 
 EnrollCardContentEntity _$EnrollCardContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return EnrollCardContentEntity(
-    cardId: json['cardId'] as String?,
-    enrollmentData: json['enrollmentData'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    EnrollCardContentEntity(
+      cardId: json['cardId'] as String?,
+      enrollmentData: json['enrollmentData'] as String?,
+    );
 
 Map<String, dynamic> _$EnrollCardContentEntityToJson(
         EnrollCardContentEntity instance) =>

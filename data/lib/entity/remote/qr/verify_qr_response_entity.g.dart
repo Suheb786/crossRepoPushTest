@@ -7,13 +7,12 @@ part of 'verify_qr_response_entity.dart';
 // **************************************************************************
 
 VerifyQRResponseEntity _$VerifyQRResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return VerifyQRResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyQRResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$VerifyQRResponseEntityToJson(
         VerifyQRResponseEntity instance) =>

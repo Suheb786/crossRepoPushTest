@@ -7,19 +7,18 @@ part of 'verify_forget_password_otp_request_entity.dart';
 // **************************************************************************
 
 VerifyForgetPasswordOtpRequestEntity
-    _$VerifyForgetPasswordOtpRequestEntityFromJson(Map<String, dynamic> json) {
-  return VerifyForgetPasswordOtpRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    email: json['Email'] as String?,
-    idExpiry: json['IdExpiry'] as String?,
-    idNo: json['Idno'] as String?,
-    reEnterPassword: json['ReEnterPassword'] as String?,
-    password: json['Password'] as String?,
-    otp: json['Otp'] as String?,
-    uniqueId: json['UniqueId'] as String?,
-  );
-}
+    _$VerifyForgetPasswordOtpRequestEntityFromJson(Map<String, dynamic> json) =>
+        VerifyForgetPasswordOtpRequestEntity(
+          baseData: json['BaseClass'] as Map<String, dynamic>,
+          getToken: json['getToken'] as bool? ?? true,
+          email: json['Email'] as String?,
+          idExpiry: json['IdExpiry'] as String?,
+          idNo: json['Idno'] as String?,
+          reEnterPassword: json['ReEnterPassword'] as String?,
+          password: json['Password'] as String?,
+          otp: json['Otp'] as String?,
+          uniqueId: json['UniqueId'] as String? ?? "",
+        );
 
 Map<String, dynamic> _$VerifyForgetPasswordOtpRequestEntityToJson(
         VerifyForgetPasswordOtpRequestEntity instance) =>

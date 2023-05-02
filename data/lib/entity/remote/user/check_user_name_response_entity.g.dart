@@ -7,13 +7,12 @@ part of 'check_user_name_response_entity.dart';
 // **************************************************************************
 
 CheckUserNameResponseEntity _$CheckUserNameResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckUserNameResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckUserNameResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CheckUserNameResponseEntityToJson(
         CheckUserNameResponseEntity instance) =>

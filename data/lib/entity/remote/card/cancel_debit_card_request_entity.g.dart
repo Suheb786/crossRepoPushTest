@@ -7,15 +7,14 @@ part of 'cancel_debit_card_request_entity.dart';
 // **************************************************************************
 
 CancelDebitCardRequestEntity _$CancelDebitCardRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CancelDebitCardRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['getToken'] as bool?,
-    status: json['Status'] as String?,
-    tokenizedPan: json['TokenizedPan'] as String?,
-    cancellationReason: json['CancellationReason'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CancelDebitCardRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['getToken'] as bool? ?? true,
+      status: json['Status'] as String? ?? "",
+      tokenizedPan: json['TokenizedPan'] as String? ?? "",
+      cancellationReason: json['CancellationReason'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$CancelDebitCardRequestEntityToJson(
         CancelDebitCardRequestEntity instance) =>

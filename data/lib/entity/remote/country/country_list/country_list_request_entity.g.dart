@@ -7,12 +7,11 @@ part of 'country_list_request_entity.dart';
 // **************************************************************************
 
 CountryListRequestEntity _$CountryListRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CountryListRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CountryListRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+    );
 
 Map<String, dynamic> _$CountryListRequestEntityToJson(
         CountryListRequestEntity instance) =>

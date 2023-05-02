@@ -7,14 +7,13 @@ part of 'post_paid_bill_inquiry_list_entity.dart';
 // **************************************************************************
 
 PostPaidBillInquiryListListEntity _$PostPaidBillInquiryListListEntityFromJson(
-    Map<String, dynamic> json) {
-  return PostPaidBillInquiryListListEntity(
-    billInquiryResponses: (json['billInquiryResponses'] as List<dynamic>?)
-        ?.map((e) =>
-            PostPaidBillInquiryEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    PostPaidBillInquiryListListEntity(
+      billInquiryResponses: (json['billInquiryResponses'] as List<dynamic>?)
+          ?.map((e) =>
+              PostPaidBillInquiryEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$PostPaidBillInquiryListListEntityToJson(
         PostPaidBillInquiryListListEntity instance) =>

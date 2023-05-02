@@ -2,8 +2,8 @@ import 'package:data/helper/key_helper.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class DynamicLinksService {
   PublishSubject<Uri> _initDynamicLinkRequestResponse = PublishSubject();
@@ -35,13 +35,14 @@ class DynamicLinksService {
         packageName: packageInfo.packageName,
         minimumVersion: 21,
       ),
-      iosParameters: IosParameters(
+      iosParameters: IOSParameters(
         bundleId: packageInfo.packageName,
         minimumVersion: packageInfo.version,
         appStoreId: '1607969058',
       ),
     );
-    final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
+
+    final ShortDynamicLink shortDynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
     final Uri shortUrl = shortDynamicLink.shortUrl;
     //  final Uri longUrl = await parameters.buildUrl();
 

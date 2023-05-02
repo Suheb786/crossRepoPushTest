@@ -7,13 +7,14 @@ part of 'verify_forget_password_otp_response_entity.dart';
 // **************************************************************************
 
 VerifyForgetPasswordOtpResponseEntity
-    _$VerifyForgetPasswordOtpResponseEntityFromJson(Map<String, dynamic> json) {
-  return VerifyForgetPasswordOtpResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+    _$VerifyForgetPasswordOtpResponseEntityFromJson(
+            Map<String, dynamic> json) =>
+        VerifyForgetPasswordOtpResponseEntity(
+          response: json['response'] == null
+              ? null
+              : ResponseEntity.fromJson(
+                  json['response'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$VerifyForgetPasswordOtpResponseEntityToJson(
         VerifyForgetPasswordOtpResponseEntity instance) =>

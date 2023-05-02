@@ -7,13 +7,12 @@ part of 'check_agent_status_response_entity.dart';
 // **************************************************************************
 
 CheckAgentStatusResponseEntity _$CheckAgentStatusResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckAgentStatusResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckAgentStatusResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CheckAgentStatusResponseEntityToJson(
         CheckAgentStatusResponseEntity instance) =>

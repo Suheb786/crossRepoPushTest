@@ -7,32 +7,31 @@ part of 'country_residence_entity.dart';
 // **************************************************************************
 
 CountryResidenceEntity _$CountryResidenceEntityFromJson(
-    Map<String, dynamic> json) {
-  return CountryResidenceEntity(
-    id: json['id'] as int?,
-    userId: json['userId'] as String?,
-    residantCountry: json['residantCountry'] as String?,
-    cityID: json['cityID'] as String?,
-    stateID: json['stateID'] as String?,
-    perCity: json['perCity'],
-    city: json['city'] as String?,
-    cityAr: json['cityAr'] as String?,
-    perResidantCountry: json['perCountry'] as String?,
-    area: json['area'] as String?,
-    buildingName: json['buildingName'] as String?,
-    streetName: json['streetName'] as String?,
-    createdOn: json['createdOn'] == null
-        ? null
-        : DateTime.parse(json['createdOn'] as String),
-    isActive: json['isActive'] as bool?,
-    residentCountryName: json['residantCountryName'] as String?,
-    residentCountryNameAr: json['residantCountryNameAr'] as String?,
-    perResidentCountryName: json['perCountryName'] as String?,
-    perResidentCountryNameAr: json['perCountryNameAr'] as String?,
-    perResidentCityName: json['perCityName'] as String?,
-    perResidentCityNameAr: json['perCityNameAr'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CountryResidenceEntity(
+      id: json['id'] as int?,
+      userId: json['userId'] as String?,
+      residantCountry: json['residantCountry'] as String?,
+      cityID: json['cityID'] as String?,
+      stateID: json['stateID'] as String?,
+      perCity: json['perCity'],
+      city: json['city'] as String?,
+      cityAr: json['cityAr'] as String?,
+      perResidantCountry: json['perCountry'] as String?,
+      area: json['area'] as String?,
+      buildingName: json['buildingName'] as String?,
+      streetName: json['streetName'] as String?,
+      createdOn: json['createdOn'] == null
+          ? null
+          : DateTime.parse(json['createdOn'] as String),
+      isActive: json['isActive'] as bool?,
+      residentCountryName: json['residantCountryName'] as String? ?? "",
+      residentCountryNameAr: json['residantCountryNameAr'] as String? ?? '',
+      perResidentCountryName: json['perCountryName'] as String? ?? "",
+      perResidentCountryNameAr: json['perCountryNameAr'] as String? ?? '',
+      perResidentCityName: json['perCityName'] as String? ?? "",
+      perResidentCityNameAr: json['perCityNameAr'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$CountryResidenceEntityToJson(
         CountryResidenceEntity instance) =>

@@ -7,14 +7,13 @@ part of 'upload_beneficiary_image_request.dart';
 // **************************************************************************
 
 UploadBeneficiaryImageRequest _$UploadBeneficiaryImageRequestFromJson(
-    Map<String, dynamic> json) {
-  return UploadBeneficiaryImageRequest(
-    beneficiaryID: json['BeneficiaryID'] as String,
-    image: json['Image'] as String,
-    getToken: json['GetToken'] as bool,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    UploadBeneficiaryImageRequest(
+      beneficiaryID: json['BeneficiaryID'] as String,
+      image: json['Image'] as String,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$UploadBeneficiaryImageRequestToJson(
         UploadBeneficiaryImageRequest instance) =>

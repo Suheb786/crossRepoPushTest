@@ -7,17 +7,16 @@ part of 'add_link_account_otp_request_entity.dart';
 // **************************************************************************
 
 AddLinkAccountOtpRequestEntity _$AddLinkAccountOtpRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return AddLinkAccountOtpRequestEntity(
-    aliasId: json['AliasId'] as String,
-    linkType: json['LinkType'] as String,
-    accountNumber: json['AccountNumber'] as String,
-    isAlias: json['isAlias'] as bool,
-    aliasValue: json['AliasValue'] as String,
-    getToken: json['GetToken'] as bool,
-    baseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    AddLinkAccountOtpRequestEntity(
+      aliasId: json['AliasId'] as String,
+      linkType: json['LinkType'] as String,
+      accountNumber: json['AccountNumber'] as String,
+      isAlias: json['isAlias'] as bool,
+      aliasValue: json['AliasValue'] as String,
+      getToken: json['GetToken'] as bool,
+      baseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$AddLinkAccountOtpRequestEntityToJson(
         AddLinkAccountOtpRequestEntity instance) =>

@@ -7,13 +7,12 @@ part of 'enable_biometric_request_entity.dart';
 // **************************************************************************
 
 EnableBiometricRequestEntity _$EnableBiometricRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return EnableBiometricRequestEntity(
-    cipher: json['Cipher'] as String?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    publicKey: json['PublicKey'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    EnableBiometricRequestEntity(
+      cipher: json['Cipher'] as String?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      publicKey: json['PublicKey'] as String?,
+    );
 
 Map<String, dynamic> _$EnableBiometricRequestEntityToJson(
         EnableBiometricRequestEntity instance) =>

@@ -7,14 +7,13 @@ part of 'credit_confirmation_request_entity.dart';
 // **************************************************************************
 
 CreditConfirmationRequestEntity _$CreditConfirmationRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreditConfirmationRequestEntity(
-    getToken: json['GetToken'] as bool,
-    baseClass: json['BaseClass'] as Map<String, dynamic>,
-    custID: json['CustID'] as String,
-    msgId: json['MsgId'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    CreditConfirmationRequestEntity(
+      getToken: json['GetToken'] as bool,
+      baseClass: json['BaseClass'] as Map<String, dynamic>,
+      custID: json['CustID'] as String,
+      msgId: json['MsgId'] as String,
+    );
 
 Map<String, dynamic> _$CreditConfirmationRequestEntityToJson(
         CreditConfirmationRequestEntity instance) =>

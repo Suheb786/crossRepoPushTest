@@ -7,11 +7,10 @@ part of 'process_loan_content_entity.dart';
 // **************************************************************************
 
 ProcessLoanContentEntity _$ProcessLoanContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return ProcessLoanContentEntity(
-    cardId: json['cardid'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ProcessLoanContentEntity(
+      cardId: json['cardid'] as String?,
+    );
 
 Map<String, dynamic> _$ProcessLoanContentEntityToJson(
         ProcessLoanContentEntity instance) =>

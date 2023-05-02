@@ -7,13 +7,12 @@ part of 'create_cliq_id_otp_response_entity.dart';
 // **************************************************************************
 
 CreateCliqIdOtpResponseEntity _$CreateCliqIdOtpResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreateCliqIdOtpResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CreateCliqIdOtpResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CreateCliqIdOtpResponseEntityToJson(
         CreateCliqIdOtpResponseEntity instance) =>

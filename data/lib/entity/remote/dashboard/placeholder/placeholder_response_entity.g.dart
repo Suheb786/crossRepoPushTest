@@ -7,13 +7,12 @@ part of 'placeholder_response_entity.dart';
 // **************************************************************************
 
 PlaceholderResponseEntity _$PlaceholderResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return PlaceholderResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    PlaceholderResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$PlaceholderResponseEntityToJson(
         PlaceholderResponseEntity instance) =>

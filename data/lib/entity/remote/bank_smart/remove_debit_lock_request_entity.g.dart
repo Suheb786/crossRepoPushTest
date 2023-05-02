@@ -7,12 +7,11 @@ part of 'remove_debit_lock_request_entity.dart';
 // **************************************************************************
 
 RemoveDebitLockRequestEntity _$RemoveDebitLockRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RemoveDebitLockRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    RemoveDebitLockRequestEntity(
+      getToken: json['GetToken'] as bool? ?? false,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$RemoveDebitLockRequestEntityToJson(
         RemoveDebitLockRequestEntity instance) =>

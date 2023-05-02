@@ -8,13 +8,12 @@ part of 'get_credit_card_relationship_request_entity.dart';
 
 GetCreditCardRelationshipRequestEntity
     _$GetCreditCardRelationshipRequestEntityFromJson(
-        Map<String, dynamic> json) {
-  return GetCreditCardRelationshipRequestEntity(
-    cardId: json['CardId'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+            Map<String, dynamic> json) =>
+        GetCreditCardRelationshipRequestEntity(
+          cardId: json['CardId'] as String?,
+          getToken: json['GetToken'] as bool? ?? false,
+          baseData: json['BaseClass'] as Map<String, dynamic>,
+        );
 
 Map<String, dynamic> _$GetCreditCardRelationshipRequestEntityToJson(
         GetCreditCardRelationshipRequestEntity instance) =>

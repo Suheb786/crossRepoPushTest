@@ -7,13 +7,12 @@ part of 'generate_qr_request_entity.dart';
 // **************************************************************************
 
 GenerateQRRequestEntity _$GenerateQRRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GenerateQRRequestEntity(
-    amount: json['Amount'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GenerateQRRequestEntity(
+      amount: json['Amount'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$GenerateQRRequestEntityToJson(
         GenerateQRRequestEntity instance) =>

@@ -7,13 +7,12 @@ part of 'get_bill_categories_list_entity.dart';
 // **************************************************************************
 
 GetBillCategoriesListEntity _$GetBillCategoriesListEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetBillCategoriesListEntity(
-    categoryName: json['categoryName'] as String?,
-    iconCode: json['iconCode'],
-    categoryNameAr: json['categoryNameAr'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetBillCategoriesListEntity(
+      categoryName: json['categoryName'] as String?,
+      iconCode: json['iconCode'],
+      categoryNameAr: json['categoryNameAr'] as String?,
+    );
 
 Map<String, dynamic> _$GetBillCategoriesListEntityToJson(
         GetBillCategoriesListEntity instance) =>

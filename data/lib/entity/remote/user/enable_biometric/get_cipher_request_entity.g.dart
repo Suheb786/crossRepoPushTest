@@ -7,12 +7,11 @@ part of 'get_cipher_request_entity.dart';
 // **************************************************************************
 
 GetCipherRequestEntity _$GetCipherRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetCipherRequestEntity(
-    uniqueId: json['UniqueId'] as String?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetCipherRequestEntity(
+      uniqueId: json['UniqueId'] as String?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$GetCipherRequestEntityToJson(
         GetCipherRequestEntity instance) =>

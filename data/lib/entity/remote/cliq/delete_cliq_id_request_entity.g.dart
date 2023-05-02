@@ -7,14 +7,13 @@ part of 'delete_cliq_id_request_entity.dart';
 // **************************************************************************
 
 DeleteCliqIdRequestEntity _$DeleteCliqIdRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return DeleteCliqIdRequestEntity(
-    aliasId: json['aliasId'] as String?,
-    otpCode: json['OtpCode'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    DeleteCliqIdRequestEntity(
+      aliasId: json['aliasId'] as String?,
+      otpCode: json['OtpCode'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$DeleteCliqIdRequestEntityToJson(
         DeleteCliqIdRequestEntity instance) =>

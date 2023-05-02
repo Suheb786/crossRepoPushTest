@@ -7,27 +7,26 @@ part of 'request_to_pay_request_entity.dart';
 // **************************************************************************
 
 RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestToPayRequestEntity(
-    ctgyPurp: json['CtgyPurp'] as String?,
-    amount: json['Amount'] as num?,
-    dbtrBic: json['DbtrBic'] as String?,
-    dbtrAcct: json['DbtrAcct'] as String?,
-    nickName: json['NickName'] as String?,
-    beneImage: json['BeneImage'] as String?,
-    isFriend: json['IsFriend'] as bool?,
-    dbtrName: json['DbtrName'] as String?,
-    memo: json['Memo'] as String?,
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    type: json['Type'] as String?,
-    detCustomerType: json['DetCustomerType'] as String?,
-    dbtrSurname: json['DbtrSurname'] as String?,
-    addressCountry: json['AddressCountry'] as String?,
-    addressCity: json['AddressCity'] as String?,
-    alias: json['Alias'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestToPayRequestEntity(
+      ctgyPurp: json['CtgyPurp'] as String?,
+      amount: json['Amount'] as num?,
+      dbtrBic: json['DbtrBic'] as String?,
+      dbtrAcct: json['DbtrAcct'] as String?,
+      nickName: json['NickName'] as String? ?? "",
+      beneImage: json['BeneImage'] as String? ?? "",
+      isFriend: json['IsFriend'] as bool? ?? false,
+      dbtrName: json['DbtrName'] as String?,
+      memo: json['Memo'] as String?,
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+      type: json['Type'] as String? ?? "",
+      detCustomerType: json['DetCustomerType'] as String? ?? "",
+      dbtrSurname: json['DbtrSurname'] as String? ?? "",
+      addressCountry: json['AddressCountry'] as String? ?? "",
+      addressCity: json['AddressCity'] as String? ?? "",
+      alias: json['Alias'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$RequestToPayRequestEntityToJson(
         RequestToPayRequestEntity instance) =>

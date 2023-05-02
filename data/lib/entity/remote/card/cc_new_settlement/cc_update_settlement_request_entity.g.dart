@@ -7,14 +7,13 @@ part of 'cc_update_settlement_request_entity.dart';
 // **************************************************************************
 
 CcUpdateSettlementRequestEntity _$CcUpdateSettlementRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return CcUpdateSettlementRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    cardId: json['CardId'] as String?,
-    rate: json['Rate'] as num?,
-  );
-}
+        Map<String, dynamic> json) =>
+    CcUpdateSettlementRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      cardId: json['CardId'] as String?,
+      rate: json['Rate'] as num?,
+    );
 
 Map<String, dynamic> _$CcUpdateSettlementRequestEntityToJson(
         CcUpdateSettlementRequestEntity instance) =>

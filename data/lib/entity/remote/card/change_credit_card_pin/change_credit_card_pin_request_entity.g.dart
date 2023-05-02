@@ -7,16 +7,15 @@ part of 'change_credit_card_pin_request_entity.dart';
 // **************************************************************************
 
 ChangeCreditCardPinRequestEntity _$ChangeCreditCardPinRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ChangeCreditCardPinRequestEntity(
-    getToken: json['getToken'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
-    cardCode: json['CardCode'] as String?,
-    encryptedCardNumber: json['EncryptedCardNumber'] as String?,
-    encryptedPinCode: json['EncryptedPinCode'] as String?,
-    otp: json['otp'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ChangeCreditCardPinRequestEntity(
+      getToken: json['getToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>?,
+      cardCode: json['CardCode'] as String? ?? "",
+      encryptedCardNumber: json['EncryptedCardNumber'] as String? ?? "",
+      encryptedPinCode: json['EncryptedPinCode'] as String? ?? '',
+      otp: json['otp'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$ChangeCreditCardPinRequestEntityToJson(
         ChangeCreditCardPinRequestEntity instance) =>

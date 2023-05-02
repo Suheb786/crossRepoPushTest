@@ -7,11 +7,10 @@ part of 'get_rejection_reason_response_entity.dart';
 // **************************************************************************
 
 GetRejectionReasonResponseEntity _$GetRejectionReasonResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetRejectionReasonResponseEntity(
-    ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetRejectionReasonResponseEntity(
+      ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetRejectionReasonResponseEntityToJson(
         GetRejectionReasonResponseEntity instance) =>

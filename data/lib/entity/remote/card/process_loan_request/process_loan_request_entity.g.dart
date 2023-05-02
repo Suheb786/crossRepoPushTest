@@ -7,14 +7,13 @@ part of 'process_loan_request_entity.dart';
 // **************************************************************************
 
 ProcessLoanRequestEntity _$ProcessLoanRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return ProcessLoanRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    cardId: json['cardId'] as String?,
-    loanValueId: json['loanValueid'] as num?,
-  );
-}
+        Map<String, dynamic> json) =>
+    ProcessLoanRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      cardId: json['cardId'] as String? ?? "",
+      loanValueId: json['loanValueid'] as num? ?? 0,
+    );
 
 Map<String, dynamic> _$ProcessLoanRequestEntityToJson(
         ProcessLoanRequestEntity instance) =>

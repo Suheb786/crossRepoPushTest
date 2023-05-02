@@ -7,14 +7,13 @@ part of 'check_send_money_content_entity.dart';
 // **************************************************************************
 
 CheckSendMoneyContentEntity _$CheckSendMoneyContentEntityFromJson(
-    Map<String, dynamic> json) {
-  return CheckSendMoneyContentEntity(
-    transferResponse: json['transferResponse'] == null
-        ? null
-        : TransferResponseEntity.fromJson(
-            json['transferResponse'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CheckSendMoneyContentEntity(
+      transferResponse: json['transferResponse'] == null
+          ? null
+          : TransferResponseEntity.fromJson(
+              json['transferResponse'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CheckSendMoneyContentEntityToJson(
         CheckSendMoneyContentEntity instance) =>

@@ -7,13 +7,12 @@ part of 'debit_years_response_entity.dart';
 // **************************************************************************
 
 DebitYearsResponseEntity _$DebitYearsResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return DebitYearsResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    DebitYearsResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$DebitYearsResponseEntityToJson(
         DebitYearsResponseEntity instance) =>

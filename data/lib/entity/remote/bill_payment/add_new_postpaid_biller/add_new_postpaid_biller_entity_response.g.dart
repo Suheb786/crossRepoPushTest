@@ -7,13 +7,12 @@ part of 'add_new_postpaid_biller_entity_response.dart';
 // **************************************************************************
 
 AddNewPostpaidBillerEntityResponse _$AddNewPostpaidBillerEntityResponseFromJson(
-    Map<String, dynamic> json) {
-  return AddNewPostpaidBillerEntityResponse(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    AddNewPostpaidBillerEntityResponse(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$AddNewPostpaidBillerEntityResponseToJson(
         AddNewPostpaidBillerEntityResponse instance) =>

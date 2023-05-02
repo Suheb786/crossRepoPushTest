@@ -7,15 +7,14 @@ part of 'change_password_request.dart';
 // **************************************************************************
 
 ChangePasswordRequest _$ChangePasswordRequestFromJson(
-    Map<String, dynamic> json) {
-  return ChangePasswordRequest(
-    currentPassword: json['Password'] as String,
-    newPassword: json['NewPassword'] as String,
-    confirmPassword: json['ConfirmPassword'] as String,
-    getToken: json['GetToken'] as bool,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    ChangePasswordRequest(
+      currentPassword: json['Password'] as String? ?? "",
+      newPassword: json['NewPassword'] as String? ?? "",
+      confirmPassword: json['ConfirmPassword'] as String? ?? "",
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$ChangePasswordRequestToJson(
         ChangePasswordRequest instance) =>

@@ -7,19 +7,18 @@ part of 'add_account_purpose_request.dart';
 // **************************************************************************
 
 AddAccountPurposeRequest _$AddAccountPurposeRequestFromJson(
-    Map<String, dynamic> json) {
-  return AddAccountPurposeRequest(
-    getToken: json['GetToken'] as bool?,
-    purpose: json['Purpose'] as String?,
-    isCashDeposit: json['IsCashDeposit'] as bool?,
-    isTransfer: json['IsTransfer'] as bool?,
-    isBillPayment: json['IsBillPayment'] as bool?,
-    isOther: json['IsOther'] as bool?,
-    monthlyTransaction: json['MonthlyTransaction'] as num?,
-    annualTransaction: json['AnualTransaction'] as num?,
-    baseData: json['baseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    AddAccountPurposeRequest(
+      getToken: json['GetToken'] as bool? ?? true,
+      purpose: json['Purpose'] as String? ?? "",
+      isCashDeposit: json['IsCashDeposit'] as bool? ?? true,
+      isTransfer: json['IsTransfer'] as bool? ?? true,
+      isBillPayment: json['IsBillPayment'] as bool? ?? true,
+      isOther: json['IsOther'] as bool? ?? true,
+      monthlyTransaction: json['MonthlyTransaction'] as num? ?? 0.0,
+      annualTransaction: json['AnualTransaction'] as num? ?? 0.0,
+      baseData: json['baseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$AddAccountPurposeRequestToJson(
         AddAccountPurposeRequest instance) =>

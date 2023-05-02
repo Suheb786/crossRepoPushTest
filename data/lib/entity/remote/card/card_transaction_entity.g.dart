@@ -7,14 +7,13 @@ part of 'card_transaction_entity.dart';
 // **************************************************************************
 
 CardTransactionEntity _$CardTransactionEntityFromJson(
-    Map<String, dynamic> json) {
-  return CardTransactionEntity(
-    date: json['label'] as String?,
-    transactions: (json['transactions'] as List<dynamic>?)
-        ?.map((e) => TransactionEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    CardTransactionEntity(
+      date: json['label'] as String?,
+      transactions: (json['transactions'] as List<dynamic>?)
+          ?.map((e) => TransactionEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$CardTransactionEntityToJson(
         CardTransactionEntity instance) =>

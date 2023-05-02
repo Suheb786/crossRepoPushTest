@@ -7,22 +7,21 @@ part of 'get_combo_values_content_data_entity.dart';
 // **************************************************************************
 
 GetComboValuesContentDataEntity _$GetComboValuesContentDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetComboValuesContentDataEntity(
-    employmentStatus: (json['EmploymentStatus'] as List<dynamic>?)
-        ?.map(
-            (e) => GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    businessType: (json['BusinessType'] as List<dynamic>?)
-        ?.map(
-            (e) => GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    natureOfSpecialNeed: (json['NatureOfSpecialNeed'] as List<dynamic>?)
-        ?.map(
-            (e) => GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetComboValuesContentDataEntity(
+      employmentStatus: (json['EmploymentStatus'] as List<dynamic>?)
+          ?.map((e) =>
+              GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      businessType: (json['BusinessType'] as List<dynamic>?)
+          ?.map((e) =>
+              GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      natureOfSpecialNeed: (json['NatureOfSpecialNeed'] as List<dynamic>?)
+          ?.map((e) =>
+              GetComboValuesDataEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$GetComboValuesContentDataEntityToJson(
         GetComboValuesContentDataEntity instance) =>

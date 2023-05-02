@@ -6,27 +6,26 @@ part of 'beneficiary_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) {
-  return BeneficiaryEntity(
-    nickName: json['nickName'] as String?,
-    fullName: json['fullName'] as String?,
-    profileImage: json['profileImage'] as String?,
-    beneficiaryAddress: json['beneficiaryAddress'] as String?,
-    accountNo: json['accountNo'] as String?,
-    mobileNumber: json['mobileNumber'] as String?,
-    purposeDetails: json['purposeDetails'] as String?,
-    bankName: json['bankName'] as String?,
-    iban: json['iban'] as String?,
-    purpose: json['purpose'] as String?,
-    id: json['id'] as String?,
-    beneType: json['beneType'] as String?,
-    purposeType: json['purposeType'] as String?,
-    detCustomerType: json['detCustomerType'] as String?,
-    limit: json['limit'] as num?,
-    purposeParent: json['purposeParent'] as String?,
-    purposeParentDetails: json['purposeParentDetails'] as String?,
-  );
-}
+BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) =>
+    BeneficiaryEntity(
+      nickName: json['nickName'] as String? ?? "",
+      fullName: json['fullName'] as String? ?? "",
+      profileImage: json['profileImage'] as String? ?? "",
+      beneficiaryAddress: json['beneficiaryAddress'] as String? ?? "",
+      accountNo: json['accountNo'] as String? ?? "",
+      mobileNumber: json['mobileNumber'] as String? ?? "",
+      purposeDetails: json['purposeDetails'] as String? ?? "",
+      bankName: json['bankName'] as String? ?? "",
+      iban: json['iban'] as String? ?? "",
+      purpose: json['purpose'] as String? ?? "",
+      id: json['id'] as String? ?? "",
+      beneType: json['beneType'] as String? ?? "",
+      purposeType: json['purposeType'] as String? ?? "",
+      detCustomerType: json['detCustomerType'] as String? ?? "",
+      limit: json['limit'] as num?,
+      purposeParent: json['purposeParent'] as String? ?? "",
+      purposeParentDetails: json['purposeParentDetails'] as String? ?? "",
+    );
 
 Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
     <String, dynamic>{

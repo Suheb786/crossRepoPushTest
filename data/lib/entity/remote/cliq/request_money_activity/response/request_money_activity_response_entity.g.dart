@@ -7,13 +7,12 @@ part of 'request_money_activity_response_entity.dart';
 // **************************************************************************
 
 RequestMoneyActivityResponseEntity _$RequestMoneyActivityResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestMoneyActivityResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestMoneyActivityResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$RequestMoneyActivityResponseEntityToJson(
         RequestMoneyActivityResponseEntity instance) =>

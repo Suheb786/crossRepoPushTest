@@ -7,14 +7,13 @@ part of 'suspend_cliq_id_request_entity.dart';
 // **************************************************************************
 
 SuspendCliqIdRequestEntity _$SuspendCliqIdRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return SuspendCliqIdRequestEntity(
-    aliasId: json['aliasId'] as String?,
-    otpCode: json['OtpCode'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    SuspendCliqIdRequestEntity(
+      aliasId: json['aliasId'] as String?,
+      otpCode: json['OtpCode'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$SuspendCliqIdRequestEntityToJson(
         SuspendCliqIdRequestEntity instance) =>

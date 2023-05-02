@@ -7,13 +7,12 @@ part of 'get_flight_details_request_entity.dart';
 // **************************************************************************
 
 GetFlightDetailsRequestEntity _$GetFlightDetailsRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetFlightDetailsRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    referenceNumber: json['ReferenceNumber'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetFlightDetailsRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      referenceNumber: json['ReferenceNumber'] as String?,
+    );
 
 Map<String, dynamic> _$GetFlightDetailsRequestEntityToJson(
         GetFlightDetailsRequestEntity instance) =>

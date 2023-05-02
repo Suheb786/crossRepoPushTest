@@ -7,15 +7,14 @@ part of 'request_money_activity_request_entity.dart';
 // **************************************************************************
 
 RequestMoneyActivityRequestEntity _$RequestMoneyActivityRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return RequestMoneyActivityRequestEntity(
-    FilterDays: json['FilterDays'] as int,
-    TransactionType: json['TransactionType'] as String,
-    TotalRecords: json['TotalRecords'] as String,
-    getToken: json['GetToken'] as bool,
-    baseClass: json['BaseClass'] as Map<String, dynamic>,
-  );
-}
+        Map<String, dynamic> json) =>
+    RequestMoneyActivityRequestEntity(
+      FilterDays: json['FilterDays'] as int,
+      TransactionType: json['TransactionType'] as String,
+      TotalRecords: json['TotalRecords'] as String? ?? '0',
+      getToken: json['GetToken'] as bool,
+      baseClass: json['BaseClass'] as Map<String, dynamic>,
+    );
 
 Map<String, dynamic> _$RequestMoneyActivityRequestEntityToJson(
         RequestMoneyActivityRequestEntity instance) =>

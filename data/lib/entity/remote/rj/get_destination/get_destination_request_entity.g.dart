@@ -7,15 +7,14 @@ part of 'get_destination_request_entity.dart';
 // **************************************************************************
 
 GetDestinationRequestEntity _$GetDestinationRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetDestinationRequestEntity(
-    baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    language: json['Language'] as String?,
-    origin: json['Origin'] as String?,
-    service: json['Service'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    GetDestinationRequestEntity(
+      baseData: json['baseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      language: json['Language'] as String?,
+      origin: json['Origin'] as String?,
+      service: json['Service'] as String?,
+    );
 
 Map<String, dynamic> _$GetDestinationRequestEntityToJson(
         GetDestinationRequestEntity instance) =>

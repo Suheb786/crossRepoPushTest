@@ -7,13 +7,12 @@ part of 'card_transaction_response_entity.dart';
 // **************************************************************************
 
 CardTransactionResponseEntity _$CardTransactionResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CardTransactionResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CardTransactionResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CardTransactionResponseEntityToJson(
         CardTransactionResponseEntity instance) =>

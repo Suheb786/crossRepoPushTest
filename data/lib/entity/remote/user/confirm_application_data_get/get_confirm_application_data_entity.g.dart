@@ -7,14 +7,13 @@ part of 'get_confirm_application_data_entity.dart';
 // **************************************************************************
 
 GetConfirmApplicationDataEntity _$GetConfirmApplicationDataEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetConfirmApplicationDataEntity(
-    data: json['data'] == null
-        ? null
-        : GetConfirmApplicationDataContentEntity.fromJson(
-            json['data'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetConfirmApplicationDataEntity(
+      data: json['data'] == null
+          ? null
+          : GetConfirmApplicationDataContentEntity.fromJson(
+              json['data'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetConfirmApplicationDataEntityToJson(
         GetConfirmApplicationDataEntity instance) =>

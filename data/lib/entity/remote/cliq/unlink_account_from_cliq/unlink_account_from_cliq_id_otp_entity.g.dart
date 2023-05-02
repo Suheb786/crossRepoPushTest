@@ -7,12 +7,11 @@ part of 'unlink_account_from_cliq_id_otp_entity.dart';
 // **************************************************************************
 
 UnlinkAccountFromCliqIdOtp _$UnlinkAccountFromCliqIdOtpFromJson(
-    Map<String, dynamic> json) {
-  return UnlinkAccountFromCliqIdOtp(
-    mobileCode: json['mobileCode'] as String? ?? '',
-    mobileNumber: json['mobileNumber'] as String? ?? '',
-  );
-}
+        Map<String, dynamic> json) =>
+    UnlinkAccountFromCliqIdOtp(
+      mobileCode: json['mobileCode'] as String? ?? '',
+      mobileNumber: json['mobileNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$UnlinkAccountFromCliqIdOtpToJson(
         UnlinkAccountFromCliqIdOtp instance) =>

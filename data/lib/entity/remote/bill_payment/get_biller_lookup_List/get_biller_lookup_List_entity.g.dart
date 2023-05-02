@@ -7,13 +7,12 @@ part of 'get_biller_lookup_List_entity.dart';
 // **************************************************************************
 
 GetBillerLookupEntity _$GetBillerLookupEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetBillerLookupEntity(
-    billerDetails: (json['billerDetails'] as List<dynamic>?)
-        ?.map((e) => e as Map<String, dynamic>)
-        .toList(),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetBillerLookupEntity(
+      billerDetails: (json['billerDetails'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+    );
 
 Map<String, dynamic> _$GetBillerLookupEntityToJson(
         GetBillerLookupEntity instance) =>

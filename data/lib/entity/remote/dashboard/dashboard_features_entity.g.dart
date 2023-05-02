@@ -7,34 +7,33 @@ part of 'dashboard_features_entity.dart';
 // **************************************************************************
 
 DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
-    Map<String, dynamic> json) {
-  return DashboardFeaturesEntity(
-    blinkRetailAppBillPayment: json['blink-retail-app-bill-payment'] as bool?,
-    blinkRetailAppBillPaymentPayPostpaid:
-        json['blink-retail-app-bill-payment-pay-postpaid'] as bool?,
-    paymentQRCode: json['blink-retail-app-payments-qrcode'] as bool?,
-    isCreditCardEnabled:
-        json['blink-retail-app-creditCards-application'] as bool?,
-    isGoRJEnabled: json['blink-retail-app-gorj'] as bool?,
-    isLoginEnabled: json['blink-retail-app-login'] as bool?,
-    isRegisterEnabled: json['blink-retail-app-register'] as bool?,
-    isCreditCardPinChangeEnabled:
-        json['blink-retail-app-creditCards-pinchange'] as bool?,
-    isDebitCardPhysicalCardRequestEnabled:
-        json['blink-retail-app-debit-card-physical-card-request'] as bool?,
-    blinkRetailAppBillPaymentPayPrepaid:
-        json['blink-retail-app-bill-payment-pay-prepaid'] as bool?,
-    blinkRetailAppAliasManagement:
-        json['blink-retail-app-cliq-alias-management'] as bool?,
-    blinkRetailAppCliq: json['blink-retail-app-cliq'] as bool?,
-    blinkRetailAppCliqSendPayment:
-        json['blink-retail-app-cliq-send-payment'] as bool?,
-    blinkRetailAppRTP: json['blink-retail-app-cliq-rtp'] as bool?,
-    rtpFeatureEnabled: json['blink-retail-app-cliq-rtp-outward'] as bool?,
-    returnPaymentFeatureEnabled:
-        json['blink-retail-app-cliq-return-payment'] as bool?,
-  );
-}
+        Map<String, dynamic> json) =>
+    DashboardFeaturesEntity(
+      blinkRetailAppBillPayment: json['blink-retail-app-bill-payment'] as bool?,
+      blinkRetailAppBillPaymentPayPostpaid:
+          json['blink-retail-app-bill-payment-pay-postpaid'] as bool?,
+      paymentQRCode: json['blink-retail-app-payments-qrcode'] as bool?,
+      isCreditCardEnabled:
+          json['blink-retail-app-creditCards-application'] as bool?,
+      isGoRJEnabled: json['blink-retail-app-gorj'] as bool?,
+      isLoginEnabled: json['blink-retail-app-login'] as bool?,
+      isRegisterEnabled: json['blink-retail-app-register'] as bool?,
+      isCreditCardPinChangeEnabled:
+          json['blink-retail-app-creditCards-pinchange'] as bool?,
+      isDebitCardPhysicalCardRequestEnabled:
+          json['blink-retail-app-debit-card-physical-card-request'] as bool?,
+      blinkRetailAppBillPaymentPayPrepaid:
+          json['blink-retail-app-bill-payment-pay-prepaid'] as bool?,
+      blinkRetailAppAliasManagement:
+          json['blink-retail-app-cliq-alias-management'] as bool?,
+      blinkRetailAppCliq: json['blink-retail-app-cliq'] as bool?,
+      blinkRetailAppCliqSendPayment:
+          json['blink-retail-app-cliq-send-payment'] as bool?,
+      blinkRetailAppRTP: json['blink-retail-app-cliq-rtp'] as bool?,
+      rtpFeatureEnabled: json['blink-retail-app-cliq-rtp-outward'] as bool?,
+      returnPaymentFeatureEnabled:
+          json['blink-retail-app-cliq-return-payment'] as bool?,
+    );
 
 Map<String, dynamic> _$DashboardFeaturesEntityToJson(
         DashboardFeaturesEntity instance) =>

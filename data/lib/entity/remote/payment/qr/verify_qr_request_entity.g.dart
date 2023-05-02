@@ -7,14 +7,13 @@ part of 'verify_qr_request_entity.dart';
 // **************************************************************************
 
 VerifyQRRequestEntity _$VerifyQRRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return VerifyQRRequestEntity(
-    source: json['Source'] as String?,
-    qrRequestId: json['QrRequestId'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    VerifyQRRequestEntity(
+      source: json['Source'] as String?,
+      qrRequestId: json['QrRequestId'] as String?,
+      getToken: json['GetToken'] as bool? ?? true,
+      baseData: json['BaseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$VerifyQRRequestEntityToJson(
         VerifyQRRequestEntity instance) =>

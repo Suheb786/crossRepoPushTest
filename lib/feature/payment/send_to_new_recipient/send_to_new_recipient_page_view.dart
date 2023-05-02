@@ -689,7 +689,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
   }
 
   void _cropImage(String data, SendToNewRecipientViewModel model, BuildContext context) async {
-    File? cropped = await ImageCropper.cropImage(
+    File? cropped = await ImageCropper().cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,
         iosUiSettings: IOSUiSettings(

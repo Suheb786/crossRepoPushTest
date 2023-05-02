@@ -7,15 +7,14 @@ part of 'unlink_account_from_cliq_request_entity.dart';
 // **************************************************************************
 
 UnLinkAccountFromCliqRequestEntity _$UnLinkAccountFromCliqRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return UnLinkAccountFromCliqRequestEntity(
-    aliasId: json['AliasId'] as String?,
-    accountId: json['AccountId'] as String?,
-    otpCode: json['OtpCode'] as String?,
-    getToken: json['GetToken'] as bool?,
-    baseClass: json['BaseClass'] as Map<String, dynamic>?,
-  );
-}
+        Map<String, dynamic> json) =>
+    UnLinkAccountFromCliqRequestEntity(
+      aliasId: json['AliasId'] as String?,
+      accountId: json['AccountId'] as String?,
+      otpCode: json['OtpCode'] as String?,
+      getToken: json['GetToken'] as bool?,
+      baseClass: json['BaseClass'] as Map<String, dynamic>?,
+    );
 
 Map<String, dynamic> _$UnLinkAccountFromCliqRequestEntityToJson(
         UnLinkAccountFromCliqRequestEntity instance) =>

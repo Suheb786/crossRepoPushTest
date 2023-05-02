@@ -7,26 +7,26 @@ part of 'dashboard_debit_card_entity.dart';
 // **************************************************************************
 
 DashboardDebitCardEntity _$DashboardDebitCardEntityFromJson(
-    Map<String, dynamic> json) {
-  return DashboardDebitCardEntity(
-    accountTitle: json['accountTitle'] as String?,
-    cvv: json['cvv'] as String?,
-    expiryDate: json['expiryDate'] as String?,
-    cardNumber: json['cardNumber'] as String?,
-    linkedAccountNumber: json['linkedAccountNumber'] as String?,
-    debitDeliveredDatetime: json['debitDeliveredDatetime'],
-    isDebitDelivered: json['isDebitDelivered'] as bool?,
-    debitCardActivated: json['debitCardActivated'] == null
-        ? null
-        : DateTime.parse(json['debitCardActivated'] as String),
-    cardStatus: json['cardStatus'] as String?,
-    code: json['code'] as String?,
-    primarySecondaryCard: json['primarySecondaryCard'] as String?,
-    isPINSet: json['isPINSet'] as bool?,
-    isPhysicalDebitCardRequested: json['isPhysicalDebitCardRequested'] as bool?,
-    cardCode: json['cardCode'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    DashboardDebitCardEntity(
+      accountTitle: json['accountTitle'] as String? ?? "",
+      cvv: json['cvv'] as String? ?? "",
+      expiryDate: json['expiryDate'] as String? ?? "",
+      cardNumber: json['cardNumber'] as String? ?? "",
+      linkedAccountNumber: json['linkedAccountNumber'] as String? ?? "",
+      debitDeliveredDatetime: json['debitDeliveredDatetime'],
+      isDebitDelivered: json['isDebitDelivered'] as bool?,
+      debitCardActivated: json['debitCardActivated'] == null
+          ? null
+          : DateTime.parse(json['debitCardActivated'] as String),
+      cardStatus: json['cardStatus'] as String?,
+      code: json['code'] as String?,
+      primarySecondaryCard: json['primarySecondaryCard'] as String? ?? '',
+      isPINSet: json['isPINSet'] as bool? ?? true,
+      isPhysicalDebitCardRequested:
+          json['isPhysicalDebitCardRequested'] as bool? ?? false,
+      cardCode: json['cardCode'] as String?,
+    );
 
 Map<String, dynamic> _$DashboardDebitCardEntityToJson(
         DashboardDebitCardEntity instance) =>

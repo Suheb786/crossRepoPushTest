@@ -7,13 +7,12 @@ part of 'save_upload_document_response_entity.dart';
 // **************************************************************************
 
 SaveUploadDocumentResponseEntity _$SaveUploadDocumentResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return SaveUploadDocumentResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    SaveUploadDocumentResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$SaveUploadDocumentResponseEntityToJson(
         SaveUploadDocumentResponseEntity instance) =>

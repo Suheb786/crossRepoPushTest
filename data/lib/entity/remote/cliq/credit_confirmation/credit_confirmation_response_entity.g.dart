@@ -7,13 +7,12 @@ part of 'credit_confirmation_response_entity.dart';
 // **************************************************************************
 
 CreditConfirmationResponseEntity _$CreditConfirmationResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return CreditConfirmationResponseEntity(
-    json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    CreditConfirmationResponseEntity(
+      json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CreditConfirmationResponseEntityToJson(
         CreditConfirmationResponseEntity instance) =>

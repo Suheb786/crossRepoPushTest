@@ -8,13 +8,13 @@ part of 'supplementary_credit_card_application_response_entity.dart';
 
 SupplementaryCreditCardApplicationResponseEntity
     _$SupplementaryCreditCardApplicationResponseEntityFromJson(
-        Map<String, dynamic> json) {
-  return SupplementaryCreditCardApplicationResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+            Map<String, dynamic> json) =>
+        SupplementaryCreditCardApplicationResponseEntity(
+          response: json['response'] == null
+              ? null
+              : ResponseEntity.fromJson(
+                  json['response'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$SupplementaryCreditCardApplicationResponseEntityToJson(
         SupplementaryCreditCardApplicationResponseEntity instance) =>

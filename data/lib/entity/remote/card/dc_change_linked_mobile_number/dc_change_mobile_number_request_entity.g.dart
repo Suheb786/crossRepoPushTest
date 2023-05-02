@@ -7,16 +7,15 @@ part of 'dc_change_mobile_number_request_entity.dart';
 // **************************************************************************
 
 DcChangeMobileNumberRequestEntity _$DcChangeMobileNumberRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return DcChangeMobileNumberRequestEntity(
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
-    mobileCode: json['MobileCode'] as String?,
-    otpCode: json['OtpCode'] as String?,
-    mobileNumber: json['MobileNumber'] as String?,
-    tokenizedPan: json['TokenizedPan'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    DcChangeMobileNumberRequestEntity(
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      getToken: json['GetToken'] as bool? ?? true,
+      mobileCode: json['MobileCode'] as String?,
+      otpCode: json['OtpCode'] as String?,
+      mobileNumber: json['MobileNumber'] as String?,
+      tokenizedPan: json['TokenizedPan'] as String?,
+    );
 
 Map<String, dynamic> _$DcChangeMobileNumberRequestEntityToJson(
         DcChangeMobileNumberRequestEntity instance) =>

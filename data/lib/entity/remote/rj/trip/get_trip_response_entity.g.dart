@@ -7,13 +7,12 @@ part of 'get_trip_response_entity.dart';
 // **************************************************************************
 
 GetTripResponseEntity _$GetTripResponseEntityFromJson(
-    Map<String, dynamic> json) {
-  return GetTripResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
-  );
-}
+        Map<String, dynamic> json) =>
+    GetTripResponseEntity(
+      response: json['response'] == null
+          ? null
+          : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GetTripResponseEntityToJson(
         GetTripResponseEntity instance) =>

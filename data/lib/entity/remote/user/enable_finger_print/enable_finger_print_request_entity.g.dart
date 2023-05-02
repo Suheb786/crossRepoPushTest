@@ -7,13 +7,12 @@ part of 'enable_finger_print_request_entity.dart';
 // **************************************************************************
 
 EnableFingerPrintRequestEntity _$EnableFingerPrintRequestEntityFromJson(
-    Map<String, dynamic> json) {
-  return EnableFingerPrintRequestEntity(
-    getToken: json['GetToken'] as bool?,
-    baseData: json['BaseClass'] as Map<String, dynamic>,
-    cipher: json['Cipher'] as String?,
-  );
-}
+        Map<String, dynamic> json) =>
+    EnableFingerPrintRequestEntity(
+      getToken: json['GetToken'] as bool?,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
+      cipher: json['Cipher'] as String?,
+    );
 
 Map<String, dynamic> _$EnableFingerPrintRequestEntityToJson(
         EnableFingerPrintRequestEntity instance) =>

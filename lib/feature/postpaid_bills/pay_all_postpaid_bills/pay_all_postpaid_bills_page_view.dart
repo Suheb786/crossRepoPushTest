@@ -521,7 +521,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        context,
+        Overlay.of(context)!,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -562,8 +562,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
           ),
         ),
         displayDuration: Duration(milliseconds: 1000),
-        hideOutAnimationDuration: Duration(milliseconds: 200),
-        showOutAnimationDuration: Duration(milliseconds: 500));
+        reverseAnimationDuration: Duration(milliseconds: 200),
+        animationDuration: Duration(milliseconds: 500));
   }
 
   isDisabledConditions(
