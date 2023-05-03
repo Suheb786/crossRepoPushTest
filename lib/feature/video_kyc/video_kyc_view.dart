@@ -29,9 +29,10 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
           model.remoteUid.isNotEmpty
               ? Container(
                   child: AgoraVideoView(
-                    controller: VideoViewController(
+                    controller: VideoViewController.remote(
                       rtcEngine: model.engine,
-                      canvas: VideoCanvas(uid: model.uid),
+                      canvas: VideoCanvas(uid: model.remoteUid.first),
+                      connection: RtcConnection(channelId: model.channelId),
                     ),
                   ),
                 )
@@ -51,10 +52,9 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                   width: 97.w,
                   height: 128.h,
                   child: AgoraVideoView(
-                    controller: VideoViewController.remote(
+                    controller: VideoViewController(
                       rtcEngine: model.engine,
-                      canvas: VideoCanvas(uid: model.uid),
-                      connection: RtcConnection(channelId: model.channelId),
+                      canvas: VideoCanvas(uid: 0),
                     ),
                   ),
                 ),

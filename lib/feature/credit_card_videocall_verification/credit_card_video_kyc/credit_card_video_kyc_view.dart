@@ -51,7 +51,7 @@ class CreditCardVideoKycPageView extends BasePageViewWidget<CreditCardVideoKycVi
                   child: AgoraVideoView(
                     controller: VideoViewController(
                       rtcEngine: model.engine,
-                      canvas: VideoCanvas(uid: model.uid),
+                      canvas: VideoCanvas(uid: 0),
                     ),
                   ),
                 ),

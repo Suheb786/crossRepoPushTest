@@ -120,8 +120,8 @@ class VideoKycViewModel extends BasePageViewModel {
         await engine.enableLocalVideo(true);
       },
       onUserJoined: (RtcConnection connection, int remoteid, int elapsed) {
-        print("remote user $remoteUid joined");
-        remoteUid.add(uid);
+        print("remote user $remoteid joined");
+        remoteUid.add(remoteid);
         notifyListeners();
       },
       onRemoteVideoStateChanged: (RtcConnection connection, int remoteUid, RemoteVideoState state,
@@ -144,9 +144,9 @@ class VideoKycViewModel extends BasePageViewModel {
         }
       },
       onUserOffline: (RtcConnection connection, int remoteId, UserOfflineReasonType reason) {
-        print("remote user $remoteUid left channel");
+        print("remote user $remoteId left channel");
 
-        remoteUid.removeWhere((element) => element == uid);
+        remoteUid.removeWhere((element) => element == remoteId);
         leaveAgoraChannel();
       },
       onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
