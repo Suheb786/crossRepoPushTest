@@ -224,10 +224,16 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   leaveAgoraChannel() async {
-    await engine.stopPreview();
-    await engine.leaveChannel();
-    await engine.release();
-    callEndStatusUpdate("E");
+    try {
+      await engine.stopPreview();
+      await engine.leaveChannel();
+    } catch (e) {
+      print("error leaving channel");
+    } finally {
+      await engine.release();
+      callEndStatusUpdate("E");
+    }
+
     //notifyListeners();
   }
 
@@ -260,6 +266,10 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _callStatusUpdateResponse.close();
+    _callStatusUpdateRequest.close();
+    _callEndStatusUpdateRequest.close();
+    _callEndStatusUpdateResponse.close();
     Wakelock.disable();
     super.dispose();
   }

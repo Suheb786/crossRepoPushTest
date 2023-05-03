@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/account/get_call_status_usecase.dart';
@@ -26,9 +26,11 @@ class VideoKycViewModel extends BasePageViewModel {
   final String stringUid = "0";
   final VideKycCredentials agoraCredentials;
 
-  late final RtcEngine _engine;
+  late RtcEngine engine;
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
+
+  RtcEngineEventHandler? eventHandlers;
 
   PublishSubject<GetCallStatusUseCaseParams> _getCallStatusRequest = PublishSubject();
   PublishSubject<Resource<VideoKycStatus>> _getCallStatusResponse = PublishSubject();
@@ -71,27 +73,33 @@ class VideoKycViewModel extends BasePageViewModel {
 
   _initEngine() async {
     try {
-      _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
+      engine = createAgoraRtcEngine();
+      await engine.initialize(RtcEngineContext(
+        appId: agoraAppId,
+        channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+        audioScenario: AudioScenarioType.audioScenarioMeeting,
+        logConfig: LogConfig(
+          level: LogLevel.logLevelError,
+        ),
+      ));
       _addAgoraEventHandlers();
 
       debugPrint(' channelId --  $channelId  token -- $tempToken uid --- $uid');
       debugPrint('---------------------');
-      await _engine.enableVideo();
+      await engine.enableVideo();
       debugPrint('----------Enable Video-----------');
-      await _engine.enableAudio();
+      await engine.enableAudio();
       debugPrint('----------Enable Audio-----------');
       //await _engine.setAudioProfile(AudioProfile.Default, AudioScenario.GameStreaming);
-      await _engine.setAudioProfile(AudioProfile.MusicHighQuality, AudioScenario.ChatRoomEntertainment);
       debugPrint('---------- Audio Profile-----------');
-      await _engine.startPreview();
+      await engine.startPreview();
       debugPrint('----------Preview-----------');
-      await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
       debugPrint('----------Channel Profile-----------');
-      await _engine.setClientRole(ClientRole.Broadcaster);
+      await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
       debugPrint('----------Client Role-----------');
-      await _engine.setEnableSpeakerphone(true);
+      await engine.setEnableSpeakerphone(true);
       debugPrint('----------Set Speaker phone-----------');
-      await _engine.enableLocalAudio(true);
+      await engine.enableLocalAudio(true);
       debugPrint('----------Enable local audio-----------');
     } catch (e) {
       debugPrint("goinginto catch ------------");
@@ -105,7 +113,67 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) async {
+    eventHandlers = RtcEngineEventHandler(
+      onJoinChannelSuccess: (RtcConnection connection, int elapsed) async {
+        print("local user ${connection.localUid} joined");
+        isJoined = true;
+        await engine.enableLocalVideo(true);
+      },
+      onUserJoined: (RtcConnection connection, int remoteid, int elapsed) {
+        print("remote user $remoteUid joined");
+        remoteUid.add(uid);
+        notifyListeners();
+      },
+      onRemoteVideoStateChanged: (RtcConnection connection, int remoteUid, RemoteVideoState state,
+          RemoteVideoStateReason reason, int elapsed) {
+        print("user video state changed --- ${state.toString()}");
+      },
+      onUserMuteVideo: (RtcConnection connection, int remoteUid, bool muted) {
+        print("user video state changed --- ${muted}");
+      },
+      onUserMuteAudio: (RtcConnection connection, int remoteUid, bool muted) {
+        print("user audio state changed --- ${muted}");
+      },
+      onRemoteAudioStateChanged: (RtcConnection connection, int remoteUid, RemoteAudioState state,
+          RemoteAudioStateReason reason, int elapsed) {
+        print("user audio state changed --- ${state.toString()}");
+        if (state == RemoteAudioState.remoteAudioStateStopped) {
+          print("remote user audio paused");
+        } else if (state == RemoteVideoState.remoteVideoStateDecoding) {
+          print("remote user video start"); // st
+        }
+      },
+      onUserOffline: (RtcConnection connection, int remoteId, UserOfflineReasonType reason) {
+        print("remote user $remoteUid left channel");
+
+        remoteUid.removeWhere((element) => element == uid);
+        leaveAgoraChannel();
+      },
+      onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
+        print('[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
+      },
+      onFirstRemoteVideoFrame: (RtcConnection connection, int remoteUid, int width, int height, int elapsed) {
+        final info = 'firstRemoteVideoFrame: $remoteUid';
+        debugPrint('onFirstRemoteVideoFramee --- >   $info ');
+      },
+      onLeaveChannel: (connection, stats) async {
+        isJoined = false;
+        remoteUid.clear();
+        await engine.stopPreview();
+        await engine.leaveChannel();
+        await engine.release();
+      },
+      onFirstLocalAudioFramePublished: (connection, elapsed) {
+        debugPrint('First local audio frame published --- >   ${elapsed}');
+      },
+      onLocalAudioStateChanged: (connection, state, error) {
+        debugPrint('Local Audio State Change --- >   ${state.toString()}  ${error.toString()}');
+      },
+      onLocalAudioStats: (connection, stats) {
+        debugPrint('First local audio frame published --- >   ${stats.toString()}');
+      },
+    );
+    /*_engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) async {
       debugPrint("joinChannelSuccess $uid");
       isJoined = true;
       await _engine.enableLocalVideo(true);
@@ -129,25 +197,41 @@ class VideoKycViewModel extends BasePageViewModel {
       //getCallStatus();
     }, connectionStateChanged: (type, reason) {
       debugPrint('type----->${type}');
-    }));
+    }));*/
   }
 
   joinAgoraChannel() async {
     if (Platform.isAndroid) {
-      await [Permission.microphone, Permission.camera].request();
+      await [
+        Permission.microphone,
+        Permission.camera,
+      ].request();
     }
-    await _engine.joinChannel(tempToken, channelId, null, uid);
+
+    await engine.joinChannel(
+      token: tempToken,
+      channelId: channelId,
+      uid: uid,
+      options: const ChannelMediaOptions(),
+    );
+
     notifyListeners();
   }
 
   leaveAgoraChannel() async {
-    await _engine.leaveChannel();
-    await _engine.destroy();
-    getCallStatus();
+    try {
+      await engine.stopPreview();
+      await engine.leaveChannel();
+    } catch (e) {
+      print("error leaving channel");
+    } finally {
+      await engine.release();
+      getCallStatus();
+    }
   }
 
   switchAgoraCamera() {
-    _engine.switchCamera().then((value) {
+    engine.switchCamera().then((value) {
       switchCamera = !switchCamera;
       notifyListeners();
     }).catchError((err) {});
@@ -164,13 +248,15 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   void leaveChannelWhenAppInBackground() {
-    _engine.leaveChannel();
+    engine.leaveChannel();
   }
 
   @override
   void dispose() {
     _getCallStatusRequest.close();
     _getCallStatusResponse.close();
+    _logoutRequest.close();
+    _logoutResponse.close();
     Wakelock.disable();
     super.dispose();
   }
