@@ -1,6 +1,5 @@
 import 'package:local_auth/local_auth.dart';
-import 'package:local_auth_platform_interface/types/auth_messages.dart';
-import 'package:local_auth_android/types/auth_messages_android.dart';
+import 'package:local_auth_android/local_auth_android.dart';
 
 class BioMetricService {
   final LocalAuthentication _localAuthentication;

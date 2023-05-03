@@ -50,9 +50,9 @@ dependencies:
   app_links: ^3.4.2
   shared_preferences: ^2.1.0
 
-dependency_overrides:
-  local_auth_android: "1.0.18"
-  local_auth_ios: "1.0.12"
+#dependency_overrides:
+#  local_auth_android: "1.0.28"
+#  local_auth_ios: "1.1.1"
 
 
 dev_dependencies:
