@@ -45,7 +45,7 @@ void main() async {
     runApp(ProviderScope(
       child: DevicePreview(
         enabled: false,
-        child: MyApp(),
+        builder: (context) => MyApp(),
       ),
     ));
   }, (error, stackTrace) async {
