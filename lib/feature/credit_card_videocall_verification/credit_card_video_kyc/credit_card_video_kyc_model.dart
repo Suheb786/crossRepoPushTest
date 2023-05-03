@@ -99,9 +99,10 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
       debugPrint('----------Channel Profile-----------');
       await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
       debugPrint('----------Client Role-----------');
-      await engine.setEnableSpeakerphone(true);
+      await engine.setEnableSpeakerphone(false);
       debugPrint('----------Set Speaker phone-----------');
       await engine.enableLocalAudio(true);
+      await engine.adjustRecordingSignalVolume(400);
       debugPrint('----------Enable local audio-----------');
     } catch (e) {
       debugPrint("goinginto catch ------------");
@@ -168,7 +169,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
         debugPrint('Local Audio State Change --- >   ${state.toString()}  ${error.toString()}');
       },
       onLocalAudioStats: (connection, stats) {
-        debugPrint('First local audio frame published --- >   ${stats.toString()}');
+        debugPrint('Local Audio states --- >   ${stats.toJson()}');
       },
     );
     /*_engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) async {
@@ -270,6 +271,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     _callStatusUpdateRequest.close();
     _callEndStatusUpdateRequest.close();
     _callEndStatusUpdateResponse.close();
+    leaveAgoraChannel();
     Wakelock.disable();
     super.dispose();
   }
