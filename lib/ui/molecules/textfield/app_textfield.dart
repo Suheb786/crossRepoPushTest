@@ -170,19 +170,21 @@ class AppTextFieldState extends State<AppTextField> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: widget.labelText,
-                              style: TextStyle(
-                                color: widget.labelColor ??
-                                    Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                fontSize: 10.0.t,
-                                fontFamily: StringUtils.appFont,
-                              )),
-                          WidgetSpan(child: widget.labelIcon?.call() ?? SizedBox.shrink())
-                        ]),
-                      ),
+                      widget.labelText.isNotEmpty
+                          ? RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                    text: widget.labelText,
+                                    style: TextStyle(
+                                      color: widget.labelColor ??
+                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
+                                      fontSize: 10.0.t,
+                                      fontFamily: StringUtils.appFont,
+                                    )),
+                                WidgetSpan(child: widget.labelIcon?.call() ?? SizedBox.shrink())
+                              ]),
+                            )
+                          : SizedBox.shrink(),
                       TextFormField(
                         focusNode: _focusNode,
                         maxLength: widget.maxLength,
