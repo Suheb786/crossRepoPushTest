@@ -180,7 +180,7 @@ class AppTextFieldState extends State<AppTextField> {
                                 fontSize: 10.0.t,
                                 fontFamily: StringUtils.appFont,
                               )),
-                          WidgetSpan(child: widget.labelIcon?.call() ?? Container())
+                          WidgetSpan(child: widget.labelIcon?.call() ?? SizedBox.shrink())
                         ]),
                       ),
                       TextFormField(
@@ -189,9 +189,7 @@ class AppTextFieldState extends State<AppTextField> {
                         textAlign: widget.textAlign,
                         textCapitalization: widget.textCapitalization,
                         style: TextStyle(
-                          color: widget.textColor ?? Theme
-                              .of(context)
-                              .primaryColorDark,
+                          color: widget.textColor ?? Theme.of(context).primaryColorDark,
                           fontSize: widget.fontSize ?? 14.0.t,
                           fontWeight: FontWeight.w600,
                           fontFamily: StringUtils.appFont,
@@ -211,7 +209,7 @@ class AppTextFieldState extends State<AppTextField> {
                             prefix: widget.prefix?.call(),
                             prefixIcon: widget.prefixIcon?.call(),
                             prefixIconConstraints: BoxConstraints.tightForFinite(),
-                            contentPadding: EdgeInsets.only(top: 8.0.h),
+                            contentPadding: EdgeInsets.fromLTRB(0, 8.0.h, 0, 0),
                             hintText: widget.hintText,
                             hintMaxLines: 1,
                             counterText: "",
@@ -245,7 +243,7 @@ class AppTextFieldState extends State<AppTextField> {
                   ),
                 ),
                 widget.textHintWidget?.call(_focusNode.hasFocus, isValid, widget.controller!.text) ??
-                    Container(),
+                    SizedBox.shrink(),
               ],
             ),
           )),
