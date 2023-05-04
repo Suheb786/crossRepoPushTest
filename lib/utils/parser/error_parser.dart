@@ -1274,6 +1274,9 @@ class ErrorParser {
       case ErrorType.INVALID_ALIAS_LENGTH:
         return localisedHelper.aliasShouldBeThreeChar;
 
+      case ErrorType.INVALID_ALIAS_LENGTH:
+        return localisedHelper.aliasShouldBeThreeChar;
+
       case ErrorType.ERROR_WHILE_GENERATING_QR_CODE:
         return localisedHelper.errorWhileGeneratingQrCode;
       case ErrorType.ERROR_WHILE_SENDING_QR_PAYMENT:

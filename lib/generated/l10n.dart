@@ -17059,6 +17059,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You can not request money from your own account`
+  String get youCanNotRequestMoneyFromYourOwnAccount {
+    return Intl.message(
+      'You can not request money from your own account',
+      name: 'youCanNotRequestMoneyFromYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
