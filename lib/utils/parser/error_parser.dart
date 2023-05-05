@@ -1332,6 +1332,8 @@ class ErrorParser {
         return localisedHelper.cliqSendPaymentOffline;
       case ErrorType.REQUEST_TO_PAY_DISABLED:
         return localisedHelper.requestMoneyFeatureDisabled;
+      case ErrorType.YOU_CAN_NOT_REQUEST_MONEY_FROM_YOUR_OWN_ACCOUNT:
+        return localisedHelper.youCanNotRequestMoneyFromYourOwnAccount;
       default:
         return "";
     }
