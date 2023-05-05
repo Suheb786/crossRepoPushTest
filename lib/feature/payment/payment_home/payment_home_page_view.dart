@@ -142,7 +142,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                           onTap: () async {
                                             ///LOG EVENT TO FIREBASE
                                             await FirebaseAnalytics.instance.logEvent(
-                                                name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true});
+                                                name: "pay_via_qr", parameters: {"pay_via_qr_clicked": true.toString()});
 
                                             InformationDialog.show(context,
                                                 image: AssetUtils.payRequestViaQRBlackIcon,
@@ -207,7 +207,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                               ///LOG EVENT TO FIREBASE
                                               await FirebaseAnalytics.instance.logEvent(
                                                   name: "request_via_qr",
-                                                  parameters: {"request_via_qr_clicked": true});
+                                                  parameters: {"request_via_qr_clicked": true.toString()});
                                               InformationDialog.show(context,
                                                   image: AssetUtils.payRequestViaQRBlackIcon,
                                                   title: S.of(context).requestViaQR,

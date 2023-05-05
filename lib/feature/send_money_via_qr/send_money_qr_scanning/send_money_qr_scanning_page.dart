@@ -26,7 +26,7 @@ class SendMoneyQrScanningPageState extends BaseStatefulPage<SendMoneyQrScanningP
     ///LOG EVENT TO FIREBASE
     await FirebaseAnalytics.instance.logEvent(
       name: "payment_summary_viewed",
-      parameters: {"is_payment_summary_viewed": true, "source": getViewModel().arguments.source},
+      parameters: {"is_payment_summary_viewed": true.toString(), "source": getViewModel().arguments.source},
     );
 
     super.onModelReady(model);

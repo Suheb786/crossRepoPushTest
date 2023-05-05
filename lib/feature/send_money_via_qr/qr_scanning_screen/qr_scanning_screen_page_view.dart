@@ -38,7 +38,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   ///LOG EVENT TO FIREBASE
                   await FirebaseAnalytics.instance.logEvent(
                     name: "qr_scanned",
-                    parameters: {"is_qr_scanned": true, "request_id": data.data?.qrContent?.requestId ?? ''},
+                    parameters: {"is_qr_scanned": true.toString(), "request_id": data.data?.qrContent?.requestId ?? ''},
                   );
 
                   ///Log event to infobip
@@ -128,7 +128,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                         ///LOG EVENT TO FIREBASE
                         await FirebaseAnalytics.instance.logEvent(
                           name: "qr_screen_dismissed",
-                          parameters: {"is_qr_screen_dismissed": true},
+                          parameters: {"is_qr_screen_dismissed": true.toString()},
                         );
                         Navigator.pop(context);
                       },

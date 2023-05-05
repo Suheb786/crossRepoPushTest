@@ -64,7 +64,7 @@ class SettingsDialogView extends StatelessWidget {
                                   ? () async {
                                       ///LOG EVENT TO FIREBASE
                                       await FirebaseAnalytics.instance.logEvent(
-                                          name: "payments_opened", parameters: {"is_payment_opened": true});
+                                          name: "payments_opened", parameters: {"is_payment_opened": true.toString()});
                                       Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                           arguments: NavigationType.DASHBOARD);
                                     }

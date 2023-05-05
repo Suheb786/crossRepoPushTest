@@ -67,7 +67,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                     ///LOG EVENT TO FIREBASE
                     await FirebaseAnalytics.instance.logEvent(
                         name: "payment_success",
-                        parameters: {"is_payment_success": true, "request_id": model.arguments.requestId});
+                        parameters: {"is_payment_success": true.toString(), "request_id": model.arguments.requestId});
 
                     ///Log event to infobip
                     var event = {
@@ -229,7 +229,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                                     await FirebaseAnalytics.instance.logEvent(
                                         name: "payment_cancelled",
                                         parameters: {
-                                          "is_payment_cancelled": true,
+                                          "is_payment_cancelled": true.toString(),
                                           "request_id": model.arguments.requestId
                                         });
 

@@ -128,7 +128,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                               ///LOG EVENT TO FIREBASE
                               await FirebaseAnalytics.instance.logEvent(
                                 name: "share_qr",
-                                parameters: {"is_qr_shared_clicked": true},
+                                parameters: {"is_qr_shared_clicked": true.toString()},
                               );
                               model.createDynamicLink();
                             },
@@ -162,7 +162,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           ///LOG EVENT TO FIREBASE
                           await FirebaseAnalytics.instance.logEvent(
                             name: "qr_screen_dismissed",
-                            parameters: {"is_qr_screen_dismissed": true},
+                            parameters: {"is_qr_screen_dismissed": true.toString()},
                           );
                           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                           // Navigator.pushNamed(context, RoutePaths.AppHome);
