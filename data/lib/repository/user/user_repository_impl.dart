@@ -1,3 +1,4 @@
+import 'package:blinkid_flutter/types.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/db/safe_db_call.dart';
@@ -302,21 +303,22 @@ class UserRepositoryImpl extends UserRepository {
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
             fullName: StringConverter.getFullName(
-                primaryId: r.mrzResult!.primaryId ?? '',
-                secondaryId: r.mrzResult!.secondaryId ?? '',
-                fullName: r.fullName?.description ?? ''),
-            firstName: r.mrzResult!.secondaryId?.trim().split(" ").elementAt(0).toString() ??
-                r.firstName?.description ??
+                primaryId: r.mrzResult?.primaryId ?? '',
+                secondaryId: r.mrzResult?.secondaryId ?? '',
+                fullName: r.fullName?.stringsByAlphabet[AlphabetType.Latin] ?? ''),
+            firstName: r.mrzResult?.secondaryId?.trim().split(" ").elementAt(0).toString() ??
+                r.firstName?.stringsByAlphabet[AlphabetType.Latin] ??
                 "",
-            middleName: StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
-            familyName: r.mrzResult!.primaryId ?? r.lastName?.description ?? "",
-            idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber?.description ?? '',
+            middleName: StringConverter.getMiddleName(r.mrzResult?.secondaryId ?? ''),
+            familyName: r.mrzResult?.primaryId ?? r.lastName?.stringsByAlphabet[AlphabetType.Latin] ?? "",
+            idNumber:
+                r.mrzResult?.sanitizedOpt1 ?? r.personalIdNumber?.stringsByAlphabet[AlphabetType.Latin] ?? '',
             dob: r.dateOfBirth != null
                 ? DateTime(r.dateOfBirth!.date!.year!, r.dateOfBirth!.date!.month!, r.dateOfBirth!.date!.day!)
                 : DateTime(0),
             nationality: r.nationality != null
-                ? r.nationality!.description!.isNotEmpty
-                    ? r.nationality?.description
+                ? (r.nationality?.stringsByAlphabet[AlphabetType.Latin] ?? '').isNotEmpty
+                    ? r.nationality?.stringsByAlphabet[AlphabetType.Latin]
                     : ''
                 : '',
             doe: r.dateOfExpiry != null
@@ -324,34 +326,42 @@ class UserRepositoryImpl extends UserRepository {
                     r.dateOfExpiry!.date!.year!, r.dateOfExpiry!.date!.month!, r.dateOfExpiry!.date!.day!)
                 : DateTime(0),
             gender: r.sex != null
-                ? r.sex!.description!.isNotEmpty
-                    ? r.sex!.description
+                ? (r.sex?.stringsByAlphabet[AlphabetType.Latin] ?? '').isNotEmpty
+                    ? r.sex!.stringsByAlphabet[AlphabetType.Latin]
                     : ''
                 : "",
             motherName: r.mothersName != null
-                ? (r.mothersName!.description!.isNotEmpty ? r.mothersName!.description : '')
+                ? ((r.mothersName?.stringsByAlphabet[AlphabetType.Latin] ?? '').isNotEmpty
+                    ? r.mothersName!.stringsByAlphabet[AlphabetType.Latin]
+                    : '')
                 : "",
-            documentCode: r.mrzResult!.documentCode!.isNotEmpty ? r.mrzResult!.documentCode : '',
-            documentNumber: r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber?.description ?? '' ?? '',
+            documentCode: (r.mrzResult?.documentCode ?? '').isNotEmpty ? r.mrzResult!.documentCode : '',
+            documentNumber: r.mrzResult?.sanitizedDocumentNumber ??
+                r.documentNumber?.stringsByAlphabet[AlphabetType.Latin] ??
+                '',
             issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             frontCardImage: r.fullDocumentFrontImage,
             backCardImage: r.fullDocumentBackImage,
             personFaceImage: r.faceImage,
-            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
-            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
+            issuingPlaceISo3:
+                (r.mrzResult?.sanitizedIssuer ?? '').isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
+            issuingPlace: (r.mrzResult?.sanitizedIssuer ?? '').isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             issuingDate: r.dateOfIssue != null &&
-                    r.dateOfIssue!.date!.year != 0 &&
-                    r.dateOfIssue!.date!.month != 0 &&
-                    r.dateOfIssue!.date!.day != 0
+                    r.dateOfIssue?.date?.year != 0 &&
+                    r.dateOfIssue?.date?.month != 0 &&
+                    r.dateOfIssue?.date?.day != 0
                 ? DateTime(r.dateOfIssue!.date!.year!, r.dateOfIssue!.date!.month!, r.dateOfIssue!.date!.day!)
                 : r.dateOfExpiry != null
                     ? DateTime(r.dateOfExpiry!.date!.year! - 10, r.dateOfExpiry!.date!.month!,
                         r.dateOfExpiry!.date!.day!)
                     : DateTime(0),
-            currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
+            currentIssuingPlace:
+                (r.mrzResult?.sanitizedIssuer ?? '').isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             nationalityIsoCode3: r.mrzResult?.nationality ?? "",
             placeOfBirth: r.placeOfBirth != null
-                ? ((r.placeOfBirth?.description ?? '').isNotEmpty ? r.placeOfBirth!.description : "")
+                ? ((r.placeOfBirth?.stringsByAlphabet[AlphabetType.Latin] ?? '').isNotEmpty
+                    ? r.placeOfBirth!.stringsByAlphabet[AlphabetType.Latin]
+                    : "")
                 : "")));
   }
 

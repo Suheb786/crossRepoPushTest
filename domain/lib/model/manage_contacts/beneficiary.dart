@@ -2,7 +2,7 @@ class Beneficiary {
   final String? id;
 
   //final String? beneficiaryId;
-  final dynamic? imageUrl;
+  final dynamic imageUrl;
   final String? nickName;
   final String? fullName;
   final String? accountNo;

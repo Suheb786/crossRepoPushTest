@@ -8,17 +8,21 @@ class StringUtils {
   static String getFirstInitials(String? name) {
     try {
       if (name!.isEmpty) {
+        debugPrint('Name is empty--->>$name');
         return name;
       }
       List<String> _flName = name.split(" ");
       if (_flName.isEmpty) {
+        debugPrint('_flName is empty--->>$name');
         return name;
       }
       if (_flName.length > 1) {
+        debugPrint('_flName is greater than 1--->>${_flName.first[0] + _flName.last[0]}');
         return _flName.first[0] + _flName.last[0];
       }
       return _flName.first[0];
     } catch (exception) {
+      debugPrint('Inside exception---${exception}');
       return name![0];
     }
   }
