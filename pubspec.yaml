@@ -100,11 +100,11 @@ dependency_overrides:
   firebase_crashlytics_platform_interface: ^3.4.1
   firebase_analytics_platform_interface: ^3.4.1
   flutter_inappwebview: ^5.7.2+3
-  camera_android:
-    git:
-      url: https://github.com/bottlepay/plugins.git
-      path: packages/camera/camera_android
-      ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
+#  camera_android:
+#    git:
+#      url: https://github.com/bottlepay/plugins.git
+#      path: packages/camera/camera_android
+#      ref: e1a4dba770da9bc3cf9f858bac6837083f8b9059
 
 
 dev_dependencies:

@@ -19,7 +19,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
             onTap: () {
               onTap?.call();
             },
-            child: beneficiary!.imageUrl.toString().isNotEmpty
+            child: beneficiary!.imageUrl.isNotEmpty
                 ? CircleAvatar(
                     radius: 32.0.w,
                     backgroundImage: Image.memory(

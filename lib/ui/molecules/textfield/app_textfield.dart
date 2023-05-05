@@ -170,19 +170,21 @@ class AppTextFieldState extends State<AppTextField> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: widget.labelText,
-                              style: TextStyle(
-                                color: widget.labelColor ??
-                                    Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                fontSize: 10.0.t,
-                                fontFamily: StringUtils.appFont,
-                              )),
-                          WidgetSpan(child: widget.labelIcon?.call() ?? Container())
-                        ]),
-                      ),
+                      widget.labelText.isNotEmpty
+                          ? RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                    text: widget.labelText,
+                                    style: TextStyle(
+                                      color: widget.labelColor ??
+                                          Theme.of(context).inputDecorationTheme.labelStyle!.color,
+                                      fontSize: 10.0.t,
+                                      fontFamily: StringUtils.appFont,
+                                    )),
+                                WidgetSpan(child: widget.labelIcon?.call() ?? SizedBox.shrink())
+                              ]),
+                            )
+                          : SizedBox.shrink(),
                       TextFormField(
                         focusNode: _focusNode,
                         maxLength: widget.maxLength,
@@ -209,7 +211,7 @@ class AppTextFieldState extends State<AppTextField> {
                             prefix: widget.prefix?.call(),
                             prefixIcon: widget.prefixIcon?.call(),
                             prefixIconConstraints: BoxConstraints.tightForFinite(),
-                            contentPadding: EdgeInsets.only(top: 8.0.h),
+                            contentPadding: EdgeInsets.fromLTRB(0, 8.0.h, 0, 0),
                             hintText: widget.hintText,
                             hintMaxLines: 1,
                             counterText: "",
@@ -243,7 +245,7 @@ class AppTextFieldState extends State<AppTextField> {
                   ),
                 ),
                 widget.textHintWidget?.call(_focusNode.hasFocus, isValid, widget.controller!.text) ??
-                    Container(),
+                    SizedBox.shrink(),
               ],
             ),
           )),
