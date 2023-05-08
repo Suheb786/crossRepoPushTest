@@ -74,16 +74,16 @@ dependencies:
   share_plus: any
   auto_size_text: ^3.0.0
   agora_rtc_engine: ^6.1.1
-  firebase_analytics: ^10.2.1
+  firebase_analytics: ^10.3.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   syncfusion_flutter_sliders: ^21.1.41
   url_launcher: ^6.1.10
   sms_autofill: ^2.3.0
-  firebase_core: ^2.10.0
-  firebase_crashlytics: ^3.1.2
-  firebase_performance: ^0.9.1+1
+  firebase_core: ^2.11.0
+  firebase_crashlytics: ^3.2.0
+  firebase_performance: ^0.9.1+2
   wakelock: ^0.6.2
   mask_text_input_formatter: ^2.4.0
   device_preview: any
@@ -97,8 +97,8 @@ dependencies:
 
 
 dependency_overrides:
-  firebase_crashlytics_platform_interface: ^3.4.1
-  firebase_analytics_platform_interface: ^3.4.1
+#  firebase_crashlytics_platform_interface: ^3.4.1
+#  firebase_analytics_platform_interface: ^3.4.1
   flutter_inappwebview: ^5.7.2+3
 #  camera_android:
 #    git:
