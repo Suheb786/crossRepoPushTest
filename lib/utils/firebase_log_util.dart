@@ -5,6 +5,9 @@ class FireBaseLogUtil {
 
   static Future<void> fireBaseLog(String name, Map<String, dynamic> parameters) async {
     ///LOG EVENT TO FIREBASE
+
+    parameters.updateAll((key, value) => value.toString());
+
     await FirebaseAnalytics.instance.logEvent(name: name, parameters: parameters);
   }
 }
