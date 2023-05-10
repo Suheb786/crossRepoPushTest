@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:blinkid_flutter/microblink_scanner.dart';
-import 'package:blinkid_flutter/overlays/blinkid_overlays.dart';
-import 'package:blinkid_flutter/recognizer.dart';
-import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/helper/key_helper.dart';
@@ -12,6 +9,7 @@ import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:flutter/material.dart';
 
 class UserLocalDSImpl extends UserLocalDS {
   final BioMetricService _bioMetricService;
@@ -42,8 +40,8 @@ class UserLocalDSImpl extends UserLocalDS {
   }
 
   @override
-  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>> scanUserDocument() async {
-    var idRecognizer = BlinkIdCombinedRecognizer();
+  Future<Either<LocalError, BlinkIdMultiSideRecognizerResult>> scanUserDocument() async {
+    var idRecognizer = BlinkIdMultiSideRecognizer();
     idRecognizer.returnFullDocumentImage = true;
     idRecognizer.scanCroppedDocumentImage = true;
     idRecognizer.returnFaceImage = true;
@@ -73,58 +71,78 @@ class UserLocalDSImpl extends UserLocalDS {
             LocalError(message: "No Data Found", cause: Exception("No Data Found"), localError: 1212));
 
       for (var result in results) {
-        if (result is BlinkIdCombinedRecognizerResult) {
-          print("I AM nationality : ${result.nationality}");
-          print("I AM personalIdNumber:  ${result.personalIdNumber}");
-          print("I AM documentNumber : ${result.documentNumber}");
-          print("I AM firstName : ${result.firstName}");
-          print("I AM dateOfExpiry : ${result.dateOfExpiry}");
-          print("I AM dateOfBirth : ${result.dateOfBirth}");
-          print("I AM sex:  ${result.sex}");
-          print("I AM fullName:  ${result.fullName}");
-          print("I AM additionalAddressInformation : ${result.additionalAddressInformation}");
-          print("I AM address : ${result.address}");
-          print("I AM age:  ${result.age}");
-          print("I AM additionalNameInformation : ${result.additionalNameInformation}");
-          print("I AM dateOfIssue : ${result.dateOfIssue}");
-          // print("I AM dateOfIssue day : ${result.dateOfIssue!.day}");
-          // print("I AM dateOfIssue month : ${result.dateOfIssue!.month}");
-          // print("I AM dateOfIssue year : ${result.dateOfIssue!.year}");
-          print("I AM fathersName:  ${result.fathersName}");
-          print("I AM mothersName : ${result.mothersName}");
+        if (result is BlinkIdMultiSideRecognizerResult) {
+          debugPrint("I AM nationality : ${result.nationality?.description ?? ''}");
+          debugPrint("I AM personalIdNumber:  ${result.personalIdNumber?.description ?? ''}");
+          debugPrint("I AM documentNumber : ${result.documentNumber?.description ?? ''}");
+          debugPrint("I AM firstName : ${result.firstName?.description ?? ''}");
+          debugPrint("I AM dateOfExpiry : ${result.dateOfExpiry}");
+          debugPrint("I AM dateOfExpiry day: ${result.dateOfExpiry?.date?.day}");
+          debugPrint("I AM dateOfExpiry month: ${result.dateOfExpiry?.date?.month}");
+          debugPrint("I AM dateOfExpiry year: ${result.dateOfExpiry?.date?.year}");
+          debugPrint("I AM dateOfBirth : ${result.dateOfBirth}");
+          debugPrint("I AM dateOfBirth day : ${result.dateOfBirth?.date?.day}");
+          debugPrint("I AM dateOfBirth month : ${result.dateOfBirth?.date?.month}");
+          debugPrint("I AM dateOfBirth year : ${result.dateOfBirth?.date?.year}");
+          debugPrint("I AM sex:  ${result.sex?.description ?? ''}");
+          debugPrint("I AM sex:  ${result.sex?.stringsByAlphabet[AlphabetType.Latin] ?? ''}");
+          debugPrint("I AM sex:  ${result.sex?.stringsByAlphabet ?? ''}");
+          debugPrint("I AM fullName:  ${result.fullName?.description ?? ''}");
+          debugPrint("I AM placeOfBirth:  ${result.placeOfBirth?.description ?? ''}");
+          debugPrint(
+              "I AM placeOfBirth:  ${result.placeOfBirth?.stringsByAlphabet[AlphabetType.Latin] ?? ''}");
+          debugPrint(
+              "I AM additionalAddressInformation : ${result.additionalAddressInformation?.description ?? ''}");
+          debugPrint("I AM address : ${result.address?.description ?? ''}");
+          debugPrint("I AM age:  ${result.age}");
+          debugPrint(
+              "I AM additionalNameInformation : ${result.additionalNameInformation?.description ?? ''}");
+          debugPrint("I AM dateOfIssue : ${result.dateOfIssue}");
+          debugPrint("I AM dateOfIssue day : ${result.dateOfIssue?.date?.day}");
+          debugPrint("I AM dateOfIssue month : ${result.dateOfIssue?.date?.month}");
+          debugPrint("I AM dateOfIssue year : ${result.dateOfIssue?.date?.year}");
+          debugPrint("I AM fathersName:  ${result.fathersName?.description ?? ''}");
+          debugPrint("I AM mothersName : ${result.mothersName?.description ?? ''}");
 
-          print("I AM mrzResult Gender :${result.mrzResult!.gender}");
-          print("I AM mrzResult documentNumber :${result.mrzResult!.documentNumber}");
-          print("I AM mrzResult Date of Expiry :${result.mrzResult!.dateOfExpiry}");
-          print("I AM mrzResult nationality :${result.mrzResult!.nationality}");
-          print("I AM mrzResult mrzVerified:${result.mrzResult!.mrzVerified}");
-          print("I AM mrzResult mrzParsed :${result.mrzResult!.mrzParsed}");
-          print("I AM mrzResult issuer :${result.mrzResult!.issuer}");
-          print("I AM mrzResult dateOfBirth :${result.mrzResult!.dateOfBirth}");
-          print("I AM mrzResult age :${result.mrzResult!.age}");
-          print("I AM mrzResult mrzText :${result.mrzResult!.mrzText}");
-          print("I AM mrzResult alienNumber :${result.mrzResult!.alienNumber}");
-          print("I AM mrzResult applicationReceiptNumber :${result.mrzResult!.applicationReceiptNumber}");
-          print("I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
-          print("I AM mrzResult documentType :${result.mrzResult!.documentType}");
-          print("I AM mrzResult immigrantCaseNumber :${result.mrzResult!.immigrantCaseNumber}");
-          print("I AM mrzResult opt1 :${result.mrzResult!.opt1}");
-          print("I AM mrzResult opt2 :${result.mrzResult!.opt2}");
-          print("I AM mrzResult primaryId :${result.mrzResult!.primaryId}");
-          print("I AM mrzResult sanitizedDocumentCode :${result.mrzResult!.sanitizedDocumentCode}");
-          print("I AM mrzResult sanitizedDocumentNumber :${result.mrzResult!.sanitizedDocumentNumber}");
-          print("I AM mrzResult sanitizedIssuer :${result.mrzResult!.sanitizedIssuer}");
-          print("I AM mrzResult sanitizedNationality :${result.mrzResult!.sanitizedNationality}");
-          print("I AM mrzResult sanitizedOpt1 :${result.mrzResult!.sanitizedOpt1}");
-          print("I AM mrzResult sanitizedOpt2 :${result.mrzResult!.sanitizedOpt2}");
-          print("I AM mrzResult secondaryId :${result.mrzResult!.secondaryId}");
+          debugPrint("I AM mrzResult Gender :${result.mrzResult!.gender}");
+          debugPrint("I AM mrzResult documentNumber :${result.mrzResult?.documentNumber}");
+          debugPrint("I AM mrzResult Date of Expiry :${result.mrzResult?.dateOfExpiry}");
+          debugPrint("I AM mrzResult nationality :${result.mrzResult?.nationality}");
+          debugPrint("I AM mrzResult mrzVerified:${result.mrzResult?.mrzVerified}");
+          debugPrint("I AM mrzResult mrzParsed :${result.mrzResult?.mrzParsed}");
+          debugPrint("I AM mrzResult issuer :${result.mrzResult?.issuer}");
+          debugPrint("I AM mrzResult dateOfBirth :${result.mrzResult?.dateOfBirth}");
+          debugPrint("I AM mrzResult dateOfBirth day :${result.mrzResult?.dateOfBirth?.day}");
+          debugPrint("I AM mrzResult dateOfBirth month :${result.mrzResult?.dateOfBirth?.month}");
+          debugPrint("I AM mrzResult dateOfBirth year :${result.mrzResult?.dateOfBirth?.year}");
+
+          debugPrint("I AM mrzResult age :${result.mrzResult?.age}");
+          debugPrint("I AM mrzResult mrzText :${result.mrzResult?.mrzText}");
+          debugPrint("I AM mrzResult alienNumber :${result.mrzResult?.alienNumber}");
+          debugPrint(
+              "I AM mrzResult applicationReceiptNumber :${result.mrzResult?.applicationReceiptNumber}");
+          debugPrint("I AM mrzResult documentCode :${result.mrzResult?.documentCode}");
+          debugPrint("I AM mrzResult documentType :${result.mrzResult?.documentType}");
+          debugPrint("I AM mrzResult immigrantCaseNumber :${result.mrzResult?.immigrantCaseNumber}");
+          debugPrint("I AM mrzResult opt1 :${result.mrzResult?.opt1}");
+          debugPrint("I AM mrzResult opt2 :${result.mrzResult?.opt2}");
+          debugPrint("I AM mrzResult primaryId :${result.mrzResult?.primaryId}");
+          debugPrint("I AM mrzResult sanitizedDocumentCode :${result.mrzResult?.sanitizedDocumentCode}");
+          debugPrint("I AM mrzResult sanitizedDocumentNumber :${result.mrzResult?.sanitizedDocumentNumber}");
+          debugPrint("I AM mrzResult sanitizedIssuer :${result.mrzResult?.sanitizedIssuer}");
+          debugPrint("I AM mrzResult sanitizedNationality :${result.mrzResult?.sanitizedNationality}");
+          debugPrint("I AM mrzResult sanitizedOpt1 :${result.mrzResult?.sanitizedOpt1}");
+          debugPrint("I AM mrzResult sanitizedOpt2 :${result.mrzResult?.sanitizedOpt2}");
+          debugPrint("I AM mrzResult secondaryId :${result.mrzResult?.secondaryId}");
+          debugPrint("I AM frontfullDocumentImage  :${result.fullDocumentFrontImage}");
+          debugPrint("I AM backfullDocumentImage  :${result.fullDocumentBackImage}");
 
           DateTime currentTime = DateTime.now();
 
           DateTime expiryDate = DateTime(
-              result.dateOfExpiry != null ? result.dateOfExpiry!.year! : currentTime.year,
-              result.dateOfExpiry != null ? result.dateOfExpiry!.month! : currentTime.month,
-              result.dateOfExpiry != null ? result.dateOfExpiry!.day! : currentTime.day);
+              result.dateOfExpiry != null ? result.dateOfExpiry!.date!.year! : currentTime.year,
+              result.dateOfExpiry != null ? result.dateOfExpiry!.date!.month! : currentTime.month,
+              result.dateOfExpiry != null ? result.dateOfExpiry!.date!.day! : currentTime.day);
 
           if (currentTime.toUtc().isAfter(expiryDate.toUtc())) {
             return Left(LocalError(cause: Exception(""), localError: 1211, message: ""));
@@ -132,9 +150,9 @@ class UserLocalDSImpl extends UserLocalDS {
           return Right(result);
         }
       }
-      return Right(BlinkIdCombinedRecognizerResult(Map()));
+      return Right(BlinkIdMultiSideRecognizerResult(Map()));
     } on Exception catch (e) {
-      print("I AM HERE ${e}");
+      debugPrint("I AM HERE ${e}");
       return Left(LocalError(
           cause: Exception("Some error occurred while processing. Please try again later"),
           localError: 1212,

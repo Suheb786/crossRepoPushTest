@@ -1,4 +1,4 @@
-import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
+import 'package:blinkid_flutter/microblink_scanner.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -161,7 +161,7 @@ abstract class UserLocalDS {
 
   Future<bool> saveCurrentUser(User user);
 
-  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>> scanUserDocument();
+  Future<Either<LocalError, BlinkIdMultiSideRecognizerResult>> scanUserDocument();
 
   Future<bool> checkBioMetricSupport();
 

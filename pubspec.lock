@@ -112,7 +112,7 @@ packages:
       name: blinkid_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.14.0"
+    version: "6.1.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -745,7 +745,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.6.0"
   local_auth:
     dependency: transitive
     description:

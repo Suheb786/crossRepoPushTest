@@ -27,9 +27,9 @@ PODS:
   - AppsFlyerFramework (6.8.0):
     - AppsFlyerFramework/Main (= 6.8.0)
   - AppsFlyerFramework/Main (6.8.0)
-  - blinkid_flutter (5.14.0):
+  - blinkid_flutter (6.1.1):
     - Flutter
-    - PPBlinkID (~> 5.14.0)
+    - PPBlinkID (~> 6.1.2)
   - camera_avfoundation (0.0.1):
     - Flutter
   - CryptoSwift (1.7.0)
@@ -278,7 +278,7 @@ PODS:
     - Flutter
   - permission_handler_apple (9.0.4):
     - Flutter
-  - PPBlinkID (5.14.0)
+  - PPBlinkID (6.1.2)
   - PromisesObjC (2.2.0)
   - qr_code_scanner (0.2.0):
     - Flutter
@@ -467,7 +467,7 @@ SPEC CHECKSUMS:
   app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   appsflyer_sdk: 6d03341418c1acf261fdfde2eb27fdeaf04fa2c2
   AppsFlyerFramework: a8de532f81b1d3c1dfc451f0ecded91ebb6a0e47
-  blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
+  blinkid_flutter: d4cb7f6a93a741132b1359b2e50f527811cf2775
   camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
   CryptoSwift: e71dbe5bbb7a945e365d4b9034dbccf28d033a8f
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
@@ -518,7 +518,7 @@ SPEC CHECKSUMS:
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
+  PPBlinkID: c757baa64ed024141380a9a87048321215de9964
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
