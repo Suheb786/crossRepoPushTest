@@ -38,7 +38,7 @@ class RequestAmountFromContactSuccessPageView
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
+                  Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
@@ -48,7 +48,7 @@ class RequestAmountFromContactSuccessPageView
                         color: Theme.of(context).primaryColor,
                       ),
                       child:
-                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                     ),
                   ),
                 ],
@@ -133,8 +133,8 @@ class RequestAmountFromContactSuccessPageView
                 padding: EdgeInsets.only(top: 10.0.h),
                 child: AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
-                  borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                  textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                  borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                  textColor: Theme.of(context).textTheme.bodyMedium!.color!,
                 ),
               ),
               InkWell(
@@ -147,7 +147,7 @@ class RequestAmountFromContactSuccessPageView
                         fontFamily: StringUtils.appFont,
                         fontSize: 12.t,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                        color: Theme.of(context).textTheme.bodyMedium!.color!),
                   ),
                 ),
               ),
@@ -163,7 +163,7 @@ class RequestAmountFromContactSuccessPageView
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.t,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                       ),
                     ),
                     Padding(

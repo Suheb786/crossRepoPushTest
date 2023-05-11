@@ -47,14 +47,14 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                   padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                   child: DotsIndicator(
                     dotsCount: pages.length - 1,
-                    position: currentStep!.toDouble(),
+                    position: currentStep!,
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeSize: Size((MediaQuery.of(context).size.width) / 2.5, 4),
                         size: Size((MediaQuery.of(context).size.width) / 2.5, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1.0.w),
                         activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                        activeColor: Theme.of(context).accentColor,
+                        activeColor: Theme.of(context).colorScheme.secondary,
                         color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                   ),
                 ),
@@ -75,7 +75,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                             S.of(context).sending,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 20.0.t),
                           ),
                           Padding(
@@ -115,8 +115,8 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 28.0.t,
                                                     fontWeight: FontWeight.w700,
-                                                    color: Theme.of(context).accentColor),
-                                                cursorColor: Theme.of(context).accentColor,
+                                                    color: Theme.of(context).colorScheme.secondary),
+                                                cursorColor: Theme.of(context).colorScheme.secondary,
                                                 controller: model.editAmountController,
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
@@ -131,7 +131,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                   .toStringAsFixed(3),
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
+                                                  color: Theme.of(context).colorScheme.secondary,
                                                   fontSize: 28.0.t,
                                                   fontWeight: FontWeight.w700),
                                             );
@@ -184,7 +184,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                             S.of(context).sendMoney,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10.0.t),
                           ),
@@ -201,7 +201,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20.0.t,
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                               ),
                             ),
                           )

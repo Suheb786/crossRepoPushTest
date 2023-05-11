@@ -119,7 +119,7 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ),
                                           ),
                                           SizedBox(

@@ -53,7 +53,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
           flipOnTouch: false,
           direction: FlipDirection.HORIZONTAL,
           front: Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -134,7 +134,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       S.of(context).flipCard,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                           fontSize: 14.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -242,7 +242,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       width: 104.0.w,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20),
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                                       child: Center(
                                         child: Text(
                                           S.of(context).addMoney,
@@ -250,7 +250,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 14.0.t,
-                                              color: Theme.of(context).accentColor),
+                                              color: Theme.of(context).colorScheme.secondary),
                                         ),
                                       ),
                                     ),
@@ -276,7 +276,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.only(end: 30.0.w),
                                       child: AppSvg.asset(AssetUtils.settingsRed,
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                                     ),
                                   )
                                 ],
@@ -305,7 +305,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           S.of(context).cardDelivered,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w600,
                               fontSize: 12.0.t),
                         ),
@@ -362,7 +362,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
                                   fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),

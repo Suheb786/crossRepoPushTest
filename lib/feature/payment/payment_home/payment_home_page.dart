@@ -35,7 +35,7 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
       child: ConvexAppBar(
         elevation: 0,
         style: TabStyle.fixedCircle,
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         items: [
           TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
           TabItem(
@@ -81,7 +81,7 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).accentColor;
+    return Theme.of(context).colorScheme.secondary;
   }
 
   @override

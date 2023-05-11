@@ -55,7 +55,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               fontSize: 14.0.t,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                     ],
@@ -71,14 +71,14 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                         width: 232.0.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                         ),
                         child: Center(
                           child: Text(
                             S.of(context).resumeCreditCardText,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 12.0.t,
                                 fontWeight: FontWeight.w600),
                           ),

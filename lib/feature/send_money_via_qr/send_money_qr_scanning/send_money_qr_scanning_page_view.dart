@@ -40,7 +40,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 8,
@@ -52,7 +52,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 32,

@@ -32,7 +32,7 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 8,
@@ -44,7 +44,7 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 32,

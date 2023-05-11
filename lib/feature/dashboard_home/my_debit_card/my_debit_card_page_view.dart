@@ -87,7 +87,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     fontFamily: StringUtils.appFont,
                                     fontSize: isSmallDevices ? 10 : 12,
                                     fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                               ),
                             )),
                         Padding(
@@ -104,7 +104,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Center(
                                   child: Text(
@@ -113,7 +113,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         fontFamily: StringUtils.appFont,
                                         fontSize: isSmallDevices ? 10 : 12,
                                         fontWeight: FontWeight.w600,
-                                        color: Theme.of(context).accentColor),
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                               ),
@@ -136,7 +136,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
               //     : true,
               direction: FlipDirection.HORIZONTAL,
               front: Container(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -226,10 +226,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                       S.of(context).flipCard,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
-                                                          color: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!,
+                                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                           fontSize: isSmallDevices ? 12 : 14,
                                                           fontWeight: FontWeight.w600),
                                                     ),
@@ -286,7 +283,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               width: isSmallDevices ? 95 : 104,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(20),
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                               child: Center(
                                                 child: Text(
                                                   S.of(context).addMoney,
@@ -294,7 +291,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                       fontFamily: StringUtils.appFont,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: isSmallDevices ? 12 : 14,
-                                                      color: Theme.of(context).accentColor),
+                                                      color: Theme.of(context).colorScheme.secondary),
                                                 ),
                                               ),
                                             ),
@@ -315,7 +312,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             child: Padding(
                                               padding: EdgeInsets.only(right: 33.0),
                                               child: AppSvg.asset(AssetUtils.settingsRed,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ),
                                           )
                                         ],
@@ -346,7 +343,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               S.of(context).cardDelivered,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w600,
                                   fontSize: isSmallDevices ? 10 : 12),
                             ),
@@ -428,7 +425,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         S.of(context).flipBack,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                            color: Theme.of(context).textTheme.bodyMedium!.color!,
                                             fontSize: isSmallDevices ? 12 : 14,
                                             fontWeight: FontWeight.w600),
                                       ),

@@ -124,7 +124,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                           child: Text(S.of(context).scheduleLater,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                   fontSize: 14.t,
                                                   fontWeight: FontWeight.w600)),
                                         ),

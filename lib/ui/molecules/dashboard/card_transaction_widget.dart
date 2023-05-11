@@ -30,7 +30,7 @@ class CardTransactionWidget extends StatelessWidget {
         ),
         Card(
           margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
             physics: NeverScrollableScrollPhysics(),
@@ -50,7 +50,7 @@ class CardTransactionWidget extends StatelessWidget {
                         S.of(context).pending,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontWeight: FontWeight.w600,
                             fontSize: 10.0.t),
                       ),

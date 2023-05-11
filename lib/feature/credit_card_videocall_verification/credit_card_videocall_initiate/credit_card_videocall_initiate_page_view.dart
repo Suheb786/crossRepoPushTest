@@ -106,7 +106,7 @@ class CreditCardVideoCallInitiatePageView
                             Navigator.pop(context);
                           },
                           child: AppSvg.asset(AssetUtils.leftArrow,
-                              color: Theme.of(context).accentColor, height: 24.h, width: 24.w)),
+                              color: Theme.of(context).colorScheme.secondary, height: 24.h, width: 24.w)),
                       SizedBox(
                         height: 16.h,
                       ),
@@ -117,7 +117,7 @@ class CreditCardVideoCallInitiatePageView
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 10.t,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       SizedBox(
@@ -131,7 +131,7 @@ class CreditCardVideoCallInitiatePageView
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 20.t,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       SizedBox(

@@ -106,7 +106,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                             : "",
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            color: Theme.of(context).accentColor,
+                                                            color: Theme.of(context).colorScheme.secondary,
                                                             fontWeight: FontWeight.w700,
                                                             fontSize: 14.0.t),
                                                       )
@@ -120,7 +120,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                             : "",
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            color: Theme.of(context).accentColor,
+                                                            color: Theme.of(context).colorScheme.secondary,
                                                             fontWeight: FontWeight.w700,
                                                             fontSize: 14.0.t),
                                                       ),
@@ -283,7 +283,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                           child: Text(
                                                             "${(activity.data?[index].trxStatus) ?? ""}",
                                                             style: TextStyle(
-                                                              color: Theme.of(context).accentColor,
+                                                              color: Theme.of(context).colorScheme.secondary,
                                                               fontWeight: FontWeight.w600,
                                                               fontSize: 12.0.t,
                                                             ),

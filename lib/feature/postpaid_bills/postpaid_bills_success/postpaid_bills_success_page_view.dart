@@ -282,8 +282,8 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
             ),
             AnimatedButton(
               buttonText: S.of(context).swipeToProceed,
-              textColor: Theme.of(context).accentColor,
-              borderColor: Theme.of(context).accentColor,
+              textColor: Theme.of(context).colorScheme.secondary,
+              borderColor: Theme.of(context).colorScheme.secondary,
             ),
             SizedBox(
               height: 8.h,

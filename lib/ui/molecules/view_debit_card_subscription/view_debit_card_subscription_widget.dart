@@ -10,7 +10,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(top: 16, bottom: 32),
-      color: Theme.of(context).accentColor,
+      color: Theme.of(context).colorScheme.secondary,
       child: ListView.separated(
         physics: ClampingScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: 17),

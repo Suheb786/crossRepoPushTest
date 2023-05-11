@@ -27,7 +27,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSvg.asset(image!, matchTextDirection: true, color: Theme.of(context).accentColor),
+        AppSvg.asset(image!, matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
         SizedBox(
           width: 12.w,
         ),
@@ -43,7 +43,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
               ),
               SizedBox(
                 height: 10.h,
@@ -57,7 +57,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.t,
                     fontWeight: FontWeight.w500,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
               ),
               SizedBox(
                 height: 16.h,
@@ -71,7 +71,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                   child: Container(
                     height: 48.h,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                         borderRadius: BorderRadius.circular(100)),
                     child: Center(
                       child: Text(
@@ -81,7 +81,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.t,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
                   ),

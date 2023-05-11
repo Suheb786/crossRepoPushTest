@@ -297,8 +297,8 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                     },
                     child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).accentColor,
-                      borderColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).colorScheme.secondary,
+                      borderColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   SizedBox(

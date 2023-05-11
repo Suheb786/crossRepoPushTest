@@ -43,7 +43,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 32,
                                 fontWeight: FontWeight.w700)),
                         Padding(
@@ -53,7 +53,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),
                           ),
@@ -78,7 +78,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                         //           style: TextStyle(
                         //               color: Theme
                         //                   .of(context)
-                        //                   .accentColor,
+                        //                   .colorScheme.secondary,
                         //               fontSize: 12,
                         //               fontWeight: FontWeight.w600),
                         //         )),

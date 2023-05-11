@@ -69,7 +69,7 @@ class RTPConfirmationDialogView extends StatelessWidget {
                               cdtrDpText,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14.0.t),
                             ),

@@ -54,7 +54,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w700,
                         fontSize: 32),
                   ),
@@ -79,7 +79,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w500,
                     fontSize: 24),
               ),
@@ -91,7 +91,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
               ),
@@ -101,7 +101,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               child: Container(
                 padding: EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                    color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -132,7 +132,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyMedium!.color!),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 11),
                       child: Text(
@@ -141,7 +141,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                       ),
                     )
                   ],
@@ -151,8 +151,8 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
             Spacer(),
             AnimatedButton(
               buttonText: S.of(context).swipeToProceed,
-              borderColor: Theme.of(context).accentColor,
-              textColor: Theme.of(context).accentColor,
+              borderColor: Theme.of(context).colorScheme.secondary,
+              textColor: Theme.of(context).colorScheme.secondary,
             ),
             Padding(
               padding: EdgeInsets.only(top: 9, bottom: 24),
@@ -160,7 +160,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                 S.of(context).toDashboard,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 12,
                     fontWeight: FontWeight.w600),
               ),

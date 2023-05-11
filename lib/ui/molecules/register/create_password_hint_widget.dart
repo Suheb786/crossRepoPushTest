@@ -33,7 +33,7 @@ class CreatePasswordHintWidget extends StatelessWidget {
                 fontFamily: StringUtils.appFont,
                 fontSize: 12.t,
                 height: 1,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           )
         ],
       ),

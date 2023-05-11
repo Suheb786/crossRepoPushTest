@@ -30,7 +30,7 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
             S.of(context).addToApplePay.toUpperCase(),
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 fontFamily: StringUtils.appFont,
                 fontSize: 10.t,
                 fontWeight: FontWeight.w600),
@@ -39,7 +39,7 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
             S.of(context).selectOneCardToAddApplePay,
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 fontFamily: StringUtils.appFont,
                 fontSize: 20.t,
                 fontWeight: FontWeight.w600),

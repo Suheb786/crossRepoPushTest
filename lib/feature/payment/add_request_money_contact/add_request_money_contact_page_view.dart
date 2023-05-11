@@ -138,7 +138,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                             padding:
                                                 EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
                                             decoration: BoxDecoration(
-                                                color: Theme.of(context).accentColor,
+                                                color: Theme.of(context).colorScheme.secondary,
                                                 borderRadius: BorderRadius.circular(20.w)),
                                             child: Text(
                                               S.of(context).seeAllContacts,
@@ -146,7 +146,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ),
                                           ),
                                         ),

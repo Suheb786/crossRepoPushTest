@@ -147,8 +147,8 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                           children: [
                             AnimatedButton(
                               buttonText: S.of(context).swipeToProceed,
-                              textColor: Theme.of(context).accentColor,
-                              borderColor: Theme.of(context).accentColor,
+                              textColor: Theme.of(context).colorScheme.secondary,
+                              borderColor: Theme.of(context).colorScheme.secondary,
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 14.0.h),
@@ -156,7 +156,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                 S.of(context).cardDelivery,
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 12,
                                 ),
@@ -174,7 +174,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                 case Status.LOADING:
                   return Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.secondary),
                       strokeWidth: 2,
                     ),
                   );

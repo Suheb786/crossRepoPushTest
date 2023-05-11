@@ -41,7 +41,7 @@ class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHome
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 10.t,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 Padding(
@@ -52,7 +52,7 @@ class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHome
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 20.t,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                     textAlign: TextAlign.center,
                   ),
                 ),

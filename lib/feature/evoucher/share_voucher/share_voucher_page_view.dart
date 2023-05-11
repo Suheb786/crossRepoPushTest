@@ -30,7 +30,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                     S.of(context).viewVoucher,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w600,
                         fontSize: 14),
                   ),
@@ -42,7 +42,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                   height: double.infinity,
                   padding: EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius:
                           BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                   child: Column(
@@ -65,7 +65,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 border:
-                                    Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                    Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,9 +94,9 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                             child: Center(
-                              child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                              child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ),

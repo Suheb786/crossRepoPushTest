@@ -43,7 +43,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                           S.of(context).billsHistory,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w600,
                               fontSize: 14.0.t),
                         ),
@@ -58,7 +58,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
@@ -160,7 +160,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                                     textList[index],
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context).accentColor),
+                                                        color: Theme.of(context).colorScheme.secondary),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsetsDirectional.only(start: 9.0.w),
@@ -172,7 +172,7 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                                         model.updateSearchList(index);
                                                       },
                                                       child: AppSvg.asset(AssetUtils.close,
-                                                          color: Theme.of(context).accentColor),
+                                                          color: Theme.of(context).colorScheme.secondary),
                                                     ),
                                                   )
                                                 ],

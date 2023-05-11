@@ -57,7 +57,7 @@ class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
                             fontFamily: StringUtils.appFont,
                             fontSize: isSmallDevices ? 12 : 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     )),
               ],

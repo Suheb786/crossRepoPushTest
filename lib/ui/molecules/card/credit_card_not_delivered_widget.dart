@@ -87,7 +87,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14.0.t,
-                                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                 ),
                               ),
                             )
@@ -124,7 +124,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                           S.of(context).cardRequiresActivation,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
                           ),
@@ -200,7 +200,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                           width: 96.0.w,
                           alignment: Alignment.center,
                           decoration:
-                              BoxDecoration(color: Theme.of(context).accentColor, shape: BoxShape.circle),
+                              BoxDecoration(color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle),
                           child: AppSvg.asset(AssetUtils.card_activation),
                         ),
                         Padding(
@@ -210,7 +210,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 14.0.t,
                               fontWeight: FontWeight.w600,
                             ),
@@ -237,7 +237,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
                                   fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),

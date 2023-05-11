@@ -68,7 +68,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12.0.t,
-                                              color: Theme.of(context).accentColor),
+                                              color: Theme.of(context).colorScheme.secondary),
                                         ),
                                         Padding(
                                           padding: EdgeInsetsDirectional.only(
@@ -83,7 +83,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 16.0.t,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).accentColor),
+                                                color: Theme.of(context).colorScheme.secondary),
                                           ),
                                         ),
                                         Padding(
@@ -97,7 +97,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       fontFamily: StringUtils.appFont,
                                                       fontSize: 20.0.t,
                                                       fontWeight: FontWeight.w700,
-                                                      color: Theme.of(context).accentColor)),
+                                                      color: Theme.of(context).colorScheme.secondary)),
                                               Padding(
                                                 padding: EdgeInsetsDirectional.only(top: 5.0.h, start: 5.0.w),
                                                 child: Text(S.of(context).JOD,
@@ -106,7 +106,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 10.0.t,
                                                         color:
-                                                            Theme.of(context).accentColor.withOpacity(0.4))),
+                                                            Theme.of(context).colorScheme.secondary.withOpacity(0.4))),
                                               ),
                                               SizedBox(width: 10.0.w),
                                               InkWell(
@@ -134,7 +134,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 10.0.t,
-                                                color: Theme.of(context).accentColor.withOpacity(0.4)),
+                                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                                           ),
                                         ),
                                       ],
@@ -151,7 +151,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 12.0.t,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).accentColor),
+                                              color: Theme.of(context).colorScheme.secondary),
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -175,7 +175,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       S.of(context).accountNo,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).accentColor.withOpacity(0.4),
+                                          color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
                                           fontSize: 10.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -189,7 +189,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               overflow: TextOverflow.ellipsis,
-                                              color: Theme.of(context).accentColor,
+                                              color: Theme.of(context).colorScheme.secondary,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12.0.t),
                                         ),
@@ -213,7 +213,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       S.of(context).iban,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).accentColor.withOpacity(0.4),
+                                          color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
                                           fontSize: 10.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -240,7 +240,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               width: 105.0.w,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(20),
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                               child: Center(
                                                 child: Text(
                                                   S.of(context).addMoney,
@@ -248,7 +248,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       fontFamily: StringUtils.appFont,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 12.0.t,
-                                                      color: Theme.of(context).accentColor),
+                                                      color: Theme.of(context).colorScheme.secondary),
                                                 ),
                                               ),
                                             ),
@@ -260,7 +260,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             child: Padding(
                                               padding: EdgeInsets.only(right: 33.0.w),
                                               child: AppSvg.asset(AssetUtils.share,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                   height: 24.0.h,
                                                   width: 24.0.w),
                                             ),

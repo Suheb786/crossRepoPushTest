@@ -43,7 +43,7 @@ class PayMyPrePaidBillsPageState
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Text(
@@ -52,7 +52,7 @@ class PayMyPrePaidBillsPageState
                   fontFamily: StringUtils.appFont,
                   fontSize: 14.t,
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).accentColor),
+                  color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 18.0.w),

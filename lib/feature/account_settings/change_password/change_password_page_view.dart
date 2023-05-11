@@ -36,7 +36,7 @@ class ChangePasswordPageView extends BasePageViewWidget<ChangePasswordPageViewMo
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
           ),
@@ -53,7 +53,7 @@ class ChangePasswordPageView extends BasePageViewWidget<ChangePasswordPageViewMo
                       S.of(context).changePassword.toUpperCase(),
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 10.t,
                           fontWeight: FontWeight.w600),
                     ),
@@ -72,7 +72,7 @@ class ChangePasswordPageView extends BasePageViewWidget<ChangePasswordPageViewMo
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),

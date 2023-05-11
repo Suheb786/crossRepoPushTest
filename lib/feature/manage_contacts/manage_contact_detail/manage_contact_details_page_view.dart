@@ -93,7 +93,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
                                                         fontSize: 14.t,
-                                                        color: Theme.of(context).accentColor),
+                                                        color: Theme.of(context).colorScheme.secondary),
                                                   ),
                                                 ))
                                           : CircleAvatar(
@@ -317,7 +317,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                       margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
                                       height: 56.h,
                                       decoration: BoxDecoration(
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                           borderRadius: BorderRadius.circular(100)),
                                       child: Center(
                                         child: Text(
@@ -326,7 +326,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).accentColor),
+                                              color: Theme.of(context).colorScheme.secondary),
                                         ),
                                       ),
                                     ),

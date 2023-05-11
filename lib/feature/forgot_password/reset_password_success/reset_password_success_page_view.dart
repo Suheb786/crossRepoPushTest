@@ -54,7 +54,7 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 24.t,
                         fontWeight: FontWeight.w500),
                   ),
@@ -66,7 +66,7 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 14.t,
                         fontWeight: FontWeight.w600),
                   ),
@@ -79,8 +79,8 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
                   padding: EdgeInsets.only(top: 10.h),
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).colorScheme.secondary,
+                    textColor: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 InkWell(
@@ -90,7 +90,7 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
                     child: Text(
                       S.of(context).toLoginPage,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor, fontSize: 12.t, fontWeight: FontWeight.w500),
+                          color: Theme.of(context).colorScheme.secondary, fontSize: 12.t, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),

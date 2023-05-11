@@ -51,7 +51,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
           Expanded(
               child: Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
             child: Column(
               children: [
@@ -63,7 +63,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
                 ),
                 Card(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: Column(children: [
                     AppStreamBuilder<Resource<bool>>(

@@ -41,7 +41,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
             Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
+                Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
@@ -66,7 +66,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w500,
                     fontSize: 24.t,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Padding(
@@ -80,15 +80,15 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w600)),
             ),
             Spacer(),
             AnimatedButton(
               buttonText: S.of(context).swipeToProceed,
-              borderColor: Theme.of(context).accentColor,
-              textColor: Theme.of(context).accentColor,
+              borderColor: Theme.of(context).colorScheme.secondary,
+              textColor: Theme.of(context).colorScheme.secondary,
             ),
             InkWell(
               onTap: () {},
@@ -100,7 +100,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),

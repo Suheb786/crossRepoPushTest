@@ -38,7 +38,7 @@ class ManageContactDetailsPageState
             child: Padding(
               padding: EdgeInsetsDirectional.only(start: 24.0.w),
               child: AppSvg.asset(AssetUtils.leftArrow,
-                  matchTextDirection: true, color: Theme.of(context).accentColor),
+                  matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
             ),
           ),
         ));

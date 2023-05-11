@@ -117,7 +117,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 20.t,
                                           fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme.of(context).colorScheme.secondary),
                                     ),
                                     SizedBox(height: 8.h),
                                     Text(
@@ -127,7 +127,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 14.t,
                                           fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme.of(context).colorScheme.secondary),
                                     ),
                                     SizedBox(height: 8.h),
                                     InkWell(

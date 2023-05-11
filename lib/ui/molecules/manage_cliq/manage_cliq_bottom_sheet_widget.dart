@@ -23,7 +23,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Wrap(
           children: <Widget>[
             Center(
@@ -63,7 +63,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                         fontFamily: StringUtils.appFont,
                         fontSize: 14.t,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                        color: Theme.of(context).textTheme.bodyMedium!.color!),
                   ),
                 ),
               ),
@@ -119,7 +119,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                      color: Theme.of(context).textTheme.bodyMedium!.color!,
                     ),
                   ),
                 ),

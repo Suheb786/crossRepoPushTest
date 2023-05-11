@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
@@ -130,7 +131,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                               S.of(context).changeMyNumber,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                 fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -149,7 +150,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                         textStyle: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 16.t,
-                                            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                                         widgetBuilder: (context, currentTimeRemaining) {
                                           return currentTimeRemaining == null
                                               ? TextButton(
@@ -161,10 +162,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color!),
+                                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                   ))
                                               : Text(
                                                   S.of(context).resendIn(
@@ -172,10 +170,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       fontSize: 14.t,
-                                                      color: Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color!),
+                                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                 );
                                         },
                                       ),

@@ -48,7 +48,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       Navigator.pop(context);
                     },
                     child: AppSvg.asset(AssetUtils.leftArrow,
-                        matchTextDirection: true, color: Theme.of(context).accentColor),
+                        matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                   )),
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 11.w, bottom: 53.h),
@@ -63,7 +63,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                             fontFamily: StringUtils.appFont,
                             fontSize: 20.t,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
                     SizedBox(
@@ -157,7 +157,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                                                 S.of(context).or,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
+                                                    color: Theme.of(context).colorScheme.secondary,
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 12.t),
                                               ),

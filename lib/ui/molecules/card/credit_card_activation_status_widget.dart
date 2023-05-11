@@ -21,7 +21,7 @@ class CreditCardActivationStatusWidget extends StatelessWidget {
           Row(
             children: [
               isActivated
-                  ? AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor)
+                  ? AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary)
                   : Container(
                       height: 24.0.h,
                       width: 24.0.w,
@@ -37,8 +37,8 @@ class CreditCardActivationStatusWidget extends StatelessWidget {
                       fontSize: 14.0.t,
                       fontWeight: FontWeight.w600,
                       color: isActivated
-                          ? Theme.of(context).accentColor
-                          : Theme.of(context).accentColor.withOpacity(0.3)),
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).colorScheme.secondary.withOpacity(0.3)),
                 ),
               )
             ],

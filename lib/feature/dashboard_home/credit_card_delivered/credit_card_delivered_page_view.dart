@@ -64,7 +64,7 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             margin: EdgeInsets.zero,
                             shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                             child: SingleChildScrollView(
@@ -112,7 +112,7 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                       padding: EdgeInsetsDirectional.only(top: 75, bottom: 31),
                                       child: AnimatedButton(
                                           buttonText: S.of(context).swipeToConfirm,
-                                          borderColor: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                          borderColor: Theme.of(context).textTheme.bodyMedium!.color!),
                                     )
                                   ],
                                 ),
@@ -190,7 +190,7 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                   S.of(context).deliveryIssue,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                      color: Theme.of(context).textTheme.bodyMedium!.color!,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
                 ),

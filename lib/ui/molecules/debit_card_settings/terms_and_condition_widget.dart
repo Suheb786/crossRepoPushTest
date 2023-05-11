@@ -60,7 +60,7 @@ class TermsAndConditionWidget extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontSize: 12.t,
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                       ),
                       children: [
                         TextSpan(

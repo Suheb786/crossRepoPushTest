@@ -39,7 +39,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                   children: [
                     Image.asset(AssetUtils.line,
                         color: _arguments.cardType == CardType.DEBIT
-                            ? Theme.of(context).accentColor.withOpacity(0.4)
+                            ? Theme.of(context).colorScheme.secondary.withOpacity(0.4)
                             : AppColor.softRed),
                     Align(
                       alignment: Alignment.center,
@@ -54,7 +54,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                         child: Center(
                             child: AppSvg.asset(AssetUtils.right,
                                 color: _arguments.cardType == CardType.DEBIT
-                                    ? Theme.of(context).accentColor
+                                    ? Theme.of(context).colorScheme.secondary
                                     : Theme.of(context).primaryColorDark)),
                       ),
                     ),
@@ -71,7 +71,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                         fontWeight: FontWeight.w500,
                         color: _arguments.cardType == CardType.DEBIT
                             ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).accentColor),
+                            : Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 Padding(
@@ -85,7 +85,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                         fontWeight: FontWeight.w600,
                         color: _arguments.cardType == CardType.DEBIT
                             ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).accentColor),
+                            : Theme.of(context).colorScheme.secondary),
                   ),
                 ),
               ],
@@ -95,11 +95,11 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                 AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
                   borderColor: _arguments.cardType == CardType.DEBIT
-                      ? Theme.of(context).accentTextTheme.bodyText1!.color
-                      : Theme.of(context).accentColor,
+                      ? Theme.of(context).textTheme.bodyMedium!.color!
+                      : Theme.of(context).colorScheme.secondary,
                   textColor: _arguments.cardType == CardType.DEBIT
-                      ? Theme.of(context).accentTextTheme.bodyText1!.color
-                      : Theme.of(context).accentColor,
+                      ? Theme.of(context).textTheme.bodyMedium!.color!
+                      : Theme.of(context).colorScheme.secondary,
                 ),
                 InkWell(
                   onTap: () {},
@@ -110,8 +110,8 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: _arguments.cardType == CardType.DEBIT
-                              ? Theme.of(context).accentTextTheme.bodyText1!.color
-                              : Theme.of(context).accentColor,
+                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),
                     ),

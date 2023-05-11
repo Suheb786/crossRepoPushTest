@@ -566,16 +566,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                               fontWeight:
                                                                                                   FontWeight
                                                                                                       .w600,
-                                                                                              color: Theme.of(
-                                                                                                      context)
-                                                                                                  .accentTextTheme
-                                                                                                  .bodyText1!
-                                                                                                  .color),
-                                                                                          cursorColor: Theme
-                                                                                                  .of(context)
-                                                                                              .accentTextTheme
-                                                                                              .bodyText1!
-                                                                                              .color,
+                                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                          cursorColor: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                                           controller: model
                                                                                               .addNickNameController,
                                                                                           decoration:
@@ -595,11 +587,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                 color: val!
                                                                                                     ? Colors
                                                                                                         .transparent
-                                                                                                    : Theme.of(
-                                                                                                            context)
-                                                                                                        .accentTextTheme
-                                                                                                        .bodyText1!
-                                                                                                        .color),
+                                                                                                    : Theme.of(context).textTheme.bodyMedium!.color!),
                                                                                             border:
                                                                                                 InputBorder
                                                                                                     .none,

@@ -134,7 +134,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
                 padding: EdgeInsetsDirectional.only(top: 14.h, bottom: 14.h, start: 26.w, end: 34.w),
@@ -195,7 +195,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 12.t,
                                     fontWeight: FontWeight.w700,
-                                    color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
                               ),
                             ),
                           )

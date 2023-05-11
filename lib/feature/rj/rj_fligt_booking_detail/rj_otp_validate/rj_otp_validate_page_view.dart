@@ -135,7 +135,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                     textStyle: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontSize: 16.t,
-                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
                                     widgetBuilder: (context, currentTimeRemaining) {
                                       return currentTimeRemaining == null
                                           ? TextButton(
@@ -148,7 +148,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 14.t,
                                                     color:
-                                                        Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                        Theme.of(context).textTheme.bodyMedium!.color!),
                                               ))
                                           : Text(
                                               S.of(context).resendIn(
@@ -156,7 +156,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.t,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             );
                                     },
                                   ),

@@ -25,7 +25,7 @@ class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailure
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image.asset(AssetUtils.line, color: Theme.of(context).accentColor),
+                      Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary),
                       Align(
                         alignment: Alignment.center,
                         child: Container(
@@ -35,7 +35,7 @@ class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailure
                             color: Theme.of(context).primaryColor,
                           ),
                           child: Center(
-                              child: AppSvg.asset(AssetUtils.cancel, color: Theme.of(context).accentColor)),
+                              child: AppSvg.asset(AssetUtils.cancel, color: Theme.of(context).colorScheme.secondary)),
                         ),
                       ),
                     ],

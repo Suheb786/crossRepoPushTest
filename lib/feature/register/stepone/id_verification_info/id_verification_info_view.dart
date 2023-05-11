@@ -204,10 +204,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                                 fontSize: 14.t,
                                                                 fontWeight: FontWeight.w600,
                                                                 letterSpacing: 1,
-                                                                color: Theme.of(context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color),
+                                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                           ),
                                                         ),
                                                       ),
@@ -238,10 +235,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                                         border: Border.all(
                                                                             width: !isChecked ? 1 : 1,
                                                                             color: !isChecked
-                                                                                ? Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color!
+                                                                                ? Theme.of(context).textTheme.bodyMedium!.color!
                                                                                 : Theme.of(context)
                                                                                     .inputDecorationTheme
                                                                                     .hintStyle!

@@ -175,7 +175,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                           textStyle: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 16.t,
-                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
                                                 ? TextButton(
@@ -224,10 +224,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 14.t,
                                                           fontWeight: FontWeight.w600,
-                                                          color: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!),
+                                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                     ))
                                                 : Text(
                                                     S.of(context).resendIn(
@@ -236,10 +233,7 @@ class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPage
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color!),
+                                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                   );
                                           },
                                         ),

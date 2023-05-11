@@ -66,7 +66,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
         height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -525,10 +525,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                               width: double.maxFinite,
                                                               decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(100),
-                                                                color: Theme.of(context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1
-                                                                    ?.color,
+                                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                               ),
                                                               child: Center(
                                                                 child: Text(S.of(context).createCliqId,
@@ -538,7 +535,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         fontWeight: FontWeight.w600,
                                                                         letterSpacing: 1,
                                                                         color:
-                                                                            Theme.of(context).accentColor)),
+                                                                            Theme.of(context).colorScheme.secondary)),
                                                               ),
                                                             ),
                                                           ),

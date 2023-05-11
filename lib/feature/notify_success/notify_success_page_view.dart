@@ -68,7 +68,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 24.t,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                           SizedBox(
                             height: 4.h,
@@ -80,7 +80,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14.t,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ],
                       ),
@@ -91,7 +91,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                          color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
                       child:
                           AccountDetails(title: S.of(context).refTitle, value: model.arguments.referenceNo),
@@ -104,8 +104,8 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).accentColor,
-                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).colorScheme.secondary,
+                    borderColor: Theme.of(context).colorScheme.secondary,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -119,7 +119,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                         S.of(context).toWelcomePage,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w400,
                           fontSize: 12.t,
                         ),

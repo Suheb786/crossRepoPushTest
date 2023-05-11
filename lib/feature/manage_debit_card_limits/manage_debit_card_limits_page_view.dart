@@ -80,7 +80,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                           fontWeight: FontWeight.bold,
                           color: model.cardLimitsArguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
-                              : Theme.of(context).accentColor,
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 13.t,
                         ),
                       ),
@@ -518,7 +518,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                       width: double.maxFinite,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(100),
-                                        color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                                       ),
                                       child: Center(
                                         child: Text(S.of(context).saveChanges,
@@ -527,7 +527,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                 fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                                 letterSpacing: 1,
-                                                color: Theme.of(context).accentColor)),
+                                                color: Theme.of(context).colorScheme.secondary)),
                                       ),
                                     ),
                                   ),

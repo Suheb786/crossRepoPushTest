@@ -46,7 +46,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                       model.arguments.transactionDate + " ${S.of(context).statement}",
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
                           fontSize: 14.0.t),
                     ),
@@ -57,7 +57,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
@@ -114,7 +114,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
                                                   color:
-                                                      Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                      Theme.of(context).textTheme.bodyMedium!.color!)),
                                           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,10 +144,10 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                           width: 57.0.w,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           child: Center(
                                             child: AppSvg.asset(AssetUtils.tick,
-                                                color: Theme.of(context).accentColor),
+                                                color: Theme.of(context).colorScheme.secondary),
                                           ),
                                         ),
                                       ),

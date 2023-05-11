@@ -42,7 +42,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
+                          Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
@@ -53,7 +53,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                               ),
                               child: Center(
                                   child:
-                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ],
@@ -100,8 +100,8 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                    textColor: Theme.of(context).textTheme.bodyMedium!.color!,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -117,7 +117,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                             fontFamily: StringUtils.appFont,
                             fontSize: 12.t,
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                       ),
                     ),
                   ),

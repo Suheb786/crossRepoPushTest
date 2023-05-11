@@ -44,7 +44,7 @@ class RequestPaymentFromNewRecipientPageView
                   padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                   child: DotsIndicator(
                     dotsCount: pages.length - 1,
-                    position: currentStep!.toDouble(),
+                    position: currentStep!,
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeSize: Size(MediaQuery.of(context).size.width / 1.2, 4),
@@ -95,7 +95,7 @@ class RequestPaymentFromNewRecipientPageView
                                                   inputFormatters: [
                                                     FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,3}')),
                                                   ],
-                                                  cursorColor: Theme.of(context).accentColor,
+                                                  cursorColor: Theme.of(context).colorScheme.secondary,
                                                   controller: model.editAmountController,
                                                   keyboardType: TextInputType.number,
                                                   decoration: InputDecoration(

@@ -69,7 +69,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                         borderRadius: BorderRadius.circular(20.w)),
                     child: Text(
                       S.of(context).addMoney,
@@ -77,7 +77,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: 12.t,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),
@@ -216,21 +216,15 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                               padding: EdgeInsets.symmetric(
                                                                   horizontal: 8, vertical: 2),
                                                               decoration: BoxDecoration(
-                                                                  color: Theme.of(context).accentColor,
+                                                                  color: Theme.of(context).colorScheme.secondary,
                                                                   borderRadius: BorderRadius.circular(14.w),
                                                                   border: Border.all(
-                                                                      color: Theme.of(context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color!)),
+                                                                      color: Theme.of(context).textTheme.bodyMedium!.color!!)),
                                                               child: Text(
                                                                 S.of(context).confirm,
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    color: Theme.of(context)
-                                                                        .accentTextTheme
-                                                                        .bodyText1!
-                                                                        .color,
+                                                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                     fontSize: 12.t,
                                                                     fontWeight: FontWeight.w600),
                                                               ),

@@ -139,7 +139,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                           fontWeight: FontWeight.w700,
                                                                           fontSize: 18.t,
                                                                           color:
-                                                                              Theme.of(context).accentColor),
+                                                                              Theme.of(context).colorScheme.secondary),
                                                                     ),
                                                                   ))
                                                             : CircleAvatar(

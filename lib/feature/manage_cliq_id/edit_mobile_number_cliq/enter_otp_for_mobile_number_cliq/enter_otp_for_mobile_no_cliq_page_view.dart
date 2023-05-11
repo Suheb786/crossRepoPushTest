@@ -106,7 +106,7 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 16,
-                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
@@ -119,7 +119,7 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -128,7 +128,7 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           );
                                   },
                                 ),

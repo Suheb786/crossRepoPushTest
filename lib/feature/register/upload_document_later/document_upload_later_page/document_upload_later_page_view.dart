@@ -209,10 +209,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                             hintTextColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             textFieldBorderColor:
-                                                                                Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color,
+                                                                            Theme.of(context).textTheme.bodyMedium!.color!,
                                                                             textColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             suffixIcon: (value, data) {
@@ -365,10 +362,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                                     vertical: 12.h),
                                                                             readOnly: true,
                                                                             textFieldBorderColor:
-                                                                                Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color,
+                                                                            Theme.of(context).textTheme.bodyMedium!.color!,
                                                                             hintTextColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             textColor: Theme.of(context)
@@ -653,10 +647,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                               fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.t,
                                                                               fontWeight: FontWeight.w600,
-                                                                              color: Theme.of(context)
-                                                                                  .accentTextTheme
-                                                                                  .bodyText1!
-                                                                                  .color),
+                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                         ))),
                                                               ),
                                                               Center(

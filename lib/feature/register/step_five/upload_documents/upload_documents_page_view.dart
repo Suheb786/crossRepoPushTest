@@ -232,10 +232,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                             hintTextColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             textFieldBorderColor:
-                                                                                Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color,
+                                                                            Theme.of(context).textTheme.bodyMedium!.color!,
                                                                             textColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             suffixIcon: (value, data) {
@@ -388,10 +385,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                     vertical: 12.h),
                                                                             readOnly: true,
                                                                             textFieldBorderColor:
-                                                                                Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color,
+                                                                            Theme.of(context).textTheme.bodyMedium!.color!,
                                                                             hintTextColor: Theme.of(context)
                                                                                 .primaryColorDark,
                                                                             textColor: Theme.of(context)
@@ -674,10 +668,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                               fontFamily: StringUtils.appFont,
                                                                               fontSize: 14.t,
                                                                               fontWeight: FontWeight.w600,
-                                                                              color: Theme.of(context)
-                                                                                  .accentTextTheme
-                                                                                  .bodyText1!
-                                                                                  .color),
+                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                         ))),
                                                               ),
                                                               Center(

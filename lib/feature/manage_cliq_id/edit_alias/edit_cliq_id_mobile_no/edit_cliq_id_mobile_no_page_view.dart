@@ -40,7 +40,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10.t,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 8.h,
@@ -52,7 +52,7 @@ class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPa
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20.t,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 32.h,

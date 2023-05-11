@@ -37,7 +37,7 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10.t,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             SizedBox(
@@ -50,7 +50,7 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20.t,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             SizedBox(
@@ -285,10 +285,7 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                   fontFamily:
                                                                                       StringUtils.appFont,
                                                                                   fontSize: 16.t,
-                                                                                  color: Theme.of(context)
-                                                                                      .accentTextTheme
-                                                                                      .bodyText1!
-                                                                                      .color!),
+                                                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                               widgetBuilder: (context,
                                                                                   currentTimeRemaining) {
                                                                                 return currentTimeRemaining ==
@@ -390,11 +387,7 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                               fontWeight:
                                                                                                   FontWeight
                                                                                                       .w600,
-                                                                                              color: Theme.of(
-                                                                                                      context)
-                                                                                                  .accentTextTheme
-                                                                                                  .bodyText1!
-                                                                                                  .color!),
+                                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                                         ))
                                                                                     : Text(
                                                                                         S.of(context).resendIn(
@@ -407,11 +400,7 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                             fontWeight:
                                                                                                 FontWeight
                                                                                                     .w600,
-                                                                                            color: Theme.of(
-                                                                                                    context)
-                                                                                                .accentTextTheme
-                                                                                                .bodyText1!
-                                                                                                .color!),
+                                                                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                                       );
                                                                               },
                                                                             ),

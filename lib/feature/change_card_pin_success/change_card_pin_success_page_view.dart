@@ -46,7 +46,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                           Image.asset(
                             AssetUtils.line,
                             color: model.arguments.cardType == CardType.DEBIT
-                                ? Theme.of(context).accentColor.withOpacity(0.4)
+                                ? Theme.of(context).colorScheme.secondary.withOpacity(0.4)
                                 : AppColor.softRed,
                           ),
                           Align(
@@ -62,7 +62,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
                                       color: model.arguments.cardType == CardType.DEBIT
-                                          ? Theme.of(context).accentColor
+                                          ? Theme.of(context).colorScheme.secondary
                                           : Theme.of(context).primaryColorDark)),
                             ),
                           ),
@@ -87,7 +87,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                                   fontSize: 24.t,
                                   color: model.arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
-                                      : Theme.of(context).accentColor),
+                                      : Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                           SizedBox(
@@ -104,7 +104,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                                   fontSize: 14.t,
                                   color: model.arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
-                                      : Theme.of(context).accentColor),
+                                      : Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ],
@@ -120,10 +120,10 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                     buttonText: S.of(context).swipeToProceed,
                     textColor: model.arguments.cardType == CardType.DEBIT
                         ? Theme.of(context).primaryColorDark
-                        : Theme.of(context).accentColor,
+                        : Theme.of(context).colorScheme.secondary,
                     borderColor: model.arguments.cardType == CardType.DEBIT
                         ? Theme.of(context).primaryColorDark
-                        : Theme.of(context).accentColor,
+                        : Theme.of(context).colorScheme.secondary,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -139,7 +139,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                           fontFamily: StringUtils.appFont,
                           color: model.arguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
-                              : Theme.of(context).accentColor,
+                              : Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w400,
                           fontSize: 12.t,
                         ),

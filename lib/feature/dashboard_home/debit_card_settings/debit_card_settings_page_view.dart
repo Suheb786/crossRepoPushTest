@@ -195,7 +195,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
             Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
                 children: [
@@ -303,8 +303,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         inactiveToggleColor: AppColor.lightGrayishMagenta,
                                         inactiveTextFontWeight: FontWeight.w500,
                                         inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                        inactiveColor: Theme.of(context).accentColor,
+                                        activeColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                        inactiveColor: Theme.of(context).colorScheme.secondary,
                                       ),
                                     ),
                                   );

@@ -62,7 +62,7 @@ class RegisterStepTwoPageView extends BasePageViewWidget<RegisterStepTwoViewMode
                 S.of(context).incomeDetails,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 10.t,
                     fontWeight: FontWeight.w600),
               ),
@@ -84,7 +84,7 @@ class RegisterStepTwoPageView extends BasePageViewWidget<RegisterStepTwoViewMode
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 20.t,
                         fontWeight: FontWeight.w600),
                   ),

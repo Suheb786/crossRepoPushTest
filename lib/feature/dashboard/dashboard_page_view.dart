@@ -64,7 +64,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 32.t,
                                 fontWeight: FontWeight.w600,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ],
@@ -81,7 +81,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           fontFamily: StringUtils.appFont,
                           fontSize: 20.t,
                           fontWeight: FontWeight.w500,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   SizedBox(
@@ -92,8 +92,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     child: InformationText(
                       image: AssetUtils.informationSave,
                       title: S.of(context).informationSave,
-                      containerColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
+                      containerColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   // Padding(
@@ -101,8 +101,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   //   child: InformationText(
                   //     image: AssetUtils.lock,
                   //     title: S.of(context).saveEarningsDigitally,
-                  //     containerColor: Theme.of(context).accentColor,
-                  //     textColor: Theme.of(context).accentColor,
+                  //     containerColor: Theme.of(context).colorScheme.secondary,
+                  //     textColor: Theme.of(context).colorScheme.secondary,
                   //   ),
                   // ),
                   // SizedBox(
@@ -112,9 +112,9 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   //   child: InformationText(
                   //     image: AssetUtils.transactionHistory,
-                  //     containerColor: Theme.of(context).accentColor,
+                  //     containerColor: Theme.of(context).colorScheme.secondary,
                   //     title: S.of(context).sendMoneyToFriendAndFamily,
-                  //     textColor: Theme.of(context).accentColor,
+                  //     textColor: Theme.of(context).colorScheme.secondary,
                   //   ),
                   // ),
                   SizedBox(
@@ -123,8 +123,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   Center(
                     child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      borderColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
+                      borderColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   AppStreamBuilder<Resource<bool>>(
@@ -209,7 +209,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                               fontSize: 14.t,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                     ),

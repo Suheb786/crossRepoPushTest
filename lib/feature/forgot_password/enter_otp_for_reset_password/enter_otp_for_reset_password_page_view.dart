@@ -95,7 +95,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 16.t,
-                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
@@ -107,7 +107,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.t,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -115,7 +115,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14.t,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           );
                                   },
                                 ),

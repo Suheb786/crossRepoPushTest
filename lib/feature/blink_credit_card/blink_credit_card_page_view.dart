@@ -155,7 +155,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                       initialData: false,
                                       dataBuilder: (context, value) {
                                         return InkWell(
-                                          splashColor: Theme.of(context).accentColor,
+                                          splashColor: Theme.of(context).colorScheme.secondary,
                                           onTap: () {
                                             model.updateCheckBox(!value!);
                                           },
@@ -164,12 +164,12 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                             width: 40.w,
                                             decoration: BoxDecoration(
                                                 color: !value!
-                                                    ? Theme.of(context).accentColor
+                                                    ? Theme.of(context).colorScheme.secondary
                                                     : Theme.of(context).canvasColor,
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
                                                     color:
-                                                        Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                        Theme.of(context).textTheme.bodyMedium!.color!)),
                                             child: Center(
                                               child: Visibility(
                                                 visible: value,
@@ -204,7 +204,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                         : AppConstantsUtils
                                                             .CREDIT_CARD_TERMS_CONDITION_LINK_LIVE),
                                               style: TextStyle(
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                   fontSize: 12.t,
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w600),
@@ -226,10 +226,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                                     staticRouteContent:
                                                                         StaticRouteContent.CREDIT_BUREAU)),
                                                           style: TextStyle(
-                                                              color: Theme.of(context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color!,
+                                                              color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                               fontSize: 12.t,
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600),
@@ -263,8 +260,8 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                       child: Center(
                                         child: AnimatedButton(
                                           buttonText: S.of(context).swipeToProceed,
-                                          borderColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                          textColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                          textColor: Theme.of(context).textTheme.bodyMedium!.color!,
                                         ),
                                       ),
                                     ),

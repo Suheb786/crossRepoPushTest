@@ -24,7 +24,7 @@ class RequestMoneyQrGenerationPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).accentColor;
+    return Theme.of(context).colorScheme.secondary;
   }
 
   @override

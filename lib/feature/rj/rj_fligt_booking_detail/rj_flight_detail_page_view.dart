@@ -39,7 +39,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
                   dotsCount: pages.length,
-                  position: currentPage!.toDouble(),
+                  position: currentPage!,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -47,7 +47,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: Theme.of(context).accentColor,
+                      activeColor: Theme.of(context).colorScheme.secondary,
                       color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
@@ -65,7 +65,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                     Text(
                       S.of(context).bookFlight,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 10.t,
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600),
@@ -90,7 +90,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),

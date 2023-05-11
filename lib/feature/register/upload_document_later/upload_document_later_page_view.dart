@@ -44,7 +44,7 @@ class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLat
               //       spacing: EdgeInsets.symmetric(horizontal: 1),
               //       activeShape: RoundedRectangleBorder(
               //           borderRadius: BorderRadius.circular(5)),
-              //       activeColor: Theme.of(context).accentColor,
+              //       activeColor: Theme.of(context).colorScheme.secondary,
               //       color:
               //           Theme.of(context).primaryColorLight.withOpacity(0.3)),
               // ),
@@ -52,7 +52,7 @@ class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLat
                 S.of(context).uploadDocuments,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 10.t,
                     fontWeight: FontWeight.w600),
               ),
@@ -70,7 +70,7 @@ class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLat
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 20.t,
                         fontWeight: FontWeight.w600),
                   ),

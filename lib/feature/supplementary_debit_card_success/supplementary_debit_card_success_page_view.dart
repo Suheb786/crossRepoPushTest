@@ -41,7 +41,7 @@ class SupplementaryDebitCardSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color: Theme.of(context).accentColor.withOpacity(0.4),
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -53,7 +53,7 @@ class SupplementaryDebitCardSuccessPageView
                               ),
                               child: Center(
                                   child:
-                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ],

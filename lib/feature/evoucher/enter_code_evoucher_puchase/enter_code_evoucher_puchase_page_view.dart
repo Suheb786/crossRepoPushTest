@@ -30,7 +30,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
               S.of(context).eVouchers.toUpperCase(),
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 10,
                   fontWeight: FontWeight.w600),
             ),
@@ -48,7 +48,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
@@ -69,7 +69,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
@@ -134,7 +134,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                                               textStyle: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 16,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                               widgetBuilder: (context, currentTimeRemaining) {
                                                 return currentTimeRemaining == null
                                                     ? TextButton(
@@ -147,10 +147,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14,
                                                               fontWeight: FontWeight.w600,
-                                                              color: Theme.of(context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color!),
+                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                         ))
                                                     : Text(
                                                         S.of(context).resendIn(
@@ -159,10 +156,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                                                             fontFamily: StringUtils.appFont,
                                                             fontSize: 14,
                                                             fontWeight: FontWeight.w600,
-                                                            color: Theme.of(context)
-                                                                .accentTextTheme
-                                                                .bodyText1!
-                                                                .color!),
+                                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                       );
                                               },
                                             ),

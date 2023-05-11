@@ -44,7 +44,7 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
                     size: Size(MediaQuery.of(context).size.width / 6, 4),
                     spacing: EdgeInsets.symmetric(horizontal: 1),
                     activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                    activeColor: Theme.of(context).accentColor,
+                    activeColor: Theme.of(context).colorScheme.secondary,
                     color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
               ),
               SizedBox(
@@ -54,7 +54,7 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
                 S.of(context).videoCall,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 10.t,
                     fontWeight: FontWeight.w600),
               ),
@@ -77,7 +77,7 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 20.t,
                         fontWeight: FontWeight.w600),
                   ),

@@ -62,7 +62,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               margin: EdgeInsetsDirectional.zero,
                               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                               child: SingleChildScrollView(
@@ -110,7 +110,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                         padding: EdgeInsetsDirectional.only(top: 75.h, bottom: 31.h),
                                         child: AnimatedButton(
                                             buttonText: S.of(context).swipeToConfirm,
-                                            borderColor: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                            borderColor: Theme.of(context).textTheme.bodyMedium!.color!),
                                       )
                                     ],
                                   ),
@@ -185,7 +185,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                     S.of(context).deliveryIssue,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                         fontSize: 14.t,
                         fontWeight: FontWeight.w600),
                   ),

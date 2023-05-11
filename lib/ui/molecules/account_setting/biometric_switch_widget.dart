@@ -83,8 +83,8 @@ class BiometricSwitchWidget extends StatelessWidget {
           inactiveToggleColor: AppColor.lightGrayishMagenta,
           inactiveTextFontWeight: FontWeight.w500,
           inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-          activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-          inactiveColor: Theme.of(context).accentColor,
+          activeColor: Theme.of(context).textTheme.bodyMedium!.color!,
+          inactiveColor: Theme.of(context).colorScheme.secondary,
         ),
       ],
     );

@@ -34,7 +34,7 @@ class ExemptionFromFatcaReportingCodePageState extends BaseStatefulPage<
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Flexible(
@@ -44,7 +44,7 @@ class ExemptionFromFatcaReportingCodePageState extends BaseStatefulPage<
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Padding(

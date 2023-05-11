@@ -25,7 +25,7 @@ class AllContactPageView extends BasePageViewWidget<AllContactPageViewModel> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [

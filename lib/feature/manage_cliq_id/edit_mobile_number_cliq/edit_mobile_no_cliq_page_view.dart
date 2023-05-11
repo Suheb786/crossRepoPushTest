@@ -42,7 +42,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          matchTextDirection: true, color: Theme.of(context).accentColor),
+                          matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),
@@ -56,7 +56,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                             S.of(context).editCliqId,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -79,7 +79,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -102,7 +102,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context).colorScheme.secondary,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),

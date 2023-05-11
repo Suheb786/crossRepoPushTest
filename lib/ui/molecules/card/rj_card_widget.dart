@@ -79,7 +79,7 @@ class RjCardWidget extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                            color: Theme.of(context).textTheme.bodyMedium!.color!,
                             borderRadius: BorderRadius.circular(100.w)),
                         child: Center(
                           child: Text(
@@ -88,7 +88,7 @@ class RjCardWidget extends StatelessWidget {
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 14.t,
                                 fontWeight: FontWeight.w600,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ),

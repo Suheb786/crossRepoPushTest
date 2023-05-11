@@ -28,7 +28,7 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 8,
@@ -40,7 +40,7 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 32,
@@ -131,10 +131,7 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
                                                           activeTrackHeight: 0,
                                                           thumbRadius: 20,
                                                           inactiveTrackColor: Colors.transparent,
-                                                          thumbColor: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color)),
+                                                          thumbColor: Theme.of(context).textTheme.bodyMedium!.color!)),
                                                   child: SfSlider(
                                                     min: sliderLimitValues.minValue!,
                                                     max: sliderLimitValues.maxValue!,

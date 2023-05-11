@@ -52,7 +52,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                         children: [
                           Image.asset(AssetUtils.line,
                               color: model.manageCardPinArguments.cardType == CardType.DEBIT
-                                  ? Theme.of(context).accentColor.withOpacity(0.4)
+                                  ? Theme.of(context).colorScheme.secondary.withOpacity(0.4)
                                   : AppColor.softRed),
                           Align(
                             alignment: Alignment.center,
@@ -69,7 +69,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                                 AssetUtils.right,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).primaryColorDark
-                                    : Theme.of(context).accentColor,
+                                    : Theme.of(context).colorScheme.secondary,
                               )),
                             ),
                           ),
@@ -93,7 +93,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                                   fontWeight: FontWeight.w500,
                                   fontSize: 24.t,
                                   color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                      ? Theme.of(context).accentColor
+                                      ? Theme.of(context).colorScheme.secondary
                                       : Theme.of(context).textTheme.bodyText1!.color),
                             ),
                           ),
@@ -110,7 +110,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14.t,
                                   color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                      ? Theme.of(context).accentColor
+                                      ? Theme.of(context).colorScheme.secondary
                                       : Theme.of(context).textTheme.bodyText1!.color),
                             ),
                           ),
@@ -126,10 +126,10 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
                     textColor: model.manageCardPinArguments.cardType == CardType.CREDIT
-                        ? Theme.of(context).accentColor
+                        ? Theme.of(context).colorScheme.secondary
                         : Theme.of(context).textTheme.bodyText1!.color,
                     borderColor: model.manageCardPinArguments.cardType == CardType.CREDIT
-                        ? Theme.of(context).accentColor
+                        ? Theme.of(context).colorScheme.secondary
                         : Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   SizedBox(
@@ -145,7 +145,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).textTheme.bodyText1!.color,
                           fontWeight: FontWeight.w400,
                           fontSize: 12.t,

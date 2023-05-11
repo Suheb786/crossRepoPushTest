@@ -40,15 +40,16 @@ dependencies:
       url: https://github.com/TheAnkurPanchani/card_swiper.git
       ref: master
 
+#  flutter_localization: ^0.1.10
   flutter_riverpod: ^2.3.6
   dartz: ^0.10.1
   rxdart: ^0.27.7
   fluttertoast: ^8.2.1
   responsive_builder: ^0.6.4
   animated_theme_switcher: ^2.0.8
-  flutter_svg: ^2.0.5
+  flutter_svg: any
   responsive_framework: ^1.0.0
-  intl: any
+  intl: ^0.18.0
   flutter_svg_provider: any
   dots_indicator: ^3.0.0
   carousel_slider: ^4.2.1
@@ -93,7 +94,7 @@ dependencies:
   package_info_plus: "1.4.3+1"
 
   qr_flutter: ^4.0.0
-  syncfusion_flutter_pdfviewer: ^21.1.41
+  syncfusion_flutter_pdfviewer: ^21.2.4
 
 
 dependency_overrides:

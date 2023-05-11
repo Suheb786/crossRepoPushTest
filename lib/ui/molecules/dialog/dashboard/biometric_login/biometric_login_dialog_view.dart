@@ -71,7 +71,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                           boxShadow: [
                             BoxShadow(
                                 color: AppColor.black.withOpacity(0.32),

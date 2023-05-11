@@ -62,7 +62,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w700,
                         fontSize: 28.0.t),
                   ),
@@ -88,7 +88,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w500,
                     fontSize: 24.0.t),
               ),
@@ -100,7 +100,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14.0.t),
               ),
@@ -122,7 +122,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                    color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                 child: Column(
                   children: [
                     Row(
@@ -195,7 +195,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyMedium!.color!),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 11.0.w),
                       child: Text(
@@ -204,7 +204,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14.0.t,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                       ),
                     )
                   ],
@@ -216,8 +216,8 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
               padding: EdgeInsets.only(top: 76),
               child: AnimatedButton(
                 buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).accentColor,
-                textColor: Theme.of(context).accentColor,
+                borderColor: Theme.of(context).colorScheme.secondary,
+                textColor: Theme.of(context).colorScheme.secondary,
               ),
             ),
             InkWell(
@@ -228,7 +228,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                   S.of(context).toDashboard,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 12.0.t,
                       fontWeight: FontWeight.w600),
                 ),
@@ -246,7 +246,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                     ),
                   ),
                   Padding(
@@ -257,7 +257,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ],

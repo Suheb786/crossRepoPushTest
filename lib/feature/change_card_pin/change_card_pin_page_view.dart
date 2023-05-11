@@ -51,7 +51,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                                   fontFamily: StringUtils.appFont,
                                   color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
-                                      : Theme.of(context).accentColor,
+                                      : Theme.of(context).colorScheme.secondary,
                                   fontSize: 10.t,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -76,7 +76,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                                       fontFamily: StringUtils.appFont,
                                       color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                           ? Theme.of(context).primaryColorDark
-                                          : Theme.of(context).accentColor,
+                                          : Theme.of(context).colorScheme.secondary,
                                       fontSize: 20.t,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -102,7 +102,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                                           fontFamily: StringUtils.appFont,
                                           color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                               ? Theme.of(context).primaryColorDark
-                                              : Theme.of(context).accentColor,
+                                              : Theme.of(context).colorScheme.secondary,
                                           fontSize: 20.t,
                                           fontWeight: FontWeight.w600),
                                     ),

@@ -407,14 +407,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.0.t,
                                                                                 fontWeight: FontWeight.w600,
-                                                                                color: Theme.of(context)
-                                                                                    .accentTextTheme
-                                                                                    .bodyText1!
-                                                                                    .color),
-                                                                            cursorColor: Theme.of(context)
-                                                                                .accentTextTheme
-                                                                                .bodyText1!
-                                                                                .color,
+                                                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                            cursorColor: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                             controller:
                                                                                 model.addNickNameController,
                                                                             decoration: InputDecoration(
@@ -427,10 +421,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                   fontWeight: FontWeight.w600,
                                                                                   color: val!
                                                                                       ? Colors.transparent
-                                                                                      : Theme.of(context)
-                                                                                          .accentTextTheme
-                                                                                          .bodyText1!
-                                                                                          .color),
+                                                                                      : Theme.of(context).textTheme.bodyMedium!.color!),
                                                                               border: InputBorder.none,
                                                                               contentPadding: EdgeInsets.only(
                                                                                   bottom: 18.0.h),

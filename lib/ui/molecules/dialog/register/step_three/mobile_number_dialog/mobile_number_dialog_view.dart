@@ -180,9 +180,9 @@ class MobileNumberDialogView extends StatelessWidget {
                                           width: 57.0.w,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           child: AppSvg.asset(AssetUtils.tick,
-                                              color: Theme.of(context).accentColor),
+                                              color: Theme.of(context).colorScheme.secondary),
                                         ),
                                       ),
                                       InkWell(

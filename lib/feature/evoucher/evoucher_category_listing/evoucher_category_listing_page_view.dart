@@ -16,7 +16,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
       width: double.infinity,
       padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 40),
       decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: ListView.separated(
         itemBuilder: (context, index) {

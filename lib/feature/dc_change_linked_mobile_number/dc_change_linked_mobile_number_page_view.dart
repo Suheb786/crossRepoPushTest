@@ -45,7 +45,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                           fontFamily: StringUtils.appFont,
                           color: arguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
-                              : Theme.of(context).accentColor,
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
@@ -70,7 +70,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                               fontFamily: StringUtils.appFont,
                               color: arguments.cardType == CardType.DEBIT
                                   ? Theme.of(context).primaryColorDark
-                                  : Theme.of(context).accentColor,
+                                  : Theme.of(context).colorScheme.secondary,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
                         ),
@@ -97,7 +97,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                                   fontFamily: StringUtils.appFont,
                                   color: arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
-                                      : Theme.of(context).accentColor,
+                                      : Theme.of(context).colorScheme.secondary,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),
                             ),

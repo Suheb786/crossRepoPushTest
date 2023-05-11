@@ -139,7 +139,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                        color: Theme.of(context).textTheme.bodyMedium!.color!)),
                                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -172,9 +172,9 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           width: 57.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                           child: Center(
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                               ),
                             ),
                           ),

@@ -148,9 +148,9 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                       width: 57.w,
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                                       child:
-                                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                                     ),
                                   ),
                                   Padding(

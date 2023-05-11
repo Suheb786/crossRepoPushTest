@@ -32,7 +32,7 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
                   dotsCount: pages.length - 1,
-                  position: currentPage!.toDouble(),
+                  position: currentPage!,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -66,7 +66,7 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
                             S.of(context).notifyMe,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 10.t,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -85,7 +85,7 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 20.t,
                                     fontWeight: FontWeight.w600),
                               ),

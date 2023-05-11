@@ -74,7 +74,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 32,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                           SizedBox(
                             width: 4,
@@ -103,7 +103,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                       SizedBox(
                         height: 24,
@@ -115,7 +115,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w500,
                             fontSize: 24,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                       SizedBox(
                         height: 24,
@@ -123,7 +123,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                       Container(
                         padding: EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16), color: Theme.of(context).accentColor),
+                            borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.secondary),
                         child: Column(
                           children: [
                             ClipRRect(
@@ -216,8 +216,8 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                   children: [
                     AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).accentColor,
-                      borderColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).colorScheme.secondary,
+                      borderColor: Theme.of(context).colorScheme.secondary,
                     ),
                     SizedBox(
                       height: 5,
@@ -230,7 +230,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                         child: Text(
                           S.of(context).toViewVoucher,
                           style: TextStyle(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
                           ),

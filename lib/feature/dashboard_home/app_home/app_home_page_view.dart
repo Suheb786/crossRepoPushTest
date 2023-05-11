@@ -313,7 +313,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               child: ConvexAppBar(
                                                                 elevation: 0,
                                                                 style: TabStyle.fixedCircle,
-                                                                backgroundColor: Theme.of(context).accentColor,
+                                                                backgroundColor: Theme.of(context).colorScheme.secondary,
                                                                 items: [
                                                                   TabItem(
                                                                       icon: AppSvg.asset(AssetUtils.house),
@@ -378,10 +378,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                   height: 40,
                                                                   width: 104,
                                                                   decoration: BoxDecoration(
-                                                                      color: Theme.of(context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color,
+                                                                      color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                       borderRadius: BorderRadius.circular(20)),
                                                                   child: Center(
                                                                     child: Text(
@@ -390,7 +387,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           fontFamily: StringUtils.appFont,
                                                                           fontWeight: FontWeight.w600,
                                                                           fontSize: 14,
-                                                                          color: Theme.of(context).accentColor),
+                                                                          color: Theme.of(context).colorScheme.secondary),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -533,27 +530,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                   vertical: 2),
                                                                                           decoration: BoxDecoration(
                                                                                               color: Theme.of(context)
-                                                                                                  .accentColor,
+                                                                                                  .colorScheme.secondary,
                                                                                               borderRadius:
                                                                                                   BorderRadius
                                                                                                       .circular(14),
                                                                                               border: Border.all(
-                                                                                                  color: Theme.of(
-                                                                                                          context)
-                                                                                                      .accentTextTheme
-                                                                                                      .bodyText1!
-                                                                                                      .color!)),
+                                                                                                  color: Theme.of(context).textTheme.bodyMedium!.color!)),
                                                                                           child: Text(
                                                                                             S.of(context).confirm,
                                                                                             style: TextStyle(
                                                                                                 fontFamily:
                                                                                                     StringUtils
                                                                                                         .appFont,
-                                                                                                color: Theme.of(
-                                                                                                        context)
-                                                                                                    .accentTextTheme
-                                                                                                    .bodyText1!
-                                                                                                    .color,
+                                                                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                                                 fontSize: 14,
                                                                                                 fontWeight:
                                                                                                     FontWeight.w600),
@@ -700,17 +689,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                 decoration: BoxDecoration(
                                                                                                     color: Theme.of(
                                                                                                             context)
-                                                                                                        .accentColor,
+                                                                                                        .colorScheme.secondary,
                                                                                                     borderRadius:
                                                                                                         BorderRadius
                                                                                                             .circular(
                                                                                                                 14),
                                                                                                     border: Border.all(
-                                                                                                        color: Theme.of(
-                                                                                                                context)
-                                                                                                            .accentTextTheme
-                                                                                                            .bodyText1!
-                                                                                                            .color!)),
+                                                                                                        color: Theme.of(context).textTheme.bodyMedium!.color!)),
                                                                                                 child: Text(
                                                                                                   S
                                                                                                       .of(context)
@@ -719,11 +704,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                                       fontFamily:
                                                                                                           StringUtils
                                                                                                               .appFont,
-                                                                                                      color: Theme.of(
-                                                                                                              context)
-                                                                                                          .accentTextTheme
-                                                                                                          .bodyText1!
-                                                                                                          .color,
+                                                                                                      color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                                                                       fontSize: 14,
                                                                                                       fontWeight:
                                                                                                           FontWeight

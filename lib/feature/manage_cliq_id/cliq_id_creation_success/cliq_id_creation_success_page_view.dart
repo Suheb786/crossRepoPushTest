@@ -54,7 +54,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w500,
                     fontSize: 24.t),
               ),
@@ -63,7 +63,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               padding: EdgeInsetsDirectional.only(top: 40.h, end: 24.w, start: 24.w),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-                decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -116,7 +116,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyMedium!.color!),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 11.w),
                         child: Text(
@@ -125,7 +125,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 14.t,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                         ),
                       )
                     ],
@@ -136,8 +136,8 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
             Spacer(),
             AnimatedButton(
               buttonText: S.of(context).swipeToProceed,
-              borderColor: Theme.of(context).accentColor,
-              textColor: Theme.of(context).accentColor,
+              borderColor: Theme.of(context).colorScheme.secondary,
+              textColor: Theme.of(context).colorScheme.secondary,
             ),
             Padding(
               padding: EdgeInsets.only(top: 9.h, bottom: 16.h),
@@ -145,7 +145,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                 S.of(context).toManageCliq,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 12.t,
                     fontWeight: FontWeight.w600),
               ),

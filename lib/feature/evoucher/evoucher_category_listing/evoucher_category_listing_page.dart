@@ -33,14 +33,14 @@ class EVoucherCategoryListingPageState
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 24.0),
               child: AppSvg.asset(AssetUtils.leftArrow,
-                  matchTextDirection: true, color: Theme.of(context).accentColor),
+                  matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
             ),
           ),
 
           ///TODO:pass category name here
           Text(
             'Games',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 18.0),

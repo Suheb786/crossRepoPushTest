@@ -75,7 +75,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                         fontFamily: StringUtils.appFont,
                         fontSize: 20.t,
                         fontWeight: FontWeight.w500,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 SizedBox(
@@ -92,8 +92,8 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                   child: Center(
                     child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      borderColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
+                      borderColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ),
@@ -111,7 +111,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                         fontSize: 14.t,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 SizedBox(

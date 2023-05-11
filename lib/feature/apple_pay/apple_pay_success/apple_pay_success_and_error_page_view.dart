@@ -84,7 +84,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 24.t,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                           SizedBox(
@@ -99,7 +99,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14.t,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                           Visibility(
@@ -113,7 +113,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(AssetUtils.wifiPay,
-                                        height: 60.h, color: Theme.of(context).accentColor),
+                                        height: 60.h, color: Theme.of(context).colorScheme.secondary),
                                     SizedBox(
                                       width: 26.w,
                                     ),
@@ -137,8 +137,8 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).accentColor,
-                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).colorScheme.secondary,
+                    borderColor: Theme.of(context).colorScheme.secondary,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -152,7 +152,7 @@ class ApplePaySuccessAndErrorPageView extends BasePageViewWidget<ApplePaySuccess
                         S.of(context).toDashboard,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w400,
                           fontSize: 12.t,
                         ),

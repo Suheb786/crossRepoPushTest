@@ -50,7 +50,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w700,
                         fontSize: 32.t),
                   ),
@@ -76,7 +76,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w500,
                     fontSize: 24.t),
               ),
@@ -307,8 +307,8 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               padding: EdgeInsets.only(top: 76.h),
               child: AnimatedButton(
                 buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).accentColor,
-                textColor: Theme.of(context).accentColor,
+                borderColor: Theme.of(context).colorScheme.secondary,
+                textColor: Theme.of(context).colorScheme.secondary,
               ),
             ),
             InkWell(
@@ -319,7 +319,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                   S.of(context).toBookingSummary,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 12.t,
                       fontWeight: FontWeight.w500),
                 ),

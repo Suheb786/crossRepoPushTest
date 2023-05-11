@@ -109,7 +109,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                       : MediaQuery.of(context).viewInsets.bottom - 48.h),
                               child: SingleChildScrollView(
                                 child: Container(
-                                  decoration: BoxDecoration(color: Theme.of(context).accentColor),
+                                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
                                   padding: EdgeInsets.only(top: 38.h),
                                   child: AppStreamBuilder<SliderLimitValues>(
                                       stream: model.sliderValueStream,
@@ -178,10 +178,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                                 activeTrackHeight: 0,
                                                                 thumbRadius: 20.w,
                                                                 inactiveTrackColor: Colors.transparent,
-                                                                thumbColor: Theme.of(context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color)),
+                                                                thumbColor: Theme.of(context).textTheme.bodyMedium!.color!)),
                                                         child: SfSlider(
                                                           min: sliderLimitValues.minValue!,
                                                           max: sliderLimitValues.maxValue!,
@@ -294,8 +291,8 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                             ),
                                             AnimatedButton(
                                               buttonText: S.of(context).swipeToProceed,
-                                              borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                              textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                              borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                              textColor: Theme.of(context).textTheme.bodyMedium!.color!,
                                             ),
                                             SizedBox(height: 28.h),
                                           ],

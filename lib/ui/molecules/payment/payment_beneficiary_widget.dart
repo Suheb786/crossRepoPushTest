@@ -42,7 +42,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                           fontSize: 20.0.t,
                           color: transferEnum == TransferEnum.send
                               ? Theme.of(context).primaryTextTheme.bodyText1!.color
-                              : Theme.of(context).accentColor),
+                              : Theme.of(context).colorScheme.secondary),
                     ),
                   )),
         Padding(
@@ -56,7 +56,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                 fontFamily: StringUtils.appFont,
                 overflow: TextOverflow.ellipsis,
                 color: transferEnum == TransferEnum.send
-                    ? Theme.of(context).accentColor
+                    ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).primaryColorDark,
                 fontSize: 9,
                 fontWeight: FontWeight.w600),

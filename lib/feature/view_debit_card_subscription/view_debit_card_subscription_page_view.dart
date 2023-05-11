@@ -37,7 +37,7 @@ class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCard
                         fontSize: 14,
                         color: model.arguments.cardType == CardType.DEBIT
                             ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).accentColor),
+                            : Theme.of(context).colorScheme.secondary),
                   ),
                 ),
               ),
@@ -47,7 +47,7 @@ class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCard
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(

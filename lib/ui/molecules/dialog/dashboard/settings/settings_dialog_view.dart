@@ -74,8 +74,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 0
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -91,7 +91,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.paymentCircle,
                                             color: currentStep == 0
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).billsAndPayments,
@@ -100,7 +100,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 0
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -119,8 +119,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 1
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -136,7 +136,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.activityCircle,
                                             color: currentStep == 1
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).activity,
@@ -145,7 +145,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 1
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -164,8 +164,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 2
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -181,7 +181,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.contacts,
                                             color: currentStep == 2
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).manageContactsSettings,
@@ -190,7 +190,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 2
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -209,8 +209,8 @@ class SettingsDialogView extends StatelessWidget {
                                   width: 112.0.w,
                                   decoration: BoxDecoration(
                                       color: currentStep == 3
-                                          ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                          : Theme.of(context).accentColor,
+                                          ? Theme.of(context).textTheme.bodyMedium!.color!
+                                          : Theme.of(context).colorScheme.secondary,
                                       borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -239,7 +239,7 @@ class SettingsDialogView extends StatelessWidget {
                                                                 fontWeight: FontWeight.w700,
                                                                 fontSize: 18.0.t,
                                                                 color: currentStep == 3
-                                                                    ? Theme.of(context).accentColor
+                                                                    ? Theme.of(context).colorScheme.secondary
                                                                     : Theme.of(context).primaryColorDark),
                                                           );
                                                         }),
@@ -259,7 +259,7 @@ class SettingsDialogView extends StatelessWidget {
                                             fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             color: currentStep == 3
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark,
                                             fontSize: 12.0.t),
                                       )
@@ -292,8 +292,8 @@ class SettingsDialogView extends StatelessWidget {
                                       width: 112.0.w,
                                       decoration: BoxDecoration(
                                           color: currentStep == 4
-                                              ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                              : Theme.of(context).accentColor,
+                                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                                              : Theme.of(context).colorScheme.secondary,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -310,7 +310,7 @@ class SettingsDialogView extends StatelessWidget {
                                                   border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                               child: AppSvg.asset(AssetUtils.logout,
                                                   color: currentStep == 4
-                                                      ? Theme.of(context).accentColor
+                                                      ? Theme.of(context).colorScheme.secondary
                                                       : Theme.of(context).primaryColorDark)),
                                           Text(
                                             S.of(context).logout,
@@ -319,7 +319,7 @@ class SettingsDialogView extends StatelessWidget {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 color: currentStep == 4
-                                                    ? Theme.of(context).accentColor
+                                                    ? Theme.of(context).colorScheme.secondary
                                                     : Theme.of(context).primaryColorDark,
                                                 fontSize: 12.0.t),
                                           )
@@ -346,8 +346,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 0
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -363,7 +363,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.paymentCircle,
                                             color: currentStep == 0
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).billsAndPayments,
@@ -372,7 +372,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 0
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -391,8 +391,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 1
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -408,7 +408,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.activityCircle,
                                             color: currentStep == 1
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).activity,
@@ -417,7 +417,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 1
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -436,8 +436,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 2
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -453,7 +453,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.contacts,
                                             color: currentStep == 2
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).manageContactsSettings,
@@ -462,7 +462,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 2
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -483,8 +483,8 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 3
-                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                        : Theme.of(context).accentColor,
+                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -500,7 +500,7 @@ class SettingsDialogView extends StatelessWidget {
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                         child: AppSvg.asset(AssetUtils.cliqLogoSvg,
                                             color: currentStep == 3
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark)),
                                     Text(
                                       S.of(context).manageCliqIdRoute,
@@ -509,7 +509,7 @@ class SettingsDialogView extends StatelessWidget {
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 3
-                                              ? Theme.of(context).accentColor
+                                              ? Theme.of(context).colorScheme.secondary
                                               : Theme.of(context).primaryColorDark,
                                           fontSize: 12.0.t),
                                     )
@@ -528,8 +528,8 @@ class SettingsDialogView extends StatelessWidget {
                                   width: 112.0.w,
                                   decoration: BoxDecoration(
                                       color: currentStep == 4
-                                          ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                          : Theme.of(context).accentColor,
+                                          ? Theme.of(context).textTheme.bodyMedium!.color!
+                                          : Theme.of(context).colorScheme.secondary,
                                       borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -559,7 +559,7 @@ class SettingsDialogView extends StatelessWidget {
                                                                 fontWeight: FontWeight.w700,
                                                                 fontSize: 18.0.t,
                                                                 color: currentStep == 4
-                                                                    ? Theme.of(context).accentColor
+                                                                    ? Theme.of(context).colorScheme.secondary
                                                                     : Theme.of(context).primaryColorDark),
                                                           );
                                                         }),
@@ -579,7 +579,7 @@ class SettingsDialogView extends StatelessWidget {
                                             fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             color: currentStep == 4
-                                                ? Theme.of(context).accentColor
+                                                ? Theme.of(context).colorScheme.secondary
                                                 : Theme.of(context).primaryColorDark,
                                             fontSize: 12.0.t),
                                       )
@@ -612,8 +612,8 @@ class SettingsDialogView extends StatelessWidget {
                                       width: 112.0.w,
                                       decoration: BoxDecoration(
                                           color: currentStep == 5
-                                              ? Theme.of(context).accentTextTheme.bodyText1!.color
-                                              : Theme.of(context).accentColor,
+                                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                                              : Theme.of(context).colorScheme.secondary,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -630,7 +630,7 @@ class SettingsDialogView extends StatelessWidget {
                                                   border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                               child: AppSvg.asset(AssetUtils.logout,
                                                   color: currentStep == 5
-                                                      ? Theme.of(context).accentColor
+                                                      ? Theme.of(context).colorScheme.secondary
                                                       : Theme.of(context).primaryColorDark)),
                                           Text(
                                             S.of(context).logout,
@@ -639,7 +639,7 @@ class SettingsDialogView extends StatelessWidget {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 color: currentStep == 5
-                                                    ? Theme.of(context).accentColor
+                                                    ? Theme.of(context).colorScheme.secondary
                                                     : Theme.of(context).primaryColorDark,
                                                 fontSize: 12.0.t),
                                           )
@@ -693,7 +693,7 @@ class SettingsDialogView extends StatelessWidget {
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).accentColor),
+                                child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).colorScheme.secondary),
                               ),
                               SizedBox(
                                 height: 50.0.h,

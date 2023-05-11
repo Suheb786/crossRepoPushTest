@@ -64,7 +64,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12.0.t,
-                                    color: Theme.of(context).accentColor))),
+                                    color: Theme.of(context).colorScheme.secondary))),
                         beneficiaries!.length > 0
                             ? Column(
                                 children: [
@@ -109,7 +109,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                             padding:
                                                 EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
                                             decoration: BoxDecoration(
-                                                color: Theme.of(context).accentColor,
+                                                color: Theme.of(context).colorScheme.secondary,
                                                 borderRadius: BorderRadius.circular(20.w)),
                                             child: Text(
                                               S.of(context).seeAllContacts,
@@ -117,7 +117,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ),
                                           ),
                                         ),
@@ -148,7 +148,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 12.0.t,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context).colorScheme.secondary,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),

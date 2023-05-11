@@ -77,7 +77,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(200),
-                                        border: Border.all(color: Theme.of(context).accentColor, width: 1)),
+                                        border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 1)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<LanguageEnum>(
                                         value: selectedLanguage,
@@ -90,7 +90,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                     e.fromLanguage(),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        color: Theme.of(context).accentColor,
+                                                        color: Theme.of(context).colorScheme.secondary,
                                                         fontWeight: FontWeight.w500,
                                                         fontSize: 14.0.t),
                                                   ),
@@ -123,7 +123,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontSize: 14.0.t,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -527,7 +527,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                                       FocusScope.of(context).unfocus();
                                                                                                                       model.checkBiometric();
                                                                                                                     },
-                                                                                                                    child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                                                    child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                                                                   ),
                                                                                                                 );
                                                                                                               });
@@ -636,7 +636,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     .w500,
                                                                                             color: Theme.of(
                                                                                                     context)
-                                                                                                .accentColor),
+                                                                                                .colorScheme.secondary),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -662,10 +662,10 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     .swipeToProceed,
                                                                                                 borderColor: Theme.of(
                                                                                                         context)
-                                                                                                    .accentColor,
+                                                                                                    .colorScheme.secondary,
                                                                                                 textColor: Theme.of(
                                                                                                         context)
-                                                                                                    .accentColor,
+                                                                                                    .colorScheme.secondary,
                                                                                               ),
                                                                                             ),
                                                                                           );
@@ -731,7 +731,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.0.t,
-                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                            color: Theme.of(context).textTheme.bodyMedium!.color!,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500),
                       )),

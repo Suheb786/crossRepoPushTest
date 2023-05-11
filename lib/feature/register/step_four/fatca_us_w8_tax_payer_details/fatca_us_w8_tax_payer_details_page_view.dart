@@ -277,10 +277,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                       S.of(context).whatIsTaxTreatyBenefits,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
-                                                          color: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color,
+                                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                                           fontSize: 12.t,
                                                           fontWeight: FontWeight.w600),
                                                     ),

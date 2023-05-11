@@ -206,7 +206,7 @@ class TempReturnButton extends StatelessWidget {
             ),
             Card(
               margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               child: ListView.separated(
                 physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
@@ -397,7 +397,7 @@ class TempReturnButton extends StatelessWidget {
                               StringUtils.getFirstInitials("Shakila"),
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14.0.t),
                             ))),

@@ -485,7 +485,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               : (model.payPostPaidBillsDataList.any((item) =>
                                                       item.isChecked == true &&
                                                       !isDisabledConditions(context, model, item)))
-                                                  ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                                                  ? Theme.of(context).textTheme.bodyMedium!.color!
                                                   : AppColor.very_dark_gray1.withOpacity(0.5),
                                         ),
                                         child: Center(

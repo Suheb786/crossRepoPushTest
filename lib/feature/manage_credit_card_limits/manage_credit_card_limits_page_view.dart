@@ -73,7 +73,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontSize: 13,
                           ),
                         ),
@@ -440,7 +440,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100),
-                                          color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                         ),
                                         child: Center(
                                           child: Text(S.of(context).saveChanges,
@@ -449,7 +449,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,
-                                                  color: Theme.of(context).accentColor)),
+                                                  color: Theme.of(context).colorScheme.secondary)),
                                         ),
                                       ),
                                     ),

@@ -35,7 +35,7 @@ class DcSettingCardDeliveryPageView extends BasePageViewWidget<DcSettingCardDeli
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
                   dotsCount: pages.length,
-                  position: currentPage!.toDouble(),
+                  position: currentPage!,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

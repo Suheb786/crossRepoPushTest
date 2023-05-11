@@ -49,7 +49,7 @@ class CreditCardVerificationSuccessPageView
                           color: AppColor.vividYellow,
                         ),
                         child: Center(
-                            child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                            child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                       ),
                     ),
                   ],
@@ -61,7 +61,7 @@ class CreditCardVerificationSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w800,
                         fontSize: 24),
                   ),
@@ -74,7 +74,7 @@ class CreditCardVerificationSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w500,
                         fontSize: 16),
                   ),
@@ -83,8 +83,8 @@ class CreditCardVerificationSuccessPageView
                   padding: EdgeInsets.only(top: 285),
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).colorScheme.secondary,
+                    textColor: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 InkWell(
@@ -99,7 +99,7 @@ class CreditCardVerificationSuccessPageView
                       S.of(context).toDashboard,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),
                     ),

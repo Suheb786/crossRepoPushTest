@@ -72,8 +72,8 @@ class InformationDialogView extends StatelessWidget {
                           height: 57.h,
                           width: 57.w,
                           decoration:
-                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(

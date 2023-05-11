@@ -135,7 +135,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 24.t,
-                                                  color: Theme.of(context).accentColor),
+                                                  color: Theme.of(context).colorScheme.secondary),
                                             ),
                                             SizedBox(
                                               height: 16.h,

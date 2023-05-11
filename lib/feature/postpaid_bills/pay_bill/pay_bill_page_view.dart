@@ -42,7 +42,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                 debugPrint("currentPage:$currentPage");
                 return DotsIndicator(
                   dotsCount: pages.length,
-                  position: currentPage!.toDouble(),
+                  position: currentPage!,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -50,7 +50,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: Theme.of(context).accentColor,
+                      activeColor: Theme.of(context).colorScheme.secondary,
                       color: AppColor.very_dark_gray1.withOpacity(0.5)),
                 );
               },
@@ -68,7 +68,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                     Text(
                       S.of(context).payBill,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 10.t,
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600),
@@ -95,7 +95,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),

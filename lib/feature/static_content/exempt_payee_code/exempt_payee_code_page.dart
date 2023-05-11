@@ -33,13 +33,13 @@ class ExemptPayeeCodePageState extends BaseStatefulPage<ExemptPayeeCodePageViewM
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Text(
               S.of(context).exemptPayeeCode,
               style:
-                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 18.0),

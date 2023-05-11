@@ -33,14 +33,14 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true, color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Text(
               S.of(context).manageSettlement,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w600,
                   fontSize: 14.t),
             ),
@@ -58,7 +58,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
         Expanded(
             child: Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
           child: Column(
             children: [
@@ -71,7 +71,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
               //       color: AppColor.whiteGray),
               // ),
               Card(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 margin: EdgeInsets.all(24),
                 child: Column(children: [
                   IgnorePointer(

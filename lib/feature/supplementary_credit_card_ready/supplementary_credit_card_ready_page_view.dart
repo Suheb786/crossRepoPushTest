@@ -68,7 +68,7 @@ class SupplementaryCreditCardReadyPageView
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w500,
                           fontSize: 24,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                     SizedBox(
                       height: 16,
@@ -77,7 +77,7 @@ class SupplementaryCreditCardReadyPageView
                       padding: const EdgeInsets.symmetric(horizontal: 48),
                       child: Row(
                         children: [
-                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           SizedBox(
                             width: 16,
                           ),
@@ -89,7 +89,7 @@ class SupplementaryCreditCardReadyPageView
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ],
@@ -100,7 +100,7 @@ class SupplementaryCreditCardReadyPageView
                       padding: const EdgeInsets.symmetric(horizontal: 48),
                       child: Row(
                         children: [
-                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           SizedBox(
                             width: 16,
                           ),
@@ -112,7 +112,7 @@ class SupplementaryCreditCardReadyPageView
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ],
@@ -126,8 +126,8 @@ class SupplementaryCreditCardReadyPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).accentColor,
-                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).colorScheme.secondary,
+                    borderColor: Theme.of(context).colorScheme.secondary,
                   ),
                   SizedBox(
                     height: 5,
@@ -141,7 +141,7 @@ class SupplementaryCreditCardReadyPageView
                         S.of(context).toDashboard,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),

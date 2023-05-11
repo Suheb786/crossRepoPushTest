@@ -58,7 +58,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                       data!,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w700,
                           fontSize: 32.t),
                     )),
@@ -66,7 +66,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
               S.of(context).callHasEnded,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w500,
                   fontSize: 24.t),
             ),
@@ -77,7 +77,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   height: 1.5,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w600,
                   fontSize: 14.t),
             ),
@@ -86,8 +86,8 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
               children: [
                 AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
-                  textColor: Theme.of(context).accentColor,
-                  borderColor: Theme.of(context).accentColor,
+                  textColor: Theme.of(context).colorScheme.secondary,
+                  borderColor: Theme.of(context).colorScheme.secondary,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 14.0.h),
@@ -95,7 +95,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                     S.of(context).toDashboard,
                     style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w500,
                       fontSize: 12.t,
                     ),

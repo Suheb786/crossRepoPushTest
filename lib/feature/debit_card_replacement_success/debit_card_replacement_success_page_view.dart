@@ -50,7 +50,7 @@ class DebitCardReplacementSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color: Theme.of(context).accentColor.withOpacity(0.4),
+                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -62,7 +62,7 @@ class DebitCardReplacementSuccessPageView
                               ),
                               child: Center(
                                   child:
-                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ],
@@ -109,8 +109,8 @@ class DebitCardReplacementSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                    borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -124,7 +124,7 @@ class DebitCardReplacementSuccessPageView
                         S.of(context).toDashboard,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                           fontWeight: FontWeight.w500,
                           fontSize: 12.t,
                         ),

@@ -48,13 +48,13 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                 child: Padding(
                   padding: EdgeInsetsDirectional.only(start: 24.0),
                   child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true, color: Theme.of(context).accentColor),
+                      matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
               Text(
                 S.of(context).eVouchers,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 18.0),

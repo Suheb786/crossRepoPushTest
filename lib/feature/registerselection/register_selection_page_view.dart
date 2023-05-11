@@ -38,7 +38,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
               padding: EdgeInsets.only(left: 128.0.w, right: 128.0.w, bottom: 8.0.h, top: 44.0.h),
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
               child: Container(
                 height: 4.0.h,
@@ -59,7 +59,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontSize: 32.0.t,
                             fontWeight: FontWeight.w600),
                       ),
@@ -85,7 +85,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                             width: double.maxFinite,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
-                              color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                              color: Theme.of(context).textTheme.bodyMedium!.color!,
                             ),
                             child: Center(
                               child: Text(S.of(context).registerViaEmail,
@@ -94,7 +94,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                                       fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 1,
-                                      color: Theme.of(context).accentColor)),
+                                      color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ),
@@ -107,7 +107,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                             children: <Widget>[
                               Expanded(
                                 child: AppDivider(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   indent: 0,
                                   endIndent: 12.w,
                                 ),
@@ -116,12 +116,12 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                                 S.of(context).orContinueWith,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 12.t),
                               ),
                               Expanded(
                                 child: AppDivider(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   endIndent: 0,
                                   indent: 12.w,
                                 ),
@@ -163,7 +163,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     letterSpacing: 1,
                     fontWeight: FontWeight.w500),
               ),

@@ -68,7 +68,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                               S.of(context).voiceChat,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
+                                                  color: Theme.of(context).colorScheme.secondary,
                                                   fontSize: 10.t,
                                                   fontWeight: FontWeight.w600),
                                             ),
@@ -87,7 +87,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
-                                                      color: Theme.of(context).accentColor,
+                                                      color: Theme.of(context).colorScheme.secondary,
                                                       fontSize: 20.t,
                                                       fontWeight: FontWeight.w600),
                                                 ),

@@ -414,7 +414,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
                                         )),
                                     SizedBox(
                                       height: 32.h,

@@ -47,7 +47,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontSize: 14.0.t,
                       fontWeight: FontWeight.w600),
                 ),

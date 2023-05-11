@@ -114,7 +114,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 24.t,
-                                      color: Theme.of(context).accentColor),
+                                      color: Theme.of(context).colorScheme.secondary),
                                 ),
                                 SizedBox(
                                   height: 24.h,
@@ -128,7 +128,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14.t,
-                                        color: Theme.of(context).accentColor),
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                               ],
@@ -142,8 +142,8 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                       children: [
                         AnimatedButton(
                           buttonText: S.of(context).swipeToProceed,
-                          textColor: Theme.of(context).accentColor,
-                          borderColor: Theme.of(context).accentColor,
+                          textColor: Theme.of(context).colorScheme.secondary,
+                          borderColor: Theme.of(context).colorScheme.secondary,
                         ),
                         SizedBox(
                           height: 5.h,
@@ -157,7 +157,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                               S.of(context).toDashboard,
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.t,
                               ),

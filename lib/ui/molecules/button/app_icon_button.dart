@@ -19,7 +19,7 @@ class AppIconButton extends StatelessWidget {
       child: Container(
         height: height ?? 56.h,
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(100),
           border: Border.all(color: AppColor.veryLightGray2, width: 1),
         ),

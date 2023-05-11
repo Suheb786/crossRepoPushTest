@@ -225,10 +225,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
                                                                       fontSize: 14.t,
-                                                                      color: Theme.of(context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color),
+                                                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                 ))
                                                             : Text(
                                                                 S.of(context).estimatedTime(
@@ -237,10 +234,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                                     fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontSize: 14.t,
-                                                                    color: Theme.of(context)
-                                                                        .accentTextTheme
-                                                                        .bodyText1!
-                                                                        .color),
+                                                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
                                                                 textAlign: TextAlign.center,
                                                               );
                                                       },

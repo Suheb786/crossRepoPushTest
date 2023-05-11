@@ -138,7 +138,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 16,
-                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
@@ -150,7 +150,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
-                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -158,7 +158,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           );
                                   },
                                 ),

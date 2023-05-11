@@ -135,7 +135,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 20.t,
-                                        color: Theme.of(context).accentColor),
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                         ),
@@ -164,7 +164,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                           padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: AppColor.whiteGray)),
                             padding:
@@ -226,7 +226,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 12.t,
                                                 fontWeight: FontWeight.w700,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           ),
                                         ),
                                       )

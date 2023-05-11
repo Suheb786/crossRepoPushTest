@@ -62,7 +62,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     )),
                 Padding(
@@ -80,7 +80,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                            color: Theme.of(context).textTheme.bodyMedium!.color!,
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
@@ -89,7 +89,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 14.0.t,
                                 fontWeight: FontWeight.w600,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ),

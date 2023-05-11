@@ -25,7 +25,7 @@ class ConvertPurchaseToInstallmentsPageView
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 8,
@@ -37,7 +37,7 @@ class ConvertPurchaseToInstallmentsPageView
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
-                color: Theme.of(context).accentColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(
             height: 32,
@@ -119,7 +119,7 @@ class ConvertPurchaseToInstallmentsPageView
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,7 +215,7 @@ class ConvertPurchaseToInstallmentsPageView
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +311,7 @@ class ConvertPurchaseToInstallmentsPageView
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

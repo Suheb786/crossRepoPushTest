@@ -36,7 +36,7 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
                 children: [
                   Image.asset(
                     AssetUtils.line,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   Align(
                     alignment: Alignment.center,

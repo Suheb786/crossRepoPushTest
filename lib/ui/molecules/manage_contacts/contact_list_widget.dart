@@ -42,7 +42,7 @@ class ContactListWidget extends StatelessWidget {
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 14.t,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
               SizedBox(

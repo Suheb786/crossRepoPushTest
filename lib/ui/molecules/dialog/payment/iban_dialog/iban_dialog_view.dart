@@ -30,7 +30,7 @@ class IbanDialogView extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                    color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                 padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -57,8 +57,8 @@ class IbanDialogView extends StatelessWidget {
                           width: 57,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                     )

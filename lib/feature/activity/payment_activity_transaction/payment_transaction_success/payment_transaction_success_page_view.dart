@@ -121,7 +121,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyMedium!.color!),
                     Padding(
                       padding: EdgeInsetsDirectional.only(start: 11.0.w),
                       child: Text(
@@ -130,7 +130,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14.0.t,
-                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            color: Theme.of(context).textTheme.bodyMedium!.color!),
                       ),
                     )
                   ],
@@ -172,7 +172,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.0.t,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                          color: Theme.of(context).textTheme.bodyMedium!.color!),
                     ),
                   ),
                   Padding(

@@ -113,8 +113,8 @@ class CliqInformationDialogView extends StatelessWidget {
                                     height: 57.h,
                                     width: 57.h,
                                     decoration: BoxDecoration(
-                                        shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                                    child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                                        shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                    child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                               );

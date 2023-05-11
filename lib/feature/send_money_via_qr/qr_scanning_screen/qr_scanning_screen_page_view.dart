@@ -80,7 +80,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                     });
                   },
                   overlay: QrScannerOverlayShape(
-                      borderColor: Theme.of(context).accentColor,
+                      borderColor: Theme.of(context).colorScheme.secondary,
                       borderRadius: 16,
                       borderLength: 125,
                       //overlayColor: AppColor.very_dark_blue.withOpacity(0.9),
@@ -110,7 +110,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   Text(
                     S.of(context).payViaQR,
                     style: TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                        fontSize: 24, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
                   ),
                   SizedBox(height: 8),
                   Padding(
@@ -119,7 +119,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                       S.of(context).payViaQRDesc,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).accentColor),
+                          fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   SizedBox(height: 50),

@@ -96,7 +96,7 @@ class CreditConfirmationPaymentActivityPageView
                                           model.creditConfirmationArgument.crediterDP ?? "",
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).accentColor,
+                                              color: Theme.of(context).colorScheme.secondary,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 14.0.t),
                                         ),

@@ -99,7 +99,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         S.of(context).cardFrozen,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            color: Theme.of(context).accentColor.withOpacity(0.5),
+                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                                             fontSize: 14.0.t,
                                             fontWeight: FontWeight.w600),
                                       ),
@@ -131,7 +131,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.0.t,
-                                                color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
                                           ),
                                         ),
                                       )
@@ -221,7 +221,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
@@ -231,7 +231,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             S.of(context).payBack,
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).accentColor,
+                                              color: Theme.of(context).colorScheme.secondary,
                                               fontSize: 14.0.t,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -248,7 +248,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               widget.creditCard.paymentDueAmount.toString(),
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor,
+                                                  color: Theme.of(context).colorScheme.secondary,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 20.0.t),
                                             ),
@@ -258,7 +258,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 S.of(context).JOD,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor.withOpacity(0.5),
+                                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                                                     fontSize: 14.0.t,
                                                     fontWeight: FontWeight.w700),
                                               ),
@@ -284,7 +284,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                     : "-",
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
+                                                    color: Theme.of(context).colorScheme.secondary,
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 10.0.t),
                                               ),
@@ -303,7 +303,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             widget.creditCard.paymentDueAmount.toString(),
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentColor,
+                                                color: Theme.of(context).colorScheme.secondary,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20.0.t),
                                           ),
@@ -313,7 +313,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               S.of(context).JOD,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).accentColor.withOpacity(0.5),
+                                                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                                                   fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w700),
                                             ),
@@ -338,7 +338,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                     : "-",
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor,
+                                                    color: Theme.of(context).colorScheme.secondary,
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 10.0.t),
                                               ),
@@ -360,7 +360,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
@@ -370,7 +370,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             S.of(context).payBack,
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              color: Theme.of(context).accentColor,
+                                              color: Theme.of(context).colorScheme.secondary,
                                               fontSize: 14.0.t,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -420,7 +420,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               widget.creditCard.availableBalance.toString(),
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentColor,
+                                                color: Theme.of(context).colorScheme.secondary,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20.0.t,
                                               ),
@@ -431,7 +431,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 S.of(context).JOD,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor.withOpacity(0.5),
+                                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                                                     fontSize: 14.0.t,
                                                     fontWeight: FontWeight.w700),
                                               ),
@@ -462,7 +462,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               widget.creditCard.availableBalance.toString(),
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).accentColor,
+                                                color: Theme.of(context).colorScheme.secondary,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20.0.t,
                                               ),
@@ -473,7 +473,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 S.of(context).JOD,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    color: Theme.of(context).accentColor.withOpacity(0.5),
+                                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
                                                     fontSize: 14.0.t,
                                                     fontWeight: FontWeight.w700),
                                               ),
@@ -564,7 +564,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               widget.creditCard.name ?? '',
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontSize: 12.0.t,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -580,7 +580,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   S.of(context).flipBack,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                      color: Theme.of(context).textTheme.bodyMedium!.color!,
                                       fontSize: 14.0.t,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -599,7 +599,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontSize: 14.0.t,
                                 ),
                               ),
@@ -625,7 +625,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
-                                color: Theme.of(context).accentColor.withOpacity(0.6),
+                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                 fontSize: 10.0.t),
                           ),
                         ),
@@ -646,7 +646,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               "140591314151414",
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0.t,
                               ),
@@ -662,7 +662,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 10.0.t,
-                                  color: Theme.of(context).accentColor.withOpacity(0.6),
+                                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                 )),
                           ),
                         ),
@@ -679,7 +679,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12.0.t,
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context).colorScheme.secondary,
                                     ),
                                   ),
                                   Padding(
@@ -689,7 +689,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 10.0.t,
-                                          color: Theme.of(context).accentColor.withOpacity(0.6),
+                                          color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                           fontWeight: FontWeight.w600),
                                     ),
                                   )
@@ -707,7 +707,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context).colorScheme.secondary,
                                         fontSize: 12.0.t,
                                       ),
                                     ),
@@ -718,7 +718,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 10.0.t,
-                                            color: Theme.of(context).accentColor.withOpacity(0.6),
+                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                             fontWeight: FontWeight.w600),
                                       ),
                                     )
@@ -746,7 +746,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14.0.t,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                   ),
                                 ),
                                 SizedBox(
@@ -758,7 +758,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 10.0.t,
-                                    color: Theme.of(context).accentColor.withOpacity(0.6),
+                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                   ),
                                 ),
                               ],
@@ -770,7 +770,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 10.0.t,
-                                    color: Theme.of(context).accentColor.withOpacity(0.6),
+                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                     fontWeight: FontWeight.w600),
                               ),
                             )
@@ -791,7 +791,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14.0.t,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                   ),
                                 ),
                                 SizedBox(
@@ -803,7 +803,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 10.0.t,
-                                    color: Theme.of(context).accentColor.withOpacity(0.6),
+                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                   ),
                                 ),
                               ],
@@ -815,7 +815,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 10.0.t,
-                                    color: Theme.of(context).accentColor.withOpacity(0.6),
+                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
                                     fontWeight: FontWeight.w600),
                               ),
                             )

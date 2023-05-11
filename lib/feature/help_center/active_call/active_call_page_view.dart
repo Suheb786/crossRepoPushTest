@@ -61,7 +61,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                             data!,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 32.t),
                           )),

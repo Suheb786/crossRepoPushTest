@@ -45,7 +45,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(start: 24.0.w),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          matchTextDirection: true, color: Theme.of(context).accentColor),
+                          matchTextDirection: true, color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),
@@ -59,7 +59,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                             S.of(context).changeMobileNumber,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 10.t,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -82,7 +82,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 20.t,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -107,7 +107,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context).colorScheme.secondary,
                                         fontSize: 20.t,
                                         fontWeight: FontWeight.w600),
                                   ),
