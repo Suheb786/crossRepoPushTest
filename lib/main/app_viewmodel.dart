@@ -53,7 +53,7 @@ class AppViewModel extends BaseViewModel {
               elevation: 0,
               iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
           primaryColorDark: AppColor.dark_moderate_blue,
-          colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white),
+          colorScheme: _themeData.colorScheme.copyWith(secondary: AppColor.white),
           textSelectionTheme: TextSelectionThemeData(
             cursorColor: AppColor.very_light_grey,
             selectionHandleColor: AppColor.very_light_grey,
@@ -118,7 +118,7 @@ class AppViewModel extends BaseViewModel {
             primaryColor: AppColor.brightRed,
             primaryColorDark: AppColor.black,
             primaryColorLight: AppColor.verySoftRed,
-            colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white),
+            colorScheme: _themeData.colorScheme.copyWith(secondary: AppColor.white),
             backgroundColor: AppColor.lightGray,
             cardTheme: CardTheme(
                 color: AppColor.veryLightGray,
@@ -171,10 +171,12 @@ class AppViewModel extends BaseViewModel {
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                 )),
-            textTheme: _themeData.textTheme.apply(
-                fontFamily: StringUtils.appFont,
-                bodyColor: AppColor.veryDarkGray2,
-                displayColor: AppColor.veryDarkGray2)
+            textTheme: _themeData.textTheme
+              ..apply(
+                      fontFamily: StringUtils.appFont,
+                      bodyColor: AppColor.veryDarkGray2,
+                      displayColor: AppColor.veryDarkGray2)
+                  .bodyMedium
               ..apply(
                   fontFamily: StringUtils.appFont,
                   bodyColor: AppColor.brightBlue,

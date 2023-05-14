@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.18.0
   package_info_plus: "1.4.3+1"
   package_info_plus_windows: "2.0.0"
-  file_picker: "5.2.10"
+  file_picker: any
   image_picker: ^0.8.7+4
   geocoding: ^2.1.0
   r_get_ip: ^0.1.1
