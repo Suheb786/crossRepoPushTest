@@ -29,7 +29,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
   final String? purposeDetail;
 
   const EditTransactionPurposeDialogView(
-      {this.onDismissed, this.onSelected, this.beneficiary, this.type, this.purposeDetail: "", this.purpose});
+      {this.onDismissed, this.onSelected, this.beneficiary, this.type, this.purposeDetail = "", this.purpose});
 
   ProviderBase providerBase() {
     return editTransactionPurposeDialogViewModelProvider
@@ -55,7 +55,9 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        S.of(context).editTransactionPurpose,
+                        S
+                            .of(context)
+                            .editTransactionPurpose,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontSize: 14.t,
@@ -94,8 +96,12 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 28.h),
                         child: AppTextField(
-                          labelText: S.of(context).purpose,
-                          hintText: S.of(context).pleaseSelect,
+                          labelText: S
+                              .of(context)
+                              .purpose,
+                          hintText: S
+                              .of(context)
+                              .pleaseSelect,
                           inputType: TextInputType.text,
                           controller: model!.purposeController,
                           key: model.purposeKey,
@@ -120,8 +126,12 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 18.h),
                         child: AppTextField(
-                          labelText: S.of(context).purposeDetails,
-                          hintText: S.of(context).pleaseSelect,
+                          labelText: S
+                              .of(context)
+                              .purposeDetails,
+                          hintText: S
+                              .of(context)
+                              .pleaseSelect,
                           inputType: TextInputType.text,
                           controller: model.purposeDetailController,
                           key: model.purposeDetailKey,
@@ -130,11 +140,11 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             if (model.purposeDetailList != null && model.purposeDetailList!.isNotEmpty) {
                               PurposeDetailDialog.show(context, purposeDetailList: model.purposeDetailList,
                                   onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value) {
-                                Navigator.pop(context);
-                                model.updatePurposeDetail(value);
-                              });
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
+                                    Navigator.pop(context);
+                                    model.updatePurposeDetail(value);
+                                  });
                             }
                           },
                           suffixIcon: (enabled, value) {
@@ -159,8 +169,16 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             width: 57.w,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).textTheme.bodyMedium!.color!),
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                                color: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .color!),
+                            child:
+                            AppSvg.asset(AssetUtils.tick, color: Theme
+                                .of(context)
+                                .colorScheme
+                                .secondary),
                           ),
                         ),
                       ),
@@ -168,7 +186,9 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                         child: Center(
                           child: Text(
-                            S.of(context).swipeDownToCancel,
+                            S
+                                .of(context)
+                                .swipeDownToCancel,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 10.t,
@@ -207,7 +227,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -222,7 +242,9 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S.of(context).error,
+                          S
+                              .of(context)
+                              .error,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,

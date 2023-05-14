@@ -28,7 +28,7 @@ class PurchaseEVoucherPageViewModel extends BasePageViewModel {
   }
 
   void navigateToPage(int index) {
-    if (index != null) pageController.move(index, animation: false);
+    pageController.move(index, animation: false);
   }
 
   void moveToPage(int index) {

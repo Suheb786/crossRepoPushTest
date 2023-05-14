@@ -26,13 +26,13 @@ class StateCityDataEntity implements BaseLayerDataTransformer<StateCityDataEntit
 
   StateCityDataEntity(
       {this.createTime,
-      this.countryID: "",
-      this.stateID: "",
-      this.stateName: "",
-      this.cityName: "",
-      this.cityID: "",
-      this.cityNameAR: "",
-      this.stateNameAR: ""});
+      this.countryID= "",
+      this.stateID= "",
+      this.stateName= "",
+      this.cityName= "",
+      this.cityID= "",
+      this.cityNameAR= "",
+      this.stateNameAR= ""});
 
   factory StateCityDataEntity.fromJson(Map<String, dynamic> json) => _$StateCityDataEntityFromJson(json);
 

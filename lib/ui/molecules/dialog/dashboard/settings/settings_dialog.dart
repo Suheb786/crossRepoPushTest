@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view.dart';
 

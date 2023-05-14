@@ -256,8 +256,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   readOnly: true,
                                                   controller: model.purposeController,
                                                   onPressed: () {
-                                                    if (model.purposeList != null &&
-                                                        model.purposeList.isNotEmpty) {
+                                                    if (model.purposeList.isNotEmpty) {
                                                       PurposeDialog.show(context,
                                                           purposeList: model.purposeList,
                                                           onSelected: (value) {
@@ -287,8 +286,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   readOnly: true,
                                                   controller: model.purposeDetailController,
                                                   onPressed: () {
-                                                    if (model.purposeDetailList != null &&
-                                                        model.purposeDetailList.isNotEmpty) {
+                                                    if (model.purposeDetailList.isNotEmpty) {
                                                       PurposeDetailDialog.show(context,
                                                           purposeDetailList: model.purposeDetailList,
                                                           onSelected: (value) {
@@ -330,7 +328,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                               stream: model.uploadProfilePhotoStream,
                                                               initialData: '',
                                                               onData: (data) {
-                                                                if (data != null && data.isNotEmpty) {
+                                                                if (data.isNotEmpty) {
                                                                   model.selectedProfile = data;
                                                                   // model.addImage(
                                                                   //     data);
@@ -407,8 +405,14 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                     StringUtils.appFont,
                                                                                 fontSize: 14.0.t,
                                                                                 fontWeight: FontWeight.w600,
-                                                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                                                            cursorColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                                                color: Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium!
+                                                                                    .color!),
+                                                                            cursorColor: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .color!,
                                                                             controller:
                                                                                 model.addNickNameController,
                                                                             decoration: InputDecoration(
@@ -421,7 +425,10 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                   fontWeight: FontWeight.w600,
                                                                                   color: val!
                                                                                       ? Colors.transparent
-                                                                                      : Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                      : Theme.of(context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium!
+                                                                                          .color!),
                                                                               border: InputBorder.none,
                                                                               contentPadding: EdgeInsets.only(
                                                                                   bottom: 18.0.h),

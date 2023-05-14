@@ -38,5 +38,5 @@ class ViewDebitCardSubscriptionPageState
 class ViewDebitCardSubscriptionArguments {
   final CardType cardType;
 
-  ViewDebitCardSubscriptionArguments({this.cardType: CardType.DEBIT});
+  ViewDebitCardSubscriptionArguments({this.cardType = CardType.DEBIT});
 }

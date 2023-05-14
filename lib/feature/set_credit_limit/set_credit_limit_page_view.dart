@@ -165,7 +165,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                 height: 48,
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                    color: Theme.of(context).backgroundColor,
+                                                    color: Theme.of(context).colorScheme.background,
                                                     borderRadius: BorderRadius.circular(100.w)),
                                                 child: AppStreamBuilder<double>(
                                                     stream: model.valueStream,

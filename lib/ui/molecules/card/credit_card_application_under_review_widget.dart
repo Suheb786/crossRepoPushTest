@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -8,7 +7,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const CreditCardApplicationUnderReviewWidget({Key? key, this.isSmallDevices: false}) : super(key: key);
+  const CreditCardApplicationUnderReviewWidget({Key? key, this.isSmallDevices = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

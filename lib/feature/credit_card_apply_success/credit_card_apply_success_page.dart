@@ -39,5 +39,5 @@ enum CreditSuccessState {
 class CreditCardApplySuccessArguments {
   final CreditSuccessState creditSuccessState;
 
-  CreditCardApplySuccessArguments({this.creditSuccessState: CreditSuccessState.Applied_Success});
+  CreditCardApplySuccessArguments({this.creditSuccessState = CreditSuccessState.Applied_Success});
 }

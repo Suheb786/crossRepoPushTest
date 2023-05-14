@@ -212,7 +212,7 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
     });
   }
 
-  void getTransactions({num? pageNo: 1, num? pageSize: 10}) {
+  void getTransactions({num? pageNo = 1, num? pageSize = 10}) {
     searchTextList = searchTextList.toSet().toList();
     searchText = searchTextList.join(',');
     if (searchText.isNotEmpty && !searchText.contains(",")) {

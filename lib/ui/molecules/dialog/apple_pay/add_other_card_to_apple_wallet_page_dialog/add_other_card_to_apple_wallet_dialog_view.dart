@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -21,7 +20,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel: true});
+      this.isSwipeToCancel= true});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:domain/constants/enum/card_type.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -17,7 +16,6 @@ import 'package:neo_bank/utils/time_utils.dart';
 
 class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineViewModel> {
   DebitCardTimeLinePageView(ProviderBase model) : super(model);
-  bool isGetCardClicked = false;
 
   @override
   Widget build(BuildContext context, model) {
@@ -216,15 +214,22 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                               padding: EdgeInsets.symmetric(
                                                                   horizontal: 8, vertical: 2),
                                                               decoration: BoxDecoration(
-                                                                  color: Theme.of(context).colorScheme.secondary,
+                                                                  color:
+                                                                      Theme.of(context).colorScheme.secondary,
                                                                   borderRadius: BorderRadius.circular(14.w),
                                                                   border: Border.all(
-                                                                      color: Theme.of(context).textTheme.bodyMedium!.color!!)),
+                                                                      color: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .color!)),
                                                               child: Text(
                                                                 S.of(context).confirm,
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .color!,
                                                                     fontSize: 12.t,
                                                                     fontWeight: FontWeight.w600),
                                                               ),

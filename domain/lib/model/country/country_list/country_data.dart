@@ -1,10 +1,10 @@
 class CountryData {
   CountryData(
-      {this.isoCode3: "",
+      {this.isoCode3= "",
       this.score,
       this.isoCode,
-      this.phoneCode: "",
-      this.countryName: "",
+      this.phoneCode= "",
+      this.countryName= "",
       this.isAllowedCountry,
       this.nationality,
       this.gfxCode,
@@ -14,19 +14,19 @@ class CountryData {
       this.isMobileAllowed,
       this.crossAllowed,
       this.crossIdAllowed,
-      this.mobileMax: 14,
-      this.mobileMin: 9,
+      this.mobileMax= 14,
+      this.mobileMin= 9,
       this.idForensic,
       this.passportScan,
       this.isAllowedFatca,
       this.isNationalityAllowed,
       this.isIssuerAllowed,
-      this.isSelected: false,
+      this.isSelected= false,
       this.countryNameAR,
       this.countryEnglishName = ''});
 
   final String? isoCode3;
-  final dynamic? score;
+  final dynamic score;
   final String? isoCode;
   final String? phoneCode;
   final String? countryName;

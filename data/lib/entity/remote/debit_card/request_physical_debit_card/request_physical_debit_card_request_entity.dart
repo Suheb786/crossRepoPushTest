@@ -11,7 +11,7 @@ class RequestPhysicalDebitCardRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
-  RequestPhysicalDebitCardRequestEntity({this.getToken: true, this.baseData, this.tokenizedPan: ""});
+  RequestPhysicalDebitCardRequestEntity({this.getToken= true, this.baseData, this.tokenizedPan= ""});
 
   factory RequestPhysicalDebitCardRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestPhysicalDebitCardRequestEntityFromJson(json);

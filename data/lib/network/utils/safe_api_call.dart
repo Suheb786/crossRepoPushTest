@@ -53,10 +53,7 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
             );
 
           case DioErrorType.badResponse:
-            if (throwable is DioError) {
-              return Left(getError(apiResponse: throwable.response));
-            }
-            break;
+            return Left(getError(apiResponse: throwable.response));
 
           case DioErrorType.unknown:
             break;

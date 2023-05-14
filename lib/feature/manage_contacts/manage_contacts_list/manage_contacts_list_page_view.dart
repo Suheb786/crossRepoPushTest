@@ -41,8 +41,8 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
           AppTextField(
             labelText: '',
             controller: model.contactSearchController,
-            textFieldBorderColor: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.3),
-            hintTextColor: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5),
+            textFieldBorderColor: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.3),
+            hintTextColor: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5),
             textColor: Theme.of(context).primaryColorDark,
             hintText: S.of(context).searchContacts,
             onChanged: (value) {

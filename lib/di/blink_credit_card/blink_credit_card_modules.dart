@@ -12,6 +12,5 @@ final blinkCreditCardViewModelProvider = ChangeNotifierProvider.autoDispose<Blin
 
 final creditCardApplicationFailureViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<CreditCardApplicationFailureViewModel, CreditCardApplicationFailureArguments>(
-  (ref, args) =>
-      CreditCardApplicationFailureViewModel(ref.read(creditCardApplicationFailureUseCaseProvider), args),
+  (ref, args) => CreditCardApplicationFailureViewModel(args),
 );

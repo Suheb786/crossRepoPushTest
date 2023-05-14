@@ -38,7 +38,7 @@ class SaveFatcaInformationRequestEntity {
       this.relationshipWithPEP,
       this.personName,
       this.personRole,
-      this.getToken: true});
+      this.getToken= true});
 
   factory SaveFatcaInformationRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveFatcaInformationRequestEntityFromJson(json);

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:data/helper/antelop_helper.dart';
 import 'package:domain/constants/enum/card_type.dart';
-import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/qr/verify_qr_response.dart';

@@ -12,7 +12,7 @@ class GetCustomerDocIdContentEntity
   @JsonKey(name: "proofOfAddress")
   final String? proofOfAddress;
 
-  GetCustomerDocIdContentEntity({this.proofOfAddress: "", this.proofOfIncome: ""});
+  GetCustomerDocIdContentEntity({this.proofOfAddress= "", this.proofOfIncome= ""});
 
   factory GetCustomerDocIdContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocIdContentEntityFromJson(json);

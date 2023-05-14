@@ -14,7 +14,7 @@ class PersonalizeDebitCardUseCase extends BaseUseCase<NetworkError, PersonalizeD
 class PersonalizeDebitCardUseCaseParams extends Params {
   final String nickname;
 
-  PersonalizeDebitCardUseCaseParams({this.nickname: ""});
+  PersonalizeDebitCardUseCaseParams({this.nickname = ""});
 
   @override
   Either<AppError, bool> verify() {

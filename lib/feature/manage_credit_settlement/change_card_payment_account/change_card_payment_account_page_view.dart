@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
@@ -103,7 +102,7 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                               Container(
                                 padding: EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
+                                    color: Theme.of(context).colorScheme.background, shape: BoxShape.circle),
                                 child: AppSvg.asset(
                                   AssetUtils.dollarSvg,
                                   color: Theme.of(context).primaryColorDark,

@@ -1,5 +1,4 @@
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page.dart';
@@ -20,8 +19,8 @@ class ApplyDebitCardWidget extends StatelessWidget {
 
   const ApplyDebitCardWidget(
       {Key? key,
-      this.isSmallDevice: false,
-      this.isPinSet: true,
+      this.isSmallDevice = false,
+      this.isPinSet = true,
       this.primarySecondaryEnum = PrimarySecondaryEnum.PRIMARY,
       this.cardHolderName = "",
       this.cardNo = "",

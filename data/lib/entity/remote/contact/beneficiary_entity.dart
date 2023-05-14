@@ -43,23 +43,23 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? detCustomerType;
 
   BeneficiaryEntity(
-      {this.nickName: "",
-      this.fullName: "",
-      this.profileImage: "",
-      this.beneficiaryAddress: "",
-      this.accountNo: "",
-      this.mobileNumber: "",
-      this.purposeDetails: "",
-      this.bankName: "",
-      this.iban: "",
-      this.purpose: "",
-      this.id: "",
-      this.beneType: "",
-      this.purposeType: "",
-      this.detCustomerType: "",
+      {this.nickName= "",
+      this.fullName= "",
+      this.profileImage= "",
+      this.beneficiaryAddress= "",
+      this.accountNo= "",
+      this.mobileNumber= "",
+      this.purposeDetails= "",
+      this.bankName= "",
+      this.iban= "",
+      this.purpose= "",
+      this.id= "",
+      this.beneType= "",
+      this.purposeType= "",
+      this.detCustomerType= "",
       this.limit,
-      this.purposeParent: "",
-      this.purposeParentDetails: ""});
+      this.purposeParent= "",
+      this.purposeParentDetails= ""});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) => _$BeneficiaryEntityFromJson(json);
 

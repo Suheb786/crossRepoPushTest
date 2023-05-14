@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:cross_file/src/types/interface.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
   ShareVoucherPageView(ProviderBase model) : super(model);
@@ -64,8 +65,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border:
-                                    Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                border: Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +96,8 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).textTheme.bodyMedium!.color!),
                             child: Center(
-                              child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                              child: AppSvg.asset(AssetUtils.tick,
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ),
@@ -112,9 +113,9 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
     );
   }
 
-  void _shareFiles(BuildContext context, File file) async {
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.shareFiles([file.path],
-        subject: 'View Voucher', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-  }
+  // void _shareFiles(BuildContext context, File file) async {
+  //   final box = context.findRenderObject() as RenderBox?;
+  //   await Share.shareXFiles([XFile(file.path)],
+  //       subject: 'View Voucher', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  // }
 }

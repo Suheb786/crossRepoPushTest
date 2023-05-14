@@ -64,19 +64,19 @@ class RequestFromNewRecipientUseCaseParams extends Params {
       this.amount,
       this.dbtrBic,
       this.dbtrAcct,
-      this.nickName: "",
+      this.nickName = "",
       this.dbtrName,
-      this.image: "",
+      this.image = "",
       this.limit,
-      this.isFriend: false,
+      this.isFriend = false,
       this.purposeCode,
       this.purposeDetailCode,
       this.type,
       this.detCustomerType,
-      this.alias: "",
-      this.addressCity: "",
-      this.addressCountry: "",
-      this.dbtrSurname: ""});
+      this.alias = "",
+      this.addressCity = "",
+      this.addressCountry = "",
+      this.dbtrSurname = ""});
 
   @override
   Either<AppError, bool> verify() {

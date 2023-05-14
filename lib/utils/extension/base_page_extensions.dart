@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -18,7 +17,7 @@ extension PageExtensions on BaseStatefulPage {
 
   showTopError(String message) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -68,7 +67,7 @@ extension PageExtensions on BaseStatefulPage {
 
   showTopSuccess(String message) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -115,7 +114,7 @@ extension PageExtensions on BaseStatefulPage {
 
   showSuccessToastWithTitleAndDescription(String title, String description) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

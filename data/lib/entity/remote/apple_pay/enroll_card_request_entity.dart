@@ -16,7 +16,7 @@ class EnrollCardRequestEntity {
   final Map<String, dynamic> baseData;
 
   EnrollCardRequestEntity(
-      {this.getToken: true, this.walletId: "", this.cardId: "", this.cardType, required this.baseData});
+      {this.getToken= true, this.walletId= "", this.cardId= "", this.cardType, required this.baseData});
 
   factory EnrollCardRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$EnrollCardRequestEntityFromJson(json);

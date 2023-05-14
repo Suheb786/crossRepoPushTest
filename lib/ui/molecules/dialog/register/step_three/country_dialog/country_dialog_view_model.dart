@@ -1,6 +1,5 @@
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/country_list/country_list_content_data.dart';
-import 'package:domain/usecase/country/fetch_countries_usecase.dart';
 import 'package:domain/usecase/country/get_countries_list_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,8 +10,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CountryDialogViewModel extends BasePageViewModel {
-  final FetchCountriesUseCase _fetchCountriesUseCase;
-
   final GetCountriesListUseCase _getCountriesListUseCase;
 
   final TextEditingController countrySearchController = TextEditingController();
@@ -49,7 +46,7 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   bool isDataAvailable = false;
 
-  CountryDialogViewModel(this._fetchCountriesUseCase, this._getCountriesListUseCase) {
+  CountryDialogViewModel(this._getCountriesListUseCase) {
     _getCountryListRequest.listen((value) {
       RequestManager(value, createCall: () => _getCountriesListUseCase.execute(params: value))
           .asFlow()

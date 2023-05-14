@@ -2,13 +2,13 @@ import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 
 class TransferResponse {
   TransferResponse(
-      {this.beneficiaryId: "",
-      this.transferType: "",
-      this.beneficiaryImage: "",
+      {this.beneficiaryId = "",
+      this.transferType = "",
+      this.beneficiaryImage = "",
       this.toAmount,
       this.localEq,
-      this.toAccount: "",
-      this.name: "",
+      this.toAccount = "",
+      this.name = "",
       this.messageEnum = CheckSendMoneyMessageEnum.NONE});
 
   String? beneficiaryId;

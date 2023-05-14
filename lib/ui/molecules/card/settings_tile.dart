@@ -22,10 +22,10 @@ class SettingTile extends StatelessWidget {
       required this.title,
       this.trailing,
       required this.onTap,
-      this.isEnabled: true,
-      this.isCardActivated: true,
-      this.isNotify: false,
-      this.isLastTile: false})
+      this.isEnabled = true,
+      this.isCardActivated = true,
+      this.isNotify = false,
+      this.isLastTile = false})
       : super(key: key);
 
   @override

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:domain/usecase/manage_cliq/edit_cliq_id_otp_usecase.dart';
@@ -75,17 +73,14 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
     listenForSmsCode();
   }
 
-  void makeEditCliqIdRequest({required bool getToken,
-    required String aliasId,
-    required bool isAlias,
-    required String aliasValue,
-    required String otpCode}) {
+  void makeEditCliqIdRequest(
+      {required bool getToken,
+      required String aliasId,
+      required bool isAlias,
+      required String aliasValue,
+      required String otpCode}) {
     _editCliqIdRequest.safeAdd(EditCliqIdUseCaseParams(
-        isAlias: isAlias,
-        aliasValue: aliasValue,
-        aliasId: aliasId,
-        getToken: getToken,
-        OtpCode: otpCode));
+        isAlias: isAlias, aliasValue: aliasValue, aliasId: aliasId, getToken: getToken, OtpCode: otpCode));
   }
 
   void makeOtpRequest({
@@ -164,7 +159,7 @@ class OtpForEditAliasAndMobileNoPageViewModel extends BasePageViewModel {
 
   /// otp request validation
   PublishSubject<EnterOtpForCliqIdValidationUseCaseParams> _enterOtpForCliqIdValidationRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// otp response
   PublishSubject<Resource<bool>> _enterOtpForCliqIdValidationResponse = PublishSubject();

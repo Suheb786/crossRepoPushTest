@@ -11,7 +11,7 @@ class StateListRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  StateListRequestEntity({required this.baseData, this.getToken: true, this.isoCode: ""});
+  StateListRequestEntity({required this.baseData, this.getToken= true, this.isoCode= ""});
 
   factory StateListRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$StateListRequestEntityFromJson(json);

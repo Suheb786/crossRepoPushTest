@@ -38,7 +38,7 @@ class RegisterProspectUserRequest {
   RegisterProspectUserRequest(
       {this.countryName,
       this.languageCode,
-      this.uniqueId: "",
+      this.uniqueId= "",
       this.companyId,
       this.email,
       this.mobileNumber,

@@ -20,7 +20,7 @@ class RequestCallUseCase extends BaseUseCase<NetworkError, RequestCallUseCasePar
 class RequestCallUseCaseParams extends Params {
   String? type;
 
-  RequestCallUseCaseParams({this.type: "ONBOARD"});
+  RequestCallUseCaseParams({this.type = "ONBOARD"});
 
   @override
   Either<AppError, bool> verify() {

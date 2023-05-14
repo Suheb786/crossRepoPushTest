@@ -16,7 +16,7 @@ class VerifyBeneficiaryOtpRequest {
   VerifyBeneficiaryOtpRequest({
     required this.type,
     required this.otp,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData,
   });
 

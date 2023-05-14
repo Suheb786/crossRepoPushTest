@@ -2,7 +2,6 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:neo_bank/base/base_page.dart';

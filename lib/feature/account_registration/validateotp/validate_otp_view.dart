@@ -1,10 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
@@ -162,7 +159,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
-                                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                        color:
+                                                            Theme.of(context).textTheme.bodyMedium!.color!),
                                                   ))
                                               : Text(
                                                   S.of(context).resendIn(

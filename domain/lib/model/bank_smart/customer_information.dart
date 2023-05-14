@@ -9,7 +9,7 @@ class CustomerInformation {
   final String? countryCurr;
   final String? stateCurr;
   final String? cityCurr;
-  final dynamic? addressHomeCountry;
+  final dynamic addressHomeCountry;
   final String? countryHome;
   final String? stateHome;
   final String? cityHome;
@@ -32,9 +32,9 @@ class CustomerInformation {
   final String? gender;
   final String? maritalstatus;
   final String? tinInd;
-  final dynamic? tinno1Ind;
-  final dynamic? taxCountry1Ind;
-  final dynamic? tinNo2Ind;
+  final dynamic tinno1Ind;
+  final dynamic taxCountry1Ind;
+  final dynamic tinNo2Ind;
   final String? taxCountry2Ind;
   final String? tinNo3Ind;
   final String? taxCountry3Ind;
@@ -42,10 +42,10 @@ class CustomerInformation {
   final String? taxCountry4Ind;
   final String? tinNo5Ind;
   final String? taxCountry5Ind;
-  final dynamic? fatcaNoReason;
-  final dynamic? reasonBind;
+  final dynamic fatcaNoReason;
+  final dynamic reasonBind;
   final String? groupCode;
-  final dynamic? mdmid;
+  final dynamic mdmid;
   final String? rManager;
   final String? riskProfile;
   final String? firstName;
@@ -55,7 +55,7 @@ class CustomerInformation {
   final String? idIssueCountry;
   final String? passportNumber;
   final DateTime? passportIssueDate;
-  final dynamic? passportExpiry;
+  final dynamic passportExpiry;
   final String? passportIssueCountry;
   final String? passportGender;
   final String? onboardingCountry;
@@ -67,8 +67,8 @@ class CustomerInformation {
   final String? pep;
   final String? blackList;
   final String? hni;
-  final dynamic? refererPromoCode;
-  final dynamic? ourBranchId;
+  final dynamic refererPromoCode;
+  final dynamic ourBranchId;
   final String? idType;
   final String? firstNameAr;
   final String? secondNameAr;
@@ -78,8 +78,8 @@ class CustomerInformation {
   final String? placeofBirth;
   final String? countryofBirth;
   final String? relationshipPep;
-  final dynamic? namePep;
-  final dynamic? rolePep;
+  final dynamic namePep;
+  final dynamic rolePep;
   final String? beneficialOwner;
   final String? districtCorresp;
   final String? addressLine1;
@@ -91,21 +91,21 @@ class CustomerInformation {
   final String? mainSourceofIncome;
   final String? otherEmploymentStatus;
   final int? annualIncome;
-  final dynamic? monthlyIncome;
+  final dynamic monthlyIncome;
   final String? additionalIncomeSource;
   final String? otherAdditionalIncomeSource;
   final int? additionalIncomeAmount;
   final String? employerPhone;
   final String? reasonforBanking;
-  final dynamic? preferredLanguage;
-  final dynamic? accountOfficer;
-  final dynamic? ifrsFields;
-  final dynamic? cbjSecretNumber;
-  final dynamic? obligerRating;
-  final dynamic? smsSubscription;
-  final dynamic? titlear;
+  final dynamic preferredLanguage;
+  final dynamic accountOfficer;
+  final dynamic ifrsFields;
+  final dynamic cbjSecretNumber;
+  final dynamic obligerRating;
+  final dynamic smsSubscription;
+  final dynamic titlear;
   final String? empCountry;
-  final dynamic? empState;
+  final dynamic empState;
   final String? empCity;
 
   CustomerInformation({

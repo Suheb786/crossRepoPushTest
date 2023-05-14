@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page_view-model.dart';
@@ -34,7 +33,11 @@ class ReferenceNumberPageView extends BasePageViewWidget<ReferenceNumberPageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyLarge
+                        ?.color),
               ),
             ],
           ),

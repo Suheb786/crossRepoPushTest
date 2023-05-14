@@ -195,7 +195,7 @@ class UpdateCliqInfoBottomWidget extends StatelessWidget {
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w400,
-                      color: Theme.of(context).errorColor),
+                      color: Theme.of(context).colorScheme.error),
                 ),
               ),
             ),

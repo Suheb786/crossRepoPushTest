@@ -29,7 +29,7 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
   }
 
   void navigateToPage(int index) {
-    if (index != null) pageController.move(index, animation: false);
+    pageController.move(index, animation: false);
   }
 
   void moveToPage(int index) {
@@ -61,5 +61,5 @@ class MobileNumberParams {
   final String mobileNumber;
   final String mobileCode;
 
-  MobileNumberParams({this.mobileNumber: "", this.mobileCode: ""});
+  MobileNumberParams({this.mobileNumber = "", this.mobileCode = ""});
 }

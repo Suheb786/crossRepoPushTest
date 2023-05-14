@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -9,10 +8,8 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/share_bill_payments_info.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:share_plus/share_plus.dart';
 
 class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
   PostPaidBillsSuccessPageView(ProviderBase model) : super(model);
@@ -309,13 +306,13 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
     );
   }
 
-  void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
-    Share.share(
-      ShareInfo.savedMultipleBillsPostPaidSuccess(
-        context,
-        paidBillsList: model.arguments.billerSuccessDetailsList ?? [],
-      ),
-      subject: S.of(context).billDetails,
-    );
-  }
+  // void _shareDetails(BuildContext context, PostPaidBillsSuccessPageViewModel model) {
+  //   Share.share(
+  //     ShareInfo.savedMultipleBillsPostPaidSuccess(
+  //       context,
+  //       paidBillsList: model.arguments.billerSuccessDetailsList ?? [],
+  //     ),
+  //     subject: S.of(context).billDetails,
+  //   );
+  // }
 }

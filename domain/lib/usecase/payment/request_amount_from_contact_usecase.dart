@@ -61,16 +61,16 @@ class RequestAmountFromContactUseCaseParams extends Params {
       this.dbtrBic,
       this.dbtrName,
       this.dbtrAcct,
-      this.isFriend: false,
-      this.image: "",
-      this.nickName: "",
-      this.type: "",
+      this.isFriend = false,
+      this.image = "",
+      this.nickName = "",
+      this.type = "",
       this.limit,
-      this.detCustomerType: "",
-      this.alias: "",
-      this.addressCity: "",
-      this.addressCountry: "",
-      this.dbtrSurname: ""});
+      this.detCustomerType = "",
+      this.alias = "",
+      this.addressCity = "",
+      this.addressCountry = "",
+      this.dbtrSurname = ""});
 
   @override
   Either<AppError, bool> verify() {

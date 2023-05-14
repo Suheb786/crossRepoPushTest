@@ -8,7 +8,6 @@ import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';

@@ -1,8 +1,4 @@
-import 'package:domain/model/payment/check_send_money_response.dart';
-import 'package:domain/model/payment/transfer_respone.dart';
-import 'package:domain/model/payment/transfer_success_response.dart';
-import 'package:domain/usecase/payment/check_send_money_usecase.dart';
-import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
+import 'package:domain/model/qr/qr_transfer_response.dart';
 import 'package:domain/usecase/payment/transfer_qr_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,7 +9,6 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/model/qr/qr_transfer_response.dart';
 
 class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
   final TransferQRUseCase _transferQRUseCase;

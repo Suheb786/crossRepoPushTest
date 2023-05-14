@@ -16,7 +16,7 @@ class GetLoanValuesContentEntity
   @JsonKey(name: "maxLimit")
   final num? maxLimit;
 
-  GetLoanValuesContentEntity({this.maxLimit, this.loanValueId: 0, this.minimumLimit, this.step});
+  GetLoanValuesContentEntity({this.maxLimit, this.loanValueId= 0, this.minimumLimit, this.step});
 
   factory GetLoanValuesContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetLoanValuesContentEntityFromJson(json);

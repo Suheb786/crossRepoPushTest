@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -24,7 +23,7 @@ class PurchaseNowDialogView extends StatelessWidget {
       required this.subTitle,
       required this.price,
       required this.descriptionWidget,
-      this.isSwipeToCancel: true});
+      this.isSwipeToCancel = true});
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +103,9 @@ class PurchaseNowDialogView extends StatelessWidget {
                           height: 57,
                           width: 57,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).textTheme.bodyMedium!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          child:
+                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(

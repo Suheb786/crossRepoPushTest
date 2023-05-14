@@ -19,7 +19,7 @@ class CreditCardRequestUseCase extends BaseUseCase<NetworkError, CreditCardReque
 class CreditCardRequestUseCaseParams extends Params {
   final String cardId;
 
-  CreditCardRequestUseCaseParams({this.cardId: ""});
+  CreditCardRequestUseCaseParams({this.cardId = ""});
 
   @override
   Either<AppError, bool> verify() {

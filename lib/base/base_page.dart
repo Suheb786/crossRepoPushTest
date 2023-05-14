@@ -5,7 +5,6 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -31,7 +30,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
   bool subscribeVisibilityEvents = false;
 
   BaseStatefulPage({
-    this.subscribeVisibilityEvents: false,
+    this.subscribeVisibilityEvents= false,
   });
 
   VM? _viewModel;

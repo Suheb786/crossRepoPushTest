@@ -4,7 +4,6 @@ import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/user/status/customer_status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';

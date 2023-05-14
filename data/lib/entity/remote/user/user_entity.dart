@@ -74,14 +74,13 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
       this.mobileCode,
       this.cif,
       this.accountNumber,
-      this.newDevice: false,
+      this.newDevice = false,
       this.applePay});
 
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 
   @override
   UserEntity restore(User data) {
-    // TODO: implement restore
     throw UnimplementedError();
   }
 

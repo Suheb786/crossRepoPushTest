@@ -16,7 +16,7 @@ class VerifyQRRequestEntity {
   VerifyQRRequestEntity({
     this.source,
     this.qrRequestId,
-    this.getToken: true,
+    this.getToken= true,
     this.baseData,
   });
 

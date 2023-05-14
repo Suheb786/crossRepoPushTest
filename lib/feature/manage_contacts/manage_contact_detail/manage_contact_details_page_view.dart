@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -38,7 +37,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         stream: model.uploadProfilePhotoStream,
                         initialData: '',
                         onData: (data) {
-                          if (data != null && data.isNotEmpty) {
+                          if (data.isNotEmpty) {
                             //model.selectedProfile = data;
                             //model.addImage(data);
                             _cropImage(data, model, context);

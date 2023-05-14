@@ -31,8 +31,8 @@ class TransferResponseEntity implements BaseLayerDataTransformer<TransferRespons
       this.toAmount,
       this.localEq,
       this.toAccount,
-      this.name: "",
-      this.message: ''});
+      this.name= "",
+      this.message= ''});
 
   factory TransferResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferResponseEntityFromJson(json);

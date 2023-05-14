@@ -11,7 +11,7 @@ class RequestCallEntity implements BaseLayerDataTransformer<RequestCallEntity, R
   @JsonKey(name: "callId")
   final String? callId;
 
-  RequestCallEntity({this.conferenceLink: "", this.callId: ""});
+  RequestCallEntity({this.conferenceLink= "", this.callId= ""});
 
   factory RequestCallEntity.fromJson(Map<String, dynamic> json) => _$RequestCallEntityFromJson(json);
 

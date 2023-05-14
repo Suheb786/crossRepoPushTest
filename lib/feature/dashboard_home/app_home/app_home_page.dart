@@ -2,18 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:data/helper/dynamic_link.dart';
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
-import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
@@ -80,12 +74,12 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

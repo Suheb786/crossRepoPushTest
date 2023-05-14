@@ -28,7 +28,7 @@ class ManageCreditCardLimitsPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    Theme.of(context).primaryColor;
+    return Theme.of(context).primaryColor;
   }
 }
 
@@ -36,5 +36,5 @@ class ManageCreditCardLimitsArguments {
   final String secureCode;
   final dynamic creditDeliveredDatetime;
 
-  ManageCreditCardLimitsArguments({this.secureCode: '', this.creditDeliveredDatetime});
+  ManageCreditCardLimitsArguments({this.secureCode = '', this.creditDeliveredDatetime});
 }

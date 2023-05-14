@@ -8,7 +8,7 @@ class CreditCardActivationStatusWidget extends StatelessWidget {
   final String label;
   final bool isActivated;
 
-  const CreditCardActivationStatusWidget({Key? key, required this.label, this.isActivated: false})
+  const CreditCardActivationStatusWidget({Key? key, required this.label, this.isActivated = false})
       : super(key: key);
 
   @override

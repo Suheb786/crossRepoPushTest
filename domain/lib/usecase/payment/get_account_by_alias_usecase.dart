@@ -25,7 +25,7 @@ class GetAccountByAliasUseCaseParams extends Params {
   String? value;
   String? currency;
 
-  GetAccountByAliasUseCaseParams({this.value, this.currency: "JOD"});
+  GetAccountByAliasUseCaseParams({this.value, this.currency = "JOD"});
 
   @override
   Either<AppError, bool> verify() {

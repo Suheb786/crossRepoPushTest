@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:cross_file/cross_file.dart';
 
 class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransactionViewModel> {
   DownloadTransactionPageView(ProviderBase model) : super(model);
@@ -30,10 +31,6 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
           onVerticalDragUpdate: (details) {
             if (details.primaryDelta!.isNegative) {
             } else {
-              // ProviderScope.containerOf(context)
-              //     .read(homeViewModelProvider)
-              //     .homeController
-              //     .jumpToPage(0);
               Navigator.pop(context);
             }
           },
@@ -113,8 +110,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
-                                                  color:
-                                                      Theme.of(context).textTheme.bodyMedium!.color!)),
+                                                  color: Theme.of(context).textTheme.bodyMedium!.color!)),
                                           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,7 +166,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
 
   void _shareFiles(BuildContext context, File file) async {
     final box = context.findRenderObject() as RenderBox?;
-    await Share.shareFiles([file.path],
+    await Share.shareXFiles([XFile(file.path)],
         subject: 'Statement PDF', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

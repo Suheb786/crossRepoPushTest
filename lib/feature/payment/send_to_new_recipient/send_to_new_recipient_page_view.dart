@@ -363,8 +363,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           key: model.purposeKey,
                                                           controller: model.purposeController,
                                                           onPressed: () {
-                                                            if (model.purposeList != null &&
-                                                                model.purposeList.isNotEmpty) {
+                                                            if (model.purposeList.isNotEmpty) {
                                                               PurposeDialog.show(context,
                                                                   purposeList: model.purposeList,
                                                                   onSelected: (value) {
@@ -397,8 +396,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           controller: model.purposeDetailController,
                                                           key: model.purposeDetailKey,
                                                           onPressed: () {
-                                                            if (model.purposeDetaiList != null &&
-                                                                model.purposeDetaiList.isNotEmpty) {
+                                                            if (model.purposeDetaiList.isNotEmpty) {
                                                               PurposeDetailDialog.show(context,
                                                                   purposeDetailList: model.purposeDetaiList,
                                                                   onSelected: (value) {
@@ -464,8 +462,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                 .uploadProfilePhotoStream,
                                                                             initialData: '',
                                                                             onData: (data) {
-                                                                              if (data != null &&
-                                                                                  data.isNotEmpty) {
+                                                                              if (data.isNotEmpty) {
                                                                                 model.selectedProfile = data;
                                                                                 // model.addImage(
                                                                                 //     data);
@@ -566,8 +563,17 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                               fontWeight:
                                                                                                   FontWeight
                                                                                                       .w600,
-                                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                                                                          cursorColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                                                              color: Theme.of(
+                                                                                                      context)
+                                                                                                  .textTheme
+                                                                                                  .bodyMedium!
+                                                                                                  .color!),
+                                                                                          cursorColor:
+                                                                                              Theme.of(
+                                                                                                      context)
+                                                                                                  .textTheme
+                                                                                                  .bodyMedium!
+                                                                                                  .color!,
                                                                                           controller: model
                                                                                               .addNickNameController,
                                                                                           decoration:
@@ -587,7 +593,11 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                 color: val!
                                                                                                     ? Colors
                                                                                                         .transparent
-                                                                                                    : Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                                    : Theme.of(
+                                                                                                            context)
+                                                                                                        .textTheme
+                                                                                                        .bodyMedium!
+                                                                                                        .color!),
                                                                                             border:
                                                                                                 InputBorder
                                                                                                     .none,

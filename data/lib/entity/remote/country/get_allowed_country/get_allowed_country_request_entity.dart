@@ -11,7 +11,7 @@ class GetAllowedCountryRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetAllowedCountryRequestEntity({required this.baseData, this.content, this.channelId: "01"});
+  GetAllowedCountryRequestEntity({required this.baseData, this.content, this.channelId= "01"});
 
   factory GetAllowedCountryRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAllowedCountryRequestEntityFromJson(json);

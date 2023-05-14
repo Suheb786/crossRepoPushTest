@@ -3,7 +3,6 @@ import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
@@ -135,8 +134,8 @@ class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumb
                                                               fontFamily: StringUtils.appFont,
                                                               color: Theme.of(context)
                                                                   .textTheme
-                                                                  .bodyText1!
-                                                                  .color,
+                                                                  .bodyLarge
+                                                                  ?.color,
                                                               fontSize: 14,
                                                               fontWeight: FontWeight.w600,
                                                             ),
@@ -150,8 +149,8 @@ class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumb
                                                           child: AppSvg.asset(AssetUtils.downArrow,
                                                               color: Theme.of(context)
                                                                   .primaryTextTheme
-                                                                  .bodyText1!
-                                                                  .color))
+                                                                  .bodyLarge
+                                                                  ?.color))
                                                     ],
                                                   ),
                                                 ),

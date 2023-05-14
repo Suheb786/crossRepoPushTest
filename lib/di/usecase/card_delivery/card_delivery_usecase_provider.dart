@@ -124,8 +124,8 @@ final otpForChangeCardPinUseCaseProvider =
     Provider.autoDispose<OtpForChangeCardPinUseCase>((ref) => OtpForChangeCardPinUseCase());
 
 ///[EnterNewPinForCardUseCase] provider
-final enterNewPinForCardUseCaseProvider = Provider.autoDispose<EnterNewPinForCardUseCase>(
-    (ref) => EnterNewPinForCardUseCase(ref.read(cardRepositoryProvider)));
+final enterNewPinForCardUseCaseProvider =
+    Provider.autoDispose<EnterNewPinForCardUseCase>((ref) => EnterNewPinForCardUseCase());
 
 ///[RelationshipWithCardholderUseCase] provider
 final relationshipWithCardHolderUseCaseProvider =

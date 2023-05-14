@@ -24,7 +24,7 @@ class VideoKycPage extends BasePage<VideoKycViewModel> {
 class VideoKycPageState extends BaseStatefulPage<VideoKycViewModel, VideoKycPage>
     with WidgetsBindingObserver {
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -47,7 +47,7 @@ class VideoKycPageState extends BaseStatefulPage<VideoKycViewModel, VideoKycPage
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -82,5 +82,5 @@ class VideKycCredentials {
   final String channelName;
   final String token;
 
-  VideKycCredentials({this.channelName: "", this.token: ""});
+  VideKycCredentials({this.channelName = "", this.token = ""});
 }

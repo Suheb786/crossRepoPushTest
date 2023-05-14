@@ -25,5 +25,5 @@ class SliderLimitValues {
   final double? maxValue;
   final int? divisions;
 
-  SliderLimitValues({this.minValue: 0.0, this.maxValue: 0.0, this.divisions: 0});
+  SliderLimitValues({this.minValue = 0.0, this.maxValue = 0.0, this.divisions = 0});
 }

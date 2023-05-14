@@ -18,7 +18,7 @@ class RelationshipWithCardholderUseCase
 class RelationshipWithCardholderUseCaseParams extends Params {
   final String relationship;
 
-  RelationshipWithCardholderUseCaseParams({this.relationship: ""});
+  RelationshipWithCardholderUseCaseParams({this.relationship = ""});
 
   @override
   Either<AppError, bool> verify() {

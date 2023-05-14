@@ -29,5 +29,5 @@ class AccountReadyPageState extends BaseStatefulPage<AccountReadyViewModel, Acco
 class AccountReadyArguments {
   final bool isDocumentUploaded;
 
-  AccountReadyArguments({this.isDocumentUploaded: false});
+  AccountReadyArguments({this.isDocumentUploaded = false});
 }

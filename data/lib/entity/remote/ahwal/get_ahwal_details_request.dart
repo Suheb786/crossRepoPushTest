@@ -9,7 +9,7 @@ class GetAhwalDetailsRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetAhwalDetailsRequest({this.idNo: "", required this.baseData});
+  GetAhwalDetailsRequest({this.idNo= "", required this.baseData});
 
   factory GetAhwalDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAhwalDetailsRequestFromJson(json);

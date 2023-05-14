@@ -19,11 +19,11 @@ class CheckForgetPasswordRequestEntity {
 
   CheckForgetPasswordRequestEntity({
     required this.baseData,
-    this.getToken: true,
+    this.getToken= true,
     this.email,
     this.idExpiry,
     this.idNo,
-    this.uniqueId: "",
+    this.uniqueId= "",
   });
 
   factory CheckForgetPasswordRequestEntity.fromJson(Map<String, dynamic> json) =>

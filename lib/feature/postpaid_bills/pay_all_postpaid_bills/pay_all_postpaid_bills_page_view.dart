@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
@@ -521,7 +519,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

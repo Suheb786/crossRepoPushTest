@@ -1,7 +1,6 @@
 import 'package:domain/model/register/additional_income.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';

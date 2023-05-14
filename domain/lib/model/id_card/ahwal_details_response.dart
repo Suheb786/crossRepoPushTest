@@ -1,5 +1,5 @@
 class AhwalDetailResponse {
   final bool skipConfirmationScreen;
 
-  AhwalDetailResponse({this.skipConfirmationScreen: false});
+  AhwalDetailResponse({this.skipConfirmationScreen= false});
 }

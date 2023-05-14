@@ -11,7 +11,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
   final IssuanceType type;
 
   CreditCardIssuanceFailureWidget(
-      {this.fontSize, this.isSmallDevices: false, this.type: IssuanceType.failure, Key? key})
+      {this.fontSize, this.isSmallDevices = false, this.type = IssuanceType.failure, Key? key})
       : super(key: key);
 
   @override

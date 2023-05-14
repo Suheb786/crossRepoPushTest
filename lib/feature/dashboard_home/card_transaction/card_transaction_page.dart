@@ -39,5 +39,5 @@ class DebitCardDeliveredPageState extends BaseStatefulPage<CardTransactionViewMo
 class GetCreditCardTransactionArguments {
   final String? cardId;
 
-  GetCreditCardTransactionArguments({this.cardId: ""});
+  GetCreditCardTransactionArguments({this.cardId = ""});
 }

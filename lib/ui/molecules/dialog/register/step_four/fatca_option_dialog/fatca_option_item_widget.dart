@@ -10,7 +10,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
   final AdditionalDataDropDownData item;
   final bool showFlag;
 
-  const FatcaOptionItemWidget({Key? key, required this.item, this.showFlag: false}) : super(key: key);
+  const FatcaOptionItemWidget({Key? key, required this.item, this.showFlag = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

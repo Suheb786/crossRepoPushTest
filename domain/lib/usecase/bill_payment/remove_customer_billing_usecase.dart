@@ -5,8 +5,8 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RemoveCustomerBillingUseCase extends BaseUseCase<NetworkError,
-    RemoveCustomerBillingUseCaseParams, bool> {
+class RemoveCustomerBillingUseCase
+    extends BaseUseCase<NetworkError, RemoveCustomerBillingUseCaseParams, bool> {
   final BillPaymentRepository billPaymentRepository;
 
   RemoveCustomerBillingUseCase(this.billPaymentRepository);
@@ -25,9 +25,9 @@ class RemoveCustomerBillingUseCaseParams extends Params {
   final String? serviceType;
 
   RemoveCustomerBillingUseCaseParams({
-    this.billerCode: "",
-    this.billingNo: "",
-    this.serviceType: "",
+    this.billerCode = "",
+    this.billingNo = "",
+    this.serviceType = "",
   });
 
   @override

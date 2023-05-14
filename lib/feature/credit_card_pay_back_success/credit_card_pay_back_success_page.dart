@@ -36,5 +36,5 @@ class CreditCardPayBackSuccessArguments {
   final String payBackAmount;
   final String accountHolderName;
 
-  CreditCardPayBackSuccessArguments({this.payBackAmount: "", this.accountHolderName: ""});
+  CreditCardPayBackSuccessArguments({this.payBackAmount = "", this.accountHolderName = ""});
 }

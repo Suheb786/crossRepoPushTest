@@ -26,7 +26,7 @@ class CreditCardVideoKycPageState
     extends BaseStatefulPage<CreditCardVideoKycViewModel, CreditCardVideoKycPage>
     with WidgetsBindingObserver {
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -49,7 +49,7 @@ class CreditCardVideoKycPageState
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -87,5 +87,5 @@ class CreditCardVideKycCredentials {
   final String token;
   final String cardId;
 
-  CreditCardVideKycCredentials({this.channelName: "", this.token: "", this.cardId: ""});
+  CreditCardVideKycCredentials({this.channelName = "", this.token = "", this.cardId = ""});
 }

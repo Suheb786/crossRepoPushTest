@@ -25,17 +25,15 @@ class DebitCardReplacementPageState
   @override
   void onModelReady(DebitCardReplacementPageViewModel model) {
     super.onModelReady(model);
-    if (widget._debitCardReplacementArguments != null) {
-      model.debitCardReplacementArguments = widget._debitCardReplacementArguments;
-      if (widget._debitCardReplacementArguments.isPinSet) {
-        Future.delayed(Duration(microseconds: 100), () {
-          model.navigateToPage(0);
-        });
-      } else {
-        Future.delayed(Duration(microseconds: 100), () {
-          model.moveToPage(1);
-        });
-      }
+    model.debitCardReplacementArguments = widget._debitCardReplacementArguments;
+    if (widget._debitCardReplacementArguments.isPinSet) {
+      Future.delayed(Duration(microseconds: 100), () {
+        model.navigateToPage(0);
+      });
+    } else {
+      Future.delayed(Duration(microseconds: 100), () {
+        model.moveToPage(1);
+      });
     }
   }
 
@@ -51,8 +49,8 @@ class DebitCardReplacementArguments {
   final DebitRoutes debitRoutes;
 
   DebitCardReplacementArguments(
-      {this.isPinSet: true,
-      this.type: DebitReplacementEnum.Normal,
+      {this.isPinSet = true,
+      this.type = DebitReplacementEnum.Normal,
       this.debitRoutes = DebitRoutes.DASHBOARD});
 }
 

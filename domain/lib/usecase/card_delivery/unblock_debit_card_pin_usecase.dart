@@ -20,7 +20,7 @@ class UnblockDebitCardPinUseCaseParams extends Params {
   final String status;
   final String pin;
 
-  UnblockDebitCardPinUseCaseParams({this.status: "", required this.pin});
+  UnblockDebitCardPinUseCaseParams({this.status = "", required this.pin});
 
   @override
   Either<AppError, bool> verify() {

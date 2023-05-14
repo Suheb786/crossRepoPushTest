@@ -8,7 +8,6 @@ import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
@@ -219,7 +218,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
+                                      color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
                                 ),
                               );
                             },

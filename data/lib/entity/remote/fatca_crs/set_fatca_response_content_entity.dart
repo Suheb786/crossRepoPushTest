@@ -13,7 +13,7 @@ class SetFatcaResponseContentEntity
   @JsonKey(name: "requestResponse")
   final String? requestResponse;
 
-  SetFatcaResponseContentEntity({this.data: "", this.requestResponse: ""});
+  SetFatcaResponseContentEntity({this.data= "", this.requestResponse= ""});
 
   factory SetFatcaResponseContentEntity.fromJson(Map<String, dynamic> json) =>
       _$SetFatcaResponseContentEntityFromJson(json);

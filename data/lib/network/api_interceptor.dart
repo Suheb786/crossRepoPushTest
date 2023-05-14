@@ -4,9 +4,8 @@ import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/constants/app_constants.dart';
-import 'package:flutter/material.dart';
 import 'package:domain/constants/app_constants_domain.dart';
-import 'package:domain/repository/user/user_repository.dart';
+import 'package:flutter/material.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
   final Dio _previousDio;

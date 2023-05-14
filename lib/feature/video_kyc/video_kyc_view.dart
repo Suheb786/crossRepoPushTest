@@ -2,7 +2,6 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:domain/constants/enum/video_kyc_status_enum.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';

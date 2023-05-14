@@ -18,19 +18,19 @@ class AppSecondaryButton extends StatelessWidget {
   final bool? autofocus;
 
   AppSecondaryButton(
-      {this.busy: false,
+      {this.busy = false,
       @required this.label,
       this.onTap,
       this.textColor,
       this.backgroundColor,
-      this.width: 327,
-      this.height: 56,
-      this.fontSize: 16,
+      this.width = 327,
+      this.height = 56,
+      this.fontSize = 16,
       this.fontFamily,
-      this.autofocus: false,
-      this.borderRadius: 18,
-      this.borderSideColor: AppColor.very_light_gray1,
-      this.borderSideWidth: 1});
+      this.autofocus = false,
+      this.borderRadius = 18,
+      this.borderSideColor = AppColor.very_light_gray1,
+      this.borderSideWidth = 1});
 
   @override
   Widget build(BuildContext context) {

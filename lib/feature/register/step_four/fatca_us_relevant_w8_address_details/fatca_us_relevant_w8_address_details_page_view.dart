@@ -6,7 +6,6 @@ import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:domain/model/country/state_list/state_list_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';

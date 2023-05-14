@@ -31,7 +31,7 @@ class DcEnterNewMobileNumberUseCaseParams extends Params {
   final CardType cardType;
 
   DcEnterNewMobileNumberUseCaseParams(
-      {this.mobileNumber = "", this.mobileCode, this.cardType: CardType.DEBIT, this.tokenizedPan});
+      {this.mobileNumber = "", this.mobileCode, this.cardType = CardType.DEBIT, this.tokenizedPan});
 
   @override
   Either<AppError, bool> verify() {

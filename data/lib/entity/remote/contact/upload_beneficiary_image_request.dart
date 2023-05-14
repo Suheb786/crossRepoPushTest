@@ -16,7 +16,7 @@ class UploadBeneficiaryImageRequest {
   UploadBeneficiaryImageRequest({
     required this.beneficiaryID,
     required this.image,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData,
   });
 

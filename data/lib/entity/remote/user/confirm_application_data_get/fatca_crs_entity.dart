@@ -29,7 +29,7 @@ class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCr
   @JsonKey(name: "isActive")
   final bool? isActive;
   @JsonKey(name: "deactivatedDate")
-  final dynamic? deactivatedDate;
+  final dynamic deactivatedDate;
   @JsonKey(name: "relationshipWithPEP")
   final String? relationshipWithPep;
   @JsonKey(name: "relationshipWithPEPName")
@@ -41,49 +41,49 @@ class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCr
   @JsonKey(name: "personRole")
   final String? personRole;
   @JsonKey(name: "signatureId")
-  final dynamic? signatureId;
+  final dynamic signatureId;
   @JsonKey(name: "namePerIncomeTaxReturn")
-  final dynamic? namePerIncomeTaxReturn;
+  final dynamic namePerIncomeTaxReturn;
   @JsonKey(name: "dob")
-  final dynamic? dob;
+  final dynamic dob;
   @JsonKey(name: "citizenShipCountry")
-  final dynamic? citizenShipCountry;
+  final dynamic citizenShipCountry;
   @JsonKey(name: "permanentResidenceAddress")
-  final dynamic? permanentResidenceAddress;
+  final dynamic permanentResidenceAddress;
   @JsonKey(name: "country")
-  final dynamic? country;
+  final dynamic country;
   @JsonKey(name: "city")
-  final dynamic? city;
+  final dynamic city;
   @JsonKey(name: "state")
-  final dynamic? state;
+  final dynamic state;
   @JsonKey(name: "postCode")
-  final dynamic? postCode;
+  final dynamic postCode;
   @JsonKey(name: "differentMailingAddress")
-  final dynamic? differentMailingAddress;
+  final dynamic differentMailingAddress;
   @JsonKey(name: "taxPayer")
-  final dynamic? taxPayer;
+  final dynamic taxPayer;
   @JsonKey(name: "usTaxIdNo")
-  final dynamic? usTaxIdNo;
+  final dynamic usTaxIdNo;
   @JsonKey(name: "claimTaxTreatBenefits")
-  final dynamic? claimTaxTreatBenefits;
+  final dynamic claimTaxTreatBenefits;
   @JsonKey(name: "beneficialOwnerResident")
-  final dynamic? beneficialOwnerResident;
+  final dynamic beneficialOwnerResident;
   @JsonKey(name: "usTaxpayerIdNoOwner")
-  final dynamic? usTaxpayerIdNoOwner;
+  final dynamic usTaxpayerIdNoOwner;
   @JsonKey(name: "typeOfIncome")
-  final dynamic? typeOfIncome;
+  final dynamic typeOfIncome;
   @JsonKey(name: "explanation")
-  final dynamic? explanation;
+  final dynamic explanation;
   @JsonKey(name: "businessName")
-  final dynamic? businessName;
+  final dynamic businessName;
   @JsonKey(name: "usAddress")
-  final dynamic? usAddress;
+  final dynamic usAddress;
   @JsonKey(name: "accountNo")
-  final dynamic? accountNo;
+  final dynamic accountNo;
   @JsonKey(name: "exemptPayeeCode")
-  final dynamic? exemptPayeeCode;
+  final dynamic exemptPayeeCode;
   @JsonKey(name: "socialSecurityNo")
-  final dynamic? socialSecurityNo;
+  final dynamic socialSecurityNo;
   @JsonKey(name: "createBy")
   final String? createBy;
   @JsonKey(name: "createTime")
@@ -134,8 +134,8 @@ class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCr
       this.taxResidenceCountry,
       this.deactivatedDate,
       this.signatureId,
-      this.isActive: false,
-      this.relationshipWithPEPName: "",
+      this.isActive= false,
+      this.relationshipWithPEPName= "",
       this.relationshipWithPEPNameAr});
 
   factory FatcaCrsEntity.fromJson(Map<String, dynamic> json) => _$FatcaCrsEntityFromJson(json);

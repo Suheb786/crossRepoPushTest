@@ -175,7 +175,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
   }
 
   ///totalAmountToPay
-  totalAmountToPay({bool isDisplay: false}) {
+  totalAmountToPay({bool isDisplay = false}) {
     if (isPartial == true) {
       if (double.parse(addAllBillAmt() ?? "0") != double.parse(dueAmtController ?? "0")) {
         if (isDisplay == true) {
@@ -213,7 +213,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
 
   Stream<Resource<ValidatePrePaidBill>> get validatePrePaidStream => _validatePrePaidResponse.stream;
 
-  void validatePrePaidBill({String? amount: "0"}) {
+  void validatePrePaidBill({String? amount = "0"}) {
     if (double.parse(amount ?? "0") > 0.0) {
       amtController.text = double.parse(amount ?? "0").toStringAsFixed(3);
     }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -11,7 +10,7 @@ class LinkAccountSelectionWidget extends StatelessWidget {
   final int currentIndex;
 
   const LinkAccountSelectionWidget(
-      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor, this.currentIndex: 0})
+      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor, this.currentIndex = 0})
       : super(key: key);
 
   @override

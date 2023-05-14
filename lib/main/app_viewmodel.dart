@@ -5,8 +5,6 @@ import 'package:domain/constants/app_constants_domain.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
-import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
-import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -86,21 +84,12 @@ class AppViewModel extends BaseViewModel {
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               )),
-          textTheme: _themeData.textTheme
-            ..apply(
-                    fontFamily: StringUtils.appFont,
-                    bodyColor: AppColor.brightBlue,
-                    displayColor: AppColor.brightBlue)
-                .bodyMedium
-            ..apply(
-              fontFamily: StringUtils.appFont,
-              bodyColor: AppColor.white,
-              displayColor: AppColor.white,
-            ),
-          // accentTextTheme: _themeData.textTheme.apply(
-          //     fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
-          primaryTextTheme: _themeData.textTheme.apply(
-              fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
+          textTheme: _themeData.textTheme.copyWith(
+              bodyLarge: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont),
+              bodyMedium: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont)),
+          primaryTextTheme: _themeData.textTheme.copyWith(
+            bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
+          ),
           iconTheme: IconThemeData(
             color: AppColor.white,
           ),
@@ -118,8 +107,6 @@ class AppViewModel extends BaseViewModel {
             primaryColor: AppColor.brightRed,
             primaryColorDark: AppColor.black,
             primaryColorLight: AppColor.verySoftRed,
-            colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white),
-            backgroundColor: AppColor.lightGray,
             cardTheme: CardTheme(
                 color: AppColor.veryLightGray,
                 shadowColor: AppColor.black.withOpacity(0.24),
@@ -142,7 +129,6 @@ class AppViewModel extends BaseViewModel {
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                 ),
-                //contentPadding: EdgeInsets.zero,
                 filled: false,
                 border: InputBorder.none,
                 enabledBorder: UnderlineInputBorder(
@@ -171,26 +157,23 @@ class AppViewModel extends BaseViewModel {
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                 )),
-            textTheme: _themeData.textTheme.apply(
+            textTheme: _themeData.textTheme.copyWith(
+              bodyLarge: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont),
+              bodyMedium: TextStyle(
+                color: AppColor.brightBlue,
                 fontFamily: StringUtils.appFont,
-                bodyColor: AppColor.veryDarkGray2,
-                displayColor: AppColor.veryDarkGray2)
-              ..apply(
-                  fontFamily: StringUtils.appFont,
-                  bodyColor: AppColor.brightBlue,
-                  displayColor: AppColor.brightBlue),
-            /*accentTextTheme: _themeData.textTheme.apply(
+              ),
+              bodySmall: TextStyle(
+                color: AppColor.very_dark_gray,
                 fontFamily: StringUtils.appFont,
-                bodyColor: AppColor.brightBlue,
-                displayColor: AppColor.brightBlue),*/
-            primaryTextTheme: _themeData.textTheme.apply(
-                fontFamily: StringUtils.appFont,
-                bodyColor: AppColor.very_dark_gray_black,
-                displayColor: AppColor.white),
+              ),
+            ),
+            primaryTextTheme: _themeData.textTheme.copyWith(
+              bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
+            ),
             iconTheme: IconThemeData(
               color: AppColor.white,
             ),
-            errorColor: AppColor.vivid_red,
             indicatorColor: AppColor.veryDarkGray2,
             buttonTheme: ButtonThemeData(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
@@ -199,7 +182,10 @@ class AppViewModel extends BaseViewModel {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             dividerColor: AppColor.lightGrayishBlue,
-            canvasColor: AppColor.vividYellow);
+            canvasColor: AppColor.vividYellow,
+            colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
+                .copyWith(background: AppColor.lightGray)
+                .copyWith(error: AppColor.vivid_red));
         break;
     }
 
@@ -210,11 +196,8 @@ class AppViewModel extends BaseViewModel {
   Isolate? _isolate;
 
   final GetTokenUseCase _getTokenUseCase;
-  final SaveUserUseCase _saveUserUseCase;
   final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
   final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
-
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
@@ -250,8 +233,7 @@ class AppViewModel extends BaseViewModel {
   }
 
   ///---------------log app flyers events------------------///
-  AppViewModel(this._getTokenUseCase, this._saveUserUseCase, this._initAppFlyerSDKUseCase,
-      this._logAppFlyerSDKEventsUseCase) {
+  AppViewModel(this._getTokenUseCase, this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()

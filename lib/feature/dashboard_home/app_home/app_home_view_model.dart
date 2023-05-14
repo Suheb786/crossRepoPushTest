@@ -98,9 +98,6 @@ class AppHomeViewModel extends BasePageViewModel {
   /// Sent money popup request
   PublishSubject<bool> _sentMoneyPopUpResponse = PublishSubject();
 
-  /// Sent money popup response
-  PublishSubject<bool> _sentMoneyRequest = PublishSubject();
-
   /// Sent money popup stream
   Stream<bool> get getSentMoneyPopUpDataStream => _sentMoneyPopUpResponse.stream;
 
@@ -884,7 +881,7 @@ class TimeLineSwipeUpArgs {
 
   final SwipeUpEnum swipeUpEnum;
 
-  TimeLineSwipeUpArgs({this.cardType: CardType.ACCOUNT, this.swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO});
+  TimeLineSwipeUpArgs({this.cardType = CardType.ACCOUNT, this.swipeUpEnum = SwipeUpEnum.SWIPE_UP_NO});
 }
 
 enum SwipeUpEnum { SWIPE_UP_YES, SWIPE_UP_NO }

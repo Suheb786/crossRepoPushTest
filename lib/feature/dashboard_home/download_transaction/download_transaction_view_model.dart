@@ -1,6 +1,5 @@
 import 'package:domain/model/card/card_statement_response.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
-import 'package:domain/usecase/dashboard/download_card_transaction_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -11,8 +10,6 @@ import 'package:rxdart/rxdart.dart';
 
 class DownloadTransactionViewModel extends BasePageViewModel {
   final GetCardStatementUseCase _cardStatementUseCase;
-
-  DownloadCardTransactionUseCase _useCase;
 
   final DownloadStatementArguments arguments;
 
@@ -25,7 +22,7 @@ class DownloadTransactionViewModel extends BasePageViewModel {
   ///card statement response stream
   Stream<Resource<CardStatementResponse>> get cardStatementStream => _cardStatementResponse.stream;
 
-  DownloadTransactionViewModel(this._useCase, this._cardStatementUseCase, this.arguments) {
+  DownloadTransactionViewModel(this._cardStatementUseCase, this.arguments) {
     _cardStatementRequest.listen((value) {
       RequestManager(value, createCall: () => _cardStatementUseCase.execute(params: value))
           .asFlow()

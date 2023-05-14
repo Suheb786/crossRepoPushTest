@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppDialog {
   AppDialog._();
 
   static Future show(BuildContext context,
       {required Widget Function(BuildContext context) builder,
-      bool isDismissible: true,
+      bool isDismissible = true,
       Color? barrierColor}) {
     return showGeneralDialog(
         context: context,

@@ -19,7 +19,7 @@ final deleteBeneficiaryUseCaseProvider = Provider.autoDispose<DeleteBeneficiaryU
 
 ///[GetContactsUseCase] provider
 final getContactsUseCaseProvider = Provider.autoDispose<GetContactsUseCase>(
-  (ref) => GetContactsUseCase(ref.read(manageContactRepositoryProvider)),
+  (ref) => GetContactsUseCase(),
 );
 
 ///[UpdateBeneficiaryUseCase] provider

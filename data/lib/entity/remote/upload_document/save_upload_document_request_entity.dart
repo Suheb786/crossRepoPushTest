@@ -19,7 +19,7 @@ class SaveUploadDocumentRequestEntity {
       {this.proofOfAddressId,
       this.proofOfIncomeId,
       this.proofOfNationalityId,
-      this.getToken: true,
+      this.getToken= true,
       required this.baseData});
 
   factory SaveUploadDocumentRequestEntity.fromJson(Map<String, dynamic> json) =>

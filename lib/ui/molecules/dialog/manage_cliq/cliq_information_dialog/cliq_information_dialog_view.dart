@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -30,7 +29,7 @@ class CliqInformationDialogView extends StatelessWidget {
       required this.title,
       required this.description,
       required this.subDescription,
-      this.isSwipeToCancel: true});
+      this.isSwipeToCancel = true});
 
   ProviderBase providerBase() {
     return cliqInformationDialogViewModelProvider;
@@ -113,8 +112,10 @@ class CliqInformationDialogView extends StatelessWidget {
                                     height: 57.h,
                                     width: 57.h,
                                     decoration: BoxDecoration(
-                                        shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                    child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                    child: AppSvg.asset(AssetUtils.tick,
+                                        color: Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                               );

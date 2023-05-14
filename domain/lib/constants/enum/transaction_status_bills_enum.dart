@@ -3,11 +3,6 @@ class TransactionStatusBillsEnum {
 
   const TransactionStatusBillsEnum._(this._value);
 
-  // @override
-  // String toString() {
-  //   return _value.toString();
-  // }
-
   static const TransactionStatusBillsEnum SUCCESS = TransactionStatusBillsEnum._(1);
   static const TransactionStatusBillsEnum FAIL = TransactionStatusBillsEnum._(2);
   static const TransactionStatusBillsEnum PENDING = TransactionStatusBillsEnum._(3);

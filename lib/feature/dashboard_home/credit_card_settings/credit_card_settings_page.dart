@@ -36,7 +36,7 @@ class CreditCardSettingsPageState
 
   @override
   void onModelReady(CreditCardSettingsViewModel model) {
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!(model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false)) {
         InformationDialog.show(context,
             image: AssetUtils.card_activation,

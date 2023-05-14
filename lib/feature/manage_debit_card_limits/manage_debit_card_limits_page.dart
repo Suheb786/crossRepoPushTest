@@ -41,5 +41,5 @@ class ManageCardLimitsArguments {
   final dynamic debitDeliveredDatetime;
 
   ManageCardLimitsArguments(
-      {this.cardType: CardType.CREDIT, this.tokenizedPan: '', this.debitDeliveredDatetime});
+      {this.cardType = CardType.CREDIT, this.tokenizedPan = '', this.debitDeliveredDatetime});
 }

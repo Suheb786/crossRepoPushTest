@@ -8,7 +8,7 @@ class AppDivider extends StatelessWidget {
   final double endIndent;
 
   const AppDivider(
-      {Key? key, this.color, this.height: 1, this.thickness: 1, this.indent: 0, this.endIndent: 0})
+      {Key? key, this.color, this.height = 1, this.thickness = 1, this.indent = 0, this.endIndent = 0})
       : super(key: key);
 
   @override

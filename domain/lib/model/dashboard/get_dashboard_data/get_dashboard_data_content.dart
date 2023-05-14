@@ -9,12 +9,12 @@ class GetDashboardDataContent {
       this.creditCard,
       this.debitCard,
       this.youJoinedBlink,
-      this.somethingWrong: false,
-      this.mobileNumber: "",
-      this.mobileCode: "",
+      this.somethingWrong= false,
+      this.mobileNumber= "",
+      this.mobileCode= "",
       this.blinkWasBorn,
-      this.debitCardSomethingWrong: false,
-      this.isCreditCard: true,
+      this.debitCardSomethingWrong= false,
+      this.isCreditCard= true,
       this.dashboardFeatures});
 
   final Account? account;

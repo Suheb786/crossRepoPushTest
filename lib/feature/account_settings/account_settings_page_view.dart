@@ -4,7 +4,6 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -82,7 +81,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                           stream: model.uploadProfilePhotoStream,
                                           initialData: '',
                                           onData: (data) {
-                                            if (data != null && data.isNotEmpty) {
+                                            if (data.isNotEmpty) {
                                               model.selectedProfile = data;
                                               //model.addImage(data);
                                               _cropImage(data, model, context);
@@ -138,8 +137,9 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                           fontFamily: StringUtils.appFont,
                                                                           fontWeight: FontWeight.w700,
                                                                           fontSize: 18.t,
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondary),
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .secondary),
                                                                     ),
                                                                   ))
                                                             : CircleAvatar(
@@ -175,7 +175,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 padding: EdgeInsets.only(top: 32.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
-                                  color: Theme.of(context).backgroundColor,
+                                  color: Theme.of(context).colorScheme.background,
                                 ),
                               ),
                               AccountSettingWidget(
@@ -199,7 +199,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
-                                  color: Theme.of(context).backgroundColor,
+                                  color: Theme.of(context).colorScheme.background,
                                 ),
                               ),
                               AccountSettingWidget(
@@ -223,7 +223,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
-                                  color: Theme.of(context).backgroundColor,
+                                  color: Theme.of(context).colorScheme.background,
                                 ),
                               ),
                               AccountSettingWidget(
@@ -237,7 +237,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
-                                  color: Theme.of(context).backgroundColor,
+                                  color: Theme.of(context).colorScheme.background,
                                 ),
                               ),
                               AppStreamBuilder<Resource<bool>>(

@@ -16,7 +16,7 @@ class GetDestinationRequestEntity {
   final Map<String, dynamic> baseData;
 
   GetDestinationRequestEntity(
-      {required this.baseData, this.getToken: true, this.language, this.origin, this.service});
+      {required this.baseData, this.getToken= true, this.language, this.origin, this.service});
 
   factory GetDestinationRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetDestinationRequestEntityFromJson(json);

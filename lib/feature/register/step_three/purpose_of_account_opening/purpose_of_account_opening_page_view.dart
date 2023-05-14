@@ -2,7 +2,6 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/model/register/expected_Transactionss.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
@@ -156,7 +155,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 14.t,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
+                                            color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
                                       ),
                                     );
                                   },
@@ -188,7 +187,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                               fontFamily: StringUtils.appFont,
                                               fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
+                                              color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
                                         ),
                                       );
                                     },

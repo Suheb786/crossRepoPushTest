@@ -18,9 +18,9 @@ class ChangeCreditCardPinRequestEntity {
   final Map<String, dynamic>? baseData;
 
   ChangeCreditCardPinRequestEntity(
-      {this.getToken: true,
+      {this.getToken= true,
       this.baseData,
-      this.cardCode: "",
+      this.cardCode= "",
       this.encryptedCardNumber = "",
       this.encryptedPinCode = '',
       this.otp = ''});

@@ -29,5 +29,5 @@ class AccountHoldPageState extends BaseStatefulPage<AccountHoldViewModel, Accoun
 class AccountHoldArguments {
   final String? applicationId;
 
-  AccountHoldArguments({this.applicationId: ""});
+  AccountHoldArguments({this.applicationId = ""});
 }

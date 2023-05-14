@@ -12,7 +12,7 @@ class CheckGenderStatusEntity
   @JsonKey(name: "femaleAvailable")
   final bool? isFemaleAvailable;
 
-  CheckGenderStatusEntity({this.isMaleAvailable: false, this.isFemaleAvailable: false});
+  CheckGenderStatusEntity({this.isMaleAvailable= false, this.isFemaleAvailable= false});
 
   factory CheckGenderStatusEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckGenderStatusEntityFromJson(json);

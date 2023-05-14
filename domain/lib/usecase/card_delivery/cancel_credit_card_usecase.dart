@@ -19,7 +19,7 @@ class CancelCreditCardUseCase extends BaseUseCase<NetworkError, CancelCreditCard
 class CancelCreditCardUseCaseParams extends Params {
   final String reason;
 
-  CancelCreditCardUseCaseParams({this.reason: ""});
+  CancelCreditCardUseCaseParams({this.reason = ""});
 
   @override
   Either<AppError, bool> verify() {

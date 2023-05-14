@@ -1,14 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_limits_widget_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -32,14 +29,14 @@ class ManageLimitsWidget extends StatelessWidget {
 
   const ManageLimitsWidget({
     Key? key,
-    this.title: "",
+    this.title = "",
     required this.providerBase,
     this.isLast = false,
-    this.maxAmount: "",
-    this.amountSet: "",
-    this.initialValue: true,
-    this.noToggle: false,
-    this.readOnly: false,
+    this.maxAmount = "",
+    this.amountSet = "",
+    this.initialValue = true,
+    this.noToggle = false,
+    this.readOnly = false,
     required this.onToggle,
     required this.onDone,
     required this.onChange,
@@ -223,7 +220,7 @@ class ManageLimitsWidget extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

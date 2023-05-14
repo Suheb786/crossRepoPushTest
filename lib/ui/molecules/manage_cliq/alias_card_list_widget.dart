@@ -109,7 +109,7 @@ class AliasCardList extends StatelessWidget {
                 ),
                 child: NotificationListener<OverscrollIndicatorNotification>(
                   onNotification: (overScroll) {
-                    overScroll.disallowGlow();
+                    overScroll.disallowIndicator();
                     throw "";
                   },
                   child: ListView.separated(

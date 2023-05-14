@@ -52,7 +52,6 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
@@ -135,8 +134,7 @@ final purposeOfAccountOpeningDialogViwModelProvider =
 
 ///get employer Country dialog view model provider
 final employerCountryDialogViwModelProvider = ChangeNotifierProvider.autoDispose<CountryDialogViewModel>(
-    (ref) => CountryDialogViewModel(
-        ref.read(fetchCountriesUseCaseProvider), ref.read(getCountriesListUseCaseProvider)));
+    (ref) => CountryDialogViewModel(ref.read(getCountriesListUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =
@@ -324,8 +322,7 @@ final fatcaUSRelevantW9AddressPageViewModelProvider =
 ///fatca us w9 tax payer details page view model provider
 final fatcaUSW9TaxPayerDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSW9TaxPayersDetailsPageViewModel>(
-  (ref) => FatcaUSW9TaxPayersDetailsPageViewModel(
-      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider), ref.read(uploadDocumentUseCaseProvider)),
+  (ref) => FatcaUSW9TaxPayersDetailsPageViewModel(ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider)),
 );
 
 ///tax payer dialog view model provider
@@ -374,10 +371,6 @@ final stateCityDialogViewModelProvider =
 
 final registerStepFiveViewModelProvider = ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
   (ref) => RegisterStepFiveViewModel(),
-);
-
-final calendarDialogViewModelProvider = ChangeNotifierProvider.autoDispose<CalendarDialogViewModel>(
-  (ref) => CalendarDialogViewModel(),
 );
 
 final yearMonthDialogViewModelProvider = ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(

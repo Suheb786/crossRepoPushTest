@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -10,7 +9,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 class ApplyCreditCardWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false}) : super(key: key);
+  const ApplyCreditCardWidget({Key? key, this.isSmallDevices = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

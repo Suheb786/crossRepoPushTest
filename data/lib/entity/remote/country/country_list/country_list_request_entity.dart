@@ -9,7 +9,7 @@ class CountryListRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CountryListRequestEntity({required this.baseData, this.getToken: true});
+  CountryListRequestEntity({required this.baseData, this.getToken= true});
 
   factory CountryListRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryListRequestEntityFromJson(json);

@@ -1,9 +1,8 @@
 import 'package:data/helper/key_helper.dart';
-import 'package:data/db/exception/app_local_exception.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DynamicLinksService {
   PublishSubject<Uri> _initDynamicLinkRequestResponse = PublishSubject();

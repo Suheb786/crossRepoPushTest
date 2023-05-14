@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page_view_model.dart';
@@ -43,7 +42,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -81,7 +80,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -98,7 +97,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
             ],
           ),

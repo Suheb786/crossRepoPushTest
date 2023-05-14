@@ -5,5 +5,5 @@ class CheckExistingCallStatus {
   final String scheduledTime;
 
   CheckExistingCallStatus(
-      {this.isExist: false, this.isExpire: false, this.scheduledDate: "", this.scheduledTime: ""});
+      {this.isExist= false, this.isExpire= false, this.scheduledDate= "", this.scheduledTime= ""});
 }

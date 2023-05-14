@@ -11,7 +11,7 @@ class RejectionReasonRequestEntity {
   final Map<String, dynamic>? baseData;
 
   RejectionReasonRequestEntity({
-    this.getToken: true,
+    this.getToken= true,
     this.baseData,
   });
 

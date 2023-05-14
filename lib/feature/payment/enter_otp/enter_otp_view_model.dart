@@ -3,7 +3,6 @@ import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
-import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -38,8 +37,6 @@ class EnterOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  ///resend otp
-  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
 
@@ -47,8 +44,6 @@ class EnterOtpViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get transferVerifyStream => _transferVerifyResponse.stream;
 
   void updateTime({required String amount}) {
-    // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    // notifyListeners();
     verifyTransfer(amount: amount);
   }
 
