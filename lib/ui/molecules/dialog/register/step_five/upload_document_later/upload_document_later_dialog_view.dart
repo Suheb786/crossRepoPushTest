@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -47,7 +46,7 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 14.t,
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).primaryTextTheme.bodyText1!.color,
+                          color: Theme.of(context).primaryTextTheme.bodyLarge?.color,
                         ),
                         children: [
                           TextSpan(

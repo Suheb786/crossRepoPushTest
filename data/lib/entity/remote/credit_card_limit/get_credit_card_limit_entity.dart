@@ -32,16 +32,16 @@ class GetCreditCardLimitEntity
   final bool? isContactLess;
 
   GetCreditCardLimitEntity(
-      {this.isATM: false,
-      this.atmCurrentLimit: "0",
-      this.atmMaxLimit: "0",
-      this.isMerchant: false,
-      this.merchantCurrentLimit: "0",
-      this.merchantMAXLimit: "0",
-      this.isOnlinePurchase: false,
-      this.onlinePurchaseCurrentLimit: "0",
-      this.onlinePurchaseMAXLimit: "0",
-      this.isContactLess: false});
+      {this.isATM= false,
+      this.atmCurrentLimit= "0",
+      this.atmMaxLimit= "0",
+      this.isMerchant= false,
+      this.merchantCurrentLimit= "0",
+      this.merchantMAXLimit= "0",
+      this.isOnlinePurchase= false,
+      this.onlinePurchaseCurrentLimit= "0",
+      this.onlinePurchaseMAXLimit= "0",
+      this.isContactLess= false});
 
   factory GetCreditCardLimitEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardLimitEntityFromJson(json);

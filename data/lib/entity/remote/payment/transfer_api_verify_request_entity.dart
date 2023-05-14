@@ -12,9 +12,9 @@ class TransferApiVerifyRequestEntity {
   final Map<String, dynamic>? baseData;
 
   TransferApiVerifyRequestEntity({
-    this.getToken: true,
+    this.getToken= true,
     this.baseData,
-    this.amount: "",
+    this.amount= "",
   });
 
   factory TransferApiVerifyRequestEntity.fromJson(Map<String, dynamic> json) =>

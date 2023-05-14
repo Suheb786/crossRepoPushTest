@@ -1,7 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';

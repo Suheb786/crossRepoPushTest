@@ -28,7 +28,7 @@ class AddNewPostpaidBillerEntityRequest {
     this.billerCode,
     this.billingNumber,
     this.nickname,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData
   });
 

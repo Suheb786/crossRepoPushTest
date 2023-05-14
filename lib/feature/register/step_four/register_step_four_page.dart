@@ -24,7 +24,7 @@ class RegisterStepFourPageState extends BaseStatefulPage<RegisterStepFourViewMod
 
   @override
   void onModelReady(RegisterStepFourViewModel model) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ProviderScope.containerOf(context).read(registerViewModelProvider).fatcaEnum != null) {
         switch (ProviderScope.containerOf(context).read(registerViewModelProvider).fatcaEnum) {
           case FatcaEnum.w8:

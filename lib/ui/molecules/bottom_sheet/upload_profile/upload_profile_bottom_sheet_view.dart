@@ -59,7 +59,7 @@ class _UploadProfileBottomSheetViewState extends State<UploadProfileBottomSheetV
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
                   fontSize: 20.t,
-                  color: Theme.of(context).errorColor)),
+                  color: Theme.of(context).colorScheme.error)),
           onPressed: () {
             widget.onRemoveTap?.call();
           },

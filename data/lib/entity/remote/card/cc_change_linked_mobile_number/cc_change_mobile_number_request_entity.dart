@@ -19,7 +19,7 @@ class CcChangeMobileNumberRequestEntity {
 
   CcChangeMobileNumberRequestEntity(
       {required this.baseData,
-      this.getToken: true,
+      this.getToken= true,
       this.mobileCode,
       this.otpCode,
       this.mobileNumber,

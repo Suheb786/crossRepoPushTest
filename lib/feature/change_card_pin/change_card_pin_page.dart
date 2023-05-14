@@ -35,5 +35,5 @@ class ChangeCardPinArguments {
   final String? tokenizedPan;
   final String? cardNumber;
 
-  ChangeCardPinArguments({this.cardType: CardType.DEBIT, this.tokenizedPan: "", this.cardNumber: ""});
+  ChangeCardPinArguments({this.cardType = CardType.DEBIT, this.tokenizedPan = "", this.cardNumber = ""});
 }

@@ -32,7 +32,4 @@ class CreateNewPasswordPageState
   Widget buildView(BuildContext context, CreateNewPasswordPageViewModel model) {
     return CreateNewPasswordPageView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

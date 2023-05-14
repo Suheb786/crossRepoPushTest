@@ -13,8 +13,8 @@ class DebitCard {
       this.isDebitDelivered,
       this.debitDeliveredDatetime,
       this.code,
-      this.primarySecondaryCard: PrimarySecondaryEnum.NONE,
-      this.isPINSet: true,
+      this.primarySecondaryCard= PrimarySecondaryEnum.NONE,
+      this.isPINSet= true,
       this.isPhysicalDebitCardRequested = false,
       this.cardCode,
       this.isCardInApplePay = false,
@@ -30,7 +30,7 @@ class DebitCard {
   bool? isDebitDelivered;
   bool? isPINSet;
   bool? isPhysicalDebitCardRequested;
-  dynamic? debitDeliveredDatetime;
+  dynamic debitDeliveredDatetime;
   DateTime? debitCardActivated;
   PrimarySecondaryEnum? primarySecondaryCard;
   String? cardCode;

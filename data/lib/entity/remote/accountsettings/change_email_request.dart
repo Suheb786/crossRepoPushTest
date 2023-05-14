@@ -11,7 +11,7 @@ class ChangeEmailRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  ChangeEmailRequest({this.email: "", this.getToken: true, required this.baseData});
+  ChangeEmailRequest({this.email= "", this.getToken= true, required this.baseData});
 
   factory ChangeEmailRequest.fromJson(Map<String, dynamic> json) => _$ChangeEmailRequestFromJson(json);
 

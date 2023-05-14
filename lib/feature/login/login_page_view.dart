@@ -77,7 +77,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(200),
-                                        border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 1)),
+                                        border: Border.all(
+                                            color: Theme.of(context).colorScheme.secondary, width: 1)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<LanguageEnum>(
                                         value: selectedLanguage,
@@ -295,6 +296,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
+                                                                                color: Theme.of(context)
+                                                                                    .inputDecorationTheme
+                                                                                    .focusedBorder!
+                                                                                    .borderSide
+                                                                                    .color,
                                                                                 fontSize: 14.0.t,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ), onDismissed: () {
@@ -339,7 +345,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //       arguments:
                                                                     //           RegisterPageParams());
                                                                     // });
-
                                                                   } else if (data.status == Status.ERROR) {
                                                                     model.emailKey.currentState!.isValid =
                                                                         false;
@@ -503,12 +508,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             (data) async {
                                                                                                           if (data.status ==
                                                                                                               Status.SUCCESS) {
-                                                                                                            var value = await SharedPreferenceHelper.saveValue(false);
+                                                                                                            await SharedPreferenceHelper.saveValue(false);
                                                                                                             model.checkVersionUpdate(clear: "false");
-                                                                                                          } else if (data.status ==
-                                                                                                              Status.ERROR) {
+                                                                                                          } else if (data.status == Status.ERROR) {
                                                                                                             if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                              var value = await SharedPreferenceHelper.saveValue(false);
+                                                                                                              await SharedPreferenceHelper.saveValue(false);
                                                                                                               model.checkVersionUpdate(clear: "true");
                                                                                                             }
                                                                                                           }
@@ -636,7 +640,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     .w500,
                                                                                             color: Theme.of(
                                                                                                     context)
-                                                                                                .colorScheme.secondary),
+                                                                                                .colorScheme
+                                                                                                .secondary),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -662,10 +667,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     .swipeToProceed,
                                                                                                 borderColor: Theme.of(
                                                                                                         context)
-                                                                                                    .colorScheme.secondary,
+                                                                                                    .colorScheme
+                                                                                                    .secondary,
                                                                                                 textColor: Theme.of(
                                                                                                         context)
-                                                                                                    .colorScheme.secondary,
+                                                                                                    .colorScheme
+                                                                                                    .secondary,
                                                                                               ),
                                                                                             ),
                                                                                           );

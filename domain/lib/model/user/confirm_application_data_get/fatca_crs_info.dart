@@ -17,27 +17,27 @@ class FatcaCrsInfo {
   final String? relationshipWithPEPNameAr;
   final String? personName;
   final String? personRole;
-  final dynamic? namePerIncomeTaxReturn;
-  final dynamic? dob;
-  final dynamic? citizenShipCountry;
-  final dynamic? permanentResidenceAddress;
-  final dynamic? country;
-  final dynamic? city;
-  final dynamic? state;
-  final dynamic? postCode;
-  final dynamic? differentMailingAddress;
-  final dynamic? taxPayer;
-  final dynamic? usTaxIdNo;
-  final dynamic? claimTaxTreatBenefits;
-  final dynamic? beneficialOwnerResident;
-  final dynamic? usTaxpayerIdNoOwner;
-  final dynamic? typeOfIncome;
-  final dynamic? explanation;
-  final dynamic? businessName;
-  final dynamic? usAddress;
-  final dynamic? accountNo;
-  final dynamic? exemptPayeeCode;
-  final dynamic? socialSecurityNo;
+  final dynamic namePerIncomeTaxReturn;
+  final dynamic dob;
+  final dynamic citizenShipCountry;
+  final dynamic permanentResidenceAddress;
+  final dynamic country;
+  final dynamic city;
+  final dynamic state;
+  final dynamic postCode;
+  final dynamic differentMailingAddress;
+  final dynamic taxPayer;
+  final dynamic usTaxIdNo;
+  final dynamic claimTaxTreatBenefits;
+  final dynamic beneficialOwnerResident;
+  final dynamic usTaxpayerIdNoOwner;
+  final dynamic typeOfIncome;
+  final dynamic explanation;
+  final dynamic businessName;
+  final dynamic usAddress;
+  final dynamic accountNo;
+  final dynamic exemptPayeeCode;
+  final dynamic socialSecurityNo;
   final String? createBy;
   final DateTime? createTime;
   final String? createTerminal;
@@ -84,7 +84,7 @@ class FatcaCrsInfo {
       this.createTime,
       this.createTerminal,
       this.taxResidenceCountry,
-      this.isActive: false,
+      this.isActive= false,
       this.signatureId,
       this.deactivatedDate});
 }

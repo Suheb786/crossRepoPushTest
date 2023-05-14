@@ -9,7 +9,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 class ResumeCreditCardApplicationView extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ResumeCreditCardApplicationView({this.isSmallDevices: false, Key? key}) : super(key: key);
+  const ResumeCreditCardApplicationView({this.isSmallDevices = false, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

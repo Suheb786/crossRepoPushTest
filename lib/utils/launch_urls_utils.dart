@@ -4,8 +4,8 @@ class LaunchUrlUtils {
   LaunchUrlUtils._();
 
   static launchDigitalService(String digitalServiceUrl) async {
-    if (await canLaunch(digitalServiceUrl)) {
-      await launch(digitalServiceUrl);
+    if (await canLaunchUrl(Uri.parse(digitalServiceUrl))) {
+      await canLaunchUrl(Uri.parse(digitalServiceUrl));
     } else {
       throw 'Could not launch $digitalServiceUrl';
     }

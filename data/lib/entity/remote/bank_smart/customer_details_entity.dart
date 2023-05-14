@@ -27,7 +27,7 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "cityCurr")
   final String? cityCurr;
   @JsonKey(name: "addressHomeCountry")
-  final dynamic? addressHomeCountry;
+  final dynamic addressHomeCountry;
   @JsonKey(name: "countryHome")
   final String? countryHome;
   @JsonKey(name: "stateHome")
@@ -71,13 +71,13 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "maritalstatus")
   final String? maritalstatus;
   @JsonKey(name: "tinind")
-  final dynamic? tinInd;
+  final dynamic tinInd;
   @JsonKey(name: "tinno1Ind")
-  final dynamic? tinno1Ind;
+  final dynamic tinno1Ind;
   @JsonKey(name: "taxCountry1Ind")
-  final dynamic? taxCountry1Ind;
+  final dynamic taxCountry1Ind;
   @JsonKey(name: "tinNo2Ind")
-  final dynamic? tinNo2Ind;
+  final dynamic tinNo2Ind;
   @JsonKey(name: "taxCountry2Ind")
   final String? taxCountry2Ind;
   @JsonKey(name: "tinNo3Ind")
@@ -93,13 +93,13 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "taxCountry5Ind")
   final String? taxCountry5Ind;
   @JsonKey(name: "fatcaNoReason")
-  final dynamic? fatcaNoReason;
+  final dynamic fatcaNoReason;
   @JsonKey(name: "reasonBind")
-  final dynamic? reasonBind;
+  final dynamic reasonBind;
   @JsonKey(name: "groupCode")
   final String? groupCode;
   @JsonKey(name: "mdmid")
-  final dynamic? mdmid;
+  final dynamic mdmid;
   @JsonKey(name: "rManager")
   final String? rManager;
   @JsonKey(name: "riskProfile")
@@ -119,7 +119,7 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "passportIssueDate")
   final DateTime? passportIssueDate;
   @JsonKey(name: "passportExpiry")
-  final dynamic? passportExpiry;
+  final dynamic passportExpiry;
   @JsonKey(name: "passportIssueCountry")
   final String? passportIssueCountry;
   @JsonKey(name: "passportGender")
@@ -143,9 +143,9 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "hni")
   final String? hni;
   @JsonKey(name: "refererPromoCode")
-  final dynamic? refererPromoCode;
+  final dynamic refererPromoCode;
   @JsonKey(name: "ourBranchId")
-  final dynamic? ourBranchId;
+  final dynamic ourBranchId;
   @JsonKey(name: "idType")
   final String? idType;
   @JsonKey(name: "firstNameAR")
@@ -165,9 +165,9 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "relationshipPep")
   final String? relationshipPep;
   @JsonKey(name: "namePep")
-  final dynamic? namePep;
+  final dynamic namePep;
   @JsonKey(name: "rolePep")
-  final dynamic? rolePep;
+  final dynamic rolePep;
   @JsonKey(name: "beneficialOwner")
   final String? beneficialOwner;
   @JsonKey(name: "districtCorresp")
@@ -191,7 +191,7 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "annualIncome")
   final int? annualIncome;
   @JsonKey(name: "monthlyIncome")
-  final dynamic? monthlyIncome;
+  final dynamic monthlyIncome;
   @JsonKey(name: "additionalIncomeSource")
   final String? additionalIncomeSource;
   @JsonKey(name: "otherAdditionalIncomeSource")
@@ -203,23 +203,23 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<CustomerDetailsEnti
   @JsonKey(name: "reasonforBanking")
   final String? reasonforBanking;
   @JsonKey(name: "preferredLanguage")
-  final dynamic? preferredLanguage;
+  final dynamic preferredLanguage;
   @JsonKey(name: "accountOfficer")
-  final dynamic? accountOfficer;
+  final dynamic accountOfficer;
   @JsonKey(name: "ifrsFields")
-  final dynamic? ifrsFields;
+  final dynamic ifrsFields;
   @JsonKey(name: "cbjSecretNumber")
-  final dynamic? cbjSecretNumber;
+  final dynamic cbjSecretNumber;
   @JsonKey(name: "obligerRating")
-  final dynamic? obligerRating;
+  final dynamic obligerRating;
   @JsonKey(name: "smsSubscription")
-  final dynamic? smsSubscription;
+  final dynamic smsSubscription;
   @JsonKey(name: "titlear")
-  final dynamic? titlear;
+  final dynamic titlear;
   @JsonKey(name: "empCountry")
   final String? empCountry;
   @JsonKey(name: "empState")
-  final dynamic? empState;
+  final dynamic empState;
   @JsonKey(name: "empCity")
   final String? empCity;
 

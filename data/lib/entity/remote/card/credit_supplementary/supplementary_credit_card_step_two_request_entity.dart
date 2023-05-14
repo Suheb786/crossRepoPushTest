@@ -14,7 +14,7 @@ class SupplementaryCreditCardStepTwoRequestEntity {
   final Map<String, dynamic> baseData;
 
   SupplementaryCreditCardStepTwoRequestEntity(
-      {this.primaryCardId, this.secondaryCardId, this.getToken: false, required this.baseData});
+      {this.primaryCardId, this.secondaryCardId, this.getToken= false, required this.baseData});
 
   factory SupplementaryCreditCardStepTwoRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SupplementaryCreditCardStepTwoRequestEntityFromJson(json);

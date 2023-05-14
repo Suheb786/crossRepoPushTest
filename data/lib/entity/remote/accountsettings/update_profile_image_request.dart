@@ -11,7 +11,7 @@ class UpdateProfileImageRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  UpdateProfileImageRequest({this.image: "", this.getToken: true, required this.baseData});
+  UpdateProfileImageRequest({this.image= "", this.getToken= true, required this.baseData});
 
   factory UpdateProfileImageRequest.fromJson(Map<String, dynamic> json) =>
       _$UpdateProfileImageRequestFromJson(json);

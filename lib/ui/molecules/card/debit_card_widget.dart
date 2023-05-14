@@ -32,9 +32,9 @@ class DebitCardWidget extends StatefulWidget {
   DebitCardWidget(
       {required this.key,
       required this.debitCard,
-      this.isSmallDevice: false,
+      this.isSmallDevice = false,
       required this.isPrimaryDebitCard,
-      this.isDebitCardRequestPhysicalCardEnabled: false});
+      this.isDebitCardRequestPhysicalCardEnabled = false});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -91,56 +91,56 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               ),
                               widget.debitCard.cardStatus == FreezeCardStatusEnum.F
                                   ? Container(
-                                height: 24.0.h,
-                                alignment: Alignment.center,
-                                padding: EdgeInsetsDirectional.only(end: 23.0.w),
-                                child: Text(
-                                  S.of(context).cardFrozen,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .color!
-                                          .withOpacity(0.5),
-                                      fontSize: 14.0.t,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              )
+                                      height: 24.0.h,
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsetsDirectional.only(end: 23.0.w),
+                                      child: Text(
+                                        S.of(context).cardFrozen,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge
+                                                ?.color!
+                                                .withOpacity(0.5),
+                                            fontSize: 14.0.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    )
                                   : InkWell(
-                                splashFactory: NoSplash.splashFactory,
-                                onTap: () async {
-                                  ///go to settings
-                                  // var result = await Navigator.pushNamed(
-                                  //     context, RoutePaths.DebitCardSettings,
-                                  //     arguments: DebitCardSettingsArguments(
-                                  //         debitCard: widget.debitCard));
-                                  // if (result != null) {
-                                  //   bool value = result as bool;
-                                  //   if (value) {
-                                  //     ProviderScope.containerOf(context)
-                                  //         .read(appHomeViewModelProvider)
-                                  //         .getDashboardData();
-                                  //   }
-                                  // }
-                                  widget.flipCardController!.toggleCard();
-                                },
-                                child: Container(
-                                  height: 24.0.h,
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(end: 23.0.w),
-                                    child: Text(
-                                      S.of(context).flipCard,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
-                                          fontSize: 14.0.t,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                              )
+                                      splashFactory: NoSplash.splashFactory,
+                                      onTap: () async {
+                                        ///go to settings
+                                        // var result = await Navigator.pushNamed(
+                                        //     context, RoutePaths.DebitCardSettings,
+                                        //     arguments: DebitCardSettingsArguments(
+                                        //         debitCard: widget.debitCard));
+                                        // if (result != null) {
+                                        //   bool value = result as bool;
+                                        //   if (value) {
+                                        //     ProviderScope.containerOf(context)
+                                        //         .read(appHomeViewModelProvider)
+                                        //         .getDashboardData();
+                                        //   }
+                                        // }
+                                        widget.flipCardController!.toggleCard();
+                                      },
+                                      child: Container(
+                                        height: 24.0.h,
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.only(end: 23.0.w),
+                                          child: Text(
+                                            S.of(context).flipCard,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                fontSize: 14.0.t,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      ),
+                                    )
                             ],
                           ),
                           Column(
@@ -224,7 +224,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           ),
                           Directionality(
                             textDirection:
-                            StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                                StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
                             child: Padding(
                               padding: EdgeInsetsDirectional.only(
                                   start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0,
@@ -299,7 +299,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       height: 24.0.h,
                       width: 125.0.w,
                       decoration:
-                      BoxDecoration(color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
+                          BoxDecoration(color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
                       child: Center(
                         child: Text(
                           S.of(context).cardDelivered,
@@ -393,7 +393,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 onTap: () {
                                   Clipboard.setData(ClipboardData(text: widget.debitCard.cardNumber ?? ''))
                                       .then((value) =>
-                                      Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
+                                          Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                                 },
                                 child: AppSvg.asset(AssetUtils.copy)),
                           )
@@ -474,7 +474,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       padding: EdgeInsets.symmetric(vertical: 32.0.h),
                       child: Divider(
                         height: 2,
-                        color: Theme.of(context).primaryTextTheme.bodyText1!.color!.withOpacity(0.1),
+                        color: Theme.of(context).primaryTextTheme.bodyLarge?.color!.withOpacity(0.1),
                       ),
                     ),
                     Text(

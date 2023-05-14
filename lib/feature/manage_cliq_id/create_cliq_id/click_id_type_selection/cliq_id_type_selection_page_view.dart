@@ -1,10 +1,8 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';

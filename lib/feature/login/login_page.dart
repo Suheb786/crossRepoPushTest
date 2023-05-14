@@ -20,7 +20,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -60,13 +60,13 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void deactivate() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.deactivate();
   }
 

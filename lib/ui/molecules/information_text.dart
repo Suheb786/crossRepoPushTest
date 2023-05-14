@@ -15,7 +15,7 @@ class InformationText extends StatelessWidget {
       {required this.image,
       required this.title,
       this.iconColor,
-      this.containerColor: AppColor.vividYellow,
+      this.containerColor = AppColor.vividYellow,
       this.textColor});
 
   @override
@@ -40,7 +40,7 @@ class InformationText extends StatelessWidget {
             title!,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: textColor ?? Theme.of(context).primaryTextTheme.bodyText1!.color!,
+                color: textColor ?? Theme.of(context).primaryTextTheme.bodyLarge?.color!,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.t),
           ),

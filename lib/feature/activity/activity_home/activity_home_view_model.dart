@@ -16,8 +16,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ActivityHomeViewModel extends BasePageViewModel {
-  ActivityHomeViewModel(
-      this._paymentActivityTransactionUseCase, this._notificationUseCase, this._requestMoneyActivityUseCase) {
+  ActivityHomeViewModel(this._notificationUseCase, this._requestMoneyActivityUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
         RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))
@@ -103,8 +102,6 @@ class ActivityHomeViewModel extends BasePageViewModel {
       BehaviorSubject();
 
   BehaviorSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = BehaviorSubject();
-
-  PaymentActivityTransactionUseCase _paymentActivityTransactionUseCase;
 
   //*--------------------[request-money-activity]---------------------->>>>>>>
 

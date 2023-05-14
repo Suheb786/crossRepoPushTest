@@ -24,7 +24,7 @@ class ChangeDebitCardPinUseCaseParams extends Params {
   final String cardNumber;
 
   ChangeDebitCardPinUseCaseParams(
-      {this.pin: "", this.tokenizedPan: "", this.otp: "", required this.cardNumber});
+      {this.pin = "", this.tokenizedPan = "", this.otp = "", required this.cardNumber});
 
   @override
   Either<AppError, bool> verify() {

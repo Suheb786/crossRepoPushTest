@@ -1,5 +1,5 @@
 class CityData {
-  CityData({this.createTime, this.countryId: "", this.stateId: "", this.cityId: "", this.cityName: ""});
+  CityData({this.createTime, this.countryId= "", this.stateId= "", this.cityId= "", this.cityName= ""});
 
   DateTime? createTime;
   String? countryId;

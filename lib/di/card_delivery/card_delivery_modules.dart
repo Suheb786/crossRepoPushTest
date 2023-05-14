@@ -123,8 +123,7 @@ final relationShipWithCardHolderDialogViewModelProvider =
 ///supplementary id scan view model provider
 final supplementaryIdScanInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<SupplementaryIdScanVerificationInfoPageViewModel>(
-  (ref) => SupplementaryIdScanVerificationInfoPageViewModel(
-      ref.read(idVerificationInfoUseCaseProvider), ref.read(scanUserDocumentUseCaseProvider)),
+  (ref) => SupplementaryIdScanVerificationInfoPageViewModel(ref.read(scanUserDocumentUseCaseProvider)),
 );
 
 ///personalize credit card view model provider

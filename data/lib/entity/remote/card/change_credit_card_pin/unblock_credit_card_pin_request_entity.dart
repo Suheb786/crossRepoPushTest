@@ -11,7 +11,7 @@ class UnblockCreditCardPinRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
-  UnblockCreditCardPinRequestEntity({this.getToken: true, this.baseData, this.cardCode: ""});
+  UnblockCreditCardPinRequestEntity({this.getToken= true, this.baseData, this.cardCode= ""});
 
   factory UnblockCreditCardPinRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$UnblockCreditCardPinRequestEntityFromJson(json);

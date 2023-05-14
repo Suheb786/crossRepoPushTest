@@ -25,14 +25,14 @@ class VerifyForgetPasswordOtpRequestEntity {
 
   VerifyForgetPasswordOtpRequestEntity({
     required this.baseData,
-    this.getToken: true,
+    this.getToken= true,
     this.email,
     this.idExpiry,
     this.idNo,
     this.reEnterPassword,
     this.password,
     this.otp,
-    this.uniqueId: "",
+    this.uniqueId= "",
   });
 
   factory VerifyForgetPasswordOtpRequestEntity.fromJson(Map<String, dynamic> json) =>

@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
-import 'package:domain/model/cliq/request_money_activity/request_money_activity.dart';
-import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/repository/cliq/cliq_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';

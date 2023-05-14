@@ -240,7 +240,6 @@ extension CliqAliasTypeStringExt on CliqAliasTypeEnum {
 
       default:
         return S.current.alias;
-        ;
     }
   }
 }

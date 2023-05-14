@@ -9,7 +9,7 @@ class RemoveDebitLockRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  RemoveDebitLockRequestEntity({this.getToken: false, required this.baseData});
+  RemoveDebitLockRequestEntity({this.getToken= false, required this.baseData});
 
   factory RemoveDebitLockRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RemoveDebitLockRequestEntityFromJson(json);

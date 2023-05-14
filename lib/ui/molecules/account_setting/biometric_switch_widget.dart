@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -20,9 +19,9 @@ class BiometricSwitchWidget extends StatelessWidget {
       {Key? key,
       this.image,
       this.title,
-      this.subtitle: '',
+      this.subtitle = '',
       this.onTap,
-      this.isActive: false,
+      this.isActive = false,
       this.inActiveText,
       this.onToggle,
       this.activeText})
@@ -46,7 +45,7 @@ class BiometricSwitchWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).textTheme.bodyText1!.color),
+                    color: Theme.of(context).textTheme.bodyLarge?.color),
               ),
               subtitle!.isNotEmpty
                   ? Text(

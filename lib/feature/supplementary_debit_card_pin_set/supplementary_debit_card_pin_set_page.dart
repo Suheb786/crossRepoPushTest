@@ -40,5 +40,5 @@ class SupplementaryDebitCardPinSetArguments {
   final DebitReplacementEnum type;
 
   SupplementaryDebitCardPinSetArguments(
-      {this.nameOnCard: "", this.cardNo: "", this.type = DebitReplacementEnum.Supplementary});
+      {this.nameOnCard = "", this.cardNo = "", this.type = DebitReplacementEnum.Supplementary});
 }

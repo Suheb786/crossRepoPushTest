@@ -36,9 +36,9 @@ class FatcaQuestionsResponseContentDataEntity
       this.isMandatory,
       this.orderNo,
       this.type,
-      this.infoText: "",
-      this.showOption: false,
-      this.isInfo: false,
+      this.infoText= "",
+      this.showOption= false,
+      this.isInfo= false,
       this.additionData,
       this.infoTextAr});
 

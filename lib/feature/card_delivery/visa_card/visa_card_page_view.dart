@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';

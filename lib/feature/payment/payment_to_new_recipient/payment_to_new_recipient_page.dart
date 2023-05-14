@@ -6,10 +6,6 @@ import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 
 class PaymentToNewRecipientPage extends BasePage<PaymentToNewRecipientViewModel> {
-  String? sendValue;
-
-  PaymentToNewRecipientPage({this.sendValue});
-
   @override
   PaymentToNewRecipientPageState createState() => PaymentToNewRecipientPageState();
 }

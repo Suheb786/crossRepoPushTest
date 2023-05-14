@@ -51,7 +51,9 @@ class ClaimOfTaxTreatyBenefitsPageState
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Padding(
@@ -83,7 +85,7 @@ class ClaimOfTaxTreatyBenefitsPageState
 class ClaimOfTaxTreatyBenefitsArguments {
   final StaticRouteContent staticRouteContent;
 
-  ClaimOfTaxTreatyBenefitsArguments({this.staticRouteContent: StaticRouteContent.TAX_TREATY_BENEFITS});
+  ClaimOfTaxTreatyBenefitsArguments({this.staticRouteContent = StaticRouteContent.TAX_TREATY_BENEFITS});
 }
 
 enum StaticRouteContent { TAX_TREATY_BENEFITS, CREDIT_BUREAU }

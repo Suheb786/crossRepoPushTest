@@ -117,7 +117,7 @@ class CardCancelDialogView extends StatelessWidget {
                       S.of(context).cancelCardDesc,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).errorColor,
+                        color: Theme.of(context).colorScheme.error,
                         height: 1.5,
                         fontSize: 14.t,
                         fontWeight: FontWeight.w500,

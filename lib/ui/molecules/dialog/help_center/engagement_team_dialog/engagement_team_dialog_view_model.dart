@@ -24,21 +24,9 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get showChatRequestStream => _showChatResponseSubject.stream;
 
-  final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
   final ShowChatUseCase _showChatUseCase;
 
-  EngagementTeamDialogViewModel(this._infobipMessagePluginUseCase, this._showChatUseCase) {
-    // _initInfobipMessageRequestSubject.listen((value) {
-    //   RequestManager(value, createCall: () {
-    //     print("VALUE::: $value}");
-    //     return _infobipMessagePluginUseCase.execute(params: value);
-    //   }).asFlow().listen((event) {
-    //     print("EVENT::: $event}");
-    //     updateLoader();
-    //     _initInfobipMessageResponseSubject.safeAdd(event);
-    //   });
-    // });
-
+  EngagementTeamDialogViewModel(this._showChatUseCase) {
     _showChatRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _showChatUseCase.execute(params: value);
@@ -47,16 +35,7 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         _showChatResponseSubject.safeAdd(event);
       });
     });
-    // initInfobipMessagePlugin();
   }
-
-  // initInfobipMessagePlugin() async {
-  //   _initInfobipMessageRequestSubject
-  //       .safeAdd(InfobipMessagePluginUseCaseParams(callback: (value) {
-  //     print("NOTIFICATION TAPPED");
-  //     _onNotificationTapResponseSubject.safeAdd(value);
-  //   }));
-  // }
 
   showChat() {
     _showChatRequestSubject.safeAdd(ShowChatUseCaseParams());

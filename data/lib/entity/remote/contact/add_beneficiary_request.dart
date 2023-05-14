@@ -34,7 +34,7 @@ class AddBeneficiaryRequest {
     this.purpose,
     this.purposeDetails,
     this.image,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData,
   });
 

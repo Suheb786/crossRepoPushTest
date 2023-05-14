@@ -265,7 +265,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   }
 
   /// Authenticate before set the biometric
-  void authenticateBioMetric({String title: "", String localisedReason: ""}) {
+  void authenticateBioMetric({String title = "", String localisedReason = ""}) {
     _authenticateBioMetricRequest.safeAdd(
       AuthenticateBioMetricUseCaseParams(title: title, localisedReason: localisedReason),
     );

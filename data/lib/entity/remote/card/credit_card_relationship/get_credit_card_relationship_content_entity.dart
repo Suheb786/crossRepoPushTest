@@ -15,7 +15,7 @@ class GetCreditCardRelationshipContentEntity
   @JsonKey(name: "maxLimit")
   final num? maxLimit;
 
-  GetCreditCardRelationshipContentEntity({this.relationshipList, this.minLimit: 0.0, this.maxLimit: 0.0});
+  GetCreditCardRelationshipContentEntity({this.relationshipList, this.minLimit= 0.0, this.maxLimit= 0.0});
 
   factory GetCreditCardRelationshipContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardRelationshipContentEntityFromJson(json);

@@ -9,10 +9,10 @@ class AppToast {
 
   static showToast(
     String message, {
-    Color backgroundColor: AppColor.white,
-    Toast duration: Toast.LENGTH_LONG,
-    Color textColor: AppColor.black,
-    ToastGravity gravity: ToastGravity.BOTTOM,
+    Color backgroundColor = AppColor.white,
+    Toast duration = Toast.LENGTH_LONG,
+    Color textColor = AppColor.black,
+    ToastGravity gravity = ToastGravity.BOTTOM,
   }) {
     Fluttertoast.showToast(
       msg: message,

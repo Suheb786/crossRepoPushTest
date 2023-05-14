@@ -78,8 +78,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
   ///change my number stream
   Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
 
-  String _incomingSms = 'Message';
-
   ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))

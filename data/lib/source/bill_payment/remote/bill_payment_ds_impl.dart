@@ -66,7 +66,6 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
     return _apiService.getPostpaidBillerListData(BaseRequest(baseData: baseData.toJson()));
   }
 
-  @override
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListResponse(
       {required GetPrepaidBillerListUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();

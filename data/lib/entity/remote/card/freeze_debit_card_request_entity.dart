@@ -15,9 +15,9 @@ class FreezeDebitCardRequestEntity {
 
   FreezeDebitCardRequestEntity({
     required this.baseData,
-    this.getToken: true,
-    this.status: "",
-    this.tokenizedPan: "",
+    this.getToken= true,
+    this.status= "",
+    this.tokenizedPan= "",
   });
 
   factory FreezeDebitCardRequestEntity.fromJson(Map<String, dynamic> json) =>

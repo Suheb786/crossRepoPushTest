@@ -36,13 +36,13 @@ class DashboardDataEntity implements BaseLayerDataTransformer<DashboardDataEntit
   DashboardDataEntity({
     this.account,
     this.creditCard,
-    this.mobileNumber: "",
+    this.mobileNumber= "",
     this.blinkBornDate,
     this.blinkJoinedDate,
-    this.mobileCode: "",
-    this.somethingWrong: false,
-    this.debitCardSomethingWrong: false,
-    this.isCreditCard: true,
+    this.mobileCode= "",
+    this.somethingWrong= false,
+    this.debitCardSomethingWrong= false,
+    this.isCreditCard= true,
     this.dashboardFeatures,
     this.debitCard,
   });

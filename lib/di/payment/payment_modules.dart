@@ -3,14 +3,12 @@ import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/return_reason_payment_dialog_view.dart';
 import 'package:neo_bank/di/usecase/activity/activity_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/manage_cliq_id/manage_cliq_id_usecase.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_reason_selection/return_payment_reason_selection_page_view_model.dart';
-import 'package:neo_bank/feature/activity/payment_activity_transaction/return_payment_transaction/return_payment_transaction_slider_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';
@@ -76,14 +74,13 @@ import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/retur
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/bill_name/bill_name_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/service/select_service_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/return_reasons_dialog/return_reason_payment_dialog_view_model.dart';
 
 final paymentHomeViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
   (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 final addSendMoneyContactViewModelProvider = ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
-  (ref) => AddSendMoneyContactViewModel(ref.read(addSendMoneyContactUseCaseProvider)),
+  (ref) => AddSendMoneyContactViewModel(),
 );
 
 final addRequestMoneyContactViewModelProvider =
@@ -94,17 +91,15 @@ final addRequestMoneyContactViewModelProvider =
 final sendAmountToContactViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<SendAmountToContactViewModel, Beneficiary>(
   (ref, args) => SendAmountToContactViewModel(
-      ref.read(sendAmountToContactUseCaseProvider),
-      args,
-      ref.read(checkSendMoneyUseCaseProvider),
-      ref.read(transferUseCaseProvider),
-      ref.read(getPurposeUseCaseProvider)),
+    args,
+    ref.read(checkSendMoneyUseCaseProvider),
+    ref.read(transferUseCaseProvider),
+  ),
 );
 
 final sendAmountToContactSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<SendAmountToContactSuccessViewModel, TransferSuccessContent>(
-  (ref, args) =>
-      SendAmountToContactSuccessViewModel(ref.read(sendAmountToContactSuccessUseCaseProvider), args),
+  (ref, args) => SendAmountToContactSuccessViewModel(args),
 );
 
 final requestAmountFromContactViewModelProvider =
@@ -115,21 +110,20 @@ final requestAmountFromContactViewModelProvider =
 
 final requestAmountFromContactSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<RequestAmountFromContactSuccessViewModel, List<String>>(
-  (ref, args) => RequestAmountFromContactSuccessViewModel(
-      ref.read(requestAmountFromContactSuccessUseCaseProvider), args),
+  (ref, args) => RequestAmountFromContactSuccessViewModel(args),
 );
 
 final requestMoneyFailureViewModelProvider = ChangeNotifierProvider.autoDispose<RequestMoneyFailureViewModel>(
-  (ref) => RequestMoneyFailureViewModel(ref.read(requestMoneyFailureUseCaseProvider)),
+  (ref) => RequestMoneyFailureViewModel(),
 );
 
 final sendMoneyFailureViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<SendMoneyFailureViewModel, SendMoneyFailurePageArgument>(
-  (ref, arg) => SendMoneyFailureViewModel(ref.read(sendMoneyFailureUseCaseProvider), arg),
+  (ref, arg) => SendMoneyFailureViewModel(arg),
 );
 
 final sendMoneyViewModelProvider = ChangeNotifierProvider.autoDispose<SendMoneyViewModel>(
-  (ref) => SendMoneyViewModel(ref.read(sendMoneyUseCaseProvider)),
+  (ref) => SendMoneyViewModel(),
 );
 
 final requestMoneyViewModelProvider = ChangeNotifierProvider.autoDispose<RequestMoneyViewModel>(

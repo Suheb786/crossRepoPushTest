@@ -1,7 +1,6 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
-import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,9 +28,6 @@ class DcEnterOtpViewModel extends BasePageViewModel {
   late CountdownTimerController countDownController;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-
-  ///resend otp
-  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
   void updateTime(BuildContext context) {
     verifyMobile(context);

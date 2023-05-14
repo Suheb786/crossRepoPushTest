@@ -33,18 +33,18 @@ class TransferApiNoOtpRequestEntity {
 
   TransferApiNoOtpRequestEntity({
     required this.baseData,
-    this.toAmount: 0,
-    this.nickName: "",
-    this.transferType: "",
-    this.localEq: 0,
-    this.beneficiaryImage: "",
-    this.beneficiaryId: "",
-    this.memo: "",
-    this.toAccount: "",
-    this.isFriend: false,
-    this.type: "",
-    this.detCustomerType: "",
-    this.getToken: true,
+    this.toAmount= 0,
+    this.nickName= "",
+    this.transferType= "",
+    this.localEq= 0,
+    this.beneficiaryImage= "",
+    this.beneficiaryId= "",
+    this.memo= "",
+    this.toAccount= "",
+    this.isFriend= false,
+    this.type= "",
+    this.detCustomerType= "",
+    this.getToken= true,
   }) {
     print("this constructor called");
   }

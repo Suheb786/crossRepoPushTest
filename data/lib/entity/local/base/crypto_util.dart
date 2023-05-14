@@ -121,9 +121,7 @@ String decryptAESCryptoJS({required String encryptedContent, required String dec
     var iv = encrypt.IV(encrypt.Key.fromUtf8(decryptionKey).bytes);
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
     final decrypted = encrypter.decrypt64(encryptedContent, iv: iv);
-    if (decrypted != null) {
-      KeyHelper.setKeyValues(decrypted);
-    }
+    KeyHelper.setKeyValues(decrypted);
     return decrypted;
   } catch (error) {
     throw error;

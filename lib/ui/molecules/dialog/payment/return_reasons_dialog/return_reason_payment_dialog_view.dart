@@ -1,13 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
-import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
 import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
 import 'package:domain/model/payment/get_rejection_reason/reject_reasons_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
-import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
@@ -125,7 +123,8 @@ class ReturnReasonPaymentDialogView extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).textTheme.bodyMedium!.color!),
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Padding(

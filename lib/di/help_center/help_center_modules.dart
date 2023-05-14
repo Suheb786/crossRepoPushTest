@@ -20,6 +20,5 @@ final callEndedPageViewModelProvider = ChangeNotifierProvider.autoDispose<CallEn
 );
 
 ///get purpose of account opening dialog view model provider
-final engagementTeamDialogViewModelProvider = ChangeNotifierProvider<EngagementTeamDialogViewModel>((ref) =>
-    EngagementTeamDialogViewModel(
-        ref.read(infobipMessagePluginUseCaseProvider), ref.read(showChatUseCaseProvider)));
+final engagementTeamDialogViewModelProvider = ChangeNotifierProvider<EngagementTeamDialogViewModel>(
+    (ref) => EngagementTeamDialogViewModel(ref.read(showChatUseCaseProvider)));

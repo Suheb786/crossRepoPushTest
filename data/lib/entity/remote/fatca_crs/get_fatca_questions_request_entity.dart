@@ -9,7 +9,7 @@ class GetFatcaQuestionsRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetFatcaQuestionsRequestEntity({required this.baseData, this.getToken: true});
+  GetFatcaQuestionsRequestEntity({required this.baseData, this.getToken= true});
 
   factory GetFatcaQuestionsRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetFatcaQuestionsRequestEntityFromJson(json);

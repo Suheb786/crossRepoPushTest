@@ -10,7 +10,6 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
   PlaceholderPageView(ProviderBase model) : super(model);
-  bool isGetCardClicked = false;
 
   @override
   Widget build(BuildContext context, model) {

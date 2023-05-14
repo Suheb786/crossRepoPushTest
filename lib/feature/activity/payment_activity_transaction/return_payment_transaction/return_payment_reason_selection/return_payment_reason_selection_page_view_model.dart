@@ -1,8 +1,7 @@
-import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/cliq/return_RTP_request_otp/return_RTP_request_otp.dart';
 import 'package:domain/model/payment/get_rejection_reason/get_rejection_reason_response.dart';
-import 'package:domain/usecase/manage_cliq/cliq_id_type_selection_validation_usecase.dart';
+import 'package:domain/usecase/activity/return_payment_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/return_rtp_request_otp_usecase.dart';
 import 'package:domain/usecase/payment/get_rejection_reason_usecase.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:domain/usecase/activity/return_payment_transaction_usecase.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/subjects.dart';
 

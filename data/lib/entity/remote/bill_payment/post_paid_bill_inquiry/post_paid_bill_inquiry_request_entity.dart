@@ -13,7 +13,7 @@ class PostPaidBillInquiryRequestEntity {
 
   PostPaidBillInquiryRequestEntity(
       {this.postpaidBillInquiries,
-      this.getToken: true,
+      this.getToken= true,
       required this.baseData});
 
   factory PostPaidBillInquiryRequestEntity.fromJson(

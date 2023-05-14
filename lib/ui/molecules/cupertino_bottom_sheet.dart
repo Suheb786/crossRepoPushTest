@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class CupertinoBottomSheet {
@@ -7,7 +6,7 @@ class CupertinoBottomSheet {
 
   static show(
     BuildContext context, {
-    bool isDismissible: true,
+    bool isDismissible = true,
     required Widget Function(BuildContext context) builder,
   }) {
     showCupertinoModalPopup(

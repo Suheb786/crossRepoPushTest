@@ -1,6 +1,5 @@
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -14,7 +13,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
   final bool isSmallDevices;
   final CreditCard creditCard;
 
-  const VerifyCreditCardVideoCallWidget({Key? key, this.isSmallDevices: false, required this.creditCard})
+  const VerifyCreditCardVideoCallWidget({Key? key, this.isSmallDevices = false, required this.creditCard})
       : super(key: key);
 
   @override

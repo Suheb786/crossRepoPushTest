@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -14,11 +13,11 @@ class AccountSelectionWidget extends StatelessWidget {
   const AccountSelectionWidget(
       {Key? key,
       required this.label,
-      this.labelTitle: "",
+      this.labelTitle = "",
       this.onTap,
       this.textColor,
       this.widgetColor,
-      this.currentIndex: 0})
+      this.currentIndex = 0})
       : super(key: key);
 
   @override

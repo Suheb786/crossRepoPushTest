@@ -40,5 +40,5 @@ class DownloadStatementArguments {
   final String transactionDate;
   final String cardId;
 
-  DownloadStatementArguments({required this.statementType, required this.transactionDate, this.cardId: ''});
+  DownloadStatementArguments({required this.statementType, required this.transactionDate, this.cardId = ''});
 }

@@ -40,5 +40,5 @@ class DebitCardSettingsArguments {
   DebitCardSettingsArguments(
       {required this.debitCard,
       required this.isPrimaryDebitCard,
-      this.debitCardRequestPhysicalCardEnabled: false});
+      this.debitCardRequestPhysicalCardEnabled = false});
 }

@@ -1,12 +1,10 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -223,10 +221,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                                   ? '+${selectedCountry.phoneCode!}'
                                                                   : "",
                                                               style: TextStyle(
-                                                                color: Theme.of(context)
-                                                                    .textTheme
-                                                                    .bodyText1!
-                                                                    .color,
+                                                                color: Theme.of(context).indicatorColor,
                                                                 fontSize: 14.t,
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontWeight: FontWeight.w600,
@@ -241,8 +236,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                             child: AppSvg.asset(AssetUtils.downArrow,
                                                                 color: Theme.of(context)
                                                                     .primaryTextTheme
-                                                                    .bodyText1!
-                                                                    .color))
+                                                                    .bodyLarge
+                                                                    ?.color))
                                                       ],
                                                     ),
                                                   ),

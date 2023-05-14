@@ -1,10 +1,9 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
+import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
@@ -24,7 +23,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'link_account_page_view_model.dart';
-import 'package:domain/model/cliq/add_link_account/add_link_account_otp.dart';
 
 class LinkAccountPageView extends BasePageViewWidget<LinkAccountPageViewModel> {
   LinkAccountPageView(ProviderBase model) : super(model);

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -21,7 +20,7 @@ class InformationDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel: true});
+      this.isSwipeToCancel = true});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,11 @@ class InformationDialogView extends StatelessWidget {
                         child: Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 20.t,
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                       SizedBox(height: 24.h),
@@ -71,9 +74,10 @@ class InformationDialogView extends StatelessWidget {
                           padding: EdgeInsets.all(16),
                           height: 57.h,
                           width: 57.w,
-                          decoration:
-                              BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          child:
+                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(

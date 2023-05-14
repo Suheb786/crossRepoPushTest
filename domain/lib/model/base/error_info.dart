@@ -3,5 +3,5 @@ class ErrorInfo {
   final int? code;
   final String description;
 
-  ErrorInfo({required this.message, this.code, this.description: ''});
+  ErrorInfo({required this.message, this.code, this.description= ''});
 }

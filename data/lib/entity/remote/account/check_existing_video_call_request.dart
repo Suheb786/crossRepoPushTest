@@ -12,7 +12,7 @@ class CheckExistingVideoCallRequest {
   final Map<String, dynamic> baseData;
 
   CheckExistingVideoCallRequest({
-    this.productId: 1,
+    this.productId = 1,
     this.dateToSend,
     required this.baseData,
   });

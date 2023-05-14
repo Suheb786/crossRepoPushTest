@@ -6,10 +6,10 @@ import 'package:domain/model/base/error_info.dart';
 class NetworkError extends BaseError {
   NetworkError(
       {required int httpError,
-      String errorCode: "",
-      String message: "",
+      String errorCode = "",
+      String message = "",
       required Exception cause,
-      String description: ""})
+      String description = ""})
       : super(error: ErrorInfo(code: httpError, message: errorCode, description: description), cause: cause);
 
   @override

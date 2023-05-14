@@ -16,7 +16,7 @@ class ConfirmCreditCardDeliveryRequest {
   final Map<String, dynamic> baseData;
 
   ConfirmCreditCardDeliveryRequest(
-      {required this.baseData, this.getToken: true, this.accountId: '1', this.cardId: "", this.cardDigit});
+      {required this.baseData, this.getToken= true, this.accountId= '1', this.cardId= "", this.cardDigit});
 
   factory ConfirmCreditCardDeliveryRequest.fromJson(Map<String, dynamic> json) =>
       _$ConfirmCreditCardDeliveryRequestFromJson(json);

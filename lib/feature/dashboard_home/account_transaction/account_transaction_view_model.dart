@@ -4,7 +4,6 @@ import 'package:domain/model/dashboard/transactions/transactions.dart';
 import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
-import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
@@ -17,7 +16,6 @@ import 'package:rxdart/rxdart.dart';
 class AccountTransactionViewModel extends BasePageViewModel {
   final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
   final GetDebitYearsUseCase _debitYearsUseCase;
-  AccountTransactionUseCase _useCase;
   TextEditingController searchController = TextEditingController();
 
   ///get transaction request
@@ -69,7 +67,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  AccountTransactionViewModel(this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
+  AccountTransactionViewModel(this._cardTransactionsUseCase, this._debitYearsUseCase) {
     _getTransactionsRequest.listen((value) {
       RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value))
           .asFlow()

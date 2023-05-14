@@ -11,7 +11,7 @@ class GetBillerCategoriesRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetBillerCategoriesRequestEntity({required this.type, this.getToken: true, required this.baseData});
+  GetBillerCategoriesRequestEntity({required this.type, this.getToken= true, required this.baseData});
 
   factory GetBillerCategoriesRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetBillerCategoriesRequestEntityFromJson(json);

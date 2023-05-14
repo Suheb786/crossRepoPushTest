@@ -18,9 +18,9 @@ class VerifyChangeMobileRequestEntity {
   final Map<String, dynamic> baseData;
 
   VerifyChangeMobileRequestEntity(
-      {this.uniqueId: "",
-      this.otp: "",
-      this.getToken: true,
+      {this.uniqueId = "",
+      this.otp = "",
+      this.getToken = true,
       required this.baseData,
       required this.mobileNo,
       required this.mobileCode});

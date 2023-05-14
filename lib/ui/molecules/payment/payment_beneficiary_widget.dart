@@ -41,7 +41,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           fontSize: 20.0.t,
                           color: transferEnum == TransferEnum.send
-                              ? Theme.of(context).primaryTextTheme.bodyText1!.color
+                              ? Theme.of(context).primaryTextTheme.bodyLarge?.color
                               : Theme.of(context).colorScheme.secondary),
                     ),
                   )),

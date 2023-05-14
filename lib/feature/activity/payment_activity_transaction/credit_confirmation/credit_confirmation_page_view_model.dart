@@ -11,6 +11,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:cross_file/cross_file.dart';
 
 class CreditConfirmationPaymentActivityViewModel extends BasePageViewModel {
   final CreditConfirmationArgument creditConfirmationArgument;
@@ -50,7 +51,7 @@ class CreditConfirmationPaymentActivityViewModel extends BasePageViewModel {
 
   void shareFiles(BuildContext context, File file) async {
     final box = context.findRenderObject() as RenderBox?;
-    await Share.shareFiles([file.path],
+    await Share.shareXFiles([XFile(file.path)],
         subject: 'Credit Confirmation PDF', sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

@@ -40,7 +40,7 @@ class PayPostPaidBillRequestEntity {
       this.isNewBiller,
       this.CardId,
       this.nickName,
-      this.getToken: true,
+      this.getToken= true,
       required this.baseData});
 
   factory PayPostPaidBillRequestEntity.fromJson(Map<String, dynamic> json) =>

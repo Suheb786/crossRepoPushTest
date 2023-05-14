@@ -19,11 +19,9 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
-  // GetCreditCardPageView(ProviderBase model) : super(model);
   final GetDashboardDataContent cardData;
 
   GetCreditCardPageView(ProviderBase model, this.cardData) : super(model);
-  bool isGetCardClicked = false;
 
   @override
   Widget build(BuildContext context, model) {
@@ -225,7 +223,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: isSmallDevices ? 12 : 14,
-                                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                        color:
+                                                            Theme.of(context).textTheme.bodyMedium!.color!),
                                                   ),
                                                 ),
                                               )
@@ -613,7 +612,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 S.of(context).expiryDate,
                                                 style: TextStyle(
                                                     fontSize: isSmallDevices ? 8 : 10,
-                                                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary
+                                                        .withOpacity(0.6),
                                                     fontWeight: FontWeight.w600),
                                               ),
                                             )
@@ -640,7 +642,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                   S.of(context).cvv,
                                                   style: TextStyle(
                                                       fontSize: isSmallDevices ? 8 : 10,
-                                                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary
+                                                          .withOpacity(0.6),
                                                       fontWeight: FontWeight.w600),
                                                 ),
                                               )

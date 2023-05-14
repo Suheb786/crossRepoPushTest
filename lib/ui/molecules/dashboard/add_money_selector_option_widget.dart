@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -15,11 +14,11 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
   const AddMoneySelectorOptionsWidget(
       {Key? key,
       this.onTap,
-      this.title: "",
+      this.title = "",
       this.image,
-      this.buttonText: "",
-      this.desc: "",
-      this.isVisible: true})
+      this.buttonText = "",
+      this.desc = "",
+      this.isVisible = true})
       : super(key: key);
 
   @override

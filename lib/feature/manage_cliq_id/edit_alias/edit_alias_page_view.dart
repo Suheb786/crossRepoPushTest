@@ -1,7 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/cliq/edit_cliq_id/edit_cliq_id_otp.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';

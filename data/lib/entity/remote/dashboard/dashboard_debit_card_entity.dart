@@ -26,7 +26,7 @@ class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebi
   @JsonKey(name: "isDebitDelivered")
   final bool? isDebitDelivered;
   @JsonKey(name: "debitDeliveredDatetime")
-  final dynamic? debitDeliveredDatetime;
+  final dynamic debitDeliveredDatetime;
   @JsonKey(name: "debitCardActivated")
   final DateTime? debitCardActivated;
   @JsonKey(name: "primarySecondaryCard")
@@ -39,18 +39,18 @@ class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebi
   final String? cardCode;
 
   DashboardDebitCardEntity(
-      {this.accountTitle: "",
-      this.cvv: "",
-      this.expiryDate: "",
-      this.cardNumber: "",
-      this.linkedAccountNumber: "",
+      {this.accountTitle= "",
+      this.cvv= "",
+      this.expiryDate= "",
+      this.cardNumber= "",
+      this.linkedAccountNumber= "",
       this.debitDeliveredDatetime,
       this.isDebitDelivered,
       this.debitCardActivated,
       this.cardStatus,
       this.code,
-      this.primarySecondaryCard: '',
-      this.isPINSet: true,
+      this.primarySecondaryCard= '',
+      this.isPINSet= true,
       this.isPhysicalDebitCardRequested = false,
       this.cardCode});
 

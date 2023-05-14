@@ -31,7 +31,7 @@ class DcEnterOtpUseCaseParams extends Params {
   final CardType cardType;
 
   DcEnterOtpUseCaseParams(
-      {this.otpCode, this.tokenizedPan, this.mobileCode, this.mobileNumber, this.cardType: CardType.DEBIT});
+      {this.otpCode, this.tokenizedPan, this.mobileCode, this.mobileNumber, this.cardType = CardType.DEBIT});
 
   @override
   Either<AppError, bool> verify() {

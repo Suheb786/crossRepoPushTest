@@ -1,5 +1,4 @@
 import 'package:domain/model/user/scanned_document_information.dart';
-import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -9,7 +8,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SupplementaryIdScanVerificationInfoPageViewModel extends BasePageViewModel {
-  final IdVerificationInfoUseCase _idVerificationInfoUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
 
   ///scan document request holder
@@ -24,7 +22,6 @@ class SupplementaryIdScanVerificationInfoPageViewModel extends BasePageViewModel
   ScannedDocumentInformation scannedDocumentInformation = ScannedDocumentInformation();
 
   SupplementaryIdScanVerificationInfoPageViewModel(
-    this._idVerificationInfoUseCase,
     this._scanUserDocumentUseCase,
   ) {
     _scanUserDocumentRequest.debounceTime(Duration(milliseconds: 800)).distinct().listen((value) {

@@ -22,7 +22,7 @@ class GetPlaceholderUseCase
 class GetPlaceholderUseCaseParams extends Params {
   final int placeholderId;
 
-  GetPlaceholderUseCaseParams({this.placeholderId: 0});
+  GetPlaceholderUseCaseParams({this.placeholderId = 0});
 
   @override
   Either<AppError, bool> verify() {

@@ -100,48 +100,41 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                             List<GetAllCardData> antelopIssuerCardList =
                                                 listOfCardFromAntelop.value;
 
-                                            if (model.arguments != null) {
-                                              ///credit card filtering
-                                              if ((model.arguments.creditCards).isNotEmpty) {
-                                                for (int i = 0;
-                                                    i < (model.arguments.creditCards).length;
-                                                    i++) {
-                                                  for (int j = 0; j < antelopIssuerCardList.length; j++) {
-                                                    if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
-                                                        model.arguments.creditCards[i].cardCode?.trim()) {
-                                                      model.arguments.creditCards[i].isCardInApplePay =
-                                                          antelopIssuerCardList[j].isCardInApplePay ?? false;
-                                                      model.arguments.creditCards[i].getStatus =
-                                                          antelopIssuerCardList[j].getStatus ?? false;
-                                                    }
-                                                    // model.creditCards.add(model.arguments.creditCards![i]);
+                                            if ((model.arguments.creditCards).isNotEmpty) {
+                                              for (int i = 0; i < (model.arguments.creditCards).length; i++) {
+                                                for (int j = 0; j < antelopIssuerCardList.length; j++) {
+                                                  if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
+                                                      model.arguments.creditCards[i].cardCode?.trim()) {
+                                                    model.arguments.creditCards[i].isCardInApplePay =
+                                                        antelopIssuerCardList[j].isCardInApplePay ?? false;
+                                                    model.arguments.creditCards[i].getStatus =
+                                                        antelopIssuerCardList[j].getStatus ?? false;
                                                   }
+                                                  // model.creditCards.add(model.arguments.creditCards![i]);
                                                 }
                                               }
-
-                                              ///debit card filtering
-                                              if ((model.arguments.debitCards).isNotEmpty) {
-                                                for (int i = 0;
-                                                    i < (model.arguments.debitCards).length;
-                                                    i++) {
-                                                  for (int j = 0; j < antelopIssuerCardList.length; j++) {
-                                                    if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
-                                                        model.arguments.debitCards[i].code?.trim()) {
-                                                      model.arguments.debitCards[i].isCardInApplePay =
-                                                          antelopIssuerCardList[j].isCardInApplePay ?? false;
-                                                      model.arguments.debitCards[i].getStatus =
-                                                          antelopIssuerCardList[j].getStatus ?? false;
-                                                    }
-                                                    // model.debitCards.add(model.arguments.debitCards![i]);
-                                                  }
-                                                }
-                                              }
-
-                                              ///add updated list to stream
-                                              model.addCardList(CardTypeData(
-                                                  creditCards: model.arguments.creditCards,
-                                                  debitCards: model.arguments.debitCards));
                                             }
+
+                                            ///debit card filtering
+                                            if ((model.arguments.debitCards).isNotEmpty) {
+                                              for (int i = 0; i < (model.arguments.debitCards).length; i++) {
+                                                for (int j = 0; j < antelopIssuerCardList.length; j++) {
+                                                  if (antelopIssuerCardList[j].getIssuerCardId?.trim() ==
+                                                      model.arguments.debitCards[i].code?.trim()) {
+                                                    model.arguments.debitCards[i].isCardInApplePay =
+                                                        antelopIssuerCardList[j].isCardInApplePay ?? false;
+                                                    model.arguments.debitCards[i].getStatus =
+                                                        antelopIssuerCardList[j].getStatus ?? false;
+                                                  }
+                                                  // model.debitCards.add(model.arguments.debitCards![i]);
+                                                }
+                                              }
+                                            }
+
+                                            ///add updated list to stream
+                                            model.addCardList(CardTypeData(
+                                                creditCards: model.arguments.creditCards,
+                                                debitCards: model.arguments.debitCards));
                                           }
                                         },
                                         dataBuilder: (context, antelopStepCompleted) {
@@ -167,7 +160,7 @@ class SelectedCardForApplePayPageView extends BasePageViewWidget<SelectedCardFor
                                                                 ),
                                                               )
                                                             : Column(
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: [
                                                                   (cardListData?.creditCards ?? []).isNotEmpty
                                                                       ? Column(

@@ -2,7 +2,6 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -113,7 +112,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                                     : "",
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).textTheme.bodyText1!.color,
+                                                  color: Theme.of(context).textTheme.bodyLarge?.color,
                                                   fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -125,7 +124,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                               width: 16.w,
                                               margin: EdgeInsetsDirectional.only(end: 8.w),
                                               child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: Theme.of(context).primaryTextTheme.bodyText1!.color))
+                                                  color: Theme.of(context).primaryTextTheme.bodyLarge?.color))
                                         ],
                                       ),
                                     ),
@@ -157,7 +156,8 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Theme.of(context).textTheme.bodyMedium!.color!),
-                              child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                              child: AppSvg.asset(AssetUtils.tick,
+                                  color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                           Padding(
@@ -201,7 +201,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

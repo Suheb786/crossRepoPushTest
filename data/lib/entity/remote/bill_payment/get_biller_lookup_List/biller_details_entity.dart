@@ -1,6 +1,6 @@
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_details.dart';
 
 import 'biller_service_entity.dart';
 
@@ -10,7 +10,7 @@ part 'biller_details_entity.g.dart';
 class BillerDetailsEntity
     extends BaseLayerDataTransformer<BillerDetailsEntity, BillerDetailsList> {
   @JsonKey(name: "billerCode")
-  dynamic? billerCode;
+  dynamic billerCode;
 
   @JsonKey(name: "billerNameEn")
   String? billerNameEn;

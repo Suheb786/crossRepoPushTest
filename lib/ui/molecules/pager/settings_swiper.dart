@@ -13,8 +13,8 @@ class SettingsSwiper extends StatelessWidget {
     Key? key,
     required this.pages,
     this.currentStep,
-    this.width: 112,
-    this.height: 174,
+    this.width = 112,
+    this.height = 174,
     required this.pageController,
     this.onIndexChanged,
   }) : super(key: key);

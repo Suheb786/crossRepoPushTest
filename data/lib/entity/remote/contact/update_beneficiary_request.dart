@@ -22,7 +22,7 @@ class UpdateBeneficiaryRequest {
     this.nickName,
     this.purpose,
     this.purposeDetails,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData,
   });
 

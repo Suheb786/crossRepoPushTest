@@ -14,7 +14,7 @@ class AppTiltCard extends StatelessWidget {
       {required this.pageViewIndex,
       required this.currentPage,
       this.isEndPage = false,
-      this.degree: 2,
+      this.degree = 2,
       required this.child});
 
   @override

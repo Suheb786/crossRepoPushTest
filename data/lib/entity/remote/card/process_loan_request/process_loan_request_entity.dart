@@ -15,9 +15,9 @@ class ProcessLoanRequestEntity {
 
   ProcessLoanRequestEntity({
     required this.baseData,
-    this.getToken: true,
-    this.cardId: "",
-    this.loanValueId: 0,
+    this.getToken= true,
+    this.cardId= "",
+    this.loanValueId= 0,
   });
 
   factory ProcessLoanRequestEntity.fromJson(Map<String, dynamic> json) =>

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
@@ -116,7 +115,7 @@ class ChangeCardSettlementPercentagePageView
                                         Container(
                                           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context).backgroundColor,
+                                              color: Theme.of(context).colorScheme.background,
                                               shape: BoxShape.circle),
                                           child: AppSvg.asset(
                                             AssetUtils.percentage,

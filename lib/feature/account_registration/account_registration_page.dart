@@ -67,5 +67,5 @@ class AccountRegistrationParams {
   final String mobileNumber;
   final String mobileCode;
 
-  AccountRegistrationParams({this.kycData, this.mobileCode: "", this.mobileNumber: ""});
+  AccountRegistrationParams({this.kycData, this.mobileCode = "", this.mobileNumber = ""});
 }

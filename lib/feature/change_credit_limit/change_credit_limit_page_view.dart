@@ -118,7 +118,7 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
                                           height: 48,
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context).backgroundColor,
+                                              color: Theme.of(context).colorScheme.background,
                                               borderRadius: BorderRadius.circular(100)),
                                           child: AppStreamBuilder<double>(
                                               stream: model.valueStream,
@@ -131,7 +131,10 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
                                                           activeTrackHeight: 0,
                                                           thumbRadius: 20,
                                                           inactiveTrackColor: Colors.transparent,
-                                                          thumbColor: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                                          thumbColor: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .color!)),
                                                   child: SfSlider(
                                                     min: sliderLimitValues.minValue!,
                                                     max: sliderLimitValues.maxValue!,
@@ -214,6 +217,5 @@ class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPage
         ],
       ),
     );
-    ;
   }
 }

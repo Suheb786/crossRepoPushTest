@@ -29,7 +29,6 @@ import 'package:data/entity/remote/user/enable_biometric/android_login_response_
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
-import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';

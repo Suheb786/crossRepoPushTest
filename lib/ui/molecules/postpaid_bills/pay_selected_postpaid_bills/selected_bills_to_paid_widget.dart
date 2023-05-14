@@ -1,5 +1,4 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +35,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.minRange,
       required this.minMaxValidationMessage,
       required this.maxRange,
-      this.allowPartialPay: false,
+      this.allowPartialPay = false,
       this.onChanged,
       this.onFocusChanged})
       : super(key: key);

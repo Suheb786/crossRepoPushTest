@@ -1,6 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -76,6 +75,7 @@ class CountryDialogView extends StatelessWidget {
                                     title!,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
+                                        color: Theme.of(context).indicatorColor,
                                         fontSize: 14.0.t,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -177,7 +177,8 @@ class CountryDialogView extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Theme.of(context).textTheme.bodyMedium!.color!),
-                                  child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                                  child: AppSvg.asset(AssetUtils.tick,
+                                      color: Theme.of(context).colorScheme.secondary),
                                 ),
                               ),
                               Padding(
@@ -231,7 +232,7 @@ class CountryDialogView extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

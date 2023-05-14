@@ -164,5 +164,5 @@ class RegisterPageParams {
   final CheckKYCData? kycData;
   final String? applicationId;
 
-  RegisterPageParams({this.kycData, this.applicationId: ""});
+  RegisterPageParams({this.kycData, this.applicationId = ""});
 }

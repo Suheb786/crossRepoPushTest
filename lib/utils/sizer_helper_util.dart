@@ -7,7 +7,6 @@ class SizeHelperUtil {
   static double _height = 0.0;
   static double refWidth = 375;
   static double refHeight = 812;
-  static double _textSize = 12;
 
   static void setWidthHeight(BoxConstraints constraints) {
     _width = constraints.maxWidth;

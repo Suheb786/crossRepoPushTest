@@ -24,14 +24,14 @@ class AddAccountPurposeRequest {
   final Map<String, dynamic> baseData;
 
   AddAccountPurposeRequest(
-      {this.getToken: true,
-      this.purpose: "",
-      this.isCashDeposit: true,
-      this.isTransfer: true,
-      this.isBillPayment: true,
-      this.isOther: true,
-      this.monthlyTransaction: 0.0,
-      this.annualTransaction: 0.0,
+      {this.getToken= true,
+      this.purpose= "",
+      this.isCashDeposit= true,
+      this.isTransfer= true,
+      this.isBillPayment= true,
+      this.isOther= true,
+      this.monthlyTransaction= 0.0,
+      this.annualTransaction= 0.0,
       required this.baseData});
 
   factory AddAccountPurposeRequest.fromJson(Map<String, dynamic> json) =>

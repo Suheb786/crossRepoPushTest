@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:domain/model/bill_payments/get_prepaid_biller_list/get_prepaid_biller_list_model_data.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
@@ -288,7 +286,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
 
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(

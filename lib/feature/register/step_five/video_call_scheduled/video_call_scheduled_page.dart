@@ -32,5 +32,5 @@ class VideoCallScheduledArguments {
   final String? date;
   final String? time;
 
-  VideoCallScheduledArguments({this.applicationId: "", this.date: "", this.time: ""});
+  VideoCallScheduledArguments({this.applicationId = "", this.date = "", this.time = ""});
 }

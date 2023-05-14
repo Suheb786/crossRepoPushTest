@@ -21,7 +21,7 @@ class PurposeRequestEntity {
       {required this.baseData,
       this.toAccount,
       this.transferType,
-      this.getToken: true,
+      this.getToken= true,
       this.type,
       this.detCustomerType});
 

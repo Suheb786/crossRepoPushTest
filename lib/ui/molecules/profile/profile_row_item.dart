@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -25,7 +24,7 @@ class ProfileRowItem extends StatelessWidget {
       required this.inactiveText,
       required this.initialValue,
       required this.providerBase,
-      this.labelColor: AppColor.text_color,
+      this.labelColor = AppColor.text_color,
       this.onToggle})
       : super(key: key);
 
@@ -53,7 +52,7 @@ class ProfileRowItem extends StatelessWidget {
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).primaryTextTheme.bodyText1!.color!,
+                            color: Theme.of(context).primaryTextTheme.bodyLarge?.color!,
                           ),
                         ),
                       ),

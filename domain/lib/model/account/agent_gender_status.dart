@@ -1,5 +1,5 @@
 class AgentGenderStatus {
   final bool isExist;
 
-  AgentGenderStatus({this.isExist: false});
+  AgentGenderStatus({this.isExist= false});
 }

@@ -2,7 +2,6 @@ import 'package:domain/constants/enum/cliq_list_action_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/create_cliq_id_otp.dart';
 import 'package:domain/model/cliq/get_account_by_customer_id/get_account_by_customer_id.dart';
 import 'package:domain/usecase/manage_cliq/create_cliq_id_otp_usecase.dart';
-import 'package:domain/usecase/manage_cliq/get_account_by_customerID_usecase.dart';
 import 'package:domain/usecase/manage_cliq/link_bank_account_cliq_id_validate_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';

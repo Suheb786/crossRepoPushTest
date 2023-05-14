@@ -22,7 +22,7 @@ class RemoveCustomerBillingRequest {
       {required this.billerCode,
       required this.billingNo,
       required this.serviceType,
-      this.getToken: true,
+      this.getToken= true,
       required this.baseData});
 
   factory RemoveCustomerBillingRequest.fromJson(Map<String, dynamic> json) =>

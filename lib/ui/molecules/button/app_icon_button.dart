@@ -9,7 +9,7 @@ class AppIconButton extends StatelessWidget {
   final double? iconSize;
   final double? height;
 
-  const AppIconButton({Key? key, required this.icon, this.onTap, this.iconSize: 28, this.height})
+  const AppIconButton({Key? key, required this.icon, this.onTap, this.iconSize = 28, this.height})
       : super(key: key);
 
   @override

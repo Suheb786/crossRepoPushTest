@@ -23,13 +23,13 @@ class ForgetPasswordRequestEntity {
 
   ForgetPasswordRequestEntity({
     required this.baseData,
-    this.getToken: true,
+    this.getToken= true,
     this.email,
     this.idExpiry,
     this.idNo,
     this.password,
     this.reEnterPassword,
-    this.uniqueId: "",
+    this.uniqueId= "",
   });
 
   factory ForgetPasswordRequestEntity.fromJson(Map<String, dynamic> json) =>

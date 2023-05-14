@@ -13,7 +13,7 @@ class ActivityRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  ActivityRequestEntity({required this.baseData, this.getToken: true, this.noOfDays, this.isDebit});
+  ActivityRequestEntity({required this.baseData, this.getToken= true, this.noOfDays, this.isDebit});
 
   factory ActivityRequestEntity.fromJson(Map<String, dynamic> json) => _$ActivityRequestEntityFromJson(json);
 

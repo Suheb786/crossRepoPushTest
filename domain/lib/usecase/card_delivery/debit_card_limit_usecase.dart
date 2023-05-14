@@ -22,7 +22,7 @@ class DebitCardLimitUseCase
 class DebitCardLimitUseCaseParams extends Params {
   final String? tokenizedPan;
 
-  DebitCardLimitUseCaseParams({this.tokenizedPan: ""});
+  DebitCardLimitUseCaseParams({this.tokenizedPan = ""});
 
   @override
   Either<AppError, bool> verify() {

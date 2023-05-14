@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -81,7 +80,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
       this.textInputType,
       this.prefixWidget,
       this.controller,
-      this.isPrefix: false})
+      this.isPrefix = false})
       : super(key: key);
 
   @override

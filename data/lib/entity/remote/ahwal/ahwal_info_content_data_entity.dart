@@ -10,7 +10,7 @@ class AhwalInfoContentDataEntity
   @JsonKey(name: "skipConfirmationScreen")
   final bool? skipConfirmationScreen;
 
-  AhwalInfoContentDataEntity({this.skipConfirmationScreen: false});
+  AhwalInfoContentDataEntity({this.skipConfirmationScreen= false});
 
   factory AhwalInfoContentDataEntity.fromJson(Map<String, dynamic> json) =>
       _$AhwalInfoContentDataEntityFromJson(json);

@@ -21,7 +21,7 @@ class NotificationUseCaseParams extends Params {
   final num? noOfDays;
   final String? isDebit;
 
-  NotificationUseCaseParams({this.noOfDays: 90, this.isDebit: "true"});
+  NotificationUseCaseParams({this.noOfDays = 90, this.isDebit = "true"});
 
   @override
   Either<AppError, bool> verify() {

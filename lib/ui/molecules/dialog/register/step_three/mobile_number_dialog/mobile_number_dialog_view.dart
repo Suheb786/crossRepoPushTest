@@ -1,6 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -75,6 +74,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontSize: 14.0.t,
+                                        color: Theme.of(context).indicatorColor,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),

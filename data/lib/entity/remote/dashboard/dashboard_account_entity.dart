@@ -18,11 +18,11 @@ class DashboardAccountEntity implements BaseLayerDataTransformer<DashboardAccoun
   final String? cardNo;
 
   DashboardAccountEntity(
-      {this.accountTitle: "",
-      this.availableBalance: 0.0,
-      this.accountNo: "",
-      this.iban: "",
-      this.cardNo: ""});
+      {this.accountTitle= "",
+      this.availableBalance= 0.0,
+      this.accountNo= "",
+      this.iban= "",
+      this.cardNo= ""});
 
   factory DashboardAccountEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardAccountEntityFromJson(json);

@@ -1,5 +1,4 @@
 import 'package:domain/model/user/confirm_application_data_get/additional_income_info.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';

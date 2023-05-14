@@ -2,7 +2,6 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/cliq_id_type_enum.dart';
 import 'package:domain/model/cliq/create_cliq_id/confirm_create_cliq_id.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';

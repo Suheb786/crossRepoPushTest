@@ -5,8 +5,7 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RemovePrepaidBillerUseCase extends BaseUseCase<NetworkError,
-    RemovePrepaidBillerUseCaseParams, bool> {
+class RemovePrepaidBillerUseCase extends BaseUseCase<NetworkError, RemovePrepaidBillerUseCaseParams, bool> {
   final BillPaymentRepository billPaymentRepository;
 
   RemovePrepaidBillerUseCase(this.billPaymentRepository);
@@ -22,9 +21,8 @@ class RemovePrepaidBillerUseCase extends BaseUseCase<NetworkError,
 class RemovePrepaidBillerUseCaseParams extends Params {
   final String? registrationID;
 
-
   RemovePrepaidBillerUseCaseParams({
-    this.registrationID: "",
+    this.registrationID = "",
   });
 
   @override

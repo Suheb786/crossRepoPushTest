@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -12,7 +11,7 @@ class AccountSettingWidget extends StatelessWidget {
   final String? subtitle;
   final Function()? onTap;
 
-  const AccountSettingWidget({Key? key, this.image, this.title, this.subtitle: '', this.onTap})
+  const AccountSettingWidget({Key? key, this.image, this.title, this.subtitle = '', this.onTap})
       : super(key: key);
 
   @override
@@ -37,7 +36,7 @@ class AccountSettingWidget extends StatelessWidget {
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyText1!.color),
+                      color: Theme.of(context).textTheme.bodyLarge?.color),
                 ),
                 SizedBox(
                   height: 2.h,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page_view_model.dart';
@@ -33,7 +32,7 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
               SizedBox(
                 height: 16.h,
@@ -57,7 +56,7 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w400,
-                      color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                      color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
                 ),
               ),
               SizedBox(
@@ -80,7 +79,7 @@ other than interest and dividends, you are not required to sign the certificatio
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
             ],
           ),

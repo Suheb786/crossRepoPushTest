@@ -20,14 +20,17 @@ class NotifyMeWidget extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
-        decoration:
-            BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
         child: Column(
           children: [
             Text(
               title!,
-              style:
-                  TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: Theme.of(context).primaryColorDark,
+                  fontSize: 14.0.t,
+                  fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 16.0.h,

@@ -1,7 +1,7 @@
-class CallStatus{
-  static const String ON_RINGING="onRinging";
-  static const String ON_HANGUP="onHangup";
-  static const String ON_UPDATED="onUpdated";
-  static const String ON_EARLY_MEDIA="onEarlyMedia";
-  static const String ON_ESTABLISHED="onEstablished";
+class CallStatus {
+  static const String onRinging = "onRinging";
+  static const String onHangUp = "onHangup";
+  static const String onUpdated = "onUpdated";
+  static const String onEarlyMedia = "onEarlyMedia";
+  static const String onEstablished = "onEstablished";
 }

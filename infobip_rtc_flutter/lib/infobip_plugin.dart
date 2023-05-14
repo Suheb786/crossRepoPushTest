@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:infobip_plugin/Utils/call_event_listener.dart';
 import 'package:infobip_plugin/Utils/call_status.dart';
@@ -20,16 +21,13 @@ class InfobipPlugin {
       required String baseUrl,
       required Function callStatus}) async {
     _stream.receiveBroadcastStream().listen((onData) {
-      print("LISTEN::$onData");
+      if (kDebugMode) {
+        print("LISTEN::$onData");
+      }
       callStatus(onData);
     });
-    var parameter = {
-      'application_id': applicationId,
-      "app_key": appKey,
-      "app_base_url": baseUrl
-    };
-    final bool? initStatus =
-        await _channel.invokeMethod(MethodKeys.init, parameter);
+    var parameter = {'application_id': applicationId, "app_key": appKey, "app_base_url": baseUrl};
+    final bool? initStatus = await _channel.invokeMethod(MethodKeys.init, parameter);
     return initStatus;
   }
 
@@ -37,9 +35,10 @@ class InfobipPlugin {
   /// This method used to obtain token from destination, display name
   ///
   Future<String?> getToken({required Map<String, String> parameter}) async {
-    final String? tokenDetail =
-        await _channel.invokeMethod(MethodKeys.getToken, parameter);
-    print("Token $tokenDetail");
+    final String? tokenDetail = await _channel.invokeMethod(MethodKeys.getToken, parameter);
+    if (kDebugMode) {
+      print("Token $tokenDetail");
+    }
     return tokenDetail;
   }
 
@@ -55,8 +54,7 @@ class InfobipPlugin {
   ///
 
   Stream<String?> get listenCallStatus async* {
-    var result =
-        await _channel.invokeMethod<String?>(MethodKeys.finalCallStatus);
+    var result = await _channel.invokeMethod<String?>(MethodKeys.finalCallStatus);
 
     yield result;
   }
@@ -64,19 +62,19 @@ class InfobipPlugin {
   setCallbackForCall(CallEventListener callEventListener) {
     listenCallStatus.listen((event) {
       switch (event) {
-        case CallStatus.ON_RINGING:
+        case CallStatus.onRinging:
           callEventListener.onRinging();
           break;
-        case CallStatus.ON_HANGUP:
+        case CallStatus.onHangUp:
           callEventListener.onHangup();
           break;
-        case CallStatus.ON_EARLY_MEDIA:
+        case CallStatus.onEarlyMedia:
           callEventListener.onEarlyMedia();
           break;
-        case CallStatus.ON_ESTABLISHED:
+        case CallStatus.onEstablished:
           callEventListener.onEstablished();
           break;
-        case CallStatus.ON_UPDATED:
+        case CallStatus.onUpdated:
           callEventListener.onUpdated();
           break;
       }
@@ -114,8 +112,7 @@ class InfobipPlugin {
   /// This method is used for get current call establish time and the return [DateTime] String
   ///
   Future<String?> getCallEstablishTime() async {
-    var result =
-        await _channel.invokeMethod<String?>(MethodKeys.callEstablishTime);
+    var result = await _channel.invokeMethod<String?>(MethodKeys.callEstablishTime);
 
     return result;
   }

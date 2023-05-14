@@ -6,7 +6,6 @@ import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_o
 import 'package:domain/usecase/bill_payment/enter_otp_bill_paymnets_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_post_paid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
-import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,9 +43,6 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
   late CountdownTimerController countDownController;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-
-  ///resend otp
-  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
 
@@ -168,7 +164,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
 
   void payPrePaidBillListener() {
     _payPrePaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPrePaidUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
@@ -232,7 +228,7 @@ class EnterOtpBillPaymentsViewModel extends BasePageViewModel {
 
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
-          (params) {
+      (params) {
         RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {

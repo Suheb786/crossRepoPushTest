@@ -1,4 +1,3 @@
-
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +125,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 14.t,
                                         color: Theme.of(context).colorScheme.secondary),
                                   ),

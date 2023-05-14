@@ -13,7 +13,7 @@ class DeleteBeneficiaryRequest {
 
   DeleteBeneficiaryRequest({
     required this.beneficiaryId,
-    this.getToken: true,
+    this.getToken= true,
     required this.baseData,
   });
 

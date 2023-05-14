@@ -13,7 +13,7 @@ class GetTimeSlotsRequest {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetTimeSlotsRequest({this.gender: "", required this.baseData, this.callDate, this.dateToSend});
+  GetTimeSlotsRequest({this.gender= "", required this.baseData, this.callDate, this.dateToSend});
 
   factory GetTimeSlotsRequest.fromJson(Map<String, dynamic> json) => _$GetTimeSlotsRequestFromJson(json);
 

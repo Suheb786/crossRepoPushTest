@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
-import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';

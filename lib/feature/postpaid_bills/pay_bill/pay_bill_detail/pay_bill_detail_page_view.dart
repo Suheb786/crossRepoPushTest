@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -10,10 +7,8 @@ import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service
 import 'package:domain/model/bill_payments/get_biller_lookup_list/get_biller_lookup_list.dart';
 import 'package:domain/model/bill_payments/get_pre_paid_categories/get_prepaid_categories_model.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';

@@ -22,7 +22,7 @@ class GetCreditCardLimitUseCase
 class GetCreditCardLimitUseCaseParams extends Params {
   final String? secureCode;
 
-  GetCreditCardLimitUseCaseParams({this.secureCode: ""});
+  GetCreditCardLimitUseCaseParams({this.secureCode = ""});
 
   @override
   Either<AppError, bool> verify() {

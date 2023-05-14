@@ -42,15 +42,15 @@ class SetFatcaQuestionsResponseUseCaseParams extends Params {
   String country;
 
   SetFatcaQuestionsResponseUseCaseParams(
-      {this.relationShipPEP: "",
-      this.personName: "",
-      this.country: "",
-      this.personRole: "",
-      this.response1: false,
-      this.response2: false,
-      this.response3: false,
-      this.response4: false,
-      this.response5: false});
+      {this.relationShipPEP = "",
+      this.personName = "",
+      this.country = "",
+      this.personRole = "",
+      this.response1 = false,
+      this.response2 = false,
+      this.response3 = false,
+      this.response4 = false,
+      this.response5 = false});
 
   @override
   Either<AppError, bool> verify() {

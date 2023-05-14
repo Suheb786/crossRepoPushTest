@@ -3,7 +3,6 @@ import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/fatca_crs/fatca_w9_data.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
-import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,8 +16,6 @@ import 'package:rxdart/rxdart.dart';
 
 class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   final FatcaUSW9TaxPayerDetailsUseCase _fatcaUSW9taxPayerDetailsUseCase;
-
-  final UploadDocumentUseCase _uploadDocumentUseCase;
 
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
@@ -78,7 +75,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  FatcaUSW9TaxPayersDetailsPageViewModel(this._fatcaUSW9taxPayerDetailsUseCase, this._uploadDocumentUseCase) {
+  FatcaUSW9TaxPayersDetailsPageViewModel(this._fatcaUSW9taxPayerDetailsUseCase) {
     _fatcaUSW9taxPayerDetailsRequest.listen((value) {
       RequestManager(value, createCall: () => _fatcaUSW9taxPayerDetailsUseCase.execute(params: value))
           .asFlow()

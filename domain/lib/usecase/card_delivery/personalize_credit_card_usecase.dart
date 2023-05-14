@@ -22,7 +22,7 @@ class PersonalizeCreditCardUseCaseParams extends Params {
   final bool readOnly;
 
   PersonalizeCreditCardUseCaseParams(
-      {this.creditLimitSettings: "", this.minimumSettlement: "", this.nickname: "", this.readOnly: true});
+      {this.creditLimitSettings = "", this.minimumSettlement = "", this.nickname = "", this.readOnly = true});
 
   @override
   Either<AppError, bool> verify() {

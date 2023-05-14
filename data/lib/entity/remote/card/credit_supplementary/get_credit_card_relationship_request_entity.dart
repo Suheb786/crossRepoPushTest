@@ -11,7 +11,7 @@ class GetCreditCardRelationshipRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetCreditCardRelationshipRequestEntity({this.cardId, this.getToken: false, required this.baseData});
+  GetCreditCardRelationshipRequestEntity({this.cardId, this.getToken= false, required this.baseData});
 
   factory GetCreditCardRelationshipRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardRelationshipRequestEntityFromJson(json);

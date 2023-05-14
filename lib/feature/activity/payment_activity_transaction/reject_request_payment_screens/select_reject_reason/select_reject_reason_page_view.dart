@@ -1,12 +1,9 @@
 import 'dart:developer';
 
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/cliq/rejection_reason_inward_request/rejection_reason_inward.dart';
 import 'package:domain/model/cliq/reuest_to_pay_result_otp/request_to_pay_result_otp.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/activity/activity_modules.dart';
@@ -20,7 +17,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/firebase_log_util.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -18,7 +16,7 @@ class ReviewTCWidget extends StatelessWidget {
       {Key? key,
       required this.title,
       this.subTitle,
-      this.isSelected: false,
+      this.isSelected = false,
       this.onTermsAndConditionTap,
       this.onTap})
       : super(key: key);

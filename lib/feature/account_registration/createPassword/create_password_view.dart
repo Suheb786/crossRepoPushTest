@@ -76,7 +76,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                 .read(addNumberViewModelProvider)
                                 .mobileNumberController
                                 .text,
-                            mobileCode: ProviderScope?.containerOf(context)
+                            mobileCode: ProviderScope.containerOf(context)
                                     .read(addNumberViewModelProvider)
                                     .countryData
                                     .phoneCode ??

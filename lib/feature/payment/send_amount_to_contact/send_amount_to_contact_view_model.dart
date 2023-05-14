@@ -5,8 +5,6 @@ import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
-import 'package:domain/usecase/payment/get_purpose_usecase.dart';
-import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -18,9 +16,6 @@ import 'package:rxdart/rxdart.dart';
 class SendAmountToContactViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
   final TransferUseCase _transferUseCase;
-  SendAmountToContactUseCase _useCase;
-
-  GetPurposeUseCase _getPurposeUseCase;
 
   final Beneficiary beneficiary;
 
@@ -56,8 +51,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   List<Purpose>? purposeList = [];
 
-  SendAmountToContactViewModel(this._useCase, this.beneficiary, this._checkSendMoneyUseCase,
-      this._transferUseCase, this._getPurposeUseCase) {
+  SendAmountToContactViewModel(this.beneficiary, this._checkSendMoneyUseCase, this._transferUseCase) {
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
           .asFlow()

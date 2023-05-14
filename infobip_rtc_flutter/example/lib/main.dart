@@ -35,50 +35,36 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: TextButton(
-                  onPressed: initInfobip,
-                  child: const Text("Init Infobit Rtc")),
+              child: TextButton(onPressed: initInfobip, child: const Text("Init Infobit Rtc")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: obtainToken, child: const Text("Get Token")),
+              child: TextButton(onPressed: obtainToken, child: const Text("Get Token")),
             ),
             Center(
               child: TextButton(onPressed: call, child: const Text("Call")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: () => mute(), child: const Text("Mute / Unmute")),
+              child: TextButton(onPressed: () => mute(), child: const Text("Mute / Unmute")),
+            ),
+            Center(
+              child: TextButton(onPressed: () => toggleSpeaker(), child: const Text("Speaker ON/OFF")),
             ),
             Center(
               child: TextButton(
-                  onPressed: () => toggleSpeaker(),
-                  child: const Text("Speaker ON/OFF")),
+                  onPressed: () => getCallEstablishTime(), child: const Text("Get Call Establish Time")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: () => getCallEstablishTime(),
-                  child: const Text("Get Call Establish Time")),
+              child: TextButton(onPressed: () => getCallDuration(), child: const Text("Get Call Duration")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: () => getCallDuration(),
-                  child: const Text("Get Call Duration")),
+              child:
+                  TextButton(onPressed: () => getCallStartTime(), child: const Text("Get Call Start Time")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: () => getCallStartTime(),
-                  child: const Text("Get Call Start Time")),
+              child: TextButton(onPressed: () => getCallendTime(), child: const Text("Get Call end Time")),
             ),
             Center(
-              child: TextButton(
-                  onPressed: () => getCallendTime(),
-                  child: const Text("Get Call end Time")),
-            ),
-            Center(
-              child: TextButton(
-                  onPressed: () => callHangUp(),
-                  child: const Text("Hang up call")),
+              child: TextButton(onPressed: () => callHangUp(), child: const Text("Hang up call")),
             ),
           ],
         ),
@@ -93,15 +79,14 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   Future<void> initInfobip() async {
     try {
       var isSuccess = await InfobipPlugin().init(
-              appKey:
-                  "d48f97a07a5828761b1b8abe2976a24a-f66e3aa6-ff53-4387-a45e-0f52bdc89a11",
+              appKey: "d48f97a07a5828761b1b8abe2976a24a-f66e3aa6-ff53-4387-a45e-0f52bdc89a11",
               applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
               baseUrl: "https://gyw5rw.api.infobip.com",
               callStatus: (callStatus) {
-                print("EXAMPLE $callStatus");
+                debugPrint("EXAMPLE $callStatus");
               }) ??
           {};
-      print(isSuccess);
+      debugPrint("$isSuccess");
     } catch (e) {
       rethrow;
     }
@@ -113,8 +98,8 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
     try {
       var parameter = {'identity': "Alice_Test", "displayName": "Alice_Test"};
       var tokenDetail = await InfobipPlugin().getToken(parameter: parameter);
-      // ignore: avoid_print
-      print(tokenDetail);
+      // ignore: avoid_debugPrint
+      debugPrint(tokenDetail);
     } catch (e) {
       rethrow;
     }
@@ -132,7 +117,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
       openAppSettings();
     }
     setState(() {
-      print(status);
+      debugPrint("$status");
     });
   }
 
@@ -156,7 +141,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void mute() async {
     try {
       var currentMuteStatus = await InfobipPlugin().muteUnMute();
-      print(currentMuteStatus);
+      debugPrint("$currentMuteStatus");
     } catch (e) {
       rethrow;
     }
@@ -168,7 +153,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void toggleSpeaker() async {
     try {
       var currentSpeakerStatus = await InfobipPlugin().toggleSpeaker();
-      print(currentSpeakerStatus);
+      debugPrint("$currentSpeakerStatus");
     } catch (e) {
       rethrow;
     }
@@ -180,7 +165,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void getCallDuration() async {
     try {
       var durationInSecond = await InfobipPlugin().getCallDuration();
-      print(durationInSecond);
+      debugPrint("$durationInSecond");
     } catch (e) {
       rethrow;
     }
@@ -192,7 +177,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void getCallEstablishTime() async {
     try {
       var establishTime = await InfobipPlugin().getCallEstablishTime();
-      print(establishTime);
+      debugPrint(establishTime);
     } catch (e) {
       rethrow;
     }
@@ -204,7 +189,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void getCallStartTime() async {
     try {
       var startTime = await InfobipPlugin().getCallStartTime();
-      print(startTime);
+      debugPrint(startTime);
     } catch (e) {
       rethrow;
     }
@@ -216,7 +201,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void getCallendTime() async {
     try {
       var endTime = await InfobipPlugin().getEndTime();
-      print(endTime);
+      debugPrint(endTime);
     } catch (e) {
       rethrow;
     }
@@ -228,7 +213,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   void callHangUp() async {
     try {
       var status = await InfobipPlugin().hangUpCall();
-      print(status);
+      debugPrint("$status");
     } catch (e) {
       rethrow;
     }
@@ -237,36 +222,36 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   @override
   void onError() {
     // TODO: implement onError
-    print("ON ERROR");
+    debugPrint("ON ERROR");
   }
 
   @override
   void onHangup() {
     // TODO: implement onHangup
-    print("ON HANGUP");
+    debugPrint("ON HANGUP");
   }
 
   @override
   void onRinging() {
     // TODO: implement onRinging
-    print("ON RINGING");
+    debugPrint("ON RINGING");
   }
 
   @override
   void onEarlyMedia() {
     // TODO: implement onEarlyMedia
-    print("ON EARLY MEDIA");
+    debugPrint("ON EARLY MEDIA");
   }
 
   @override
   void onEstablished() {
     // TODO: implement onEstablished
-    print("ON ESTABLISH");
+    debugPrint("ON ESTABLISH");
   }
 
   @override
   void onUpdated() {
     // TODO: implement onUpdated
-    print("ON UPDATE");
+    debugPrint("ON UPDATE");
   }
 }

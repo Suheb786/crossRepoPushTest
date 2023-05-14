@@ -1,5 +1,4 @@
 import 'package:domain/model/register/expected_Transactionss.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -16,7 +15,7 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
     Key? key,
     required this.expectedTransactions,
     this.onTap,
-    this.textColor: AppColor.white,
+    this.textColor = AppColor.white,
   }) : super(key: key);
 
   @override

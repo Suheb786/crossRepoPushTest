@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page_view_model.dart';
@@ -35,7 +34,7 @@ class ExemptionFromFatcaReportingCodePageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -101,7 +100,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -116,7 +115,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
               ),
             ],
           ),

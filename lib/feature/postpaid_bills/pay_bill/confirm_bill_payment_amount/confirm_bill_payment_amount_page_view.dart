@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
@@ -12,12 +11,9 @@ import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill
 import 'package:domain/model/bill_payments/validate_biller_otp/validate_biller_otp.dart';
 import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';

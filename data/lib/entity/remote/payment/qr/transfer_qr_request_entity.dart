@@ -19,7 +19,7 @@ class TransferQRRequestEntity {
     this.toAmount,
     this.toAccount,
     this.qrRequestId,
-    this.getToken: true,
+    this.getToken= true,
     this.baseData,
   });
 

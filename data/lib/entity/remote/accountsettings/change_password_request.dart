@@ -16,10 +16,10 @@ class ChangePasswordRequest {
   final Map<String, dynamic> baseData;
 
   ChangePasswordRequest(
-      {this.currentPassword: "",
-      this.newPassword: "",
-      this.confirmPassword: "",
-      this.getToken: true,
+      {this.currentPassword= "",
+      this.newPassword= "",
+      this.confirmPassword= "",
+      this.getToken= true,
       required this.baseData});
 
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) => _$ChangePasswordRequestFromJson(json);

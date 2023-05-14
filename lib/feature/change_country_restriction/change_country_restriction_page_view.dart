@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
@@ -99,7 +98,7 @@ class ChangeCountryRestrictionPageView extends BasePageViewWidget<ChangeCountryR
                           Container(
                             padding: EdgeInsets.all(32),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
+                                color: Theme.of(context).colorScheme.background, shape: BoxShape.circle),
                             child: AppSvg.asset(AssetUtils.countryRestriction),
                           ),
                           SizedBox(

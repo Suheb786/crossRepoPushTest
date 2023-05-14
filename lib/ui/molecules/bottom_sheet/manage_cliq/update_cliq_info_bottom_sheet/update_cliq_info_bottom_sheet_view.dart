@@ -129,7 +129,7 @@ class _UpdateCliqInfoBottomSheetViewState extends State<UpdateCliqInfoBottomShee
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
                   fontSize: 20.t,
-                  color: Theme.of(context).errorColor)),
+                  color: Theme.of(context).colorScheme.error)),
           onPressed: () {
             widget.onDeleteId?.call();
           },

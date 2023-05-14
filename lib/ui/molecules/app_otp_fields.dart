@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -26,7 +25,7 @@ class AppOtpFields extends StatelessWidget {
       this.controller,
       this.onChanged,
       this.selectedFillColor,
-      this.autoFocus: false})
+      this.autoFocus = false})
       : super(key: key);
 
   @override
@@ -69,12 +68,14 @@ class AppOtpFields extends StatelessWidget {
           obscuringWidget: Container(
             height: 18.92.h,
             width: 6.62.w,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,
+            ),
           ),
           textStyle: TextStyle(
+              color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,
               fontFamily: StringUtils.appFont,
-              // color: AppColor.very_pale_blue,
               fontWeight: FontWeight.w600,
               fontSize: 19.0.t),
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

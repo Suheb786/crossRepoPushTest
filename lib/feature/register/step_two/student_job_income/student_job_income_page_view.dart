@@ -6,7 +6,6 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';

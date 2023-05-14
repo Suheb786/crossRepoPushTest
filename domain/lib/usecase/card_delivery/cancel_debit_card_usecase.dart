@@ -27,7 +27,7 @@ class CancelDebitCardUseCaseParams extends Params {
   final String cancellationReason;
 
   CancelDebitCardUseCaseParams(
-      {this.status: "", this.tokenizedPan: "", this.reason: "", this.cancellationReason: ""});
+      {this.status = "", this.tokenizedPan = "", this.reason = "", this.cancellationReason = ""});
 
   @override
   Either<AppError, bool> verify() {

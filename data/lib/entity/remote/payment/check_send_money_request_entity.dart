@@ -14,7 +14,7 @@ class CheckSendMoneyRequestEntity {
   final Map<String, dynamic> baseData;
 
   CheckSendMoneyRequestEntity(
-      {required this.baseData, this.toAccount: '', this.toAmount: 0, this.getToken: true});
+      {required this.baseData, this.toAccount= '', this.toAmount= 0, this.getToken= true});
 
   factory CheckSendMoneyRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckSendMoneyRequestEntityFromJson(json);

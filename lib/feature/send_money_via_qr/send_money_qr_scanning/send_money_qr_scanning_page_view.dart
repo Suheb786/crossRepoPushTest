@@ -4,7 +4,6 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/qr/qr_transfer_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';

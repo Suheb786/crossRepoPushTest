@@ -30,16 +30,6 @@ class SecureStorageHelper {
     return _storage.write(key: KEY_PAIR, value: json.encode(keyPairs!.toJson()));
   }
 
-  ///get secure keys
-  Future<GenerateKeyPairContent?> getSecuredValue() async {
-    String? keyPairString = await _storage.read(key: KEY_PAIR);
-    print('$keyPairString');
-    if (keyPairString != null) {
-      GenerateKeyPairContent user = GenerateKeyPairContent.fromJson(json.decode(keyPairString));
-      return user;
-    }
-  }
-
   ///save user selected language to secure storage
   Future<void> saveUserSelectedLanguageToStorage({String? language}) async {
     return _storage.write(key: LANGUAGE, value: language);

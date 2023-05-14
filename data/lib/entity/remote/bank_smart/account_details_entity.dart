@@ -69,13 +69,13 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
   @JsonKey(name: "turnOver")
   final String? turnOver;
   @JsonKey(name: "noOfDrTrx")
-  final dynamic? noOfDrTrx;
+  final dynamic noOfDrTrx;
   @JsonKey(name: "noOfCrTrx")
-  final dynamic? noOfCrTrx;
+  final dynamic noOfCrTrx;
   @JsonKey(name: "drThresholdLimit")
-  final dynamic? drThresholdLimit;
+  final dynamic drThresholdLimit;
   @JsonKey(name: "crThresholdLimit")
-  final dynamic? crThresholdLimit;
+  final dynamic crThresholdLimit;
   @JsonKey(name: "productCash")
   final int? productCash;
   @JsonKey(name: "productClearing")
@@ -91,7 +91,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
   @JsonKey(name: "productOthersDesc")
   final String? productOthersDesc;
   @JsonKey(name: "idType")
-  final dynamic? idType;
+  final dynamic idType;
 
   factory AccountDetailsEntity.fromJson(Map<String, dynamic> json) => _$AccountDetailsEntityFromJson(json);
 
@@ -106,8 +106,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
       this.stateID,
       this.cityID,
       this.statementFrequency,
-      this.holdMail: 0,
-      this.zakatExemption: 0,
+      this.holdMail= 0,
+      this.zakatExemption= 0,
       this.introducerAccountNo,
       this.introducedBy,
       this.introducerAddress,
@@ -119,24 +119,24 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<AccountDetailsEntity
       this.notes,
       this.natureID,
       this.relationshipCode,
-      this.dontAllowDebitTran: 0,
-      this.dontAllowCreditTran: 0,
-      this.creditNeedsSupervision: 0,
-      this.debitNeedsSupervision: 0,
-      this.notServiceCharges: 0,
-      this.notStopPaymentCharges: 0,
-      this.notChequeBookCharges: 0,
+      this.dontAllowDebitTran= 0,
+      this.dontAllowCreditTran= 0,
+      this.creditNeedsSupervision= 0,
+      this.debitNeedsSupervision= 0,
+      this.notServiceCharges= 0,
+      this.notStopPaymentCharges= 0,
+      this.notChequeBookCharges= 0,
       this.turnOver,
-      this.noOfDrTrx: 0,
-      this.noOfCrTrx: 0,
-      this.drThresholdLimit: 0,
-      this.crThresholdLimit: 0,
-      this.productCash: 0,
-      this.productClearing: 0,
-      this.productCollection: 0,
-      this.productRemittance: 0,
-      this.productCross: 0,
-      this.productOthers: 0,
+      this.noOfDrTrx= 0,
+      this.noOfCrTrx= 0,
+      this.drThresholdLimit= 0,
+      this.crThresholdLimit= 0,
+      this.productCash= 0,
+      this.productClearing= 0,
+      this.productCollection= 0,
+      this.productRemittance= 0,
+      this.productCross= 0,
+      this.productOthers= 0,
       this.productOthersDesc,
       this.idType});
 

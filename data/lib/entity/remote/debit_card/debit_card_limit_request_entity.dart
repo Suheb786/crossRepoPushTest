@@ -11,7 +11,7 @@ class DebitCardLimitRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
-  DebitCardLimitRequestEntity({this.getToken: true, this.baseData, this.tokenizedPan: ""});
+  DebitCardLimitRequestEntity({this.getToken= true, this.baseData, this.tokenizedPan= ""});
 
   factory DebitCardLimitRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DebitCardLimitRequestEntityFromJson(json);

@@ -9,7 +9,7 @@ class DebitCardErrorWidget extends StatelessWidget {
   final double? fontSize;
   final bool isSmallDevices;
 
-  DebitCardErrorWidget({this.fontSize, this.isSmallDevices: false, Key? key}) : super(key: key);
+  DebitCardErrorWidget({this.fontSize, this.isSmallDevices = false, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,9 +15,9 @@ class GetCreditCardTransactionListRequestEntity {
 
   GetCreditCardTransactionListRequestEntity({
     required this.baseData,
-    this.getToken: true,
-    this.noOfDays: 180,
-    this.cardId: "",
+    this.getToken = true,
+    this.noOfDays = 180,
+    this.cardId = "",
   });
 
   factory GetCreditCardTransactionListRequestEntity.fromJson(Map<String, dynamic> json) =>

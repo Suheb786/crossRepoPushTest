@@ -66,30 +66,25 @@ class ShareInfo {
         var amountText = "";
         // var refNoText = "";
 
-        if (item != null) {
-          if (getBillerName(context, item) != null && getBillerName(context, item).isNotEmpty) {
-            billNameText = S.of(context).billerName + ": " + getBillerName(context, item) + newLine;
-          } else {
-            billNameText = "";
-          }
-
-          if (item.dueAmount != null && item.dueAmount!.isNotEmpty) {
-            amountText = S.of(context).amount +
-                ": " +
-                double.parse(item.dueAmount ?? "0").toStringAsFixed(3) +
-                newLine;
-          } else {
-            amountText = "";
-          }
-          // if (item.refNo != null && item.refNo!.isNotEmpty) {
-          //   refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
-          // } else {
-          //   refNoText = "";
-          // }
-          // if (item.isPaid == true) {
-          allBillsString = allBillsString + newLine + billNameText + amountText /*+ refNoText*/;
-          // }
+        if (getBillerName(context, item).isNotEmpty) {
+          billNameText = S.of(context).billerName + ": " + getBillerName(context, item) + newLine;
+        } else {
+          billNameText = "";
         }
+
+        if (item.dueAmount != null && item.dueAmount!.isNotEmpty) {
+          amountText =
+              S.of(context).amount + ": " + double.parse(item.dueAmount ?? "0").toStringAsFixed(3) + newLine;
+        } else {
+          amountText = "";
+        }
+        // if (item.refNo != null && item.refNo!.isNotEmpty) {
+        //   refNoText = S.of(context).refNo + ": " + item.refNo! + newLine;
+        // } else {
+        //   refNoText = "";
+        // }
+        // if (item.isPaid == true) {
+        allBillsString = allBillsString + newLine + billNameText + amountText /*+ refNoText*/;
       }
     }
 

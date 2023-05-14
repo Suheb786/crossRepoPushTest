@@ -23,7 +23,7 @@ class AuthenticateBioMetricUseCaseParams extends Params {
   final String title;
   final String localisedReason;
 
-  AuthenticateBioMetricUseCaseParams({this.title: "", this.localisedReason: ""});
+  AuthenticateBioMetricUseCaseParams({this.title = "", this.localisedReason = ""});
 
   @override
   Either<AppError, bool> verify() {

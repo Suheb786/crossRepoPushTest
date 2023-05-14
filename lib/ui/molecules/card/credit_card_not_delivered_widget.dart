@@ -20,7 +20,7 @@ class CreditCardNotDeliveredWidget extends StatefulWidget {
   CreditCardNotDeliveredWidget(
       {required this.key,
       required this.creditCard,
-      this.isSmallDevice: false,
+      this.isSmallDevice = false,
       required this.isChangePinEnabled});
 
   FlipCardController? flipCardController = FlipCardController();
@@ -154,8 +154,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             ),
                             InkWell(
                                 onTap: () async {
-                                  var result = await Navigator.pushNamed(
-                                      context, RoutePaths.CreditCardSettings,
+                                  await Navigator.pushNamed(context, RoutePaths.CreditCardSettings,
                                       arguments: CreditCardSettingsArguments(
                                           creditCard: widget.creditCard,
                                           isChangePinEnabled: widget.isChangePinEnabled));
@@ -199,8 +198,8 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                           height: 96.0.h,
                           width: 96.0.w,
                           alignment: Alignment.center,
-                          decoration:
-                              BoxDecoration(color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle),
                           child: AppSvg.asset(AssetUtils.card_activation),
                         ),
                         Padding(

@@ -411,6 +411,5 @@ class ConvertPurchaseToInstallmentsPageView
         ],
       ),
     );
-    ;
   }
 }

@@ -73,10 +73,10 @@ class ConfirmDetailUseCaseParams extends Params {
       required this.declarationSelected,
       this.scannedDocumentInformation,
       this.motherName,
-      this.isPlaceOfBirthRequired: true,
-      this.isCardIssueDateRequired: true,
-      this.isMotherNameRequired: true,
-      this.isValidationRequired: true});
+      this.isPlaceOfBirthRequired = true,
+      this.isCardIssueDateRequired = true,
+      this.isMotherNameRequired = true,
+      this.isValidationRequired = true});
 
   @override
   Either<AppError, bool> verify() {

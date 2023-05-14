@@ -520,7 +520,7 @@ class RjFlightBookingDialogView extends StatelessWidget {
 
   _showTopError(String message, BuildContext context) {
     showTopSnackBar(
-        Overlay.of(context)!,
+        Overlay.of(context),
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
