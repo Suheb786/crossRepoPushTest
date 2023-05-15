@@ -114,7 +114,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -123,7 +123,7 @@ class EnterOtpForEVoucherCategoryPurchasePageView
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );
                                   },
                                 ),

@@ -281,7 +281,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.0.t,
-                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
                                 ))
                             : Text(
                                 S.of(context).resendIn(
@@ -289,7 +289,7 @@ class EnterOtpBillPaymentsPageView extends BasePageViewWidget<EnterOtpBillPaymen
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14.0.t,
-                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
                               );
                       },
                     ),
