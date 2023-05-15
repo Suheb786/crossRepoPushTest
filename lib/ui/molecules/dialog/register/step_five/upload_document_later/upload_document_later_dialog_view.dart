@@ -46,7 +46,7 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 14.t,
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).primaryTextTheme.bodyLarge?.color,
+                          color: Theme.of(context).textTheme.bodyMedium?.color,
                         ),
                         children: [
                           TextSpan(
@@ -55,7 +55,7 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               fontSize: 14.t,
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).textTheme.bodyMedium!.color!,
+                              color: Theme.of(context).textTheme.bodyLarge!.color!,
                             ),
                           )
                         ])),
