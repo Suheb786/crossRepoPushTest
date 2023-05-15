@@ -85,7 +85,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             ),
             Padding(
               padding: EdgeInsets.only(top: 24.0.h),
-              child: model.beneficiary.imageUrl.toString().isNotEmpty
+              child: model.beneficiary.imageUrl.isNotEmpty
                   ? CircleAvatar(
                       radius: 28.w,
                       backgroundImage: Image.memory(
@@ -102,7 +102,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 20.t,
-                            color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                            color: Theme.of(context).primaryTextTheme.bodyMedium?.color),
                       ),
                     ),
             ),

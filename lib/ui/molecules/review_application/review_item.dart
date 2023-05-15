@@ -99,7 +99,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
                   fontFamily: StringUtils.appFont,
                   fontSize: 12.t,
                   fontWeight: FontWeight.w400,
-                  color: AppColor.very_dark_gray),
+                  color: AppColor.very_dark_gray1),
             ),
           ),
           Flexible(

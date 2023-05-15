@@ -5,7 +5,7 @@ class LaunchUrlUtils {
 
   static launchDigitalService(String digitalServiceUrl) async {
     if (await canLaunchUrl(Uri.parse(digitalServiceUrl))) {
-      await canLaunchUrl(Uri.parse(digitalServiceUrl));
+      await launchUrl(Uri.parse(digitalServiceUrl), mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $digitalServiceUrl';
     }

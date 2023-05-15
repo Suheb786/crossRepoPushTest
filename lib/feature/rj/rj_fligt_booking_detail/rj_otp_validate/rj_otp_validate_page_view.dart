@@ -146,8 +146,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 14.t,
-                                                    color:
-                                                        Theme.of(context).textTheme.bodyMedium!.color!),
+                                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
                                               ))
                                           : Text(
                                               S.of(context).resendIn(
@@ -155,7 +154,7 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.t,
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             );
                                     },
                                   ),

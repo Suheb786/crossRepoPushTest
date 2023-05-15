@@ -132,7 +132,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.0.t,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           ),
                                         ),
                                       )
@@ -593,7 +593,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
                                   fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),

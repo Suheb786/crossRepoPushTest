@@ -118,7 +118,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 24.0.h),
-                          child: model.beneficiary!.imageUrl.toString().isNotEmpty
+                          child: model.beneficiary!.imageUrl.isNotEmpty
                               ? CircleAvatar(
                                   radius: 32.w,
                                   backgroundImage: Image.memory(

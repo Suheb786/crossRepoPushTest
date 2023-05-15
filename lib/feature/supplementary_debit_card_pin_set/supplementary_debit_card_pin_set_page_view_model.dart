@@ -18,7 +18,7 @@ class SupplementaryDebitCardPinSetPageViewModel extends BasePageViewModel {
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   void navigateToPage(int index) {
-    if (index != null) swiperController.move(index, animation: false);
+    swiperController.move(index, animation: false);
   }
 
   void nextPage() {

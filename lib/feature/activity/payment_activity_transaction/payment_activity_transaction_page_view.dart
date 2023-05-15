@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
@@ -71,7 +69,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
@@ -221,12 +219,12 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                         dataBuilder: (context, requestActivity) {
                                           switch (requestActivity!.status) {
                                             case Status.SUCCESS:
-                                              return ListView.builder(
-                                                itemBuilder: (context, index) {
-                                                  return (requestActivity.data?.paymentActivityContent ?? [])
-                                                              .length >
-                                                          0
-                                                      ? PaymentActivityTransactionWidget(
+                                              return (requestActivity.data?.paymentActivityContent ?? [])
+                                                          .length >
+                                                      0
+                                                  ? ListView.builder(
+                                                      itemBuilder: (context, index) {
+                                                        return PaymentActivityTransactionWidget(
                                                           content: requestActivity
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
@@ -1319,17 +1317,21 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                               );
                                                             }
                                                           },
-                                                        )
-                                                      : Center(
-                                                          child: Text(
-                                                            S.of(context).noRTPActivityToDisplay,
-                                                          ),
                                                         );
-                                                },
-                                                shrinkWrap: true,
-                                                itemCount:
-                                                    requestActivity.data!.paymentActivityContent!.length,
-                                              );
+                                                      },
+                                                      shrinkWrap: true,
+                                                      itemCount: requestActivity
+                                                          .data!.paymentActivityContent!.length,
+                                                    )
+                                                  : Center(
+                                                      child: Center(
+                                                        child: Text(
+                                                          S.of(context).noRTPActivityToDisplay,
+                                                          style: TextStyle(
+                                                              color: Theme.of(context).primaryColorDark),
+                                                        ),
+                                                      ),
+                                                    );
 
                                             case Status.ERROR:
                                               if (requestActivity.appError!.type ==

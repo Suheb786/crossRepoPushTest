@@ -407,11 +407,11 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                 fontWeight: FontWeight.w600,
                                                                                 color: Theme.of(context)
                                                                                     .textTheme
-                                                                                    .bodyMedium!
+                                                                                    .bodyLarge!
                                                                                     .color!),
                                                                             cursorColor: Theme.of(context)
                                                                                 .textTheme
-                                                                                .bodyMedium!
+                                                                                .bodyLarge!
                                                                                 .color!,
                                                                             controller:
                                                                                 model.addNickNameController,
@@ -427,7 +427,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                       ? Colors.transparent
                                                                                       : Theme.of(context)
                                                                                           .textTheme
-                                                                                          .bodyMedium!
+                                                                                          .bodyLarge!
                                                                                           .color!),
                                                                               border: InputBorder.none,
                                                                               contentPadding: EdgeInsets.only(

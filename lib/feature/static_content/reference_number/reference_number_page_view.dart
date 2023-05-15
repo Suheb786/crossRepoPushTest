@@ -33,11 +33,7 @@ class ReferenceNumberPageView extends BasePageViewWidget<ReferenceNumberPageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme
-                        .of(context)
-                        .primaryTextTheme
-                        .bodyLarge
-                        ?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
             ],
           ),

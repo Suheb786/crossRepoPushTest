@@ -115,9 +115,8 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                       child: CircleAvatar(
                                                         radius: 48.w,
                                                         child: image!.isEmpty
-                                                            ? ((profileData.data!.content!.profileImage
-                                                                    .toString()
-                                                                    .isNotEmpty)
+                                                            ? ((profileData
+                                                                    .data!.content!.profileImage.isNotEmpty)
                                                                 ? CircleAvatar(
                                                                     radius: 48.w,
                                                                     backgroundImage: Image.memory(

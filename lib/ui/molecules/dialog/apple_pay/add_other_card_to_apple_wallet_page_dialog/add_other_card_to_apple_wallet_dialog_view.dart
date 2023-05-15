@@ -20,7 +20,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel= true});
+      this.isSwipeToCancel = true});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
                   ),
                   image != null
                       ? Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
+                          margin: EdgeInsets.only(bottom: 16.h),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -81,7 +81,7 @@ class AddOtherCardToAppleWalletDialogView extends StatelessWidget {
                       height: 57.h,
                       width: 57.w,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
                       child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),

@@ -566,13 +566,13 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                               color: Theme.of(
                                                                                                       context)
                                                                                                   .textTheme
-                                                                                                  .bodyMedium!
+                                                                                                  .bodyLarge!
                                                                                                   .color!),
                                                                                           cursorColor:
                                                                                               Theme.of(
                                                                                                       context)
                                                                                                   .textTheme
-                                                                                                  .bodyMedium!
+                                                                                                  .bodyLarge!
                                                                                                   .color!,
                                                                                           controller: model
                                                                                               .addNickNameController,
@@ -596,7 +596,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                     : Theme.of(
                                                                                                             context)
                                                                                                         .textTheme
-                                                                                                        .bodyMedium!
+                                                                                                        .bodyLarge!
                                                                                                         .color!),
                                                                                             border:
                                                                                                 InputBorder

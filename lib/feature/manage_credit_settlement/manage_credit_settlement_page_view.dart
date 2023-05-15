@@ -96,7 +96,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                             AppSvg.asset(AssetUtils.rightChevron,
                                 width: 20.w,
                                 height: 20.h,
-                                color: Theme.of(context).primaryTextTheme.bodyLarge!?.color)
+                                color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
                           ],
                         ),
                       ),

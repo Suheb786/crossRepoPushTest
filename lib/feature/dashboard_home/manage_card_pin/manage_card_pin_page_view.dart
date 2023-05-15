@@ -40,7 +40,9 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
               S.of(context).manageCardPin,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  color: Theme.of(context).primaryColorDark,
+                  color: model.manageCardPinArguments?.cardType == CardType.DEBIT
+                      ? Theme.of(context).primaryColorDark
+                      : Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w600,
                   fontSize: 14.t),
             ),

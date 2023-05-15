@@ -123,7 +123,6 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                       getToken: true);
 
                                   //    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
-
                                 }
                               },
                               dataBuilder: (context, otpValidationResponse) {
@@ -162,8 +161,7 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                 textStyle: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontSize: 16.t,
-                                                    color:
-                                                        Theme.of(context).textTheme.bodyMedium!.color!),
+                                                    color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                 widgetBuilder: (context, currentTimeRemaining) {
                                                   return currentTimeRemaining == null
                                                       ? TextButton(
@@ -176,7 +174,10 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontSize: 14.t,
                                                                 fontWeight: FontWeight.w600,
-                                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                color: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .color!),
                                                           ))
                                                       : Text(
                                                           S.of(context).resendIn(
@@ -185,7 +186,10 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,
-                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .color!),
                                                         );
                                                 },
                                               ),

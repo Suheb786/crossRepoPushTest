@@ -44,7 +44,6 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                   }
                 } else {
                   if (details.primaryVelocity!.isNegative) {
-                    print('isNegative2');
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
@@ -56,24 +55,6 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                         .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
                   }
                 }
-
-                /*  if (StringUtils.isDirectionRTL(context)) {
-                  if ((details.primaryVelocity!.isNegative)) {
-                    print('isNegative1');
-                    ProviderScope.containerOf(context)
-                        .read(paymentHomeViewModelProvider)
-                        .appSwiperController
-                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
-                  }
-                } else {
-                  if (!(details.primaryVelocity!.isNegative)) {
-                    print('isNegative2');
-                    ProviderScope.containerOf(context)
-                        .read(paymentHomeViewModelProvider)
-                        .appSwiperController
-                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
-                  }
-                }*/
               },
               child: Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

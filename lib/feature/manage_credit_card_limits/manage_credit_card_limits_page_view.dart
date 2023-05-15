@@ -437,7 +437,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100),
-                                          color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                          color: Theme.of(context).textTheme.bodyLarge?.color,
                                         ),
                                         child: Center(
                                           child: Text(S.of(context).saveChanges,
