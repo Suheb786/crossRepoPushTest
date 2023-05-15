@@ -165,6 +165,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                       if (isDisabledConditions(context, model,
                                                           model.payPostPaidBillsDataList[index])) {
                                                         showErrorMethod(context, model, index);
+                                                      } else {
+                                                        showErrorMessageForPartialBillMethod(model, index);
                                                       }
                                                       model.selectedItem(index);
                                                     },
@@ -483,7 +485,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               : (model.payPostPaidBillsDataList.any((item) =>
                                                       item.isChecked == true &&
                                                       !isDisabledConditions(context, model, item)))
-                                                  ? Theme.of(context).textTheme.bodyMedium!.color!
+                                                  ? Theme.of(context).accentTextTheme.bodyText1!.color!
                                                   : AppColor.very_dark_gray1.withOpacity(0.5),
                                         ),
                                         child: Center(
@@ -517,9 +519,22 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
         });
   }
 
+  void showErrorMessageForPartialBillMethod(PayAllPostPaidBillsPageViewModel model, int index) {
+    if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+        model.payPostPaidBillsDataList[index].isChecked == false) {
+      if (model.payPostPaidBillsDataList[index].isPartial == true &&
+          double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") > 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(),
+            error: ErrorInfo(message: ''),
+            type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+      }
+    }
+  }
+
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        Overlay.of(context),
+        context,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -566,6 +581,11 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   isDisabledConditions(
       BuildContext context, PayAllPostPaidBillsPageViewModel model, GetPostpaidBillerListModelData item) {
+    debugPrint(
+        "isPartial1---${double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == false}");
+    debugPrint(
+        "isPartial2--${double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == true && double.parse(item.maxValue ?? "0") <= 0.0}");
+    debugPrint("isPartial3--->${item.expDateStatus == false}");
     return (double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == false) ||
         (double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 &&
             item.isPartial == true &&

@@ -1703,6 +1703,7 @@
   "youSent": "You sent ",
   "time": "Time",
   "refID": "Ref ID",
+  "last30Day": "Last 30 days",
   "requestSuccessFullyRejected": "Request successfully\nrejected.",
   "exceptionExecutingGetRejectionReasons": "Exception while executing Get Rejection Reasons",
   "exceptionExecutingGetPaymentReasons": "Exception while executing Get Return Payment Reasons",
