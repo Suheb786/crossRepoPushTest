@@ -303,7 +303,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         inactiveToggleColor: AppColor.lightGrayishMagenta,
                                         inactiveTextFontWeight: FontWeight.w500,
                                         inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                        activeColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                        activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
                                         inactiveColor: Theme.of(context).colorScheme.secondary,
                                       ),
                                     ),

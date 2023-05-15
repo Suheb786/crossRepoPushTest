@@ -73,7 +73,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(

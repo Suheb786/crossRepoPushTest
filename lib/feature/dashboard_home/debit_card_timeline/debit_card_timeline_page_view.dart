@@ -67,7 +67,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).textTheme.bodyMedium!.color!,
+                        color: Theme.of(context).textTheme.bodyLarge!.color!,
                         borderRadius: BorderRadius.circular(20.w)),
                     child: Text(
                       S.of(context).addMoney,

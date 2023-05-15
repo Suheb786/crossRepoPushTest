@@ -143,7 +143,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                               fontFamily: StringUtils.appFont,
                                                               color: Theme.of(context)
                                                                   .textTheme
-                                                                  .bodyLarge
+                                                                  .bodyMedium
                                                                   ?.color,
                                                               fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,

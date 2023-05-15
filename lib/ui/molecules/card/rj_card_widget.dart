@@ -78,7 +78,7 @@ class RjCardWidget extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                             borderRadius: BorderRadius.circular(100.w)),
                         child: Center(
                           child: Text(

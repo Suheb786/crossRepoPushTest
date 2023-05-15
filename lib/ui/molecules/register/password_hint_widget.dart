@@ -21,18 +21,23 @@ class PasswordHintWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AppSvg.asset(AssetUtils.check_icon, width: 8.w, height: 8.h),
           SizedBox(
             width: 4.w,
           ),
-          Text(
-            label!,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontSize: 12.t,
-                height: 1,
-                color: Theme.of(context).colorScheme.secondary),
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Text(
+              label!,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 12.t,
+                  height: 1.2,
+                  color: Theme.of(context).colorScheme.secondary),
+            ),
           )
         ],
       ),

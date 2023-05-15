@@ -114,7 +114,7 @@ class BlockCountryDialogView extends StatelessWidget {
                         width: 57,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context).textTheme.bodyMedium!.color!),
+                            color: Theme.of(context).textTheme.bodyLarge!.color!),
                         child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),

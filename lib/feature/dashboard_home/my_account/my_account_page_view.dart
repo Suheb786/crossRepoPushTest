@@ -240,7 +240,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               width: 105.0.w,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(20),
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
                                               child: Center(
                                                 child: Text(
                                                   S.of(context).addMoney,

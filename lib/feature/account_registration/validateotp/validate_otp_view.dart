@@ -128,7 +128,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                               S.of(context).changeMyNumber,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!,
                                                 fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -160,7 +160,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.t,
                                                         color:
-                                                            Theme.of(context).textTheme.bodyMedium!.color!),
+                                                            Theme.of(context).textTheme.bodyLarge!.color!),
                                                   ))
                                               : Text(
                                                   S.of(context).resendIn(
@@ -168,7 +168,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       fontSize: 14.t,
-                                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                 );
                                         },
                                       ),

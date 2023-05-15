@@ -738,7 +738,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontSize: 14.0.t,
-                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500),
                       )),

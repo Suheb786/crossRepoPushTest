@@ -45,7 +45,7 @@ class BiometricSwitchWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).textTheme.bodyLarge?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
               subtitle!.isNotEmpty
                   ? Text(
@@ -82,7 +82,7 @@ class BiometricSwitchWidget extends StatelessWidget {
           inactiveToggleColor: AppColor.lightGrayishMagenta,
           inactiveTextFontWeight: FontWeight.w500,
           inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-          activeColor: Theme.of(context).textTheme.bodyMedium!.color!,
+          activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
           inactiveColor: Theme.of(context).colorScheme.secondary,
         ),
       ],

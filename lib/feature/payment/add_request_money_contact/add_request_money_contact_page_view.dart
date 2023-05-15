@@ -146,7 +146,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             ),
                                           ),
                                         ),

@@ -65,7 +65,7 @@ class ReviewTCWidget extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       fontSize: 12.t,
                       fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
-                      color: Theme.of(context).textTheme.bodyMedium!.color!,
+                      color: Theme.of(context).textTheme.bodyLarge!.color!,
                     ),
                   ),
                 ])),

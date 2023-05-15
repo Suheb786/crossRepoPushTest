@@ -25,6 +25,7 @@ import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -416,6 +417,13 @@ class LoginViewModel extends BasePageViewModel {
           },
         );
       });
+    }
+
+    if(kDebugMode){
+      emailController.text = "onboard@g.com";
+      passwordController.text = "Amta@123";
+      // emailController.text = "devbhavy@gmail.com";
+      // passwordController.text = "Asdf@123";
     }
 
     //getCipher();

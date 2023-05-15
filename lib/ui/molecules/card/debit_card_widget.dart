@@ -134,7 +134,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                             S.of(context).flipCard,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!,
                                                 fontSize: 14.0.t,
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -242,7 +242,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       width: 104.0.w,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20),
-                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                          color: Theme.of(context).textTheme.bodyLarge!.color!),
                                       child: Center(
                                         child: Text(
                                           S.of(context).addMoney,
@@ -276,7 +276,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.only(end: 30.0.w),
                                       child: AppSvg.asset(AssetUtils.settingsRed,
-                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                          color: Theme.of(context).textTheme.bodyLarge!.color!),
                                     ),
                                   )
                                 ],
@@ -362,7 +362,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
                                   fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),

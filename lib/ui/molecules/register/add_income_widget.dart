@@ -20,7 +20,7 @@ class AddIncomeWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!, width: 1)),
+            border: Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!, width: 1)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

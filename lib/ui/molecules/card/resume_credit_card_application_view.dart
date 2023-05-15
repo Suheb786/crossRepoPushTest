@@ -71,7 +71,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                         width: 232.0.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context).textTheme.bodyMedium!.color!,
+                          color: Theme.of(context).textTheme.bodyLarge!.color!,
                         ),
                         child: Center(
                           child: Text(

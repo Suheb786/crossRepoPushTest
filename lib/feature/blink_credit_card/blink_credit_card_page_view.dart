@@ -260,8 +260,8 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                       child: Center(
                                         child: AnimatedButton(
                                           buttonText: S.of(context).swipeToProceed,
-                                          borderColor: Theme.of(context).textTheme.bodyMedium!.color!,
-                                          textColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                                          borderColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                                          textColor: Theme.of(context).textTheme.bodyLarge!.color!,
                                         ),
                                       ),
                                     ),

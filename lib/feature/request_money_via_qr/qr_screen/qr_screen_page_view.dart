@@ -54,75 +54,75 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
             ),
             Expanded(
                 child: Card(
-                  elevation: 10,
-                  shadowColor: Theme.of(context).primaryColorDark,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 34.h,
-                        ),
-                        Text(
-                          S.of(context).amount,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10.t,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 4.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                num.parse(model.arguments.requestAmt).toStringAsFixed(3),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 24.t,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 4.0.w, top: 2.h),
-                                child: Text(
-                                  S.of(context).JOD,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700, fontSize: 14.t, color: AppColor.verLightGray4),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        RepaintBoundary(
-                          key: model.globalKey,
-                          child: Container(
-                            color: AppColor.white,
-                            child: QrImage(
-                              data: "${model.arguments.requestId}",
-                              version: QrVersions.auto,
-                              size: 223.0,
+              elevation: 10,
+              shadowColor: Theme.of(context).primaryColorDark,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 34.h,
+                    ),
+                    Text(
+                      S.of(context).amount,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10.t,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 4.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            num.parse(model.arguments.requestAmt).toStringAsFixed(3),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24.t,
                             ),
                           ),
-                        ),
-                        Text(
-                          S.of(context).qrValidForOneHour,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.t,
+                          Padding(
+                            padding: EdgeInsets.only(left: 4.0.w, top: 2.h),
+                            child: Text(
+                              S.of(context).JOD,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 14.t, color: AppColor.verLightGray4),
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                    RepaintBoundary(
+                      key: model.globalKey,
+                      child: Container(
+                        color: AppColor.white,
+                        child: QrImageView(
+                          data: "${model.arguments.requestId}",
+                          version: QrVersions.auto,
+                          size: 223.0,
                         ),
-                        AppStreamBuilder<Resource<String>>(
-                            initialData: Resource.none(),
-                            stream: model.createDynamicLinkStream,
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                if (data.data != null) {
-                                  _shareImage(model, data.data ?? '');
-                                }
-                              }
-                            },
-                            dataBuilder: (context, snapshot) {
-                              return InkWell(
+                      ),
+                    ),
+                    Text(
+                      S.of(context).qrValidForOneHour,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.t,
+                      ),
+                    ),
+                    AppStreamBuilder<Resource<String>>(
+                        initialData: Resource.none(),
+                        stream: model.createDynamicLinkStream,
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            if (data.data != null) {
+                              _shareImage(model, data.data ?? '');
+                            }
+                          }
+                        },
+                        dataBuilder: (context, snapshot) {
+                          return InkWell(
                             onTap: () async {
                               ///LOG EVENT TO FIREBASE
                               await FirebaseAnalytics.instance.logEvent(
@@ -137,26 +137,26 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                                 height: 50.h,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                        color: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                    border:
+                                        Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
                                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          S.of(context).shareQr,
-                                          style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
-                                        ),
-                                        AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
-                                      ],
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).shareQr,
+                                      style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
                                     ),
-                                  ),
+                                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
+                                  ],
                                 ),
-                              );
-                            }),
-                        Padding(
-                          padding: EdgeInsets.only(top: 29.h, bottom: 16.h),
-                          child: InkWell(
+                              ),
+                            ),
+                          );
+                        }),
+                    Padding(
+                      padding: EdgeInsets.only(top: 29.h, bottom: 16.h),
+                      child: InkWell(
                         onTap: () async {
                           ///LOG EVENT TO FIREBASE
                           await FirebaseAnalytics.instance.logEvent(
@@ -170,18 +170,18 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           height: 57.h,
                           width: 57.w,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
                           child: Center(
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
-                              ),
-                            ),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ))
+                  ],
+                ),
+              ),
+            ))
           ],
         ),
       ),

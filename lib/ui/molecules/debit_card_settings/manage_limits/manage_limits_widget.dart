@@ -114,7 +114,7 @@ class ManageLimitsWidget extends StatelessWidget {
                             inactiveToggleColor: AppColor.lightGrayishMagenta,
                             inactiveTextFontWeight: FontWeight.w500,
                             inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                            activeColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                            activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
                             inactiveColor: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
@@ -129,7 +129,7 @@ class ManageLimitsWidget extends StatelessWidget {
                           : BorderRadius.vertical(),
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 13.h),
-                        color: Theme.of(context).backgroundColor,
+                        color: Theme.of(context).colorScheme.background,
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: Row(
@@ -171,7 +171,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                      color: Theme.of(context).textTheme.bodyLarge!.color!),
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       isCollapsed: true,
@@ -184,7 +184,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontSize: 14.t,
-                                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),

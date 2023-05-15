@@ -100,7 +100,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with TickerProviderStat
                       width: 2,
                       color: widget.borderColor != null
                           ? widget.borderColor!
-                          : Theme.of(context).textTheme.bodyMedium!.color!)),
+                          : Theme.of(context).textTheme.bodyLarge!.color!)),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -110,7 +110,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with TickerProviderStat
                         fontFamily: StringUtils.appFont,
                         color: widget.textColor != null
                             ? widget.textColor
-                            : Theme.of(context).textTheme.bodyMedium!.color!,
+                            : Theme.of(context).textTheme.bodyLarge!.color!,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
                     maxLines: 1,

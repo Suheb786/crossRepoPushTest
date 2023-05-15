@@ -222,7 +222,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                                             borderRadius: BorderRadius.circular(20),
                                           ),
                                           child: Padding(
@@ -367,7 +367,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                            color: Theme.of(context).textTheme.bodyLarge!.color!,
                                             borderRadius: BorderRadius.circular(20),
                                           ),
                                           child: Padding(

@@ -218,7 +218,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).primaryTextTheme.bodyLarge?.color!),
+                                      color: Theme.of(context).primaryTextTheme.bodyMedium?.color!),
                                 ),
                               );
                             },

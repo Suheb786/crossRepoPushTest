@@ -36,7 +36,7 @@ class AccountSettingWidget extends StatelessWidget {
                       fontFamily: StringUtils.appFont,
                       fontSize: 14.t,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyLarge?.color),
+                      color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 SizedBox(
                   height: 2.h,

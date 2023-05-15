@@ -41,33 +41,53 @@ class AppViewModel extends BaseViewModel {
   ThemeData get themeData {
     switch (_appTheme) {
       case AppTheme.dark:
-        _themeData = _themeData.copyWith(
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: AppColor.black,
-          // accentColor: AppColor.white,
-          primaryColor: AppColor.white,
+      case AppTheme.light:
+        _themeData = ThemeData.light().copyWith(
+          brightness: Brightness.light,
+          scaffoldBackgroundColor: AppColor.white,
+          primaryColor: AppColor.brightRed,
+          primaryColorDark: AppColor.black,
+          primaryColorLight: AppColor.verySoftRed,
+          dialogBackgroundColor: AppColor.white,
+          colorScheme: _themeData.colorScheme.copyWith(
+            secondary: AppColor.white,
+            background: AppColor.lightGray,
+          ),
+          // backgroundColor: AppColor.lightGray,
+          cardTheme: CardTheme(
+              color: AppColor.veryLightGray,
+              shadowColor: AppColor.black.withOpacity(0.24),
+              elevation: 8,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
           appBarTheme: AppBarTheme(
               color: Colors.transparent,
               elevation: 0,
               iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
-          primaryColorDark: AppColor.dark_moderate_blue,
-          colorScheme: _themeData.colorScheme.copyWith(secondary: AppColor.white),
           textSelectionTheme: TextSelectionThemeData(
-            cursorColor: AppColor.very_light_grey,
-            selectionHandleColor: AppColor.very_light_grey,
-            selectionColor: AppColor.very_light_grey,
+            cursorColor: AppColor.veryDarkGray2,
+            selectionHandleColor: Colors.blue,
+            selectionColor: Colors.blue.withOpacity(0.3),
           ),
           inputDecorationTheme: InputDecorationTheme(
               hintStyle: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: AppColor.white.withOpacity(0.3),
+                color: AppColor.gray1,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               ),
-              //contentPadding: EdgeInsets.zero,
               filled: false,
               border: InputBorder.none,
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(width: 0.000001, color: AppColor.veryDarkGray1, style: BorderStyle.none)),
+              errorBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(width: 0.000001, color: AppColor.strongRed, style: BorderStyle.none)),
+              focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
               isCollapsed: true,
               errorStyle: TextStyle(
                 fontFamily: StringUtils.appFont,
@@ -78,100 +98,13 @@ class AppViewModel extends BaseViewModel {
               ),
               labelStyle: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: AppColor.black,
+                color: AppColor.veryDarkGray2,
                 fontSize: 18,
                 height: 1.48,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               )),
-          /*          textTheme: _themeData.textTheme.copyWith(
-              bodyLarge: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont),
-              bodyMedium: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont)),*/
-          textTheme: _themeData.textTheme
-            ..apply(
-                    fontFamily: StringUtils.appFont,
-                    bodyColor: AppColor.brightBlue,
-                    displayColor: AppColor.brightBlue)
-                .bodyMedium
-            ..apply(
-              fontFamily: StringUtils.appFont,
-              bodyColor: AppColor.white,
-              displayColor: AppColor.white,
-            ),
-          // accentTextTheme: _themeData.textTheme.apply(
-          //     fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
-          primaryTextTheme: _themeData.textTheme.apply(
-              fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
-          iconTheme: IconThemeData(
-            color: AppColor.white,
-          ),
-          indicatorColor: AppColor.white,
-          buttonTheme: ButtonThemeData(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            textTheme: ButtonTextTheme.normal,
-          ),
-        );
-        break;
-      case AppTheme.light:
-        _themeData = _themeData.copyWith(
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: AppColor.white,
-            primaryColor: AppColor.brightRed,
-            primaryColorDark: AppColor.black,
-            primaryColorLight: AppColor.verySoftRed,
-            colorScheme: _themeData.colorScheme.copyWith(secondary: AppColor.white),
-            backgroundColor: AppColor.lightGray,
-            cardTheme: CardTheme(
-                color: AppColor.veryLightGray,
-                shadowColor: AppColor.black.withOpacity(0.24),
-                elevation: 8,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-            appBarTheme: AppBarTheme(
-                color: Colors.transparent,
-                elevation: 0,
-                iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
-            textSelectionTheme: TextSelectionThemeData(
-              cursorColor: AppColor.veryDarkGray2,
-              selectionHandleColor: Colors.blue,
-              selectionColor: Colors.blue.withOpacity(0.3),
-            ),
-            inputDecorationTheme: InputDecorationTheme(
-                hintStyle: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.gray1,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                ),
-                filled: false,
-                border: InputBorder.none,
-                enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
-                focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(width: 0.000001, color: AppColor.veryDarkGray1, style: BorderStyle.none)),
-                errorBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(width: 0.000001, color: AppColor.strongRed, style: BorderStyle.none)),
-                focusedErrorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
-                isCollapsed: true,
-                errorStyle: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                ),
-                labelStyle: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.veryDarkGray2,
-                  fontSize: 18,
-                  height: 1.48,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                )),
-            /*  textTheme: _themeData.textTheme
+          /*  textTheme: _themeData.textTheme
               ..apply(
                       fontFamily: StringUtils.appFont,
                       bodyColor: AppColor.veryDarkGray2,
@@ -186,35 +119,71 @@ class AppViewModel extends BaseViewModel {
                 bodyColor: AppColor.brightBlue,
                 displayColor: AppColor.brightBlue),*/
           */
-            textTheme: _themeData.textTheme.copyWith(
-              bodyLarge: TextStyle(color: AppColor.brightBlue, fontFamily: StringUtils.appFont),
-              bodyMedium: TextStyle(
-                color: AppColor.brightBlue,
-                fontFamily: StringUtils.appFont,
+          textTheme: _themeData.textTheme.copyWith(
+            bodyLarge: TextStyle(
+              color: AppColor.brightBlue,
+              fontFamily: StringUtils.appFont,
+            ),
+            bodyMedium: TextStyle(
+              color: AppColor.veryDarkGray2,
+              fontFamily: StringUtils.appFont,
+            ),
+            bodySmall: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            titleLarge: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            displayLarge: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            displayMedium: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            displaySmall: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            labelLarge: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            labelMedium: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+            labelSmall: TextStyle(
+              color: AppColor.very_dark_gray,
+              fontFamily: StringUtils.appFont,
+            ),
+          )..apply(
+              // bodyColor: AppColor.brightBlue,
+              // displayColor: AppColor.brightBlue,
+              // decorationColor: AppColor.brightBlue,
               ),
-              bodySmall: TextStyle(
-                color: AppColor.very_dark_gray,
-                fontFamily: StringUtils.appFont,
-              ),
-            ),
-            primaryTextTheme: _themeData.textTheme.copyWith(
-              bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
-            ),
-            iconTheme: IconThemeData(
-              color: AppColor.white,
-            ),
-            indicatorColor: AppColor.veryDarkGray2,
-            buttonTheme: ButtonThemeData(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-              textTheme: ButtonTextTheme.normal,
-            ),
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            dividerColor: AppColor.lightGrayishBlue,
-            canvasColor: AppColor.vividYellow,
-            colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
+          primaryTextTheme: _themeData.textTheme.copyWith(
+            bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
+          ),
+          iconTheme: IconThemeData(
+            color: AppColor.white,
+          ),
+          indicatorColor: AppColor.veryDarkGray2,
+          buttonTheme: ButtonThemeData(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            textTheme: ButtonTextTheme.normal,
+          ),
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          dividerColor: AppColor.lightGrayishBlue,
+          canvasColor: AppColor.vividYellow,
+          /*colorScheme: ColorScheme.fromSwatch(accentColor: AppColor.white)
                 .copyWith(background: AppColor.lightGray)
-                .copyWith(error: AppColor.vivid_red));
+                .copyWith(error: AppColor.vivid_red)*/
+        );
         break;
     }
 

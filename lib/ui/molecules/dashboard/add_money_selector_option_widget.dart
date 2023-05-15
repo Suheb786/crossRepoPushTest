@@ -70,7 +70,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                   child: Container(
                     height: 48.h,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).textTheme.bodyMedium!.color!,
+                        color: Theme.of(context).textTheme.bodyLarge!.color!,
                         borderRadius: BorderRadius.circular(100)),
                     child: Center(
                       child: Text(

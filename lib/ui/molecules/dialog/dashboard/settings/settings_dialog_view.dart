@@ -74,7 +74,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 0
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -119,7 +119,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 1
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -164,7 +164,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 2
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -209,7 +209,7 @@ class SettingsDialogView extends StatelessWidget {
                                   width: 112.0.w,
                                   decoration: BoxDecoration(
                                       color: currentStep == 3
-                                          ? Theme.of(context).textTheme.bodyMedium!.color!
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
                                           : Theme.of(context).colorScheme.secondary,
                                       borderRadius: BorderRadius.circular(8)),
                                   child: Column(
@@ -292,7 +292,7 @@ class SettingsDialogView extends StatelessWidget {
                                       width: 112.0.w,
                                       decoration: BoxDecoration(
                                           color: currentStep == 4
-                                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                                              ? Theme.of(context).textTheme.bodyLarge!.color!
                                               : Theme.of(context).colorScheme.secondary,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Column(
@@ -346,7 +346,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 0
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -391,7 +391,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 1
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -436,7 +436,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 2
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -483,7 +483,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 3
-                                        ? Theme.of(context).textTheme.bodyMedium!.color!
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
                                         : Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -528,7 +528,7 @@ class SettingsDialogView extends StatelessWidget {
                                   width: 112.0.w,
                                   decoration: BoxDecoration(
                                       color: currentStep == 4
-                                          ? Theme.of(context).textTheme.bodyMedium!.color!
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
                                           : Theme.of(context).colorScheme.secondary,
                                       borderRadius: BorderRadius.circular(8)),
                                   child: Column(
@@ -612,7 +612,7 @@ class SettingsDialogView extends StatelessWidget {
                                       width: 112.0.w,
                                       decoration: BoxDecoration(
                                           color: currentStep == 5
-                                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                                              ? Theme.of(context).textTheme.bodyLarge!.color!
                                               : Theme.of(context).colorScheme.secondary,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Column(

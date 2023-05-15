@@ -40,7 +40,7 @@ class InformationText extends StatelessWidget {
             title!,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
-                color: textColor ?? Theme.of(context).primaryTextTheme.bodyLarge?.color!,
+                color: textColor ?? Theme.of(context).primaryTextTheme.bodyMedium?.color!,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.t),
           ),
