@@ -85,7 +85,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
             ),
             Padding(
               padding: EdgeInsets.only(top: 24.0.h),
-              child: model.beneficiary.imageUrl.toString().isNotEmpty
+              child: model.beneficiary.imageUrl.isNotEmpty
                   ? CircleAvatar(
                       radius: 28.w,
                       backgroundImage: Image.memory(
