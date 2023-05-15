@@ -132,7 +132,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.0.t,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           ),
                                         ),
                                       )
