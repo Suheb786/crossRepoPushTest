@@ -1678,6 +1678,7 @@
   "msgIdNotFoundInTransactionHistory": "خطأ اثناء الحصول على سجل الحركات السابقة",
   "accountClosed": "عفواً! تم إغلاق حسابك ، يرجى الاتصال بنا إذا كنت بحاجة إلى أي معلومات على 06-5200100",
   "cliqRTPOffline": "Cliq RTP currently offline and will be back shortly!",
+  "last30Day": "آخر 30 يوم",
   "cliqOutwardOffline": "Cliq Outward currently offline and will be back shortly!",
   "cliqReturnPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "cliqSendPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",

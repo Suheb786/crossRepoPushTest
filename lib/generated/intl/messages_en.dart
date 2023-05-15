@@ -1820,24 +1820,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some of the required employment information. Please check again and ensure all information is provided."),
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
-        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
-            "Bear with us, just a few more questions about your income"),
+        "jobIncomeMsg":
+            MessageLookupByLibrary.simpleMessage("Bear with us, just a few more questions about your income"),
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
-        "joinedBlink":
-            MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
+        "joinedBlink": MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
         "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
-        "legalDocumentNo":
-            MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+        "last30Day": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "legalDocumentNo": MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-153)"),
-        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
-            "Let’s create your new\nCliQ ID"),
-        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
-            "Next, let’s create\nyour new password"),
-        "letsCreateYourAccount":
-            MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
+        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage("Let’s create your new\nCliQ ID"),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage("Next, let’s create\nyour new password"),
+        "letsCreateYourAccount": MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
         "letsGiveANameToYourCliqId": MessageLookupByLibrary.simpleMessage(

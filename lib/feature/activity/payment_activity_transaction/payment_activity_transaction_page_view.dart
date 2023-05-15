@@ -95,9 +95,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                               children: [
                                 AppStreamBuilder<String>(
                                     stream: model.transactionTypeResponseStream,
-                                    initialData: StringUtils.isDirectionRTL(context)
-                                        ? "ÙƒÙ„ Ø§Ù„Ø­Ø±ÙƒØ§Øª"
-                                        : 'All Transactions',
+                                    // initialData: StringUtils.isDirectionRTL(context)
+                                    //     ? "ÙƒÙ„ Ø§Ù„Ø­Ø±ÙƒØ§Øª"
+                                    //     : 'All Transactions',
+                                    initialData: S.of(context).allTransaction,
                                     dataBuilder: (context, transactionType) {
                                       return InkWell(
                                         onTap: () {
@@ -140,9 +141,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                     }),
                                 AppStreamBuilder<String>(
                                     stream: model.paymentPeriodResponseStream,
-                                    initialData: StringUtils.isDirectionRTL(context)
-                                        ? "Ø¢Ø®Ø± 30 ÙŠÙˆÙ…"
-                                        : 'Last 30 days',
+                                    // initialData: StringUtils.isDirectionRTL(context)
+                                    //     ? "Ø¢Ø®Ø± 30 ÙŠÙˆÙ…"
+                                    //     : 'Last 30 days',
+                                    initialData: S.of(context).last30Day,
                                     dataBuilder: (mContext, paymentPeriod) {
                                       return Padding(
                                         padding: EdgeInsetsDirectional.only(start: 8.0.w),
