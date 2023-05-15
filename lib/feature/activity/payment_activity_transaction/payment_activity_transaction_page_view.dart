@@ -71,7 +71,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).accentColor,
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
@@ -95,9 +95,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                               children: [
                                 AppStreamBuilder<String>(
                                     stream: model.transactionTypeResponseStream,
-                                    initialData: StringUtils.isDirectionRTL(context)
-                                        ? "كل الحركات"
-                                        : 'All Transactions',
+                                    // initialData: StringUtils.isDirectionRTL(context)
+                                    //     ? "ÙƒÙ„ Ø§Ù„Ø­Ø±ÙƒØ§Øª"
+                                    //     : 'All Transactions',
+                                    initialData: S.of(context).allTransaction,
                                     dataBuilder: (context, transactionType) {
                                       return InkWell(
                                         onTap: () {
@@ -140,8 +141,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                     }),
                                 AppStreamBuilder<String>(
                                     stream: model.paymentPeriodResponseStream,
-                                    initialData:
-                                        StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
+                                    // initialData: StringUtils.isDirectionRTL(context)
+                                    //     ? "Ø¢Ø®Ø± 30 ÙŠÙˆÙ…"
+                                    //     : 'Last 30 days',
+                                    initialData: S.of(context).last30Day,
                                     dataBuilder: (mContext, paymentPeriod) {
                                       return Padding(
                                         padding: EdgeInsetsDirectional.only(start: 8.0.w),
@@ -1114,6 +1117,207 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 ],
                                                               ),
                                                             );
+                                                          },
+                                                          onTapRTPStatus: (RequestMoneyActivityList data) {
+                                                            if (RequestMoneyActivityStatusEnum
+                                                                        .CATEGORY_REJECTED ==
+                                                                    data.trxStatus ||
+                                                                RequestMoneyActivityStatusEnum
+                                                                        .CATEGORY_ACCEPTED ==
+                                                                    data.trxStatus) {
+                                                              //* STATUS POP UP
+                                                              RTPConfirmationDialog.show(
+                                                                context,
+                                                                currency: data.curr ?? '',
+                                                                amount: " " +
+                                                                    '${(data.amount?.toStringAsFixed(3)).toString()}',
+                                                                isAmountVisible: false,
+                                                                cdtrAcct: data.dbtrAcct ?? '',
+                                                                cdtrDpText: StringUtils.getFirstInitials(
+                                                                    data.dbtrName),
+                                                                cdtrName: data.dbtrName ?? '',
+                                                                showDescription: true,
+                                                                actionWidget: Container(),
+                                                                description: RichText(
+                                                                    text: TextSpan(
+                                                                        text: S.current.yourequested,
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontSize: 14.0.t,
+                                                                            overflow: TextOverflow.ellipsis,
+                                                                            fontWeight: FontWeight.w400,
+                                                                            color: AppColor.veryDarkGray1),
+                                                                        children: [
+                                                                      TextSpan(
+                                                                        text:
+                                                                            ' ${(data.amount?.toStringAsFixed(3)).toString()} ',
+                                                                        style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
+                                                                            fontSize: 14.0.t,
+                                                                            fontWeight: FontWeight.w700,
+                                                                            color: AppColor.veryDarkGray1),
+                                                                        children: [
+                                                                          TextSpan(
+                                                                            text: S.current.fromSingleLine,
+                                                                            style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 14.0.t,
+                                                                              overflow: TextOverflow.ellipsis,
+                                                                              fontWeight: FontWeight.w400,
+                                                                              // color: AppColor.sky_blue_mid,
+                                                                            ),
+                                                                            children: [
+                                                                              TextSpan(
+                                                                                text:
+                                                                                    " ${data.dbtrName ?? ''}",
+                                                                                style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 14.0.t,
+                                                                                  overflow:
+                                                                                      TextOverflow.ellipsis,
+                                                                                  fontWeight: FontWeight.w700,
+                                                                                  // color: AppColor.sky_blue_mid,
+                                                                                ),
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ])),
+                                                                listOfDetails: Column(
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.status,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Container(
+                                                                          decoration: BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20),
+                                                                            color: model
+                                                                                .getColor(data.trxStatus),
+                                                                          ),
+                                                                          padding: EdgeInsets.only(
+                                                                              left: 8.w,
+                                                                              right: 8.w,
+                                                                              top: 4.h,
+                                                                              bottom: 1.h),
+                                                                          child: Text(
+                                                                            data.trxStatus.toString(),
+                                                                            style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
+                                                                                fontSize: 12.t,
+                                                                                color: AppColor.white,
+                                                                                fontWeight: FontWeight.w700),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.reason,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Spacer(),
+                                                                        Expanded(
+                                                                          child: Align(
+                                                                            alignment: Alignment.centerRight,
+                                                                            child: Text(
+                                                                              data.trxReason ?? '',
+                                                                              style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
+                                                                                  fontSize: 12.t,
+                                                                                  color: AppColor.black,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w700),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.date,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils.convertDateTimeToDate(
+                                                                              data.rtpDate.toString()),
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 16.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          S.current.time,
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.very_dark_gray1,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        Text(
+                                                                          TimeUtils
+                                                                              .getFormattedTimeFor12HrsFormat(
+                                                                                  data.rtpDate.toString()),
+                                                                          textAlign: TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
+                                                                              fontSize: 12.t,
+                                                                              color: AppColor.black,
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            }
                                                           },
                                                         )
                                                       : Center(
