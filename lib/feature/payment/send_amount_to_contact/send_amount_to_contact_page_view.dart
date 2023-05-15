@@ -102,7 +102,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 20.t,
-                            color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                            color: Theme.of(context).primaryTextTheme.bodyMedium?.color),
                       ),
                     ),
             ),
