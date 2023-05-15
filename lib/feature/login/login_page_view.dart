@@ -250,7 +250,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         null &&
                                                                     cipherResponse.data!.getCipherContent!
                                                                         .cipher!.isNotEmpty) {
-                                                                  model.fingerPrintShow(true);
+                                                                  //   model.fingerPrintShow(true);
                                                                 }
                                                               }
                                                             },
@@ -508,11 +508,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             (data) async {
                                                                                                           if (data.status ==
                                                                                                               Status.SUCCESS) {
-                                                                                                            await SharedPreferenceHelper.saveValue(false);
+                                                                                                            model.fingerPrintShow(data.data?.isBiometricEnabled ?? false);
+                                                                                                            var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                             model.checkVersionUpdate(clear: "false");
                                                                                                           } else if (data.status == Status.ERROR) {
                                                                                                             if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                              await SharedPreferenceHelper.saveValue(false);
+                                                                                                              var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                               model.checkVersionUpdate(clear: "true");
                                                                                                             }
                                                                                                           }

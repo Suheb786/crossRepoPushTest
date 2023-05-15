@@ -775,7 +775,7 @@ packages:
     source: hosted
     version: "1.0.6"
   package_info_plus_windows:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: package_info_plus_windows
       sha256: "81f4717b58d33707a2524011fc5cc4d8ba7774639dd894319d27f1ebed94856d"
