@@ -40,10 +40,8 @@ class DenominationsDialogView extends StatelessWidget {
     return BaseWidget<DenominationsDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -64,9 +62,7 @@ class DenominationsDialogView extends StatelessWidget {
                             child: Text(
                               label,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -75,8 +71,7 @@ class DenominationsDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -103,46 +98,35 @@ class DenominationsDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount:
-                                                getPrePaidCategoriesList!.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return AccountSelectionWidget(
-                                                labelTitle:
-                                                    S.of(context).denomination,
-                                                label:
-                                                    getPrePaidCategoriesList![
-                                                                index]
-                                                            .description ??
-                                                        "",
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                                currentIndex: index,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: getPrePaidCategoriesList!.length,
+                                        builder: (BuildContext context, int index) {
+                                          return AccountSelectionWidget(
+                                            labelTitle: S.of(context).denomination,
+                                            label: getPrePaidCategoriesList![index].description ?? "",
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                            currentIndex: index,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!
-                                .call(getPrePaidCategoriesList![currentIndex!]);
+                            onSelected!.call(getPrePaidCategoriesList![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
                             height: 57,
                             width: 57,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).textTheme.bodyMedium!.color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).colorScheme.secondary),
+                                shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Padding(

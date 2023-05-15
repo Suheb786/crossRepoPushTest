@@ -109,9 +109,6 @@ class PostPaidBillCardWidget extends StatelessWidget {
                                 fontSize: 14.0.t,
                                 fontWeight: FontWeight.w600,
                                 color: AppColor.white)),
-                        SizedBox(
-                          height: 40.h,
-                        ),
                         Spacer(),
                         InkWell(
                           onTap: () {

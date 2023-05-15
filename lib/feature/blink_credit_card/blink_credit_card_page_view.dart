@@ -169,7 +169,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
                                                     color:
-                                                        Theme.of(context).textTheme.bodyMedium!.color!)),
+                                                        Theme.of(context).textTheme.bodyLarge!.color!)),
                                             child: Center(
                                               child: Visibility(
                                                 visible: value,
@@ -204,7 +204,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                         : AppConstantsUtils
                                                             .CREDIT_CARD_TERMS_CONDITION_LINK_LIVE),
                                               style: TextStyle(
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
                                                   fontSize: 12.t,
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w600),
@@ -226,7 +226,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                                     staticRouteContent:
                                                                         StaticRouteContent.CREDIT_BUREAU)),
                                                           style: TextStyle(
-                                                              color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                              color: Theme.of(context).textTheme.bodyLarge!.color!,
                                                               fontSize: 12.t,
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600),

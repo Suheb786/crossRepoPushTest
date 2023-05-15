@@ -110,7 +110,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!)),
                                           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +140,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                           width: 57.0.w,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                              color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           child: Center(
                                             child: AppSvg.asset(AssetUtils.tick,
                                                 color: Theme.of(context).colorScheme.secondary),

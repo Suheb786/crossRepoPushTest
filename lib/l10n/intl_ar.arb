@@ -1682,5 +1682,6 @@
   "cliqOutwardOffline": "Cliq Outward currently offline and will be back shortly!",
   "cliqReturnPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "cliqSendPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
-  "requestMoneyFeatureDisabled": "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"
+  "requestMoneyFeatureDisabled": "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
+  "youCanNotRequestMoneyFromYourOwnAccount": "لا يمكنك طلب المال من حسابك الخاص"
 }

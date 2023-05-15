@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -3102,6 +3103,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can change the above details in the card settings "),
+        "youCanNotRequestMoneyFromYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "You can not request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youLocked": MessageLookupByLibrary.simpleMessage(

@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -113,7 +111,7 @@ class ReturnPaymentTransactionSliderPageView
                           textDirection: TextDirection.ltr,
                           child: Text(
                             "${ProviderScope.containerOf(context).read(returnPaymentSelectionPageViewModelProvider).mobileCode?.replaceAll('00', '+')}" +
-                                " " 
+                                " "
                                     "${ProviderScope.containerOf(context).read(returnPaymentSelectionPageViewModelProvider).mobileNumber}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
