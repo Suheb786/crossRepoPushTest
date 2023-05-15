@@ -1728,5 +1728,6 @@
   "cliqOutwardOffline": "Cliq Outward currently offline and will be back shortly!",
   "cliqReturnPaymentOffline": "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
   "cliqSendPaymentOffline": "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
-  "requestMoneyFeatureDisabled": "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."
+  "requestMoneyFeatureDisabled": "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
+  "youCanNotRequestMoneyFromYourOwnAccount": "You can not request money from your own account"
 }

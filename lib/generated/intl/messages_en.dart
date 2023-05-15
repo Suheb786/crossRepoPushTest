@@ -3102,6 +3102,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can change the above details in the card settings "),
+        "youCanNotRequestMoneyFromYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "You can not request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youLocked": MessageLookupByLibrary.simpleMessage(

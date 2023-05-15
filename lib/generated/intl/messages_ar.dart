@@ -2991,6 +2991,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
+        "youCanNotRequestMoneyFromYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "لا يمكنك طلب المال من حسابك الخاص"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
         "youLocked": MessageLookupByLibrary.simpleMessage(

@@ -1387,6 +1387,9 @@ class NetworkError extends BaseError {
           case "err-388":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_RETURN_RTP_REQUEST);
+          case "err-401":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.YOU_CAN_NOT_REQUEST_MONEY_FROM_YOUR_OWN_ACCOUNT);
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);

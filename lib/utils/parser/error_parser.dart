@@ -1274,6 +1274,9 @@ class ErrorParser {
       case ErrorType.INVALID_ALIAS_LENGTH:
         return localisedHelper.aliasShouldBeThreeChar;
 
+      case ErrorType.INVALID_ALIAS_LENGTH:
+        return localisedHelper.aliasShouldBeThreeChar;
+
       case ErrorType.ERROR_WHILE_GENERATING_QR_CODE:
         return localisedHelper.errorWhileGeneratingQrCode;
       case ErrorType.ERROR_WHILE_SENDING_QR_PAYMENT:
@@ -1329,6 +1332,8 @@ class ErrorParser {
         return localisedHelper.cliqSendPaymentOffline;
       case ErrorType.REQUEST_TO_PAY_DISABLED:
         return localisedHelper.requestMoneyFeatureDisabled;
+      case ErrorType.YOU_CAN_NOT_REQUEST_MONEY_FROM_YOUR_OWN_ACCOUNT:
+        return localisedHelper.youCanNotRequestMoneyFromYourOwnAccount;
       default:
         return "";
     }

@@ -82,7 +82,7 @@ class JobDetailContentEntity
         employeeName: response.employeeName,
         additionalIncome: response.additionalIncome,
         annualIncome: response.annualIncome,
-        employerCity: response.employerCity,
+        employerCity: response.employeeCityId,
         employerCityAr: response.employerCityAr,
         employerContact: response.employerContact,
         employerCountry: response.employerCountry,
