@@ -188,7 +188,7 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                                               fontWeight: FontWeight.w600,
                                                               color: Theme.of(context)
                                                                   .textTheme
-                                                                  .bodyMedium!
+                                                                  .bodyLarge!
                                                                   .color!),
                                                         );
                                                 },

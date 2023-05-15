@@ -1371,16 +1371,6 @@ class NetworkError extends BaseError {
             return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_AMT);
           case "EFW-398":
             return AppError(cause: cause, error: error, type: ErrorType.BILLING_NUMBER_REACHED_ITS_MAX_TRX);
-
-          /*     case "ex-138":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.EXCEPTION_EXECUTING_GET_REJECTION_REASONS);
-
-          case "ex-139":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.EXCEPTION_WHILE_EXECUTING_GET_RETURN_PAYMENT_REASONS);*/
           case "err-387":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_GETTING_TRANSACTION_HISTORY_LIST);

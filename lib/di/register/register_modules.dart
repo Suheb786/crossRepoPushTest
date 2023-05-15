@@ -28,7 +28,6 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9_address
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/tax_report_information/tax_report_information_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
@@ -60,7 +59,6 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_d
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
@@ -190,20 +188,8 @@ final areYouFirstDegreeRelativeViewModelProvider =
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
-///tax report information page view model provider
-final taxReportInformationPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<TaxReportInformationPageViewModel>(
-  (ref) => TaxReportInformationPageViewModel(ref.read(taxReportInformationUseCaseProvider)),
-);
-
 final tinAvailableViewModelProvider = ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
-);
-
-///reason of unavailability dialog view model provider
-final reasonOfUnavailabilityDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ReasonOfUnavailabilityDialogViewModel>(
-  (ref) => ReasonOfUnavailabilityDialogViewModel(),
 );
 
 ///profile details page view model provider
