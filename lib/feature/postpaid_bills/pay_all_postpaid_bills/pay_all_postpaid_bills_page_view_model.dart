@@ -240,7 +240,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             }
             postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
-            if (payPostPaidBillsDataList != null && payPostPaidBillsDataList.length > 0) {
+            if (payPostPaidBillsDataList.length > 0) {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
             }
           }
@@ -421,7 +421,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void searchPostPaidBillerList(String? searchText) {
-    if (fList != null && fList.isNotEmpty) {
+    if (fList.isNotEmpty) {
       fList.clear();
     }
     List<GetPostpaidBillerListModelData>? getPostpaidBillerList = mList;

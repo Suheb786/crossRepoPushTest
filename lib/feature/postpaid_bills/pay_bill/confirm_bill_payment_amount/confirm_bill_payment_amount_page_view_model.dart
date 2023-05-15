@@ -231,10 +231,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         prepaidCategoryType: AppConstantsUtils.IS_PRE_PAID_CATEGORY_LIST_EMPTY == false
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
-        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-            ? true
-            : false));
+        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != "" ? true : false));
   }
 
   void validatePrePaidBillListener() {
@@ -287,10 +284,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         prepaidCategoryType: addNewBillDetailsData.isPrepaidCategoryListEmpty == false
             ? AppConstantsUtils.PREPAID_CATEGORY_TYPE
             : "",
-        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != null &&
-                AppConstantsUtils.SELECTED_BILLING_NUMBER != ""
-            ? true
-            : false,
+        billingNumberRequired: AppConstantsUtils.SELECTED_BILLING_NUMBER != "" ? true : false,
         CardId: "",
         isCreditCardPayment: false));
   }

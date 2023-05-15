@@ -145,10 +145,10 @@ class PaidBillsSuccessPageView extends BasePageViewWidget<PaidBillsSuccessPageVi
                               )
                             ],
                           ),
-                          (model.arguments!.fee != null && double.parse(model.arguments?.fee ?? "0") > 0.0)
+                          (double.parse(model.arguments?.fee ?? "0") > 0.0)
                               ? SizedBox(height: 16.h)
                               : Container(),
-                          (model.arguments!.fee != null && double.parse(model.arguments?.fee ?? "0") > 0.0)
+                          (double.parse(model.arguments?.fee ?? "0") > 0.0)
                               ? Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [

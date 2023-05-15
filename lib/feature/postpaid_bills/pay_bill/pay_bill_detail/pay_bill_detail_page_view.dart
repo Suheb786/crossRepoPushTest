@@ -329,7 +329,7 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
           AppConstantsUtils.PREPAID_CATEGORY_DESCRIPTION = "";
           AppConstantsUtils.PREPAID_CATEGORY_TYPE = "";
           model.denominationTextController.text = "";
-          if (model.billerService != null && model.billerService.isNotEmpty) {
+          if (model.billerService.isNotEmpty) {
             SelectServiceDialog.show(context, model.billerService, model.billerCodeString.toString(),
                 title: S.of(context).services, onDismissed: () {
               Navigator.pop(context);
