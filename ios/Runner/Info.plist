@@ -74,12 +74,6 @@
 	<string>Can I use the camera please?</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Why is my app authenticating using face id?</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The app needs location permission to find your current location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>The app needs location permission to find your current location.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app needs location permission</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Can I use the mic please?</string>
 	<key>NSPhotoLibraryUsageDescription</key>

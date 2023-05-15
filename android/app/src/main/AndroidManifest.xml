@@ -53,9 +53,6 @@
         android:label="Blink"
         android:largeHeap="true"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCuEgnAmuXOuVXT0lF2_NtqUEelRbH4F_k" />
 
         <activity
             android:name=".MainActivity"
