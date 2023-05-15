@@ -13,6 +13,7 @@ class UsTaxPayerIdentificationNumberPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
+      height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       decoration: BoxDecoration(
           color: AppColor.white,
@@ -55,7 +56,7 @@ Submitting the form to a partnership that conducts a trade or business in the Un
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
             ],
           ),
