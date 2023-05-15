@@ -150,7 +150,8 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                     },
                                     child: Icon(
                                       Icons.backspace,
-                                      color: Colors.blue,
+                                      color:
+                                          Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,
                                       size: 30,
                                     )),
                               ),
@@ -170,7 +171,9 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                 margin: EdgeInsetsDirectional.only(
                                     start: MediaQuery.of(context).size.width / 13.5, end: 10),
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
+                                    border: Border.all(
+                                        color: Theme.of(context).textTheme.bodyLarge?.color ??
+                                            AppColor.brightBlue),
                                     borderRadius: BorderRadius.circular(20.w)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -199,7 +202,9 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                 margin:
                                     EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
+                                    border: Border.all(
+                                        color: Theme.of(context).textTheme.bodyLarge?.color ??
+                                            AppColor.brightBlue),
                                     borderRadius: BorderRadius.circular(20.w)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
