@@ -6,6 +6,10 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_a
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 
 class PaymentActivityTransactionPage extends BasePage<PaymentActivityTransactionViewModel> {
+  final PaymentActivityTransactionPageArgument paymentActivityTransactionPageArgument;
+
+  PaymentActivityTransactionPage(this.paymentActivityTransactionPageArgument);
+
   @override
   PaymentActivityTransactionPageState createState() => PaymentActivityTransactionPageState();
 }
@@ -14,16 +18,28 @@ class PaymentActivityTransactionPageState
     extends BaseStatefulPage<PaymentActivityTransactionViewModel, PaymentActivityTransactionPage> {
   @override
   ProviderBase provideBase() {
-    return paymentActivityTransactionViewModelProvider;
+    return paymentActivityTransactionViewModelProvider.call(widget.paymentActivityTransactionPageArgument);
   }
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+    return widget.paymentActivityTransactionPageArgument.backgroundColor;
   }
 
   @override
   Widget buildView(BuildContext context, PaymentActivityTransactionViewModel model) {
     return PaymentActivityTransactionPageView(provideBase());
   }
+}
+
+class PaymentActivityTransactionPageArgument {
+  final String title;
+  final Color backgroundColor;
+  final Color titleColor;
+
+  PaymentActivityTransactionPageArgument({
+    required this.title,
+    required this.backgroundColor,
+    required this.titleColor,
+  });
 }

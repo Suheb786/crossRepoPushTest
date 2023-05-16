@@ -18,44 +18,75 @@ class ContactListWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 22.w,
+            horizontal: 16.w,
           ),
           child: Row(
             children: [
               beneficiary!.imageUrl.isNotEmpty
-                  ? CircleAvatar(
-                      radius: 25.w,
-                      backgroundImage: Image.memory(
-                        beneficiary!.imageUrl,
-                        fit: BoxFit.cover,
-                      ).image,
-                    )
-                  : CircleAvatar(
-                      radius: 25.w,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        ///TODO:check whether full name
-                        beneficiary!.fullName!.split(" ").length > 1
-                            ? StringUtils.getFirstInitials(beneficiary!.fullName)
-                            : beneficiary!.fullName![0],
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14.t,
-                            color: Theme.of(context).colorScheme.secondary),
+                  ? Stack(clipBehavior: Clip.none, textDirection: TextDirection.rtl, children: [
+                      CircleAvatar(
+                        radius: 25.w,
+                        backgroundImage: Image.memory(
+                          beneficiary!.imageUrl,
+                          fit: BoxFit.cover,
+                        ).image,
                       ),
-                    ),
+                      Positioned(
+                        top: 35.h,
+                        child: AppSvg.asset(
+                          AssetUtils.blueStar,
+                        ),
+                      ),
+                    ])
+                  : Stack(clipBehavior: Clip.none, textDirection: TextDirection.rtl, children: [
+                      CircleAvatar(
+                        radius: 25.w,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        child: Text(
+                          ///TODO:check whether full name
+                          beneficiary!.fullName!.split(" ").length > 1
+                              ? StringUtils.getFirstInitials(beneficiary!.fullName)
+                              : beneficiary!.fullName![0],
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14.t,
+                              color: Theme.of(context).accentColor),
+                        ),
+                      ),
+                      Positioned(
+                        top: 35.h,
+                        child: AppSvg.asset(
+                          AssetUtils.blueStar,
+                        ),
+                      ),
+                    ]),
               SizedBox(
                 width: 14.w,
               ),
               Expanded(
-                child: Text(
-                  (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
-                      ? beneficiary!.nickName!
-                      : beneficiary!.fullName!,
-                  style:
-                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
-                ),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
+                        ? beneficiary!.nickName!
+                        : beneficiary!.fullName!,
+                    style: TextStyle(
+                        color: AppColor.black,
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 14.t,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
+                        ? beneficiary!.nickName!
+                        : beneficiary!.fullName!,
+                    style: TextStyle(
+                        color: AppColor.gray1,
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 12.t,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ]),
               ),
               InkWell(
                 onTap: () {

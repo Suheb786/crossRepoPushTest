@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
 import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
 import 'package:neo_bank/feature/apple_pay_luncher_screen/apple_pay_launcher_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity/payment_activity_page.dart';
 import 'package:neo_bank/feature/apply_credit_card_home/apply_credit_card_home_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
@@ -81,8 +82,14 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_n
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
+import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page.dart';
+import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
+
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
@@ -923,6 +930,34 @@ class AppRouter {
             builder: (context) =>
                 PaymentTransationSuccessPage(settings.arguments as PaymentTransationSuccessArgument),
             settings: RouteSettings(name: RoutePaths.PaymentTransationSuccess));
+
+      /// [Manage Contact]
+      case RoutePaths.AddContactsIBANManageContactsPage:
+        return CupertinoPageRoute(
+            builder: (context) => AddContactsIBANManageContactsPage(),
+            settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
+
+      case RoutePaths.UserContactDetailsPage:
+        return CupertinoPageRoute(
+            builder: (context) => UserContactDetailsPage(),
+            settings: RouteSettings(name: RoutePaths.UserContactDetailsPage));
+      case RoutePaths.EditContactOTPpage:
+        return CupertinoPageRoute(
+            builder: (context) => EditUserContactPage(),
+            settings: RouteSettings(name: RoutePaths.EditContactOTPpage));
+      case RoutePaths.PaymentActivityPage:
+        return CupertinoPageRoute(
+            builder: (context) => PaymentActivityPage(),
+            settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
+      case RoutePaths.OtpForManageContact:
+        return CupertinoPageRoute(
+            builder: (context) => DeleteContactOTPPage(),
+            settings: RouteSettings(name: RoutePaths.OtpForManageContact));
+
+      case RoutePaths.AddContactIBANotpPage:
+        return CupertinoPageRoute(
+            builder: (context) => AddContactIBANotpPage(),
+            settings: RouteSettings(name: RoutePaths.AddContactIBANotpPage));
 
       default:
         return CupertinoPageRoute(

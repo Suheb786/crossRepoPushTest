@@ -1334,6 +1334,12 @@ class ErrorParser {
         return localisedHelper.requestMoneyFeatureDisabled;
       case ErrorType.YOU_CAN_NOT_REQUEST_MONEY_FROM_YOUR_OWN_ACCOUNT:
         return localisedHelper.youCanNotRequestMoneyFromYourOwnAccount;
+      case ErrorType.PLEASE_ENTER_CONTACT_NAME:
+        return localisedHelper.pleaseEnterContactName;
+
+      case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
+        return localisedHelper.pleaseEnterAValidaccountMobileNoAlias;
+
       default:
         return "";
     }

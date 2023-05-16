@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_re
 import 'package:neo_bank/feature/activity/payment_activity_transaction/accept_request_money_otp_screen/accept_request_money_otp_page_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/credit_confirmation/credit_confirmation_page_view_model.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page_view_model.dart';
@@ -19,7 +20,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:neo_bank/ui/molecules/dialog/reject_reason_inward_request/reject_reason_inward_request_dialog_view_model.dart';
 
 final notificationViewModelProvider = ChangeNotifierProvider.autoDispose<NotificationViewModel>(
-  (ref) => NotificationViewModel(),
+  (ref) => NotificationViewModel(ref.read(notificationUseCaseProvider)),
 );
 
 final activityHomeViewModelProvider = ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>(
@@ -33,10 +34,14 @@ final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<Paym
   (ref) => PaymentActivityViewModel(),
 );
 
-final paymentActivityTransactionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PaymentActivityTransactionViewModel>(
-  (ref) => PaymentActivityTransactionViewModel(ref.read(paymentActivityTransactionUseCaseProvider),
-      ref.read(requestMoneyActivityUseCaseProvider), ref.read(approveRTPOtpUseCaseProivder)),
+final paymentActivityTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PaymentActivityTransactionViewModel, PaymentActivityTransactionPageArgument>(
+        (ref, arg) => PaymentActivityTransactionViewModel(
+        ref.read(paymentActivityTransactionUseCaseProvider),
+        ref.read(requestMoneyActivityUseCaseProvider),
+        ref.read(approveRTPRequestUseCaseProivder),
+        ref.read(requestToPayResultUseCaseProvider),
+        arg),
 );
 
 final returnPaymentTransactionSliderPageViewModelProvider =
