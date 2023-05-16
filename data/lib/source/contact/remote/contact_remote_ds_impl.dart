@@ -210,4 +210,41 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
         getToken: true,
         baseData: baseData.toJson()));
   }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> contactDetail(
+      {required String beneficiaryDetailId, required bool isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.contactDetail(ContactDetailRequest(
+        baseData: baseData.toJson(), beneficiaryDetailId: beneficiaryDetailId, isFromMobile: isFromMobile));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .listOfContacts(ListOfContactRequest(baseData: baseData.toJson(), isFromMobile: isFromMobile));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> searchContact(
+      {required String searchText, required bool isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.searchContact(SearchContactRequest(
+        baseData: baseData.toJson(), searchText: searchText, isFromMobile: isFromMobile));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFav,
+      required String userId,
+      required bool isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateFavorite(UpdateFavoriteRequest(
+        baseData: baseData.toJson(),
+        beneficiaryDetailId: beneficiaryDetailId,
+        isFav: isFav,
+        isFromMobile: isFromMobile));
+  }
 }
