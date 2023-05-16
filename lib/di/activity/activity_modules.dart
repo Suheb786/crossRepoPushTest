@@ -20,7 +20,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/return_pa
 import 'package:neo_bank/ui/molecules/dialog/reject_reason_inward_request/reject_reason_inward_request_dialog_view_model.dart';
 
 final notificationViewModelProvider = ChangeNotifierProvider.autoDispose<NotificationViewModel>(
-  (ref) => NotificationViewModel(ref.read(notificationUseCaseProvider)),
+  (ref) => NotificationViewModel(),
 );
 
 final activityHomeViewModelProvider = ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>(
@@ -36,12 +36,8 @@ final paymentActivityViewModelProvider = ChangeNotifierProvider.autoDispose<Paym
 
 final paymentActivityTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaymentActivityTransactionViewModel, PaymentActivityTransactionPageArgument>(
-        (ref, arg) => PaymentActivityTransactionViewModel(
-        ref.read(paymentActivityTransactionUseCaseProvider),
-        ref.read(requestMoneyActivityUseCaseProvider),
-        ref.read(approveRTPRequestUseCaseProivder),
-        ref.read(requestToPayResultUseCaseProvider),
-        arg),
+  (ref, arg) => PaymentActivityTransactionViewModel(arg, ref.read(paymentActivityTransactionUseCaseProvider),
+      ref.read(requestMoneyActivityUseCaseProvider), ref.read(approveRTPOtpUseCaseProivder)),
 );
 
 final returnPaymentTransactionSliderPageViewModelProvider =

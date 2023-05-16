@@ -2,9 +2,8 @@ import 'dart:developer';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';

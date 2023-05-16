@@ -1729,15 +1729,13 @@
   "cliqReturnPaymentOffline": "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
   "cliqSendPaymentOffline": "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
   "requestMoneyFeatureDisabled": "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
-  "youCanNotRequestMoneyFromYourOwnAccount": "You can not request money from your own account"
-  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
+  "youCanNotRequestMoneyFromYourOwnAccount": "You can not request money from your own account",
   "editContact": "Edit Contact",
   "backToContact": "Back to Contact",
   "favouriteContacts": "Favourite Contacts",
   "recentContacts": "Recent Contacts",
   "otherContacts": "Other Contacts",
   "addContact": "Add Contact",
-  "editContact": "edit Contact",
   "youDontHaveAnyContactAddYourFirstNow": "You don’t have any contacts yet.\nAdd your first one now.",
   "removeContact": "Remove contact",
   "areYouSureToremoveContact": "Are you sure you want to remove this contact? Your action can’t be undone.",
@@ -1750,5 +1748,6 @@
   "yourContactHasBeenRemoved": "Your contact has been removed",
   "yourContactisFavourite": "Your contact has been added to favourite",
   "yourContactDetailsHavebeenSaved": "Your contact details have been saved",
-  "transictionHistory": "Transiction History"
+  "transictionHistory": "Transiction History",
+  "pleaseEnterYourContactDetails": "Please enter your\ncontact details"
 }

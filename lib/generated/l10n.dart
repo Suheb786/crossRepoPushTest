@@ -17079,6 +17079,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit Contact`
+  String get editContact {
+    return Intl.message(
+      'Edit Contact',
+      name: 'editContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Contact`
+  String get backToContact {
+    return Intl.message(
+      'Back to Contact',
+      name: 'backToContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite Contacts`
+  String get favouriteContacts {
+    return Intl.message(
+      'Favourite Contacts',
+      name: 'favouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Contacts`
+  String get recentContacts {
+    return Intl.message(
+      'Recent Contacts',
+      name: 'recentContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Contacts`
+  String get otherContacts {
+    return Intl.message(
+      'Other Contacts',
+      name: 'otherContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any contacts yet.\nAdd your first one now.`
+  String get youDontHaveAnyContactAddYourFirstNow {
+    return Intl.message(
+      'You don’t have any contacts yet.\nAdd your first one now.',
+      name: 'youDontHaveAnyContactAddYourFirstNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove contact`
+  String get removeContact {
+    return Intl.message(
+      'Remove contact',
+      name: 'removeContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this contact? Your action can’t be undone.`
+  String get areYouSureToremoveContact {
+    return Intl.message(
+      'Are you sure you want to remove this contact? Your action can’t be undone.',
+      name: 'areYouSureToremoveContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite contact`
+  String get favouriteContact {
+    return Intl.message(
+      'Favourite contact',
+      name: 'favouriteContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?`
+  String get sendAndRequestFavouriteContacts {
+    return Intl.message(
+      'Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?',
+      name: 'sendAndRequestFavouriteContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter contact name`
+  String get pleaseEnterContactName {
+    return Intl.message(
+      'Please enter contact name',
+      name: 'pleaseEnterContactName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS`
+  String get pleaseEnterAValidaccountMobileNoAlias {
+    return Intl.message(
+      'Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS',
+      name: 'pleaseEnterAValidaccountMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New contact has been added to the list`
+  String get newContacthasBeenAdded {
+    return Intl.message(
+      'New contact has been added to the list',
+      name: 'newContacthasBeenAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to\n{mobile}`
+  String enterThe6DigitCodewithExtraString(Object mobile) {
+    return Intl.message(
+      'Enter the 6-digit code sent to\n$mobile',
+      name: 'enterThe6DigitCodewithExtraString',
+      desc: '',
+      args: [mobile],
+    );
+  }
+
+  /// `Your contact has been removed`
+  String get yourContactHasBeenRemoved {
+    return Intl.message(
+      'Your contact has been removed',
+      name: 'yourContactHasBeenRemoved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact has been added to favourite`
+  String get yourContactisFavourite {
+    return Intl.message(
+      'Your contact has been added to favourite',
+      name: 'yourContactisFavourite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact details have been saved`
+  String get yourContactDetailsHavebeenSaved {
+    return Intl.message(
+      'Your contact details have been saved',
+      name: 'yourContactDetailsHavebeenSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transiction History`
+  String get transictionHistory {
+    return Intl.message(
+      'Transiction History',
+      name: 'transictionHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\ncontact details`
+  String get pleaseEnterYourContactDetails {
+    return Intl.message(
+      'Please enter your\ncontact details',
+      name: 'pleaseEnterYourContactDetails',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

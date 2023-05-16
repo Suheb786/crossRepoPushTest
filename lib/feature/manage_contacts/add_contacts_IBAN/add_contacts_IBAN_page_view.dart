@@ -43,7 +43,7 @@ class AddContactsIBANManageContactsPageView
                 log("get currentStep :: $currentPage");
                 return DotsIndicator(
                   dotsCount: pages.length,
-                  position: currentPage!.toDouble(),
+                  position: currentPage??0,
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

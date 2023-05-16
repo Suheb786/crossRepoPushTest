@@ -62,7 +62,10 @@ class InformationDialogView extends StatelessWidget {
                           title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w700),
+                              color: Theme.of(context).textTheme.bodySmall?.color,
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 20.t,
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                       SizedBox(height: 24.h),
@@ -80,9 +83,9 @@ class InformationDialogView extends StatelessWidget {
                           height: 57.h,
                           width: 57.w,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
-                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
+                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                          child:
+                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                       Padding(
@@ -96,15 +99,6 @@ class InformationDialogView extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 S.of(context).swipeDownToCancel,
-                          style: TextStyle(
-                              color: Theme.of(context).textTheme.bodySmall?.color,
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 20.t,
-                              fontWeight: FontWeight.w700),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
-                          child:
-                              AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 10.t,

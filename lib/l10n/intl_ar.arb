@@ -1683,15 +1683,12 @@
   "cliqReturnPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "cliqSendPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "requestMoneyFeatureDisabled": "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
-  "youCanNotRequestMoneyFromYourOwnAccount": "لا يمكنك طلب المال من حسابك الخاص"
-  "youCanPayAllYourBillsNow": "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!",
+  "youCanNotRequestMoneyFromYourOwnAccount": "لا يمكنك طلب المال من حسابك الخاص",
   "editContact": "Edit Contact",
   "backToContact": "Back to Contact",
-  "youCanPayAllYourBillsNow": "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! ",
   "favouriteContacts": "Favourite Contacts",
   "recentContacts": "Recent Contacts",
   "otherContacts": "Other Contacts",
-  "editContact": "edit Contact",
   "addContact": "Add Contact",
   "youDontHaveAnyContactAddYourFirstNow": "You don’t have any contacts yet.\nAdd your first one now.",
   "removeContact": "Remove contact",
@@ -1705,5 +1702,6 @@
   "yourContactHasBeenRemoved": "Your contact has been removed",
   "yourContactisFavourite": "Your contact has been added to favourite",
   "yourContactDetailsHavebeenSaved": "Your contact details have been saved",
-  "transictionHistory": "Transiction History"
+  "transictionHistory": "Transiction History",
+  "pleaseEnterYourContactDetails": "Please enter your\ncontact details"
 }

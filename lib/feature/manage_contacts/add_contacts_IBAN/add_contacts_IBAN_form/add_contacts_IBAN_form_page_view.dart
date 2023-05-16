@@ -106,7 +106,7 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                         }),
                                     SizedBox(height: 16.0.h),
                                     AppTextField(
-                                      labelText: S.current.ibanORaccountORmobileORalias.toUpperCase(),
+                                      labelText: S.current.accountMobileNoAlias,
                                       hintText: S.current.pleaseEnter,
                                       controller: model.ibanORaccountORmobileORaliasController,
                                       key: model.ibanORaccountORmobileORaliasKey,

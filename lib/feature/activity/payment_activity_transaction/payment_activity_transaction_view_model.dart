@@ -8,8 +8,8 @@ import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dar
 import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -18,13 +18,6 @@ import 'package:rxdart/rxdart.dart';
 
 class PaymentActivityTransactionViewModel extends BasePageViewModel {
   final PaymentActivityTransactionPageArgument paymentActivityTransactionPageArgument;
-
-  ///*--------------------[accept-request-money-activity]---------------------->>>>>>>
-
-  PublishSubject<ApproveRTPRequestUseCaseParam> _approveRTPRequest = PublishSubject();
-
-  ApproveRTPRequestUseCase _approveRTPRequestUseCase;
-  PublishSubject<Resource<bool>> _approveRTPResponse = PublishSubject();
 
   ///---------------------------------------------------------------------------///
   /// payment activity subject holder
@@ -51,12 +44,8 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   PaymentActivityTransactionUseCase _useCase;
   final ApproveRTPOtpUseCase _approveRTPOtpUseCase;
 
-  PaymentActivityTransactionViewModel(
-      this._useCase,
-      this._requestMoneyActivityUseCase,
-      this._approveRTPRequestUseCase,
-      this._requestToPayResultUseCase,
-      this.paymentActivityTransactionPageArgument) {
+  PaymentActivityTransactionViewModel(this.paymentActivityTransactionPageArgument, this._useCase,
+      this._requestMoneyActivityUseCase, this._approveRTPOtpUseCase) {
     _requestMoneyActivityRequest.listen(
       (value) {
         RequestManager(value, createCall: () => _requestMoneyActivityUseCase.execute(params: value))

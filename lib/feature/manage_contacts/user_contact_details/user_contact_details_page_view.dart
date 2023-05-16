@@ -37,6 +37,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPageViewModel> {
   UserContactDetailsPageView(ProviderBase model) : super(model);
+
   @override
   Widget build(BuildContext context, UserContactDetailsPageViewModel model) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
@@ -244,7 +245,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                                   ),
                                   SizedBox(height: 16.0.h),
                                   AppTextField(
-                                    labelText: S.current.ibanORaccountORmobileORalias.toUpperCase(),
+                                    labelText: S.current.accountMobileNoAlias,
                                     controller: model.editIbanController,
                                     labelIcon: () {
                                       return InkWell(
@@ -556,15 +557,17 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
 }
 
 void _cropImage(String data, UserContactDetailsPageViewModel model, BuildContext context) async {
-  File? cropped = await ImageCropper.cropImage(
+  CroppedFile? cropped = await ImageCropper().cropImage(
       sourcePath: data,
       cropStyle: CropStyle.circle,
-      iosUiSettings: IOSUiSettings(
-          resetButtonHidden: true,
-          rotateButtonsHidden: true,
-          aspectRatioPickerButtonHidden: true,
-          doneButtonTitle: 'Choose'),
-      androidUiSettings: AndroidUiSettings(hideBottomControls: true),
+      uiSettings: [
+        AndroidUiSettings(hideBottomControls: true),
+        IOSUiSettings(
+            resetButtonHidden: true,
+            rotateButtonsHidden: true,
+            aspectRatioPickerButtonHidden: true,
+            doneButtonTitle: 'Choose')
+      ],
       aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
   if (cropped != null) {
     model.selectedProfile = cropped.path;
