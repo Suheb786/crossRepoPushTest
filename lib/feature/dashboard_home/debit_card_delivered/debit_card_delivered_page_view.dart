@@ -110,7 +110,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                         padding: EdgeInsetsDirectional.only(top: 75.h, bottom: 31.h),
                                         child: AnimatedButton(
                                             buttonText: S.of(context).swipeToConfirm,
-                                            borderColor: Theme.of(context).textTheme.bodyMedium!.color!),
+                                            borderColor: Theme.of(context).textTheme.bodyLarge!.color!),
                                       )
                                     ],
                                   ),
@@ -185,7 +185,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                     S.of(context).deliveryIssue,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).textTheme.bodyMedium!.color!,
+                        color: Theme.of(context).textTheme.bodyLarge!.color!,
                         fontSize: 14.t,
                         fontWeight: FontWeight.w600),
                   ),

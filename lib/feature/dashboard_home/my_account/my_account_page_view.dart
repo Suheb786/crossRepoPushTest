@@ -260,7 +260,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             child: Padding(
                                               padding: EdgeInsets.only(right: 33.0.w),
                                               child: AppSvg.asset(AssetUtils.share,
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!,
                                                   height: 24.0.h,
                                                   width: 24.0.w),
                                             ),

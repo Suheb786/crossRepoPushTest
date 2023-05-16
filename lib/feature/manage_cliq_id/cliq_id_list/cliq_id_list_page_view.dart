@@ -525,7 +525,10 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                               width: double.maxFinite,
                                                               decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(100),
-                                                                color: Theme.of(context).textTheme.bodyMedium!.color!,
+                                                                color: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .color!,
                                                               ),
                                                               child: Center(
                                                                 child: Text(S.of(context).createCliqId,
@@ -534,8 +537,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                                                                         fontSize: 14,
                                                                         fontWeight: FontWeight.w600,
                                                                         letterSpacing: 1,
-                                                                        color:
-                                                                            Theme.of(context).colorScheme.secondary)),
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .secondary)),
                                                               ),
                                                             ),
                                                           ),

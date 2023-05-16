@@ -124,7 +124,7 @@ class DebitCardReplacementSuccessPageView
                         S.of(context).toDashboard,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: Theme.of(context).textTheme.bodyMedium!.color!,
+                          color: Theme.of(context).textTheme.bodyLarge!.color!,
                           fontWeight: FontWeight.w500,
                           fontSize: 12.t,
                         ),

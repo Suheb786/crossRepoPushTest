@@ -44,7 +44,6 @@ class RoutePaths {
   static const String DownloadTransaction = '/downloadTransaction';
   static const String CardTransaction = "/cardTransaction";
   static const String AccountTransaction = "/accountTransaction";
-  static const String CreditCardDelivered = "/creditCardDelivered";
   static const String DebitCardDelivered = "/debitCardDelivered";
   static const String CreditCardVerificationSuccess = "/creditCardVerificationSuccess";
   static const String DebitCardVerificationSuccess = "/debitCardVerificationSuccess";

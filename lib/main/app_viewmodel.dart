@@ -152,7 +152,7 @@ class AppViewModel extends BaseViewModel {
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
           iconTheme: IconThemeData(
-            color: AppColor.white,
+            color: AppColor.very_dark_violet,
           ),
           indicatorColor: AppColor.veryDarkGray2,
           buttonTheme: ButtonThemeData(

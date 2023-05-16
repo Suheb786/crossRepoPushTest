@@ -95,10 +95,10 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                 AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
                   borderColor: _arguments.cardType == CardType.DEBIT
-                      ? Theme.of(context).textTheme.bodyMedium!.color!
+                      ? Theme.of(context).textTheme.bodyLarge!.color!
                       : Theme.of(context).colorScheme.secondary,
                   textColor: _arguments.cardType == CardType.DEBIT
-                      ? Theme.of(context).textTheme.bodyMedium!.color!
+                      ? Theme.of(context).textTheme.bodyLarge!.color!
                       : Theme.of(context).colorScheme.secondary,
                 ),
                 InkWell(
@@ -110,7 +110,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: _arguments.cardType == CardType.DEBIT
-                              ? Theme.of(context).textTheme.bodyMedium!.color!
+                              ? Theme.of(context).textTheme.bodyLarge!.color!
                               : Theme.of(context).colorScheme.secondary,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),

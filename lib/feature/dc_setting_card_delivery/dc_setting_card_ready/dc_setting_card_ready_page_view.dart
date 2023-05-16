@@ -117,7 +117,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                             fontFamily: StringUtils.appFont,
                             fontSize: 12.t,
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context).textTheme.bodyMedium!.color!),
+                            color: Theme.of(context).textTheme.bodyLarge!.color!),
                       ),
                     ),
                   ),

@@ -61,7 +61,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                border: Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,7 +90,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                             child: Center(
                               child: AppSvg.asset(AssetUtils.tick,
                                   color: Theme.of(context).colorScheme.secondary),

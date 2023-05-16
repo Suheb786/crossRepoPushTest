@@ -117,9 +117,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                       TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
                                 )),
                                 AppSvg.asset(AssetUtils.rightChevron,
-                                    width: 20.w,
-                                    height: 20.h,
-                                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color)
+                                    width: 20.w, height: 20.h, color: Theme.of(context).iconTheme.color)
                               ],
                             ),
                           ),
@@ -152,7 +150,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 width: 20.w,
                                 height: 20.h,
                                 color: (model.manageCardPinArguments?.isChangePinEnabled ?? true)
-                                    ? Theme.of(context).primaryTextTheme.bodyLarge?.color
+                                    ? Theme.of(context).iconTheme.color
                                     : Theme.of(context).inputDecorationTheme.hintStyle!.color ??
                                         AppColor.gray1),
                           ],
