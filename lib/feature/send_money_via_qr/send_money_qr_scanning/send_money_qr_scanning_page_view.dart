@@ -64,9 +64,10 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                 onData: (data) async {
                   if (data.status == Status.SUCCESS) {
                     ///LOG EVENT TO FIREBASE
-                    await FirebaseAnalytics.instance.logEvent(
-                        name: "payment_success",
-                        parameters: {"is_payment_success": true.toString(), "request_id": model.arguments.requestId});
+                    await FirebaseAnalytics.instance.logEvent(name: "payment_success", parameters: {
+                      "is_payment_success": true.toString(),
+                      "request_id": model.arguments.requestId
+                    });
 
                     ///Log event to infobip
                     var event = {
@@ -91,6 +92,17 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                               cause: Exception(),
                               error: ErrorInfo(message: ''),
                               type: ErrorType.SELECT_ACCOUNT));
+                        } else if (double.parse(ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .account
+                                    ?.availableBalance ??
+                                '-1') <
+                            double.parse(model.arguments.amount)) {
+                          model.showToastWithError(AppError(
+                              cause: Exception(),
+                              error: ErrorInfo(message: ''),
+                              type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
                         } else {
                           model.transferQR();
                         }

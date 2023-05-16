@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import GoogleMaps
 import UserNotifications
 import MobileMessaging
 import FirebaseCore
