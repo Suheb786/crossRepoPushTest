@@ -1123,7 +1123,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                 RequestMoneyActivityStatusEnum
                                                                         .CATEGORY_ACCEPTED ==
                                                                     data.trxStatus) {
-                                                              //* STATUS POP UP
+                                                              /// STATUS POP UP
                                                               RTPConfirmationDialog.show(
                                                                 context,
                                                                 currency: data.curr ?? '',

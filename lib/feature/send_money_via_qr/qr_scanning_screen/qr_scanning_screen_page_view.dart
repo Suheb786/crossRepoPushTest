@@ -1,6 +1,7 @@
 import 'package:domain/model/qr/verify_qr_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -16,6 +17,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:rxdart/rxdart.dart';
 
 class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageViewModel> {
   QrScanningScreenPageView(ProviderBase model) : super(model);
@@ -38,7 +40,10 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   ///LOG EVENT TO FIREBASE
                   await FirebaseAnalytics.instance.logEvent(
                     name: "qr_scanned",
-                    parameters: {"is_qr_scanned": true.toString(), "request_id": data.data?.qrContent?.requestId ?? ''},
+                    parameters: {
+                      "is_qr_scanned": true.toString(),
+                      "request_id": data.data?.qrContent?.requestId ?? ''
+                    },
                   );
 
                   ///Log event to infobip
@@ -67,11 +72,10 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   key: model.qrKey,
                   onQRViewCreated: (QRViewController controller) {
                     model.controller = controller;
-                    controller.scannedDataStream.listen((scanData) {
-                      debugPrint('Scanned Data---->${scanData.code}');
-                      // if (model.result != null) {
-                      //   return;
-                      // }
+                    controller.scannedDataStream
+                        .throttleTime(Duration(milliseconds: 1500))
+                        .listen((scanData) {
+                      HapticFeedback.heavyImpact();
                       model.controller?.pauseCamera();
                       model.result = scanData;
                       if (model.result!.code != null) {
@@ -83,8 +87,6 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                       borderColor: Theme.of(context).colorScheme.secondary,
                       borderRadius: 16,
                       borderLength: 125,
-                      //overlayColor: AppColor.very_dark_blue.withOpacity(0.9),
-                      //borderLength: 140,
                       cutOutSize: 256),
                   onPermissionSet: (ctrl, p) {
                     if (!p) {
@@ -110,7 +112,9 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                   Text(
                     S.of(context).payViaQR,
                     style: TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
                   SizedBox(height: 8),
                   Padding(
@@ -119,7 +123,9 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                       S.of(context).payViaQRDesc,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.secondary),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   SizedBox(height: 50),

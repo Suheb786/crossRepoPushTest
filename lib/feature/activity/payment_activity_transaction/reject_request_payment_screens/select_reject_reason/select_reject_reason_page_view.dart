@@ -135,10 +135,7 @@ class SelectRejectReasonPageView extends BasePageViewWidget<SelectRejectReasonPa
                                                                   false;
                                                               if (status) {
                                                                 RejectReasonInwardRequestDialog.show(context,
-                                                                    title: S
-                                                                        .of(context)
-                                                                        .reasonToReject
-                                                                        .toUpperCase(),
+                                                                    title: S.of(context).reasonToReject,
                                                                     rejectionReasonInward:
                                                                         reasonToRejectResponse!.data!,
                                                                     onDismissed: () {
