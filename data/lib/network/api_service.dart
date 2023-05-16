@@ -164,6 +164,7 @@ import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/delete_contact_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
@@ -289,6 +290,10 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../entity/remote/contact/add_contact_request.dart';
+import '../entity/remote/contact/update_avatar_request.dart';
+import '../entity/remote/contact/update_contact_request.dart';
 
 part 'api_service.g.dart';
 
@@ -1152,4 +1157,23 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
+
+  /// Manage Contacts
+
+  ///Add Contact
+  @POST("/ManageContacts/AddContact")
+  Future<HttpResponse<ResponseEntity>> addContact(@Body() AddContactRequest addContactRequest);
+
+  ///update contact
+  @POST("/ManageContacts/UpdateContact")
+  Future<HttpResponse<ResponseEntity>> updateContact(@Body() UpdateContactRequest updateContactRequest);
+
+  ///delete contact
+  @POST("/ManageContacts/DeleteContact")
+  Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
+
+  ///update avatar contact
+  @POST("/ManageContacts/UpdateAvatar")
+  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
+
 }

@@ -49,7 +49,7 @@ final verifyBeneficiaryOtpUseCaseProvider = Provider.autoDispose<VerifyBeneficia
 
 ///[addContactIBANuseCase] provider
 final addContactIBANuseCaseProvider = Provider.autoDispose<AddContactIBANuseCase>(
-  (ref) => AddContactIBANuseCase(),
+  (ref) => AddContactIBANuseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[addContactIbanOTPuseCase] provider

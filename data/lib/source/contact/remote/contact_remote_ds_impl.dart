@@ -17,6 +17,9 @@ import 'package:data/network/api_service.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:retrofit/dio.dart';
 
+import '../../../entity/remote/contact/add_contact_request.dart';
+import '../../../entity/remote/contact/update_contact_request.dart';
+
 class ContactRemoteDsImpl extends ContactRemoteDS {
   final ApiService _apiService;
   final DeviceInfoHelper _deviceInfoHelper;
@@ -123,5 +126,88 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
         beneficiaryDetailId: beneficiaryDetailId,
         isFav: isFav,
         isFromMobile: isFromMobile));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> addContact(
+      {String? nickName,
+        String? fullName,
+        String? emailAddress,
+        String? avatarImage,
+        bool? isFav,
+        String? userId,
+        String? identifier,
+        String? isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.addContact(AddContactRequest(
+        nickName: nickName,
+        fullName: fullName,
+        emailAddress: emailAddress,
+        avatarImg: ImageUtils.convertToBase64(avatarImage!),
+        isFav: isFav,
+        userId: userId,
+        identifier: identifier,
+        isFromMobile: isFromMobile,
+        getToken: true,
+        baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateContact(
+      {String? beneficiaryDetailId,
+        String? nickName,
+        String? fullName,
+        String? emailAddress,
+        String? userId,
+        String? identifier,
+        String? isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateContact(UpdateContactRequest(
+        beneficiaryDetailId: beneficiaryDetailId,
+        nickName: nickName,
+        fullName: fullName,
+        emailAddress: emailAddress,
+        userId: userId,
+        identifier: identifier,
+        isFromMobile: isFromMobile,
+        getToken: true,
+        baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> deleteContact(
+      {String? beneficiaryDetailId,
+        String? nickName,
+        String? fullName,
+        String? emailAddress,
+        String? avatarImage,
+        bool? isFav,
+        String? userId,
+        String? identifier,
+        String? isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.addContact(AddContactRequest(
+        nickName: nickName,
+        fullName: fullName,
+        emailAddress: emailAddress,
+        avatarImg: ImageUtils.convertToBase64(avatarImage!),
+        isFav: isFav,
+        userId: userId,
+        identifier: identifier,
+        isFromMobile: isFromMobile,
+        getToken: true,
+        baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateAvatar(
+      {String? beneficiaryDetailId, String? avatarImage, String? userId, String? isFromMobile}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.addContact(AddContactRequest(
+        avatarImg: ImageUtils.convertToBase64(avatarImage!),
+        userId: userId,
+        isFromMobile: isFromMobile,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 }
