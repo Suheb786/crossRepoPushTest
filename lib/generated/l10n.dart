@@ -16630,10 +16630,10 @@ class S {
     );
   }
 
-  /// `reason to reject`
+  /// `Reason to reject`
   String get reasonToReject {
     return Intl.message(
-      'reason to reject',
+      'Reason to reject',
       name: 'reasonToReject',
       desc: '',
       args: [],

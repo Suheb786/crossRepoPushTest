@@ -463,9 +463,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       platform: baseData.platform,
       parentVersion: Platform.isAndroid
-          ? '1.7'
+          ? '2.0'
           : Platform.isIOS
-              ? '1.7'
+              ? '2.0'
               : '',
       //version: '1.0.0',
       clear: clear,

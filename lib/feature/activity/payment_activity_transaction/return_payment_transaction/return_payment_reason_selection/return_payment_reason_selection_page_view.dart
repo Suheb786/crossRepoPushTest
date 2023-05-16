@@ -146,8 +146,7 @@ class ReturnPaymentReasonSelectionPageView
                                                                         false;
                                                                     if (responseStatus) {
                                                                       ReturnReasonPaymentDialog.show(context,
-                                                                          title: S.current.reasonToreturn
-                                                                              .toUpperCase(),
+                                                                          title: S.current.reasonToreturn,
                                                                           returnReasonsPayment: reasonToReturn
                                                                               ?.data, onDismissed: () {
                                                                         Navigator.pop(context);

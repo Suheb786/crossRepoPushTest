@@ -1685,7 +1685,7 @@
   "selectTheReasonToReturn": "Select the reason\nto return",
   "creditConfirmation": "Credit Confirmation",
   "nickNameValueExceeds": "Nickname cannot be more than 50 characters long. ",
-  "reasonToReject": "reason to reject",
+  "reasonToReject": "Reason to reject",
   "pleaseSelectReasonToReject": "Please Select Reason To Reject",
   "setAsCliqDefaultAccount": "Set as CliQ default account?",
   "aliasShouldBeThreeChar": "Alias must be between 3 to 10 alphanumeric characters",

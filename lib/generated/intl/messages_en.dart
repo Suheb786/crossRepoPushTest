@@ -2392,7 +2392,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "reasonToReject":
-            MessageLookupByLibrary.simpleMessage("reason to reject"),
+            MessageLookupByLibrary.simpleMessage("Reason to reject"),
         "reasonToreturn":
             MessageLookupByLibrary.simpleMessage("Reason to return"),
         "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(

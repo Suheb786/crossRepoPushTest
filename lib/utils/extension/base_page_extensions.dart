@@ -43,8 +43,7 @@ extension PageExtensions on BaseStatefulPage {
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  // fontFamily: "Montserrat",
-                                  color: AppColor.white,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12)),
                         ),
@@ -53,6 +52,7 @@ extension PageExtensions on BaseStatefulPage {
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],
@@ -93,13 +93,16 @@ extension PageExtensions on BaseStatefulPage {
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12)),
                         ),
                       ],
                     ),
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],
@@ -140,13 +143,16 @@ extension PageExtensions on BaseStatefulPage {
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(description,
                               style: TextStyle(
-                                  color: AppColor.white, fontWeight: FontWeight.w700, fontSize: 12)),
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12)),
                         ),
                       ],
                     ),
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],

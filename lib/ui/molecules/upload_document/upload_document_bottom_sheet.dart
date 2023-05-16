@@ -86,7 +86,7 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).textTheme.bodyMedium!.color!,
+                    color: Theme.of(context).textTheme.bodyLarge!.color!,
                   ),
                 ),
               )),
