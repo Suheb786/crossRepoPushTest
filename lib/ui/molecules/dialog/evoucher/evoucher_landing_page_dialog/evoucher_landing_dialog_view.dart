@@ -20,7 +20,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
       required this.image,
       required this.title,
       required this.descriptionWidget,
-      this.isSwipeToCancel= true});
+      this.isSwipeToCancel = true});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                          shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
                       child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),

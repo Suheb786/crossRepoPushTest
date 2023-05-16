@@ -41,7 +41,6 @@ import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_mo
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
@@ -115,6 +114,7 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
+
 // import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
@@ -309,12 +309,6 @@ class AppRouter {
 
       case RoutePaths.AccountTransaction:
         return CustomRoute.createRoute(AccountTransactionPage());
-
-      case RoutePaths.CreditCardDelivered:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                CreditCardDeliveredPage(creditCard: settings.arguments as TimeLineListArguments),
-            settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:
         return CupertinoPageRoute(

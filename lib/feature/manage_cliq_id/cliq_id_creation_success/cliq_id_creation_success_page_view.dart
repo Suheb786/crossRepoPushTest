@@ -63,12 +63,16 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               padding: EdgeInsetsDirectional.only(top: 40.h, end: 24.w, start: 24.w),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-                decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
+                      ProviderScope.containerOf(context)
+                                  .read(cliqIdTypeSelectionViewModelProvider)
+                                  .cliqIdTypeController
+                                  .text ==
                               S.of(context).alias
                           ? S.of(context).alias
                           : S.of(context).mobileNumber,
@@ -79,9 +83,15 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                       ),
                     ),
                     Text(
-                      ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).cliqIdTypeController.text ==
+                      ProviderScope.containerOf(context)
+                                  .read(cliqIdTypeSelectionViewModelProvider)
+                                  .cliqIdTypeController
+                                  .text ==
                               S.of(context).alias
-                          ? ProviderScope.containerOf(context).read(cliqIdTypeSelectionViewModelProvider).aliasController.text
+                          ? ProviderScope.containerOf(context)
+                              .read(cliqIdTypeSelectionViewModelProvider)
+                              .aliasController
+                              .text
                           : ProviderScope.containerOf(context)
                               .read(cliqIdTypeSelectionViewModelProvider)
                               .mobileNumberController
@@ -116,7 +126,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 11.w),
                         child: Text(
@@ -125,7 +135,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 14.t,
-                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                              color: Theme.of(context).textTheme.bodyLarge!.color!),
                         ),
                       )
                     ],

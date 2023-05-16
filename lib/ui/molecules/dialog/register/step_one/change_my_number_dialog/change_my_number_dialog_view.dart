@@ -112,7 +112,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                                     : "",
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                                                  color: Theme.of(context).indicatorColor,
                                                   fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                 ),

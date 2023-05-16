@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -11,8 +9,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:cross_file/src/types/interface.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
   ShareVoucherPageView(ProviderBase model) : super(model);
@@ -65,7 +61,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                border: Border.all(color: Theme.of(context).textTheme.bodyLarge!.color!)),
                             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,7 +90,7 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                             child: Center(
                               child: AppSvg.asset(AssetUtils.tick,
                                   color: Theme.of(context).colorScheme.secondary),

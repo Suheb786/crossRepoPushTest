@@ -49,10 +49,8 @@ class AppViewModel extends BaseViewModel {
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
           dialogBackgroundColor: AppColor.white,
-          colorScheme: _themeData.colorScheme.copyWith(
-            secondary: AppColor.white,
-            background: AppColor.lightGray,
-          ),
+          colorScheme: _themeData.colorScheme
+              .copyWith(secondary: AppColor.white, background: AppColor.lightGray, error: AppColor.vivid_red),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(
               color: AppColor.veryLightGray,
@@ -104,21 +102,6 @@ class AppViewModel extends BaseViewModel {
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               )),
-          /*  textTheme: _themeData.textTheme
-              ..apply(
-                      fontFamily: StringUtils.appFont,
-                      bodyColor: AppColor.veryDarkGray2,
-                      displayColor: AppColor.veryDarkGray2)
-                  .bodyMedium
-              ..apply(
-                  fontFamily: StringUtils.appFont,
-                  bodyColor: AppColor.brightBlue,
-                  displayColor: AppColor.brightBlue),
-            /*accentTextTheme: _themeData.textTheme.apply(
-                fontFamily: StringUtils.appFont,
-                bodyColor: AppColor.brightBlue,
-                displayColor: AppColor.brightBlue),*/
-          */
           textTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(
               color: AppColor.brightBlue,
@@ -169,7 +152,7 @@ class AppViewModel extends BaseViewModel {
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
           iconTheme: IconThemeData(
-            color: AppColor.white,
+            color: AppColor.very_dark_violet,
           ),
           indicatorColor: AppColor.veryDarkGray2,
           buttonTheme: ButtonThemeData(

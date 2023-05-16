@@ -173,7 +173,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               }
                             } else if (data.status == Status.SUCCESS) {
                               model.initInfobipMessagePlugin();
-                              model.getCipher();
+                              // model.getCipher();
                             }
                           },
                           dataBuilder: (context, data) {
@@ -250,7 +250,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         null &&
                                                                     cipherResponse.data!.getCipherContent!
                                                                         .cipher!.isNotEmpty) {
-                                                                  model.fingerPrintShow(true);
+                                                                  //   model.fingerPrintShow(true);
                                                                 }
                                                               }
                                                             },
@@ -488,7 +488,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                       if (data
                                                                                                           .data!) {
                                                                                                         model.androidLogin(
-                                                                                                            cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                            cipher: '');
                                                                                                       }
                                                                                                       // model.getCurrentUser();
                                                                                                       //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
@@ -508,11 +508,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             (data) async {
                                                                                                           if (data.status ==
                                                                                                               Status.SUCCESS) {
-                                                                                                            await SharedPreferenceHelper.saveValue(false);
+                                                                                                            model.fingerPrintShow(data.data?.isBiometricEnabled ?? false);
+                                                                                                            var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                             model.checkVersionUpdate(clear: "false");
                                                                                                           } else if (data.status == Status.ERROR) {
                                                                                                             if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                              await SharedPreferenceHelper.saveValue(false);
+                                                                                                              var value = await SharedPreferenceHelper.saveValue(false);
                                                                                                               model.checkVersionUpdate(clear: "true");
                                                                                                             }
                                                                                                           }
@@ -531,7 +532,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                                       FocusScope.of(context).unfocus();
                                                                                                                       model.checkBiometric();
                                                                                                                     },
-                                                                                                                    child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                                                    child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                                                                                   ),
                                                                                                                 );
                                                                                                               });

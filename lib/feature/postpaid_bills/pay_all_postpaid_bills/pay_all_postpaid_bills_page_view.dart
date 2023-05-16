@@ -109,8 +109,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                     ),
                                     model.arguments.paidBillsPayTypeOptionEnum ==
                                                 PostPaidBillsPayTypeOptionEnum.PAYALLBILLS ||
-                                            model.payPostPaidBillsDataList != null &&
-                                                model.payPostPaidBillsDataList.length <= 0
+                                            model.payPostPaidBillsDataList.length <= 0
                                         ? Container()
                                         : Padding(
                                             padding: EdgeInsetsDirectional.only(
@@ -165,6 +164,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                       if (isDisabledConditions(context, model,
                                                           model.payPostPaidBillsDataList[index])) {
                                                         showErrorMethod(context, model, index);
+                                                      } else {
+                                                        showErrorMessageForPartialBillMethod(model, index);
                                                       }
                                                       model.selectedItem(index);
                                                     },
@@ -327,8 +328,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         bottom: 36.0.h, start: 24.0.w, end: 24.0.w),
                                     child: InkWell(
                                       onTap: () {
-                                        if (model.payPostPaidBillsDataList == null ||
-                                            model.payPostPaidBillsDataList.isEmpty) return;
+                                        if (model.payPostPaidBillsDataList.isEmpty) return;
 
                                         bool isAnyChecked = false;
                                         for (var item1 in model.payPostPaidBillsDataList) {
@@ -447,9 +447,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                           temPostPaidBillInquiryData =
                                               temPostPaidBillInquiryData.toSet().toList();
 
-                                          if (temPostPaidBillInquiryData != null &&
-                                              temPostPaidBillInquiryData.isNotEmpty &&
-                                              tempSelectedPostPaidBillsList != null &&
+                                          if (temPostPaidBillInquiryData.isNotEmpty &&
                                               temPostPaidBillInquiryData.isNotEmpty) {
                                             Navigator.pushNamed(
                                                 context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
@@ -477,13 +475,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         height: 56.h,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(100.0),
-                                          color: model.payPostPaidBillsDataList == null ||
-                                                  model.payPostPaidBillsDataList.isEmpty
+                                          color: model.payPostPaidBillsDataList.isEmpty
                                               ? AppColor.very_dark_gray1.withOpacity(0.5)
                                               : (model.payPostPaidBillsDataList.any((item) =>
                                                       item.isChecked == true &&
                                                       !isDisabledConditions(context, model, item)))
-                                                  ? Theme.of(context).textTheme.bodyMedium!.color!
+                                                  ? Theme.of(context).textTheme.bodyLarge!.color!
                                                   : AppColor.very_dark_gray1.withOpacity(0.5),
                                         ),
                                         child: Center(
@@ -499,7 +496,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                   fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,
-                                                  color: AppColor.white)),
+                                                  color: Theme.of(context).colorScheme.secondary)),
                                         ),
                                       ),
                                     ),
@@ -517,9 +514,22 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
         });
   }
 
+  void showErrorMessageForPartialBillMethod(PayAllPostPaidBillsPageViewModel model, int index) {
+    if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+        model.payPostPaidBillsDataList[index].isChecked == false) {
+      if (model.payPostPaidBillsDataList[index].isPartial == true &&
+          double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") > 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(),
+            error: ErrorInfo(message: ''),
+            type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+      }
+    }
+  }
+
   showSuccessMsg(context, String title, String message) {
     showTopSnackBar(
-        Overlay.of(context),
+        context,
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
@@ -566,6 +576,11 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   isDisabledConditions(
       BuildContext context, PayAllPostPaidBillsPageViewModel model, GetPostpaidBillerListModelData item) {
+    debugPrint(
+        "isPartial1---${double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == false}");
+    debugPrint(
+        "isPartial2--${double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == true && double.parse(item.maxValue ?? "0") <= 0.0}");
+    debugPrint("isPartial3--->${item.expDateStatus == false}");
     return (double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 && item.isPartial == false) ||
         (double.parse(item.actualdueAmountFromApi ?? "0") <= 0.0 &&
             item.isPartial == true &&
@@ -575,9 +590,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   void showErrorMethod(BuildContext context, PayAllPostPaidBillsPageViewModel model, int index) {
     if (model.payPostPaidBillsDataList[index].expDateStatus == false) {
-      if (model.payPostPaidBillsDataList != null &&
-          model.payPostPaidBillsDataList[index] != null &&
-          model.payPostPaidBillsDataList[index].expDateMessage != null &&
+      if (model.payPostPaidBillsDataList[index].expDateMessage != null &&
           model.payPostPaidBillsDataList[index].expDateMessage!.toString().isNotEmpty) {
         if (model.payPostPaidBillsDataList[index].expDateMessage == "err-379") {
           model.showToastWithError(AppError(

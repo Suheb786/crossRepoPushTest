@@ -34,7 +34,7 @@ class ExemptionFromFatcaReportingCodePageView
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -100,7 +100,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
               SizedBox(
                 height: 32.h,
@@ -115,7 +115,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyLarge?.color),
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
             ],
           ),

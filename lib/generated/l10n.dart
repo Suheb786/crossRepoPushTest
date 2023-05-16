@@ -16810,6 +16810,16 @@ class S {
     );
   }
 
+  /// `Last 30 days`
+  String get last30Day {
+    return Intl.message(
+      'Last 30 days',
+      name: 'last30Day',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Request successfully\nrejected.`
   String get requestSuccessFullyRejected {
     return Intl.message(
@@ -17055,6 +17065,16 @@ class S {
     return Intl.message(
       'Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.',
       name: 'requestMoneyFeatureDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can not request money from your own account`
+  String get youCanNotRequestMoneyFromYourOwnAccount {
+    return Intl.message(
+      'You can not request money from your own account',
+      name: 'youCanNotRequestMoneyFromYourOwnAccount',
       desc: '',
       args: [],
     );

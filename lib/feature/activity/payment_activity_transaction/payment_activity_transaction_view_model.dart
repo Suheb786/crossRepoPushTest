@@ -1,10 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ui';
+
+import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/approve_rtp_otp/approve_rtp_otp.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/manage_cliq/approve_rtp_otp_usecase.dart';
 import 'package:domain/usecase/manage_cliq/request_money_activity_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -184,6 +188,21 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
 
   void makeApproveRTPOtpRequest() {
     _approveRTPOtpRequest.safeAdd(ApproveRTPOtpUseCaseParams());
+  }
+
+  Color getColor(RequestMoneyActivityStatusEnum? value) {
+    switch (value) {
+      case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
+        return AppColor.darkModerateLimeGreen;
+      case RequestMoneyActivityStatusEnum.CATEGORY_REJECTED:
+        return AppColor.dark_brown;
+      case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
+        return AppColor.dark_orange;
+      case RequestMoneyActivityStatusEnum.CATEGORY_EXPIRED:
+        return AppColor.gray5;
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }
 

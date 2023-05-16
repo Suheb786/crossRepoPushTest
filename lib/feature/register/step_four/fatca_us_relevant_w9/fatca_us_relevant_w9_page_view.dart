@@ -131,7 +131,11 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 12.t,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).primaryColorDark),
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.color
+                                                    ?.withOpacity(0.5)),
                                           ),
                                         ),
                                         SizedBox(

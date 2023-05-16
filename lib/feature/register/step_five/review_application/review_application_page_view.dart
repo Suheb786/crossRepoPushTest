@@ -723,10 +723,6 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     title: S.of(context).confirmInfoTC,
                                                                     subTitle: S.of(context).termsAndCondition,
                                                                     onTermsAndConditionTap: () {
-                                                                      // Navigator.pushNamed(
-                                                                      //     context,
-                                                                      //     RoutePaths
-                                                                      //         .TermsAndCondition);
                                                                       LaunchUrlUtils.launchDigitalService(StringUtils
                                                                               .isDirectionRTL(context)
                                                                           ? AppConstantsUtils

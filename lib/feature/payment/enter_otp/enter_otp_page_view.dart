@@ -224,7 +224,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           fontSize: 14.0.t,
-                                                          color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                          color:
+                                                              Theme.of(context).textTheme.bodyLarge!.color!),
                                                     ))
                                                 : Text(
                                                     S.of(context).resendIn(
@@ -232,7 +233,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontSize: 14.0.t,
-                                                        color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                        color: Theme.of(context).textTheme.bodyLarge!.color!),
                                                   );
                                           },
                                         ),

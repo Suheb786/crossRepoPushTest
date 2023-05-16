@@ -210,7 +210,10 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                                               fontFamily: StringUtils.appFont,
                                                               fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,
-                                                              color: AppColor.sky_blue_mid),
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge!
+                                                                  .color!),
                                                         ))
                                                     : Text(
                                                         S.of(context).resendIn(
@@ -219,7 +222,10 @@ class ReturnPaymentOtpPageView extends BasePageViewWidget<ReturnPaymentOtpPageVi
                                                             fontFamily: StringUtils.appFont,
                                                             fontSize: 14.t,
                                                             fontWeight: FontWeight.w600,
-                                                            color: AppColor.sky_blue_mid),
+                                                            color: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyLarge!
+                                                                .color!),
                                                       );
                                               },
                                             ),

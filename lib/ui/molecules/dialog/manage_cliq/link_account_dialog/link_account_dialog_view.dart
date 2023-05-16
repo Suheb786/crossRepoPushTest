@@ -55,7 +55,8 @@ class LinkAccountDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               label,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -96,7 +97,9 @@ class LinkAccountDialogView extends StatelessWidget {
                                         builder: (BuildContext context, int index) {
                                           return LinkAccountSelectionWidget(
                                             label: accountsList![index].accountNumber ?? '',
-                                            textColor: currentIndex == index ? Theme.of(context).primaryColorDark : AppColor.dark_gray_1,
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
                                             widgetColor: Colors.transparent,
                                             currentIndex: index,
                                           );
@@ -113,8 +116,10 @@ class LinkAccountDialogView extends StatelessWidget {
                             padding: EdgeInsets.all(16),
                             height: 57.w,
                             width: 57.w,
-                            decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyMedium!.color!),
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Padding(
@@ -123,7 +128,10 @@ class LinkAccountDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

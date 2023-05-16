@@ -178,14 +178,16 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                                 activeTrackHeight: 0,
                                                                 thumbRadius: 20.w,
                                                                 inactiveTrackColor: Colors.transparent,
-                                                                thumbColor: Theme.of(context).textTheme.bodyMedium!.color!)),
+                                                                thumbColor: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .color!)),
                                                         child: SfSlider(
                                                           min: sliderLimitValues.minValue!,
                                                           max: sliderLimitValues.maxValue!,
                                                           stepSize: sliderLimitValues.divisions!.toDouble(),
                                                           value: val!,
                                                           onChanged: (value) {
-                                                            print("got value : $value");
                                                             model.updatevalue(value);
                                                           },
                                                         ),

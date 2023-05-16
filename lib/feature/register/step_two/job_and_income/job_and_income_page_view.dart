@@ -367,6 +367,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                             return ListView.builder(
                                                 itemCount: dataList.length + 1,
                                                 physics: ClampingScrollPhysics(),
+                                                padding: EdgeInsets.only(top: 32),
                                                 shrinkWrap: true,
                                                 itemBuilder: (context, index) {
                                                   if (index == dataList.length) {

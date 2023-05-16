@@ -15,7 +15,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpForMobileNumberCliqPageViewModel> {
+class EnterOtpForMobileNumberCliqPageView
+    extends BasePageViewWidget<EnterOtpForMobileNumberCliqPageViewModel> {
   EnterOtpForMobileNumberCliqPageView(ProviderBase model) : super(model);
 
   @override
@@ -50,26 +51,42 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).appSwiperController.page == 1.0) {
+                    if (ProviderScope.containerOf(context)
+                            .read(editMobileNoViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
                       FocusScope.of(context).unfocus();
                       if (StringUtils.isDirectionRTL(context)) {
                         if (!details.primaryVelocity!.isNegative) {
                           model.validateOtp(
-                              mobile: ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).mobileNumber,
-                              mobileCode:
-                                  ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).countryData.phoneCode!);
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
                         } else {
-                          ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).previousPage();
+                          ProviderScope.containerOf(context)
+                              .read(editMobileNoViewModelProvider)
+                              .previousPage();
                           // .previous(animation: true);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
                           model.validateOtp(
-                              mobile: ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).mobileNumber,
-                              mobileCode:
-                                  ProviderScope.containerOf(context).read(addNewMobileNumberCliqViewModelProvider).countryData.phoneCode!);
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
                         } else {
-                          ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).previousPage();
+                          ProviderScope.containerOf(context)
+                              .read(editMobileNoViewModelProvider)
+                              .previousPage();
                           // .previous(animation: true);
                         }
                       }
@@ -118,7 +135,7 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
                                                   fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                  color: Theme.of(context).textTheme.bodyLarge!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -127,7 +144,7 @@ class EnterOtpForMobileNumberCliqPageView extends BasePageViewWidget<EnterOtpFor
                                                 fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                color: Theme.of(context).textTheme.bodyLarge!.color!),
                                           );
                                   },
                                 ),

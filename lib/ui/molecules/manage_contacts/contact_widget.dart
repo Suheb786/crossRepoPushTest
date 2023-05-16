@@ -24,7 +24,7 @@ class ContactWidget extends StatelessWidget {
             ),
             child: Row(
               children: [
-                beneficiary!.imageUrl.toString().isNotEmpty
+                beneficiary!.imageUrl.isNotEmpty
                     ? CircleAvatar(
                         radius: 25.w,
                         backgroundImage: Image.memory(

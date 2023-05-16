@@ -241,7 +241,6 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                 }
 
                                                                 //    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
-
                                                               }
                                                             },
                                                             dataBuilder: (context, enterOtpForCliqResponse) {
@@ -284,7 +283,10 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                   fontFamily:
                                                                                       StringUtils.appFont,
                                                                                   fontSize: 16.t,
-                                                                                  color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                  color: Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium!
+                                                                                      .color!),
                                                                               widgetBuilder: (context,
                                                                                   currentTimeRemaining) {
                                                                                 return currentTimeRemaining ==
@@ -386,7 +388,11 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                               fontWeight:
                                                                                                   FontWeight
                                                                                                       .w600,
-                                                                                              color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                              color: Theme.of(
+                                                                                                      context)
+                                                                                                  .textTheme
+                                                                                                  .bodyLarge!
+                                                                                                  .color!),
                                                                                         ))
                                                                                     : Text(
                                                                                         S.of(context).resendIn(
@@ -399,7 +405,11 @@ class OtpForCliqIdListPageView extends BasePageViewWidget<OtpForCliqIdListPageVi
                                                                                             fontWeight:
                                                                                                 FontWeight
                                                                                                     .w600,
-                                                                                            color: Theme.of(context).textTheme.bodyMedium!.color!),
+                                                                                            color: Theme.of(
+                                                                                                    context)
+                                                                                                .textTheme
+                                                                                                .bodyLarge!
+                                                                                                .color!),
                                                                                       );
                                                                               },
                                                                             ),

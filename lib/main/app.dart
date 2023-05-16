@@ -20,14 +20,6 @@ class App extends ConsumerWidget {
       providerBase: appViewModel,
       onModelReady: (model) {
         _appViewModel = ref.watch(appViewModel);
-        // model.initAppFlyerSDKStream.listen((event) {
-        //   if (event.status == Status.SUCCESS) {
-        //     debugPrint('-----SDK INITIALIZED------');
-        //     model.logAppFlyerSDKEvents(eventName: 'APP_LAUNCH', eventValue: {"app_laumched": "APP LAUNCHED"});
-        //   } else if (event.status == Status.ERROR) {
-        //     debugPrint('-----SDK INITIALIZED FAILED------');
-        //   }
-        // });
       },
       builder: (context, appModel, child) {
         return ThemeProvider(

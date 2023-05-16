@@ -17,6 +17,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
   final PaymentActivityContent content;
   final Function(RequestMoneyActivityList) onAcceptButton;
   final Function(RequestMoneyActivityList) onRejectButton;
+  final Function(RequestMoneyActivityList) onTapRTPStatus;
 
   // final Function(RequestMoneyActivityList) onTapInWard;
   final Function(RequestMoneyActivityList) onTapInWardSendMoney;
@@ -28,7 +29,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       {Key? key,
       required this.onAcceptButton,
       required this.onRejectButton,
-      //    required this.onTapInWard,
+      required this.onTapRTPStatus,
       required this.onTapInWardSendMoney,
       // required this.onTapOutWard,
       required this.onTapOutWardSendMoney,
@@ -357,7 +358,8 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                             (content.data?[index].trxStatus ?? '').toString(),
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
-                                                                color: Theme.of(context).colorScheme.secondary,
+                                                                color:
+                                                                    Theme.of(context).colorScheme.secondary,
                                                                 fontWeight: FontWeight.w600,
                                                                 fontSize: 12.0.t),
                                                           ),
@@ -379,73 +381,81 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           // (content.data?[index].trxDir ==
                           //     RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
                           //     content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST)?
-                          Row(
-                              children: [
-                                Container(
-                                    height: 50.0.h,
-                                    width: 50.0.w,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle, color: Theme.of(context).primaryColor),
-                                    child: Center(
-                                        child: Text(
-                                      StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: Theme.of(context).colorScheme.secondary,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14.0.t),
-                                    ))),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.only(start: 14.0.w),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        getItemForOutwardRTP(context, content.data?[index]),
-                                        Padding(
-                                            padding: EdgeInsets.only(top: 5.0.h),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  content.data?[index].rtpDate != null
-                                                      ? TimeUtils.getFormattedTimeFor12HrsFormat(
-                                                          content.data![index].rtpDate.toString())
-                                                      : '-',
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      color: AppColor.gray1,
-                                                      fontSize: 12.0.t,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional.only(start: 9.0.w),
-                                                  child: Container(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        start: 8.0.w, end: 8.0.w, top: 3.5.h, bottom: 1.5.h),
-                                                    decoration: BoxDecoration(
-                                                        color: getColor(content.data?[index].trxStatus),
-                                                        borderRadius: BorderRadius.circular(100)),
-                                                    child: Text(
-                                                      (content.data?[index].trxStatus ?? '').toString(),
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          color: Theme.of(context).colorScheme.secondary,
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: 12.0.t),
-                                                    ),
+                          GestureDetector(
+                              onTap: () {
+                                onTapRTPStatus.call(content.data![index]);
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                      height: 50.0.h,
+                                      width: 50.0.w,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle, color: Theme.of(context).primaryColor),
+                                      child: Center(
+                                          child: Text(
+                                        StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).colorScheme.secondary,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 14.0.t),
+                                      ))),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 14.0.w),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          getItemForOutwardRTP(context, content.data?[index]),
+                                          Padding(
+                                              padding: EdgeInsets.only(top: 5.0.h),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    content.data?[index].rtpDate != null
+                                                        ? TimeUtils.getFormattedTimeFor12HrsFormat(
+                                                            content.data![index].rtpDate.toString())
+                                                        : '-',
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: AppColor.gray1,
+                                                        fontSize: 12.0.t,
+                                                        fontWeight: FontWeight.w600),
                                                   ),
-                                                )
-                                              ],
-                                            ))
-                                      ],
+                                                  Padding(
+                                                    padding: EdgeInsetsDirectional.only(start: 9.0.w),
+                                                    child: Container(
+                                                      padding: EdgeInsetsDirectional.only(
+                                                          start: 8.0.w,
+                                                          end: 8.0.w,
+                                                          top: 3.5.h,
+                                                          bottom: 1.5.h),
+                                                      decoration: BoxDecoration(
+                                                          color: getColor(content.data?[index].trxStatus),
+                                                          borderRadius: BorderRadius.circular(100)),
+                                                      child: Text(
+                                                        (content.data?[index].trxStatus ?? '').toString(),
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            color: Theme.of(context).colorScheme.secondary,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 12.0.t),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ))
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 16.0.h),
-                                    child: AppSvg.asset(AssetUtils.rightChevron,
-                                        matchTextDirection: true, color: AppColor.white_gray))
-                              ],
+                                  Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 16.0.h),
+                                      child: AppSvg.asset(AssetUtils.rightChevron,
+                                          matchTextDirection: true, color: AppColor.white_gray))
+                                ],
+                              ),
                             );
             },
             shrinkWrap: true,

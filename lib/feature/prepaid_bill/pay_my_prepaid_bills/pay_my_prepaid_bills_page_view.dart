@@ -62,8 +62,7 @@ class PayMyPrePaidBillsPageView extends BasePageViewWidget<PayMyPrePaidBillsPage
                       if (value.status == Status.SUCCESS) {
                         model.getPrepaidCategoriesModelData =
                             value.data!.content!.getPrepaidBillerListModelData!;
-                        if (model.getPrepaidCategoriesModelData != null &&
-                            model.getPrepaidCategoriesModelData.isNotEmpty) {
+                        if (model.getPrepaidCategoriesModelData.isNotEmpty) {
                           model.isPrePaidCategoryEmpty = false;
                           _showPrePaidCategoriesList(context, model);
                         } else {
