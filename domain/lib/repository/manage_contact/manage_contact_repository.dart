@@ -26,4 +26,17 @@ abstract class ManageContactRepository {
   });
 
   Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
+
+  Future<Either<NetworkError, bool>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFav,
+      required String userId,
+      required bool isFromMobile});
+
+  Future<Either<NetworkError, bool>> listOfContacts({required bool isFromMobile});
+
+  Future<Either<NetworkError, bool>> contactDetail(
+      {required String beneficiaryDetailId, required bool isFromMobile});
+
+  Future<Either<NetworkError, bool>> searchContact({required String searchText, required bool isFromMobile});
 }

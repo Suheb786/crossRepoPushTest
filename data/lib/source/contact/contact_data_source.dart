@@ -26,4 +26,18 @@ abstract class ContactRemoteDS {
   });
 
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
+
+  Future<HttpResponse<ResponseEntity>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFav,
+      required String userId,
+      required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> contactDetail(
+      {required String beneficiaryDetailId, required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> searchContact(
+      {required String searchText, required bool isFromMobile});
 }
