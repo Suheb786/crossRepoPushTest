@@ -6,14 +6,18 @@ part of 'search_contact_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchContactRequest _$SearchContactRequestFromJson(Map<String, dynamic> json) => SearchContactRequest(
+SearchContactRequest _$SearchContactRequestFromJson(
+        Map<String, dynamic> json) =>
+    SearchContactRequest(
       searchText: json['SearchText'] as String?,
       isFromMobile: json['IsFromMobile'] as bool?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SearchContactRequestToJson(SearchContactRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$SearchContactRequestToJson(
+        SearchContactRequest instance) =>
+    <String, dynamic>{
       'SearchText': instance.searchText,
       'IsFromMobile': instance.isFromMobile,
       'GetToken': instance.getToken,
