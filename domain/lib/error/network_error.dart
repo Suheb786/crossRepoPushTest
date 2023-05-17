@@ -1380,6 +1380,9 @@ class NetworkError extends BaseError {
           case "err-401":
             return AppError(
                 cause: cause, error: error, type: ErrorType.YOU_CAN_NOT_REQUEST_MONEY_FROM_YOUR_OWN_ACCOUNT);
+          case "err-402":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT);
 
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
