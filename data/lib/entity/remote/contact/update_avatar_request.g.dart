@@ -1,29 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_favorite_request.dart';
+part of 'update_avatar_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UpdateFavoriteRequest _$UpdateFavoriteRequestFromJson(
-        Map<String, dynamic> json) =>
-    UpdateFavoriteRequest(
+UpdateAvatarRequest _$UpdateAvatarRequestFromJson(Map<String, dynamic> json) =>
+    UpdateAvatarRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String?,
-      isFav: json['IsFav'] as bool?,
+      avatarImg: json['AvatarImg'] as String?,
       userId: json['UserId'] as String?,
-      isFromMobile: json['IsFromMobile'] as bool?,
+      isFromMobile: json['IsFromMobile'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
-      baseData: json['BaseClass'] as Map<String, dynamic>,
+      baseData: json['baseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$UpdateFavoriteRequestToJson(
-        UpdateFavoriteRequest instance) =>
+Map<String, dynamic> _$UpdateAvatarRequestToJson(
+        UpdateAvatarRequest instance) =>
     <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryDetailId,
-      'IsFav': instance.isFav,
+      'AvatarImg': instance.avatarImg,
       'UserId': instance.userId,
       'IsFromMobile': instance.isFromMobile,
       'GetToken': instance.getToken,
-      'BaseClass': instance.baseData,
+      'baseClass': instance.baseData,
     };

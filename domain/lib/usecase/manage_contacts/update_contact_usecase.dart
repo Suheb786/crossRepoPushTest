@@ -9,31 +9,30 @@ import 'package:domain/utils/validator.dart';
 
 import '../../repository/manage_contact/manage_contact_repository.dart';
 
-class AddContactIBANuseCase extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, bool> {
+class UpdateContactUseCase extends BaseUseCase<BaseError, UpdateContactUseCaseParams, bool> {
   final ManageContactRepository _manageContactRepository;
 
-  AddContactIBANuseCase(this._manageContactRepository);
+  UpdateContactUseCase(this._manageContactRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute({required AddContactIBANuseCaseParams params}) {
-    return _manageContactRepository.addContact(
+  Future<Either<BaseError, bool>> execute({required UpdateContactUseCaseParams params}) {
+    return _manageContactRepository.updateContact(
+        beneficiaryDetailId: '',
         nickName: params.name,
         fullName: '',
         emailAddress: params.emailAddress,
-        avatarImage: '',
-        isFav: false,
         userId: '',
         identifier: params.IBANACCOUNTNOMobileNoALIAS,
         isFromMobile: '');
   }
 }
 
-class AddContactIBANuseCaseParams extends Params {
+class UpdateContactUseCaseParams extends Params {
   final String name;
   final String emailAddress;
   final String IBANACCOUNTNOMobileNoALIAS;
 
-  AddContactIBANuseCaseParams({
+  UpdateContactUseCaseParams({
     required this.name,
     required this.emailAddress,
     required this.IBANACCOUNTNOMobileNoALIAS,

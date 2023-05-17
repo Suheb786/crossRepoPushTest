@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/manage_contacts/add_contact_usecase.dart';
+import 'package:domain/usecase/manage_contacts/update_contact_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -15,6 +16,8 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
   ///--------------------------keys-valiables-------------------------------------///
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
   final AddContactIBANuseCase addContactIBANuseCase;
+  //final UpdateContactUseCase updateContactUseCase;
+
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
   final GlobalKey<AppTextFieldState> ibanORaccountORmobileORaliasKey =
       GlobalKey(debugLabel: "ibanORaccountORmobileORalias");
