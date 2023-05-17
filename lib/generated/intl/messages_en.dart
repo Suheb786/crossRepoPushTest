@@ -3101,23 +3101,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "You can change the above details in the card settings "),
+            MessageLookupByLibrary.simpleMessage("You can change the above details in the card settings "),
         "youCanNotRequestMoneyFromYourOwnAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "You can not request money from your own account"),
+            MessageLookupByLibrary.simpleMessage("You can not request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
+        "youCannotSendMoneyToYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage("You cannot send money to your own account"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
         "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your request \n is accepted and money is \n added into your account."),
-        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
-            "Didn\'t receive an SMS? Contact our Engagement Team."),
-        "youareabouttoreject":
-            MessageLookupByLibrary.simpleMessage("You are about to reject "),
+        "youWillReceiveCardPinViaSms":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive an SMS? Contact our Engagement Team."),
+        "youareabouttoreject": MessageLookupByLibrary.simpleMessage("You are about to reject "),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("You are about to send "),
         "yourAddOtherCardFromCardSettings":

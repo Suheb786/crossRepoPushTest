@@ -1719,6 +1719,7 @@
   "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}",
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
+  "youCannotSendMoneyToYourOwnAccount": "You cannot send money to your own account",
   "pleaseSelectReasonToReturn": "Please select reason to Return",
   "exceptionWhileGettingGetCreditConfirmation": "Exception while executing Get Credit Confirmation",
   "errorWhileGettingGetCreditConfirmation": "Error while getting Get Credit Confirmation",

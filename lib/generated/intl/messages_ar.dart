@@ -2990,23 +2990,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
             "بتقدر تودع الأموال بحسابك وتبدأ باستخدام بطاقة الدفع المباشر Yellow Sun مباشرة."),
         "youCanChangeCardDetailsInSettings":
-            MessageLookupByLibrary.simpleMessage(
-                "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
+            MessageLookupByLibrary.simpleMessage("بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
         "youCanNotRequestMoneyFromYourOwnAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "لا يمكنك طلب المال من حسابك الخاص"),
+            MessageLookupByLibrary.simpleMessage("لا يمكنك طلب المال من حسابك الخاص"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
+        "youCannotSendMoneyToYourOwnAccount":
+            MessageLookupByLibrary.simpleMessage("You cannot send money to your own account"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
         "youSent": MessageLookupByLibrary.simpleMessage(" تم الارسال"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
-        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
-            "ما وصلتك رسالة SMS؟ تواصل معنا."),
-        "youareabouttoreject":
-            MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
+        "youWillReceiveCardPinViaSms":
+            MessageLookupByLibrary.simpleMessage("ما وصلتك رسالة SMS؟ تواصل معنا."),
+        "youareabouttoreject": MessageLookupByLibrary.simpleMessage("انت على وشك ان ترفض"),
         "youareabouttosend":
             MessageLookupByLibrary.simpleMessage("انت على وشك ان ترسل"),
         "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
