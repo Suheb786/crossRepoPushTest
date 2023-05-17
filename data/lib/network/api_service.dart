@@ -1138,6 +1138,8 @@ abstract class ApiService {
   Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
       @Body() CreditConfirmationRequestEntity creditConfirmationRequestEntity);
 
+  /// Manage Contacts
+
   @POST("/ManageContacts/UpdateFavorite")
   Future<HttpResponse<ResponseEntity>> updateFavorite(
     @Body() UpdateFavoriteRequest request,
@@ -1158,8 +1160,6 @@ abstract class ApiService {
     @Body() SearchContactRequest request,
   );
 
-  /// Manage Contacts
-
   ///Add Contact
   @POST("/ManageContacts/AddContact")
   Future<HttpResponse<ResponseEntity>> addContact(@Body() AddContactRequest addContactRequest);
@@ -1175,5 +1175,4 @@ abstract class ApiService {
   ///update avatar contact
   @POST("/ManageContacts/UpdateAvatar")
   Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
-
 }
