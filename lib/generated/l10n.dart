@@ -16969,6 +16969,26 @@ class S {
     );
   }
 
+  /// `Oops! Your card is not active`
+  String get oopsYourCardIsNotActive {
+    return Intl.message(
+      'Oops! Your card is not active',
+      name: 'oopsYourCardIsNotActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN`
+  String get youEitherChangePinOrUnBlocked {
+    return Intl.message(
+      'You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN',
+      name: 'youEitherChangePinOrUnBlocked',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You cannot send money to your own account`
   String get youCannotSendMoneyToYourOwnAccount {
     return Intl.message(

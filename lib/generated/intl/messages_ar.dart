@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -48,7 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) =>
+      <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
         "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
@@ -1497,6 +1499,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneUpperCaseLetter": MessageLookupByLibrary.simpleMessage("1 حرف كبير"),
         "onlinePurchase": MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
+        "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage":
@@ -2215,6 +2218,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage("You cannot send money to your own account"),
+        "youEitherChangePinOrUnBlocked":
+            MessageLookupByLibrary.simpleMessage("الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),

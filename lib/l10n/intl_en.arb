@@ -1719,6 +1719,8 @@
   "enterOTPheaderwithVaiable": "Enter the 6-digit code sent to {variable}",
   "nickNameAlreadyExists": "Nickname is already stored as beneficiary",
   "reasonToreturn": "Reason to return",
+  "oopsYourCardIsNotActive": "Oops! Your card is not active",
+  "youEitherChangePinOrUnBlocked": "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN",
   "youCannotSendMoneyToYourOwnAccount": "You cannot send money to your own account",
   "pleaseSelectReasonToReturn": "Please select reason to Return",
   "exceptionWhileGettingGetCreditConfirmation": "Exception while executing Get Credit Confirmation",

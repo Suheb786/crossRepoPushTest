@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -50,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
@@ -1614,6 +1616,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneUpperCaseLetter": MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
         "onlinePurchase": MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage("Online purchase limit exceeded."),
+        "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage("Oops! Your card is not active"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
@@ -2387,6 +2390,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage("You cannot send money to your own account"),
+        "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
+            "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
