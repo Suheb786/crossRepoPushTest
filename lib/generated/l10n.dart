@@ -4453,7 +4453,7 @@ class S {
   /// `Sent to`
   String get sentTo {
     return Intl.message(
-      'Sent',
+      'Sent to',
       name: 'sentTo',
       desc: '',
       args: [],
@@ -16965,6 +16965,26 @@ class S {
     return Intl.message(
       'Reason to return',
       name: 'reasonToreturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Your card is not active`
+  String get oopsYourCardIsNotActive {
+    return Intl.message(
+      'Oops! Your card is not active',
+      name: 'oopsYourCardIsNotActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN`
+  String get youEitherChangePinOrUnBlocked {
+    return Intl.message(
+      'You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN',
+      name: 'youEitherChangePinOrUnBlocked',
       desc: '',
       args: [],
     );

@@ -2117,6 +2117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
             "Online purchase limit exceeded."),
+        "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
+            "Oops! Your card is not active"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
@@ -3110,6 +3112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "You cannot send money to your own account."),
+        "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
+            "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),

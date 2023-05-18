@@ -2048,6 +2048,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded":
             MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
+        "oopsYourCardIsNotActive":
+            MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
@@ -2999,6 +3001,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "عفوا! ما بتقدر تحول لنفس حسابك"),
+        "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
+            "الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
