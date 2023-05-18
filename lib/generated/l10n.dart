@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17073,6 +17075,16 @@ class S {
     return Intl.message(
       'You can not request money from your own account',
       name: 'youCanNotRequestMoneyFromYourOwnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The maximum contactless limit is 300 JOD`
+  String get contactLessLimitmaxLimit {
+    return Intl.message(
+      'The maximum contactless limit is 300 JOD',
+      name: 'contactLessLimitmaxLimit',
       desc: '',
       args: [],
     );

@@ -648,6 +648,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل في الاتصال"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "حمّل توقيعك للموافقة والاستمرار"),
+        "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
+            "The maximum contactless limit is 300 JOD"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
