@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_transaction_success/payment_transaction_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -20,8 +22,8 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          //  Navigator.popUntil(context, ModalRoute.withName(RoutePaths.temp));
-
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Padding(
@@ -51,7 +53,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${model.paymentTransationSuccessArgument.ammount}",
+                    double.parse(model.paymentTransationSuccessArgument.ammount ?? '0.0').toStringAsFixed(3),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
@@ -111,7 +113,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
               ),
             ),
             Visibility(
-              visible: true,
+              visible: false,
               child: Padding(
                 padding: EdgeInsets.only(top: 23.0.h),
                 child: Row(
@@ -138,8 +140,8 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
               padding: EdgeInsets.only(top: 76),
               child: AnimatedButton(
                 buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).colorScheme.secondary,
-                textColor: Theme.of(context).colorScheme.secondary,
+                borderColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                textColor: Theme.of(context).textTheme.bodyLarge!.color!,
               ),
             ),
             InkWell(
@@ -150,7 +152,7 @@ class PaymentTransationSuccessPageView extends BasePageViewWidget<PaymentTransat
                   S.of(context).toDashboard,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).textTheme.bodyLarge!.color!,
                       fontSize: 12.0.t,
                       fontWeight: FontWeight.w600),
                 ),

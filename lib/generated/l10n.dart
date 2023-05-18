@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -4452,7 +4453,7 @@ class S {
   /// `Sent to`
   String get sentTo {
     return Intl.message(
-      'Sent to',
+      'Sent',
       name: 'sentTo',
       desc: '',
       args: [],
@@ -11949,10 +11950,10 @@ class S {
     );
   }
 
-  /// `Get ready to verify yourself now to complete your credit card application. \nWe may ask you for some documents related to your occupational status.`
+  /// `You can call us between 10:00am and 6:00pm to complete your application. We may ask for proof of occupation, kindly have it ready. `
   String get verifyViaVideoCallCC {
     return Intl.message(
-      'Get ready to verify yourself now to complete your credit card application. \nWe may ask you for some documents related to your occupational status.',
+      'You can call us between 10:00am and 6:00pm to complete your application. We may ask for proof of occupation, kindly have it ready. ',
       name: 'verifyViaVideoCallCC',
       desc: '',
       args: [],
@@ -13769,10 +13770,10 @@ class S {
     );
   }
 
-  /// `Oops, Your verification call has been dropped, please reconnect again`
+  /// `There was a problem on your last verification call. Initiate your call again anytime between 10:00 am and 6:00 pm to complete your application.`
   String get callDroppedDesc {
     return Intl.message(
-      'Oops, Your verification call has been dropped, please reconnect again',
+      'There was a problem on your last verification call. Initiate your call again anytime between 10:00 am and 6:00 pm to complete your application.',
       name: 'callDroppedDesc',
       desc: '',
       args: [],
@@ -16969,10 +16970,10 @@ class S {
     );
   }
 
-  /// `You cannot send money to your own account`
+  /// `You cannot send money to your own account.`
   String get youCannotSendMoneyToYourOwnAccount {
     return Intl.message(
-      'You cannot send money to your own account',
+      'You cannot send money to your own account.',
       name: 'youCannotSendMoneyToYourOwnAccount',
       desc: '',
       args: [],
