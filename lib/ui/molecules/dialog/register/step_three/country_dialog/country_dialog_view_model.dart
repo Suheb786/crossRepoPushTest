@@ -82,6 +82,8 @@ class CountryDialogViewModel extends BasePageViewModel {
     });
   }
 
+  bool isApiCalled = false;
+
   void getCountries() {
     if (!isDataAvailable) {
       _getCountryListRequest.safeAdd(GetCountriesListUseCaseParams());

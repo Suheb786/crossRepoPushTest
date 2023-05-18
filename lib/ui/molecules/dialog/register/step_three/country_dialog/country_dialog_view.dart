@@ -209,23 +209,27 @@ class CountryDialogView extends StatelessWidget {
               ));
         },
         onModelReady: (model) {
-          model.getCountries();
-          model.loadingStream.listen((value) {
-            if (value) {
-              AppProgress(context);
-            } else {
-              Navigator.pop(context);
-            }
-          });
+          if (!model.isApiCalled) {
+            model.isApiCalled = true;
+            model.getCountries();
 
-          model.error.listen((event) {
-            _showTopError(
-                ErrorParser.getLocalisedStringError(
-                  error: event,
-                  localisedHelper: S.of(context),
-                ),
-                context);
-          });
+            model.loadingStream.listen((value) {
+              if (value) {
+                AppProgress(context);
+              } else {
+                Navigator.pop(context);
+              }
+            });
+
+            model.error.listen((event) {
+              _showTopError(
+                  ErrorParser.getLocalisedStringError(
+                    error: event,
+                    localisedHelper: S.of(context),
+                  ),
+                  context);
+            });
+          }
         },
         providerBase: providerBase());
   }
@@ -259,8 +263,7 @@ class CountryDialogView extends StatelessWidget {
                           child: Text(message,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  // fontFamily: "Montserrat",
-                                  color: AppColor.white,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.0.t)),
                         ),
@@ -269,6 +272,7 @@ class CountryDialogView extends StatelessWidget {
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],

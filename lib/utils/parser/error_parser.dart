@@ -1336,6 +1336,8 @@ class ErrorParser {
         return localisedHelper.youCanNotRequestMoneyFromYourOwnAccount;
       case ErrorType.CONTACTLESS_MAX_LIMIT:
         return localisedHelper.contactLessLimitmaxLimit;
+      case ErrorType.YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
+        return localisedHelper.youCannotSendMoneyToYourOwnAccount;
       default:
         return "";
     }

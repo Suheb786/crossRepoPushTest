@@ -80,7 +80,7 @@ class AppViewModel extends BaseViewModel {
                   borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
               focusedBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(width: 0.000001, color: AppColor.veryDarkGray1, style: BorderStyle.none)),
+                      BorderSide(width: 0.000001, color: AppColor.veryDarkGray2, style: BorderStyle.none)),
               errorBorder: UnderlineInputBorder(
                   borderSide:
                       BorderSide(width: 0.000001, color: AppColor.strongRed, style: BorderStyle.none)),
