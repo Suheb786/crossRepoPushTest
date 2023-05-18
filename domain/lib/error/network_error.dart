@@ -1384,6 +1384,12 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT);
 
+          case "err-500":
+            return AppError(cause: cause, error: error, type: ErrorType.YOU_EITHER_CHANGE_PIN_OR_UNBLOCKED);
+
+          case "err-501":
+            return AppError(cause: cause, error: error, type: ErrorType.OOPS_YOUR_CARD_IS_NOT_ACTIVE);
+
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

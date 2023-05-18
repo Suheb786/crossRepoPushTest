@@ -1203,6 +1203,8 @@
   "transactionType": "نوع الحركة",
   "paymentPeriod": "فترة الدفعة",
   "fromMe": "لي",
+  "oopsYourCardIsNotActive": "بطاقتك غير فعالة",
+  "youEitherChangePinOrUnBlocked": "الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله",
   "idVerificationFailed177": "فشل في التحقق من الهوية، لا يمكن الاستمرار.: 177",
   "idVerificationFailed178": "فشل في التحقق من الهوية، لا يمكن الاستمرار.: 178",
   "applyNow": "قدّم الآن",
