@@ -108,26 +108,25 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                   height: 45.h,
                                 ),
                                 debitCardLimitResponse!.status == Status.SUCCESS
-                                    ? Expanded(
-                                        child: SingleChildScrollView(
-                                          physics: ClampingScrollPhysics(),
-                                          child: Card(
-                                            color: AppColor.veryLightGray,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(16.0),
-                                            ),
-                                            margin: EdgeInsets.only(bottom: 45.h),
-                                            elevation: 20,
-                                            child: AppStreamBuilder<Resource<bool>>(
-                                                stream: model.updateCardLimitsStream,
-                                                initialData: Resource.none(),
-                                                onData: (data) {
-                                                  if (data.status == Status.SUCCESS) {
-                                                    model.getDebitCardLimit();
-                                                  }
-                                                },
-                                                dataBuilder: (context, response) {
-                                                  return Column(
+                                    ? Flexible(
+                                        child: Card(
+                                          color: AppColor.veryLightGray,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(16.0),
+                                          ),
+                                          margin: EdgeInsets.only(bottom: 45.h),
+                                          elevation: 20,
+                                          child: AppStreamBuilder<Resource<bool>>(
+                                              stream: model.updateCardLimitsStream,
+                                              initialData: Resource.none(),
+                                              onData: (data) {
+                                                if (data.status == Status.SUCCESS) {
+                                                  model.getDebitCardLimit();
+                                                }
+                                              },
+                                              dataBuilder: (context, response) {
+                                                return SingleChildScrollView(
+                                                  child: Column(
                                                     children: [
                                                       ManageLimitsWidget(
                                                         onToggle: (value) {
@@ -461,9 +460,9 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                         },
                                                       ),
                                                     ],
-                                                  );
-                                                }),
-                                          ),
+                                                  ),
+                                                );
+                                              }),
                                         ),
                                       )
                                     : Container()
@@ -500,16 +499,14 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                             cause: Exception(),
                                             error: ErrorInfo(message: ''),
                                             type: ErrorType.ONLINE_PURCHASE_VALUE_EXCEEDED));
-                                      }
-                                      else if (model.contactlessPaymentsValue >
+                                      } else if (model.contactlessPaymentsValue >
                                           num.parse(debitCardLimitResponse
                                               .data!.debitCardLimitContent!.limits![5].maxLimit!)) {
                                         model.showToastWithError(AppError(
                                             cause: Exception(),
                                             error: ErrorInfo(message: ''),
                                             type: ErrorType.CONTACTLESS_MAX_LIMIT));
-                                      } 
-                                       else {
+                                      } else {
                                         model.updateCardLimits(
                                             atmWithdrawalValue: model.atmWithdrawalValue,
                                             merchantPayment: model.merchantPaymentValue,

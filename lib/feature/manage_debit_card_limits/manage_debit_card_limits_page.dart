@@ -33,6 +33,11 @@ class ManageDebitCardLimitsPageState
         ? Theme.of(context).primaryColor
         : Theme.of(context).canvasColor;
   }
+
+  @override
+  bool? resizeToAvoidBottomInset() {
+    return true;
+  }
 }
 
 class ManageCardLimitsArguments {

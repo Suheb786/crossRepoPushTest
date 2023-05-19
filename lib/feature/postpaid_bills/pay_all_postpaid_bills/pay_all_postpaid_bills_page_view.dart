@@ -555,13 +555,16 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                           padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12)),
                         ),
                       ],
                     ),
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],

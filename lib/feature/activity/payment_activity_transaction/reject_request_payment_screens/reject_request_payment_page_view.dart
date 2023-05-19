@@ -43,8 +43,9 @@ class RejectRequestPaymentPageView extends BasePageViewWidget<RejectRequestPayme
                       size: Size(MediaQuery.of(context).size.width / 2.5.w, 5.h),
                       spacing: EdgeInsets.symmetric(horizontal: 1.w),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.black,
-                      color: AppColor.gray1.withOpacity(0.3)),
+                      activeColor: Theme.of(context).primaryColorDark,
+                      color: Theme.of(context).inputDecorationTheme.hintStyle?.color?.withOpacity(0.3) ??
+                          AppColor.gray1.withOpacity(0.3)),
                 );
               },
             ),

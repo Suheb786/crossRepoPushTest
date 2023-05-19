@@ -248,7 +248,7 @@ class ManageLimitsWidget extends StatelessWidget {
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
-                                  color: AppColor.white,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.0.t)),
                         ),
@@ -257,6 +257,7 @@ class ManageLimitsWidget extends StatelessWidget {
                   ),
                   Icon(
                     Icons.close,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 16,
                   )
                 ],

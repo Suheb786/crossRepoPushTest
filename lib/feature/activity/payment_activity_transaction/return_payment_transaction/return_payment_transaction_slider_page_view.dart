@@ -44,8 +44,9 @@ class ReturnPaymentTransactionSliderPageView
                       size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.black,
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      activeColor: Theme.of(context).primaryColorDark,
+                      color: Theme.of(context).inputDecorationTheme.hintStyle?.color?.withOpacity(0.3) ??
+                          AppColor.gray1.withOpacity(0.3)),
                 );
               },
             ),
