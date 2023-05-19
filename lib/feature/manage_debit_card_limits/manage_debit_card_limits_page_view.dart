@@ -444,7 +444,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                             .data!.debitCardLimitContent!.limits![6].maxLimit!
                                                             .toString(),
                                                         isLast: true,
-                                                        readOnly: true,
+                                                        readOnly: false,
                                                         providerBase: contactLessPaymentViewModelProvider,
                                                         onChange: (contactLessPaymentValue) {
                                                           model.contactlessPaymentsValue =
@@ -500,7 +500,16 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                             cause: Exception(),
                                             error: ErrorInfo(message: ''),
                                             type: ErrorType.ONLINE_PURCHASE_VALUE_EXCEEDED));
-                                      } else {
+                                      }
+                                      else if (model.contactlessPaymentsValue >
+                                          num.parse(debitCardLimitResponse
+                                              .data!.debitCardLimitContent!.limits![5].maxLimit!)) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType.CONTACTLESS_MAX_LIMIT));
+                                      } 
+                                       else {
                                         model.updateCardLimits(
                                             atmWithdrawalValue: model.atmWithdrawalValue,
                                             merchantPayment: model.merchantPaymentValue,

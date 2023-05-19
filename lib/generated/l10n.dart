@@ -17109,6 +17109,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The maximum contactless limit is 300 JOD`
+  String get contactLessLimitmaxLimit {
+    return Intl.message(
+      'The maximum contactless limit is 300 JOD',
+      name: 'contactLessLimitmaxLimit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
