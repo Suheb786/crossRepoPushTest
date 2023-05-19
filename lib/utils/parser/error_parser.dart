@@ -1338,6 +1338,12 @@ class ErrorParser {
         return localisedHelper.contactLessLimitmaxLimit;
       case ErrorType.YOU_CANNOT_SEND_MONEY_TO_YOUR_OWN_ACCOUNT:
         return localisedHelper.youCannotSendMoneyToYourOwnAccount;
+
+      case ErrorType.YOU_EITHER_CHANGE_PIN_OR_UNBLOCKED:
+        return localisedHelper.youEitherChangePinOrUnBlocked;
+
+      case ErrorType.OOPS_YOUR_CARD_IS_NOT_ACTIVE:
+        return localisedHelper.oopsYourCardIsNotActive;
       default:
         return "";
     }

@@ -783,7 +783,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                       .requestSuccessFullyRejected,
                                                                                   custID: '',
                                                                                   OrgnlMsgId:
-                                                                                      data.cdtrAgt ?? '',
+                                                                                      data.msgID ?? '',
                                                                                   rtpStatus: 'True'));
                                                                     },
                                                                     child: Container(
@@ -1021,7 +1021,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                                       .requestSuccessFullyRejected,
                                                                                   custID: '',
                                                                                   OrgnlMsgId:
-                                                                                      data.cdtrAgt ?? '',
+                                                                                      data.msgID ?? '',
                                                                                   rtpStatus: 'True'));
                                                                     },
                                                                     child: Container(

@@ -489,7 +489,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
             ),
             children: [
               TextSpan(
-                text: " " + S.of(context).sentTo.toLowerCase(),
+                text: " " + S.of(context).sent.toLowerCase(),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.0.t,
@@ -519,52 +519,46 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
   }
 
   Widget getItemForInwardRTP(BuildContext context, RequestMoneyActivityList? data) {
-    switch (data?.trxStatus ?? RequestMoneyActivityStatusEnum.CATEGORY_NONE) {
-      case RequestMoneyActivityStatusEnum.CATEGORY_PENDING:
-        return RichText(
-            maxLines: 3,
-            text: TextSpan(
-                text: data?.cdtrName ?? '',
+    return RichText(
+        maxLines: 3,
+        text: TextSpan(
+            text: data?.cdtrName ?? '',
+            style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              fontSize: 12.0.t,
+              overflow: TextOverflow.ellipsis,
+              fontWeight: FontWeight.w600,
+              color: AppColor.sky_blue_mid,
+            ),
+            children: [
+              TextSpan(
+                text: S.of(context).requested,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 12.0.t,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).primaryColorDark),
+              ),
+              TextSpan(
+                text: "${(data?.amount?.toStringAsFixed(3)).toString()} ${data?.curr ?? ''}",
                 style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontSize: 12.0.t,
-                  overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.sky_blue_mid,
+                  color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
                   TextSpan(
-                    text: S.of(context).requested,
+                    text: " " + S.of(context).fromYou,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontSize: 12.0.t,
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).primaryColorDark),
                   ),
-                  TextSpan(
-                    text: "${(data?.amount?.toStringAsFixed(3)).toString()} ${data?.curr ?? ''}",
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 12.0.t,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).primaryColorDark,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: " " + S.of(context).fromYou,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 12.0.t,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                    ],
-                  ),
-                ]));
-
-      default:
-        return Container();
-    }
+                ],
+              ),
+            ]));
   }
 
   Widget getItemForOutwardSendMoney(BuildContext context, RequestMoneyActivityList? data) {
