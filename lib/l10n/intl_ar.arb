@@ -1687,5 +1687,5 @@
   "cliqSendPaymentOffline": "عفوًا، إرسال الحوالات عبر خدمة  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "requestMoneyFeatureDisabled": "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100",
   "youCanNotRequestMoneyFromYourOwnAccount": "لا يمكنك طلب المال من حسابك الخاص",
-  "contactLessLimitmaxLimit": "The maximum contactless limit is 300 JOD"
+  "contactLessLimitmaxLimit": "الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"
 }

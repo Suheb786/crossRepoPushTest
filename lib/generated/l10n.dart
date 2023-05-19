@@ -17110,10 +17110,10 @@ class S {
     );
   }
 
-  /// `The maximum contactless limit is 300 JOD`
+  /// `The maximum contactless limit is 300 JOD daily`
   String get contactLessLimitmaxLimit {
     return Intl.message(
-      'The maximum contactless limit is 300 JOD',
+      'The maximum contactless limit is 300 JOD daily',
       name: 'contactLessLimitmaxLimit',
       desc: '',
       args: [],
