@@ -17,12 +17,15 @@ class ManageLimitsWidgetViewModel extends BasePageViewModel {
     _switchSubject.safeAdd(value);
   }
 
-  void showErrorToast() {
-    showToastWithError(
-        AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_LIMIT_VALUE, cause: Exception()));
+  void showErrorToast({required bool isContactless}) {
+    showToastWithError(AppError(
+        error: ErrorInfo(message: ''),
+        type: isContactless ? ErrorType.CONTACTLESS_MAX_LIMIT : ErrorType.INVALID_LIMIT_VALUE,
+        cause: Exception()));
   }
 
   String amountSet = "";
+
   @override
   void dispose() {
     controller.dispose();

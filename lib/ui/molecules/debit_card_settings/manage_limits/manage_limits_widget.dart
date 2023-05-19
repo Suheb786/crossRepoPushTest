@@ -26,6 +26,7 @@ class ManageLimitsWidget extends StatelessWidget {
   final ProviderBase providerBase;
   final Function(String value) onDone;
   final Function(String value) onChange;
+  final bool isContactless;
 
   const ManageLimitsWidget({
     Key? key,
@@ -40,6 +41,7 @@ class ManageLimitsWidget extends StatelessWidget {
     required this.onToggle,
     required this.onDone,
     required this.onChange,
+    this.isContactless = false,
   }) : super(key: key);
 
   @override
@@ -191,13 +193,13 @@ class ManageLimitsWidget extends StatelessWidget {
                                       )),
                                   onChanged: (value) {
                                     if ((num.tryParse(maxAmount) ?? 0) < (num.tryParse(value) ?? 0)) {
-                                      model.showErrorToast();
+                                      model.showErrorToast(isContactless: isContactless);
                                     }
                                     onChange.call(value);
                                   },
                                   onFieldSubmitted: (value) {
                                     if ((num.tryParse(maxAmount) ?? 0) < (num.tryParse(value) ?? 0)) {
-                                      model.showErrorToast();
+                                      model.showErrorToast(isContactless: isContactless);
                                     }
                                     onDone.call(value);
                                   },

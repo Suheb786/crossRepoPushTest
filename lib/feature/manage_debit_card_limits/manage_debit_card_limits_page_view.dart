@@ -413,6 +413,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                                                         .currentLimit!));
                                                           }
                                                         },
+                                                        isContactless: true,
                                                         initialValue:
                                                             // debitCardLimitResponse
                                                             //                 .data!

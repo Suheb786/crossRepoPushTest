@@ -61,8 +61,8 @@ class DebitCardReplacementSuccessPageView
                                 color: Theme.of(context).primaryColor,
                               ),
                               child: Center(
-                                  child:
-                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
+                                  child: AppSvg.asset(AssetUtils.right,
+                                      color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ],
@@ -79,6 +79,7 @@ class DebitCardReplacementSuccessPageView
                             S.of(context).yourCardReady,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
                               fontWeight: FontWeight.w500,
                               fontSize: 24.t,
                             ),
@@ -95,7 +96,7 @@ class DebitCardReplacementSuccessPageView
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14.t,
-                                  color: Theme.of(context).primaryColorDark),
+                                  color: Theme.of(context).textTheme.bodyMedium?.color),
                             ),
                           ),
                         ],

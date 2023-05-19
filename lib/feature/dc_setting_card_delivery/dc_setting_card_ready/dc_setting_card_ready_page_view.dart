@@ -42,7 +42,8 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Image.asset(AssetUtils.line, color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                          Image.asset(AssetUtils.line,
+                              color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
@@ -52,8 +53,8 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                                 color: Theme.of(context).primaryColor,
                               ),
                               child: Center(
-                                  child:
-                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).colorScheme.secondary)),
+                                  child: AppSvg.asset(AssetUtils.right,
+                                      color: Theme.of(context).colorScheme.secondary)),
                             ),
                           ),
                         ],
@@ -70,6 +71,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                             S.of(context).yourCardReady,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
                               fontWeight: FontWeight.w600,
                               fontSize: 24.t,
                             ),
@@ -83,6 +85,7 @@ class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyVi
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                color: Theme.of(context).textTheme.bodyMedium?.color,
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14.t,

@@ -55,7 +55,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      model.creditCardPayBackSuccessArguments.payBackAmount,
+                      double.parse(model.creditCardPayBackSuccessArguments.payBackAmount).toStringAsFixed(3),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -120,8 +120,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppSvg.asset(AssetUtils.share,
-                          color: Theme.of(context).textTheme.bodyLarge!.color!),
+                      AppSvg.asset(AssetUtils.share, color: Theme.of(context).textTheme.bodyLarge!.color!),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 11),
                         child: Text(
