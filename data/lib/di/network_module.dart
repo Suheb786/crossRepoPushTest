@@ -51,7 +51,6 @@ import 'package:data/source/user/remote/user_remote_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -71,29 +70,15 @@ final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
 );
 
 final dioProvider = Provider<Dio>(
-      (ref) {
+  (ref) {
     Dio dio = Dio(ref.read(baseOptions));
-
-    dio.interceptors.addAll([
+    dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
-      CertificatePinningInterceptor(
-
-        ///VAPT / pre-prod SSL Certificate
-          allowedSHAFingerprints: [
-            "D1:CF:EA:0D:31:FE:53:0D:6D:BB:98:42:AD:FE:80:CD:D5:58:D4:C5:71:B6:C7:B8:27:5E:BD:F4:0F:87:4A:14"
-          ]
-
-        ///prod certificates
-        // allowedSHAFingerprints: [
-        //   "DB:48:90:8A:B5:53:01:B1:A6:58:B0:F8:17:0D:3D:76:95:F9:A7:8D:37:0A:B7:82:74:C5:9B:01:6A:DB:CD:F9"
-        // ]
-      )
-    ]);
+    );
     dio.interceptors.add(ApiInterceptor(dio));
     return dio;
   },
 );
-
 
 final apiServiceProvider = Provider<ApiService>(
   (ref) => ApiService(ref.read(dioProvider), baseUrl: NetworkProperties.BASE_CHANNEL_URL),
