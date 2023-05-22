@@ -21,27 +21,11 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
       case DioError:
         switch ((throwable as DioError).type) {
           case DioErrorType.sendTimeout:
-            //"Receive timeout exception";
-            break;
+            return Left(getError(apiResponse: throwable.response));
           case DioErrorType.receiveTimeout:
-            //"Receive timeout in connection with API server";
-            break;
-          // case DioErrorType.response:
-          //   if (throwable is DioError) {
-          //     return Left(getError(apiResponse: throwable.response));
-          //   }
-          //   break;
-          //"Received invalid status code: ${error.response.statusCode}";
+            return Left(getError(apiResponse: throwable.response));
           case DioErrorType.cancel:
-            //"Request to API server was cancelled"
-            break;
-          /*case DioErrorType.other:
-            return Left(
-              NetworkError(
-                  message: "Connection to API server failed due to internet connection",
-                  httpError: 101,
-                  cause: throwable),
-            );*/
+            return Left(getError(apiResponse: throwable.response));
           case DioErrorType.connectionTimeout:
           case DioErrorType.badCertificate:
           case DioErrorType.connectionError:
@@ -56,10 +40,8 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
             return Left(getError(apiResponse: throwable.response));
 
           case DioErrorType.unknown:
-            break;
+            return Left(getError(apiResponse: throwable.response));
         }
-
-        break;
 
       case IOException:
         return Left(NetworkError(message: throwable.toString(), httpError: 502, cause: throwable));

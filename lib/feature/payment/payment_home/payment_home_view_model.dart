@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -75,8 +76,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
               rtpBeneficiaries.add(element);
             }
           });
+
           Future.delayed(Duration(milliseconds: 50), () {
-            appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
+            if (appSwiperController.hasClients)
+              appSwiperController.jumpToPage(getInitialNavigation(navigationType, value.context!));
           });
         }
       });
@@ -94,19 +97,20 @@ class PaymentHomeViewModel extends BasePageViewModel {
       case NavigationType.ADD_MONEY:
         return 1;
       case NavigationType.PAYMENTS:
-        if (ProviderScope.containerOf(context)
+      case NavigationType.PAYMENTS:
+        if (ProviderScope.containerOf(appLevelKey.currentContext!)
                 .read(appHomeViewModelProvider)
                 .dashboardDataContent
                 .dashboardFeatures
                 ?.blinkRetailAppBillPayment ??
             true) {
-          if ((ProviderScope.containerOf(context)
+          if ((ProviderScope.containerOf(appLevelKey.currentContext!)
                       .read(appHomeViewModelProvider)
                       .dashboardDataContent
                       .dashboardFeatures
                       ?.appBillPaymentPostpaid ??
                   true) ||
-              (ProviderScope.containerOf(context)
+              (ProviderScope.containerOf(appLevelKey.currentContext!)
                       .read(appHomeViewModelProvider)
                       .dashboardDataContent
                       .dashboardFeatures

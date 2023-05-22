@@ -200,7 +200,7 @@ class HowMuchLikeToPayPrePaidBillsPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   validate(String? amount) {
-    if (double.parse(amount ?? "0") > 0.0) {
+    if ((double.tryParse(amount ?? "0") ?? 0.0) > 0.0) {
       if (savingAccountController.text.isNotEmpty) {
         _showButtonSubject.safeAdd(true);
       }

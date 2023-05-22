@@ -18,7 +18,7 @@ void main() async {
   //   runApp(ProviderScope(child: MyApp()));
   // });
   await runZonedGuarded(() async {
-    HttpOverrides.global = AppHttpOverrides();
+    //HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
 
     //await FirebaseAnalytics.instance.logEvent(name: "Test");
