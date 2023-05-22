@@ -13,20 +13,23 @@ import 'package:rxdart/subjects.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactsIBANformPageViewModel extends BasePageViewModel {
+
+
+  final AddContactIBANuseCase addContactIBANuseCase;
+
   ///--------------------------keys-valiables-------------------------------------///
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
-  final AddContactIBANuseCase addContactIBANuseCase;
-  //final UpdateContactUseCase updateContactUseCase;
-
-  final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
   final GlobalKey<AppTextFieldState> ibanORaccountORmobileORaliasKey =
       GlobalKey(debugLabel: "ibanORaccountORmobileORalias");
 
-  ///--------------------------textEditing-controllers-------------------------------------///
+  final GlobalKey<AppTextFieldState> purposeKey = GlobalKey(debugLabel: "purpose");
+  final GlobalKey<AppTextFieldState> purposeDetailKey = GlobalKey(debugLabel: "purposeDetails");
 
+  ///--------------------------textEditing-controllers-------------------------------------///
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController ibanORaccountORmobileORaliasController = TextEditingController();
+  TextEditingController purposeController = TextEditingController();
+  TextEditingController purposeDetailController = TextEditingController();
 
   ///--------------------------formField-subject-------------------------------------///
 
@@ -45,18 +48,20 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-other-methods-------------------------------------///
 
+  PublishSubject<bool> _showNameVisibilityRequest = PublishSubject();
+  Stream<bool> get showNameVisibilityStream => _showNameVisibilityRequest.stream;
+
+
+  void showNameVisibility(bool value) {
+    _showNameVisibilityRequest.safeAdd(value);
+  }
+
   validate(String data) {
-    formFieldSubject.safeAdd(data);
     if (nameController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(true);
-    }
-    if (emailController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(true);
-      formFieldSubject.safeAdd(data);
+      _showButtonSubject.safeAdd(false);
     }
     if (ibanORaccountORmobileORaliasController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(true);
-      formFieldSubject.safeAdd(data);
+      _showButtonSubject.safeAdd(false);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -65,7 +70,8 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
   validationUserInput() {
     addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
         IBANACCOUNTNOMobileNoALIAS: ibanORaccountORmobileORaliasController.text,
-        emailAddress: emailController.text,
+        purpose: 'Dhaiyur',
+        purposeDetail: 'dhaiyur',
         name: nameController.text));
   }
 
@@ -73,10 +79,6 @@ class AddContactsIBANformPageViewModel extends BasePageViewModel {
     switch (event.appError?.type) {
       case ErrorType.PLEASE_ENTER_CONTACT_NAME:
         nameKey.currentState!.isValid = false;
-        break;
-
-      case ErrorType.INVALID_EMAIL:
-        emailKey.currentState!.isValid = false;
         break;
 
       case ErrorType.INVALID_IBAN:

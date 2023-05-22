@@ -16,7 +16,7 @@ class AddContactIBANuseCase extends BaseUseCase<BaseError, AddContactIBANuseCase
 
   @override
   Future<Either<BaseError, bool>> execute({required AddContactIBANuseCaseParams params}) {
-    return _manageContactRepository.addContact(
+    /*return _manageContactRepository.addContact(
         nickName: params.name,
         fullName: '',
         emailAddress: params.emailAddress,
@@ -24,18 +24,21 @@ class AddContactIBANuseCase extends BaseUseCase<BaseError, AddContactIBANuseCase
         isFav: false,
         userId: '',
         identifier: params.IBANACCOUNTNOMobileNoALIAS,
-        isFromMobile: '');
+        isFromMobile: '');*/
+    return Future.value(Right(true));
   }
 }
 
 class AddContactIBANuseCaseParams extends Params {
   final String name;
-  final String emailAddress;
+  final String purpose;
+  final String purposeDetail;
   final String IBANACCOUNTNOMobileNoALIAS;
 
   AddContactIBANuseCaseParams({
     required this.name,
-    required this.emailAddress,
+    required this.purpose,
+    required this.purposeDetail,
     required this.IBANACCOUNTNOMobileNoALIAS,
   });
 
@@ -44,13 +47,16 @@ class AddContactIBANuseCaseParams extends Params {
     if (Validator.isEmpty(name)) {
       return Left(AppError(
           cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.PLEASE_ENTER_CONTACT_NAME));
-    } else if (Validator.isEmpty(emailAddress)) {
-      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_EMAIL));
     } else if (Validator.isEmpty(IBANACCOUNTNOMobileNoALIAS)) {
       return Left(AppError(
           cause: Exception(),
           error: ErrorInfo(message: ""),
           type: ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS));
+    } else if (Validator.isEmpty(purpose)) {
+      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE));
+    } else if (Validator.isEmpty(purposeDetail)) {
+      return Left(
+          AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE_DETAIL));
     }
 
     return Right(true);

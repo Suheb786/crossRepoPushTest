@@ -20,6 +20,8 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
+import '../../../../ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
+import '../../../../ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'add_contacts_IBAN_form_page_view_model.dart';
 
 class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANformPageViewModel> {
@@ -96,76 +98,177 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                                           model.validate(value);
                                         }),
                                     SizedBox(height: 16.0.h),
-                                    AppTextField(
-                                        labelText: S.current.emailAddress.toUpperCase(),
+                                    Focus(
+                                      child: AppTextField(
+                                        labelText: S.current.accountMobileNoAlias,
                                         hintText: S.current.pleaseEnter,
-                                        controller: model.emailController,
-                                        key: model.emailKey,
+                                        controller: model.ibanORaccountORmobileORaliasController,
+                                        key: model.ibanORaccountORmobileORaliasKey,
                                         onChanged: (value) {
                                           model.validate(value);
-                                        }),
-                                    SizedBox(height: 16.0.h),
-                                    AppTextField(
-                                      labelText: S.current.accountMobileNoAlias,
-                                      hintText: S.current.pleaseEnter,
-                                      controller: model.ibanORaccountORmobileORaliasController,
-                                      key: model.ibanORaccountORmobileORaliasKey,
-                                      onChanged: (value) {
-                                        model.validate(value);
-                                      },
-                                      labelIcon: () {
-                                        return InkWell(
-                                          onTap: () {
-                                            InformationDialog.show(context,
-                                                isSwipeToCancel: false,
-                                                title: S.of(context).mobileNoRegisteredWithBlink,
-                                                descriptionWidget: Column(
-                                                  children: [
-                                                    Text(
-                                                      S.of(context).samplesOfNoFormatting,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 14.t,
-                                                          fontWeight: FontWeight.w400),
-                                                    ),
-                                                    NumberFormattingWidget(
-                                                      title: S.of(context).iban,
-                                                      desc: S.of(context).dummyIBAN,
-                                                    ),
-                                                    NumberFormattingWidget(
-                                                      title: S.of(context).accountNumber,
-                                                      desc: S.of(context).dummyAccountNo,
-                                                    ),
-                                                    NumberFormattingWidget(
-                                                      title: S.of(context).mobileNo,
-                                                      desc: S.of(context).dummyMobileNo,
-                                                    ),
-                                                    NumberFormattingWidget(
-                                                      title: S.of(context).alias,
-                                                      desc: S.of(context).dummyAlias,
-                                                    )
-                                                  ],
-                                                ),
-                                                onDismissed: () {}, onSelected: () {
-                                              Navigator.pop(context);
-                                            });
-                                          },
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 5.0.w),
-                                            child: Container(
-                                                height: 14.h,
-                                                width: 14.w,
-                                                child: AppSvg.asset(AssetUtils.info,
-                                                    color: Theme.of(context)
-                                                        .inputDecorationTheme
-                                                        .focusedBorder!
-                                                        .borderSide
-                                                        .color)),
-                                          ),
-                                        );
+                                        },
+                                        labelIcon: () {
+                                          return InkWell(
+                                            onTap: () {
+                                              InformationDialog.show(context,
+                                                  isSwipeToCancel: false,
+                                                  title: S.of(context).contactInformation,
+                                                  descriptionWidget: Column(
+                                                    children: [
+                                                      Text(
+                                                        S.of(context).contactInformationDetails,
+                                                        style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14.t,
+                                                            fontWeight: FontWeight.w400),
+                                                      ),
+                                                      SizedBox(height: 16.h,),
+                                                      NumberFormattingWidget(
+                                                        title: S.of(context).iban,
+                                                        desc: S.of(context).dummyIBAN,
+                                                      ),
+                                                      NumberFormattingWidget(
+                                                        title: S.of(context).accountNumber,
+                                                        desc: S.of(context).dummyAccountNo,
+                                                      ),
+                                                      NumberFormattingWidget(
+                                                        title: S.of(context).mobileNo,
+                                                        desc: S.of(context).dummyMobileNo,
+                                                      ),
+                                                      NumberFormattingWidget(
+                                                        title: S.of(context).alias,
+                                                        desc: S.of(context).dummyAlias,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  onDismissed: () {}, onSelected: () {
+                                                Navigator.pop(context);
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 5.0.w),
+                                              child: Container(
+                                                  height: 14.h,
+                                                  width: 14.w,
+                                                  child: AppSvg.asset(AssetUtils.info,
+                                                      color: Theme.of(context)
+                                                          .inputDecorationTheme
+                                                          .focusedBorder!
+                                                          .borderSide
+                                                          .color)),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      onFocusChange: (hasFocus) {
+                                        if (!hasFocus) {
+                                          model.showNameVisibility(!hasFocus);
+                                        }
                                       },
                                     ),
                                     SizedBox(height: 16.0.h),
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showNameVisibilityStream,
+                                        initialData: false,
+                                        dataBuilder: (context, visibility) {
+                                          return Visibility(
+                                            visible: visibility!,
+                                            child: Padding(
+                                                padding: EdgeInsets.symmetric(horizontal: 2),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        S.of(context).nameOfBeneficiary,
+                                                        style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 12.0.t,
+                                                          fontWeight: FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        "Shakila Naseem Ahmed Ali",
+                                                        maxLines: 2,
+                                                        textAlign: TextAlign.end,
+                                                        style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 12.0.t,
+                                                          fontWeight: FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
+                                          );
+                                        }),
+                                    SizedBox(height: 24.0.h),
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showNameVisibilityStream,
+                                        initialData: false,
+                                        dataBuilder: (context, visibility) {
+                                          return Visibility(
+                                            visible: visibility!,
+                                            child: AppTextField(
+                                              labelText: S.of(context).purpose,
+                                              hintText: S.of(context).pleaseEnter,
+                                              readOnly: true,
+                                              key: model.purposeKey,
+                                              controller: model.purposeController,
+                                              onPressed: () {
+                                                PurposeDialog.show(context, purposeList: [],
+                                                    onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                });
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.0.h,
+                                                    width: 16.0.w,
+                                                    padding: EdgeInsetsDirectional.only(end: 8.0.w),
+                                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                                        color: AppColor.dark_gray_1));
+                                              },
+                                            ),
+                                          );
+                                        }),
+                                    SizedBox(height: 16.0.h),
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showNameVisibilityStream,
+                                        initialData: false,
+                                        dataBuilder: (context, visibility) {
+                                          return Visibility(
+                                            visible: visibility!,
+                                            child: AppTextField(
+                                              labelText: S.of(context).purposeDetails,
+                                              hintText: S.of(context).pleaseEnter,
+                                              readOnly: true,
+                                              controller: model.purposeDetailController,
+                                              key: model.purposeDetailKey,
+                                              onPressed: () {
+                                                PurposeDetailDialog.show(context, purposeDetailList: [],
+                                                    onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                });
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16.0.h,
+                                                    width: 16.0.w,
+                                                    padding: EdgeInsetsDirectional.only(end: 8.0.w),
+                                                    child: AppSvg.asset(AssetUtils.downArrow,
+                                                        color: AppColor.dark_gray_1));
+                                              },
+                                            ),
+                                          );
+                                        }),
                                   ],
                                 ),
                               )),

@@ -443,7 +443,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"),
         "callDroppedDesc": MessageLookupByLibrary.simpleMessage(
-            "عفوا! صار خطأ في الاتصال، حاول كمان مرة بأي وقت بين الساعة ١٠:٠٠ص و ٦:٠٠م لتستكمل الطلب"),
+            "عفواً! صار خطأ في الأتصال, حاول كمان مرة"),
         "callHangupError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إنهاء المكالمة"),
         "callHasEnded":
@@ -655,8 +655,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل في الاتصال"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "حمّل توقيعك للموافقة والاستمرار"),
-        "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
-            "الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"),
+        "contactInformation":
+            MessageLookupByLibrary.simpleMessage("Contact information"),
+        "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
+            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
@@ -2066,8 +2068,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded":
             MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
-        "oopsYourCardIsNotActive":
-            MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
@@ -2943,7 +2943,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
-            "تواصل معنا لتستكمل الطلب بين الساعة ١٠:٠٠ص و ٦:٠٠م. ممكن نطلب إثبات عمل،  يا ريت يكون معك عند الاتصال."),
+            " خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية.\nقد نطلب منك وثائق إضافية للتحقق من حالتك الوظيفية"),
         "videoCall": MessageLookupByLibrary.simpleMessage("مكالمة فيديو"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "صار وقت مكالمة الفيديو. اسحب الشاشة لتبدأ المكالمة لما تكون جاهز."),
@@ -3031,14 +3031,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "لا يمكنك طلب المال من حسابك الخاص"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
-        "youCannotSendMoneyToYourOwnAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "عفوا! ما بتقدر تحول لنفس حسابك"),
         "youDontHaveAnyContactAddYourFirstNow":
             MessageLookupByLibrary.simpleMessage(
                 "You don’t have any contacts yet.\nAdd your first one now."),
-        "youEitherChangePinOrUnBlocked": MessageLookupByLibrary.simpleMessage(
-            "الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),

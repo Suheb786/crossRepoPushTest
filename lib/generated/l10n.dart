@@ -17319,6 +17319,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Contact information`
+  String get contactInformation {
+    return Intl.message(
+      'Contact information',
+      name: 'contactInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Just give us any of these information that you know about your contact. We’ll sort out the rest for you.`
+  String get contactInformationDetails {
+    return Intl.message(
+      'Just give us any of these information that you know about your contact. We’ll sort out the rest for you.',
+      name: 'contactInformationDetails',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
