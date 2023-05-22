@@ -39,8 +39,17 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
                         if (currentStep == 1) {
-                          //&& (paymentActivity?.data ?? []).length > 4) {
-                          Navigator.push(context, CustomRoute.createRoute(PaymentActivityTransactionPage()));
+                          Navigator.push(
+                              context,
+                              CustomRoute.createRoute(
+                                PaymentActivityTransactionPage(
+                                  PaymentActivityTransactionPageArgument(
+                                    backgroundColor: Theme.of(context).canvasColor,
+                                    title: S.of(context).paymentActivity,
+                                    titleColor: AppColor.black,
+                                  ),
+                                ),
+                              ));
                         }
                       } else {
                         if (details.primaryVelocity! > 0.5) {

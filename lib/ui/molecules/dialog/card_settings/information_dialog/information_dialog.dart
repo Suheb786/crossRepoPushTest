@@ -10,6 +10,8 @@ class InformationDialog {
       Function? onSelected,
       String? image,
       bool? isSwipeToCancel,
+      double? imageHight,
+      double? imageWidth,
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
@@ -19,6 +21,8 @@ class InformationDialog {
             onSelected: onSelected,
             isSwipeToCancel: isSwipeToCancel,
             image: image,
+            imageHight: imageHight,
+            imageWidth: imageWidth,
             title: title,
             descriptionWidget: descriptionWidget));
   }

@@ -150,12 +150,17 @@ class RoutePaths {
   static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
   static const String LinkAccountPage = "/linkAccountPage";
   static const String OtpForCliqIdListPage = "/otpForCliqIdListPage";
-
   static const String ReturnPaymentSliderPage = "/returnPaymentReasonSelectionPage";
-
   static const String temp = "/temp";
   static const String AcceptRequestMoneyOtp = "/acceptRequestMoneyOtpPage";
   static const String RejectRequestPayment = "/rejectRequestPaymentPage";
   static const String CreditConfirmation = "/creditConfirmationPaymentActivityPage";
   static const String PaymentTransationSuccess = "/PaymentTransationSuccessPage";
+  static const String AddContactsIBANManageContactsPage = "/addContactIBANManageContactPage";
+  static const String NewContactAddedPage = "/newContactAddedPage";
+  static const String UserContactDetailsPage = "/editManageContact";
+  static const String EditContactOTPpage = "/editContactOTPpage";
+  static const String PaymentActivityPage = "/paymentActivityPage";
+  static const String OtpForManageContact = "/otpForManageContact";
+  static const String AddContactIBANotpPage = "/addContactIbanOTPPage";
 }

@@ -12,15 +12,7 @@ class AddBeneficiaryUseCase extends BaseUseCase<NetworkError, AddBeneficiaryUseC
 
   @override
   Future<Either<NetworkError, bool>> execute({required AddBeneficiaryUseCaseParams params}) {
-    return _repository.addBeneficiary(
-        iBan: params.iban,
-        bankName: params.bankName,
-        fullName: params.fullName,
-        accountNumber: params.accountNumber,
-        imageFilePath: params.imageFilePath,
-        purposeDetails: params.purposeDetails,
-        purpose: params.purpose,
-        nickName: params.nickName);
+    return Future.value(Right(true));
   }
 }
 

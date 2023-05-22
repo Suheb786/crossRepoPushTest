@@ -162,9 +162,14 @@ import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/delete_contact_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
+import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
+import 'package:data/entity/remote/contact/search_contact_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/update_favorite_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
@@ -285,6 +290,10 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../entity/remote/contact/add_contact_request.dart';
+import '../entity/remote/contact/update_avatar_request.dart';
+import '../entity/remote/contact/update_contact_request.dart';
 
 part 'api_service.g.dart';
 
@@ -1128,4 +1137,42 @@ abstract class ApiService {
   @POST("/Cliq/GetCreditConfirmation")
   Future<HttpResponse<CreditConfirmationResponseEntity>> getCreditConfirmation(
       @Body() CreditConfirmationRequestEntity creditConfirmationRequestEntity);
+
+  /// Manage Contacts
+
+  @POST("/ManageContacts/UpdateFavorite")
+  Future<HttpResponse<ResponseEntity>> updateFavorite(
+    @Body() UpdateFavoriteRequest request,
+  );
+
+  @POST("/ManageContacts/GetListofContacts")
+  Future<HttpResponse<ResponseEntity>> listOfContacts(
+    @Body() ListOfContactRequest request,
+  );
+
+  @POST("/ManageContacts/GetContactDetail")
+  Future<HttpResponse<ResponseEntity>> contactDetail(
+    @Body() ContactDetailRequest request,
+  );
+
+  @POST("/ManageContacts/SearchContact")
+  Future<HttpResponse<ResponseEntity>> searchContact(
+    @Body() SearchContactRequest request,
+  );
+
+  ///Add Contact
+  @POST("/ManageContacts/AddContact")
+  Future<HttpResponse<ResponseEntity>> addContact(@Body() AddContactRequest addContactRequest);
+
+  ///update contact
+  @POST("/ManageContacts/UpdateContact")
+  Future<HttpResponse<ResponseEntity>> updateContact(@Body() UpdateContactRequest updateContactRequest);
+
+  ///delete contact
+  @POST("/ManageContacts/DeleteContact")
+  Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
+
+  ///update avatar contact
+  @POST("/ManageContacts/UpdateAvatar")
+  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
 }

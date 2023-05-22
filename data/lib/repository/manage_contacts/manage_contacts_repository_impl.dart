@@ -11,25 +11,25 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   ManageContactsRepositoryImpl(this._contactRemoteDS);
 
   @override
-  Future<Either<NetworkError, bool>> addBeneficiary(
+  Future<Either<NetworkError, bool>> addContact(
       {String? nickName,
       String? fullName,
-      String? accountNumber,
-      String? iBan,
-      String? bankName,
-      String? purpose,
-      String? purposeDetails,
-      String? imageFilePath}) async {
+      String? emailAddress,
+      String? avatarImage,
+      bool? isFav,
+      String? userId,
+      String? identifier,
+      String? isFromMobile}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.addBeneficiary(
+      _contactRemoteDS.addContact(
           nickName: nickName!,
           fullName: fullName!,
-          accountNumber: accountNumber!,
-          iBan: iBan!,
-          bankName: bankName!,
-          purpose: purpose!,
-          purposeDetails: purposeDetails!,
-          imageFilePath: imageFilePath!),
+          emailAddress: emailAddress!,
+          avatarImage: avatarImage!,
+          isFav: isFav!,
+          userId: userId!,
+          identifier: identifier!,
+          isFromMobile: isFromMobile!),
     );
     return result!.fold(
       (l) => Left(l),
@@ -105,6 +105,125 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> contactDetail(
+      {required String beneficiaryDetailId, required bool isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.contactDetail(beneficiaryDetailId: beneficiaryDetailId, isFromMobile: isFromMobile),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> listOfContacts({required bool isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.listOfContacts(isFromMobile: isFromMobile),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> searchContact(
+      {required String searchText, required bool isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.searchContact(searchText: searchText, isFromMobile: isFromMobile),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFav,
+      required String userId,
+      required bool isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.updateFavorite(
+          beneficiaryDetailId: beneficiaryDetailId, isFav: isFav, userId: userId, isFromMobile: isFromMobile),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateContact(
+      {String? beneficiaryDetailId,
+        String? nickName,
+        String? fullName,
+        String? emailAddress,
+        String? userId,
+        String? identifier,
+        String? isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.updateContact(
+          beneficiaryDetailId: beneficiaryDetailId!,
+          nickName: nickName!,
+          fullName: fullName!,
+          emailAddress: emailAddress!,
+          userId: userId!,
+          identifier: identifier!,
+          isFromMobile: isFromMobile!),
+    );
+    return result!.fold(
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> deleteContact(
+      {String? beneficiaryDetailId,
+        String? nickName,
+        String? fullName,
+        String? emailAddress,
+        String? avatarImage,
+        bool? isFav,
+        String? userId,
+        String? isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.deleteContact(
+          beneficiaryDetailId: beneficiaryDetailId!,
+          nickName: nickName!,
+          fullName: fullName!,
+          emailAddress: emailAddress!,
+          avatarImage: avatarImage!,
+          isFav: isFav!,
+          userId: userId!,
+          isFromMobile: isFromMobile!),
+    );
+    return result!.fold(
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateAvatar(
+      {String? beneficiaryDetailId, String? avatarImage, String? userId, String? isFromMobile}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.updateAvatar(
+          beneficiaryDetailId: beneficiaryDetailId!,
+          avatarImage: avatarImage!,
+          userId: userId!,
+          isFromMobile: isFromMobile!),
+    );
+    return result!.fold(
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 }

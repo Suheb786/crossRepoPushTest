@@ -54,9 +54,9 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                 padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                 child: Center(
                   child: Text(
-                    S.of(context).paymentActivity,
+                    model.paymentActivityTransactionPageArgument.title,
                     style: TextStyle(
-                        color: AppColor.veryDarkGray2,
+                        color: model.paymentActivityTransactionPageArgument.titleColor,
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 14.0.t),

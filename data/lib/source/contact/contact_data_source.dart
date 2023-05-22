@@ -15,6 +15,42 @@ abstract class ContactRemoteDS {
       String purposeDetails,
       String imageFilePath});
 
+  Future<HttpResponse<ResponseEntity>> addContact(
+      {String nickName,
+      String fullName,
+      String emailAddress,
+      String avatarImage,
+      bool isFav,
+      String userId,
+      String identifier,
+      String isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> updateContact(
+      {String beneficiaryDetailId,
+      String nickName,
+      String fullName,
+      String emailAddress,
+      String userId,
+      String identifier,
+      String isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> deleteContact(
+      {String beneficiaryDetailId,
+      String nickName,
+      String fullName,
+      String emailAddress,
+      String avatarImage,
+      bool isFav,
+      String userId,
+      String identifier,
+      String isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> updateAvatar(
+      {String beneficiaryDetailId,
+        String avatarImage,
+        String userId,
+        String isFromMobile});
+
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       {String beneficiaryId, String nickName, String purpose, String purposeDetails});
 
@@ -26,4 +62,18 @@ abstract class ContactRemoteDS {
   });
 
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
+
+  Future<HttpResponse<ResponseEntity>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFav,
+      required String userId,
+      required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> contactDetail(
+      {required String beneficiaryDetailId, required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> searchContact(
+      {required String searchText, required bool isFromMobile});
 }

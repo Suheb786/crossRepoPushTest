@@ -1344,6 +1344,12 @@ class ErrorParser {
 
       case ErrorType.OOPS_YOUR_CARD_IS_NOT_ACTIVE:
         return localisedHelper.oopsYourCardIsNotActive;
+      case ErrorType.PLEASE_ENTER_CONTACT_NAME:
+        return localisedHelper.pleaseEnterContactName;
+
+      case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
+        return localisedHelper.pleaseEnterAValidaccountMobileNoAlias;
+
       default:
         return "";
     }
