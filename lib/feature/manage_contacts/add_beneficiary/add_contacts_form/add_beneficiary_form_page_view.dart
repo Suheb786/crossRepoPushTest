@@ -1,6 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
@@ -8,7 +7,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
 import 'package:neo_bank/ui/molecules/payment/number_formatting_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -18,14 +16,13 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:riverpod/src/framework.dart';
 
 import '../../../../ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
 import '../../../../ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
-import 'add_contacts_IBAN_form_page_view_model.dart';
+import 'add_beneficiary_form_page_view_model.dart';
 
-class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANformPageViewModel> {
-  AddContactsIBANformPageView(ProviderBase model) : super(model);
+class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPageViewModel> {
+  AddBeneficiaryFormPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -43,14 +40,14 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                 stream: model.addcontactIBANStream,
                 onData: (value) {
                   if (value.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context).read(addContactIBANViewModelProvider).nextPage();
+                    ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider).nextPage();
                   } else {}
                 },
                 dataBuilder: (context, validate) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (ProviderScope.containerOf(context)
-                              .read(addContactIBANViewModelProvider)
+                              .read(addBeneficiaryViewModelProvider)
                               .appSwiperController
                               .page ==
                           0.0) {
@@ -60,7 +57,7 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                             model.validationUserInput();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(addContactIBANViewModelProvider)
+                                .read(addBeneficiaryViewModelProvider)
                                 .previousPage();
                           }
                         } else {
@@ -68,7 +65,7 @@ class AddContactsIBANformPageView extends BasePageViewWidget<AddContactsIBANform
                             model.validationUserInput();
                           } else {
                             ProviderScope.containerOf(context)
-                                .read(addContactIBANViewModelProvider)
+                                .read(addBeneficiaryViewModelProvider)
                                 .previousPage();
                           }
                         }

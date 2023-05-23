@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
@@ -17,11 +16,13 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPageViewModel> {
-  AddContactIBANotpPageView(ProviderBase model) : super(model);
+import 'add_beneficiary_otp_page_view_model.dart';
+
+class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPageViewModel> {
+  AddBeneficiaryotpPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, AddContactIBANotpPageViewModel model) {
+  Widget build(BuildContext context, AddBeneficiaryotpPageViewModel model) {
     return AppStreamBuilder<bool>(
         stream: model.errorDetectorStream,
         initialData: false,
@@ -45,7 +46,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
                         if (ProviderScope.containerOf(context)
-                                .read(addContactIBANViewModelProvider)
+                                .read(addBeneficiaryViewModelProvider)
                                 .appSwiperController
                                 .page ==
                             1.0) {
@@ -55,7 +56,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                               model.validateOTP();
                             } else {
                               ProviderScope.containerOf(context)
-                                  .read(addContactIBANViewModelProvider)
+                                  .read(addBeneficiaryViewModelProvider)
                                   .previousPage();
                             }
                           } else {
@@ -63,7 +64,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                               model.validateOTP();
                             } else {
                               ProviderScope.containerOf(context)
-                                  .read(addContactIBANViewModelProvider)
+                                  .read(addBeneficiaryViewModelProvider)
                                   .previousPage();
                             }
                           }

@@ -667,24 +667,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirm your payment\namount below"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "congratulations":
-            MessageLookupByLibrary.simpleMessage("Congratulations!"),
-        "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
-            "Connecting to our agent to assist you"),
-        "connectionFailed":
-            MessageLookupByLibrary.simpleMessage("Connection Failed"),
-        "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
-            "We need your consent by uploading the signature"),
-        "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
-            "The maximum contactless limit is 300 JOD daily"),
-        "contactLessPayments":
-            MessageLookupByLibrary.simpleMessage("Contactless Payment"),
+        "congratulations": MessageLookupByLibrary.simpleMessage("Congratulations!"),
+        "connectToAgentToAssistYou":
+            MessageLookupByLibrary.simpleMessage("Connecting to our agent to assist you"),
+        "connectionFailed": MessageLookupByLibrary.simpleMessage("Connection Failed"),
+        "consentForSignatureUpload":
+            MessageLookupByLibrary.simpleMessage("We need your consent by uploading the signature"),
+        "contactInformation": MessageLookupByLibrary.simpleMessage("Contact information"),
+        "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
+            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
+        "contactLessLimitmaxLimit":
+            MessageLookupByLibrary.simpleMessage("The maximum contactless limit is 300 JOD daily"),
+        "contactLessPayments": MessageLookupByLibrary.simpleMessage("Contactless Payment"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-095)"),
-        "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
-            "I\'m trying to control my expenses in other ways"),
+        "controlMyExpensesInOtherWays":
+            MessageLookupByLibrary.simpleMessage("I\'m trying to control my expenses in other ways"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
             "Convert purchases to instalments"),
         "convertPurchaseToInstallments": MessageLookupByLibrary.simpleMessage(
