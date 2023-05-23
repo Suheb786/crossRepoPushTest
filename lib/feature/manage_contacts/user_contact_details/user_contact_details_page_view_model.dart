@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,7 +12,7 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final UploadDocumentUseCase _uploadDocumentUseCase;
-  final UserInformation argument;
+  final Beneficiary argument;
 
   ///---------------------------textEditing-controller----------------------------///
 
@@ -55,7 +56,7 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-constructor-------------------------------------///
 
   UserContactDetailsPageViewModel(this._uploadDocumentUseCase, this.argument) {
-    nickNameController.text = argument.nickName;
+    nickNameController.text = argument.nickName!;
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()

@@ -932,7 +932,7 @@ class AppRouter {
 
       case RoutePaths.UserContactDetailsPage:
         return CupertinoPageRoute(
-            builder: (context) => UserContactDetailsPage(settings.arguments as UserInformation),
+            builder: (context) => UserContactDetailsPage(settings.arguments as Beneficiary),
             settings: RouteSettings(name: RoutePaths.UserContactDetailsPage));
       case RoutePaths.EditContactOTPpage:
         return CupertinoPageRoute(

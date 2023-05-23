@@ -233,7 +233,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
             height: 8.h,
           ),
           Text(
-            model.argument.name,
+            model.argument.nickName!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -258,7 +258,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
             children: [
               Flexible(
                 child: Text(
-                  model.argument.ibanNo,
+                  model.argument.iban!,
                   style: TextStyle(
                       fontSize: 16.t,
                       fontFamily: StringUtils.appFont,
@@ -271,7 +271,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.ibanNo,
+                        text: model.argument.iban!,
                       )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
@@ -293,7 +293,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
             height: 8.h,
           ),
           Text(
-            model.argument.purpose,
+            model.argument.purpose!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -315,7 +315,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
             height: 8.h,
           ),
           Text(
-            model.argument.purposeDetail,
+            model.argument.purposeDetails!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,

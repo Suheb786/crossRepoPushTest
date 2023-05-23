@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
@@ -10,9 +11,9 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
 class UserContactDetailsPage extends BasePage<UserContactDetailsPageViewModel> {
-  final UserInformation _userInformation;
+  final Beneficiary _beneficiaryInformation;
 
-  UserContactDetailsPage(this._userInformation);
+  UserContactDetailsPage(this._beneficiaryInformation);
 
   @override
   State<StatefulWidget> createState() => UserContactDetailsPageState();
@@ -25,7 +26,7 @@ class UserContactDetailsPageState
       UserContactDetailsPageView(provideBase());
 
   @override
-  ProviderBase provideBase() => editContactAddedPageViewModelProvider.call(widget._userInformation);
+  ProviderBase provideBase() => editContactAddedPageViewModelProvider.call(widget._beneficiaryInformation);
 
   @override
   Color? scaffoldBackgroundColor() {
