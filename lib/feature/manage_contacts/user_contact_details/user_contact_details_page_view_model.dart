@@ -72,20 +72,3 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
     _selectedImageSubject.value = "";
   }
 }
-
-class UserInformation {
-  String nickName;
-  String name;
-  String ibanNo;
-  String purpose;
-  String purposeDetail;
-  bool isFav;
-
-  UserInformation(
-      {this.nickName = '',
-      this.name = '',
-      this.ibanNo = '',
-      this.purpose = '',
-      this.purposeDetail = '',
-      this.isFav = false});
-}
