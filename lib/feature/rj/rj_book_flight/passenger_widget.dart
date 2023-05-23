@@ -1,13 +1,17 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/passenger_view_%20model.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/passenger_view_%20model.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
+
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../base/base_widget.dart';
+import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
+import '../../../utils/color_utils.dart';
+import '../../../utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {
   var count = 0;

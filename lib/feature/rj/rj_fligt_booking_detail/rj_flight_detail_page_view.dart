@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_otp_validate/rj_o
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -26,7 +27,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).primaryColor,
+      color: AppColor.rj_gray,
       padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [

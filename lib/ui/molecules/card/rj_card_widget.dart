@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/string_utils.dart';
+
+import '../../../utils/string_utils.dart';
 
 class RjCardWidget extends StatelessWidget {
   const RjCardWidget({Key? key}) : super(key: key);
@@ -22,40 +23,33 @@ class RjCardWidget extends StatelessWidget {
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AssetUtils.RjCardBg),
-                    fit: BoxFit.cover,
-                    scale: 1,
-                    matchTextDirection: true)),
+              color: AppColor.rj_gray,
+              image: DecorationImage(
+                alignment: Alignment.topCenter,
+                image: AssetImage(AssetUtils.New_RJ_BG),
+                fit: BoxFit.contain,
+                scale: 0.92,
+                matchTextDirection: true,
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.only(top: 32.h, end: 24.w, start: 0.0),
-                    child: AppSvg.asset(AssetUtils.RjCardLogo, height: 63.64.h, width: 121.w),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(top: 24.h, start: 24.w),
-                  child: Align(
-                    alignment: AlignmentDirectional.topStart,
-                    child: AppSvg.asset(AssetUtils.GoRjLogo, width: 97.51.h, height: 42.w),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: 65.h,
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      AssetUtils.RjCardDescriptionLogo,
-                      height: 105.h,
-                      width: 190.w,
-                    ),
-                  ),
+                // Padding(
+                //   padding: EdgeInsetsDirectional.only(top: 24.h, start: 24.w),
+                //   child: Align(
+                //     alignment: AlignmentDirectional.topStart,
+                //     child: AppSvg.asset(AssetUtils.GoRjLogo, width: 97.51.h, height: 42.w),
+                //   ),
+                // ),
+                // Image.asset(
+                //   AssetUtils.RjCardDescriptionLogo,
+                //   height: 105.h,
+                //   width: 190.w,
+                // ),
+                SizedBox(
+                  height: 357,
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(
@@ -68,11 +62,13 @@ class RjCardWidget extends StatelessWidget {
                       onTap: () {
                         /// opening Rj Flight Booking Dialog
                         Future.delayed(Duration(milliseconds: 200), () {
-                          RjFlightBookingDialog.show(context, onSelected: (value) {
-                            Navigator.pop(context);
-                          }, onDismissed: () {
-                            Navigator.pop(context);
-                          });
+                          Navigator.pushNamed(context, RoutePaths.RjFlightBookingPage);
+
+                          // RjFlightBookingDialog.show(context, onSelected: (value) {
+                          //   Navigator.pop(context);
+                          // }, onDismissed: () {
+                          //   Navigator.pop(context);
+                          // });
                         });
                       },
                       child: Container(
