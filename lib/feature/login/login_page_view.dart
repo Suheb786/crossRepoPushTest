@@ -94,7 +94,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         model.passwordKey.currentState!.secureText =
                             !model.passwordKey.currentState!.secureText;
                       },
-                      child: model.passwordKey.currentState!.secureText
+                      child: !model.passwordKey.currentState!.secureText
                           ? Container(
                               width: 16.0.w,
                               height: 16.0.h,
@@ -111,7 +111,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 24.0.h, bottom: 32.h),
+                padding: EdgeInsets.only(top: 24.0.h, bottom: 56.h),
                 child: InkWell(
                   onTap: () => Navigator.pushNamed(context, RoutePaths.ForgotPassword),
                   child: Text(
@@ -137,6 +137,22 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       text: S.of(context).login,
                     );
                   }),
+              SizedBox(
+                height: 34,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  S.of(context).goBack,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.t,
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
+              ),
               AppStreamBuilder<bool>(
                   initialData: false,
                   stream: model.errorDetectorStream,
