@@ -43,7 +43,6 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
               height: 8.h,
             ),
             Text(
-              // "${S.of(context).enterOtpHeader} \n ${'+962 79 322 8080'}",
               "${S.of(context).enterOtpHeader}\n ${model.argument.mobileCode.replaceAll('00', '+')}" +
                   " ${model.argument.mobileNumber}",
               textAlign: TextAlign.center,
@@ -81,8 +80,6 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                     name: model.argument.approveRtpData.name,
                                     statusInfo: model.argument.approveRtpData.statusInfo,
                                     iban: model.argument.approveRtpData.iban));
-                            // model.getRequestMoneyActivity(
-                            //     true, model.filterDays, model.transactionType);
                           } else if (data.status == Status.ERROR) {
                             ///LOG EVENT TO FIREBASE
                             await FireBaseLogUtil.fireBaseLog(
@@ -95,8 +92,6 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
-                                  // /TODO approveRTPRequest
-
                                   model.approveRTPRequest(
                                       custID: model.argument.approveRtpData.custID,
                                       dbtrAcct: model.argument.approveRtpData.dbtrAcct,
@@ -121,8 +116,6 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
                                       rejectADdInfo: model.argument.approveRtpData.rejectADdInfo,
                                       otpCode: model.otpController.text,
                                       getToken: true);
-
-                                  //    Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
                                 }
                               },
                               dataBuilder: (context, otpValidationResponse) {

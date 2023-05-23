@@ -401,6 +401,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تعطيل تسجيل الدخول بالبصمة بنجاح."),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "لاستخدام Blink بسلاسة أكثر، فعّل خاصية التسجيل بالبصمة"),
+        "biometricLoginIsDisabled":
+            MessageLookupByLibrary.simpleMessage("Biometric login is disabled"),
+        "biometricLoginIsDisabledDesc": MessageLookupByLibrary.simpleMessage(
+            "Please login with your email address and enable the biometric login from Profile Settings."),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "ما تأجل مشترياتك! أصدر بطاقتك الائتمانية الافتراضية Rebellious Red فورا ومجانا\" "),
@@ -495,13 +499,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("لتخصيص البطاقة"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "لازم تزور اي صراف ألي عشان تأكًد على تغير الرقم السري"),
+            "زور أقرب صراف آلي عشان تفعل الرقم السري الجديد"),
         "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم تغيير الرمز السري PIN على بطاقتك بنجاح"),
         "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
             "تم فك حظر الرمز السري PIN بنجاح"),
-        "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
-            "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح"),
+        "cardPinSucccesFullyUnblockedDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "أول حركة مالية رح تنرفض, ما تقلق، الثانية رح تمشي بنجاح"),
         "cardRequiresActivation":
             MessageLookupByLibrary.simpleMessage("بطاقتك في الطريق."),
         "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
@@ -1442,6 +1447,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getYourBlinkAccountTodayBlinkNow":
             MessageLookupByLibrary.simpleMessage(
                 "احصل على حساب بلينك اليوم. طرفة عين الآن!"),
+        "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("خدمات حكومية"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -1834,10 +1840,13 @@ class MessageLookup extends MessageLookupByLibrary {
             " تطبيق بلنك غير متاح في منطقتك الجغرافية."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
         "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
             "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
+        "loginWithEmail":
+            MessageLookupByLibrary.simpleMessage("Login with Email"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage(
             "تسجيل الخروج والاستمرار لاحقاً"),
@@ -2072,6 +2081,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
+        "openYourAccountNow":
+            MessageLookupByLibrary.simpleMessage("Open Your Account Now"),
         "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "orContinueWith":

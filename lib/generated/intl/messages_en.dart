@@ -401,6 +401,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To Blink in more seamlessly, please enable biometric login"),
+        "biometricLoginIsDisabled":
+            MessageLookupByLibrary.simpleMessage("Biometric login is disabled"),
+        "biometricLoginIsDisabledDesc": MessageLookupByLibrary.simpleMessage(
+            "Please login with your email address and enable the biometric login from Profile Settings."),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
@@ -511,13 +515,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "You need to visit any ATM to activate your new PIN"),
+            "Visit the nearest ATM to activate your new PIN"),
         "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "You have successfully changed your card\'s PIN"),
         "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
             "You have successfully unblocked your card\'s PIN"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
-            "Your first transaction will be declined, don\'t worry the second one will work."),
+            "Your first transaction will be declined, don\'t worry, the second one will work"),
         "cardRequiresActivation": MessageLookupByLibrary.simpleMessage(
             "Your card is out for delivery"),
         "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
@@ -1487,6 +1491,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getYourBlinkAccountTodayBlinkNow":
             MessageLookupByLibrary.simpleMessage(
                 "\n\nGet your blink account today."),
+        "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "governmentService":
             MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
@@ -1889,10 +1894,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to Blink"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
         "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
             "We\'re currently offline and will be back shortly!"),
+        "loginWithEmail":
+            MessageLookupByLibrary.simpleMessage("Login with Email"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
@@ -2137,11 +2145,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online purchase limit exceeded."),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
-        "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
+        "openAccount": MessageLookupByLibrary.simpleMessage("Open an Account"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "Payment cannot be completed because the bill date is not reached Yet"),
+        "openYourAccountNow":
+            MessageLookupByLibrary.simpleMessage("Open Your Account Now"),
         "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
