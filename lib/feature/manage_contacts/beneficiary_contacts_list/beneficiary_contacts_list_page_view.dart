@@ -97,9 +97,9 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
                                                 context, RoutePaths.BeneficiaryContactDetailsPage,
                                                 arguments: beneficiaryList?.data![index]);
 
-                                            // if (result != null) {
-                                            //   model.getBeneficiaryList();
-                                            // }
+                                            if (result != null) {
+                                              model.getBeneficiaryList();
+                                            }
                                           },
                                         );
                                       },
@@ -123,57 +123,54 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
   }
 
   noDataFound(context, BeneficiaryContactListPageViewModel model) {
-    return Column(
-      children: [
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 96.h,
-                  width: 96.w,
-                  margin: EdgeInsetsDirectional.only(bottom: 12.h),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
-                  child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
-                      child: AppSvg.asset(AssetUtils.contacts)),
-                ),
-                Text(
-                  S.of(context).youDontHaveAnyContactAddYourFirstNow,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 12.t,
-                      color: AppColor.black,
-                      fontWeight: FontWeight.w600),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, RoutePaths.AddContactsIBANManageContactsPage);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(top: 16.h),
-                    padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Theme.of(context).accentTextTheme.bodyText1?.color,
-                    ),
-                    child: Text(S.of(context).addContact,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            fontSize: 12.t,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.secondary)),
-                  ),
-                )
-              ],
+    return Expanded(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 96.h,
+              width: 96.w,
+              margin: EdgeInsetsDirectional.only(bottom: 12.h),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
+                  child: AppSvg.asset(AssetUtils.contacts)),
             ),
-          ),
-        )
-      ],
+            Text(
+              S.of(context).youDontHaveAnyContactAddYourFirstNow,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 12.t,
+                  color: AppColor.black,
+                  fontWeight: FontWeight.w600),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, RoutePaths.AddContactsIBANManageContactsPage);
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 16.h),
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColor.skyblue,
+                ),
+                child: Text(S.of(context).addContact,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 12.t,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.secondary)),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
