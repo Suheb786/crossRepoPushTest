@@ -2,28 +2,29 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
-class UserContactDetailsPage extends BasePage<UserContactDetailsPageViewModel> {
+import 'beneficiary_contact_details_page_view.dart';
+import 'beneficiary_contact_details_page_view_model.dart';
+
+class BeneficiaryContactDetailsPage extends BasePage<BeneficiaryContactDetailsPageViewModel> {
   final Beneficiary _beneficiaryInformation;
 
-  UserContactDetailsPage(this._beneficiaryInformation);
+  BeneficiaryContactDetailsPage(this._beneficiaryInformation);
 
   @override
-  State<StatefulWidget> createState() => UserContactDetailsPageState();
+  State<StatefulWidget> createState() => BeneficiaryContactDetailsPageState();
 }
 
-class UserContactDetailsPageState
-    extends BaseStatefulPage<UserContactDetailsPageViewModel, UserContactDetailsPage> {
+class BeneficiaryContactDetailsPageState
+    extends BaseStatefulPage<BeneficiaryContactDetailsPageViewModel, BeneficiaryContactDetailsPage> {
   @override
-  Widget buildView(BuildContext context, UserContactDetailsPageViewModel model) =>
-      UserContactDetailsPageView(provideBase());
+  Widget buildView(BuildContext context, BeneficiaryContactDetailsPageViewModel model) =>
+      BeneficiaryContactDetailsPageView(provideBase());
 
   @override
   ProviderBase provideBase() => editContactAddedPageViewModelProvider.call(widget._beneficiaryInformation);

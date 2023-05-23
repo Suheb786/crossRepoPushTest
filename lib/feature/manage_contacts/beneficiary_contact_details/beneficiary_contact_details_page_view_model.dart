@@ -8,7 +8,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class UserContactDetailsPageViewModel extends BasePageViewModel {
+class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final UploadDocumentUseCase _uploadDocumentUseCase;
@@ -55,7 +55,7 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  UserContactDetailsPageViewModel(this._uploadDocumentUseCase, this.argument) {
+  BeneficiaryContactDetailsPageViewModel(this._uploadDocumentUseCase, this.argument) {
     nickNameController.text = argument.nickName!;
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))

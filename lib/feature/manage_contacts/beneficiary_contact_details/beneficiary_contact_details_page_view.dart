@@ -8,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -23,11 +22,13 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
-class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPageViewModel> {
-  UserContactDetailsPageView(ProviderBase model) : super(model);
+import 'beneficiary_contact_details_page_view_model.dart';
+
+class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryContactDetailsPageViewModel> {
+  BeneficiaryContactDetailsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, UserContactDetailsPageViewModel model) {
+  Widget build(BuildContext context, BeneficiaryContactDetailsPageViewModel model) {
     return AppKeyBoardHide(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +57,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
     );
   }
 
-  Widget _profileHeader(context, UserContactDetailsPageViewModel model) {
+  Widget _profileHeader(context, BeneficiaryContactDetailsPageViewModel model) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 24.h, top: 32.h),
       child: Column(
@@ -215,7 +216,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
     );
   }
 
-  Widget _profileBody(context, UserContactDetailsPageViewModel model) {
+  Widget _profileBody(context, BeneficiaryContactDetailsPageViewModel model) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 24.h, top: 24.h),
       child: Column(
@@ -327,7 +328,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
     );
   }
 
-  Widget _profileFooter(context, UserContactDetailsPageViewModel model) {
+  Widget _profileFooter(context, BeneficiaryContactDetailsPageViewModel model) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 24.h, top: 24.h),
       child: Row(
@@ -513,7 +514,7 @@ class UserContactDetailsPageView extends BasePageViewWidget<UserContactDetailsPa
     );
   }
 
-  void _cropImage(String data, UserContactDetailsPageViewModel model, BuildContext context) async {
+  void _cropImage(String data, BeneficiaryContactDetailsPageViewModel model, BuildContext context) async {
     CroppedFile? cropped = await ImageCropper().cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,

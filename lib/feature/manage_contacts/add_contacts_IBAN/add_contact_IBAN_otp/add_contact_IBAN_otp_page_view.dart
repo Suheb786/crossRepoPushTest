@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -18,7 +16,6 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:riverpod/src/framework.dart';
 
 class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPageViewModel> {
   AddContactIBANotpPageView(ProviderBase model) : super(model);
@@ -39,7 +36,7 @@ class AddContactIBANotpPageView extends BasePageViewWidget<AddContactIBANotpPage
                   initialData: Resource.none(),
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
-                      Navigator.pushReplacementNamed(context, RoutePaths.UserContactDetailsPage);
+                      Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage);
                       model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
                           title: S.current.success, description: S.current.newContacthasBeenAdded));
                     }

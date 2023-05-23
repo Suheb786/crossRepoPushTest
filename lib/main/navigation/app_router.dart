@@ -83,12 +83,11 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mob
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
@@ -121,7 +120,6 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
-// import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
@@ -930,10 +928,10 @@ class AppRouter {
             builder: (context) => AddContactsIBANManageContactsPage(),
             settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
 
-      case RoutePaths.UserContactDetailsPage:
+      case RoutePaths.BeneficiaryContactDetailsPage:
         return CupertinoPageRoute(
-            builder: (context) => UserContactDetailsPage(settings.arguments as Beneficiary),
-            settings: RouteSettings(name: RoutePaths.UserContactDetailsPage));
+            builder: (context) => BeneficiaryContactDetailsPage(settings.arguments as Beneficiary),
+            settings: RouteSettings(name: RoutePaths.BeneficiaryContactDetailsPage));
       case RoutePaths.EditContactOTPpage:
         return CupertinoPageRoute(
             builder: (context) => EditUserContactPage(),

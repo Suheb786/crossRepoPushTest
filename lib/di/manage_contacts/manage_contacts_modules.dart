@@ -6,11 +6,11 @@ import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_prov
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_form/add_contacts_IBAN_form_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/user_contact_details/user_contact_details_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
@@ -42,8 +42,8 @@ final addcontactIBANotpPageViewModelProvider =
         (ref) => AddContactIBANotpPageViewModel(ref.read(addContactIbanOTPuseCaseProvider)));
 
 final editContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<UserContactDetailsPageViewModel, Beneficiary>(
-        (ref, args) => UserContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider), args));
+    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>(
+        (ref, args) => BeneficiaryContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider), args));
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));

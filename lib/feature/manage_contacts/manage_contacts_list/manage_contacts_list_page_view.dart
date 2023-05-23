@@ -98,7 +98,7 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                                             beneficiary: beneficiaryList.data![index],
                                             onTap: () async {
                                               var result = await Navigator.pushNamed(
-                                                  context, RoutePaths.UserContactDetailsPage,
+                                                  context, RoutePaths.BeneficiaryContactDetailsPage,
                                                   arguments: beneficiaryList.data![index]);
 
                                               if (result != null) {
