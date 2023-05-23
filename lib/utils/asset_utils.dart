@@ -326,4 +326,7 @@ class AssetUtils {
   static const String efawateerPopUpImage = drawable + "efawateer_popup_image.png";
   static const String infoFee = svg + "info_fee.svg";
   static const String bulbIcon = svg + "bulb_icon.svg";
+
+  ///manage contact svg
+  static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
 }

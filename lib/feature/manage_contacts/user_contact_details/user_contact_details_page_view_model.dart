@@ -11,12 +11,14 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final UploadDocumentUseCase _uploadDocumentUseCase;
+  final UserInformation argument;
 
   ///---------------------------textEditing-controller----------------------------///
 
   TextEditingController editNameController = TextEditingController();
   TextEditingController editEmailController = TextEditingController();
   TextEditingController editIbanController = TextEditingController();
+  TextEditingController nickNameController = TextEditingController();
 
   ///-----------------------------upload profile---------------------------------///
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
@@ -52,7 +54,8 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  UserContactDetailsPageViewModel(this._uploadDocumentUseCase) {
+  UserContactDetailsPageViewModel(this._uploadDocumentUseCase, this.argument) {
+    nickNameController.text = argument.nickName;
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
@@ -63,4 +66,25 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
       });
     });
   }
+
+  removeImage() {
+    _selectedImageSubject.value = "";
+  }
+}
+
+class UserInformation {
+  String nickName;
+  String name;
+  String ibanNo;
+  String purpose;
+  String purposeDetail;
+  bool isFav;
+
+  UserInformation(
+      {this.nickName = '',
+      this.name = '',
+      this.ibanNo = '',
+      this.purpose = '',
+      this.purposeDetail = '',
+      this.isFav = false});
 }
