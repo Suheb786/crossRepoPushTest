@@ -273,7 +273,7 @@ PODS:
     - TOCropViewController (~> 2.6.1)
   - image_picker_ios (0.0.1):
     - Flutter
-  - infobip_mobilemessaging (0.9.2):
+  - infobip_mobilemessaging (0.9.3):
     - Flutter
     - MobileMessaging/Core (= 10.8.3)
     - MobileMessaging/Geofencing (= 10.8.3)
@@ -543,7 +543,7 @@ SPEC CHECKSUMS:
   IBGoogleWebRTC: 4dc0e8b0bf16bc473caff8797152af80385d3402
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
-  infobip_mobilemessaging: 85ae7b8d8d75fc413eff44071c3f2a65838e58bf
+  infobip_mobilemessaging: 48f1da33cdeb4f6c727c3e262cfe1b37f0af2f8d
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
   InfobipRTC: 3cd60d4688d0a12ab9847fc8cd961962504b22c7
   IOSSecuritySuite: 5914050f44040b5ae1e9ef811287d6979882f2dc

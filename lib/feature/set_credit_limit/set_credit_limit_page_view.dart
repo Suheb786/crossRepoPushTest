@@ -85,13 +85,17 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             FocusScope.of(context).unfocus();
-                            if (StringUtils.isDirectionRTL(context)) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                model.setCreditLimit(loanValue!.data!.getLoanValuesContent!.loanValueId!);
-                              }
-                            } else {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.setCreditLimit(loanValue!.data!.getLoanValuesContent!.loanValueId!);
+                            if (loanValue?.status == Status.SUCCESS) {
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.setCreditLimit(
+                                      loanValue?.data?.getLoanValuesContent?.loanValueId ?? 0.0);
+                                }
+                              } else {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.setCreditLimit(
+                                      loanValue?.data?.getLoanValuesContent?.loanValueId ?? 0.0);
+                                }
                               }
                             }
                           },

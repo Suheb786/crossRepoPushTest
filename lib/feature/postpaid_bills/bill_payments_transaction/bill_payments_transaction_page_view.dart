@@ -101,22 +101,6 @@ class BillPaymentsTransactionPageView extends BasePageViewWidget<BillPaymentsTra
                                     },
                                   ),
                                 ),
-                                // Padding(
-                                //   padding: EdgeInsetsDirectional.only(start: 24.0.w),
-                                //   child: InkWell(
-                                //       onTap: () {
-                                //         FilterTransactionDialog.show(
-                                //           context,
-                                //           onDismissed: () => Navigator.pop(context),
-                                //           onSelected: (value) {
-                                //             print("value: $value");
-                                //             Navigator.pop(context);
-                                //             model.getFilteredData(value);
-                                //           },
-                                //         );
-                                //       },
-                                //       child: AppSvg.asset(AssetUtils.filter)),
-                                // )
                               ],
                             ),
                           ),

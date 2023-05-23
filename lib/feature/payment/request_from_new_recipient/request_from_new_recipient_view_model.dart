@@ -148,18 +148,17 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           purposeDetailController.clear();
           _showAccountDetailSubject.safeAdd("");
         } else if (event.status == Status.SUCCESS) {
-          dbtrBic = event.data!.getAccountByAliasContent!.bic;
-          dbtrName = event.data!.getAccountByAliasContent!.name;
-          dbtrAcct = event.data!.getAccountByAliasContent!.acciban;
-          type = event.data!.getAccountByAliasContent!.type;
-          detCustomerType = event.data!.getAccountByAliasContent!.detCustomerType;
-          print("got value: ${event.data!.getAccountByAliasContent!.bic}");
-          dbtrSurname = event.data!.getAccountByAliasContent!.surname;
-          addressCity = event.data!.getAccountByAliasContent!.addressCity;
-          addressCountry = event.data!.getAccountByAliasContent!.addressCountry;
-          _showAccountDetailSubject.safeAdd(event.data!.getAccountByAliasContent!.name);
-          getPurpose(dbtrAcct!, "RTP", event.data!.getAccountByAliasContent!.detCustomerType!,
-              event.data!.getAccountByAliasContent!.type!);
+          dbtrBic = event.data?.getAccountByAliasContent?.bic;
+          dbtrName = event.data?.getAccountByAliasContent?.name;
+          dbtrAcct = event.data?.getAccountByAliasContent?.acciban;
+          type = event.data?.getAccountByAliasContent?.type;
+          detCustomerType = event.data?.getAccountByAliasContent?.detCustomerType;
+          dbtrSurname = event.data?.getAccountByAliasContent?.surname;
+          addressCity = event.data?.getAccountByAliasContent?.addressCity;
+          addressCountry = event.data?.getAccountByAliasContent?.addressCountry;
+          _showAccountDetailSubject.safeAdd(event.data?.getAccountByAliasContent?.name);
+          getPurpose(dbtrAcct ?? '', "RTP", event.data?.getAccountByAliasContent?.detCustomerType ?? '',
+              event.data?.getAccountByAliasContent?.type ?? '');
         }
       });
     });
@@ -175,7 +174,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
-          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data?.content?.transferPurposeResponse?.purposes ?? []);
         }
       });
     });
@@ -207,8 +206,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         dbtrName: dbtrName ?? "",
         isFriend: addContact,
         image: selectedProfile,
-        purposeCode: purpose!.code ?? "",
-        purposeDetailCode: purposeDetail!.strCode ?? "",
+        purposeCode: purpose?.code ?? "",
+        purposeDetailCode: purposeDetail?.strCode ?? "",
         nickName: addNickNameController.text.isEmpty ? "" : addNickNameController.text,
         type: type,
         detCustomerType: detCustomerType,
@@ -230,7 +229,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   void updatePurpose(Purpose value) {
     purpose = value;
-    purposeController.text = value.labelEn!;
+    purposeController.text = value.labelEn ?? '';
   }
 
   void updatePurposeDetailList(List<PurposeDetail> purposeDetail) {
@@ -240,9 +239,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   void updatePurposeDetail(PurposeDetail value) {
-    purposeDetailController.text = value.labelEn!;
+    purposeDetailController.text = value.labelEn ?? '';
     purposeDetail = value;
-    limit = value.limit!;
+    limit = value.limit ?? 0.0;
   }
 
   void validateAddress() {}

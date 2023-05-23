@@ -40,8 +40,9 @@ class ApiInterceptor extends InterceptorsWrapper {
     print('authToken--->$authToken');
     print('suspended Token  --->${AppConstants.IS_BACKGROUND_API_IN_PROGRESS}');
 
-    /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
-    options.data = _encryptRequest(options.data);
+    if (options.data != null) {
+      options.data = _encryptRequest(options.data);
+    }
 
     debugPrint('headers auth token------>${options.headers}');
 

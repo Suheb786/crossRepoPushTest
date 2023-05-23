@@ -587,10 +587,10 @@ packages:
     dependency: "direct main"
     description:
       name: infobip_mobilemessaging
-      sha256: "1433091828f9fa913360c88a329e0049423ca28fe09d4655e41e6183276719ee"
+      sha256: "9ed0ac1470fd7aaa9844d6d468ac289349dc915b9f0b73dbc582dca0ffc944e4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2"
+    version: "0.9.3"
   infobip_plugin:
     dependency: "direct main"
     description:
