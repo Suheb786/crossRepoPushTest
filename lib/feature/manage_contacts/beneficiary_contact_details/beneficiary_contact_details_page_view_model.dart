@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -7,16 +8,18 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class UserContactDetailsPageViewModel extends BasePageViewModel {
+class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final UploadDocumentUseCase _uploadDocumentUseCase;
+  final Beneficiary argument;
 
   ///---------------------------textEditing-controller----------------------------///
 
   TextEditingController editNameController = TextEditingController();
   TextEditingController editEmailController = TextEditingController();
   TextEditingController editIbanController = TextEditingController();
+  TextEditingController nickNameController = TextEditingController();
 
   ///-----------------------------upload profile---------------------------------///
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
@@ -52,7 +55,8 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  UserContactDetailsPageViewModel(this._uploadDocumentUseCase) {
+  BeneficiaryContactDetailsPageViewModel(this._uploadDocumentUseCase, this.argument) {
+    nickNameController.text = argument.nickName!;
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
@@ -62,5 +66,9 @@ class UserContactDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  removeImage() {
+    _selectedImageSubject.value = "";
   }
 }
