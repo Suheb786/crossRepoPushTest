@@ -28,7 +28,6 @@ import 'package:data/entity/remote/user/enable_biometric/android_login_request_e
 import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
-import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
@@ -71,15 +70,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   final DeviceInfoHelper _deviceInfoHelper;
   final UserLocalDS _userLocalDS;
 
-  // final CryptoUtil _cryptoUtil;
-
-  UserRemoteDSImpl(
-    this._apiService,
-    this._deviceInfoHelper,
-    this._userLocalDS,
-
-    // this._cryptoUtil
-  );
+  UserRemoteDSImpl(this._apiService, this._deviceInfoHelper, this._userLocalDS);
 
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName({String? email}) async {
@@ -346,13 +337,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<bool> enableFingerPrint({String? cipher}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.enableFingerPrint(
-        EnableFingerPrintRequestEntity(getToken: true, cipher: cipher, baseData: baseData.toJson()));
-  }
-
-  @override
   Future<HttpResponse<ResponseEntity>> disableFingerPrint() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.disableFingerPrint(DisableFingerPrintRequestEntity(
@@ -421,23 +405,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
     }
 
     return _apiService.androidLogin(AndroidLoginRequestEntity(
-      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
-      fireBaseToken: "",
-      signature: await signedData(userId: userId, privateKey: user!.privatePEM!),
-      baseData: baseData.toJson(),
-    ));
-  }
-
-  @override
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin({required String cipher}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    User? user = await _userLocalDS.getCurrentUser();
-    String userId = '';
-    if (user != null) {
-      userId = await decryptData(content: user.id, publicKey: user.publicPEM, privateKey: user.privatePEM);
-    }
-
-    return _apiService.iphoneLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
       signature: await signedData(userId: userId, privateKey: user!.privatePEM!),

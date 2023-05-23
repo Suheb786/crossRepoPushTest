@@ -260,7 +260,6 @@ import 'package:data/entity/remote/user/enable_biometric/android_login_request_e
 import 'package:data/entity/remote/user/enable_biometric/android_login_response_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
-import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
@@ -420,10 +419,6 @@ abstract class ApiService {
   @POST("/AdditionalDoc/ConfirmApplicationDataSave")
   Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
       @Body() ConfirmApplicationDataSetRequestEntity confirmApplicationDataSetRequestEntity);
-
-  ///enable fingerprint
-  @POST("/auth/enableFingerPrint")
-  Future<bool> enableFingerPrint(@Body() EnableFingerPrintRequestEntity enableFingerPrintRequestEntity);
 
   ///disable fingerprint
   @POST("/auth/DisableFingerPrint")
@@ -708,10 +703,6 @@ abstract class ApiService {
   @POST("/transfer/PaymentActivityAPIV2")
   Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
-
-  @POST("/auth/iphonelogin")
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
-      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/ChangeMobileNumber")
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
@@ -1109,6 +1100,7 @@ abstract class ApiService {
   Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
     @Body() BaseRequest request,
   );
+
   @POST("/Cliq/ApproveRTPRequestOtp")
   Future<HttpResponse<ApproveRTPOtpResponseEntity>> approveRTPRequestOtp(
     @Body() ApproveRTPOtpRequestEntity request,
