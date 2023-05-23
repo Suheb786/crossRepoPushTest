@@ -134,7 +134,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                         backgroundColor: Theme.of(context).primaryColor,
                                         radius: 48.w,
                                         child: Text(
-                                          StringUtils.getFirstInitials(model.argument.nickName),
+                                          StringUtils.getFirstInitials(model.argument.fullName),
                                           style: TextStyle(
                                             color: AppColor.white,
                                             fontSize: 22.t,
