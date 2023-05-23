@@ -52,7 +52,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result.fold(
       (l) => Left(l),
-      (r) => Right(r!),
+      (r) => Right(r),
     );
   }
 

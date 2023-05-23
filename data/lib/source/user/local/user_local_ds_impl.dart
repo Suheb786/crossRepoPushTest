@@ -18,7 +18,7 @@ class UserLocalDSImpl extends UserLocalDS {
   UserLocalDSImpl(this._bioMetricService, this._secureStorageHelper);
 
   @override
-  Future<User?> getCurrentUser() async {
+  Future<User> getCurrentUser() async {
     User? user = await _secureStorageHelper.getUserDataFromSecureStorage();
     if (user == null) {
       throw AppLocalException(

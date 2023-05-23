@@ -155,7 +155,7 @@ abstract class UserRemoteDS {
 }
 
 abstract class UserLocalDS {
-  Future<User?> getCurrentUser();
+  Future<User> getCurrentUser();
 
   Future<bool> removeUser();
 
