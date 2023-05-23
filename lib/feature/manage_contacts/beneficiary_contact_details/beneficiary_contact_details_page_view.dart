@@ -84,7 +84,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                         description: S.current.yourContactisFavourite,
                       ),
                     );
-                    Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
+                    Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactsList);
                   });
                 },
                 child: Icon(

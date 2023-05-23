@@ -27,7 +27,8 @@ class BeneficiaryContactDetailsPageState
       BeneficiaryContactDetailsPageView(provideBase());
 
   @override
-  ProviderBase provideBase() => editContactAddedPageViewModelProvider.call(widget._beneficiaryInformation);
+  ProviderBase provideBase() =>
+      beneficiaryContactAddedPageViewModelProvider.call(widget._beneficiaryInformation);
 
   @override
   Color? scaffoldBackgroundColor() {
@@ -44,7 +45,7 @@ class BeneficiaryContactDetailsPageState
           children: [
             InkWell(
               onTap: () {
-                Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
+                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.BeneficiaryContactsList));
               },
               child: AppSvg.asset(AssetUtils.back,
                   height: 24.h,

@@ -329,4 +329,6 @@ class AssetUtils {
 
   ///manage contact svg
   static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
+  static const String starRedIcon = svg + "star_red.svg";
+  static const String starYellowIcon = svg + "star_yellow.svg";
 }
