@@ -27,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -4371,6 +4369,16 @@ class S {
     );
   }
 
+  /// `Request Money Favourites`
+  String get requestMoneyFavourites {
+    return Intl.message(
+      'Request Money Favourites',
+      name: 'requestMoneyFavourites',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
@@ -6426,6 +6434,16 @@ class S {
     return Intl.message(
       'Swipe up to send money',
       name: 'swipeToSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Money Favourites`
+  String get sendMoneyFavourites {
+    return Intl.message(
+      'Send Money Favourites',
+      name: 'sendMoneyFavourites',
       desc: '',
       args: [],
     );

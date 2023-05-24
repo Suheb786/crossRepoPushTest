@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-class ManageContactListPage extends BasePage<ManageContactListPageViewModel> {
+import 'beneficiary_contacts_list_page_view.dart';
+import 'beneficiary_contacts_list_page_view_model.dart';
+
+class BeneficiaryContactListPage extends BasePage<BeneficiaryContactListPageViewModel> {
   @override
-  ManageContactListPageState createState() => ManageContactListPageState();
+  BeneficiaryContactListPageState createState() => BeneficiaryContactListPageState();
 }
 
-class ManageContactListPageState
-    extends BaseStatefulPage<ManageContactListPageViewModel, ManageContactListPage> {
+class BeneficiaryContactListPageState
+    extends BaseStatefulPage<BeneficiaryContactListPageViewModel, BeneficiaryContactListPage> {
   @override
   ProviderBase provideBase() {
-    return manageContactsListViewModelProvider;
+    return beneficiaryContactListPageViewModelProvider;
   }
 
   @override
@@ -78,7 +79,7 @@ class ManageContactListPageState
   }
 
   @override
-  Widget buildView(BuildContext context, ManageContactListPageViewModel model) {
-    return ManageContactListPageView(provideBase());
+  Widget buildView(BuildContext context, BeneficiaryContactListPageViewModel model) {
+    return BeneficiaryContactListPageView(provideBase());
   }
 }

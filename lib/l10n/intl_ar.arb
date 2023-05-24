@@ -657,6 +657,8 @@
   "invalidBeneficiary": "المستفيد خطأ",
   "invalidRequestedAmount": "المبلغ المطلوب خطأ",
   "swipeToSend": "اسحب الشاشة لفوق لتحوّل الأموال",
+  "sendMoneyFavourites": "Send Money Favourites",
+  "requestMoneyFavourites": "Request Money Favourites",
   "swipeToRequest": "اسحب الشاشة لفوق لتطلب الأموال",
   "swipeUpToViewTransaction": "اسحب الشاشة لفوق لتستعرض الحركات",
   "freezeTheCard": "بدك تجمد البطاقة؟",

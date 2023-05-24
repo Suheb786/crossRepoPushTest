@@ -171,7 +171,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                         description: S.current.yourContactisFavourite,
                       ),
                     );
-                    Navigator.pushReplacementNamed(context, RoutePaths.ManageContactsList);
+                    Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactsList);
                   });
                 },
                 child: Icon(
@@ -221,7 +221,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                         backgroundColor: Theme.of(context).primaryColor,
                                         radius: 48.w,
                                         child: Text(
-                                          StringUtils.getFirstInitials(model.argument.nickName),
+                                          StringUtils.getFirstInitials(model.argument.fullName),
                                           style: TextStyle(
                                             color: AppColor.white,
                                             fontSize: 22.t,

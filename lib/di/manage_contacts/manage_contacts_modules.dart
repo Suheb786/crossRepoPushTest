@@ -7,15 +7,19 @@ import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_contacts_form/add_beneficiary_form_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 
 import '../../feature/manage_contacts/delete_beneficiary_otp/delete_beneficiary_otp_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
   (ref) => ManageContactListPageViewModel(ref.read(getBeneficiaryUseCaseProvider)),
+final beneficiaryContactListPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BeneficiaryContactListPageViewModel>(
+  (ref) => BeneficiaryContactListPageViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 ///manage contact details
@@ -40,7 +44,7 @@ final addBeneficiaryFormPageViewModel = ChangeNotifierProvider.autoDispose<AddBe
 final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryotpPageViewModel>(
     (ref) => AddBeneficiaryotpPageViewModel(ref.read(addBeneficiaryOTPuseCaseProvider)));
 
-final editContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
+final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>(
         (ref, args) => BeneficiaryContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider), args));
 
