@@ -468,6 +468,11 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                   arguments: RjBookingPageArguments(
                                                       // url: data.data?.content?.content?.link,
                                                       url: "www.youtube.com"));
+                                            } else if (data.status == Status.LOADING) {
+                                              Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                                                  arguments: RjBookingPageArguments(
+                                                      // url: data.data?.content?.content?.link,
+                                                      url: "www.youtube.com"));
                                             }
                                           },
                                           dataBuilder: (context, getOneWayTripLinkResponse) {
