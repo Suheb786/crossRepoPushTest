@@ -68,13 +68,21 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 27.0.w),
-                            child: Text(S.of(context).requestMoney,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.0.t,
-                                    color: Theme.of(context).primaryColorDark))),
+                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 25.0.w),
+                            child: Row(
+                              children: [
+                                AppSvg.asset(AssetUtils.blueStar, color: AppColor.black),
+                                SizedBox(
+                                  width: 4.w,
+                                ),
+                                Text(S.of(context).requestMoneyFavourites,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t,
+                                        color: Theme.of(context).primaryColorDark)),
+                              ],
+                            )),
                         beneficiaries!.length > 0
                             ? Column(
                                 children: [

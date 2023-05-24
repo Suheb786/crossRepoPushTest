@@ -58,13 +58,21 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 27.0.w),
-                            child: Text(S.of(context).sendMoney,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.0.t,
-                                    color: Theme.of(context).colorScheme.secondary))),
+                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 25.0.w),
+                            child: Row(
+                              children: [
+                                AppSvg.asset(AssetUtils.blueStar, color: AppColor.white),
+                                SizedBox(
+                                  width: 4.w,
+                                ),
+                                Text(S.of(context).sendMoneyFavourites,
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0.t,
+                                        color: Theme.of(context).colorScheme.secondary)),
+                              ],
+                            )),
                         beneficiaries!.length > 0
                             ? Column(
                                 children: [

@@ -30,8 +30,8 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                 : CircleAvatar(
                     radius: 32.0.w,
                     backgroundColor: transferEnum == TransferEnum.send
-                        ? Theme.of(context).canvasColor
-                        : Theme.of(context).primaryColor,
+                        ? Theme.of(context).primaryColorDark
+                        : Theme.of(context).primaryColorDark,
                     child: Text(
                       beneficiary!.fullName!.split(" ").length > 1
                           ? StringUtils.getFirstInitials(beneficiary!.fullName)
@@ -41,7 +41,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           fontSize: 20.0.t,
                           color: transferEnum == TransferEnum.send
-                              ? Theme.of(context).primaryTextTheme.bodyMedium?.color
+                              ? Theme.of(context).primaryTextTheme.bodyLarge?.color
                               : Theme.of(context).primaryTextTheme.bodyLarge?.color),
                     ),
                   )),
