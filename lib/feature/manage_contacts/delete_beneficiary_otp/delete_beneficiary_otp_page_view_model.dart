@@ -9,7 +9,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class DeleteContactOTPPageViewModel extends BasePageViewModel {
+class DeleteBeneficiaryOTPPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final DeleteContactOtpValidationUsecase _manageContactOtpValidationUseCase;
@@ -71,7 +71,7 @@ class DeleteContactOTPPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  DeleteContactOTPPageViewModel(this._manageContactOtpValidationUseCase) {
+  DeleteBeneficiaryOTPPageViewModel(this._manageContactOtpValidationUseCase) {
     _validatedOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _manageContactOtpValidationUseCase.execute(params: value))
           .asFlow()

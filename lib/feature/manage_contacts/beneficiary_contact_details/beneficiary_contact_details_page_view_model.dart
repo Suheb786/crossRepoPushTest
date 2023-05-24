@@ -33,7 +33,25 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
   String selectedProfile = '';
 
+  ///---------------------------Request Money--------------------------------///
+  PublishSubject<bool> _favouriteAsRequestMoneySubject = PublishSubject();
+
+  Stream<bool> get favouriteAsRequestMoneyStream => _favouriteAsRequestMoneySubject.stream;
+
+  ///---------------------------Send Money--------------------------------///
+  PublishSubject<bool> _favouriteAsSendMoneySubject = PublishSubject();
+
+  Stream<bool> get favouriteAsSendMoneyStream => _favouriteAsSendMoneySubject.stream;
+
   ///--------------------------public-other-methods-------------------------------------///
+
+  void toggleFavouriteAsSendMoney(bool value) {
+    _favouriteAsSendMoneySubject.safeAdd(value);
+  }
+
+  void toggleFavouriteAsRequestMoney(bool value) {
+    _favouriteAsRequestMoneySubject.safeAdd(value);
+  }
 
   bool visibleSaveButton() {
     if (editNameController.text != editEmailController.text ||
@@ -70,5 +88,12 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   removeImage() {
     _selectedImageSubject.value = "";
+  }
+
+  @override
+  void dispose() {
+    _favouriteAsSendMoneySubject.close();
+    _favouriteAsRequestMoneySubject.close();
+    super.dispose();
   }
 }

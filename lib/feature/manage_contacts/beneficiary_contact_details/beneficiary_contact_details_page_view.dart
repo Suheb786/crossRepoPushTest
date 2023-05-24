@@ -4,6 +4,7 @@ import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/clipboard.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -70,10 +71,96 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 onTap: () {
                   InformationDialog.show(context,
                       title: S.current.favouriteContact,
-                      descriptionWidget: Text(S.current.sendAndRequestFavouriteContacts),
-                      image: AssetUtils.favContactIcon,
-                      imageHight: 155.h,
-                      imageWidth: 96.w,
+                      descriptionWidget: Column(
+                        children: [
+                          Text(S.of(context).saveAsFavourite,
+                              style: TextStyle(
+                                  fontSize: 12.t,
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.very_dark_gray1)),
+                          SizedBox(height: 24.h),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                S.of(context).sendMoney,
+                                style: TextStyle(
+                                    fontSize: 14.t,
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.black),
+                              ),
+                            ),
+                            AppStreamBuilder<bool>(
+                                initialData: false,
+                                stream: model.favouriteAsSendMoneyStream,
+                                dataBuilder: (context, data) {
+                                  return FlutterSwitch(
+                                    value: data!,
+                                    onToggle: (value) {
+                                      model.toggleFavouriteAsSendMoney(value);
+                                    },
+                                    width: 70.w,
+                                    height: 40.h,
+                                    padding: 4,
+                                    activeText: S.of(context).yes.toUpperCase(),
+                                    activeTextColor: AppColor.white,
+                                    inactiveTextColor: AppColor.darkGray,
+                                    activeTextFontWeight: FontWeight.w500,
+                                    showOnOff: true,
+                                    valueFontSize: 12.t,
+                                    activeToggleColor: AppColor.white,
+                                    inactiveText: S.of(context).no.toUpperCase(),
+                                    inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                    inactiveTextFontWeight: FontWeight.w500,
+                                    inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                                  );
+                                }),
+                          ]),
+                          SizedBox(height: 24.h),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                S.of(context).requestMoney,
+                                style: TextStyle(
+                                    fontSize: 14.t,
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.black),
+                              ),
+                            ),
+                            AppStreamBuilder<bool>(
+                                initialData: false,
+                                stream: model.favouriteAsRequestMoneyStream,
+                                dataBuilder: (context, data) {
+                                  return FlutterSwitch(
+                                    value: data!,
+                                    onToggle: (value) {
+                                      model.toggleFavouriteAsRequestMoney(value);
+                                    },
+                                    width: 70.w,
+                                    height: 40.h,
+                                    padding: 4,
+                                    activeText: S.of(context).yes.toUpperCase(),
+                                    activeTextColor: AppColor.white,
+                                    inactiveTextColor: AppColor.darkGray,
+                                    activeTextFontWeight: FontWeight.w500,
+                                    showOnOff: true,
+                                    valueFontSize: 12.t,
+                                    activeToggleColor: AppColor.white,
+                                    inactiveText: S.of(context).no.toUpperCase(),
+                                    inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                    inactiveTextFontWeight: FontWeight.w500,
+                                    inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                                  );
+                                }),
+                          ])
+                        ],
+                      ),
                       isSwipeToCancel: true, onDismissed: () {
                     Navigator.pop(context);
                   }, onSelected: () {

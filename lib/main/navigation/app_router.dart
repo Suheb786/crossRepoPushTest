@@ -83,7 +83,6 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mob
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
-import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -161,6 +160,7 @@ import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/manage_contacts/add_beneficiary/add_beneficiary_otp/add_beneficiary_otp_page.dart';
+import '../../feature/manage_contacts/delete_beneficiary_otp/delete_beneficiary_otp_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -943,7 +943,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
       case RoutePaths.OtpForManageContact:
         return CupertinoPageRoute(
-            builder: (context) => DeleteContactOTPPage(),
+            builder: (context) => DeleteBeneficiaryOTPPage(),
             settings: RouteSettings(name: RoutePaths.OtpForManageContact));
 
       case RoutePaths.AddContactIBANotpPage:

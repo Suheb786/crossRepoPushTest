@@ -5,22 +5,22 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import 'delete_contact_otp_for_manage_contact_page_view.dart';
-import 'delete_contact_otp_for_manage_contact_page_view_model.dart';
+import 'delete_beneficiary_otp_page_view.dart';
+import 'delete_beneficiary_otp_page_view_model.dart';
 
-class DeleteContactOTPPage extends BasePage<DeleteContactOTPPageViewModel> {
+class DeleteBeneficiaryOTPPage extends BasePage<DeleteBeneficiaryOTPPageViewModel> {
   @override
-  OtpForManageContactPageState createState() => OtpForManageContactPageState();
+  DeleteBeneficiaryOTPPageState createState() => DeleteBeneficiaryOTPPageState();
 }
 
-class OtpForManageContactPageState
-    extends BaseStatefulPage<DeleteContactOTPPageViewModel, DeleteContactOTPPage>
+class DeleteBeneficiaryOTPPageState
+    extends BaseStatefulPage<DeleteBeneficiaryOTPPageViewModel, DeleteBeneficiaryOTPPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
-  OtpForManageContactPageState() : super(subscribeVisibilityEvents: true);
+  DeleteBeneficiaryOTPPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
-    return otpForManageContactPageViewModelProvider;
+    return deleteBeneficiaryOTPViewModelProvider;
   }
 
   @override
@@ -30,7 +30,7 @@ class OtpForManageContactPageState
   }
 
   @override
-  void onModelReady(DeleteContactOTPPageViewModel model) {
+  void onModelReady(DeleteBeneficiaryOTPPageViewModel model) {
     model.countDownController = CountdownTimerController(endTime: model.endTime);
 
     super.onModelReady(model);
@@ -42,8 +42,8 @@ class OtpForManageContactPageState
   }
 
   @override
-  Widget buildView(BuildContext context, DeleteContactOTPPageViewModel model) {
-    return DeleteContactOTPPageView(provideBase());
+  Widget buildView(BuildContext context, DeleteBeneficiaryOTPPageViewModel model) {
+    return DeleteBeneficiaryOTPPageView(provideBase());
   }
 
   @override

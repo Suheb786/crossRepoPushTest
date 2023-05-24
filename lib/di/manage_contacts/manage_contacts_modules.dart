@@ -7,10 +7,11 @@ import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_contacts_form/add_beneficiary_form_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
+
+import '../../feature/manage_contacts/delete_beneficiary_otp/delete_beneficiary_otp_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
@@ -46,7 +47,7 @@ final editContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
 
-final otpForManageContactPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DeleteContactOTPPageViewModel>(
-  (ref) => DeleteContactOTPPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
+final deleteBeneficiaryOTPViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DeleteBeneficiaryOTPPageViewModel>(
+  (ref) => DeleteBeneficiaryOTPPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
 );

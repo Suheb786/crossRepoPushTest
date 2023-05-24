@@ -657,14 +657,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
         "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
             "Confirm password should be same as new password"),
-        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
-            "Confirm to the terms and conditions."),
+        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage("Confirm to the terms and conditions."),
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
             "I confirm that my tax residency is accurate and agree to the "),
-        "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
-            "Review and confirm\nyour details"),
-        "confirmYourPaymentAmtBelow": MessageLookupByLibrary.simpleMessage(
-            "Confirm your payment\namount below"),
+        "confirmYourInformation": MessageLookupByLibrary.simpleMessage("Review and confirm\nyour details"),
+        "confirmYourPaymentAmtBelow":
+            MessageLookupByLibrary.simpleMessage("Confirm your payment\namount below"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "congratulations": MessageLookupByLibrary.simpleMessage("Congratulations!"),
@@ -685,13 +683,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-095)"),
         "controlMyExpensesInOtherWays":
             MessageLookupByLibrary.simpleMessage("I\'m trying to control my expenses in other ways"),
-        "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
-            "Convert purchases to instalments"),
-        "convertPurchaseToInstallments": MessageLookupByLibrary.simpleMessage(
-            "Convert purchases to instalments"),
+        "convertBalanceToInstalments":
+            MessageLookupByLibrary.simpleMessage("Convert purchases to instalments"),
+        "convertPurchaseToInstallments":
+            MessageLookupByLibrary.simpleMessage("Convert purchases to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
-        "countryOfCitizenship":
-            MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
+        "countryOfCitizenship": MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "createCliqId": MessageLookupByLibrary.simpleMessage("Create CliQ ID"),
@@ -2587,20 +2584,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-054)"),
-        "rjFlightBookingToDialogBoxDescription":
-            MessageLookupByLibrary.simpleMessage(
-                "Enter the name of the country. Your destination will appear on the list."),
+        "rjFlightBookingToDialogBoxDescription": MessageLookupByLibrary.simpleMessage(
+            "Enter the name of the country. Your destination will appear on the list."),
         "rjFrom": MessageLookupByLibrary.simpleMessage("FROM"),
-        "samplesOfNoFormatting": MessageLookupByLibrary.simpleMessage(
-            "Here are samples of the number formatting :\n"),
+        "samplesOfNoFormatting":
+            MessageLookupByLibrary.simpleMessage("Here are samples of the number formatting :\n"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "saveAsFavourite": MessageLookupByLibrary.simpleMessage("Where would like to save as favourite?"),
         "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
-            "Save your earnings digitally and securely"),
+        "saveEarningsDigitally":
+            MessageLookupByLibrary.simpleMessage("Save your earnings digitally and securely"),
         "savingAccount": m11,
         "savingAccountList": m12,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(

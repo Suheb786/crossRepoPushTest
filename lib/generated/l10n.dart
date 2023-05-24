@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -17335,6 +17336,16 @@ class S {
     return Intl.message(
       'Just give us any of these information that you know about your contact. We’ll sort out the rest for you.',
       name: 'contactInformationDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where would like to save as favourite?`
+  String get saveAsFavourite {
+    return Intl.message(
+      'Where would like to save as favourite?',
+      name: 'saveAsFavourite',
       desc: '',
       args: [],
     );

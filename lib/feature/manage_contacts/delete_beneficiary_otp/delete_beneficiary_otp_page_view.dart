@@ -18,10 +18,10 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import 'delete_contact_otp_for_manage_contact_page_view_model.dart';
+import 'delete_beneficiary_otp_page_view_model.dart';
 
-class DeleteContactOTPPageView extends BasePageViewWidget<DeleteContactOTPPageViewModel> {
-  DeleteContactOTPPageView(ProviderBase model) : super(model);
+class DeleteBeneficiaryOTPPageView extends BasePageViewWidget<DeleteBeneficiaryOTPPageViewModel> {
+  DeleteBeneficiaryOTPPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
