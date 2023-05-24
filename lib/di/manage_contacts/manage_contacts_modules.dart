@@ -10,7 +10,6 @@ import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/ben
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/delete_beneficiary_otp/delete_beneficiary_otp_page_view_model.dart';
 
 final beneficiaryContactListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryContactListPageViewModel>(
@@ -45,8 +44,3 @@ final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.auto
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
-
-final deleteBeneficiaryOTPViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DeleteBeneficiaryOTPPageViewModel>(
-  (ref) => DeleteBeneficiaryOTPPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
-);
