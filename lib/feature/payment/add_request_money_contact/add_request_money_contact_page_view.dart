@@ -71,7 +71,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                             padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 25.0.w),
                             child: Row(
                               children: [
-                                AppSvg.asset(AssetUtils.blueStar, color: AppColor.black),
+                                AppSvg.asset(AssetUtils.blueStar, color: Theme.of(context).primaryColorDark),
                                 SizedBox(
                                   width: 4.w,
                                 ),

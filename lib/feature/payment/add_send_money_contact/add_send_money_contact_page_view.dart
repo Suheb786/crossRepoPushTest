@@ -61,7 +61,8 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                             padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 25.0.w),
                             child: Row(
                               children: [
-                                AppSvg.asset(AssetUtils.blueStar, color: AppColor.white),
+                                AppSvg.asset(AssetUtils.blueStar,
+                                    color: Theme.of(context).colorScheme.secondary),
                                 SizedBox(
                                   width: 4.w,
                                 ),
