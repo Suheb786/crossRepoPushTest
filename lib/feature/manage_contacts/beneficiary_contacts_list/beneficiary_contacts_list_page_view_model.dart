@@ -9,7 +9,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ManageContactListPageViewModel extends BasePageViewModel {
+class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   List<Beneficiary>? searchResult = [];
@@ -46,22 +46,6 @@ class ManageContactListPageViewModel extends BasePageViewModel {
   }
 
   void getBeneficiaryList() {
-    _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
-  }
-
-  ///--------------------------public-override-methods-------------------------------------///
-
-  @override
-  void dispose() {
-    _getBeneficiaryListRequest.close();
-    _getBeneficiaryListResponse.close();
-    _searchBeneficiaryListResponse.close();
-    super.dispose();
-  }
-
-  ///--------------------------public-constructor-------------------------------------///
-
-  ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryListRequest.listen((value) {
       RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
           .asFlow()
@@ -77,6 +61,22 @@ class ManageContactListPageViewModel extends BasePageViewModel {
       });
     });
 
+    _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
+  }
+
+  ///--------------------------public-override-methods-------------------------------------///
+
+  @override
+  void dispose() {
+    _getBeneficiaryListRequest.close();
+    _getBeneficiaryListResponse.close();
+    _searchBeneficiaryListResponse.close();
+    super.dispose();
+  }
+
+  ///--------------------------public-constructor-------------------------------------///
+
+  BeneficiaryContactListPageViewModel(this._getBeneficiaryUseCase) {
     getBeneficiaryList();
   }
 }

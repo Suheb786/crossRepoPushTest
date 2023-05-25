@@ -238,6 +238,7 @@ class AssetUtils {
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
+  static const String swipeUpAnimation = _animation + "Swipe_Up.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
   ///Evoucher png
@@ -329,4 +330,9 @@ class AssetUtils {
   static const String efawateerPopUpImage = drawable + "efawateer_popup_image.png";
   static const String infoFee = svg + "info_fee.svg";
   static const String bulbIcon = svg + "bulb_icon.svg";
+
+  ///manage contact svg
+  static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
+  static const String starRedIcon = svg + "star_red.svg";
+  static const String starYellowIcon = svg + "star_yellow.svg";
 }
