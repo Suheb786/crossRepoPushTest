@@ -1,15 +1,14 @@
-import 'package:animated_widgets/generated/i18n.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/usecase/manage_contacts/add_contact_OTP_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/manage_contacts/add_contact_OTP_usecase.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class AddContactIBANotpPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///

@@ -252,7 +252,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                 fontSize: 12.0.t)),
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].cdtrName}',
+                                                                                ' ${activity.data![index].cdtrName}',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,

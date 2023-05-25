@@ -29,7 +29,8 @@ class InformationDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
+        alignment: Alignment.bottomCenter,
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 56.h, top: 56.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async => false,
