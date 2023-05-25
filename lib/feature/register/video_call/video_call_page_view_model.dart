@@ -18,9 +18,11 @@ class VideoCallPageViewModel extends BasePageViewModel {
   }
 
   void moveToPage(int index) {
-    appSwiperController.jumpToPage(
-      index,
-    );
+    if (appSwiperController.hasClients) {
+      appSwiperController.jumpToPage(
+        index,
+      );
+    }
   }
 
   void previousPage() {

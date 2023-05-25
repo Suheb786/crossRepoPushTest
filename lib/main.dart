@@ -6,6 +6,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,11 +22,14 @@ void main() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
 
+
     //await FirebaseAnalytics.instance.logEvent(name: "Test");
 
     // Pass all uncaught errors from the framework to Crashlytics.
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    // if (kReleaseMode) {
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    // }
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
     analytics.setCurrentScreen(screenName: "Main Screen");
     await analytics.logEvent(

@@ -108,7 +108,9 @@ class PurposeDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(model.purposeList![currentIndex!]);
+                            if (model.purposeList?[currentIndex ?? 0] != null) {
+                              onSelected?.call(model.purposeList?[currentIndex ?? 0] ?? Purpose());
+                            }
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),

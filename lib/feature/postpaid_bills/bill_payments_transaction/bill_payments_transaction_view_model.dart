@@ -80,53 +80,12 @@ class BillPaymentsTransactionViewModel extends BasePageViewModel {
 
   onSearchTransaction({String? searchText}) {
     searchController.clear();
-    // List<BillPaymentsTransactionData> tempTransactionList = [];
     List<String> tempSearchTextList = searchTextList;
     if (searchText != null && searchText.isNotEmpty) {
       tempSearchTextList.add(searchText.toLowerCase());
-
-      // tempTransactionList = searchTransactionResponse?.data?.billPaymentsTransactionData ?? [];
-    } else {
-      // searchText = "";
-      // print("JDAJSFHJKLASFLKJ1: $searchText");
-
-      // tempTransactionList = transactionsResponse?.data?.billPaymentsTransactionData ?? [];
     }
-
     searchTextList = tempSearchTextList;
     _searchTextSubject.add(searchTextList);
-
-    /*List<BillPaymentsTransactionData> filteredTransactionList = tempTransactionList;
-
-    tempSearchTextList.forEach((tag) {
-      List<BillPaymentsTransactionData> tempList = [];
-
-      filteredTransactionList.forEach((element) {
-        List<BillPaymentsTransactionList>? nestedFilteredTransaction =
-            element.billPaymentsTransactionDataList?.where((transaction) {
-          return (((transaction.amount ?? 0.0).toString().toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.nickname ?? '').toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.refNo ?? '').toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.billerNameAr ?? '').toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.billingNumber ?? '').toLowerCase().contains(tag.toLowerCase())) ||
-              ((transaction.billerName ?? '').toLowerCase().contains(tag.toLowerCase())));
-        }).toList();
-        if ((nestedFilteredTransaction ?? []).isNotEmpty) {
-          BillPaymentsTransactionData content = BillPaymentsTransactionData(
-              label: element.label, billPaymentsTransactionDataList: nestedFilteredTransaction);
-
-          tempList.add(content);
-        }
-      });
-      filteredTransactionList = tempList;
-    });
-
-    searchTextList = tempSearchTextList;
-    _searchTextSubject.add(searchTextList);
-    searchTransactionResponse = Resource.success(
-        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList));
-    _getTransactionsResponse.add(Resource.success(
-        data: BillPaymentsTransactionModel(billPaymentsTransactionData: filteredTransactionList)));*/
   }
 
   void getMoreScrollListener() {

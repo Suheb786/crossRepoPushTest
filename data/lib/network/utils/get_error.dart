@@ -23,16 +23,16 @@ NetworkError getError({Response? apiResponse}) {
             message: apiResponse.statusMessage!);
       }
     } catch (exception) {
-      print("I am in catch $exception");
       return NetworkError(
           cause: Exception("Server Response Error"),
-          httpError: apiResponse!.statusCode!,
-          message: apiResponse.statusMessage!);
+          httpError: apiResponse?.statusCode ?? 503,
+          message:
+              apiResponse?.statusMessage ?? 'Server is under maintenance. Please try again in sometime.');
     }
   } else {
     return NetworkError(
         cause: Exception("Server Response Error"),
-        httpError: apiResponse!.statusCode!,
-        message: apiResponse.statusMessage!);
+        httpError: apiResponse?.statusCode ?? 503,
+        message: apiResponse?.statusMessage ?? 'Server is under maintenance. Please try again in sometime.');
   }
 }
