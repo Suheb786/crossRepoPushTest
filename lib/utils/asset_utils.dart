@@ -295,6 +295,7 @@ class AssetUtils {
   static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
   static const String New_RJ_BG = drawable + "new_rj_background.png";
+  static const String AirplaneTail = drawable + "airplane_tail.png";
 
   ///Rj svg
   static const String RjCardLogo = svg + "rj_card_logo.svg";

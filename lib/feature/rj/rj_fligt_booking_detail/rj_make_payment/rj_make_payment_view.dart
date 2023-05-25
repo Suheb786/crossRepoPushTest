@@ -40,6 +40,10 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                             .read(rjFlightBookingDetailViewModelProvider)
                             .nextPage();
                       }
+                      //Todo remove from code
+                      ProviderScope.containerOf(context)
+                          .read(rjFlightBookingDetailViewModelProvider)
+                          .nextPage();
                     },
                     dataBuilder: (BuildContext context, data) {
                       return AppStreamBuilder<List<MakePaymentCard>>(
@@ -202,7 +206,8 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                           height: 20.h,
                                         ),
                                         AppStreamBuilder<bool>(
-                                          initialData: false,
+                                          // initialData: false,
+                                          initialData: true,
                                           stream: model.showButtonSubjectStream,
                                           dataBuilder: (BuildContext context, data) {
                                             return Visibility(
@@ -216,17 +221,20 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                         SizedBox(
                                           height: 31.h,
                                         ),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text(
-                                            S.of(context).cancel,
-                                            style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: AppColor.brightBlue,
-                                              fontSize: 14.t,
-                                              fontWeight: FontWeight.w600,
+                                        Visibility(
+                                          visible: false,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              S.of(context).cancel,
+                                              style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                color: AppColor.brightBlue,
+                                                fontSize: 14.t,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
                                         ),

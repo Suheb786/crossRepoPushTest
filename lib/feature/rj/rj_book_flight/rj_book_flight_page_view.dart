@@ -46,7 +46,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
       child: Container(
         height: double.infinity,
         width: double.infinity,
-        color: AppColor.rj_gray,
+        color: Theme.of(context).colorScheme.onSurface,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -312,6 +312,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                               ),
                               Container(
                                 height: 79.h,
+                                width: double.infinity,
                                 child: ListView.separated(
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
@@ -321,80 +322,75 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                         model.selectedCabinClass(index);
                                       },
                                       child: Container(
-                                        width: MediaQuery.of(context).size.width / 2.35,
-                                        child: Row(
-                                          children: [
-                                            AppStreamBuilder<int>(
-                                              stream: model.selectedCabinClassSubjectStream,
-                                              initialData: 0,
-                                              dataBuilder: (BuildContext context, data) {
-                                                ///based on index changing cabin class container border color
-                                                return data == index
-                                                    ? Expanded(
-                                                        child: Container(
-                                                          // width: 142.w,
-                                                          decoration: BoxDecoration(
-                                                              border: Border.all(color: AppColor.brightBlue),
-                                                              borderRadius: BorderRadius.all(
-                                                                Radius.circular(8.w),
-                                                              )),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              Image.asset(
-                                                                model.cabinClassOptionList[index].icon,
-                                                                height: 24.h,
-                                                                width: 24.h,
-                                                              ),
-                                                              SizedBox(
-                                                                height: 10.h,
-                                                              ),
-                                                              Text(
-                                                                model.cabinClassOptionList[index].option,
-                                                                style: TextStyle(
-                                                                    fontFamily: StringUtils.appFont,
-                                                                    fontSize: 12.t,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    color: AppColor.veryDarkGray2),
-                                                              )
-                                                            ],
+                                        width: MediaQuery.of(context).size.width / 2.3,
+                                        child: AppStreamBuilder<int>(
+                                          stream: model.selectedCabinClassSubjectStream,
+                                          initialData: 0,
+                                          dataBuilder: (BuildContext context, data) {
+                                            ///based on index changing cabin class container border color
+                                            return data == index
+                                                ? Expanded(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(color: AppColor.brightBlue),
+                                                          borderRadius: BorderRadius.all(
+                                                            Radius.circular(8.w),
+                                                          )),
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Image.asset(
+                                                            model.cabinClassOptionList[index].icon,
+                                                            height: 24.h,
+                                                            width: 24.h,
                                                           ),
-                                                        ),
-                                                      )
-                                                    : Expanded(
-                                                        child: Container(
-                                                          // width: 142.w,
-                                                          decoration: BoxDecoration(
-                                                              border: Border.all(color: AppColor.white_gray),
-                                                              borderRadius: BorderRadius.all(
-                                                                Radius.circular(8.w),
-                                                              )),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              Image.asset(
-                                                                model.cabinClassOptionList[index].icon,
-                                                                height: 24.h,
-                                                                width: 24.h,
-                                                              ),
-                                                              SizedBox(
-                                                                height: 10.h,
-                                                              ),
-                                                              Text(
-                                                                model.cabinClassOptionList[index].option,
-                                                                style: TextStyle(
-                                                                    fontFamily: StringUtils.appFont,
-                                                                    fontSize: 12.t,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    color: AppColor.veryDarkGray2),
-                                                              )
-                                                            ],
+                                                          SizedBox(
+                                                            height: 10.h,
                                                           ),
-                                                        ),
-                                                      );
-                                              },
-                                            ),
-                                          ],
+                                                          Text(
+                                                            model.cabinClassOptionList[index].option,
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 12.t,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: AppColor.veryDarkGray2),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Expanded(
+                                                    child: Container(
+                                                      // width: 142.w,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(color: AppColor.white_gray),
+                                                          borderRadius: BorderRadius.all(
+                                                            Radius.circular(8.w),
+                                                          )),
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Image.asset(
+                                                            model.cabinClassOptionList[index].icon,
+                                                            height: 24.h,
+                                                            width: 24.h,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10.h,
+                                                          ),
+                                                          Text(
+                                                            model.cabinClassOptionList[index].option,
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontSize: 12.t,
+                                                                fontWeight: FontWeight.w600,
+                                                                color: AppColor.veryDarkGray2),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                          },
                                         ),
                                       ),
                                     );
@@ -478,7 +474,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                           dataBuilder: (context, getOneWayTripLinkResponse) {
                                             return AppStreamBuilder<bool>(
                                                 stream: model.allFieldValidatorStream,
-                                                initialData: true,
+                                                initialData: false,
                                                 dataBuilder: (context, isValid) {
                                                   return (isValid!)
                                                       ? AnimatedButton(

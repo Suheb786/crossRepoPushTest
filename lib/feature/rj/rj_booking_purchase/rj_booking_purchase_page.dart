@@ -23,7 +23,7 @@ class RjBookingPurchasePageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme.of(context).colorScheme.onSurface;
   }
 
   @override
@@ -33,6 +33,6 @@ class RjBookingPurchasePageState
 }
 
 class RjBookingPurchasePageArgument {
-  String amount;
+  int amount;
   RjBookingPurchasePageArgument(this.amount);
 }

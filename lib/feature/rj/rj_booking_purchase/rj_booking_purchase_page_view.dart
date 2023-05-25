@@ -26,7 +26,12 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
             Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(AssetUtils.line),
+                Image.asset(
+                  AssetUtils.line,
+                  color: AppColor.dark_gray_white_1,
+                  fit: BoxFit.fitWidth,
+                  width: MediaQuery.of(context).size.width,
+                ),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
@@ -46,7 +51,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.arguments.amount.toString(),
+                    model.arguments.amount.toStringAsFixed(3),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
@@ -60,7 +65,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       S.of(context).JOD,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: AppColor.very_light_red,
+                          color: AppColor.dark_gray_white_2,
                           fontWeight: FontWeight.w700,
                           fontSize: 14.t),
                     ),
@@ -101,7 +106,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            flex: 1,
+                            flex: 2,
                             child: Container(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,7 +317,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingPage);
+              },
               child: Padding(
                 padding: EdgeInsets.only(top: 9.h),
                 child: Text(

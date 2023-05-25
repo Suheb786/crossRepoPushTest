@@ -48,7 +48,8 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      // color: Theme.of(context).primaryColorLight.withOpacity(0.3)
+                      color: AppColor.light_gray_white),
                 );
               },
             ),
