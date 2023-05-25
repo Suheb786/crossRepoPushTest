@@ -60,7 +60,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                           borderRadius: BorderRadius.circular(100.w),
                           border: Border.all(
                               color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), width: 1)),
-                      padding: EdgeInsets.all(4),
+                      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.t),
                       child: Stack(
                         children: <Widget>[
                           GestureDetector(
@@ -77,7 +77,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                               decoration: ShapeDecoration(
                                 color: Theme.of(context).primaryColor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(100.w),
                                 ),
                               ),
                               child: Row(
@@ -90,13 +90,13 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                     width: 48.w,
                                     decoration: BoxDecoration(
                                         color: Theme.of(context).primaryColor, shape: BoxShape.circle),
-                                    margin:
-                                        EdgeInsets.only(left: index == 0 ? 4 : 0, right: index == 1 ? 4 : 0),
+                                    margin: EdgeInsets.only(
+                                        left: index == 0 ? 4.w : 0, right: index == 1.w ? 4.w : 0),
                                     child: Text(model.languageValue[index],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 15,
+                                            fontSize: 15.t,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context).colorScheme.secondary)),
                                   ),
@@ -114,7 +114,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                               decoration: ShapeDecoration(
                                 color: Theme.of(context).colorScheme.secondary,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                  borderRadius: BorderRadius.circular(100.w),
                                 ),
                               ),
                               alignment: Alignment.center,
@@ -122,7 +122,7 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   (streamValue ?? true) ? model.languageValue[0] : model.languageValue[1],
                                   style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 15,
+                                    fontSize: 15.t,
                                     fontWeight: FontWeight.w600,
                                     color:
                                         Theme.of(context).textTheme.bodyLarge?.color ?? AppColor.brightBlue,

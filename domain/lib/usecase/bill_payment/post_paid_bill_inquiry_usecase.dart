@@ -24,11 +24,11 @@ class PostPaidBillInquiryUseCaseParams extends Params {
   String? serviceType;
   String? billingNumber;
   dynamic postpaidBillInquiries;
-  bool manualBillEnquiry;
+  bool isFromSelectedItem;
   int index;
 
   PostPaidBillInquiryUseCaseParams(
-      {required this.manualBillEnquiry, required this.index, this.postpaidBillInquiries});
+      {required this.isFromSelectedItem, required this.index, this.postpaidBillInquiries});
 
   @override
   Either<AppError, bool> verify() {

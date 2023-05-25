@@ -62,7 +62,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         (item.expDateStatus == false);
   }
 
-  void selectedItem(int index, bool manualBillEnquiry) {
+  void selectedItem(int index, bool isFromSelectedItem) {
     if (payPostPaidBillsDataList.isNotEmpty) {
       if (payPostPaidBillsDataList[index].isChecked == true &&
           !isDisabledConditions(payPostPaidBillsDataList[index])) {
@@ -105,13 +105,15 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             payPostPaidBillsDataList[index].dueAmount != null &&
                 payPostPaidBillsDataList[index].dueAmount == "0") {
           if (postPaidBillInquiryData == null || postPaidBillInquiryData!.isEmpty) {
-            postPaidBillInquiry(postPaidRequestListJson, manualEnquiry: manualBillEnquiry, index: index);
+            postPaidBillInquiry(postPaidRequestListJson,
+                isFromSelectedItem: isFromSelectedItem, index: index);
           } else {
             if (payPostPaidBillsDataList[index].isAmountUpdatedFromApi == false) {
-              postPaidBillInquiry(postPaidRequestListJson, manualEnquiry: manualBillEnquiry, index: index);
+              postPaidBillInquiry(postPaidRequestListJson,
+                  isFromSelectedItem: isFromSelectedItem, index: index);
             } else {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
-                  isFromSelectedItem: true, manualBillEnquiry: manualBillEnquiry, index: index);
+                  isFromSelectedItem: isFromSelectedItem, index: index);
             }
           }
         }
@@ -146,7 +148,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
       postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
       _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
-      postPaidBillInquiry(postPaidRequestListJson, manualEnquiry: false, index: 0);
+      postPaidBillInquiry(postPaidRequestListJson, isFromSelectedItem: false, index: 0);
     }
   }
 
@@ -211,11 +213,11 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   int selectedIndex = -1;
 
   void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry,
-      {required bool manualEnquiry, required int index}) {
+      {required bool isFromSelectedItem, required int index}) {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("post_paid_saved_bill_enquiry", {"post_paid_saved_bill_enquiry_call": true});
     _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
-        postpaidBillInquiries: postpaidBillInquiry, manualBillEnquiry: manualEnquiry, index: index));
+        postpaidBillInquiries: postpaidBillInquiry, isFromSelectedItem: isFromSelectedItem, index: index));
   }
 
   List<PostPaidBillInquiryData> postPaidBillInquiryDataForOneItem = [];
@@ -239,9 +241,9 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
             if (payPostPaidBillsDataList.length > 0) {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
-                  manualBillEnquiry: params.manualBillEnquiry, index: params.index);
+                  isFromSelectedItem: params.isFromSelectedItem, index: params.index);
             }
-            if (params.manualBillEnquiry) {
+            if (params.isFromSelectedItem) {
               showErrorMessagePopUp(
                   index: params.index, data: event.data?.content?.postPaidBillInquiryData ?? []);
             }
@@ -264,7 +266,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void postpaidBillEnquiryOnSuccessMethod(List<PostPaidBillInquiryData>? inquiryData,
-      {bool? isFromSelectedItem, required bool manualBillEnquiry, required int index}) {
+      {required bool isFromSelectedItem, required int index}) {
     selectedPostPaidBillsList = [];
     _postPaidBillEnquiryResponse.safeAdd(Resource.success(
         data:
@@ -311,7 +313,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         }
         selectedPostPaidBillsList.add(item);
       } else {
-        if (manualBillEnquiry &&
+        if (isFromSelectedItem &&
             payPostPaidBillsDataList[index].billingNo == payPostPaidBillsDataList[j].billingNo) {
           payPostPaidBillsDataList[j].noDataFoundForBill = true;
         }

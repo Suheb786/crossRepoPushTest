@@ -95,7 +95,7 @@ class ConfirmBillPaymentAmountPageViewModel extends BasePageViewModel {
         nickName: AppConstantsUtils.NICK_NAME));
 
     _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
-        postpaidBillInquiries: postPaidRequestListJson, manualBillEnquiry: false, index: 0));
+        postpaidBillInquiries: postPaidRequestListJson, isFromSelectedItem: false, index: 0));
   }
 
   void postPaidBillInquiryListener() {
