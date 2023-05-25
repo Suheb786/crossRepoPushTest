@@ -3,12 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/manage_contacts/manage_contacts_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_form/add_contacts_IBAN_form_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_otp/add_beneficiary_otp_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_contacts_form/add_beneficiary_form_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 
@@ -29,17 +28,15 @@ final manageContactDetailsViewModelProvider =
       ref.read(getPurposeUseCaseProvider)),
 );
 
-final addContactIBANViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddContactsIBANManageContactsPageViewModel>(
-        (ref) => AddContactsIBANManageContactsPageViewModel());
+final addBeneficiaryViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AddBeneficiaryPageViewModel>((ref) => AddBeneficiaryPageViewModel());
 
-final addContactIBANformPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddContactsIBANformPageViewModel>(
-        (ref) => AddContactsIBANformPageViewModel(ref.read(addContactIBANuseCaseProvider)));
+final addBeneficiaryFormPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryFormPageViewModel>(
+    (ref) => AddBeneficiaryFormPageViewModel(
+        ref.read(addBeneficiaryUseCaseProvider), ref.read(getPurposeUseCaseProvider)));
 
-final addcontactIBANotpPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddContactIBANotpPageViewModel>(
-        (ref) => AddContactIBANotpPageViewModel(ref.read(addContactIbanOTPuseCaseProvider)));
+final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryotpPageViewModel>(
+    (ref) => AddBeneficiaryotpPageViewModel(ref.read(addBeneficiaryOTPuseCaseProvider)));
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>(
@@ -47,7 +44,3 @@ final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.auto
 
 final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
     (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
-final otpForManageContactPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DeleteContactOTPPageViewModel>(
-  (ref) => DeleteContactOTPPageViewModel(ref.read(manageContactOtpValidationUseCaseProvider)),
-);

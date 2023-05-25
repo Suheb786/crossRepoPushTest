@@ -1755,5 +1755,8 @@
   "yourContactisFavourite": "Your contact has been added to favourite",
   "yourContactDetailsHavebeenSaved": "Your contact details have been saved",
   "transictionHistory": "Transiction History",
-  "pleaseEnterYourContactDetails": "Please enter your\ncontact details"
+  "pleaseEnterYourContactDetails": "Please enter your\ncontact details",
+  "contactInformation": "Contact information",
+  "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",
+  "saveAsFavourite": "Where would like to save as favourite?"
 }

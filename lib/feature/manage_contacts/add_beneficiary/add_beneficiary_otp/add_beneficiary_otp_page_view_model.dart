@@ -1,17 +1,16 @@
-import 'package:animated_widgets/generated/i18n.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/manage_contacts/add_contact_OTP_usecase.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
-class AddContactIBANotpPageViewModel extends BasePageViewModel {
+class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
@@ -23,7 +22,7 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
   ///--------------------------final-valiables-------------------------------------///
 
   final GlobalKey<AppTextFieldState> otpKey = GlobalKey();
-  final AddContactIbanOTPuseCase addContactIbanOTPuseCase;
+  final AddBeneficiaryOTPUseCase addContactIbanOTPuseCase;
 
   ///--------------------------controllers-------------------------------------///
 
@@ -33,6 +32,7 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
 
   PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
   PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
+
   Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
 
   ///--------------------------otp-subject-------------------------------------///
@@ -82,7 +82,7 @@ class AddContactIBANotpPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  AddContactIBANotpPageViewModel(this.addContactIbanOTPuseCase) {
+  AddBeneficiaryotpPageViewModel(this.addContactIbanOTPuseCase) {
     addcontactIbanOTPuseCaseRequest.listen((value) {
       RequestManager(value, createCall: () => addContactIbanOTPuseCase.execute(params: value))
           .asFlow()
