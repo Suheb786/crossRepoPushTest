@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -69,10 +70,7 @@ class BeneficiaryTransactionWidget extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0.h),
-                child: Container(
-                  height: 1,
-                  color: AppColor.light_grayish_violet,
-                ),
+                child: AppDivider(),
               );
             },
           ),
