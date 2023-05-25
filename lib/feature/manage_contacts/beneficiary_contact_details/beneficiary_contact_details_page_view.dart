@@ -103,17 +103,18 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     width: 70.w,
                                     height: 40.h,
                                     padding: 4,
+                                    activeTextColor: Theme.of(context).colorScheme.secondary,
                                     activeText: S.of(context).yes.toUpperCase(),
-                                    activeTextColor: AppColor.white,
-                                    inactiveTextColor: AppColor.darkGray,
+                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
                                     activeTextFontWeight: FontWeight.w500,
                                     showOnOff: true,
                                     valueFontSize: 12.t,
-                                    activeToggleColor: AppColor.white,
+                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
                                     inactiveText: S.of(context).no.toUpperCase(),
-                                    inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
                                     inactiveTextFontWeight: FontWeight.w500,
-                                    inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                    inactiveSwitchBorder:
+                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
                                     activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
                                     inactiveColor: Theme.of(context).colorScheme.secondary,
                                   );
@@ -143,17 +144,18 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     width: 70.w,
                                     height: 40.h,
                                     padding: 4,
+                                    activeTextColor: Theme.of(context).colorScheme.secondary,
                                     activeText: S.of(context).yes.toUpperCase(),
-                                    activeTextColor: AppColor.white,
-                                    inactiveTextColor: AppColor.darkGray,
+                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
                                     activeTextFontWeight: FontWeight.w500,
                                     showOnOff: true,
                                     valueFontSize: 12.t,
-                                    activeToggleColor: AppColor.white,
+                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
                                     inactiveText: S.of(context).no.toUpperCase(),
-                                    inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
                                     inactiveTextFontWeight: FontWeight.w500,
-                                    inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                    inactiveSwitchBorder:
+                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
                                     activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
                                     inactiveColor: Theme.of(context).colorScheme.secondary,
                                   );
@@ -274,27 +276,66 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
           ),
           SizedBox(height: 16.h),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: AppColor.white_gray,
                 ),
                 borderRadius: BorderRadius.circular(100)),
-            child: AutoSizeTextField(
-              controller: model.nickNameController,
-              fullwidth: false,
-              textAlign: TextAlign.center,
-              wrapWords: false,
-              cursorWidth: 1.w,
-              decoration: InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.brightBlue,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16.0.t),
-              onSubmitted: (value) {
-                debugPrint("value----->${value}");
-              },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: ValueListenableBuilder<bool>(
+                      valueListenable: model.nameEditableNotifier,
+                      builder: (BuildContext context, bool value, Widget? child) {
+                        return Focus(
+                          onFocusChange: (hasFocus) {
+                            if (!hasFocus) {
+                              model.setNickNameReadOnly();
+                            }
+                          },
+                          child: AutoSizeTextField(
+                            controller: model.nickNameController,
+                            focusNode: model.nickNameFocus,
+                            fullwidth: false,
+                            textAlign: TextAlign.center,
+                            cursorWidth: 1.w,
+                            minWidth: 40.w,
+                            readOnly: value,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                              isCollapsed: false,
+                            ),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16.0.t),
+                            onSubmitted: (value) {
+                              model.setNickNameReadOnly();
+                            },
+                          ),
+                        );
+                      }),
+                ),
+                ValueListenableBuilder<bool>(
+                    valueListenable: model.nameEditableNotifier,
+                    builder: (BuildContext context, bool value, Widget? child) {
+                      return GestureDetector(
+                        onTap: () {
+                          model.toggleNickName();
+                        },
+                        child: AppSvg.asset(
+                          value ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                          color: AppColor.brightBlue,
+                          width: value ? 14.h : 12.h,
+                          height: value ? 14.h : 12.h,
+                        ),
+                      );
+                    })
+              ],
             ),
           ),
         ],
