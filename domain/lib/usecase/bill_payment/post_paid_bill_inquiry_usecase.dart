@@ -6,8 +6,8 @@ import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PostPaidBillInquiryUseCase extends BaseUseCase<NetworkError,
-    PostPaidBillInquiryUseCaseParams, PostPaidBillInquiry> {
+class PostPaidBillInquiryUseCase
+    extends BaseUseCase<NetworkError, PostPaidBillInquiryUseCaseParams, PostPaidBillInquiry> {
   final BillPaymentRepository _repository;
 
   PostPaidBillInquiryUseCase(this._repository);
@@ -23,11 +23,12 @@ class PostPaidBillInquiryUseCaseParams extends Params {
   String? billerCode;
   String? serviceType;
   String? billingNumber;
-   dynamic postpaidBillInquiries;
+  dynamic postpaidBillInquiries;
+  bool manualBillEnquiry;
+  int index;
 
-
-  PostPaidBillInquiryUseCaseParams( {
-     /* this.billerCode, this.serviceType, this.billingNumber,*/this.postpaidBillInquiries});
+  PostPaidBillInquiryUseCaseParams(
+      {required this.manualBillEnquiry, required this.index, this.postpaidBillInquiries});
 
   @override
   Either<AppError, bool> verify() {
