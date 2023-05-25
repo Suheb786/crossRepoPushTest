@@ -22,6 +22,7 @@ void main() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
 
+
     //await FirebaseAnalytics.instance.logEvent(name: "Test");
 
     // Pass all uncaught errors from the framework to Crashlytics.
