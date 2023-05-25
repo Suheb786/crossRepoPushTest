@@ -45,7 +45,7 @@ class BeneficiaryListWidget extends StatelessWidget {
                     : Stack(clipBehavior: Clip.none, textDirection: TextDirection.rtl, children: [
                         CircleAvatar(
                           radius: 25.w,
-                          backgroundColor: AppColor.black,
+                          backgroundColor: Theme.of(context).primaryColorDark,
                           child: Text(
                             StringUtils.getFirstInitials(beneficiary?.fullName),
                             style: TextStyle(

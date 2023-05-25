@@ -16809,6 +16809,16 @@ class S {
     );
   }
 
+  /// `You paid`
+  String get youPaid {
+    return Intl.message(
+      'You paid',
+      name: 'youPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Time`
   String get time {
     return Intl.message(

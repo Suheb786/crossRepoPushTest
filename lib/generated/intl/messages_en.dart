@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m14(noOfTransaction) => "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "Account is linked to the alias, but unable to set it to default"),
@@ -2422,6 +2423,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
+        "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
         "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(

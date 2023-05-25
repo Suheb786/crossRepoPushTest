@@ -2251,6 +2251,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
+        "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
         "youSent": MessageLookupByLibrary.simpleMessage(" تم الارسال"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
