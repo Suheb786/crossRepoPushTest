@@ -40,11 +40,15 @@ Future<String> encryptData({String? content, String? publicKey, String? privateK
   print('public Key--->$publicKey');
   print('public Key--->$privateKey');
 
-  var encrypter = encrypt.Encrypter(encrypt.RSA(
-      publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
-      privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
-      encoding: encrypt.RSAEncoding.PKCS1));
-  return Future.value(encrypter.encrypt(content!).base64);
+  try {
+    var encrypter = encrypt.Encrypter(encrypt.RSA(
+        publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
+        privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
+        encoding: encrypt.RSAEncoding.PKCS1));
+    return Future.value(encrypter.encrypt(content!).base64);
+  } catch (e) {
+    return Future.value('');
+  }
 }
 
 String signedData({required String userId, required String privateKey}) {
@@ -52,11 +56,15 @@ String signedData({required String userId, required String privateKey}) {
 }
 
 String decryptData({String? content, String? publicKey, String? privateKey}) {
-  var encrypter = encrypt.Encrypter(encrypt.RSA(
-      publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
-      privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
-      encoding: encrypt.RSAEncoding.PKCS1));
-  return encrypter.decrypt64(content!);
+  try {
+    var encrypter = encrypt.Encrypter(encrypt.RSA(
+        publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
+        privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
+        encoding: encrypt.RSAEncoding.PKCS1));
+    return encrypter.decrypt64(content!);
+  } catch (e) {
+    return '';
+  }
 }
 
 //

@@ -381,7 +381,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     return _apiService.enableBiometric(EnableBiometricRequestEntity(
-      publicKey: user!.publicPEM,
+      publicKey: user.publicPEM,
       cipher: await encryptData(content: user.id, publicKey: user.publicPEM, privateKey: user.privatePEM),
       baseData: baseData.toJson(),
     ));
