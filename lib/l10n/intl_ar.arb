@@ -1708,10 +1708,10 @@
   "yourContactDetailsHavebeenSaved": "Your contact details have been saved",
   "transictionHistory": "Transiction History",
   "pleaseEnterYourContactDetails": "Please enter your\ncontact details",
-  "loginWithEmail": "Login with Email",
-  "openYourAccountNow": "Open Your Account Now",
-  "goBack": "Go back",
-  "biometricLoginIsDisabled": "Biometric login is disabled",
-  "biometricLoginIsDisabledDesc": "Please login with your email address and enable the biometric login from Profile Settings.",
-  "login": "Login"
+  "loginWithEmail": "الدخول باستخدام البريد الإلكتروني",
+  "openYourAccountNow": "افتح حساب جديد ",
+  "goBack": "الرجوع",
+  "biometricLoginIsDisabled": "البصمة غير فعالة",
+  "biometricLoginIsDisabledDesc": "قم بالدخول إلى حسابك باستخدام بريدك الإلكتروني وفعل البصمة من خلال شاشة \"الإعدادات الشخصية\" ",
+  "login": "الدخول "
 }
