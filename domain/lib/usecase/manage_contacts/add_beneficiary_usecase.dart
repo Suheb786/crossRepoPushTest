@@ -33,13 +33,13 @@ class AddContactIBANuseCaseParams extends Params {
   final String name;
   final String purpose;
   final String purposeDetail;
-  final String IBANACCOUNTNOMobileNoALIAS;
+  final String IBANAccountNoMobileNoAlias;
 
   AddContactIBANuseCaseParams({
     required this.name,
     required this.purpose,
     required this.purposeDetail,
-    required this.IBANACCOUNTNOMobileNoALIAS,
+    required this.IBANAccountNoMobileNoAlias,
   });
 
   @override
@@ -47,7 +47,7 @@ class AddContactIBANuseCaseParams extends Params {
     if (Validator.isEmpty(name)) {
       return Left(AppError(
           cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.PLEASE_ENTER_CONTACT_NAME));
-    } else if (Validator.isEmpty(IBANACCOUNTNOMobileNoALIAS)) {
+    } else if (Validator.isEmpty(IBANAccountNoMobileNoAlias)) {
       return Left(AppError(
           cause: Exception(),
           error: ErrorInfo(message: ""),

@@ -85,7 +85,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   validationUserInput() {
     addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
-        IBANACCOUNTNOMobileNoALIAS: ibanORaccountORmobileORaliasController.text,
+        IBANAccountNoMobileNoAlias: ibanORaccountORmobileORaliasController.text,
         purpose: 'Dhaiyur',
         purposeDetail: 'dhaiyur',
         name: nameController.text));

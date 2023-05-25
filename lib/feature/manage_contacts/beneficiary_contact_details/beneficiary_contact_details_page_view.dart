@@ -88,7 +88,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     fontSize: 14.t,
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
-                                    color: AppColor.black),
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
                               ),
                             ),
                             AppStreamBuilder<bool>(
@@ -128,7 +128,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                     fontSize: 14.t,
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
-                                    color: AppColor.black),
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
                               ),
                             ),
                             AppStreamBuilder<bool>(
