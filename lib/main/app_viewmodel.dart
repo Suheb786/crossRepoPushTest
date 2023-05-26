@@ -49,14 +49,24 @@ class AppViewModel extends BaseViewModel {
           primaryColor: AppColor.brightRed,
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
-          
+
           dialogBackgroundColor: AppColor.white,
           colorScheme: _themeData.colorScheme.copyWith(
             secondary: AppColor.white,
+            onSecondary: AppColor.light_gray_4,
             background: AppColor.lightGray,
             error: AppColor.vivid_red,
             onSurface: AppColor.rj_gray,
-            
+            surfaceVariant: AppColor.veryDarkGray2,
+            surface: AppColor.veryDarkGray1,
+            shadow: AppColor.gray_black,
+            surfaceTint: AppColor.dark_gray_1,
+            onInverseSurface: AppColor.gray1,
+            inverseSurface: AppColor.white_gray,
+            onBackground: AppColor.whiteGrey,
+            inversePrimary: AppColor.gray5,
+            onSecondaryContainer: AppColor.brightBlue,
+            tertiary: AppColor.dark_violet_4,
           ),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(

@@ -110,7 +110,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               S.of(context).totalAmount,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: AppColor.veryDarkGray2,
+                                  color: Theme.of(context).colorScheme.surfaceVariant,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12.t),
                             ),
@@ -124,7 +124,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   S.of(context).dummyAmount,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.veryDarkGray2,
+                                      color: Theme.of(context).colorScheme.surfaceVariant,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 24.t),
                                 ),
@@ -135,7 +135,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   S.of(context).JOD,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.gray1,
+                                      color: Theme.of(context).colorScheme.onInverseSurface,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12.t),
                                 ),
@@ -145,8 +145,8 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               height: 24.h,
                             ),
                             Container(
-                              color: AppColor.whiteGrey,
-                              height: 1,
+                              color: Theme.of(context).colorScheme.onBackground,
+                              height: 1.h,
                             ),
                             SizedBox(
                               height: 24.h,
@@ -184,7 +184,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   '97.750 ',
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12.t),
                                 ),
@@ -192,7 +192,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   S.of(context).JOD,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12.t),
                                 )
@@ -207,7 +207,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   S.of(context).bookingRefNo,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12.t),
                                 ),
@@ -216,7 +216,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   '82292929190099',
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12.t),
                                 )
@@ -240,7 +240,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                           fontFamily: StringUtils.appFont,
                                           fontSize: 14.t,
                                           fontWeight: FontWeight.w400,
-                                          color: AppColor.veryDarkGray1),
+                                          color: Theme.of(context).colorScheme.surface),
                                     ), onSelected: () {
                                   Navigator.pop(context);
                                 }, onDismissed: () {
@@ -252,7 +252,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 S.of(context).cancel,
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: AppColor.brightBlue,
+                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                                   fontSize: 14.t,
                                   fontWeight: FontWeight.w600,
                                 ),

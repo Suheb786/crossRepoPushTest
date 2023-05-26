@@ -75,9 +75,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             context,
                             image: AssetUtils.flight,
                             title: S.of(context).bookFligtWithUs,
-                            onSelected: () {
-
-                            },
+                            onSelected: () {},
                             onDismissed: () {
                               Navigator.pop(context);
                               data.data?.isRJPopUPClicked = true;
@@ -88,7 +86,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  color: AppColor.veryDarkGray2,
+                                  color: Theme.of(context).colorScheme.surfaceVariant,
                                   fontSize: 14),
                             ),
                           );

@@ -7,7 +7,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../main/navigation/route_paths.dart';
-import '../../../utils/color_utils.dart';
 import 'rj_booking_page_view_model.dart';
 
 class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
@@ -17,7 +16,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
   Widget build(BuildContext context, model) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -28,7 +27,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
         child: Stack(
           children: [
             Container(
-              color: AppColor.white,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             InAppWebView(
               initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url ?? '')),

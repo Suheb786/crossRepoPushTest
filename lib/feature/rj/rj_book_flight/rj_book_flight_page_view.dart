@@ -14,7 +14,6 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_d
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -51,11 +50,11 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 57.0),
+              padding: EdgeInsetsDirectional.only(top: 57.h),
               child: Text(
                 S.of(context).bookYourFlight,
                 style: TextStyle(
-                    color: AppColor.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontFamily: StringUtils.appFont,
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600),
@@ -66,7 +65,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                 padding: EdgeInsetsDirectional.only(top: 35.h),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColor.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16),
                       topRight: Radius.circular(16),
@@ -78,8 +77,9 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                         margin: EdgeInsets.only(top: 8.h, bottom: 24.h),
                         height: 4.h,
                         width: 64.w,
-                        decoration:
-                            BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.inverseSurface,
+                            borderRadius: BorderRadius.circular(4)),
                       ),
 
                       Expanded(
@@ -91,7 +91,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                               Padding(
                                 padding: EdgeInsetsDirectional.only(top: 40.0.h, bottom: 10.h),
                                 child: Container(
-                                  height: 33,
+                                  height: 33.h,
                                   child: ListView.separated(
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
@@ -125,7 +125,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontWeight: FontWeight.w600,
-                                                                  color: AppColor.darkBlack,
+                                                                  color: Theme.of(context).primaryColorDark,
                                                                   fontSize: 14.t),
                                                             ),
                                                             SizedBox(
@@ -133,7 +133,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                             ),
                                                             Container(
                                                               height: 2.h,
-                                                              color: Colors.red,
+                                                              color: Theme.of(context).primaryColor,
                                                             )
                                                           ],
                                                         )
@@ -145,7 +145,9 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontWeight: FontWeight.w600,
-                                                                  color: AppColor.gray1,
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .onInverseSurface,
                                                                   fontSize: 14.t),
                                                             ),
                                                             SizedBox(
@@ -211,9 +213,12 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                       },
                                       suffixIcon: (value, data) {
                                         return Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
-                                            child: AppSvg.asset(AssetUtils.downArrow,
-                                                width: 16.w, height: 16.h, color: AppColor.dark_gray_1));
+                                          padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
+                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                              width: 16.w,
+                                              height: 16.h,
+                                              color: Theme.of(context).colorScheme.surfaceTint),
+                                        );
                                       },
                                     );
                                   }),
@@ -245,7 +250,9 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                       width: 16.w,
                                       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
                                       child: AppSvg.asset(AssetUtils.calendar,
-                                          height: 16.h, width: 16.w, color: AppColor.dark_gray_1));
+                                          height: 16.h,
+                                          width: 16.w,
+                                          color: Theme.of(context).colorScheme.surfaceTint));
                                 },
                               ),
                               AppStreamBuilder(
@@ -280,12 +287,13 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                               },
                                               suffixIcon: (value, data) {
                                                 return Container(
-                                                    height: 16.h,
-                                                    width: 16.w,
-                                                    padding:
-                                                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                                                    child: AppSvg.asset(AssetUtils.calendar,
-                                                        color: AppColor.dark_gray_1));
+                                                  height: 16.h,
+                                                  width: 16.w,
+                                                  padding:
+                                                      EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                                  child: AppSvg.asset(AssetUtils.calendar,
+                                                      color: Theme.of(context).colorScheme.surfaceTint),
+                                                );
                                               },
                                             ),
                                           ],
@@ -304,7 +312,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14.t,
-                                      color: AppColor.gray_black),
+                                      color: Theme.of(context).colorScheme.shadow),
                                 ),
                               ),
                               SizedBox(
@@ -322,7 +330,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                         model.selectedCabinClass(index);
                                       },
                                       child: Container(
-                                        width: MediaQuery.of(context).size.width / 2.3,
+                                        width: MediaQuery.of(context).size.width / 2.3.w,
                                         child: AppStreamBuilder<int>(
                                           stream: model.selectedCabinClassSubjectStream,
                                           initialData: 0,
@@ -332,7 +340,11 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                 ? Expanded(
                                                     child: Container(
                                                       decoration: BoxDecoration(
-                                                          border: Border.all(color: AppColor.brightBlue),
+                                                          border: Border.all(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .onSecondaryContainer,
+                                                          ),
                                                           borderRadius: BorderRadius.all(
                                                             Radius.circular(8.w),
                                                           )),
@@ -353,7 +365,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontSize: 12.t,
                                                                 fontWeight: FontWeight.w600,
-                                                                color: AppColor.veryDarkGray2),
+                                                                color: Theme.of(context).indicatorColor),
                                                           )
                                                         ],
                                                       ),
@@ -363,7 +375,10 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                     child: Container(
                                                       // width: 142.w,
                                                       decoration: BoxDecoration(
-                                                          border: Border.all(color: AppColor.white_gray),
+                                                          border: Border.all(
+                                                            color:
+                                                                Theme.of(context).colorScheme.inverseSurface,
+                                                          ),
                                                           borderRadius: BorderRadius.all(
                                                             Radius.circular(8.w),
                                                           )),
@@ -384,7 +399,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontSize: 12.t,
                                                                 fontWeight: FontWeight.w600,
-                                                                color: AppColor.veryDarkGray2),
+                                                                color: Theme.of(context).indicatorColor),
                                                           )
                                                         ],
                                                       ),
@@ -414,7 +429,7 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14.t,
-                                      color: AppColor.gray_black),
+                                      color: Theme.of(context).colorScheme.shadow),
                                 ),
                               ),
                               ListView.separated(
@@ -460,15 +475,13 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
-                                              Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                                  arguments: RjBookingPageArguments(
-                                                      // url: data.data?.content?.content?.link,
-                                                      url: "www.youtube.com"));
-                                            } else if (data.status == Status.LOADING) {
-                                              Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                                  arguments: RjBookingPageArguments(
-                                                      // url: data.data?.content?.content?.link,
-                                                      url: "www.youtube.com"));
+                                              Navigator.pushNamed(
+                                                context,
+                                                RoutePaths.RjBookingInAppWebView,
+                                                arguments: RjBookingPageArguments(
+                                                  url: data.data?.content?.content?.link,
+                                                ),
+                                              );
                                             }
                                           },
                                           dataBuilder: (context, getOneWayTripLinkResponse) {
@@ -479,8 +492,12 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                   return (isValid!)
                                                       ? AnimatedButton(
                                                           buttonText: S.of(context).swipeToProceed,
-                                                          borderColor: AppColor.brightBlue,
-                                                          textColor: AppColor.brightBlue,
+                                                          borderColor: Theme.of(context)
+                                                              .colorScheme
+                                                              .onSecondaryContainer,
+                                                          textColor: Theme.of(context)
+                                                              .colorScheme
+                                                              .onSecondaryContainer,
                                                         )
                                                       : Container();
                                                 });

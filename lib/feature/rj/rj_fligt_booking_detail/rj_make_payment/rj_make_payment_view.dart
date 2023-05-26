@@ -10,7 +10,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -90,7 +89,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                             S.of(context).payFrom,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: AppColor.veryDarkGray2,
+                                                color: Theme.of(context).colorScheme.surfaceVariant,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.t),
                                           ),
@@ -111,7 +110,10 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                           decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(8),
                                                               border: Border.all(
-                                                                  width: 1, color: AppColor.white_gray)),
+                                                                  width: 1,
+                                                                  color: Theme.of(context)
+                                                                      .colorScheme
+                                                                      .inverseSurface)),
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,7 +125,8 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                     model.makePaymentCardList[index].cardName,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: AppColor.black,
+                                                                        color: Theme.of(context)
+                                                                            .primaryColorDark,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 14.t),
                                                                   ),
@@ -134,7 +137,9 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                     model.makePaymentCardList[index].cardNo,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: AppColor.gray5,
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .inversePrimary,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 12.t),
                                                                   ),
@@ -145,7 +150,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                     "${model.makePaymentCardList[index].amt}  ${model.makePaymentCardList[index].currency}",
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        color: AppColor.black,
+                                                                        color: Theme.of(context).primaryColor,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 14.t),
                                                                   ),
@@ -163,12 +168,15 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                         ),
                                                                       ),
                                                                       decoration: BoxDecoration(
-                                                                          color: Colors.yellow,
+                                                                          color:
+                                                                              Theme.of(context).canvasColor,
                                                                           borderRadius:
                                                                               BorderRadius.circular(100),
                                                                           border: Border.all(
                                                                               width: 1,
-                                                                              color: AppColor.white_gray)),
+                                                                              color: Theme.of(context)
+                                                                                  .colorScheme
+                                                                                  .inverseSurface)),
                                                                     )
                                                                   : Container(
                                                                       height: 40.w,
@@ -178,7 +186,9 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                                               BorderRadius.circular(100),
                                                                           border: Border.all(
                                                                               width: 1,
-                                                                              color: AppColor.white_gray)),
+                                                                              color: Theme.of(context)
+                                                                                  .colorScheme
+                                                                                  .inverseSurface)),
                                                                     )
                                                             ],
                                                           )),
@@ -188,9 +198,9 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                         'No Data Found',
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            fontSize: 14,
+                                                            fontSize: 14.t,
                                                             fontWeight: FontWeight.w400,
-                                                            color: AppColor.dark_violet_4),
+                                                            color: Theme.of(context).colorScheme.tertiary),
                                                       ),
                                                     );
                                             },
@@ -231,7 +241,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                               S.of(context).cancel,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                color: AppColor.brightBlue,
+                                                color: Theme.of(context).colorScheme.onSecondaryContainer,
                                                 fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                               ),

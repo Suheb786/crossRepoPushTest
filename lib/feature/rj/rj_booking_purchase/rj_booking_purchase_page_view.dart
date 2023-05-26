@@ -28,7 +28,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               children: [
                 Image.asset(
                   AssetUtils.line,
-                  color: AppColor.dark_gray_white_1,
+                  color: AppColor.dark_Grayish_Blue,
                   fit: BoxFit.fitWidth,
                   width: MediaQuery.of(context).size.width,
                 ),
@@ -38,7 +38,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                     height: 111.37.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColor.vividYellow,
+                      color: Theme.of(context).canvasColor,
                     ),
                     child: Center(child: AppSvg.asset(AssetUtils.right)),
                   ),
@@ -65,7 +65,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       S.of(context).JOD,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: AppColor.dark_gray_white_2,
+                          color: AppColor.dark_Grayish_Blue_2,
                           fontWeight: FontWeight.w700,
                           fontSize: 14.t),
                     ),
@@ -93,7 +93,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w),
               child: Container(
                 decoration: BoxDecoration(
-                    color: AppColor.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.all(
                       Radius.circular(16),
                     )),
@@ -115,7 +115,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     S.of(context).rjFrom,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.t),
                                   ),
@@ -123,7 +123,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     S.of(context).aMM,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 32.t),
                                   ),
@@ -131,7 +131,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     S.of(context).jordan,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.t),
                                   ),
@@ -149,7 +149,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     S.of(context).to.toUpperCase(),
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.t),
                                   ),
@@ -157,7 +157,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     S.of(context).nRT,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 32.t),
                                   ),
@@ -166,7 +166,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.black,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12.t),
                                   ),
@@ -192,7 +192,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).departOnForPurchasePage,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.t),
                           ),
@@ -201,7 +201,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyDate,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -209,7 +209,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyTime,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.gray5,
+                                color: Theme.of(context).colorScheme.inversePrimary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -224,7 +224,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).returnOnForPurchasePage,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.t),
                           ),
@@ -233,7 +233,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyDate,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -241,7 +241,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyTime,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.gray5,
+                                color: Theme.of(context).colorScheme.inversePrimary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -256,7 +256,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDate,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.t),
                           ),
@@ -265,7 +265,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyDate,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -273,7 +273,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).purchaseDummyTime,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.gray5,
+                                color: Theme.of(context).colorScheme.inversePrimary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
@@ -288,7 +288,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).refTitle,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.t),
                           ),
@@ -297,7 +297,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                             S.of(context).refNoDummyData,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: AppColor.black,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12.t),
                           ),
