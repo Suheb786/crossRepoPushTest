@@ -3,11 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import '../../../main/navigation/route_paths.dart';
 import 'rj_booking_page_view.dart';
 import 'rj_booking_page_view_model.dart';
 
@@ -39,7 +37,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85),
       child: Container(
-        color: AppColor.rj_gray,
+        color: Theme.of(context).colorScheme.onSurface,
         child: Padding(
           padding: const EdgeInsets.only(top: 56.0, bottom: 35),
           child: Stack(
@@ -54,7 +52,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                         padding: EdgeInsetsDirectional.only(start: 20.w),
                         icon: Icon(
                           Icons.clear,
-                          color: AppColor.white,
+                          color: Theme.of(context).colorScheme.secondary,
                           size: 20,
                         ),
                         onPressed: () {
@@ -71,7 +69,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                   S.current.bookYourFlight,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: AppColor.white,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 14.t),

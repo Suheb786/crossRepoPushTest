@@ -10,7 +10,6 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../base/base_page.dart';
 import '../../../di/rj/rj_modules.dart';
-import '../../../utils/color_utils.dart';
 import '../../../utils/parser/error_parser.dart';
 
 class RjFlightBookingPage extends BasePage<RjFlightBookingViewModel> {
@@ -74,12 +73,13 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
     showTopSnackBar(
         Overlay.of(context),
         Material(
-          color: AppColor.white.withOpacity(0),
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0.w),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
-              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.scrim, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -90,7 +90,7 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
                           S.of(context).error,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: AppColor.light_grayish_violet,
+                              color: Theme.of(context).colorScheme.onTertiary,
                               fontWeight: FontWeight.w400,
                               fontSize: 10.0.t),
                         ),

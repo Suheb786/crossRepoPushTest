@@ -6,7 +6,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -28,7 +27,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               children: [
                 Image.asset(
                   AssetUtils.line,
-                  color: AppColor.dark_Grayish_Blue,
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
                   fit: BoxFit.fitWidth,
                   width: MediaQuery.of(context).size.width,
                 ),
@@ -65,7 +64,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       S.of(context).JOD,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          color: AppColor.dark_Grayish_Blue_2,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.w700,
                           fontSize: 14.t),
                     ),
@@ -181,7 +180,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       height: 16.h,
                     ),
                     Container(
-                      color: AppColor.light_grayish_violet,
+                      color: Theme.of(context).colorScheme.onTertiary,
                       height: 1,
                     ),
                     Padding(

@@ -81,7 +81,6 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                             color: Theme.of(context).colorScheme.inverseSurface,
                             borderRadius: BorderRadius.circular(4)),
                       ),
-
                       Expanded(
                         child: SingleChildScrollView(
                           controller: model.scrollController,
@@ -511,31 +510,6 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                       SizedBox(
                         height: 32.h,
                       ),
-                      // Container(
-                      //   color: AppColor.white.withOpacity(0),
-                      //   child: Column(
-                      //     children: <Widget>[
-                      //       InkWell(
-                      //         onTap: () {
-                      //           onSelected?.call('');
-                      //         },
-                      //         child: Padding(
-                      //           padding: EdgeInsetsDirectional.only(top: 0.0, bottom: 32.h),
-                      //           child: Center(
-                      //             child: Text(
-                      //               S.of(context).cancel,
-                      //               style: TextStyle(
-                      //                   fontFamily: StringUtils.appFont,
-                      //                   fontSize: 14.t,
-                      //                   fontWeight: FontWeight.w600,
-                      //                   color: AppColor.brightBlue),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // )
                     ],
                   ),
                 ),

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
@@ -10,7 +8,6 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../base/base_widget.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
-import '../../../utils/color_utils.dart';
 import '../../../utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {
@@ -50,13 +47,13 @@ class PassengerWidget extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 12.t,
-                              color: AppColor.veryDarkGray2)),
+                              color: Theme.of(context).colorScheme.surfaceVariant)),
                       Text(passengerList[index].passengerAgeRange,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 12.t,
-                              color: AppColor.gray1)),
+                              color: Theme.of(context).colorScheme.onInverseSurface)),
                     ],
                   ),
                 ),
@@ -73,13 +70,13 @@ class PassengerWidget extends StatelessWidget {
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.t,
-                          color: AppColor.brightBlue),
+                          color: Theme.of(context).colorScheme.onSecondaryContainer),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
                         width: 1.0,
-                        color: AppColor.white_gray,
+                        color: Theme.of(context).colorScheme.inverseSurface,
                       ),
                     ),
                   ),
@@ -92,7 +89,7 @@ class PassengerWidget extends StatelessWidget {
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 20.t,
-                        color: AppColor.very_dark_gray_black)),
+                        color: Theme.of(context).colorScheme.surfaceVariant)),
                 SizedBox(
                   width: 16.w,
                 ),
@@ -105,13 +102,14 @@ class PassengerWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: Text(
                       '+',
-                      style: TextStyle(fontSize: 20.t, color: AppColor.brightBlue),
+                      style: TextStyle(
+                          fontSize: 20.t, color: Theme.of(context).colorScheme.onSecondaryContainer),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
                         width: 1.0,
-                        color: AppColor.white_gray,
+                        color: Theme.of(context).colorScheme.inverseSurface,
                       ),
                     ),
                   ),

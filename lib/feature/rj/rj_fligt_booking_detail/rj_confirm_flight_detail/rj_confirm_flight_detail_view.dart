@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/in
 import 'package:neo_bank/ui/molecules/rj/rj_confirm_flight_detail_depart_and_return_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -175,7 +174,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   S.of(context).taxAmount,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: AppColor.black,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12.t),
                                 ),
