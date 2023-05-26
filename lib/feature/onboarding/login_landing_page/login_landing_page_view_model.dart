@@ -225,9 +225,9 @@ class LoginLandingPageViewModel extends BasePageViewModel {
     });
 
     _currentUserRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        return _getCurrentUserUseCase.execute(params: value);
-      }).asFlow().listen((event) async {
+      RequestManager(value, createCall: () => _getCurrentUserUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) async {
         _currentUserResponseSubject.add(event);
       });
     });
@@ -245,6 +245,19 @@ class LoginLandingPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _kycStatusRequest.close();
+    _kycStatusResponse.close();
+    _initInfobipMessageRequestSubject.close();
+    _currentUserRequestSubject.close();
+    _currentUserResponseSubject.close();
+    _checkVersionUpdateRequest.close();
+    _checkVersionUpdateResponse.close();
+    _authenticateBioMetricRequest.close();
+    _authenticateBioMetricResponse.close();
+    _checkBioMetricRequest.close();
+    _checkBioMetricResponse.close();
+    _androidLoginRequest.close();
+    _androidLoginResponse.close();
     _kycStatusRequest.close();
     _kycStatusResponse.close();
 

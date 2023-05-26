@@ -123,8 +123,10 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                               height: 16.h,
                                               width: 16.w,
                                               margin: EdgeInsetsDirectional.only(end: 8.w),
-                                              child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: Theme.of(context).primaryTextTheme.bodyLarge?.color))
+                                              child: AppSvg.asset(
+                                                AssetUtils.downArrow,
+                                                color: Theme.of(context).indicatorColor,
+                                              ))
                                         ],
                                       ),
                                     ),

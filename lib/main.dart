@@ -21,15 +21,10 @@ void main() async {
   await runZonedGuarded(() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
-
-
-    //await FirebaseAnalytics.instance.logEvent(name: "Test");
-
-    // Pass all uncaught errors from the framework to Crashlytics.
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    // if (kReleaseMode) {
+    if (kReleaseMode) {
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-    // }
+    }
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
     analytics.setCurrentScreen(screenName: "Main Screen");
     await analytics.logEvent(

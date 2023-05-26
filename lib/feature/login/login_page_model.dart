@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -144,6 +143,8 @@ class LoginViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _kycStatusRequest.close();
     _kycStatusResponse.close();
+    _sendOtpTokenMobileRequest.close();
+    _sendOtpTokenMobileResponse.close();
     super.dispose();
   }
 }

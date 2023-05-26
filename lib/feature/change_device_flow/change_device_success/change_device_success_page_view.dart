@@ -50,10 +50,8 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                             ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
-              // if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-              //   model.antelopSdkInitialize();
-              // }
-              Navigator.popAndPushNamed(context, RoutePaths.AppHome);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(RoutePaths.AppHome, (Route<dynamic> route) => false);
             }
           }
         },

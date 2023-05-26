@@ -30,7 +30,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
   bool subscribeVisibilityEvents = false;
 
   BaseStatefulPage({
-    this.subscribeVisibilityEvents= false,
+    this.subscribeVisibilityEvents = false,
   });
 
   VM? _viewModel;
@@ -178,8 +178,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel, B extends BasePage
             AppConstantsUtils.isApplePayPopUpShown = false;
             AntelopHelper.walletDisconnect();
           }
-          Navigator.pushNamedAndRemoveUntil(
-              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
           // if (ProviderScope.containerOf(context).read(appViewModel) != null) {
           //   ProviderScope.containerOf(context)
           //       .read(appViewModel)

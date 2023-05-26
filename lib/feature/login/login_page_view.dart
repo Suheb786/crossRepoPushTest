@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -155,129 +154,123 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
-              AppStreamBuilder<bool>(
-                  initialData: false,
-                  stream: model.errorDetectorStream,
-                  dataBuilder: (context, isError) {
-                    return ShakeAnimatedWidget(
-                        enabled: isError ?? false,
-                        duration: Duration(milliseconds: 100),
-                        shakeAngle: Rotation.deg(z: 1),
-                        curve: Curves.easeInOutSine,
-                        child: AppStreamBuilder<Resource<bool>>(
-                            stream: model.sendOtpTokenMobileStream,
-                            initialData: Resource.none(),
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                model.emailController.clear();
-                                model.passwordController.clear();
-                                Navigator.popAndPushNamed(context, RoutePaths.OTPForChangeDevice);
+              AppStreamBuilder<Resource<bool>>(
+                  stream: model.sendOtpTokenMobileStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.emailController.clear();
+                      model.passwordController.clear();
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, RoutePaths.OTPForChangeDevice, (route) => false);
+                    }
+                  },
+                  dataBuilder: (context, otpForChangeDevice) {
+                    return AppStreamBuilder<Resource<User>>(
+                      stream: model.loginStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          model.mobileNumber = data.data!.mobile!;
+                          model.mobileCode = data.data!.mobileCode!;
+                          model.applicationId = data.data!.applicationId!;
+                          model.saveUserData();
+                          AppConstantsUtils.isApplePayFeatureEnabled = data.data?.applePay ?? false;
+
+                          ///new device flow check
+
+                          if (data.data!.newDevice!) {
+                            InformationDialog.show(context,
+                                image: AssetUtils.mobile,
+                                title: S.of(context).newDeviceDetected,
+                                descriptionWidget: Text(
+                                  S.of(context).newDeviceDetectedDesc,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: Theme.of(context)
+                                          .inputDecorationTheme
+                                          .focusedBorder!
+                                          .borderSide
+                                          .color,
+                                      fontSize: 14.0.t,
+                                      fontWeight: FontWeight.w400),
+                                ), onDismissed: () {
+                              Navigator.pop(context);
+                            }, onSelected: () {
+                              model.sendOtpTokenMobile();
+                            });
+                          } else {
+                            if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                              model.antelopSdkInitialize();
+                            }
+                            model.checkKycStatus();
+                          }
+
+                          // Future.delayed(
+                          //     Duration(
+                          //         milliseconds:
+                          //             500),
+                          //     () {
+                          //   // Navigator.pushReplacementNamed(
+                          //   //     context, RoutePaths.AppHome);
+                          //   Navigator.pushReplacementNamed(
+                          //       context,
+                          //       RoutePaths
+                          //           .Registration,
+                          //       arguments:
+                          //           RegisterPageParams());
+                          // });
+                        } else if (data.status == Status.ERROR) {
+                          if (data.appError?.type == ErrorType.FATCA_ELIGIBLE) {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, RoutePaths.CreditCardApplicationFailure, (route) => false,
+                                arguments: CreditCardApplicationFailureArguments(
+                                    creditFailureState: CreditFailureState.FATCA));
+                          } else {
+                            model.emailKey.currentState!.isValid = false;
+                            model.showToastWithError(data.appError!);
+                          }
+                        }
+                      },
+                      dataBuilder: (context, loginData) {
+                        return AppStreamBuilder<Resource<CheckKycResponse>>(
+                          stream: model.kycStatusStream,
+                          initialData: Resource.none(),
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
+                                      (element) => element.status ?? false,
+                                      orElse: () => CheckKYCData()) ??
+                                  CheckKYCData();
+
+                              if (kycData.type?.isNotEmpty ?? false) {
+                                if (kycData.type == 'MobileOTP') {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, RoutePaths.AccountRegistration, (route) => false,
+                                      arguments: AccountRegistrationParams(
+                                          kycData: kycData,
+                                          mobileCode: loginData!.data!.mobileCode!,
+                                          mobileNumber: loginData.data!.mobile!));
+                                } else {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, RoutePaths.Registration, (route) => false,
+                                      arguments: RegisterPageParams(
+                                        applicationId: model.applicationId,
+                                        kycData: kycData,
+                                      ));
+                                }
+                              } else {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    RoutePaths.AppHome, (Route<dynamic> route) => false);
                               }
-                            },
-                            dataBuilder: (context, otpForChangeDevice) {
-                              return AppStreamBuilder<Resource<User>>(
-                                stream: model.loginStream,
-                                initialData: Resource.none(),
-                                onData: (data) {
-                                  if (data.status == Status.SUCCESS) {
-                                    model.mobileNumber = data.data!.mobile!;
-                                    model.mobileCode = data.data!.mobileCode!;
-                                    model.applicationId = data.data!.applicationId!;
-                                    model.saveUserData();
-                                    AppConstantsUtils.isApplePayFeatureEnabled = data.data?.applePay ?? false;
-
-                                    ///new device flow check
-
-                                    if (data.data!.newDevice!) {
-                                      InformationDialog.show(context,
-                                          image: AssetUtils.mobile,
-                                          title: S.of(context).newDeviceDetected,
-                                          descriptionWidget: Text(
-                                            S.of(context).newDeviceDetectedDesc,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: Theme.of(context)
-                                                    .inputDecorationTheme
-                                                    .focusedBorder!
-                                                    .borderSide
-                                                    .color,
-                                                fontSize: 14.0.t,
-                                                fontWeight: FontWeight.w400),
-                                          ), onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: () {
-                                        model.sendOtpTokenMobile();
-                                      });
-                                    } else {
-                                      if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-                                        model.antelopSdkInitialize();
-                                      }
-                                      model.checkKycStatus();
-                                    }
-
-                                    // Future.delayed(
-                                    //     Duration(
-                                    //         milliseconds:
-                                    //             500),
-                                    //     () {
-                                    //   // Navigator.pushReplacementNamed(
-                                    //   //     context, RoutePaths.AppHome);
-                                    //   Navigator.pushReplacementNamed(
-                                    //       context,
-                                    //       RoutePaths
-                                    //           .Registration,
-                                    //       arguments:
-                                    //           RegisterPageParams());
-                                    // });
-                                  } else if (data.status == Status.ERROR) {
-                                    if (data.appError?.type == ErrorType.FATCA_ELIGIBLE) {
-                                      Navigator.pushReplacementNamed(
-                                          context, RoutePaths.CreditCardApplicationFailure,
-                                          arguments: CreditCardApplicationFailureArguments(
-                                              creditFailureState: CreditFailureState.FATCA));
-                                    } else {
-                                      model.emailKey.currentState!.isValid = false;
-                                      model.showToastWithError(data.appError!);
-                                    }
-                                  }
-                                },
-                                dataBuilder: (context, loginData) {
-                                  return AppStreamBuilder<Resource<CheckKycResponse>>(
-                                    stream: model.kycStatusStream,
-                                    initialData: Resource.none(),
-                                    onData: (data) {
-                                      if (data.status == Status.SUCCESS) {
-                                        CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
-                                                (element) => element.status ?? false,
-                                                orElse: () => CheckKYCData()) ??
-                                            CheckKYCData();
-
-                                        if (kycData.type?.isNotEmpty ?? false) {
-                                          if (kycData.type == 'MobileOTP') {
-                                            Navigator.popAndPushNamed(context, RoutePaths.AccountRegistration,
-                                                arguments: AccountRegistrationParams(
-                                                    kycData: kycData,
-                                                    mobileCode: loginData!.data!.mobileCode!,
-                                                    mobileNumber: loginData.data!.mobile!));
-                                          } else {
-                                            Navigator.popAndPushNamed(context, RoutePaths.Registration,
-                                                arguments: RegisterPageParams(
-                                                  applicationId: model.applicationId,
-                                                  kycData: kycData,
-                                                ));
-                                          }
-                                        } else {
-                                          Navigator.popAndPushNamed(context, RoutePaths.AppHome);
-                                        }
-                                      }
-                                    },
-                                    dataBuilder: (context, kycResponse) {
-                                      return Container();
-                                    },
-                                  );
-                                },
-                              );
-                            }));
+                            }
+                          },
+                          dataBuilder: (context, kycResponse) {
+                            return Container();
+                          },
+                        );
+                      },
+                    );
                   }),
             ],
           ),

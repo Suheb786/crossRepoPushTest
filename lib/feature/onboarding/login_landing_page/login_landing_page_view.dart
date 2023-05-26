@@ -146,38 +146,49 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
             ),
           ),
 
-          Column(
-            children: [
-              ///biometric icon
-              AppStreamBuilder<Resource<bool>>(
-                  stream: model.authenticateBioMetricStream,
-                  initialData: Resource.none(),
-                  onData: (data) {
-                    if (data.status == Status.SUCCESS) {
-                      if (data.data!) {
-                        model.androidLogin(cipher: '');
-                      }
-                    }
-                  },
-                  dataBuilder: (context, authenticBiometric) {
-                    return AppStreamBuilder<Resource<bool>>(
-                        stream: model.checkBioMetricStream,
+          AppStreamBuilder<Resource<User>>(
+              stream: model.currentUser,
+              initialData: Resource.none(),
+              onData: (data) async {
+                if (data.status == Status.SUCCESS) {
+                  await SharedPreferenceHelper.saveValue(false);
+                  model.checkVersionUpdate(clear: "false");
+                } else if (data.status == Status.ERROR) {
+                  print(data.appError?.type);
+                  if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
+                    await SharedPreferenceHelper.saveValue(false);
+                    model.checkVersionUpdate(clear: "true");
+                  }
+                }
+              },
+              dataBuilder: (context, userData) {
+                return Column(
+                  children: [
+                    ///biometric icon
+                    AppStreamBuilder<Resource<bool>>(
+                        stream: model.authenticateBioMetricStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            model.authenticateBioMetric(
-                                title: S.of(context).biometricLogin,
-                                localisedReason: Platform.isAndroid
-                                    ? S.of(context).enableBiometricLoginDescriptionAndroid
-                                    : S.of(context).enableBiometricLoginDescriptionIos);
+                            if (data.data!) {
+                              model.androidLogin(cipher: '');
+                            }
                           }
                         },
-                        dataBuilder: (context, checkBioMetric) {
-                          return AppStreamBuilder<Resource<User>>(
-                              stream: model.currentUser,
+                        dataBuilder: (context, authenticBiometric) {
+                          return AppStreamBuilder<Resource<bool>>(
+                              stream: model.checkBioMetricStream,
                               initialData: Resource.none(),
-                              onData: (data) async {},
-                              dataBuilder: (context, userData) {
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  model.authenticateBioMetric(
+                                      title: S.of(context).biometricLogin,
+                                      localisedReason: Platform.isAndroid
+                                          ? S.of(context).enableBiometricLoginDescriptionAndroid
+                                          : S.of(context).enableBiometricLoginDescriptionIos);
+                                }
+                              },
+                              dataBuilder: (context, checkBioMetric) {
                                 return GestureDetector(
                                   onTap: () {
                                     if (userData?.status == Status.SUCCESS) {
@@ -241,26 +252,10 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   ),
                                 );
                               });
-                        });
-                  }),
+                        }),
 
-              ///login and register buttons
-              AppStreamBuilder<Resource<User>>(
-                  stream: model.currentUser,
-                  initialData: Resource.none(),
-                  onData: (data) async {
-                    if (data.status == Status.SUCCESS) {
-                      await SharedPreferenceHelper.saveValue(false);
-                      model.checkVersionUpdate(clear: "false");
-                    } else if (data.status == Status.ERROR) {
-                      if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                        await SharedPreferenceHelper.saveValue(false);
-                        model.checkVersionUpdate(clear: "true");
-                      }
-                    }
-                  },
-                  dataBuilder: (context, userDetails) {
-                    return AppStreamBuilder<Resource<bool>>(
+                    ///login and register buttons
+                    AppStreamBuilder<Resource<bool>>(
                         initialData: Resource.none(),
                         stream: model.checkVersionUpdateStream,
                         onData: (data) {
@@ -343,20 +338,23 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
 
                                       if (kycData.type?.isNotEmpty ?? false) {
                                         if (kycData.type == 'MobileOTP') {
-                                          Navigator.popAndPushNamed(context, RoutePaths.AccountRegistration,
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context, RoutePaths.AccountRegistration, (route) => false,
                                               arguments: AccountRegistrationParams(
                                                   kycData: kycData,
-                                                  mobileCode: userDetails?.data?.mobileCode ?? '',
-                                                  mobileNumber: userDetails?.data?.mobile ?? ''));
+                                                  mobileCode: userData?.data?.mobileCode ?? '',
+                                                  mobileNumber: userData?.data?.mobile ?? ''));
                                         } else {
-                                          Navigator.popAndPushNamed(context, RoutePaths.Registration,
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context, RoutePaths.Registration, (route) => false,
                                               arguments: RegisterPageParams(
                                                 applicationId: model.applicationId,
                                                 kycData: kycData,
                                               ));
                                         }
                                       } else {
-                                        Navigator.popAndPushNamed(context, RoutePaths.AppHome);
+                                        Navigator.of(context).pushNamedAndRemoveUntil(
+                                            RoutePaths.AppHome, (Route<dynamic> route) => false);
                                       }
                                     }
                                   },
@@ -392,10 +390,10 @@ class LoginLandingPageView extends BasePageViewWidget<LoginLandingPageViewModel>
                                   },
                                 );
                               });
-                        });
-                  }),
-            ],
-          ),
+                        }),
+                  ],
+                );
+              }),
         ],
       ),
     );
