@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -228,8 +230,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     //           RegisterPageParams());
                                     // });
                                   } else if (data.status == Status.ERROR) {
-                                    model.emailKey.currentState!.isValid = false;
-                                    model.showToastWithError(data.appError!);
+                                    if (data.appError?.type == ErrorType.FATCA_ELIGIBLE) {
+                                      Navigator.pushReplacementNamed(
+                                          context, RoutePaths.CreditCardApplicationFailure,
+                                          arguments: CreditCardApplicationFailureArguments(
+                                              creditFailureState: CreditFailureState.FATCA));
+                                    } else {
+                                      model.emailKey.currentState!.isValid = false;
+                                      model.showToastWithError(data.appError!);
+                                    }
                                   }
                                 },
                                 dataBuilder: (context, loginData) {

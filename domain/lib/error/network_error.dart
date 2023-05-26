@@ -1390,6 +1390,9 @@ class NetworkError extends BaseError {
           case "err-501":
             return AppError(cause: cause, error: error, type: ErrorType.OOPS_YOUR_CARD_IS_NOT_ACTIVE);
 
+          case "err-502":
+            return AppError(cause: cause, error: error, type: ErrorType.FATCA_ELIGIBLE);
+
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

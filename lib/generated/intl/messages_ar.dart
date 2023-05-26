@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -1308,6 +1307,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "fatcaDetailNotFound": MessageLookupByLibrary.simpleMessage(
             "معلومات FACTA ناقصة. تأكد من إنك تزودنا بالمعلومات الكاملة."),
+        "fatcaEligible": MessageLookupByLibrary.simpleMessage(
+            "منعتذر عن إمكانية استكمال عملية فتح الحساب كونك خاضع لمتطلبات FATCA."),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "favouriteContact":
             MessageLookupByLibrary.simpleMessage("Favourite contact"),

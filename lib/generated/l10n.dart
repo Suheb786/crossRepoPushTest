@@ -17379,6 +17379,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Unfortunately, since you are FATCA eligible we are unable to open your account at this time.`
+  String get fatcaEligible {
+    return Intl.message(
+      'Unfortunately, since you are FATCA eligible we are unable to open your account at this time.',
+      name: 'fatcaEligible',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

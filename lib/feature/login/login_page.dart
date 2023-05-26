@@ -10,16 +10,10 @@ class LoginPage extends BasePage<LoginViewModel> {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with WidgetsBindingObserver {
+class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
   @override
   ProviderBase provideBase() {
     return loginViewModelProvider;
-  }
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    super.initState();
   }
 
   @override
@@ -30,18 +24,6 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with Wi
   @override
   bool extendBodyBehindAppBar() {
     return true;
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void deactivate() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.deactivate();
   }
 
   @override

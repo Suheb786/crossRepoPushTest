@@ -1350,6 +1350,9 @@ class ErrorParser {
       case ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS:
         return localisedHelper.pleaseEnterAValidaccountMobileNoAlias;
 
+      case ErrorType.FATCA_ELIGIBLE:
+        return localisedHelper.fatcaEligible;
+
       default:
         return "";
     }

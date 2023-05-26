@@ -1759,5 +1759,6 @@
   "goBack": "Go back",
   "biometricLoginIsDisabled": "Biometric login is disabled",
   "biometricLoginIsDisabledDesc": "Please login with your email address and enable the biometric login from Profile Settings.",
-  "login": "Login"
+  "login": "Login",
+  "fatcaEligible": "Unfortunately, since you are FATCA eligible we are unable to open your account at this time."
 }

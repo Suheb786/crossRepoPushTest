@@ -31,6 +31,10 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
           } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
               CreditFailureState.EngagementTeamRejection) {
             Navigator.pushNamed(context, RoutePaths.AppHome);
+          } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
+              CreditFailureState.FATCA) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           }
         }
       },
@@ -95,7 +99,9 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
               child: Padding(
                 padding: EdgeInsets.only(top: 9.h),
                 child: Text(
-                  S.of(context).toDashboard,
+                  model.creditCardApplicationFailureArguments.creditFailureState == CreditFailureState.FATCA
+                      ? S.of(context).toLoginPage
+                      : S.of(context).toDashboard,
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.t,
@@ -120,6 +126,8 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
 
       case CreditFailureState.ZERO_BALANCE:
         return S.of(context).creditZeroBalanceRejtitle;
+      case CreditFailureState.FATCA:
+        return '';
     }
   }
 
@@ -134,6 +142,8 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
 
       case CreditFailureState.ZERO_BALANCE:
         return S.of(context).creditZeroBalanceRejDesc;
+      case CreditFailureState.FATCA:
+        return S.of(context).fatcaEligible;
     }
   }
 }

@@ -116,9 +116,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         updateLoader();
 
         if (event.status == Status.ERROR) {
-          //showErrorState();
-          showToastWithError(event.appError!);
-          // getError(event);
+          if (event.appError?.type == ErrorType.FATCA_ELIGIBLE) {
+            _setFatcaQuestionsResponse.safeAdd(event);
+          } else {
+            showToastWithError(event.appError!);
+          }
         } else if (event.status == Status.SUCCESS) {
           _setFatcaQuestionsResponse.safeAdd(event);
         }
