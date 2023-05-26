@@ -81,11 +81,10 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_n
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/otp_for_edit_alias_and_mobile_no/otp_for_edit_alias_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/link_account/link_account_page.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_otp/add_beneficiary_otp_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
-import 'package:neo_bank/feature/manage_contacts/delete_contact_otp_for_manage_contact/delete_contact_otp_for_manage_contact_page.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
@@ -932,7 +931,7 @@ class AppRouter {
       /// [Manage Contact]
       case RoutePaths.AddContactsIBANManageContactsPage:
         return CupertinoPageRoute(
-            builder: (context) => AddContactsIBANManageContactsPage(),
+            builder: (context) => AddBeneficiaryPage(),
             settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
 
       case RoutePaths.BeneficiaryContactDetailsPage:
@@ -947,14 +946,9 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaymentActivityPage(),
             settings: RouteSettings(name: RoutePaths.PaymentActivityPage));
-      case RoutePaths.OtpForManageContact:
-        return CupertinoPageRoute(
-            builder: (context) => DeleteContactOTPPage(),
-            settings: RouteSettings(name: RoutePaths.OtpForManageContact));
-
       case RoutePaths.AddContactIBANotpPage:
         return CupertinoPageRoute(
-            builder: (context) => AddContactIBANotpPage(),
+            builder: (context) => AddBeneficiaryOTPPage(),
             settings: RouteSettings(name: RoutePaths.AddContactIBANotpPage));
 
       default:

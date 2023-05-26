@@ -4,7 +4,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AddContactsIBANManageContactsPageViewModel extends BasePageViewModel {
+class AddBeneficiaryPageViewModel extends BasePageViewModel {
   ///--------------------------controllers-------------------------------------///
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
@@ -13,6 +13,7 @@ class AddContactsIBANManageContactsPageViewModel extends BasePageViewModel {
   ///--------------------------current-page-subject-------------------------------------///
 
   PublishSubject<int> _currentPageSubject = PublishSubject();
+
   Stream<int> get currentPageStream => _currentPageSubject.stream;
 
   ///--------------------------current-step-subject-------------------------------------///

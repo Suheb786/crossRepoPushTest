@@ -2,12 +2,8 @@ import 'dart:developer';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contact_IBAN_otp/add_contact_IBAN_otp_page.dart';
-import 'package:neo_bank/feature/manage_contacts/add_contacts_IBAN/add_contacts_IBAN_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -18,19 +14,20 @@ import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-import 'add_contacts_IBAN_form/add_contacts_IBAN_form_page.dart';
+import 'add_beneficiary_otp/add_beneficiary_otp_page.dart';
+import 'add_beneficiary_page_view_model.dart';
+import 'add_contacts_form/add_beneficiary_form_page.dart';
 
-class AddContactsIBANManageContactsPageView
-    extends BasePageViewWidget<AddContactsIBANManageContactsPageViewModel> {
-  AddContactsIBANManageContactsPageView(ProviderBase model) : super(model);
+class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewModel> {
+  AddBeneficiaryPageView(ProviderBase model) : super(model);
 
   final List<Widget> pages = [
-    AddContactsIBANFormPage(),
-    AddContactIBANotpPage(),
+    AddBeneficiaryFormPage(),
+    AddBeneficiaryOTPPage(),
   ];
 
   @override
-  Widget build(BuildContext context, AddContactsIBANManageContactsPageViewModel model) {
+  Widget build(BuildContext context, AddBeneficiaryPageViewModel model) {
     return Container(
       color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56.h),

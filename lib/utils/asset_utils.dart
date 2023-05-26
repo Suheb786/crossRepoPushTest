@@ -173,6 +173,7 @@ class AssetUtils {
   static const String applePayButton = svg + "apple_pay_button.svg";
   static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
   static const String blueStar = svg + "blue_star.svg";
+  static const String editNickName = svg + "edit_nickname.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
