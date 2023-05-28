@@ -51,7 +51,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m14(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
@@ -318,10 +317,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "ستسافر قريبا ؟ تستطيع الان حجز رحلتك على الملكية الأردنية من خلال بلينك! بطريقة سلسة و امنة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الان"),
-        "bookYourFlight":
-            MessageLookupByLibrary.simpleMessage("Book Your Flight"),
-        "bookingRefNo":
-            MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
+        "bookYourFlight": MessageLookupByLibrary.simpleMessage("Book Your Flight"),
+        "bookingRefNo": MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "brightPlace": MessageLookupByLibrary.simpleMessage("تأكد من إضاءة المكان اللي إنت فيه"),
         "buildingNameNo": MessageLookupByLibrary.simpleMessage("اسم/ رقم العمارة"),

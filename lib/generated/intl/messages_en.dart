@@ -340,8 +340,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
-        "bookYourFlight":
-            MessageLookupByLibrary.simpleMessage("Book Your Flight"),
+        "bookYourFlight": MessageLookupByLibrary.simpleMessage("Book Your Flight"),
         "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
         "bornBlink": MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace":

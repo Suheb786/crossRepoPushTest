@@ -17349,6 +17349,16 @@ class S {
     );
   }
 
+  /// `Book Your Flight`
+  String get bookYourFlight {
+    return Intl.message(
+      'Book Your Flight',
+      name: 'bookYourFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Contact information`
   String get contactInformation {
     return Intl.message(
@@ -17374,16 +17384,6 @@ class S {
     return Intl.message(
       'Where would like to save as favourite?',
       name: 'saveAsFavourite',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Book Your Flight`
-  String get bookYourFlight {
-    return Intl.message(
-      'Book Your Flight',
-      name: 'bookYourFlight',
       desc: '',
       args: [],
     );
