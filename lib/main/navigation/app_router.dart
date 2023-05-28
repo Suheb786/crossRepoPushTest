@@ -85,6 +85,7 @@ import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
 import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
@@ -950,6 +951,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AddBeneficiaryOTPPage(),
             settings: RouteSettings(name: RoutePaths.AddContactIBANotpPage));
+
+      case RoutePaths.BeneficiaryTransactionHistoryList:
+        return CupertinoPageRoute(
+            builder: (context) => BeneficiaryTransactionHistoryListPage(),
+            settings: RouteSettings(name: RoutePaths.BeneficiaryTransactionHistoryList));
 
       default:
         return CupertinoPageRoute(
