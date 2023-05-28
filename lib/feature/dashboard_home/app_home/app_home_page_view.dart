@@ -71,21 +71,25 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       if (data.status == Status.SUCCESS) {
                         if (!(data.data?.isRJPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.isRJFeatureEnabled ?? true)) {
-                          RjDialog.show(context,
-                              image: AssetUtils.flight,
-                              title: S.of(context).bookFligtWithUs, onDismissed: () {
-                            Navigator.pop(context);
-                            data.data?.isRJPopUPClicked = true;
-                            model.saveCurrentUserData(user: data.data!);
-                          },
-                              descriptionWidget: Text(
-                                S.of(context).bookFligtWithUsDescrption,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    color: AppColor.veryDarkGray2,
-                                    fontSize: 14),
-                              ));
+                          RjDialog.show(
+                            context,
+                            image: AssetUtils.flight,
+                            title: S.of(context).bookFligtWithUs,
+                            onSelected: () {},
+                            onDismissed: () {
+                              Navigator.pop(context);
+                              data.data?.isRJPopUPClicked = true;
+                              model.saveCurrentUserData(user: data.data!);
+                            },
+                            descriptionWidget: Text(
+                              S.of(context).bookFligtWithUsDescrption,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).colorScheme.surfaceVariant,
+                                  fontSize: 14),
+                            ),
+                          );
                         }
                         if (!(data.data?.isEfawateerPopUPClicked ?? false) &&
                             (model.dashboardDataContent.dashboardFeatures?.blinkRetailAppBillPayment ??

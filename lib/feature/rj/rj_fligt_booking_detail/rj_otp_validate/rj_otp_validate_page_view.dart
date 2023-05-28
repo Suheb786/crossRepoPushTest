@@ -33,8 +33,11 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                      arguments: RjBookingPurchasePageArgument('1111111'));
+                      arguments: RjBookingPurchasePageArgument(1111111));
                 }
+                // //Todo remove from code
+                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                //     arguments: RjBookingPurchasePageArgument(1111111));
               },
               dataBuilder: (context, data) {
                 return ShakeAnimatedWidget(

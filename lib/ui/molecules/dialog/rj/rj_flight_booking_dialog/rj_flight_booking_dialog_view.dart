@@ -12,7 +12,6 @@ import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/passenger_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -82,9 +81,23 @@ class RjFlightBookingDialogView extends StatelessWidget {
         });
       },
       builder: (context, model, child) {
-        return Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 56.h, top: 204.0.h),
+        return GestureDetector(
+          onVerticalDragEnd: (details) {
+            int sensitivity = 8;
+            if (details.primaryVelocity! > sensitivity) {
+              Navigator.pop(context);
+            } else if (details.primaryVelocity! < -sensitivity) {}
+          },
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
             child: Column(
               children: [
                 Expanded(
@@ -420,12 +433,7 @@ class RjFlightBookingDialogView extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return PassengerWidget(
-                                    onTap: (data) {
-                                      model.passengerList = data;
-                                    },
-                                    passengerList: model.passengerList,
-                                    index: index);
+                                return;
                               },
                               separatorBuilder: (context, int) {
                                 return SizedBox(
@@ -513,7 +521,9 @@ class RjFlightBookingDialogView extends StatelessWidget {
                   ),
                 )
               ],
-            ));
+            ),
+          ),
+        );
       },
     );
   }

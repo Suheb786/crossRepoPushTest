@@ -296,11 +296,14 @@ class AssetUtils {
   static const String EconomySeat = drawable + "economy_seat.png";
   static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
+  static const String New_RJ_BG = drawable + "new_rj_background.png";
+  static const String AirplaneTail = drawable + "airplane_tail.png";
 
   ///Rj svg
   static const String RjCardLogo = svg + "rj_card_logo.svg";
   static const String GoRjLogo = svg + "go_rj_logo.svg";
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+  static const String new_rj_background = svg + "new_rj_background.svg";
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
