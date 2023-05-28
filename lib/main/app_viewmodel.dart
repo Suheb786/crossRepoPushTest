@@ -43,13 +43,32 @@ class AppViewModel extends BaseViewModel {
       case AppTheme.light:
         _themeData = ThemeData.light().copyWith(
           brightness: Brightness.light,
+
           scaffoldBackgroundColor: AppColor.white,
           primaryColor: AppColor.brightRed,
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
+
           dialogBackgroundColor: AppColor.white,
-          colorScheme: _themeData.colorScheme
-              .copyWith(secondary: AppColor.white, background: AppColor.lightGray, error: AppColor.vivid_red),
+          colorScheme: _themeData.colorScheme.copyWith(
+              secondary: AppColor.white,
+              onSecondary: AppColor.light_gray_4,
+              onSecondaryContainer: AppColor.brightBlue,
+              background: AppColor.lightGray,
+              error: AppColor.vivid_red,
+              onSurface: AppColor.rj_gray,
+              surfaceVariant: AppColor.veryDarkGray2,
+              surface: AppColor.veryDarkGray1,
+              surfaceTint: AppColor.dark_gray_1,
+              onInverseSurface: AppColor.gray1,
+              inverseSurface: AppColor.white_gray,
+              shadow: AppColor.gray_black,
+              onBackground: AppColor.whiteGrey,
+              inversePrimary: AppColor.gray5,
+              tertiary: AppColor.dark_violet_4,
+              tertiaryContainer: AppColor.dark_Grayish_Blue,
+              onTertiary: AppColor.light_grayish_violet,
+              scrim: AppColor.dark_brown),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(
               color: AppColor.veryLightGray,

@@ -26,7 +26,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.onSurface,
       padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
@@ -47,7 +47,8 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).colorScheme.secondary,
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      // color: Theme.of(context).primaryColorLight.withOpacity(0.3)
+                      color: Theme.of(context).colorScheme.onSecondary),
                 );
               },
             ),

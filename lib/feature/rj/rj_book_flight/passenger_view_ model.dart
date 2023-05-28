@@ -1,5 +1,5 @@
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PassengerViewModel extends BasePageViewModel {

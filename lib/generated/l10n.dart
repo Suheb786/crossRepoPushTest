@@ -17367,6 +17367,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Book Your Flight`
+  String get bookYourFlight {
+    return Intl.message(
+      'Book Your Flight',
+      name: 'bookYourFlight',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

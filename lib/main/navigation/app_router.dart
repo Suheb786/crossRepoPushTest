@@ -160,6 +160,8 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
+import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
+
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -864,6 +866,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
             settings: RouteSettings(name: RoutePaths.RjBookingInAppWebView));
+
+      case RoutePaths.RjFlightBookingPage:
+        return CupertinoPageRoute(
+            builder: (context) => RjFlightBookingPage(),
+            settings: RouteSettings(name: RoutePaths.RjFlightBookingPage));
 
       /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
