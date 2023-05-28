@@ -27,7 +27,7 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Colors.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [searchContact(context, model), listItem(context, model)],

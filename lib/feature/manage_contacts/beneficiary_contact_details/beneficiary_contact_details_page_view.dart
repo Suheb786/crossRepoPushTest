@@ -4,6 +4,7 @@ import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/clipboard.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -70,10 +71,98 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 onTap: () {
                   InformationDialog.show(context,
                       title: S.current.favouriteContact,
-                      descriptionWidget: Text(S.current.sendAndRequestFavouriteContacts),
-                      image: AssetUtils.favContactIcon,
-                      imageHight: 155.h,
-                      imageWidth: 96.w,
+                      descriptionWidget: Column(
+                        children: [
+                          Text(S.of(context).saveAsFavourite,
+                              style: TextStyle(
+                                  fontSize: 12.t,
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.very_dark_gray1)),
+                          SizedBox(height: 24.h),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                S.of(context).sendMoney,
+                                style: TextStyle(
+                                    fontSize: 14.t,
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
+                              ),
+                            ),
+                            AppStreamBuilder<bool>(
+                                initialData: false,
+                                stream: model.favouriteAsSendMoneyStream,
+                                dataBuilder: (context, data) {
+                                  return FlutterSwitch(
+                                    value: data!,
+                                    onToggle: (value) {
+                                      model.toggleFavouriteAsSendMoney(value);
+                                    },
+                                    width: 70.w,
+                                    height: 40.h,
+                                    padding: 4,
+                                    activeTextColor: Theme.of(context).colorScheme.secondary,
+                                    activeText: S.of(context).yes.toUpperCase(),
+                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
+                                    activeTextFontWeight: FontWeight.w500,
+                                    showOnOff: true,
+                                    valueFontSize: 12.t,
+                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
+                                    inactiveText: S.of(context).no.toUpperCase(),
+                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
+                                    inactiveTextFontWeight: FontWeight.w500,
+                                    inactiveSwitchBorder:
+                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
+                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                                  );
+                                }),
+                          ]),
+                          SizedBox(height: 24.h),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                S.of(context).requestMoney,
+                                style: TextStyle(
+                                    fontSize: 14.t,
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
+                              ),
+                            ),
+                            AppStreamBuilder<bool>(
+                                initialData: false,
+                                stream: model.favouriteAsRequestMoneyStream,
+                                dataBuilder: (context, data) {
+                                  return FlutterSwitch(
+                                    value: data!,
+                                    onToggle: (value) {
+                                      model.toggleFavouriteAsRequestMoney(value);
+                                    },
+                                    width: 70.w,
+                                    height: 40.h,
+                                    padding: 4,
+                                    activeTextColor: Theme.of(context).colorScheme.secondary,
+                                    activeText: S.of(context).yes.toUpperCase(),
+                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
+                                    activeTextFontWeight: FontWeight.w500,
+                                    showOnOff: true,
+                                    valueFontSize: 12.t,
+                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
+                                    inactiveText: S.of(context).no.toUpperCase(),
+                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
+                                    inactiveTextFontWeight: FontWeight.w500,
+                                    inactiveSwitchBorder:
+                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
+                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
+                                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                                  );
+                                }),
+                          ])
+                        ],
+                      ),
                       isSwipeToCancel: true, onDismissed: () {
                     Navigator.pop(context);
                   }, onSelected: () {
@@ -173,9 +262,8 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     InformationDialog.show(context, image: AssetUtils.removeContact, isSwipeToCancel: true,
                         onDismissed: () {
                       Navigator.pop(context);
-                    }, onSelected: () {
-                      Navigator.pushReplacementNamed(context, RoutePaths.OtpForManageContact);
                     },
+                        onSelected: () {},
                         title: S.current.removeContact,
                         descriptionWidget: Text(S.current.areYouSureToremoveContact));
                   },
@@ -188,27 +276,66 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
           ),
           SizedBox(height: 16.h),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: AppColor.white_gray,
                 ),
                 borderRadius: BorderRadius.circular(100)),
-            child: AutoSizeTextField(
-              controller: model.nickNameController,
-              fullwidth: false,
-              textAlign: TextAlign.center,
-              wrapWords: false,
-              cursorWidth: 1.w,
-              decoration: InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.brightBlue,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16.0.t),
-              onSubmitted: (value) {
-                debugPrint("value----->${value}");
-              },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: ValueListenableBuilder<bool>(
+                      valueListenable: model.nameEditableNotifier,
+                      builder: (BuildContext context, bool value, Widget? child) {
+                        return Focus(
+                          onFocusChange: (hasFocus) {
+                            if (!hasFocus) {
+                              model.setNickNameReadOnly();
+                            }
+                          },
+                          child: AutoSizeTextField(
+                            controller: model.nickNameController,
+                            focusNode: model.nickNameFocus,
+                            fullwidth: false,
+                            textAlign: TextAlign.center,
+                            cursorWidth: 1.w,
+                            minWidth: 40.w,
+                            readOnly: value,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                              isCollapsed: false,
+                            ),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16.0.t),
+                            onSubmitted: (value) {
+                              model.setNickNameReadOnly();
+                            },
+                          ),
+                        );
+                      }),
+                ),
+                ValueListenableBuilder<bool>(
+                    valueListenable: model.nameEditableNotifier,
+                    builder: (BuildContext context, bool value, Widget? child) {
+                      return GestureDetector(
+                        onTap: () {
+                          model.toggleNickName();
+                        },
+                        child: AppSvg.asset(
+                          value ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                          color: AppColor.brightBlue,
+                          width: value ? 14.h : 12.h,
+                          height: value ? 14.h : 12.h,
+                        ),
+                      );
+                    })
+              ],
             ),
           ),
         ],

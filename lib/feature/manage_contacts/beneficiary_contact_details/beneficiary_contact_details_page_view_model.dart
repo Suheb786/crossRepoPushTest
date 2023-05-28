@@ -3,6 +3,7 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -20,6 +21,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   TextEditingController editEmailController = TextEditingController();
   TextEditingController editIbanController = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
+  FocusNode nickNameFocus = FocusNode();
 
   ///-----------------------------upload profile---------------------------------///
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
@@ -33,7 +35,29 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
   String selectedProfile = '';
 
+  ///---------------------------Request Money--------------------------------///
+  PublishSubject<bool> _favouriteAsRequestMoneySubject = PublishSubject();
+
+  Stream<bool> get favouriteAsRequestMoneyStream => _favouriteAsRequestMoneySubject.stream;
+
+  ///---------------------------Send Money--------------------------------///
+  PublishSubject<bool> _favouriteAsSendMoneySubject = PublishSubject();
+
+  Stream<bool> get favouriteAsSendMoneyStream => _favouriteAsSendMoneySubject.stream;
+
+  // bool isEditable;
+
+  ValueNotifier<bool> nameEditableNotifier = ValueNotifier(true);
+
   ///--------------------------public-other-methods-------------------------------------///
+
+  void toggleFavouriteAsSendMoney(bool value) {
+    _favouriteAsSendMoneySubject.safeAdd(value);
+  }
+
+  void toggleFavouriteAsRequestMoney(bool value) {
+    _favouriteAsRequestMoneySubject.safeAdd(value);
+  }
 
   bool visibleSaveButton() {
     if (editNameController.text != editEmailController.text ||
@@ -70,5 +94,23 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   removeImage() {
     _selectedImageSubject.value = "";
+  }
+
+  toggleNickName() {
+    nameEditableNotifier.value = !nameEditableNotifier.value;
+    if (!nameEditableNotifier.value) {
+      FocusScope.of(appLevelKey.currentContext!).requestFocus(nickNameFocus);
+    }
+  }
+
+  setNickNameReadOnly() {
+    nameEditableNotifier.value = true;
+  }
+
+  @override
+  void dispose() {
+    _favouriteAsSendMoneySubject.close();
+    _favouriteAsRequestMoneySubject.close();
+    super.dispose();
   }
 }

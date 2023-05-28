@@ -536,6 +536,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectionFailed": MessageLookupByLibrary.simpleMessage("Connection Failed"),
         "consentForSignatureUpload":
             MessageLookupByLibrary.simpleMessage("We need your consent by uploading the signature"),
+        "contactInformation": MessageLookupByLibrary.simpleMessage("Contact information"),
+        "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
+            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
         "contactLessLimitmaxLimit":
             MessageLookupByLibrary.simpleMessage("The maximum contactless limit is 300 JOD daily"),
         "contactLessPayments": MessageLookupByLibrary.simpleMessage("Contactless Payment"),
@@ -1990,6 +1993,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Here are samples of the number formatting :\n"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "saveAsFavourite": MessageLookupByLibrary.simpleMessage("Where would like to save as favourite?"),
         "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
