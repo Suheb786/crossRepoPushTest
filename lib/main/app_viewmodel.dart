@@ -102,51 +102,55 @@ class AppViewModel extends BaseViewModel {
                 fontStyle: FontStyle.normal,
               )),
           textTheme: _themeData.textTheme.copyWith(
-            bodyLarge: TextStyle(
-              color: AppColor.brightBlue,
-              fontFamily: StringUtils.appFont,
-            ),
-            bodyMedium: TextStyle(
-              color: AppColor.veryDarkGray2,
-              fontFamily: StringUtils.appFont,
-            ),
-            bodySmall: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            titleLarge: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displayLarge: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displayMedium: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displaySmall: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelLarge: TextStyle(
-              color: AppColor.gray_2,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelMedium: TextStyle(
-              color: AppColor.darkGray,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelSmall: TextStyle(
-              color: AppColor.lightGrayishMagenta,
-              fontFamily: StringUtils.appFont,
-            ),
-          )..apply(
-              // bodyColor: AppColor.brightBlue,
-              // displayColor: AppColor.brightBlue,
-              // decorationColor: AppColor.brightBlue,
+              bodyLarge: TextStyle(
+                color: AppColor.brightBlue,
+                fontFamily: StringUtils.appFont,
               ),
+              bodyMedium: TextStyle(
+                color: AppColor.veryDarkGray2,
+                fontFamily: StringUtils.appFont,
+              ),
+              bodySmall: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              titleLarge: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displayLarge: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displayMedium: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displaySmall: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelLarge: TextStyle(
+                color: AppColor.gray_2,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelMedium: TextStyle(
+                color: AppColor.darkGray,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelSmall: TextStyle(
+                color: AppColor.lightGrayishMagenta,
+                fontFamily: StringUtils.appFont,
+              ),
+              titleMedium: TextStyle(
+                color: AppColor.very_dark_gray1,
+                fontFamily: StringUtils.appFont,
+              ))
+            ..apply(
+                // bodyColor: AppColor.brightBlue,
+                // displayColor: AppColor.brightBlue,
+                // decorationColor: AppColor.brightBlue,
+                ),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
