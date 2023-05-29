@@ -407,7 +407,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature: await signedData(userId: userId, privateKey: user!.privatePEM!),
+      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }

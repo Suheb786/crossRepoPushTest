@@ -1353,6 +1353,9 @@ class ErrorParser {
       case ErrorType.FATCA_ELIGIBLE:
         return localisedHelper.fatcaEligible;
 
+      case ErrorType.ACCOUNT_DORMANT_ERROR:
+        return localisedHelper.accountDormantError;
+
       default:
         return "";
     }

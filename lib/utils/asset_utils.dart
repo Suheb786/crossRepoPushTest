@@ -330,4 +330,5 @@ class AssetUtils {
   ///login
   static const String fingerPrintIcon = svg + "fingerprint_icon.svg";
   static const String disclaimer = svg + "disclaimer.svg";
+  static const String exclamationMark = svg + "exclamation_mark.svg";
 }

@@ -17380,11 +17380,21 @@ class S {
     );
   }
 
-  /// `Unfortunately, since you are FATCA eligible we are unable to open your account at this time.`
+  /// `Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.`
   String get fatcaEligible {
     return Intl.message(
-      'Unfortunately, since you are FATCA eligible we are unable to open your account at this time.',
+      'Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.',
       name: 'fatcaEligible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get accountDormantError {
+    return Intl.message(
+      'Oops! Your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'accountDormantError',
       desc: '',
       args: [],
     );

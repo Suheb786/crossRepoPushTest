@@ -522,7 +522,8 @@ class AppRouter {
 
       case RoutePaths.OTPForChangeDevice:
         return CupertinoPageRoute(
-            builder: (context) => OtpForChangeDeviceConfirmationPage(),
+            builder: (context) => OtpForChangeDeviceConfirmationPage(
+                settings.arguments as OtpForChangeDeviceConfirmationPageArguments),
             settings: RouteSettings(name: RoutePaths.OTPForChangeDevice));
 
       case RoutePaths.ChangeDeviceSuccess:

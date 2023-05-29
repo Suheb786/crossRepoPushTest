@@ -80,7 +80,7 @@ class OtpForChangeDeviceConfirmationPageView
                 child: Directionality(
                   textDirection: TextDirection.ltr,
                   child: Text(
-                    '${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.isNotEmpty ? ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.replaceAll('00', '+') : '-'} ${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber}',
+                    '${model.arguments.mobileCode.isNotEmpty ? model.arguments.mobileCode.replaceAll('00', '+') : '-'} ${model.arguments.mobileNumber}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,

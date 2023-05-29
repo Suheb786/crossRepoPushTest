@@ -10,22 +10,43 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ManageContactListPageViewModel extends BasePageViewModel {
-  ///--------------------------public-instance-valiables-------------------------------------///
-
-  List<Beneficiary>? searchResult = [];
-
   final GetBeneficiaryUseCase _getBeneficiaryUseCase;
   final TextEditingController contactSearchController = TextEditingController();
 
-  ///--------------------------get-beneficiary-list-----------------------------------------///
+  ///get beneficiary list
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest = PublishSubject();
+
   BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryListResponse = BehaviorSubject();
 
-  ///---------------------------search-beneficiary-list---------------------------------///
   Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream => _searchBeneficiaryListResponse.stream;
+
   BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
 
-  ///--------------------------public-other-methods-------------------------------------///
+  ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
+    _getBeneficiaryListRequest.listen((value) {
+      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getBeneficiaryListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _searchBeneficiaryListResponse.safeAdd(Resource.success(data: event.data!.beneficiaryList));
+        }
+      });
+    });
+
+    getBeneficiaryList();
+  }
+
+  void getBeneficiaryList() {
+    _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
+  }
+
+  List<Beneficiary>? searchResult = [];
+
   void searchBeneficiary(String? searchText) {
     searchResult!.clear();
     List<Beneficiary>? beneficiaryList = _getBeneficiaryListResponse.value.data!.beneficiaryList;
@@ -45,38 +66,11 @@ class ManageContactListPageViewModel extends BasePageViewModel {
     }
   }
 
-  void getBeneficiaryList() {
-    _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
-  }
-
-  ///--------------------------public-override-methods-------------------------------------///
-
   @override
   void dispose() {
     _getBeneficiaryListRequest.close();
     _getBeneficiaryListResponse.close();
     _searchBeneficiaryListResponse.close();
     super.dispose();
-  }
-
-  ///--------------------------public-constructor-------------------------------------///
-
-  ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
-    _getBeneficiaryListRequest.listen((value) {
-      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _getBeneficiaryListResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          _searchBeneficiaryListResponse.safeAdd(Resource.success(data: event.data!.beneficiaryList));
-        }
-      });
-    });
-
-    getBeneficiaryList();
   }
 }

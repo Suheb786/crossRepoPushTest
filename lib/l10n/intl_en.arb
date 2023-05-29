@@ -1760,5 +1760,6 @@
   "biometricLoginIsDisabled": "Biometric login is disabled",
   "biometricLoginIsDisabledDesc": "Please login with your email address and enable the biometric login from Profile Settings.",
   "login": "Login",
-  "fatcaEligible": "Unfortunately, since you are FATCA eligible we are unable to open your account at this time."
+  "fatcaEligible": "Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.",
+  "accountDormantError": "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."
 }

@@ -8,6 +8,10 @@ import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_fo
 import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeDeviceConfirmationPage extends BasePage<OtpForChangeDeviceConfirmationPageViewModel> {
+  final OtpForChangeDeviceConfirmationPageArguments arguments;
+
+  OtpForChangeDeviceConfirmationPage(this.arguments);
+
   @override
   OtpForChangeDeviceConfirmationPageState createState() => OtpForChangeDeviceConfirmationPageState();
 }
@@ -19,7 +23,7 @@ class OtpForChangeDeviceConfirmationPageState
 
   @override
   ProviderBase provideBase() {
-    return otpForChangeDeviceViewModelProvider;
+    return otpForChangeDeviceViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -67,4 +71,11 @@ class OtpForChangeDeviceConfirmationPageState
     super.dispose();
     cancel();
   }
+}
+
+class OtpForChangeDeviceConfirmationPageArguments {
+  final String mobileCode;
+  final String mobileNumber;
+
+  OtpForChangeDeviceConfirmationPageArguments({required this.mobileCode, required this.mobileNumber});
 }

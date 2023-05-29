@@ -29,13 +29,7 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 8.h, bottom: 24.h),
-            height: 4.h,
-            width: 64.w,
-            decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
-          ),
-
+          SizedBox(height: 24.h),
           // Container(
           //   margin: EdgeInsetsDirectional.only(top: 8, bottom: 24),
           //   height: 4,
@@ -73,108 +67,44 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                     ? Expanded(
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Container(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+                                decoration: BoxDecoration(
+                                    color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16.w)),
+                                child: Text(
+                                  S.of(context).addingContactsDesc,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 14.t,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).primaryColorDark),
+                                )),
                             Expanded(
                               child: Card(
                                 margin: EdgeInsets.symmetric(vertical: 16.h),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 32.0.h, left: 16.w, bottom: 24.h),
-                                        child: Text(
-                                          S.of(context).favouriteContacts,
-                                          style: TextStyle(
-                                              fontSize: 14.t,
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.veryDarkGray2),
-                                        ),
-                                      ),
-                                      ListView.builder(
-                                        itemBuilder: (context, index) {
-                                          ///send data from api response once updated
-                                          return ContactListWidget(
-                                            beneficiary: beneficiaryList.data![index],
-                                            onTap: () async {
-                                              var result = await Navigator.pushNamed(
-                                                  context, RoutePaths.ManageContactsDetail,
-                                                  arguments: beneficiaryList.data![index]);
+                                child: ListView.builder(
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                                  itemBuilder: (context, index) {
+                                    ///send data from api response once updated
+                                    return ContactListWidget(
+                                      beneficiary: beneficiaryList.data![index],
+                                      onTap: () async {
+                                        var result = await Navigator.pushNamed(
+                                            context, RoutePaths.ManageContactsDetail,
+                                            arguments: beneficiaryList.data![index]);
 
-                                              if (result != null) {
-                                                model.getBeneficiaryList();
-                                              }
-                                            },
-                                          );
-                                        },
-                                        shrinkWrap: true,
-                                        physics: ClampingScrollPhysics(),
-                                        itemCount: beneficiaryList.data!.length,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 32.0.h, left: 16.w, bottom: 24.h),
-                                        child: Text(
-                                          S.of(context).recentContacts,
-                                          style: TextStyle(
-                                              fontSize: 14.t,
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.veryDarkGray2),
-                                        ),
-                                      ),
-                                      ListView.builder(
-                                        itemBuilder: (context, index) {
-                                          ///send data from api response once updated
-                                          return ContactListWidget(
-                                            beneficiary: beneficiaryList.data![index],
-                                            onTap: () async {
-                                              var result = await Navigator.pushNamed(
-                                                  context, RoutePaths.ManageContactsDetail,
-                                                  arguments: beneficiaryList.data![index]);
-
-                                              if (result != null) {
-                                                model.getBeneficiaryList();
-                                              }
-                                            },
-                                          );
-                                        },
-                                        shrinkWrap: true,
-                                        physics: ClampingScrollPhysics(),
-                                        itemCount: beneficiaryList.data!.length,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 32.0.h, left: 16.w, bottom: 24.h),
-                                        child: Text(
-                                          S.of(context).otherContacts,
-                                          style: TextStyle(
-                                              fontSize: 14.t,
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.veryDarkGray2),
-                                        ),
-                                      ),
-                                      ListView.builder(
-                                        itemBuilder: (context, index) {
-                                          ///send data from api response once updated
-                                          return ContactListWidget(
-                                            beneficiary: beneficiaryList.data![index],
-                                            onTap: () async {
-                                              var result = await Navigator.pushNamed(
-                                                  context, RoutePaths.ManageContactsDetail,
-                                                  arguments: beneficiaryList.data![index]);
-
-                                              if (result != null) {
-                                                model.getBeneficiaryList();
-                                              }
-                                            },
-                                          );
-                                        },
-                                        shrinkWrap: true,
-                                        physics: ClampingScrollPhysics(),
-                                        itemCount: beneficiaryList.data!.length,
-                                      ),
-                                    ],
-                                  ),
+                                        if (result != null) {
+                                          model.getBeneficiaryList();
+                                        }
+                                      },
+                                    );
+                                  },
+                                  shrinkWrap: true,
+                                  physics: ClampingScrollPhysics(),
+                                  itemCount: beneficiaryList.data!.length,
                                 ),
                               ),
                             )
@@ -199,33 +129,12 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                                     child: AppSvg.asset(AssetUtils.contacts)),
                               ),
                               Text(
-                                S.of(context).youDontHaveAnyContactAddYourFirstNow,
+                                S.of(context).noContactsYetDesc,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 12.t,
-                                    color: AppColor.black,
                                     fontWeight: FontWeight.w600),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, RoutePaths.AddContactsIBANManageContactsPage);
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(top: 16.h),
-                                  padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: Theme.of(context).accentTextTheme.bodyText1?.color,
-                                  ),
-                                  child: Text(S.of(context).addContact,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 12.t,
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).colorScheme.secondary)),
-                                ),
                               )
                             ],
                           ),

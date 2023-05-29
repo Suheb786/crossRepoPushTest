@@ -55,17 +55,24 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                       color: Theme.of(context).canvasColor,
                     ),
                     child: Center(
-                        child: AppSvg.asset(AssetUtils.cancel, color: Theme.of(context).primaryColorDark)),
+                        child: AppSvg.asset(
+                            model.creditCardApplicationFailureArguments.creditFailureState ==
+                                    CreditFailureState.FATCA
+                                ? AssetUtils.exclamationMark
+                                : AssetUtils.cancel,
+                            color: Theme.of(context).primaryColorDark)),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 46.h),
+              padding:
+                  model.creditCardApplicationFailureArguments.creditFailureState == CreditFailureState.FATCA
+                      ? EdgeInsets.only(top: 56.h, left: 40.w, right: 40.w)
+                      : EdgeInsets.only(top: 46.h, left: 40.w, right: 40.w),
               child: Text(
                 getTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
                 textAlign: TextAlign.center,
-                maxLines: 3,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w500,
@@ -123,11 +130,10 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
       case CreditFailureState.AccountDormant:
       case CreditFailureState.EngagementTeamRejection:
         return S.of(context).applicationNotSuccessful;
-
       case CreditFailureState.ZERO_BALANCE:
         return S.of(context).creditZeroBalanceRejtitle;
       case CreditFailureState.FATCA:
-        return '';
+        return S.of(context).fatcaEligible;
     }
   }
 
@@ -139,11 +145,10 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
         return S.of(context).applicationRejectedByEngagementTeam;
       case CreditFailureState.AccountDormant:
         return S.of(context).accountDormantDesc;
-
       case CreditFailureState.ZERO_BALANCE:
         return S.of(context).creditZeroBalanceRejDesc;
       case CreditFailureState.FATCA:
-        return S.of(context).fatcaEligible;
+        return "";
     }
   }
 }

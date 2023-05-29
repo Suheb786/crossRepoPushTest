@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
+import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
@@ -162,7 +163,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       model.emailController.clear();
                       model.passwordController.clear();
                       Navigator.pushNamedAndRemoveUntil(
-                          context, RoutePaths.OTPForChangeDevice, (route) => false);
+                          context, RoutePaths.OTPForChangeDevice, (route) => false,
+                          arguments: OtpForChangeDeviceConfirmationPageArguments(
+                              mobileCode: model.mobileCode, mobileNumber: model.mobileNumber));
                     }
                   },
                   dataBuilder: (context, otpForChangeDevice) {

@@ -6,6 +6,7 @@ import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -14,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
+  final OtpForChangeDeviceConfirmationPageArguments arguments;
   final VerifyDeviceChangeOtpUseCase _verifyDeviceChangeOtpUseCase;
   final ResendOtpDeviceChangeUseCase _resendOtpDeviceChangeUseCase;
   final ClearWalletIdUseCase _clearWalletIdUseCase;
@@ -78,7 +80,8 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
       this._resendOtpDeviceChangeUseCase,
       this._depersonalizeUserUseCase,
       this._saveUserUseCase,
-      this._clearWalletIdUseCase) {
+      this._clearWalletIdUseCase,
+      this.arguments) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _verifyDeviceChangeOtpUseCase.execute(params: value))
           .asFlow()
