@@ -86,13 +86,13 @@ class RejectRequestPaymentOtpPageView extends BasePageViewWidget<RejectRequestPa
                                     .read(rejectRequestPaymentPageViewModelProvider)
                                     .argument
                                     .rtpStatus,
-                                RejectReason: ProviderScope.containerOf(context)
+                                RejectADdInfo: ProviderScope.containerOf(context)
                                     .read(selectRejectReasonPageViewModelProvider)
                                     .reasonToRejectController
                                     .text,
-                                RejectADdInfo: ProviderScope.containerOf(context)
+                                RejectReason: ProviderScope.containerOf(context)
                                     .read(selectRejectReasonPageViewModelProvider)
-                                    .rejectADdInfo,
+                                    .rejectReasonCode,
                                 GetToken: true,
                                 otpCode: model.otpController.text);
                             //  Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);

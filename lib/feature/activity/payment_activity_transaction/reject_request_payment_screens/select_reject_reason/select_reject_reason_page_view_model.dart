@@ -134,7 +134,7 @@ class SelectRejectReasonPageViewModel extends BasePageViewModel {
   final TextEditingController reasonToRejectController = TextEditingController();
   final GlobalKey<AppTextFieldState> reasonToRejectKey = GlobalKey(debugLabel: "reasonToReject");
 
-  String rejectADdInfo = '';
+  String rejectReasonCode = '';
 
   ///validation request and response
   PublishSubject<ReasonToRejectValidationUseCaseParams> _reasonToRejectValidationRequest = PublishSubject();
