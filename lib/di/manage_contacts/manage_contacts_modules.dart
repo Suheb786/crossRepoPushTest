@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_contacts_fo
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 
 final beneficiaryContactListPageViewModelProvider =
@@ -40,11 +39,13 @@ final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBen
     (ref) => AddBeneficiaryotpPageViewModel(ref.read(addBeneficiaryOTPuseCaseProvider)));
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>(
-        (ref, args) => BeneficiaryContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider), args));
-
-final editContactotpPageViewModelProvider = ChangeNotifierProvider.autoDispose<EditUserContactotpViewModel>(
-    (ref) => EditUserContactotpViewModel(ref.read(editContactIbanOTPuseCaseProvider)));
+    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>((ref, args) =>
+        BeneficiaryContactDetailsPageViewModel(
+            ref.read(uploadDocumentUseCaseProvider),
+            ref.read(updateFavoriteUseCaseProvider),
+            ref.read(deleteBeneficiaryUseCaseProvider),
+            ref.read(updateBeneficiaryUseCaseProvider),
+            args));
 
 final beneficiaryTransactionHistoryListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryTransactionHistoryListPageViewModel>(

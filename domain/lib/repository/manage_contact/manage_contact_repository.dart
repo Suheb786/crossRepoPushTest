@@ -35,13 +35,9 @@ abstract class ManageContactRepository {
       String isFromMobile});
 
   Future<Either<NetworkError, bool>> updateAvatar(
-      {String beneficiaryDetailId,
-        String avatarImage,
-        String userId,
-        String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
 
-  Future<Either<NetworkError, bool>> updateBeneficiary(
-      {String beneficiaryId, String nickName, String purpose, String purposeDetails});
+  Future<Either<NetworkError, bool>> updateBeneficiary({String beneficiaryId, String nickName});
 
   Future<Either<NetworkError, bool>> deleteBeneficiary({String beneficiaryId});
 
@@ -54,7 +50,8 @@ abstract class ManageContactRepository {
 
   Future<Either<NetworkError, bool>> updateFavorite(
       {required String beneficiaryDetailId,
-      required bool isFav,
+      required bool isRequestMoneyFav,
+      required bool isSendMoneyFav,
       required String userId,
       required bool isFromMobile});
 

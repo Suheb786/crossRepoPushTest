@@ -4,16 +4,19 @@ part 'delete_beneficiary_request.g.dart';
 
 @JsonSerializable()
 class DeleteBeneficiaryRequest {
-  @JsonKey(name: "BeneficiaryID")
+  @JsonKey(name: "BeneficiaryDetailId")
   final String beneficiaryId;
+  @JsonKey(name: "IsFromMobile")
+  final bool isFromMobile;
   @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   DeleteBeneficiaryRequest({
     required this.beneficiaryId,
-    this.getToken= true,
+    this.isFromMobile = true,
+    this.getToken = true,
     required this.baseData,
   });
 

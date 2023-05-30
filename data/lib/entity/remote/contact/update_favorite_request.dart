@@ -7,8 +7,11 @@ class UpdateFavoriteRequest {
   @JsonKey(name: "BeneficiaryDetailId")
   final String? beneficiaryDetailId;
 
-  @JsonKey(name: "IsFav")
-  final bool? isFav;
+  @JsonKey(name: "IsSendMoneyFav")
+  final bool? isSendMoneyFav;
+
+  @JsonKey(name: "IsRequestMoneyFav")
+  final bool? isRequestMoneyFav;
 
   @JsonKey(name: "UserId")
   final String? userId;
@@ -24,9 +27,10 @@ class UpdateFavoriteRequest {
 
   UpdateFavoriteRequest({
     this.beneficiaryDetailId,
-    this.isFav,
+    this.isSendMoneyFav,
+    this.isRequestMoneyFav,
     this.userId,
-    this.isFromMobile,
+    this.isFromMobile = true,
     this.getToken = true,
     required this.baseData,
   });

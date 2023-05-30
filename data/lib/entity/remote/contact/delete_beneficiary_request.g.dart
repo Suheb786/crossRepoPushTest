@@ -9,15 +9,17 @@ part of 'delete_beneficiary_request.dart';
 DeleteBeneficiaryRequest _$DeleteBeneficiaryRequestFromJson(
         Map<String, dynamic> json) =>
     DeleteBeneficiaryRequest(
-      beneficiaryId: json['BeneficiaryID'] as String,
+      beneficiaryId: json['BeneficiaryDetailId'] as String,
+      isFromMobile: json['IsFromMobile'] as bool? ?? true,
       getToken: json['GetToken'] as bool? ?? true,
-      baseData: json['baseClass'] as Map<String, dynamic>,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$DeleteBeneficiaryRequestToJson(
         DeleteBeneficiaryRequest instance) =>
     <String, dynamic>{
-      'BeneficiaryID': instance.beneficiaryId,
+      'BeneficiaryDetailId': instance.beneficiaryId,
+      'IsFromMobile': instance.isFromMobile,
       'GetToken': instance.getToken,
-      'baseClass': instance.baseData,
+      'BaseClass': instance.baseData,
     };

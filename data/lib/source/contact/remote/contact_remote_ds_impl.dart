@@ -7,6 +7,7 @@ import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
+import 'package:data/entity/remote/contact/remove_avatar_request.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/update_favorite_request.dart';
@@ -67,11 +68,7 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
       {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateBeneficiary(UpdateBeneficiaryRequest(
-        beneficiaryId: beneficiaryId!,
-        nickName: nickName,
-        purpose: purpose,
-        purposeDetails: purposeDetails,
-        baseData: baseData.toJson()));
+        beneficiaryId: beneficiaryId!, nickName: nickName, baseData: baseData.toJson()));
   }
 
   @override
@@ -117,27 +114,29 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> updateFavorite(
       {required String beneficiaryDetailId,
-      required bool isFav,
+      required bool isSendMoneyFav,
+      required bool isRequestMoneyFav,
       required String userId,
       required bool isFromMobile}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateFavorite(UpdateFavoriteRequest(
         baseData: baseData.toJson(),
         beneficiaryDetailId: beneficiaryDetailId,
-        isFav: isFav,
+        isRequestMoneyFav: isRequestMoneyFav,
+        isSendMoneyFav: isSendMoneyFav,
         isFromMobile: isFromMobile));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> addContact(
       {String? nickName,
-        String? fullName,
-        String? emailAddress,
-        String? avatarImage,
-        bool? isFav,
-        String? userId,
-        String? identifier,
-        String? isFromMobile}) async {
+      String? fullName,
+      String? emailAddress,
+      String? avatarImage,
+      bool? isFav,
+      String? userId,
+      String? identifier,
+      String? isFromMobile}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addContact(AddContactRequest(
         nickName: nickName,
@@ -155,12 +154,12 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> updateContact(
       {String? beneficiaryDetailId,
-        String? nickName,
-        String? fullName,
-        String? emailAddress,
-        String? userId,
-        String? identifier,
-        String? isFromMobile}) async {
+      String? nickName,
+      String? fullName,
+      String? emailAddress,
+      String? userId,
+      String? identifier,
+      String? isFromMobile}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateContact(UpdateContactRequest(
         beneficiaryDetailId: beneficiaryDetailId,
@@ -177,14 +176,14 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> deleteContact(
       {String? beneficiaryDetailId,
-        String? nickName,
-        String? fullName,
-        String? emailAddress,
-        String? avatarImage,
-        bool? isFav,
-        String? userId,
-        String? identifier,
-        String? isFromMobile}) async {
+      String? nickName,
+      String? fullName,
+      String? emailAddress,
+      String? avatarImage,
+      bool? isFav,
+      String? userId,
+      String? identifier,
+      String? isFromMobile}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addContact(AddContactRequest(
         nickName: nickName,
@@ -209,5 +208,12 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
         isFromMobile: isFromMobile,
         getToken: true,
         baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.removeAvatar(RemoveAvatarRequest(
+        beneficiaryDetailId: beneficiaryId, isFromMobile: true, getToken: true, baseData: baseData.toJson()));
   }
 }
