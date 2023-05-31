@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/bottom_sheet/manage_contacts/edit_profile_ios_bottom_sheet.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/manage_contacts/edit_profile_ios_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_widget.dart';
 
 class EditProfilePicBottomSheetSelectionWidget {

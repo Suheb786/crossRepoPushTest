@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -2699,10 +2700,10 @@ class S {
     );
   }
 
-  /// `OPEN AN ACCOUNT`
+  /// `Open an Account`
   String get openAccount {
     return Intl.message(
-      'OPEN AN ACCOUNT',
+      'Open an Account',
       name: 'openAccount',
       desc: '',
       args: [],
@@ -6989,10 +6990,10 @@ class S {
     );
   }
 
-  /// `Your first transaction will be declined, don't worry the second one will work.`
+  /// `Your first transaction will be declined, don't worry, the second one will work`
   String get cardPinSucccesFullyUnblockedDesc {
     return Intl.message(
-      'Your first transaction will be declined, don\'t worry the second one will work.',
+      'Your first transaction will be declined, don\'t worry, the second one will work',
       name: 'cardPinSucccesFullyUnblockedDesc',
       desc: '',
       args: [],
@@ -7139,10 +7140,10 @@ class S {
     );
   }
 
-  /// `You need to visit any ATM to activate your new PIN`
+  /// `Visit the nearest ATM to activate your new PIN`
   String get cardPinChangedDesc {
     return Intl.message(
-      'You need to visit any ATM to activate your new PIN',
+      'Visit the nearest ATM to activate your new PIN',
       name: 'cardPinChangedDesc',
       desc: '',
       args: [],
@@ -17344,6 +17345,86 @@ class S {
     return Intl.message(
       'Please enter your\ncontact details',
       name: 'pleaseEnterYourContactDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with Email`
+  String get loginWithEmail {
+    return Intl.message(
+      'Login with Email',
+      name: 'loginWithEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Your Account Now`
+  String get openYourAccountNow {
+    return Intl.message(
+      'Open Your Account Now',
+      name: 'openYourAccountNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go back`
+  String get goBack {
+    return Intl.message(
+      'Go back',
+      name: 'goBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is disabled`
+  String get biometricLoginIsDisabled {
+    return Intl.message(
+      'Biometric login is disabled',
+      name: 'biometricLoginIsDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please login with your email address and enable the biometric login from Profile Settings.`
+  String get biometricLoginIsDisabledDesc {
+    return Intl.message(
+      'Please login with your email address and enable the biometric login from Profile Settings.',
+      name: 'biometricLoginIsDisabledDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.`
+  String get fatcaEligible {
+    return Intl.message(
+      'Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.',
+      name: 'fatcaEligible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Your account is inactive. Call us on 06-5200100 to activate your account.`
+  String get accountDormantError {
+    return Intl.message(
+      'Oops! Your account is inactive. Call us on 06-5200100 to activate your account.',
+      name: 'accountDormantError',
       desc: '',
       args: [],
     );

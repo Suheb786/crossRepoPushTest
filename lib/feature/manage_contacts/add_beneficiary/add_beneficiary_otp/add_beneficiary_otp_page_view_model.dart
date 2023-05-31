@@ -1,6 +1,5 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart';
-import 'package:domain/usecase/manage_contacts/add_contact_OTP_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -43,6 +42,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///--------------------------animated-button-subject-------------------------------------///
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   ///--------------------------public-override-methods-------------------------------------///

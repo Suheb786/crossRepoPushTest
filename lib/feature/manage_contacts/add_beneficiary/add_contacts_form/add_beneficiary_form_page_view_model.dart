@@ -5,7 +5,6 @@ import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
-import 'package:domain/usecase/manage_contacts/add_contact_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
