@@ -121,7 +121,6 @@ import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_
 import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page.dart';
 import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
-import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
@@ -199,11 +198,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AccountRegistrationPage(settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
-
-      case RoutePaths.ProductSelector:
-        return CupertinoPageRoute(
-            builder: (context) => ProductSelectorPage(),
-            settings: RouteSettings(name: RoutePaths.ProductSelector));
 
       case RoutePaths.NonJordanianRegister:
         return CupertinoPageRoute(
@@ -529,7 +523,8 @@ class AppRouter {
 
       case RoutePaths.OTPForChangeDevice:
         return CupertinoPageRoute(
-            builder: (context) => OtpForChangeDeviceConfirmationPage(),
+            builder: (context) => OtpForChangeDeviceConfirmationPage(
+                settings.arguments as OtpForChangeDeviceConfirmationPageArguments),
             settings: RouteSettings(name: RoutePaths.OTPForChangeDevice));
 
       case RoutePaths.ChangeDeviceSuccess:

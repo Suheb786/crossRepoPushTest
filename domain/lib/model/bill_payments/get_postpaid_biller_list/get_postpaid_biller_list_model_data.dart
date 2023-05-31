@@ -26,6 +26,7 @@ class GetPostpaidBillerListModelData {
   bool? expDateStatus;
   String? expDateMessage;
   bool showErrorIfEverythingOkButCannotBePaid;
+  bool noDataFoundForBill;
 
   GetPostpaidBillerListModelData(
       {this.joebppsNo,
@@ -54,5 +55,6 @@ class GetPostpaidBillerListModelData {
       this.minValue = "0.000",
       this.expDateStatus,
       this.expDateMessage,
-      this.showErrorIfEverythingOkButCannotBePaid = false});
+      this.showErrorIfEverythingOkButCannotBePaid = false,
+      this.noDataFoundForBill = false});
 }

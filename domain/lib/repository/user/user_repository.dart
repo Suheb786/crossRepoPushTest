@@ -153,9 +153,6 @@ abstract class UserRepository {
       FatcaCrsInfo fatcaCrsInfo,
       AccountPurposeInfo accountPurposeInfo});
 
-  ///enable finger print
-  Future<Either<NetworkError, bool>> enableFingerPrint({String cipher});
-
   ///disable finger print
   Future<Either<NetworkError, bool>> disableFingerPrint();
 
@@ -177,8 +174,6 @@ abstract class UserRepository {
   Future<Either<NetworkError, GetCipherResponse>> getCipher();
 
   Future<Either<NetworkError, AndroidLoginResponse>> androidLogin({required String cipher});
-
-  Future<Either<NetworkError, User>> iphoneLogin({required String cipher});
 
   Future<Either<NetworkError, bool>> changeMyNumber(String mobileNo, String mobileCode);
 

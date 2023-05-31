@@ -144,7 +144,7 @@ class SelectRejectReasonPageView extends BasePageViewWidget<SelectRejectReasonPa
                                                                   Navigator.pop(context);
                                                                   model.reasonToRejectController.text =
                                                                       value.description;
-                                                                  model.rejectADdInfo = value.code;
+                                                                  model.rejectReasonCode = value.code;
 
                                                                   model.validate();
                                                                 });

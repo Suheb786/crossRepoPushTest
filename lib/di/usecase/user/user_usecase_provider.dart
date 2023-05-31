@@ -14,7 +14,6 @@ import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enable_biometric_usecase.dart';
-import 'package:domain/usecase/user/enable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:domain/usecase/user/get_cipher_usecase.dart';
@@ -23,7 +22,6 @@ import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
-import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
@@ -122,10 +120,6 @@ final getConfirmApplicationDataUseCaseProvider = Provider<ConfirmApplicationData
 ///[LogoutUseCase] provider
 final logoutUseCaseProvider = Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
 
-///[EnableFingerPrintUseCase] provider
-final enableFingerPrintUseCaseProvider =
-    Provider<EnableFingerPrintUseCase>((ref) => EnableFingerPrintUseCase(ref.read(userRepoProvider)));
-
 ///[DisableFingerPrintUseCase] provider
 final disableFingerPrintUseCaseProvider =
     Provider<DisableFingerPrintUseCase>((ref) => DisableFingerPrintUseCase(ref.read(userRepoProvider)));
@@ -183,10 +177,6 @@ final getCipherUseCaseProvider =
 ///android login usecase
 final androidLoginUseCaseProvider =
     Provider.autoDispose<AndroidLoginUseCase>((ref) => AndroidLoginUseCase(ref.read(userRepoProvider)));
-
-///iphone login usecase
-final iphoneLoginUseCaseProvider =
-    Provider.autoDispose<IphoneLoginUseCase>((ref) => IphoneLoginUseCase(ref.read(userRepoProvider)));
 
 ///change my number usecase
 final changeMyNumberUseCaseProvider =

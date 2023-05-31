@@ -135,12 +135,12 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                 AdditionalIncomeSourceDialog.show(context, onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
-                                                  if (value.totalIncome!.isEmpty) {
+                                                  if ((value.totalIncome ?? '').isEmpty) {
                                                     model.showToastWithError(AppError(
                                                         type: ErrorType.EMPTY_INCOME,
                                                         cause: Exception(),
                                                         error: ErrorInfo(message: '')));
-                                                  } else if (!(num.parse(value.totalIncome!) > 0)) {
+                                                  } else if (!(num.parse(value.totalIncome ?? '0') > 0)) {
                                                     model.showToastWithError(AppError(
                                                         type:
                                                             ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,

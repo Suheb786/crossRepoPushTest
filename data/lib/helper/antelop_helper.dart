@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:data/entity/local/base/device_helper.dart';
@@ -38,16 +39,20 @@ class AntelopHelper {
 
   final ApiService _apiService;
   final DeviceInfoHelper _deviceInfoHelper;
-  EventChannel eventChannel = EventChannel("continueListining");
+  late EventChannel eventChannel;
+
   final EventEmitter _eventEmitter = EventEmitter();
   String antelopWalletId = '';
   static String constantAuthToken = "";
   bool onProvisioningError = true;
 
   AntelopHelper(this._apiService, this._deviceInfoHelper) {
-    registerAntelopEvents();
-    registerSdkCalback();
-    getWalletId();
+    if (Platform.isIOS) {
+      eventChannel = EventChannel("continueListining");
+      registerAntelopEvents();
+      registerSdkCalback();
+      getWalletId();
+    }
   }
 
   getWalletId() async {

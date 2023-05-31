@@ -138,7 +138,7 @@ class RejectRequestPaymentOtpPageViewModel extends BasePageViewModel {
   }
 
   void getError(Resource<bool> event) {
-    switch (event.appError!.type) {
+    switch (event.appError?.type) {
       case ErrorType.INVALID_OTP:
         otpControllerKey.currentState!.isValid = false;
         break;

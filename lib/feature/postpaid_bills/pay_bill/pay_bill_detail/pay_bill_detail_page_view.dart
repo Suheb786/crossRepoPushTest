@@ -381,29 +381,6 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
         onChanged: (val) {
           model.validateData(context);
         },
-        /*onPressed: () {
-          AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
-            Navigator.pop(context);
-          }, onSelected: (value) {
-            model.payFromController.text = value;
-            model.validateData(context);
-            Navigator.pop(context);
-          }, accountsList: [
-            ProviderScope.containerOf(context)
-                    .read(appHomeViewModelProvider)
-                    .dashboardDataContent
-                    .account
-                    ?.accountNo ??
-                ''
-          ]);
-        },*/
-        // suffixIcon: (value, data) {
-        //   return Container(
-        //       height: 16.h,
-        //       width: 16.w,
-        //       padding: EdgeInsetsDirectional.only(end: 8.w),
-        //       child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-        // },
       ),
     );
   }

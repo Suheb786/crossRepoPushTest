@@ -54,25 +54,24 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     postPaidBillInquiryListener();
   }
 
-  void selectedItem(int index) {
+  isDisabledConditions(GetPostpaidBillerListModelData item) {
+    return (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 && item.isPartial == false) ||
+        (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 &&
+            item.isPartial == true &&
+            double.parse(item.maxValue ?? "0.0") <= 0.0) ||
+        (item.expDateStatus == false);
+  }
+
+  void selectedItem(int index, bool isFromSelectedItem) {
     if (payPostPaidBillsDataList.isNotEmpty) {
-      if (payPostPaidBillsDataList[index].isChecked == true) {
+      if (payPostPaidBillsDataList[index].isChecked == true &&
+          !isDisabledConditions(payPostPaidBillsDataList[index])) {
         payPostPaidBillsDataList[index].isChecked = false;
         totalBillAmt =
             totalBillAmt - double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
-        // selectedPostPaidBillsList.removeWhere((element) =>
-        //     element.billingNo == payPostPaidBillsDataList[index].billingNo &&
-        //     element.serviceType == payPostPaidBillsDataList[index].serviceType);
-
-        // postPaidRequestListJson.removeWhere((element) =>
-        //     element.billingNumber == payPostPaidBillsDataList[index].billingNo &&
-        //     element.serviceType == payPostPaidBillsDataList[index].serviceType &&
-        //     (double.parse(payPostPaidBillsDataList[index].dueAmount ?? "0") <= 0.0));
-        // selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
         _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
-        debugPrint('multiple selected $totalBillAmt');
       } else {
         payPostPaidBillsDataList[index].isChecked = true;
         if (payPostPaidBillsDataList[index].isPartial == true &&
@@ -92,14 +91,12 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           billingNumber: payPostPaidBillsDataList[index].billingNo,
           nickName: payPostPaidBillsDataList[index].nickName,
         ));
-        debugPrint("payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
 
         totalBillAmt =
             totalBillAmt + double.parse(payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0.0");
-        debugPrint("selectedIndex123:$index");
         selectedIndex = index;
         _totalBillAmtDueSubject.safeAdd(totalBillAmt);
         _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
@@ -108,12 +105,15 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             payPostPaidBillsDataList[index].dueAmount != null &&
                 payPostPaidBillsDataList[index].dueAmount == "0") {
           if (postPaidBillInquiryData == null || postPaidBillInquiryData!.isEmpty) {
-            postPaidBillInquiry(postPaidRequestListJson);
+            postPaidBillInquiry(postPaidRequestListJson,
+                isFromSelectedItem: isFromSelectedItem, index: index);
           } else {
             if (payPostPaidBillsDataList[index].isAmountUpdatedFromApi == false) {
-              postPaidBillInquiry(postPaidRequestListJson);
+              postPaidBillInquiry(postPaidRequestListJson,
+                  isFromSelectedItem: isFromSelectedItem, index: index);
             } else {
-              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData, isFromSelectedItem: true);
+              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
+                  isFromSelectedItem: isFromSelectedItem, index: index);
             }
           }
         }
@@ -148,7 +148,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
       postPaidRequestListJson = postPaidRequestListJson.toSet().toList();
       _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
-      postPaidBillInquiry(postPaidRequestListJson);
+      postPaidBillInquiry(postPaidRequestListJson, isFromSelectedItem: false, index: 0);
     }
   }
 
@@ -166,7 +166,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest = BehaviorSubject();
   BehaviorSubject<Resource<GetPostpaidBillerListModel>> _postpaidBillerResponse = BehaviorSubject();
 
-////search list
+  ///search list
   PublishSubject<Resource<List<GetPostpaidBillerListModelData>?>> _searchPostpaidBillerResponse =
       PublishSubject();
 
@@ -196,8 +196,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             mList = payPostPaidBillsDataList;
             _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
 
-            // _searchPostpaidBillerResponse.safeAdd(
-            //     Resource.success(data: event.data?.getPostpaidBillerListContent?.getPostpaidBillerListData));
             postPaidRequestJsonListMethod();
           }
         });
@@ -214,11 +212,12 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   int selectedIndex = -1;
 
-  void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry) {
+  void postPaidBillInquiry(List<PostpaidBillInquiry> postpaidBillInquiry,
+      {required bool isFromSelectedItem, required int index}) {
     ///LOG EVENT TO FIREBASE
     FireBaseLogUtil.fireBaseLog("post_paid_saved_bill_enquiry", {"post_paid_saved_bill_enquiry_call": true});
-    _postPaidBillEnquiryRequest
-        .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: postpaidBillInquiry));
+    _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
+        postpaidBillInquiries: postpaidBillInquiry, isFromSelectedItem: isFromSelectedItem, index: index));
   }
 
   List<PostPaidBillInquiryData> postPaidBillInquiryDataForOneItem = [];
@@ -241,7 +240,12 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             postPaidBillInquiryData?.addAll(event.data?.content?.postPaidBillInquiryData ?? []);
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
             if (payPostPaidBillsDataList.length > 0) {
-              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData);
+              postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
+                  isFromSelectedItem: params.isFromSelectedItem, index: params.index);
+            }
+            if (params.isFromSelectedItem) {
+              showErrorMessagePopUp(
+                  index: params.index, data: event.data?.content?.postPaidBillInquiryData ?? []);
             }
           }
         });
@@ -249,73 +253,73 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     );
   }
 
+  showErrorMessagePopUp({required int index, required List<PostPaidBillInquiryData> data}) {
+    var showError = data
+            .where((element) => (element.billingNo ?? '').isEmpty || (element.serviceType ?? '').isEmpty)
+            .length >
+        0;
+
+    if (showError) {
+      showToastWithError(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+    }
+  }
+
   void postpaidBillEnquiryOnSuccessMethod(List<PostPaidBillInquiryData>? inquiryData,
-      {bool? isFromSelectedItem}) {
+      {required bool isFromSelectedItem, required int index}) {
     selectedPostPaidBillsList = [];
     _postPaidBillEnquiryResponse.safeAdd(Resource.success(
         data:
             PostPaidBillInquiry(content: PostPaidBillInquiryListData(postPaidBillInquiryData: inquiryData))));
-    var postPaidBillInquiryDataLength = inquiryData?.length ?? 0;
-    for (int i = 0; i < postPaidBillInquiryDataLength; i++) {
-      PostPaidBillInquiryData inquiryElement = inquiryData![i];
-      for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
-        GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
-        if (item.billingNo == inquiryElement.billingNo && item.serviceType == inquiryElement.serviceType) {
-          if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
-            payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
-          }
-          payPostPaidBillsDataList[j].fees = inquiryElement.feesAmt;
+
+    for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
+      GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
+      var inquiryItem = inquiryData?.where(
+          (element) => item.billingNo == element.billingNo && item.serviceType == element.serviceType);
+
+      if (inquiryItem != null && (inquiryItem).length > 0) {
+        var inquiryElement = inquiryItem.first;
+
+        if (payPostPaidBillsDataList[j].isAmountUpdatedFromApi == false) {
+          payPostPaidBillsDataList[j].actualdueAmountFromApi = inquiryElement.dueAmount;
           payPostPaidBillsDataList[j].isAmountUpdatedFromApi = true;
-          payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
-          payPostPaidBillsDataList[j].isPartial = inquiryElement.isPartial;
-          payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
-          payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
-          payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
-          payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
-          if (payPostPaidBillsDataList[j].expDateStatus == false) {
-            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
-            payPostPaidBillsDataList[j].isChecked = false;
-          }
-          if (double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0) {
-            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
-            payPostPaidBillsDataList[j].isChecked = false;
-            payPostPaidBillsDataList[j].expDateStatus = true;
-          }
-          if (isFromSelectedItem == true) {
-            if (payPostPaidBillsDataList[selectedIndex].isPartial == true &&
-                double.parse(payPostPaidBillsDataList[selectedIndex].dueAmount ?? "0") <= 0.0 &&
-                double.parse(payPostPaidBillsDataList[selectedIndex].maxValue ?? "0") <= 0.0) {
-              payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = true;
-              payPostPaidBillsDataList[selectedIndex].isChecked = false;
-              //   payPostPaidBillsDataList[j].expDateStatus = true;
-            } else {
-              payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = false;
-              payPostPaidBillsDataList[selectedIndex].isChecked = true;
-              //  payPostPaidBillsDataList[j].expDateStatus = false;
-            }
-          }
-
-          selectedPostPaidBillsList.add(item);
         }
-      }
-
-      if (arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-        if (postPaidBillInquiryData != null && postPaidBillInquiryData!.isNotEmpty) {
-          if (inquiryElement.billingNo == null ||
-              inquiryElement.billingNo!.isEmpty ||
-              inquiryElement.serviceType == null ||
-              inquiryElement.serviceType!.isEmpty) {
-            for (var item in payPostPaidBillsDataList) {
-              if (item.isAmountUpdatedFromApi == false) {
-                item.expDateStatus = false;
-                item.expDateMessage = postPaidBillInquiryData![0].message ?? "false";
-                item.isAmountUpdatedFromApi = true;
-              }
-            }
+        payPostPaidBillsDataList[j].fees = inquiryElement.feesAmt;
+        payPostPaidBillsDataList[j].dueAmount = inquiryElement.dueAmount;
+        payPostPaidBillsDataList[j].isPartial = inquiryElement.isPartial;
+        payPostPaidBillsDataList[j].minValue = inquiryElement.minValue;
+        payPostPaidBillsDataList[j].maxValue = inquiryElement.maxValue;
+        payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
+        payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
+        if (payPostPaidBillsDataList[j].expDateStatus == false) {
+          payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
+          payPostPaidBillsDataList[j].isChecked = false;
+        }
+        if (double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0) {
+          payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
+          payPostPaidBillsDataList[j].isChecked = false;
+          payPostPaidBillsDataList[j].expDateStatus = true;
+        }
+        if (isFromSelectedItem == true) {
+          if (payPostPaidBillsDataList[selectedIndex].isPartial == true &&
+              double.parse(payPostPaidBillsDataList[selectedIndex].dueAmount ?? "0") <= 0.0 &&
+              double.parse(payPostPaidBillsDataList[selectedIndex].maxValue ?? "0") <= 0.0) {
+            payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = true;
+            payPostPaidBillsDataList[selectedIndex].isChecked = false;
+          } else {
+            payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = false;
+            payPostPaidBillsDataList[selectedIndex].isChecked = true;
           }
+        }
+        selectedPostPaidBillsList.add(item);
+      } else {
+        if (isFromSelectedItem &&
+            payPostPaidBillsDataList[index].billingNo == payPostPaidBillsDataList[j].billingNo) {
+          payPostPaidBillsDataList[j].noDataFoundForBill = true;
         }
       }
     }
+
     if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
       if (postPaidBillInquiryDataForOneItem.length == 1) {
         ///postPaidBillInquiryData?[0].success == false
@@ -386,7 +390,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
 
-    // mList = payPostPaidBillsDataList;
     _itemSelectedSubject.safeAdd(payPostPaidBillsDataList);
 
     addAllBillAmt(payPostPaidBillsDataList);

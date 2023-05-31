@@ -1,13 +1,16 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/fatca_enum.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_dialog.dart';
@@ -74,6 +77,12 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                                     .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                               });
                               break;
+                          }
+                        } else if (data.status == Status.ERROR) {
+                          if (data.appError?.type == ErrorType.FATCA_ELIGIBLE) {
+                            Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
+                                arguments: CreditCardApplicationFailureArguments(
+                                    creditFailureState: CreditFailureState.FATCA));
                           }
                         }
                       },

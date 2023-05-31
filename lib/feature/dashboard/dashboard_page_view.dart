@@ -29,11 +29,13 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
       onHorizontalDragUpdate: (details) {
         if (StringUtils.isDirectionRTL(context)) {
           if (!details.primaryDelta!.isNegative) {
-            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
+            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
+                arguments: RegisterPageParams());
           }
         } else {
           if (details.primaryDelta!.isNegative) {
-            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
+            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.Registration, (route) => false,
+                arguments: RegisterPageParams());
           }
         }
       },

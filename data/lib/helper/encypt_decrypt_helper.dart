@@ -18,41 +18,57 @@ class EncryptDecryptHelper {
   static String pinBlockKey = '6B29CBFE4C46F7D5EFE30229580E2A16';
 
   static String decryptCard({required String cardNo}) {
-    final List<int> decrypted;
-    DES3 desECB = DES3(key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY), mode: DESMode.ECB);
-    decrypted = desECB.decrypt(isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
-    return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
+    try {
+      final List<int> decrypted;
+      DES3 desECB = DES3(key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY), mode: DESMode.ECB);
+      decrypted = desECB.decrypt(isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
+      return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
+    } catch (e) {
+      return '';
+    }
   }
 
   static String encryptCard({required String cardNo}) {
-    final List<int> encrypted;
-    DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB, paddingType: DESPaddingType.PKCS5);
-    encrypted = desECB.encrypt(cardNo.codeUnits);
-    return base64.encode(encrypted);
+    try {
+      final List<int> encrypted;
+      DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB, paddingType: DESPaddingType.PKCS5);
+      encrypted = desECB.encrypt(cardNo.codeUnits);
+      return base64.encode(encrypted);
+    } catch (e) {
+      return '';
+    }
   }
 
   static String generateBlockPin({required String cardNo, required String pinCode}) {
-    final List<int> encrypted;
-    String blockPart1 = "0${pinCode.length}$pinCode";
-    blockPart1 = blockPart1.padRight(16, 'F');
-    String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
-    String finalBlock =
-        (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
-    DES3 desECB = DES3(key: hex.decode(KeyHelper.PIN_BLOCK_KEY), mode: DESMode.ECB);
-    encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
-    return hex.encode(encrypted).substring(0, 16).toUpperCase();
+    try {
+      final List<int> encrypted;
+      String blockPart1 = "0${pinCode.length}$pinCode";
+      blockPart1 = blockPart1.padRight(16, 'F');
+      String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
+      String finalBlock =
+          (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
+      DES3 desECB = DES3(key: hex.decode(KeyHelper.PIN_BLOCK_KEY), mode: DESMode.ECB);
+      encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
+      return hex.encode(encrypted).substring(0, 16).toUpperCase();
+    } catch (e) {
+      return '';
+    }
   }
 
   static String generateBlockPinForCreditCard({required String cardNo, required String pinCode}) {
-    final List<int> encrypted;
-    String blockPart1 = "0${pinCode.length}$pinCode";
-    blockPart1 = blockPart1.padRight(16, 'F');
-    String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
-    String finalBlock =
-        (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
-    DES3 desECB = DES3(key: hex.decode(pinBlockKey), mode: DESMode.ECB);
-    encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
-    return hex.encode(encrypted).substring(0, 16).toUpperCase();
+    try {
+      final List<int> encrypted;
+      String blockPart1 = "0${pinCode.length}$pinCode";
+      blockPart1 = blockPart1.padRight(16, 'F');
+      String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
+      String finalBlock =
+          (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
+      DES3 desECB = DES3(key: hex.decode(pinBlockKey), mode: DESMode.ECB);
+      encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
+      return hex.encode(encrypted).substring(0, 16).toUpperCase();
+    } catch (e) {
+      return '';
+    }
   }
 
   static Map<String, dynamic> encryptRequest(Map<String, dynamic> request) {

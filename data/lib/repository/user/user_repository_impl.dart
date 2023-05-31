@@ -52,7 +52,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result.fold(
       (l) => Left(l),
-      (r) => Right(r!),
+      (r) => Right(r),
     );
   }
 
@@ -445,17 +445,6 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> enableFingerPrint({String? cipher}) async {
-    final result = await safeApiCall(
-      _remoteDS.enableFingerPrint(cipher: cipher),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(true),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> disableFingerPrint() async {
     final result = await safeApiCall(
       _remoteDS.disableFingerPrint(),
@@ -582,17 +571,6 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<NetworkError, AndroidLoginResponse>> androidLogin({required String cipher}) async {
     final result = await safeApiCall(
       _remoteDS.androidLogin(cipher: cipher),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, User>> iphoneLogin({required String cipher}) async {
-    final result = await safeApiCall(
-      _remoteDS.iphoneLogin(cipher: cipher),
     );
     return result!.fold(
       (l) => Left(l),

@@ -713,7 +713,7 @@
   "unBlockPin": "فك حظر الرمز السري PIN",
   "unBlockPinDescription": "لقد تم ايقاف الرمز السري للبطاقة لإحتياطات أمنية. للاستمرار باستخدام الرمز السري لاجراء عمليات الشراء يرجى القيام باعادة تفعيل الرمز السري. عند اعادة تفعيل الرمز السري، قد يتم رفض أول عملية باستخدامه.",
   "cardPinSucccesFullyUnblocked": "تم فك حظر الرمز السري PIN بنجاح",
-  "cardPinSucccesFullyUnblockedDesc": "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح",
+  "cardPinSucccesFullyUnblockedDesc": "أول حركة مالية رح تنرفض, ما تقلق، الثانية رح تمشي بنجاح",
   "backToDashboard": "العودة لشاشة التحكم",
   "atmWithDrawal": "سحب من صراف آلي",
   "merchantPayments": "دفعات المحلات",
@@ -732,7 +732,7 @@
   "confirmNewPin": "تأكيد الرمز السري PIN الجديد",
   "emptyConfirmPin": "أدخل الرمز السري PIN كمان مرة",
   "cardPinChangedSuccessfully": "تم تغيير الرمز السري PIN على بطاقتك بنجاح",
-  "cardPinChangedDesc": "لازم تزور اي صراف ألي عشان تأكًد على تغير الرقم السري",
+  "cardPinChangedDesc": "زور أقرب صراف آلي عشان تفعل الرقم السري الجديد",
   "limitExceeded": "تم تجاوز السقف",
   "whatRelationshipWithCardHolder": "شو علاقتك مع حامل البطاقة؟",
   "relationship": "العلاقة",
@@ -1715,4 +1715,13 @@
   "contactInformation": "Contact information",
   "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",
   "saveAsFavourite": "Where would like to save as favourite?"
+  "pleaseEnterYourContactDetails": "Please enter your\ncontact details",
+  "loginWithEmail": "الدخول باستخدام البريد الإلكتروني",
+  "openYourAccountNow": "افتح حساب جديد ",
+  "goBack": "الرجوع",
+  "biometricLoginIsDisabled": "البصمة غير فعالة",
+  "biometricLoginIsDisabledDesc": "قم بالدخول إلى حسابك باستخدام بريدك الإلكتروني وفعل البصمة من خلال شاشة \"الإعدادات الشخصية\" ",
+  "login": "الدخول ",
+  "fatcaEligible": "منعتذر عن إمكانية استكمال عملية فتح الحساب كونك خاضع لمتطلبات FATCA.",
+  "accountDormantError": "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"
 }

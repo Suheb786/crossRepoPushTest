@@ -40,7 +40,8 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          Navigator.pushReplacementNamed(context, RoutePaths.NotifySuccess,
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, RoutePaths.NotifySuccess, (route) => false,
                               arguments: NotifySuccessArguments(
                                   referenceNo: data.data?.registerInterestContent?.referenceNo ?? '-'));
                         } else if (data.status == Status.ERROR) {

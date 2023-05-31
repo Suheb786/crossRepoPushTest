@@ -19,7 +19,7 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.Login));
         }
       },
       child: Padding(
@@ -89,7 +89,9 @@ class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSucce
                     child: Text(
                       S.of(context).toLoginPage,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary, fontSize: 12.t, fontWeight: FontWeight.w500),
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 12.t,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),

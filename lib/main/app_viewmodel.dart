@@ -29,9 +29,12 @@ class AppViewModel extends BaseViewModel {
 
   Locale _currentLocale = Locale('en');
 
+  LanguageEnum selectedLanguageEnum = LanguageEnum.ENGLISH;
+
   Locale get currentLocale => _currentLocale;
 
   void toggleLocale(LanguageEnum locale) {
+    selectedLanguageEnum = locale;
     _currentLocale = Locale(locale.toString());
     AppConstantsDomain.SELECTED_LANGUAGE = locale.toString().toUpperCase();
     notifyListeners();

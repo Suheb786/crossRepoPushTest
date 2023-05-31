@@ -20,8 +20,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding, (route) => false);
         }
       },
       child: Container(
@@ -91,7 +90,8 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(16)),
+                          color: Theme.of(context).colorScheme.secondary,
+                          borderRadius: BorderRadius.circular(16)),
                       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
                       child:
                           AccountDetails(title: S.of(context).refTitle, value: model.arguments.referenceNo),

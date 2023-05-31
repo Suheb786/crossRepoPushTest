@@ -332,6 +332,11 @@ class AssetUtils {
   static const String infoFee = svg + "info_fee.svg";
   static const String bulbIcon = svg + "bulb_icon.svg";
 
+  ///login
+  static const String fingerPrintIcon = svg + "fingerprint_icon.svg";
+  static const String disclaimer = svg + "disclaimer.svg";
+  static const String exclamationMark = svg + "exclamation_mark.svg";
+
   ///manage contact svg
   static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
   static const String starRedIcon = svg + "star_red.svg";

@@ -131,8 +131,6 @@ abstract class UserRemoteDS {
       FatcaCrsInfo? fatcaCrsInfo,
       AccountPurposeInfo? accountPurposeInfo});
 
-  Future<bool> enableFingerPrint({String? cipher});
-
   Future<HttpResponse<ResponseEntity>> disableFingerPrint();
 
   Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
@@ -147,15 +145,13 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<AndroidLoginResponseEntity>> androidLogin({required String cipher});
 
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin({required String cipher});
-
   Future<HttpResponse<ResponseEntity>> changeMyNumber({String mobileNo, String mobileCode});
 
   Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate({String? clear});
 }
 
 abstract class UserLocalDS {
-  Future<User?> getCurrentUser();
+  Future<User> getCurrentUser();
 
   Future<bool> removeUser();
 

@@ -136,7 +136,9 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _uploadProfilePhotoResponse.safeAdd(event.data!);
+        if (event.status == Status.SUCCESS) {
+          _uploadProfilePhotoResponse.safeAdd(event.data!);
+        }
       });
     });
 
