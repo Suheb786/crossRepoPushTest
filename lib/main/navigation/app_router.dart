@@ -86,8 +86,6 @@ import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page.dart';
-import 'package:neo_bank/feature/manage_contacts/edit_contact_details_otp/edit_contact_details_otp_page.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';

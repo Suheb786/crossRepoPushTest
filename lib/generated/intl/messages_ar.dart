@@ -53,19 +53,14 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m14(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AccountIsLinkedToTheAlias": MessageLookupByLibrary.simpleMessage(
             "الحساب مربوط الى الاسم المستعار، لكن لم ننجح من جعله الحساب الرئيسي"),
-        "CustomerOfInvalidAlias":
-            MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
+        "CustomerOfInvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
         "Default": MessageLookupByLibrary.simpleMessage("افتراضي"),
-        "ErrorOnRequestToPayResult":
-            MessageLookupByLibrary.simpleMessage("حدث خطأ عند طلب الاموال"),
-        "InvalidAlias":
-            MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
-        "InvalidMobileNo":
-            MessageLookupByLibrary.simpleMessage("رقم الموبايل غير صحيح"),
+        "ErrorOnRequestToPayResult": MessageLookupByLibrary.simpleMessage("حدث خطأ عند طلب الاموال"),
+        "InvalidAlias": MessageLookupByLibrary.simpleMessage("الاسم المستعار غير صحيح"),
+        "InvalidMobileNo": MessageLookupByLibrary.simpleMessage("رقم الموبايل غير صحيح"),
         "JOD": MessageLookupByLibrary.simpleMessage("دينار أردني"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "ما عندك رقم CliQ. أنشئ حسابك الأول من خلال Blink"),
