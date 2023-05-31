@@ -82,7 +82,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                                 ?.rtpFeatureEnabled ??
                             false) {
                           Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                              arguments: NavigationType.ADD_MONEY);
+                              arguments: NavigationType.SEND_MONEY);
                         } else {
                           model.showToastWithError(AppError(
                               cause: Exception(),

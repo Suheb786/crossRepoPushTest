@@ -110,7 +110,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 model.saveCurrentUserData(user: data.data!);
                                 // SettingsDialog.show(context);
                                 Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                    arguments: NavigationType.PAYMENTS);
+                                    arguments: NavigationType.REQUEST_MONEY);
                               });
                         }
                       }

@@ -1,1 +1,1 @@
-enum NavigationType { ADD_MONEY, DASHBOARD, PAYMENTS }
+enum NavigationType { SEND_MONEY, DASHBOARD, REQUEST_MONEY }
