@@ -65,7 +65,8 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> updateFavorite(
       {required String beneficiaryDetailId,
-      required bool isFav,
+      required bool isSendMoneyFav,
+      required bool isRequestMoneyFav,
       required String userId,
       required bool isFromMobile});
 
@@ -76,4 +77,6 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> searchContact(
       {required String searchText, required bool isFromMobile});
+
+  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId});
 }

@@ -291,6 +291,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../entity/remote/contact/add_contact_request.dart';
+import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 
@@ -1167,4 +1168,8 @@ abstract class ApiService {
   ///update avatar contact
   @POST("/ManageContacts/UpdateAvatar")
   Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
+
+  ///Remove Avatar
+  @POST("/ManageContacts/RemoveAvatar")
+  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
 }

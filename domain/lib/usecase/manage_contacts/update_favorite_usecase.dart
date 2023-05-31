@@ -14,7 +14,8 @@ class UpdateFavoriteUseCase extends BaseUseCase<NetworkError, UpdateFavoriteUseC
   Future<Either<NetworkError, bool>> execute({required UpdateFavoriteUseCaseParams params}) {
     return _repository.updateFavorite(
         beneficiaryDetailId: params.beneficiaryDetailId,
-        isFav: params.isFav,
+        isSendMoneyFav: params.isSendMoneyFav,
+        isRequestMoneyFav: params.isRequestMoneyFav,
         userId: params.userId,
         isFromMobile: params.isFromMobile);
   }
@@ -22,13 +23,15 @@ class UpdateFavoriteUseCase extends BaseUseCase<NetworkError, UpdateFavoriteUseC
 
 class UpdateFavoriteUseCaseParams extends Params {
   final String beneficiaryDetailId;
-  final bool isFav;
+  final bool isSendMoneyFav;
+  final bool isRequestMoneyFav;
   final String userId;
   final bool isFromMobile;
 
   UpdateFavoriteUseCaseParams({
     required this.beneficiaryDetailId,
-    required this.isFav,
+    required this.isSendMoneyFav,
+    required this.isRequestMoneyFav,
     required this.userId,
     required this.isFromMobile,
   });
