@@ -57,7 +57,7 @@ class EditAliasPageViewModel extends BasePageViewModel {
 
   void validate() {
     _editAliasValidationRequest.safeAdd(EditAliasValidationUseCaseParams(
-        isSelected: _isSelectedRequest.value, editAlias: aliasController.text));
+        arguments: arguments, isSelected: _isSelectedRequest.value, editAlias: aliasController.text));
   }
 
   void makeOtpRequest({

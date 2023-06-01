@@ -5,6 +5,8 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
+
 import 'package:domain/utils/validator.dart';
 
 class EditAliasValidationUseCase extends BaseUseCase<NetworkError, EditAliasValidationUseCaseParams, bool> {
@@ -15,10 +17,13 @@ class EditAliasValidationUseCase extends BaseUseCase<NetworkError, EditAliasVali
 }
 
 class EditAliasValidationUseCaseParams extends Params {
+  EditAliasPageArguments arguments;
+
   final String editAlias;
   final bool isSelected;
 
   EditAliasValidationUseCaseParams({
+    required this.arguments,
     required this.editAlias,
     required this.isSelected,
   });
@@ -35,6 +40,8 @@ class EditAliasValidationUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION,
           cause: Exception()));
+    } else if (arguments.aliasName == editAlias) {
+      AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.THIS_ALIAS_ALREADY_EXISTS);
     }
 
     return Right(true);
