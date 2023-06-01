@@ -57,7 +57,9 @@ class EditAliasPageViewModel extends BasePageViewModel {
 
   void validate() {
     _editAliasValidationRequest.safeAdd(EditAliasValidationUseCaseParams(
-        arguments: arguments, isSelected: _isSelectedRequest.value, editAlias: aliasController.text));
+        initialAliasValue: arguments.aliasName,
+        isSelected: _isSelectedRequest.value,
+        editAlias: aliasController.text));
   }
 
   void makeOtpRequest({
@@ -135,6 +137,7 @@ class EditAliasPageViewModel extends BasePageViewModel {
   /// hide and show btn request and stream
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///controllers and keys

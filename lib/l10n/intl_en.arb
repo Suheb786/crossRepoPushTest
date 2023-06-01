@@ -1676,7 +1676,7 @@
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
   "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
   "accountDormant": "Account is Dormant",
-  "accountDormantDesc": "Oops! Your credit card application has failed as your account is inactive. Please call us on 065200100 to activate your account.",
+  "accountDormantDesc": "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.",
   "pleaseEnterAmount": "Please enter amount",
   "selectAtLeastOneBill": "Select at least one bill",
   "sent": " sent",
@@ -1762,9 +1762,10 @@
   "login": "Login",
   "fatcaEligible": "Unfortunately, since you are FATCA eligible, we are unable to open your account at this time.",
   "accountDormantError": "Oops! Your account is inactive. Call us on 06-5200100 to activate your account.",
-  "thisAliasAlreadyExists": "This alias already exists",
+  "thisAliasAlreadyExists": "This alias already exists, please use another one.",
   "oopscliqIDEnteredIsInvalid": "Oops! CliQ ID entered is invalid",
-  "youCannotUseYourCliqIDtoSendMoney": "You cannot use your CliQ ID to send money",
-  "youCannotUseYourCliqIDtoRequestMoney": "You cannot use your CliQ ID to request money",
-  "cliqIDisSuspended": "Cliq Id is Suspended"
+  "youCannotUseYourCliqIDtoSendMoney": "You cannot use your CliQ ID to send money.",
+  "youCannotUseYourCliqIDtoRequestMoney": "You cannot use your CliQ ID to request money.",
+  "cliqIDisSuspended": "Oops! CliQ ID entered is invalid",
+  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one."
 }

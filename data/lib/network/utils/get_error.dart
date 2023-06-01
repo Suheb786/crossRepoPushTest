@@ -25,14 +25,13 @@ NetworkError getError({Response? apiResponse}) {
     } catch (exception) {
       return NetworkError(
           cause: Exception("Server Response Error"),
-          httpError: apiResponse?.statusCode ?? 503,
-          message:
-              apiResponse?.statusMessage ?? 'Server is under maintenance. Please try again in sometime.');
+          httpError: apiResponse?.statusCode ?? 502,
+          message: apiResponse?.statusMessage ?? 'Something went wrong. Please try again.');
     }
   } else {
     return NetworkError(
         cause: Exception("Server Response Error"),
-        httpError: apiResponse?.statusCode ?? 503,
-        message: apiResponse?.statusMessage ?? 'Server is under maintenance. Please try again in sometime.');
+        httpError: apiResponse?.statusCode ?? 502,
+        message: apiResponse?.statusMessage ?? 'Something went wrong. Please try again.');
   }
 }

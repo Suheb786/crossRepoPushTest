@@ -17,11 +17,10 @@ class EditCliqMobileNoValidationUseCase
 class EditCliqMobileNoValidationUseCaseParams extends Params {
   final String mobileNo;
   final bool isSelected;
+  final String initialAliasValue;
 
-  EditCliqMobileNoValidationUseCaseParams({
-    required this.mobileNo,
-    required this.isSelected,
-  });
+  EditCliqMobileNoValidationUseCaseParams(
+      {required this.mobileNo, required this.isSelected, required this.initialAliasValue});
 
   @override
   Either<AppError, bool> verify() {
@@ -39,6 +38,9 @@ class EditCliqMobileNoValidationUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.AGREE_TO_THE_TERM_AND_CONDITION,
           cause: Exception()));
+    } else if (initialAliasValue == mobileNo) {
+      return Left(AppError(
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.CLIQ_ID_ALREADY_EXISTS));
     }
 
     return Right(true);

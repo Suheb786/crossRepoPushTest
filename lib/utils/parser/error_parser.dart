@@ -1366,6 +1366,8 @@ class ErrorParser {
         return localisedHelper.youCannotUseYourCliqIDtoSendMoney;
       case ErrorType.THIS_ALIAS_ALREADY_EXISTS:
         return localisedHelper.thisAliasAlreadyExists;
+      case ErrorType.CLIQ_ID_ALREADY_EXISTS:
+        return localisedHelper.cliqIdAlreadyExists;
       default:
         return "";
     }

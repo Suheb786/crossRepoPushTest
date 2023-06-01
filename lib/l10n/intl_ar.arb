@@ -1628,7 +1628,7 @@
   "cliqAliasUpdate": "تم تحديث الاسم المستعار لخدمة كليك",
   "cliqAliasMobileNoUpdate": "تم تحديث رقم الموبايل المربوط بخدمة كليك",
   "mobileNoAliasHint": "00962000000000",
-  "accountDormantDesc": "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 065200100 ليتم تفعيل الحساب",
+  "accountDormantDesc": "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
   "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
@@ -1720,5 +1720,6 @@
   "oopscliqIDEnteredIsInvalid": "عفوا! الاسم المستعار المدخل غير مسجل",
   "youCannotUseYourCliqIDtoSendMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لإرسال حوالة",
   "youCannotUseYourCliqIDtoRequestMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لطلب حوالة",
-  "cliqIDisSuspended": "Cliq Id is Suspended"
+  "cliqIDisSuspended": "عفوا! الاسم المستعار المدخل غير مسجل",
+  "cliqIdAlreadyExists": "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر"
 }
