@@ -78,7 +78,9 @@ class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
 
   void validate() {
     _editMobileNoValidationRequest.safeAdd(EditCliqMobileNoValidationUseCaseParams(
-        isSelected: _isSelectedRequest.value, mobileNo: mobileNoController.text));
+        initialAliasValue: arguments.aliasName,
+        isSelected: _isSelectedRequest.value,
+        mobileNo: mobileNoController.text));
   }
 
   void makeOtpRequest({
@@ -105,7 +107,6 @@ class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
   void dispose() {
     _editCliqOtpRequest.close();
     _editCliqOtpResponse.close();
-
     _isSelectedRequest.close();
     _showButtonSubject.close();
     _editMobileNoValidationRequest.close();
