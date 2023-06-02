@@ -40,7 +40,7 @@ class EditAliasValidationUseCaseParams extends Params {
           cause: Exception()));
     } else if (initialAliasValue == editAlias) {
       return Left(AppError(
-          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.THIS_ALIAS_ALREADY_EXISTS));
+          cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.CLIQ_ID_ALREADY_EXISTS));
     }
     return Right(true);
   }
