@@ -1628,7 +1628,7 @@
   "cliqAliasUpdate": "تم تحديث الاسم المستعار لخدمة كليك",
   "cliqAliasMobileNoUpdate": "تم تحديث رقم الموبايل المربوط بخدمة كليك",
   "mobileNoAliasHint": "00962000000000",
-  "accountDormantDesc": "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله ",
+  "accountDormantDesc": "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
   "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
@@ -1658,7 +1658,6 @@
   "yourequested": "تم طلب",
   "fromYou": "منك",
   "youSent": " تم الارسال",
-  "youPaid": "You paid",
   "time": "وقت",
   "refID": "رقم العقار",
   "requestSuccessFullyRejected": "تم الطلب بنجاح/تم رفض الطلب",
@@ -1717,6 +1716,12 @@
   "yourContactDetailsHavebeenSaved": "Your contact details have been saved",
   "transictionHistory": "Transiction History",
   "pleaseEnterYourContactDetails": "Please enter your\ncontact details",
+  "thisAliasAlreadyExists": "هذا الاسم مستخدم، اختار اسم مستعار آخر",
+  "oopscliqIDEnteredIsInvalid": "عفوا! الاسم المستعار المدخل غير مسجل",
+  "youCannotUseYourCliqIDtoSendMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لإرسال حوالة",
+  "youCannotUseYourCliqIDtoRequestMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لطلب حوالة",
+  "cliqIDisSuspended": "عفوا! الاسم المستعار المدخل غير مسجل",
+  "cliqIdAlreadyExists": "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر",
   "bookYourFlight": "Book Your Flight",
   "contactInformation": "Contact information",
   "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",
@@ -1725,4 +1730,6 @@
   "requestMoneyFavourites": "Request Money Favourites",
   "favourites": "Favourites",
   "others": "Others"
+  "requestMoneyFavourites": "Request Money Favourites",
+  "youPaid": "You paid"
 }

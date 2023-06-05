@@ -1396,6 +1396,16 @@ class NetworkError extends BaseError {
           case "err-503":
             return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_DORMANT_ERROR);
 
+          case "err-504":
+            return AppError(cause: cause, error: error, type: ErrorType.CLIQ_ID_IS_SUSPENDED);
+
+          case "err-505":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_REQUEST_MONEY);
+
+          case "err-506":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_SEND_MONEY);
           default:
             return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
         }

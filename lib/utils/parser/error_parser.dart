@@ -1356,6 +1356,18 @@ class ErrorParser {
       case ErrorType.ACCOUNT_DORMANT_ERROR:
         return localisedHelper.accountDormantError;
 
+      case ErrorType.CLIQ_ID_IS_SUSPENDED:
+        return localisedHelper.cliqIDisSuspended;
+      case ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_REQUEST_MONEY:
+        return localisedHelper.youCannotUseYourCliqIDtoRequestMoney;
+      case ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_SEND_MONEY:
+        return localisedHelper.youCannotUseYourCliqIDtoSendMoney;
+      case ErrorType.YOU_CANNOT_USE_YOUR_CLIQ_ID_TO_SEND_MONEY:
+        return localisedHelper.youCannotUseYourCliqIDtoSendMoney;
+      case ErrorType.THIS_ALIAS_ALREADY_EXISTS:
+        return localisedHelper.thisAliasAlreadyExists;
+      case ErrorType.CLIQ_ID_ALREADY_EXISTS:
+        return localisedHelper.cliqIdAlreadyExists;
       default:
         return "";
     }

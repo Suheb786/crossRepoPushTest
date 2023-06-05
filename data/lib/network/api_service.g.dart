@@ -5539,14 +5539,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> removeAvatar(RemoveAvatarRequest removeAvatarRequest) async {
+  Future<HttpResponse<ResponseEntity>> removeAvatar(
+      RemoveAvatarRequest removeAvatarRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeAvatarRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
