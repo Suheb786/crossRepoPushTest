@@ -123,7 +123,7 @@ class BeneficiaryContactListPageState
     return Container(
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
       child: Column(
         children: [
           Container(
@@ -133,7 +133,7 @@ class BeneficiaryContactListPageState
             height: 4.h,
             width: 64.w,
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(4)),
+                color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(4.w)),
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -154,24 +154,18 @@ class BeneficiaryContactListPageState
                     borderRadius: BorderRadius.all(Radius.circular(3.0))),
                 controller: _tabController,
                 tabs: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 0.0.h),
-                    child: Text(
-                      S.of(context).sendMoney,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 14.t,
-                        fontWeight: FontWeight.w600,
-                      ),
+                  Text(
+                    S.of(context).sendMoney,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 0.0.h),
-                    child: Text(
-                      S.of(context).requestMoney.toTitleCase(),
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
-                    ),
+                  Text(
+                    S.of(context).requestMoney.toTitleCase(),
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600),
                   )
                 ],
               ),

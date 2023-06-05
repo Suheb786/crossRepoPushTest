@@ -10,7 +10,6 @@ import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_list_widget.da
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -67,9 +66,9 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                 width: 8.w,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 15.w),
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0.w)),
                     border: Border.all(color: Theme.of(context).colorScheme.shadow.withOpacity(0.3))),
                 child: AppSvg.asset(AssetUtils.plusIcon,
                     color: Theme.of(context).colorScheme.onSecondaryContainer),
@@ -94,17 +93,24 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                         children: [
                           Expanded(
                             child: Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              elevation: 2,
+                              shadowColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
                               margin: EdgeInsets.only(top: 16.h),
                               child: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(S.of(context).favourites,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14.t,
-                                            color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 16.w, top: 24.h),
+                                      child: Text(S.of(context).favourites,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.t,
+                                              color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                    ),
                                     ListView.builder(
                                       itemBuilder: (context, index) {
                                         ///send data from api response once updated
@@ -126,14 +132,17 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                       itemCount: beneficiaryList?.data?.length,
                                     ),
                                     SizedBox(
-                                      height: 32,
+                                      height: 32.h,
                                     ),
-                                    Text(S.of(context).others,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14.t,
-                                            color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 16.w),
+                                      child: Text(S.of(context).others,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.t,
+                                              color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                    ),
                                     ListView.builder(
                                       itemBuilder: (context, index) {
                                         ///send data from api response once updated
@@ -195,7 +204,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontSize: 12.t,
-                  color: AppColor.black,
+                  color: Theme.of(context).primaryColorDark,
                   fontWeight: FontWeight.w600),
             ),
             GestureDetector(
@@ -206,8 +215,8 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                 margin: EdgeInsets.only(top: 16.h),
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColor.skyblue,
+                  borderRadius: BorderRadius.circular(20.w),
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
                 child: Text(S.of(context).addContact,
                     textAlign: TextAlign.center,
