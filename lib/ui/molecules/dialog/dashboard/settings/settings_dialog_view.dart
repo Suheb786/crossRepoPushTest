@@ -156,7 +156,8 @@ class SettingsDialogView extends StatelessWidget {
                             InkWell(
                               onTap: onClick
                                   ? () {
-                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList);
+                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                          arguments: NavigationType.SEND_MONEY);
                                     }
                                   : () {},
                               child: Container(
@@ -428,7 +429,8 @@ class SettingsDialogView extends StatelessWidget {
                             InkWell(
                               onTap: onClick
                                   ? () {
-                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList);
+                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                          arguments: NavigationType.SEND_MONEY);
                                     }
                                   : () {},
                               child: Container(

@@ -2,6 +2,7 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -15,20 +16,17 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-import 'beneficiary_contacts_list_page_view_model.dart';
-
-class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryContactListPageViewModel> {
-  BeneficiaryContactListPageView(ProviderBase model) : super(model);
+class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<BeneficiaryContactListPageViewModel> {
+  BeneficiaryRequestMoneyListPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 24.0.w,
+        right: 24.0.w,
+        top: 24.h,
+      ),
       child: Column(
         children: [searchContact(context, model), listItem(context, model)],
       ),
@@ -38,33 +36,47 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
   searchContact(context, BeneficiaryContactListPageViewModel model) {
     return Column(
       children: [
-        Container(
-          margin: EdgeInsets.only(top: 8.h, bottom: 24.h),
-          height: 4.h,
-          width: 64.w,
-          decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
-        ),
-        AppTextField(
-          labelText: '',
-          controller: model.sendMoneySearchController,
-          textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-          textColor: Theme.of(context).primaryColorDark,
-          hintText: S.of(context).searchContacts,
-          onChanged: (value) {
-            model.searchBeneficiary(value);
-          },
-          suffixIcon: (value, data) {
-            return InkWell(
-              onTap: () async {},
-              child: Container(
-                  height: 16.h,
-                  width: 16.w,
-                  padding: EdgeInsetsDirectional.only(end: 8.w),
-                  child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-            );
-          },
-        ),
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: AppTextField(
+                  labelText: '',
+                  controller: model.sendMoneySearchController,
+                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                  textColor: Theme.of(context).primaryColorDark,
+                  hintText: S.of(context).searchContacts,
+                  onChanged: (value) {
+                    model.searchBeneficiary(value);
+                  },
+                  suffixIcon: (value, data) {
+                    return InkWell(
+                      onTap: () async {},
+                      child: Container(
+                          height: 16.h,
+                          width: 16.w,
+                          padding: EdgeInsetsDirectional.only(end: 8.w),
+                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                width: 8.w,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 15.w),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    border: Border.all(color: Theme.of(context).colorScheme.shadow.withOpacity(0.3))),
+                child: AppSvg.asset(AssetUtils.plusIcon,
+                    color: Theme.of(context).colorScheme.onSecondaryContainer),
+              )
+            ],
+          ),
+        )
       ],
     );
   }
@@ -82,11 +94,17 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
                         children: [
                           Expanded(
                             child: Card(
-                              margin: EdgeInsets.symmetric(vertical: 16.h),
+                              margin: EdgeInsets.only(top: 16.h),
                               child: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Text(S.of(context).favourites,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14.t,
+                                            color: Theme.of(context).textTheme.bodyMedium!.color)),
                                     ListView.builder(
                                       itemBuilder: (context, index) {
                                         ///send data from api response once updated
@@ -98,7 +116,7 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
                                                 arguments: beneficiaryList?.data![index]);
 
                                             if (result != null) {
-                                              model.getBeneficiaryList();
+                                              // model.getBeneficiaryList();
                                             }
                                           },
                                         );
@@ -107,6 +125,38 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
                                       physics: ClampingScrollPhysics(),
                                       itemCount: beneficiaryList?.data?.length,
                                     ),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    Text(S.of(context).others,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14.t,
+                                            color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                    ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        ///send data from api response once updated
+                                        return BeneficiaryListWidget(
+                                          beneficiary: beneficiaryList?.data![index],
+                                          onTap: () async {
+                                            var result = await Navigator.pushNamed(
+                                                context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                arguments: beneficiaryList?.data![index]);
+
+                                            if (result != null) {
+                                              // model.getBeneficiaryList();
+                                            }
+                                          },
+                                        );
+                                      },
+                                      shrinkWrap: true,
+                                      physics: ClampingScrollPhysics(),
+                                      itemCount: beneficiaryList?.data?.length,
+                                    ),
+                                    SizedBox(
+                                      height: 56.h,
+                                    )
                                   ],
                                 ),
                               ),

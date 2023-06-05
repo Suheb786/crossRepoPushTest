@@ -288,8 +288,11 @@ class AppRouter {
 
       case RoutePaths.BeneficiaryContactsList:
         return CupertinoPageRoute(
-            builder: (context) => BeneficiaryContactListPage(),
-            settings: RouteSettings(name: RoutePaths.BeneficiaryContactsList));
+            builder: (context) =>
+                BeneficiaryContactListPage(navigationType: settings.arguments as NavigationType),
+            settings: RouteSettings(
+              name: RoutePaths.BeneficiaryContactsList,
+            ));
 
       case RoutePaths.DownloadTransaction:
         return CupertinoPageRoute(
