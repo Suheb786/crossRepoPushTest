@@ -46,12 +46,10 @@ class AppViewModel extends BaseViewModel {
       case AppTheme.light:
         _themeData = ThemeData.light().copyWith(
           brightness: Brightness.light,
-
           scaffoldBackgroundColor: AppColor.white,
           primaryColor: AppColor.brightRed,
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
-
           dialogBackgroundColor: AppColor.white,
           colorScheme: _themeData.colorScheme.copyWith(
               secondary: AppColor.white,

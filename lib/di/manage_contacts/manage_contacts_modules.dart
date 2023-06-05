@@ -20,7 +20,10 @@ final addBeneficiaryViewModelProvider =
 
 final addBeneficiaryFormPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryFormPageViewModel>(
     (ref) => AddBeneficiaryFormPageViewModel(
-        ref.read(addBeneficiaryUseCaseProvider), ref.read(getPurposeUseCaseProvider)));
+        ref.read(addBeneficiaryUseCaseProvider),
+        ref.read(getPurposeUseCaseProvider),
+        ref.read(checkSendMoneyUseCaseProvider),
+        ref.read(getAccountByAliasUseCaseProvider)));
 
 final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryotpPageViewModel>(
     (ref) => AddBeneficiaryotpPageViewModel(ref.read(addBeneficiaryOTPuseCaseProvider)));
