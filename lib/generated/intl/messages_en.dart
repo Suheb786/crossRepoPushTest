@@ -95,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountDormant":
             MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
-            "You cannot apply for a credit card; your account is dormant, please call us to activate it."),
+            "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account."),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."),
         "accountHolderName":
@@ -625,8 +625,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
             "Cliq Customer Already Registered"),
         "cliqID": MessageLookupByLibrary.simpleMessage("CLIQ ID"),
+        "cliqIDisSuspended": MessageLookupByLibrary.simpleMessage(
+            "Oops! CliQ ID entered is invalid"),
         "cliqIDmobileNOUpdated": MessageLookupByLibrary.simpleMessage(
             "CliQ ID Mobile Number has been updated"),
+        "cliqIdAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "This CliQ ID already exists, please use another one."),
         "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage(
             "CliQ ID created\nsuccessfully"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
@@ -2155,6 +2159,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online purchase limit exceeded."),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage(
             "Oops! Your card is not active"),
+        "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
+            "Oops! CliQ ID entered is invalid"),
         "openAccount": MessageLookupByLibrary.simpleMessage("Open an Account"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
@@ -2900,6 +2906,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage(
                 "There are no due bills to be paid at the moment"),
+        "thisAliasAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "This alias already exists, please use another one."),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
@@ -3171,6 +3179,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
                 "You cannot send money to your own account."),
+        "youCannotUseYourCliqIDtoRequestMoney":
+            MessageLookupByLibrary.simpleMessage(
+                "You cannot use your CliQ ID to request money."),
+        "youCannotUseYourCliqIDtoSendMoney":
+            MessageLookupByLibrary.simpleMessage(
+                "You cannot use your CliQ ID to send money."),
         "youDontHaveAnyContactAddYourFirstNow":
             MessageLookupByLibrary.simpleMessage(
                 "You don’t have any contacts yet.\nAdd your first one now."),
