@@ -148,10 +148,10 @@ class BeneficiaryContactListPageState
                 indicatorSize: TabBarIndicatorSize.label,
                 indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
-                      width: 4.0,
+                      width: 4.0.w,
                       color: Theme.of(context).primaryColor,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(3.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(3.0.w))),
                 controller: _tabController,
                 tabs: [
                   Text(
