@@ -81,7 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountDetails": MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "accountDormant": MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
-            "لا يمكنك التقدم بطلب للحصول على بطاقة ائتمان ؛ حسابك جامد، يرجى الاتصال بنا “لتفعيله "),
+            "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"),
         "accountHolderName": MessageLookupByLibrary.simpleMessage("اسم صاحب الحساب"),
@@ -456,8 +456,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "cliqAliasUpdate": MessageLookupByLibrary.simpleMessage("تم تحديث الاسم المستعار لخدمة كليك"),
         "cliqCustomerAlreadyRegistered": MessageLookupByLibrary.simpleMessage("الاسم المستعار مسجل مسبقا"),
         "cliqID": MessageLookupByLibrary.simpleMessage("معرف CLIQ"),
+        "cliqIDisSuspended": MessageLookupByLibrary.simpleMessage("عفوا! الاسم المستعار المدخل غير مسجل"),
         "cliqIDmobileNOUpdated":
             MessageLookupByLibrary.simpleMessage("تم تحديث رقم الموبايل المربوط بخدمة كليك"),
+        "cliqIdAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر"),
         "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage("تم إنشاء CliQ بنجاح"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("نوع حساب CliQ"),
         "cliqIdUpdate": MessageLookupByLibrary.simpleMessage("تحديث الاسم المستعار"),
@@ -1529,6 +1532,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onlinePurchase": MessageLookupByLibrary.simpleMessage("الشراء أونلاين"),
         "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز سقف الشراء أونلاين"),
         "oopsYourCardIsNotActive": MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
+        "oopscliqIDEnteredIsInvalid":
+            MessageLookupByLibrary.simpleMessage("عفوا! الاسم المستعار المدخل غير مسجل"),
         "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage":
@@ -2067,6 +2072,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا توجد فواتير مستحقة للدفع في الوقت الحالي، بإمكانات الدفع مقدماً"),
         "thereAreNoDueBillsToBePaidAtTheMoment":
             MessageLookupByLibrary.simpleMessage("لا توجد فواتير مستحقة للدفع في الوقت الحالي"),
+        "thisAliasAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("هذا الاسم مستخدم، اختار اسم مستعار آخر"),
         "time": MessageLookupByLibrary.simpleMessage("وقت"),
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage("صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
@@ -2263,6 +2270,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
         "youCannotSendMoneyToYourOwnAccount":
             MessageLookupByLibrary.simpleMessage("عفوا! ما بتقدر تحول لنفس حسابك"),
+        "youCannotUseYourCliqIDtoRequestMoney":
+            MessageLookupByLibrary.simpleMessage("لا يمكن استخدام اسم المستعار (كليك) الخاص بك لطلب حوالة"),
+        "youCannotUseYourCliqIDtoSendMoney":
+            MessageLookupByLibrary.simpleMessage("لا يمكن استخدام اسم المستعار (كليك) الخاص بك لإرسال حوالة"),
         "youDontHaveAnyContactAddYourFirstNow":
             MessageLookupByLibrary.simpleMessage("You don’t have any contacts yet.\nAdd your first one now."),
         "youEitherChangePinOrUnBlocked":
