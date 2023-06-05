@@ -1770,8 +1770,7 @@
   "youCannotUseYourCliqIDtoSendMoney": "You cannot use your CliQ ID to send money.",
   "youCannotUseYourCliqIDtoRequestMoney": "You cannot use your CliQ ID to request money.",
   "cliqIDisSuspended": "Oops! CliQ ID entered is invalid",
-  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one."
-  "accountDormantError": "Oops! Your account is inactive. Call us on 06-5200100 to activate your account.",
+  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one.",
   "bookYourFlight": "Book Your Flight",
   "contactInformation": "Contact information",
   "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",

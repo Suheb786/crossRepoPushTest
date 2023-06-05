@@ -16560,10 +16560,10 @@ class S {
     );
   }
 
-  /// `You cannot apply for a credit card; your account is dormant, please call us to activate it.`
+  /// `Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.`
   String get accountDormantDesc {
     return Intl.message(
-      'You cannot apply for a credit card; your account is dormant, please call us to activate it.',
+      'Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.',
       name: 'accountDormantDesc',
       desc: '',
       args: [],
@@ -17425,6 +17425,66 @@ class S {
     return Intl.message(
       'Oops! Your account is inactive. Call us on 06-5200100 to activate your account.',
       name: 'accountDormantError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This alias already exists, please use another one.`
+  String get thisAliasAlreadyExists {
+    return Intl.message(
+      'This alias already exists, please use another one.',
+      name: 'thisAliasAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! CliQ ID entered is invalid`
+  String get oopscliqIDEnteredIsInvalid {
+    return Intl.message(
+      'Oops! CliQ ID entered is invalid',
+      name: 'oopscliqIDEnteredIsInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot use your CliQ ID to send money.`
+  String get youCannotUseYourCliqIDtoSendMoney {
+    return Intl.message(
+      'You cannot use your CliQ ID to send money.',
+      name: 'youCannotUseYourCliqIDtoSendMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot use your CliQ ID to request money.`
+  String get youCannotUseYourCliqIDtoRequestMoney {
+    return Intl.message(
+      'You cannot use your CliQ ID to request money.',
+      name: 'youCannotUseYourCliqIDtoRequestMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! CliQ ID entered is invalid`
+  String get cliqIDisSuspended {
+    return Intl.message(
+      'Oops! CliQ ID entered is invalid',
+      name: 'cliqIDisSuspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This CliQ ID already exists, please use another one.`
+  String get cliqIdAlreadyExists {
+    return Intl.message(
+      'This CliQ ID already exists, please use another one.',
+      name: 'cliqIdAlreadyExists',
       desc: '',
       args: [],
     );
