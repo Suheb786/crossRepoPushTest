@@ -35,12 +35,6 @@ class BeneficiaryListWidget extends StatelessWidget {
                             fit: BoxFit.cover,
                           ).image,
                         ),
-                        Positioned(
-                          top: 35.h,
-                          child: AppSvg.asset(
-                            AssetUtils.starYellowIcon,
-                          ),
-                        ),
                       ])
                     : Stack(clipBehavior: Clip.none, textDirection: TextDirection.rtl, children: [
                         CircleAvatar(
@@ -52,13 +46,7 @@ class BeneficiaryListWidget extends StatelessWidget {
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14.t,
-                                color: AppColor.white),
-                          ),
-                        ),
-                        Positioned(
-                          top: 35.h,
-                          child: AppSvg.asset(
-                            AssetUtils.starYellowIcon,
+                                color: Theme.of(context).scaffoldBackgroundColor),
                           ),
                         ),
                       ]),
@@ -68,7 +56,7 @@ class BeneficiaryListWidget extends StatelessWidget {
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(
-                      beneficiary?.nickName ?? '',
+                      beneficiary?.fullName ?? '',
                       style: TextStyle(
                           color: AppColor.black,
                           fontFamily: StringUtils.appFont,
@@ -77,8 +65,10 @@ class BeneficiaryListWidget extends StatelessWidget {
                     ),
                   ]),
                 ),
-                AppSvg.asset(AssetUtils.rightChevron,
-                    matchTextDirection: true, color: Theme.of(context).inputDecorationTheme.hintStyle!.color)
+                SizedBox(
+                  width: 16.w,
+                ),
+                AppSvg.asset(AssetUtils.blueStar, matchTextDirection: true)
               ],
             ),
           ),

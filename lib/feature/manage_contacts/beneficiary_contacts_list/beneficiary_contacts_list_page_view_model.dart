@@ -15,7 +15,8 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   List<Beneficiary>? searchResult = [];
 
   final GetBeneficiaryUseCase _getBeneficiaryUseCase;
-  final TextEditingController contactSearchController = TextEditingController();
+  final TextEditingController sendMoneySearchController = TextEditingController();
+  final TextEditingController requestMoneySearchController = TextEditingController();
 
   ///--------------------------get-beneficiary-list-----------------------------------------///
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest = PublishSubject();
@@ -62,6 +63,10 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
     });
 
     _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
+  }
+
+  changeBackgroundColor() {
+    notifyListeners();
   }
 
   ///--------------------------public-override-methods-------------------------------------///

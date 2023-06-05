@@ -1774,5 +1774,7 @@
   "bookYourFlight": "Book Your Flight",
   "contactInformation": "Contact information",
   "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",
-  "saveAsFavourite": "Where would like to save as favourite?"
+  "saveAsFavourite": "Where would like to save as favourite?",
+  "favourites": "Favourites",
+  "others": "Others"
 }

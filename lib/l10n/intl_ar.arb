@@ -1728,5 +1728,7 @@
   "saveAsFavourite": "Where would like to save as favourite?",
   "sendMoneyFavourites": "Send Money Favourites",
   "requestMoneyFavourites": "Request Money Favourites",
+  "favourites": "Favourites",
+  "others": "Others",
   "youPaid": "You paid"
 }

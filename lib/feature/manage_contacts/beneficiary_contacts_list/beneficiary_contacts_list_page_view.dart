@@ -46,7 +46,7 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
         ),
         AppTextField(
           labelText: '',
-          controller: model.contactSearchController,
+          controller: model.sendMoneySearchController,
           textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
           hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
           textColor: Theme.of(context).primaryColorDark,
