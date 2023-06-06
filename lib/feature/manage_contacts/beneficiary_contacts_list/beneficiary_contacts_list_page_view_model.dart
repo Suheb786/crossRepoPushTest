@@ -9,6 +9,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../utils/navgition_type.dart';
+
 class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
@@ -27,6 +29,9 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
 
   ///--------------------------public-other-methods-------------------------------------///
+
+  NavigationType? navigationType;
+
   void searchBeneficiary(String? searchText) {
     searchResult!.clear();
     List<Beneficiary>? beneficiaryList = _getBeneficiaryListResponse.value.data!.beneficiaryList;

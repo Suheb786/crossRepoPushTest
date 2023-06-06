@@ -114,6 +114,7 @@ class BeneficiaryContactListPageState
             model.changeBackgroundColor();
         }
       }
+      model.navigationType = widget.navigationType;
     });
     super.onModelReady(model);
   }

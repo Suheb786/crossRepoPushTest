@@ -4,6 +4,8 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../utils/navgition_type.dart';
+
 class AddBeneficiaryPageViewModel extends BasePageViewModel {
   ///--------------------------controllers-------------------------------------///
 
@@ -19,9 +21,12 @@ class AddBeneficiaryPageViewModel extends BasePageViewModel {
   ///--------------------------current-step-subject-------------------------------------///
 
   PublishSubject<int> _currentStep = PublishSubject();
+
   Stream<int> get currentStep => _currentStep.stream;
 
   ///--------------------------public-other-methods-------------------------------------///
+
+  late NavigationType navigationType;
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);

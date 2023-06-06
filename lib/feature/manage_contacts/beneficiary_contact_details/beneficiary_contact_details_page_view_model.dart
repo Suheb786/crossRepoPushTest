@@ -5,12 +5,16 @@ import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_favorite_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../../di/manage_contacts/manage_contacts_modules.dart';
 
 class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
@@ -72,6 +76,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   // bool isEditable;
 
   ValueNotifier<bool> nameEditableNotifier = ValueNotifier(true);
+
+  NavigationType? navigationType;
 
   ///--------------------------public-other-methods-------------------------------------///
 
@@ -158,6 +164,11 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {}
       });
     });
+
+    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+      beneficiaryContactListPageViewModelProvider,
+    );
+    navigationType = provider.navigationType!;
   }
 
   removeImage() {

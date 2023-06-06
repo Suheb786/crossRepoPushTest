@@ -14,11 +14,13 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../main/app_viewmodel.dart';
 import '../../../../ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
 import '../../../../ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'add_beneficiary_form_page_view_model.dart';
@@ -198,9 +200,22 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                             ),
                                             onFocusChange: (hasFocus) {
                                               if (!hasFocus) {
-                                                if (model.ibanOrMobileController.text.isNotEmpty) {
-                                                  model.checkSendMoney(
-                                                      iban: model.ibanOrMobileController.text);
+                                                final provider =
+                                                    ProviderScope.containerOf(appLevelKey.currentContext!)
+                                                        .read(
+                                                  addBeneficiaryViewModelProvider,
+                                                );
+
+                                                if (provider.navigationType == NavigationType.REQUEST_MONEY) {
+                                                  if (model.ibanOrMobileController.text.isNotEmpty) {
+                                                    model.getAccountByAlias(
+                                                        model.ibanOrMobileController.text, 'JOD');
+                                                  }
+                                                } else {
+                                                  if (model.ibanOrMobileController.text.isNotEmpty) {
+                                                    model.checkSendMoney(
+                                                        iban: model.ibanOrMobileController.text);
+                                                  }
                                                 }
                                               }
                                             },
