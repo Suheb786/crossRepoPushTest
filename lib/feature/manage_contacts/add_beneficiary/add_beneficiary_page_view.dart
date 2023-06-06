@@ -29,7 +29,6 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
   @override
   Widget build(BuildContext context, AddBeneficiaryPageViewModel model) {
     return Container(
-      color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [

@@ -1,5 +1,6 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:riverpod/src/framework.dart';
 
+import '../../../utils/navgition_type.dart';
 import 'beneficiary_contact_details_page_view.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
 
@@ -32,7 +34,9 @@ class BeneficiaryContactDetailsPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return getViewModel().navigationType! == NavigationType.REQUEST_MONEY
+        ? Theme.of(context).canvasColor
+        : Theme.of(context).primaryColor;
   }
 
   @override

@@ -211,7 +211,6 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
           purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
-          print("got purposeList: $purposeList");
         }
       });
     });

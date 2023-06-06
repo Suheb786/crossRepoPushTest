@@ -84,7 +84,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                    Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
                                         arguments: NavigationType.REQUEST_MONEY);
                                   },
                                   child: Container(

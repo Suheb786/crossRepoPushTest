@@ -10,6 +10,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../utils/navgition_type.dart';
+
 class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
@@ -46,6 +48,8 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
 
   ///--------------------------public-override-methods-------------------------------------///
+
+  late NavigationType navigationType;
 
   @override
   void dispose() {

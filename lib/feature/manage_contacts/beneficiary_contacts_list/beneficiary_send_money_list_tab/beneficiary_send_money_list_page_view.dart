@@ -15,6 +15,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../../utils/navgition_type.dart';
+
 class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryContactListPageViewModel> {
   BeneficiarySendMoneyListPageView(ProviderBase model) : super(model);
 
@@ -65,13 +67,19 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
               SizedBox(
                 width: 8.w,
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0.w)),
-                    border: Border.all(color: Theme.of(context).colorScheme.shadow.withOpacity(0.3))),
-                child: AppSvg.asset(AssetUtils.plusIcon,
-                    color: Theme.of(context).colorScheme.onSecondaryContainer),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                      arguments: NavigationType.SEND_MONEY);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0.w)),
+                      border: Border.all(color: Theme.of(context).colorScheme.shadow.withOpacity(0.3))),
+                  child: AppSvg.asset(AssetUtils.plusIcon,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer),
+                ),
               )
             ],
           ),
@@ -209,7 +217,8 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, RoutePaths.AddContactsIBANManageContactsPage);
+                Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                    arguments: NavigationType.SEND_MONEY);
               },
               child: Container(
                 margin: EdgeInsets.only(top: 16.h),

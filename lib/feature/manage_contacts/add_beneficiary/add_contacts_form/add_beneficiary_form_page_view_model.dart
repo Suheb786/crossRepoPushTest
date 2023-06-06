@@ -1,9 +1,16 @@
 import 'dart:developer';
 
+import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/payment/check_send_money_response.dart';
+import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
+import 'package:domain/usecase/payment/check_send_money_usecase.dart';
+import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -15,10 +22,24 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/subjects.dart';
 
 class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
+  final CheckSendMoneyUseCase _checkSendMoneyUseCase;
   final AddBeneficiaryUseCase addContactIBANuseCase;
   final GetPurposeUseCase getPurposeUseCase;
+  final GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
   List<Purpose> purposeList = [];
+
+  List<PurposeDetail> purposeDetailList = [];
+
+  TransferResponse transferResponse = TransferResponse();
+
+  CheckSendMoneyMessageEnum checkSendMoneyMessageEnum = CheckSendMoneyMessageEnum.NONE;
+
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
+  num? limit;
 
   ///--------------------------keys-valiables-------------------------------------///
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
@@ -30,9 +51,22 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------textEditing-controllers-------------------------------------///
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController ibanORaccountORmobileORaliasController = TextEditingController();
+  final TextEditingController ibanOrMobileController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
+
+  ///--------------------------send money request-------------------------------------///
+  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest = PublishSubject();
+  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse = PublishSubject();
+
+  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream => _checkSendMoneyResponse.stream;
+
+  ///--------------------------request money request-------------------------------------///
+  PublishSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest = PublishSubject();
+  BehaviorSubject<Resource<GetAccountByAliasContentResponse>> _getAccountByAliasResponse = BehaviorSubject();
+
+  Stream<Resource<GetAccountByAliasContentResponse>> get getAccountByAliasResponseStream =>
+      _getAccountByAliasResponse.stream;
 
   ///--------------------------formField-subject-------------------------------------///
 
@@ -67,16 +101,16 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     _showNameVisibilityRequest.safeAdd(value);
   }
 
-  void getPurpose(String toAccount, String transferType) {
+  void getPurpose(String toAccount, String transferType, String detCustomerType, String type) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: toAccount, transferType: transferType, detCustomerType: "", type: ""));
+        toAccount: toAccount, transferType: transferType, type: type, detCustomerType: detCustomerType));
   }
 
   validate(String data) {
     if (nameController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(false);
     }
-    if (ibanORaccountORmobileORaliasController.text.isNotEmpty) {
+    if (ibanOrMobileController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(false);
     } else {
       _showButtonSubject.safeAdd(false);
@@ -85,9 +119,9 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   validationUserInput() {
     addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
-        IBANAccountNoMobileNoAlias: ibanORaccountORmobileORaliasController.text,
-        purpose: 'Dhaiyur',
-        purposeDetail: 'dhaiyur',
+        IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
+        purpose: purposeController.text,
+        purposeDetail: purposeDetailController.text,
         name: nameController.text));
   }
 
@@ -106,9 +140,35 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     }
   }
 
+  void checkSendMoney({required String iban}) {
+    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: 0));
+  }
+
+  void getAccountByAlias(String value, String currency) {
+    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(value: value, currency: currency));
+  }
+
+  void updatePurpose(Purpose value) {
+    purposeController.text = value.labelEn!;
+    purpose = value;
+  }
+
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetailController.text = value.labelEn!;
+    purposeDetail = value;
+    limit = value.limit!;
+  }
+
+  void updatePurposeDetaiList(List<PurposeDetail> list) {
+    purposeDetailController.clear();
+    purposeDetailList.clear();
+    purposeDetailList.addAll(list);
+  }
+
   ///--------------------------public-constructor-------------------------------------///
 
-  AddBeneficiaryFormPageViewModel(this.addContactIBANuseCase, this.getPurposeUseCase) {
+  AddBeneficiaryFormPageViewModel(this.addContactIBANuseCase, this.getPurposeUseCase,
+      this._checkSendMoneyUseCase, this._getAccountByAliasUseCase) {
     addcontactIBANuseCaseRequest.listen(
       (value) {
         RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
@@ -132,12 +192,51 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getPurposeResponse.safeAdd(event);
-        purposeList.clear();
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          purposeList.clear();
           purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        }
+      });
+    });
+
+    _checkSendMoneyRequest.listen((value) {
+      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _checkSendMoneyResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
+          getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI", '', '');
+        }
+      });
+    });
+
+    _getAccountByAliasRequest.listen((value) {
+      RequestManager(value, createCall: () => _getAccountByAliasUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAccountByAliasResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+          purposeList = [];
+          purposeDetailList = [];
+          purposeController.clear();
+          purposeDetailController.clear();
+        } else if (event.status == Status.SUCCESS) {
+          getPurpose(
+              event.data?.getAccountByAliasContent?.acciban ?? '',
+              "RTP",
+              event.data?.getAccountByAliasContent?.detCustomerType ?? '',
+              event.data?.getAccountByAliasContent?.type ?? '');
         }
       });
     });

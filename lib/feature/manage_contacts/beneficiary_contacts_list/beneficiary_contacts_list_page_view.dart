@@ -76,7 +76,7 @@ class BeneficiaryContactListPageView extends BasePageViewWidget<BeneficiaryConta
         dataBuilder: (context, beneficiaryList) {
           switch (beneficiaryList?.status) {
             case Status.SUCCESS:
-              return (beneficiaryList?.data ?? []).isNotEmpty
+              return (beneficiaryList?.data ?? []).isEmpty
                   ? Expanded(
                       child: Column(
                         children: [

@@ -76,7 +76,8 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                      Navigator.pushNamed(
+                                          context, RoutePaths.AddContactsIBANManageContactsPage,
                                           arguments: NavigationType.SEND_MONEY);
                                     },
                                     child: Container(

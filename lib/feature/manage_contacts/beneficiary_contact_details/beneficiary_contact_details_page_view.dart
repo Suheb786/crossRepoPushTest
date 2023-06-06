@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/clipboard.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -19,6 +18,7 @@ import 'package:neo_bank/ui/molecules/manage_contacts/edit_profile_pic_bottom_sh
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
@@ -67,119 +67,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () {
-                  InformationDialog.show(context,
-                      title: S.current.favouriteContact,
-                      descriptionWidget: Column(
-                        children: [
-                          Text(S.of(context).saveAsFavourite,
-                              style: TextStyle(
-                                  fontSize: 12.t,
-                                  fontFamily: StringUtils.appFont,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.very_dark_gray1)),
-                          SizedBox(height: 24.h),
-                          Row(children: [
-                            Expanded(
-                              child: Text(
-                                S.of(context).sendMoney,
-                                style: TextStyle(
-                                    fontSize: 14.t,
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
-                              ),
-                            ),
-                            AppStreamBuilder<bool>(
-                                initialData: false,
-                                stream: model.favouriteAsSendMoneyStream,
-                                dataBuilder: (context, data) {
-                                  return FlutterSwitch(
-                                    value: data!,
-                                    onToggle: (value) {
-                                      model.toggleFavouriteAsSendMoney(value);
-                                    },
-                                    width: 70.w,
-                                    height: 40.h,
-                                    padding: 4,
-                                    activeTextColor: Theme.of(context).colorScheme.secondary,
-                                    activeText: S.of(context).yes.toUpperCase(),
-                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
-                                    activeTextFontWeight: FontWeight.w500,
-                                    showOnOff: true,
-                                    valueFontSize: 12.t,
-                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
-                                    inactiveText: S.of(context).no.toUpperCase(),
-                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
-                                    inactiveTextFontWeight: FontWeight.w500,
-                                    inactiveSwitchBorder:
-                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
-                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
-                                    inactiveColor: Theme.of(context).colorScheme.secondary,
-                                  );
-                                }),
-                          ]),
-                          SizedBox(height: 24.h),
-                          Row(children: [
-                            Expanded(
-                              child: Text(
-                                S.of(context).requestMoney,
-                                style: TextStyle(
-                                    fontSize: 14.t,
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).textTheme.bodyMedium!.color!),
-                              ),
-                            ),
-                            AppStreamBuilder<bool>(
-                                initialData: false,
-                                stream: model.favouriteAsRequestMoneyStream,
-                                dataBuilder: (context, data) {
-                                  return FlutterSwitch(
-                                    value: data!,
-                                    onToggle: (value) {
-                                      model.toggleFavouriteAsRequestMoney(value);
-                                    },
-                                    width: 70.w,
-                                    height: 40.h,
-                                    padding: 4,
-                                    activeTextColor: Theme.of(context).colorScheme.secondary,
-                                    activeText: S.of(context).yes.toUpperCase(),
-                                    inactiveTextColor: Theme.of(context).textTheme.labelMedium!.color!,
-                                    activeTextFontWeight: FontWeight.w500,
-                                    showOnOff: true,
-                                    valueFontSize: 12.t,
-                                    activeToggleColor: Theme.of(context).colorScheme.secondary,
-                                    inactiveText: S.of(context).no.toUpperCase(),
-                                    inactiveToggleColor: Theme.of(context).textTheme.labelSmall!.color,
-                                    inactiveTextFontWeight: FontWeight.w500,
-                                    inactiveSwitchBorder:
-                                        Border.all(color: Theme.of(context).textTheme.labelLarge!.color!),
-                                    activeColor: Theme.of(context).textTheme.bodyLarge!.color!,
-                                    inactiveColor: Theme.of(context).colorScheme.secondary,
-                                  );
-                                }),
-                          ])
-                        ],
-                      ),
-                      isSwipeToCancel: true, onDismissed: () {
-                    Navigator.pop(context);
-                  }, onSelected: () {
-                    Navigator.pop(context);
-                    model.showSuccessTitleandDescriptionToast(
-                      ToastwithTitleandDescription(
-                        title: S.current.success,
-                        description: S.current.yourContactisFavourite,
-                      ),
-                    );
-                    Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactsList);
-                  });
-                },
-                child: Icon(
-                  Icons.star_border_outlined,
-                  color: AppColor.sky_blue_mid,
-                ),
+              Icon(
+                Icons.star_border_outlined,
+                color: Colors.transparent,
               ),
               AppStreamBuilder<String>(
                   stream: model.uploadProfilePhotoStream,
@@ -459,182 +349,194 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 24.h, top: 24.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            children: [
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  height: 64.h,
-                  width: 64.h,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: AppSvg.asset(
-                      AssetUtils.viewHistoryIcon,
-                      color: AppColor.sky_blue_mid,
+          Padding(
+            padding: EdgeInsets.only(right: 30.w),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
+                        arguments: model.navigationType);
+                  },
+                  child: Container(
+                    height: 64.h,
+                    width: 64.h,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: AppSvg.asset(
+                        AssetUtils.viewHistoryIcon,
+                        color: AppColor.sky_blue_mid,
+                      ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: AppColor.sky_blue_mid,
-                      width: 1.5.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(
+                        color: AppColor.sky_blue_mid,
+                        width: 1.5.w,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              SizedBox(
-                width: 60.w,
-                child: Text(
-                  S.current.viewHistory,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.gray_black,
-                  ),
+                SizedBox(
+                  height: 8.h,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 60.w,
+                  child: Text(
+                    S.current.viewHistory,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.gray_black,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-          Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Navigator.pushNamed(
-                  //   context,
-                  //   RoutePaths.RequestAmountFromContact,
-                  //   arguments: Beneficiary(
-                  //     accountHolderName: "Test User Account",
-                  //     accountNo: "",
-                  //     bankName: "ABC Bank",
-                  //     beneType: "",
-                  //     beneficiaryAddress: "",
-                  //     detCustomerType: "",
-                  //     fullName: "Test User",
-                  //     iban: "98237328739",
-                  //     id: "",
-                  //     imageUrl: "",
-                  //     limit: 3,
-                  //     mobileNumber: "",
-                  //     nickName: "test",
-                  //     purpose: "personal",
-                  //     purposeDetails: "Test Details",
-                  //     purposeParent: "testparent",
-                  //     purposeParentDetails: "",
-                  //     purposeType: "",
-                  //   ),
-                  // );
-                },
-                child: Container(
-                  height: 64.h,
-                  width: 64.h,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: AppSvg.asset(
-                      AssetUtils.requestMoneyIcon,
-                      color: Colors.white,
+          Visibility(
+            visible: model.navigationType == NavigationType.REQUEST_MONEY,
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RoutePaths.RequestAmountFromContact,
+                      arguments: Beneficiary(
+                        accountHolderName: "Test User Account",
+                        accountNo: "",
+                        bankName: "ABC Bank",
+                        beneType: "",
+                        beneficiaryAddress: "",
+                        detCustomerType: "",
+                        fullName: "Test User",
+                        iban: "98237328739",
+                        id: "",
+                        imageUrl: "",
+                        limit: 3,
+                        mobileNumber: "",
+                        nickName: "test",
+                        purpose: "personal",
+                        purposeDetails: "Test Details",
+                        purposeParent: "testparent",
+                        purposeParentDetails: "",
+                        purposeType: "",
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 64.h,
+                    width: 64.h,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: AppSvg.asset(
+                        AssetUtils.requestMoneyIcon,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColor.sky_blue_mid,
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
+                    decoration: BoxDecoration(
                       color: AppColor.sky_blue_mid,
-                      width: 1.5.w,
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(
+                        color: AppColor.sky_blue_mid,
+                        width: 1.5.w,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              SizedBox(
-                width: 60.w,
-                child: Text(
-                  S.current.requestMoney,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.gray_black,
-                  ),
+                SizedBox(
+                  height: 8.h,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 60.w,
+                  child: Text(
+                    S.current.requestMoney,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.gray_black,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-          Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Navigator.pushNamed(
-                  //   context,
-                  //   RoutePaths.SendAmountToContact,
-                  //   arguments: Beneficiary(
-                  //     accountHolderName: "Test User Account",
-                  //     accountNo: "",
-                  //     bankName: "ABC Bank",
-                  //     beneType: "",
-                  //     beneficiaryAddress: "",
-                  //     detCustomerType: "",
-                  //     fullName: "Test User",
-                  //     iban: "98237328739",
-                  //     id: "",
-                  //     imageUrl: "",
-                  //     limit: 3,
-                  //     mobileNumber: "",
-                  //     nickName: "test",
-                  //     purpose: "personal",
-                  //     purposeDetails: "Test Details",
-                  //     purposeParent: "testparent",
-                  //     purposeParentDetails: "",
-                  //     purposeType: "",
-                  //   ),
-                  // );
-                },
-                child: Container(
-                  height: 64.h,
-                  width: 64.h,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: AppSvg.asset(
-                      AssetUtils.sendMoneyIcon,
-                      color: AppColor.white,
+          Visibility(
+            visible: model.navigationType == NavigationType.SEND_MONEY,
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RoutePaths.SendAmountToContact,
+                      arguments: Beneficiary(
+                        accountHolderName: "Test User Account",
+                        accountNo: "",
+                        bankName: "ABC Bank",
+                        beneType: "",
+                        beneficiaryAddress: "",
+                        detCustomerType: "",
+                        fullName: "Test User",
+                        iban: "98237328739",
+                        id: "",
+                        imageUrl: "",
+                        limit: 3,
+                        mobileNumber: "",
+                        nickName: "test",
+                        purpose: "personal",
+                        purposeDetails: "Test Details",
+                        purposeParent: "testparent",
+                        purposeParentDetails: "",
+                        purposeType: "",
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 64.h,
+                    width: 64.h,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: AppSvg.asset(
+                        AssetUtils.sendMoneyIcon,
+                        color: AppColor.white,
+                      ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColor.sky_blue_mid,
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
+                    decoration: BoxDecoration(
                       color: AppColor.sky_blue_mid,
-                      width: 1.5.w,
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(
+                        color: AppColor.sky_blue_mid,
+                        width: 1.5.w,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              SizedBox(
-                width: 60.w,
-                child: Text(
-                  S.current.sendMoney,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.gray_black,
-                  ),
+                SizedBox(
+                  height: 8.h,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 60.w,
+                  child: Text(
+                    S.current.sendMoney,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 14.t,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.gray_black,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
