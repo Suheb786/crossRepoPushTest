@@ -344,46 +344,23 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         }
                                         if (isAnyChecked == false) return;
 
-                                        bool isAnyBillPartial = false;
-                                        for (var item1 in model.postPaidBillInquiryData ?? []) {
-                                          if (item1.isPartial == true) {
-                                            isAnyBillPartial = true;
-                                            break;
-                                          }
-                                        }
+                                        List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
 
-                                        if (amt! > 0.0 || amt <= 0.0 && isAnyBillPartial == true) {
-                                          List<PostPaidBillInquiryData> temPostPaidBillInquiryData = [];
-                                          List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
-                                              [];
+                                        /// temporary selected list
+                                        List<GetPostpaidBillerListModelData> tempSelectedPostPaidBillsList =
+                                            [];
 
+                                        tempSelectedPostPaidBillsList = model.payPostPaidBillsDataList
+                                            .where((element) => ((element.isChecked ?? false) &&
+                                                !model.isDisabledConditions(element)))
+                                            .toList();
+
+                                        tempSelectedPostPaidBillsList =
+                                            tempSelectedPostPaidBillsList.toSet().toList();
+
+                                        if (amt! > 0.0) {
                                           for (var payPostPaidBillsDataListItem
-                                              in model.payPostPaidBillsDataList) {
-                                            if (double.parse(
-                                                        payPostPaidBillsDataListItem.actualdueAmountFromApi ??
-                                                            "0") >
-                                                    0.0 ||
-                                                double.parse(payPostPaidBillsDataListItem
-                                                                .actualdueAmountFromApi ??
-                                                            "0") ==
-                                                        0.0 &&
-                                                    payPostPaidBillsDataListItem.isPartial == true &&
-                                                    double.parse(
-                                                            payPostPaidBillsDataListItem.maxValue ?? "0") >
-                                                        0.0 ||
-                                                payPostPaidBillsDataListItem.expDateStatus == true) {
-                                              payPostPaidBillsDataListItem.dueAmount =
-                                                  payPostPaidBillsDataListItem.actualdueAmountFromApi;
-                                              if (payPostPaidBillsDataListItem.billingNo != null &&
-                                                  payPostPaidBillsDataListItem.billingNo!.isNotEmpty &&
-                                                  payPostPaidBillsDataListItem.serviceType != null &&
-                                                  payPostPaidBillsDataListItem.serviceType!.isNotEmpty &&
-                                                  payPostPaidBillsDataListItem.isChecked == true) {
-                                                tempSelectedPostPaidBillsList
-                                                    .add(payPostPaidBillsDataListItem);
-                                              }
-                                            }
-
+                                              in tempSelectedPostPaidBillsList) {
                                             for (var item in model.postPaidBillInquiryData!) {
                                               var dueAmt = double.parse(item.dueAmount ?? "0");
 
@@ -423,7 +400,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                             }
                                           }
 
-                                          for (var item in model.payPostPaidBillsDataList) {
+                                          for (var item in tempSelectedPostPaidBillsList) {
                                             if (item.isChecked == false) {
                                               temPostPaidBillInquiryData.removeWhere((element) =>
                                                   element.billingNo == item.billingNo &&
@@ -446,8 +423,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                               tempSelectedPostPaidBillsList.remove(item);
                                             }
                                           }
-                                          tempSelectedPostPaidBillsList =
-                                              tempSelectedPostPaidBillsList.toSet().toList();
+
                                           temPostPaidBillInquiryData =
                                               temPostPaidBillInquiryData.toSet().toList();
 

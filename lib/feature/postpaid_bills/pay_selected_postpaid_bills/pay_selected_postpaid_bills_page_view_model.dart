@@ -203,7 +203,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     arguments.noOfSelectedBills[index].dueAmount = value;
     if (isPartial == true) {
       if (double.parse(value) != double.parse(actualDueAmountFromApi)) {
-        value = (double.parse(value) + double.parse(feeAmt)).toStringAsFixed(3);
+        value = (double.parse(value).toStringAsFixed(3)); /*+ double.parse(feeAmt)).toStringAsFixed(3)*/
       }
       minMaxValidate(isPartial, minRange, maxRange, value, actualDueAmountFromApi, feeAmt, context, index);
     }
@@ -304,6 +304,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
         arguments.postPaidBillInquiryData?[index].minMaxValidationMessage = "";
       }
     }
+  }
+
+  void onChangedCalled(int index, String value, BuildContext context) {
+    newAmtEnter(
+      index,
+      value,
+      double.parse(postPaidBillInquiryData?[index].actualDueAmountFromApi ?? "0").toStringAsFixed(3),
+      double.parse(postPaidBillInquiryData?[index].feesAmt ?? "0").toStringAsFixed(3),
+      postPaidBillInquiryData?[index].isPartial ?? false,
+      double.parse(postPaidBillInquiryData?[index].minValue ?? "0").toStringAsFixed(3),
+      double.parse(postPaidBillInquiryData?[index].maxValue ?? "0").toStringAsFixed(3),
+      context,
+    );
   }
 
   @override

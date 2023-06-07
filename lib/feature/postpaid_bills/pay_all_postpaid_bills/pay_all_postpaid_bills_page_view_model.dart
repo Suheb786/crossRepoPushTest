@@ -61,11 +61,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         double.parse(item.maxValue ?? "0.0") <= 0.0);
     var flag3 = (item.expDateStatus == false);
     var isDisable = flag1 || flag2 || flag3;
-    print('-------------------->');
-    print('flag 1--------------> ${flag1}  2 ${flag2}  3${flag3}   ${item.expDateStatus}');
-    print('----------Is Disbale ---------->${isDisable}');
-    print('--------Item nickname ---->${item.nickName}');
-    print('-------------------->');
     return isDisable;
   }
 
@@ -299,8 +294,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
         payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
         if (payPostPaidBillsDataList[j].expDateStatus == false) {
-          print(
-              'Bill Name 1---->${payPostPaidBillsDataList[j].nickName}value--- ${payPostPaidBillsDataList[j].isChecked}');
           payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
           payPostPaidBillsDataList[j].isChecked = false;
         }
@@ -324,8 +317,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         if (payPostPaidBillsDataList[j].isPartial == true &&
             double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0 &&
             double.parse(payPostPaidBillsDataList[j].maxValue ?? "0") > 0.0) {
-          print('step 1---> ${payPostPaidBillsDataList[index].isChecked}');
-
           if (isFromSelectedItem &&
               payPostPaidBillsDataList[j].billingNo == payPostPaidBillsDataList[index].billingNo) {
             payPostPaidBillsDataList[j].isChecked = (payPostPaidBillsDataList[j].isChecked ?? false);

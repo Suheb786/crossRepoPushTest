@@ -45,7 +45,22 @@ class PaySelectedBillsPostPaidBillsPageState
             .account
             ?.accountNo ??
         '';
+
     super.onModelReady(model);
+  }
+
+  @override
+  void didChangeDependencies() {
+    Future.delayed(Duration(milliseconds: 20), () {
+      debugPrint('-----Called postpaid length---->${(getViewModel().postPaidBillInquiryData ?? []).length}');
+      for (int i = 0; i < (getViewModel().postPaidBillInquiryData ?? []).length; i++) {
+        debugPrint('-----Called 1');
+        getViewModel()
+            .onChangedCalled(i, (getViewModel().postPaidBillInquiryData?[i].dueAmount ?? '0.0'), context);
+        getViewModel().addAllBillAmt(context);
+      }
+    });
+    super.didChangeDependencies();
   }
 }
 
