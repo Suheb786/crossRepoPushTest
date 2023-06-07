@@ -13,7 +13,7 @@ final otpForChangeDeviceViewModelProvider = ChangeNotifierProvider.autoDispose
             ref.read(verifyDeviceChangeOtpUseCaseProvider),
             ref.read(resendOtpDeviceChangeUseCaseProvider),
             ref.read(depersonalizeUserUseCaseProvider),
-            ref.read(saveUserUseCaseProvider),
+            // ref.read(saveUserUseCaseProvider),
             ref.read(clearWalletIdUseCaseProvider),
             args));
 

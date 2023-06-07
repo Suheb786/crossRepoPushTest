@@ -24,7 +24,8 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   late CountdownTimerController countDownController;
 
   final DepersonalizeUserUseCase _depersonalizeUserUseCase;
-  final SaveUserUseCase _saveUserUseCase;
+
+  // final SaveUserUseCase _saveUserUseCase;
 
   TextEditingController otpController = TextEditingController();
 
@@ -55,10 +56,10 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
+  // PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
   PublishSubject<DepersonalizeUserUseCaseParams> _depersonalizeUserRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
+  // PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
   PublishSubject<Resource<bool>> _depersonalizeUserResponseSubject = PublishSubject();
 
   ///-------------------------clear wallet usecase----------------------///
@@ -79,7 +80,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
       this._verifyDeviceChangeOtpUseCase,
       this._resendOtpDeviceChangeUseCase,
       this._depersonalizeUserUseCase,
-      this._saveUserUseCase,
+      // this._saveUserUseCase,
       this._clearWalletIdUseCase,
       this.arguments) {
     _verifyOtpRequest.listen((value) {
@@ -114,17 +115,20 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () {
         return _depersonalizeUserUseCase.execute(params: value);
       }).asFlow().listen((event) {
+        if (event.status == Status.SUCCESS) {
+          saveUserData();
+        }
         _depersonalizeUserResponseSubject.safeAdd(event);
       });
     });
 
-    _saveUserRequestSubject.listen((value) {
+    /*_saveUserRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _saveUserUseCase.execute(params: value);
       }).asFlow().listen((event) {
         _saveuserResponseSubject.safeAdd(event);
       });
-    });
+    });*/
 
     _clearWalletRequest.listen((value) {
       RequestManager(value, createCall: () {
@@ -143,9 +147,9 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
     _resendOtpRequest.safeAdd(ResendOtpDeviceChangeUseCaseParams());
   }
 
-  void saveUserData() {
+  /*void saveUserData() {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
-  }
+  }*/
 
   void depersonalizeUserData() {
     _depersonalizeUserRequestSubject.safeAdd(DepersonalizeUserUseCaseParams());

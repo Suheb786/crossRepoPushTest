@@ -17,7 +17,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
 
   final AddNewMobileNumberUseCase _resendOtpUseCase;
 
-  final SaveUserUseCase _saveUserUseCase;
+  // final SaveUserUseCase _saveUserUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -28,7 +28,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
 
   PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
+  // PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
@@ -56,7 +56,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   EnterCodeForChangeMobileNumberPageViewModel(
-      this._validateOtpForNewMobileNumberUseCase, this._resendOtpUseCase, this._saveUserUseCase) {
+      this._validateOtpForNewMobileNumberUseCase, this._resendOtpUseCase, /*this._saveUserUseCase*/) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _validateOtpForNewMobileNumberUseCase.execute(params: value))
           .asFlow()
@@ -82,13 +82,13 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
       });
     });
 
-    _saveUserRequestSubject.listen((value) {
+    /*_saveUserRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _saveUserUseCase.execute(params: value);
       }).asFlow().listen((event) {
         _saveuserResponseSubject.safeAdd(event);
       });
-    });
+    });*/
   }
 
   void validateOtp({required String mobile, required String mobileCode}) {
@@ -115,9 +115,9 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
         .safeAdd(AddNewMobileNumberUseCaseParams(mobileCode: '00$mobileCode', mobileNumber: mobileNo));
   }
 
-  void saveUserData() {
+  /*void saveUserData() {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
-  }
+  }*/
 
   @override
   void dispose() {

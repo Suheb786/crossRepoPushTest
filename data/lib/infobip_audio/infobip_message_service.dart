@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:flutter/material.dart';
@@ -128,9 +130,16 @@ class InfobipMessageService {
     return true;
   }
 
-  bool depersonalizeUser() {
+  Future<bool> depersonalizeUser() {
+    Completer<bool> completer = Completer<bool>();
     InfobipMobilemessaging.depersonalize();
-    return true;
+    InfobipMobilemessaging.on(LibraryEvent.DEPERSONALIZED, (event) {
+      if (!completer.isCompleted) {
+        completer.complete(true);
+      }
+    });
+
+    return completer.future;
   }
 
   Future<bool> saveUser({required UserData userData}) async {
@@ -151,8 +160,8 @@ class InfobipMessageService {
       emails: userData.emails,
       phones: userData.phones,
     );
-    InfobipMobilemessaging.saveUser(user);
-    InfobipMobilemessaging.personalize(
+    await InfobipMobilemessaging.saveUser(user);
+    await InfobipMobilemessaging.personalize(
         PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity));
     return true;
   }

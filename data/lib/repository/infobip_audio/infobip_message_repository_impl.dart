@@ -66,8 +66,8 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   }
 
   @override
-  Either<NetworkError, bool> depersonalizeUser() {
-    var depersonalizeUserResult = _infobipMessageDs.depersonalizeUser();
+  Future<Either<NetworkError, bool>> depersonalizeUser() async {
+    var depersonalizeUserResult = await _infobipMessageDs.depersonalizeUser();
     if (!depersonalizeUserResult) {
       return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
     } else {
