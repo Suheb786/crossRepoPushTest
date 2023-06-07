@@ -39,7 +39,8 @@ class BeneficiaryTransactionHistoryListPageView
           margin: EdgeInsets.only(top: 8.h, bottom: 36.h),
           height: 4.h,
           width: 64.w,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4), color: Theme.of(context).colorScheme.inverseSurface),
         ),
         AppTextField(
           labelText: '',

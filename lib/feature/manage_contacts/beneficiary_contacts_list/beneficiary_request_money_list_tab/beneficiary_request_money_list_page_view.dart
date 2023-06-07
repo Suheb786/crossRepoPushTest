@@ -44,7 +44,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
               Expanded(
                 child: AppTextField(
                   labelText: '',
-                  controller: model.sendMoneySearchController,
+                  controller: model.requestMoneySearchController,
                   textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
                   hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
                   textColor: Theme.of(context).primaryColorDark,
