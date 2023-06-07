@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -95,7 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountDormant":
             MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
-            "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account."),
+            "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account."),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."),
         "accountHolderName":
@@ -893,6 +892,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
+        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, your credit card application has failed!"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(

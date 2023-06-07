@@ -1676,7 +1676,7 @@
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
   "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
   "accountDormant": "Account is Dormant",
-  "accountDormantDesc": "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.",
+  "accountDormantDesc": "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account.",
   "pleaseEnterAmount": "Please enter amount",
   "selectAtLeastOneBill": "Select at least one bill",
   "sent": " sent",
@@ -1767,5 +1767,6 @@
   "youCannotUseYourCliqIDtoSendMoney": "You cannot use your CliQ ID to send money.",
   "youCannotUseYourCliqIDtoRequestMoney": "You cannot use your CliQ ID to request money.",
   "cliqIDisSuspended": "Oops! CliQ ID entered is invalid",
-  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one."
+  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one.",
+  "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!"
 }

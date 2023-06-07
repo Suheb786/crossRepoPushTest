@@ -519,6 +519,22 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   void showErrorMessageForPartialBillMethod(PayAllPostPaidBillsPageViewModel model, int index) {
     if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") <= 0.0 &&
+        model.payPostPaidBillsDataList[index].isChecked == false &&
+        model.payPostPaidBillsDataList[index].expDateStatus == false) {
+      if (model.payPostPaidBillsDataList[index].isPartial == true &&
+          double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") > 0.0) {
+        model.showToastWithError(AppError(
+            cause: Exception(),
+            error: ErrorInfo(message: ''),
+            type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+      }
+    }
+
+    ///To show error message for bill where due amount is equal to fees amount
+    else if (double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") >= 0.0 &&
+        double.parse(model.payPostPaidBillsDataList[index].fees ?? "0") >= 0.0 &&
+        double.parse(model.payPostPaidBillsDataList[index].actualdueAmountFromApi ?? "0") ==
+            double.parse(model.payPostPaidBillsDataList[index].fees ?? "0") &&
         model.payPostPaidBillsDataList[index].isChecked == false) {
       if (model.payPostPaidBillsDataList[index].isPartial == true &&
           double.parse(model.payPostPaidBillsDataList[index].maxValue ?? "0") > 0.0) {

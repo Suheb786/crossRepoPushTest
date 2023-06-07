@@ -55,11 +55,18 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   isDisabledConditions(GetPostpaidBillerListModelData item) {
-    return (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 && item.isPartial == false) ||
-        (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 &&
-            item.isPartial == true &&
-            double.parse(item.maxValue ?? "0.0") <= 0.0) ||
-        (item.expDateStatus == false);
+    var flag1 = (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 && item.isPartial == false);
+    var flag2 = (double.parse(item.actualdueAmountFromApi ?? "0.0") <= 0.0 &&
+        item.isPartial == true &&
+        double.parse(item.maxValue ?? "0.0") <= 0.0);
+    var flag3 = (item.expDateStatus == false);
+    var isDisable = flag1 || flag2 || flag3;
+    print('-------------------->');
+    print('flag 1--------------> ${flag1}  2 ${flag2}  3${flag3}   ${item.expDateStatus}');
+    print('----------Is Disbale ---------->${isDisable}');
+    print('--------Item nickname ---->${item.nickName}');
+    print('-------------------->');
+    return isDisable;
   }
 
   void selectedItem(int index, bool isFromSelectedItem) {
@@ -292,25 +299,45 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
         payPostPaidBillsDataList[j].expDateStatus = inquiryElement.success ?? false;
         payPostPaidBillsDataList[j].expDateMessage = inquiryElement.message ?? "false";
         if (payPostPaidBillsDataList[j].expDateStatus == false) {
+          print(
+              'Bill Name 1---->${payPostPaidBillsDataList[j].nickName}value--- ${payPostPaidBillsDataList[j].isChecked}');
           payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
           payPostPaidBillsDataList[j].isChecked = false;
         }
-        if (double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0) {
-          payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
-          payPostPaidBillsDataList[j].isChecked = false;
-          payPostPaidBillsDataList[j].expDateStatus = true;
-        }
-        if (isFromSelectedItem == true) {
-          if (payPostPaidBillsDataList[selectedIndex].isPartial == true &&
-              double.parse(payPostPaidBillsDataList[selectedIndex].dueAmount ?? "0") <= 0.0 &&
-              double.parse(payPostPaidBillsDataList[selectedIndex].maxValue ?? "0") <= 0.0) {
-            payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = true;
-            payPostPaidBillsDataList[selectedIndex].isChecked = false;
+
+        if (double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") > 0 &&
+            double.parse(payPostPaidBillsDataList[j].fees ?? "0") > 0 &&
+            double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") ==
+                double.parse(payPostPaidBillsDataList[j].fees ?? "0")) {
+          if (isFromSelectedItem &&
+              payPostPaidBillsDataList[j].billingNo == payPostPaidBillsDataList[index].billingNo) {
+            payPostPaidBillsDataList[j].isChecked = (payPostPaidBillsDataList[j].isChecked ?? false);
+            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
           } else {
-            payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = false;
-            payPostPaidBillsDataList[selectedIndex].isChecked = true;
+            if (!isFromSelectedItem) {
+              payPostPaidBillsDataList[j].isChecked = false;
+              payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
+            }
           }
         }
+
+        if (payPostPaidBillsDataList[j].isPartial == true &&
+            double.parse(payPostPaidBillsDataList[j].dueAmount ?? "0") <= 0.0 &&
+            double.parse(payPostPaidBillsDataList[j].maxValue ?? "0") > 0.0) {
+          print('step 1---> ${payPostPaidBillsDataList[index].isChecked}');
+
+          if (isFromSelectedItem &&
+              payPostPaidBillsDataList[j].billingNo == payPostPaidBillsDataList[index].billingNo) {
+            payPostPaidBillsDataList[j].isChecked = (payPostPaidBillsDataList[j].isChecked ?? false);
+            payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
+          } else {
+            if (!isFromSelectedItem) {
+              payPostPaidBillsDataList[j].isChecked = false;
+              payPostPaidBillsDataList[j].showErrorIfEverythingOkButCannotBePaid = true;
+            }
+          }
+        }
+
         selectedPostPaidBillsList.add(item);
       } else {
         if (isFromSelectedItem &&

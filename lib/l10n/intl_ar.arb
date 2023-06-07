@@ -268,7 +268,7 @@
   "registerViaEmail": "التسجيل من خلال الإيميل",
   "motherName": "اسم الأم",
   "motherNameHint": "أدخل اسم الأم",
-  "openAccount": "فتح حساب",
+  "openAccount": "افتح حساب",
   "productSelectorHeader": "ممتاز! تعرّف على عروض Blink",
   "acceptedWorldWide": "مقبولة عالمياً بدون رسوم مخفية",
   "loyaltyRewards": "استمتع بنقاط مكافآت أكتر",
@@ -1628,7 +1628,7 @@
   "cliqAliasUpdate": "تم تحديث الاسم المستعار لخدمة كليك",
   "cliqAliasMobileNoUpdate": "تم تحديث رقم الموبايل المربوط بخدمة كليك",
   "mobileNoAliasHint": "00962000000000",
-  "accountDormantDesc": "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب",
+  "accountDormantDesc": "ما بتقدر تطلب بطاقة ائتمانية لأنه حسابك غير فعال، اتصل بنا على 5200100-06 ليتم تفعيل الحساب",
   "dailyNarrationLimitexceed": "تجاوز مبلغ السرد اليومي",
   "pleaseEnterAmount": "يرجى إدخال المبلغ",
   "selectAtLeastOneBill": "حدد فاتورة واحدة على الأقل",
@@ -1721,5 +1721,6 @@
   "youCannotUseYourCliqIDtoSendMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لإرسال حوالة",
   "youCannotUseYourCliqIDtoRequestMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لطلب حوالة",
   "cliqIDisSuspended": "عفوا! الاسم المستعار المدخل غير مسجل",
-  "cliqIdAlreadyExists": "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر"
+  "cliqIdAlreadyExists": "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر",
+  "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"
 }
