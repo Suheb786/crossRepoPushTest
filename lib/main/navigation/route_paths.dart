@@ -163,4 +163,5 @@ class RoutePaths {
   static const String AddContactIBANotpPage = "/addContactIbanOTPPage";
   static const String RjFlightBookingPage = "/rjFlightBookingPage";
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
+  static const String RJBookingSuccessPage = "rjBookingSuccessPage";
 }
