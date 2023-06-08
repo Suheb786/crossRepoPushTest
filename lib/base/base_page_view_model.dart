@@ -16,6 +16,8 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../utils/status.dart';
+
 class BasePageViewModel extends BaseViewModel {
   late SaveUserUseCase saveUserUseCase;
   late LogAppFlyerSDKEventsUseCase appFlyerSDKEventsUseCase;
@@ -122,7 +124,11 @@ class BasePageViewModel extends BaseViewModel {
       saveUserUseCase = ProviderContainer().read(saveUserUseCaseProvider);
       RequestManager(params, createCall: () {
         return saveUserUseCase.execute(params: params);
-      }).asFlow().listen((event) {});
+      }).asFlow().listen((event) {
+        if (event.status == Status.SUCCESS) {
+          onSaveUserDone();
+        }
+      });
     });
 
     _logAppFlyerSDKEventsRequestSubject.listen((params) {
@@ -135,7 +141,7 @@ class BasePageViewModel extends BaseViewModel {
     });
 
     _antelopInitializeRequest.listen(
-      (params) {
+          (params) {
         initializeAntelopUseCase = ProviderContainer().read(initializeAntelopSDKUseCaseProvider);
         RequestManager(params, createCall: () => initializeAntelopUseCase.execute(params: params))
             .asFlow()
@@ -209,6 +215,10 @@ class BasePageViewModel extends BaseViewModel {
     _antelopInitializeRequest.close();
     _antelopInitializeResponse.close();
     super.dispose();
+  }
+
+  void onSaveUserDone() {
+    debugPrint("DepersonalizationDone");
   }
 }
 
