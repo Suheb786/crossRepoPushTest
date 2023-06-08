@@ -13450,10 +13450,10 @@ class S {
     );
   }
 
-  /// `You can not apply for credit card due to insufficient funds`
+  /// `You cannot apply for credit card due to insufficient funds`
   String get cannotApplyCCInsufficientFunds {
     return Intl.message(
-      'You can not apply for credit card due to insufficient funds',
+      'You cannot apply for credit card due to insufficient funds',
       name: 'cannotApplyCCInsufficientFunds',
       desc: '',
       args: [],
@@ -17100,10 +17100,10 @@ class S {
     );
   }
 
-  /// `You can not request money from your own account`
+  /// `You cannot request money from your own account`
   String get youCanNotRequestMoneyFromYourOwnAccount {
     return Intl.message(
-      'You can not request money from your own account',
+      'You cannot request money from your own account',
       name: 'youCanNotRequestMoneyFromYourOwnAccount',
       desc: '',
       args: [],

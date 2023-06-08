@@ -222,7 +222,6 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                                               motion: DrawerMotion(),
                                                               children: [
                                                                 SlidableAction(
-                                                                  // An action can be bigger than the others.
                                                                   onPressed: (context1) => {
                                                                     InformationDialog.show(context,
                                                                         image: AssetUtils.deleteBlackIcon,
@@ -358,95 +357,86 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                         tempSelectedPostPaidBillsList =
                                             tempSelectedPostPaidBillsList.toSet().toList();
 
-                                        if (amt! > 0.0) {
-                                          for (var payPostPaidBillsDataListItem
-                                              in tempSelectedPostPaidBillsList) {
-                                            for (var item in model.postPaidBillInquiryData!) {
-                                              var dueAmt = double.parse(item.dueAmount ?? "0");
+                                        for (var payPostPaidBillsDataListItem
+                                            in tempSelectedPostPaidBillsList) {
+                                          for (var item in model.postPaidBillInquiryData!) {
+                                            var dueAmt = double.parse(item.dueAmount ?? "0");
 
-                                              if (item.billingNo == payPostPaidBillsDataListItem.billingNo &&
-                                                  item.serviceType ==
-                                                      payPostPaidBillsDataListItem.serviceType &&
-                                                  payPostPaidBillsDataListItem.isAmountUpdatedFromApi ==
-                                                      true) {
-                                                dueAmt = double.parse(
-                                                    payPostPaidBillsDataListItem.actualdueAmountFromApi ??
-                                                        "0");
-                                              }
+                                            if (item.billingNo == payPostPaidBillsDataListItem.billingNo &&
+                                                item.serviceType ==
+                                                    payPostPaidBillsDataListItem.serviceType &&
+                                                payPostPaidBillsDataListItem.isAmountUpdatedFromApi == true) {
+                                              dueAmt = double.parse(
+                                                  payPostPaidBillsDataListItem.actualdueAmountFromApi ?? "0");
+                                            }
 
-                                              if (dueAmt > 0.0 ||
-                                                  dueAmt == 0.0 &&
-                                                      item.isPartial == true &&
-                                                      double.parse(item.maxValue ?? "0") > 0.0 ||
-                                                  item.success == true) {
-                                                ///resetting dueAmount back to actual api dueAmount
-                                                item.dueAmount = dueAmt.toStringAsFixed(3);
-                                                item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
-                                                item.minMaxValidationMessage = "";
+                                            if (dueAmt > 0.0 ||
+                                                dueAmt == 0.0 &&
+                                                    item.isPartial == true &&
+                                                    double.parse(item.maxValue ?? "0") > 0.0 ||
+                                                item.success == true) {
+                                              ///resetting dueAmount back to actual api dueAmount
+                                              item.dueAmount = dueAmt.toStringAsFixed(3);
+                                              item.actualDueAmountFromApi = dueAmt.toStringAsFixed(3);
+                                              item.minMaxValidationMessage = "";
 
-                                                if (item.billingNo != null &&
-                                                    item.billingNo!.isNotEmpty &&
-                                                    item.serviceType != null &&
-                                                    item.serviceType!.isNotEmpty) {
-                                                  if (payPostPaidBillsDataListItem.billingNo ==
-                                                          item.billingNo &&
-                                                      payPostPaidBillsDataListItem.serviceType ==
-                                                          item.serviceType &&
-                                                      payPostPaidBillsDataListItem.isChecked == true) {
-                                                    temPostPaidBillInquiryData.add(item);
-                                                  }
+                                              if (item.billingNo != null &&
+                                                  item.billingNo!.isNotEmpty &&
+                                                  item.serviceType != null &&
+                                                  item.serviceType!.isNotEmpty) {
+                                                if (payPostPaidBillsDataListItem.billingNo ==
+                                                        item.billingNo &&
+                                                    payPostPaidBillsDataListItem.serviceType ==
+                                                        item.serviceType &&
+                                                    payPostPaidBillsDataListItem.isChecked == true) {
+                                                  temPostPaidBillInquiryData.add(item);
                                                 }
                                               }
                                             }
                                           }
+                                        }
 
-                                          for (var item in tempSelectedPostPaidBillsList) {
-                                            if (item.isChecked == false) {
-                                              temPostPaidBillInquiryData.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
-                                                  element.serviceType == item.serviceType);
-                                              tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
-                                                  element.serviceType == item.serviceType);
-                                            }
-
-                                            if (item.expDateStatus == false) {
-                                              temPostPaidBillInquiryData.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
-                                                  element.serviceType == item.serviceType);
-                                              tempSelectedPostPaidBillsList.removeWhere((element) =>
-                                                  element.billingNo == item.billingNo &&
-                                                  element.serviceType == item.serviceType);
-                                            }
-                                            if (item.isChecked == null || item.isChecked == false) {
-                                              temPostPaidBillInquiryData.remove(item);
-                                              tempSelectedPostPaidBillsList.remove(item);
-                                            }
+                                        for (var item in tempSelectedPostPaidBillsList) {
+                                          if (item.isChecked == false) {
+                                            temPostPaidBillInquiryData.removeWhere((element) =>
+                                                element.billingNo == item.billingNo &&
+                                                element.serviceType == item.serviceType);
+                                            tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                element.billingNo == item.billingNo &&
+                                                element.serviceType == item.serviceType);
                                           }
 
-                                          temPostPaidBillInquiryData =
-                                              temPostPaidBillInquiryData.toSet().toList();
-
-                                          if (temPostPaidBillInquiryData.isNotEmpty &&
-                                              temPostPaidBillInquiryData.isNotEmpty) {
-                                            Navigator.pushNamed(
-                                                context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                                arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                                    model.postPaidBillInquiryData!.length.toString(),
-                                                    amt,
-                                                    tempSelectedPostPaidBillsList,
-                                                    temPostPaidBillInquiryData));
-                                          } else {
-                                            model.showToastWithError(AppError(
-                                                cause: Exception(),
-                                                error: ErrorInfo(message: ""),
-                                                type: ErrorType.SELECT_AT_LEAST_ONE_BILL));
+                                          if (item.expDateStatus == false) {
+                                            temPostPaidBillInquiryData.removeWhere((element) =>
+                                                element.billingNo == item.billingNo &&
+                                                element.serviceType == item.serviceType);
+                                            tempSelectedPostPaidBillsList.removeWhere((element) =>
+                                                element.billingNo == item.billingNo &&
+                                                element.serviceType == item.serviceType);
                                           }
+                                          if (item.isChecked == null || item.isChecked == false) {
+                                            temPostPaidBillInquiryData.remove(item);
+                                            tempSelectedPostPaidBillsList.remove(item);
+                                          }
+                                        }
+
+                                        temPostPaidBillInquiryData =
+                                            temPostPaidBillInquiryData.toSet().toList();
+
+                                        if (temPostPaidBillInquiryData.isNotEmpty &&
+                                            temPostPaidBillInquiryData.isNotEmpty) {
+                                          Navigator.pushNamed(
+                                              context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                              arguments: PaySelectedBillsPostPaidBillsPageArguments(
+                                                  model.postPaidBillInquiryData!.length.toString(),
+                                                  amt ?? 0.0,
+                                                  tempSelectedPostPaidBillsList,
+                                                  temPostPaidBillInquiryData));
                                         } else {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),
                                               error: ErrorInfo(message: ""),
-                                              type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
+                                              type: ErrorType.SELECT_AT_LEAST_ONE_BILL));
                                         }
                                       },
                                       child: Container(

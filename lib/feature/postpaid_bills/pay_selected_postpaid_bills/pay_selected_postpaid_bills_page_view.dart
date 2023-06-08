@@ -31,6 +31,7 @@ class PaySelectedBillsPostPaidBillsPageView
       onData: (data) {
         model.postPaidBillInquiryData = data;
         model.addAllBillAmt(context);
+        model.initialValidation(context: context);
       },
       dataBuilder: (BuildContext context, data) {
         return AppStreamBuilder<Resource<PayPostPaidBill>>(

@@ -45,6 +45,13 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   double totalBillAmtSuccess = 0.0;
   int validRequestCounter = 0;
 
+  initialValidation({required BuildContext context}) {
+    for (int i = 0; i < (postPaidBillInquiryData ?? []).length; i++) {
+      debugPrint('-----Called 1');
+      onChangedCalled(i, (postPaidBillInquiryData?[i].dueAmount ?? '0.0'), context);
+    }
+  }
+
   addAllBillAmt(BuildContext context, {isApi = false}) async {
     totalBillAmt = 0.0;
     totalBillAmtSuccess = 0.0;
