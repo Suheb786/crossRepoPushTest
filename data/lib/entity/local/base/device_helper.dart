@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:r_get_ip/r_get_ip.dart';
 
 class DeviceInfoHelper {
   final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
@@ -21,18 +20,10 @@ class DeviceInfoHelper {
     final PackageInfo info = await PackageInfo.fromPlatform();
     debugPrint('Device Data ' + deviceData.toString());
     debugPrint('Package Info Data ' + ' ' + info.version + ' ' + info.buildNumber);
-    String externalIp = "";
-    try {
-      externalIp = (await RGetIp.externalIP)!;
-    } catch (e) {
-      debugPrint(e.toString());
-      externalIp = "";
-    }
 
     return BaseClassEntity(
       appVersion: info.version,
-      //appVersion: info.version + ' ' + info.buildNumber,
-      ip: externalIp,
+      ip: '',
       deviceID: Platform.isAndroid ? deviceData['androidId'] : deviceData['identifierForVendor'],
       mobileModel: Platform.isAndroid ? deviceData['model'] : deviceData['model'],
     );

@@ -33,7 +33,6 @@ dependencies:
   file_picker: any
   image_picker: ^0.8.7+4
   geocoding: ^2.1.0
-  r_get_ip: ^0.1.1
   blinkid_flutter: ^6.1.2
   local_auth: ^2.1.6
   encrypt: ^5.0.1

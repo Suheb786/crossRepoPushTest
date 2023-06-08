@@ -92,37 +92,17 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                   color: Theme.of(context).primaryColor,
                                                   shape: BoxShape.circle),
                                               child: Center(
-                                                child: activity.data?[index].trxDir ==
-                                                        RequestMoneyActivityStatusEnum
-                                                            .TRANSACTION_DIRECTORY_INCOMING
-                                                    ? Text(
-                                                        (activity.data?[index].cdtrName ?? '')
-                                                                    .split(" ")
-                                                                    .length >
-                                                                1
-                                                            ? StringUtils.getFirstInitials(
-                                                                activity.data?[index].cdtrName)
-                                                            : "",
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            color: Theme.of(context).colorScheme.secondary,
-                                                            fontWeight: FontWeight.w700,
-                                                            fontSize: 14.0.t),
-                                                      )
-                                                    : Text(
-                                                        (activity.data?[index].dbtrName ?? '')
-                                                                    .split(" ")
-                                                                    .length >
-                                                                1
-                                                            ? StringUtils.getFirstInitials(
-                                                                activity.data?[index].dbtrName)
-                                                            : "",
-                                                        style: TextStyle(
-                                                            fontFamily: StringUtils.appFont,
-                                                            color: Theme.of(context).colorScheme.secondary,
-                                                            fontWeight: FontWeight.w700,
-                                                            fontSize: 14.0.t),
-                                                      ),
+                                                child: Text(
+                                                  getNameValue(activity.data?[index]).length > 1
+                                                      ? StringUtils.getFirstInitials(
+                                                          getNameValue(activity.data?[index]))
+                                                      : "",
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: Theme.of(context).colorScheme.secondary,
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 14.0.t),
+                                                ),
                                               ),
                                             ),
                                             Expanded(
@@ -200,7 +180,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                     activity.data?[index].paymentType ==
                                                                         PaymentTypeEnum.SEND_MONEY)
                                                                 ? Text.rich(TextSpan(
-                                                                    text: '${activity.data![index].cdtrName}',
+                                                                    text: '${activity.data![index].dbtrName}',
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w600,
@@ -317,5 +297,20 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
         ),
       ),
     );
+  }
+
+  String getNameValue(RequestMoneyActivityList? data) {
+    if (data?.trxDir == RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+        data?.paymentType == PaymentTypeEnum.SEND_MONEY) {
+      return data?.dbtrName ?? '';
+    } else if (data?.trxDir == RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
+        data?.paymentType == PaymentTypeEnum.SEND_MONEY) {
+      return data?.cdtrName ?? '';
+    } else if (data?.trxDir == RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_INCOMING &&
+        data?.paymentType == PaymentTypeEnum.RTP_REQUEST) {
+      return data?.cdtrName ?? '';
+    } else {
+      return data?.dbtrName ?? '';
+    }
   }
 }
