@@ -34,12 +34,15 @@ class FavouriteBrandGridItemWidget extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 width: 155.5,
                 height: 100,
-                decoration:
-                    BoxDecoration(color: Colors.yellow, borderRadius: BorderRadius.all(Radius.circular(16))),
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(0.1), offset: Offset(0, -0), blurRadius: 16.0),
+                  ],
+                ),
               ),
-              SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(

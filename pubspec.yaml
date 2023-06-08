@@ -87,6 +87,7 @@ dependencies:
   package_info_plus: any
   qr_flutter: ^4.1.0
   syncfusion_flutter_pdfviewer: any
+  flutter_gallery_3d: 1.1.1
 
 
 dependency_overrides:

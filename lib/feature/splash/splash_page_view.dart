@@ -25,7 +25,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
       initialData: Resource.none(),
       onData: (data) {
         if (data.status == Status.SUCCESS) {
-          Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
+          Navigator.pushReplacementNamed(context, RoutePaths.EVoucherMainPage);
         } else if (data.status == Status.ERROR) {
           InformationDialog.show(context,
               image: AssetUtils.mobile,
@@ -47,7 +47,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
+              Navigator.pushReplacementNamed(context, RoutePaths.EVoucherMainPage);
             }
           },
           dataBuilder: (context, data) {

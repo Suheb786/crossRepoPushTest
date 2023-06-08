@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/evoucher/top_brand_widget.dart';
+import 'package:neo_bank/ui/molecules/evoucher/widgets/top_brand_widget.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import 'browser_category_widget.dart';
+import 'widgets/browser_category_widget.dart';
 import 'evoucher_text_widget.dart';
 import 'favourite_brand_widget.dart';
 
@@ -23,9 +23,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
     return AppKeyBoardHide(
       child: ListView(
         children: [
-          SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 32),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             child: AppTextField(
@@ -33,9 +31,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
               hintText: S.of(context).eVoucherSearchLabel,
             ),
           ),
-          SizedBox(
-            height: 25,
-          ),
+          const SizedBox(height: 32),
           Container(
               padding: const EdgeInsetsDirectional.only(
                 start: 24,
@@ -66,9 +62,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
                   );
                 },
               )),
-          SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
             text: S.of(context).purchaseNowSubTitle,
@@ -76,9 +70,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             textWeight: FontWeight.w600,
             textColor: AppColor.gray5,
           ),
-          SizedBox(
-            height: 4,
-          ),
+          const SizedBox(height: 4),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
             text: S.of(context).buyVoucherTitle,
@@ -86,9 +78,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
           ),
-          SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
             text: S.of(context).favouriteBrand,
@@ -96,13 +86,9 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
           ),
-          SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           FavouriteBrandGridItemWidget(),
-          SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
             text: S.of(context).topBrand,
@@ -110,16 +96,12 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
           ),
-          SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24.0),
             child: TopBrandListItemWidget(),
           ),
-          SizedBox(
-            height: 25,
-          ),
+          const SizedBox(height: 25),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
             text: S.of(context).browserByCatgy,
@@ -127,9 +109,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
           ),
-          SizedBox(
-            height: 17,
-          ),
+          const SizedBox(height: 16),
           Padding(
             padding: EdgeInsetsDirectional.only(start: 24.0, end: 24, bottom: 48, top: 0),
             child: BrowserByCategoryItemWidget(),

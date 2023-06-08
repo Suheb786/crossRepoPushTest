@@ -1,5 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gallery_3d/gallery3d.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -14,7 +16,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
   final String title;
   final Widget descriptionWidget;
 
-  const EvoucherLandingDialogView(
+  EvoucherLandingDialogView(
       {this.onDismissed,
       this.onSelected,
       required this.image,
@@ -51,9 +53,9 @@ class EvoucherLandingDialogView extends StatelessWidget {
                             ),
                             color: AppColor.light_acccent_blue,
                           ),
-                          child: carouselWidget())
+                          child: carouselWidget(context))
                       : Container(),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Text(
@@ -63,12 +65,12 @@ class EvoucherLandingDialogView extends StatelessWidget {
                           fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                   ),
-                  SizedBox(height: 31),
+                  const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: descriptionWidget,
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   InkWell(
                     onTap: () {
                       onSelected!.call();
@@ -110,27 +112,64 @@ class EvoucherLandingDialogView extends StatelessWidget {
         ));
   }
 
-  Widget carouselWidget() {
-    return CarouselSlider.builder(
-        itemCount: 2,
-        itemBuilder: (context, index, realIndex) {
-          return Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16), border: Border.all(width: 2, color: Colors.yellow)),
-            width: 158,
-            height: 102,
-          );
-        },
-        options: CarouselOptions(
-            enlargeCenterPage: true,
-            height: 102,
-            autoPlay: false,
-            viewportFraction: 0.4,
-            pageSnapping: false,
-            enlargeStrategy: CenterPageEnlargeStrategy.height));
+  int selectedIndex = 0;
+
+  Widget carouselWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 32.0),
+      child: ClipRRect(
+        clipBehavior: Clip.hardEdge,
+        child: Gallery3D(
+            controller: Gallery3DController(itemCount: 4, ellipseHeight: 0, autoLoop: false, minScale: 0.6),
+            width: MediaQuery.of(context).size.width - 48,
+            height: 108,
+            onItemChanged: (index) {
+              selectedIndex = index;
+            },
+            itemConfig: GalleryItemConfig(radius: 16, isShowTransformMask: false, width: 165, height: 108),
+            onClickItem: (index) => print("currentIndex:$index"),
+            itemBuilder: (context, index) {
+              return getChild(index);
+            }),
+      ),
+    );
   }
 
-  Widget slidingBanner() {
+  Widget getChild(int index) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: selectedIndex == index ? 12 : 0,
+      shadowColor: AppColor.black.withOpacity(0.9),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            width: 2,
+            color: index == 0
+                ? Colors.yellow.withOpacity(0.3)
+                : index == 1
+                    ? Colors.red
+                    : index == 2
+                        ? Colors.white
+                        : Colors.black,
+          ),
+          color: index == 0
+              ? Colors.yellow
+              : index == 1
+                  ? Colors.red
+                  : index == 2
+                      ? Colors.white
+                      : Colors.black,
+        ),
+        width: 165,
+        height: 108,
+        alignment: Alignment.center,
+        child: Text("$index"),
+      ),
+    );
+  }
+
+  /*Widget slidingBanner() {
     return Builder(builder: (context) {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -195,5 +234,5 @@ class EvoucherLandingDialogView extends StatelessWidget {
         ),
       );
     });
-  }
+  }*/
 }

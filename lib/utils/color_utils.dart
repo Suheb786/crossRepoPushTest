@@ -119,4 +119,5 @@ class AppColor {
   static const rj_gray = const Color(0xff95979A);
   static const dark_Grayish_Blue = const Color(0xffA6A9AC);
   static const light_gray_4 = const Color(0xffCFCFCF);
+  static const card_shadow_color = const Color(0x14000000);
 }

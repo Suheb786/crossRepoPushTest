@@ -31,22 +31,21 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
         Navigator.pushNamed(context, RoutePaths.EVouchersListing);
       },
       child: Card(
-        elevation: 30,
+        elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
+        shadowColor: AppColor.card_shadow_color,
         child: Container(
           height: 103,
-          width: 103.66,
+          width: 103,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppSvg.asset(
                 AssetUtils.processing_voucher_icon,
               ),
-              SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Text(
                 S.of(context).games,
                 style: TextStyle(
