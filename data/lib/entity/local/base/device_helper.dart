@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:data/entity/local/base/device_info_service.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +8,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-class DeviceInfoHelper {
-  final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+class DeviceInfoHelper extends DeviceInfoService {
+  final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
 
   String platformType() {
     return Platform.isAndroid ? 'A' : 'I';
   }
 
   ///Load device info to submit as base class in api.
-  Future<BaseClassEntity> getDeviceInfo() async {
+  Future<BaseClassEntity> initialiseDeviceInfo() async {
     Map<String, dynamic> deviceData = await initPlatformState();
     final PackageInfo info = await PackageInfo.fromPlatform();
     debugPrint('Device Data ' + deviceData.toString());
@@ -34,9 +35,9 @@ class DeviceInfoHelper {
 
     try {
       if (Platform.isAndroid) {
-        deviceData = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
+        deviceData = _readAndroidBuildData(await _deviceInfoPlugin.androidInfo);
       } else if (Platform.isIOS) {
-        deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
+        deviceData = _readIosDeviceInfo(await _deviceInfoPlugin.iosInfo);
       }
     } on PlatformException {
       deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
@@ -95,11 +96,6 @@ class DeviceInfoHelper {
 
   Future<bool> checkDeviceSecurity() async {
     try {
-      // if (Platform.isAndroid) {
-      //   return await FlutterJailbreakDetection.developerMode;
-      // } else if (Platform.isIOS) {
-      //   return await FlutterJailbreakDetection.jailbroken;
-      // }
       debugPrint('-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
       return await FlutterJailbreakDetection.jailbroken;
     } on PlatformException {
