@@ -180,14 +180,22 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                     activity.data?[index].paymentType ==
                                                                         PaymentTypeEnum.SEND_MONEY)
                                                                 ? Text.rich(TextSpan(
-                                                                    text: '${activity.data![index].dbtrName}',
+                                                                    text:
+                                                                        '${activity.data![index].dbtrName} ',
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w600,
                                                                         fontSize: 12.0.t),
                                                                     children: [
                                                                         TextSpan(
-                                                                            text: S.of(context).sent,
+                                                                            text: ((activity.data?[index]
+                                                                                        .allowReturn ??
+                                                                                    false)
+                                                                                ? S
+                                                                                    .of(context)
+                                                                                    .sent
+                                                                                    .toLowerCase()
+                                                                                : S.of(context).returned),
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -195,7 +203,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                                 fontSize: 12.0.t)),
                                                                         TextSpan(
                                                                             text:
-                                                                                '${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
+                                                                                ' ${activity.data![index].amount?.toStringAsFixed(3)} ${activity.data![index].curr} ',
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
@@ -212,8 +220,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                                 : (activity.data?[index].trxDir ==
                                                                             RequestMoneyActivityStatusEnum
                                                                                 .TRANSACTION_DIRECTORY_OUTGOING &&
-                                                                        activity.data?[index].paymentType ==
-                                                                            PaymentTypeEnum.SEND_MONEY)
+                                                                        activity.data?[index].paymentType == PaymentTypeEnum.SEND_MONEY)
                                                                     ? Text.rich(TextSpan(text: S.of(context).youSent, style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 12.0.t), children: [
                                                                         TextSpan(
                                                                             text:
