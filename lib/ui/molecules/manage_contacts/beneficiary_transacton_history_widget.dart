@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -14,7 +13,7 @@ class BeneficiaryTransactionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: 32,
+          height: 32.h,
         ),
         Text(
           "18 Jan",
@@ -22,7 +21,7 @@ class BeneficiaryTransactionWidget extends StatelessWidget {
               fontFamily: StringUtils.appFont,
               fontSize: 14.0.t,
               fontWeight: FontWeight.w600,
-              color: AppColor.veryDarkGray2),
+              color: Theme.of(context).textTheme.bodyMedium?.color),
         ),
         Card(
           margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
