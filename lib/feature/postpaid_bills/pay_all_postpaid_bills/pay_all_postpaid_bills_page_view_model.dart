@@ -115,7 +115,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                   isFromSelectedItem: isFromSelectedItem, index: index);
             } else {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
-                  isFromSelectedItem: isFromSelectedItem, index: index);
+                  isFromSelectedItem: isFromSelectedItem, index: index, isFromApiCall: false);
             }
           }
         }
@@ -243,7 +243,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
             postPaidBillInquiryData = postPaidBillInquiryData!.toSet().toList();
             if (payPostPaidBillsDataList.length > 0) {
               postpaidBillEnquiryOnSuccessMethod(postPaidBillInquiryData,
-                  isFromSelectedItem: params.isFromSelectedItem, index: params.index);
+                  isFromSelectedItem: params.isFromSelectedItem, index: params.index, isFromApiCall: true);
             }
             if (params.isFromSelectedItem) {
               showErrorMessagePopUp(
@@ -268,7 +268,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void postpaidBillEnquiryOnSuccessMethod(List<PostPaidBillInquiryData>? inquiryData,
-      {required bool isFromSelectedItem, required int index}) {
+      {required bool isFromSelectedItem, required int index, required bool isFromApiCall}) {
     selectedPostPaidBillsList = [];
     _postPaidBillEnquiryResponse.safeAdd(Resource.success(
         data:
@@ -338,50 +338,30 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       }
     }
 
+    /// Single bill Validation
     if (arguments.paidBillsPayTypeOptionEnum != PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
-      if (postPaidBillInquiryDataForOneItem.length == 1) {
-        ///postPaidBillInquiryData?[0].success == false
-        if (postPaidBillInquiryDataForOneItem[0].success == false) {
-          if (postPaidBillInquiryDataForOneItem[0].message != null &&
-              postPaidBillInquiryDataForOneItem[0].message!.toString().isNotEmpty) {
-            if (postPaidBillInquiryDataForOneItem[0].message == "err-379") {
-              showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
-            } else if (postPaidBillInquiryDataForOneItem[0].message == "err-381") {
-              showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
-            } else if (postPaidBillInquiryDataForOneItem[0].message == "err-383") {
-              showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
-            } else {
-              if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
-                showToastWithError(
-                    AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
-              }
-            }
-          }
-        }
-
-        ///postPaidBillInquiryData?[0].success == true
-        if (postPaidBillInquiryDataForOneItem[0].success == true) {
-          if (postPaidBillInquiryDataForOneItem[0].billingNo == null ||
-              postPaidBillInquiryDataForOneItem[0].billingNo!.isEmpty ||
-              postPaidBillInquiryDataForOneItem[0].serviceType == null ||
-              postPaidBillInquiryDataForOneItem[0].serviceType!.isEmpty) {
-            if (selectedIndex > -1 &&
-                payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi == false) {
-              payPostPaidBillsDataList[selectedIndex].isChecked = false;
-              payPostPaidBillsDataList[selectedIndex].expDateStatus = false;
-              payPostPaidBillsDataList[selectedIndex].expDateMessage =
-                  postPaidBillInquiryDataForOneItem[0].message ?? "false";
-              payPostPaidBillsDataList[selectedIndex].isAmountUpdatedFromApi = true;
-              if (postPaidBillInquiryDataForOneItem.length == 1) {
+      if (isFromApiCall) {
+        if (postPaidBillInquiryDataForOneItem.length == 1) {
+          ///For case where status is false
+          if (postPaidBillInquiryDataForOneItem[0].success == false) {
+            if (postPaidBillInquiryDataForOneItem[0].message != null &&
+                postPaidBillInquiryDataForOneItem[0].message.toString().isNotEmpty) {
+              if (postPaidBillInquiryDataForOneItem[0].message == "err-379") {
+                showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.EXPIRY_DATE_SAVED_BILL_CHECK_MESSAGE));
+              } else if (postPaidBillInquiryDataForOneItem[0].message == "err-381") {
+                showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.OPEN_DATE_ISSUE_MESSAGE));
+              } else if (postPaidBillInquiryDataForOneItem[0].message == "err-383") {
+                showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.CLOSE_DATE_SAVED_BILL_CHECK_MESSAGE));
+              } else {
                 if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
                   showToastWithError(
                       AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
@@ -389,12 +369,45 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
               }
             }
           }
-        }
 
-        if (payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid) {
-          payPostPaidBillsDataList[selectedIndex].showErrorIfEverythingOkButCannotBePaid = false;
-          if (double.parse(payPostPaidBillsDataList[selectedIndex].dueAmount ?? "0") <= 0.0) {
-            if (payPostPaidBillsDataList[selectedIndex].isPartial == false) {
+          ///For case where status is true
+          if (postPaidBillInquiryDataForOneItem[0].success == true) {
+            ///Case 1: No data returned from api
+            if (postPaidBillInquiryDataForOneItem[0].billingNo == null ||
+                postPaidBillInquiryDataForOneItem[0].billingNo!.isEmpty ||
+                postPaidBillInquiryDataForOneItem[0].serviceType == null ||
+                postPaidBillInquiryDataForOneItem[0].serviceType!.isEmpty) {
+              if (postPaidBillInquiryDataForOneItem.length == 1) {
+                if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
+                  showToastWithError(
+                      AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
+                }
+              }
+            }
+
+            ///Case 2: due amount and fees is equal
+            if (double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") > 0 &&
+                double.parse(postPaidBillInquiryDataForOneItem[0].feesAmt ?? "0") > 0 &&
+                double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") ==
+                    double.parse(postPaidBillInquiryDataForOneItem[0].feesAmt ?? "0")) {
+              if (postPaidBillInquiryDataForOneItem[0].isPartial == false) {
+                showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.THERE_ARE_NO_DUE_BILLS));
+              } else {
+                showToastWithError(AppError(
+                    cause: Exception(),
+                    error: ErrorInfo(message: ''),
+                    type: ErrorType.THERE_ARE_NO_DUE_BILLS_BUT_CAN_MAKE_PARTIAL_PAYMENTS));
+              }
+            }
+          }
+
+          ///Case 3: due amount is less than 0
+          if (postPaidBillInquiryDataForOneItem[0].success == true &&
+              double.parse(postPaidBillInquiryDataForOneItem[0].dueAmount ?? "0") <= 0.0) {
+            if (postPaidBillInquiryDataForOneItem[0].isPartial == false) {
               showToastWithError(AppError(
                   cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.THERE_ARE_NO_DUE_BILLS));
             } else {
