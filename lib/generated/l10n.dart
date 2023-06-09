@@ -13450,10 +13450,10 @@ class S {
     );
   }
 
-  /// `You can not apply for credit card due to insufficient funds`
+  /// `You cannot apply for credit card due to insufficient funds`
   String get cannotApplyCCInsufficientFunds {
     return Intl.message(
-      'You can not apply for credit card due to insufficient funds',
+      'You cannot apply for credit card due to insufficient funds',
       name: 'cannotApplyCCInsufficientFunds',
       desc: '',
       args: [],
@@ -16540,10 +16540,10 @@ class S {
     );
   }
 
-  /// `Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.`
+  /// `You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account.`
   String get accountDormantDesc {
     return Intl.message(
-      'Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.',
+      'You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account.',
       name: 'accountDormantDesc',
       desc: '',
       args: [],
@@ -17100,10 +17100,10 @@ class S {
     );
   }
 
-  /// `You can not request money from your own account`
+  /// `You cannot request money from your own account`
   String get youCanNotRequestMoneyFromYourOwnAccount {
     return Intl.message(
-      'You can not request money from your own account',
+      'You cannot request money from your own account',
       name: 'youCanNotRequestMoneyFromYourOwnAccount',
       desc: '',
       args: [],
@@ -17455,6 +17455,26 @@ class S {
     return Intl.message(
       'This CliQ ID already exists, please use another one.',
       name: 'cliqIdAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, your credit card application has failed!`
+  String get dormantAccountCCFailedTitle {
+    return Intl.message(
+      'Unfortunately, your credit card application has failed!',
+      name: 'dormantAccountCCFailedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `returned`
+  String get returned {
+    return Intl.message(
+      'returned',
+      name: 'returned',
       desc: '',
       args: [],
     );

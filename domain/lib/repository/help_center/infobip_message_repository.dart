@@ -8,5 +8,5 @@ abstract class InfobipMessageRepository {
 
   Future<Either<NetworkError, bool>> saveUser();
 
-  Either<NetworkError, bool> depersonalizeUser();
+  Future<Either<NetworkError, bool>> depersonalizeUser();
 }

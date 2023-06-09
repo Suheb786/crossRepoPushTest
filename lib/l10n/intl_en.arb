@@ -1367,7 +1367,7 @@
   "buyVoucherDetailSubSubTitle": "Valid until 24 December 2022",
   "eVoucherLandingDialogDescption": "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.",
   "eVoucherSearchLabel": "What are you looking for?",
-  "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds",
+  "cannotApplyCCInsufficientFunds": "You cannot apply for credit card due to insufficient funds",
   "helloE": "Hello!",
   "amountGreaterThan0": "Amount to pay should be greater than 0",
   "cannotProceedNoAhwalDataFound": "Sorry, onboarding is currently only available to Jordanian nationals.",
@@ -1676,7 +1676,7 @@
   "billingNumberReachedItsMaxTrx": "Billing Number Reached Its Max Trx",
   "dailyNarrationLimitexceed": "Daily Narration AmountExceed",
   "accountDormant": "Account is Dormant",
-  "accountDormantDesc": "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account.",
+  "accountDormantDesc": "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account.",
   "pleaseEnterAmount": "Please enter amount",
   "selectAtLeastOneBill": "Select at least one bill",
   "sent": " sent",
@@ -1732,7 +1732,7 @@
   "cliqReturnPaymentOffline": "Oops, the return payment service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
   "cliqSendPaymentOffline": "Oops, sending payments over Cliq is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
   "requestMoneyFeatureDisabled": "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100.",
-  "youCanNotRequestMoneyFromYourOwnAccount": "You can not request money from your own account",
+  "youCanNotRequestMoneyFromYourOwnAccount": "You cannot request money from your own account",
   "contactLessLimitmaxLimit": "The maximum contactless limit is 300 JOD daily",
   "editContact": "Edit Contact",
   "backToContact": "Back to Contact",
@@ -1767,5 +1767,7 @@
   "youCannotUseYourCliqIDtoSendMoney": "You cannot use your CliQ ID to send money.",
   "youCannotUseYourCliqIDtoRequestMoney": "You cannot use your CliQ ID to request money.",
   "cliqIDisSuspended": "Oops! CliQ ID entered is invalid",
-  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one."
+  "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one.",
+  "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!",
+  "returned": "returned"
 }
