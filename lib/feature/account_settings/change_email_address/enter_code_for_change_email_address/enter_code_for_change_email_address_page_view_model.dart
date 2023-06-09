@@ -17,8 +17,6 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
 
   final AddNewEmailAddressUseCase _addNewEmailUseCase;
 
-  // final SaveUserUseCase _saveUserUseCase;
-
   ///countdown controller
   late CountdownTimerController countDownController;
 
@@ -57,12 +55,8 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
-
-  // PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
-
   EnterCodeForChangeEmailAddressPageViewModel(
-      this._validateOtpForNewEmailAddressUseCase, this._addNewEmailUseCase, /*this._saveUserUseCase*/) {
+      this._validateOtpForNewEmailAddressUseCase, this._addNewEmailUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _validateOtpForNewEmailAddressUseCase.execute(params: value))
           .asFlow()
@@ -88,14 +82,6 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
         }
       });
     });
-
-    /*_saveUserRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        return _saveUserUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        _saveuserResponseSubject.safeAdd(event);
-      });
-    });*/
   }
 
   void validateOtp({required String email}) {
@@ -120,10 +106,6 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
     otpController.clear();
     SmsAutoFill().listenForCode();
   }
-
-  /*void saveUserData() {
-    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
-  }*/
 
   @override
   void dispose() {

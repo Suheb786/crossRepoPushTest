@@ -482,7 +482,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
             ),
             children: [
               TextSpan(
-                text: " " + S.of(context).sent.toLowerCase(),
+                text: ((data?.allowReturn ?? false)
+                    ? S.of(context).sent.toLowerCase()
+                    : S.of(context).returned),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.0.t,

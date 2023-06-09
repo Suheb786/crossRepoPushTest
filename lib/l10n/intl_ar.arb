@@ -1722,5 +1722,6 @@
   "youCannotUseYourCliqIDtoRequestMoney": "لا يمكن استخدام اسم المستعار (كليك) الخاص بك لطلب حوالة",
   "cliqIDisSuspended": "عفوا! الاسم المستعار المدخل غير مسجل",
   "cliqIdAlreadyExists": "الاسم المستعار أو الرقم في كليك مسجل، استخدم رقم أو اسم مستعار آخر",
-  "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"
+  "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح",
+  "returned": "ارجع"
 }

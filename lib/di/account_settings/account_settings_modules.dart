@@ -49,7 +49,6 @@ final enterOtpForNewEmailAddressViewModelProvider =
   (ref) => EnterCodeForChangeEmailAddressPageViewModel(
     ref.read(validateOtpNewEmailAddressUseCaseProvider),
     ref.read(addNewEmailAddressUseCaseProvider),
-    // ref.read(saveUserUseCaseProvider),
   ),
 );
 
@@ -72,7 +71,6 @@ final enterOtpForNewMobileNumberViewModelProvider =
         (ref) => EnterCodeForChangeMobileNumberPageViewModel(
               ref.read(validateOtpNewMobileNumberUseCaseProvider),
               ref.read(addNewNumberUseCaseProvider),
-              // ref.read(saveUserUseCaseProvider),
             ));
 
 ///change password view model provider

@@ -2512,6 +2512,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
         "returnPayment": MessageLookupByLibrary.simpleMessage("أرجاع دفعة"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
+        "returned": MessageLookupByLibrary.simpleMessage("ارجع"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(

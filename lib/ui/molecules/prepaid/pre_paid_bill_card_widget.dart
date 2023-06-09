@@ -81,7 +81,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                       Container(
                         height: 112.h,
                         width: 112.w,
-                        child: AppSvg.asset(AssetUtils.logoeFawateerYellow),
+                        child: Image.asset(AssetUtils.logoeFawateerYellow),
                       ),
                       SizedBox(
                         height: 8.h,

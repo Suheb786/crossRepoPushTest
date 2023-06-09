@@ -627,7 +627,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                         children: [
                                                                       TextSpan(
                                                                         text: " " +
-                                                                            S.of(context).sent.toLowerCase(),
+                                                                            S
+                                                                                .of(context)
+                                                                                .returned
+                                                                                .toLowerCase(),
                                                                         style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
                                                                             fontSize: 12.0.t,

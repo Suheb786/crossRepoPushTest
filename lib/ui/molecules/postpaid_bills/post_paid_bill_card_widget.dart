@@ -96,7 +96,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                         Container(
                           height: 112.h,
                           width: 112.w,
-                          child: AppSvg.asset(AssetUtils.logoeFawateerRed),
+                          child: Image.asset(AssetUtils.logoeFawateerRed),
                         ),
                         SizedBox(
                           height: 8.h,

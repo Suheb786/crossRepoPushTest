@@ -141,7 +141,7 @@ class BasePageViewModel extends BaseViewModel {
     });
 
     _antelopInitializeRequest.listen(
-          (params) {
+      (params) {
         initializeAntelopUseCase = ProviderContainer().read(initializeAntelopSDKUseCaseProvider);
         RequestManager(params, createCall: () => initializeAntelopUseCase.execute(params: params))
             .asFlow()
