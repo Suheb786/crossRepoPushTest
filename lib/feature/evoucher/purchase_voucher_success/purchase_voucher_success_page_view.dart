@@ -23,15 +23,12 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
         }
       },
       child: Container(
-          height: double.infinity,
-          width: double.infinity,
           color: Theme.of(context).primaryColor,
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SingleChildScrollView(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -211,36 +208,34 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).colorScheme.secondary,
-                      borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+                textColor: Theme.of(context).colorScheme.secondary,
+                borderColor: Theme.of(context).colorScheme.secondary,
+              ),
+              SizedBox(
+                height: 6,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 32,
+                ),
+                child: Center(
+                  child: Text(
+                    S.of(context).toViewVoucher,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 32,
-                      ),
-                      child: Center(
-                        child: Text(
-                          S.of(context).toViewVoucher,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 0,
+              ),
+            ],
           )),
     );
   }

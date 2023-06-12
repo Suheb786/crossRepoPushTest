@@ -10,7 +10,7 @@ import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/e
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import 'evoucher_model.dart';
+import 'evoucher_view_model.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   @override

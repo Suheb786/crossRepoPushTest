@@ -61,7 +61,6 @@ import 'package:neo_bank/feature/evoucher/e_voucher_main_page.dart';
 import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
-import 'package:neo_bank/feature/evoucher/evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page.dart';
@@ -157,6 +156,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
+import '../../feature/evoucher/evoucher/evoucher_page.dart';
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
 
 class AppRouter {

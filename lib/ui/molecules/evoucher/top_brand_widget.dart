@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/color_utils.dart';
-
 class TopBrandListItemWidget extends StatefulWidget {
   const TopBrandListItemWidget({Key? key}) : super(key: key);
 
@@ -31,10 +29,8 @@ class _TopBrandListItemWidgetState extends State<TopBrandListItemWidget> {
 
   Widget _buildListItem() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6.0,left: 4),
+      padding: const EdgeInsets.only(bottom: 6.0, left: 4),
       child: Card(
-        elevation: 4,
-        shadowColor: AppColor.card_shadow_color,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),

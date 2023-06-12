@@ -31,14 +31,16 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
         Navigator.pushNamed(context, RoutePaths.EVouchersListing);
       },
       child: Card(
-        elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        shadowColor: AppColor.card_shadow_color,
         child: Container(
           height: 103,
           width: 103,
+          decoration: BoxDecoration(
+            color: AppColor.white,
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

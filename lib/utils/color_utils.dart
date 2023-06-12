@@ -85,12 +85,12 @@ class AppColor {
 
   /// --------- NEW COLOR SCHEME
   static const white = const Color(0xffffffff); // Theme.of(context).colorScheme.secondary
-  static const black = const Color(0xff000000);
-  static const brightRed = const Color(0xffE53E51);
-  static const verySoftRed = const Color(0xffF68D98);
-  static const vividYellow = const Color(0xffFFE816);
+  static const black = const Color(0xff000000); // Theme.of(context).colorScheme.shadow
+  static const brightRed = const Color(0xffE53E51); // Theme.of(context).primaryColor
+  static const verySoftRed = const Color(0xffF68D98); // Theme.of(context).primaryColorLight
+  static const vividYellow = const Color(0xffFFE816); // Theme.of(context).canvasColor
   static const brightBlue = const Color(0xff3CB4E5); // Theme.of(context).textTheme.bodyLarge!.color
-  static const veryLightGray = const Color(0xffFBFBFB);
+  static const veryLightGray = const Color(0xffFBFBFB); //
   static const lightGray = const Color(0xffF5F5F5);
   static const verLightGray4 = const Color(0xffBCBCBC);
   static const veryLightGray1 = const Color(0xffE8E8E8);

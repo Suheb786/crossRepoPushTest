@@ -6,6 +6,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EvoucherLandingDialogView extends StatelessWidget {
@@ -122,11 +123,11 @@ class EvoucherLandingDialogView extends StatelessWidget {
         child: Gallery3D(
             controller: Gallery3DController(itemCount: 4, ellipseHeight: 0, autoLoop: false, minScale: 0.6),
             width: MediaQuery.of(context).size.width - 48,
-            height: 108,
+            height: 108.h,
             onItemChanged: (index) {
               selectedIndex = index;
             },
-            itemConfig: GalleryItemConfig(radius: 16, isShowTransformMask: false, width: 165, height: 108),
+            itemConfig: GalleryItemConfig(radius: 16, isShowTransformMask: false, width: 165.w, height: 108.w),
             onClickItem: (index) => print("currentIndex:$index"),
             itemBuilder: (context, index) {
               return getChild(index);
@@ -161,8 +162,8 @@ class EvoucherLandingDialogView extends StatelessWidget {
                       ? Colors.white
                       : Colors.black,
         ),
-        width: 165,
-        height: 108,
+        width: 165.w,
+        height: 108.h,
         alignment: Alignment.center,
         child: Text("$index"),
       ),

@@ -11,53 +11,54 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
+import '../../../ui/molecules/button/app_primary_button.dart';
+
 class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewModel> {
   PurchaseNowDetailView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          Container(
-            child: Stack(
-              children: [
-                Container(
-                  height: 180,
-                  color: Colors.yellow,
-                ),
-                PositionedDirectional(
-                  top: 47,
-                  start: 24,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(40),
-                    child: Container(
-                      color: Colors.white,
-                      width: 56,
-                      height: 56,
-                      child: IconButton(
-                        icon: Icon(Icons.arrow_back, color: AppColor.brightBlue),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
+    return Stack(
+      children: [
+        Container(
+          height: 180,
+          color: Colors.yellow,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(width: 24),
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                top: 47,
+                start: 33,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(40),
+                  child: Container(
+                    color: Colors.white,
+                    width: 56,
+                    height: 56,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back, color: AppColor.brightBlue),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              const SizedBox(width: 24),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(top: 168),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
-              child: PageDetail(),
-            ),
+        ),
+        Padding(
+          padding: const EdgeInsetsDirectional.only(top: 168),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+            child: PageDetail(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -71,111 +72,105 @@ class PageDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 40,
-        ),
-        EVoucherTextWidget(
-          alignment: AlignmentDirectional.topStart,
-          text: S.of(context).buyVoucherDetailTitle,
-          textSize: 12,
-          textWeight: FontWeight.w600,
-          textColor: AppColor.gray5,
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        EVoucherTextWidget(
-          alignment: AlignmentDirectional.topStart,
-          text: S.of(context).buyVoucherDetailSubTitle,
-          textSize: 20,
-          textWeight: FontWeight.w600,
-          textColor: AppColor.gray_black,
-        ),
-        SizedBox(
-          height: 8,
-        ),
-        EVoucherTextWidget(
-          alignment: AlignmentDirectional.topStart,
-          text: S.of(context).buyVoucherDetailSubSubTitle,
-          textSize: 14,
-          textWeight: FontWeight.w400,
-          textColor: AppColor.gray_black,
-        ),
-        SizedBox(
-          height: 24,
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
-          child: Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.start,
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                Text(
-                  S.of(context).amt,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      color: AppColor.brightBlue,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700),
+                const SizedBox(height: 40),
+                EVoucherTextWidget(
+                  alignment: AlignmentDirectional.topStart,
+                  text: S.of(context).buyVoucherDetailTitle,
+                  textSize: 12,
+                  textWeight: FontWeight.w600,
+                  textColor: AppColor.gray5,
+                ),
+                const SizedBox(height: 8),
+                EVoucherTextWidget(
+                  alignment: AlignmentDirectional.topStart,
+                  text: S.of(context).buyVoucherDetailSubTitle,
+                  textSize: 20,
+                  textWeight: FontWeight.w600,
+                  textColor: AppColor.gray_black,
+                ),
+                const SizedBox(height: 8),
+                EVoucherTextWidget(
+                  alignment: AlignmentDirectional.topStart,
+                  text: S.of(context).buyVoucherDetailSubSubTitle,
+                  textSize: 14,
+                  textWeight: FontWeight.w400,
+                  textColor: AppColor.gray_black,
+                ),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+                  child: Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).amt,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.brightBlue,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
+                          child: Text(
+                            S.of(context).JOD,
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.verLightGray4,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                EVoucherTextWidget(
+                  alignment: AlignmentDirectional.topStart,
+                  text: S.of(context).termsAndConditionsSetting,
+                  textSize: 14,
+                  textWeight: FontWeight.w600,
+                  textColor: AppColor.gray_black,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
-                  child: Text(
-                    S.of(context).JOD,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: AppColor.verLightGray4,
+                  padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
+                  child: Column(
+                    children: [
+                      CustomBulletWithTitle(
+                        title:
+                            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
                         fontSize: 14,
-                        fontWeight: FontWeight.w700),
+                        lineHeight: 1.5,
+                      ),
+                      CustomBulletWithTitle(
+                        title:
+                            'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  ',
+                        fontSize: 14,
+                        lineHeight: 1.5,
+                      ),
+                      CustomBulletWithTitle(
+                        title:
+                            'Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
+                        fontSize: 14,
+                        lineHeight: 1.5,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
         ),
-        SizedBox(
-          height: 16,
-        ),
-        EVoucherTextWidget(
-          alignment: AlignmentDirectional.topStart,
-          text: S.of(context).termsAndConditionsSetting,
-          textSize: 14,
-          textWeight: FontWeight.w600,
-          textColor: AppColor.gray_black,
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
-          child: Column(
-            children: [
-              CustomBulletWithTitle(
-                title:
-                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
-                fontSize: 14,
-                lineHeight: 1.5,
-              ),
-              CustomBulletWithTitle(
-                title:
-                    'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  ',
-                fontSize: 14,
-                lineHeight: 1.5,
-              ),
-              CustomBulletWithTitle(
-                title:
-                    'Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
-                fontSize: 14,
-                lineHeight: 1.5,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 75,
-        ),
+        const SizedBox(height: 24),
         PurchaseNowBtn(),
-        SizedBox(
-          height: 24,
-        ),
+        const SizedBox(height: 50),
       ],
     );
   }
@@ -190,8 +185,9 @@ class PurchaseNowBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: GestureDetector(
-        onTap: () {
+      child: AppPrimaryButton(
+        isDisabled: false,
+        onPressed: () {
           PurchaseNowDialog.show(context,
               image: AssetUtils.processing_voucher_icon,
               title: S.of(context).purchaseNowTitle,
@@ -205,25 +201,7 @@ class PurchaseNowBtn extends StatelessWidget {
             Navigator.pop(context);
           }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
         },
-        child: Container(
-          width: double.infinity,
-          height: 56,
-          child: Center(
-              child: Text(
-            S.of(context).purchaseNow,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w600),
-          )),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColor.white_gray),
-              color: AppColor.brightBlue,
-              borderRadius: BorderRadius.all(
-                Radius.circular(40),
-              )),
-        ),
+        text: S.of(context).purchaseNow,
       ),
     );
   }
