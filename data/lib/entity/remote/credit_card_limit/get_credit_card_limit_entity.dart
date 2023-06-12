@@ -30,18 +30,24 @@ class GetCreditCardLimitEntity
 
   @JsonKey(name: "isContactLess")
   final bool? isContactLess;
+  @JsonKey(name: "contactLessCurrentLimit")
+  final String? contactLessCurrentLimit;
+  @JsonKey(name: "contactLessMaxLimit")
+  final String? contactLessMaxLimit;
 
   GetCreditCardLimitEntity(
-      {this.isATM= false,
-      this.atmCurrentLimit= "0",
-      this.atmMaxLimit= "0",
-      this.isMerchant= false,
-      this.merchantCurrentLimit= "0",
-      this.merchantMAXLimit= "0",
-      this.isOnlinePurchase= false,
-      this.onlinePurchaseCurrentLimit= "0",
-      this.onlinePurchaseMAXLimit= "0",
-      this.isContactLess= false});
+      {this.isATM = false,
+      this.atmCurrentLimit = "0",
+      this.atmMaxLimit = "0",
+      this.isMerchant = false,
+      this.merchantCurrentLimit = "0",
+      this.merchantMAXLimit = "0",
+      this.isOnlinePurchase = false,
+      this.onlinePurchaseCurrentLimit = "0",
+      this.onlinePurchaseMAXLimit = "0",
+      this.isContactLess = false,
+      this.contactLessCurrentLimit = '0',
+      this.contactLessMaxLimit = '0'});
 
   factory GetCreditCardLimitEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardLimitEntityFromJson(json);
@@ -65,6 +71,8 @@ class GetCreditCardLimitEntity
         merchantCurrentLimit: this.merchantCurrentLimit ?? "0",
         merchantMaxLimit: this.merchantMAXLimit ?? "0",
         onlinePurchaseCurrentLimit: this.onlinePurchaseCurrentLimit ?? "0",
-        onlinePurchaseMaxLimit: this.onlinePurchaseMAXLimit ?? "0");
+        onlinePurchaseMaxLimit: this.onlinePurchaseMAXLimit ?? "0",
+        contactLessCurrentLimit: this.contactLessCurrentLimit ?? '0',
+        contactLessMaxLimit: this.contactLessMaxLimit ?? '0');
   }
 }

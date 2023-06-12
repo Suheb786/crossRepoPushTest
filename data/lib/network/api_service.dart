@@ -619,7 +619,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
       @Body() DebitCardSLimitsUpdateRequestEntity debitCardSLimitsUpdateRequestEntity);
 
-  @POST("/CardTracking/UpdateLimit")
+  @POST("/CardTracking/UpdateLimitV2")
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
       @Body() CreditCardSLimitsUpdateRequestEntity creditCardSLimitsUpdateRequestEntity);
 
@@ -810,7 +810,7 @@ abstract class ApiService {
   @POST("/CardTracking/UpdateSettlement")
   Future<HttpResponse<ResponseEntity>> updateSettlement(@Body() CcUpdateSettlementRequestEntity request);
 
-  @POST("/CardTracking/GetLimit")
+  @POST("/CardTracking/GetLimitV2")
   Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
       @Body() CreditCardLimitRequestEntity request);
 

@@ -229,10 +229,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
                                                           onTapOutWardSendMoney: (RequestMoneyActivityList) {
-                                                            // if (RequestMoneyActivityStatusEnum
-                                                            //         .CATEGORY_REJECTED ==
-                                                            //     RequestMoneyActivityList.trxStatus) {
-                                                            //* CREDIT CONFIRMATION POP UP
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "- " +
@@ -548,8 +544,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           RoutePaths.ReturnPaymentSliderPage,
                                                                           arguments:
                                                                               ReturnPaymentTransactionSliderPageArgument(
-                                                                                  name: data.cdtrName,
-                                                                                  iban: data.cdtrAcct,
+                                                                                  name: data.dbtrName,
+                                                                                  iban: data.dbtrAcct,
                                                                                   statusInfo:
                                                                                       S.current.sentTo,
                                                                                   custID: "",

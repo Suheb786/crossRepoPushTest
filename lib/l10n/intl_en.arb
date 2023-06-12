@@ -1769,5 +1769,6 @@
   "cliqIDisSuspended": "Oops! CliQ ID entered is invalid",
   "cliqIdAlreadyExists": "This CliQ ID already exists, please use another one.",
   "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!",
-  "returned": "returned"
+  "returned": "returned",
+  "creditContactlessLimitExceeded": "Contactless payment limit exceeded."
 }

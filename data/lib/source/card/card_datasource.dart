@@ -82,6 +82,7 @@ abstract class CardRemoteDs {
       {num? atmWithdrawal,
       num? merchantsPayments,
       num? onlinePurchase,
+      num? contactlessPaymentLimit,
       String? secureCode,
       bool? isAtmWithdrawal,
       bool? isMerchantsPayments,

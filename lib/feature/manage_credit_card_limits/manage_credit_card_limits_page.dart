@@ -30,6 +30,11 @@ class ManageCreditCardLimitsPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
+
+  @override
+  bool? resizeToAvoidBottomInset() {
+    return true;
+  }
 }
 
 class ManageCreditCardLimitsArguments {

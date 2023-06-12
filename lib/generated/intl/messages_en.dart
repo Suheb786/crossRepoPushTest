@@ -758,6 +758,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Credit card\nhas been verified."),
         "creditConfirmation":
             MessageLookupByLibrary.simpleMessage("Credit Confirmation"),
+        "creditContactlessLimitExceeded": MessageLookupByLibrary.simpleMessage(
+            "Contactless payment limit exceeded."),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
