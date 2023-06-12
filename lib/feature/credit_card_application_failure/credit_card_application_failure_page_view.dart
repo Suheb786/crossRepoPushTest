@@ -127,7 +127,9 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
   String getTitle(BuildContext context, CreditFailureState creditFailureState) {
     switch (creditFailureState) {
       case CreditFailureState.InEligible:
+        return S.of(context).applicationNotSuccessful;
       case CreditFailureState.AccountDormant:
+        return S.of(context).dormantAccountCCFailedTitle;
       case CreditFailureState.EngagementTeamRejection:
         return S.of(context).applicationNotSuccessful;
       case CreditFailureState.ZERO_BALANCE:

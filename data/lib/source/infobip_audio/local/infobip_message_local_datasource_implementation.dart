@@ -23,7 +23,7 @@ class InfobipMessageDSImpl with InfobipMessageLocalDs {
   }
 
   @override
-  bool depersonalizeUser() {
+  Future<bool> depersonalizeUser() {
     return _infobipAudioService.depersonalizeUser();
   }
 }
