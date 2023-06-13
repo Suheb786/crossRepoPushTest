@@ -39,7 +39,6 @@ class InfobipMessageService {
 
     InfobipMobilemessaging.on(LibraryEvent.tokenReceived, (String token) {
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
-      debugPrint(token);
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
 
       addLibraryEvent("Token Received");
@@ -51,7 +50,6 @@ class InfobipMessageService {
               if (message != null)
                 {
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
-                  debugPrint(message.toString()),
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
                   /*addLibraryEvent("Message Received"),*/
                   // debugPrint(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
@@ -61,7 +59,6 @@ class InfobipMessageService {
         LibraryEvent.userUpdated,
         (event) => {
               debugPrint("--------Callback. USER_UPDATED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. USER_UPDATED event:------------"),
               /*addLibraryEvent("User Updated")*/
             });
@@ -69,7 +66,6 @@ class InfobipMessageService {
         LibraryEvent.personalized,
         (event) => {
               debugPrint("--------Callback. PERSONALIZED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. PERSONALIZED event:------------"),
               /*addLibraryEvent("Personalized")*/
             });
@@ -77,7 +73,6 @@ class InfobipMessageService {
         LibraryEvent.installationUpdated,
         (String event) => {
               debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
               addLibraryEvent("Installation Updated")
             });
@@ -85,7 +80,6 @@ class InfobipMessageService {
         LibraryEvent.depersonalized,
         (event) => {
               debugPrint("--------Callback. DEPERSONALIZED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. DEPERSONALIZED event:------------"),
               /*addLibraryEvent("Depersonalized")*/
             });
@@ -93,7 +87,6 @@ class InfobipMessageService {
         LibraryEvent.actionTapped,
         (event) => {
               debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
               addLibraryEvent("Notification Action Tapped")
             });
@@ -101,7 +94,6 @@ class InfobipMessageService {
         LibraryEvent.notificationTapped,
         (Message message) => {
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
-              debugPrint(message.toString()),
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
 
               // callback(true),
@@ -112,7 +104,6 @@ class InfobipMessageService {
         LibraryEvent.registrationUpdated,
         (String token) => {
               debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
-              debugPrint(token),
               debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
               addLibraryEvent("Registration Updated")
             });
