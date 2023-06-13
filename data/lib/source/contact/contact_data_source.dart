@@ -8,22 +8,27 @@ abstract class ContactRemoteDS {
   Future<HttpResponse<ResponseEntity>> addBeneficiary(
       {String nickName,
       String fullName,
-      String accountNumber,
-      String iBan,
-      String bankName,
-      String purpose,
-      String purposeDetails,
-      String imageFilePath});
-
-  Future<HttpResponse<ResponseEntity>> addContact(
-      {String nickName,
-      String fullName,
-      String emailAddress,
       String avatarImage,
-      bool isFav,
+      String beneficiaryType,
+      bool isFavourite,
       String userId,
       String identifier,
-      String isFromMobile});
+      bool isFromMobile,
+      String detCustomerType,
+      String alias,
+      String addressLine1,
+      String addressLine2,
+      String addressLine3,
+      String addressLine4,
+      int limit,
+      String IFSCCode,
+      String routingNo,
+      String sortCode,
+      String purposeType,
+      String purpose,
+      String purposeDetails,
+      String purposeParent,
+      String purposeParentDetails});
 
   Future<HttpResponse<ResponseEntity>> updateContact(
       {String beneficiaryDetailId,
@@ -46,10 +51,7 @@ abstract class ContactRemoteDS {
       String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateAvatar(
-      {String beneficiaryDetailId,
-        String avatarImage,
-        String userId,
-        String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       {String beneficiaryId, String nickName, String purpose, String purposeDetails});

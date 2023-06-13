@@ -121,8 +121,10 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
         IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
         purpose: purposeController.text,
+        beneficiaryType: '',
         purposeDetail: purposeDetailController.text,
-        name: nameController.text));
+        name: nameController.text,
+        fullName: ''));
   }
 
   void getError(Resource<bool> event) {
