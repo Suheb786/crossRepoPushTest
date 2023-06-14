@@ -39,7 +39,8 @@ class AddBeneficiaryUseCase extends BaseUseCase<BaseError, AddContactIBANuseCase
         purpose: params.purposeDetail,
         purposeDetails: '',
         purposeParent: '',
-        purposeParentDetails: '');
+        purposeParentDetails: '',
+        OTPCode: '576824');
   }
 }
 
@@ -65,7 +66,7 @@ class AddContactIBANuseCaseParams extends Params {
     if (Validator.isEmpty(name)) {
       return Left(
           AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_NICKNAME_VALUE));
-    } else if (name.length > 15) {
+    } else if (name.length > 50) {
       return Left(AppError(
           cause: Exception(),
           error: ErrorInfo(message: ""),

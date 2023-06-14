@@ -11,9 +11,9 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   ManageContactsRepositoryImpl(this._contactRemoteDS);
 
   @override
-  Future<Either<NetworkError, bool>> deleteBeneficiary({String? beneficiaryId}) async {
+  Future<Either<NetworkError, bool>> deleteBeneficiary({String? beneficiaryId, String? beneType}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.deleteBeneficiary(beneficiaryId: beneficiaryId!),
+      _contactRemoteDS.deleteBeneficiary(beneficiaryId: beneficiaryId!, beneType: beneType),
     );
     return result!.fold(
       (l) => Left(l),
@@ -44,9 +44,11 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   // }
 
   @override
-  Future<Either<NetworkError, bool>> updateBeneficiary({String? beneficiaryId, String? nickName}) async {
+  Future<Either<NetworkError, bool>> updateBeneficiary(
+      {String? beneficiaryId, String? nickName, String? beneType}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.updateBeneficiary(nickName: nickName!, beneficiaryId: beneficiaryId!),
+      _contactRemoteDS.updateBeneficiary(
+          nickName: nickName!, beneficiaryId: beneficiaryId!, beneType: beneType),
     );
     return result!.fold(
       (l) => Left(l),
@@ -224,7 +226,8 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
       String? purpose,
       String? purposeDetails,
       String? purposeParent,
-      String? purposeParentDetails}) async {
+      String? purposeParentDetails,
+      String? OTPCode}) async {
     final result = await safeApiCall(
       _contactRemoteDS.addBeneficiary(
           nickName: nickName!,
@@ -249,7 +252,8 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
           purpose: purpose!,
           purposeDetails: purposeDetails!,
           purposeParent: purposeParent!,
-          purposeParentDetails: purposeParentDetails!),
+          purposeParentDetails: purposeParentDetails!,
+          OTPCode: OTPCode!),
     );
     return result!.fold(
       (l) => Left(l),

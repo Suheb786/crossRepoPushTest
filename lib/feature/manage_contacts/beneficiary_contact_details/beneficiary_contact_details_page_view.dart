@@ -152,8 +152,10 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     InformationDialog.show(context, image: AssetUtils.removeContact, isSwipeToCancel: true,
                         onDismissed: () {
                       Navigator.pop(context);
+                    }, onSelected: () {
+                      Navigator.pop(context);
+                      model.deleteBeneficiary();
                     },
-                        onSelected: () {},
                         title: S.current.removeContact,
                         descriptionWidget: Text(S.current.areYouSureToremoveContact));
                   },

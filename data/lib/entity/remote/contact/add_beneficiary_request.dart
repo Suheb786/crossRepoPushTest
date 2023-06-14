@@ -50,6 +50,8 @@ class AddBeneficiaryRequest {
   final String? purposeParent;
   @JsonKey(name: "PurposeParentDetails")
   final String? purposeParentDetails;
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "BaseClass")
@@ -79,6 +81,7 @@ class AddBeneficiaryRequest {
     this.purposeDetails,
     this.purposeParent,
     this.purposeParentDetails,
+    this.otpCode,
     this.getToken = true,
     required this.baseData,
   });

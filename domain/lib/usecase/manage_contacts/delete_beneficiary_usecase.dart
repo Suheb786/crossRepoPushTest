@@ -12,14 +12,15 @@ class DeleteBeneficiaryUseCase extends BaseUseCase<NetworkError, DeleteBeneficia
 
   @override
   Future<Either<NetworkError, bool>> execute({required DeleteBeneficiaryUseCaseParams params}) {
-    return _repository.deleteBeneficiary(beneficiaryId: params.beneficiaryId);
+    return _repository.deleteBeneficiary(beneficiaryId: params.beneficiaryId, beneType: params.beneType);
   }
 }
 
 class DeleteBeneficiaryUseCaseParams extends Params {
   final String beneficiaryId;
+  final String beneType;
 
-  DeleteBeneficiaryUseCaseParams({required this.beneficiaryId});
+  DeleteBeneficiaryUseCaseParams({required this.beneficiaryId, required this.beneType});
 
   @override
   Either<AppError, bool> verify() {

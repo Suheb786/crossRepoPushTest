@@ -51,7 +51,8 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
       String? purpose,
       String? purposeDetails,
       String? purposeParent,
-      String? purposeParentDetails}) async {
+      String? purposeParentDetails,
+      String? OTPCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addBeneficiary(AddBeneficiaryRequest(
         nickName: nickName,
@@ -77,15 +78,16 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
         purposeDetails: purposeDetails,
         purposeParent: purposeParent,
         purposeParentDetails: purposeParentDetails,
+        otpCode: OTPCode,
         getToken: true,
         baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId}) async {
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deleteBeneficiary(
-        DeleteBeneficiaryRequest(beneficiaryId: beneficiaryId!, baseData: baseData.toJson()));
+    return _apiService.deleteBeneficiary(DeleteBeneficiaryRequest(
+        beneficiaryId: beneficiaryId!, beneType: beneType!, baseData: baseData.toJson()));
   }
 
   @override
@@ -96,10 +98,10 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
 
   @override
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
+      {String? beneficiaryId, String? nickName, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateBeneficiary(UpdateBeneficiaryRequest(
-        beneficiaryId: beneficiaryId!, nickName: nickName, baseData: baseData.toJson()));
+        beneficiaryId: beneficiaryId!, nickName: nickName, beneType: beneType, baseData: baseData.toJson()));
   }
 
   @override

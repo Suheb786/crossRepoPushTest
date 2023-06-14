@@ -506,14 +506,14 @@ abstract class ApiService {
   @POST("/beneficiary/GetBeneficiaries")
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(@Body() BaseRequest baseRequest);
 
-  @POST("/beneficiary/AddBeneficiary")
+  @POST("http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact")
   Future<HttpResponse<ResponseEntity>> addBeneficiary(@Body() AddBeneficiaryRequest addBeneficiaryRequest);
 
-  @POST("/beneficiary/UpdateBeneficiary")
+  @POST("http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact")
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
 
-  @POST("/beneficiary/DeleteBeneficiary")
+  @POST("http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact")
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
       @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
 

@@ -32,6 +32,7 @@ AddBeneficiaryRequest _$AddBeneficiaryRequestFromJson(
       purposeDetails: json['PurposeDetails'] as String?,
       purposeParent: json['PurposeParent'] as String?,
       purposeParentDetails: json['PurposeParentDetails'] as String?,
+      otpCode: json['OtpCode'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
@@ -62,6 +63,7 @@ Map<String, dynamic> _$AddBeneficiaryRequestToJson(
       'PurposeDetails': instance.purposeDetails,
       'PurposeParent': instance.purposeParent,
       'PurposeParentDetails': instance.purposeParentDetails,
+      'OtpCode': instance.otpCode,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

@@ -28,7 +28,8 @@ abstract class ContactRemoteDS {
       String purpose,
       String purposeDetails,
       String purposeParent,
-      String purposeParentDetails});
+      String purposeParentDetails,
+      String? OTPCode});
 
   Future<HttpResponse<ResponseEntity>> updateContact(
       {String beneficiaryDetailId,
@@ -54,9 +55,9 @@ abstract class ContactRemoteDS {
       {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String beneficiaryId, String nickName, String purpose, String purposeDetails});
+      {String beneficiaryId, String nickName, String? beneType});
 
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId, String? beneType});
 
   Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({
     String type,

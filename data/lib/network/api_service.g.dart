@@ -1329,7 +1329,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/beneficiary/AddBeneficiary',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1354,8 +1354,8 @@ class _ApiService implements ApiService {
       extra: _extra,
     )
             .compose(
-              _dio.options,
-              '/beneficiary/UpdateBeneficiary',
+          _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1380,8 +1380,8 @@ class _ApiService implements ApiService {
       extra: _extra,
     )
             .compose(
-              _dio.options,
-              '/beneficiary/DeleteBeneficiary',
+          _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContact',
               queryParameters: queryParameters,
               data: _data,
             )
