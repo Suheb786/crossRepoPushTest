@@ -41,7 +41,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
       child: Container(
         color: Theme.of(context).colorScheme.onSurface,
         child: Padding(
-          padding: const EdgeInsets.only(top: 52.0, bottom: 33),
+          padding: const EdgeInsets.only(top: 52.0, bottom: 30),
           child: Stack(
             alignment: AlignmentDirectional.centerStart,
             children: [

@@ -9,17 +9,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetDestinationUseCase] provider
 final getDestinationUseCaseProvider = Provider.autoDispose<GetDestinationUseCase>(
-      (ref) => GetDestinationUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetDestinationUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetOneWayTripLinkUseCase] provider
 final getOneWayTripLinkUseCaseProvider = Provider.autoDispose<GetOneWayTripLinkUseCase>(
-      (ref) => GetOneWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetOneWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetTwoWayTripLinkUseCase] provider
 final getTwoWayTripLinkUseCaseProvider = Provider.autoDispose<GetTwoWayTripLinkUseCase>(
-      (ref) => GetTwoWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetTwoWayTripLinkUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[GetFlightDetailsUseCase] provider

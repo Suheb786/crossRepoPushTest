@@ -1779,5 +1779,9 @@
   "others": "Others",
   "bookingConfirmation": "Booking Confirmation",
   "oopsTransactionFailed": "OOPS! TRANSACTION FAILED",
-  "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account"
+  "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account",
+  "bookingConfirmed": " BookingConfirmed!",
+  "bookingunsuccessful": "Booking Unsuccessful",
+  "bookingConfirmedDescription": "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!",
+  "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later."
 }

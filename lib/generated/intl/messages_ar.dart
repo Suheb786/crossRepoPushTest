@@ -432,8 +432,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Book Your Flight"),
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("Booking Confirmation"),
+        "bookingConfirmed":
+            MessageLookupByLibrary.simpleMessage(" BookingConfirmed!"),
+        "bookingConfirmedDescription": MessageLookupByLibrary.simpleMessage(
+            "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!"),
         "bookingRefNo":
             MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
+        "bookingUnsuccessDescription": MessageLookupByLibrary.simpleMessage(
+            "We\'re sorry, but we\'re unable to complete your flight booking at this time due toan error. Please try again later."),
+        "bookingunsuccessful":
+            MessageLookupByLibrary.simpleMessage("Booking Unsuccessful"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
             "تأكد من إضاءة المكان اللي إنت فيه"),

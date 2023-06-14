@@ -74,10 +74,10 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
                 }
 
                 // //Todo need to remove from code
-                String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+                // String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
 
-                Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                    arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+                // Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                //     arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
               },
             ),
             AppStreamBuilder<double>(

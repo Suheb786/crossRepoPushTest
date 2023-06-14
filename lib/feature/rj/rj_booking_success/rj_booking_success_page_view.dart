@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/feature/rj/rj_booking_success/rj_booking_success_page_view_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 import '../../../base/base_page.dart';
@@ -18,7 +19,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pop(context);
+          Navigator.pushNamed(context, RoutePaths.AppHome);
         }
       },
       child: Container(
@@ -52,7 +53,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
                                 color: Theme.of(context).canvasColor,
                               ),
                               child: Center(
-                                  child: AppSvg.asset(AssetUtils.cancel,
+                                  child: AppSvg.asset(AssetUtils.right,
                                       color: Theme.of(context).primaryColorDark)),
                             ),
                           ),
@@ -63,7 +64,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
                       height: 56.h,
                     ),
                     Text(
-                      "",
+                      S.current.bookingConfirmed,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -77,7 +78,7 @@ class RJBookingSuccessPageView extends BasePageViewWidget<RJBookingSuccessPageVi
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Text(
-                        "",
+                        S.current.bookingConfirmedDescription,
                         // model.description(context, model.rjBookingSuccessPageArguments.rjBookingSuccessState),
                         textAlign: TextAlign.center,
                         style: TextStyle(

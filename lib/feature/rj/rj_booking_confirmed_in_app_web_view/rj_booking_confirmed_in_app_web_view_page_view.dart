@@ -6,10 +6,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../base/base_page.dart';
+import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
 import '../../../utils/asset_utils.dart';
 import '../../../utils/color_utils.dart';
+import '../rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 
 class RJBookingConfirmedInAppWebViewPageView
     extends BasePageViewWidget<RJBookingConfirmedInAppWebViewPageViewModel> {
@@ -72,13 +74,13 @@ class RJBookingConfirmedInAppWebViewPageView
                         debugPrint('------RJ DETAILS----');
                         debugPrint('-----onload path ---->${url}');
                         String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-                        // Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                        //     arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+                        Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                            arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                         debugPrint('------RJ DETAILS----');
                       }
 
                       // //Todo need to remove from code
-                      String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+                      // String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
 
                       // Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
                       //     arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
@@ -124,12 +126,10 @@ class RJBookingConfirmedInAppWebViewPageView
 
   void _shareFiles(
     BuildContext context,
-    // GetDashboardDataContent? cardData,
   ) async {
-    // final box = context.findRenderObject() as RenderBox?;
     await Share.share(
-      '',
-      subject: 'URL',
+      'URL',
+      subject: 'booking confirmed',
     );
   }
 }

@@ -52,7 +52,7 @@ class RJBookingFailurePageView extends BasePageViewWidget<RJBookingFailurePageVi
                                 color: Theme.of(context).canvasColor,
                               ),
                               child: Center(
-                                  child: AppSvg.asset(AssetUtils.right,
+                                  child: AppSvg.asset(AssetUtils.cancel,
                                       color: Theme.of(context).primaryColorDark)),
                             ),
                           ),
@@ -63,7 +63,7 @@ class RJBookingFailurePageView extends BasePageViewWidget<RJBookingFailurePageVi
                       height: 56.h,
                     ),
                     Text(
-                      "",
+                      S.current.bookingunsuccessful,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
@@ -77,7 +77,7 @@ class RJBookingFailurePageView extends BasePageViewWidget<RJBookingFailurePageVi
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Text(
-                        "",
+                        S.current.bookingUnsuccessDescription,
                         // model.description(context, model.rjBookingSuccessPageArguments.rjBookingSuccessState),
                         textAlign: TextAlign.center,
                         style: TextStyle(

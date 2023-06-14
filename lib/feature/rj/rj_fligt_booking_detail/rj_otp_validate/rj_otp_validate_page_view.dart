@@ -75,7 +75,8 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                               amount: ProviderScope.containerOf(context)
                                       .read(rjMakePaymentViewModelProvider)
                                       .selectedCard
-                                      ?.amt ??
+                                      ?.amt
+                                      .toString() ??
                                   '',
                             );
                           }
@@ -96,7 +97,8 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                               amount: ProviderScope.containerOf(context)
                                       .read(rjMakePaymentViewModelProvider)
                                       .selectedCard
-                                      ?.amt ??
+                                      ?.amt
+                                      .toString() ??
                                   '',
                             );
                           } else {
