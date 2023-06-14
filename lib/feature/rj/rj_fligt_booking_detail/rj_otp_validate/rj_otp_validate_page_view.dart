@@ -35,9 +35,9 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                   Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
                       arguments: RjBookingPurchasePageArgument(1111111));
                 }
-                // //Todo remove from code
-                // Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
-                //     arguments: RjBookingPurchasePageArgument(1111111));
+                //Todo remove from code
+                Navigator.pushNamed(context, RoutePaths.RjFlightBookingPurchasePage,
+                    arguments: RjBookingPurchasePageArgument(1111111));
               },
               dataBuilder: (context, data) {
                 return ShakeAnimatedWidget(
@@ -165,7 +165,8 @@ class RjOtpValidatePageView extends BasePageViewWidget<RjOtpValidateViewModel> {
                                     padding: EdgeInsets.only(top: 16.0.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
-                                        initialData: false,
+                                        // initialData: false,
+                                        initialData: true,
                                         dataBuilder: (context, isValid) {
                                           return Visibility(
                                             visible: isValid!,

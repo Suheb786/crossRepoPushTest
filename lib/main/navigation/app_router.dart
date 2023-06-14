@@ -158,6 +158,7 @@ import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
+import '../../feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page.dart';
 import '../../feature/rj/rj_booking_success/rj_booking_success_page.dart';
 
 class AppRouter {
@@ -884,6 +885,12 @@ class AppRouter {
             builder: (context) => RJBookingSuccessPage(settings.arguments as RJBookingSuccessPageArguments),
             settings:
                 RouteSettings(name: RoutePaths.RJBookingSuccessPage, arguments: RjBookingPageArguments));
+
+      /// Rj Flight Booking Confirmation InAppWeb Page
+      case RoutePaths.RJBookingConfirmedInAppWebViewPage:
+        return CupertinoPageRoute(
+            builder: (context) => RJBookingConfirmedInAppWebViewPage(),
+            settings: RouteSettings(name: RoutePaths.RJBookingConfirmedInAppWebViewPage));
 
       case RoutePaths.LinkAccountPage:
         return CupertinoPageRoute(

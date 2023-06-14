@@ -26,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17543,6 +17545,36 @@ class S {
     return Intl.message(
       'Others',
       name: 'others',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Confirmation`
+  String get bookingConfirmation {
+    return Intl.message(
+      'Booking Confirmation',
+      name: 'bookingConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OOPS! TRANSACTION FAILED`
+  String get oopsTransactionFailed {
+    return Intl.message(
+      'OOPS! TRANSACTION FAILED',
+      name: 'oopsTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have insufficient balance in your account`
+  String get youHaveInsufficientBalanceInYourAccount {
+    return Intl.message(
+      'You have insufficient balance in your account',
+      name: 'youHaveInsufficientBalanceInYourAccount',
       desc: '',
       args: [],
     );

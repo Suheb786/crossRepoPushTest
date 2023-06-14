@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/rj/rj_modules.dart';
-import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view.dart';
+import 'package:neo_bank/feature/rj/rj_booking_confirmed_in_app_web_view/rj_booking_confirmed_in_app_web_view_page_view_model.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:neo_bank/utils/string_utils.dart';
+import 'package:riverpod/src/framework.dart';
 
+import '../../../base/base_page.dart';
+import '../../../di/rj/rj_modules.dart';
+import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../utils/color_utils.dart';
-import 'rj_booking_page_view.dart';
-import 'rj_booking_page_view_model.dart';
+import '../../../utils/string_utils.dart';
+import '../rj_booking_success/rj_booking_success_page.dart';
 
-class RjBookingPage extends BasePage<RjBookingPageViewModel> {
-  final RjBookingPageArguments rjBookingPageArguments;
-
-  RjBookingPage(this.rjBookingPageArguments);
-
+class RJBookingConfirmedInAppWebViewPage extends BasePage<RJBookingConfirmedInAppWebViewPageViewModel> {
   @override
-  RjBookingPageState createState() => RjBookingPageState();
+  State<StatefulWidget> createState() => RJBookingConfirmedInAppWebViewPageState();
 }
 
-class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBookingPage> {
+class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
+    RJBookingConfirmedInAppWebViewPageViewModel, RJBookingConfirmedInAppWebViewPage> {
   @override
-  ProviderBase provideBase() {
-    return rjBookingPageViewModelProvider.call(widget.rjBookingPageArguments);
-  }
+  Widget buildView(BuildContext context, RJBookingConfirmedInAppWebViewPageViewModel model) =>
+      RJBookingConfirmedInAppWebViewPageView(provideBase());
 
   @override
-  void onModelReady(RjBookingPageViewModel model) {}
+  ProviderBase provideBase() => rjBookingConfirmedInAppWebViewPageViewModel;
+
+  @override
+  void onModelReady(RJBookingConfirmedInAppWebViewPageViewModel model) {}
 
   @override
   bool extendBodyBehindAppBar() {
@@ -48,7 +48,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  S.current.bookYourFlight,
+                  S.current.bookingConfirmation,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
@@ -78,7 +78,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                             ]),
                         child: Center(
                           child: Icon(
-                            Icons.clear,
+                            Icons.check,
                             color: AppColor.very_light_blue,
                             size: 16,
                             weight: 1.5,
@@ -86,8 +86,9 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                         ),
                       ),
                       onTap: () {
-                        // Navigator.pop(context);
-                        Navigator.pushNamed(context, RoutePaths.RjFlightBookingPage);
+                        Navigator.pushNamed(context, RoutePaths.RJBookingSuccessPage,
+                            arguments: RJBookingSuccessPageArguments(
+                                rjBookingSuccessState: RJBookingSuccessState.BOOKING_SUCCESS));
                       }),
                 ),
               ),
@@ -99,20 +100,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
   }
 
   @override
-  Widget buildView(BuildContext context, RjBookingPageViewModel model) {
-    return RjBookingPageView(provideBase());
-  }
-
-  @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).colorScheme.onSurface;
   }
-}
-
-class RjBookingPageArguments {
-  final String? url;
-
-  RjBookingPageArguments({
-    this.url,
-  });
 }

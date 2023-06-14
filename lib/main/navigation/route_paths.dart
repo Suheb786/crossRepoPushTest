@@ -164,4 +164,5 @@ class RoutePaths {
   static const String RjFlightBookingPage = "/rjFlightBookingPage";
   static const String BeneficiaryTransactionHistoryList = "beneficiaryTransactionHistoryListPage";
   static const String RJBookingSuccessPage = "rjBookingSuccessPage";
+  static const String RJBookingConfirmedInAppWebViewPage = "rjBookingConfirmedInAppWebViewPage";
 }

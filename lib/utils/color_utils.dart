@@ -119,4 +119,7 @@ class AppColor {
   static const rj_gray = const Color(0xff95979A);
   static const dark_Grayish_Blue = const Color(0xffA6A9AC);
   static const light_gray_4 = const Color(0xffCFCFCF);
+  static const black_15 = const Color(0x26000000);
+  static const very_light_blue = const Color(0xff6FD5FF);
+  static const very_light_grayish_blue = const Color(0x5c3C3C435C);
 }

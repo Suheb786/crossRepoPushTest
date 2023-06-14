@@ -29,7 +29,7 @@ class RjOtpValidatePageState extends BaseStatefulPage<RjOtpValidateViewModel, Rj
 
   @override
   void onModelReady(RjOtpValidateViewModel model) {
-    model.countDownController = CountdownTimerController(endTime: model.endTime);
+    // model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override

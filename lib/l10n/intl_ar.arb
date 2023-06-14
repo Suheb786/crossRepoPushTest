@@ -1730,5 +1730,8 @@
   "requestMoneyFavourites": "Request Money Favourites",
   "favourites": "Favourites",
   "others": "Others",
-  "youPaid": "You paid"
+  "youPaid": "You paid",
+  "bookingConfirmation": "Booking Confirmation",
+  "oopsTransactionFailed": "OOPS! TRANSACTION FAILED",
+  "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account"
 }

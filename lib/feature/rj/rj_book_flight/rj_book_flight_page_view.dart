@@ -482,11 +482,19 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                                                 ),
                                               );
                                             }
+                                            Navigator.pushNamed(
+                                              context,
+                                              RoutePaths.RjBookingInAppWebView,
+                                              arguments: RjBookingPageArguments(
+                                                url: data.data?.content?.content?.link,
+                                              ),
+                                            );
                                           },
                                           dataBuilder: (context, getOneWayTripLinkResponse) {
                                             return AppStreamBuilder<bool>(
                                                 stream: model.allFieldValidatorStream,
-                                                initialData: false,
+                                                // initialData: false,
+                                                initialData: true,
                                                 dataBuilder: (context, isValid) {
                                                   return (isValid!)
                                                       ? AnimatedButton(

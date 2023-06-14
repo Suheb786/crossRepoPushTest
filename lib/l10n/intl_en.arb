@@ -1776,5 +1776,8 @@
   "contactInformationDetails": "Just give us any of these information that you know about your contact. We’ll sort out the rest for you.",
   "saveAsFavourite": "Where would like to save as favourite?",
   "favourites": "Favourites",
-  "others": "Others"
+  "others": "Others",
+  "bookingConfirmation": "Booking Confirmation",
+  "oopsTransactionFailed": "OOPS! TRANSACTION FAILED",
+  "youHaveInsufficientBalanceInYourAccount": "You have insufficient balance in your account"
 }

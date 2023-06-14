@@ -30,7 +30,7 @@ class RjFlightBookingStatefulPage extends BaseStatefulPage<RjFlightBookingViewMo
 
   @override
   void onModelReady(RjFlightBookingViewModel model) {
-    model.getDestination();
+    // model.getDestination();
 
     model.loadingStream.listen((value) {
       if (value) {
