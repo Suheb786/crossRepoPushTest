@@ -42,7 +42,9 @@ class BeneficiaryTransactionHistoryListPageState extends BaseStatefulPage<
                 style: TextStyle(
                     fontSize: 14.t,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.secondary),
+                    color: widget.navigationType == NavigationType.REQUEST_MONEY
+                        ? Theme.of(context).colorScheme.surfaceVariant
+                        : Theme.of(context).colorScheme.secondary),
               ),
             ),
           )),

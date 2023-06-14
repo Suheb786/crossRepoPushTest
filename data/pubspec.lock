@@ -998,14 +998,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
-  r_get_ip:
-    dependency: "direct main"
-    description:
-      name: r_get_ip
-      sha256: bc9c6442c1251fc9e554f9cdb438cc4a5b497cab65153e2ca0c203447c2cf0e9
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
   retrofit:
     dependency: "direct main"
     description:

@@ -106,7 +106,7 @@ class OtpForChangeDeviceConfirmationPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
-                          model.saveUserData();
+
                           if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
                             AntelopHelper.walletLogout();
                             model.clearWallet();

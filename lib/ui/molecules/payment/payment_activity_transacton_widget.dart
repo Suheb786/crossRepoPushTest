@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:domain/constants/enum/payment_type_enum.dart';
 import 'package:domain/constants/enum/request_money_activity_enum.dart';
 import 'package:domain/model/cliq/request_money_activity/request_money_activity_list.dart';
@@ -18,11 +16,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
   final Function(RequestMoneyActivityList) onAcceptButton;
   final Function(RequestMoneyActivityList) onRejectButton;
   final Function(RequestMoneyActivityList) onTapRTPStatus;
-
-  // final Function(RequestMoneyActivityList) onTapInWard;
   final Function(RequestMoneyActivityList) onTapInWardSendMoney;
-
-  // final Function(RequestMoneyActivityList) onTapOutWard;
   final Function(RequestMoneyActivityList) onTapOutWardSendMoney;
 
   const PaymentActivityTransactionWidget(
@@ -31,7 +25,6 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       required this.onRejectButton,
       required this.onTapRTPStatus,
       required this.onTapInWardSendMoney,
-      // required this.onTapOutWard,
       required this.onTapOutWardSendMoney,
       required this.content})
       : super(key: key);
@@ -74,7 +67,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                               child: Center(
                                   child: Text(
-                                StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
+                                StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).colorScheme.secondary,
@@ -153,7 +146,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                                   child: Center(
                                       child: Text(
-                                    StringUtils.getFirstInitials(content.data?[index].dbtrName ?? ''),
+                                    StringUtils.getFirstInitials(content.data?[index].cdtrName ?? ''),
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).colorScheme.secondary,
@@ -479,7 +472,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
     return RichText(
         maxLines: 3,
         text: TextSpan(
-            text: "${data?.cdtrName ?? ""} ",
+            text: "${data?.dbtrName ?? ""} ",
             style: TextStyle(
               fontFamily: StringUtils.appFont,
               fontSize: 12.0.t,
@@ -489,7 +482,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
             ),
             children: [
               TextSpan(
-                text: " " + S.of(context).sent.toLowerCase(),
+                text: ((data?.allowReturn ?? false)
+                    ? S.of(context).sent.toLowerCase()
+                    : S.of(context).returned),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontSize: 12.0.t,
@@ -603,53 +598,6 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                     ),
                   ]),
             ]));
-
-    // switch (data?.trxStatus ?? RequestMoneyActivityStatusEnum.CATEGORY_NONE) {
-    //   case RequestMoneyActivityStatusEnum.CATEGORY_ACCEPTED:
-    //     return RichText(
-    //         maxLines: 3,
-    //         text: TextSpan(
-    //             text: S.of(context).youSent,
-    //             style: TextStyle(
-    //                 fontFamily: StringUtils.appFont,
-    //                 fontSize: 12.0.t,
-    //                 overflow: TextOverflow.ellipsis,
-    //                 fontWeight: FontWeight.w400,
-    //                 color: Theme.of(context).primaryColorDark),
-    //             children: [
-    //               TextSpan(
-    //                   text: "${(data?.amount ?? 0.0).toString()} ${data?.curr ?? ''}",
-    //                   style: TextStyle(
-    //                       fontFamily: StringUtils.appFont,
-    //                       fontSize: 12.0.t,
-    //                       fontWeight: FontWeight.w600,
-    //                       color: Theme.of(context).primaryColorDark),
-    //                   children: [
-    //                     TextSpan(
-    //                       text: S.of(context).to,
-    //                       style: TextStyle(
-    //                           fontFamily: StringUtils.appFont,
-    //                           fontSize: 12.0.t,
-    //                           fontWeight: FontWeight.w400,
-    //                           color: Theme.of(context).primaryColorDark),
-    //                       children: [],
-    //                     ),
-    //                     TextSpan(
-    //                       text: " ${data?.cdtrName ?? ''}",
-    //                       style: TextStyle(
-    //                         fontFamily: StringUtils.appFont,
-    //                         fontSize: 12.0.t,
-    //                         overflow: TextOverflow.ellipsis,
-    //                         fontWeight: FontWeight.w600,
-    //                         color: AppColor.sky_blue_mid,
-    //                         // color: AppColor.sky_blue_mid,
-    //                       ),
-    //                     ),
-    //                   ]),
-    //             ]));
-    //   default:
-    //     return Container();
-    // }
   }
 
   Widget getItemForOutwardRTP(BuildContext context, RequestMoneyActivityList? data) {

@@ -7,5 +7,5 @@ abstract class InfobipMessageLocalDs {
 
   Future<bool> saveUser(UserData userData);
 
-  bool depersonalizeUser();
+  Future<bool> depersonalizeUser();
 }

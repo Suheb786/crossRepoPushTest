@@ -95,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountDormant":
             MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
-            "Oops! Your credit card application has failed as your account is inactive. Please call us on 06-5200100 to activate your account."),
+            "You cannot apply for a credit card when your account is inactive. Please call us on 06-5200100 to activate your account."),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is inactive. Call us on 06-5200100 to activate your account."),
         "accountHolderName":
@@ -497,7 +497,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancelThisCard":
             MessageLookupByLibrary.simpleMessage("Cancel this card"),
         "cannotApplyCCInsufficientFunds": MessageLookupByLibrary.simpleMessage(
-            "You can not apply for credit card due to insufficient funds"),
+            "You cannot apply for credit card due to insufficient funds"),
         "cannotProceedNoAhwalDataFound": MessageLookupByLibrary.simpleMessage(
             "Sorry, onboarding is currently only available to Jordanian nationals."),
         "cardApplyMsg": MessageLookupByLibrary.simpleMessage(
@@ -909,6 +909,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
+        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, your credit card application has failed!"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -2625,6 +2627,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Return On"),
         "returnPayment": MessageLookupByLibrary.simpleMessage("Return Payment"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
+        "returned": MessageLookupByLibrary.simpleMessage("returned"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -3187,7 +3190,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You can change the above details in the card settings "),
         "youCanNotRequestMoneyFromYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
-                "You can not request money from your own account"),
+                "You cannot request money from your own account"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "You can now pay all your bills with Blink. Few swipes away and you are done. Pay your first one today! "),
         "youCannotSendMoneyToYourOwnAccount":

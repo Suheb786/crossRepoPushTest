@@ -21,9 +21,11 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   static String m0(additionalIncomeList) =>
+     
       "إضافة دخل\n${additionalIncomeList}";
 
   static String m1(variable) =>
+     
       "أدخل الرمز المكون من 6 أرقام المرسل إلى {متغير}";
 
   static String m2(mobile) => "Enter the 6-digit code sent to\n${mobile}";
@@ -94,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountDormant":
             MessageLookupByLibrary.simpleMessage("Account is Dormant"),
         "accountDormantDesc": MessageLookupByLibrary.simpleMessage(
-            "عفوا! لم تتم عملية طلبك للبطاقة الائتمانية بنجاح لأن حسابك غير فعال. اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
+            "ما بتقدر تطلب بطاقة ائتمانية لأنه حسابك غير فعال، اتصل بنا على 5200100-06 ليتم تفعيل الحساب"),
         "accountDormantError": MessageLookupByLibrary.simpleMessage(
             "عفوا! حسابك غير فعال. اتصل بنا على ٠٦٥٢٠٠١٠٠ ليتم تفعيل الحساب"),
         "accountHolderName":
@@ -888,6 +890,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-081)"),
         "dontNeedMyCardAnymore":
             MessageLookupByLibrary.simpleMessage("بطلت محتاج بطاقتي "),
+        "dormantAccountCCFailedTitle": MessageLookupByLibrary.simpleMessage(
+            "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -2106,7 +2110,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بطاقتك غير فعالة"),
         "oopscliqIDEnteredIsInvalid": MessageLookupByLibrary.simpleMessage(
             "عفوا! الاسم المستعار المدخل غير مسجل"),
-        "openAccount": MessageLookupByLibrary.simpleMessage("فتح حساب"),
+        "openAccount": MessageLookupByLibrary.simpleMessage("افتح حساب"),
         "openAccountNow": MessageLookupByLibrary.simpleMessage("افتح حساب هلأ"),
         "openDateIssuedMessage": MessageLookupByLibrary.simpleMessage(
             "تم رفض دفع الفاتوره بسبب عدم استحقاقها"),
@@ -2533,6 +2537,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("عودة"),
         "returnPayment": MessageLookupByLibrary.simpleMessage("أرجاع دفعة"),
         "returnTitle": MessageLookupByLibrary.simpleMessage("العودة"),
+        "returned": MessageLookupByLibrary.simpleMessage("ارجع"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("مراجعة الطلب"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -3077,7 +3082,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
         "youCanNotRequestMoneyFromYourOwnAccount":
             MessageLookupByLibrary.simpleMessage(
-                "لا يمكنك طلب المال من حسابك الخاص"),
+                "عفوا! ما بتقدر تطلب حوالة من نفس حسابك"),
         "youCanPayAllYourBillsNow": MessageLookupByLibrary.simpleMessage(
             "يمكنك الآن دفع جميع فواتيرك من خلال بلينك، بخطوات بسيطة \"\nادفع أول دفعة اليوم!"),
         "youCannotSendMoneyToYourOwnAccount":

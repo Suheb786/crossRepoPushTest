@@ -34,7 +34,6 @@ class PostPaidBillCardWidget extends StatelessWidget {
           }
         } else {
           if (details.primaryVelocity!.isNegative) {
-            print('isNegative2');
             ProviderScope.containerOf(context)
                 .read(paymentHomeViewModelProvider)
                 .appSwiperController
@@ -97,7 +96,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                         Container(
                           height: 112.h,
                           width: 112.w,
-                          child: AppSvg.asset(AssetUtils.logoeFawateerRed),
+                          child: Image.asset(AssetUtils.logoeFawateerRed),
                         ),
                         SizedBox(
                           height: 8.h,
