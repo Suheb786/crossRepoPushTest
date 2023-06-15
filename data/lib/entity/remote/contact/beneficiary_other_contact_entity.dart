@@ -1,3 +1,4 @@
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:domain/model/manage_contacts/beneficiary_other_contact.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -111,7 +112,7 @@ class BeneficiaryOtherContactEntity
         beneficiaryIban: this.beneficiaryIban,
         beneficiaryType: this.beneficiaryType,
         mobileNumber: this.mobileNumber,
-        image: this.image,
+        image: this.image != null ? ImageUtils.dataFromBase64String(this.image!) : '',
         purpose: this.purpose,
         purposeDetails: this.purposeDetails,
         purposeParent: this.purposeParent,
