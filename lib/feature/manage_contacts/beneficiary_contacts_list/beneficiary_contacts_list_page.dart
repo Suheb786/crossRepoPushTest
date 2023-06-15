@@ -100,6 +100,7 @@ class BeneficiaryContactListPageState
     if (widget.navigationType == NavigationType.REQUEST_MONEY) {
       _tabController.index = 1;
     }
+    model.navigationType = widget.navigationType;
 
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {

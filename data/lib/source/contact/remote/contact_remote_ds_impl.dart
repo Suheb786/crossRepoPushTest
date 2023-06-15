@@ -33,30 +33,63 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   Future<HttpResponse<ResponseEntity>> addBeneficiary(
       {String? nickName,
       String? fullName,
-      String? accountNumber,
-      String? iBan,
-      String? bankName,
+      String? avatarImage,
+      String? beneficiaryType,
+      bool? isFavourite,
+      String? userId,
+      String? identifier,
+      bool? isFromMobile,
+      String? detCustomerType,
+      String? alias,
+      String? addressLine1,
+      String? addressLine2,
+      String? addressLine3,
+      String? addressLine4,
+      int? limit,
+      String? IFSCCode,
+      String? routingNo,
+      String? sortCode,
+      String? purposeType,
       String? purpose,
       String? purposeDetails,
-      String? imageFilePath}) async {
+      String? purposeParent,
+      String? purposeParentDetails,
+      String? OTPCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addBeneficiary(AddBeneficiaryRequest(
-        image: ImageUtils.convertToBase64(imageFilePath!),
-        accountNo: accountNumber,
-        bankName: bankName,
-        fullName: fullName,
-        iBan: iBan,
         nickName: nickName,
+        fullName: fullName,
+        avatarImg: avatarImage,
+        beneficiaryType: beneficiaryType,
+        isFavourite: isFavourite,
+        userId: userId,
+        identifier: identifier,
+        isFromMobile: isFromMobile,
+        detCustomerType: detCustomerType,
+        alias: alias,
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        addressLine3: addressLine3,
+        addressLine4: addressLine4,
+        limit: limit,
+        IFSCCode: IFSCCode,
+        routingNo: routingNo,
+        sortCode: sortCode,
+        purposeType: purposeType,
         purpose: purpose,
         purposeDetails: purposeDetails,
+        purposeParent: purposeParent,
+        purposeParentDetails: purposeParentDetails,
+        otpCode: OTPCode,
+        getToken: true,
         baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId}) async {
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deleteBeneficiary(
-        DeleteBeneficiaryRequest(beneficiaryId: beneficiaryId!, baseData: baseData.toJson()));
+    return _apiService.deleteBeneficiary(DeleteBeneficiaryRequest(
+        beneficiaryId: beneficiaryId!, beneType: beneType!, baseData: baseData.toJson()));
   }
 
   @override
@@ -67,10 +100,10 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
 
   @override
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
+      {String? beneficiaryId, String? nickName, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateBeneficiary(UpdateBeneficiaryRequest(
-        beneficiaryId: beneficiaryId!, nickName: nickName, baseData: baseData.toJson()));
+        beneficiaryId: beneficiaryId!, nickName: nickName, beneType: beneType, baseData: baseData.toJson()));
   }
 
   @override
