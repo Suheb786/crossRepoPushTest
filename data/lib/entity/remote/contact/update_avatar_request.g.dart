@@ -9,10 +9,10 @@ part of 'update_avatar_request.dart';
 UpdateAvatarRequest _$UpdateAvatarRequestFromJson(Map<String, dynamic> json) =>
     UpdateAvatarRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String?,
-      userId: json['UserId'] as String?,
+      userId: json['UserId'] as String? ?? '',
       image: json['BeneImage'] as String?,
       beneType: json['BeneType'] as String?,
-      nickName: json['Nickname'] as String?,
+      nickName: json['Nickname'] as String? ?? '',
       isFromMobile: json['IsFromMobile'] as bool? ?? true,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
