@@ -29,7 +29,10 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
         top: 24.h,
       ),
       child: Column(
-        children: [searchContact(context, model), listItem(context, model)],
+        children: [
+          searchContact(context, model),
+          listItem(context, model),
+        ],
       ),
     );
   }
@@ -114,129 +117,134 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                         ? Expanded(
                             child: Column(
                               children: [
-                                Card(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  elevation: 2,
-                                  shadowColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
-                                  margin: EdgeInsets.only(top: 16.h),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Visibility(
-                                          visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                      ?.beneficiaryFavoriteContact ??
-                                                  [])
-                                              .isNotEmpty,
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 16.w, top: 24.h),
-                                            child: Text(S.of(context).favourites,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 14.t,
-                                                    color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                Flexible(
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    elevation: 2,
+                                    shadowColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+                                    margin: EdgeInsets.only(top: 16.h),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                        ?.beneficiaryFavoriteContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 16.w, top: 24.h),
+                                              child: Text(S.of(context).favourites,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 14.t,
+                                                      color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                            ),
                                           ),
-                                        ),
-                                        Visibility(
-                                          visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                      ?.beneficiaryFavoriteContact ??
-                                                  [])
-                                              .isNotEmpty,
-                                          child: ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              ///send data from api response once updated
-                                              return BeneficiaryListWidget(
-                                                beneficiary: beneficiaryList
-                                                    ?.data
-                                                    ?.beneficiarySendMoneyContact
-                                                    ?.beneficiaryFavoriteContact![index],
-                                                onTap: () async {
-                                                  // var result = await Navigator.pushNamed(
-                                                  //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                  //     arguments: beneficiaryList?.data![index]);
-                                                  //
-                                                  // if (result != null) {
-                                                  //   // model.getBeneficiaryList();
-                                                  // }
-                                                },
-                                                onFavClick: (beneficiary) {
-                                                  model.markAsFavorite(
-                                                      beneficiaryDetailId: beneficiary.id,
-                                                      isFavorite: false,
-                                                      userId: beneficiary.userId,
-                                                      isFromMobile: true,
-                                                      beneType: beneficiary.beneficiaryType);
-                                                },
-                                              );
-                                            },
-                                            shrinkWrap: true,
-                                            physics: ClampingScrollPhysics(),
-                                            itemCount: beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                ?.beneficiaryFavoriteContact?.length,
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                        ?.beneficiaryFavoriteContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: ListView.builder(
+                                              itemBuilder: (context, index) {
+                                                ///send data from api response once updated
+                                                return BeneficiaryListWidget(
+                                                  beneficiary: beneficiaryList
+                                                      ?.data
+                                                      ?.beneficiarySendMoneyContact
+                                                      ?.beneficiaryFavoriteContact![index],
+                                                  onTap: () async {
+                                                    // var result = await Navigator.pushNamed(
+                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                    //     arguments: beneficiaryList?.data![index]);
+                                                    //
+                                                    // if (result != null) {
+                                                    //   // model.getBeneficiaryList();
+                                                    // }
+                                                  },
+                                                  onFavClick: (beneficiary) {
+                                                    model.markAsFavorite(
+                                                        beneficiaryDetailId: beneficiary.id,
+                                                        isFavorite: false,
+                                                        userId: beneficiary.userId,
+                                                        isFromMobile: true,
+                                                        beneType: beneficiary.beneficiaryType);
+                                                  },
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              physics: ClampingScrollPhysics(),
+                                              itemCount: beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                  ?.beneficiaryFavoriteContact?.length,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 32.h,
-                                        ),
-                                        Visibility(
-                                          visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                      ?.beneficiaryOtherContact ??
-                                                  [])
-                                              .isNotEmpty,
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 16.w),
-                                            child: Text(S.of(context).others,
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 14.t,
-                                                    color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                          SizedBox(
+                                            height: 32.h,
                                           ),
-                                        ),
-                                        Visibility(
-                                          visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                      ?.beneficiaryOtherContact ??
-                                                  [])
-                                              .isNotEmpty,
-                                          child: ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              ///send data from api response once updated
-                                              return BeneficiaryListWidget(
-                                                beneficiary: beneficiaryList
-                                                    ?.data
-                                                    ?.beneficiarySendMoneyContact
-                                                    ?.beneficiaryOtherContact![index],
-                                                onTap: () async {
-                                                  // var result = await Navigator.pushNamed(
-                                                  //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                  //     arguments: beneficiaryList?.data![index]);
-                                                  //
-                                                  // if (result != null) {
-                                                  //   // model.getBeneficiaryList();
-                                                  // }
-                                                },
-                                                onFavClick: (beneficiary) {
-                                                  model.markAsFavorite(
-                                                      beneficiaryDetailId: beneficiary.id,
-                                                      isFavorite: true,
-                                                      userId: beneficiary.userId,
-                                                      isFromMobile: true,
-                                                      beneType: beneficiary.beneficiaryType);
-                                                },
-                                              );
-                                            },
-                                            shrinkWrap: true,
-                                            physics: ClampingScrollPhysics(),
-                                            itemCount: beneficiaryList?.data?.beneficiarySendMoneyContact
-                                                ?.beneficiaryOtherContact?.length,
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                        ?.beneficiaryOtherContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 16.w),
+                                              child: Text(S.of(context).others,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 14.t,
+                                                      color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                        ?.beneficiaryOtherContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: ListView.builder(
+                                              itemBuilder: (context, index) {
+                                                ///send data from api response once updated
+                                                return BeneficiaryListWidget(
+                                                  beneficiary: beneficiaryList
+                                                      ?.data
+                                                      ?.beneficiarySendMoneyContact
+                                                      ?.beneficiaryOtherContact![index],
+                                                  onTap: () async {
+                                                    // var result = await Navigator.pushNamed(
+                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                    //     arguments: beneficiaryList?.data![index]);
+                                                    //
+                                                    // if (result != null) {
+                                                    //   // model.getBeneficiaryList();
+                                                    // }
+                                                  },
+                                                  onFavClick: (beneficiary) {
+                                                    model.markAsFavorite(
+                                                        beneficiaryDetailId: beneficiary.id,
+                                                        isFavorite: true,
+                                                        userId: beneficiary.userId,
+                                                        isFromMobile: true,
+                                                        beneType: beneficiary.beneficiaryType);
+                                                  },
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              physics: ClampingScrollPhysics(),
+                                              itemCount: beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                  ?.beneficiaryOtherContact?.length,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 24.h,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
