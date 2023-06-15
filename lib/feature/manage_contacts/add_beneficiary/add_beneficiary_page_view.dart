@@ -7,13 +7,13 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
-import 'package:riverpod/src/framework.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
+import '../../../di/manage_contacts/manage_contacts_modules.dart';
+import '../../../utils/navgition_type.dart';
 import 'add_beneficiary_otp/add_beneficiary_otp_page.dart';
 import 'add_beneficiary_page_view_model.dart';
 import 'add_contacts_form/add_beneficiary_form_page.dart';
@@ -47,8 +47,12 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                       size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.white,
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      activeColor: model.navigationType == NavigationType.SEND_MONEY
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).colorScheme.shadow,
+                      color: model.navigationType == NavigationType.SEND_MONEY
+                          ? Theme.of(context).primaryColorLight.withOpacity(0.3)
+                          : Theme.of(context).colorScheme.onInverseSurface),
                 );
               }),
           SizedBox(height: 36.0.h),
@@ -63,7 +67,9 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                           S.current.addContact.toUpperCase(),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: model.navigationType == NavigationType.SEND_MONEY
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : Theme.of(context).colorScheme.shadow,
                               fontSize: 10,
                               fontWeight: FontWeight.w600),
                         ),
@@ -79,12 +85,19 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                             StepTextHelper.addContact_IBAN(
                               currentPage ?? 0,
                               S.current.pleaseEnterYourContactDetails,
-                              S.current.enterThe6DigitCodewithExtraString("+912 843 32989"),
+                              S.current.enterThe6DigitCodewithExtraString(
+                                currentPage == 1
+                                    ? "${(ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileCode.replaceAll('00', '+'))}" +
+                                        " ${ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileNumber}"
+                                    : '',
+                              ),
                             ),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).colorScheme.secondary,
+                                color: model.navigationType == NavigationType.SEND_MONEY
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context).colorScheme.shadow,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600),
                           ),

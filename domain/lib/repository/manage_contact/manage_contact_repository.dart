@@ -3,6 +3,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:domain/model/manage_contacts/beneficiary_search_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 
 abstract class ManageContactRepository {
   Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries();
@@ -90,4 +91,8 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
     required String beneType,
   });
+  Future<Either<NetworkError, bool>> searchContact({required String searchText, required bool isFromMobile});
+
+  @override
+  Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
 }

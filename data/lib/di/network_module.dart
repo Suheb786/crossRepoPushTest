@@ -58,11 +58,11 @@ final baseOptions = Provider<BaseOptions>((ref) => BaseOptions(baseUrl: NetworkP
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
   (ref) => PrettyDioLogger(
-    request: false,
-    requestBody: false,
-    requestHeader: false,
-    responseBody: false,
-    responseHeader: false,
+    request: true,
+    requestBody: true,
+    requestHeader: true,
+    responseBody: true,
+    responseHeader: true,
     logPrint: (log) {
       return debugPrint(log as String);
     },

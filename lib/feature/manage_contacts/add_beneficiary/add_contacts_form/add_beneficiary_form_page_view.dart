@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -35,11 +36,13 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
             duration: Duration(milliseconds: 100),
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
-            child: AppStreamBuilder<Resource<bool>>(
+            child: AppStreamBuilder<Resource<SendOtpAddBeneficiaryResponse>>(
                 initialData: Resource.none(),
                 stream: model.addcontactIBANStream,
                 onData: (value) {
                   if (value.status == Status.SUCCESS) {
+                    model.mobileNumber = value.data!.sendOTPAddBeneficiary!.mobileNumber!;
+                    model.mobileCode = value.data!.sendOTPAddBeneficiary!.mobileCode!;
                     ProviderScope.containerOf(context).read(addBeneficiaryViewModelProvider).nextPage();
                   }
                 },
@@ -54,7 +57,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                         FocusScope.of(context).unfocus();
                         if (StringUtils.isDirectionRTL(context)) {
                           if (!details.primaryVelocity!.isNegative) {
-                            model.validationUserInput();
+                            model.validationUserInput(context);
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(addBeneficiaryViewModelProvider)
@@ -62,7 +65,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                           }
                         } else {
                           if (details.primaryVelocity!.isNegative) {
-                            model.validationUserInput();
+                            model.validationUserInput(context);
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(addBeneficiaryViewModelProvider)
