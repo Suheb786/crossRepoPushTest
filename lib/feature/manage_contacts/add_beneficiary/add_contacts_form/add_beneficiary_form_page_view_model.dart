@@ -125,11 +125,13 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   validationUserInput() {
     addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
         IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
-        purpose: purposeController.text,
-        beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RM' : 'SM',
-        purposeDetail: purposeDetail!.strCode!,
+        purpose: '',
+        beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
+        purposeDetail: purposeDetail?.strCode ?? '',
         name: nameController.text,
-        fullName: ''));
+        fullName: navigationType == NavigationType.REQUEST_MONEY
+            ? getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? ''
+            : transferResponse.name ?? ''));
   }
 
   void getError(Resource<bool> event) {

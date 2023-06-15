@@ -235,7 +235,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                     width: 16.0.w,
                                                     padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                     child: AppSvg.asset(AssetUtils.downArrow,
-                                                        color: AppColor.dark_gray_1));
+                                                        color: Theme.of(context).colorScheme.surfaceTint));
                                               },
                                             ),
                                           );
@@ -271,7 +271,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                     width: 16.0.w,
                                                     padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                     child: AppSvg.asset(AssetUtils.downArrow,
-                                                        color: AppColor.dark_gray_1));
+                                                        color: Theme.of(context).colorScheme.surfaceTint));
                                               },
                                             ),
                                           );

@@ -1354,7 +1354,7 @@ class _ApiService implements ApiService {
       extra: _extra,
     )
             .compose(
-          _dio.options,
+              _dio.options,
               'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContact',
               queryParameters: queryParameters,
               data: _data,
