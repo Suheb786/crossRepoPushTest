@@ -77,7 +77,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
         bankName: this.bankName ?? '',
         nickName: this.nickName,
         fullName: this.fullName,
-        imageUrl: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : '',
+        imageUrl: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : null,
         purpose: this.purpose,
         purposeDetails: this.purposeDetails,
         mobileNumber: this.mobileNumber,

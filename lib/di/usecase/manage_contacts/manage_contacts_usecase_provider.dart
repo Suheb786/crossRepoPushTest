@@ -6,6 +6,7 @@ import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/list_of_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_usecase.dart';
+import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
 import 'package:domain/usecase/manage_contacts/search_contact_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_favorite_usecase.dart';
@@ -38,6 +39,13 @@ final uploadBeneficiaryProfileImageUseCaseProvider =
     Provider.autoDispose<UploadBeneficiaryProfileImageUseCase>(
   (ref) => UploadBeneficiaryProfileImageUseCase(ref.read(manageContactRepositoryProvider)),
 );
+
+///[RemoveBeneficiaryProfileImageUseCase] provider
+final removeBeneficiaryProfileImageUseCaseProvider =
+Provider.autoDispose<RemoveBeneficiaryProfileImageUseCase>(
+        (ref) => RemoveBeneficiaryProfileImageUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
 
 ///[VerifyBeneficiaryOtpUseCase] provider
 final verifyBeneficiaryOtpUseCaseProvider = Provider.autoDispose<VerifyBeneficiaryOtpUseCase>(

@@ -517,13 +517,17 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
       @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
 
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContactImage")
+  Future<HttpResponse<ResponseEntity>> updateContactImage(
+      @Body() UpdateAvatarRequest updateContactImageRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContactImage")
+  Future<HttpResponse<ResponseEntity>> removeContactImage(
+      @Body() RemoveAvatarRequest removeContactImageRequest);
+
   @POST("/beneficiary/VerifyBeneficiaryOTP")
   Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
       @Body() VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest);
-
-  @POST("/beneficiary/UploadBeneficiaryImage")
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
-      @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
   @POST("/Dashboard/GetDashboardDataV4")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
@@ -1165,11 +1169,4 @@ abstract class ApiService {
   @POST("/ManageContacts/DeleteContact")
   Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
 
-  ///update avatar contact
-  @POST("/ManageContacts/UpdateAvatar")
-  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
-
-  ///Remove Avatar
-  @POST("/ManageContacts/RemoveAvatar")
-  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
 }
