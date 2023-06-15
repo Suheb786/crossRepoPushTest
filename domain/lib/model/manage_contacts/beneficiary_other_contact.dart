@@ -24,7 +24,7 @@ class BeneficiaryOtherContact {
   final String? beneficiaryIban;
   final String? beneficiaryType;
   final String? mobileNumber;
-  final String? image;
+  final dynamic image;
   final String? purpose;
   final String? purposeDetails;
   final String? purposeParent;
