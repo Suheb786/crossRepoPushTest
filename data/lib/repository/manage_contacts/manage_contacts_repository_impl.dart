@@ -11,36 +11,9 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   ManageContactsRepositoryImpl(this._contactRemoteDS);
 
   @override
-  Future<Either<NetworkError, bool>> addContact(
-      {String? nickName,
-      String? fullName,
-      String? emailAddress,
-      String? avatarImage,
-      bool? isFav,
-      String? userId,
-      String? identifier,
-      String? isFromMobile}) async {
+  Future<Either<NetworkError, bool>> deleteBeneficiary({String? beneficiaryId, String? beneType}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.addContact(
-          nickName: nickName!,
-          fullName: fullName!,
-          emailAddress: emailAddress!,
-          avatarImage: avatarImage!,
-          isFav: isFav!,
-          userId: userId!,
-          identifier: identifier!,
-          isFromMobile: isFromMobile!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> deleteBeneficiary({String? beneficiaryId}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.deleteBeneficiary(beneficiaryId: beneficiaryId!),
+      _contactRemoteDS.deleteBeneficiary(beneficiaryId: beneficiaryId!, beneType: beneType),
     );
     return result!.fold(
       (l) => Left(l),
@@ -71,9 +44,11 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   // }
 
   @override
-  Future<Either<NetworkError, bool>> updateBeneficiary({String? beneficiaryId, String? nickName}) async {
+  Future<Either<NetworkError, bool>> updateBeneficiary(
+      {String? beneficiaryId, String? nickName, String? beneType}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.updateBeneficiary(nickName: nickName!, beneficiaryId: beneficiaryId!),
+      _contactRemoteDS.updateBeneficiary(
+          nickName: nickName!, beneficiaryId: beneficiaryId!, beneType: beneType),
     );
     return result!.fold(
       (l) => Left(l),
@@ -220,6 +195,65 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
           avatarImage: avatarImage!,
           userId: userId!,
           isFromMobile: isFromMobile!),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> addBeneficiary(
+      {String? nickName,
+      String? fullName,
+      String? avatarImage,
+      String? beneficiaryType,
+      bool? isFavourite,
+      String? userId,
+      String? identifier,
+      bool? isFromMobile,
+      String? detCustomerType,
+      String? alias,
+      String? addressLine1,
+      String? addressLine2,
+      String? addressLine3,
+      String? addressLine4,
+      int? limit,
+      String? IFSCCode,
+      String? routingNo,
+      String? sortCode,
+      String? purposeType,
+      String? purpose,
+      String? purposeDetails,
+      String? purposeParent,
+      String? purposeParentDetails,
+      String? OTPCode}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.addBeneficiary(
+          nickName: nickName!,
+          fullName: fullName!,
+          avatarImage: avatarImage!,
+          beneficiaryType: beneficiaryType!,
+          isFavourite: isFavourite!,
+          userId: userId!,
+          identifier: identifier!,
+          isFromMobile: isFromMobile!,
+          detCustomerType: detCustomerType!,
+          alias: alias!,
+          addressLine1: addressLine1!,
+          addressLine2: addressLine2!,
+          addressLine3: addressLine3!,
+          addressLine4: addressLine4!,
+          limit: limit!,
+          IFSCCode: IFSCCode!,
+          routingNo: routingNo!,
+          sortCode: sortCode!,
+          purposeType: purposeType!,
+          purpose: purpose!,
+          purposeDetails: purposeDetails!,
+          purposeParent: purposeParent!,
+          purposeParentDetails: purposeParentDetails!,
+          OTPCode: OTPCode!),
     );
     return result!.fold(
       (l) => Left(l),

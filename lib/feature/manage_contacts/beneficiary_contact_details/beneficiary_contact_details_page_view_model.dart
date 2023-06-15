@@ -2,7 +2,6 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
-import 'package:domain/usecase/manage_contacts/update_favorite_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,24 +16,13 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-instance-valiables-------------------------------------///
 
   final UploadDocumentUseCase _uploadDocumentUseCase;
-  final UpdateFavoriteUseCase _updateFavoriteUseCase;
   final DeleteBeneficiaryUseCase _deleteBeneficiaryUseCase;
   final UpdateBeneficiaryUseCase _updateBeneficiaryUseCase;
   final Beneficiary argument;
 
   ///---------------------------textEditing-controller----------------------------///
-
-  TextEditingController editNameController = TextEditingController();
-  TextEditingController editEmailController = TextEditingController();
-  TextEditingController editIbanController = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
   FocusNode nickNameFocus = FocusNode();
-
-  ///-----------------------------Favourite Beneficiary---------------------------------///
-  PublishSubject<UpdateFavoriteUseCaseParams> _updateFavouriteRequest = PublishSubject();
-  PublishSubject<String> _updateFavouriteResponse = PublishSubject();
-
-  Stream<String> get _updateFavouriteStream => _updateFavouriteResponse.stream;
 
   ///-----------------------------Delete Beneficiary---------------------------------///
   PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
@@ -60,16 +48,6 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
   String selectedProfile = '';
 
-  ///---------------------------Request Money--------------------------------///
-  BehaviorSubject<bool> _favouriteAsRequestMoneySubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get favouriteAsRequestMoneyStream => _favouriteAsRequestMoneySubject.stream;
-
-  ///---------------------------Send Money--------------------------------///
-  BehaviorSubject<bool> _favouriteAsSendMoneySubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get favouriteAsSendMoneyStream => _favouriteAsSendMoneySubject.stream;
-
   // bool isEditable;
 
   ValueNotifier<bool> nameEditableNotifier = ValueNotifier(true);
@@ -77,24 +55,6 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   NavigationType? navigationType;
 
   ///--------------------------public-other-methods-------------------------------------///
-
-  void toggleFavouriteAsSendMoney(bool value) {
-    _favouriteAsSendMoneySubject.safeAdd(value);
-  }
-
-  void toggleFavouriteAsRequestMoney(bool value) {
-    _favouriteAsRequestMoneySubject.safeAdd(value);
-  }
-
-  bool visibleSaveButton() {
-    if (editNameController.text != editEmailController.text ||
-        editIbanController.text != editEmailController.text ||
-        editEmailController.text != editIbanController.text) {
-      return true;
-    }
-
-    return false;
-  }
 
   void addImage(String image) {
     _selectedImageSubject.safeAdd(image);
@@ -104,29 +64,23 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
     _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
-  void updateFavourite(bool isSendMoneyFav, bool isRequestMoneyFav) {
-    _updateFavouriteRequest.safeAdd(UpdateFavoriteUseCaseParams(
-      beneficiaryDetailId: '',
-      isSendMoneyFav: _favouriteAsSendMoneySubject.value,
-      isRequestMoneyFav: _favouriteAsRequestMoneySubject.value,
-      userId: '',
-      isFromMobile: true,
-    ));
-  }
-
   void deleteBeneficiary() {
-    _deleteBeneficiaryRequest.safeAdd(DeleteBeneficiaryUseCaseParams(beneficiaryId: ''));
+    _deleteBeneficiaryRequest.safeAdd(DeleteBeneficiaryUseCaseParams(
+        beneficiaryId: argument.id!,
+        beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }
 
   void updateBeneficiary() {
-    _updateBeneficiaryRequest.safeAdd(
-        UpdateBeneficiaryUseCaseParams(beneficiaryId: argument.id!, nickName: nickNameController.text));
+    _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
+        beneficiaryId: argument.id!,
+        nickName: nickNameController.text,
+        beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }
 
   ///--------------------------public-constructor-------------------------------------///
 
-  BeneficiaryContactDetailsPageViewModel(this._uploadDocumentUseCase, this._updateFavoriteUseCase,
-      this._deleteBeneficiaryUseCase, this._updateBeneficiaryUseCase, this.argument) {
+  BeneficiaryContactDetailsPageViewModel(this._uploadDocumentUseCase, this._deleteBeneficiaryUseCase,
+      this._updateBeneficiaryUseCase, this.argument) {
     nickNameController.text = argument.nickName!;
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -138,19 +92,14 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       });
     });
 
-    _updateFavouriteRequest.listen((value) {
-      RequestManager(value, createCall: () => _updateFavoriteUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        if (event.status == Status.SUCCESS) {}
-      });
-    });
-
     _deleteBeneficiaryRequest.listen((value) {
       RequestManager(value, createCall: () => _deleteBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        if (event.status == Status.SUCCESS) {}
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          Navigator.pop(appLevelKey.currentContext!);
+        }
       });
     });
 
@@ -158,10 +107,10 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         if (event.status == Status.SUCCESS) {}
       });
     });
-
   }
 
   removeImage() {
@@ -177,12 +126,11 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   setNickNameReadOnly() {
     nameEditableNotifier.value = true;
+    updateBeneficiary();
   }
 
   @override
   void dispose() {
-    _favouriteAsSendMoneySubject.close();
-    _favouriteAsRequestMoneySubject.close();
     super.dispose();
   }
 }

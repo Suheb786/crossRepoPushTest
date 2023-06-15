@@ -128,7 +128,6 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                             var result = await Navigator.pushNamed(
                                                 context, RoutePaths.BeneficiaryContactDetailsPage,
                                                 arguments: beneficiaryList?.data![index]);
-
                                             if (result != null) {
                                               // model.getBeneficiaryList();
                                             }

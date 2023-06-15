@@ -30,12 +30,8 @@ final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBen
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>((ref, args) =>
-        BeneficiaryContactDetailsPageViewModel(
-            ref.read(uploadDocumentUseCaseProvider),
-            ref.read(updateFavoriteUseCaseProvider),
-            ref.read(deleteBeneficiaryUseCaseProvider),
-            ref.read(updateBeneficiaryUseCaseProvider),
-            args));
+        BeneficiaryContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider),
+            ref.read(deleteBeneficiaryUseCaseProvider), ref.read(updateBeneficiaryUseCaseProvider), args));
 
 final beneficiaryTransactionHistoryListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryTransactionHistoryListPageViewModel>(
