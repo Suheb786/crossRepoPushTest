@@ -10,6 +10,8 @@ class UpdateBeneficiaryRequest {
   final String? nickName;
   @JsonKey(name: "IsFromMobile")
   final bool isFromMobile;
+  @JsonKey(name: "BeneType")
+  final String? beneType;
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "BaseClass")
@@ -19,6 +21,7 @@ class UpdateBeneficiaryRequest {
     required this.beneficiaryId,
     this.nickName,
     this.isFromMobile = true,
+    required this.beneType,
     this.getToken = true,
     required this.baseData,
   });

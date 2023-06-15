@@ -37,6 +37,11 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                   initialData: Resource.none(),
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
+                      // TODO : yet to implement inorder to set themeing in the next pages.
+                      // final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+                      //   beneficiaryContactListPageViewModelProvider,
+                      // );
+                      // provider.navigationType! =
                       Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage);
                       model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
                           title: S.current.success, description: S.current.newContacthasBeenAdded));

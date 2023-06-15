@@ -8,6 +8,8 @@ class DeleteBeneficiaryRequest {
   final String beneficiaryId;
   @JsonKey(name: "IsFromMobile")
   final bool isFromMobile;
+  @JsonKey(name: "BeneType")
+  final String beneType;
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "BaseClass")
@@ -16,6 +18,7 @@ class DeleteBeneficiaryRequest {
   DeleteBeneficiaryRequest({
     required this.beneficiaryId,
     this.isFromMobile = true,
+    required this.beneType,
     this.getToken = true,
     required this.baseData,
   });
