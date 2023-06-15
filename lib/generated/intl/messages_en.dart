@@ -3055,6 +3055,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload ID instead"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("Upload Signature"),
+        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(

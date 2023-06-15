@@ -319,7 +319,6 @@ class RjFlightBookingView extends BasePageViewWidget<RjFlightBookingViewModel> {
                               ),
                               Container(
                                 height: 90.h,
-                                // width: double.infinity,
                                 child: ListView.separated(
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {

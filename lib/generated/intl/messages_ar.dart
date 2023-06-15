@@ -21,11 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   static String m0(additionalIncomeList) =>
-     
       "إضافة دخل\n${additionalIncomeList}";
 
   static String m1(variable) =>
-     
       "أدخل الرمز المكون من 6 أرقام المرسل إلى {متغير}";
 
   static String m2(mobile) => "Enter the 6-digit code sent to\n${mobile}";
@@ -2951,6 +2949,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أو حمّل صورة هويتك"),
         "uploadSignature":
             MessageLookupByLibrary.simpleMessage("تحميل التوقيع"),
+        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "رقم تعريف دافع الضريبة في أمريكا"),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(

@@ -90,7 +90,6 @@ class DashboardFeaturesEntity
         isLoginFeatureEnabled: isLoginEnabled ?? false,
         isRegisterFeatureEnabled: isRegisterEnabled ?? false,
         isRJFeatureEnabled: isGoRJEnabled ?? false,
-        // isRJFeatureEnabled: true,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
         isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false,
         blinkRetailAppBillPayment: this.blinkRetailAppBillPayment ?? false,

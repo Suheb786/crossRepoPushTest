@@ -29,7 +29,6 @@ class S {
     final name = (locale.countryCode?.isEmpty ?? false)
         ? locale.languageCode
         : locale.toString();
-  
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -17636,6 +17635,16 @@ class S {
     return Intl.message(
       'returned',
       name: 'returned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message(
+      'URL',
+      name: 'url',
       desc: '',
       args: [],
     );

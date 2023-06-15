@@ -41,7 +41,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
       child: Container(
         color: Theme.of(context).colorScheme.onSurface,
         child: Padding(
-          padding: const EdgeInsets.only(top: 57.0, bottom: 30),
+          padding: EdgeInsetsDirectional.only(top: 57.0.h, bottom: 30.0.h),
           child: Stack(
             alignment: AlignmentDirectional.centerStart,
             children: [
@@ -79,7 +79,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
                         child: Center(
                           child: Icon(
                             Icons.clear,
-                            color: AppColor.very_light_blue,
+                            color: Theme.of(context).colorScheme.onTertiaryContainer,
                             size: 16,
                             weight: 1.5,
                           ),

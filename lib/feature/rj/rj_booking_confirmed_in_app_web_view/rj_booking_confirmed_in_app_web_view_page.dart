@@ -41,7 +41,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
       child: Container(
         color: Theme.of(context).colorScheme.onSurface,
         child: Padding(
-          padding: const EdgeInsets.only(top: 52.0, bottom: 30),
+          padding: EdgeInsetsDirectional.only(top: 52.0.h, bottom: 30.h),
           child: Stack(
             alignment: AlignmentDirectional.centerStart,
             children: [
@@ -57,7 +57,6 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
                       fontSize: 14.t),
                 ),
               ),
-              // Spacer(),
               Align(
                 alignment: AlignmentDirectional.topEnd,
                 child: Padding(
@@ -79,7 +78,7 @@ class RJBookingConfirmedInAppWebViewPageState extends BaseStatefulPage<
                         child: Center(
                           child: Icon(
                             Icons.check,
-                            color: AppColor.very_light_blue,
+                            color: Theme.of(context).colorScheme.onTertiaryContainer,
                             size: 16,
                             weight: 1.5,
                           ),

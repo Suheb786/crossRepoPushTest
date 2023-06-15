@@ -1739,5 +1739,6 @@
   "bookingConfirmedDescription": "You got the best deal. You will receive your booking details on your email. Enjoy your trip and travel safe!",
   "bookingUnsuccessDescription": "We're sorry, but we're unable to complete your flight booking at this time due toan error. Please try again later.",
   "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح",
-  "returned": "ارجع"
+  "returned": "ارجع",
+  "url": "URL"
 }

@@ -6,6 +6,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../base/base_page.dart';
+import '../../../generated/l10n.dart';
 import '../../../main/navigation/route_paths.dart';
 import '../../../ui/molecules/app_svg.dart';
 import '../../../ui/molecules/stream_builder/app_stream_builder.dart';
@@ -42,8 +43,6 @@ class RJBookingConfirmedInAppWebViewPageView
                     onWebViewCreated: (controller) {},
                     onPageCommitVisible: (con, uri) {
                       debugPrint("url ${uri.toString()}");
-                      // Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
-                      //  con.goBack();
                     },
                     onProgressChanged: (controller, progress) {
                       model.setIndicatorProgressValue(progress / 100);
@@ -78,12 +77,6 @@ class RJBookingConfirmedInAppWebViewPageView
                             arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                         debugPrint('------RJ DETAILS----');
                       }
-
-                      // //Todo need to remove from code
-                      // String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
-
-                      // Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
-                      //     arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
                     },
                   ),
                   AppStreamBuilder<double>(
@@ -108,7 +101,8 @@ class RJBookingConfirmedInAppWebViewPageView
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   padding: EdgeInsetsDirectional.only(end: 20.w),
-                  icon: AppSvg.asset(AssetUtils.share, color: AppColor.very_light_blue),
+                  icon: AppSvg.asset(AssetUtils.share,
+                      color: Theme.of(context).colorScheme.onTertiaryContainer),
                   onPressed: () {
                     _shareFiles(context);
                   },
@@ -128,7 +122,7 @@ class RJBookingConfirmedInAppWebViewPageView
     BuildContext context,
   ) async {
     await Share.share(
-      'URL',
+      S.current.url,
       subject: 'booking confirmed',
     );
   }
