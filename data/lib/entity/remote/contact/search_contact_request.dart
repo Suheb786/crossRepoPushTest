@@ -5,20 +5,24 @@ part 'search_contact_request.g.dart';
 @JsonSerializable()
 class SearchContactRequest {
   @JsonKey(name: "SearchText")
-  final String? searchText;
+  final String searchText;
 
   @JsonKey(name: "IsFromMobile")
-  final bool? isFromMobile;
+  final bool isFromMobile;
+
+  @JsonKey(name: "BeneType")
+  final String beneType;
 
   @JsonKey(name: "GetToken")
-  final bool? getToken;
+  final bool getToken;
 
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   SearchContactRequest({
-    this.searchText,
-    this.isFromMobile,
+    required this.searchText,
+    required this.isFromMobile,
+    required this.beneType,
     this.getToken = true,
     required this.baseData,
   });

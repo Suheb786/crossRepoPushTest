@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_search_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 
@@ -116,10 +118,34 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> listOfContacts({required bool isFromMobile}) async {
+  Future<Either<NetworkError, BeneficiaryContact>> beneficiaryContacts({
+    required bool isFromMobile,
+  }) async {
     final result = await safeApiCall(
-      _contactRemoteDS.listOfContacts(isFromMobile: isFromMobile),
+      _contactRemoteDS.beneficiaryContacts(
+        isFromMobile: isFromMobile,
+      ),
     );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> beneficiaryMarkFavorite({
+    required String beneficiaryDetailId,
+    required bool isFavorite,
+    required String userId,
+    required bool isFromMobile,
+    required String beneType,
+  }) async {
+    final result = await safeApiCall(_contactRemoteDS.beneficiaryMarkFavorite(
+        beneficiaryDetailId: beneficiaryDetailId,
+        isFavorite: isFavorite,
+        userId: userId,
+        isFromMobile: isFromMobile,
+        beneType: beneType));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -127,35 +153,17 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> searchContact(
-      {required String searchText, required bool isFromMobile}) async {
+  Future<Either<NetworkError, BeneficiarySearchContact>> searchContact({
+    required String searchText,
+    required bool isFromMobile,
+    required String beneType,
+  }) async {
     final result = await safeApiCall(
-      _contactRemoteDS.searchContact(searchText: searchText, isFromMobile: isFromMobile),
+      _contactRemoteDS.searchContact(searchText: searchText, isFromMobile: isFromMobile, beneType: beneType),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> updateFavorite(
-      {required String beneficiaryDetailId,
-      required bool isSendMoneyFav,
-      required bool isRequestMoneyFav,
-      required String userId,
-      required bool isFromMobile}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.updateFavorite(
-          beneficiaryDetailId: beneficiaryDetailId,
-          isSendMoneyFav: isSendMoneyFav,
-          isRequestMoneyFav: isRequestMoneyFav,
-          userId: userId,
-          isFromMobile: isFromMobile),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
