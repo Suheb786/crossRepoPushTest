@@ -83,68 +83,60 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     return AppStreamBuilder<String>(
                         initialData: "",
                         stream: model.selectedImageValue,
-                        onData: (data) {
-                          if (data.isNotEmpty) {
-                            model.selectedProfile = data;
-                          }
-                        },
+                        onData: (data) {},
                         dataBuilder: (context, image) {
                           return GestureDetector(
-                            onTap: () {
-                              EditProfilePicBottomSheetSelectionWidget.show(context, onCancel: () {
-                                Navigator.pop(context);
-                              }, onRemovePhoto: () {
-                                model.removeImage();
-                                Navigator.pop(context);
-                              }, onSelectFromLibrary: () {
-                                model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                Navigator.pop(context);
-                              }, onTakePhoto: () {
-                                model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                Navigator.pop(context);
-                              }, title: S.current.pleaseSelectYourAction);
-                            },
-                            child: image!.isEmpty
-                                ? Stack(
-                                    alignment: Alignment.bottomRight,
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Theme.of(context).primaryColor,
-                                        radius: 48.w,
-                                        child: Text(
-                                          StringUtils.getFirstInitials(model.argument.fullName),
-                                          style: TextStyle(
-                                            color: AppColor.white,
-                                            fontSize: 22.t,
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                              onTap: () {
+                                EditProfilePicBottomSheetSelectionWidget.show(context, onCancel: () {
+                                  Navigator.pop(context);
+                                }, onRemovePhoto: () {
+                                  model.removeImage();
+                                  Navigator.pop(context);
+                                }, onSelectFromLibrary: () {
+                                  model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                  Navigator.pop(context);
+                                }, onTakePhoto: () {
+                                  model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                  Navigator.pop(context);
+                                }, title: S.current.pleaseSelectYourAction);
+                              },
+                              child: Stack(
+                                alignment: Alignment.bottomRight,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  image!.isEmpty
+                                      ? model.argument.imageUrl.isEmpty
+                                          ? CircleAvatar(
+                                              backgroundColor: Theme.of(context).primaryColor,
+                                              radius: 48.w,
+                                              child: Text(
+                                                StringUtils.getFirstInitials(model.argument.fullName),
+                                                style: TextStyle(
+                                                  color: AppColor.white,
+                                                  fontSize: 22.t,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ))
+                                          : CircleAvatar(
+                                              radius: 48.w,
+                                              backgroundImage: Image.memory(
+                                                model.argument.imageUrl,
+                                                fit: BoxFit.cover,
+                                              ).image,
+                                            )
+                                      : CircleAvatar(
+                                          radius: 48.w,
+                                          backgroundImage: Image.file(
+                                            File(image),
+                                            fit: BoxFit.contain,
+                                          ).image,
                                         ),
-                                      ),
-                                      Positioned(
-                                          bottom: -11.h,
-                                          right: -6.w,
-                                          child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
-                                    ],
-                                  )
-                                : Stack(
-                                    alignment: Alignment.bottomRight,
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 48.w,
-                                        backgroundImage: Image.file(
-                                          File(image),
-                                          fit: BoxFit.contain,
-                                        ).image,
-                                      ),
-                                      Positioned(
-                                          bottom: -11.h,
-                                          right: -6.w,
-                                          child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
-                                    ],
-                                  ),
-                          );
+                                  Positioned(
+                                      bottom: -11.h,
+                                      right: -6.w,
+                                      child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
+                                ],
+                              ));
                         });
                   }),
               InkWell(

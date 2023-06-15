@@ -54,7 +54,7 @@ abstract class ContactRemoteDS {
       String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateAvatar(
-      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String beneType});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       {String beneficiaryId, String nickName, String? beneType});
@@ -66,7 +66,6 @@ abstract class ContactRemoteDS {
     String otpCode,
   });
 
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
     required bool isFromMobile,
@@ -81,7 +80,8 @@ abstract class ContactRemoteDS {
     required String beneType,
   });
 
-  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType});
 
   Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite({
     required String beneficiaryDetailId,

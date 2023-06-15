@@ -59,17 +59,6 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String? filePath, String? beneficiaryId}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.uploadBeneficiaryImage(beneficiaryId: beneficiaryId!, filePath: filePath!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
     final result = await safeApiCall(
       _contactRemoteDS.verifyBeneficiaryOtp(type: type!, otpCode: otpCode!),
@@ -196,13 +185,28 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
 
   @override
   Future<Either<NetworkError, bool>> updateAvatar(
-      {String? beneficiaryDetailId, String? avatarImage, String? userId, String? isFromMobile}) async {
+      {String? beneficiaryDetailId, String? avatarImage, String? beneType}) async {
     final result = await safeApiCall(
       _contactRemoteDS.updateAvatar(
-          beneficiaryDetailId: beneficiaryDetailId!,
-          avatarImage: avatarImage!,
-          userId: userId!,
-          isFromMobile: isFromMobile!),
+        beneficiaryDetailId: beneficiaryDetailId!,
+        avatarImage: avatarImage!,
+        beneType: beneType!,
+      ),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.removeAvatar(
+        beneficiaryDetailId: beneficiaryDetailId,
+        beneType: beneType,
+      ),
     );
     return result!.fold(
       (l) => Left(l),
