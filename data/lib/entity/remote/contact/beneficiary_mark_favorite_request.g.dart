@@ -1,25 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_contact_request.dart';
+part of 'beneficiary_mark_favorite_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchContactRequest _$SearchContactRequestFromJson(
-        Map<String, dynamic> json) =>
-    SearchContactRequest(
-      searchText: json['SearchText'] as String,
+BeneficiaryMarkFavoriteRequest _$BeneficiaryMarkFavoriteRequestFromJson(Map<String, dynamic> json) =>
+    BeneficiaryMarkFavoriteRequest(
+      beneficiaryDetailId: json['BeneficiaryDetailId'] as String,
+      isFavorite: json['IsFavorite'] as bool,
+      userId: json['UserId'] as String,
       isFromMobile: json['IsFromMobile'] as bool,
       beneType: json['BeneType'] as String,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$SearchContactRequestToJson(
-        SearchContactRequest instance) =>
+Map<String, dynamic> _$BeneficiaryMarkFavoriteRequestToJson(BeneficiaryMarkFavoriteRequest instance) =>
     <String, dynamic>{
-      'SearchText': instance.searchText,
+      'BeneficiaryDetailId': instance.beneficiaryDetailId,
+      'IsFavorite': instance.isFavorite,
+      'UserId': instance.userId,
       'IsFromMobile': instance.isFromMobile,
       'BeneType': instance.beneType,
       'GetToken': instance.getToken,

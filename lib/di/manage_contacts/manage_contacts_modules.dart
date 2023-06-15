@@ -12,7 +12,8 @@ import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history
 
 final beneficiaryContactListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryContactListPageViewModel>(
-  (ref) => BeneficiaryContactListPageViewModel(ref.read(getBeneficiaryUseCaseProvider)),
+  (ref) => BeneficiaryContactListPageViewModel(ref.read(beneficiaryContactUseCaseProvider),
+      ref.read(searchContactUseCaseProvider), ref.read(beneficiaryMarkFavoriteUseCase)),
 );
 
 final addBeneficiaryViewModelProvider =

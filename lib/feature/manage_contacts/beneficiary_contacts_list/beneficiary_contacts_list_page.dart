@@ -90,7 +90,7 @@ class BeneficiaryContactListPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return getViewModel().navigationType == NavigationType.REQUEST_MONEY
+    return widget.navigationType == NavigationType.REQUEST_MONEY
         ? Theme.of(context).canvasColor
         : Theme.of(context).primaryColor;
   }
@@ -115,6 +115,7 @@ class BeneficiaryContactListPageState
             widget.navigationType = NavigationType.REQUEST_MONEY;
             model.navigationType = NavigationType.REQUEST_MONEY;
             model.changeBackgroundColor();
+            break;
         }
       }
     });

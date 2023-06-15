@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
@@ -66,20 +68,26 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 
-  Future<HttpResponse<ResponseEntity>> updateFavorite(
-      {required String beneficiaryDetailId,
-      required bool isSendMoneyFav,
-      required bool isRequestMoneyFav,
-      required String userId,
-      required bool isFromMobile});
-
-  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile});
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
+    required bool isFromMobile,
+  });
 
   Future<HttpResponse<ResponseEntity>> contactDetail(
       {required String beneficiaryDetailId, required bool isFromMobile});
 
-  Future<HttpResponse<ResponseEntity>> searchContact(
-      {required String searchText, required bool isFromMobile});
+  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact({
+    required String searchText,
+    required bool isFromMobile,
+    required String beneType,
+  });
 
   Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId});
+
+  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite({
+    required String beneficiaryDetailId,
+    required bool isFavorite,
+    required String userId,
+    required bool isFromMobile,
+    required String beneType,
+  });
 }
