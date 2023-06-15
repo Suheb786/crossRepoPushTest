@@ -171,7 +171,7 @@ import 'package:data/entity/remote/contact/search_contact_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/update_favorite_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
-import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
 import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
@@ -292,6 +292,8 @@ import 'package:retrofit/retrofit.dart';
 
 import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
+import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
+import '../entity/remote/contact/send_otp_add_beneficiary_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 
@@ -525,9 +527,9 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> removeContactImage(
       @Body() RemoveAvatarRequest removeContactImageRequest);
 
-  @POST("/beneficiary/VerifyBeneficiaryOTP")
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
-      @Body() VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest);
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContactOtp")
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
   @POST("/Dashboard/GetDashboardDataV4")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(

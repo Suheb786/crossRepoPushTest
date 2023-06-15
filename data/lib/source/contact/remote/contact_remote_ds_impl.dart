@@ -10,12 +10,12 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
 import 'package:data/entity/remote/contact/remove_avatar_request.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
 import 'package:data/entity/remote/contact/update_avatar_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/update_contact_request.dart';
 import 'package:data/entity/remote/contact/update_favorite_request.dart';
-import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
-import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/contact/contact_data_source.dart';
@@ -105,10 +105,10 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      {String? type, String? otpCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyBeneficiaryOtp(
-        VerifyBeneficiaryOtpRequest(type: type!, otp: otpCode!, baseData: baseData.toJson()));
+    return _apiService.sendOTPAddBeneficiary(SendOTPAddBeneficiaryRequest(baseData: baseData.toJson()));
   }
 
   @override

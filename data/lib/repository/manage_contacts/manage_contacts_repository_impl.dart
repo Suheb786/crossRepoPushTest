@@ -3,6 +3,7 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 
 class ManageContactsRepositoryImpl with ManageContactRepository {
@@ -57,13 +58,13 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
+  Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary() async {
     final result = await safeApiCall(
-      _contactRemoteDS.verifyBeneficiaryOtp(type: type!, otpCode: otpCode!),
+      _contactRemoteDS.sendOTPAddBeneficiary(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 

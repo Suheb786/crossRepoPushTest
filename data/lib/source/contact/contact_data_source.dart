@@ -2,6 +2,8 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
+
 abstract class ContactRemoteDS {
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries();
 
@@ -59,10 +61,6 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId, String? beneType});
 
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({
-    String type,
-    String otpCode,
-  });
 
 
   Future<HttpResponse<ResponseEntity>> updateFavorite(
@@ -82,4 +80,6 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> removeAvatar(
       {required String beneficiaryDetailId, required String beneType});
+
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary();
 }

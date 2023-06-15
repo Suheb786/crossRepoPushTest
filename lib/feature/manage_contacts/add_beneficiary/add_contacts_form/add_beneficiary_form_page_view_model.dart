@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:domain/constants/enum/check_send_money_message_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
-import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
+import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
@@ -31,7 +30,7 @@ import '../../../../utils/string_utils.dart';
 
 class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
-  final AddBeneficiaryUseCase addContactIBANuseCase;
+  final AddBeneficiaryOTPUseCase addBeneficiaryOTPUseCase;
   final GetPurposeUseCase getPurposeUseCase;
   final GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
@@ -83,10 +82,11 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------addContact-subject-------------------------------------///
 
-  PublishSubject<AddContactIBANuseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<bool>> addcontactIBANuseCaseResponse = PublishSubject();
+  PublishSubject<AddBeneficiaryOTPUseCaseParams> addcontactIBANuseCaseRequest = PublishSubject();
+  BehaviorSubject<Resource<SendOtpAddBeneficiaryResponse>> addcontactIBANuseCaseResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get addcontactIBANStream => addcontactIBANuseCaseResponse.stream;
+  Stream<Resource<SendOtpAddBeneficiaryResponse>> get addcontactIBANStream =>
+      addcontactIBANuseCaseResponse.stream;
 
   ///---------------------------get-purpose---------------------------///
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
@@ -95,6 +95,9 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
   ///--------------------------public-other-methods-------------------------------------///
+
+  String mobileNumber = '';
+  String mobileCode = '';
 
   BehaviorSubject<String> _showNameVisibilityRequest = BehaviorSubject.seeded('');
 
@@ -122,15 +125,15 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
     }
   }
 
-  validationUserInput() {
-    addcontactIBANuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
+  validationUserInput(BuildContext buildContext) {
+    addcontactIBANuseCaseRequest.safeAdd(AddBeneficiaryOTPUseCaseParams(
         IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
         purpose: '',
         beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
         purposeDetail: purposeDetail?.strCode ?? '',
         name: nameController.text,
         fullName: navigationType == NavigationType.REQUEST_MONEY
-            ? getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? ''
+            ? getAccountByAliasContentResponse.getAccountByAliasContent?.name ?? ''
             : transferResponse.name ?? ''));
   }
 
@@ -175,11 +178,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   }
 
   void callAPIforRequestAndSendMoney() {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
-      addBeneficiaryViewModelProvider,
-    );
-    navigationType = provider.navigationType;
-    if (provider.navigationType == NavigationType.REQUEST_MONEY) {
+    if (navigationType == NavigationType.REQUEST_MONEY) {
       if (ibanOrMobileController.text.isNotEmpty) {
         getAccountByAlias(ibanOrMobileController.text, 'JOD');
       }
@@ -192,20 +191,19 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  AddBeneficiaryFormPageViewModel(this.addContactIBANuseCase, this.getPurposeUseCase,
+  AddBeneficiaryFormPageViewModel(this.addBeneficiaryOTPUseCase, this.getPurposeUseCase,
       this._checkSendMoneyUseCase, this._getAccountByAliasUseCase) {
     addcontactIBANuseCaseRequest.listen(
       (value) {
-        RequestManager(value, createCall: () => addContactIBANuseCase.execute(params: value)).asFlow().listen(
+        RequestManager(value, createCall: () => addBeneficiaryOTPUseCase.execute(params: value))
+            .asFlow()
+            .listen(
           (event) {
             updateLoader();
             addcontactIBANuseCaseResponse.safeAdd(event);
             if (event.status == Status.ERROR) {
-              getError(event);
               showErrorState();
               showToastWithError(event.appError!);
-
-              log("error......");
             }
           },
         );
@@ -303,5 +301,10 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+      addBeneficiaryViewModelProvider,
+    );
+    navigationType = provider.navigationType;
   }
 }

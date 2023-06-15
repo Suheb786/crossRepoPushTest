@@ -1,7 +1,9 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/usecase/manage_contacts/add_beneficiary_OTP_usecase.dart';
+import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
+import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -10,6 +12,8 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../di/manage_contacts/manage_contacts_modules.dart';
+import '../../../../main/app_viewmodel.dart';
 import '../../../../utils/navgition_type.dart';
 
 class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
@@ -24,7 +28,8 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///--------------------------final-valiables-------------------------------------///
 
   final GlobalKey<AppTextFieldState> otpKey = GlobalKey();
-  final AddBeneficiaryOTPUseCase addContactIbanOTPuseCase;
+  final AddBeneficiaryUseCase addBeneficiaryUseCase;
+  final ResendOTPAddBeneficiaryUseCase resendOTPAddBeneficiaryUseCase;
 
   ///--------------------------controllers-------------------------------------///
 
@@ -32,7 +37,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
 
   ///-----------------add-contact-iban-otp-subjects-------------------------------------///
 
-  PublishSubject<AddContactIbanOTPuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
+  PublishSubject<AddContactIBANuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
   PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
 
   Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
@@ -46,6 +51,11 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonSubjectStream => _showButtonSubject.stream;
+
+  ///-----------------resend OTP-------------------------------------///
+
+  PublishSubject<AddBeneficiaryOTPUseCaseParams> resendOTPUseCaseRequest = PublishSubject();
+  PublishSubject<AddBeneficiaryOTPUseCaseParams> _resendOTPRequestStream = PublishSubject();
 
   ///--------------------------public-override-methods-------------------------------------///
 
@@ -62,10 +72,33 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
     super.dispose();
   }
 
+  void updateTime() {
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    notifyListeners();
+  }
+
   ///--------------------------public-other-methods-------------------------------------///
 
-  void validateOTP() {
-    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIbanOTPuseCaseParams(otp: _otpSubject.value));
+  void validateOTP(BuildContext buildContext) {
+    final provider = ProviderScope.containerOf(buildContext).read(
+      addBeneficiaryFormPageViewModel,
+    );
+
+    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
+      IBANAccountNoMobileNoAlias: provider.ibanOrMobileController.text,
+      purpose: '',
+      beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
+      purposeDetail: provider.purposeDetail?.strCode ?? '',
+      name: provider.nameController.text,
+      fullName: navigationType == NavigationType.REQUEST_MONEY
+          ? provider.getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? ''
+          : provider.transferResponse.name ?? '',
+      otp: _otpSubject.value,
+    ));
+  }
+
+  void resendOTP() {
+    _resendOTPRequestStream.safeAdd(AddBeneficiaryOTPUseCaseParams());
   }
 
   void validate(String val) {
@@ -87,9 +120,9 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
 
   ///--------------------------public-constructor-------------------------------------///
 
-  AddBeneficiaryotpPageViewModel(this.addContactIbanOTPuseCase) {
+  AddBeneficiaryotpPageViewModel(this.addBeneficiaryUseCase, this.resendOTPAddBeneficiaryUseCase) {
     addcontactIbanOTPuseCaseRequest.listen((value) {
-      RequestManager(value, createCall: () => addContactIbanOTPuseCase.execute(params: value))
+      RequestManager(value, createCall: () => addBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         addcontactIbanOTPuseCaseResponse.safeAdd(event);
@@ -100,5 +133,26 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {}
       });
     });
+
+    resendOTPUseCaseRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  resendOTPAddBeneficiaryUseCase.execute(params: AddBeneficiaryOTPUseCaseParams()))
+          .asFlow()
+          .listen((event) {
+        addcontactIbanOTPuseCaseResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          updateTime();
+        }
+      });
+    });
+
+    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+      addBeneficiaryViewModelProvider,
+    );
+    navigationType = provider.navigationType;
   }
 }

@@ -9,10 +9,10 @@ part of 'remove_avatar_request.dart';
 RemoveAvatarRequest _$RemoveAvatarRequestFromJson(Map<String, dynamic> json) =>
     RemoveAvatarRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String?,
-      userId: json['UserId'] as String?,
+      userId: json['UserId'] as String? ?? '',
       isFromMobile: json['IsFromMobile'] as bool? ?? true,
       beneType: json['BeneType'] as String?,
-      nickName: json['Nickname'] as String?,
+      nickName: json['Nickname'] as String? ?? '',
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
