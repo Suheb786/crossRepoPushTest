@@ -744,6 +744,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم التحقق من البطاقة الائتمانية"),
         "creditConfirmation":
             MessageLookupByLibrary.simpleMessage("إشعار حوالة"),
+        "creditContactlessLimitExceeded": MessageLookupByLibrary.simpleMessage(
+            "تم تجاوز حد الدفع اللاتلامسي."),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("سقف الائتمان"),

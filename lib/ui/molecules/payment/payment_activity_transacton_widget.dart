@@ -370,11 +370,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                         matchTextDirection: true, color: AppColor.white_gray))
                               ],
                             )
-                          :
-                          // (content.data?[index].trxDir ==
-                          //     RequestMoneyActivityStatusEnum.TRANSACTION_DIRECTORY_OUTGOING &&
-                          //     content.data?[index].paymentType == PaymentTypeEnum.RTP_REQUEST)?
-                          GestureDetector(
+                          : GestureDetector(
                               onTap: () {
                                 onTapRTPStatus.call(content.data![index]);
                               },

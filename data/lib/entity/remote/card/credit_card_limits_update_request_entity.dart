@@ -18,6 +18,8 @@ class CreditCardSLimitsUpdateRequestEntity {
   final num? merchantsPayments;
   @JsonKey(name: "ContactLessPayment")
   final bool? isContactLessPayments;
+  @JsonKey(name: "ContactLessPaymentLimit")
+  final num? contactLessPaymentLimit;
   @JsonKey(name: "SecureCode")
   final String? secureCode;
   @JsonKey(name: "GetToken")
@@ -26,16 +28,17 @@ class CreditCardSLimitsUpdateRequestEntity {
   final Map<String, dynamic>? baseData;
 
   CreditCardSLimitsUpdateRequestEntity(
-      {this.getToken= true,
-      this.atmWithdrawal= 0,
-      this.merchantsPayments= 0,
-      this.onlinePurchase= 0,
-      this.isAtmWithdrawal= false,
-      this.isMerchantsPayments= false,
-      this.isOnlinePurchase= false,
-      this.isContactLessPayments= false,
+      {this.getToken = true,
+      this.atmWithdrawal = 0,
+      this.merchantsPayments = 0,
+      this.onlinePurchase = 0,
+      this.isAtmWithdrawal = false,
+      this.isMerchantsPayments = false,
+      this.isOnlinePurchase = false,
+      this.isContactLessPayments = false,
       this.baseData,
-      this.secureCode= ""});
+      this.secureCode = "",
+      this.contactLessPaymentLimit = 0});
 
   factory CreditCardSLimitsUpdateRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CreditCardSLimitsUpdateRequestEntityFromJson(json);

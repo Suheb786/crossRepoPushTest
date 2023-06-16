@@ -1778,5 +1778,6 @@
   "favourites": "Favourites",
   "others": "Others",
   "dormantAccountCCFailedTitle": "Unfortunately, your credit card application has failed!",
-  "returned": "returned"
+  "returned": "returned",
+  "creditContactlessLimitExceeded": "Contactless payment limit exceeded."
 }

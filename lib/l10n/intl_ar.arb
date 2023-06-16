@@ -1732,5 +1732,6 @@
   "others": "Others",
   "youPaid": "You paid",
   "dormantAccountCCFailedTitle": "لم تتم عملية طلبك للبطاقة الائتمانية بنجاح",
-  "returned": "ارجع"
+  "returned": "ارجع",
+  "creditContactlessLimitExceeded": "تم تجاوز حد الدفع اللاتلامسي."
 }
