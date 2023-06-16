@@ -19,14 +19,15 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(CheckUserEmailRequest request) async {
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
+      CheckUserEmailRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -51,8 +52,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkUserNameMobileRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -70,14 +71,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<LoginResponseEntity>> loginUser(LoginUserRequest loginUserRequest) async {
+  Future<HttpResponse<LoginResponseEntity>> loginUser(
+      LoginUserRequest loginUserRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(loginUserRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LoginResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<LoginResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -102,8 +104,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(registerProspectUserRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RegisterResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RegisterResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -128,8 +130,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyMobileOtpRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<VerifyOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VerifyOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -147,14 +149,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(SaveIdInfoRequest saveIdInfoRequest) async {
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
+      SaveIdInfoRequest saveIdInfoRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveIdInfoRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SaveIdInfoResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SaveIdInfoResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -179,8 +182,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveSelfieImageRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -205,8 +208,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveJobInfoRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SaveJobDetailsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SaveJobDetailsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -231,8 +234,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveProfileInformationRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SaveProfileStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SaveProfileStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -250,40 +253,45 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation(
-      SaveResidenceInformationRequest saveResidenceInformationRequest) async {
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
+      saveResidenceInformation(
+          SaveResidenceInformationRequest
+              saveResidenceInformationRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveResidenceInformationRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SaveCountryResidenceInfoResponseEntity>>(Options(
+        _setStreamType<HttpResponse<SaveCountryResidenceInfoResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/AddFeilds/SaveCountryResidenceInfo',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SaveCountryResidenceInfoResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/AddFeilds/SaveCountryResidenceInfo',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        SaveCountryResidenceInfoResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(KYCStatusRequest kycStatusRequest) async {
+  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
+      KYCStatusRequest kycStatusRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(kycStatusRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckKycStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckKycStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -308,8 +316,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getAhwalDetailsRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AhwalDetailResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AhwalDetailResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -335,18 +343,19 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(addAccountPurposeRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<PurposeOfAccountOpeningResponseEntity>>(Options(
+        _setStreamType<HttpResponse<PurposeOfAccountOpeningResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Banksmart/AddAccountPurpose',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Banksmart/AddAccountPurpose',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PurposeOfAccountOpeningResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -360,8 +369,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getFatcaQuestionsRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetFatcaQuestionsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetFatcaQuestionsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -380,14 +389,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
-      SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity) async {
+      SaveFatcaInformationRequestEntity
+          saveFatcaInformationRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveFatcaInformationRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SetFatcaQuestionsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SetFatcaQuestionsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -412,8 +422,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getAccountRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetAccountResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetAccountResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -438,8 +448,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(createAccountRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CreateAccountResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CreateAccountResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -464,8 +474,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getAccountDetailsRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetAccountDetailsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetAccountDetailsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -488,8 +498,8 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetTokenResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetTokenResponseEntity>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -508,52 +518,58 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
-      CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity) async {
+      CheckVideoCallStatusRequestEntity
+          checkVideoCallStatusRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkVideoCallStatusRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckVideoCallStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckVideoCallStatusResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Account/CheckVideoCallStatus',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Account/CheckVideoCallStatus',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckVideoCallStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>> checkOtherNationalityStatus(
-      CheckOtherNationalityStatusRequestEntity checkOtherNationalityStatusRequestEntity) async {
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
+      checkOtherNationalityStatus(
+          CheckOtherNationalityStatusRequestEntity
+              checkOtherNationalityStatusRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkOtherNationalityStatusRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CheckOtherNationalityStatusResponseEntity>>(Options(
+        _setStreamType<HttpResponse<CheckOtherNationalityStatusResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Account/CheckOtherNationalityStatus',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CheckOtherNationalityStatusResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/Account/CheckOtherNationalityStatus',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        CheckOtherNationalityStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -566,8 +582,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(uploadDocumentRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<UploadDocumentResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<UploadDocumentResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -592,8 +608,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveUploadDocumentRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SaveUploadDocumentResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SaveUploadDocumentResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -611,27 +627,31 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet(
-      ConfirmApplicationDataGetRequestEntity confirmApplicationDataGetRequestEntity) async {
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
+      confirmApplicationDataGet(
+          ConfirmApplicationDataGetRequestEntity
+              confirmApplicationDataGetRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(confirmApplicationDataGetRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetConfirmApplicationDataResponseEntity>>(Options(
+        _setStreamType<HttpResponse<GetConfirmApplicationDataResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/AdditionalDoc/ConfirmApplicationDataGetV2',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetConfirmApplicationDataResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/AdditionalDoc/ConfirmApplicationDataGetV2',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        GetConfirmApplicationDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -644,8 +664,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(docStatusRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DocStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DocStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -670,8 +690,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(registerInterestRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RegisterInterestResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RegisterInterestResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -689,14 +709,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<LogoutResponseEntity>> logout(LogoutRequestEntity logoutRequestEntity) async {
+  Future<HttpResponse<LogoutResponseEntity>> logout(
+      LogoutRequestEntity logoutRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(logoutRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LogoutResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<LogoutResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -714,27 +735,31 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
-      ConfirmApplicationDataSetRequestEntity confirmApplicationDataSetRequestEntity) async {
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          ConfirmApplicationDataSetRequestEntity
+              confirmApplicationDataSetRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(confirmApplicationDataSetRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ConfirmApplicationDataSetResponseEntity>>(Options(
+        _setStreamType<HttpResponse<ConfirmApplicationDataSetResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/AdditionalDoc/ConfirmApplicationDataSave',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ConfirmApplicationDataSetResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/AdditionalDoc/ConfirmApplicationDataSave',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        ConfirmApplicationDataSetResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -747,8 +772,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(disableFingerPrintRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -773,8 +798,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkAgentStatusRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckAgentStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckAgentStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -799,8 +824,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(countryListRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CountryListResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CountryListResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -818,15 +843,16 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetAllowedCountryResponseEntity>> getAllowedCodeCountryList(
-      GetAllowedCountryRequestEntity getAllowedCountryRequestEntity) async {
+  Future<HttpResponse<GetAllowedCountryResponseEntity>>
+      getAllowedCodeCountryList(
+          GetAllowedCountryRequestEntity getAllowedCountryRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getAllowedCountryRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -851,8 +877,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(generateKeyPairRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GenerateKeyPairResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GenerateKeyPairResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -877,8 +903,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(enableBiometricRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -903,8 +929,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(uploadSignatureRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<UploadSignatureResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<UploadSignatureResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -929,8 +955,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeDebitLockRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RemoveDebitLockResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RemoveDebitLockResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -955,8 +981,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getComboValuesRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetComboValuesResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetComboValuesResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -974,14 +1000,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(BaseRequest request) async {
+  Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -999,14 +1026,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> setCardPin(SetCardPinRequest setCardPinRequest) async {
+  Future<HttpResponse<ResponseEntity>> setCardPin(
+      SetCardPinRequest setCardPinRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(setCardPinRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1024,14 +1052,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(BaseRequest cardIssuanceRequest) async {
+  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
+      BaseRequest cardIssuanceRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cardIssuanceRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1056,8 +1085,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cardIssuanceRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1075,14 +1104,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeEmail(ChangeEmailRequest changeEmailRequest) async {
+  Future<HttpResponse<ResponseEntity>> changeEmail(
+      ChangeEmailRequest changeEmailRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeEmailRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1100,14 +1130,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeMobile(ChangeMobileRequest changeMobileRequest) async {
+  Future<HttpResponse<ResponseEntity>> changeMobile(
+      ChangeMobileRequest changeMobileRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeMobileRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1125,14 +1156,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(BaseRequest baseRequest) async {
+  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ProfileDetailsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ProfileDetailsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1150,14 +1182,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changePassword(ChangePasswordRequest changePasswordRequest) async {
+  Future<HttpResponse<ResponseEntity>> changePassword(
+      ChangePasswordRequest changePasswordRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changePasswordRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1182,8 +1215,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateProfileImageRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1209,18 +1242,19 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(verifyChangeEmailRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(Options(
+        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/auth/VerifyChangeEmail',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/auth/VerifyChangeEmail',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProfileChangedSuccessResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -1235,32 +1269,34 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(verifyChangeMobileRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(Options(
+        _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/auth/VerifyChangeMobile',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/auth/VerifyChangeMobile',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ProfileChangedSuccessResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(BaseRequest baseRequest) async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetBeneficiaryResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetBeneficiaryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1278,14 +1314,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(AddBeneficiaryRequest addBeneficiaryRequest) async {
+  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+      AddBeneficiaryRequest addBeneficiaryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addBeneficiaryRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1310,8 +1347,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateBeneficiaryRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1336,8 +1373,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(deleteBeneficiaryRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1362,8 +1399,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyBeneficiaryOtpRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1388,8 +1425,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(uploadBeneficiaryImageRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1414,8 +1451,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(dashboardDataRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DashboardDataResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DashboardDataResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1440,8 +1477,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(debitCardTransactionRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardTransactionResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardTransactionResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1460,14 +1497,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      GetCreditCardTransactionListRequestEntity getCreditCardTransactionListRequestEntity) async {
+      GetCreditCardTransactionListRequestEntity
+          getCreditCardTransactionListRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getCreditCardTransactionListRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardTransactionResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardTransactionResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1485,14 +1523,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<AtmsResponseEntity>> getAtms(BaseRequest baseRequest) async {
+  Future<HttpResponse<AtmsResponseEntity>> getAtms(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AtmsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AtmsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1510,14 +1549,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> requestCreditCard(RequestCardRequest requestCardRequest) async {
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(
+      RequestCardRequest requestCardRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestCardRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1542,8 +1582,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cardStatementRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardStatementResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardStatementResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1561,40 +1601,43 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
-      DebitCardStatementRequest cardStatementRequest) async {
+  Future<HttpResponse<AccountCardStatementResponseEntity>>
+      getDebitCardStatement(
+          DebitCardStatementRequest cardStatementRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cardStatementRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AccountCardStatementResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AccountCardStatementResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/CardTracking/GetDebitCardStatement',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/CardTracking/GetDebitCardStatement',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AccountCardStatementResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(BaseRequest baseRequest) async {
+  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DebitYearsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DebitYearsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1612,14 +1655,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(BaseRequest baseRequest) async {
+  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DebitYearsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DebitYearsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1644,8 +1688,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DebitCardLimitResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DebitCardLimitResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1670,8 +1714,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cancelCreditCardRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1689,14 +1733,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(BaseRequest baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1721,8 +1766,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(freezeCreditCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1747,8 +1792,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(unFreezeCreditCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1773,8 +1818,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cancelDebitCardRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1799,8 +1844,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(freezeDebitCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1825,8 +1870,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(unfreezeDebitCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1851,8 +1896,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeDebitCardPinRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1877,8 +1922,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(unblockDebitCardPinRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1896,27 +1941,30 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
-      GetAccountByAliasRequestEntity getAccountByAliasRequestEntity) async {
+  Future<HttpResponse<GetAccountByAliasContentResponseEntity>>
+      getAccountByAlias(
+          GetAccountByAliasRequestEntity getAccountByAliasRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getAccountByAliasRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetAccountByAliasContentResponseEntity>>(Options(
+        _setStreamType<HttpResponse<GetAccountByAliasContentResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/transfer/GetAccountByAlisas',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetAccountByAliasContentResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/transfer/GetAccountByAlisas',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        GetAccountByAliasContentResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -1929,8 +1977,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkSendMoneyRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckSendMoneyResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckSendMoneyResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1955,8 +2003,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(transferRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<TransferSuccessResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<TransferSuccessResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1981,8 +2029,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestToPayRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RequestToPayContentResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RequestToPayContentResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2007,8 +2055,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(transferApiVerifyRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2027,14 +2075,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
-      DebitCardSLimitsUpdateRequestEntity debitCardSLimitsUpdateRequestEntity) async {
+      DebitCardSLimitsUpdateRequestEntity
+          debitCardSLimitsUpdateRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(debitCardSLimitsUpdateRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2053,14 +2102,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
-      CreditCardSLimitsUpdateRequestEntity creditCardSLimitsUpdateRequestEntity) async {
+      CreditCardSLimitsUpdateRequestEntity
+          creditCardSLimitsUpdateRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(creditCardSLimitsUpdateRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2078,14 +2128,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(PurposeRequestEntity purposeRequestEntity) async {
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      PurposeRequestEntity purposeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(purposeRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PurposeResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PurposeResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2110,8 +2161,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(stateListRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<StateListResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<StateListResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2136,8 +2187,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cityListRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CityListResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CityListResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2162,8 +2213,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cityListRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CityListResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CityListResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2181,14 +2232,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> saveFatcaW8(SetFatcaW8RequestEntity setFatcaW8RequestEntity) async {
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
+      SetFatcaW8RequestEntity setFatcaW8RequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(setFatcaW8RequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2206,14 +2258,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> saveFatcaW9(SetFatcaW9RequestEntity setFatcaW9RequestEntity) async {
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
+      SetFatcaW9RequestEntity setFatcaW9RequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(setFatcaW9RequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2231,14 +2284,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(BaseRequest baseRequest) async {
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetAllowedIssuerResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetAllowedIssuerResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2256,14 +2310,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(BaseRequest baseRequest) async {
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CustomerStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CustomerStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2281,14 +2336,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(BaseRequest baseRequest) async {
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetCardApplicationResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetCardApplicationResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2313,8 +2369,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getLoanValuesRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetLoanValuesResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetLoanValuesResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2339,8 +2395,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(processLoanRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2365,8 +2421,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(linkCardStepRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2384,14 +2440,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteProfileImage(BaseRequest baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2409,14 +2466,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(BaseRequest baseRequest) async {
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetCustomerDocIdResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetCustomerDocIdResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2441,8 +2499,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getCustomerDocumentRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetCustomerDocumentResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetCustomerDocumentResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2467,8 +2525,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getCipherRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetCipherResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetCipherResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2493,8 +2551,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(androidLoginRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AndroidLoginResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AndroidLoginResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2519,8 +2577,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkForgetPasswordRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckForgetPasswordResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckForgetPasswordResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2545,8 +2603,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(forgetPasswordRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ForgetPasswordResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ForgetPasswordResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2564,26 +2622,29 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>> verifyForgetPasswordOtp(
-      VerifyForgetPasswordOtpRequestEntity verifyForgetPasswordOtpRequestEntity) async {
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
+      verifyForgetPasswordOtp(
+          VerifyForgetPasswordOtpRequestEntity
+              verifyForgetPasswordOtpRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyForgetPasswordOtpRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>(Options(
+        _setStreamType<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Auth/VerifyForgetPasswordOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Auth/VerifyForgetPasswordOtp',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyForgetPasswordOtpResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -2597,8 +2658,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(paymentActivityRequestActivity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PaymentActivityResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PaymentActivityResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2623,8 +2684,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeMyNumberRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2642,14 +2703,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changePinVerify(BaseRequest baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> changePinVerify(
+      BaseRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2674,8 +2736,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckExistingCallResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckExistingCallResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2693,14 +2755,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(BaseRequest request) async {
+  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CheckGenderResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckGenderResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2718,14 +2781,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<RequestCallResponseEntity>> requestCall(RequestVideoCallRequest request) async {
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(
+      RequestVideoCallRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RequestCallResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RequestCallResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2743,14 +2807,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetTimeSlotsResponseEntity>> getTimeSlots(GetTimeSlotsRequest request) async {
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getTimeSlots(
+      GetTimeSlotsRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetTimeSlotsResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetTimeSlotsResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2769,14 +2834,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> saveCustomerVideoCallScheduleTime(
-      SaveCustomerScheduleTimeRequestEntity saveCustomerScheduleTimeRequestEntity) async {
+      SaveCustomerScheduleTimeRequestEntity
+          saveCustomerScheduleTimeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveCustomerScheduleTimeRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2794,14 +2860,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(GetCallStatusRequest request) async {
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
+      GetCallStatusRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<VideoCallStatusResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VideoCallStatusResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2820,14 +2887,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CardIssuanceResponseEntity>> applyDebitSupplementaryCard(
-      ApplyDebitSupplementaryCardRequest applyDebitSupplementaryCardRequest) async {
+      ApplyDebitSupplementaryCardRequest
+          applyDebitSupplementaryCardRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(applyDebitSupplementaryCardRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2852,8 +2920,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(activityRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ActivityResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ActivityResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2872,14 +2940,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> resendOtpDeviceChange(
-      ResendOtpDeviceChangeRequestEntity resendOtpDeviceChangeRequestEntity) async {
+      ResendOtpDeviceChangeRequestEntity
+          resendOtpDeviceChangeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(resendOtpDeviceChangeRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2898,14 +2967,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> sendOtpToken(
-      SendOtpTokenDeviceChangeRequestEntity sendOtpTokenDeviceChangeRequestEntity) async {
+      SendOtpTokenDeviceChangeRequestEntity
+          sendOtpTokenDeviceChangeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(sendOtpTokenDeviceChangeRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2930,8 +3000,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(sendOtpTokenEmailRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2950,14 +3020,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> verifyChangeDeviceOtp(
-      VerifyDeviceChangeOtpRequestEntity verifyDeviceChangeOtpRequestEntity) async {
+      VerifyDeviceChangeOtpRequestEntity
+          verifyDeviceChangeOtpRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyDeviceChangeOtpRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2982,8 +3053,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(payBackCreditCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3008,8 +3079,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CurrentVersionResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CurrentVersionResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3035,46 +3106,49 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SupplementaryCreditCardApplicationResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+        HttpResponse<SupplementaryCreditCardApplicationResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/CardTracking/GetSupCardApplications',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SupplementaryCreditCardApplicationResponseEntity.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/CardTracking/GetSupCardApplications',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SupplementaryCreditCardApplicationResponseEntity.fromJson(
+        _result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>> supplementaryCreditCardRequest(
-      SupplementaryCreditCardRequestEntity request) async {
+  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>>
+      supplementaryCreditCardRequest(
+          SupplementaryCreditCardRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SupplementaryCreditCardRequestResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+        HttpResponse<SupplementaryCreditCardRequestResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/CardTracking/CreditSupCardReq',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SupplementaryCreditCardRequestResponseEntity.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/CardTracking/CreditSupCardReq',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        SupplementaryCreditCardRequestResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -3087,8 +3161,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3113,8 +3187,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3132,40 +3206,43 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
-      GetCreditCardRelationshipRequestEntity request) async {
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>>
+      getCreditCardRelationShipList(
+          GetCreditCardRelationshipRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CreditCardRelationshipResponseEntity>>(Options(
+        _setStreamType<HttpResponse<CreditCardRelationshipResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/CardTracking/GetRelationShipList',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/CardTracking/GetRelationShipList',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CreditCardRelationshipResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> callStatusUpdate(CreditCardCallStatusUpdateRequest request) async {
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
+      CreditCardCallStatusUpdateRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3190,8 +3267,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3216,8 +3293,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3242,8 +3319,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3268,8 +3345,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3287,14 +3364,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(GetPlaceholderRequestEntity request) async {
+  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(
+      GetPlaceholderRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PlaceholderResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PlaceholderResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3312,14 +3390,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateSettlement(CcUpdateSettlementRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> updateSettlement(
+      CcUpdateSettlementRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3344,8 +3423,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetCreditCardLimitResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetCreditCardLimitResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3370,8 +3449,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(reportStolenCCRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3389,16 +3468,17 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardwithResponse(
-      RemoveOrReApplySupplementaryDebitCardRequestEnity
-          removeOrReApplySupplementaryDebitCardRequestEnity) async {
+  Future<HttpResponse<CardIssuanceResponseEntity>>
+      removeOrReApplySupplementaryDebitCardwithResponse(
+          RemoveOrReApplySupplementaryDebitCardRequestEnity
+              removeOrReApplySupplementaryDebitCardRequestEnity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeOrReApplySupplementaryDebitCardRequestEnity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CardIssuanceResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3424,8 +3504,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeOrReApplySupplementaryDebitCardRequestEnity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3450,8 +3530,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getCardInProcessRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3470,14 +3550,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> requestPhysicalDebitCard(
-      RequestPhysicalDebitCardRequestEntity requestPhysicalDebitCardRequestEntity) async {
+      RequestPhysicalDebitCardRequestEntity
+          requestPhysicalDebitCardRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(requestPhysicalDebitCardRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3496,14 +3577,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ResponseEntity>> changeCreditPinVerify(
-      ChangeCreditCardPinVerifyRequestEntity changeCreditCardPinVerifyRequestEntity) async {
+      ChangeCreditCardPinVerifyRequestEntity
+          changeCreditCardPinVerifyRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(changeCreditCardPinVerifyRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3521,14 +3603,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(ChangeCreditCardPinRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(
+      ChangeCreditCardPinRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3546,14 +3629,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(UnblockCreditCardPinRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
+      UnblockCreditCardPinRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3571,14 +3655,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(BaseRequest request) async {
+  Future<HttpResponse<DashboardDataResponseEntity>> getAllCardList(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DashboardDataResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DashboardDataResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3596,14 +3681,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addUserWalletDetail(AddUserWalletDetailRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> addUserWalletDetail(
+      AddUserWalletDetailRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3621,14 +3707,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getUserWalletDetail(BaseRequest request) async {
+  Future<HttpResponse<ResponseEntity>> getUserWalletDetail(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3646,14 +3733,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<EnrollCardResponseEntity>> enrollCards(EnrollCardRequestEntity request) async {
+  Future<HttpResponse<EnrollCardResponseEntity>> enrollCards(
+      EnrollCardRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<EnrollCardResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<EnrollCardResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3678,8 +3766,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetBillCategoriesEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetBillCategoriesEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3697,66 +3785,69 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetPostpaidBillerListEntityResponse>> getPostpaidBillerListData(
-      BaseRequest request) async {
+  Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
+      getPostpaidBillerListData(BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetPostpaidBillerListEntityResponse>>(Options(
+        _setStreamType<HttpResponse<GetPostpaidBillerListEntityResponse>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/BillPayment/AccountInquiry',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/BillPayment/AccountInquiry',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetPostpaidBillerListEntityResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<GetPrepaidBillerListEntityResponse>> getPrepaidBillerListData(
-      BaseRequest request) async {
+  Future<HttpResponse<GetPrepaidBillerListEntityResponse>>
+      getPrepaidBillerListData(BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetPrepaidBillerListEntityResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetPrepaidBillerListEntityResponse>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/BillPayment/GetSavePrePaidBillers',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/BillPayment/GetSavePrePaidBillers',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetPrepaidBillerListEntityResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(PayPrePaidRequest payPrePaidRequest) async {
+  Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(
+      PayPrePaidRequest payPrePaidRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(payPrePaidRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PayPrePaidResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PayPrePaidResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3781,8 +3872,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(ecGetRegisterRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PayPostPaidBillResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PayPostPaidBillResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3807,8 +3898,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(ecGetRegisterRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PayPostPaidBillResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PayPostPaidBillResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3833,8 +3924,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(ecGetRegisterRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ValidatePrePaidBillResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ValidatePrePaidBillResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3859,8 +3950,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(postPaidBillInquiryRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PostPaidBillInquiryResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PostPaidBillInquiryResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3879,24 +3970,26 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<BaseResponse>> addNewPostpaidBillerData(
-      AddNewPostpaidBillerEntityRequest addNewPostpaidBillerEntityRequest) async {
+      AddNewPostpaidBillerEntityRequest
+          addNewPostpaidBillerEntityRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addNewPostpaidBillerEntityRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/BillPayment/AddNewPostpaidBiller',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .compose(
+              _dio.options,
+              '/BillPayment/AddNewPostpaidBiller',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -3910,18 +4003,19 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addNewPrepaidBillerEntityRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/BillPayment/AddNewPrepaidBiller',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .compose(
+              _dio.options,
+              '/BillPayment/AddNewPrepaidBiller',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -3935,8 +4029,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getBillerLookupListRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetBillerLookupListResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetBillerLookupListResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3955,14 +4049,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<GetPrePaidCategoriesResponse>> getPrePaidCategory(
-      GetPrePaidCategoriesRequestEntity getPrePaidCategoriesRequestEntity) async {
+      GetPrePaidCategoriesRequestEntity
+          getPrePaidCategoriesRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(getPrePaidCategoriesRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetPrePaidCategoriesResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetPrePaidCategoriesResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3987,18 +4082,19 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removePrepaidBillerRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/BillPayment/RemovePrepaidBiller',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .compose(
+              _dio.options,
+              '/BillPayment/RemovePrepaidBiller',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -4012,18 +4108,19 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeCustomerBillingRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BaseResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BaseResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/BillPayment/RemoveCustomerBillingAPI',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .compose(
+              _dio.options,
+              '/BillPayment/RemoveCustomerBillingAPI',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -4037,8 +4134,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(validateBillerOtpRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ValidateBillerOtpResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ValidateBillerOtpResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4056,15 +4153,16 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<BillPaymentsTransactionResponse>> getBillPaymentsTransactions(
-      BillPaymentsTransactionRequest billPaymentsTransactionRequest) async {
+  Future<HttpResponse<BillPaymentsTransactionResponse>>
+      getBillPaymentsTransactions(
+          BillPaymentsTransactionRequest billPaymentsTransactionRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(billPaymentsTransactionRequest.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BillPaymentsTransactionResponse>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BillPaymentsTransactionResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4082,14 +4180,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> accountUpload(BaseRequest request) async {
+  Future<HttpResponse<ResponseEntity>> accountUpload(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4114,8 +4213,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(transferApiNoOtpRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<TransferSuccessResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<TransferSuccessResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4133,14 +4232,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<DestinationResponseEntity>> getDestinations(GetDestinationRequestEntity request) async {
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
+      GetDestinationRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DestinationResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DestinationResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4165,8 +4265,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetTripResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetTripResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4191,8 +4291,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetTripResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetTripResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4210,14 +4310,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> makeTicketPayment(MakeTicketPaymentRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> makeTicketPayment(
+      MakeTicketPaymentRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4235,14 +4336,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getFlightDetails(GetFlightDetailsRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> getFlightDetails(
+      GetFlightDetailsRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4260,14 +4362,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> rjOtpValidate(BaseRequest request) async {
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4285,14 +4388,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(BaseRequest request) async {
+  Future<HttpResponse<ResponseEntity>> cliqRegisterCustomer(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4310,14 +4414,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(BaseRequest request) async {
+  Future<HttpResponse<ResponseEntity>> cliqRegisterAccount(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4335,14 +4440,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<EditCliqResponseEntity>> editCliqID(EditCliqIdRequestEntity request) async {
+  Future<HttpResponse<EditCliqResponseEntity>> editCliqID(
+      EditCliqIdRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<EditCliqResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<EditCliqResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4360,14 +4466,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp(EditCliqOtpRequestEntity request) async {
+  Future<HttpResponse<EditCliqOtpResponseEntity>> editCliqIdOtp(
+      EditCliqOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<EditCliqOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<EditCliqOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4385,14 +4492,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> suspendCliqId(SuspendCliqIdRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> suspendCliqId(
+      SuspendCliqIdRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4417,8 +4525,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<SuspendCliqIdOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SuspendCliqIdOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4436,14 +4544,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> reActivateCliqId(ReActivateCliqIdRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> reActivateCliqId(
+      ReActivateCliqIdRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4468,8 +4577,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ReActivateCliqIdOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ReActivateCliqIdOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4487,14 +4596,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteCliqId(DeleteCliqIdRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> deleteCliqId(
+      DeleteCliqIdRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4519,8 +4629,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<DeleteCliqIdOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<DeleteCliqIdOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4545,8 +4655,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4564,40 +4674,44 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>> unLinkAccountFromCliqOtp(
-      UnLinkAccountFromCliqOtpRequestEntity request) async {
+  Future<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>>
+      unLinkAccountFromCliqOtp(
+          UnLinkAccountFromCliqOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>>(Options(
+        _setStreamType<HttpResponse<UnlinkAccountFromCliqIdOtpResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Cliq/UnLinkAccountFromCliqOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UnlinkAccountFromCliqIdOtpResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/Cliq/UnLinkAccountFromCliqOtp',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        UnlinkAccountFromCliqIdOtpResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(UpdateRtpRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> updateRTPCliqRequest(
+      UpdateRtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4615,14 +4729,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetAliasResponseEntity>> getAlias(CliqGetAliasRequestEntity request) async {
+  Future<HttpResponse<GetAliasResponseEntity>> getAlias(
+      CliqGetAliasRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetAliasResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetAliasResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4647,8 +4762,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ConfirmCreateCliqIdResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ConfirmCreateCliqIdResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4673,8 +4788,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CreateCliqIdOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CreateCliqIdOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4692,14 +4807,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addLinkAccount(AddLinkAccountRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> addLinkAccount(
+      AddLinkAccountRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4724,8 +4840,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AddLinkAccountOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<AddLinkAccountOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4750,8 +4866,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4769,26 +4885,28 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ChangeDefaultAccountOtpResponseEntity>> changeDefaultAccountOtp(
-      ConfirmChangeDefaultAccountOtpRequestEntity request) async {
+  Future<HttpResponse<ChangeDefaultAccountOtpResponseEntity>>
+      changeDefaultAccountOtp(
+          ConfirmChangeDefaultAccountOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ChangeDefaultAccountOtpResponseEntity>>(Options(
+        _setStreamType<HttpResponse<ChangeDefaultAccountOtpResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Cliq/ChangeDefaultAccountOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Cliq/ChangeDefaultAccountOtp',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ChangeDefaultAccountOtpResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -4802,8 +4920,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PaymentActivityResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PaymentActivityResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4821,14 +4939,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> requestToPayResult(RequestToPayResultRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> requestToPayResult(
+      RequestToPayResultRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4846,40 +4965,42 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>> getAccountByCustomerID(
-      BaseRequest request) async {
+  Future<HttpResponse<GetAccountByCustomerIdResponseEntity>>
+      getAccountByCustomerID(BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetAccountByCustomerIdResponseEntity>>(Options(
+        _setStreamType<HttpResponse<GetAccountByCustomerIdResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Cliq/GetAccountByCustomerID',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Cliq/GetAccountByCustomerID',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAccountByCustomerIdResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> approveRTPRequest(ApproveRTPRequestReqestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> approveRTPRequest(
+      ApproveRTPRequestReqestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4897,14 +5018,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> submitOutwardPayment(SubmitOutwardPaymentRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> submitOutwardPayment(
+      SubmitOutwardPaymentRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4922,14 +5044,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ReturnRTPrequestOTPResponseEntity>> returnRTPrequestOTP(BaseRequest request) async {
+  Future<HttpResponse<ReturnRTPrequestOTPResponseEntity>> returnRTPrequestOTP(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ReturnRTPrequestOTPResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ReturnRTPrequestOTPResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4947,14 +5070,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> returnRTPrequest(ReturnRTPrequestRequestEntity request) async {
+  Future<HttpResponse<ResponseEntity>> returnRTPrequest(
+      ReturnRTPrequestRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4979,8 +5103,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -4998,14 +5122,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(BaseRequest request) async {
+  Future<HttpResponse<GetRejectionReasonResponseEntity>> getRejectionReason(
+      BaseRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GetRejectionReasonResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetRejectionReasonResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5030,8 +5155,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ApproveRTPOtpResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ApproveRTPOtpResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5049,40 +5174,42 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<RequestToPayResultOtpResponseEntity>> requestToPayResultOtp(
-      RequestToPayResultOtpRequestEntity request) async {
+  Future<HttpResponse<RequestToPayResultOtpResponseEntity>>
+      requestToPayResultOtp(RequestToPayResultOtpRequestEntity request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RequestToPayResultOtpResponseEntity>>(Options(
+        _setStreamType<HttpResponse<RequestToPayResultOtpResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/Cliq/RequestToPayResultOtp',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+                .compose(
+                  _dio.options,
+                  '/Cliq/RequestToPayResultOtp',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RequestToPayResultOtpResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<QRResponseEntity>> generateQR(GenerateQRRequestEntity generateQRRequestEntity) async {
+  Future<HttpResponse<QRResponseEntity>> generateQR(
+      GenerateQRRequestEntity generateQRRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(generateQRRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<QRResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<QRResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5100,14 +5227,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(VerifyQRRequestEntity verifyQRRequestEntity) async {
+  Future<HttpResponse<VerifyQRResponseEntity>> verifyQR(
+      VerifyQRRequestEntity verifyQRRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyQRRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<VerifyQRResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<VerifyQRResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5132,8 +5260,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(transferQRRequestEntity.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<QRTransferResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<QRTransferResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5158,8 +5286,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(rejectionReasonRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<RejectionReasonResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RejectionReasonResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5184,8 +5312,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(creditConfirmationRequestEntity.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<CreditConfirmationResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CreditConfirmationResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5210,8 +5338,8 @@ class _ApiService implements ApiService {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<BeneficiaryContactResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<BeneficiaryContactResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5229,14 +5357,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite(BeneficiaryMarkFavoriteRequest request) async {
+  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite(
+      BeneficiaryMarkFavoriteRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5254,14 +5383,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> contactDetail(ContactDetailRequest request) async {
+  Future<HttpResponse<ResponseEntity>> contactDetail(
+      ContactDetailRequest request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5287,32 +5417,35 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<BeneficiarySearchContactResponseEntity>>(Options(
+        _setStreamType<HttpResponse<BeneficiarySearchContactResponseEntity>>(
+            Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/ManageContacts/SearchContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BeneficiarySearchContactResponseEntity.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/ManageContacts/SearchContact',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        BeneficiarySearchContactResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addContact(AddContactRequest addContactRequest) async {
+  Future<HttpResponse<ResponseEntity>> addContact(
+      AddContactRequest addContactRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addContactRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5330,14 +5463,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateContact(UpdateContactRequest updateContactRequest) async {
+  Future<HttpResponse<ResponseEntity>> updateContact(
+      UpdateContactRequest updateContactRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateContactRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5355,14 +5489,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteContact(DeleteContactRequest deleteContactRequest) async {
+  Future<HttpResponse<ResponseEntity>> deleteContact(
+      DeleteContactRequest deleteContactRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(deleteContactRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5380,14 +5515,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateAvatar(UpdateAvatarRequest updateAvatarRequest) async {
+  Future<HttpResponse<ResponseEntity>> updateAvatar(
+      UpdateAvatarRequest updateAvatarRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(updateAvatarRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -5405,14 +5541,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> removeAvatar(RemoveAvatarRequest removeAvatarRequest) async {
+  Future<HttpResponse<ResponseEntity>> removeAvatar(
+      RemoveAvatarRequest removeAvatarRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeAvatarRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
