@@ -1501,7 +1501,7 @@
   "requested": " تم الطلب بنجاح",
   "you": "انت",
   "accept": "موافقة",
-  "reject": "الطلب قيد التنفيذ",
+  "reject": "رفض",
   "isRequesting": " منك، هل تريد الموافقة",
   "fromYouWouldYouLikeToAcceptIt": "منك، هل تريد الموافقة",
   "asperhisrequestconfirmthisaction": "حسب الطلب، الموافقة على الطلب",

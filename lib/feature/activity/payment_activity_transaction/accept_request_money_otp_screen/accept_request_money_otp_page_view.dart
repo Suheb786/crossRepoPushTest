@@ -42,15 +42,18 @@ class AcceptRequestMoneyOtpPageView extends BasePageViewWidget<AcceptRequestMone
             SizedBox(
               height: 8.h,
             ),
-            Text(
-              "${S.of(context).enterOtpHeader}\n ${model.argument.mobileCode.replaceAll('00', '+')}" +
-                  " ${model.argument.mobileNumber}",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.t,
-                color: AppColor.veryDarkGray2,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Text(
+                "${S.of(context).enterOtpHeader}\n ${model.argument.mobileCode.replaceAll('00', '+')}" +
+                    " ${model.argument.mobileNumber}",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.t,
+                  color: AppColor.veryDarkGray2,
+                ),
               ),
             ),
             SizedBox(
