@@ -52,7 +52,7 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                           : Theme.of(context).colorScheme.shadow,
                       color: model.navigationType == NavigationType.SEND_MONEY
                           ? Theme.of(context).primaryColorLight.withOpacity(0.3)
-                          : Theme.of(context).colorScheme.onInverseSurface),
+                          : Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.3)),
                 );
               }),
           SizedBox(height: 36.0.h),
@@ -115,7 +115,9 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: Theme.of(context).colorScheme.secondary,
+                                      color: model.navigationType == NavigationType.SEND_MONEY
+                                          ? Theme.of(context).colorScheme.secondary
+                                          : Theme.of(context).colorScheme.shadow,
                                       fontSize: 20.t,
                                       fontWeight: FontWeight.w600),
                                 ),

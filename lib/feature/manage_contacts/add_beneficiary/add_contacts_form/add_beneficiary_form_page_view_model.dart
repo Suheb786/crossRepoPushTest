@@ -115,11 +115,10 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   }
 
   validate(String data) {
-    if (nameController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(false);
-    }
-    if (ibanOrMobileController.text.isNotEmpty) {
-      _showButtonSubject.safeAdd(false);
+    if (nameController.text.isNotEmpty &&
+        ibanOrMobileController.text.isNotEmpty &&
+        purposeDetail?.strCode != null) {
+      _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -128,7 +127,7 @@ class AddBeneficiaryFormPageViewModel extends BasePageViewModel {
   validationUserInput(BuildContext buildContext) {
     addcontactIBANuseCaseRequest.safeAdd(AddBeneficiaryOTPUseCaseParams(
         IBANAccountNoMobileNoAlias: ibanOrMobileController.text,
-        purpose: '',
+        purpose: purpose?.code ?? '',
         beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
         purposeDetail: purposeDetail?.strCode ?? '',
         name: nameController.text,

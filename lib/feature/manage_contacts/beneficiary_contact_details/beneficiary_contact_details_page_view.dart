@@ -228,6 +228,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                               );
                             }),
                       ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
                       AppStreamBuilder<bool>(
                           stream: model.nameEditableNotifierStream,
                           initialData: false,
@@ -237,7 +240,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 model.toggleNickName(context);
                               },
                               child: AppSvg.asset(
-                                !(isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                                (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
                                 color: AppColor.brightBlue,
                                 width: isEditable ?? false ? 14.h : 12.h,
                                 height: isEditable ?? false ? 14.h : 12.h,

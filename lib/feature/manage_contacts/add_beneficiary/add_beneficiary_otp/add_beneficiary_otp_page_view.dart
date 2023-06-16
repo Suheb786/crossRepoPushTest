@@ -38,9 +38,10 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                   initialData: Resource.none(),
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
-                      Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage);
+                      Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage,
+                          arguments: value.data!.beneficiarySendMoneyContact);
                       model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
-                          title: S.current.success, description: S.current.newContacthasBeenAdded));
+                          title: '', description: S.current.newContacthasBeenAdded));
                     }
                   },
                   dataBuilder: (context, enterOTP) {

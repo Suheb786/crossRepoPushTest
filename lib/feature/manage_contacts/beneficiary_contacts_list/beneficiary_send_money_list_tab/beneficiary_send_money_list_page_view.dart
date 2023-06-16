@@ -71,9 +71,15 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                 width: 8.w,
               ),
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                onTap: () async {
+                  model.isNewRecordCreated = true;
+                  var result = await Navigator.pushNamed(
+                      context, RoutePaths.AddContactsIBANManageContactsPage,
                       arguments: NavigationType.SEND_MONEY);
+
+                  if (result != null && result == true) {
+                    model.getBeneficiaryList();
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -156,6 +162,8 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryFavoriteContact![index],
                                                   onTap: () async {
+                                                    model.isNewRecordCreated = false;
+
                                                     var result = await Navigator.pushNamed(
                                                         context, RoutePaths.BeneficiaryContactDetailsPage,
                                                         arguments: beneficiaryList
@@ -215,6 +223,8 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryOtherContact![index],
                                                   onTap: () async {
+                                                    model.isNewRecordCreated = false;
+
                                                     var result = await Navigator.pushNamed(
                                                         context, RoutePaths.BeneficiaryContactDetailsPage,
                                                         arguments: beneficiaryList
@@ -279,9 +289,14 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                   child: AppSvg.asset(AssetUtils.contacts)),
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+              onTap: () async {
+                model.isNewRecordCreated = true;
+                var result = await Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
                     arguments: NavigationType.SEND_MONEY);
+
+                if (result != null && result == true) {
+                  model.getBeneficiaryList();
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: 16.h),

@@ -263,6 +263,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                                       onSelected: (value) {
                                                     model.updatePurposeDetail(value);
                                                     Navigator.pop(context);
+                                                    model.validate('');
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   });

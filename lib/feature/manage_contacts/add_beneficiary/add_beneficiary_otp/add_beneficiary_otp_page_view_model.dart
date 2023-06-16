@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,8 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
 
   ///-----------------resend OTP-------------------------------------///
 
-  PublishSubject<AddBeneficiaryOTPUseCaseParams> resendOTPUseCaseRequest = PublishSubject();
-  PublishSubject<AddBeneficiaryOTPUseCaseParams> _resendOTPRequestStream = PublishSubject();
+  PublishSubject<AddBeneficiaryOTPUseCaseParams> _resendOTPUseCaseRequest = PublishSubject();
+  PublishSubject<Resource<SendOtpAddBeneficiaryResponse>> resendOTPUseCaseRequestResponse = PublishSubject();
 
   ///--------------------------public-override-methods-------------------------------------///
 
@@ -100,7 +101,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   }
 
   void resendOTP() {
-    _resendOTPRequestStream.safeAdd(AddBeneficiaryOTPUseCaseParams());
+    _resendOTPUseCaseRequest.safeAdd(AddBeneficiaryOTPUseCaseParams());
   }
 
   void validate(String val) {
@@ -136,14 +137,12 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
       });
     });
 
-    resendOTPUseCaseRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  resendOTPAddBeneficiaryUseCase.execute(params: AddBeneficiaryOTPUseCaseParams()))
+    _resendOTPUseCaseRequest.listen((value) {
+      RequestManager(value, createCall: () => resendOTPAddBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        addcontactIbanOTPuseCaseResponse.safeAdd(event);
+        resendOTPUseCaseRequestResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

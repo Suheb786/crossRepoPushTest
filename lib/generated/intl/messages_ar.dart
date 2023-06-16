@@ -658,29 +658,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("راجع وأكّد المعلومات"),
         "confirmYourPaymentAmtBelow":
             MessageLookupByLibrary.simpleMessage("يرجى  تأكيد مبلغ الدفع"),
-        "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "confrimCreditCardDeliveryError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "congratulations": MessageLookupByLibrary.simpleMessage("مبروك!"),
-        "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
-            "التواصل مع أحد موظفينا للمساعدة"),
-        "connectionFailed":
-            MessageLookupByLibrary.simpleMessage("فشل في الاتصال"),
-        "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
-            "حمّل توقيعك للموافقة والاستمرار"),
-        "contactInformation":
-            MessageLookupByLibrary.simpleMessage("Contact information"),
+        "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage("التواصل مع أحد موظفينا للمساعدة"),
+        "connectionFailed": MessageLookupByLibrary.simpleMessage("فشل في الاتصال"),
+        "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage("حمّل توقيعك للموافقة والاستمرار"),
+        "contactInformation": MessageLookupByLibrary.simpleMessage("معلومات الاتصال"),
         "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
-            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
-        "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
-            "الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"),
-        "contactLessPayments":
-            MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
-        "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
-            "البطاقة التابعة غير موجودة. تأكد وحاول كمان مرة."),
+            "ما عليك سوى تزويدنا بأي من هذه المعلومات التي تعرفها عن جهة الاتصال الخاصة بك. سنقوم بفرز الباقي لك."),
+        "contactLessLimitmaxLimit":
+            MessageLookupByLibrary.simpleMessage("الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"),
+        "contactLessPayments": MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
+        "contactlessAlreadyDone":
+            MessageLookupByLibrary.simpleMessage("البطاقة التابعة غير موجودة. تأكد وحاول كمان مرة."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-095)"),
-        "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
-            "عم بحاول أتحكّم بمصاريفي بطرق أخرى"),
+        "controlMyExpensesInOtherWays":
+            MessageLookupByLibrary.simpleMessage("عم بحاول أتحكّم بمصاريفي بطرق أخرى"),
         "convertBalanceToInstalments":
             MessageLookupByLibrary.simpleMessage("تقسيط المشتريات"),
         "convertPurchaseToInstallments":
@@ -2206,28 +2201,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("معرف PlaceHolder فارغ"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-164)"),
-        "pleaseAddLinkAccount":
-            MessageLookupByLibrary.simpleMessage("الرجاء إضافة حساب الارتباط"),
-        "pleaseAgreeToTheTermAndCondition":
-            MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
-        "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(
-            "الرجاء التأكيد على تفاصيل الرحلة"),
-        "pleaseConfirmYourIDDetailsBelow":
-            MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
+        "pleaseAddLinkAccount": MessageLookupByLibrary.simpleMessage("الرجاء إضافة حساب الارتباط"),
+        "pleaseAgreeToTheTermAndCondition": MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
+        "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage("الرجاء التأكيد على تفاصيل الرحلة"),
+        "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage("خلينا نأكد على معلوماتك"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("الرجاء إدخال"),
-        "pleaseEnterAValidaccountMobileNoAlias":
-            MessageLookupByLibrary.simpleMessage(
-                "Please enter a valid IBAN / ACCOUNT NO. / Mobile No. / ALIAS"),
-        "pleaseEnterAmount":
-            MessageLookupByLibrary.simpleMessage("يرجى إدخال المبلغ"),
-        "pleaseEnterContactName":
-            MessageLookupByLibrary.simpleMessage("Please enter contact name"),
-        "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
-            "أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
-        "pleaseEnterYourContactDetails":
-            MessageLookupByLibrary.simpleMessage("أضف معلومات صديقك"),
-        "pleaseEnterYourMobileNumber":
-            MessageLookupByLibrary.simpleMessage("ادخل رقم موبايلك"),
+        "pleaseEnterAValidaccountMobileNoAlias": MessageLookupByLibrary.simpleMessage(
+            "الرجاء إدخال الأيبان / رقم الحساب / رقم الجوال / الاسم المستعار"),
+        "pleaseEnterAmount": MessageLookupByLibrary.simpleMessage("يرجى إدخال المبلغ"),
+        "pleaseEnterContactName": MessageLookupByLibrary.simpleMessage("Please enter contact name"),
+        "pleaseEnterLatestEmail":
+            MessageLookupByLibrary.simpleMessage("أدخل أحدث إيميل عندك. رح نتواصل معك قريباً!"),
+        "pleaseEnterYourContactDetails": MessageLookupByLibrary.simpleMessage("أضف معلومات صديقك"),
+        "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage("ادخل رقم موبايلك"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
             "ساعدنا لنطوّر خدماتنا: مساحة لادخال أي نص (اذا بالإمكان تطبيقها) "),
         "pleaseProvideInformationIfAppliesToYou":
@@ -2609,25 +2595,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
-        "selectReasonToReject":
-            MessageLookupByLibrary.simpleMessage("اختيار سبب الرفض"),
-        "selectTheReasonToReturn":
-            MessageLookupByLibrary.simpleMessage("أختر  سبب ارجاع الدفعة"),
+        "selectReasonToReject": MessageLookupByLibrary.simpleMessage("اختيار سبب الرفض"),
+        "selectTheReasonToReturn": MessageLookupByLibrary.simpleMessage("أختر  سبب ارجاع الدفعة"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
-            "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
+            "أرسل وطلب ما يصل إلى 9 جهات اتصال مفضلة بسهولة. هل ترغب في إضافة جهة الاتصال هذه إلى المفضلة لديك؟"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
-        "sendMoneyFavourites":
-            MessageLookupByLibrary.simpleMessage("Send Money Favourites"),
-        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
-            "محاولتك لإرسال الأموال غير ناجحة"),
+        "sendMoneyFavourites": MessageLookupByLibrary.simpleMessage("Send Money Favourites"),
+        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage("محاولتك لإرسال الأموال غير ناجحة"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("إرسال أموال إلى"),
-        "sendMoneyToFriendAndFamily":
-            MessageLookupByLibrary.simpleMessage("حوّل الأموال لأصحابك وعيلتك"),
-        "sendOtpTokenError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage("حوّل الأموال لأصحابك وعيلتك"),
+        "sendOtpTokenError":
+            MessageLookupByLibrary.simpleMessage("عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),
@@ -3115,28 +3096,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "استخدم Apple Pay أينما ترى هذه الرموز"),
         "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun"),
-        "yourCardIsReady":
-            MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة!"),
-        "yourCardIssued":
-            MessageLookupByLibrary.simpleMessage("تم إصدار بطاقتك"),
+        "yourCardIsReady": MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة!"),
+        "yourCardIssued": MessageLookupByLibrary.simpleMessage("تم إصدار بطاقتك"),
         "yourCardLimit": MessageLookupByLibrary.simpleMessage("سقف بطاقتك"),
-        "yourCardReady":
-            MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة"),
+        "yourCardReady": MessageLookupByLibrary.simpleMessage("بطاقتك صارت جاهزة"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "رح يتواصلوا معك من أرامكس قريباً، حالياً بتقدر تستخدم بطاقتك الافتراضية فوراً."),
-        "yourContactDetailsHavebeenSaved": MessageLookupByLibrary.simpleMessage(
-            "Your contact details have been saved"),
-        "yourContactDetailsUpdated":
-            MessageLookupByLibrary.simpleMessage("تم حفظ معلومات جهة الاتصال."),
-        "yourContactHasBeenRemoved":
-            MessageLookupByLibrary.simpleMessage("تم حذف الصديق بنجاح"),
-        "yourContactisFavourite": MessageLookupByLibrary.simpleMessage(
-            "Your contact has been added to favourite"),
-        "yourFreeVirtualDebitCardHasBeenIssued":
-            MessageLookupByLibrary.simpleMessage(
-                "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
-        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
-            "تم تفعيل بطاقتك على خدمة أبل باي"),
+        "yourContactDetailsHavebeenSaved":
+            MessageLookupByLibrary.simpleMessage("تم حفظ تفاصيل الاتصال الخاصة بك"),
+        "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage("تم حفظ معلومات جهة الاتصال."),
+        "yourContactHasBeenRemoved": MessageLookupByLibrary.simpleMessage("تم حذف الصديق بنجاح"),
+        "yourContactisFavourite":
+            MessageLookupByLibrary.simpleMessage("Your contact has been added to favourite"),
+        "yourFreeVirtualDebitCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
+            "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage("تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun"),

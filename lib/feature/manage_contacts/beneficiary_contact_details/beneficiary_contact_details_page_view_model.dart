@@ -6,7 +6,6 @@ import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -61,7 +60,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   String selectedProfile = '';
 
-  final BehaviorSubject<bool> _nameEditableNotifierSubject = BehaviorSubject.seeded(false);
+  final BehaviorSubject<bool> _nameEditableNotifierSubject = BehaviorSubject.seeded(true);
 
   Stream<bool> get nameEditableNotifierStream => _nameEditableNotifierSubject.stream;
 
@@ -182,6 +181,8 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
     _nameEditableNotifierSubject.value = !_nameEditableNotifierSubject.value;
     if (!_nameEditableNotifierSubject.value) {
       FocusScope.of(context).requestFocus(nickNameFocus);
+    } else {
+      setNickNameReadOnly();
     }
   }
 

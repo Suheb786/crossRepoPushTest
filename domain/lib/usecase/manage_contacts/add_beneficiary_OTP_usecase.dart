@@ -55,6 +55,8 @@ class AddBeneficiaryOTPUseCaseParams extends Params {
           cause: Exception(),
           error: ErrorInfo(message: ""),
           type: ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS));
+    } else if (Validator.isEmpty(purpose)) {
+      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE));
     } else if (Validator.isEmpty(purposeDetail)) {
       return Left(
           AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE_DETAIL));

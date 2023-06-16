@@ -55,7 +55,13 @@ class BeneficiaryContactDetailsPageState
           children: [
             InkWell(
               onTap: () {
-                Navigator.pop(context, getViewModel().isUpdateProfile);
+                final provider = ProviderScope.containerOf(context).read(
+                  beneficiaryContactListPageViewModelProvider,
+                );
+                if (provider.isNewRecordCreated || getViewModel().isUpdateProfile) {
+                  provider.getBeneficiaryList();
+                }
+                Navigator.pop(context);
               },
               child: AppSvg.asset(AssetUtils.back,
                   height: 24.h,
