@@ -45,26 +45,36 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: AppTextField(
-                  labelText: '',
-                  controller: model.sendMoneySearchController,
-                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                  textColor: Theme.of(context).primaryColorDark,
-                  hintText: S.of(context).searchContacts,
-                  onChanged: (value) {
-                    model.searchBeneficiary(value);
+                child: Focus(
+                  onFocusChange: (hasChanged) {
+                    if (!hasChanged) {
+                      model.searchBeneficiary(model.sendMoneySearchController.text, "SM");
+                    }
                   },
-                  suffixIcon: (value, data) {
-                    return InkWell(
-                      onTap: () async {},
-                      child: Container(
-                          height: 16.h,
-                          width: 16.w,
-                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                    );
-                  },
+                  child: AppTextField(
+                    labelText: '',
+                    controller: model.sendMoneySearchController,
+                    textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                    hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                    textColor: Theme.of(context).primaryColorDark,
+                    hintText: S.of(context).searchContacts,
+                    onChanged: (value) {
+                      if (model.sendMoneySearchController.text.isEmpty) {
+                        //    model.getBeneficiaryList();
+                      }
+                    },
+                    suffixIcon: (value, data) {
+                      return InkWell(
+                        onTap: () async {},
+                        child: Container(
+                            height: 16.h,
+                            width: 16.w,
+                            padding: EdgeInsetsDirectional.only(end: 8.w),
+                            child:
+                                AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                      );
+                    },
+                  ),
                 ),
               ),
               SizedBox(

@@ -31,8 +31,12 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   Stream<Resource<BeneficiaryContact>> get getBeneficiaryListStream => _getBeneficiaryListResponse.stream;
 
   ///---------------------------search-beneficiary-list---------------------------------///
-//  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream => _searchBeneficiaryListResponse.stream;
-  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
+  PublishSubject<SearchContactUseCaseParams> _searchBeneficiaryListRequest = PublishSubject();
+
+  // PublishSubject<Resource<BeneficiaryContact>> _searchBeneficiaryListResponse = PublishSubject();
+
+  // Stream<Resource<BeneficiaryContact>> get searchBeneficiaryListStream =>
+  //     _getBeneficiaryListResponse.stream;
 
   ///--------------------------public-other-methods-------------------------------------///
 
@@ -57,7 +61,13 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
     }
   }*/
 
-  void searchBeneficiary(String? searchText) {}
+  void searchBeneficiary(
+    String searchText,
+    String beneType,
+  ) {
+    _searchBeneficiaryListRequest
+        .safeAdd(SearchContactUseCaseParams(searchText: searchText, beneType: beneType, isFromMobile: true));
+  }
 
   void getBeneficiaryList() {
     _getBeneficiaryListRequest.safeAdd(BeneficiaryContactUseCaseParams(
@@ -95,7 +105,7 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   void dispose() {
     _getBeneficiaryListRequest.close();
     _getBeneficiaryListResponse.close();
-    _searchBeneficiaryListResponse.close();
+
     super.dispose();
   }
 
@@ -109,6 +119,7 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getBeneficiaryListResponse.safeAdd(event);
+
         if (event.status == Status.ERROR) {
           //  showErrorState();
           showToastWithError(event.appError!);
@@ -127,6 +138,21 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _searchBeneficiaryListRequest.listen((value) {
+      RequestManager(value, createCall: () => _searchContactUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getBeneficiaryListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          //  showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          // _searchBeneficiaryListResponse.safeAdd(Resource.success(data: event.data!.beneficiaryList));
         }
       });
     });

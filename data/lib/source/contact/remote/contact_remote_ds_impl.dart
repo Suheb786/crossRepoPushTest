@@ -6,7 +6,6 @@ import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
-import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -164,7 +163,7 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact({
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact({
     required String searchText,
     required bool isFromMobile,
     required String beneType,
