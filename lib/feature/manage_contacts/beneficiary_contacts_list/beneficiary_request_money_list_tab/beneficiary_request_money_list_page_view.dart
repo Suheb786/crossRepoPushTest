@@ -106,7 +106,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                       arguments: NavigationType.REQUEST_MONEY);
 
                   if (result != null && result == true) {
-                    model.getBeneficiaryList();
+                    model.getBeneficiaryList(isFromSearch: false);
                   }
                 },
                 child: Container(
@@ -200,7 +200,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                             .beneficiaryFavoriteContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -261,7 +261,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                             .beneficiaryOtherContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -320,7 +320,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                     arguments: NavigationType.REQUEST_MONEY);
 
                 if (result != null && result == true) {
-                  model.getBeneficiaryList();
+                  model.getBeneficiaryList(isFromSearch: false);
                 }
               },
               child: Container(

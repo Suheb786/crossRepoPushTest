@@ -34,7 +34,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse =
+      BehaviorSubject.seeded(Resource.success(data: GetBeneficiaryListResponse()));
 
   List<Beneficiary> smBeneficiaries = [];
 
@@ -61,15 +62,15 @@ class PaymentHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          print('data---->${event.data?.beneficiaryList}');
+          if (value.beneType == "SM") {
+            getBeneficiaries(appLevelKey.currentContext!, 'RTP');
+          }
           if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
-            event.data!.beneficiaryList!.forEach((element) {
+            event.data?.beneficiaryList?.forEach((element) {
               if (element.beneType == "SM") {
                 smBeneficiaries.add(element);
               }
             });
-          } else {
-            smBeneficiaries = [];
           }
 
           if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
@@ -78,8 +79,6 @@ class PaymentHomeViewModel extends BasePageViewModel {
                 rtpBeneficiaries.add(element);
               }
             });
-          } else {
-            rtpBeneficiaries = [];
           }
 
           Future.delayed(Duration(milliseconds: 50), () {

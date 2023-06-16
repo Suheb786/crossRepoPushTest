@@ -106,7 +106,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                       arguments: NavigationType.SEND_MONEY);
 
                   if (result != null && result == true) {
-                    model.getBeneficiaryList();
+                    model.getBeneficiaryList(isFromSearch: false);
                   }
                 },
                 child: Container(
@@ -200,7 +200,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                             ?.beneficiaryFavoriteContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -261,7 +261,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                             ?.beneficiaryOtherContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -323,7 +323,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                     arguments: NavigationType.SEND_MONEY);
 
                 if (result != null && result == true) {
-                  model.getBeneficiaryList();
+                  model.getBeneficiaryList(isFromSearch: false);
                 }
               },
               child: Container(

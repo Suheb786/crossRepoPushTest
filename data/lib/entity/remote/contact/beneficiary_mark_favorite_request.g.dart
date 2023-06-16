@@ -6,7 +6,8 @@ part of 'beneficiary_mark_favorite_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BeneficiaryMarkFavoriteRequest _$BeneficiaryMarkFavoriteRequestFromJson(Map<String, dynamic> json) =>
+BeneficiaryMarkFavoriteRequest _$BeneficiaryMarkFavoriteRequestFromJson(
+        Map<String, dynamic> json) =>
     BeneficiaryMarkFavoriteRequest(
       beneficiaryDetailId: json['BeneficiaryDetailId'] as String,
       isFavorite: json['IsFavorite'] as bool,
@@ -17,7 +18,8 @@ BeneficiaryMarkFavoriteRequest _$BeneficiaryMarkFavoriteRequestFromJson(Map<Stri
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$BeneficiaryMarkFavoriteRequestToJson(BeneficiaryMarkFavoriteRequest instance) =>
+Map<String, dynamic> _$BeneficiaryMarkFavoriteRequestToJson(
+        BeneficiaryMarkFavoriteRequest instance) =>
     <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryDetailId,
       'IsFavorite': instance.isFavorite,

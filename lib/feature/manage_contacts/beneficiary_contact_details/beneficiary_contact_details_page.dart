@@ -59,7 +59,7 @@ class BeneficiaryContactDetailsPageState
                   beneficiaryContactListPageViewModelProvider,
                 );
                 if (provider.isNewRecordCreated || getViewModel().isUpdateProfile) {
-                  provider.getBeneficiaryList();
+                  provider.getBeneficiaryList(isFromSearch: false);
                 }
                 Navigator.pop(context);
               },
