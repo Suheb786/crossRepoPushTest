@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m15(String) => "Back to ${String}";
 
-  static String m1(variable) => "Enter the 6-digit code sent to ${variable}";
+  static String m1(variable) => "Enter the 6-digit code sent to \n${variable}";
 
   static String m2(mobile) => "Enter the 6-digit code sent to\n${mobile}";
 
@@ -315,7 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSureToUnlinkAccount": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to unlink the account with your CliQ ID?"),
         "areYouSureToremoveContact": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to remove this contact? Your action can’t be undone."),
+            "Are you sure you want to remove this contact?"),
         "areYouSureWantToDelete": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete "),
         "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
@@ -2073,6 +2073,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nickNameCanOnlyContainAlphanumerics":
             MessageLookupByLibrary.simpleMessage(
                 "Nick name can only contain alphanumerics"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
+            "Contact nickname has been updated"),
         "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
             "Nickname cannot be more than 50 characters long. "),
         "nicknameLengthShouldNotBeGreaterThan50":

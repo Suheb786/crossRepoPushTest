@@ -8,6 +8,7 @@ import 'package:flutter/src/services/clipboard.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -19,7 +20,9 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -83,153 +86,171 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                     return AppStreamBuilder<String>(
                         initialData: "",
                         stream: model.selectedImageValue,
-                        onData: (data) {
-                          if (data.isNotEmpty) {
-                            model.selectedProfile = data;
-                          }
-                        },
+                        onData: (data) {},
                         dataBuilder: (context, image) {
                           return GestureDetector(
-                            onTap: () {
-                              EditProfilePicBottomSheetSelectionWidget.show(context, onCancel: () {
-                                Navigator.pop(context);
-                              }, onRemovePhoto: () {
-                                model.removeImage();
-                                Navigator.pop(context);
-                              }, onSelectFromLibrary: () {
-                                model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                Navigator.pop(context);
-                              }, onTakePhoto: () {
-                                model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                Navigator.pop(context);
-                              }, title: S.current.pleaseSelectYourAction);
-                            },
-                            child: image!.isEmpty
-                                ? Stack(
-                                    alignment: Alignment.bottomRight,
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Theme.of(context).primaryColor,
-                                        radius: 48.w,
-                                        child: Text(
-                                          StringUtils.getFirstInitials(model.argument.fullName),
-                                          style: TextStyle(
-                                            color: AppColor.white,
-                                            fontSize: 22.t,
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                              onTap: () {
+                                EditProfilePicBottomSheetSelectionWidget.show(context, onCancel: () {
+                                  Navigator.pop(context);
+                                }, onRemovePhoto: () {
+                                  model.removeImage();
+                                  Navigator.pop(context);
+                                }, onSelectFromLibrary: () {
+                                  model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                  Navigator.pop(context);
+                                }, onTakePhoto: () {
+                                  model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                  Navigator.pop(context);
+                                }, title: S.current.pleaseSelectYourAction);
+                              },
+                              child: Stack(
+                                alignment: Alignment.bottomRight,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  image!.isEmpty
+                                      ? model.argument.image.isEmpty
+                                          ? CircleAvatar(
+                                              backgroundColor: Theme.of(context).colorScheme.shadow,
+                                              radius: 48.w,
+                                              child: Text(
+                                                StringUtils.getFirstInitials(model.argument.nickName),
+                                                style: TextStyle(
+                                                  color: AppColor.white,
+                                                  fontSize: 22.t,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ))
+                                          : CircleAvatar(
+                                              radius: 48.w,
+                                              backgroundImage: Image.memory(
+                                                model.argument.image,
+                                                fit: BoxFit.cover,
+                                              ).image,
+                                            )
+                                      : CircleAvatar(
+                                          radius: 48.w,
+                                          backgroundImage: Image.file(
+                                            File(image),
+                                            fit: BoxFit.contain,
+                                          ).image,
                                         ),
-                                      ),
-                                      Positioned(
-                                          bottom: -11.h,
-                                          right: -6.w,
-                                          child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
-                                    ],
-                                  )
-                                : Stack(
-                                    alignment: Alignment.bottomRight,
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 48.w,
-                                        backgroundImage: Image.file(
-                                          File(image),
-                                          fit: BoxFit.contain,
-                                        ).image,
-                                      ),
-                                      Positioned(
-                                          bottom: -11.h,
-                                          right: -6.w,
-                                          child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
-                                    ],
-                                  ),
-                          );
+                                  Positioned(
+                                      bottom: -11.h,
+                                      right: -6.w,
+                                      child: AppSvg.asset(AssetUtils.cameraWhiteContainerWrap)),
+                                ],
+                              ));
                         });
                   }),
-              InkWell(
-                  onTap: () {
-                    InformationDialog.show(context, image: AssetUtils.removeContact, isSwipeToCancel: true,
-                        onDismissed: () {
-                      Navigator.pop(context);
-                    }, onSelected: () {
-                      Navigator.pop(context);
-                      model.deleteBeneficiary();
-                    },
-                        title: S.current.removeContact,
-                        descriptionWidget: Text(S.current.areYouSureToremoveContact));
+              AppStreamBuilder<Resource<bool>>(
+                  stream: model.deleteBeneficiaryStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
+                          title: '', description: S.of(context).yourContactHasBeenRemoved));
+                      Navigator.pop(context, true);
+                    }
                   },
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: AppSvg.asset(AssetUtils.delete,
-                        color: AppColor.sky_blue_mid, height: 24.h, width: 24.w),
-                  )),
+                  dataBuilder: (context, data) {
+                    return InkWell(
+                        onTap: () {
+                          InformationDialog.show(context,
+                              image: AssetUtils.removeContact, isSwipeToCancel: true, onDismissed: () {
+                            Navigator.pop(context);
+                          }, onSelected: () {
+                            Navigator.pop(context);
+                            model.deleteBeneficiary();
+                          },
+                              title: S.current.removeContact,
+                              descriptionWidget: Text(S.current.areYouSureToremoveContact));
+                        },
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: AppSvg.asset(AssetUtils.delete,
+                              color: AppColor.sky_blue_mid, height: 24.h, width: 24.w),
+                        ));
+                  }),
             ],
           ),
           SizedBox(height: 16.h),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColor.white_gray,
-                ),
-                borderRadius: BorderRadius.circular(100)),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: ValueListenableBuilder<bool>(
-                      valueListenable: model.nameEditableNotifier,
-                      builder: (BuildContext context, bool value, Widget? child) {
-                        return Focus(
-                          onFocusChange: (hasFocus) {
-                            if (!hasFocus) {
-                              model.setNickNameReadOnly();
-                            }
-                          },
-                          child: AutoSizeTextField(
-                            controller: model.nickNameController,
-                            focusNode: model.nickNameFocus,
-                            fullwidth: false,
-                            textAlign: TextAlign.center,
-                            cursorWidth: 1.w,
-                            minWidth: 40.w,
-                            readOnly: value,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
-                              isCollapsed: false,
-                            ),
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
+          AppStreamBuilder<Resource<bool>>(
+              stream: model.updateBeneficiaryStream,
+              initialData: Resource.none(),
+              onData: (data) {
+                if (data.status == Status.SUCCESS) {
+                  model.showSuccessTitleandDescriptionToast(
+                      ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
+                }
+              },
+              dataBuilder: (context, data) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColor.white_gray,
+                      ),
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: AppStreamBuilder<bool>(
+                            stream: model.nameEditableNotifierStream,
+                            initialData: false,
+                            dataBuilder: (context, isEditable) {
+                              return Focus(
+                                onFocusChange: (hasFocus) {
+                                  if (!hasFocus) {
+                                    model.setNickNameReadOnly();
+                                  }
+                                },
+                                child: AutoSizeTextField(
+                                  controller: model.nickNameController,
+                                  focusNode: model.nickNameFocus,
+                                  fullwidth: false,
+                                  textAlign: TextAlign.center,
+                                  cursorWidth: 1.w,
+                                  minWidth: 40.w,
+                                  readOnly: isEditable ?? false,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                                    isCollapsed: false,
+                                  ),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.brightBlue,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16.0.t),
+                                  onSubmitted: (value) {},
+                                ),
+                              );
+                            }),
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      AppStreamBuilder<bool>(
+                          stream: model.nameEditableNotifierStream,
+                          initialData: false,
+                          dataBuilder: (context, isEditable) {
+                            return GestureDetector(
+                              onTap: () {
+                                model.toggleNickName(context);
+                              },
+                              child: AppSvg.asset(
+                                (isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
                                 color: AppColor.brightBlue,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16.0.t),
-                            onSubmitted: (value) {
-                              model.setNickNameReadOnly();
-                            },
-                          ),
-                        );
-                      }),
-                ),
-                ValueListenableBuilder<bool>(
-                    valueListenable: model.nameEditableNotifier,
-                    builder: (BuildContext context, bool value, Widget? child) {
-                      return GestureDetector(
-                        onTap: () {
-                          model.toggleNickName();
-                        },
-                        child: AppSvg.asset(
-                          value ? AssetUtils.editNickName : AssetUtils.checkIcon,
-                          color: AppColor.brightBlue,
-                          width: value ? 14.h : 12.h,
-                          height: value ? 14.h : 12.h,
-                        ),
-                      );
-                    })
-              ],
-            ),
-          ),
+                                width: isEditable ?? false ? 14.h : 12.h,
+                                height: isEditable ?? false ? 14.h : 12.h,
+                              ),
+                            );
+                          })
+                    ],
+                  ),
+                );
+              }),
         ],
       ),
     );
@@ -253,7 +274,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.nickName!,
+            model.argument.fullName!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -264,7 +285,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 16.h,
           ),
           Text(
-            S.of(context).accountMobileNoAlias,
+            S.of(context).accountNumber,
             style: TextStyle(
                 fontSize: 12.t,
                 fontFamily: StringUtils.appFont,
@@ -278,7 +299,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             children: [
               Flexible(
                 child: Text(
-                  model.argument.iban!,
+                  model.argument.accountNo!,
                   style: TextStyle(
                       fontSize: 16.t,
                       fontFamily: StringUtils.appFont,
@@ -291,7 +312,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.iban!,
+                        text: model.argument.accountNo!,
                       )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
@@ -313,7 +334,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.purpose!,
+            model.argument.purposeParentDetails!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -354,8 +375,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 30.w),
+            padding: EdgeInsetsDirectional.only(end: 30.w),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -410,24 +432,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.RequestAmountFromContact,
                       arguments: Beneficiary(
-                        accountHolderName: "Test User Account",
-                        accountNo: "",
-                        bankName: "ABC Bank",
-                        beneType: "",
+                        accountHolderName: model.argument.fullName,
+                        accountNo: model.argument.accountNo,
+                        bankName: model.argument.bankName,
+                        beneType: model.argument.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: "",
-                        fullName: "Test User",
-                        iban: "98237328739",
-                        id: "",
-                        imageUrl: "",
-                        limit: 3,
-                        mobileNumber: "",
-                        nickName: "test",
-                        purpose: "personal",
-                        purposeDetails: "Test Details",
-                        purposeParent: "testparent",
-                        purposeParentDetails: "",
-                        purposeType: "",
+                        detCustomerType: model.argument.detCustomerType,
+                        fullName: model.argument.fullName,
+                        iban: model.argument.accountNo,
+                        id: model.argument.id,
+                        imageUrl: model.argument.image,
+                        limit: model.argument.limit,
+                        mobileNumber: model.argument.mobileNumber,
+                        nickName: model.argument.nickName,
+                        purpose: model.argument.purpose,
+                        purposeDetails: model.argument.purposeDetails,
+                        purposeParent: model.argument.purposeParent,
+                        purposeParentDetails: model.argument.purposeParentDetails,
+                        purposeType: model.argument.purposeType,
                       ),
                     );
                   },
@@ -480,24 +502,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.SendAmountToContact,
                       arguments: Beneficiary(
-                        accountHolderName: "Test User Account",
-                        accountNo: "",
-                        bankName: "ABC Bank",
-                        beneType: "",
+                        accountHolderName: model.argument.fullName,
+                        accountNo: model.argument.accountNo,
+                        bankName: model.argument.bankName,
+                        beneType: model.argument.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: "",
-                        fullName: "Test User",
-                        iban: "98237328739",
-                        id: "",
-                        imageUrl: "",
-                        limit: 3,
-                        mobileNumber: "",
-                        nickName: "test",
-                        purpose: "personal",
-                        purposeDetails: "Test Details",
-                        purposeParent: "testparent",
-                        purposeParentDetails: "",
-                        purposeType: "",
+                        detCustomerType: model.argument.detCustomerType,
+                        fullName: model.argument.fullName,
+                        iban: model.argument.accountNo,
+                        id: model.argument.id,
+                        imageUrl: model.argument.image,
+                        limit: model.argument.limit,
+                        mobileNumber: model.argument.mobileNumber,
+                        nickName: model.argument.nickName,
+                        purpose: model.argument.purpose,
+                        purposeDetails: model.argument.purposeDetails,
+                        purposeParent: model.argument.purposeParent,
+                        purposeParentDetails: model.argument.purposeParentDetails,
+                        purposeType: model.argument.purposeType,
                       ),
                     );
                   },

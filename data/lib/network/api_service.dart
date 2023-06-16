@@ -173,7 +173,7 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/contact/search_contact_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
-import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
 import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
@@ -292,8 +292,11 @@ import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
+import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
+import '../entity/remote/contact/send_otp_add_beneficiary_entity.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 
@@ -510,7 +513,8 @@ abstract class ApiService {
       @Body() BeneficiaryFavoriteRequest baseRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(@Body() AddBeneficiaryRequest addBeneficiaryRequest);
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContact")
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
@@ -520,13 +524,17 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
       @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
 
-  @POST("/beneficiary/VerifyBeneficiaryOTP")
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
-      @Body() VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest);
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContactImage")
+  Future<HttpResponse<ResponseEntity>> updateContactImage(
+      @Body() UpdateAvatarRequest updateContactImageRequest);
 
-  @POST("/beneficiary/UploadBeneficiaryImage")
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
-      @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContactImage")
+  Future<HttpResponse<ResponseEntity>> removeContactImage(
+      @Body() RemoveAvatarRequest removeContactImageRequest);
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContactOtp")
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      @Body() SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest);
 
   @POST("/Dashboard/GetDashboardDataV4")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
@@ -1173,11 +1181,4 @@ abstract class ApiService {
   @POST("/ManageContacts/DeleteContact")
   Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
 
-  ///update avatar contact
-  @POST("/ManageContacts/UpdateAvatar")
-  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
-
-  ///Remove Avatar
-  @POST("/ManageContacts/RemoveAvatar")
-  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
 }

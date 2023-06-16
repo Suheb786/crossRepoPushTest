@@ -24,7 +24,7 @@ class BeneficiaryFavoriteContact {
   final String? beneficiaryIban;
   final String? beneficiaryType;
   final String? mobileNumber;
-  final dynamic image;
+  dynamic image;
   final String? purpose;
   final String? purposeDetails;
   final String? purposeParent;

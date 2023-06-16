@@ -1279,14 +1279,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(AddBeneficiaryRequest addBeneficiaryRequest) async {
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      AddBeneficiaryRequest addBeneficiaryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addBeneficiaryRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AddBeneficiaryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1298,7 +1299,7 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = AddBeneficiaryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -1356,22 +1357,22 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
-      VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest) async {
+  Future<HttpResponse<ResponseEntity>> updateContactImage(
+      UpdateAvatarRequest updateContactImageRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(verifyBeneficiaryOtpRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    _data.addAll(updateContactImageRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/beneficiary/VerifyBeneficiaryOTP',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/UpdateContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1382,27 +1383,53 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
-      UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest) async {
+  Future<HttpResponse<ResponseEntity>> removeContactImage(
+      RemoveAvatarRequest removeContactImageRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(uploadBeneficiaryImageRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    _data.addAll(removeContactImageRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/beneficiary/UploadBeneficiaryImage',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/RemoveContactImage',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      SendOTPAddBeneficiaryRequest sendOTPAddBeneficiaryRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(sendOTPAddBeneficiaryRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/AddContactOtp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SendOtpAddBeneficiaryDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -5370,56 +5397,6 @@ class _ApiService implements ApiService {
             .compose(
               _dio.options,
               '/ManageContacts/DeleteContact',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateAvatar(UpdateAvatarRequest updateAvatarRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(updateAvatarRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/ManageContacts/UpdateAvatar',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> removeAvatar(RemoveAvatarRequest removeAvatarRequest) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(removeAvatarRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/ManageContacts/RemoveAvatar',
               queryParameters: queryParameters,
               data: _data,
             )

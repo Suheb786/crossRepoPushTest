@@ -99,9 +99,15 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                 width: 8.w,
               ),
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                onTap: () async {
+                  model.isNewRecordCreated = true;
+                  var result = await Navigator.pushNamed(
+                      context, RoutePaths.AddContactsIBANManageContactsPage,
                       arguments: NavigationType.SEND_MONEY);
+
+                  if (result != null && result == true) {
+                    model.getBeneficiaryList();
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -184,13 +190,18 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryFavoriteContact![index],
                                                   onTap: () async {
-                                                    // var result = await Navigator.pushNamed(
-                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                    //     arguments: beneficiaryList?.data![index]);
-                                                    //
-                                                    // if (result != null) {
-                                                    //   // model.getBeneficiaryList();
-                                                    // }
+                                                    model.isNewRecordCreated = false;
+
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: beneficiaryList
+                                                            ?.data
+                                                            ?.beneficiarySendMoneyContact
+                                                            ?.beneficiaryFavoriteContact![index]);
+
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList();
+                                                    }
                                                   },
                                                   onFavClick: (beneficiary) {
                                                     model.markAsFavorite(
@@ -240,13 +251,18 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryOtherContact![index],
                                                   onTap: () async {
-                                                    // var result = await Navigator.pushNamed(
-                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                    //     arguments: beneficiaryList?.data![index]);
-                                                    //
-                                                    // if (result != null) {
-                                                    //   // model.getBeneficiaryList();
-                                                    // }
+                                                    model.isNewRecordCreated = false;
+
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: beneficiaryList
+                                                            ?.data
+                                                            ?.beneficiarySendMoneyContact
+                                                            ?.beneficiaryOtherContact![index]);
+
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList();
+                                                    }
                                                   },
                                                   onFavClick: (beneficiary) {
                                                     model.markAsFavorite(
@@ -300,19 +316,15 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                   padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
                   child: AppSvg.asset(AssetUtils.contacts)),
             ),
-            Text(
-              S.of(context).youDontHaveAnyContactAddYourFirstNow,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 12.t,
-                  color: Theme.of(context).primaryColorDark,
-                  fontWeight: FontWeight.w600),
-            ),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+              onTap: () async {
+                model.isNewRecordCreated = true;
+                var result = await Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
                     arguments: NavigationType.SEND_MONEY);
+
+                if (result != null && result == true) {
+                  model.getBeneficiaryList();
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: 16.h),

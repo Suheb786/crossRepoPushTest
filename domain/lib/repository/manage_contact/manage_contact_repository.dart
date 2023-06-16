@@ -2,11 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
+
+import '../../model/manage_contacts/add_beneficiary_response.dart';
 
 abstract class ManageContactRepository {
   Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries(String beneType);
 
-  Future<Either<NetworkError, bool>> addBeneficiary(
+  Future<Either<NetworkError, AddBeneficiaryResponse>> addBeneficiary(
       {String nickName,
       String fullName,
       String avatarImage,
@@ -52,19 +55,15 @@ abstract class ManageContactRepository {
       String isFromMobile});
 
   Future<Either<NetworkError, bool>> updateAvatar(
-      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String beneType});
+
+  Future<Either<NetworkError, bool>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType});
 
   Future<Either<NetworkError, bool>> updateBeneficiary(
       {String beneficiaryId, String nickName, String beneType});
 
   Future<Either<NetworkError, bool>> deleteBeneficiary({String beneficiaryId, String beneType});
-
-  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({
-    String type,
-    String otpCode,
-  });
-
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 
   Future<Either<NetworkError, bool>> beneficiaryMarkFavorite({
     required String beneficiaryDetailId,
@@ -86,4 +85,7 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
     required String beneType,
   });
+
+  @override
+  Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
 }

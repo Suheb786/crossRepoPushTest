@@ -7,10 +7,14 @@ import 'package:domain/usecase/manage_contacts/contact_detail_usecase.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_usecase.dart';
+import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
+import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
+import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
+import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
+import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:domain/usecase/manage_contacts/search_contact_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
-import 'package:domain/usecase/manage_contacts/verify_beneficiary_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddBeneficiaryUseCase] provider
@@ -39,9 +43,10 @@ final uploadBeneficiaryProfileImageUseCaseProvider =
   (ref) => UploadBeneficiaryProfileImageUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
-///[VerifyBeneficiaryOtpUseCase] provider
-final verifyBeneficiaryOtpUseCaseProvider = Provider.autoDispose<VerifyBeneficiaryOtpUseCase>(
-  (ref) => VerifyBeneficiaryOtpUseCase(ref.read(manageContactRepositoryProvider)),
+///[RemoveBeneficiaryProfileImageUseCase] provider
+final removeBeneficiaryProfileImageUseCaseProvider =
+    Provider.autoDispose<RemoveBeneficiaryProfileImageUseCase>(
+  (ref) => RemoveBeneficiaryProfileImageUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[addContactIBANuseCase] provider
@@ -49,9 +54,14 @@ final addBeneficiaryUseCaseProvider = Provider.autoDispose<AddBeneficiaryUseCase
   (ref) => AddBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
+///[resendOTPAddBeneficiary] provider
+final resendOTPAddBeneficiaryUseCaseProvider = Provider.autoDispose<ResendOTPAddBeneficiaryUseCase>(
+  (ref) => ResendOTPAddBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
 ///[addContactIbanOTPuseCase] provider
 final addBeneficiaryOTPuseCaseProvider = Provider.autoDispose<AddBeneficiaryOTPUseCase>(
-  (ref) => AddBeneficiaryOTPUseCase(),
+  (ref) => AddBeneficiaryOTPUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[DeleteContactOtpValidationUsecase] provider
