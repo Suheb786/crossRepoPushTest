@@ -1,10 +1,10 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
-import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
@@ -93,9 +93,13 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries() async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(String beneType) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getBeneficiaries(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getBeneficiaries(BeneficiaryFavoriteRequest(
+      baseData: baseData.toJson(),
+      isFromMobile: true,
+      beneType: beneType,
+    ));
   }
 
   @override

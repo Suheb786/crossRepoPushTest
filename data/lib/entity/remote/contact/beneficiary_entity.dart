@@ -11,13 +11,13 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? nickName;
   @JsonKey(name: "fullName")
   final String? fullName;
-  @JsonKey(name: "profileImage")
+  @JsonKey(name: "image")
   final String? profileImage;
   @JsonKey(name: "id")
   final String? id;
   @JsonKey(name: "accountNo")
   final String? accountNo;
-  @JsonKey(name: "iban")
+  @JsonKey(name: "beneficiaryIban")
   final String? iban;
   @JsonKey(name: "purpose")
   final String? purpose;
@@ -29,7 +29,7 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? beneficiaryAddress;
   @JsonKey(name: "bankName")
   final String? bankName;
-  @JsonKey(name: "beneType")
+  @JsonKey(name: "beneficiaryType")
   final String? beneType;
   @JsonKey(name: "purposeType")
   final String? purposeType;
@@ -43,23 +43,23 @@ class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Bene
   final String? detCustomerType;
 
   BeneficiaryEntity(
-      {this.nickName= "",
-      this.fullName= "",
-      this.profileImage= "",
-      this.beneficiaryAddress= "",
-      this.accountNo= "",
-      this.mobileNumber= "",
-      this.purposeDetails= "",
-      this.bankName= "",
-      this.iban= "",
-      this.purpose= "",
-      this.id= "",
-      this.beneType= "",
-      this.purposeType= "",
-      this.detCustomerType= "",
+      {this.nickName = "",
+      this.fullName = "",
+      this.profileImage = "",
+      this.beneficiaryAddress = "",
+      this.accountNo = "",
+      this.mobileNumber = "",
+      this.purposeDetails = "",
+      this.bankName = "",
+      this.iban = "",
+      this.purpose = "",
+      this.id = "",
+      this.beneType = "",
+      this.purposeType = "",
+      this.detCustomerType = "",
       this.limit,
-      this.purposeParent= "",
-      this.purposeParentDetails= ""});
+      this.purposeParent = "",
+      this.purposeParentDetails = ""});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) => _$BeneficiaryEntityFromJson(json);
 
