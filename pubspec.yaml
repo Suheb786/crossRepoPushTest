@@ -88,7 +88,6 @@ dependencies:
   package_info_plus: 4.0.2
   qr_flutter: ^4.1.0
   syncfusion_flutter_pdfviewer: any
-  fw_flutter_sdk: 2.0.1
 
 
 dependency_overrides:
