@@ -1,20 +1,17 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import '../../../main/app_viewmodel.dart';
 import '../../../utils/navgition_type.dart';
 import 'beneficiary_contact_details_page_view.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
 
 class BeneficiaryContactDetailsPage extends BasePage<BeneficiaryContactDetailsPageViewModel> {
-  final Beneficiary _beneficiaryInformation;
+  final dynamic _beneficiaryInformation;
 
   BeneficiaryContactDetailsPage(this._beneficiaryInformation);
 
@@ -34,7 +31,7 @@ class BeneficiaryContactDetailsPageState
 
   @override
   void onModelReady(BeneficiaryContactDetailsPageViewModel model) {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+    final provider = ProviderScope.containerOf(context).read(
       beneficiaryContactListPageViewModelProvider,
     );
     model.navigationType = provider.navigationType!;
@@ -58,7 +55,13 @@ class BeneficiaryContactDetailsPageState
           children: [
             InkWell(
               onTap: () {
-                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.BeneficiaryContactsList));
+                final provider = ProviderScope.containerOf(context).read(
+                  beneficiaryContactListPageViewModelProvider,
+                );
+                if (provider.isNewRecordCreated || getViewModel().isUpdateProfile) {
+                  provider.getBeneficiaryList();
+                }
+                Navigator.pop(context);
               },
               child: AppSvg.asset(AssetUtils.back,
                   height: 24.h,

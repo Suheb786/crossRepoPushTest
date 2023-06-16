@@ -2,9 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:domain/model/manage_contacts/beneficiary_search_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 
 class ManageContactsRepositoryImpl with ManageContactRepository {
@@ -59,24 +61,13 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String? filePath, String? beneficiaryId}) async {
+  Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary() async {
     final result = await safeApiCall(
-      _contactRemoteDS.uploadBeneficiaryImage(beneficiaryId: beneficiaryId!, filePath: filePath!),
+      _contactRemoteDS.sendOTPAddBeneficiary(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
-  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
-    final result = await safeApiCall(
-      _contactRemoteDS.verifyBeneficiaryOtp(type: type!, otpCode: otpCode!),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -196,13 +187,13 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
 
   @override
   Future<Either<NetworkError, bool>> updateAvatar(
-      {String? beneficiaryDetailId, String? avatarImage, String? userId, String? isFromMobile}) async {
+      {String? beneficiaryDetailId, String? avatarImage, String? beneType}) async {
     final result = await safeApiCall(
       _contactRemoteDS.updateAvatar(
-          beneficiaryDetailId: beneficiaryDetailId!,
-          avatarImage: avatarImage!,
-          userId: userId!,
-          isFromMobile: isFromMobile!),
+        beneficiaryDetailId: beneficiaryDetailId!,
+        avatarImage: avatarImage!,
+        beneType: beneType!,
+      ),
     );
     return result!.fold(
       (l) => Left(l),
@@ -211,7 +202,22 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addBeneficiary(
+  Future<Either<NetworkError, bool>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType}) async {
+    final result = await safeApiCall(
+      _contactRemoteDS.removeAvatar(
+        beneficiaryDetailId: beneficiaryDetailId,
+        beneType: beneType,
+      ),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, AddBeneficiaryResponse>> addBeneficiary(
       {String? nickName,
       String? fullName,
       String? avatarImage,
@@ -265,7 +271,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 }

@@ -5,17 +5,18 @@ import 'package:domain/error/base_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-import 'package:domain/utils/validator.dart';
 
+import '../../model/manage_contacts/add_beneficiary_response.dart';
 import '../../repository/manage_contact/manage_contact_repository.dart';
 
-class AddBeneficiaryUseCase extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, bool> {
+class AddBeneficiaryUseCase
+    extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, AddBeneficiaryResponse> {
   final ManageContactRepository _manageContactRepository;
 
   AddBeneficiaryUseCase(this._manageContactRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute({required AddContactIBANuseCaseParams params}) {
+  Future<Either<BaseError, AddBeneficiaryResponse>> execute({required AddContactIBANuseCaseParams params}) {
     return _manageContactRepository.addBeneficiary(
         nickName: params.name,
         fullName: params.fullName,
@@ -40,7 +41,7 @@ class AddBeneficiaryUseCase extends BaseUseCase<BaseError, AddContactIBANuseCase
         purposeDetails: '',
         purposeParent: '',
         purposeParentDetails: '',
-        OTPCode: '576824');
+        OTPCode: params.otp);
   }
 }
 
@@ -51,6 +52,7 @@ class AddContactIBANuseCaseParams extends Params {
   final String purpose;
   final String purposeDetail;
   final String IBANAccountNoMobileNoAlias;
+  final String otp;
 
   AddContactIBANuseCaseParams({
     required this.name,
@@ -59,28 +61,13 @@ class AddContactIBANuseCaseParams extends Params {
     required this.purpose,
     required this.purposeDetail,
     required this.IBANAccountNoMobileNoAlias,
+    required this.otp,
   });
 
   @override
   Either<AppError, bool> verify() {
-    if (Validator.isEmpty(name)) {
-      return Left(
-          AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_NICKNAME_VALUE));
-    } else if (name.length > 50) {
-      return Left(AppError(
-          cause: Exception(),
-          error: ErrorInfo(message: ""),
-          type: ErrorType.NICKNAME_LENGTH_SHOULD_NOT_BE_GREATER_THAN_50));
-    } else if (Validator.isEmpty(IBANAccountNoMobileNoAlias)) {
-      return Left(AppError(
-          cause: Exception(),
-          error: ErrorInfo(message: ""),
-          type: ErrorType.PLEASE_ENTER_IBAN_ACCOUNT_MOBILE_ALIAS));
-    } else if (Validator.isEmpty(purpose)) {
-      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE));
-    } else if (Validator.isEmpty(purposeDetail)) {
-      return Left(
-          AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.EMPTY_PURPOSE_DETAIL));
+    if (otp.isEmpty || otp.length < 6) {
+      return Left(AppError(cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.INVALID_OTP));
     }
 
     return Right(true);

@@ -1,4 +1,3 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/manage_contacts/manage_contacts_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
@@ -21,18 +20,24 @@ final addBeneficiaryViewModelProvider =
 
 final addBeneficiaryFormPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryFormPageViewModel>(
     (ref) => AddBeneficiaryFormPageViewModel(
-        ref.read(addBeneficiaryUseCaseProvider),
+        ref.read(addBeneficiaryOTPuseCaseProvider),
         ref.read(getPurposeUseCaseProvider),
         ref.read(checkSendMoneyUseCaseProvider),
         ref.read(getAccountByAliasUseCaseProvider)));
 
 final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBeneficiaryotpPageViewModel>(
-    (ref) => AddBeneficiaryotpPageViewModel(ref.read(addBeneficiaryOTPuseCaseProvider)));
+    (ref) => AddBeneficiaryotpPageViewModel(
+        ref.read(addBeneficiaryUseCaseProvider), ref.read(resendOTPAddBeneficiaryUseCaseProvider)));
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>((ref, args) =>
-        BeneficiaryContactDetailsPageViewModel(ref.read(uploadDocumentUseCaseProvider),
-            ref.read(deleteBeneficiaryUseCaseProvider), ref.read(updateBeneficiaryUseCaseProvider), args));
+    .family<BeneficiaryContactDetailsPageViewModel, dynamic>((ref, args) =>
+        BeneficiaryContactDetailsPageViewModel(
+            ref.read(uploadDocumentUseCaseProvider),
+            ref.read(deleteBeneficiaryUseCaseProvider),
+            ref.read(updateBeneficiaryUseCaseProvider),
+            ref.read(uploadBeneficiaryProfileImageUseCaseProvider),
+            ref.read(removeBeneficiaryProfileImageUseCaseProvider),
+            args));
 
 final beneficiaryTransactionHistoryListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryTransactionHistoryListPageViewModel>(

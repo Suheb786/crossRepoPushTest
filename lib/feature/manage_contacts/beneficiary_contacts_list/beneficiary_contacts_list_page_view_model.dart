@@ -38,6 +38,8 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
 
   NavigationType? navigationType;
 
+  bool isNewRecordCreated = false;
+
   /* void searchBeneficiary(String? searchText) {
     searchResult!.clear();
     List<Beneficiary>? beneficiaryList = _getBeneficiaryListResponse.value.data!.beneficiaryList;

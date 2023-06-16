@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,19 +33,15 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
               duration: Duration(milliseconds: 100),
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
+              child: AppStreamBuilder<Resource<AddBeneficiaryResponse>>(
                   stream: model.addcontactIbanOTPValidationStream,
                   initialData: Resource.none(),
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
-                      // TODO : yet to implement inorder to set themeing in the next pages.
-                      // final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
-                      //   beneficiaryContactListPageViewModelProvider,
-                      // );
-                      // provider.navigationType! =
-                      Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage);
+                      Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage,
+                          arguments: value.data!.beneficiarySendMoneyContact);
                       model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
-                          title: S.current.success, description: S.current.newContacthasBeenAdded));
+                          title: '', description: S.current.newContacthasBeenAdded));
                     }
                   },
                   dataBuilder: (context, enterOTP) {
@@ -58,7 +55,7 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                           FocusScope.of(context).unfocus();
                           if (StringUtils.isDirectionRTL(context)) {
                             if (!details.primaryVelocity!.isNegative) {
-                              model.validateOTP();
+                              model.validateOTP(context);
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(addBeneficiaryViewModelProvider)
@@ -66,7 +63,7 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                             }
                           } else {
                             if (details.primaryVelocity!.isNegative) {
-                              model.validateOTP();
+                              model.validateOTP(context);
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(addBeneficiaryViewModelProvider)
@@ -110,7 +107,9 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                                       widgetBuilder: (context, currentTimeRemaining) {
                                         return currentTimeRemaining == null
                                             ? TextButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  model.resendOTP();
+                                                },
                                                 child: Text(
                                                   S.of(context).resendCode,
                                                   style: TextStyle(
