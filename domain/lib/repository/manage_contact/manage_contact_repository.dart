@@ -71,6 +71,12 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
     required String beneType,
   });
+  Future<Either<NetworkError, bool>> updateFavorite(
+      {required String beneficiaryDetailId,
+      required bool isRequestMoneyFav,
+      required bool isSendMoneyFav,
+      required String userId,
+      required bool isFromMobile});
 
   Future<Either<NetworkError, BeneficiaryContact>> beneficiaryContacts({
     required bool isFromMobile,
@@ -84,6 +90,10 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
     required String beneType,
   });
+
+  @override
+  Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
+  Future<Either<NetworkError, bool>> searchContact({required String searchText, required bool isFromMobile});
 
   @override
   Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();
