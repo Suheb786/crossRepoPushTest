@@ -1,13 +1,15 @@
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
-import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../entity/remote/contact/add_beneficiary_response_entity.dart';
+import '../../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
+
 abstract class ContactRemoteDS {
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(String beneType);
 
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
       {String nickName,
       String fullName,
       String avatarImage,
@@ -54,19 +56,14 @@ abstract class ContactRemoteDS {
       String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateAvatar(
-      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String beneType});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       {String beneficiaryId, String nickName, String? beneType});
 
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId, String? beneType});
 
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({
-    String type,
-    String otpCode,
-  });
 
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 
   Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
     required bool isFromMobile,
@@ -75,13 +72,14 @@ abstract class ContactRemoteDS {
   Future<HttpResponse<ResponseEntity>> contactDetail(
       {required String beneficiaryDetailId, required bool isFromMobile});
 
-  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact({
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact({
     required String searchText,
     required bool isFromMobile,
     required String beneType,
   });
 
-  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType});
 
   Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite({
     required String beneficiaryDetailId,
@@ -90,4 +88,6 @@ abstract class ContactRemoteDS {
     required bool isFromMobile,
     required String beneType,
   });
+
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary();
 }

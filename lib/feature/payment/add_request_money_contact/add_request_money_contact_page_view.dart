@@ -106,7 +106,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                 )
                               ],
                             )),
-                        beneficiaries!.length > 0
+                        (beneficiaries ?? []).length > 0
                             ? Column(
                                 children: [
                                   Directionality(

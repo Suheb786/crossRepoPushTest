@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -22,17 +23,19 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
 
   @override
   Widget build(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 24.0.w,
-        right: 24.0.w,
-        top: 24.h,
-      ),
-      child: Column(
-        children: [
-          searchContact(context, model),
-          listItem(context, model),
-        ],
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 24.0.w,
+          right: 24.0.w,
+          top: 24.h,
+        ),
+        child: Column(
+          children: [
+            searchContact(context, model),
+            listItem(context, model),
+          ],
+        ),
       ),
     );
   }
@@ -45,35 +48,66 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: AppTextField(
-                  labelText: '',
-                  controller: model.sendMoneySearchController,
-                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                  textColor: Theme.of(context).primaryColorDark,
-                  hintText: S.of(context).searchContacts,
-                  onChanged: (value) {
-                    model.searchBeneficiary(value);
-                  },
-                  suffixIcon: (value, data) {
-                    return InkWell(
-                      onTap: () async {},
-                      child: Container(
-                          height: 16.h,
-                          width: 16.w,
-                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                    );
-                  },
-                ),
+                child: AppStreamBuilder<Resource<BeneficiaryContact>>(
+                    stream: model.getSMBeneficiaryListStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, beneficiaryList) {
+                      return Focus(
+                        onFocusChange: (hasChanged) {
+                          if (!hasChanged) {
+                            if (((beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                ?.beneficiaryFavoriteContact ??
+                                            [])
+                                        .isNotEmpty ||
+                                    (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                ?.beneficiaryOtherContact ??
+                                            [])
+                                        .isNotEmpty) &&
+                                model.sendMoneySearchController.text.isNotEmpty) {
+                              model.searchBeneficiary(model.sendMoneySearchController.text, "SM");
+                            } else {
+                              model.getBeneficiaryList(isFromSearch: true);
+                            }
+                          }
+                        },
+                        child: AppTextField(
+                          labelText: '',
+                          controller: model.sendMoneySearchController,
+                          textFieldBorderColor:
+                              Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                          textColor: Theme.of(context).primaryColorDark,
+                          hintText: S.of(context).searchContacts,
+                          onChanged: (value) {},
+                          onFieldSubmitted: (data) {},
+                          suffixIcon: (value, data) {
+                            return InkWell(
+                              onTap: () async {},
+                              child: Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsetsDirectional.only(end: 8.w),
+                                  child: AppSvg.asset(AssetUtils.search,
+                                      color: Theme.of(context).primaryColorDark)),
+                            );
+                          },
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 width: 8.w,
               ),
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                onTap: () async {
+                  model.isNewRecordCreated = true;
+                  var result = await Navigator.pushNamed(
+                      context, RoutePaths.AddContactsIBANManageContactsPage,
                       arguments: NavigationType.SEND_MONEY);
+
+                  if (result != null && result == true) {
+                    model.getBeneficiaryList(isFromSearch: false);
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -97,13 +131,12 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
         initialData: Resource.none(),
         onData: (isFavoriteStatus) {
           if (isFavoriteStatus.status == Status.SUCCESS) {
-            print("SM Fav");
-            model.getBeneficiaryList();
+            model.getBeneficiaryList(isFromSearch: false);
           }
         },
         dataBuilder: (context, isFavoriteStatus) {
           return AppStreamBuilder<Resource<BeneficiaryContact>>(
-              stream: model.getBeneficiaryListStream,
+              stream: model.getSMBeneficiaryListStream,
               initialData: Resource.none(),
               dataBuilder: (context, beneficiaryList) {
                 switch (beneficiaryList?.status) {
@@ -157,13 +190,18 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryFavoriteContact![index],
                                                   onTap: () async {
-                                                    // var result = await Navigator.pushNamed(
-                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                    //     arguments: beneficiaryList?.data![index]);
-                                                    //
-                                                    // if (result != null) {
-                                                    //   // model.getBeneficiaryList();
-                                                    // }
+                                                    model.isNewRecordCreated = false;
+
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: beneficiaryList
+                                                            ?.data
+                                                            ?.beneficiarySendMoneyContact
+                                                            ?.beneficiaryFavoriteContact![index]);
+
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList(isFromSearch: false);
+                                                    }
                                                   },
                                                   onFavClick: (beneficiary) {
                                                     model.markAsFavorite(
@@ -213,13 +251,18 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                       ?.beneficiarySendMoneyContact
                                                       ?.beneficiaryOtherContact![index],
                                                   onTap: () async {
-                                                    // var result = await Navigator.pushNamed(
-                                                    //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                    //     arguments: beneficiaryList?.data![index]);
-                                                    //
-                                                    // if (result != null) {
-                                                    //   // model.getBeneficiaryList();
-                                                    // }
+                                                    model.isNewRecordCreated = false;
+
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: beneficiaryList
+                                                            ?.data
+                                                            ?.beneficiarySendMoneyContact
+                                                            ?.beneficiaryOtherContact![index]);
+
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList(isFromSearch: false);
+                                                    }
                                                   },
                                                   onFavClick: (beneficiary) {
                                                     model.markAsFavorite(
@@ -273,19 +316,15 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                   padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
                   child: AppSvg.asset(AssetUtils.contacts)),
             ),
-            Text(
-              S.of(context).youDontHaveAnyContactAddYourFirstNow,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 12.t,
-                  color: Theme.of(context).primaryColorDark,
-                  fontWeight: FontWeight.w600),
-            ),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+              onTap: () async {
+                model.isNewRecordCreated = true;
+                var result = await Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
                     arguments: NavigationType.SEND_MONEY);
+
+                if (result != null && result == true) {
+                  model.getBeneficiaryList(isFromSearch: false);
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: 16.h),

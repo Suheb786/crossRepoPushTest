@@ -927,7 +927,7 @@ class AppRouter {
 
       case RoutePaths.BeneficiaryContactDetailsPage:
         return CupertinoPageRoute(
-            builder: (context) => BeneficiaryContactDetailsPage(settings.arguments as Beneficiary),
+            builder: (context) => BeneficiaryContactDetailsPage(settings.arguments as dynamic),
             settings: RouteSettings(name: RoutePaths.BeneficiaryContactDetailsPage));
       case RoutePaths.PaymentActivityPage:
         return CupertinoPageRoute(
