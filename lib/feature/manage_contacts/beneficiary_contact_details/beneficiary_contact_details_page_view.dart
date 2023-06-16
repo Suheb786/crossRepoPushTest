@@ -105,12 +105,12 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 clipBehavior: Clip.none,
                                 children: [
                                   image!.isEmpty
-                                      ? model.argument.imageUrl.isEmpty
+                                      ? model.argument.image.isEmpty
                                           ? CircleAvatar(
-                                              backgroundColor: Theme.of(context).primaryColor,
+                                              backgroundColor: Theme.of(context).colorScheme.shadow,
                                               radius: 48.w,
                                               child: Text(
-                                                StringUtils.getFirstInitials(model.argument.fullName),
+                                                StringUtils.getFirstInitials(model.argument.nickName),
                                                 style: TextStyle(
                                                   color: AppColor.white,
                                                   fontSize: 22.t,
@@ -120,7 +120,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                           : CircleAvatar(
                                               radius: 48.w,
                                               backgroundImage: Image.memory(
-                                                model.argument.imageUrl,
+                                                model.argument.image,
                                                 fit: BoxFit.cover,
                                               ).image,
                                             )
@@ -245,7 +245,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.nickName!,
+            model.argument.fullName!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -256,7 +256,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 16.h,
           ),
           Text(
-            S.of(context).accountMobileNoAlias,
+            S.of(context).accountNumber,
             style: TextStyle(
                 fontSize: 12.t,
                 fontFamily: StringUtils.appFont,
@@ -270,7 +270,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             children: [
               Flexible(
                 child: Text(
-                  model.argument.iban!,
+                  model.argument.accountNo!,
                   style: TextStyle(
                       fontSize: 16.t,
                       fontFamily: StringUtils.appFont,
@@ -283,7 +283,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.iban!,
+                        text: model.argument.accountNo!,
                       )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
@@ -305,7 +305,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.purpose!,
+            model.argument.purposeParentDetails!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,

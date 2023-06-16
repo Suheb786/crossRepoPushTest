@@ -153,13 +153,16 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                     ?.beneficiaryRequestMoneyContact
                                                     ?.beneficiaryFavoriteContact![index],
                                                 onTap: () async {
-                                                  // var result = await Navigator.pushNamed(
-                                                  //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                  //     arguments: beneficiaryList?.data![index]);
-                                                  //
-                                                  // if (result != null) {
-                                                  //   // model.getBeneficiaryList();
-                                                  // }
+                                                  var result = await Navigator.pushNamed(
+                                                      context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                      arguments: beneficiaryList!
+                                                          .data!
+                                                          .beneficiaryRequestMoneyContact!
+                                                          .beneficiaryFavoriteContact![index]);
+
+                                                  if (result != null) {
+                                                    model.getBeneficiaryList();
+                                                  }
                                                 },
                                                 onFavClick: (beneficiary) {
                                                   model.markAsFavorite(
@@ -209,13 +212,16 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                     ?.beneficiaryRequestMoneyContact
                                                     ?.beneficiaryOtherContact![index],
                                                 onTap: () async {
-                                                  // var result = await Navigator.pushNamed(
-                                                  //     context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                  //     arguments: beneficiaryList?.data![index]);
-                                                  //
-                                                  // if (result != null) {
-                                                  //   // model.getBeneficiaryList();
-                                                  // }
+                                                  var result = await Navigator.pushNamed(
+                                                      context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                      arguments: beneficiaryList!
+                                                          .data!
+                                                          .beneficiaryRequestMoneyContact!
+                                                          .beneficiaryOtherContact![index]);
+
+                                                  if (result != null) {
+                                                    model.getBeneficiaryList();
+                                                  }
                                                 },
                                                 onFavClick: (beneficiary) {
                                                   model.markAsFavorite(

@@ -64,13 +64,6 @@ abstract class ManageContactRepository {
 
   Future<Either<NetworkError, bool>> deleteBeneficiary({String beneficiaryId, String beneType});
 
-  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({
-    String type,
-    String otpCode,
-  });
-
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
-
   Future<Either<NetworkError, bool>> beneficiaryMarkFavorite({
     required String beneficiaryDetailId,
     required bool isFavorite,
@@ -91,7 +84,6 @@ abstract class ManageContactRepository {
     required bool isFromMobile,
     required String beneType,
   });
-  Future<Either<NetworkError, bool>> searchContact({required String searchText, required bool isFromMobile});
 
   @override
   Future<Either<NetworkError, SendOtpAddBeneficiaryResponse>> sendOTPAddBeneficiary();

@@ -1,5 +1,4 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
@@ -22,7 +21,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   final UpdateBeneficiaryUseCase _updateBeneficiaryUseCase;
   final UploadBeneficiaryProfileImageUseCase _uploadBeneficiaryProfileImageUseCase;
   final RemoveBeneficiaryProfileImageUseCase _removeBeneficiaryProfileImageUseCase;
-  final Beneficiary argument;
+  final dynamic argument;
 
   ///---------------------------textEditing-controller----------------------------///
   TextEditingController nickNameController = TextEditingController();
@@ -129,7 +128,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         if (event.status == Status.SUCCESS) {
-          Navigator.pop(appLevelKey.currentContext!);
+          Navigator.pop(appLevelKey.currentContext!, true);
         }
       });
     });
