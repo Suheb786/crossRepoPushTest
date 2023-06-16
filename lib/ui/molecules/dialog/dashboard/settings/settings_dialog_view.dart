@@ -51,287 +51,22 @@ class SettingsDialogView extends StatelessWidget {
                       stream: model.getProfileInfoStream,
                       initialData: Resource.none(),
                       dataBuilder: (context, profileData) {
-                        if (!(ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .dashboardDataContent
-                                .dashboardFeatures
-                                ?.blinkRetailAppCliqAliasManagement ??
-                            false)) {
+                        ///TODO: need to amend logic
+                        ///Both features enabled
+                        if ((ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.blinkRetailAppCliqAliasManagement ??
+                                false) &&
+                            (ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.manageContactEnabled ??
+                                false)) {
                           pages = [
-                            InkWell(
-                              onTap: onClick!
-                                  ? () async {
-                                      ///LOG EVENT TO FIREBASE
-                                      await FirebaseAnalytics.instance.logEvent(
-                                          name: "payments_opened",
-                                          parameters: {"is_payment_opened": true.toString()});
-                                      Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                                          arguments: NavigationType.DASHBOARD);
-                                    }
-                                  : () {},
-                              child: Container(
-                                height: 174.0.h,
-                                width: 112.0.w,
-                                decoration: BoxDecoration(
-                                    color: currentStep == 0
-                                        ? Theme.of(context).textTheme.bodyLarge!.color!
-                                        : Theme.of(context).colorScheme.secondary,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 64.0.h,
-                                        width: 64.0.w,
-                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                                        margin: EdgeInsets.only(bottom: 16.0.h),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
-                                        child: AppSvg.asset(AssetUtils.paymentCircle,
-                                            color: currentStep == 0
-                                                ? Theme.of(context).colorScheme.secondary
-                                                : Theme.of(context).primaryColorDark)),
-                                    Text(
-                                      S.of(context).billsAndPayments,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w600,
-                                          color: currentStep == 0
-                                              ? Theme.of(context).colorScheme.secondary
-                                              : Theme.of(context).primaryColorDark,
-                                          fontSize: 12.0.t),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: onClick
-                                  ? () {
-                                      Navigator.pushNamed(context, RoutePaths.ActivityHome);
-                                    }
-                                  : () {},
-                              child: Container(
-                                height: 174.0.h,
-                                width: 112.0.w,
-                                decoration: BoxDecoration(
-                                    color: currentStep == 1
-                                        ? Theme.of(context).textTheme.bodyLarge!.color!
-                                        : Theme.of(context).colorScheme.secondary,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 64.0.h,
-                                        width: 64.0.w,
-                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                                        margin: EdgeInsets.only(bottom: 16.0.h),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
-                                        child: AppSvg.asset(AssetUtils.activityCircle,
-                                            color: currentStep == 1
-                                                ? Theme.of(context).colorScheme.secondary
-                                                : Theme.of(context).primaryColorDark)),
-                                    Text(
-                                      S.of(context).activity,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w600,
-                                          color: currentStep == 1
-                                              ? Theme.of(context).colorScheme.secondary
-                                              : Theme.of(context).primaryColorDark,
-                                          fontSize: 12.0.t),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: onClick
-                                  ? () {
-                                      Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
-                                          arguments: NavigationType.SEND_MONEY);
-                                    }
-                                  : () {},
-                              child: Container(
-                                height: 174.0.h,
-                                width: 112.0.w,
-                                decoration: BoxDecoration(
-                                    color: currentStep == 2
-                                        ? Theme.of(context).textTheme.bodyLarge!.color!
-                                        : Theme.of(context).colorScheme.secondary,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 64.0.h,
-                                        width: 64.0.w,
-                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                                        margin: EdgeInsets.only(bottom: 16.0.h),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
-                                        child: AppSvg.asset(AssetUtils.contacts,
-                                            color: currentStep == 2
-                                                ? Theme.of(context).colorScheme.secondary
-                                                : Theme.of(context).primaryColorDark)),
-                                    Text(
-                                      S.of(context).manageContactsSettings,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontWeight: FontWeight.w600,
-                                          color: currentStep == 2
-                                              ? Theme.of(context).colorScheme.secondary
-                                              : Theme.of(context).primaryColorDark,
-                                          fontSize: 12.0.t),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                                onTap: onClick
-                                    ? () {
-                                        Navigator.pushNamed(context, RoutePaths.AccountSetting);
-                                      }
-                                    : () {},
-                                child: Container(
-                                  height: 174.0.h,
-                                  width: 112.0.w,
-                                  decoration: BoxDecoration(
-                                      color: currentStep == 3
-                                          ? Theme.of(context).textTheme.bodyLarge!.color!
-                                          : Theme.of(context).colorScheme.secondary,
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                          height: 64.0.h,
-                                          width: 64.0.w,
-                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                                          margin: EdgeInsets.only(bottom: 16.0.h),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
-                                          child: (profileData?.data?.content?.profileImage == null ||
-                                                  profileData?.data?.content?.profileImage.isEmpty)
-                                              ? Center(
-                                                  child: Container(
-                                                    child: AppStreamBuilder<String>(
-                                                        stream: model.textStream,
-                                                        initialData: "",
-                                                        dataBuilder: (context, text) {
-                                                          return Text(
-                                                            StringUtils.getFirstInitials(text),
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontWeight: FontWeight.w700,
-                                                                fontSize: 18.0.t,
-                                                                color: currentStep == 3
-                                                                    ? Theme.of(context).colorScheme.secondary
-                                                                    : Theme.of(context).primaryColorDark),
-                                                          );
-                                                        }),
-                                                  ),
-                                                )
-                                              : CircleAvatar(
-                                                  radius: 48,
-                                                  backgroundImage: Image.memory(
-                                                    profileData?.data!.content!.profileImage!,
-                                                    fit: BoxFit.cover,
-                                                  ).image,
-                                                )),
-                                      Text(
-                                        S.of(context).profileSettings,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            fontWeight: FontWeight.w600,
-                                            color: currentStep == 3
-                                                ? Theme.of(context).colorScheme.secondary
-                                                : Theme.of(context).primaryColorDark,
-                                            fontSize: 12.0.t),
-                                      )
-                                    ],
-                                  ),
-                                )),
-                            AppStreamBuilder<Resource<LogoutResponse>>(
-                                stream: model.logoutStream,
-                                initialData: Resource.none(),
-                                onData: (response) {
-                                  if (response.status == Status.SUCCESS) {
-                                    AppConstantsUtils.resetCacheLists();
-                                    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
-                                      AppConstantsUtils.isApplePayPopUpShown = false;
-                                      AntelopHelper.walletDisconnect();
-                                    }
-                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                                        ModalRoute.withName(RoutePaths.Splash));
-                                  }
-                                },
-                                dataBuilder: (context, data) {
-                                  return InkWell(
-                                    onTap: onClick
-                                        ? () {
-                                            model.logout();
-                                          }
-                                        : () {},
-                                    child: Container(
-                                      height: 174.0.h,
-                                      width: 112.0.w,
-                                      decoration: BoxDecoration(
-                                          color: currentStep == 4
-                                              ? Theme.of(context).textTheme.bodyLarge!.color!
-                                              : Theme.of(context).colorScheme.secondary,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              height: 64.0.h,
-                                              width: 64.0.w,
-                                              padding:
-                                                  EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
-                                              margin: EdgeInsets.only(bottom: 16.0.h),
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(color: AppColor.whiteGrey, width: 1)),
-                                              child: AppSvg.asset(AssetUtils.logout,
-                                                  color: currentStep == 4
-                                                      ? Theme.of(context).colorScheme.secondary
-                                                      : Theme.of(context).primaryColorDark)),
-                                          Text(
-                                            S.of(context).logout,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontWeight: FontWeight.w600,
-                                                color: currentStep == 4
-                                                    ? Theme.of(context).colorScheme.secondary
-                                                    : Theme.of(context).primaryColorDark,
-                                                fontSize: 12.0.t),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          ];
-                        } else {
-                          pages = [
+                            ///Bill payments
                             InkWell(
                               onTap: onClick!
                                   ? () async {
@@ -381,6 +116,8 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            ///Activity home
                             InkWell(
                               onTap: onClick
                                   ? () {
@@ -426,6 +163,8 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            ///Manage Contacts
                             InkWell(
                               onTap: onClick
                                   ? () {
@@ -519,6 +258,8 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            ///Profile settings
                             InkWell(
                                 onTap: onClick
                                     ? () {
@@ -588,6 +329,8 @@ class SettingsDialogView extends StatelessWidget {
                                     ],
                                   ),
                                 )),
+
+                            ///logout
                             AppStreamBuilder<Resource<LogoutResponse>>(
                                 stream: model.logoutStream,
                                 initialData: Resource.none(),
@@ -651,6 +394,848 @@ class SettingsDialogView extends StatelessWidget {
                                   );
                                 }),
                           ];
+                        } else if (!(ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.blinkRetailAppCliqAliasManagement ??
+                                false) &&
+                            !(ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.manageContactEnabled ??
+                                false)) {
+                          pages = [
+                            ///Payment home
+                            InkWell(
+                              onTap: onClick!
+                                  ? () async {
+                                      ///LOG EVENT TO FIREBASE
+                                      await FirebaseAnalytics.instance.logEvent(
+                                          name: "payments_opened", parameters: {"is_payment_opened": "true"});
+                                      Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                          arguments: NavigationType.DASHBOARD);
+                                    }
+                                  : () {},
+                              child: Container(
+                                height: 174.0.h,
+                                width: 112.0.w,
+                                decoration: BoxDecoration(
+                                    color: currentStep == 0
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
+                                        : Theme.of(context).colorScheme.secondary,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                        height: 64.0.h,
+                                        width: 64.0.w,
+                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                        margin: EdgeInsets.only(bottom: 16.0.h),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                        child: AppSvg.asset(AssetUtils.paymentCircle,
+                                            color: currentStep == 0
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark)),
+                                    Text(
+                                      S.of(context).billsAndPayments,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w600,
+                                          color: currentStep == 0
+                                              ? Theme.of(context).colorScheme.secondary
+                                              : Theme.of(context).primaryColorDark,
+                                          fontSize: 12.0.t),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            ///Activity home
+                            InkWell(
+                              onTap: onClick
+                                  ? () {
+                                      Navigator.pushNamed(context, RoutePaths.ActivityHome);
+                                    }
+                                  : () {},
+                              child: Container(
+                                height: 174.0.h,
+                                width: 112.0.w,
+                                decoration: BoxDecoration(
+                                    color: currentStep == 1
+                                        ? Theme.of(context).textTheme.bodyLarge!.color!
+                                        : Theme.of(context).colorScheme.secondary,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                        height: 64.0.h,
+                                        width: 64.0.w,
+                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                        margin: EdgeInsets.only(bottom: 16.0.h),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                        child: AppSvg.asset(AssetUtils.activityCircle,
+                                            color: currentStep == 1
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark)),
+                                    Text(
+                                      S.of(context).activity,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontWeight: FontWeight.w600,
+                                          color: currentStep == 1
+                                              ? Theme.of(context).colorScheme.secondary
+                                              : Theme.of(context).primaryColorDark,
+                                          fontSize: 12.0.t),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            ///Account settings
+                            InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 2
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: (profileData?.data?.content?.profileImage == null ||
+                                                  profileData?.data?.content?.profileImage.isEmpty)
+                                              ? Center(
+                                                  child: Container(
+                                                    child: AppStreamBuilder<String>(
+                                                        stream: model.textStream,
+                                                        initialData: "",
+                                                        dataBuilder: (context, text) {
+                                                          return Text(
+                                                            StringUtils.getFirstInitials(text),
+                                                            style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w700,
+                                                                fontSize: 18.0.t,
+                                                                color: currentStep == 2
+                                                                    ? Theme.of(context).colorScheme.secondary
+                                                                    : Theme.of(context).primaryColorDark),
+                                                          );
+                                                        }),
+                                                  ),
+                                                )
+                                              : CircleAvatar(
+                                                  radius: 48,
+                                                  backgroundImage: Image.memory(
+                                                    profileData?.data!.content!.profileImage!,
+                                                    fit: BoxFit.cover,
+                                                  ).image,
+                                                )),
+                                      Text(
+                                        S.of(context).profileSettings,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 2
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                )),
+
+                            ///logout
+                            AppStreamBuilder<Resource<LogoutResponse>>(
+                                stream: model.logoutStream,
+                                initialData: Resource.none(),
+                                onData: (response) {
+                                  if (response.status == Status.SUCCESS) {
+                                    AppConstantsUtils.resetCacheLists();
+                                    if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                      AppConstantsUtils.isApplePayPopUpShown = false;
+                                      AntelopHelper.walletDisconnect();
+                                    }
+                                    Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                                        ModalRoute.withName(RoutePaths.Splash));
+                                  }
+                                },
+                                dataBuilder: (context, data) {
+                                  return InkWell(
+                                    onTap: onClick
+                                        ? () {
+                                            model.logout();
+                                          }
+                                        : () {},
+                                    child: Container(
+                                      height: 174.0.h,
+                                      width: 112.0.w,
+                                      decoration: BoxDecoration(
+                                          color: currentStep == 3
+                                              ? Theme.of(context).textTheme.bodyLarge!.color!
+                                              : Theme.of(context).colorScheme.secondary,
+                                          borderRadius: BorderRadius.circular(8)),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              height: 64.0.h,
+                                              width: 64.0.w,
+                                              padding:
+                                                  EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                              margin: EdgeInsets.only(bottom: 16.0.h),
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                              child: AppSvg.asset(AssetUtils.logout,
+                                                  color: currentStep == 3
+                                                      ? Theme.of(context).colorScheme.secondary
+                                                      : Theme.of(context).primaryColorDark)),
+                                          Text(
+                                            S.of(context).logout,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontWeight: FontWeight.w600,
+                                                color: currentStep == 3
+                                                    ? Theme.of(context).colorScheme.secondary
+                                                    : Theme.of(context).primaryColorDark,
+                                                fontSize: 12.0.t),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ];
+                        }
+
+                        ///Any one feature disabled
+                        else if (!(ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.blinkRetailAppCliqAliasManagement ??
+                                false) ||
+                            !(ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .dashboardFeatures
+                                    ?.manageContactEnabled ??
+                                false)) {
+                          if (!(ProviderScope.containerOf(context)
+                                  .read(appHomeViewModelProvider)
+                                  .dashboardDataContent
+                                  .dashboardFeatures
+                                  ?.blinkRetailAppCliqAliasManagement ??
+                              false)) {
+                            pages = [
+                              /// Bill Payments
+                              InkWell(
+                                onTap: onClick!
+                                    ? () async {
+                                        ///LOG EVENT TO FIREBASE
+                                        await FirebaseAnalytics.instance.logEvent(
+                                            name: "payments_opened",
+                                            parameters: {"is_payment_opened": true.toString()});
+                                        Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                            arguments: NavigationType.DASHBOARD);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 0
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.paymentCircle,
+                                              color: currentStep == 0
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).billsAndPayments,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 0
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///Activity Home
+                              InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.ActivityHome);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 1
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.activityCircle,
+                                              color: currentStep == 1
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).activity,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 1
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///Manage Contacts
+                              InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                            arguments: NavigationType.SEND_MONEY);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 2
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.contacts,
+                                              color: currentStep == 2
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).manageContactsSettings,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 2
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///Profile settings
+                              InkWell(
+                                  onTap: onClick
+                                      ? () {
+                                          Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                                        }
+                                      : () {},
+                                  child: Container(
+                                    height: 174.0.h,
+                                    width: 112.0.w,
+                                    decoration: BoxDecoration(
+                                        color: currentStep == 3
+                                            ? Theme.of(context).textTheme.bodyLarge!.color!
+                                            : Theme.of(context).colorScheme.secondary,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            height: 64.0.h,
+                                            width: 64.0.w,
+                                            padding:
+                                                EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                            margin: EdgeInsets.only(bottom: 16.0.h),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                            child: (profileData?.data?.content?.profileImage == null ||
+                                                    profileData?.data?.content?.profileImage.isEmpty)
+                                                ? Center(
+                                                    child: Container(
+                                                      child: AppStreamBuilder<String>(
+                                                          stream: model.textStream,
+                                                          initialData: "",
+                                                          dataBuilder: (context, text) {
+                                                            return Text(
+                                                              StringUtils.getFirstInitials(text),
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontWeight: FontWeight.w700,
+                                                                  fontSize: 18.0.t,
+                                                                  color: currentStep == 3
+                                                                      ? Theme.of(context)
+                                                                          .colorScheme
+                                                                          .secondary
+                                                                      : Theme.of(context).primaryColorDark),
+                                                            );
+                                                          }),
+                                                    ),
+                                                  )
+                                                : CircleAvatar(
+                                                    radius: 48,
+                                                    backgroundImage: Image.memory(
+                                                      profileData?.data!.content!.profileImage!,
+                                                      fit: BoxFit.cover,
+                                                    ).image,
+                                                  )),
+                                        Text(
+                                          S.of(context).profileSettings,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w600,
+                                              color: currentStep == 3
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark,
+                                              fontSize: 12.0.t),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+
+                              ///logout
+                              AppStreamBuilder<Resource<LogoutResponse>>(
+                                  stream: model.logoutStream,
+                                  initialData: Resource.none(),
+                                  onData: (response) {
+                                    if (response.status == Status.SUCCESS) {
+                                      AppConstantsUtils.resetCacheLists();
+                                      if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                        AppConstantsUtils.isApplePayPopUpShown = false;
+                                        AntelopHelper.walletDisconnect();
+                                      }
+                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                                          ModalRoute.withName(RoutePaths.Splash));
+                                    }
+                                  },
+                                  dataBuilder: (context, data) {
+                                    return InkWell(
+                                      onTap: onClick
+                                          ? () {
+                                              model.logout();
+                                            }
+                                          : () {},
+                                      child: Container(
+                                        height: 174.0.h,
+                                        width: 112.0.w,
+                                        decoration: BoxDecoration(
+                                            color: currentStep == 4
+                                                ? Theme.of(context).textTheme.bodyLarge!.color!
+                                                : Theme.of(context).colorScheme.secondary,
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                height: 64.0.h,
+                                                width: 64.0.w,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 14.0.w, vertical: 14.0.h),
+                                                margin: EdgeInsets.only(bottom: 16.0.h),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                                child: AppSvg.asset(AssetUtils.logout,
+                                                    color: currentStep == 4
+                                                        ? Theme.of(context).colorScheme.secondary
+                                                        : Theme.of(context).primaryColorDark)),
+                                            Text(
+                                              S.of(context).logout,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: currentStep == 4
+                                                      ? Theme.of(context).colorScheme.secondary
+                                                      : Theme.of(context).primaryColorDark,
+                                                  fontSize: 12.0.t),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ];
+                          } else if (!(ProviderScope.containerOf(context)
+                                  .read(appHomeViewModelProvider)
+                                  .dashboardDataContent
+                                  .dashboardFeatures
+                                  ?.manageContactEnabled ??
+                              false)) {
+                            pages = [
+                              /// Bill Payments
+                              InkWell(
+                                onTap: onClick!
+                                    ? () async {
+                                        ///LOG EVENT TO FIREBASE
+                                        await FirebaseAnalytics.instance.logEvent(
+                                            name: "payments_opened",
+                                            parameters: {"is_payment_opened": true.toString()});
+                                        Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                                            arguments: NavigationType.DASHBOARD);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 0
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.paymentCircle,
+                                              color: currentStep == 0
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).billsAndPayments,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 0
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///Activity Home
+                              InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.ActivityHome);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 1
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.activityCircle,
+                                              color: currentStep == 1
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).activity,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 1
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///CLIQ
+                              InkWell(
+                                onTap: onClick
+                                    ? () {
+                                        Navigator.pushNamed(context, RoutePaths.CliqIdList);
+                                      }
+                                    : () {},
+                                child: Container(
+                                  height: 174.0.h,
+                                  width: 112.0.w,
+                                  decoration: BoxDecoration(
+                                      color: currentStep == 2
+                                          ? Theme.of(context).textTheme.bodyLarge!.color!
+                                          : Theme.of(context).colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 64.0.h,
+                                          width: 64.0.w,
+                                          padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                          margin: EdgeInsets.only(bottom: 16.0.h),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                          child: AppSvg.asset(AssetUtils.cliqLogoSvg,
+                                              color: currentStep == 2
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark)),
+                                      Text(
+                                        S.of(context).manageCliqIdRoute,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            color: currentStep == 2
+                                                ? Theme.of(context).colorScheme.secondary
+                                                : Theme.of(context).primaryColorDark,
+                                            fontSize: 12.0.t),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              ///Profile settings
+                              InkWell(
+                                  onTap: onClick
+                                      ? () {
+                                          Navigator.pushNamed(context, RoutePaths.AccountSetting);
+                                        }
+                                      : () {},
+                                  child: Container(
+                                    height: 174.0.h,
+                                    width: 112.0.w,
+                                    decoration: BoxDecoration(
+                                        color: currentStep == 3
+                                            ? Theme.of(context).textTheme.bodyLarge!.color!
+                                            : Theme.of(context).colorScheme.secondary,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            height: 64.0.h,
+                                            width: 64.0.w,
+                                            padding:
+                                                EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                            margin: EdgeInsets.only(bottom: 16.0.h),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                            child: (profileData?.data?.content?.profileImage == null ||
+                                                    profileData?.data?.content?.profileImage.isEmpty)
+                                                ? Center(
+                                                    child: Container(
+                                                      child: AppStreamBuilder<String>(
+                                                          stream: model.textStream,
+                                                          initialData: "",
+                                                          dataBuilder: (context, text) {
+                                                            return Text(
+                                                              StringUtils.getFirstInitials(text),
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  fontWeight: FontWeight.w700,
+                                                                  fontSize: 18.0.t,
+                                                                  color: currentStep == 3
+                                                                      ? Theme.of(context)
+                                                                          .colorScheme
+                                                                          .secondary
+                                                                      : Theme.of(context).primaryColorDark),
+                                                            );
+                                                          }),
+                                                    ),
+                                                  )
+                                                : CircleAvatar(
+                                                    radius: 48,
+                                                    backgroundImage: Image.memory(
+                                                      profileData?.data!.content!.profileImage!,
+                                                      fit: BoxFit.cover,
+                                                    ).image,
+                                                  )),
+                                        Text(
+                                          S.of(context).profileSettings,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontWeight: FontWeight.w600,
+                                              color: currentStep == 3
+                                                  ? Theme.of(context).colorScheme.secondary
+                                                  : Theme.of(context).primaryColorDark,
+                                              fontSize: 12.0.t),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+
+                              ///logout
+                              AppStreamBuilder<Resource<LogoutResponse>>(
+                                  stream: model.logoutStream,
+                                  initialData: Resource.none(),
+                                  onData: (response) {
+                                    if (response.status == Status.SUCCESS) {
+                                      AppConstantsUtils.resetCacheLists();
+                                      if (Platform.isIOS && AppConstantsUtils.isApplePayFeatureEnabled) {
+                                        AppConstantsUtils.isApplePayPopUpShown = false;
+                                        AntelopHelper.walletDisconnect();
+                                      }
+                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                                          ModalRoute.withName(RoutePaths.Splash));
+                                    }
+                                  },
+                                  dataBuilder: (context, data) {
+                                    return InkWell(
+                                      onTap: onClick
+                                          ? () {
+                                              model.logout();
+                                            }
+                                          : () {},
+                                      child: Container(
+                                        height: 174.0.h,
+                                        width: 112.0.w,
+                                        decoration: BoxDecoration(
+                                            color: currentStep == 4
+                                                ? Theme.of(context).textTheme.bodyLarge!.color!
+                                                : Theme.of(context).colorScheme.secondary,
+                                            borderRadius: BorderRadius.circular(8)),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                height: 64.0.h,
+                                                width: 64.0.w,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 14.0.w, vertical: 14.0.h),
+                                                margin: EdgeInsets.only(bottom: 16.0.h),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                                child: AppSvg.asset(AssetUtils.logout,
+                                                    color: currentStep == 4
+                                                        ? Theme.of(context).colorScheme.secondary
+                                                        : Theme.of(context).primaryColorDark)),
+                                            Text(
+                                              S.of(context).logout,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: currentStep == 4
+                                                      ? Theme.of(context).colorScheme.secondary
+                                                      : Theme.of(context).primaryColorDark,
+                                                  fontSize: 12.0.t),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ];
+                          }
                         }
                         return Dialog(
                           elevation: 0.0,
