@@ -229,10 +229,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
                                                           onTapOutWardSendMoney: (RequestMoneyActivityList) {
-                                                            // if (RequestMoneyActivityStatusEnum
-                                                            //         .CATEGORY_REJECTED ==
-                                                            //     RequestMoneyActivityList.trxStatus) {
-                                                            //* CREDIT CONFIRMATION POP UP
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "- " +
