@@ -17579,6 +17579,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Contactless payment limit exceeded.`
+  String get creditContactlessLimitExceeded {
+    return Intl.message(
+      'Contactless payment limit exceeded.',
+      name: 'creditContactlessLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

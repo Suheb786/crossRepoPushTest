@@ -1180,5 +1180,4 @@ abstract class ApiService {
   ///delete contact
   @POST("/ManageContacts/DeleteContact")
   Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
-
 }

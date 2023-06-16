@@ -93,7 +93,6 @@ import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limi
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
-import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_page.dart';
@@ -561,11 +560,6 @@ class AppRouter {
             builder: (context) => SupplementaryCreditCardActivationStatusPage(
                 settings.arguments as SupplementaryCreditCardActivationArguments),
             settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardActivationStatus));
-
-      case RoutePaths.AllContact:
-        return CupertinoPageRoute(
-            builder: (context) => AllContactPage(settings.arguments as AllContactArguments),
-            settings: RouteSettings(name: RoutePaths.AllContact));
 
       case RoutePaths.CreditCardVideoCallInitiate:
         return CupertinoPageRoute(
