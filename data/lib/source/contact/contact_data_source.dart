@@ -5,7 +5,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class ContactRemoteDS {
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries();
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(String beneType);
 
   Future<HttpResponse<ResponseEntity>> addBeneficiary(
       {String nickName,

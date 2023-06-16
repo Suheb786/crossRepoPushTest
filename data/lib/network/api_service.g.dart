@@ -1253,7 +1253,8 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(BaseRequest baseRequest) async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      BeneficiaryFavoriteRequest baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -1267,7 +1268,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/beneficiary/GetBeneficiaries',
+              'http://10.6.13.2:2186/contactcenter/api/ManageContacts/ShowContactCard',
               queryParameters: queryParameters,
               data: _data,
             )
