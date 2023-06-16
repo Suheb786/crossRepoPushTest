@@ -90,8 +90,5 @@ abstract class ContactRemoteDS {
   });
 
   Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary();
-  Future<HttpResponse<ResponseEntity>> removeAvatar(
-      {required String beneficiaryDetailId, required String beneType});
 
-  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary();
 }

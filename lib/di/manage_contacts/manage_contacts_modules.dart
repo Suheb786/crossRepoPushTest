@@ -38,14 +38,6 @@ final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.auto
             ref.read(uploadBeneficiaryProfileImageUseCaseProvider),
             ref.read(removeBeneficiaryProfileImageUseCaseProvider),
             args));
-    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>((ref, args) =>
-        BeneficiaryContactDetailsPageViewModel(
-            ref.read(uploadDocumentUseCaseProvider),
-            ref.read(deleteBeneficiaryUseCaseProvider),
-            ref.read(updateBeneficiaryUseCaseProvider),
-            ref.read(uploadBeneficiaryProfileImageUseCaseProvider),
-            ref.read(removeBeneficiaryProfileImageUseCaseProvider),
-            args));
 
 final beneficiaryTransactionHistoryListPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<BeneficiaryTransactionHistoryListPageViewModel>(
