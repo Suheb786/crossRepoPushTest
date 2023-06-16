@@ -71,7 +71,6 @@ class PaymentHomeViewModel extends BasePageViewModel {
           print("got smBeneficiaries: ${smBeneficiaries.length}");
           event.data!.beneficiaryList!.forEach((element) {
             if (element.beneType == "RTP") {
-              //  rtpBeneficiaries = [];
               rtpBeneficiaries.add(element);
             }
           });
