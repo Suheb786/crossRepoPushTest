@@ -1,4 +1,3 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/manage_contacts/manage_contacts_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
@@ -31,7 +30,7 @@ final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBen
         ref.read(addBeneficiaryUseCaseProvider), ref.read(resendOTPAddBeneficiaryUseCaseProvider)));
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<BeneficiaryContactDetailsPageViewModel, Beneficiary>((ref, args) =>
+    .family<BeneficiaryContactDetailsPageViewModel, dynamic>((ref, args) =>
         BeneficiaryContactDetailsPageViewModel(
             ref.read(uploadDocumentUseCaseProvider),
             ref.read(deleteBeneficiaryUseCaseProvider),
