@@ -24,9 +24,9 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries() async {
+  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries(String beneType) async {
     final result = await safeApiCall(
-      _contactRemoteDS.getBeneficiaries(),
+      _contactRemoteDS.getBeneficiaries(beneType),
     );
     return result!.fold(
       (l) => Left(l),

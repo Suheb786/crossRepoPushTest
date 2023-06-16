@@ -9,7 +9,7 @@ class BaseRequest {
   @JsonKey(name: "baseClass")
   Map<String, dynamic>? baseData;
 
-  BaseRequest({this.getToken= true, required this.baseData});
+  BaseRequest({this.getToken = true, required this.baseData});
 
   factory BaseRequest.fromJson(Map<String, dynamic> json) => _$BaseRequestFromJson(json);
 
