@@ -90,7 +90,7 @@ class AddBeneficiaryFormPageView extends BasePageViewWidget<AddBeneficiaryFormPa
                                 child: Column(
                                   children: [
                                     AppTextField(
-                                        labelText: S.current.nameOfBeneficiary.toUpperCase(),
+                                        labelText: S.current.nickName.toUpperCase(),
                                         hintText: S.current.pleaseEnter,
                                         controller: model.nameController,
                                         key: model.nameKey,

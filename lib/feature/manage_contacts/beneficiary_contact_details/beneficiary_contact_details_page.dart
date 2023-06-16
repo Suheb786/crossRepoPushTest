@@ -56,7 +56,7 @@ class BeneficiaryContactDetailsPageState
           children: [
             InkWell(
               onTap: () {
-                Navigator.pop(context, true);
+                Navigator.pop(context, getViewModel().isUpdateProfile);
               },
               child: AppSvg.asset(AssetUtils.back,
                   height: 24.h,

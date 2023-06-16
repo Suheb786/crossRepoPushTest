@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,10 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///-----------------add-contact-iban-otp-subjects-------------------------------------///
 
   PublishSubject<AddContactIBANuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<bool>> addcontactIbanOTPuseCaseResponse = PublishSubject();
+  PublishSubject<Resource<AddBeneficiaryResponse>> addcontactIbanOTPuseCaseResponse = PublishSubject();
 
-  Stream<Resource<bool>> get addcontactIbanOTPValidationStream => addcontactIbanOTPuseCaseResponse.stream;
+  Stream<Resource<AddBeneficiaryResponse>> get addcontactIbanOTPValidationStream =>
+      addcontactIbanOTPuseCaseResponse.stream;
 
   ///--------------------------otp-subject-------------------------------------///
 
@@ -127,7 +129,6 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
           .listen((event) {
         addcontactIbanOTPuseCaseResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          getError(event);
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {}

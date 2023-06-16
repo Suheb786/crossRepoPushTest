@@ -170,13 +170,16 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
-                  child: ValueListenableBuilder<bool>(
-                      valueListenable: model.nameEditableNotifier,
-                      builder: (BuildContext context, bool value, Widget? child) {
+                  child: AppStreamBuilder<bool>(
+                      stream: model.nameEditableNotifierStream,
+                      initialData: false,
+                      dataBuilder: (context, isEditable) {
                         return Focus(
                           onFocusChange: (hasFocus) {
                             if (!hasFocus) {
                               model.setNickNameReadOnly();
+                              /* model.nameEditableNotifier.value = true;
+                              model.updateBeneficiary();*/
                             }
                           },
                           child: AutoSizeTextField(
@@ -186,7 +189,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                             textAlign: TextAlign.center,
                             cursorWidth: 1.w,
                             minWidth: 40.w,
-                            readOnly: value,
+                            readOnly: isEditable ?? false,
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
@@ -198,24 +201,27 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16.0.t),
                             onSubmitted: (value) {
+                              //model.nameEditableNotifier.value = true;
+                              //model.updateBeneficiary();
                               model.setNickNameReadOnly();
                             },
                           ),
                         );
                       }),
                 ),
-                ValueListenableBuilder<bool>(
-                    valueListenable: model.nameEditableNotifier,
-                    builder: (BuildContext context, bool value, Widget? child) {
+                AppStreamBuilder<bool>(
+                    stream: model.nameEditableNotifierStream,
+                    initialData: false,
+                    dataBuilder: (context, isEditable) {
                       return GestureDetector(
                         onTap: () {
                           model.toggleNickName();
                         },
                         child: AppSvg.asset(
-                          value ? AssetUtils.editNickName : AssetUtils.checkIcon,
+                          !(isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
                           color: AppColor.brightBlue,
-                          width: value ? 14.h : 12.h,
-                          height: value ? 14.h : 12.h,
+                          width: isEditable ?? false ? 14.h : 12.h,
+                          height: isEditable ?? false ? 14.h : 12.h,
                         ),
                       );
                     })
@@ -346,8 +352,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 30.w),
+            padding: EdgeInsetsDirectional.only(end: 30.w),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -402,24 +409,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.RequestAmountFromContact,
                       arguments: Beneficiary(
-                        accountHolderName: "Test User Account",
-                        accountNo: "",
-                        bankName: "ABC Bank",
-                        beneType: "",
+                        accountHolderName: model.argument.fullName,
+                        accountNo: model.argument.accountNo,
+                        bankName: model.argument.bankName,
+                        beneType: model.argument.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: "",
-                        fullName: "Test User",
-                        iban: "98237328739",
-                        id: "",
-                        imageUrl: "",
-                        limit: 3,
-                        mobileNumber: "",
-                        nickName: "test",
-                        purpose: "personal",
-                        purposeDetails: "Test Details",
-                        purposeParent: "testparent",
-                        purposeParentDetails: "",
-                        purposeType: "",
+                        detCustomerType: model.argument.detCustomerType,
+                        fullName: model.argument.fullName,
+                        iban: model.argument.accountNo,
+                        id: model.argument.id,
+                        imageUrl: model.argument.image,
+                        limit: model.argument.limit,
+                        mobileNumber: model.argument.mobileNumber,
+                        nickName: model.argument.nickName,
+                        purpose: model.argument.purpose,
+                        purposeDetails: model.argument.purposeDetails,
+                        purposeParent: model.argument.purposeParent,
+                        purposeParentDetails: model.argument.purposeParentDetails,
+                        purposeType: model.argument.purposeType,
                       ),
                     );
                   },
@@ -472,24 +479,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.SendAmountToContact,
                       arguments: Beneficiary(
-                        accountHolderName: "Test User Account",
-                        accountNo: "",
-                        bankName: "ABC Bank",
-                        beneType: "",
+                        accountHolderName: model.argument.fullName,
+                        accountNo: model.argument.accountNo,
+                        bankName: model.argument.bankName,
+                        beneType: model.argument.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: "",
-                        fullName: "Test User",
-                        iban: "98237328739",
-                        id: "",
-                        imageUrl: "",
-                        limit: 3,
-                        mobileNumber: "",
-                        nickName: "test",
-                        purpose: "personal",
-                        purposeDetails: "Test Details",
-                        purposeParent: "testparent",
-                        purposeParentDetails: "",
-                        purposeType: "",
+                        detCustomerType: model.argument.detCustomerType,
+                        fullName: model.argument.fullName,
+                        iban: model.argument.accountNo,
+                        id: model.argument.id,
+                        imageUrl: model.argument.image,
+                        limit: model.argument.limit,
+                        mobileNumber: model.argument.mobileNumber,
+                        nickName: model.argument.nickName,
+                        purpose: model.argument.purpose,
+                        purposeDetails: model.argument.purposeDetails,
+                        purposeParent: model.argument.purposeParent,
+                        purposeParentDetails: model.argument.purposeParentDetails,
+                        purposeType: model.argument.purposeType,
                       ),
                     );
                   },

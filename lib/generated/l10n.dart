@@ -16970,10 +16970,10 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to {variable}`
+  /// `Enter the 6-digit code sent to \n{variable}`
   String enterOTPheaderwithVaiable(Object variable) {
     return Intl.message(
-      'Enter the 6-digit code sent to $variable',
+      'Enter the 6-digit code sent to \n$variable',
       name: 'enterOTPheaderwithVaiable',
       desc: '',
       args: [variable],
@@ -17230,10 +17230,10 @@ class S {
     );
   }
 
-  /// `Are you sure you want to remove this contact? Your action can’t be undone.`
+  /// `Are you sure you want to remove this contact?`
   String get areYouSureToremoveContact {
     return Intl.message(
-      'Are you sure you want to remove this contact? Your action can’t be undone.',
+      'Are you sure you want to remove this contact?',
       name: 'areYouSureToremoveContact',
       desc: '',
       args: [],
@@ -17545,6 +17545,16 @@ class S {
     return Intl.message(
       'Others',
       name: 'others',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact nickname has been updated`
+  String get nickNameUpdated {
+    return Intl.message(
+      'Contact nickname has been updated',
+      name: 'nickNameUpdated',
       desc: '',
       args: [],
     );

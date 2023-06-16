@@ -1278,14 +1278,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(AddBeneficiaryRequest addBeneficiaryRequest) async {
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      AddBeneficiaryRequest addBeneficiaryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addBeneficiaryRequest.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<ResponseEntity>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<AddBeneficiaryResponseEntity>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1297,7 +1298,7 @@ class _ApiService implements ApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = AddBeneficiaryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

@@ -6,16 +6,18 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
+import '../../model/manage_contacts/add_beneficiary_response.dart';
 import '../../repository/manage_contact/manage_contact_repository.dart';
 
-class AddBeneficiaryUseCase extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, bool> {
+class AddBeneficiaryUseCase
+    extends BaseUseCase<BaseError, AddContactIBANuseCaseParams, AddBeneficiaryResponse> {
   final ManageContactRepository _manageContactRepository;
 
   AddBeneficiaryUseCase(this._manageContactRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute({required AddContactIBANuseCaseParams params}) {
-     return _manageContactRepository.addBeneficiary(
+  Future<Either<BaseError, AddBeneficiaryResponse>> execute({required AddContactIBANuseCaseParams params}) {
+    return _manageContactRepository.addBeneficiary(
         nickName: params.name,
         fullName: params.fullName,
         avatarImage: '',

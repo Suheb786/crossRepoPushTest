@@ -85,12 +85,7 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                             StepTextHelper.addContact_IBAN(
                               currentPage ?? 0,
                               S.current.pleaseEnterYourContactDetails,
-                              S.current.enterThe6DigitCodewithExtraString(
-                                currentPage == 1
-                                    ? "${(ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileCode.replaceAll('00', '+'))}" +
-                                        " ${ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileNumber}"
-                                    : '',
-                              ),
+                              S.of(context).enterOtpHeader,
                             ),
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -102,7 +97,32 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
-                        SizedBox(height: 20.0.h),
+                        Visibility(
+                          visible: currentPage == 1,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 32.h),
+                            child: ShowUpAnimation(
+                              delayStart: Duration(milliseconds: 500),
+                              animationDuration: Duration(milliseconds: 750),
+                              curve: Curves.bounceIn,
+                              direction: Direction.vertical,
+                              offset: 0.5,
+                              child: Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: Text(
+                                  "${(ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileCode.replaceAll('00', '+'))}" +
+                                      " ${ProviderScope.containerOf(context).read(addBeneficiaryFormPageViewModel).mobileNumber}",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: Theme.of(context).colorScheme.secondary,
+                                      fontSize: 20.t,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         Expanded(
                           child: AppSwiper(
                             pages: pages,

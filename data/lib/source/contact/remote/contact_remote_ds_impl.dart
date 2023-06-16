@@ -3,13 +3,11 @@ import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/add_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
-import 'package:data/entity/remote/contact/add_contact_request.dart';
-import 'package:data/entity/remote/contact/add_contact_request.dart';
-import 'package:data/entity/remote/contact/add_contact_request.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -20,11 +18,12 @@ import 'package:data/entity/remote/contact/send_otp_add_beneficiary_data_respons
 import 'package:data/entity/remote/contact/update_avatar_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/update_contact_request.dart';
-import 'package:data/entity/remote/contact/update_favorite_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:retrofit/dio.dart';
+
+import '../../../entity/remote/contact/add_beneficiary_response_entity.dart';
 
 class ContactRemoteDsImpl extends ContactRemoteDS {
   final ApiService _apiService;
@@ -33,7 +32,7 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   ContactRemoteDsImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
       {String? nickName,
       String? fullName,
       String? avatarImage,

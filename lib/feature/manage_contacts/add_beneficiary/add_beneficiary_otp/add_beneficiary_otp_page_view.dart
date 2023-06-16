@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +33,7 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
               duration: Duration(milliseconds: 100),
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
+              child: AppStreamBuilder<Resource<AddBeneficiaryResponse>>(
                   stream: model.addcontactIbanOTPValidationStream,
                   initialData: Resource.none(),
                   onData: (value) {

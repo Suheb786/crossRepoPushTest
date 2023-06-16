@@ -70,9 +70,13 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   // bool isEditable;
 
-  ValueNotifier<bool> nameEditableNotifier = ValueNotifier(true);
+  final BehaviorSubject<bool> _nameEditableNotifierSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get nameEditableNotifierStream => _nameEditableNotifierSubject.stream;
 
   NavigationType? navigationType;
+
+  bool isUpdateProfile = false;
 
   ///--------------------------public-other-methods-------------------------------------///
 
@@ -117,6 +121,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         if (event.status == Status.SUCCESS) {
+          isUpdateProfile = true;
           _uploadProfilePhotoResponse.safeAdd(event.data!);
         }
       });
@@ -138,7 +143,9 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        if (event.status == Status.SUCCESS) {}
+        if (event.status == Status.SUCCESS) {
+          isUpdateProfile = true;
+        }
       });
     });
 
@@ -148,6 +155,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         if (event.status == Status.SUCCESS) {
+          isUpdateProfile = true;
           _selectedImageSubject.safeAdd(selectedProfile);
         }
       });
@@ -159,6 +167,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         if (event.status == Status.SUCCESS) {
+          isUpdateProfile = true;
           selectedProfile = '';
           argument.imageUrl = '';
           _selectedImageSubject.safeAdd(selectedProfile);
@@ -175,14 +184,14 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   toggleNickName() {
-    nameEditableNotifier.value = !nameEditableNotifier.value;
-    if (!nameEditableNotifier.value) {
+    _nameEditableNotifierSubject.value = !_nameEditableNotifierSubject.value;
+    if (!_nameEditableNotifierSubject.value) {
       FocusScope.of(appLevelKey.currentContext!).requestFocus(nickNameFocus);
     }
   }
 
   setNickNameReadOnly() {
-    nameEditableNotifier.value = true;
+    _nameEditableNotifierSubject.safeAdd(true);
     updateBeneficiary();
   }
 

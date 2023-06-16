@@ -292,6 +292,7 @@ import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../entity/remote/contact/add_contact_request.dart';
 import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
@@ -511,7 +512,8 @@ abstract class ApiService {
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(@Body() BaseRequest baseRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(@Body() AddBeneficiaryRequest addBeneficiaryRequest);
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
+      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContact")
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(

@@ -5,10 +5,12 @@ import 'package:domain/model/manage_contacts/beneficiary_search_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.dart';
 
+import '../../model/manage_contacts/add_beneficiary_response.dart';
+
 abstract class ManageContactRepository {
   Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries();
 
-  Future<Either<NetworkError, bool>> addBeneficiary(
+  Future<Either<NetworkError, AddBeneficiaryResponse>> addBeneficiary(
       {String nickName,
       String fullName,
       String avatarImage,

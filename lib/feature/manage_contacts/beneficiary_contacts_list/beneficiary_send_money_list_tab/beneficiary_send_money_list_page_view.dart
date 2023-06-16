@@ -164,7 +164,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                             ?.beneficiarySendMoneyContact
                                                             ?.beneficiaryFavoriteContact![index]);
 
-                                                    if (result != null) {
+                                                    if (result != null && result == true) {
                                                       model.getBeneficiaryList();
                                                     }
                                                   },
@@ -223,7 +223,7 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
                                                             ?.beneficiarySendMoneyContact
                                                             ?.beneficiaryOtherContact![index]);
 
-                                                    if (result != null) {
+                                                    if (result != null && result == true) {
                                                       model.getBeneficiaryList();
                                                     }
                                                   },
@@ -278,15 +278,6 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
               child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
                   child: AppSvg.asset(AssetUtils.contacts)),
-            ),
-            Text(
-              S.of(context).youDontHaveAnyContactAddYourFirstNow,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 12.t,
-                  color: Theme.of(context).primaryColorDark,
-                  fontWeight: FontWeight.w600),
             ),
             GestureDetector(
               onTap: () {

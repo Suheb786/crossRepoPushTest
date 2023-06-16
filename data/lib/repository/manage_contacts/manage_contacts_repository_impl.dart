@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/manage_contacts/add_beneficiary_response.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:domain/model/manage_contacts/beneficiary_search_contact.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
@@ -216,7 +217,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> addBeneficiary(
+  Future<Either<NetworkError, AddBeneficiaryResponse>> addBeneficiary(
       {String? nickName,
       String? fullName,
       String? avatarImage,
@@ -269,8 +270,8 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
           OTPCode: OTPCode!),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }
