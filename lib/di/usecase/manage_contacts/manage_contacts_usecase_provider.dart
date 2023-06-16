@@ -10,6 +10,8 @@ import 'package:domain/usecase/manage_contacts/manage_contact_otp_validation_use
 import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
 import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
+import 'package:domain/usecase/manage_contacts/remove_benificiary_profile_usecase.dart';
+import 'package:domain/usecase/manage_contacts/resend_OTP_add_beneficiaryusecase.dart';
 import 'package:domain/usecase/manage_contacts/search_contact_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';

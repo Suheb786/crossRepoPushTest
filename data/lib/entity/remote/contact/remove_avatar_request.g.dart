@@ -21,7 +21,10 @@ Map<String, dynamic> _$RemoveAvatarRequestToJson(
         RemoveAvatarRequest instance) =>
     <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryDetailId,
+      'UserId': instance.userId,
       'IsFromMobile': instance.isFromMobile,
+      'BeneType': instance.beneType,
+      'Nickname': instance.nickName,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };
