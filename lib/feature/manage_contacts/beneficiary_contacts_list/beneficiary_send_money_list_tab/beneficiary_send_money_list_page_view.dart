@@ -97,7 +97,6 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
         initialData: Resource.none(),
         onData: (isFavoriteStatus) {
           if (isFavoriteStatus.status == Status.SUCCESS) {
-            print("SM Fav");
             model.getBeneficiaryList();
           }
         },

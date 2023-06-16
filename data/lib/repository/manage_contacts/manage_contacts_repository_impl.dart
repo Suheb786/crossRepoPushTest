@@ -270,7 +270,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
           OTPCode: OTPCode!),
     );
     return result!.fold(
-          (l) => Left(l),
+      (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
   }

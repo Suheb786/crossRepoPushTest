@@ -10,6 +10,7 @@ import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -29,15 +30,15 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   ///-----------------------------Delete Beneficiary---------------------------------///
   PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
-  PublishSubject<String> _deleteBeneficiaryResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _deleteBeneficiaryResponse = PublishSubject();
 
-  Stream<String> get _deleteBeneficiaryStream => _deleteBeneficiaryResponse.stream;
+  Stream<Resource<bool>> get deleteBeneficiaryStream => _deleteBeneficiaryResponse.stream;
 
   ///-----------------------update-beneficiary---------------------------///
   PublishSubject<UpdateBeneficiaryUseCaseParams> _updateBeneficiaryRequest = PublishSubject();
-  PublishSubject<bool> _updateBeneficiaryResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _updateBeneficiaryResponse = PublishSubject();
 
-  Stream<bool> get updateBeneficiaryStream => _updateBeneficiaryResponse.stream;
+  Stream<Resource<bool>> get updateBeneficiaryStream => _updateBeneficiaryResponse.stream;
 
   ///-----------------------------upload profile---------------------------------///
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
@@ -54,21 +55,11 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   final PublishSubject<UploadBeneficiaryProfileImageUseCaseParams> _updateProfileImageRequestSubject =
       PublishSubject();
 
-  // final BehaviorSubject<bool> updateProfileImageResponseSubject = BehaviorSubject();
-  //
-  // Stream<bool> get updateProfileImageStream => updateProfileImageResponseSubject.stream;
-
   ///---------------------------selected image subject----------------------------///
   final PublishSubject<RemoveBeneficiaryProfileImageUseCaseParams> _removeProfileImageRequestSubject =
       PublishSubject();
 
-  // final BehaviorSubject<bool> removeProfileImageResponseSubject = BehaviorSubject();
-  //
-  // Stream<bool> get removeProfileImageStream => removeProfileImageResponseSubject.stream;
-
   String selectedProfile = '';
-
-  // bool isEditable;
 
   final BehaviorSubject<bool> _nameEditableNotifierSubject = BehaviorSubject.seeded(false);
 
@@ -81,7 +72,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   ///--------------------------public-other-methods-------------------------------------///
 
   void addImage(String image) {
-    // image update api here..
+    /// image update api here..
     _updateProfileImageRequestSubject.safeAdd(UploadBeneficiaryProfileImageUseCaseParams(
       beneficiaryId: argument.id!,
       filePath: image,
@@ -132,8 +123,9 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        if (event.status == Status.SUCCESS) {
-          Navigator.pop(appLevelKey.currentContext!, true);
+        _deleteBeneficiaryResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -143,8 +135,11 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
+        _updateBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -169,7 +164,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           selectedProfile = '';
-          argument.imageUrl = '';
+          argument.image = '';
           _selectedImageSubject.safeAdd(selectedProfile);
         }
       });
@@ -178,21 +173,24 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   removeImage() {
     _removeProfileImageRequestSubject.safeAdd(RemoveBeneficiaryProfileImageUseCaseParams(
-      beneficiaryId: argument.id!,
+      beneficiaryId: argument.id ?? '',
       beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
     ));
   }
 
-  toggleNickName() {
+  toggleNickName(BuildContext context) {
     _nameEditableNotifierSubject.value = !_nameEditableNotifierSubject.value;
     if (!_nameEditableNotifierSubject.value) {
-      FocusScope.of(appLevelKey.currentContext!).requestFocus(nickNameFocus);
+      FocusScope.of(context).requestFocus(nickNameFocus);
     }
   }
 
   setNickNameReadOnly() {
     _nameEditableNotifierSubject.safeAdd(true);
-    updateBeneficiary();
+    _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
+        beneficiaryId: argument.id ?? '',
+        nickName: nickNameController.text,
+        beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }
 
   @override

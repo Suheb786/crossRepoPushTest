@@ -6,7 +6,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-import '../../../main/app_viewmodel.dart';
 import '../../../utils/navgition_type.dart';
 import 'beneficiary_contact_details_page_view.dart';
 import 'beneficiary_contact_details_page_view_model.dart';
@@ -32,7 +31,7 @@ class BeneficiaryContactDetailsPageState
 
   @override
   void onModelReady(BeneficiaryContactDetailsPageViewModel model) {
-    final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
+    final provider = ProviderScope.containerOf(context).read(
       beneficiaryContactListPageViewModelProvider,
     );
     model.navigationType = provider.navigationType!;

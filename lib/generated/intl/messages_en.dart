@@ -305,23 +305,27 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
-        "areYouBeneficialOwnerAccount":
-            MessageLookupByLibrary.simpleMessage("Are you the beneficial owner of the account?"),
+        "areYouBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
+            "Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
-        "areYouSureToSuspandCliqId":
-            MessageLookupByLibrary.simpleMessage("Are you sure you want to suspend your CliQ ID?"),
+        "areYouSureToSuspandCliqId": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to suspend your CliQ ID?"),
         "areYouSureToUnlinkAccount": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to unlink the account with your CliQ ID?"),
-        "areYouSureToremoveContact":
-            MessageLookupByLibrary.simpleMessage("Are you sure you want to remove this contact?"),
-        "areYouSureWantToDelete": MessageLookupByLibrary.simpleMessage("Are you sure you want to delete "),
-        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage("Are you sure you entered your "),
+        "areYouSureToremoveContact": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this contact?"),
+        "areYouSureWantToDelete": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete "),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
-        "areYouUSCitizen": MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
-        "areYouUSTaxResident": MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
+        "areYouUSCitizen":
+            MessageLookupByLibrary.simpleMessage("Are you U.S. Citizen?"),
+        "areYouUSTaxResident":
+            MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "areYourToChangeDefaultAccountOfYourCliqId":
@@ -2059,22 +2063,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("New settlement account"),
-        "newSettlementPercentage": MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
+        "newSettlementPercentage":
+            MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
-        "nickNameAlreadyExists":
-            MessageLookupByLibrary.simpleMessage("Nickname is already stored as beneficiary"),
+        "nickNameAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "Nickname is already stored as beneficiary"),
         "nickNameCanOnlyContainAlphanumerics":
-            MessageLookupByLibrary.simpleMessage("Nick name can only contain alphanumerics"),
-        "nickNameUpdated": MessageLookupByLibrary.simpleMessage("Contact nickname has been updated"),
-        "nickNameValueExceeds":
-            MessageLookupByLibrary.simpleMessage("Nickname cannot be more than 50 characters long. "),
+            MessageLookupByLibrary.simpleMessage(
+                "Nick name can only contain alphanumerics"),
+        "nickNameUpdated": MessageLookupByLibrary.simpleMessage(
+            "Contact nickname has been updated"),
+        "nickNameValueExceeds": MessageLookupByLibrary.simpleMessage(
+            "Nickname cannot be more than 50 characters long. "),
         "nicknameLengthShouldNotBeGreaterThan50":
-            MessageLookupByLibrary.simpleMessage("Nickname length should not be greater than 50"),
+            MessageLookupByLibrary.simpleMessage(
+                "Nickname length should not be greater than 50"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noATMData":
-            MessageLookupByLibrary.simpleMessage("ATM data cannot be retrieved. Please try again later."),
+        "noATMData": MessageLookupByLibrary.simpleMessage(
+            "ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
         "noActivityToDisplay":

@@ -8,6 +8,7 @@ import 'package:flutter/src/services/clipboard.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -19,7 +20,9 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -139,95 +142,112 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                               ));
                         });
                   }),
-              InkWell(
-                  onTap: () {
-                    InformationDialog.show(context, image: AssetUtils.removeContact, isSwipeToCancel: true,
-                        onDismissed: () {
-                      Navigator.pop(context);
-                    }, onSelected: () {
-                      Navigator.pop(context);
-                      model.deleteBeneficiary();
-                    },
-                        title: S.current.removeContact,
-                        descriptionWidget: Text(S.current.areYouSureToremoveContact));
+              AppStreamBuilder<Resource<bool>>(
+                  stream: model.deleteBeneficiaryStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
+                          title: '', description: S.of(context).yourContactHasBeenRemoved));
+                      Navigator.pop(context, true);
+                    }
                   },
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: AppSvg.asset(AssetUtils.delete,
-                        color: AppColor.sky_blue_mid, height: 24.h, width: 24.w),
-                  )),
+                  dataBuilder: (context, data) {
+                    return InkWell(
+                        onTap: () {
+                          InformationDialog.show(context,
+                              image: AssetUtils.removeContact, isSwipeToCancel: true, onDismissed: () {
+                            Navigator.pop(context);
+                          }, onSelected: () {
+                            Navigator.pop(context);
+                            model.deleteBeneficiary();
+                          },
+                              title: S.current.removeContact,
+                              descriptionWidget: Text(S.current.areYouSureToremoveContact));
+                        },
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: AppSvg.asset(AssetUtils.delete,
+                              color: AppColor.sky_blue_mid, height: 24.h, width: 24.w),
+                        ));
+                  }),
             ],
           ),
           SizedBox(height: 16.h),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColor.white_gray,
-                ),
-                borderRadius: BorderRadius.circular(100)),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: AppStreamBuilder<bool>(
-                      stream: model.nameEditableNotifierStream,
-                      initialData: false,
-                      dataBuilder: (context, isEditable) {
-                        return Focus(
-                          onFocusChange: (hasFocus) {
-                            if (!hasFocus) {
-                              model.setNickNameReadOnly();
-                              /* model.nameEditableNotifier.value = true;
-                              model.updateBeneficiary();*/
-                            }
-                          },
-                          child: AutoSizeTextField(
-                            controller: model.nickNameController,
-                            focusNode: model.nickNameFocus,
-                            fullwidth: false,
-                            textAlign: TextAlign.center,
-                            cursorWidth: 1.w,
-                            minWidth: 40.w,
-                            readOnly: isEditable ?? false,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
-                              isCollapsed: false,
-                            ),
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
+          AppStreamBuilder<Resource<bool>>(
+              stream: model.updateBeneficiaryStream,
+              initialData: Resource.none(),
+              onData: (data) {
+                if (data.status == Status.SUCCESS) {
+                  model.showSuccessTitleandDescriptionToast(
+                      ToastwithTitleandDescription(title: '', description: S.of(context).nickNameUpdated));
+                }
+              },
+              dataBuilder: (context, data) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w) + EdgeInsets.only(top: 10.h, bottom: 6.h),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColor.white_gray,
+                      ),
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: AppStreamBuilder<bool>(
+                            stream: model.nameEditableNotifierStream,
+                            initialData: false,
+                            dataBuilder: (context, isEditable) {
+                              return Focus(
+                                onFocusChange: (hasFocus) {
+                                  if (!hasFocus) {
+                                    model.setNickNameReadOnly();
+                                  }
+                                },
+                                child: AutoSizeTextField(
+                                  controller: model.nickNameController,
+                                  focusNode: model.nickNameFocus,
+                                  fullwidth: false,
+                                  textAlign: TextAlign.center,
+                                  cursorWidth: 1.w,
+                                  minWidth: 40.w,
+                                  readOnly: isEditable ?? false,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: const EdgeInsets.only(right: 6.0, left: 0.0),
+                                    isCollapsed: false,
+                                  ),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.brightBlue,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16.0.t),
+                                  onSubmitted: (value) {},
+                                ),
+                              );
+                            }),
+                      ),
+                      AppStreamBuilder<bool>(
+                          stream: model.nameEditableNotifierStream,
+                          initialData: false,
+                          dataBuilder: (context, isEditable) {
+                            return GestureDetector(
+                              onTap: () {
+                                model.toggleNickName(context);
+                              },
+                              child: AppSvg.asset(
+                                !(isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
                                 color: AppColor.brightBlue,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16.0.t),
-                            onSubmitted: (value) {
-                              //model.nameEditableNotifier.value = true;
-                              //model.updateBeneficiary();
-                              model.setNickNameReadOnly();
-                            },
-                          ),
-                        );
-                      }),
-                ),
-                AppStreamBuilder<bool>(
-                    stream: model.nameEditableNotifierStream,
-                    initialData: false,
-                    dataBuilder: (context, isEditable) {
-                      return GestureDetector(
-                        onTap: () {
-                          model.toggleNickName();
-                        },
-                        child: AppSvg.asset(
-                          !(isEditable ?? false) ? AssetUtils.editNickName : AssetUtils.checkIcon,
-                          color: AppColor.brightBlue,
-                          width: isEditable ?? false ? 14.h : 12.h,
-                          height: isEditable ?? false ? 14.h : 12.h,
-                        ),
-                      );
-                    })
-              ],
-            ),
-          ),
+                                width: isEditable ?? false ? 14.h : 12.h,
+                                height: isEditable ?? false ? 14.h : 12.h,
+                              ),
+                            );
+                          })
+                    ],
+                  ),
+                );
+              }),
         ],
       ),
     );

@@ -127,6 +127,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => addBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         addcontactIbanOTPuseCaseResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -141,6 +142,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
                   resendOTPAddBeneficiaryUseCase.execute(params: AddBeneficiaryOTPUseCaseParams()))
           .asFlow()
           .listen((event) {
+        updateLoader();
         addcontactIbanOTPuseCaseResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
