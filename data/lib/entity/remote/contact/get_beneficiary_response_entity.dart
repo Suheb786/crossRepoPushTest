@@ -27,7 +27,7 @@ class GetBeneficiaryResponseEntity
   @override
   GetBeneficiaryListResponse transform() {
     return GetBeneficiaryListResponse(
-        beneficiaryList: (this.responseEntity!.content as List<dynamic>)
+        beneficiaryList: (this.responseEntity?.content as List<dynamic>)
             .map((e) => BeneficiaryEntity.fromJson(e).transform())
             .toList());
   }

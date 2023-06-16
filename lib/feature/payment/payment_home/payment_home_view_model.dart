@@ -56,24 +56,31 @@ class PaymentHomeViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        print("in add request money constructor");
         updateLoader();
         _getBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          event.data!.beneficiaryList!.forEach((element) {
-            if (element.beneType == "SM") {
-              smBeneficiaries.add(element);
-            }
-          });
-          print("got smBeneficiaries: ${smBeneficiaries.length}");
-          event.data!.beneficiaryList!.forEach((element) {
-            if (element.beneType == "RTP") {
-              rtpBeneficiaries.add(element);
-            }
-          });
+          print('data---->${event.data?.beneficiaryList}');
+          if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
+            event.data!.beneficiaryList!.forEach((element) {
+              if (element.beneType == "SM") {
+                smBeneficiaries.add(element);
+              }
+            });
+          } else {
+            smBeneficiaries = [];
+          }
+
+          if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
+            event.data?.beneficiaryList?.forEach((element) {
+              if (element.beneType == "RTP") {
+                rtpBeneficiaries.add(element);
+              }
+            });
+          } else {
+            rtpBeneficiaries = [];
+          }
 
           Future.delayed(Duration(milliseconds: 50), () {
             if (appSwiperController.hasClients)

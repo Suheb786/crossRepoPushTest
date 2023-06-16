@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -22,17 +23,19 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
 
   @override
   Widget build(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 24.0.w,
-        right: 24.0.w,
-        top: 24.h,
-      ),
-      child: Column(
-        children: [
-          searchContact(context, model),
-          listItem(context, model),
-        ],
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 24.0.w,
+          right: 24.0.w,
+          top: 24.h,
+        ),
+        child: Column(
+          children: [
+            searchContact(context, model),
+            listItem(context, model),
+          ],
+        ),
       ),
     );
   }
@@ -45,37 +48,52 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: Focus(
-                  onFocusChange: (hasChanged) {
-                    if (!hasChanged) {
-                      model.searchBeneficiary(model.sendMoneySearchController.text, "SM");
-                    }
-                  },
-                  child: AppTextField(
-                    labelText: '',
-                    controller: model.sendMoneySearchController,
-                    textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                    hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                    textColor: Theme.of(context).primaryColorDark,
-                    hintText: S.of(context).searchContacts,
-                    onChanged: (value) {
-                      if (model.sendMoneySearchController.text.isEmpty) {
-                        //    model.getBeneficiaryList();
-                      }
-                    },
-                    suffixIcon: (value, data) {
-                      return InkWell(
-                        onTap: () async {},
-                        child: Container(
-                            height: 16.h,
-                            width: 16.w,
-                            padding: EdgeInsetsDirectional.only(end: 8.w),
-                            child:
-                                AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                child: AppStreamBuilder<Resource<BeneficiaryContact>>(
+                    stream: model.getSMBeneficiaryListStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, beneficiaryList) {
+                      return Focus(
+                        onFocusChange: (hasChanged) {
+                          if (!hasChanged) {
+                            if (((beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                ?.beneficiaryFavoriteContact ??
+                                            [])
+                                        .isNotEmpty ||
+                                    (beneficiaryList?.data?.beneficiarySendMoneyContact
+                                                ?.beneficiaryOtherContact ??
+                                            [])
+                                        .isNotEmpty) &&
+                                model.sendMoneySearchController.text.isNotEmpty) {
+                              model.searchBeneficiary(model.sendMoneySearchController.text, "SM");
+                            } else {
+                              model.getBeneficiaryList(isFromSearch: true);
+                            }
+                          }
+                        },
+                        child: AppTextField(
+                          labelText: '',
+                          controller: model.sendMoneySearchController,
+                          textFieldBorderColor:
+                              Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                          textColor: Theme.of(context).primaryColorDark,
+                          hintText: S.of(context).searchContacts,
+                          onChanged: (value) {},
+                          onFieldSubmitted: (data) {},
+                          suffixIcon: (value, data) {
+                            return InkWell(
+                              onTap: () async {},
+                              child: Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsetsDirectional.only(end: 8.w),
+                                  child: AppSvg.asset(AssetUtils.search,
+                                      color: Theme.of(context).primaryColorDark)),
+                            );
+                          },
+                        ),
                       );
-                    },
-                  ),
-                ),
+                    }),
               ),
               SizedBox(
                 width: 8.w,
@@ -107,13 +125,12 @@ class BeneficiarySendMoneyListPageView extends BasePageViewWidget<BeneficiaryCon
         initialData: Resource.none(),
         onData: (isFavoriteStatus) {
           if (isFavoriteStatus.status == Status.SUCCESS) {
-            print("SM Fav");
-            model.getBeneficiaryList();
+            model.getBeneficiaryList(isFromSearch: false);
           }
         },
         dataBuilder: (context, isFavoriteStatus) {
           return AppStreamBuilder<Resource<BeneficiaryContact>>(
-              stream: model.getBeneficiaryListStream,
+              stream: model.getSMBeneficiaryListStream,
               initialData: Resource.none(),
               dataBuilder: (context, beneficiaryList) {
                 switch (beneficiaryList?.status) {
