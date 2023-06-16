@@ -94,10 +94,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
     switch (navigationType) {
       case NavigationType.DASHBOARD:
         return 0;
-      case NavigationType.ADD_MONEY:
+      case NavigationType.SEND_MONEY:
         return 1;
-      case NavigationType.PAYMENTS:
-      case NavigationType.PAYMENTS:
+      case NavigationType.REQUEST_MONEY:
+      case NavigationType.REQUEST_MONEY:
         if (ProviderScope.containerOf(appLevelKey.currentContext!)
                 .read(appHomeViewModelProvider)
                 .dashboardDataContent

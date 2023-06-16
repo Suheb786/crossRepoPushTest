@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -70,7 +69,7 @@ class _EditProfileiosBottomSheetViewState extends State<EditProfileiosBottomShee
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
-                  color: Theme.of(context).errorColor)),
+                  color: Theme.of(context).colorScheme.error)),
           onPressed: () {
             widget.onRemovePhoto?.call();
           },

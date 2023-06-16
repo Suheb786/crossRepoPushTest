@@ -84,12 +84,12 @@ class AppColor {
   static const skyblue = const Color(0xff3CB4E5);
 
   /// --------- NEW COLOR SCHEME
-  static const white = const Color(0xffffffff);
+  static const white = const Color(0xffffffff); // Theme.of(context).colorScheme.secondary
   static const black = const Color(0xff000000);
   static const brightRed = const Color(0xffE53E51);
   static const verySoftRed = const Color(0xffF68D98);
   static const vividYellow = const Color(0xffFFE816);
-  static const brightBlue = const Color(0xff3CB4E5);
+  static const brightBlue = const Color(0xff3CB4E5); // Theme.of(context).textTheme.bodyLarge!.color
   static const veryLightGray = const Color(0xffFBFBFB);
   static const lightGray = const Color(0xffF5F5F5);
   static const verLightGray4 = const Color(0xffBCBCBC);
@@ -97,15 +97,15 @@ class AppColor {
   static const veryLightGray2 = const Color(0xffEEEEEE);
   static const veryDarkGray = const Color(0xff292929);
   static const veryDarkGray1 = const Color(0xff404040);
-  static const veryDarkGray2 = const Color(0xff101010);
+  static const veryDarkGray2 = const Color(0xff101010); // Theme.of(context).textTheme.bodyMedium!.color
   static const veryDarkRed = const Color(0xff1A0306);
   static const whiteGrey = const Color(0xffDDDDDD);
   static const gray1 = const Color(0xffB5B5B5);
   static const strongRed = const Color(0xffD82A3E);
   static const very_dark_gray_black = const Color(0xff101010);
-  static const lightGrayishMagenta = const Color(0xffECE8EC);
-  static const gray_2 = const Color(0xffB5B5B5);
-  static const darkGray = const Color(0xff979797);
+  static const lightGrayishMagenta = const Color(0xffECE8EC); // Theme.of(context).textTheme.labelSmall!.color
+  static const gray_2 = const Color(0xffB5B5B5); // Theme.of(context).textTheme.labelLarge!.color
+  static const darkGray = const Color(0xff979797); // Theme.of(context).textTheme.labelMedium!.color
   static const vividRed = const Color(0xffFF3E33);
   static const darkModerateLimeGreen = const Color(0xff388835);
   static const lightGrayishBlue = const Color(0xffEFEFF0);
@@ -116,4 +116,7 @@ class AppColor {
   static const darkBlack = const Color(0xff140828);
   static const sky_blue_mid = const Color(0xff3CB4E5);
   static const softRed1 = const Color(0xffE74E5F);
+  static const rj_gray = const Color(0xff95979A);
+  static const dark_Grayish_Blue = const Color(0xffA6A9AC);
+  static const light_gray_4 = const Color(0xffCFCFCF);
 }

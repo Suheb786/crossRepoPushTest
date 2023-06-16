@@ -1,6 +1,4 @@
-import 'package:domain/constants/enum/cliq_alias_status_enum.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/manage_cliq/update_cliq_info_bottom_sheet/update_cliq_info_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/bottom_sheet/manage_contacts/edit_profile_ios_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
 

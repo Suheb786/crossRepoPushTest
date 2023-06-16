@@ -428,6 +428,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "ستسافر قريبا ؟ تستطيع الان حجز رحلتك على الملكية الأردنية من خلال بلينك! بطريقة سلسة و امنة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الان"),
+        "bookYourFlight":
+            MessageLookupByLibrary.simpleMessage("Book Your Flight"),
         "bookingRefNo":
             MessageLookupByLibrary.simpleMessage("الرقم المرجعي للحجز"),
         "bornBlink": MessageLookupByLibrary.simpleMessage("تاريخ تأسيس بلينك "),
@@ -666,6 +668,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل في الاتصال"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "حمّل توقيعك للموافقة والاستمرار"),
+        "contactInformation":
+            MessageLookupByLibrary.simpleMessage("Contact information"),
+        "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
+            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
         "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
             "الحد الأعلى للحركات الغير تلامسية هو ٣٠٠ دينار يوميا\n\n"),
         "contactLessPayments":
@@ -1323,6 +1329,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Favourite contact"),
         "favouriteContacts":
             MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
+        "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "بعتقد إنه سقف البطاقة الائتمانية قليل"),
         "fees": MessageLookupByLibrary.simpleMessage("العمولات"),
@@ -2105,6 +2112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otherDetails": MessageLookupByLibrary.simpleMessage("معلومات أخرى"),
         "otherIncome": MessageLookupByLibrary.simpleMessage("دخل آخر"),
         "otherNationality": MessageLookupByLibrary.simpleMessage("جنسية ثانية"),
+        "others": MessageLookupByLibrary.simpleMessage("Others"),
         "otpExpired": MessageLookupByLibrary.simpleMessage(
             "انتهت صلاحية كلمة المرور لمرة واحدة OTP. اطلب كلمة جديدة."),
         "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
@@ -2430,6 +2438,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "requestFrom": MessageLookupByLibrary.simpleMessage("الطلب من"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("طلب أموال"),
+        "requestMoneyFavourites":
+            MessageLookupByLibrary.simpleMessage("Request Money Favourites"),
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "عفوًا، إرسال الحوالات عبر خدمة\n  Cliq غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بنا على 06-5200100"),
         "requestMoneyFrom":
@@ -2527,6 +2537,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveAdditionalDocumentationError":
             MessageLookupByLibrary.simpleMessage(
                 "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "saveAsFavourite": MessageLookupByLibrary.simpleMessage(
+            "Where would like to save as favourite?"),
         "saveBills": MessageLookupByLibrary.simpleMessage("فاتورة جديدة"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
@@ -2606,6 +2618,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
+        "sendMoneyFavourites":
+            MessageLookupByLibrary.simpleMessage("Send Money Favourites"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "محاولتك لإرسال الأموال غير ناجحة"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("إرسال أموال إلى"),
@@ -3073,6 +3087,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرقم السري تغير، زور أقرب صراف آلي لحتى تفعله"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
+        "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),
         "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
         "youSent": MessageLookupByLibrary.simpleMessage(" تم الارسال"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(

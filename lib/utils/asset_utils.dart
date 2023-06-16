@@ -173,6 +173,7 @@ class AssetUtils {
   static const String applePayButton = svg + "apple_pay_button.svg";
   static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
   static const String blueStar = svg + "blue_star.svg";
+  static const String editNickName = svg + "edit_nickname.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -237,6 +238,7 @@ class AssetUtils {
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
+  static const String swipeUpAnimation = _animation + "Swipe_Up.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
   ///Evoucher png
@@ -292,11 +294,14 @@ class AssetUtils {
   static const String EconomySeat = drawable + "economy_seat.png";
   static const String BusinessSeat = drawable + "business_icon.png";
   static const String BigSearchIcon = drawable + "big_search_icon.png";
+  static const String New_RJ_BG = drawable + "new_rj_background.png";
+  static const String AirplaneTail = drawable + "airplane_tail.png";
 
   ///Rj svg
   static const String RjCardLogo = svg + "rj_card_logo.svg";
   static const String GoRjLogo = svg + "go_rj_logo.svg";
   static const String cancelFlightIcon = svg + "cancel_flight.svg";
+  static const String new_rj_background = svg + "new_rj_background.svg";
 
   ///Cliq
   static const String walletIcon = svg + "wallet.svg";
@@ -328,4 +333,10 @@ class AssetUtils {
   static const String fingerPrintIcon = svg + "fingerprint_icon.svg";
   static const String disclaimer = svg + "disclaimer.svg";
   static const String exclamationMark = svg + "exclamation_mark.svg";
+
+  ///manage contact svg
+  static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
+  static const String starRedIcon = svg + "star_red.svg";
+  static const String starYellowIcon = svg + "star_yellow.svg";
+  static const String starBlueBorder = svg + "star_blue_border.svg";
 }

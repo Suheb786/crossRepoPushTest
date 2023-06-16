@@ -13,24 +13,17 @@ class UpdateBeneficiaryUseCase extends BaseUseCase<NetworkError, UpdateBeneficia
   @override
   Future<Either<NetworkError, bool>> execute({required UpdateBeneficiaryUseCaseParams params}) {
     return _repository.updateBeneficiary(
-        purposeDetails: params.purposeDetails,
-        purpose: params.purpose,
-        beneficiaryId: params.beneficiaryId,
-        nickName: params.nickName);
+        beneficiaryId: params.beneficiaryId, nickName: params.nickName, beneType: params.beneType);
   }
 }
 
 class UpdateBeneficiaryUseCaseParams extends Params {
   final String beneficiaryId;
+  final String beneType;
   final String nickName;
-  final String purpose;
-  final String purposeDetails;
 
   UpdateBeneficiaryUseCaseParams(
-      {required this.beneficiaryId,
-      required this.purposeDetails,
-      required this.purpose,
-      required this.nickName});
+      {required this.beneficiaryId, required this.beneType, required this.nickName});
 
   @override
   Either<AppError, bool> verify() {

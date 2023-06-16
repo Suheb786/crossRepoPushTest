@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
@@ -8,22 +10,28 @@ abstract class ContactRemoteDS {
   Future<HttpResponse<ResponseEntity>> addBeneficiary(
       {String nickName,
       String fullName,
-      String accountNumber,
-      String iBan,
-      String bankName,
-      String purpose,
-      String purposeDetails,
-      String imageFilePath});
-
-  Future<HttpResponse<ResponseEntity>> addContact(
-      {String nickName,
-      String fullName,
-      String emailAddress,
       String avatarImage,
-      bool isFav,
+      String beneficiaryType,
+      bool isFavourite,
       String userId,
       String identifier,
-      String isFromMobile});
+      bool isFromMobile,
+      String detCustomerType,
+      String alias,
+      String addressLine1,
+      String addressLine2,
+      String addressLine3,
+      String addressLine4,
+      int limit,
+      String IFSCCode,
+      String routingNo,
+      String sortCode,
+      String purposeType,
+      String purpose,
+      String purposeDetails,
+      String purposeParent,
+      String purposeParentDetails,
+      String? OTPCode});
 
   Future<HttpResponse<ResponseEntity>> updateContact(
       {String beneficiaryDetailId,
@@ -46,15 +54,12 @@ abstract class ContactRemoteDS {
       String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateAvatar(
-      {String beneficiaryDetailId,
-        String avatarImage,
-        String userId,
-        String isFromMobile});
+      {String beneficiaryDetailId, String avatarImage, String userId, String isFromMobile});
 
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String beneficiaryId, String nickName, String purpose, String purposeDetails});
+      {String beneficiaryId, String nickName, String? beneType});
 
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId});
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String beneficiaryId, String? beneType});
 
   Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({
     String type,
@@ -63,17 +68,26 @@ abstract class ContactRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage({String filePath, String beneficiaryId});
 
-  Future<HttpResponse<ResponseEntity>> updateFavorite(
-      {required String beneficiaryDetailId,
-      required bool isFav,
-      required String userId,
-      required bool isFromMobile});
-
-  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile});
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
+    required bool isFromMobile,
+  });
 
   Future<HttpResponse<ResponseEntity>> contactDetail(
       {required String beneficiaryDetailId, required bool isFromMobile});
 
-  Future<HttpResponse<ResponseEntity>> searchContact(
-      {required String searchText, required bool isFromMobile});
+  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact({
+    required String searchText,
+    required bool isFromMobile,
+    required String beneType,
+  });
+
+  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId});
+
+  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite({
+    required String beneficiaryDetailId,
+    required bool isFavorite,
+    required String userId,
+    required bool isFromMobile,
+    required String beneType,
+  });
 }

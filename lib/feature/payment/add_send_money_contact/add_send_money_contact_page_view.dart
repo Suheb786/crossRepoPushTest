@@ -4,14 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
-import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_empty_widget.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -47,7 +46,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                 }
               },
               child: Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).primaryColor,
@@ -58,13 +57,46 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 27.0.w),
-                            child: Text(S.of(context).sendMoney,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.0.t,
-                                    color: Theme.of(context).colorScheme.secondary))),
+                            padding: EdgeInsetsDirectional.only(top: 24.0.h, start: 24.0.w, end: 24.w),
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  AppSvg.asset(AssetUtils.blueStar,
+                                      color: Theme.of(context).colorScheme.secondary),
+                                  SizedBox(
+                                    width: 4.w,
+                                  ),
+                                  Expanded(
+                                    child: Text(S.of(context).sendMoneyTo,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12.0.t,
+                                            color: Theme.of(context).colorScheme.secondary)),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, RoutePaths.AddContactsIBANManageContactsPage,
+                                          arguments: NavigationType.SEND_MONEY);
+                                    },
+                                    child: Container(
+                                      child: AppSvg.asset(AssetUtils.plusIcon, width: 16.w, height: 16.h),
+                                      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+                                      decoration: BoxDecoration(
+                                          color: Theme.of(context).primaryColor,
+                                          shape: BoxShape.circle,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Theme.of(context).primaryColorDark.withOpacity(0.15),
+                                                blurRadius: 8.96,
+                                                offset: Offset(0, 4.48))
+                                          ]),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
                         beneficiaries!.length > 0
                             ? Column(
                                 children: [
@@ -95,12 +127,14 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 29.0.h),
                                     child: Visibility(
-                                      visible: beneficiaries!.length >= 9,
+                                      visible: true,
                                       child: InkWell(
                                         onTap: () {
-                                          Navigator.pushNamed(context, RoutePaths.AllContact,
+                                          /*    Navigator.pushNamed(context, RoutePaths.AllContact,
                                               arguments:
-                                                  AllContactArguments(beneficiaryList: beneficiaries ?? []));
+                                                  AllContactArguments(beneficiaryList: beneficiaries ?? []));*/
+                                          Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
+                                              arguments: NavigationType.SEND_MONEY);
                                         },
                                         child: Align(
                                           alignment: Alignment.center,
@@ -176,7 +210,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 12.0.t,
-                        color: AppColor.dark_gray_1),
+                        color: Theme.of(context).colorScheme.surfaceTint),
                   ),
                 )
               ],

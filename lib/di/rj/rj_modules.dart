@@ -8,15 +8,21 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_de
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_booking_detail_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_make_payment/rj_make_payment_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_otp_validate/rj_otp_validate_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/passenger_view_%20model.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
+import 'package:neo_bank/feature/rj/rj_book_flight/passenger_view_%20model.dart';
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog_view_model.dart';
+
+import '../../feature/rj/rj_book_flight/rj_book_flight_page_view_model.dart';
+import '../../ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
 
 ///RJ Flight Booking Dialog
 final rjFlightBookingDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<RjFlightBookingDialogViewModel>((ref) =>
         RjFlightBookingDialogViewModel(ref.read(getDestinationUseCaseProvider),
             ref.read(getOneWayTripLinkUseCaseProvider), ref.read(getTwoWayTripLinkUseCaseProvider)));
+
+final rjFlightBookingPageViewModelProvide = ChangeNotifierProvider.autoDispose<RjFlightBookingViewModel>(
+    (ref) => RjFlightBookingViewModel(ref.read(getDestinationUseCaseProvider),
+        ref.read(getOneWayTripLinkUseCaseProvider), ref.read(getTwoWayTripLinkUseCaseProvider)));
 
 class PassengerViewModelProvider {
   provide() {

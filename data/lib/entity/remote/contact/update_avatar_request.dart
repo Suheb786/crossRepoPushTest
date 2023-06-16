@@ -8,20 +8,17 @@ class UpdateAvatarRequest {
   final String? beneficiaryDetailId;
   @JsonKey(name: "AvatarImg")
   final String? avatarImg;
-  @JsonKey(name: "UserId")
-  final String? userId;
   @JsonKey(name: "IsFromMobile")
-  final String? isFromMobile;
+  final bool? isFromMobile;
   @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   UpdateAvatarRequest({
     this.beneficiaryDetailId,
     this.avatarImg,
-    this.userId,
-    this.isFromMobile,
+    this.isFromMobile = true,
     this.getToken = true,
     required this.baseData,
   });

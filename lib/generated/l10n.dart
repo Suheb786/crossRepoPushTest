@@ -4370,6 +4370,16 @@ class S {
     );
   }
 
+  /// `Request Money Favourites`
+  String get requestMoneyFavourites {
+    return Intl.message(
+      'Request Money Favourites',
+      name: 'requestMoneyFavourites',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
@@ -6425,6 +6435,16 @@ class S {
     return Intl.message(
       'Swipe up to send money',
       name: 'swipeToSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Money Favourites`
+  String get sendMoneyFavourites {
+    return Intl.message(
+      'Send Money Favourites',
+      name: 'sendMoneyFavourites',
       desc: '',
       args: [],
     );
@@ -16790,6 +16810,16 @@ class S {
     );
   }
 
+  /// `You paid`
+  String get youPaid {
+    return Intl.message(
+      'You paid',
+      name: 'youPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Time`
   String get time {
     return Intl.message(
@@ -17455,6 +17485,66 @@ class S {
     return Intl.message(
       'This CliQ ID already exists, please use another one.',
       name: 'cliqIdAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Your Flight`
+  String get bookYourFlight {
+    return Intl.message(
+      'Book Your Flight',
+      name: 'bookYourFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact information`
+  String get contactInformation {
+    return Intl.message(
+      'Contact information',
+      name: 'contactInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Just give us any of these information that you know about your contact. We’ll sort out the rest for you.`
+  String get contactInformationDetails {
+    return Intl.message(
+      'Just give us any of these information that you know about your contact. We’ll sort out the rest for you.',
+      name: 'contactInformationDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where would like to save as favourite?`
+  String get saveAsFavourite {
+    return Intl.message(
+      'Where would like to save as favourite?',
+      name: 'saveAsFavourite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourites`
+  String get favourites {
+    return Intl.message(
+      'Favourites',
+      name: 'favourites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Others`
+  String get others {
+    return Intl.message(
+      'Others',
+      name: 'others',
       desc: '',
       args: [],
     );

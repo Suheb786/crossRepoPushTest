@@ -9,21 +9,21 @@ part of 'update_beneficiary_request.dart';
 UpdateBeneficiaryRequest _$UpdateBeneficiaryRequestFromJson(
         Map<String, dynamic> json) =>
     UpdateBeneficiaryRequest(
-      beneficiaryId: json['BeneficiaryID'] as String,
+      beneficiaryId: json['BeneficiaryDetailId'] as String,
       nickName: json['NickName'] as String?,
-      purpose: json['Purpose'] as String?,
-      purposeDetails: json['PurposeDetails'] as String?,
+      isFromMobile: json['IsFromMobile'] as bool? ?? true,
+      beneType: json['BeneType'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
-      baseData: json['baseClass'] as Map<String, dynamic>,
+      baseData: json['BaseClass'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$UpdateBeneficiaryRequestToJson(
         UpdateBeneficiaryRequest instance) =>
     <String, dynamic>{
-      'BeneficiaryID': instance.beneficiaryId,
+      'BeneficiaryDetailId': instance.beneficiaryId,
       'NickName': instance.nickName,
-      'Purpose': instance.purpose,
-      'PurposeDetails': instance.purposeDetails,
+      'IsFromMobile': instance.isFromMobile,
+      'BeneType': instance.beneType,
       'GetToken': instance.getToken,
-      'baseClass': instance.baseData,
+      'BaseClass': instance.baseData,
     };

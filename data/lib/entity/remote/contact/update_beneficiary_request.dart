@@ -4,25 +4,25 @@ part 'update_beneficiary_request.g.dart';
 
 @JsonSerializable()
 class UpdateBeneficiaryRequest {
-  @JsonKey(name: "BeneficiaryID")
+  @JsonKey(name: "BeneficiaryDetailId")
   final String beneficiaryId;
   @JsonKey(name: "NickName")
   final String? nickName;
-  @JsonKey(name: "Purpose")
-  final String? purpose;
-  @JsonKey(name: "PurposeDetails")
-  final String? purposeDetails;
+  @JsonKey(name: "IsFromMobile")
+  final bool isFromMobile;
+  @JsonKey(name: "BeneType")
+  final String? beneType;
   @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   UpdateBeneficiaryRequest({
     required this.beneficiaryId,
     this.nickName,
-    this.purpose,
-    this.purposeDetails,
-    this.getToken= true,
+    this.isFromMobile = true,
+    required this.beneType,
+    this.getToken = true,
     required this.baseData,
   });
 

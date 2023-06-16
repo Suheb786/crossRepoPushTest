@@ -162,14 +162,16 @@ import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_
 import 'package:data/entity/remote/cliq/unlink_account_from_cliq/unlink_account_from_cliq_request_entity.dart';
 import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_contact_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
-import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
-import 'package:data/entity/remote/contact/update_favorite_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
@@ -291,6 +293,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../entity/remote/contact/add_contact_request.dart';
+import '../entity/remote/contact/remove_avatar_request.dart';
 import '../entity/remote/contact/update_avatar_request.dart';
 import '../entity/remote/contact/update_contact_request.dart';
 
@@ -505,14 +508,14 @@ abstract class ApiService {
   @POST("/beneficiary/GetBeneficiaries")
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(@Body() BaseRequest baseRequest);
 
-  @POST("/beneficiary/AddBeneficiary")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
   Future<HttpResponse<ResponseEntity>> addBeneficiary(@Body() AddBeneficiaryRequest addBeneficiaryRequest);
 
-  @POST("/beneficiary/UpdateBeneficiary")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/UpdateContact")
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
 
-  @POST("/beneficiary/DeleteBeneficiary")
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/RemoveContact")
   Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
       @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
 
@@ -1132,14 +1135,19 @@ abstract class ApiService {
 
   /// Manage Contacts
 
-  @POST("/ManageContacts/UpdateFavorite")
-  Future<HttpResponse<ResponseEntity>> updateFavorite(
-    @Body() UpdateFavoriteRequest request,
+  // @POST("/ManageContacts/UpdateFavorite")
+  // Future<HttpResponse<ResponseEntity>> updateFavorite(
+  //   @Body() UpdateFavoriteRequest request,
+  // );
+
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchListContact")
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts(
+    @Body() BeneficiaryContactRequest request,
   );
 
-  @POST("/ManageContacts/GetListofContacts")
-  Future<HttpResponse<ResponseEntity>> listOfContacts(
-    @Body() ListOfContactRequest request,
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/MarkFavorite")
+  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite(
+    @Body() BeneficiaryMarkFavoriteRequest request,
   );
 
   @POST("/ManageContacts/GetContactDetail")
@@ -1148,7 +1156,7 @@ abstract class ApiService {
   );
 
   @POST("/ManageContacts/SearchContact")
-  Future<HttpResponse<ResponseEntity>> searchContact(
+  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
 
@@ -1167,4 +1175,8 @@ abstract class ApiService {
   ///update avatar contact
   @POST("/ManageContacts/UpdateAvatar")
   Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
+
+  ///Remove Avatar
+  @POST("/ManageContacts/RemoveAvatar")
+  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
 }

@@ -429,6 +429,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "bookYourFlight":
+            MessageLookupByLibrary.simpleMessage("Book Your Flight"),
         "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
         "bornBlink":
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
@@ -685,6 +687,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connection Failed"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
+        "contactInformation":
+            MessageLookupByLibrary.simpleMessage("Contact information"),
+        "contactInformationDetails": MessageLookupByLibrary.simpleMessage(
+            "Just give us any of these information that you know about your contact. We’ll sort out the rest for you."),
         "contactLessLimitmaxLimit": MessageLookupByLibrary.simpleMessage(
             "The maximum contactless limit is 300 JOD daily"),
         "contactLessPayments":
@@ -1364,6 +1370,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Favourite contact"),
         "favouriteContacts":
             MessageLookupByLibrary.simpleMessage("Favourite Contacts"),
+        "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "I feel the credit limit is low"),
         "fees": MessageLookupByLibrary.simpleMessage("Fees"),
@@ -2175,6 +2182,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otherIncome": MessageLookupByLibrary.simpleMessage("Other Income"),
         "otherNationality":
             MessageLookupByLibrary.simpleMessage("Other Nationality"),
+        "others": MessageLookupByLibrary.simpleMessage("Others"),
         "otpExpired": MessageLookupByLibrary.simpleMessage(
             "Your OTP code is expired, please request for a new OTP code"),
         "otpExpiredNetwork": MessageLookupByLibrary.simpleMessage(
@@ -2518,6 +2526,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestFrom": MessageLookupByLibrary.simpleMessage(" Request Form "),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
+        "requestMoneyFavourites":
+            MessageLookupByLibrary.simpleMessage("Request Money Favourites"),
         "requestMoneyFeatureDisabled": MessageLookupByLibrary.simpleMessage(
             "Oops, the request to pay service is currently unavailable. We apologize for any inconvenience caused. Please try again later or call us at 06-5200100."),
         "requestMoneyFrom":
@@ -2618,6 +2628,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Here are samples of the number formatting :\n"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "saveAsFavourite": MessageLookupByLibrary.simpleMessage(
+            "Where would like to save as favourite?"),
         "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
@@ -2702,6 +2714,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendAndRequestFavouriteContacts": MessageLookupByLibrary.simpleMessage(
             "Send and request with ease up to 9 favourite contacts. Would you like to add this contact to your favourite?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
+        "sendMoneyFavourites":
+            MessageLookupByLibrary.simpleMessage("Send Money Favourites"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
@@ -3183,6 +3197,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You either changed your PIN or unblocked it, please visit the nearest ATM to activate your new PIN"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
+        "youPaid": MessageLookupByLibrary.simpleMessage("You paid"),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
         "youSent": MessageLookupByLibrary.simpleMessage("You sent "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(

@@ -112,7 +112,7 @@ class EditProfileAndroidBottomSheetWidget extends StatelessWidget {
                       fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: Theme.of(context).errorColor),
+                      color: Theme.of(context).colorScheme.error),
                 ),
               ),
             ),

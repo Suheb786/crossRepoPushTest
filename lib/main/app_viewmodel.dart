@@ -6,7 +6,6 @@ import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
-
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -52,8 +51,25 @@ class AppViewModel extends BaseViewModel {
           primaryColorDark: AppColor.black,
           primaryColorLight: AppColor.verySoftRed,
           dialogBackgroundColor: AppColor.white,
-          colorScheme: _themeData.colorScheme
-              .copyWith(secondary: AppColor.white, background: AppColor.lightGray, error: AppColor.vivid_red),
+          colorScheme: _themeData.colorScheme.copyWith(
+              secondary: AppColor.white,
+              onSecondary: AppColor.light_gray_4,
+              onSecondaryContainer: AppColor.brightBlue,
+              background: AppColor.lightGray,
+              error: AppColor.vivid_red,
+              onSurface: AppColor.rj_gray,
+              surfaceVariant: AppColor.veryDarkGray2,
+              surface: AppColor.veryDarkGray1,
+              surfaceTint: AppColor.dark_gray_1,
+              onInverseSurface: AppColor.gray1,
+              inverseSurface: AppColor.white_gray,
+              shadow: AppColor.gray_black,
+              onBackground: AppColor.whiteGrey,
+              inversePrimary: AppColor.gray5,
+              tertiary: AppColor.dark_violet_4,
+              tertiaryContainer: AppColor.dark_Grayish_Blue,
+              onTertiary: AppColor.light_grayish_violet,
+              scrim: AppColor.dark_brown),
           // backgroundColor: AppColor.lightGray,
           cardTheme: CardTheme(
               color: AppColor.veryLightGray,
@@ -106,51 +122,55 @@ class AppViewModel extends BaseViewModel {
                 fontStyle: FontStyle.normal,
               )),
           textTheme: _themeData.textTheme.copyWith(
-            bodyLarge: TextStyle(
-              color: AppColor.brightBlue,
-              fontFamily: StringUtils.appFont,
-            ),
-            bodyMedium: TextStyle(
-              color: AppColor.veryDarkGray2,
-              fontFamily: StringUtils.appFont,
-            ),
-            bodySmall: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            titleLarge: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displayLarge: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displayMedium: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            displaySmall: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelLarge: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelMedium: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-            labelSmall: TextStyle(
-              color: AppColor.very_dark_gray,
-              fontFamily: StringUtils.appFont,
-            ),
-          )..apply(
-              // bodyColor: AppColor.brightBlue,
-              // displayColor: AppColor.brightBlue,
-              // decorationColor: AppColor.brightBlue,
+              bodyLarge: TextStyle(
+                color: AppColor.brightBlue,
+                fontFamily: StringUtils.appFont,
               ),
+              bodyMedium: TextStyle(
+                color: AppColor.veryDarkGray2,
+                fontFamily: StringUtils.appFont,
+              ),
+              bodySmall: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              titleLarge: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displayLarge: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displayMedium: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              displaySmall: TextStyle(
+                color: AppColor.very_dark_gray,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelLarge: TextStyle(
+                color: AppColor.gray_2,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelMedium: TextStyle(
+                color: AppColor.darkGray,
+                fontFamily: StringUtils.appFont,
+              ),
+              labelSmall: TextStyle(
+                color: AppColor.lightGrayishMagenta,
+                fontFamily: StringUtils.appFont,
+              ),
+              titleMedium: TextStyle(
+                color: AppColor.very_dark_gray1,
+                fontFamily: StringUtils.appFont,
+              ))
+            ..apply(
+                // bodyColor: AppColor.brightBlue,
+                // displayColor: AppColor.brightBlue,
+                // decorationColor: AppColor.brightBlue,
+                ),
           primaryTextTheme: _themeData.textTheme.copyWith(
             bodyLarge: TextStyle(color: AppColor.white, fontFamily: StringUtils.appFont),
           ),
