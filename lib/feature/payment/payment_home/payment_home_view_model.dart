@@ -63,8 +63,6 @@ class PaymentHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          smBeneficiaries = [];
-          rtpBeneficiaries = [];
           event.data!.beneficiaryList!.forEach((element) {
             if (element.beneType == "SM") {
               smBeneficiaries.add(element);
@@ -86,8 +84,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
     });
   }
 
-  void getBeneficiaries(BuildContext context) {
-    _getBeneficiaryRequest.safeAdd(GetBeneficiaryUseCaseParams(context: context));
+  void getBeneficiaries(BuildContext context, String beneType) {
+    _getBeneficiaryRequest.safeAdd(GetBeneficiaryUseCaseParams(context: context, beneType: beneType));
   }
 
   int getInitialNavigation(NavigationType navigationType, BuildContext context) {

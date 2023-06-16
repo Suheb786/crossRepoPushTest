@@ -8,7 +8,7 @@ import 'package:domain/model/manage_contacts/send_otp_add_benificiary_response.d
 import '../../model/manage_contacts/add_beneficiary_response.dart';
 
 abstract class ManageContactRepository {
-  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries();
+  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries(String beneType);
 
   Future<Either<NetworkError, AddBeneficiaryResponse>> addBeneficiary(
       {String nickName,

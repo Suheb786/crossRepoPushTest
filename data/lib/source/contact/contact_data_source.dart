@@ -8,7 +8,7 @@ import '../../entity/remote/contact/add_beneficiary_response_entity.dart';
 import '../../entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
 
 abstract class ContactRemoteDS {
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries();
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(String beneType);
 
   Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
       {String nickName,

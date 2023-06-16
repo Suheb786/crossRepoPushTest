@@ -164,6 +164,7 @@ import 'package:data/entity/remote/cliq/update_rtp_request_entity.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
@@ -508,8 +509,9 @@ abstract class ApiService {
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
-  @POST("/beneficiary/GetBeneficiaries")
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(@Body() BaseRequest baseRequest);
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/ShowContactCard")
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      @Body() BeneficiaryFavoriteRequest baseRequest);
 
   @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/AddContact")
   Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
