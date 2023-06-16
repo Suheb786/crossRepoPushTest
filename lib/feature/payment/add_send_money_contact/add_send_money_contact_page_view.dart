@@ -97,7 +97,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                 ],
                               ),
                             )),
-                        beneficiaries!.length > 0
+                        (beneficiaries ?? []).length > 0
                             ? Column(
                                 children: [
                                   Directionality(

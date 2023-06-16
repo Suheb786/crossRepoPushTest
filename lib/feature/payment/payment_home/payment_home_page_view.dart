@@ -42,11 +42,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
             model.showToastWithError(data.appError!);
             Navigator.pop(context);
           }
-          if (data.status == Status.SUCCESS && data.data?.beneficiaryList?.first.beneType == "SM") {
-            model.getBeneficiaries(context, 'RTP');
-          } else if (data.status == Status.SUCCESS && (data.data?.beneficiaryList ?? []).isEmpty) {
-            model.getBeneficiaries(context, 'RTP');
-          }
         },
         dataBuilder: (context, data) {
           if (data!.status == Status.SUCCESS) {

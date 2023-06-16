@@ -1,5 +1,7 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_request_money_contact.dart';
+import 'package:domain/model/manage_contacts/beneficiary_send_money_contact.dart';
 import 'package:domain/usecase/manage_contacts/beneficiary_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/beneficiary_mark_favorite_usecase.dart';
 import 'package:domain/usecase/manage_contacts/search_contact_usecase.dart';
@@ -25,14 +27,50 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   final TextEditingController requestMoneySearchController = TextEditingController();
 
   ///--------------------------get-beneficiary-list-----------------------------------------///
+  BeneficiaryContact? beneficiaryContact = BeneficiaryContact();
   PublishSubject<BeneficiaryContactUseCaseParams> _getBeneficiaryListRequest = PublishSubject();
   BehaviorSubject<Resource<BeneficiaryContact>> _getBeneficiaryListResponse = BehaviorSubject();
 
   Stream<Resource<BeneficiaryContact>> get getBeneficiaryListStream => _getBeneficiaryListResponse.stream;
 
   ///---------------------------search-beneficiary-list---------------------------------///
-//  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream => _searchBeneficiaryListResponse.stream;
-  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse = BehaviorSubject();
+
+  ///--------------------------get sm beneficiary-list-----------------------------------------///
+  BehaviorSubject<Resource<BeneficiaryContact>> _sMBeneficiaryListRequest =
+      BehaviorSubject.seeded(Resource.success(data: BeneficiaryContact()));
+
+  Stream<Resource<BeneficiaryContact>> get getSMBeneficiaryListStream => _sMBeneficiaryListRequest.stream;
+
+  void addSMBeneficiaryList(BeneficiarySendMoneyContact? beneficiarySendMoneyContact) {
+    _sMBeneficiaryListRequest.safeAdd(
+        Resource.success(data: BeneficiaryContact(beneficiarySendMoneyContact: beneficiarySendMoneyContact)));
+  }
+
+  ///---------------------------search-beneficiary-list---------------------------------///
+
+  ///--------------------------get rtp beneficiary-list-----------------------------------------///
+  BehaviorSubject<Resource<BeneficiaryContact>> _rTPBeneficiaryListRequest =
+      BehaviorSubject.seeded(Resource.success(data: BeneficiaryContact()));
+
+  Stream<Resource<BeneficiaryContact>> get getRTPBeneficiaryListStream => _rTPBeneficiaryListRequest.stream;
+
+  void addRTPBeneficiaryList(BeneficiaryRequestMoneyContact? beneficiaryRequestMoneyContact) {
+    _rTPBeneficiaryListRequest.safeAdd(Resource.success(
+        data: BeneficiaryContact(beneficiaryRequestMoneyContact: beneficiaryRequestMoneyContact)));
+  }
+
+  ///---------------------------search-beneficiary-list---------------------------------///
+  PublishSubject<SearchContactUseCaseParams> _searchBeneficiaryListRequest = PublishSubject();
+
+  BehaviorSubject<Resource<BeneficiaryContact>> _searchBeneficiaryListResponse = BehaviorSubject();
+
+  void searchBeneficiary(
+    String searchText,
+    String beneType,
+  ) {
+    _searchBeneficiaryListRequest
+        .safeAdd(SearchContactUseCaseParams(searchText: searchText, beneType: beneType, isFromMobile: true));
+  }
 
   ///--------------------------public-other-methods-------------------------------------///
 
@@ -59,12 +97,17 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
     }
   }*/
 
-  void searchBeneficiary(String? searchText) {}
-
-  void getBeneficiaryList() {
-    _getBeneficiaryListRequest.safeAdd(BeneficiaryContactUseCaseParams(
-      true,
-    ));
+  void getBeneficiaryList({required bool isFromSearch}) {
+    if (isFromSearch) {
+      BeneficiarySendMoneyContact? beneficiarySendMoneyContact =
+          beneficiaryContact?.beneficiarySendMoneyContact;
+      BeneficiaryRequestMoneyContact? beneficiaryRequestMoneyContact =
+          beneficiaryContact?.beneficiaryRequestMoneyContact;
+      addSMBeneficiaryList(beneficiarySendMoneyContact);
+      addRTPBeneficiaryList(beneficiaryRequestMoneyContact);
+    } else {
+      _getBeneficiaryListRequest.safeAdd(BeneficiaryContactUseCaseParams(true));
+    }
   }
 
   PublishSubject<BeneficiaryMarkFavoriteUseCaseParams> _beneficiaryMarkFavoriteRequest = PublishSubject();
@@ -79,6 +122,8 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
       required String userId,
       required bool isFromMobile,
       required String beneType}) {
+    sendMoneySearchController.clear();
+    requestMoneySearchController.clear();
     _beneficiaryMarkFavoriteRequest.safeAdd(BeneficiaryMarkFavoriteUseCaseParams(
         beneficiaryDetailId: beneficiaryDetailId,
         isFromMobile: isFromMobile,
@@ -97,7 +142,7 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   void dispose() {
     _getBeneficiaryListRequest.close();
     _getBeneficiaryListResponse.close();
-    _searchBeneficiaryListResponse.close();
+
     super.dispose();
   }
 
@@ -111,11 +156,16 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getBeneficiaryListResponse.safeAdd(event);
+
         if (event.status == Status.ERROR) {
-          //  showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          // _searchBeneficiaryListResponse.safeAdd(Resource.success(data: event.data!.beneficiaryList));
+          beneficiaryContact = event.data;
+          BeneficiarySendMoneyContact? beneficiarySendMoneyContact = event.data?.beneficiarySendMoneyContact;
+          BeneficiaryRequestMoneyContact? beneficiaryRequestMoneyContact =
+              event.data?.beneficiaryRequestMoneyContact;
+          addSMBeneficiaryList(beneficiarySendMoneyContact);
+          addRTPBeneficiaryList(beneficiaryRequestMoneyContact);
         }
       });
     });
@@ -133,6 +183,29 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
       });
     });
 
-    getBeneficiaryList();
+    _searchBeneficiaryListRequest.listen((value) {
+      RequestManager(value, createCall: () => _searchContactUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        // updateLoader();
+        _searchBeneficiaryListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          if (value.beneType == 'SM') {
+            BeneficiarySendMoneyContact? beneficiarySendMoneyContact =
+                event.data?.beneficiarySendMoneyContact;
+            addSMBeneficiaryList(beneficiarySendMoneyContact);
+          } else {
+            BeneficiaryRequestMoneyContact? beneficiaryRequestMoneyContact =
+                event.data?.beneficiaryRequestMoneyContact;
+
+            addRTPBeneficiaryList(beneficiaryRequestMoneyContact);
+          }
+        }
+      });
+    });
+
+    getBeneficiaryList(isFromSearch: false);
   }
 }

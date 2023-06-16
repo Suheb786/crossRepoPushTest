@@ -45,27 +45,55 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: AppTextField(
-                  labelText: '',
-                  controller: model.requestMoneySearchController,
-                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                  textColor: Theme.of(context).primaryColorDark,
-                  hintText: S.of(context).searchContacts,
-                  onChanged: (value) {
-                    model.searchBeneficiary(value);
-                  },
-                  suffixIcon: (value, data) {
-                    return InkWell(
-                      onTap: () async {},
-                      child: Container(
-                          height: 16.h,
-                          width: 16.w,
-                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                    );
-                  },
-                ),
+                child: AppStreamBuilder<Resource<BeneficiaryContact>>(
+                    stream: model.getSMBeneficiaryListStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, beneficiaryList) {
+                      return Focus(
+                        onFocusChange: (hasChanged) {
+                          if (!hasChanged) {
+                            if (((beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                ?.beneficiaryFavoriteContact ??
+                                            [])
+                                        .isNotEmpty ||
+                                    (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                ?.beneficiaryOtherContact ??
+                                            [])
+                                        .isNotEmpty) &&
+                                model.requestMoneySearchController.text.isNotEmpty) {
+                              model.searchBeneficiary(model.requestMoneySearchController.text, "RTP");
+                            } else {
+                              model.getBeneficiaryList(isFromSearch: true);
+                            }
+                          }
+                        },
+                        child: AppTextField(
+                          labelText: '',
+                          controller: model.requestMoneySearchController,
+                          textFieldBorderColor:
+                              Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                          textColor: Theme.of(context).primaryColorDark,
+                          hintText: S.of(context).searchContacts,
+                          onChanged: (value) {
+                            if (model.requestMoneySearchController.text.isEmpty) {
+                              //  model.getBeneficiaryList();
+                            }
+                          },
+                          suffixIcon: (value, data) {
+                            return InkWell(
+                              onTap: () async {},
+                              child: Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsetsDirectional.only(end: 8.w),
+                                  child: AppSvg.asset(AssetUtils.search,
+                                      color: Theme.of(context).primaryColorDark)),
+                            );
+                          },
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 width: 8.w,
@@ -78,7 +106,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                       arguments: NavigationType.REQUEST_MONEY);
 
                   if (result != null && result == true) {
-                    model.getBeneficiaryList();
+                    model.getBeneficiaryList(isFromSearch: false);
                   }
                 },
                 child: Container(
@@ -103,12 +131,12 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
         initialData: Resource.none(),
         onData: (isFavoriteStatus) {
           if (isFavoriteStatus.status == Status.SUCCESS) {
-            model.getBeneficiaryList();
+            model.getBeneficiaryList(isFromSearch: false);
           }
         },
         dataBuilder: (context, isFavoriteStatus) {
           return AppStreamBuilder<Resource<BeneficiaryContact>>(
-              stream: model.getBeneficiaryListStream,
+              stream: model.getRTPBeneficiaryListStream,
               initialData: Resource.none(),
               dataBuilder: (context, beneficiaryList) {
                 switch (beneficiaryList?.status) {
@@ -172,7 +200,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                             .beneficiaryFavoriteContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -233,7 +261,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                             .beneficiaryOtherContact![index]);
 
                                                     if (result != null && result == true) {
-                                                      model.getBeneficiaryList();
+                                                      model.getBeneficiaryList(isFromSearch: false);
                                                     }
                                                   },
                                                   onFavClick: (beneficiary) {
@@ -292,7 +320,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                     arguments: NavigationType.REQUEST_MONEY);
 
                 if (result != null && result == true) {
-                  model.getBeneficiaryList();
+                  model.getBeneficiaryList(isFromSearch: false);
                 }
               },
               child: Container(

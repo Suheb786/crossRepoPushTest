@@ -166,7 +166,6 @@ import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
 import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
-import 'package:data/entity/remote/contact/beneficiary_search_contact_response_entity.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_contact_request.dart';
@@ -1165,8 +1164,8 @@ abstract class ApiService {
     @Body() ContactDetailRequest request,
   );
 
-  @POST("/ManageContacts/SearchContact")
-  Future<HttpResponse<BeneficiarySearchContactResponseEntity>> searchContact(
+  @POST("${NetworkProperties.BASE_BENEFICIARY_URL}/ManageContacts/SearchContact")
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact(
     @Body() SearchContactRequest request,
   );
 
