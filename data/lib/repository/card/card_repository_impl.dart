@@ -289,12 +289,14 @@ class CardRepositoryImpl extends CardRepository {
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,
       num? merchantsPayments,
-      num? onlinePurchase}) async {
+      num? onlinePurchase,
+      num? contactlessPaymentLimit}) async {
     final result = await safeApiCall(
       _remoteDs.updateCreditCardLimits(
           atmWithdrawal: atmWithdrawal,
           merchantsPayments: merchantsPayments,
           onlinePurchase: onlinePurchase,
+          contactlessPaymentLimit: contactlessPaymentLimit,
           secureCode: secureCode,
           isAtmWithdrawal: isAtmWithdrawal,
           isMerchantsPayments: isMerchantsPayments,

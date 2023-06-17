@@ -43,11 +43,8 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
-import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
-import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
@@ -93,12 +90,10 @@ import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limi
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
-import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_page.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
-import 'package:neo_bank/feature/payment/request_money_failure/request_money_failure_page.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_page.dart';
@@ -139,7 +134,6 @@ import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page.dart';
-import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page.dart';
@@ -149,12 +143,10 @@ import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_c
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
-import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/payment/temp_returnbutton.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 
 import '../../feature/rj/rj_book_flight/rj_book_flight_page.dart';
@@ -205,11 +197,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => DashboardPage(), settings: RouteSettings(name: RoutePaths.Dashboard));
 
-      case RoutePaths.TermsAndCondition:
-        return CupertinoPageRoute(
-            builder: (context) => TermsAndConditionPage(),
-            settings: RouteSettings(name: RoutePaths.TermsAndCondition));
-
       case RoutePaths.AddMoneyOptionSelector:
         return CustomRoute.createRoute(AddMoneyOptionSelectorPage(), reverse: true);
 
@@ -220,11 +207,6 @@ class AppRouter {
       case RoutePaths.Capture:
         return CupertinoPageRoute(
             builder: (context) => CapturePage(), settings: RouteSettings(name: RoutePaths.Capture));
-
-      case RoutePaths.FatcaCertification:
-        return CupertinoPageRoute(
-            builder: (context) => FatcaCertificationPage(),
-            settings: RouteSettings(name: RoutePaths.FatcaCertification));
 
       case RoutePaths.ExemptPayeeCode:
         return CupertinoPageRoute(
@@ -305,17 +287,6 @@ class AppRouter {
       case RoutePaths.AccountTransaction:
         return CustomRoute.createRoute(AccountTransactionPage());
 
-      case RoutePaths.DebitCardDelivered:
-        return CupertinoPageRoute(
-            builder: (context) =>
-                DebitCardDeliveredPage(debitCard: settings.arguments as TimeLineListArguments),
-            settings: RouteSettings(name: RoutePaths.DebitCardDelivered));
-
-      case RoutePaths.CreditCardVerificationSuccess:
-        return CupertinoPageRoute(
-            builder: (context) => CreditCardVerificationSuccessPage(),
-            settings: RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
-
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(
             builder: (context) => DebitCardVerificationSuccessPage(),
@@ -327,11 +298,6 @@ class AppRouter {
       case RoutePaths.ActivityHome:
         return CupertinoPageRoute(
             builder: (context) => ActivityHomePage(), settings: RouteSettings(name: RoutePaths.ActivityHome));
-
-      case RoutePaths.RequestMoneyFailure:
-        return CupertinoPageRoute(
-            builder: (context) => RequestMoneyFailurePage(),
-            settings: RouteSettings(name: RoutePaths.RequestMoneyFailure));
 
       case RoutePaths.SendMoneyFailure:
         return CupertinoPageRoute(
@@ -561,11 +527,6 @@ class AppRouter {
             builder: (context) => SupplementaryCreditCardActivationStatusPage(
                 settings.arguments as SupplementaryCreditCardActivationArguments),
             settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardActivationStatus));
-
-      case RoutePaths.AllContact:
-        return CupertinoPageRoute(
-            builder: (context) => AllContactPage(settings.arguments as AllContactArguments),
-            settings: RouteSettings(name: RoutePaths.AllContact));
 
       case RoutePaths.CreditCardVideoCallInitiate:
         return CupertinoPageRoute(
@@ -893,8 +854,6 @@ class AppRouter {
                 settings.arguments as ReturnPaymentTransactionSliderPageArgument),
             settings: RouteSettings(name: RoutePaths.ReturnPaymentSliderPage));
 
-      case RoutePaths.temp:
-        return CupertinoPageRoute(builder: (context) => TempReturnButton());
       case RoutePaths.AcceptRequestMoneyOtp:
         return CupertinoPageRoute(
             builder: (context) =>

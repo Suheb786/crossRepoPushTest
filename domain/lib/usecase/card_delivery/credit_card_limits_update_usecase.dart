@@ -14,14 +14,15 @@ class CreditCardLimitsUpdateUseCase
   @override
   Future<Either<NetworkError, bool>> execute({required CreditCardLimitsUpdateUseCaseParams params}) {
     return _repository.updateCreditCardLimits(
-        atmWithdrawal: params.atmWithdrawal!,
-        secureCode: params.secureCode!,
-        isAtmWithdrawal: params.isAtmWithdrawal!,
-        isContactLessPayments: params.isContactLessPayments!,
-        isMerchantsPayments: params.isMerchantsPayments!,
-        isOnlinePurchase: params.isOnlinePurchase!,
-        merchantsPayments: params.merchantsPayments!,
-        onlinePurchase: params.onlinePurchase!);
+        atmWithdrawal: params.atmWithdrawal ?? 0,
+        secureCode: params.secureCode ?? '',
+        isAtmWithdrawal: params.isAtmWithdrawal ?? false,
+        isContactLessPayments: params.isContactLessPayments ?? false,
+        isMerchantsPayments: params.isMerchantsPayments ?? false,
+        isOnlinePurchase: params.isOnlinePurchase ?? false,
+        merchantsPayments: params.merchantsPayments ?? 0,
+        onlinePurchase: params.onlinePurchase ?? 0,
+        contactlessPaymentLimit: params.contactlessPaymentLimit ?? 0);
   }
 }
 
@@ -29,6 +30,7 @@ class CreditCardLimitsUpdateUseCaseParams extends Params {
   final num? atmWithdrawal;
   final num? merchantsPayments;
   final num? onlinePurchase;
+  final num? contactlessPaymentLimit;
   final String? secureCode;
   final bool? isAtmWithdrawal;
   final bool? isMerchantsPayments;
@@ -39,6 +41,7 @@ class CreditCardLimitsUpdateUseCaseParams extends Params {
       {this.atmWithdrawal,
       this.merchantsPayments,
       this.onlinePurchase,
+      this.contactlessPaymentLimit,
       this.secureCode,
       this.isAtmWithdrawal,
       this.isMerchantsPayments,

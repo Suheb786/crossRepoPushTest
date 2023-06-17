@@ -9,11 +9,9 @@ class RoutePaths {
   static const String AccountRegistration = '/accountRegistration';
   static const String NonJordanianRegister = '/nonJordanianRegister';
   static const String Dashboard = '/dashboard';
-  static const String TermsAndCondition = '/termsAndCondition';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
   static const String AppHome = "/appHome";
   static const String Capture = '/capture';
-  static const String FatcaCertification = '/fatcaCertification';
   static const String ExemptPayeeCode = '/exemptPayeeCode';
   static const String ExemptionFromFatcaReportingCode = '/exemptionFromFatcaReportingCode';
   static const String UsTaxPayerIdentificationNo = '/usTaxPayerIdentificationNo';
@@ -29,7 +27,6 @@ class RoutePaths {
   static const String BeneficiaryContactsList = '/beneficiaryContactsList';
   static const String PaymentHome = '/paymentHome';
   static const String ActivityHome = '/activityHome';
-  static const String RequestMoneyFailure = "/requestMoneyFailure";
   static const String SendMoneyFailure = "/sendMoneyFailure";
   static const String RequestAmountFromContact = "/requestAmountFromContact";
   static const String SendAmountToContact = "/sendAmountToContactPage";
@@ -42,8 +39,6 @@ class RoutePaths {
   static const String DownloadTransaction = '/downloadTransaction';
   static const String CardTransaction = "/cardTransaction";
   static const String AccountTransaction = "/accountTransaction";
-  static const String DebitCardDelivered = "/debitCardDelivered";
-  static const String CreditCardVerificationSuccess = "/creditCardVerificationSuccess";
   static const String DebitCardVerificationSuccess = "/debitCardVerificationSuccess";
   static const String DebitCardSettings = "/debitCardSettings";
   static const String CreditCardSettings = "/creditCardSettings";
@@ -81,7 +76,6 @@ class RoutePaths {
   static const String CheckScheduledVideoCall = "/checkScheduledVideoCall";
   static const String TimeLinePage = "/TimeLinePage";
   static const String SupplementaryCreditCardActivationStatus = "/supplementaryCreditCardActivationStatus";
-  static const String AllContact = "/allContact";
   static const String CreditCardVideoCallInitiate = "/creditCardVideoCallInitiate";
   static const String CreditCardVideoCallComplete = "/creditCardVideoCallComplete";
   static const String CreditCardVideoKyc = "/creditCardVideoKyc";
@@ -149,7 +143,6 @@ class RoutePaths {
   static const String LinkAccountPage = "/linkAccountPage";
   static const String OtpForCliqIdListPage = "/otpForCliqIdListPage";
   static const String ReturnPaymentSliderPage = "/returnPaymentReasonSelectionPage";
-  static const String temp = "/temp";
   static const String AcceptRequestMoneyOtp = "/acceptRequestMoneyOtpPage";
   static const String RejectRequestPayment = "/rejectRequestPaymentPage";
   static const String CreditConfirmation = "/creditConfirmationPaymentActivityPage";

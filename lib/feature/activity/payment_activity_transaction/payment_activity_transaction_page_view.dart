@@ -223,10 +223,6 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                   .data?.paymentActivityContent?[index] ??
                                                               PaymentActivityContent(),
                                                           onTapOutWardSendMoney: (RequestMoneyActivityList) {
-                                                            // if (RequestMoneyActivityStatusEnum
-                                                            //         .CATEGORY_REJECTED ==
-                                                            //     RequestMoneyActivityList.trxStatus) {
-                                                            //* CREDIT CONFIRMATION POP UP
                                                             RTPConfirmationDialog.show(
                                                               context,
                                                               amount: "- " +
@@ -542,8 +538,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                           RoutePaths.ReturnPaymentSliderPage,
                                                                           arguments:
                                                                               ReturnPaymentTransactionSliderPageArgument(
-                                                                                  name: data.cdtrName,
-                                                                                  iban: data.cdtrAcct,
+                                                                                  name: data.dbtrName,
+                                                                                  iban: data.dbtrAcct,
                                                                                   statusInfo:
                                                                                       S.current.sentTo,
                                                                                   custID: "",
@@ -695,40 +691,40 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     SizedBox(
                                                                       height: 16.h,
                                                                     ),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment.spaceBetween,
-                                                                      children: [
-                                                                        Text(
-                                                                          S.current.reason,
-                                                                          style: TextStyle(
-                                                                              fontFamily: StringUtils.appFont,
-                                                                              fontSize: 12.t,
-                                                                              color: AppColor.very_dark_gray1,
-                                                                              fontWeight: FontWeight.w400),
-                                                                        ),
-                                                                        Spacer(),
-                                                                        Expanded(
-                                                                          child: Align(
-                                                                            alignment: Alignment.centerRight,
-                                                                            child: Text(
-                                                                              data.trxReason ?? '',
-                                                                              textAlign: TextAlign.end,
-                                                                              style: TextStyle(
-                                                                                  fontFamily:
-                                                                                      StringUtils.appFont,
-                                                                                  fontSize: 12.t,
-                                                                                  color: AppColor.black,
-                                                                                  fontWeight:
-                                                                                      FontWeight.w700),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 16.h,
-                                                                    ),
+                                                                    // Row(
+                                                                    //   mainAxisAlignment:
+                                                                    //       MainAxisAlignment.spaceBetween,
+                                                                    //   children: [
+                                                                    //     Text(
+                                                                    //       S.current.reason,
+                                                                    //       style: TextStyle(
+                                                                    //           fontFamily: StringUtils.appFont,
+                                                                    //           fontSize: 12.t,
+                                                                    //           color: AppColor.very_dark_gray1,
+                                                                    //           fontWeight: FontWeight.w400),
+                                                                    //     ),
+                                                                    //     Spacer(),
+                                                                    //     Expanded(
+                                                                    //       child: Align(
+                                                                    //         alignment: Alignment.centerRight,
+                                                                    //         child: Text(
+                                                                    //           data.trxReason ?? '',
+                                                                    //           textAlign: TextAlign.end,
+                                                                    //           style: TextStyle(
+                                                                    //               fontFamily:
+                                                                    //                   StringUtils.appFont,
+                                                                    //               fontSize: 12.t,
+                                                                    //               color: AppColor.black,
+                                                                    //               fontWeight:
+                                                                    //                   FontWeight.w700),
+                                                                    //         ),
+                                                                    //       ),
+                                                                    //     ),
+                                                                    //   ],
+                                                                    // ),
+                                                                    // SizedBox(
+                                                                    //   height: 16.h,
+                                                                    // ),
                                                                     Row(
                                                                       mainAxisAlignment:
                                                                           MainAxisAlignment.spaceBetween,
@@ -1375,40 +1371,40 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                                     SizedBox(
                                                                       height: 16.h,
                                                                     ),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment.spaceBetween,
-                                                                      children: [
-                                                                        Text(
-                                                                          S.current.reason,
-                                                                          style: TextStyle(
-                                                                              fontFamily: StringUtils.appFont,
-                                                                              fontSize: 12.t,
-                                                                              color: AppColor.very_dark_gray1,
-                                                                              fontWeight: FontWeight.w400),
-                                                                        ),
-                                                                        Spacer(),
-                                                                        Expanded(
-                                                                          child: Align(
-                                                                            alignment: Alignment.centerRight,
-                                                                            child: Text(
-                                                                              data.trxReason ?? '',
-                                                                              textAlign: TextAlign.end,
-                                                                              style: TextStyle(
-                                                                                  fontFamily:
-                                                                                      StringUtils.appFont,
-                                                                                  fontSize: 12.t,
-                                                                                  color: AppColor.black,
-                                                                                  fontWeight:
-                                                                                      FontWeight.w700),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 16.h,
-                                                                    ),
+                                                                    // Row(
+                                                                    //   mainAxisAlignment:
+                                                                    //       MainAxisAlignment.spaceBetween,
+                                                                    //   children: [
+                                                                    //     Text(
+                                                                    //       S.current.reason,
+                                                                    //       style: TextStyle(
+                                                                    //           fontFamily: StringUtils.appFont,
+                                                                    //           fontSize: 12.t,
+                                                                    //           color: AppColor.very_dark_gray1,
+                                                                    //           fontWeight: FontWeight.w400),
+                                                                    //     ),
+                                                                    //     Spacer(),
+                                                                    //     Expanded(
+                                                                    //       child: Align(
+                                                                    //         alignment: Alignment.centerRight,
+                                                                    //         child: Text(
+                                                                    //           data.trxReason ?? '',
+                                                                    //           textAlign: TextAlign.end,
+                                                                    //           style: TextStyle(
+                                                                    //               fontFamily:
+                                                                    //                   StringUtils.appFont,
+                                                                    //               fontSize: 12.t,
+                                                                    //               color: AppColor.black,
+                                                                    //               fontWeight:
+                                                                    //                   FontWeight.w700),
+                                                                    //         ),
+                                                                    //       ),
+                                                                    //     ),
+                                                                    //   ],
+                                                                    // ),
+                                                                    // SizedBox(
+                                                                    //   height: 16.h,
+                                                                    // ),
                                                                     Row(
                                                                       mainAxisAlignment:
                                                                           MainAxisAlignment.spaceBetween,

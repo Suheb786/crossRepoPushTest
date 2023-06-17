@@ -1368,6 +1368,8 @@ class ErrorParser {
         return localisedHelper.thisAliasAlreadyExists;
       case ErrorType.CLIQ_ID_ALREADY_EXISTS:
         return localisedHelper.cliqIdAlreadyExists;
+      case ErrorType.CREDIT_CONTACTLESS_PAYMENT_EXCEEDED:
+        return localisedHelper.creditContactlessLimitExceeded;
       default:
         return "";
     }

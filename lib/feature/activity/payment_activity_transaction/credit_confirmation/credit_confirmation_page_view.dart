@@ -98,26 +98,29 @@ class CreditConfirmationPaymentActivityPageView
                                         ),
                                       )),
                                   SizedBox(height: 16.0.h),
-                                  RichText(
-                                    text: TextSpan(
-                                      text:
-                                          "-${double.parse(model.creditConfirmationArgument.amount?.replaceAll('-', '') ?? '0.0').toStringAsFixed(3)}",
-                                      style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          fontSize: 24.t,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColor.black),
-                                      children: [
-                                        TextSpan(text: " "),
-                                        TextSpan(
-                                          text: model.creditConfirmationArgument.currency,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontSize: 12.t,
-                                              color: AppColor.light_gray,
-                                              fontWeight: FontWeight.w700),
-                                        )
-                                      ],
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text:
+                                            "-${double.parse(model.creditConfirmationArgument.amount?.replaceAll('-', '') ?? '0.0').toStringAsFixed(3)}",
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 24.t,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColor.black),
+                                        children: [
+                                          TextSpan(text: " "),
+                                          TextSpan(
+                                            text: model.creditConfirmationArgument.currency,
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 12.t,
+                                                color: AppColor.light_gray,
+                                                fontWeight: FontWeight.w700),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 8.0.h),

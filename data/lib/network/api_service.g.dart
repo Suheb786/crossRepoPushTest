@@ -2146,7 +2146,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/UpdateLimit',
+              '/CardTracking/UpdateLimitV2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -3460,7 +3460,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/CardTracking/GetLimit',
+              '/CardTracking/GetLimitV2',
               queryParameters: queryParameters,
               data: _data,
             )

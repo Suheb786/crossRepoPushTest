@@ -15,15 +15,12 @@ import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_ba
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view_model.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
-import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
-import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page_view_model.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
-import 'package:neo_bank/feature/payment/request_money_failure/request_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
@@ -113,10 +110,6 @@ final requestAmountFromContactSuccessViewModelProvider =
   (ref, args) => RequestAmountFromContactSuccessViewModel(args),
 );
 
-final requestMoneyFailureViewModelProvider = ChangeNotifierProvider.autoDispose<RequestMoneyFailureViewModel>(
-  (ref) => RequestMoneyFailureViewModel(),
-);
-
 final sendMoneyFailureViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<SendMoneyFailureViewModel, SendMoneyFailurePageArgument>(
   (ref, arg) => SendMoneyFailureViewModel(arg),
@@ -192,12 +185,6 @@ final purposeDetailDialogViewModelProvider = ChangeNotifierProvider.autoDispose
 ///transaction purpose dialog view model provider
 final purposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PurposeDialogViewModel, List<Purpose>>((ref, args) => PurposeDialogViewModel(args));
-
-///view all payment contact
-final allContactsViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<AllContactPageViewModel, AllContactArguments>(
-  (ref, args) => AllContactPageViewModel(args),
-);
 
 ///payment activity filter dialog view model provider
 final paymentActivityFilterDialogViewModelProvider =
