@@ -47,10 +47,10 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                       size: Size(MediaQuery.of(context).size.width / 2.4, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      activeColor: model.navigationType == NavigationType.SEND_MONEY
+                      activeColor: model.arguments.navigationType == NavigationType.SEND_MONEY
                           ? Theme.of(context).colorScheme.secondary
                           : Theme.of(context).colorScheme.shadow,
-                      color: model.navigationType == NavigationType.SEND_MONEY
+                      color: model.arguments.navigationType == NavigationType.SEND_MONEY
                           ? Theme.of(context).primaryColorLight.withOpacity(0.3)
                           : Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.3)),
                 );
@@ -67,7 +67,7 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                           S.current.addContact.toUpperCase(),
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: model.navigationType == NavigationType.SEND_MONEY
+                              color: model.arguments.navigationType == NavigationType.SEND_MONEY
                                   ? Theme.of(context).colorScheme.secondary
                                   : Theme.of(context).colorScheme.shadow,
                               fontSize: 10,
@@ -90,7 +90,7 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                color: model.navigationType == NavigationType.SEND_MONEY
+                                color: model.arguments.navigationType == NavigationType.SEND_MONEY
                                     ? Theme.of(context).colorScheme.secondary
                                     : Theme.of(context).colorScheme.shadow,
                                 fontSize: 20,
@@ -115,7 +115,7 @@ class AddBeneficiaryPageView extends BasePageViewWidget<AddBeneficiaryPageViewMo
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      color: model.navigationType == NavigationType.SEND_MONEY
+                                      color: model.arguments.navigationType == NavigationType.SEND_MONEY
                                           ? Theme.of(context).colorScheme.secondary
                                           : Theme.of(context).colorScheme.shadow,
                                       fontSize: 20.t,

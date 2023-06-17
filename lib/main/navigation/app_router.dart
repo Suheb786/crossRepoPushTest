@@ -881,7 +881,8 @@ class AppRouter {
       /// [Manage Contact]
       case RoutePaths.AddContactsIBANManageContactsPage:
         return CupertinoPageRoute(
-            builder: (context) => AddBeneficiaryPage(navigationType: settings.arguments as NavigationType),
+            builder: (context) =>
+                AddBeneficiaryPage(arguments: settings.arguments as AddBeneficiaryPageArguments),
             settings: RouteSettings(name: RoutePaths.AddContactsIBANManageContactsPage));
 
       case RoutePaths.BeneficiaryContactDetailsPage:

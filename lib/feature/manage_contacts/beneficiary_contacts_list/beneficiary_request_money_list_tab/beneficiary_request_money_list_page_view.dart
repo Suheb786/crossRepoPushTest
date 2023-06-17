@@ -2,9 +2,12 @@ import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -22,17 +25,19 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
 
   @override
   Widget build(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 24.0.w,
-        right: 24.0.w,
-        top: 24.h,
-      ),
-      child: Column(
-        children: [
-          searchContact(context, model),
-          listItem(context, model),
-        ],
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 24.0.w,
+          right: 24.0.w,
+          top: 24.h,
+        ),
+        child: Column(
+          children: [
+            searchContact(context, model),
+            listItem(context, model),
+          ],
+        ),
       ),
     );
   }
@@ -46,7 +51,7 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
             children: [
               Expanded(
                 child: AppStreamBuilder<Resource<BeneficiaryContact>>(
-                    stream: model.getSMBeneficiaryListStream,
+                    stream: model.getRTPBeneficiaryListStream,
                     initialData: Resource.none(),
                     dataBuilder: (context, beneficiaryList) {
                       return Focus(
@@ -103,7 +108,8 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                   model.isNewRecordCreated = true;
                   var result = await Navigator.pushNamed(
                       context, RoutePaths.AddContactsIBANManageContactsPage,
-                      arguments: NavigationType.REQUEST_MONEY);
+                      arguments: AddBeneficiaryPageArguments(
+                          navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: false));
 
                   if (result != null && result == true) {
                     model.getBeneficiaryList(isFromSearch: false);
@@ -194,10 +200,13 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                                                     model.isNewRecordCreated = false;
                                                     var result = await Navigator.pushNamed(
                                                         context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                        arguments: beneficiaryList!
-                                                            .data!
-                                                            .beneficiaryRequestMoneyContact!
-                                                            .beneficiaryFavoriteContact![index]);
+                                                        arguments: BeneficiaryContactDetailArguments(
+                                                            navigationType: NavigationType.REQUEST_MONEY,
+                                                            beneficiaryInformation: beneficiaryList!
+                                                                .data!
+                                                                .beneficiaryRequestMoneyContact!
+                                                                .beneficiaryFavoriteContact![index],
+                                                            isFromContactCard: false));
 
                                                     if (result != null && result == true) {
                                                       model.getBeneficiaryList(isFromSearch: false);
@@ -255,10 +264,13 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
 
                                                     var result = await Navigator.pushNamed(
                                                         context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                        arguments: beneficiaryList!
-                                                            .data!
-                                                            .beneficiaryRequestMoneyContact!
-                                                            .beneficiaryOtherContact![index]);
+                                                        arguments: BeneficiaryContactDetailArguments(
+                                                            navigationType: NavigationType.REQUEST_MONEY,
+                                                            beneficiaryInformation: beneficiaryList!
+                                                                .data!
+                                                                .beneficiaryRequestMoneyContact!
+                                                                .beneficiaryOtherContact![index],
+                                                            isFromContactCard: false));
 
                                                     if (result != null && result == true) {
                                                       model.getBeneficiaryList(isFromSearch: false);
@@ -317,7 +329,8 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
               onTap: () async {
                 model.isNewRecordCreated = true;
                 var result = await Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                    arguments: NavigationType.REQUEST_MONEY);
+                    arguments: AddBeneficiaryPageArguments(
+                        navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: false));
 
                 if (result != null && result == true) {
                   model.getBeneficiaryList(isFromSearch: false);

@@ -66,19 +66,25 @@ class PaymentHomeViewModel extends BasePageViewModel {
             getBeneficiaries(appLevelKey.currentContext!, 'RTP');
           }
           if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
-            event.data?.beneficiaryList?.forEach((element) {
-              if (element.beneType == "SM") {
-                smBeneficiaries.add(element);
-              }
-            });
+            if (value.beneType == 'SM') {
+              smBeneficiaries.clear();
+              event.data?.beneficiaryList?.forEach((element) {
+                if (element.beneType == "SM") {
+                  smBeneficiaries.add(element);
+                }
+              });
+            }
           }
 
           if ((event.data?.beneficiaryList ?? []).isNotEmpty) {
-            event.data?.beneficiaryList?.forEach((element) {
-              if (element.beneType == "RTP") {
-                rtpBeneficiaries.add(element);
-              }
-            });
+            if (value.beneType == 'RTP') {
+              rtpBeneficiaries.clear();
+              event.data?.beneficiaryList?.forEach((element) {
+                if (element.beneType == "RTP") {
+                  rtpBeneficiaries.add(element);
+                }
+              });
+            }
           }
 
           Future.delayed(Duration(milliseconds: 50), () {

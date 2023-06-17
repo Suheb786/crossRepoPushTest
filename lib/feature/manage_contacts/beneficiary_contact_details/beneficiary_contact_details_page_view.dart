@@ -108,12 +108,13 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                 clipBehavior: Clip.none,
                                 children: [
                                   image!.isEmpty
-                                      ? model.argument.image.isEmpty
+                                      ? model.argument.beneficiaryInformation.image.isEmpty
                                           ? CircleAvatar(
                                               backgroundColor: Theme.of(context).colorScheme.shadow,
                                               radius: 48.w,
                                               child: Text(
-                                                StringUtils.getFirstInitials(model.argument.nickName),
+                                                StringUtils.getFirstInitials(
+                                                    model.argument.beneficiaryInformation.nickName),
                                                 style: TextStyle(
                                                   color: AppColor.white,
                                                   fontSize: 22.t,
@@ -123,7 +124,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                                           : CircleAvatar(
                                               radius: 48.w,
                                               backgroundImage: Image.memory(
-                                                model.argument.image,
+                                                model.argument.beneficiaryInformation.image,
                                                 fit: BoxFit.cover,
                                               ).image,
                                             )
@@ -274,7 +275,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.fullName!,
+            model.argument.beneficiaryInformation.fullName!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -299,7 +300,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             children: [
               Flexible(
                 child: Text(
-                  model.argument.accountNo!,
+                  model.argument.beneficiaryInformation.accountNo!,
                   style: TextStyle(
                       fontSize: 16.t,
                       fontFamily: StringUtils.appFont,
@@ -312,7 +313,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                 child: InkWell(
                     onTap: () {
                       Clipboard.setData(ClipboardData(
-                        text: model.argument.accountNo!,
+                        text: model.argument.beneficiaryInformation.accountNo!,
                       )).then((value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                     },
                     child: AppSvg.asset(AssetUtils.copy)),
@@ -334,7 +335,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.purposeParentDetails!,
+            model.argument.beneficiaryInformation.purposeParentDetails!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -356,7 +357,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 8.h,
           ),
           Text(
-            model.argument.purposeDetails!,
+            model.argument.beneficiaryInformation.purposeDetails!,
             style: TextStyle(
                 fontSize: 16.t,
                 fontFamily: StringUtils.appFont,
@@ -381,8 +382,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
-                        arguments: model.navigationType);
+                    ///TODO: Uncomment once api is integrated
+                    // Navigator.pushNamed(context, RoutePaths.BeneficiaryTransactionHistoryList,
+                    //     arguments: model.navigationType);
                   },
                   child: Container(
                     height: 64.h,
@@ -432,24 +434,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.RequestAmountFromContact,
                       arguments: Beneficiary(
-                        accountHolderName: model.argument.fullName,
-                        accountNo: model.argument.accountNo,
-                        bankName: model.argument.bankName,
-                        beneType: model.argument.beneficiaryType,
+                        accountHolderName: model.argument.beneficiaryInformation.fullName,
+                        accountNo: model.argument.beneficiaryInformation.accountNo,
+                        bankName: model.argument.beneficiaryInformation.bankName,
+                        beneType: model.argument.beneficiaryInformation.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: model.argument.detCustomerType,
-                        fullName: model.argument.fullName,
-                        iban: model.argument.accountNo,
-                        id: model.argument.id,
-                        imageUrl: model.argument.image,
-                        limit: model.argument.limit,
-                        mobileNumber: model.argument.mobileNumber,
-                        nickName: model.argument.nickName,
-                        purpose: model.argument.purpose,
-                        purposeDetails: model.argument.purposeDetails,
-                        purposeParent: model.argument.purposeParent,
-                        purposeParentDetails: model.argument.purposeParentDetails,
-                        purposeType: model.argument.purposeType,
+                        detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                        fullName: model.argument.beneficiaryInformation.fullName,
+                        iban: model.argument.beneficiaryInformation.accountNo,
+                        id: model.argument.beneficiaryInformation.id,
+                        imageUrl: model.argument.beneficiaryInformation.image,
+                        limit: model.argument.beneficiaryInformation.limit,
+                        mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                        nickName: model.argument.beneficiaryInformation.nickName,
+                        purpose: model.argument.beneficiaryInformation.purpose,
+                        purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                        purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                        purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
+                        purposeType: model.argument.beneficiaryInformation.purposeType,
                       ),
                     );
                   },
@@ -502,24 +504,24 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                       context,
                       RoutePaths.SendAmountToContact,
                       arguments: Beneficiary(
-                        accountHolderName: model.argument.fullName,
-                        accountNo: model.argument.accountNo,
-                        bankName: model.argument.bankName,
-                        beneType: model.argument.beneficiaryType,
+                        accountHolderName: model.argument.beneficiaryInformation.fullName,
+                        accountNo: model.argument.beneficiaryInformation.accountNo,
+                        bankName: model.argument.beneficiaryInformation.bankName,
+                        beneType: model.argument.beneficiaryInformation.beneficiaryType,
                         beneficiaryAddress: "",
-                        detCustomerType: model.argument.detCustomerType,
-                        fullName: model.argument.fullName,
-                        iban: model.argument.accountNo,
-                        id: model.argument.id,
-                        imageUrl: model.argument.image,
-                        limit: model.argument.limit,
-                        mobileNumber: model.argument.mobileNumber,
-                        nickName: model.argument.nickName,
-                        purpose: model.argument.purpose,
-                        purposeDetails: model.argument.purposeDetails,
-                        purposeParent: model.argument.purposeParent,
-                        purposeParentDetails: model.argument.purposeParentDetails,
-                        purposeType: model.argument.purposeType,
+                        detCustomerType: model.argument.beneficiaryInformation.detCustomerType,
+                        fullName: model.argument.beneficiaryInformation.fullName,
+                        iban: model.argument.beneficiaryInformation.accountNo,
+                        id: model.argument.beneficiaryInformation.id,
+                        imageUrl: model.argument.beneficiaryInformation.image,
+                        limit: model.argument.beneficiaryInformation.limit,
+                        mobileNumber: model.argument.beneficiaryInformation.mobileNumber,
+                        nickName: model.argument.beneficiaryInformation.nickName,
+                        purpose: model.argument.beneficiaryInformation.purpose,
+                        purposeDetails: model.argument.beneficiaryInformation.purposeDetails,
+                        purposeParent: model.argument.beneficiaryInformation.purposeParent,
+                        purposeParentDetails: model.argument.beneficiaryInformation.purposeParentDetails,
+                        purposeType: model.argument.beneficiaryInformation.purposeType,
                       ),
                     );
                   },

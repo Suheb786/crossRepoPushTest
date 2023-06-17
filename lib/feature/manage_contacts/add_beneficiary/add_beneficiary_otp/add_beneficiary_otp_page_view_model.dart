@@ -155,6 +155,6 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
     final provider = ProviderScope.containerOf(appLevelKey.currentContext!).read(
       addBeneficiaryViewModelProvider,
     );
-    navigationType = provider.navigationType;
+    navigationType = provider.arguments.navigationType;
   }
 }

@@ -2040,7 +2040,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/TransferAPIV3',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/TransferAPI',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2066,7 +2066,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/transfer/RequestToPayV1',
+              'http://10.6.13.2:2186/contactcenter/api/ContactCenter/RequestToPay',
               queryParameters: queryParameters,
               data: _data,
             )

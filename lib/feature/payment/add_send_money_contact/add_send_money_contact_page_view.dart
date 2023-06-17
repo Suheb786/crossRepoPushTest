@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -86,7 +87,9 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, RoutePaths.AddContactsIBANManageContactsPage,
-                                            arguments: NavigationType.SEND_MONEY);
+                                            arguments: AddBeneficiaryPageArguments(
+                                                navigationType: NavigationType.SEND_MONEY,
+                                                isFromContactCard: true));
                                       },
                                       child: Container(
                                         child: AppSvg.asset(AssetUtils.plusIcon, width: 16.w, height: 16.h),

@@ -6,6 +6,7 @@ import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -21,7 +22,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   final UpdateBeneficiaryUseCase _updateBeneficiaryUseCase;
   final UploadBeneficiaryProfileImageUseCase _uploadBeneficiaryProfileImageUseCase;
   final RemoveBeneficiaryProfileImageUseCase _removeBeneficiaryProfileImageUseCase;
-  final dynamic argument;
+  final BeneficiaryContactDetailArguments argument;
 
   ///---------------------------textEditing-controller----------------------------///
   TextEditingController nickNameController = TextEditingController();
@@ -73,7 +74,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   void addImage(String image) {
     /// image update api here..
     _updateProfileImageRequestSubject.safeAdd(UploadBeneficiaryProfileImageUseCaseParams(
-      beneficiaryId: argument.id!,
+      beneficiaryId: argument.beneficiaryInformation.id ?? '',
       filePath: image,
       beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
     ));
@@ -85,13 +86,13 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   void deleteBeneficiary() {
     _deleteBeneficiaryRequest.safeAdd(DeleteBeneficiaryUseCaseParams(
-        beneficiaryId: argument.id!,
+        beneficiaryId: argument.beneficiaryInformation.id ?? '',
         beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }
 
   void updateBeneficiary() {
     _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
-        beneficiaryId: argument.id!,
+        beneficiaryId: argument.beneficiaryInformation.id ?? '',
         nickName: nickNameController.text,
         beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }
@@ -105,7 +106,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
       this._uploadBeneficiaryProfileImageUseCase,
       this._removeBeneficiaryProfileImageUseCase,
       this.argument) {
-    nickNameController.text = argument.nickName!;
+    nickNameController.text = argument.beneficiaryInformation.nickName ?? '';
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
@@ -163,7 +164,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
           selectedProfile = '';
-          argument.image = '';
+          argument.beneficiaryInformation.image = '';
           _selectedImageSubject.safeAdd(selectedProfile);
         }
       });
@@ -172,7 +173,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   removeImage() {
     _removeProfileImageRequestSubject.safeAdd(RemoveBeneficiaryProfileImageUseCaseParams(
-      beneficiaryId: argument.id ?? '',
+      beneficiaryId: argument.beneficiaryInformation.id ?? '',
       beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
     ));
   }
@@ -189,7 +190,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   setNickNameReadOnly() {
     _nameEditableNotifierSubject.safeAdd(true);
     _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
-        beneficiaryId: argument.id ?? '',
+        beneficiaryId: argument.beneficiaryInformation.id ?? '',
         nickName: nickNameController.text,
         beneType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM'));
   }

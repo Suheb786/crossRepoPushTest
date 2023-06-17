@@ -5,6 +5,7 @@ import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_prov
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_otp/add_beneficiary_otp_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_contacts_form/add_beneficiary_form_page_view_model.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_transaction_history_list/beneficiary_transaction_history_list_page_view_model.dart';
@@ -30,7 +31,7 @@ final addBeneficiaryotpPageViewModel = ChangeNotifierProvider.autoDispose<AddBen
         ref.read(addBeneficiaryUseCaseProvider), ref.read(resendOTPAddBeneficiaryUseCaseProvider)));
 
 final beneficiaryContactAddedPageViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<BeneficiaryContactDetailsPageViewModel, dynamic>((ref, args) =>
+    .family<BeneficiaryContactDetailsPageViewModel, BeneficiaryContactDetailArguments>((ref, args) =>
         BeneficiaryContactDetailsPageViewModel(
             ref.read(uploadDocumentUseCaseProvider),
             ref.read(deleteBeneficiaryUseCaseProvider),

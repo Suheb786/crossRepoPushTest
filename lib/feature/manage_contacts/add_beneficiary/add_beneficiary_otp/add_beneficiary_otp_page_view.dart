@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
@@ -39,7 +40,16 @@ class AddBeneficiaryotpPageView extends BasePageViewWidget<AddBeneficiaryotpPage
                   onData: (value) {
                     if (value.status == Status.SUCCESS) {
                       Navigator.pushReplacementNamed(context, RoutePaths.BeneficiaryContactDetailsPage,
-                          arguments: value.data!.beneficiarySendMoneyContact);
+                          arguments: BeneficiaryContactDetailArguments(
+                              beneficiaryInformation: value.data!.beneficiarySendMoneyContact,
+                              navigationType: ProviderScope.containerOf(context)
+                                  .read(addBeneficiaryViewModelProvider)
+                                  .arguments
+                                  .navigationType,
+                              isFromContactCard: ProviderScope.containerOf(context)
+                                  .read(addBeneficiaryViewModelProvider)
+                                  .arguments
+                                  .isFromContactCard));
                       model.showSuccessTitleandDescriptionToast(ToastwithTitleandDescription(
                           title: '', description: S.current.newContacthasBeenAdded));
                     }

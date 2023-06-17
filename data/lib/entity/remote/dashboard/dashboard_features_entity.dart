@@ -106,6 +106,6 @@ class DashboardFeaturesEntity
         blinkRetailAppCliqSendPayment: blinkRetailAppCliqSendPayment ?? false,
         rtpFeatureEnabled: rtpFeatureEnabled ?? false,
         returnPaymentFeatureEnabled: returnPaymentFeatureEnabled ?? false,
-        manageContactEnabled: this.manageContactEnabled ?? false);
+        manageContactEnabled: /*this.manageContactEnabled ?? false*/ true);
   }
 }
