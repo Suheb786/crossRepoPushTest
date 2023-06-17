@@ -4370,16 +4370,6 @@ class S {
     );
   }
 
-  /// `Request Money Favourites`
-  String get requestMoneyFavourites {
-    return Intl.message(
-      'Request Money Favourites',
-      name: 'requestMoneyFavourites',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
@@ -6435,16 +6425,6 @@ class S {
     return Intl.message(
       'Swipe up to send money',
       name: 'swipeToSend',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send Money Favourites`
-  String get sendMoneyFavourites {
-    return Intl.message(
-      'Send Money Favourites',
-      name: 'sendMoneyFavourites',
       desc: '',
       args: [],
     );
@@ -17150,16 +17130,6 @@ class S {
     );
   }
 
-  /// `Edit Contact`
-  String get editContact {
-    return Intl.message(
-      'Edit Contact',
-      name: 'editContact',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Back to Contact`
   String get backToContact {
     return Intl.message(
@@ -17170,51 +17140,11 @@ class S {
     );
   }
 
-  /// `Favourite Contacts`
-  String get favouriteContacts {
-    return Intl.message(
-      'Favourite Contacts',
-      name: 'favouriteContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Recent Contacts`
-  String get recentContacts {
-    return Intl.message(
-      'Recent Contacts',
-      name: 'recentContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Other Contacts`
-  String get otherContacts {
-    return Intl.message(
-      'Other Contacts',
-      name: 'otherContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Add Contact`
   String get addContact {
     return Intl.message(
       'Add Contact',
       name: 'addContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You don’t have any contacts yet.\nAdd your first one now.`
-  String get youDontHaveAnyContactAddYourFirstNow {
-    return Intl.message(
-      'You don’t have any contacts yet.\nAdd your first one now.',
-      name: 'youDontHaveAnyContactAddYourFirstNow',
       desc: '',
       args: [],
     );
@@ -17235,16 +17165,6 @@ class S {
     return Intl.message(
       'Are you sure you want to remove this contact?',
       name: 'areYouSureToremoveContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favourite contact`
-  String get favouriteContact {
-    return Intl.message(
-      'Favourite contact',
-      name: 'favouriteContact',
       desc: '',
       args: [],
     );
@@ -17287,16 +17207,6 @@ class S {
       name: 'newContacthasBeenAdded',
       desc: '',
       args: [],
-    );
-  }
-
-  /// `Enter the 6-digit code sent to\n{mobile}`
-  String enterThe6DigitCodewithExtraString(Object mobile) {
-    return Intl.message(
-      'Enter the 6-digit code sent to\n$mobile',
-      name: 'enterThe6DigitCodewithExtraString',
-      desc: '',
-      args: [mobile],
     );
   }
 
@@ -17520,16 +17430,6 @@ class S {
     );
   }
 
-  /// `Where would like to save as favourite?`
-  String get saveAsFavourite {
-    return Intl.message(
-      'Where would like to save as favourite?',
-      name: 'saveAsFavourite',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Favourites`
   String get favourites {
     return Intl.message(
@@ -17585,6 +17485,96 @@ class S {
     return Intl.message(
       'Contactless payment limit exceeded.',
       name: 'creditContactlessLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! You can only select up to 9 favourite contacts`
+  String get favouriteContactLimitExceeded {
+    return Intl.message(
+      'Oops! You can only select up to 9 favourite contacts',
+      name: 'favouriteContactLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname already exists, use another one`
+  String get nicknameAlreadyExistsM {
+    return Intl.message(
+      'Oops! Nickname already exists, use another one',
+      name: 'nicknameAlreadyExistsM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! IBAN/account number/ mobile number/Alias already exists, use another one.`
+  String get identifierAlreadyExists {
+    return Intl.message(
+      'Oops! IBAN/account number/ mobile number/Alias already exists, use another one.',
+      name: 'identifierAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname cannot be updated, please try again later`
+  String get updateNicknameFailure {
+    return Intl.message(
+      'Oops! Nickname cannot be updated, please try again later',
+      name: 'updateNicknameFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Nickname cannot be deleted, please try again later`
+  String get removeNicknameFailure {
+    return Intl.message(
+      'Oops! Nickname cannot be deleted, please try again later',
+      name: 'removeNicknameFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Please use .PNG or .JPG format. `
+  String get imageFormatWrong {
+    return Intl.message(
+      'Oops! Please use .PNG or .JPG format. ',
+      name: 'imageFormatWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Image cannot be uploaded, please try again later`
+  String get avatarUpdateFailure {
+    return Intl.message(
+      'Oops! Image cannot be uploaded, please try again later',
+      name: 'avatarUpdateFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Image cannot be removed, please try again later`
+  String get removeAvatarFailure {
+    return Intl.message(
+      'Oops! Image cannot be removed, please try again later',
+      name: 'removeAvatarFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops! Contact not marked as favorite, please try again later`
+  String get ContactMarkFavouriteFailure {
+    return Intl.message(
+      'Oops! Contact not marked as favorite, please try again later',
+      name: 'ContactMarkFavouriteFailure',
       desc: '',
       args: [],
     );
