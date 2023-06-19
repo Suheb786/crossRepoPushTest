@@ -15,7 +15,8 @@ import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class SplashPageView extends BasePageViewWidget<SplashViewModel> {
+class
+SplashPageView extends BasePageViewWidget<SplashViewModel> {
   SplashPageView(ProviderBase model) : super(model);
 
   @override
@@ -25,7 +26,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
       initialData: Resource.none(),
       onData: (data) {
         if (data.status == Status.SUCCESS) {
-          Navigator.pushReplacementNamed(context, RoutePaths.EVoucherMainPage);
+          Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
         } else if (data.status == Status.ERROR) {
           InformationDialog.show(context,
               image: AssetUtils.mobile,
@@ -47,7 +48,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
-              Navigator.pushReplacementNamed(context, RoutePaths.EVoucherMainPage);
+              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
             }
           },
           dataBuilder: (context, data) {

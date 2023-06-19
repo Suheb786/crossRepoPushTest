@@ -52,7 +52,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               Text(
                 S.of(context).eVouchers,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.secondary),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 18.0),
@@ -87,9 +89,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             child: Align(

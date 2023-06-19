@@ -197,6 +197,11 @@ import 'package:data/entity/remote/device_change/resend_otp_device_change_reques
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
 import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
+import 'package:data/entity/remote/e_voucher/my_vouchers_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_by_category_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_by_filter_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_by_search_request.dart';
+import 'package:data/entity/remote/e_voucher/voucher_detail_request.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -1180,4 +1185,40 @@ abstract class ApiService {
   ///delete contact
   @POST("/ManageContacts/DeleteContact")
   Future<HttpResponse<ResponseEntity>> deleteContact(@Body() DeleteContactRequest deleteContactRequest);
+
+  ///update avatar contact
+  @POST("/ManageContacts/UpdateAvatar")
+  Future<HttpResponse<ResponseEntity>> updateAvatar(@Body() UpdateAvatarRequest updateAvatarRequest);
+
+  ///Remove Avatar
+  @POST("/ManageContacts/RemoveAvatar")
+  Future<HttpResponse<ResponseEntity>> removeAvatar(@Body() RemoveAvatarRequest removeAvatarRequest);
+
+  // ---------------------------------------------- E-Vouchers ----------------------------------------------
+
+  ///Voucher Categories
+  @POST("/Vouchers/GetCategories")
+  Future<HttpResponse<ResponseEntity>> getVoucherCategories(@Body() BaseRequest request);
+
+  ///Voucher Items By Category
+  @POST("/Vouchers/GetItembyByCategory")
+  Future<HttpResponse<ResponseEntity>> getVoucherItemsByCategory(@Body() VoucherByCategoryRequest voucherByCategoryRequest);
+
+  ///My Vouchers
+  @POST("/Vouchers/GetMyVouchers")
+  Future<HttpResponse<ResponseEntity>> getMyVouchers(@Body() MyVouchersRequest myVouchersRequest);
+
+  ///Voucher Details
+  @POST("/Vouchers/GetVoucherDetails")
+  Future<HttpResponse<ResponseEntity>> getVoucherDetails(@Body() VoucherDetailRequest voucherDetailRequest);
+
+  ///Voucher Items By Filter
+  @POST("/Vouchers/GetItemsByFilter")
+  Future<HttpResponse<ResponseEntity>> getVoucherItemsByFilter(@Body() VoucherByFilterRequest voucherByFilterRequest);
+
+  ///Voucher Items By Search
+  @POST("/Vouchers/GetItemsByFilter")
+  Future<HttpResponse<ResponseEntity>> getVoucherItemsBySearch(@Body() VoucherBySearchRequest voucherBySearchRequest);
+
+
 }

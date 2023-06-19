@@ -130,6 +130,10 @@ var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
 var manageContactRepositoryProvider = Provider<ManageContactRepository>(
     (ref) => ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
 
+// inject [ManageContactRepository] provider
+// var eVoucherRepositoryProvider = Provider<ManageContactRepository>(
+//         (ref) => ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
+
 /// inject [ManageContactRepository] provider
 var dashboardRepositoryProvider =
     Provider<DashboardRepository>((ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));

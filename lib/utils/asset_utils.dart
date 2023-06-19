@@ -174,6 +174,7 @@ class AssetUtils {
   static const String cliqLogoSvg = svg + "cliqLogoSvg.svg";
   static const String blueStar = svg + "blue_star.svg";
   static const String editNickName = svg + "edit_nickname.svg";
+  static const String e_voucher = svg + "e_voucher.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
