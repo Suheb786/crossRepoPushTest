@@ -286,7 +286,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
             height: 16.h,
           ),
           Text(
-            S.of(context).accountNumber,
+            S.of(context).accountMobileNoAlias,
             style: TextStyle(
                 fontSize: 12.t,
                 fontFamily: StringUtils.appFont,
@@ -409,9 +409,9 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                   height: 8.h,
                 ),
                 SizedBox(
-                  width: 60.w,
+                  width: 80.w,
                   child: Text(
-                    S.current.viewHistory,
+                    S.current.viewTransactions,
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     style: TextStyle(

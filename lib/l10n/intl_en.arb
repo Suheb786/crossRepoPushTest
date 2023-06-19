@@ -1779,5 +1779,6 @@
   "imageFormatWrong": "Oops! Please use .PNG or .JPG format. ",
   "avatarUpdateFailure": "Oops! Image cannot be uploaded, please try again later",
   "removeAvatarFailure": "Oops! Image cannot be removed, please try again later",
-  "ContactMarkFavouriteFailure": "Oops! Contact not marked as favorite, please try again later"
+  "ContactMarkFavouriteFailure": "Oops! Contact not marked as favorite, please try again later",
+  "viewTransactions": "View Transactions"
 }

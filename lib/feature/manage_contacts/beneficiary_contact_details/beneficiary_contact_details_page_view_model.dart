@@ -135,12 +135,12 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _updateBeneficiaryResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
+        _updateBeneficiaryResponse.safeAdd(event);
       });
     });
 
@@ -197,6 +197,16 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
+    _deleteBeneficiaryRequest.close();
+    _deleteBeneficiaryResponse.close();
+    _updateBeneficiaryRequest.close();
+    _updateBeneficiaryResponse.close();
+    _uploadProfilePhotoRequest.close();
+    _uploadProfilePhotoResponse.close();
+    _selectedImageSubject.close();
+    _updateProfileImageRequestSubject.close();
+    _removeProfileImageRequestSubject.close();
+    _nameEditableNotifierSubject.close();
     super.dispose();
   }
 }

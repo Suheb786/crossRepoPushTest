@@ -39,11 +39,11 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
 
   ///-----------------add-contact-iban-otp-subjects-------------------------------------///
 
-  PublishSubject<AddContactIBANuseCaseParams> addcontactIbanOTPuseCaseRequest = PublishSubject();
-  PublishSubject<Resource<AddBeneficiaryResponse>> addcontactIbanOTPuseCaseResponse = PublishSubject();
+  PublishSubject<AddContactIBANuseCaseParams> _addcontactIbanOTPuseCaseRequest = PublishSubject();
+  PublishSubject<Resource<AddBeneficiaryResponse>> _addcontactIbanOTPuseCaseResponse = PublishSubject();
 
   Stream<Resource<AddBeneficiaryResponse>> get addcontactIbanOTPValidationStream =>
-      addcontactIbanOTPuseCaseResponse.stream;
+      _addcontactIbanOTPuseCaseResponse.stream;
 
   ///--------------------------otp-subject-------------------------------------///
 
@@ -58,7 +58,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///-----------------resend OTP-------------------------------------///
 
   PublishSubject<AddBeneficiaryOTPUseCaseParams> _resendOTPUseCaseRequest = PublishSubject();
-  PublishSubject<Resource<SendOtpAddBeneficiaryResponse>> resendOTPUseCaseRequestResponse = PublishSubject();
+  PublishSubject<Resource<SendOtpAddBeneficiaryResponse>> _resendOTPUseCaseRequestResponse = PublishSubject();
 
   ///--------------------------public-override-methods-------------------------------------///
 
@@ -69,9 +69,10 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
     countDownController.disposeTimer();
     _showButtonSubject.close();
     _otpSubject.close();
-    addcontactIbanOTPuseCaseRequest.close();
-    addcontactIbanOTPuseCaseResponse.close();
-
+    _addcontactIbanOTPuseCaseRequest.close();
+    _addcontactIbanOTPuseCaseResponse.close();
+    _resendOTPUseCaseRequest.close();
+    _resendOTPUseCaseRequestResponse.close();
     super.dispose();
   }
 
@@ -87,7 +88,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
       addBeneficiaryFormPageViewModel,
     );
 
-    addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
+    _addcontactIbanOTPuseCaseRequest.safeAdd(AddContactIBANuseCaseParams(
       IBANAccountNoMobileNoAlias: provider.ibanOrMobileController.text,
       purpose: '',
       beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
@@ -124,12 +125,12 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
   ///--------------------------public-constructor-------------------------------------///
 
   AddBeneficiaryotpPageViewModel(this.addBeneficiaryUseCase, this.resendOTPAddBeneficiaryUseCase) {
-    addcontactIbanOTPuseCaseRequest.listen((value) {
+    _addcontactIbanOTPuseCaseRequest.listen((value) {
       RequestManager(value, createCall: () => addBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        addcontactIbanOTPuseCaseResponse.safeAdd(event);
+        _addcontactIbanOTPuseCaseResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -142,7 +143,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        resendOTPUseCaseRequestResponse.safeAdd(event);
+        _resendOTPUseCaseRequestResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
