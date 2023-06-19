@@ -1,6 +1,6 @@
 import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/source/infobip_audio/infobip_message_datasource.dart';
-import 'package:infobip_mobilemessaging/models/UserData.dart';
+import 'package:infobip_mobilemessaging/models/user_data.dart';
 
 class InfobipMessageDSImpl with InfobipMessageLocalDs {
   final InfobipMessageService _infobipAudioService;
@@ -23,7 +23,7 @@ class InfobipMessageDSImpl with InfobipMessageLocalDs {
   }
 
   @override
-  bool depersonalizeUser() {
+  Future<bool> depersonalizeUser() {
     return _infobipAudioService.depersonalizeUser();
   }
 }

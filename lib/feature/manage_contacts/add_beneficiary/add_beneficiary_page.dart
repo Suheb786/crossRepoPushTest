@@ -8,9 +8,9 @@ import 'add_beneficiary_page_view.dart';
 import 'add_beneficiary_page_view_model.dart';
 
 class AddBeneficiaryPage extends BasePage<AddBeneficiaryPageViewModel> {
-  NavigationType navigationType;
+  AddBeneficiaryPageArguments arguments;
 
-  AddBeneficiaryPage({required this.navigationType});
+  AddBeneficiaryPage({required this.arguments});
 
   @override
   State<StatefulWidget> createState() {
@@ -34,13 +34,13 @@ class AddBeneficiaryPageState extends BaseStatefulPage<AddBeneficiaryPageViewMod
 
   @override
   void onModelReady(AddBeneficiaryPageViewModel model) {
-    model.navigationType = widget.navigationType;
+    model.arguments = widget.arguments;
     super.onModelReady(model);
   }
 
   @override
   Color? scaffoldBackgroundColor() {
-    return widget.navigationType == NavigationType.REQUEST_MONEY
+    return widget.arguments.navigationType == NavigationType.REQUEST_MONEY
         ? Theme.of(context).canvasColor
         : Theme.of(context).primaryColor;
   }
@@ -53,4 +53,11 @@ class AddBeneficiaryPageState extends BaseStatefulPage<AddBeneficiaryPageViewMod
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class AddBeneficiaryPageArguments {
+  final NavigationType navigationType;
+  final bool isFromContactCard;
+
+  AddBeneficiaryPageArguments({required this.navigationType, required this.isFromContactCard});
 }

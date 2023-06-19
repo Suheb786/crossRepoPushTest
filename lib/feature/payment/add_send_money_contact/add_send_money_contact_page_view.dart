@@ -2,7 +2,9 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -74,30 +76,40 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                             fontSize: 12.0.t,
                                             color: Theme.of(context).colorScheme.secondary)),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, RoutePaths.AddContactsIBANManageContactsPage,
-                                          arguments: NavigationType.SEND_MONEY);
-                                    },
-                                    child: Container(
-                                      child: AppSvg.asset(AssetUtils.plusIcon, width: 16.w, height: 16.h),
-                                      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-                                      decoration: BoxDecoration(
-                                          color: Theme.of(context).primaryColor,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Theme.of(context).primaryColorDark.withOpacity(0.15),
-                                                blurRadius: 8.96,
-                                                offset: Offset(0, 4.48))
-                                          ]),
+                                  Visibility(
+                                    visible: (ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .dashboardFeatures
+                                            ?.manageContactEnabled ??
+                                        false),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RoutePaths.AddContactsIBANManageContactsPage,
+                                            arguments: AddBeneficiaryPageArguments(
+                                                navigationType: NavigationType.SEND_MONEY,
+                                                isFromContactCard: true));
+                                      },
+                                      child: Container(
+                                        child: AppSvg.asset(AssetUtils.plusIcon, width: 16.w, height: 16.h),
+                                        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context).primaryColor,
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Theme.of(context).primaryColorDark.withOpacity(0.15),
+                                                  blurRadius: 8.96,
+                                                  offset: Offset(0, 4.48))
+                                            ]),
+                                      ),
                                     ),
                                   )
                                 ],
                               ),
                             )),
-                        beneficiaries!.length > 0
+                        (beneficiaries ?? []).length > 0
                             ? Column(
                                 children: [
                                   Directionality(
@@ -127,12 +139,14 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 29.0.h),
                                     child: Visibility(
-                                      visible: true,
+                                      visible: (ProviderScope.containerOf(context)
+                                              .read(appHomeViewModelProvider)
+                                              .dashboardDataContent
+                                              .dashboardFeatures
+                                              ?.manageContactEnabled ??
+                                          false),
                                       child: InkWell(
                                         onTap: () {
-                                          /*    Navigator.pushNamed(context, RoutePaths.AllContact,
-                                              arguments:
-                                                  AllContactArguments(beneficiaryList: beneficiaries ?? []));*/
                                           Navigator.pushNamed(context, RoutePaths.BeneficiaryContactsList,
                                               arguments: NavigationType.SEND_MONEY);
                                         },

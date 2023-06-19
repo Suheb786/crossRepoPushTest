@@ -8,33 +8,81 @@ class AddBeneficiaryRequest {
   final String? nickName;
   @JsonKey(name: "FullName")
   final String? fullName;
-  @JsonKey(name: "AccountNo")
-  final String? accountNo;
-  @JsonKey(name: "Iban")
-  final String? iBan;
-  @JsonKey(name: "BankName")
-  final String? bankName;
+  @JsonKey(name: "AvatarImg")
+  final String? avatarImg;
+  @JsonKey(name: "BeneficiaryType")
+  final String? beneficiaryType;
+  @JsonKey(name: "IsFavourite")
+  final bool? isFavourite;
+  @JsonKey(name: "UserId")
+  final String? userId;
+  @JsonKey(name: "Identifier")
+  final String? identifier;
+  @JsonKey(name: "IsFromMobile")
+  final bool? isFromMobile;
+  @JsonKey(name: "DetCustomerType")
+  final String? detCustomerType;
+  @JsonKey(name: "Alias")
+  final String? alias;
+  @JsonKey(name: "AddressLine1")
+  final String? addressLine1;
+  @JsonKey(name: "AddressLine2")
+  final String? addressLine2;
+  @JsonKey(name: "AddressLine3")
+  final String? addressLine3;
+  @JsonKey(name: "AddressLine4")
+  final String? addressLine4;
+  @JsonKey(name: "Limit")
+  final int? limit;
+  @JsonKey(name: "IFSCCode")
+  final String? IFSCCode;
+  @JsonKey(name: "RoutingNo")
+  final String? routingNo;
+  @JsonKey(name: "SortCode")
+  final String? sortCode;
+  @JsonKey(name: "PurposeType")
+  final String? purposeType;
   @JsonKey(name: "Purpose")
   final String? purpose;
   @JsonKey(name: "PurposeDetails")
   final String? purposeDetails;
-  @JsonKey(name: "Image")
-  final String? image;
+  @JsonKey(name: "PurposeParent")
+  final String? purposeParent;
+  @JsonKey(name: "PurposeParentDetails")
+  final String? purposeParentDetails;
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
   @JsonKey(name: "GetToken")
   final bool getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
   AddBeneficiaryRequest({
     this.nickName,
     this.fullName,
-    this.accountNo,
-    this.iBan,
-    this.bankName,
+    this.avatarImg,
+    this.beneficiaryType,
+    this.isFavourite,
+    this.userId,
+    this.identifier,
+    this.isFromMobile,
+    this.detCustomerType,
+    this.alias,
+    this.addressLine1,
+    this.addressLine2,
+    this.addressLine3,
+    this.addressLine4,
+    this.limit,
+    this.IFSCCode,
+    this.routingNo,
+    this.sortCode,
+    this.purposeType,
     this.purpose,
     this.purposeDetails,
-    this.image,
-    this.getToken= true,
+    this.purposeParent,
+    this.purposeParentDetails,
+    this.otpCode,
+    this.getToken = true,
     required this.baseData,
   });
 

@@ -16,14 +16,15 @@ class GetBeneficiaryUseCase
   @override
   Future<Either<NetworkError, GetBeneficiaryListResponse>> execute(
       {required GetBeneficiaryUseCaseParams params}) {
-    return _repository.getBeneficiaries();
+    return _repository.getBeneficiaries(params.beneType!);
   }
 }
 
 class GetBeneficiaryUseCaseParams extends Params {
   final BuildContext? context;
+  final String? beneType;
 
-  GetBeneficiaryUseCaseParams({this.context});
+  GetBeneficiaryUseCaseParams({this.context, this.beneType});
 
   @override
   Either<AppError, bool> verify() {

@@ -1,7 +1,6 @@
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_mobile_number/add_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/account_setting/change_mobile_number/validate_otp_for_new_mobile_number_usecase.dart';
-import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,18 +16,12 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
 
   final AddNewMobileNumberUseCase _resendOtpUseCase;
 
-  final SaveUserUseCase _saveUserUseCase;
-
   ///countdown controller
   late CountdownTimerController countDownController;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   TextEditingController otpController = TextEditingController();
-
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
-
-  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
@@ -56,7 +49,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   EnterCodeForChangeMobileNumberPageViewModel(
-      this._validateOtpForNewMobileNumberUseCase, this._resendOtpUseCase, this._saveUserUseCase) {
+      this._validateOtpForNewMobileNumberUseCase, this._resendOtpUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _validateOtpForNewMobileNumberUseCase.execute(params: value))
           .asFlow()
@@ -79,14 +72,6 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           updateTime();
         }
-      });
-    });
-
-    _saveUserRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        return _saveUserUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        _saveuserResponseSubject.safeAdd(event);
       });
     });
   }
@@ -113,10 +98,6 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   void changeOtp({required String mobileCode, required String mobileNo}) {
     _resendOtpRequest
         .safeAdd(AddNewMobileNumberUseCaseParams(mobileCode: '00$mobileCode', mobileNumber: mobileNo));
-  }
-
-  void saveUserData() {
-    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   @override

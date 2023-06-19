@@ -12,6 +12,7 @@ UpdateBeneficiaryRequest _$UpdateBeneficiaryRequestFromJson(
       beneficiaryId: json['BeneficiaryDetailId'] as String,
       nickName: json['NickName'] as String?,
       isFromMobile: json['IsFromMobile'] as bool? ?? true,
+      beneType: json['BeneType'] as String?,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$UpdateBeneficiaryRequestToJson(
       'BeneficiaryDetailId': instance.beneficiaryId,
       'NickName': instance.nickName,
       'IsFromMobile': instance.isFromMobile,
+      'BeneType': instance.beneType,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

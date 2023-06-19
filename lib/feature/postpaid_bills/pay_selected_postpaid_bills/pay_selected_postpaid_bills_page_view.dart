@@ -31,6 +31,7 @@ class PaySelectedBillsPostPaidBillsPageView
       onData: (data) {
         model.postPaidBillInquiryData = data;
         model.addAllBillAmt(context);
+        model.initialValidation(context: context);
       },
       dataBuilder: (BuildContext context, data) {
         return AppStreamBuilder<Resource<PayPostPaidBill>>(
@@ -44,22 +45,6 @@ class PaySelectedBillsPostPaidBillsPageView
                     arguments: PostPaidBillsSuccessPageArguments(
                         model.billerSuccessDetailsList, model.totalBillAmtSuccess));
               });
-
-              // var isAnyBillFail = false;
-              // var errorBillFail = "";
-              //
-              // for (var item in data.data!.content!.billerList!) {
-              //   errorBillFail = item.statusDescription ?? "";
-              //   if (errorBillFail == "err-377") {
-              //     isAnyBillFail = true;
-              //   }
-              // }
-              // if (isAnyBillFail == true) {
-              //   model.showToastWithError(AppError(
-              //       cause: Exception(),
-              //       error: ErrorInfo(message: ''),
-              //       type: ErrorType.BILL_PAYMENT_SORRY_MESSAGE));
-              // }
             }
           },
           dataBuilder: (BuildContext context, data) {
@@ -141,7 +126,7 @@ class PaySelectedBillsPostPaidBillsPageView
                           Expanded(
                             child: Card(
                               child: model.postPaidBillInquiryData == null ||
-                                  model.postPaidBillInquiryData!.isEmpty
+                                      model.postPaidBillInquiryData!.isEmpty
                                   ? Center(
                                       child: Text(
                                         S.of(context).noDataFound,
@@ -208,7 +193,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                                         }
                                                       },
                                                       onChanged: (value) {
-                                                        onChangedCalled(model, index, value, context);
+                                                        model.onChangedCalled(index, value, context);
                                                       },
                                                       billAmtDue: model.checkAndGetValidBillerDueAmount(
                                                         model.arguments.postPaidBillInquiryData?[index]
@@ -249,53 +234,22 @@ class PaySelectedBillsPostPaidBillsPageView
                                                   hintText: S.of(context).pleaseSelect,
                                                   controller: model.savingAccountController,
                                                   readOnly: true,
-                                                  /*onPressed: () {
-                                                    AccountsDialog.show(context,
-                                                        label: S.of(context).selectAccount, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      model.savingAccountController.text = value;
-                                                      Navigator.pop(context);
-                                                      model.validate();
-                                                    }, accountsList: [
-                                                      ProviderScope.containerOf(context)
-                                                              .read(appHomeViewModelProvider)
-                                                              .dashboardDataContent
-                                                              .account
-                                                              ?.accountNo ??
-                                                          ''
-                                                    ]);
-                                                  },*/
-                                                  // suffixIcon: (value, data) {
-                                                  //   return Container(
-                                                  //       height: 16.h,
-                                                  //       width: 16.w,
-                                                  //       padding: EdgeInsetsDirectional.only(end: 8.w),
-                                                  //       child: AppSvg.asset(AssetUtils.downArrow,
-                                                  //           color: AppColor.dark_gray_1));
-                                                  // },
                                                 ),
                                               ),
                                               SizedBox(
                                                 height: 40.h,
                                               ),
-                                              AppStreamBuilder<double>(
-                                                initialData: model.arguments.amt,
-                                                stream: model.totalBillAmtDueStream,
-                                                dataBuilder: (BuildContext context, data) {
-                                                  return AppStreamBuilder<bool>(
-                                                      stream: model.showButtonStream,
-                                                      initialData: false,
-                                                      dataBuilder: (context, isValid) {
-                                                        return Visibility(
-                                                          visible: isValid!,
-                                                          child: AnimatedButton(
-                                                            buttonText: S.of(context).swipeToProceed,
-                                                          ),
-                                                        );
-                                                      });
-                                                },
-                                              ),
+                                              AppStreamBuilder<bool>(
+                                                  stream: model.showButtonStream,
+                                                  initialData: false,
+                                                  dataBuilder: (context, isValid) {
+                                                    return Visibility(
+                                                      visible: isValid!,
+                                                      child: AnimatedButton(
+                                                        buttonText: S.of(context).swipeToProceed,
+                                                      ),
+                                                    );
+                                                  }),
                                               SizedBox(
                                                 height: 24.h,
                                               ),
@@ -330,20 +284,6 @@ class PaySelectedBillsPostPaidBillsPageView
           },
         );
       },
-    );
-  }
-
-  void onChangedCalled(
-      PaySelectedBillsPostPaidBillsPageViewModel model, int index, String value, BuildContext context) {
-    model.newAmtEnter(
-      index,
-      value,
-      double.parse(model.postPaidBillInquiryData?[index].actualDueAmountFromApi ?? "0").toStringAsFixed(3),
-      double.parse(model.postPaidBillInquiryData?[index].feesAmt ?? "0").toStringAsFixed(3),
-      model.postPaidBillInquiryData?[index].isPartial ?? false,
-      double.parse(model.postPaidBillInquiryData?[index].minValue ?? "0").toStringAsFixed(3),
-      double.parse(model.postPaidBillInquiryData?[index].maxValue ?? "0").toStringAsFixed(3),
-      context,
     );
   }
 }

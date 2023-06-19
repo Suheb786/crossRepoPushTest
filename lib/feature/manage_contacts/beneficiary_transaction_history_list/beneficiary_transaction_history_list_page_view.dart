@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_transacton_history_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -25,7 +26,7 @@ class BeneficiaryTransactionHistoryListPageView
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(16.w), topRight: Radius.circular(16.w))),
       child: Column(
         children: [searchContact(context, model), listItem(context, model)],
       ),
@@ -39,28 +40,52 @@ class BeneficiaryTransactionHistoryListPageView
           margin: EdgeInsets.only(top: 8.h, bottom: 36.h),
           height: 4.h,
           width: 64.w,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4), color: Theme.of(context).colorScheme.inverseSurface),
         ),
-        AppTextField(
-          labelText: '',
-          controller: model.contactSearchController,
-          textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-          textColor: Theme.of(context).primaryColorDark,
-          hintText: S.of(context).lookingFor,
-          onChanged: (value) {
-            model.searchBeneficiary(value);
-          },
-          suffixIcon: (value, data) {
-            return InkWell(
-              onTap: () async {},
-              child: Container(
-                  height: 16.h,
-                  width: 16.w,
-                  padding: EdgeInsetsDirectional.only(end: 8.w),
-                  child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-            );
-          },
+        Row(
+          children: [
+            Expanded(
+              child: AppTextField(
+                labelText: '',
+                controller: model.contactSearchController,
+                textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                textColor: Theme.of(context).primaryColorDark,
+                hintText: S.of(context).lookingFor,
+                onChanged: (value) {
+                  model.searchBeneficiary(value);
+                },
+                suffixIcon: (value, data) {
+                  return InkWell(
+                    onTap: () async {},
+                    child: Container(
+                        height: 16.h,
+                        width: 16.w,
+                        padding: EdgeInsetsDirectional.only(end: 8.w),
+                        child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(start: 24.0.w),
+              child: InkWell(
+                  onTap: () {
+                    FilterTransactionDialog.show(
+                      context,
+                      onDismissed: () => Navigator.pop(context),
+                      onSelected: (value) {
+                        Navigator.pop(context);
+                        // model.getTransactions(
+                        //     cardId: model.cardTransactionArguments.cardId!,
+                        //     noOfDays: model.getFilterDays(value));
+                      },
+                    );
+                  },
+                  child: AppSvg.asset(AssetUtils.filter, width: 24.w, height: 24.h)),
+            )
+          ],
         ),
       ],
     );

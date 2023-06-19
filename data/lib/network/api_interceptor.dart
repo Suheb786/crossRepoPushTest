@@ -129,8 +129,10 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (err.response!.data != null) {
       if (((err.response!.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ??
           false) {
-        authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
-        SecureStorageHelper.instance.storeTokenId(token: authToken);
+        if ((err.response!.data as Map<String, dynamic>)['response']['token'] != 'Error') {
+          authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
+          SecureStorageHelper.instance.storeTokenId(token: authToken);
+        }
       }
     }
     super.onError(err, handler);
@@ -151,8 +153,10 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (response.statusCode == 200) {
       if (response.data != null) {
         if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
-          authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
-          SecureStorageHelper.instance.storeTokenId(token: authToken);
+          if ((response.data as Map<String, dynamic>)['response']['token'] != 'Error') {
+            authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
+            SecureStorageHelper.instance.storeTokenId(token: authToken);
+          }
         }
       }
     }

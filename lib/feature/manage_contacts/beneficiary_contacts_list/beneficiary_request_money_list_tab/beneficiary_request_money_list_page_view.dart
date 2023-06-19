@@ -1,10 +1,13 @@
-import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/manage_contacts/beneficiary_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/manage_contacts/add_beneficiary/add_beneficiary_page.dart';
+import 'package:neo_bank/feature/manage_contacts/beneficiary_contact_details/beneficiary_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/beneficiary_contacts_list/beneficiary_contacts_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/manage_contacts/beneficiary_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -22,14 +25,19 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
 
   @override
   Widget build(BuildContext context, BeneficiaryContactListPageViewModel model) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 24.0.w,
-        right: 24.0.w,
-        top: 24.h,
-      ),
-      child: Column(
-        children: [searchContact(context, model), listItem(context, model)],
+    return AppKeyBoardHide(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 24.0.w,
+          right: 24.0.w,
+          top: 24.h,
+        ),
+        child: Column(
+          children: [
+            searchContact(context, model),
+            listItem(context, model),
+          ],
+        ),
       ),
     );
   }
@@ -42,35 +50,70 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: AppTextField(
-                  labelText: '',
-                  controller: model.sendMoneySearchController,
-                  textFieldBorderColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
-                  hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                  textColor: Theme.of(context).primaryColorDark,
-                  hintText: S.of(context).searchContacts,
-                  onChanged: (value) {
-                    model.searchBeneficiary(value);
-                  },
-                  suffixIcon: (value, data) {
-                    return InkWell(
-                      onTap: () async {},
-                      child: Container(
-                          height: 16.h,
-                          width: 16.w,
-                          padding: EdgeInsetsDirectional.only(end: 8.w),
-                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-                    );
-                  },
-                ),
+                child: AppStreamBuilder<Resource<BeneficiaryContact>>(
+                    stream: model.getRTPBeneficiaryListStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, beneficiaryList) {
+                      return Focus(
+                        onFocusChange: (hasChanged) {
+                          if (!hasChanged) {
+                            if (((beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                ?.beneficiaryFavoriteContact ??
+                                            [])
+                                        .isNotEmpty ||
+                                    (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                ?.beneficiaryOtherContact ??
+                                            [])
+                                        .isNotEmpty) &&
+                                model.requestMoneySearchController.text.isNotEmpty) {
+                              model.searchBeneficiary(model.requestMoneySearchController.text, "RTP");
+                            } else {
+                              model.getBeneficiaryList(isFromSearch: true);
+                            }
+                          }
+                        },
+                        child: AppTextField(
+                          labelText: '',
+                          controller: model.requestMoneySearchController,
+                          textFieldBorderColor:
+                              Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.3),
+                          hintTextColor: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                          textColor: Theme.of(context).primaryColorDark,
+                          hintText: S.of(context).searchContacts,
+                          onChanged: (value) {
+                            if (model.requestMoneySearchController.text.isEmpty) {
+                              //  model.getBeneficiaryList();
+                            }
+                          },
+                          suffixIcon: (value, data) {
+                            return InkWell(
+                              onTap: () async {},
+                              child: Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsetsDirectional.only(end: 8.w),
+                                  child: AppSvg.asset(AssetUtils.search,
+                                      color: Theme.of(context).primaryColorDark)),
+                            );
+                          },
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 width: 8.w,
               ),
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                      arguments: NavigationType.REQUEST_MONEY);
+                onTap: () async {
+                  model.isNewRecordCreated = true;
+                  var result = await Navigator.pushNamed(
+                      context, RoutePaths.AddContactsIBANManageContactsPage,
+                      arguments: AddBeneficiaryPageArguments(
+                          navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: false));
+
+                  if (result != null && result == true) {
+                    model.getBeneficiaryList(isFromSearch: false);
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -89,103 +132,179 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
   }
 
   listItem(context, BeneficiaryContactListPageViewModel model) {
-    return AppStreamBuilder<Resource<List<Beneficiary>>>(
-        stream: model.getBeneficiaryListStream,
+    return AppStreamBuilder<Resource<bool>>(
+        stream: model.beneficiaryMarkFavoriteResponseStream,
         initialData: Resource.none(),
-        dataBuilder: (context, beneficiaryList) {
-          switch (beneficiaryList?.status) {
-            case Status.SUCCESS:
-              return (beneficiaryList?.data ?? []).isNotEmpty
-                  ? Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Card(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              elevation: 2,
-                              shadowColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
-                              margin: EdgeInsets.only(top: 16.h),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 16.w, top: 24.h),
-                                      child: Text(S.of(context).favourites,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.t,
-                                              color: Theme.of(context).textTheme.bodyMedium!.color)),
-                                    ),
-                                    ListView.builder(
-                                      itemBuilder: (context, index) {
-                                        ///send data from api response once updated
-                                        return BeneficiaryListWidget(
-                                          beneficiary: beneficiaryList?.data![index],
-                                          onTap: () async {
-                                            var result = await Navigator.pushNamed(
-                                                context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                arguments: beneficiaryList?.data![index]);
+        onData: (isFavoriteStatus) {
+          if (isFavoriteStatus.status == Status.SUCCESS) {
+            model.getBeneficiaryList(isFromSearch: false);
+          }
+        },
+        dataBuilder: (context, isFavoriteStatus) {
+          return AppStreamBuilder<Resource<BeneficiaryContact>>(
+              stream: model.getRTPBeneficiaryListStream,
+              initialData: Resource.none(),
+              dataBuilder: (context, beneficiaryList) {
+                switch (beneficiaryList?.status) {
+                  case Status.SUCCESS:
+                    return ((beneficiaryList
+                                        ?.data?.beneficiaryRequestMoneyContact?.beneficiaryFavoriteContact ??
+                                    [])
+                                .isNotEmpty ||
+                            (beneficiaryList?.data?.beneficiaryRequestMoneyContact?.beneficiaryOtherContact ??
+                                    [])
+                                .isNotEmpty)
+                        ? Expanded(
+                            child: Column(
+                              children: [
+                                Flexible(
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.w)),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    elevation: 2,
+                                    shadowColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+                                    margin: EdgeInsets.only(top: 16.h),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                        ?.beneficiaryFavoriteContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 16.w, top: 24.h),
+                                              child: Text(S.of(context).favourites,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 14.t,
+                                                      color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                            ),
+                                          ),
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                        ?.beneficiaryFavoriteContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: ListView.builder(
+                                              itemBuilder: (context, index) {
+                                                ///send data from api response once updated
+                                                return BeneficiaryListWidget(
+                                                  beneficiary: beneficiaryList
+                                                      ?.data
+                                                      ?.beneficiaryRequestMoneyContact
+                                                      ?.beneficiaryFavoriteContact![index],
+                                                  onTap: () async {
+                                                    model.isNewRecordCreated = false;
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: BeneficiaryContactDetailArguments(
+                                                            navigationType: NavigationType.REQUEST_MONEY,
+                                                            beneficiaryInformation: beneficiaryList!
+                                                                .data!
+                                                                .beneficiaryRequestMoneyContact!
+                                                                .beneficiaryFavoriteContact![index],
+                                                            isFromContactCard: false));
 
-                                            if (result != null) {
-                                              // model.getBeneficiaryList();
-                                            }
-                                          },
-                                        );
-                                      },
-                                      shrinkWrap: true,
-                                      physics: ClampingScrollPhysics(),
-                                      itemCount: beneficiaryList?.data?.length,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 16.w),
-                                      child: Text(S.of(context).others,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.t,
-                                              color: Theme.of(context).textTheme.bodyMedium!.color)),
-                                    ),
-                                    ListView.builder(
-                                      itemBuilder: (context, index) {
-                                        ///send data from api response once updated
-                                        return BeneficiaryListWidget(
-                                          beneficiary: beneficiaryList?.data![index],
-                                          onTap: () async {
-                                            var result = await Navigator.pushNamed(
-                                                context, RoutePaths.BeneficiaryContactDetailsPage,
-                                                arguments: beneficiaryList?.data![index]);
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList(isFromSearch: false);
+                                                    }
+                                                  },
+                                                  onFavClick: (beneficiary) {
+                                                    model.markAsFavorite(
+                                                        beneficiaryDetailId: beneficiary.id,
+                                                        isFavorite: false,
+                                                        userId: beneficiary.userId,
+                                                        isFromMobile: true,
+                                                        beneType: beneficiary.beneficiaryType);
+                                                  },
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              physics: ClampingScrollPhysics(),
+                                              itemCount: beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                  ?.beneficiaryFavoriteContact?.length,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 32.h,
+                                          ),
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                        ?.beneficiaryOtherContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.only(start: 16.w),
+                                              child: Text(S.of(context).others,
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 14.t,
+                                                      color: Theme.of(context).textTheme.bodyMedium!.color)),
+                                            ),
+                                          ),
+                                          Visibility(
+                                            visible: (beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                        ?.beneficiaryOtherContact ??
+                                                    [])
+                                                .isNotEmpty,
+                                            child: ListView.builder(
+                                              itemBuilder: (context, index) {
+                                                ///send data from api response once updated
+                                                return BeneficiaryListWidget(
+                                                  beneficiary: beneficiaryList
+                                                      ?.data
+                                                      ?.beneficiaryRequestMoneyContact
+                                                      ?.beneficiaryOtherContact![index],
+                                                  onTap: () async {
+                                                    model.isNewRecordCreated = false;
 
-                                            if (result != null) {
-                                              // model.getBeneficiaryList();
-                                            }
-                                          },
-                                        );
-                                      },
-                                      shrinkWrap: true,
-                                      physics: ClampingScrollPhysics(),
-                                      itemCount: beneficiaryList?.data?.length,
+                                                    var result = await Navigator.pushNamed(
+                                                        context, RoutePaths.BeneficiaryContactDetailsPage,
+                                                        arguments: BeneficiaryContactDetailArguments(
+                                                            navigationType: NavigationType.REQUEST_MONEY,
+                                                            beneficiaryInformation: beneficiaryList!
+                                                                .data!
+                                                                .beneficiaryRequestMoneyContact!
+                                                                .beneficiaryOtherContact![index],
+                                                            isFromContactCard: false));
+
+                                                    if (result != null && result == true) {
+                                                      model.getBeneficiaryList(isFromSearch: false);
+                                                    }
+                                                  },
+                                                  onFavClick: (beneficiary) {
+                                                    model.markAsFavorite(
+                                                        beneficiaryDetailId: beneficiary.id,
+                                                        isFavorite: true,
+                                                        userId: beneficiary.userId,
+                                                        isFromMobile: true,
+                                                        beneType: beneficiary.beneficiaryType);
+                                                  },
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              physics: ClampingScrollPhysics(),
+                                              itemCount: beneficiaryList?.data?.beneficiaryRequestMoneyContact
+                                                  ?.beneficiaryOtherContact?.length,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 56.h,
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           )
-                        ],
-                      ),
-                    )
-                  : noDataFound(context, model);
-            default:
-              return Container();
-          }
+                        : noDataFound(context, model);
+                  default:
+                    return Container();
+                }
+              });
         });
   }
 
@@ -206,19 +325,16 @@ class BeneficiaryRequestMoneyListPageView extends BasePageViewWidget<Beneficiary
                   padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
                   child: AppSvg.asset(AssetUtils.contacts)),
             ),
-            Text(
-              S.of(context).youDontHaveAnyContactAddYourFirstNow,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 12.t,
-                  color: Theme.of(context).primaryColorDark,
-                  fontWeight: FontWeight.w600),
-            ),
             GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
-                    arguments: NavigationType.REQUEST_MONEY);
+              onTap: () async {
+                model.isNewRecordCreated = true;
+                var result = await Navigator.pushNamed(context, RoutePaths.AddContactsIBANManageContactsPage,
+                    arguments: AddBeneficiaryPageArguments(
+                        navigationType: NavigationType.REQUEST_MONEY, isFromContactCard: false));
+
+                if (result != null && result == true) {
+                  model.getBeneficiaryList(isFromSearch: false);
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: 16.h),

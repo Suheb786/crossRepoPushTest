@@ -89,18 +89,44 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void updateCreditCardLimits(
-      {required num atmWithdrawalValue,
+      {required num atmWithdrawalPayment,
       required num merchantPayment,
       required num onlinePurchase,
       required num contactlessPayments}) {
     _updateCreditCardLimitsRequestSubject.safeAdd(CreditCardLimitsUpdateUseCaseParams(
-      onlinePurchase: onlinePurchase,
-      merchantsPayments: isMerchantPayments ? merchantPayment : 0.001,
-      atmWithdrawal: isAtmWithdrawal ? atmWithdrawalValue : 0.001,
-      isOnlinePurchase: isOnlinePurchase,
-      isMerchantsPayments: isMerchantPayments,
-      isContactLessPayments: isContactLessPayments,
-      isAtmWithdrawal: isAtmWithdrawal,
+      ///online purchase
+      isOnlinePurchase: (onlinePurchase == 0 || onlinePurchase == 0.001) ? false : isOnlinePurchase,
+      onlinePurchase: (onlinePurchase == 0 || onlinePurchase == 0.001)
+          ? 0.001
+          : isOnlinePurchase
+              ? onlinePurchase
+              : 0.001,
+
+      ///merchant payment
+      isMerchantsPayments: (merchantPayment == 0 || merchantPayment == 0.001) ? false : isMerchantPayments,
+      merchantsPayments: (merchantPayment == 0 || merchantPayment == 0.001)
+          ? 0.001
+          : isMerchantPayments
+              ? merchantPayment
+              : 0.001,
+
+      ///atm withdrawal
+      isAtmWithdrawal: (atmWithdrawalPayment == 0 || atmWithdrawalPayment == 0.001) ? false : isAtmWithdrawal,
+      atmWithdrawal: (atmWithdrawalPayment == 0 || atmWithdrawalPayment == 0.001)
+          ? 0.001
+          : isAtmWithdrawal
+              ? atmWithdrawalPayment
+              : 0.001,
+
+      ///contactless payment
+      isContactLessPayments:
+          (contactlessPayments == 0 || contactlessPayments == 0.001) ? false : isContactLessPayments,
+      contactlessPaymentLimit: (contactlessPayments == 0 || contactlessPayments == 0.001)
+          ? 0.001
+          : isContactLessPayments
+              ? contactlessPayments
+              : 0.001,
+
       secureCode: cardLimitsArguments.secureCode,
     ));
   }

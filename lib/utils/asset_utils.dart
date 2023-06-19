@@ -225,7 +225,6 @@ class AssetUtils {
   static const String credit = drawable + "credit.png";
   static const String newOutfit = drawable + "newOutfit.png";
   static const String anghamiPlus = drawable + "anghami_plus.png";
-  static const String accountStatement = drawable + "account-statement.png";
   static const String creditStatement = drawable + "credit-statement.png";
   static const String debitBlurWidget = drawable + "debit_blur_widget.png";
   static const String creditBlurCard = drawable + "credit_blur_card.png";
@@ -259,7 +258,6 @@ class AssetUtils {
   static const String applePayLogo = drawable + "apple_pay_logo.png";
 
   ///Apple Pay svg
-  //static const String addAppleWalletIcon = svg + "add_apple_pay_icon.svg";
   static const String creditCardRedSmall = svg + "credit_card_red_small.svg";
   static const String debitCardYellowSmall = svg + "debit_card_yellow_small_icon.svg";
   static const String applePayIcon = svg + "apple_pay_icon.svg";
@@ -281,8 +279,8 @@ class AssetUtils {
   static const String flightIcon = svg + "flight_icon.svg";
   static const String deleteBlackIcon = svg + "delete_black_icon.svg";
   static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
-  static const String logoeFawateerRed = svg + "logo_eFawateer_red.svg";
-  static const String logoeFawateerYellow = svg + "logo_eFawateer_yellow.svg";
+  static const String logoeFawateerRed = drawable + "efawateer_logo_red.png";
+  static const String logoeFawateerYellow = drawable + "efawateer_logo_yellow.png";
 
   static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
   static const String requestViaQrIcon = svg + "request_via_qr.svg";
@@ -327,7 +325,6 @@ class AssetUtils {
   static const String favContactIcon = svg + "favContactIcon.svg";
 
   ///billPaymentsImages
-  static const String PAYYOURBILLSWITHBLINK = drawable + "124.png";
   static const String efawateerPopUpImage = drawable + "efawateer_popup_image.png";
   static const String infoFee = svg + "info_fee.svg";
   static const String bulbIcon = svg + "bulb_icon.svg";
@@ -341,4 +338,5 @@ class AssetUtils {
   static const String cameraWhiteContainerWrap = svg + "camera_white_container_wrap.svg";
   static const String starRedIcon = svg + "star_red.svg";
   static const String starYellowIcon = svg + "star_yellow.svg";
+  static const String starBlueBorder = svg + "star_blue_border.svg";
 }

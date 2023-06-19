@@ -18,7 +18,6 @@ import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transactio
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
@@ -91,11 +90,6 @@ final cardTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
   (ref, args) => CardTransactionViewModel(
       ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
-);
-
-final creditCardVerificationSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardVerificationSuccessViewModel>(
-  (ref) => CreditCardVerificationSuccessViewModel(),
 );
 
 final accountTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(

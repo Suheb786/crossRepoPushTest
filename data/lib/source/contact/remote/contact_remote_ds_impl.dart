@@ -1,25 +1,28 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
-import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/add_contact_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_contact_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_contact_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_fav_request.dart';
+import 'package:data/entity/remote/contact/beneficiary_mark_favorite_request.dart';
 import 'package:data/entity/remote/contact/contact_detail_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
-import 'package:data/entity/remote/contact/list_of_contacts_request.dart';
 import 'package:data/entity/remote/contact/remove_avatar_request.dart';
 import 'package:data/entity/remote/contact/search_contact_request.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary.dart';
+import 'package:data/entity/remote/contact/send_otp_add_beneficiary_data_response_entity.dart';
+import 'package:data/entity/remote/contact/update_avatar_request.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
-import 'package:data/entity/remote/contact/update_favorite_request.dart';
-import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
-import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/contact/update_contact_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:retrofit/dio.dart';
 
-import '../../../entity/remote/contact/add_contact_request.dart';
-import '../../../entity/remote/contact/update_contact_request.dart';
+import '../../../entity/remote/contact/add_beneficiary_response_entity.dart';
 
 class ContactRemoteDsImpl extends ContactRemoteDS {
   final ApiService _apiService;
@@ -28,64 +31,91 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   ContactRemoteDsImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+  Future<HttpResponse<AddBeneficiaryResponseEntity>> addBeneficiary(
       {String? nickName,
       String? fullName,
-      String? accountNumber,
-      String? iBan,
-      String? bankName,
+      String? avatarImage,
+      String? beneficiaryType,
+      bool? isFavourite,
+      String? userId,
+      String? identifier,
+      bool? isFromMobile,
+      String? detCustomerType,
+      String? alias,
+      String? addressLine1,
+      String? addressLine2,
+      String? addressLine3,
+      String? addressLine4,
+      int? limit,
+      String? IFSCCode,
+      String? routingNo,
+      String? sortCode,
+      String? purposeType,
       String? purpose,
       String? purposeDetails,
-      String? imageFilePath}) async {
+      String? purposeParent,
+      String? purposeParentDetails,
+      String? OTPCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addBeneficiary(AddBeneficiaryRequest(
-        image: ImageUtils.convertToBase64(imageFilePath!),
-        accountNo: accountNumber,
-        bankName: bankName,
-        fullName: fullName,
-        iBan: iBan,
         nickName: nickName,
+        fullName: fullName,
+        avatarImg: avatarImage,
+        beneficiaryType: beneficiaryType,
+        isFavourite: isFavourite,
+        userId: userId,
+        identifier: identifier,
+        isFromMobile: isFromMobile,
+        detCustomerType: detCustomerType,
+        alias: alias,
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        addressLine3: addressLine3,
+        addressLine4: addressLine4,
+        limit: limit,
+        IFSCCode: IFSCCode,
+        routingNo: routingNo,
+        sortCode: sortCode,
+        purposeType: purposeType,
         purpose: purpose,
         purposeDetails: purposeDetails,
+        purposeParent: purposeParent,
+        purposeParentDetails: purposeParentDetails,
+        otpCode: OTPCode,
+        getToken: true,
         baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId}) async {
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary({String? beneficiaryId, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.deleteBeneficiary(
-        DeleteBeneficiaryRequest(beneficiaryId: beneficiaryId!, baseData: baseData.toJson()));
+    return _apiService.deleteBeneficiary(DeleteBeneficiaryRequest(
+        beneficiaryId: beneficiaryId!, beneType: beneType!, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries() async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(String beneType) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getBeneficiaries(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getBeneficiaries(BeneficiaryFavoriteRequest(
+      baseData: baseData.toJson(),
+      isFromMobile: true,
+      beneType: beneType,
+    ));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
-      {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
+      {String? beneficiaryId, String? nickName, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateBeneficiary(UpdateBeneficiaryRequest(
-        beneficiaryId: beneficiaryId!, nickName: nickName, baseData: baseData.toJson()));
+        beneficiaryId: beneficiaryId!, nickName: nickName, beneType: beneType, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
-      {String? filePath, String? beneficiaryId}) async {
+  Future<HttpResponse<SendOtpAddBeneficiaryDataResponseEntity>> sendOTPAddBeneficiary(
+      {String? type, String? otpCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.uploadBeneficiaryImage(UploadBeneficiaryImageRequest(
-        image: ImageUtils.convertToBase64(filePath!),
-        beneficiaryID: beneficiaryId!,
-        baseData: baseData.toJson()));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyBeneficiaryOtp(
-        VerifyBeneficiaryOtpRequest(type: type!, otp: otpCode!, baseData: baseData.toJson()));
+    return _apiService.sendOTPAddBeneficiary(SendOTPAddBeneficiaryRequest(baseData: baseData.toJson()));
   }
 
   @override
@@ -97,34 +127,42 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> listOfContacts({required bool isFromMobile}) async {
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> beneficiaryContacts({
+    required bool isFromMobile,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .listOfContacts(ListOfContactRequest(baseData: baseData.toJson(), isFromMobile: isFromMobile));
+    return _apiService.beneficiaryContacts(BeneficiaryContactRequest(
+      baseData: baseData.toJson(),
+      isFromMobile: isFromMobile,
+    ));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> searchContact(
-      {required String searchText, required bool isFromMobile}) async {
+  Future<HttpResponse<ResponseEntity>> beneficiaryMarkFavorite(
+      {required String beneficiaryDetailId,
+      required bool isFavorite,
+      required String userId,
+      required bool isFromMobile,
+      required String beneType}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.beneficiaryMarkFavorite(BeneficiaryMarkFavoriteRequest(
+        beneficiaryDetailId: beneficiaryDetailId,
+        isFavorite: isFavorite,
+        userId: userId,
+        isFromMobile: isFromMobile,
+        beneType: beneType,
+        baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<BeneficiaryContactResponseEntity>> searchContact({
+    required String searchText,
+    required bool isFromMobile,
+    required String beneType,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.searchContact(SearchContactRequest(
-        baseData: baseData.toJson(), searchText: searchText, isFromMobile: isFromMobile));
-  }
-
-  @override
-  Future<HttpResponse<ResponseEntity>> updateFavorite(
-      {required String beneficiaryDetailId,
-      required bool isSendMoneyFav,
-      required bool isRequestMoneyFav,
-      required String userId,
-      required bool isFromMobile}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.updateFavorite(UpdateFavoriteRequest(
-        baseData: baseData.toJson(),
-        beneficiaryDetailId: beneficiaryDetailId,
-        isRequestMoneyFav: isRequestMoneyFav,
-        isSendMoneyFav: isSendMoneyFav,
-        isFromMobile: isFromMobile));
+        baseData: baseData.toJson(), searchText: searchText, isFromMobile: isFromMobile, beneType: beneType));
   }
 
   @override
@@ -200,20 +238,24 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
 
   @override
   Future<HttpResponse<ResponseEntity>> updateAvatar(
-      {String? beneficiaryDetailId, String? avatarImage, String? userId, String? isFromMobile}) async {
+      {String? beneficiaryDetailId, String? avatarImage, String? beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.addContact(AddContactRequest(
-        avatarImg: ImageUtils.convertToBase64(avatarImage!),
-        userId: userId,
-        isFromMobile: isFromMobile,
-        getToken: true,
-        baseData: baseData.toJson()));
+    return _apiService.updateContactImage(UpdateAvatarRequest(
+      beneficiaryDetailId: beneficiaryDetailId,
+      image: ImageUtils.convertToBase64(avatarImage!),
+      beneType: beneType,
+      baseData: baseData.toJson(),
+    ));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> removeAvatar({required String beneficiaryId}) async {
+  Future<HttpResponse<ResponseEntity>> removeAvatar(
+      {required String beneficiaryDetailId, required String beneType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.removeAvatar(RemoveAvatarRequest(
-        beneficiaryDetailId: beneficiaryId, isFromMobile: true, getToken: true, baseData: baseData.toJson()));
+    return _apiService.removeContactImage(RemoveAvatarRequest(
+      beneficiaryDetailId: beneficiaryDetailId,
+      beneType: beneType,
+      baseData: baseData.toJson(),
+    ));
   }
 }

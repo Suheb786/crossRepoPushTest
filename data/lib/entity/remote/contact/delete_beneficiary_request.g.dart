@@ -11,6 +11,7 @@ DeleteBeneficiaryRequest _$DeleteBeneficiaryRequestFromJson(
     DeleteBeneficiaryRequest(
       beneficiaryId: json['BeneficiaryDetailId'] as String,
       isFromMobile: json['IsFromMobile'] as bool? ?? true,
+      beneType: json['BeneType'] as String,
       getToken: json['GetToken'] as bool? ?? true,
       baseData: json['BaseClass'] as Map<String, dynamic>,
     );
@@ -20,6 +21,7 @@ Map<String, dynamic> _$DeleteBeneficiaryRequestToJson(
     <String, dynamic>{
       'BeneficiaryDetailId': instance.beneficiaryId,
       'IsFromMobile': instance.isFromMobile,
+      'BeneType': instance.beneType,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

@@ -19,6 +19,7 @@ CreditCardSLimitsUpdateRequestEntity
           isContactLessPayments: json['ContactLessPayment'] as bool? ?? false,
           baseData: json['BaseClass'] as Map<String, dynamic>?,
           secureCode: json['SecureCode'] as String? ?? "",
+          contactLessPaymentLimit: json['ContactLessPaymentLimit'] as num? ?? 0,
         );
 
 Map<String, dynamic> _$CreditCardSLimitsUpdateRequestEntityToJson(
@@ -31,6 +32,7 @@ Map<String, dynamic> _$CreditCardSLimitsUpdateRequestEntityToJson(
       'Merchant': instance.isMerchantsPayments,
       'MerchantLimit': instance.merchantsPayments,
       'ContactLessPayment': instance.isContactLessPayments,
+      'ContactLessPaymentLimit': instance.contactLessPaymentLimit,
       'SecureCode': instance.secureCode,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
-import 'package:infobip_mobilemessaging/models/Configuration.dart';
-import 'package:infobip_mobilemessaging/models/Installation.dart';
-import 'package:infobip_mobilemessaging/models/LibraryEvent.dart';
-import 'package:infobip_mobilemessaging/models/Message.dart';
-import 'package:infobip_mobilemessaging/models/PersonalizeContext.dart';
-import 'package:infobip_mobilemessaging/models/UserData.dart';
+import 'package:infobip_mobilemessaging/models/configuration.dart';
+import 'package:infobip_mobilemessaging/models/installation.dart';
+import 'package:infobip_mobilemessaging/models/library_event.dart';
+import 'package:infobip_mobilemessaging/models/message.dart';
+import 'package:infobip_mobilemessaging/models/personalize_context.dart';
+import 'package:infobip_mobilemessaging/models/user_data.dart';
 
 class InfobipMessageService {
   static List<String> libraryEvents = [''];
@@ -35,71 +37,63 @@ class InfobipMessageService {
     ///Push Notification Permission  for Android 13+
     InfobipMobilemessaging.registerForAndroidRemoteNotifications();
 
-    InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
+    InfobipMobilemessaging.on(LibraryEvent.tokenReceived, (String token) {
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
-      debugPrint(token);
       debugPrint("--------Callback. TOKEN_RECEIVED event:------------");
 
       addLibraryEvent("Token Received");
     });
 
     InfobipMobilemessaging.on(
-        LibraryEvent.MESSAGE_RECEIVED,
+        LibraryEvent.messageReceived,
         (Message message) => {
               if (message != null)
                 {
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
-                  debugPrint(message.toString()),
                   debugPrint("--------Callback. MESSAGE_RECEIVED event:------------"),
                   /*addLibraryEvent("Message Received"),*/
                   // debugPrint(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
                 }
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.USER_UPDATED,
+        LibraryEvent.userUpdated,
         (event) => {
               debugPrint("--------Callback. USER_UPDATED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. USER_UPDATED event:------------"),
               /*addLibraryEvent("User Updated")*/
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.PERSONALIZED,
+        LibraryEvent.personalized,
         (event) => {
               debugPrint("--------Callback. PERSONALIZED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. PERSONALIZED event:------------"),
               /*addLibraryEvent("Personalized")*/
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.INSTALLATION_UPDATED,
+        LibraryEvent.installationUpdated,
         (String event) => {
               debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. INSTALLATION_UPDATED event:------------"),
               addLibraryEvent("Installation Updated")
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.DEPERSONALIZED,
+        LibraryEvent.depersonalized,
         (event) => {
               debugPrint("--------Callback. DEPERSONALIZED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. DEPERSONALIZED event:------------"),
               /*addLibraryEvent("Depersonalized")*/
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.NOTIFICATION_ACTION_TAPPED,
+        LibraryEvent.actionTapped,
         (event) => {
               debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
-              debugPrint(event),
               debugPrint("--------Callback. NOTIFICATION_ACTION_TAPPED event:------------"),
               addLibraryEvent("Notification Action Tapped")
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.NOTIFICATION_TAPPED,
+        LibraryEvent.notificationTapped,
         (Message message) => {
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
-              debugPrint(message.toString()),
               debugPrint("--------Callback. NOTIFICATION_TAPPED event:------------"),
 
               // callback(true),
@@ -107,10 +101,9 @@ class InfobipMessageService {
               if (message.chat!) {debugPrint('Chat Message Tapped')}
             });
     InfobipMobilemessaging.on(
-        LibraryEvent.REGISTRATION_UPDATED,
+        LibraryEvent.registrationUpdated,
         (String token) => {
               debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
-              debugPrint(token),
               debugPrint("--------Callback. REGISTRATION_UPDATED event:------------"),
               addLibraryEvent("Registration Updated")
             });
@@ -128,9 +121,16 @@ class InfobipMessageService {
     return true;
   }
 
-  bool depersonalizeUser() {
+  Future<bool> depersonalizeUser() {
+    Completer<bool> completer = Completer<bool>();
     InfobipMobilemessaging.depersonalize();
-    return true;
+    InfobipMobilemessaging.on(LibraryEvent.depersonalized, (event) {
+      if (!completer.isCompleted) {
+        completer.complete(true);
+      }
+    });
+
+    return completer.future;
   }
 
   Future<bool> saveUser({required UserData userData}) async {
@@ -151,9 +151,14 @@ class InfobipMessageService {
       emails: userData.emails,
       phones: userData.phones,
     );
-    InfobipMobilemessaging.saveUser(user);
-    InfobipMobilemessaging.personalize(
-        PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity));
+    await InfobipMobilemessaging.saveUser(user).onError((error, stackTrace) {
+      debugPrint('Error Type Save User ------>${error}');
+    });
+    await InfobipMobilemessaging.personalize(
+            PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity))
+        .onError((error, stackTrace) {
+      debugPrint('Error Type Personalize ------>${error}');
+    });
     return true;
   }
 }

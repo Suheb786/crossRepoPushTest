@@ -1,4 +1,4 @@
-import 'package:infobip_mobilemessaging/models/UserData.dart';
+import 'package:infobip_mobilemessaging/models/user_data.dart';
 
 abstract class InfobipMessageLocalDs {
   Future<bool> initInfobipMessage();
@@ -7,5 +7,5 @@ abstract class InfobipMessageLocalDs {
 
   Future<bool> saveUser(UserData userData);
 
-  bool depersonalizeUser();
+  Future<bool> depersonalizeUser();
 }

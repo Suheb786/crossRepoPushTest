@@ -9,6 +9,8 @@ class CreditCardLimit {
   final String? onlinePurchaseCurrentLimit;
   final String? onlinePurchaseMaxLimit;
   final bool? isContactLess;
+  final String? contactLessCurrentLimit;
+  final String? contactLessMaxLimit;
 
   CreditCardLimit(
       {this.isATM,
@@ -20,5 +22,7 @@ class CreditCardLimit {
       this.isOnlinePurchase,
       this.onlinePurchaseCurrentLimit,
       this.onlinePurchaseMaxLimit,
-      this.isContactLess});
+      this.isContactLess,
+      this.contactLessCurrentLimit,
+      this.contactLessMaxLimit});
 }

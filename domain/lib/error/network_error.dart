@@ -855,12 +855,35 @@ class NetworkError extends BaseError {
           case "err-400":
             return AppError(cause: cause, error: error, type: ErrorType.ACCOUNT_CLOSED);
 
+          case "err-510":
+            return AppError(cause: cause, error: error, type: ErrorType.FAVOURITE_CONTACT_LIMIT_EXCEEDED);
+
+          case "err-511":
+            return AppError(cause: cause, error: error, type: ErrorType.NICKNAME_ALREADY_EXISTM);
+
+          case "err-512":
+            return AppError(cause: cause, error: error, type: ErrorType.INDENTFIER_ALREADY_EXISTS);
+
+          case "err-513":
+            return AppError(cause: cause, error: error, type: ErrorType.UPDATE_NICKNAME_FAILURE);
+
+          case "err-514":
+            return AppError(cause: cause, error: error, type: ErrorType.REMOVE_NICKNAME_FAILURE);
+
+          case "err-515":
+            return AppError(cause: cause, error: error, type: ErrorType.IMAGE_FORMAT_WRONG);
+
+          case "err-516":
+            return AppError(cause: cause, error: error, type: ErrorType.UPDATE_AVATAR_FAILURE);
+
+          case "err-517":
+            return AppError(cause: cause, error: error, type: ErrorType.REMOVE_AVATAR_FAILURE);
+
+          case "err-518":
+            return AppError(cause: cause, error: error, type: ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
-
-          // case "err-164":
-          //   return AppError(
-          //       cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
 
           case "ex-001":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_ADDING_USERNAME);

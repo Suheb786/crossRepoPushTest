@@ -100,21 +100,24 @@ class BeneficiaryContactListPageState
     if (widget.navigationType == NavigationType.REQUEST_MONEY) {
       _tabController.index = 1;
     }
+    model.navigationType = widget.navigationType;
 
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         switch (_tabController.index) {
           case 0:
             widget.navigationType = NavigationType.SEND_MONEY;
+            model.navigationType = NavigationType.SEND_MONEY;
             model.changeBackgroundColor();
 
             break;
           case 1:
             widget.navigationType = NavigationType.REQUEST_MONEY;
+            model.navigationType = NavigationType.REQUEST_MONEY;
             model.changeBackgroundColor();
+            break;
         }
       }
-      model.navigationType = widget.navigationType;
     });
     super.onModelReady(model);
   }

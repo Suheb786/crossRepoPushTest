@@ -1368,6 +1368,28 @@ class ErrorParser {
         return localisedHelper.thisAliasAlreadyExists;
       case ErrorType.CLIQ_ID_ALREADY_EXISTS:
         return localisedHelper.cliqIdAlreadyExists;
+      case ErrorType.CREDIT_CONTACTLESS_PAYMENT_EXCEEDED:
+        return localisedHelper.creditContactlessLimitExceeded;
+
+      case ErrorType.FAVOURITE_CONTACT_LIMIT_EXCEEDED:
+        return localisedHelper.favouriteContactLimitExceeded;
+      case ErrorType.NICKNAME_ALREADY_EXISTM:
+        return localisedHelper.nicknameAlreadyExistsM;
+      case ErrorType.INDENTFIER_ALREADY_EXISTS:
+        return localisedHelper.identifierAlreadyExists;
+      case ErrorType.UPDATE_NICKNAME_FAILURE:
+        return localisedHelper.updateNicknameFailure;
+      case ErrorType.REMOVE_NICKNAME_FAILURE:
+        return localisedHelper.removeNicknameFailure;
+      case ErrorType.IMAGE_FORMAT_WRONG:
+        return localisedHelper.imageFormatWrong;
+      case ErrorType.UPDATE_AVATAR_FAILURE:
+        return localisedHelper.avatarUpdateFailure;
+      case ErrorType.REMOVE_AVATAR_FAILURE:
+        return localisedHelper.removeAvatarFailure;
+      case ErrorType.CONTACT_ADDING_FAVOURITE_FAILURE:
+        return localisedHelper.ContactMarkFavouriteFailure;
+
       default:
         return "";
     }

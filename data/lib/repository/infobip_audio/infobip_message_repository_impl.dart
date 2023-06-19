@@ -4,7 +4,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:infobip_mobilemessaging/models/UserData.dart';
+import 'package:infobip_mobilemessaging/models/user_data.dart';
 
 class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   final InfobipMessageLocalDs _infobipMessageDs;
@@ -66,8 +66,8 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   }
 
   @override
-  Either<NetworkError, bool> depersonalizeUser() {
-    var depersonalizeUserResult = _infobipMessageDs.depersonalizeUser();
+  Future<Either<NetworkError, bool>> depersonalizeUser() async {
+    var depersonalizeUserResult = await _infobipMessageDs.depersonalizeUser();
     if (!depersonalizeUserResult) {
       return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
     } else {

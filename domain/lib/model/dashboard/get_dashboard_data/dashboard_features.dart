@@ -15,6 +15,7 @@ class DashboardFeatures {
   final bool? blinkRetailAppCliqSendPayment;
   final bool? rtpFeatureEnabled;
   final bool? returnPaymentFeatureEnabled;
+  final bool? manageContactEnabled;
 
   DashboardFeatures(
       {this.appBillPaymentPostpaid,
@@ -32,5 +33,6 @@ class DashboardFeatures {
       this.blinkRetailAppCliqAliasManagement,
       this.blinkRetailAppCliqRTP,
       this.rtpFeatureEnabled,
-      this.returnPaymentFeatureEnabled});
+      this.returnPaymentFeatureEnabled,
+      this.manageContactEnabled});
 }

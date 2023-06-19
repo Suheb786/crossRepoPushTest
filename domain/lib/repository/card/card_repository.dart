@@ -82,7 +82,8 @@ abstract class CardRepository {
       bool isMerchantsPayments,
       bool isOnlinePurchase,
       num merchantsPayments,
-      num onlinePurchase});
+      num onlinePurchase,
+      num contactlessPaymentLimit});
 
   Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit({required String? tokenizedPan});
 
