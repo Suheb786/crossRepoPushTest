@@ -1733,5 +1733,6 @@
   "imageFormatWrong": ".PNG أو .JPG عفوا! حمّل صورة تكون ",
   "avatarUpdateFailure": "عفوا! لا يمكن تحميل الصورة، حاول مرة ثانية لاحقا",
   "removeAvatarFailure": "عفوا! لا يمكن حذف الصورة، حاول مرة ثانية لاحقا",
-  "ContactMarkFavouriteFailure": "عفوا! لم يتم إضافة الصديق إلى قائمة المفضلين، حاول مرة ثانية لاحقا"
+  "ContactMarkFavouriteFailure": "عفوا! لم يتم إضافة الصديق إلى قائمة المفضلين، حاول مرة ثانية لاحقا",
+  "pleaseFillMissingField": "عفوا! يرجى إدخال المعلومة الناقصة"
 }
