@@ -93,7 +93,7 @@ class AddBeneficiaryotpPageViewModel extends BasePageViewModel {
       purpose: '',
       beneficiaryType: navigationType == NavigationType.REQUEST_MONEY ? 'RTP' : 'SM',
       purposeDetail: provider.purposeDetail?.strCode ?? '',
-      name: provider.nameController.text,
+      name: provider.nameController.text.trim(),
       fullName: navigationType == NavigationType.REQUEST_MONEY
           ? provider.getAccountByAliasContentResponse.getAccountByAliasContent!.name ?? ''
           : provider.transferResponse.name ?? '',

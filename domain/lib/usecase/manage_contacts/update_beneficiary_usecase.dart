@@ -17,7 +17,7 @@ class UpdateBeneficiaryUseCase extends BaseUseCase<NetworkError, UpdateBeneficia
   @override
   Future<Either<NetworkError, bool>> execute({required UpdateBeneficiaryUseCaseParams params}) {
     return _repository.updateBeneficiary(
-        beneficiaryId: params.beneficiaryId, nickName: params.nickName, beneType: params.beneType);
+        beneficiaryId: params.beneficiaryId, nickName: params.nickName.trim(), beneType: params.beneType);
   }
 }
 
