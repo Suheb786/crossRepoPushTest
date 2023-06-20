@@ -62,7 +62,10 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
   ///---------------------------search-beneficiary-list---------------------------------///
   PublishSubject<SearchContactUseCaseParams> _searchBeneficiaryListRequest = PublishSubject();
 
-  BehaviorSubject<Resource<BeneficiaryContact>> _searchBeneficiaryListResponse = BehaviorSubject();
+  PublishSubject<Resource<BeneficiaryContact>> _searchBeneficiaryListResponse = PublishSubject();
+
+  Stream<Resource<BeneficiaryContact>> get getSearchBeneficiaryListStream =>
+      _searchBeneficiaryListResponse.stream;
 
   void searchBeneficiary(
     String searchText,
@@ -97,14 +100,17 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
     }
   }*/
 
-  void getBeneficiaryList({required bool isFromSearch}) {
+  void getBeneficiaryList({required bool isFromSearch, NavigationType? navigationType}) {
     if (isFromSearch) {
       BeneficiarySendMoneyContact? beneficiarySendMoneyContact =
           beneficiaryContact?.beneficiarySendMoneyContact;
       BeneficiaryRequestMoneyContact? beneficiaryRequestMoneyContact =
           beneficiaryContact?.beneficiaryRequestMoneyContact;
-      addSMBeneficiaryList(beneficiarySendMoneyContact);
-      addRTPBeneficiaryList(beneficiaryRequestMoneyContact);
+      if (navigationType == NavigationType.SEND_MONEY) {
+        addSMBeneficiaryList(beneficiarySendMoneyContact);
+      } else if (navigationType == NavigationType.REQUEST_MONEY) {
+        addRTPBeneficiaryList(beneficiaryRequestMoneyContact);
+      }
     } else {
       _getBeneficiaryListRequest.safeAdd(BeneficiaryContactUseCaseParams(true));
     }
@@ -187,7 +193,7 @@ class BeneficiaryContactListPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _searchContactUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        // updateLoader();
+        //  updateLoader();
         _searchBeneficiaryListResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
