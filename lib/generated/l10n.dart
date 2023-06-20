@@ -11821,16 +11821,6 @@ class S {
     );
   }
 
-  /// `Pending`
-  String get pending {
-    return Intl.message(
-      'Pending',
-      name: 'pending',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Transaction Type`
   String get transactionType {
     return Intl.message(
@@ -17586,6 +17576,36 @@ class S {
     return Intl.message(
       'Oops! Please fill the missing field.',
       name: 'pleaseFillMissingField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get accepted {
+    return Intl.message(
+      'Accepted',
+      name: 'accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message(
+      'Rejected',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
       desc: '',
       args: [],
     );

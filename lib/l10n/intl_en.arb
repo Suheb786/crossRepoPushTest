@@ -1200,7 +1200,6 @@
   "activatingSuppCreditCard": "Activating your supplementary credit card",
   "connectionFailed": "Connection Failed",
   "requestTimeOut": "REQUEST TIMEOUT",
-  "pending": "Pending",
   "transactionType": "Transaction Type",
   "paymentPeriod": "Payment Period",
   "fromMe": "From Me",
@@ -1780,5 +1779,8 @@
   "avatarUpdateFailure": "Oops! Image cannot be uploaded, please try again later",
   "removeAvatarFailure": "Oops! Image cannot be removed, please try again later",
   "ContactMarkFavouriteFailure": "Oops! Contact not marked as favorite, please try again later",
-  "pleaseFillMissingField": "Oops! Please fill the missing field."
+  "pleaseFillMissingField": "Oops! Please fill the missing field.",
+  "accepted": "Accepted",
+  "rejected": "Rejected",
+  "pending": "Pending"
 }

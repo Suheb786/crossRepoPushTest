@@ -1199,7 +1199,6 @@
   "activatingSuppCreditCard": "تفعيل بطاقتك الائتمانية التابعة",
   "connectionFailed": "فشل في الاتصال",
   "requestTimeOut": "انتهى وقت الطلب",
-  "pending": "في الانتظار",
   "transactionType": "نوع الحركة",
   "paymentPeriod": "فترة الدفعة",
   "fromMe": "لي",
@@ -1734,5 +1733,8 @@
   "avatarUpdateFailure": "عفوا! لا يمكن تحميل الصورة، حاول مرة ثانية لاحقا",
   "removeAvatarFailure": "عفوا! لا يمكن حذف الصورة، حاول مرة ثانية لاحقا",
   "ContactMarkFavouriteFailure": "عفوا! لم يتم إضافة الصديق إلى قائمة المفضلين، حاول مرة ثانية لاحقا",
-  "pleaseFillMissingField": "عفوا! يرجى إدخال المعلومة الناقصة"
+  "pleaseFillMissingField": "عفوا! يرجى إدخال المعلومة الناقصة",
+  "accepted": "نفذت",
+  "rejected": "مرفوضة",
+  "pending": "قيد التنفيذ"
 }
