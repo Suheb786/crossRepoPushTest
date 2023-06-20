@@ -203,7 +203,7 @@ class BeneficiaryContactDetailsPageView extends BasePageViewWidget<BeneficiaryCo
                               return Focus(
                                 onFocusChange: (hasFocus) {
                                   if (!hasFocus) {
-                                    model.setNickNameReadOnly();
+                                    model.toggleNickName(context);
                                   }
                                 },
                                 child: AutoSizeTextField(

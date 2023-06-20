@@ -137,6 +137,7 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
         updateLoader();
         if (event.status == Status.SUCCESS) {
           isUpdateProfile = true;
+          _nameEditableNotifierSubject.safeAdd(true);
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -179,16 +180,15 @@ class BeneficiaryContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   toggleNickName(BuildContext context) {
-    _nameEditableNotifierSubject.value = !_nameEditableNotifierSubject.value;
-    if (!_nameEditableNotifierSubject.value) {
+    if (_nameEditableNotifierSubject.value) {
       FocusScope.of(context).requestFocus(nickNameFocus);
+      _nameEditableNotifierSubject.safeAdd(false);
     } else {
       setNickNameReadOnly();
     }
   }
 
   setNickNameReadOnly() {
-    _nameEditableNotifierSubject.safeAdd(true);
     _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
         beneficiaryId: argument.beneficiaryInformation.id ?? '',
         nickName: nickNameController.text,
