@@ -14,7 +14,7 @@ import 'package:neo_bank/feature/evoucher/share_voucher/share_voucher_page_view_
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
 
 final evoucherViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherViewModel>(
-  (ref) => EvoucherViewModel(),
+  (ref) => EvoucherViewModel(ref.read(landingPageUseCase)),
 );
 
 final evoucherDetailViewModelProvider = ChangeNotifierProvider.autoDispose<EvoucherDetailViewModel>(
