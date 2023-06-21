@@ -13,6 +13,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 import '../../../ui/molecules/app_divider.dart';
 import '../../../ui/molecules/app_keyboard_hide.dart';
 import '../../../ui/molecules/app_svg.dart';
+import '../../../ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import '../evoucher/evoucher_view_model.dart';
 
 class MyVoucherView extends BasePageViewWidget<EvoucherViewModel> {
@@ -88,24 +89,49 @@ class MyVoucherView extends BasePageViewWidget<EvoucherViewModel> {
         padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
         children: [
           const SizedBox(height: 32),
-          AppTextField(
-            labelText: "",
-            controller: model.myVoucherSearchController,
-            hintText: S.of(context).eVoucherSearchLabel,
-            containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-            onChanged: (value) {
-              // model.searchBillName(value);
-            },
-            suffixIcon: (value, data) {
-              return InkWell(
-                onTap: () async {},
-                child: Container(
-                    height: 16.0.h,
-                    width: 16.0.w,
-                    padding: EdgeInsets.all(6),
-                    child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
-              );
-            },
+          Row(
+            children: [
+              Expanded(
+                child: AppTextField(
+                  labelText: "",
+                  controller: model.myVoucherSearchController,
+                  hintText: S.of(context).eVoucherSearchLabel,
+                  containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                  onChanged: (value) {
+                    // model.searchBillName(value);
+                  },
+                  suffixIcon: (value, data) {
+                    return InkWell(
+                      onTap: () async {},
+                      child: Container(
+                          height: 16.0.h,
+                          width: 16.0.w,
+                          padding: EdgeInsets.all(6),
+                          child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 18.0),
+                child: InkWell(
+                  onTap: () {
+                    EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
+                        onSelected: (value) {
+                      Navigator.pop(context);
+                    }, onDismissed: () {
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: AppSvg.asset(
+                    AssetUtils.filter,
+                    color: Theme.of(context).colorScheme.shadow,
+                    height: 24,
+                    width: 24,
+                  ),
+                ),
+              )
+            ],
           ),
           const SizedBox(height: 32),
           getMyVouchers(),

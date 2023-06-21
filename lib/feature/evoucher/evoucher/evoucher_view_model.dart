@@ -43,6 +43,10 @@ class EvoucherViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get voucherBySearchResponseStream => _voucherBySearchResponseSubject.stream;
 
+  /// ------------- tabChange listener -----------------------
+
+  ValueNotifier<int> tabChangeNotifier = ValueNotifier(0);
+
   EvoucherViewModel(this._eVoucherLandingPageUseCase) {
     _voucherLandingPageRequestSubject.listen((value) {
       switch (value.eVoucherLandingPageDataEnum) {
@@ -174,7 +178,7 @@ class EvoucherViewModel extends BasePageViewModel {
     _voucherByFilterResponseSubject.close();
     _voucherBySearchResponseSubject.close();
     _voucherBySearchResponseSubject.close();
-
+    tabChangeNotifier.dispose();
     super.dispose();
   }
 }

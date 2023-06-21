@@ -33,9 +33,7 @@ class MyVoucherItemView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image.asset(
                   AssetUtils.playStationIcon,
@@ -68,28 +66,16 @@ class MyVoucherItemView extends StatelessWidget {
                     )),
               ),
               Container(
-                  margin: EdgeInsetsDirectional.only(start: 17),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "-5000",
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.dark_brown,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        "4.9",
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.dark_gray_1,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  )),
+                margin: EdgeInsetsDirectional.only(start: 17),
+                child: Text(
+                  "-5000",
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.dark_brown,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
               Container(
                   margin: EdgeInsetsDirectional.only(start: 2),
                   child: Column(

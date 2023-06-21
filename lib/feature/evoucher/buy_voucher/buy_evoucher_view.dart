@@ -32,6 +32,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
               labelText: "",
               controller: model.buyVoucherSearchController,
               hintText: S.of(context).eVoucherSearchLabel,
+              hintTextColor: AppColor.very_dark_gray_black,
               containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               onChanged: (value) {
                 // model.searchBillName(value);
@@ -99,39 +100,16 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
           const SizedBox(height: 40),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
-            text: S.of(context).favouriteBrand,
-            textSize: 14,
-            textWeight: FontWeight.w600,
-            textColor: AppColor.gray_black,
-          ),
-          const SizedBox(height: 16),
-          FavouriteBrandGridItemWidget(),
-          const SizedBox(height: 40),
-          EVoucherTextWidget(
-            alignment: AlignmentDirectional.topStart,
-            text: S.of(context).topBrand,
-            textSize: 14,
-            textWeight: FontWeight.w600,
-            textColor: AppColor.gray_black,
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24),
-            child: TopBrandListItemWidget(),
-          ),
-          const SizedBox(height: 25),
-          EVoucherTextWidget(
-            alignment: AlignmentDirectional.topStart,
             text: S.of(context).browserByCatgy,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
           ),
-          const SizedBox(height: 16),
           Padding(
             padding: EdgeInsetsDirectional.only(start: 24.0, end: 24, bottom: 48, top: 0),
             child: BrowserByCategoryItemWidget(),
           )
+
         ],
       ),
     );

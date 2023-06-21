@@ -31,7 +31,22 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
   }
 
   @override
+  void onModelReady(EvoucherViewModel model) {
+    if (!_tabController.hasListeners) {
+      _tabController.addListener(() {
+        if (model.tabChangeNotifier.value != _tabController.index)
+          model.tabChangeNotifier.value = _tabController.index;
+      });
+    }
+    super.onModelReady(model);
+  }
+
+  @override
   PreferredSizeWidget? buildAppbar() {
+    final provider = ProviderScope.containerOf(context).read(
+      evoucherViewModelProvider,
+    );
+
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 85),
         child: Padding(
@@ -56,20 +71,28 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).colorScheme.secondary),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 18.0),
-                child: InkWell(
-                  onTap: () {
-                    EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
-                        onSelected: (value) {
-                      Navigator.pop(context);
-                    }, onDismissed: () {
-                      Navigator.pop(context);
-                    });
-                  },
-                  child: AppSvg.asset(AssetUtils.filterMenu),
-                ),
-              )
+              ValueListenableBuilder<int>(
+                  valueListenable: provider.tabChangeNotifier,
+                  builder: (context, int value, Widget? child) {
+                    return Padding(
+                      padding: const EdgeInsetsDirectional.only(end: 18.0),
+                      child: AnimatedOpacity(
+                        opacity: value == 0 ? 1.0 : 0.0,
+                        duration: Duration(microseconds: 500),
+                        child: InkWell(
+                          onTap: () {
+                            EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
+                                onSelected: (value) {
+                              Navigator.pop(context);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
+                          child: AppSvg.asset(AssetUtils.filterMenu),
+                        ),
+                      ),
+                    );
+                  })
             ],
           ),
         ));
@@ -85,7 +108,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
     return Container(
       margin: EdgeInsetsDirectional.only(top: 34),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
@@ -96,13 +119,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
               alignment: AlignmentDirectional.centerStart,
               child: TabBar(
                 isScrollable: true,
-                indicatorColor: AppColor.brightRed,
-                labelColor: AppColor.darkBlack,
-                unselectedLabelColor: AppColor.gray4,
                 indicatorWeight: 10.0,
-                indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 4.0, color: AppColor.brightRed),
-                ),
                 controller: _tabController,
                 tabs: [
                   Text(
@@ -112,7 +129,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage> wi
                   Padding(
                     padding: const EdgeInsetsDirectional.only(start: 2),
                     child: Text(
-                      S.of(context).myVouchers,
+                      S.of(context).history,
                       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                   )
