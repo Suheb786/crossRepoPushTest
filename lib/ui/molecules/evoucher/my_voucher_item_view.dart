@@ -48,59 +48,50 @@ class MyVoucherItemView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 6),
+                        const SizedBox(height: 4),
                         Text(S.of(context).myVoucherItemTitle,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.gray_black,
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600)),
                         const SizedBox(height: 4),
-                        Text("6:10PM",
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.gray1,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600)),
+                        Text(
+                          "6:10PM",
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.gray1,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ],
                     )),
               ),
               Container(
-                margin: EdgeInsetsDirectional.only(start: 17),
-                child: Text(
-                  "-5000",
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      color: AppColor.dark_brown,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700),
+                margin: EdgeInsetsDirectional.only(start: 17, top: 4),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "-5000",
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.dark_brown,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(width: 2),
+                    Text(
+                      'JOD'.toUpperCase(),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.gray1,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
                 ),
               ),
-              Container(
-                  margin: EdgeInsetsDirectional.only(start: 2),
-                  child: Column(
-                    children: [
-                      Text(
-                        'JOD',
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.gray1,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.all(6.0),
-                        child: Text(
-                          'USD',
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: AppColor.gray1,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
-                  ))
             ],
           ),
         ],

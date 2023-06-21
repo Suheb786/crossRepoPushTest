@@ -46,7 +46,8 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                   children: [
                     Container(
                       // height: MediaQuery.of(context).size.height / 2.1,
-                      decoration: BoxDecoration(border: Border.all(color: AppColor.white_gray, width: 1)),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).colorScheme.inverseSurface, width: 1)),
                       width: double.infinity,
                       child: Image.asset(
                         AssetUtils.shareVoucher,
@@ -69,7 +70,9 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                               Text(
                                 S.of(context).shareVoucher,
                                 style: TextStyle(
-                                    fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
                               ),
                               AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
                             ],
@@ -89,7 +92,8 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                           decoration: BoxDecoration(
                               shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyLarge!.color!),
                           child: Center(
-                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
+                            child:
+                                AppSvg.asset(AssetUtils.tick, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ),
@@ -98,7 +102,6 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                 ),
               ),
             ),
-
           ],
         ),
       ),

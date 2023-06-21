@@ -101,7 +101,7 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                       height: 16,
                                       width: 16,
                                       padding: EdgeInsetsDirectional.only(end: 8),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                      child: AppSvg.asset(AssetUtils.downArrow, color: Theme.of(context).colorScheme.surfaceTint));
                                 },
                               ),
                               Spacer(),

@@ -32,11 +32,11 @@ class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
                   child: Container(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 56,
                     height: 56,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: AppColor.brightBlue),
+                      icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
@@ -50,7 +50,7 @@ class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
             child: PageDetail(),
           ),
@@ -82,7 +82,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailTitle,
                   textSize: 12,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray5,
+                  textColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
                 SizedBox(
                   height: 4,
@@ -92,7 +92,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailSubTitle,
                   textSize: 20,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 SizedBox(
                   height: 8,
@@ -102,7 +102,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailSubSubTitle,
                   textSize: 14,
                   textWeight: FontWeight.w400,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 SizedBox(
                   height: 24,
@@ -117,7 +117,7 @@ class PageDetail extends StatelessWidget {
                         Text(
                           S.of(context).amt,
                           style: TextStyle(
-                              color: AppColor.brightBlue, fontSize: 24, fontWeight: FontWeight.w700),
+                              color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 24, fontWeight: FontWeight.w700),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
@@ -139,7 +139,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).termsAndConditionsSetting,
                   textSize: 14,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
@@ -216,7 +216,7 @@ class ViewVoucherBtb extends StatelessWidget {
                 text: S.of(context).viewVoucher,
                 textSize: 14,
                 textWeight: FontWeight.w600,
-                textColor: AppColor.brightBlue,
+                textColor: Theme.of(context).colorScheme.onSecondaryContainer,
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 24.0),
@@ -229,8 +229,8 @@ class ViewVoucherBtb extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-              border: Border.all(color: AppColor.white_gray),
-              color: Colors.white,
+              border: Border.all(color: Theme.of(context).colorScheme.inverseSurface),
+              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.all(
                 Radius.circular(40),
               )),

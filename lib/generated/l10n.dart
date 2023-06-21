@@ -17589,6 +17589,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Transaction Period`
+  String get transaction_period {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transaction_period',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

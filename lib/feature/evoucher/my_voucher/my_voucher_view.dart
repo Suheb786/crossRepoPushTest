@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
 import 'package:neo_bank/ui/molecules/evoucher/my_voucher_item_view.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -112,23 +113,23 @@ class MyVoucherView extends BasePageViewWidget<EvoucherViewModel> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 18.0),
-                child: InkWell(
-                  onTap: () {
-                    EVouchersFilterDialog.show(context, title: S.of(context).filterVouchers,
-                        onSelected: (value) {
-                      Navigator.pop(context);
-                    }, onDismissed: () {
-                      Navigator.pop(context);
-                    });
-                  },
-                  child: AppSvg.asset(
-                    AssetUtils.filter,
-                    color: Theme.of(context).colorScheme.shadow,
-                    height: 24,
-                    width: 24,
-                  ),
+              SizedBox(width: 24.w),
+              InkWell(
+                onTap: () {
+                  RelationshipWithCardHolderDialog.show(context,
+                      title: S.of(context).transaction_period,
+                      relationSHipWithCardHolder: ['Last 30 days', 'Last 60 days', 'Last 90 days'],
+                      onDismissed: () {
+                    Navigator.pop(context);
+                  }, onSelected: (value) {
+                    Navigator.pop(context);
+                  });
+                },
+                child: AppSvg.asset(
+                  AssetUtils.filter,
+                  color: Theme.of(context).colorScheme.shadow,
+                  height: 24,
+                  width: 24,
                 ),
               )
             ],
@@ -156,7 +157,7 @@ class MyVoucherView extends BasePageViewWidget<EvoucherViewModel> {
                 element['date'].toString(),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    color: AppColor.gray_black,
+                    color: Theme.of(context).colorScheme.shadow,
                     fontSize: 14,
                     fontWeight: FontWeight.w600),
               ),

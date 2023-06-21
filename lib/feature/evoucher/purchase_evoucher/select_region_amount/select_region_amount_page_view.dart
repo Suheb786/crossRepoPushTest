@@ -121,7 +121,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               width: 16,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: AppColor.dark_gray_1));
+                                                  color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
@@ -150,7 +150,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                               width: 16,
                                               padding: EdgeInsetsDirectional.only(end: 8),
                                               child: AppSvg.asset(AssetUtils.downArrow,
-                                                  color: AppColor.dark_gray_1));
+                                                  color: Theme.of(context).colorScheme.surfaceTint));
                                         },
                                       ),
                                       SizedBox(
@@ -172,7 +172,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                       S.of(context).backToCategory('Games'),
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        color: AppColor.brightBlue,
+                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),

@@ -25,11 +25,7 @@ class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategor
           );
         },
         separatorBuilder: (context, int) {
-          return AppDivider(
-            // color: Theme.of(context).dividerColor,
-            color: AppColor.darkGrey.withOpacity(0.5),
-            height: 1,
-          );
+          return AppDivider();
         },
         itemCount: model.categoryList.length,
       ),

@@ -32,7 +32,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
               labelText: "",
               controller: model.buyVoucherSearchController,
               hintText: S.of(context).eVoucherSearchLabel,
-              hintTextColor: AppColor.very_dark_gray_black,
+              hintTextColor: Theme.of(context).inputDecorationTheme.hintStyle?.color,
               containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               onChanged: (value) {
                 // model.searchBillName(value);
@@ -87,7 +87,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             text: S.of(context).purchaseNowSubTitle,
             textSize: 12,
             textWeight: FontWeight.w600,
-            textColor: AppColor.gray5,
+            textColor: Theme.of(context).colorScheme.inversePrimary,
           ),
           const SizedBox(height: 4),
           EVoucherTextWidget(
@@ -95,7 +95,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             text: S.of(context).buyVoucherTitle,
             textSize: 14,
             textWeight: FontWeight.w600,
-            textColor: AppColor.gray_black,
+            textColor: Theme.of(context).colorScheme.shadow,
           ),
           const SizedBox(height: 40),
           EVoucherTextWidget(
@@ -103,7 +103,7 @@ class BuyEvoucherView extends BasePageViewWidget<EvoucherViewModel> {
             text: S.of(context).browserByCatgy,
             textSize: 14,
             textWeight: FontWeight.w600,
-            textColor: AppColor.gray_black,
+            textColor: Theme.of(context).colorScheme.shadow,
           ),
           Padding(
             padding: EdgeInsetsDirectional.only(start: 24.0, end: 24, bottom: 48, top: 0),

@@ -38,7 +38,7 @@ class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewMode
                     width: 56,
                     height: 56,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: AppColor.brightBlue),
+                      icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSecondaryContainer),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
@@ -82,7 +82,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailTitle,
                   textSize: 12,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray5,
+                  textColor: Theme.of(context).colorScheme.inversePrimary,
                 ),
                 const SizedBox(height: 8),
                 EVoucherTextWidget(
@@ -90,7 +90,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailSubTitle,
                   textSize: 20,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 const SizedBox(height: 8),
                 EVoucherTextWidget(
@@ -98,7 +98,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).buyVoucherDetailSubSubTitle,
                   textSize: 14,
                   textWeight: FontWeight.w400,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 const SizedBox(height: 24),
                 Padding(
@@ -112,7 +112,7 @@ class PageDetail extends StatelessWidget {
                           S.of(context).amt,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              color: AppColor.brightBlue,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
                               fontSize: 24,
                               fontWeight: FontWeight.w700),
                         ),
@@ -137,7 +137,7 @@ class PageDetail extends StatelessWidget {
                   text: S.of(context).termsAndConditionsSetting,
                   textSize: 14,
                   textWeight: FontWeight.w600,
-                  textColor: AppColor.gray_black,
+                  textColor: Theme.of(context).colorScheme.shadow,
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24, top: 16),
