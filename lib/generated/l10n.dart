@@ -17571,6 +17571,16 @@ class S {
     );
   }
 
+  /// `View Transactions`
+  String get viewTransactions {
+    return Intl.message(
+      'View Transactions',
+      name: 'viewTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Oops! Please fill the missing field.`
   String get pleaseFillMissingField {
     return Intl.message(
